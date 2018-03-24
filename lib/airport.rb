@@ -23,6 +23,10 @@ class Airport
     plane_lander(plane)
   end
 
+  def takeoff(plane)
+
+  end
+
   private
 
   # ERROR MESSAGES
@@ -58,16 +62,6 @@ class Airport
 end
 
 =begin
-
-[TODO] `land(plane)` => takes a plane instance as an argument and tells it
-to land at the airport.
-Tests:
-* Plane needs to appear in the airport's `@hangar`.
-* Only instances of the `Plane` class can be landed. Attempting to land anything
-else raises the error (`not_a_plane_error`).
-* Attempting to land a plane at a full airport will raise `airport_full_error`.
-    - [FAIL] Planes are not allowed to land when the weather is stormy.
-    Attempting to land when stormy will raise an error.
 
 [TODO] #takeoff(plane) => takes a plane from the hangar and tells it to take
 off. Takes an instance of plane as an argument, but the plane must be in the

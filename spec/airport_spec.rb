@@ -1,12 +1,13 @@
 require "airport"
 
+# Commented-out tests are redundant, I've left them in here to show my progress.
+
 describe Airport do
   let(:airport) { described_class.new }
-  test_airport = Airport.new
 
-  it "Has a default capacity if one is not set by the user" do
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+  # it "Has a default capacity if one is not set by the user" do
+  #   expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  # end
 
   it "sets the capacity to another number if passed as an argument" do
     expect(Airport.new(300).capacity).to eq 300
@@ -22,28 +23,19 @@ describe Airport do
     expect { Airport.new(-256) }.to raise_error message
   end
 
-  it "should have a hangar to store the planes" do
-    expect(airport.hangar).to eq []
-  end
-
-  it "should have a @weather variable that is an instance of Weather" do
-    expect(airport.weather).to satisfy { |weather| weather.is_a?(Weather) }
-  end
+  # it "should have a @weather variable that is an instance of Weather" do
+  #   expect(airport.weather).to satisfy { |weather| weather.is_a?(Weather) }
+  # end
 
   describe '#land' do
     let(:plane) { Plane.new }
     let(:weather) { double(:weather) }
 
-    it "should respond to .land" do
-      expect(airport).to respond_to(:land)
-    end
-
-    it "should add a plane to the hangar" do
-      #allow(weather).to receive(:weather_report).and_return(:sunny)
-      airport.weather.current_state = :sunny
-      airport.land(plane)
-      expect(airport.hangar).to include plane
-    end
+    # it "should add a plane to the hangar" do
+    #   airport.weather.current_state = :sunny
+    #   airport.land(plane)
+    #   expect(airport.hangar).to include plane
+    # end
 
     it "should raise an error if trying to land something other than a plane" do
       message = "That's not a plane! It can't land here!"
@@ -52,7 +44,6 @@ describe Airport do
 
     it "should raise an error if trying to land a plane at a full airport" do
       message = "Sorry, this airport is full! Bye!"
-
       airport.weather.current_state = :sunny
       100.times { airport.land(Plane.new) }
       expect { airport.land(plane) }.to raise_error message
@@ -63,6 +54,10 @@ describe Airport do
       airport.weather.current_state = :stormy
       expect { airport.land(plane) }.to raise_error message
     end
+
+  end
+
+  describe "#takeoff" do
 
   end
 

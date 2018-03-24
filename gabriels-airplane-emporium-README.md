@@ -12,6 +12,7 @@ Can do all kinds of cool stuff like landing and takeoffing (?) planes. Except wh
 `.initialize` => Runs when `Airport.new` is called. Creates a new airport. Takes
 one argument which sets the capacity of the airports hangar. If no arguments are
 given `DEFAULT_CAPACITY` is used to set `@capacity`. `DEFAULT_CAPACITY` is set to 100.
+An instance of `Weather` is also created and stored in `@weather`. This is for determining if planes are allowed to take off or land (both aren't allowed when `@weather.stormy?` returns `true`).
 
 Notes:
 * Airport.new creates an airport with a `@hangar` with a capacity of `DEFAULT_CAPACITY`.
@@ -40,6 +41,8 @@ Notes:
 * Only instances of the `Plane` class can be landed. Attempting to land anything
 else raises the error (`not_a_plane_error`).
 * Attempting to land a plane at a full airport will raise `airport_full_error`.
+* Attempting to land a plane at an aiport where the weather is `:stormy` will
+raise the `stormy_weather_landing_error` exception.
 
 Examples:
 
@@ -51,6 +54,10 @@ our_airport.hangar # => [our_plane]
 
 our_airport.land("this is a string not a plane")
 # => RuntimeError: That's not a plane! It can't land here!
+
+our_airport.weather.stormy? #=> true
+our_airport.land(our_plane)
+# => RuntimeError: "Cannot land in stormy weather!"
 ```
 
 #### Future Features:
@@ -65,4 +72,10 @@ Doesn't even have wings yet.
 
 ## Weather
 
-What's a weather?
+### Current Features
+
+#### \#initialize
+Creates a new Weather instance. Also sets `@current_state` to one of the entries in the WEATHER_STATES constant.
+
+#### \#stormy?
+Returns `true` if `@current_state == :stormy`. Used in the `Airport` class to determine if it is safe to land a plane or let it take off.
