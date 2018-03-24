@@ -1,5 +1,6 @@
 class Plane
   def land(airport)
+    raise "airport full" if airport.full? == true
     raise "already landed" if self.status(airport) == true
     raise "It is stormy" if airport.weather.stormy? == true
     airport.planes << self
