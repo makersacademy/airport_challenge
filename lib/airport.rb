@@ -23,8 +23,8 @@ class Airport
     plane_lander(plane)
   end
 
-  def takeoff(plane)
-
+  def takeoff #(plane)
+    @hangar.pop
   end
 
   private

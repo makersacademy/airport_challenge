@@ -58,6 +58,17 @@ describe Airport do
   end
 
   describe "#takeoff" do
+    let(:plane) { Plane.new }
+
+    it "responds to .takeoff" do
+      expect(airport).to respond_to(:takeoff)
+    end
+
+    it "should remove a plane from the hangar" do
+      airport.hangar << plane
+      airport.takeoff
+      expect(airport.hangar).to eq []
+    end
 
   end
 
