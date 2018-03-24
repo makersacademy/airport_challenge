@@ -12,8 +12,6 @@ describe Airport do
       expect(airport.max_capacity).to eq(2000)
     end 
   end 
-
-  it { is_expected.to respond_to(:weather) }
   
   describe '.weather' do 
     it 'returns a weather string' do 
@@ -30,7 +28,6 @@ describe Airport do
     end 
   end
 
-
   describe '.full?' do 
     it 'returns true when full (default capacity airport)' do 
       airport = Airport.new
@@ -44,18 +41,18 @@ describe Airport do
       expect(airport.full?).to eq(false)
     end 
 
-    it 'return false when airport contains no airplanes' do 
+    it 'returns false when airport contains no airplanes' do 
       expect(subject.full?).to eq(false)
     end 
 
     it 'returns true when full (custom capacity airport)' do 
-      airport = Airport.new (2000)
+      airport = Airport.new(2000)
       2000.times { airport.add_plane('airplane') }
       expect(airport.full?).to eq(true)
     end 
 
     it 'returns false when not full (custom capacity airport)' do 
-      airport = Airport.new (2000)
+      airport = Airport.new(2000)
       1486.times { airport.add_plane('airplane') }
       expect(airport.full?).to eq(true)
     end 
