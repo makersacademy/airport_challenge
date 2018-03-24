@@ -15,4 +15,13 @@ describe Airport do
     expect(airport).to respond_to(:takeoff)
   end
 
+  it 'removes a plane from the airport capacity when instructed to takeoff' do
+  airport = Airport.new
+  plane = Plane.new
+  plane.land_plane(airport)
+  airport.takeoff
+  expect(airport.planes_in_airport).to eq []
+
+  end
+
 end
