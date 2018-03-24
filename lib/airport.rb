@@ -4,11 +4,13 @@ class Airport
   attr_reader :plane
 
   def land(plane)
+    raise 'Airport is full to capacity' if @plane
     @plane = plane
   end
 
   def takeoffplane
-    Plane.new
+    raise 'No planes available for takeoff' unless @plane
+    @plane
   end
 
 end

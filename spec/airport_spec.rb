@@ -16,11 +16,29 @@ describe Airport do
       subject.land(plane)
       expect(subject.plane).to eq plane
     end
+
+    it 'returns an error if the airport if full' do
+      subject.land(Plane.new)
+      expect {subject.land(Plane.new)}.to raise_error 'Airport is full to capacity'
+    end
   end
 
   describe '#takeoffplane' do
     it 'takes off a plane' do
-      expect(subject.takeoffplane).to be_instance_of Plane
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.takeoffplane).to eq plane
+    end
+
+    it 'removes plane from airport' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.takeoffplane
+      expect(subject).to eq subject
+    end
+
+    it "returns an error if the airport is empty" do
+      expect {subject.takeoffplane}.to raise_error 'No planes available for takeoff'
     end
   end
 end
