@@ -26,10 +26,13 @@ our_airport.capacity # => 100, also known as DEFAULT_CAPACITY
 
 other_airport = Airport.new(50)
 other_airport.capacity # => 50
+
+broken_airport = Airport.new(-420)
+RuntimeError: The capacity must be a positive number!
 ```
 
 #### \#land
-`land(plane)` => takes a plane instance as an argument and tells it
+`.land(plane)` => takes a plane instance as an argument and tells it
 to land at the airport.
 
 Notes:

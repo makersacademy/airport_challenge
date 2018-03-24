@@ -6,16 +6,19 @@ class Airport
   DEFAULT_CAPACITY = 100
   attr_accessor :capacity
   attr_accessor :hangar
+  attr_accessor :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     raise wrong_input_type_error unless capacity.is_a?(Integer)
     raise negative_capacity_error if capacity.negative?
     @capacity = capacity
     @hangar = []
+    @weather = Weather.new
   end
 
   def land(plane)
     raise not_a_plane_error unless plane.is_a?(Plane)
+    raise stormy_weather_landing_error if weather.stormy?
     raise airport_full_error if airport_full?
     plane_lander(plane)
   end
@@ -37,6 +40,10 @@ class Airport
 
   def airport_full_error
     "Sorry, this airport is full! Bye!"
+  end
+
+  def stormy_weather_landing_error
+    "Cannot land in stormy weather!"
   end
 
   # HELPER METHODS
