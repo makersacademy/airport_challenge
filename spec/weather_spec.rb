@@ -17,4 +17,5 @@ describe Weather do
 
   end
 
+  #it should be able to check the weather
 end

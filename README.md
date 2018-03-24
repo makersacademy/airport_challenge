@@ -148,4 +148,6 @@ Running both the rspec and unit test confirms that I have correctly implemented 
 
 ### Weather randomisation
 
-As we now have created an `Airport` class, we should decide what goes into this class. One thing to note that the weather I have listed during the domain modelling. Airport should instantiate a new `Weather` class whenever a new `Airport` is made.
+First of all, I decided to create a weather randomiser that could roll between `"clear"` and `"stormy"`. I first created an rspec test that would expect an instance of Weather be able to call a method on itself to return one of these values.
+
+Once the first test passed, I created a second test to return the other value. At this point, there would be no way to pass both tests without a randomiser. I then used the Kernel module from the main Object class to randomise between 0 and 1. This would serve as the index randomiser that stores the weather values. The two tests needs to include a test double in order to fix the `.rand` values to `0` and `1`.
