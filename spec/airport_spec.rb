@@ -6,6 +6,10 @@ describe Airport do
 
     it { is_expected.to respond_to(:stormy?) }
 
+    it 'is expected to have a value of true or false' do
+      expect { subject(:stormy?).to be_a(boolean) }
+    end
+
   end
 
 end

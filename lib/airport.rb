@@ -1,6 +1,7 @@
 class Airport
 
   def stormy?
+    false
   end
 
 end
