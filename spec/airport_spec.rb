@@ -60,16 +60,40 @@ describe Airport do
   describe "#takeoff" do
     let(:plane) { Plane.new }
 
-    it "responds to .takeoff" do
-      expect(airport).to respond_to(:takeoff)
+    # it "responds to .takeoff" do
+    #   expect(airport).to respond_to(:takeoff)
+    # end
+
+    # it "should remove a plane from the hangar" do
+    #   airport.weather.current_state = :sunny
+    #   airport.hangar << plane
+    #   airport.takeoff(plane)
+    #   expect(airport.hangar).to eq []
+    # end
+
+    it "should remove the specific plane passed as an argument" do
+      airport.weather.current_state = :sunny
+      specific_plane = Plane.new("this plane is special")
+      airport.land(specific_plane)
+      3.times { airport.land(Plane.new) }
+      airport.takeoff(specific_plane)
+      expect(airport.hangar).not_to include(specific_plane)
     end
 
-    it "should remove a plane from the hangar" do
-      airport.hangar << plane
-      airport.takeoff
-      expect(airport.hangar).to eq []
+    it "should remove the last plane if nothing is passed" do
+      airport.weather.current_state = :sunny
+      20.times { airport.land(Plane.new) }
+      last_plane = airport.hangar.last
+      expect(airport.takeoff).not_to include(last_plane)
     end
 
+    it "should raise an error when the weather is stormy" do
+      airport.weather.current_state = :sunny
+      airport.land(plane)
+      message = "Cannot take off in stormy weather!"
+      airport.weather.current_state = :stormy
+      expect { airport.takeoff(plane) }.to raise_error message
+    end
   end
 
 end

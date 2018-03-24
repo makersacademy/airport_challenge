@@ -60,15 +60,15 @@ our_airport.land(our_plane)
 # => RuntimeError: "Cannot land in stormy weather!"
 ```
 
-#### Future Features:
 
-Taking off
-
-Not letting planes take off in :poop: weather.
 
 ## Plane
 
-Doesn't even have wings yet.
+### Features
+
+#### \#initialize
+Creates a new instance of Plane. If passed an argument it will set `@name` to whatever is passed. If nothing is passed the `DEFAULT_PLANE_NAME` of `"Just a plane"` will be used. This only exists so  the `.takeoff` feature of `Airport` can specify a specific plane to take off.
+
 
 ## Weather
 
