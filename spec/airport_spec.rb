@@ -12,6 +12,11 @@ describe Airport do
 
   end
 
+  describe '#hangar' do
+
+    it { is_expected.to be_a(Array) }
+  end
+
 end
 
 describe Airplane do
