@@ -7,4 +7,5 @@ class Plane
   def land_plane(airport)
     airport.planes_in_airport << @plane
   end
+
 end

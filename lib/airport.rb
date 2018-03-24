@@ -8,4 +8,7 @@ class Airport
     @weather = "clear"
   end
 
+  def takeoff
+  end
+
 end
