@@ -7,13 +7,21 @@ class Airport
   end
 
   def land(plane)
-    raise 'Airport is full to capacity' if @planes.count >= 2
+    raise 'Airport is full to capacity' if full?
     @planes << plane
   end
 
   def takeoffplane
-    raise 'No planes available for takeoff' if @planes.empty?
+    raise 'No planes available for takeoff' if empty?
     @planes.pop
+  end
+
+  def full?
+    @planes.count == 2
+  end
+
+  def empty?
+    @planes.empty?
   end
 
 end
@@ -22,5 +30,5 @@ end
 (PASS) Airport lands a Plane
 (PASS) Airport returns landed planes
 (PASS) Planes take off from airport
-(TEST) Check plane removed from airport
+(PASS) Check plane removed from airport
 =end

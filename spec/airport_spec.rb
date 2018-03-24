@@ -17,8 +17,8 @@ describe Airport do
     end
 
     it 'returns an error if the airport if full' do
-      2.times {subject.land(Plane.new)}
-      expect {subject.land(Plane.new)}.to raise_error 'Airport is full to capacity'
+      2.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error 'Airport is full to capacity'
     end
   end
 
@@ -37,7 +37,7 @@ describe Airport do
     end
 
     it "returns an error if the airport is empty" do
-      expect {subject.takeoffplane}.to raise_error 'No planes available for takeoff'
+      expect { subject.takeoffplane }.to raise_error 'No planes available for takeoff'
     end
   end
 end
