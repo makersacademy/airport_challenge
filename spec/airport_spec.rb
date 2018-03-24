@@ -21,4 +21,12 @@ describe Airport do
       expect(weather).to be_a(String)
     end
   end
+
+  describe '.add_plane' do 
+    it 'accepts new airplanes' do 
+      airport = Airport.new
+      airport.add_plane('plane')
+      expect(airport.hangar.size).to be(1)
+    end 
+  end 
 end 
