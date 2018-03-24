@@ -6,7 +6,7 @@ describe Airplane do
       expect(subject.in_flight).to be(false)
     end 
     it 'location is unnasigned by default' do
-      expect(subject.location).to be('unassigned')
+      expect(subject.location).to eq('unassigned')
     end 
   end 
 end 
