@@ -29,11 +29,11 @@ In the initial stages of the challenge feature tests were run using IRB.
 
 - Feature test example:
 
-![FT](../master/myFolder/image.png)
+![FT](https://github.com/VytisVA/airport_challenge/blob/master/FT%20IRB.png)
 
 - Unit test image:
 
-![UT](../master/myFolder/image.png)
+![UT](https://github.com/VytisVA/airport_challenge/blob/master/UT%20RSpec.png)
 
 ## Built With  
 
