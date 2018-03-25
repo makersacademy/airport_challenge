@@ -1,90 +1,26 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
+Overview
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This repo contains software which performs a number of basic functions of an air traffic controller. Many more were planned; unfortunately due to having to move house this weekend there was unavoidably much less time available to build these than would have been ideal. Nonetheless, a number of important functions are implemented:
 
-Steps
--------
+* Airport and plane objects can be created
+* Airports can land planes with the `.land` method, and instruct them to take off with the `.take_off` method.
+* The weather is randomly stormy or fine, as dictated by the `.weather` method in the Airport class. 1/10 of the time it is stormy.
+* If the weather is stormy, an error will be raised if trying to `land` or `take_off` a plane.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Testing
+---------
 
-Task
------
+A particular concern of mine with this challenge was for all development to be test-driven. All tests were written in advance of writing the corresponding code, and I strove to test in sufficient detail (including, for example, testing the initial creation of classes and methods). Mocks and doubles were used to control behaviour of the weather in tests that required fine or stormy weather.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Further features
+---------
+Ideally the controller would have a method to certify that a plane that had taken off was no longer in the airport (this would be fairly easy to implement by running the `.include?` method on the `@plane_array` variable with the plane as an argument- this functionality is contained in the test for the `take_off` method). Capacity of the airport could be held by an instance variable, created with an argument added to `Airport.new()` (and with a default set if no argument is given). A guard condition would then need adding to the `land` method. Functionality to prevent landed planes being told to `land` or flying planes being told to `take_off` could be added with a boolean `@flying` instance variable for each plane, and the relevant guard clauses being added to the airport methods (which would also need to interface with the plane object to change this variable when the plane is successfully landed or takes off).  
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Coding experience
+---------
+Personally, I quite enjoyed this challenge and was sorry not to have enough time to complete it properly (thankfully moving house was a one-off event). It was not too difficult to approach and understand the concepts within, and it was good to practice using mocks and stubs to control behaviour relating to the weather. I was particularly keen to write in a test-driven manner, and found this helpfully focussed my attention on the expectations of the program.

@@ -56,28 +56,16 @@ describe Airport do
       plane = double(:plane)
       subject.land(plane)
       allow(subject).to receive(:weather).and_return("stormy")
-      expect{subject.take_off(plane)}.to raise_error("You can't land a plane in a storm!")
+      expect{subject.take_off(plane)}.to raise_error("You can't fly a plane in a storm!")
     end
 
   end
 
-  # describe 'stormy' do
-  #   it 'should exist as an accessible variable of the airport' do
-  #     expect(subject).to respond_to(:stormy)
-  #   end
-  #
-  #   it 'should respond with a boolean' do
-  #     expect(subject.stormy).to be(true).or be(false)
-  #   end
-  # end
-
-  describe 'weather' do
+  describe '#weather' do
     it 'should exist as a method' do
       expect(subject).to respond_to(:weather)
     end
-  end
 
-  describe 'weather' do
     it 'should output "fine" or "stormy"' do
       expect(subject.weather).to eq("fine").or(eq("stormy"))
     end
