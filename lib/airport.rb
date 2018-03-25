@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 10
   attr_accessor :weather

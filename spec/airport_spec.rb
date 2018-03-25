@@ -1,16 +1,25 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
+
   subject(:airport) { described_class.new }
+
+  describe "#planes_in airport" do
+
+    let(:plane) { double('plane') }
+
   it 'stores a landed plane in the airport capacity' do
-    airport = Airport.new
-    plane = Plane.new
-    plane.land_plane(airport)
-    expect(airport.planes).to match_array ['plane']
+
+    airport.planes_in_airport = [plane, plane]
+    expect(airport.planes_in_airport).to contain_exactly(plane, plane)
+
   end
+end
 
   describe '#takeoff'
+
   it 'can be instructed to let a plane takeoff' do
     expect(airport).to respond_to(:takeoff)
   end
@@ -21,7 +30,7 @@ describe Airport do
   plane = Plane.new
   plane.land_plane(airport)
   airport.takeoff
-  expect(airport.planes).to eq []
+  expect(airport.planes_in_airport).to eq []
 
   end
 

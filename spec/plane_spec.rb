@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+  
   subject(:plane) { described_class.new }
 
   describe '#land_plane'
