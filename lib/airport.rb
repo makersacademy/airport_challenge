@@ -14,8 +14,18 @@ class Airport
     @planes << plane
   end
 
+  def release_plane plane
+    raise 'Plane not found!' if !plane_here? plane
+    raise "No taking off- stormy weather!" if stormy?
+    @planes.delete plane
+  end
+
+  private
   def stormy?
     rand(2) == 1
   end
 
+  def plane_here? plane
+    @planes.include? plane
+  end
 end
