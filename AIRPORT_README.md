@@ -37,6 +37,10 @@ In the initial stages of the challenge feature tests were run using IRB.
 
 - Unit testing/Manual feature testing via IRB for let_landing method:
 
+![UT2](https://github.com/VytisVA/airport_challenge/blob/master/FT2%20IRB.png)
+
+- Failure in the unit test - let_landing method:
+
 ![UT2]()
 
 ## Built With  
@@ -83,7 +87,7 @@ In the initial stages of the challenge feature tests were run using IRB.
     - Domain model updated.
 - 8 - Including instance variables in the code:
     - Manual feature testing via IRB for let_landing method - getting error.
-    - Repeating the failure in the unit test.
+    - Repeating the failure in the unit test - let_landing method.
 
 
 ## ToDo
