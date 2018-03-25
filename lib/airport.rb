@@ -1,5 +1,6 @@
 class Airport
 
+
   def hangar
     []
   end
@@ -12,7 +13,11 @@ end
 
 class Airplane
 
-  def land(where)
+  def land(airport)
+    raise("Too stormy!") if airport.stormy?
+  end
+
+  def take_off
   end
 
 end

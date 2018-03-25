@@ -12,7 +12,6 @@ describe Airport do
       # expect(variable).to be_in([true, false])
     end
 
-
     it 'should sometimes be true, sometimes false' do
       tf = []
       50.times { tf << subject.stormy? }
@@ -33,12 +32,26 @@ end
 
 describe Airplane do
 
-  describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:land).with(1).arguments }
+  it { is_expected.to respond_to(:take_off) }
 
-    it 'expects the argument to be an instance of Airport' do
-      expect { subject(:land).(instance_of(Airport)) }
+  describe '#land' do
+
+    it 'raises an error if the wether is stormy' do
+      expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
     end
+
+    it 'Airport arg should exist' do
+      # expect((subject.land("any")) with(instance_of(Airport)))
+      # expect { subject(:land).with(instance_of(Airport)) }
+      # expect land(with(instance_of(Airport)))
+      # expect(land).instance_of(Airport)
+    end
+
+  end
+
+  describe 'take_off' do
+
 
   end
 
