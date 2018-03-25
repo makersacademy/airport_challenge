@@ -15,8 +15,8 @@ describe Airport do
 
     it 'should sometimes be true, sometimes false' do
       tf = []
-      50.times do tf << subject.stormy? end
-      expect { tf.to include?(true) }
+      50.times { tf << subject.stormy? }
+      expect(tf).to include(true, false)
     end
 
   end
