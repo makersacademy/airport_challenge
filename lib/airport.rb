@@ -1,4 +1,3 @@
-require_relative 'passengers'
 require_relative 'planes'
 require_relative 'weather'
 
@@ -40,12 +39,6 @@ class Airport
       plane.mark_as_landed
       @planes_garage << plane
     end
-  end
-
-  def on_bording_passangers
-  end
-
-  def off_bording_passangers
   end
 
   private

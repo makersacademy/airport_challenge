@@ -7,12 +7,6 @@ describe Airport do
   it 'responds to land_plane' do
     expect(subject).to respond_to(:land_plane).with(1).argument
   end
-  it 'responds to on_bording_passangers' do
-    expect(subject).to respond_to :on_bording_passangers
-  end
-  it 'responds to off_bording_passangers' do
-    expect(subject).to respond_to :off_bording_passangers
-  end
 
   context 'when airport operates' do
     let(:plane) { double :plane }
