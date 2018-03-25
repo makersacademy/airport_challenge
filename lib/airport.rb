@@ -5,7 +5,7 @@ class Airport
   end
 
   def stormy?
-    false
+    rand(20) > 18
   end
 
 end
