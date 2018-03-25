@@ -32,6 +32,12 @@ class Plane
 
   def takeoff(airport)
     airport.planes_in_airport.delete(self)
+    take_off_message
+
+  end
+
+  def take_off_message
+    print "Plane has left the airport"
   end
 
 
