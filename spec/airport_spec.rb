@@ -1,12 +1,9 @@
 require 'airport'
+PLANES_CAPACITY = 30
 
 describe Airport do
-  it 'responds to take_off_plane' do
-    expect(subject).to respond_to :take_off_plane
-  end
-  it 'responds to land_plane' do
-    expect(subject).to respond_to(:land_plane).with(1).argument
-  end
+  it { expect(subject).to respond_to :take_off_plane }
+  it { expect(subject).to respond_to(:land_plane).with(1).argument }
 
   context 'when airport operates' do
     let(:plane) { double :plane }
@@ -16,7 +13,7 @@ describe Airport do
     }
 
     context 'and planes are available' do
-      let(:airport) { return Airport.new(1, 30, weather) }
+      let(:airport) { return Airport.new(1, PLANES_CAPACITY, weather) }
       before {
         allow(plane).to receive(:mark_as_landed)
       }

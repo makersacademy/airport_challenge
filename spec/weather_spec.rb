@@ -1,9 +1,7 @@
 require 'weather'
 
 describe Weather do
-  it 'responds to stormy?' do
-    expect(subject).to respond_to :stormy?
-  end
+  it { expect(subject).to respond_to :stormy? }
 
   context 'describing weather condition' do
     let(:plane) { double :plane }

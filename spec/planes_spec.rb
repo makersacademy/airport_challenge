@@ -1,15 +1,9 @@
 require 'airport'
 
 describe Plane do
-  it 'responds to plane status' do
-    expect(subject).to respond_to :flying?
-  end
-  it 'responds to plane status' do
-    expect(subject).to respond_to(:mark_as_landed)
-  end
-  it 'responds to plane status' do
-    expect(subject).to respond_to(:mark_as_flying)
-  end
+  it { expect(subject).to respond_to :flying? }
+  it { expect(subject).to respond_to(:mark_as_landed) }
+  it { expect(subject).to respond_to(:mark_as_flying) }
 
   context 'Plane can change a condition' do
     it 'is flying when taken-off' do
