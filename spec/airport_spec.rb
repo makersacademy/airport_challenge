@@ -59,6 +59,13 @@ describe Airplane do
 
   describe 'take_off' do
 
+    it "removes the plane from from the hangar" do
+      heathrow = Airport.new
+      jumbo = Airplane.new
+      jumbo.land(heathrow)
+      jumbo.take_off
+      expect(heathrow.hangar).not_to include(jumbo)
+    end
 
   end
 
