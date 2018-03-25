@@ -3,6 +3,24 @@ require 'airport'
 describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoffplane) }
+  it { is_expected.to respond_to(:capacity) }
+
+  describe 'initialize' do
+    it 'has a variable capacity' do
+      airport = Airport.new(100)
+      100.times { airport.land(Plane.new) }
+      expect{ airport.land(Plane.new) }.to raise_error 'Airport is full to capacity'
+    end
+
+    it 'has a default capacity' do
+      subject { Airport.new }
+      plane = Plane.new
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect{ subject.land(plane) }.to raise_error 'Airport is full to capacity'
+    end
+  end
 
   describe '#land' do
     it 'lands a plane' do
@@ -17,7 +35,7 @@ describe Airport do
     end
 
     it 'returns an error if the airport if full' do
-      20.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error 'Airport is full to capacity'
     end
   end
