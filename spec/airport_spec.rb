@@ -7,7 +7,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     plane.land_plane(airport)
-    expect(airport.planes_in_airport).to match_array ['plane']
+    expect(airport.planes).to match_array ['plane']
   end
 
   describe '#takeoff'
@@ -21,7 +21,7 @@ describe Airport do
   plane = Plane.new
   plane.land_plane(airport)
   airport.takeoff
-  expect(airport.planes_in_airport).to eq []
+  expect(airport.planes).to eq []
 
   end
 
