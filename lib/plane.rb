@@ -10,7 +10,10 @@ class Plane
 
   def land_plane(airport)
     raise "The airport is full" if airport.airport_full?
-    airport.planes_in_airport << @plane
+    airport.planes_in_airport << self
+    @airport = airport
   end
+
+  
 
 end
