@@ -5,7 +5,11 @@ class Plane
 
 
   def land(airport)
-    
+    if airport.weather.stormy?
+      "Cannot land, adverse weather."
+    else
+      "The plane has landed."
+    end
   end
 
   def take_off
