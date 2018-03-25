@@ -38,6 +38,11 @@ I used this task as an opportunity to practice the advice given in Sandi Metz's 
 which recommends making the smallest number of design decisions needed to satisfy project requirements
 to allow flexibility in the future of the application.
 
+## Tech
+* ruby
+* rspec 
+* byebug 
+
 ## Positives 
 * Starting to feel comfortable with TDD
 * Learned how to use stubs and mocks more fully
