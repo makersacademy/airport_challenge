@@ -19,11 +19,13 @@ describe Plane do
       expect(plane.land(heathrow)).to eq("Cannot land, adverse weather.")
     end
 
-    # it 'is stored in the hangar' do
-    #   plane = Plane.new
-    #   heathrow = Airport.new
-    #   expect(heathrow.hangar["1"]).to eq(plane)
-    # end
+    it 'is stored in the hangar' do
+      plane = Plane.new
+      heathrow = Airport.new
+      heathrow.hangar << plane
+      expect(heathrow.hangar[0]).to eq(plane)
+    end
+
     # lands if weather is clear
 
     # it "doesn't land if weather is stormy" do
@@ -34,14 +36,22 @@ describe Plane do
 
     # does not land when airport is full
   end
+
   describe '#self.take_off' do
     it 'takes off when weather is clear' do
       plane = Plane.new
-      expect(plane.take_off).to eq("Plane has left.")
+      heathrow = Airport.new
+      expect(plane.take_off(heathrow)).to eq("Plane has left.")
     end
-    # takes off when weather is clear
 
     # does not take off when weather is stormy
+    it 'gets removed from the hangar when taking off' do
+      plane = Plane.new
+      heathrow = Airport.new
+      heathrow.hangar << plane
+      plane.take_off(heathrow)
+      expect(heathrow.hangar).to eq([])
+    end
 
     # prints which airport it leaves??
   end
