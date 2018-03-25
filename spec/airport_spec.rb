@@ -24,7 +24,7 @@ describe Airport do
   describe '.full?' do 
     subject(:default_airport) { described_class.new }
     subject(:custom_airport) { described_class.new(2000) }
-
+    
     it 'returns true when full (default capacity airport)' do 
       100.times { default_airport.add_plane('airplane') }
       expect(default_airport.full?).to eq(true)
@@ -49,4 +49,24 @@ describe Airport do
       expect(custom_airport.full?).to eq(false)
     end 
   end
+
+  describe '.allow_landing?' do 
+
+    subject(:full_airport) { described_class.new(100) }
+    it 'returns false when airport at max capicity' do 
+      100.times { full_airport.add_plane('plane') }
+      expect(full_airport.allow_landing?).to eq(false)
+    end 
+    
+    subject(:stormy_airport) { described_class.new(100) }
+    it 'returns false when whether is stormy' do 
+      stormy_airport.stub(:stormy?) { true }
+      expect(stormy_airport.allow_landing?).to eq(false)
+    end 
+    
+    it 'returns true when there is no reasons to deny landing' do
+      subject.stub(:stormy?) { false }
+      expect(subject.allow_landing?).to eq(true)
+    end 
+  end 
 end 
