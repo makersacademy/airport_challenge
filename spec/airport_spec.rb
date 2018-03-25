@@ -16,17 +16,7 @@ describe Airport do
     plane = Plane.new
     weather = Weather.new
     airport.land(plane)
-    weather.sunny
     expect(airport.take_off(plane)).to eq []
-  end
-
-  it 'Prevents the plane from taking off in stormy weather' do
-    plane = Plane.new
-    airport = Airport.new
-    airport.land(plane)
-    weather = double(sunny: false)
-    #p "weather.stormy is: #{weather.stormy}"
-    expect { airport.take_off(plane) }.to raise_error(RuntimeError, "weather is stormy, can't take off")
   end
 
   it 'Prevents planes landing when the airport is full' do
@@ -35,5 +25,21 @@ describe Airport do
     20.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error(RuntimeError, "airport is full")
   end
+
+  it 'allows a user to set capacity when creating a new Airport instance' do
+    airport = Airport.new(25)
+    expect { airport @capacity == 25 }
+  end
+
+  # it 'Prevents the plane from taking off in stormy weather' do
+  #   plane = Plane.new
+  #   airport = Airport.new
+  #   weather = Weather.new
+  #   airport.land(plane)
+  #   p "weather.sunny returns: #{weather.sunny}"
+  #   p "weather.stormy returns: #{weather.stormy}"
+  #   allow(weather).to receive(:sunny?).and_return false
+  #   expect { airport.take_off(plane) }.to raise_error "weather is stormy, can't take off"
+  # end
 
 end

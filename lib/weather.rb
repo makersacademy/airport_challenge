@@ -9,10 +9,6 @@ class Weather
     @sunny
   end
 
-  def sunny
-    @sunny = true
-  end
-
   def stormy
     @sunny = false
   end
