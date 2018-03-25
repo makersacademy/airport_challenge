@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { instance_double('Plane') }
-  let(:weather) { instance_double('Weather') }
   
   describe '@capacity' do
     it 'capacity cannot be less than planes in the airport' do
@@ -38,7 +37,7 @@ describe Airport do
     it 'accepts a plane if weather is not stormy' do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.accept_plane plane
-      expect(subject.planes).to include plane
+      expect(subject.plane_here? plane).to be true
     end
   end
   
@@ -46,12 +45,12 @@ describe Airport do
     it { is_expected.to respond_to(:release_plane).with(1).argument }
 
     it 'throws an error if plane not found in the airport' do
-      allow(subject).to receive(:plane_here?).and_return(false)
+      allow(subject).to receive(:plane_here?).with(plane).and_return(false)
       expect { subject.release_plane plane }.to raise_error 'Plane not found!'
     end
     
     it 'throws an error if weather is stormy' do
-      allow(subject).to receive(:plane_here?).and_return(true)
+      allow(subject).to receive(:plane_here?).with(plane).and_return(true)
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.release_plane plane }.to raise_error 'No taking off- stormy weather!'
     end
@@ -60,14 +59,14 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.accept_plane plane
       subject.release_plane plane
-      expect(subject.planes).not_to include plane
+      expect(subject.plane_here? plane).to be false
     end
   end 
   
   describe '#add_plane' do
     it 'allows a newly generated plane to be added to an available airport' do
       subject.add_plane plane
-      expect(subject.planes).to include plane
+      expect(subject.plane_here? plane).to eq true
     end
   end
 end

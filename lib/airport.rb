@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 30
   
-  attr_reader :planes, :capacity
+  attr_reader :capacity
 
   def initialize
     @planes = []
@@ -13,7 +13,7 @@ class Airport
   end
 
   def change_capacity capacity
-    raise 'Cannot accommodate all planes' if planes.size > capacity
+    raise 'Cannot accommodate all planes' if @planes.size > capacity
     @capacity = capacity
   end
 
@@ -38,11 +38,11 @@ class Airport
     self
   end
 
-  private
   def plane_here? plane
     @planes.include? plane
   end
 
+  private
   def full?
     @planes.size >= @capacity
   end
