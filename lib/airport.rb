@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   attr_accessor :ramp
@@ -11,10 +13,12 @@ class Airport
   end
 
   def land(plane)
+    plane.touchdown
     @ramp << plane
   end
 
-  def takeoff
+  def takeoff(plane)
+    plane.takeoff
     @ramp.pop
   end
 end
