@@ -63,7 +63,7 @@ describe Airplane do
       heathrow = Airport.new
       jumbo = Airplane.new
       jumbo.land(heathrow)
-      jumbo.take_off
+      jumbo.take_off(heathrow)
       expect(heathrow.hangar).not_to include(jumbo)
     end
 
