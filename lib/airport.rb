@@ -7,7 +7,11 @@ class Airport
   attr_reader :planes_garage
   attr_reader :capacity
 
-  def initialize(initial_planes = nil, capacity = PLANES_CAPACITY, weather = Weather.new)
+  def initialize(
+    initial_planes = nil,
+    capacity = PLANES_CAPACITY,
+    weather = Weather.new
+  )
     @planes_garage = []
     @capacity = capacity
     @weather = weather
@@ -19,26 +23,18 @@ class Airport
   end
 
   def take_off_plane
-    if empty?
-      raise 'No planes available for take-off!'
-    elsif @weather.stormy?
-      raise 'Unable to take_off due to stormy weather!'
-    else
-      plane = @planes_garage.pop
-      plane.mark_as_flying
-      return plane
-    end
+    raise 'No planes available for take-off!' if empty?
+    raise 'Unable to take_off due to stormy weather!' if @weather.stormy?
+    plane = @planes_garage.pop
+    plane.mark_as_flying
+    return plane
   end
 
   def land_plane(plane)
-    if full? || !plane.flying?
-      raise 'Landing is not possible!'
-    elsif @weather.stormy?
-      raise 'Unable to land due to stormy weather!'
-    else
-      plane.mark_as_landed
-      @planes_garage << plane
-    end
+    raise 'Landing is not possible!' if full? || !plane.flying?
+    raise 'Unable to land due to stormy weather!' if @weather.stormy?
+    plane.mark_as_landed
+    @planes_garage << plane
   end
 
   private
@@ -50,6 +46,5 @@ class Airport
   def empty?
     @planes_garage.empty?
   end
-
 
 end

@@ -12,10 +12,9 @@ describe Weather do
       allow(plane).to receive(:mark_as_landed)
     }
 
-
     context 'when stormy' do
       let(:weather) { return Weather.new(true) }
-      let(:airport) { return Airport.new(2, 30, weather)}
+      let(:airport) { return Airport.new(2, 30, weather) }
 
       it 'prevent landing' do
         message = 'Unable to land due to stormy weather!'
@@ -29,7 +28,7 @@ describe Weather do
 
     context 'when not stormy' do
       let(:weather) { return Weather.new(false) }
-      let(:airport) { return Airport.new(2, 30, weather)}
+      let(:airport) { return Airport.new(2, 30, weather) }
 
       it 'allows landing' do
         airport.land_plane(plane)

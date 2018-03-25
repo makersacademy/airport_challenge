@@ -11,7 +11,7 @@ describe Airport do
   context 'when airport operates' do
     let(:plane) { double :plane }
     let(:weather) { double :weather }
-    before{
+    before {
       allow(weather).to receive(:stormy?).and_return(false)
     }
 
@@ -38,7 +38,7 @@ describe Airport do
       let(:airport) { return Airport.new(nil, 0, weather) }
 
       it 'raises an error' do
-        expect{ airport.take_off_plane}.to raise_error('No planes available for take-off!')
+        expect { airport.take_off_plane }.to raise_error('No planes available for take-off!')
       end
     end
 
@@ -60,14 +60,14 @@ describe Airport do
 
     context 'and airport is full' do
       it 'raises an error' do
-        expect{ subject.land_plane(plane)}.to raise_error('Landing is not possible!')
+        expect { subject.land_plane(plane) }.to raise_error('Landing is not possible!')
       end
     end
 
     context 'and no planes available for landing' do
       it 'rase an error' do
         allow(plane).to receive(:flying?).and_return(false)
-        expect{ subject.land_plane(plane)}.to raise_error('Landing is not possible!')
+        expect { subject.land_plane(plane) }.to raise_error('Landing is not possible!')
       end
     end
   end
