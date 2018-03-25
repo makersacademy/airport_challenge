@@ -1,5 +1,5 @@
 class Plane
   def in_airport?
-    true
+    false
   end
 end

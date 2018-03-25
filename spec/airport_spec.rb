@@ -28,7 +28,7 @@ describe Airport do
   it "returns true if plane is in the airport" do
     airport = Airport.new
     airport.land(Plane.new)
-    expect(airport.takeoff.in_airport?).to be(true)
+    expect(airport.takeoff.in_airport?).to be(false)
   end
 
   # it "should takeoff a plane from the airport" do
