@@ -157,3 +157,10 @@ Once the first test passed, I created a second test to return the other value. A
 Based on the specification, I wrote tests to expect the following when a new Airport class is created:
 - A hangar to store the planes is instantiated
 - An instance of weather is instantiated
+
+
+### Losing sight, conclusion
+
+I panicked for a few hours and then started editing the code out of frustration. After taking a break and coming back, I managed to start thinking clearer and started to write tests to satisfy only the requirements specified in the user stories. I realised that I started thinking of scenarios that were outside the scope of the user requirements.
+
+In the end, I've barely managed to understand the concept of BDD in RSpec, using standard ruby code as a crutch to get the tests working. Looking forwards, I would like to refactor a lot of the code to block/stub the lines where I was calling for other classes.
