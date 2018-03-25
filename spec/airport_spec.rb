@@ -13,7 +13,7 @@ describe Airport do
 
   it 'has no plane after takeoff' do
     gatwick.land(ggajb)
-    gatwick.takeoff(ggajb)
-    expect(gatwick.ramp.length).to_eq 0
-  end 
+    gatwick.takeoff
+    expect(gatwick.ramp).to eq []
+  end
 end

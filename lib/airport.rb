@@ -14,4 +14,7 @@ class Airport
     @ramp << plane
   end
 
+  def takeoff
+    @ramp.pop
+  end
 end
