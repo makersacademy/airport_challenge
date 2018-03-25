@@ -18,12 +18,15 @@ class Airport
 
   def land(plane)
     not_a_plane_error unless plane.is_a?(Plane)
+    plane_at_other_airport_error if !plane.flying?
     stormy_weather_landing_error if weather.stormy?
     airport_full_error if airport_full?
     plane_lander(plane)
   end
 
-  def takeoff(plane = @hangar.pop)
+  def takeoff(plane)
+    not_a_plane_error unless plane.is_a?(Plane)
+    plane_not_here_error unless @hangar.include?(plane)
     stormy_weather_takeoff_error if weather.stormy?
     plane_takeoff_helper(plane)
   end
@@ -40,7 +43,7 @@ class Airport
   end
 
   def not_a_plane_error
-    raise "That's not a plane! It can't land here!"
+    raise "That's not a plane!"
   end
 
   def airport_full_error
@@ -55,6 +58,20 @@ class Airport
     raise "Cannot take off in stormy weather!"
   end
 
+  # This error is redundant since trying to takeoff a plane that isn't at the
+  # airport raises an error also.
+  # def plane_flying_error
+  #   raise "This plane is flying already!"
+  # end
+
+  def plane_at_other_airport_error
+    raise "This plane is already landed at another airport!"
+  end
+
+  def plane_not_here_error
+    raise "That plane is not at this airport!"
+  end
+
   # HELPER METHODS
   def airport_full?
     @hangar.length >= @capacity
@@ -62,22 +79,12 @@ class Airport
 
   def plane_lander(plane)
     @hangar << plane
+    plane.airborne = false
   end
 
   def plane_takeoff_helper(plane)
     @hangar.delete_if { |plane_to_takeoff| plane_to_takeoff == plane }
+    plane.airborne = true
   end
 
 end
-
-=begin
-
-[TODO] #takeoff(plane) => takes a plane from the hangar and tells it to take
-off. Takes an instance of plane as an argument, but the plane must be in the
-hangar.
-    Tests:
-    - [FAIL] Plane is removed from the hangar
-    - [FAIL] Planes are not allowed to take off when the weather is stormy.
-    Attempting to do so will raise an error.
-
-=end

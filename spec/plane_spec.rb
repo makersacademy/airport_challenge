@@ -12,4 +12,8 @@ describe Plane do
     expect(plane_747.name).to eq "747"
   end
 
+  it "stores whether it is landed or flying" do
+    expect(plane.flying?).to be
+  end
+
 end
