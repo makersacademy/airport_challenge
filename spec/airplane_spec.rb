@@ -20,10 +20,16 @@ describe Airplane do
       expect(subject.in_flight).to eq(true)
       subject.land_airplane
       expect(subject.in_flight).to eq(false)
-    end 
-  end 
+    end
+    describe '.takeoff' do 
+      it 'raises an error if airplane is not in flight' do 
+        subject.stub(:in_flight?) { false }
+        expect { subject.land_airplane }.to raise_error
+      end 
+    end
+  end
 
-  describe '.in_flight' do 
+  describe '.takeoff' do 
     it 'raises an error if airplane is already in flight' do 
       subject.stub(:in_flight?) { true }
       expect { subject.take_off }.to raise_error
