@@ -3,58 +3,57 @@ require 'byebug'
 
 describe Airport do 
   describe '.new' do 
+    subject(:default) { described_class.new }
     it 'initializes with a default value for @max_capacity' do
-      expect(subject.max_capacity).to be(100)
+      expect(default.max_capacity).to eq(100)
     end 
-
+    
+    subject(:custom) { described_class.new(2000) }
     it 'allows @max_capacity to be set via an argument' do 
-      airport = Airport.new(2000)
-      expect(airport.max_capacity).to eq(2000)
+      expect(custom.max_capacity).to eq(2000)
     end 
   end 
   
   describe '.weather' do 
     it 'returns a weather string' do 
-      weather = subject.weather
-      expect(weather).to be_a(String)
+      expect(subject.weather).to be_a(String)
     end
   end
 
   describe '.add_plane' do 
+    subject(:airport) { described_class.new }
     it 'accepts new airplanes' do 
-      airport = Airport.new
       airport.add_plane('plane')
       expect(airport.hangar.size).to be(1)
     end 
   end
 
   describe '.full?' do 
+    subject(:default_airport) { described_class.new }
+    subject(:custom_airport) { described_class.new(2000) }
+
     it 'returns true when full (default capacity airport)' do 
-      airport = Airport.new
-      100.times { airport.add_plane('airplane') }
-      expect(airport.full?).to eq(true)
+      100.times { default_airport.add_plane('airplane') }
+      expect(default_airport.full?).to eq(true)
     end 
 
     it 'returns false when not full (default capacity airport)' do 
-      airport = Airport.new
-      37.times { airport.add_plane('airplane') }
-      expect(airport.full?).to eq(false)
+      37.times { default_airport.add_plane('airplane') }
+      expect(default_airport.full?).to eq(false)
     end 
 
     it 'returns false when airport contains no airplanes' do 
-      expect(subject.full?).to eq(false)
+      expect(default_airport.full?).to eq(false)
     end 
 
     it 'returns true when full (custom capacity airport)' do 
-      airport = Airport.new(2000)
-      2000.times { airport.add_plane('airplane') }
-      expect(airport.full?).to eq(true)
+      2000.times { custom_airport.add_plane('airplane') }
+      expect(custom_airport.full?).to eq(true)
     end 
 
     it 'returns false when not full (custom capacity airport)' do 
-      airport = Airport.new(2000)
-      1486.times { airport.add_plane('airplane') }
-      expect(airport.full?).to eq(false)
+      1486.times { custom_airport.add_plane('airplane') }
+      expect(custom_airport.full?).to eq(false)
     end 
   end
 end 
