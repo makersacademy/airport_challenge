@@ -20,7 +20,7 @@ describe Airport do
     end
 
     it 'should store the argument in plane_array' do
-      plane = double(plane)
+      plane = double(:plane)
       subject.land(plane)
       expect(subject.plane_array).to include(plane)
     end
@@ -33,6 +33,13 @@ describe Airport do
 
     it 'should take one object (plane) as an argument' do
       expect(subject).to respond_to(:land).with(1).argument
+    end
+
+    it 'removes a plane from the airport' do
+      plane = double(:plane)
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.plane_array).to_not include(plane)
     end
 
   end
