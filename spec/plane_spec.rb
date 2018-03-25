@@ -22,7 +22,8 @@ describe Plane do
     it 'is stored in the hangar' do
       plane = Plane.new
       heathrow = Airport.new
-      heathrow.hangar << plane
+      allow(Kernel).to receive(:rand).with(0..1).and_return(0)
+      plane.land(heathrow)
       expect(heathrow.hangar[0]).to eq(plane)
     end
 
