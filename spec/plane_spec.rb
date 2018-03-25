@@ -62,6 +62,13 @@ describe Plane do
 
     end
 
+    it 'raises an error when asked to takeoff when it is already in the air' do
+      plane.land_plane(airport)
+      plane.takeoff(airport)
+      expect { plane.takeoff(airport) }. to raise_exception
+
+    end
+
 
   end
 
