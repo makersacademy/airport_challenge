@@ -17,9 +17,10 @@ class Airport
   end
 
   def release_plane plane
-    raise 'Plane not found!' if !plane_here? plane
+    raise 'Plane not found!' unless plane_here? plane
     raise "No taking off- stormy weather!" if stormy?
     @planes.delete plane
+    true
   end
 
   private
