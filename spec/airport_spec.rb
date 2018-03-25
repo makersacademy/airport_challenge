@@ -48,5 +48,5 @@ describe Airport do
       100.times { full_airport.add_plane('plane') }
       expect(full_airport.allow_landing?).to eq(false)
     end 
-  end 
+  end
 end 
