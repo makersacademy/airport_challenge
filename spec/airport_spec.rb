@@ -30,5 +30,10 @@ describe Airport do
     it 'should exist as a method' do
       expect(subject).to respond_to(:take_off)
     end
+
+    it 'should take one object (plane) as an argument' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+
   end
 end
