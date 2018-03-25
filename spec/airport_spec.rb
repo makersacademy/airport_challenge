@@ -43,15 +43,21 @@ describe Airport do
     end
   end
 
-  describe 'stormy' do
-    it 'should exist as an accessible variable of the airport' do
-      expect(subject).to respond_to(:stormy)
-    end
+  # describe 'stormy' do
+  #   it 'should exist as an accessible variable of the airport' do
+  #     expect(subject).to respond_to(:stormy)
+  #   end
+  #
+  #   it 'should respond with a boolean' do
+  #     expect(subject.stormy).to be(true).or be(false)
+  #   end
+  # end
 
-    it 'should respond with a boolean' do
-      expect(subject.stormy).to be(true).or be(false)
+  describe 'weather' do
+    it 'should exist as a method' do
+      expect(subject).to respond_to(:weather)
     end
-
   end
+
 
 end

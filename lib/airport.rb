@@ -5,7 +5,6 @@ attr_reader :stormy
 
   def initialize
     @plane_array = []
-    @stormy = true
   end
 
   def land(plane)
@@ -14,6 +13,9 @@ attr_reader :stormy
 
   def take_off(plane)
     @plane_array.delete(plane)
+  end
+
+  def weather
   end
 
 end
