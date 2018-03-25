@@ -35,6 +35,10 @@ In the initial stages of the challenge feature tests were run using IRB.
 
 ![UT](https://github.com/VytisVA/airport_challenge/blob/master/UT%20RSpec.png)
 
+- Unit testing/Manual feature testing via IRB for let_landing method:
+
+![UT2]()
+
 ## Built With  
 
 * [Visual Studio Code](https://code.visualstudio.com/)
@@ -76,7 +80,10 @@ In the initial stages of the challenge feature tests were run using IRB.
     - Writing code for plane.rb which includes class Plane, and passing tests.
 - 7 - Further feature and unit testing - Objects focus:
     - airport.rb Plane object created, and plane.rb method updated.
-    - Domain model updated.     
+    - Domain model updated.
+- 8 - Including instance variables in the code:
+    - Manual feature testing via IRB for let_landing method - getting error.
+    - Repeating the failure in the unit test.
 
 
 ## ToDo
