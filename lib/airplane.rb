@@ -5,7 +5,7 @@ class Airplane
   end
 
   def in_flight?
-    @in_flight
+    in_flight
   end 
 
   def take_off
