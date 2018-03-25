@@ -23,14 +23,14 @@ describe Airplane do
     end
     it 'raises an error if airplane is not in flight' do 
       subject.stub(:in_flight?) { false }
-      expect { subject.land_airplane }.to raise_error
+      expect { subject.land_airplane }.to raise_error StandardError
     end 
   end
 
   describe '.takeoff' do 
     it 'raises an error if airplane is already in flight' do 
       subject.stub(:in_flight?) { true }
-      expect { subject.take_off }.to raise_error
+      expect { subject.take_off }.to raise_error StandardError
     end 
   end 
 end 
