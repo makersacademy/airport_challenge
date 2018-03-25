@@ -53,7 +53,7 @@ describe Airport do
   describe '.allow_landing?' do 
 
     subject(:full_airport) { described_class.new(100) }
-    it 'returns false when airport at max capicity' do 
+    it 'returns false when airport at max capicity' do
       100.times { full_airport.add_plane('plane') }
       expect(full_airport.allow_landing?).to eq(false)
     end 

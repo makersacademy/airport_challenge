@@ -9,8 +9,15 @@ class Airport
   def add_plane(airplane)
     @hangar << airplane
   end 
-  
+
   def full?
     @hangar.size >= @max_capacity
+  end 
+
+  def allow_landing?
+     !(stormy? || full?)
+  end 
+
+  def stormy?
   end 
 end 
