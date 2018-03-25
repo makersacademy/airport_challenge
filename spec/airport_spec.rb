@@ -8,9 +8,9 @@ describe Airport do
     expect(heathrow.weather).to be_an_instance_of(Weather)
   end
 
-  it "has a hash for a hangar" do
+  it "has an array for a hangar" do
     heathrow = Airport.new
-    expect(heathrow.hangar).to be_an_instance_of(Hash)
+    expect(heathrow.hangar).to be_an_instance_of(Array)
   end
 
   # method edit_capacity(number)

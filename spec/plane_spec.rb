@@ -35,7 +35,7 @@ describe Plane do
     # does not land when airport is full
   end
   describe '#self.take_off' do
-    it 'takes off' do
+    it 'takes off when weather is clear' do
       plane = Plane.new
       expect(plane.take_off).to eq("Plane has left.")
     end

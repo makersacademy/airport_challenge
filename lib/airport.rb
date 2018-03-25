@@ -3,9 +3,8 @@ class Airport
   attr_writer :weather, :hangar
 
 
-  def initialize(hangar: Hash.new, weather: Weather.new)
+  def initialize(hangar: Array.new, weather: Weather.new)
     @hangar = hangar
-    @hangar["1"] = nil
     @weather = weather
   end
 
