@@ -8,5 +8,5 @@ describe Airplane do
     it 'location is unnasigned by default' do
       expect(subject.location).to eq('unassigned')
     end 
-  end 
+  end
 end 

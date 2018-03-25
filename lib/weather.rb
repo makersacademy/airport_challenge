@@ -1,10 +1,10 @@
 class Weather 
   attr_reader :current
   def initialize
-    @current = %w[stormy rainy sunny calm grey][rand(5)]
+    @current = %w[stormy rainy sunny calm grey].sample
   end 
 
   def stormy? 
-    self.current == 'stormy'
+    current == 'stormy'
   end 
 end 
