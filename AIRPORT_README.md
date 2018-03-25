@@ -4,7 +4,6 @@ AIRPORT_README briefly explains my approach to solving the challenge. Link to th
 
 Unfinished code or other elements will be highlighted, and plan will be provided how to finalise the challenge in [ToDo](#todo).
 
-
 ## Getting Started
 
 These instructions will help to follow the steps of the project.
@@ -16,8 +15,6 @@ Things you need to install if you want to edit the repository include the follow
 - Fork this repo, and clone to your local machine.
 - Run the command gem install bundle (if you don't have bundle already).
 - When the installation completes, run bundle.
-
-
 
 ## Running the tests
 
@@ -41,7 +38,7 @@ In the initial stages of the challenge feature tests were run using IRB.
 
 - Failure in the unit test - let_landing method:
 
-![UT2]()
+![UT2](https://github.com/VytisVA/airport_challenge/blob/master/UT2%20RSpec.png)
 
 ## Built With  
 
@@ -49,7 +46,6 @@ In the initial stages of the challenge feature tests were run using IRB.
 * [Atom](https://atom.io/)
 * [Sublime Text](https://www.sublimetext.com/)
 * [iterm2](https://www.iterm2.com/)
-
 
 ## Authors
 
@@ -88,6 +84,9 @@ In the initial stages of the challenge feature tests were run using IRB.
 - 8 - Including instance variables in the code:
     - Manual feature testing via IRB for let_landing method - getting error.
     - Repeating the failure in the unit test - let_landing method.
+    - Adding unit test with let_landing, updating airport.rb.
+    - Creating attr_reader :plane.
+- 9 -      
 
 
 ## ToDo
