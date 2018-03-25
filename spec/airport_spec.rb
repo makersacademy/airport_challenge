@@ -24,6 +24,13 @@ describe Airport do
       subject.land(plane)
       expect(subject.plane_array).to include(plane)
     end
+
+    it 'should raise an error message if weather is stormy' do
+      plane = double(:plane)
+      allow(subject).to receive(:weather).and_return("stormy")
+      expect{subject.land(plane)}.to raise_error("You can't land a plane in a storm!")
+    end
+
   end
 
   describe '#take_off' do

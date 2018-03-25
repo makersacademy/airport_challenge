@@ -7,6 +7,7 @@ attr_reader :plane_array
   end
 
   def land(plane)
+    raise "You can't land a plane in a storm!" if weather == "stormy"
     @plane_array << plane
   end
 
@@ -15,7 +16,7 @@ attr_reader :plane_array
   end
 
   def weather
-    "stormy"
+    (rand(1..10)) == 1 ? "stormy" : "fine"
   end
 
 end
