@@ -41,7 +41,7 @@ describe Plane do
     airport = double(:airport, full?: false, stormy?: false, planes: [subject])
     expect { subject.land(airport) }.to raise_error "already landed"
   end
-  it 'cannot take off while at the airport' do
+  it 'cannot take off while not at the airport' do
     airport = double(:airport, full?: false, stormy?: false, planes: [])
     message = "No such a plane at this airport"
     expect { subject.take_off(airport) }.to raise_error message
