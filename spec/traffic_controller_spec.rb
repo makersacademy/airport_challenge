@@ -10,4 +10,18 @@ describe TrafficController do
       expect(subject.request_takeoff(airport)).to eq(true)
     end 
   end 
+
+  describe '.request landing' do 
+    it 'returns true when airport is available' do
+      airport = double()
+      allow(airport).to receive(:allow_landing?).and_return(true)
+      expect(subject.request_landing(airport)).to eq(true)
+    end 
+
+    it 'returns false when airport is not available' do 
+      airport = double()
+      allow(airport).to receive(:allow_landing?).and_return(false)
+      expect(subject.request_landing(airport)).to eq(false)
+    end 
+  end 
 end 
