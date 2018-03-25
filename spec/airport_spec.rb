@@ -12,13 +12,16 @@ describe Airport do
   end
 
   it 'has the plane it has landed' do
+    expect(ggajb).to receive(:touchdown)
     gatwick.land(ggajb)
     expect(gatwick.ramp).to include ggajb
   end
 
   it 'has no plane after takeoff' do
+    expect(ggajb).to receive(:touchdown)
     gatwick.land(ggajb)
-    gatwick.takeoff
+    expect(ggajb).to receive(:takeoff)
+    gatwick.takeoff(ggajb)
     expect(gatwick.ramp).to eq []
   end
 end
