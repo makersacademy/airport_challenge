@@ -14,7 +14,7 @@ class Airplane
   end
 
   def land_airplane
-    raise StandardError 'Airplane is not in flight' if !in_flight?
+    raise StandardError 'Airplane is not in flight' unless in_flight?
     @in_flight = false 
   end 
 end 
