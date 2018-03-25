@@ -7,4 +7,8 @@ class Airplane
   def take_off
     @in_flight = true 
   end
+
+  def land_airplane
+    @in_flight = false 
+  end 
 end 

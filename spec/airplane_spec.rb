@@ -13,4 +13,13 @@ describe Airplane do
       expect(subject.in_flight).to eq(true)
     end 
   end 
+  
+  describe '.land_airplane' do 
+    it 'sets @in_flight to false when landing' do 
+      subject.take_off
+      expect(subject.in_flight).to eq(true)
+      subject.land_airplane
+      expect(subject.in_flight).to eq(false)
+    end 
+  end 
 end 
