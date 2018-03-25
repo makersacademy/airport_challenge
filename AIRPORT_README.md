@@ -86,11 +86,19 @@ In the initial stages of the challenge feature tests were run using IRB.
     - Repeating the failure in the unit test - let_landing method.
     - Adding unit test with let_landing, updating airport.rb.
     - Creating attr_reader :plane.
-- 9 -      
+- 9 - Raising Errors and 'guard conditions':
+    - Creating feature_spec.rb for feature testing.
+    - (ON HOLD)
 
 
 ## ToDo
 
-- Step to do
-- Step to do
-- Step TBC    
+- Raising Exceptions; stop releasing infinite number of planes.
+- Limiting airport capacity.
+- Wrapping a collection.  
+- Refactoring - SRP.
+- Define a constant, DEFAULT_CAPACITY.
+- Set an initial attribute value via initialize; and default initialization val.
+- Setting up weather.rb with rand; its spec., and related airport exceptions.
+- Isolating Tests; creating doubles.
+- Method stubs
