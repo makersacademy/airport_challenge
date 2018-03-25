@@ -9,11 +9,7 @@ class Airport
   def add_plane(airplane)
     @hangar << airplane
   end 
-
-  def weather
-    %w[stormy rainy sunny calm grey][rand(5)]
-  end
-
+  
   def full?
     @hangar.size >= @max_capacity
   end 

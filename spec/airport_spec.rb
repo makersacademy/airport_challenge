@@ -13,12 +13,6 @@ describe Airport do
       expect(custom.max_capacity).to eq(2000)
     end 
   end 
-  
-  describe '.weather' do 
-    it 'returns a weather string' do 
-      expect(subject.weather).to be_a(String)
-    end
-  end
 
   describe '.add_plane' do 
     subject(:airport) { described_class.new }
