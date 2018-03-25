@@ -7,7 +7,16 @@ describe Airport do
     it { is_expected.to respond_to(:stormy?) }
 
     it 'is expected to have a value of true or false' do
-      expect { subject(:stormy?).to be_a(boolean) }
+      expect(subject.stormy?).to be(true).or be(false)
+
+      # expect(variable).to be_in([true, false])
+    end
+
+
+    it 'should sometimes be true, sometimes false' do
+      tf = []
+      50.times do tf << subject.stormy? end
+      expect { tf.to include?(true) }
     end
 
   end
@@ -15,9 +24,7 @@ describe Airport do
   describe '#hangar' do
 
     it 'should return an Array' do
-
       expect(subject.hangar).to be_an_instance_of(Array)
-      # expect(subject.get_ids).to be_an_instance_of(Array)
     end
 
   end
