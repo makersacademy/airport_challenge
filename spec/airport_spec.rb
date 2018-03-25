@@ -1,5 +1,4 @@
 require 'airport'
-require 'byebug'
 
 describe Airport do 
   describe '.new' do 
