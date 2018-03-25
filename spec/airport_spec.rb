@@ -41,6 +41,15 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.plane_array).to_not include(plane)
     end
+  end
+
+  describe 'stormy' do
+    it 'should exist as an accessible variable of the airport' do
+    expect(subject).to respond_to(:stormy)
+    end
+
+    # it 'should respond with a '
 
   end
+
 end
