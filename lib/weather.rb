@@ -1,28 +1,24 @@
 class Weather
-  attr_accessor :sunny
+  attr_accessor :weather_conditions
 
   def initialize
     @sunny = true
   end
 
-  def sunny?
-    @sunny
+  # def stormy?
+  #   @sunny = false
+  # end
+  #
+  # def stormy
+  #   @su = false
+  # end
+
+  def what_weather
+    weather_types = [:sunny, :sunny, :sunny, :stormy]
+    @weather_conditions = weather_types.sample
   end
 
-  def stormy
-    @sunny = false
-  end
-end
-
-
-class FakeSunnyWeather
-  def sunny?
-    true
-  end
-end
-
-class FakeStormyWeather
-  def sunny?
-    false
+  def stormy?
+    @sunny == false
   end
 end
