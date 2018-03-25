@@ -20,6 +20,7 @@ describe Airport do
     end
 
     it 'should store the argument in plane_array' do
+      allow(subject).to receive(:weather).and_return("fine")
       plane = double(:plane)
       subject.land(plane)
       expect(subject.plane_array).to include(plane)
@@ -43,11 +44,21 @@ describe Airport do
     end
 
     it 'removes a plane from the airport' do
+      allow(subject).to receive(:weather).and_return("fine")
       plane = double(:plane)
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.plane_array).to_not include(plane)
     end
+
+    it 'should raise an error message if weather is stormy' do
+      allow(subject).to receive(:weather).and_return("fine")
+      plane = double(:plane)
+      subject.land(plane)
+      allow(subject).to receive(:weather).and_return("stormy")
+      expect{subject.take_off(plane)}.to raise_error("You can't land a plane in a storm!")
+    end
+
   end
 
   # describe 'stormy' do

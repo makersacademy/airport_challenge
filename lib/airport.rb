@@ -12,6 +12,7 @@ attr_reader :plane_array
   end
 
   def take_off(plane)
+    raise "You can't land a plane in a storm!" if weather == "stormy"
     @plane_array.delete(plane)
   end
 
