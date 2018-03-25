@@ -148,6 +148,12 @@ Running both the rspec and unit test confirms that I have correctly implemented 
 
 ### Weather randomisation
 
-First of all, I decided to create a weather randomiser that could roll between `"clear"` and `"stormy"`. I first created an rspec test that would expect an instance of Weather be able to call a method on itself to return one of these values.
+First of all, I decided to create a weather method `stormy?` that could roll between `true` and `false`. I first created an rspec test that would expect an instance of Weather be able to call a method on itself to return one of these values.
 
-Once the first test passed, I created a second test to return the other value. At this point, there would be no way to pass both tests without a randomiser. I then used the Kernel module from the main Object class to randomise between 0 and 1. This would serve as the index randomiser that stores the weather values. The two tests needs to include a test double in order to fix the `.rand` values to `0` and `1`.
+Once the first test passed, I created a second test to return the other value. At this point, there would be no way to pass both tests without a randomiser. I then used the Kernel module from the main Object class to randomise between `0..1`. This would serve as a way to randomise the outcome of a statement to return `true` or `false`.
+
+### Fleshing out the airport
+
+Based on the specification, I wrote tests to expect the following when a new Airport class is created:
+- A hangar to store the planes is instantiated
+- An instance of weather is instantiated

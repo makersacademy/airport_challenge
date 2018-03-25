@@ -2,20 +2,19 @@ require './lib/weather.rb'
 
 describe Weather do
 
-  describe '#roll_weather' do
+  describe '#stormy?' do
 
-    it "returns cloudy" do
+    it "returns false" do
+      weather = Weather.new
       allow(Kernel).to receive(:rand).with(0..1).and_return(0)
-      expect(Weather.roll_weather).to eq("cloudy")
+      expect(weather.stormy?).to eq(false)
     end
 
-    it "returns clear" do
+    it "returns true" do
+      weather = Weather.new
       allow(Kernel).to receive(:rand).with(0..1).and_return(1)
-
-      expect(Weather.roll_weather).to eq("clear")
+      expect(weather.stormy?).to eq(true)
     end
 
   end
-
-  #it should be able to check the weather
 end

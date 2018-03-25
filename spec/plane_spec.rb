@@ -1,18 +1,40 @@
 require './lib/plane.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
 
 describe Plane do
 
-#method self.land(airport)
-  #lands if weather is clear
+  describe '#self.land(airport)' do
+    # it 'lands' do
+    #   plane = Plane.new
+    #   heathrow = Airport.new
+    #   expect(plane.land(heathrow)).to eq("The plane has landed.")
+    # end
 
-  #does not land when weather is stormy
+    it 'is stored in the hangar' do
+      plane = Plane.new
+      heathrow = Airport.new
+      expect(heathrow.hangar["1"]).to eq(plane)
+    end
+    # lands if weather is clear
 
-  #does not land when airport is full
+    # it "doesn't land if weather is stormy" do
+    #   plane = Plane.new
+    #   heathrow = Airport.new
+    #   expect(plane.land(heathrow)).to eq("Cannot land plane.")
+    # end
 
-#method self.take_off
-  #takes off when weather is clear
+    # does not land when airport is full
+  end
+  describe '#self.take_off' do
+    it 'takes off' do
+      plane = Plane.new
+      expect(plane.take_off).to eq("Plane has left.")
+    end
+    # takes off when weather is clear
 
-  #does not take off when weather is stormy
+    # does not take off when weather is stormy
 
-  #prints which airport it leaves??
+    # prints which airport it leaves??
+  end
 end

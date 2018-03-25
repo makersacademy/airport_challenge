@@ -1,8 +1,7 @@
 class Weather
-  @weather_types = ["cloudy", "clear"]
 
-  def self.roll_weather
-    @weather_types[Kernel.rand(0..1)]
+  def stormy?
+    Kernel.rand(0..1) == 1
   end
 
 end
