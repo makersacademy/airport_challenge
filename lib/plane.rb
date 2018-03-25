@@ -16,6 +16,14 @@ class Plane
 
   end
 
+  def takeoff(airport)
+
+    commence_take_off unless take_off_allowed == false
+    take_off_message
+
+  end
+
+  private
 
   def landing_permission(airport)
 
@@ -35,13 +43,6 @@ class Plane
 
   end
 
-
-  def takeoff(airport)
-
-    commence_take_off unless take_off_allowed == false
-    take_off_message
-
-  end
 
   def commence_take_off
 
