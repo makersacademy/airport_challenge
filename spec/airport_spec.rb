@@ -11,6 +11,11 @@ describe Airport do
   describe "accept_plane" do
     it { is_expected.to respond_to(:accept_plane).with(1).argument }
  
+    it 'throws an error if the airport is full' do
+      allow(subject).to receive(:full?).and_return(true)
+      expect { subject.accept_plane plane }.to raise_error 'Airport full'
+    end
+
     it 'throws an error if weather is stormy' do
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.accept_plane plane }.to raise_error 'No landing- stormy weather!'

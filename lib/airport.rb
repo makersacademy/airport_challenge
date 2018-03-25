@@ -10,8 +10,10 @@ class Airport
   end
 
   def accept_plane plane
+    raise 'Airport full' if full?
     raise "No landing- stormy weather!" if stormy?
     @planes << plane
+    true
   end
 
   def release_plane plane
@@ -27,5 +29,9 @@ class Airport
 
   def plane_here? plane
     @planes.include? plane
+  end
+
+  def full?
+    @planes.size >= @capacity
   end
 end
