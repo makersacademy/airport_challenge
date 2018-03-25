@@ -15,9 +15,4 @@ describe Airport do
 
   # method edit_capacity(number)
     # changes the number, verify the change
-
-
-
-
-
 end

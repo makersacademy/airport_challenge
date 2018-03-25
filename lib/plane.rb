@@ -2,7 +2,6 @@ require './lib/airport.rb'
 
 class Plane
 
-
   def land(airport)
     if airport.weather.stormy?
       "Cannot land, adverse weather."
@@ -16,7 +15,7 @@ class Plane
     if airport.weather.stormy?
       "Cannot take off, adverse weather"
     else
-      airport.hangar.delete(self)#.include? for multiple planes
+      airport.hangar.delete(self) # .include? for multiple planes
       "Plane has left."
     end
   end
