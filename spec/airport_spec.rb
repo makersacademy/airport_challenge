@@ -20,9 +20,9 @@ describe Airport do
 
   end
 
-  describe '#hangar' do
+  describe '#initialize' do
 
-    it 'should return an Array' do
+    it 'should be initialized with an Array called hangar' do
       expect(subject.hangar).to be_an_instance_of(Array)
     end
 
@@ -37,8 +37,15 @@ describe Airplane do
 
   describe '#land' do
 
-    it 'raises an error if the wether is stormy' do
-      expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
+    # it 'raises an error if the weather is stormy' do
+    #   expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
+    # end
+
+    it "puts itself in Airport's hangar" do
+      stanstead = Airport.new
+      jet2 = Airplane.new
+      jet2.land(stanstead)
+      expect(stanstead.hangar.last).to eq jet2
     end
 
     it 'Airport arg should exist' do

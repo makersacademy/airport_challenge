@@ -1,8 +1,9 @@
 class Airport
 
+  attr_accessor :hangar
 
-  def hangar
-    []
+  def initialize
+    @hangar = []
   end
 
   def stormy?
@@ -15,6 +16,7 @@ class Airplane
 
   def land(airport)
     raise("Too stormy!") if airport.stormy?
+    airport.hangar.push(self)
   end
 
   def take_off
