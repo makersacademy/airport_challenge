@@ -10,7 +10,7 @@ class Airport
   end 
 
   def allow_takeoff?
-    !@weather.stormy?
+    !weather.stormy?
   end 
 
   def add_plane(airplane)
@@ -26,11 +26,11 @@ class Airport
   end 
   
   def allow_landing?
-    !(@weather.stormy? || full?)
+    !(weather.stormy? || full?)
   end 
   
   def full?
-    @hangar.size >= @max_capacity
+    @hangar.size >= max_capacity
   end 
 
   private 
