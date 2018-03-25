@@ -23,7 +23,7 @@ describe Plane do
 
   end
 
-  it 'raises an error when intstructed to land at an airport with stormy weather' do
+  it 'raises an error when instructed to land at an airport with stormy weather' do
     airport = double("airport", :airport_full? => true, :weather => 'stormy')
     expect {plane.land_plane(airport)}.to raise_exception
 
