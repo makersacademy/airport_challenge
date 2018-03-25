@@ -42,17 +42,34 @@ I want to prevent takeoff when weather is stormy
 | ------------- | --------------- |
 | Plane         | prevent_takeoff |
 | Airport       |                 |
-| Weather       |                 | 
+| Weather       |                 |
 
-
+### USER STORY 4
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 
+| Objects       | Messages        |
+| ------------- | --------------- |
+| Plane         | prevent_landing |
+| Airport       |                 |
+| Weather       |                 |
+
+### USER STORY 5
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
+| Objects       | Messages        |
+| ------------- | --------------- |
+| Plane         | prevent_landing |
+| Airport       |                 |
+
+
+### USER STORY 6
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+| Objects       | Messages        |
+| ------------- | --------------- |
+| Airport       | prevent_landing |
