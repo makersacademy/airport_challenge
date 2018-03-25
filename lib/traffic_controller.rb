@@ -13,13 +13,9 @@ class TrafficController
     airplane.land_airplane
   end
 
-  def leave_airort(airplane, airport)
+  def leave_airport(airplane, airport)
     raise 'cannot take off from this airport' unless request_takeoff(airport)
     airport.remove_plane(airplane)
     airplane.take_off
   end 
-
-  def depart_airport(airplane)
-    airplane.take_off
-  end
 end 
