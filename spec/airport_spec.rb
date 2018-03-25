@@ -14,7 +14,7 @@ describe Airport do
 
     it 'should sometimes be true, sometimes false' do
       tf = []
-      50.times { tf << subject.stormy? }
+      74.times { tf << subject.stormy? }
       expect(tf).to include(true, false)
     end
 
@@ -33,13 +33,14 @@ end
 describe Airplane do
 
   it { is_expected.to respond_to(:land).with(1).arguments }
-  it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
 
   describe '#land' do
-
-    # it 'raises an error if the weather is stormy' do
-    #   expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
-    # end
+    # this needs  a mock, it only raises the error when actually stormy
+    it 'raises an error if the weather is stormy' do
+      # hairport = double(airport, hairport.stormy? = true)
+      expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
+    end
 
     it "puts itself in Airport's hangar" do
       stanstead = Airport.new
@@ -48,7 +49,7 @@ describe Airplane do
       expect(stanstead.hangar.last).to eq jet2
     end
 
-    it 'Airport arg should exist' do
+    it 'Airport should exist' do
       # expect((subject.land("any")) with(instance_of(Airport)))
       # expect { subject(:land).with(instance_of(Airport)) }
       # expect land(with(instance_of(Airport)))
@@ -58,6 +59,11 @@ describe Airplane do
   end
 
   describe 'take_off' do
+    # I cant get this damn mock to work!
+    it 'raises an error if the plane is not there' do
+      # nairport = double(:airport, nairport.hangar.include?(subject) == false)
+      expect { subject.take_off(Airport.new) }.to raise_error 'Im not at your airport, fool!'
+    end
 
     it "removes the plane from from the hangar" do
       heathrow = Airport.new

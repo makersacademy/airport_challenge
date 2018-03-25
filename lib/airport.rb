@@ -20,6 +20,7 @@ class Airplane
   end
 
   def take_off(airport)
+    raise("Im not at your airport, fools!") unless airport.hangar.include?(self)
     airport.hangar.delete(self)
   end
 
