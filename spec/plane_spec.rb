@@ -49,6 +49,12 @@ describe Plane do
 
     end
 
+    it 'confirms that the plane has taken off from the airport' do
+     plane.land_plane(airport)
+     expect { subject.takeoff(airport) }. to output('Plane has left the airport').to_stdout
+
+    end
+
 
 
   end
