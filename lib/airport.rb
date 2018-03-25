@@ -1,4 +1,4 @@
-require 'weather.rb'
+require_relative 'weather'
 
 class Airport
   attr_reader :max_capacity, :weather
@@ -10,13 +10,17 @@ class Airport
   end 
 
   def allow_takeoff?
-    weather != :stormy
+    !@weather.stormy?
   end 
 
   def add_plane(airplane)
     @hangar << airplane
   end 
 
+  def remove_plane(airplane)
+    @hangar.delete(airplane) 
+  end 
+  
   def set_weather
     Weather.new 
   end 
