@@ -1,4 +1,7 @@
+require 'weather'
+
 class Airport
+  include Weather
 
   DEFAULT_CAPACITY = 30
   
@@ -10,7 +13,7 @@ class Airport
   end
 
   def change_capacity capacity
-    raise 'Cannot accommodate all planes' if @planes.size > capacity
+    raise 'Cannot accommodate all planes' if planes.size > capacity
     @capacity = capacity
   end
 
@@ -26,10 +29,6 @@ class Airport
     raise "No taking off- stormy weather!" if stormy?
     @planes.delete plane
     true
-  end
-
-  def stormy?
-    Kernel.rand(2) == 1
   end
 
   def add_plane plane

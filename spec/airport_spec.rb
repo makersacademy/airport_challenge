@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { instance_double('Plane') }
+  let(:weather) { instance_double('Weather') }
   
   describe '@capacity' do
     it 'capacity cannot be less than planes in the airport' do
@@ -67,18 +68,6 @@ describe Airport do
     it 'allows a newly generated plane to be added to an available airport' do
       subject.add_plane plane
       expect(subject.planes).to include plane
-    end
-  end
-
-  describe '#stormy?' do
-    it 'returns true when the random number equals 1' do
-      allow(Kernel).to receive(:rand).with(2).and_return(1)
-      expect(subject.stormy?).to eq true
-    end
-
-    it 'returns false when the random number equals 0' do
-      allow(Kernel).to receive(:rand).with(2).and_return(0)
-      expect(subject.stormy?).to eq false
     end
   end
 end
