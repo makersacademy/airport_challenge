@@ -4,15 +4,22 @@ describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { instance_double('Plane') }
   
-  it "has a default capacity" do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+  describe '@capacity' do
+    it 'capacity cannot be less than planes in the airport' do
+      5.times { subject.add_plane plane }
+      expect { subject.change_capacity 4 }.to raise_error 'Cannot accommodate all planes'
+    end
 
-  it "allows setting custom capacity" do
-    allow(subject).to receive(:stormy?).and_return(false)
-    subject.capacity = 70
-    expect { 70.times { airport.accept_plane plane } }.to_not raise_error
-  end    
+    it "has a default capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "allows setting custom capacity" do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.change_capacity 70
+      expect { 70.times { subject.accept_plane plane } }.to_not raise_error
+    end    
+  end
 
   describe "accept_plane" do
     it { is_expected.to respond_to(:accept_plane).with(1).argument }
