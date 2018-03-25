@@ -42,6 +42,12 @@ describe Plane do
   describe '#takeoff' do
     let(:airport) { double('airport', :planes_in_airport => [], :weather => 'fine', :airport_full? => false) }
 
+    it 'takes off from the airport and is removed from airport capacity' do
+      plane.land_plane(airport)
+      plane.takeoff(airport)
+      expect(airport.planes_in_airport).to eql([])
+
+    end
 
 
 

@@ -30,5 +30,10 @@ class Plane
   end
 
 
+  def takeoff(airport)
+    airport.planes_in_airport.delete(self)
+  end
+
+
 
 end
