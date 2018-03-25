@@ -8,6 +8,12 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "allows setting custom capacity" do
+    allow(subject).to receive(:stormy?).and_return(false)
+    subject.capacity = 70
+    expect { 70.times { airport.accept_plane plane } }.to_not raise_error
+  end    
+
   describe "accept_plane" do
     it { is_expected.to respond_to(:accept_plane).with(1).argument }
  
@@ -48,6 +54,24 @@ describe Airport do
       subject.release_plane plane
       expect(subject.planes).not_to include plane
     end
-      
   end 
+  
+  describe '#add_plane' do
+    it 'allows a newly generated plane to be added to an available airport' do
+      subject.add_plane plane
+      expect(subject.planes).to include plane
+    end
+  end
+
+  describe '#stormy?' do
+    it 'returns true when the random number equals 1' do
+      allow(Kernel).to receive(:rand).with(2).and_return(1)
+      expect(subject.stormy?).to eq true
+    end
+
+    it 'returns false when the random number equals 0' do
+      allow(Kernel).to receive(:rand).with(2).and_return(0)
+      expect(subject.stormy?).to eq false
+    end
+  end
 end

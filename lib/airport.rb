@@ -23,11 +23,18 @@ class Airport
     true
   end
 
-  private
   def stormy?
-    rand(2) == 1
+    Kernel.rand(2) == 1
   end
 
+  def add_plane plane
+    # add newly created plane to an available airport
+    raise 'Airport full' if full?
+    @planes << plane
+    true
+  end
+
+  private
   def plane_here? plane
     @planes.include? plane
   end
