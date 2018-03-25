@@ -1,13 +1,13 @@
 class Plane
 
   attr_accessor :airborne
-  attr_reader :reg
+  attr_accessor :reg
 
   def initialize(reg)
     @reg = reg
   end
 
-  def takeoff
+  def liftoff
     @airborne = true
   end
 
