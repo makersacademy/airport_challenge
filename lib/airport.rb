@@ -5,7 +5,7 @@ attr_reader :stormy
 
   def initialize
     @plane_array = []
-    @stormy
+    @stormy = true
   end
 
   def land(plane)

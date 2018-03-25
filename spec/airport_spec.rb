@@ -45,10 +45,12 @@ describe Airport do
 
   describe 'stormy' do
     it 'should exist as an accessible variable of the airport' do
-    expect(subject).to respond_to(:stormy)
+      expect(subject).to respond_to(:stormy)
     end
 
-    # it 'should respond with a '
+    it 'should respond with a boolean' do
+      expect(subject.stormy).to be(true).or be(false)
+    end
 
   end
 
