@@ -42,18 +42,29 @@ describe Plane do
     it 'takes off when weather is clear' do
       plane = Plane.new
       heathrow = Airport.new
+      heathrow.hangar << plane
+      allow(Kernel).to receive(:rand).with(0..1).and_return(0)
+      plane.take_off(heathrow)
       expect(plane.take_off(heathrow)).to eq("Plane has left.")
     end
 
-    # does not take off when weather is stormy
     it 'gets removed from the hangar when taking off' do
       plane = Plane.new
       heathrow = Airport.new
       heathrow.hangar << plane
+      allow(Kernel).to receive(:rand).with(0..1).and_return(0)
       plane.take_off(heathrow)
       expect(heathrow.hangar).to eq([])
     end
 
+    it "doesn't take off if stormy" do
+      plane = Plane.new
+      heathrow = Airport.new
+      heathrow.hangar << plane
+      allow(Kernel).to receive(:rand).with(0..1).and_return(1)
+      plane.take_off(heathrow)
+      expect(heathrow.hangar).to eq([plane])
+    end
     # prints which airport it leaves??
   end
 end

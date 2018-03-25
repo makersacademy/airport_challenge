@@ -13,7 +13,11 @@ class Plane
   end
 
   def take_off(airport)
-    airport.hangar.delete(self)#.include? for multiple planes
-    "Plane has left."
+    if airport.weather.stormy?
+      "Cannot take off, adverse weather"
+    else
+      airport.hangar.delete(self)#.include? for multiple planes
+      "Plane has left."
+    end
   end
 end
