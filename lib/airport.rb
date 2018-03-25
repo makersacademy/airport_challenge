@@ -24,18 +24,11 @@ class Airport
   private
 
   def full?
-    @planes.count >= @capacity
+    planes.count >= capacity
   end
 
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
 
 end
-
-=begin
-(PASS) Airport lands a Plane
-(PASS) Airport returns landed planes
-(PASS) Planes take off from airport
-(PASS) Check plane removed from airport
-=end

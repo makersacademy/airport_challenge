@@ -4,10 +4,7 @@ describe Airport do
   subject(:airport) { described_class.new(weather, 20) }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
-  # it { is_expected.to respond_to(:land).with(1).argument }
-  # it { is_expected.to respond_to(:takeoffplane) }
-  # it { is_expected.to respond_to(:capacity) }
-  # it { is_expected.to respond_to(:weather) }
+
 
   describe '#land' do
     context 'when the weather is not stormy' do
@@ -80,19 +77,4 @@ describe Airport do
       expect { new_airport.land(plane) }.to raise_error 'Airport is full to capacity'
     end
   end
-
-  # describe 'initialize' do
-  #   it 'has a variable capacity' do
-  #     airport1 = Airport.new(100)
-  #     100.times { airport1.land(plane) }
-  #     expect{ airport1.land(plane) }.to raise_error 'Airport is full to capacity'
-  #   end
-  #
-  #   it 'has a default capacity' do
-  #     described_class::DEFAULT_CAPACITY.times do
-  #       airport.land(plane)
-  #     end
-  #     expect{ airport.land(plane) }.to raise_error 'Airport is full to capacity'
-  #   end
-  # end
 end
