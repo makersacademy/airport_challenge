@@ -22,8 +22,13 @@ describe Airport do
     it 'should store the argument in plane_array' do
       plane = double(plane)
       subject.land(plane)
-      expect(subject.plane_array).to include(plane) 
+      expect(subject.plane_array).to include(plane)
     end
+  end
 
+  describe '#take_off' do
+    it 'should exist as a method' do
+      expect(subject).to respond_to(:take_off)
+    end
   end
 end

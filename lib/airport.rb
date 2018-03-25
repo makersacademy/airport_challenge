@@ -10,4 +10,7 @@ end
   @plane_array << plane
   end
 
+  def take_off
+  end
+
 end
