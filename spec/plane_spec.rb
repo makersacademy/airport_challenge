@@ -55,6 +55,12 @@ describe Plane do
 
     end
 
+    it 'prevents takeoff if airport weather is stormy' do
+      plane.land_plane(airport)
+      allow(airport).to receive(:weather) { 'stormy' }
+      expect { subject.takeoff(airport) }.to raise_exception
+
+    end
 
 
   end
