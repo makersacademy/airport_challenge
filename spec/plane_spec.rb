@@ -5,6 +5,7 @@ describe Plane do
   subject(:plane) { described_class.new }
 
   describe '#land_plane' do
+  let (:airport) { double('airport', :planes_in_airport => [], :weather => 'fine', :airport_full? => false) }
 
   it ' can be landed by responding to land_plane' do
     expect(plane).to respond_to(:land_plane)
@@ -24,10 +25,26 @@ describe Plane do
   end
 
   it 'raises an error when instructed to land at an airport with stormy weather' do
-    airport = double("airport", :airport_full? => true, :weather => 'stormy')
+    allow(airport). to receive(:weather) { 'stormy' }
     expect {plane.land_plane(airport)}.to raise_exception
 
   end
+
+  it 'raises an error when instructed to land after being landed' do
+
+    plane.land_plane(airport)
+    expect { plane.land_plane(airport) }.to raise_exception
+
+  end
+
+  end
+
+  describe '#takeoff' do
+    let(:airport) { double('airport', :planes_in_airport => [], :weather => 'fine', :airport_full? => false) }
+
+
+
+
   end
 
 

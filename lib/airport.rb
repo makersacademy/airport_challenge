@@ -1,21 +1,23 @@
 require_relative 'weather'
 
+
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_accessor :weather
+
   attr_accessor :planes_in_airport
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
+
     @planes_in_airport = []
     @capacity = capacity
+    @weather = Weather.new
+
   end
 
-  def takeoff
-    @planes_in_airport.pop
-  end
 
   def airport_full?
-    @planes_in_airport.size >= @capacity
+    true if @planes_in_airport.size >= @capacity
   end
 
 end
