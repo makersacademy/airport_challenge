@@ -13,9 +13,9 @@ class Airport
     @capacity = capacity
     @weather = weather
     if initial_planes.nil?
-      capacity.times { @planes_garage << Planes.new }
+      capacity.times { @planes_garage << Plane.new }
     else
-      initial_planes.times { @planes_garage << Planes.new }
+      initial_planes.times { @planes_garage << Plane.new }
     end
   end
 
@@ -25,16 +25,19 @@ class Airport
     elsif @weather.stormy?
       raise 'Unable to take_off due to stormy weather!'
     else
-      @planes_garage.pop
+      plane = @planes_garage.pop
+      plane.mark_as_flying
+      return plane
     end
   end
 
   def land_plane(plane)
-    if full?
-      raise 'Take-off is not possible. Airport is full!'
+    if full? || !plane.flying?
+      raise 'Landing is not possible!'
     elsif @weather.stormy?
       raise 'Unable to land due to stormy weather!'
     else
+      plane.mark_as_landed
       @planes_garage << plane
     end
   end
@@ -54,5 +57,6 @@ class Airport
   def empty?
     @planes_garage.empty?
   end
+
 
 end
