@@ -1,7 +1,6 @@
 class Airport
 
 attr_reader :plane_array
-attr_reader :stormy
 
   def initialize
     @plane_array = []
@@ -16,6 +15,7 @@ attr_reader :stormy
   end
 
   def weather
+    "stormy"
   end
 
 end

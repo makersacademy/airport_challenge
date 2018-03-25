@@ -59,5 +59,13 @@ describe Airport do
     end
   end
 
+  describe 'weather' do
+    it 'should output "fine" or "stormy"' do
+      expect(subject.weather).to eq("fine").or(eq("stormy"))
+      # expect(subject.weather).to be_in{[3, 4]}
+      #be_in(["fine", "stormy"])
+    end
+  end
+
 
 end
