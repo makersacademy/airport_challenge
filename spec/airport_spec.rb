@@ -49,4 +49,16 @@ describe Airport do
       expect(full_airport.allow_landing?).to eq(false)
     end 
   end 
+
+  describe '.allow_takeoff?' do 
+    it 'does not allow take off when weather is stormy' do
+      allow(subject).to receive(:weather).and_return(:stormy) 
+      expect(subject.allow_takeoff?).to eq(false)
+    end 
+
+    it 'allows take off when weather is not stormy' do
+      allow(subject).to receive(:weather).and_return(:grey) 
+      expect(subject.allow_takeoff?).to eq(true)
+    end 
+  end 
 end 

@@ -1,12 +1,16 @@
 require 'weather.rb'
 
 class Airport
-  attr_reader :max_capacity
+  attr_reader :max_capacity, :weather
 
   def initialize(max_capacity = 100)
     @max_capacity = max_capacity
     @weather = set_weather
     @hangar = Array.new 
+  end 
+
+  def allow_takeoff?
+    weather != :stormy
   end 
 
   def add_plane(airplane)
