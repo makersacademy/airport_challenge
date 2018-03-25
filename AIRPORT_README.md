@@ -73,7 +73,10 @@ In the initial stages of the challenge feature tests were run using IRB.
     - Running feature tests plane.status_grounded? and getting NoMethodError.
     - Creating spec/plane_spec.rb and spec/plane.rb files.
     - Writing test for plane_spec.rb, running file and getting the Errors
-    - Writing code for plane.rb which includes class Plane, and passing tests.    
+    - Writing code for plane.rb which includes class Plane, and passing tests.
+- 7 - Further feature and unit testing - Objects focus:
+    - airport.rb Plane object created, and plane.rb method updated.
+    - Domain model updated.     
 
 
 ## ToDo
