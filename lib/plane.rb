@@ -4,6 +4,7 @@ class Plane
 
   def initialize
     @status = :new
+    @id = id_generator
   end
 
   def land airport
@@ -17,6 +18,7 @@ class Plane
     # instruct a plane to take off from the airport where it's landed
     raise 'Plane not landed' unless @status == :landed
     @status = :in_air if airport.release_plane self
+    puts "Announcement: plane #{@id} has taken off"
     self
   end
 
@@ -25,5 +27,10 @@ class Plane
     raise 'Not a new plane' unless @status == :new
     @status = :landed if airport.add_plane self
     self
+  end
+
+  private
+  def id_generator
+    "id#{Array.new(5) { rand(10) }.join('')}"
   end
 end
