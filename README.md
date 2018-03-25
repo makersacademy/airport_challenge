@@ -24,9 +24,9 @@ Planes defined as a class Plane.
     -If plane is landed it can be only taken-off, but can not be landed again until taken-off.
   Class Plane also has methods that marked plane as landed 'mark_as_landed' or flying 'mark_as_flying'
 
-  Exaples:
+Exaples:
 
-#1  When airport operates and and airport is not full is possible to land plane and mark plane as landed:
+1  When airport operates and and airport is not full is possible to land plane and mark plane as landed:
 
   ```
   plane = Plane.new(true)
@@ -45,7 +45,7 @@ Planes defined as a class Plane.
    => false
   ```
 
-#2  When airport operates and planes are available is possible to take off plane and mark plane as flying:
+2  When airport operates and planes are available is possible to take off plane and mark plane as flying:
 
   ```
 2.5.0 :029 > plane.flying?
@@ -58,7 +58,7 @@ Planes defined as a class Plane.
  => #<Airport:0x00007ff7df1bab28 @planes_garage=[], @capacity=30, @weather=#<Weather:0x00007ff7df1c22b0 @condition=false>>
   ```
 
-#3 It is not possible to take-off plane, when plane if flying
+3 It is not possible to take-off plane, when plane if flying
   ```
   2.5.0 :033 > airport.take_off_plane
 Traceback (most recent call last):
@@ -68,7 +68,7 @@ Traceback (most recent call last):
 RuntimeError (No planes available for take-off!)
 2.5.0 :034 >
   ```
-#4 It is not possible to land plane if plane is already landed
+4 It is not possible to land plane if plane is already landed
 
 ```
 2.5.0 :034 > airport.land_plane(plane)
@@ -81,7 +81,7 @@ Traceback (most recent call last):
 RuntimeError (Landing is not possible!)
 2.5.0 :036 >
 ```
-# It is not possible to take-off plane when the weather is stormy
+5 It is not possible to take-off plane when the weather is stormy
 
 ```
 2.5.0 :039 > weather = Weather.new(true)
