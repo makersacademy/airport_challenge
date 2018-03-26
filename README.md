@@ -17,4 +17,5 @@ than the number of planes currently there.
 Weather module contains a stormy? method that generates a random number in range (0...10); if the number is 1 it
 returns true, else false.
 
+In use:
 ![Alt text](./images/airport.png?raw=true)
