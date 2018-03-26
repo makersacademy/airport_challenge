@@ -2,9 +2,16 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { Airport.new }
+  let(:stormy_airport) { Airport.new }
+  let(:not_stormy_airport) { Airport.new }
   let(:plane) { instance_double('Plane') }
+
+  before do
+    allow(stormy_airport).to receive(:stormy?).and_return(true)
+    allow(not_stormy_airport).to receive(:stormy?).and_return(false)
+  end
   
-  describe '@capacity' do
+  describe 'capacity' do
     it 'capacity cannot be less than planes in the airport' do
       5.times { subject.add_plane plane }
       expect { subject.change_capacity 4 }.to raise_error 'Cannot accommodate all planes'
@@ -15,29 +22,26 @@ describe Airport do
     end
 
     it "allows setting custom capacity" do
-      allow(subject).to receive(:stormy?).and_return(false)
-      subject.change_capacity 70
-      expect { 70.times { subject.accept_plane plane } }.to_not raise_error
+      not_stormy_airport.change_capacity 70
+      expect { 70.times { not_stormy_airport.accept_plane plane } }.to_not raise_error
     end    
   end
 
   describe "accept_plane" do
     it { is_expected.to respond_to(:accept_plane).with(1).argument }
  
-    it 'throws an error if the airport is full' do
-      allow(subject).to receive(:full?).and_return(true)
-      expect { subject.accept_plane plane }.to raise_error 'Airport full'
+    it 'throws an error if the airport is full (default capacity- 30)' do
+      30.times { not_stormy_airport.add_plane plane }
+      expect { not_stormy_airport.accept_plane plane }.to raise_error 'Airport full'
     end
 
     it 'throws an error if weather is stormy' do
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.accept_plane plane }.to raise_error 'No landing- stormy weather!'
+      expect { stormy_airport.accept_plane plane }.to raise_error 'No landing- stormy weather!'
     end
     
     it 'accepts a plane if weather is not stormy' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      subject.accept_plane plane
-      expect(subject.plane_here? plane).to be true
+      not_stormy_airport.accept_plane plane
+      expect(not_stormy_airport.plane_here? plane).to be true
     end
   end
   
@@ -50,15 +54,13 @@ describe Airport do
     end
     
     it 'throws an error if weather is stormy' do
-      allow(subject).to receive(:plane_here?).with(plane).and_return(true)
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.release_plane plane }.to raise_error 'No taking off- stormy weather!'
+      allow(stormy_airport).to receive(:plane_here?).with(plane).and_return(true)
+      expect { stormy_airport.release_plane plane }.to raise_error 'No taking off- stormy weather!'
     end
 
     it 'allows a plane to take off from airport if weather is not stormy' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      subject.accept_plane plane
-      subject.release_plane plane
+      not_stormy_airport.accept_plane plane
+      not_stormy_airport.release_plane plane
       expect(subject.plane_here? plane).to be false
     end
   end 
