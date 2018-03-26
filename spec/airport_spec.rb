@@ -14,7 +14,7 @@ describe Airport do
 
     it 'should sometimes be true, sometimes false' do
       tf = []
-      74.times { tf << subject.stormy? }
+      71.times { tf << subject.stormy? }
       expect(tf).to include(true, false)
     end
 
@@ -38,8 +38,8 @@ describe Airplane do
   describe '#land' do
     # this needs  a mock, it only raises the error when actually stormy
     it 'raises an error if the weather is stormy' do
-      # hairport = double(airport, hairport.stormy? = true)
-      expect { subject.land(Airport.new) }.to raise_error "Too stormy!"
+      hairport = double(:hairport, stormy?: true)
+      expect { subject.land(hairport) }.to raise_error "Too stormy!"
     end
 
     it "puts itself in Airport's hangar" do
@@ -58,11 +58,12 @@ describe Airplane do
 
   end
 
-  describe 'take_off' do
+  describe '#take_off' do
     # I cant get this damn mock to work!
     it 'raises an error if the plane is not there' do
-      # nairport = double(:airport, nairport.hangar.include?(subject) == false)
-      expect { subject.take_off(Airport.new) }.to raise_error 'Im not at your airport, fool!'
+      nairport = double(:nairport, hangar: [])
+      # allow(:airport).to receive(:hangar).and_return(false)
+      expect { subject.take_off(nairport) }.to raise_error 'Im not at your airport, fools!'
     end
 
     it "removes the plane from from the hangar" do

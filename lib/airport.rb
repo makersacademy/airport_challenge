@@ -7,7 +7,7 @@ class Airport
   end
 
   def stormy?
-    rand(20) > 18
+    Weather.new.stormy?
   end
 
 end
@@ -16,7 +16,7 @@ class Airplane
 
   def land(airport)
     raise("Too stormy!") if airport.stormy?
-    airport.hangar.push(self)
+    airport.hangar << self
   end
 
   def take_off(airport)
@@ -24,4 +24,10 @@ class Airplane
     airport.hangar.delete(self)
   end
 
+end
+
+class Weather
+  def stormy?
+    rand(20) > 18
+  end
 end
