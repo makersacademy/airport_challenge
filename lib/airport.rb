@@ -6,8 +6,8 @@ class Airport
   end
 
   def land(plane)
-    @plane = plane
     fail "Cannot land due to stormy weather" if @state == 10
+    @plane = plane
     @planes.push(plane)
   end
 
