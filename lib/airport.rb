@@ -18,6 +18,8 @@ class Airport
 end
 
 class Weather
+  attr_reader :state
+  
   def state
     @state = (1..10).rand
     return "stormy" if @state.rand == 10
