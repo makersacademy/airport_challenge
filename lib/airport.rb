@@ -16,7 +16,7 @@ class Airport
     @capacity = capacity
     @name = name
     @ramp = []
-    @weather = Weather.new.report
+    @stormy = Weather.new.report
   end
 
   def land(plane)
@@ -28,6 +28,7 @@ class Airport
 
   def takeoff(plane)
     fail "Clearance refused due to inclement weather" if @stormy == true
+    fail "There are no planes parked at this airport" if @ramp.length.zero?
     plane.liftoff
     @ramp.pop
   end

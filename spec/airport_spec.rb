@@ -29,20 +29,11 @@ describe Airport do
       expect(gatwick.ramp).to eq []
     end
 
-    # describe 'storm blocks landing' do
-    #   allow(weather).to receive(:stormy?).and_return true
-    #   message = 'Clearance refused due to inclement weather'
-    #   expect { gatwick.land(ggajb) }.to raise_error message
-    # end
-    #
-    # describe ' a plane can land after a storm has cleared' do
-    #   allow(weather).to receive(:stormy?).and_return false
-    #   expect { gatwick.land(ggajb) }.not_to raise_error
-    # end
-    #
-    # it 'has an instance of weather' do
-    #   expect (gatwick.weather).to be_an instance_of(Weather)
-    # end
+    describe 'storm blocks landing' do
+      allow(gatwick).to receive(:report).and_return true
+      message = 'Clearance refused due to inclement weather'
+      expect { gatwick.land(ggajb) }.to raise_error message
+    end
 
     it 'refuses permission to land if airport is full' do
       gatwick.land(ggajb)
