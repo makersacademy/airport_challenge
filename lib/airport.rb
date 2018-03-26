@@ -18,7 +18,7 @@ class Airport
 
   def land(plane)
     not_a_plane_error unless plane.is_a?(Plane)
-    plane_at_other_airport_error if !plane.flying?
+    plane_at_other_airport_error unless plane.flying?
     stormy_weather_landing_error if weather.stormy?
     airport_full_error if airport_full?
     plane_lander(plane)
