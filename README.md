@@ -43,6 +43,11 @@ to allow flexibility in the future of the application.
 * rspec 
 * byebug 
 
+## Testing 
+  ```
+  $ rspec 
+  ```
+
 ## Positives 
 * Starting to feel comfortable with TDD
 * Learned how to use stubs and mocks more fully
