@@ -31,5 +31,5 @@ def stormy_takeoff
   plane = Plane.new
   airport = Airport.new
   airport.land(plane, calm_weather)
-  airport.take_off(plane, stormy_weather)
+  airport.take_off(plane, stormy_weathere)
 end
