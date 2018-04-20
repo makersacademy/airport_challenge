@@ -24,6 +24,11 @@ describe Airport do
     it 'is expected not to land planes in stormy weather', :storm_land do
       expect { subject.land(plane, stormy_weather) }.to raise_error "It's too stormy!"
     end
+
+    it 'wont land planes in a full airport' do
+      20.times { subject.land(plane, calm_weather) }
+      expect { subject.land(plane, calm_weather) }.to raise_error 'Airport full.'
+    end
   end
 
   describe '#take_off' do
