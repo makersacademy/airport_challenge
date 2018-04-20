@@ -10,6 +10,13 @@ describe Weather do
         expect(weather).to be_stormy
       end
     end
+
+    it 'is expected not to be stormy for wind speeds under 35' do
+      (0..35).each do |wind_speed|
+        weather = Weather.new(wind_speed)
+        expect(weather).not_to be_stormy
+      end
+    end
   end
 
   describe '#wind_speed' do
