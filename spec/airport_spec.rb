@@ -26,5 +26,13 @@ describe Airport do
     it 'is expected to takeoff a plane' do
       expect(subject.takeoff(plane)).to eq plane
     end
+
+    it 'is expected to no longer contain plane after takeoff' do
+      test_plane = plane
+      subject.land(test_plane)
+      expect(subject.planes).to eq [test_plane]
+      subject.takeoff(test_plane)
+      expect(subject.planes).to eq []
+    end
   end
 end
