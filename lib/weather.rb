@@ -1,8 +1,10 @@
+require 'randomizer'
+
 class Weather
   attr_reader :wind_speed
 
   def initialize
-    @wind_speed = (rand * 41).floor
+    @wind_speed = Randomizer.rand_between(0, 40)
   end
 
   def stormy?
