@@ -26,7 +26,7 @@ describe Airport do
     end
 
     it 'wont land planes in a full airport' do
-      20.times { subject.land(plane, calm_weather) }
+      Airport::CAPACITY.times { subject.land(plane, calm_weather) }
       expect { subject.land(plane, calm_weather) }.to raise_error 'Airport full.'
     end
   end
