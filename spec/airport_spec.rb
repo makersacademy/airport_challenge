@@ -73,5 +73,9 @@ describe Airport do
       subject.land(plane, calm_weather)
       expect { subject.take_off(plane, stormy_weather) }.to raise_error "It's too stormy!"
     end
+
+    it 'raises an error if taking off plane not in airport', :no_plane do
+      expect { subject.take_off(plane, calm_weather) }.to raise_error 'Plane not in airport.'
+    end
   end
 end
