@@ -1,6 +1,6 @@
 require 'airport'
 
-describe Airport do
+describe Airport, :airport do
   let(:plane) { instance_double Plane }
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:calm_weather) { instance_double Weather, stormy?: false }
