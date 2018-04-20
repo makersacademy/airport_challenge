@@ -20,19 +20,23 @@ describe Airport do
     end
   end
 
-  describe '#takeoff' do
-    it { is_expected.to respond_to(:takeoff).with(1).argument }
+  describe '#' do
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
-    it 'is expected to takeoff a plane' do
+    it 'is expected to take off a plane' do
       subject.land(plane)
-      expect(subject.takeoff(plane)).to eq plane
+      expect(subject.take_off(plane)).to eq plane
     end
 
-    it 'is expected to no longer contain plane after takeoff' do
+    it 'is expected to no longer contain plane after take off' do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
-      subject.takeoff(plane)
+      subject.take_off(plane)
       expect(subject.planes).to eq []
+    end
+
+    it 'is expected to still contain one plane after another takes off' do
+
     end
   end
 end
