@@ -67,6 +67,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   rake
@@ -77,7 +78,7 @@ DEPENDENCIES
   simplecov-console
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.4p296
 
 BUNDLED WITH
-   1.14.0
+   1.16.1

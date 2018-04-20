@@ -44,7 +44,7 @@ describe Controller do
     expect(controller.planes_outbound.count).to eq 4
     expect(airport.planes_on_the_ground.count).to be 0
 
-    # try landing a fourth
+    # try to get a fourth up in the air
     expect { controller.issue_takeoff_instruction }.to raise_error "Take off not possible at the moment"
   end
 end
