@@ -11,6 +11,12 @@ describe Airport do
     it 'should have a default capacity of 20' do
       expect(subject.capacity).to eq Airport::CAPACITY
     end
+
+    it 'should have variable capacity on initialization' do
+      different_capacity = 30
+      airport = Airport.new(different_capacity)
+      expect(airport.capacity).to eq different_capacity
+    end
   end
 
   describe '#planes' do

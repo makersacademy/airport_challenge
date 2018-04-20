@@ -3,9 +3,9 @@ class Airport
 
   CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = CAPACITY)
     @planes = []
-    @capacity = CAPACITY
+    @capacity = capacity
   end
 
   def land(plane, weather)
