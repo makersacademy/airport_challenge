@@ -6,7 +6,11 @@ class Weather
   STORMY_WIND_SPEED = 35
   MAX_WIND_SPEED = 40
 
-  def initialize(wind_speed = Randomizer.rand_between(0, MAX_WIND_SPEED))
+  def randomized_wind_speed
+    Randomizer.rand_between(0, MAX_WIND_SPEED)
+  end
+
+  def initialize(wind_speed = randomized_wind_speed)
     @wind_speed = wind_speed
   end
 
