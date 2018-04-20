@@ -16,6 +16,11 @@ describe Plane, :plane do
       subject.land
       expect(subject).not_to be_flying
     end
+
+    it 'is expected to raise error if not flying' do
+      subject.land
+      expect { subject.land }.to raise_error 'Plane already landed'
+    end
   end
 
   describe '#take_off' do
