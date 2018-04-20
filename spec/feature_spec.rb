@@ -17,10 +17,19 @@ def takeoff_plane
   airport.planes == []
 end
 
-def too_stormy
-  weather = Weather.new(36)
+def stormy_landing
+  calm_weather = Weather.new(34)
+  stormy_weather = Weather.new(36)
   plane = Plane.new
   airport = Airport.new
-  airport.land(plane)
-  airport.take_off(plane, weather)
+  airport.land(plane, stormy_weather)
+end
+
+def stormy_takeoff
+  calm_weather = Weather.new(34)
+  stormy_weather = Weather.new(36)
+  plane = Plane.new
+  airport = Airport.new
+  airport.land(plane, calm_weather)
+  airport.take_off(plane, stormy_weather)
 end
