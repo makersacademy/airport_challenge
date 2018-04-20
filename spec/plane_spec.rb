@@ -20,5 +20,11 @@ describe Plane, :plane do
 
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off) }
+
+    it 'is flying after taking off' do
+      subject.land
+      subject.take_off
+      expect(subject).to be_flying
+    end
   end
 end
