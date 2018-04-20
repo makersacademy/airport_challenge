@@ -31,6 +31,6 @@ class Airport
   end
 
   def no_plane?(plane)
-    @planes.includes? plane
+    !@planes.include? plane
   end
 end
