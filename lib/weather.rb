@@ -8,6 +8,6 @@ class Weather
   end
 
   def stormy?
-
+    wind_speed > 35
   end
 end
