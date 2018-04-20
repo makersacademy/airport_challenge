@@ -6,12 +6,10 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-=begin
     it 'is expected to land planes' do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
-=end
   end
 
   describe '#planes' do
