@@ -28,10 +28,9 @@ describe Airport do
     end
 
     it 'is expected to no longer contain plane after takeoff' do
-      test_plane = plane
-      subject.land(test_plane)
-      expect(subject.planes).to eq [test_plane]
-      subject.takeoff(test_plane)
+      subject.land(plane)
+      expect(subject.planes).to eq [plane]
+      subject.takeoff(plane)
       expect(subject.planes).to eq []
     end
   end
