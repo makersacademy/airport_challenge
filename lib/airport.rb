@@ -5,7 +5,8 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather)
+    raise "It's too stormy!" if too_stormy?(weather)
     @planes.push(plane)
   end
 
