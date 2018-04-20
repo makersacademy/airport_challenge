@@ -5,6 +5,10 @@ describe Airport do
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:calm_weather) { instance_double Weather, stormy?: false }
 
+  describe '#capacity' do
+    it { is_expected.to respond_to(:capacity) }
+  end
+
   describe '#planes' do
     it { is_expected.to respond_to(:planes) }
 

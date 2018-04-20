@@ -25,6 +25,6 @@ class Airport
   end
 
   def airport_full?
-    @planes.size >= 20
+    @planes.size >= CAPACITY
   end
 end

@@ -18,20 +18,16 @@ def takeoff_plane
 end
 
 def stormy_landing
-  calm_weather = Weather.new(34)
-  stormy_weather = Weather.new(36)
   plane = Plane.new
   airport = Airport.new
-  airport.land(plane, stormy_weather)
+  airport.land(plane, Weather.new(36))
 end
 
 def stormy_takeoff
-  calm_weather = Weather.new(34)
-  stormy_weather = Weather.new(36)
   plane = Plane.new
   airport = Airport.new
-  airport.land(plane, calm_weather)
-  airport.take_off(plane, stormy_weathere)
+  airport.land(plane, Weather.new(34))
+  airport.take_off(plane, Weather.new(36))
 end
 
 def full_airport
