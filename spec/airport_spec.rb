@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
   let(:plane) { instance_double Plane }
+  let(:stormy_weather) { instance_double Weather, stormy?: true }
+  let(:calm_weather) { instance_double Weather, stormy?: false }
 
   describe '#planes' do
     it { is_expected.to respond_to(:planes) }
@@ -42,6 +44,10 @@ describe Airport do
       subject.land(plane2)
       subject.take_off(plane1)
       expect(subject.planes).to eq [plane2]
+    end
+
+    it 'is expected not to land planes in stormy weather' do
+
     end
   end
 end
