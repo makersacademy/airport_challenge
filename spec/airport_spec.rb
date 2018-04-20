@@ -7,6 +7,10 @@ describe Airport do
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
+
+    it 'should have a default capacity of 20' do
+      expect(subject.capacity).to eq Airport::CAPACITY
+    end
   end
 
   describe '#planes' do
