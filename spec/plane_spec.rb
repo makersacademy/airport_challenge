@@ -17,4 +17,8 @@ describe Plane, :plane do
       expect(subject).not_to be_flying
     end
   end
+
+  describe '#take_off' do
+    it { is_expected.to respond_to(:take_off) }
+  end
 end
