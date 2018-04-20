@@ -7,3 +7,11 @@ def land_plane
   airport.land(plane)
   airport.planes == [plane]
 end
+
+def takeoff_plane
+  plane = Plane.new
+  airport = Airport.new
+  airport.land(plane)
+  airport.takeoff(plane)
+  airport.planes == []
+end
