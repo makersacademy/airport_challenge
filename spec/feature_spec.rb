@@ -33,3 +33,10 @@ def stormy_takeoff
   airport.land(plane, calm_weather)
   airport.take_off(plane, stormy_weathere)
 end
+
+def full_airport
+  airport = Airport.new
+  calm_weather = Weather.new(34)
+  20.times { airport.land(Plane.new, calm_weather) }
+  airport.land(Plane.new, calm_weather)
+end
