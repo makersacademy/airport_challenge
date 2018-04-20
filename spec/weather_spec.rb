@@ -3,6 +3,13 @@ require 'weather'
 describe Weather do
   describe '#stormy?' do
     it { is_expected.to respond_to(:stormy?) }
+
+    it 'is expected to be stormy for wind speeds over 35' do
+      (36..40).each do |wind_speed|
+        weather = Weather.new(wind_speed)
+        expect(weather).to be_stormy
+      end
+    end
   end
 
   describe '#wind_speed' do
