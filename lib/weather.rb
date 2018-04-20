@@ -1,4 +1,4 @@
-require 'randomizer'
+require_relative './randomizer'
 
 class Weather
   attr_reader :wind_speed

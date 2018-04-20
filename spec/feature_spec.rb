@@ -1,5 +1,6 @@
 require_relative '../lib/plane'
 require_relative '../lib/airport'
+require_relative '../lib/weather'
 
 def land_plane
   plane = Plane.new
@@ -17,7 +18,7 @@ def takeoff_plane
 end
 
 def too_stormy
-  weather = Weather.new
+  weather = Weather.new(36)
   plane = Plane.new
   airport = Airport.new
   airport.land(plane)

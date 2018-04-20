@@ -3,6 +3,14 @@ require 'airport'
 describe Airport do
   let(:plane) { instance_double Plane }
 
+  describe '#planes' do
+    it { is_expected.to respond_to(:planes) }
+
+    it 'is expected to initialize with no planes' do
+      expect(subject.planes).to eq []
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -12,15 +20,7 @@ describe Airport do
     end
   end
 
-  describe '#planes' do
-    it { is_expected.to respond_to(:planes) }
-
-    it 'is expected to initialize with no planes' do
-      expect(subject.planes).to eq []
-    end
-  end
-
-  describe '#' do
+  describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'is expected to take off a plane' do
@@ -36,7 +36,12 @@ describe Airport do
     end
 
     it 'is expected to still contain one plane after another takes off' do
-
+      plane1 = double(:plane)
+      plane2 = double(:plane)
+      subject.land(plane1)
+      subject.land(plane2)
+      subject.take_off(plane1)
+      expect(subject.planes).to eq [plane2]
     end
   end
 end
