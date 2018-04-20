@@ -11,5 +11,10 @@ describe Plane, :plane do
 
   describe '#land' do
     it { is_expected.to respond_to(:land) }
+
+    it 'is expected not to be flying after landing' do
+      subject.land
+      expect(subject).not_to be_flying
+    end
   end
 end
