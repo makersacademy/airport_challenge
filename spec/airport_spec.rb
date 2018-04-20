@@ -23,17 +23,17 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(2).argument }
 
     it 'is expected to take off a plane' do
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq plane
+      expect(subject.take_off(plane, calm_weather)).to eq plane
     end
 
     it 'is expected to no longer contain plane after take off' do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
-      subject.take_off(plane)
+      subject.take_off(plane, calm_weather)
       expect(subject.planes).to eq []
     end
 
@@ -42,12 +42,13 @@ describe Airport do
       plane2 = double(:plane)
       subject.land(plane1)
       subject.land(plane2)
-      subject.take_off(plane1)
+      subject.take_off(plane1, calm_weather)
       expect(subject.planes).to eq [plane2]
     end
 
-    it 'is expected not to land planes in stormy weather' do
-
+    it 'is expected not to land planes in stormy weather', :storm do
+      subject.land(plane)
+      expect { subject.take_off(plane, stormy_weather) }.to raise_error "It's too stormy!"
     end
   end
 end
