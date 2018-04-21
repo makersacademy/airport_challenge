@@ -2,10 +2,10 @@ require 'weather_station.rb'
 
 describe WeatherStation do
   it 'returns "stormy" if 0 is passed' do
-    expect(subject.getWeather(0)).to eq 'stormy'
+    expect(subject.isStormy(0)).to be_truthy
   end
 
   it 'returns "fine" if any other number passed' do
-    expect(subject.getWeather(rand(10)+1)).to eq 'fine'
+    expect(subject.isStormy(rand(10)+1)).to be_falsy
   end
 end

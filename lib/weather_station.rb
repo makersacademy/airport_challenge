@@ -1,7 +1,6 @@
 class WeatherStation
 
-  def getWeather(random_number)
-    return 'stormy' if random_number == 0
-    return 'fine'
+  def isStormy(random_number)
+    return random_number == 0
   end
 end
