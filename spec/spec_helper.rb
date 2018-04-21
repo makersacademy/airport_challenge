@@ -1,4 +1,3 @@
-=begin
 require 'simplecov'
 require 'simplecov-console'
 
@@ -7,7 +6,9 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   # Want a nice code coverage website? Uncomment this next line!
   # SimpleCov::Formatter::HTMLFormatter
 ])
-SimpleCov.start
+SimpleCov.start do
+  add_filter "feature_spec"
+end
 
 RSpec.configure do |config|
   config.after(:suite) do
@@ -16,4 +17,3 @@ RSpec.configure do |config|
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
 end
-=end

@@ -1,4 +1,4 @@
- class Plane
+class Plane
   def initialize
     @flying = true
   end
@@ -22,4 +22,4 @@
   def landed?
     !@flying
   end
- end
+end
