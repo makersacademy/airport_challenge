@@ -5,4 +5,8 @@ class Plane
     @status = :at_airport
   end
 
+  def flying
+    @status = :in_the_air
+  end
+
 end
