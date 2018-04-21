@@ -5,6 +5,7 @@ describe Airport do
   # All tests assume the airport is empty on set-up therefore sometimes steps
   # are required to be completed to populate an airport first
 
+  # One plane ready to go
   let(:plane) { Plane.new }
 
   describe 'Set-up and capacity of Airport' do
