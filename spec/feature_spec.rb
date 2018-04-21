@@ -7,4 +7,4 @@ plane = Plane.new
 
 airport.land(plane)
 
-airport.plane
+airport.planes

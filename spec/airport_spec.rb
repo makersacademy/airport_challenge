@@ -8,17 +8,17 @@ describe Airport do
 
   it 'lands a plane' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
 
   it 'responds to plane method' do
-     expect(subject).to respond_to :plane
+     expect(subject).to respond_to :planes
   end
 
   it 'returns landed planes' do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.plane).to eq plane
+    expect(subject.planes).to eq [plane]
   end
 
   describe '#take_off' do
