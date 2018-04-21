@@ -3,18 +3,28 @@ require 'plane'
 describe Plane do
 
   let(:airport) { instance_double("Airport") }
+  before do
+    allow(airport).to receive(:receive_plane)
+    allow(airport).to receive(:release_plane)
+  end
 
   describe '#set_departure_airport' do
-    before { subject.set_departure_airport(airport) }
 
     context 'when a plane has no departure airport' do
       it 'sets a departure airport' do
+        subject.set_departure_airport(airport)
         expect(subject.departure_airport).to eq airport
+      end
+
+      it 'registers itself with the airport' do
+        expect(airport).to receive(:receive_plane).with(subject)
+        subject.set_departure_airport(airport)
       end
     end
 
     context 'when a plane already has a departure airport' do
       it 'raises an error' do
+        subject.set_departure_airport(airport)
         expect { subject.set_departure_airport(airport) }.to raise_error(PlaneError, "Departure airport already set")
       end
     end
@@ -37,7 +47,6 @@ describe Plane do
     context 'when a plane is flying' do
       before do
         subject.set_departure_airport(airport)
-        allow(airport).to receive(:release_plane)
         subject.take_off
       end
       it 'returns true' do
@@ -56,7 +65,6 @@ describe Plane do
     context 'when a departure airport has been set' do
       before do
         subject.set_departure_airport(airport)
-        allow(airport).to receive(:release_plane)
       end
 
       context 'when the plane is not flying' do
@@ -84,7 +92,6 @@ describe Plane do
     context 'when plane is in flight' do
       before do
         subject.set_departure_airport(airport)
-        allow(airport).to receive(:release_plane)
         subject.take_off
       end
 
@@ -97,7 +104,6 @@ describe Plane do
       context 'and a destination airport has been set' do
         before do
           subject.set_destination_airport(airport)
-          allow(airport).to receive(:receive_plane)
         end
         it 'lands the plane' do
           subject.land

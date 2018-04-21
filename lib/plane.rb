@@ -30,6 +30,7 @@ class Plane
   def set_departure_airport(airport)
     raise PlaneError, "Departure airport already set" if @departure_airport
     @departure_airport = airport
+    @departure_airport.receive_plane(self)
   end
 
   def set_destination_airport(airport)
