@@ -1,6 +1,7 @@
 require 'airport.rb'
 
 describe Airport do
+
   it 'creates a plane when taking off' do
     expect(subject).to respond_to :take_off
   end
@@ -12,7 +13,7 @@ describe Airport do
 
   it 'responds to plane method' do
      expect(subject).to respond_to :plane
-   end
+  end
 
   it 'returns landed planes' do
     plane = Plane.new
@@ -27,10 +28,16 @@ describe Airport do
       expect(subject.take_off).to eq plane
     end
 
-  it 'raises an error when no plane has landed' do
-    expect{ subject.take_off }.to raise_error "No planes to take off" 
+    it 'raises an error when no plane has landed' do
+      expect{ subject.take_off }.to raise_error "No planes to take off"
+    end
   end
 
+  describe '#land' do
+    it 'raises an error when full' do
+      subject.land(Plane.new)
+      expect { subject.dock Plane.new }.to raise_error 'Airport full'
+    end
   end
 
 end
