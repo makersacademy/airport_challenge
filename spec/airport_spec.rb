@@ -12,6 +12,11 @@ describe Airport do
     it 'adds landed plane' do
       expect(subject.land(plane)).to eq [plane]
     end
+
+    it 'raises error if airport is full' do
+      50.times {subject.land(plane)}
+      expect {subject.land(plane)}.to raise_error 'airport is full'
+    end
   end
 
   context "#plane" do
