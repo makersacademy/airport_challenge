@@ -106,3 +106,18 @@ def code_example_3
   houston_airport = Airport.new(45)
   houston_airport.capacity # => 45
 end
+
+def code_example_4
+  require './lib/airport'
+  require './lib/plane'
+  require './lib/weather'
+
+  houston_airport = Airport.new
+  calm_weather = Weather.new(Weather::STORMY_WIND_SPEED - 1)
+
+  Airport::DEFAULT_CAPACITY.times do
+    houston_airport.land(Plane.new, calm_weather)
+  end
+
+  houston_airport.land(Plane.new, calm_weather) # => Airport full.
+end

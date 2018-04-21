@@ -10,7 +10,7 @@ describe Airport, :airport do
 
   describe '#capacity' do
     it 'should have a default capacity of 20' do
-      expect(subject.capacity).to eq Airport::CAPACITY
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'should have variable capacity on initialization' do
@@ -37,7 +37,7 @@ describe Airport, :airport do
     end
 
     it 'wont land planes in a full airport' do
-      Airport::CAPACITY.times { subject.land(flying_plane, calm_weather) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(flying_plane, calm_weather) }
       expect { subject.land(flying_plane, calm_weather) }.to raise_error 'Airport full.'
     end
   end

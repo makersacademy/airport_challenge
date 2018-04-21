@@ -77,6 +77,23 @@ airbus_a380 = Plane.new
 houston_airport.land(airbus_a380, stormy_weather) # => It's too stormy!
 ```
 
+Airport full:
+
+```
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
+
+houston_airport = Airport.new
+calm_weather = Weather.new(Weather::STORMY_WIND_SPEED - 1)
+
+Airport::DEFAULT_CAPACITY.times do
+  houston_airport.land(Plane.new, calm_weather)
+end
+
+houston_airport.land(Plane.new, calm_weather) # => Airport full.
+```
+
 Setting airport capacity:
 
 ```
