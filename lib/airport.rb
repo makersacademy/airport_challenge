@@ -1,7 +1,8 @@
 class Airport
 
   DEFAULT_CAPACITY = 10
-  attr_reader :hangar, :capacity
+  attr_reader :hangar
+  attr_accessor :capacity
 
   def initialize
     @hangar = []
@@ -11,6 +12,7 @@ class Airport
   def land(plane, is_stormy = false)
     fail 'Plane already in airport' if @hangar.include?(plane)
     fail 'Cannot land in stormy weather' if is_stormy
+    fail 'Airport full' if full?
     plane.land
     @hangar << plane
   end
@@ -27,6 +29,12 @@ class Airport
 
   def confirm_left_airport(plane)
     return !@hangar.include?(plane)
+  end
+
+  private
+
+  def full?
+    return @hangar.length == @capacity
   end
 
 end

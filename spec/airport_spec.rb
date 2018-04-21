@@ -3,6 +3,7 @@ require 'airport.rb'
 describe Airport do
   let(:plane1) { double 'Plane1', land: true, take_off: true }
   let(:plane2) { double 'Plane2', land: true, take_off: true }
+  let(:plane3) { double 'Plane3', land: true, take_off: true }
   let(:stormy_weather) { double 'Weather Station (stormy)', is_stormy: true }
 
   context '#instructing planes to land' do
@@ -18,6 +19,13 @@ describe Airport do
 
     it 'raises error when attempting to land a plane in stormy weather' do
       expect { subject.land(plane1, stormy_weather.is_stormy) }.to raise_error 'Cannot land in stormy weather'
+    end
+
+    it 'raises error when attemting to land a plane in full airport' do
+      subject.capacity = 2
+      subject.land(plane1)
+      subject.land(plane2)
+      expect { subject.land(plane3) }.to raise_error 'Airport full'
     end
   end
 
