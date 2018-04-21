@@ -15,13 +15,18 @@ attr_reader :planes, :capacity
 
   def takeoff(plane)
     fail 'there are no planes at the airport' if @planes.empty?
+    report_status
     @planes.pop
+  end
+
+  def report_status
+    return "Plane no longer at the airport"
   end
 
   private
 
   def error_msg(plane)
     fail 'airport is full' if @planes.size >= DEFAULT_CAPACITY
-    fail 'this plane has already landed' if @planes.include?(plane)
+    fail 'this plane has already landed' if @planes.include?(plane) || @landed == true
   end
 end

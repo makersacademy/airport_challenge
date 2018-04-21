@@ -11,7 +11,6 @@ describe Airport do
       expect(subject.land(plane)).to include plane
     end
 
-
     it 'raises error if airport is full' do
       50.times {subject.land(Plane.new)}
       expect {subject.land(Plane.new)}.to raise_error 'airport is full'
@@ -21,6 +20,22 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'this plane has already landed'
     end
+
+=begin
+    it 'prevents landed plane to land again on different airport' do
+      airport_1 = Airport.new
+      airport_2 = Airport.new
+      airport_1.land(plane)
+      expect { airport_2.land(plane) }.to raise_error 'this plane has already landed'
+    end
+=end
+  end
+
+  context "#reports status" do
+      it 'reports status of the plane' do
+      expect(subject.report_status).to eq "Plane no longer at the airport"
+    end
+
   end
 
   context "#planes" do
@@ -49,6 +64,6 @@ describe Airport do
     it 'raises error if there are no planes to take off' do
       expect { subject.takeoff(plane) }.to raise_error 'there are no planes at the airport'
     end
-  end
 
+  end
 end
