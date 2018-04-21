@@ -2,13 +2,14 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to(:land) }
-
   describe '#land' do
 
     it 'lands the plane' do
-      expect(subject.land).to eq subject
+      subject.land
+      expect(subject.flying?).to eq false
     end
+
+
   end
 
 
