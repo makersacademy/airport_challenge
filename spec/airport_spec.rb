@@ -8,8 +8,6 @@ describe Airport, :airport do
   let(:calm_weather) { instance_double Weather, stormy?: false }
 
   describe '#capacity' do
-    it { is_expected.to respond_to(:capacity) }
-
     it 'should have a default capacity of 20' do
       expect(subject.capacity).to eq Airport::CAPACITY
     end
@@ -22,16 +20,12 @@ describe Airport, :airport do
   end
 
   describe '#planes' do
-    it { is_expected.to respond_to(:planes) }
-
     it 'is expected to initialize with no planes' do
       expect(subject.planes).to eq []
     end
   end
 
   describe '#land' do
-    it { is_expected.to respond_to(:land).with(2).argument }
-
     it 'is expected to land planes' do
       subject.land(flying_plane, calm_weather)
       expect(subject.planes).to eq [flying_plane]
@@ -51,8 +45,6 @@ describe Airport, :airport do
     class Airport
       attr_writer :planes
     end
-
-    it { is_expected.to respond_to(:take_off).with(2).argument }
 
     it 'is expected to take off a plane' do
       subject.planes = [landed_plane]
