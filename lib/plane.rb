@@ -1,5 +1,7 @@
 class Plane
+
   def flying?
-  return true
+    return true
   end
+
 end

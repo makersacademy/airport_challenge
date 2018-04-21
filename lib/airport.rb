@@ -9,4 +9,8 @@ class Airport
   def land(plane)
   end
 
+  def plane
+  end
+
+
 end
