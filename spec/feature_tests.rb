@@ -2,6 +2,7 @@
 
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 # As an air traffic controller
 # So I can get passengers to a destination
@@ -36,6 +37,12 @@ plane_take_off
 # I want to prevent takeoff when weather is stormy
 
 def prevent_take_off
-
-
+  plane = Plane.new
+  airport = Airport.new
+  weather = Weather.new
+  airport.plane_take_off(plane, weather)
+  p airport.planes
+  p plane.landed
 end
+
+prevent_take_off

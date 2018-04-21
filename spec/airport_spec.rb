@@ -17,6 +17,7 @@ describe Airport do
       subject.plane_take_off(landed_plane)
       expect(subject.planes.include? plane).to eq false
     end
+
   end
 
 end
