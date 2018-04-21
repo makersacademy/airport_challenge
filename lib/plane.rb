@@ -1,24 +1,25 @@
  class Plane
-   def initialize
-     @flying = true
-   end
+  def initialize
+    @flying = true
+  end
 
-   def flying?
-     @flying
-   end
+  def flying?
+    @flying
+  end
 
-   def land
-     raise 'Plane already landed' if landed?
-     @flying = false
-   end
+  def land
+    raise 'Plane already landed' if landed?
+    @flying = false
+  end
 
-   def take_off
-     @flying = true
-   end
+  def take_off
+    raise 'Plane already flying' if flying?
+    @flying = true
+  end
 
-   private
+  private
 
-   def landed?
-     !@flying
-   end
+  def landed?
+    !@flying
+  end
  end
