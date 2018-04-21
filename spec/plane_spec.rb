@@ -4,6 +4,17 @@ describe Plane do
 
   let(:airport) { instance_double("Airport") }
 
+  describe '#set_departure_airport' do
+
+    it 'sets a location as an airport' do
+      subject.set_departure_airport(airport)
+      expect(subject.departure_airport).to eq airport
+    end
+
+  end
+
+
+
   describe '#flying?' do
     context 'when the plane is in an airport' do
         it 'returns false' do
@@ -13,7 +24,11 @@ describe Plane do
   end
 
   describe '#take_off' do
-
+    before do
+      subject.set_departure_airport(airport)
+      allow(airport).to receive(:release_plane)
+    end
+    
     context 'when the plane is not flying' do
       it "takes off" do
         subject.take_off

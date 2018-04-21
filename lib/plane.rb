@@ -2,6 +2,8 @@ require_relative './exceptions'
 
 class Plane
 
+  attr_reader :departure_airport
+
   def initialize
     @flying = false
   end
@@ -11,14 +13,18 @@ class Plane
     @flying = false
   end
 
-  def take_off(airport)
+  def take_off
     raise PlaneError, "Plane already in-flight" if flying?
-    airport.release_plane(self)
+    @departure_airport.release_plane(self)
     @flying = true
   end
 
   def flying?
     @flying
+  end
+
+  def set_departure_airport(airport)
+    @departure_airport = airport
   end
 
 end
