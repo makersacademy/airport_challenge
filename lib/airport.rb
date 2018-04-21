@@ -9,7 +9,7 @@ attr_reader :planes, :capacity
   end
 
   def land(plane)
-    fail 'airport is full' if @planes.size == DEFAULT_CAPACITY
+    error_msg(plane)
     @planes << plane
   end
 
@@ -18,4 +18,10 @@ attr_reader :planes, :capacity
     @planes.pop
   end
 
+  private
+
+  def error_msg(plane)
+    fail 'airport is full' if @planes.size >= DEFAULT_CAPACITY
+    fail 'this plane has already landed' if @planes.include?(plane)
+  end
 end

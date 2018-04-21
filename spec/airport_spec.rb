@@ -7,13 +7,18 @@ describe Airport do
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    it 'adds landed plane' do
+    it 'has got landed plane at the airport' do
       expect(subject.land(plane)).to include plane
     end
 
-    it 'raises error if airport is full' do
-      50.times {subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error 'airport is full'
+    #it 'raises error if airport is full' do
+      #50.times {subject.land(plane)}
+      #expect {subject.land(plane)}.to raise_error 'airport is full'
+    #end
+
+    it 'raises error if plane already landed' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'this plane has already landed'
     end
   end
 
