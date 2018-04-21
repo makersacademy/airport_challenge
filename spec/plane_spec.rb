@@ -6,20 +6,38 @@ describe Plane do
 
   describe '#set_departure_airport' do
 
-    it 'sets a location as an airport' do
+    it 'sets a departure airport' do
       subject.set_departure_airport(airport)
       expect(subject.departure_airport).to eq airport
     end
 
   end
 
+  describe '#set_destination_airport' do
 
+    it 'sets a destination airport' do
+      subject.set_destination_airport(airport)
+      expect(subject.destination_airport).to eq airport
+    end
+
+  end
 
   describe '#flying?' do
-    context 'when the plane is in an airport' do
-        it 'returns false' do
-          expect(subject.flying?).to eq false
-        end
+    context 'when the plane has not taken off' do
+      it 'returns false' do
+        expect(subject.flying?).to eq false
+      end
+    end
+
+    context 'when a plane is flying' do
+      before do
+        subject.set_departure_airport(airport)
+        allow(airport).to receive(:release_plane)
+        subject.take_off
+      end
+      it 'returns true' do
+        expect(subject.flying?).to eq true
+      end
     end
   end
 
@@ -28,7 +46,7 @@ describe Plane do
       subject.set_departure_airport(airport)
       allow(airport).to receive(:release_plane)
     end
-    
+
     context 'when the plane is not flying' do
       it "takes off" do
         subject.take_off
@@ -51,8 +69,12 @@ describe Plane do
 
   describe '#land' do
     context 'when plane is in flight' do
-      it 'lands the plane' do
+      before do
+        subject.set_departure_airport(airport)
+        allow(airport).to receive(:release_plane)
         subject.take_off
+      end
+      it 'lands the plane' do
         subject.land
         expect(subject.flying?).to eq false
       end

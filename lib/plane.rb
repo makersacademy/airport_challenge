@@ -3,6 +3,7 @@ require_relative './exceptions'
 class Plane
 
   attr_reader :departure_airport
+  attr_reader :destination_airport
 
   def initialize
     @flying = false
@@ -25,6 +26,10 @@ class Plane
 
   def set_departure_airport(airport)
     @departure_airport = airport
+  end
+
+  def set_destination_airport(airport)
+    @destination_airport = airport
   end
 
 end
