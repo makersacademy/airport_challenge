@@ -13,4 +13,11 @@ describe Airport do
     end
   end
 
+  describe '#take_off', :take_off do
+    it 'removes plane from airport' do
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).to eq []
+    end
+  end
 end
