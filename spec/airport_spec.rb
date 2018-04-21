@@ -10,6 +10,11 @@ describe Airport do
     it 'should instruct a plane to land at an airport' do
       expect(airport).to respond_to(:land).with(1).argument
     end
+
+    it 'should prevent landing when weather is stormy' do
+      expect_any_instance_of(Weather).to receive(:generate).and_return('stormy')
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Unable to land due to weather conditions")
+    end
   end
 
   describe ' #takeoff ' do

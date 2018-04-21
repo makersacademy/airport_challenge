@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
 
   def land(plane)
+    raise "Unable to land due to weather conditions" if stormy?
   end
 
   def takeoff(plane)
