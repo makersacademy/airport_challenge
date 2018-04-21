@@ -9,14 +9,14 @@ class Airport
   end
 
   def land(plane, weather)
-    raise "It's too stormy!" if too_stormy?(weather)
+    check_weather(weather)
     raise 'Airport full.' if airport_full?
     plane.land
     @planes.push(plane)
   end
 
   def take_off(plane, weather)
-    raise "It's too stormy!" if too_stormy?(weather)
+    check_weather(weather)
     raise 'Plane not in airport.' if no_plane?(plane)
     plane.take_off
     @planes.delete(plane)
@@ -34,5 +34,9 @@ class Airport
 
   def no_plane?(plane)
     !@planes.include? plane
+  end
+
+  def check_weather(weather)
+    raise "It's too stormy!" if too_stormy?(weather)
   end
 end
