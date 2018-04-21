@@ -17,8 +17,10 @@ describe Airport do
     end
 
     it 'prevents landing when airport is full' do
-      expect(subject).to receive(:stormy?).and_return(false)
-      subject.land(plane)
+      Airport::DEFAULT_CAPACITY.times  do
+        expect(subject).to receive(:stormy?).and_return(false)
+        subject.land(plane)
+      end
       expect { subject.land(plane) }.to raise_error 'cannot land as the airport is full'
     end
   end
