@@ -31,6 +31,8 @@ This project has been created as part of my journey as a junior developer at Mak
 
 Program developed in ruby 2.5.0
 
+To set up the environment:
+
 ```
 $ gem install bundler
 $ bundle install
@@ -43,3 +45,14 @@ Testing was carried out using RSpec. tests can be run from the project home dire
 ```
 $ rspec
 ```
+
+Feature testing was carried out in irb, the file feature_spec.rb in the spec folder contains methods each containing a single feature spec. An example running of a feature spec can be seen below:
+
+```
+[williampowell:.../Projects/airport_challenge]$ irb -r './spec/feature_spec.rb'
+2.5.0 :001 > takeoff_plane
+ => true
+2.5.0 :002 > exit
+```
+
+###

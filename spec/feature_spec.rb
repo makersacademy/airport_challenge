@@ -5,15 +5,16 @@ require_relative '../lib/weather'
 def land_plane
   plane = Plane.new
   airport = Airport.new
-  airport.land(plane)
+  airport.land(plane, Weather.new(30))
   airport.planes == [plane]
 end
 
 def takeoff_plane
   plane = Plane.new
   airport = Airport.new
-  airport.land(plane)
-  airport.take_off(plane)
+  weather = Weather.new(30)
+  airport.land(plane, weather)
+  airport.take_off(plane, weather)
   airport.planes == []
 end
 
