@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    check_status
     weather_warning
     airport_full_warning(airport)
     airport.planes.push(self)
@@ -18,6 +19,7 @@ class Plane
     weather_warning
     check_if_in_airport(airport)
     airport.planes.delete(self)
+    self.status = "Flying"
   end
 
   def weather_report(weather)
@@ -35,5 +37,9 @@ class Plane
 
   def check_if_in_airport(airport)
     raise "Plane not in airport" unless airport.planes.include? self
+  end
+
+  def check_status
+    raise "Plane already landed" if @status == "Landed"
   end
 end
