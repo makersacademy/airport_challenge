@@ -1,9 +1,5 @@
-require_relative './lib/plane.rb'
+require_relative '../lib/plane'
++require_relative '../lib/airport'
 
-def make_plane
 def land_plane
   plane = Plane.new
-  airport = Airport.new
-    airport.land(plane)
-    airport.planes == [plane]
-end
