@@ -1,7 +1,8 @@
 require_relative './exceptions'
+require_relative './weather'
 
 class Airport
-
+  include Weather
   attr_reader :planes
 
   def initialize
