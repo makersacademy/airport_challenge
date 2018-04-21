@@ -5,7 +5,6 @@ def stormy?
 end
 
 private
-
 WEATHER = [:sunny, :sunny, :sunny, :sunny, :stormy]
 
   def random_weather
