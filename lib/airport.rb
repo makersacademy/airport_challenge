@@ -9,13 +9,19 @@ class Airport
     @weather_forecaster = Weather.new
   end
 
-  def receive_plane(plane)
-    @planes << plane
+  def land(plane)
+    raise AirportError, "Weather is stormy, cannot land." if stormy?
+    plane.land(self)
+    planes << plane
   end
 
-  def release_plane(plane)
-    @planes.delete(plane)
+  def release(plane)
+    raise AirportError, "Weather is stormy, cannot take off." if stormy?
+    plane.take_off
+    planes.delete(plane)
   end
+
+  private
 
   def stormy?
     @weather_forecaster.stormy?
