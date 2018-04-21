@@ -10,11 +10,7 @@ class Weather
   end
 
   def stormy_decision_maker
-    if chance <= 2
-      true
-    else
-      false
-    end
+    chance <= 2
   end
 
   def chance
