@@ -26,6 +26,7 @@ This project has been created as part of my journey as a junior developer at Mak
 - Allows weather limits to be set for taking off and landing.
 - Randomised, probabilistic storms.
 - Airports can be checked for the planes they contain
+- Airports have maximum capacities (default 20), set at initialisation
 
 ### Installation
 
@@ -52,14 +53,37 @@ houston_airport = Airport.new
 gatwick_airport = Airport.new
 airbus_a380 = Plane.new
 
-houston_airport.land(airbus_a380)
+houston_airport.land(airbus_a380, calm_weather)
 houston_airport.planes # => [airbus_a380]
 
-houston_airport.take_off(airbus_a380)
+houston_airport.take_off(airbus_a380, calm_weather)
 houston_airport.planes # => []
 
-gatwick_airport.land(airbus_a380)
+gatwick_airport.land(airbus_a380, calm_weather)
 gatwick_airport.planes # => [airbus_a380]
+```
+
+Operations limited by stormy weather:
+
+```
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
+
+stormy_weather = Weather.new(Weather::STORMY_WIND_SPEED)
+houston_airport = Airport.new
+airbus_a380 = Plane.new
+
+houston_airport.land(airbus_a380, stormy_weather) # => It's too stormy!
+```
+
+Setting airport capacity:
+
+```
+require './lib/airport'
+
+houston_airport = Airport.new(45)
+houston_airport.capacity # => 45
 ```
 
 ### Tests

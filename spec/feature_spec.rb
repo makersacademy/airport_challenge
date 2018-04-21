@@ -87,3 +87,22 @@ def code_example_1
   gatwick_airport.land(airbus_a380, calm_weather)
   gatwick_airport.planes # => [airbus_a380]
 end
+
+def code_example_2
+  require './lib/airport'
+  require './lib/plane'
+  require './lib/weather'
+
+  stormy_weather = Weather.new(Weather::STORMY_WIND_SPEED)
+  houston_airport = Airport.new
+  airbus_a380 = Plane.new
+
+  houston_airport.land(airbus_a380, stormy_weather) # => It's too stormy!
+end
+
+def code_example_3
+  require './lib/airport'
+
+  houston_airport = Airport.new(45)
+  houston_airport.capacity # => 45
+end
