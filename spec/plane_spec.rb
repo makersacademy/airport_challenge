@@ -1,13 +1,24 @@
 require 'plane'
 
 describe Plane do
+  let(:airport) { double('airport', planes: [], capacity: 4) }
+  let(:weather) { double('weather', stormy?: false) }
   it 'can create a instance' do
     expect(Plane.new).to be_truthy
   end
 
+  describe '#status' do
+    it 'can have a status' do
+      expect(subject.status).to eq "Flying"
+    end
+    it 'status will change when landed to "Landed"' do
+      subject.weather_report(weather)
+      subject.land(airport)
+      expect(subject.status).to eq "Landed"
+    end
+  end
+
   describe '#land' do
-    let(:airport) { double('airport', planes: [], capacity: 4) }
-    let(:weather) { double('weather', stormy?: false) }
     it 'can instuct a plane to land in a aiport' do
       is_expected.to respond_to(:land).with(1).argument
     end

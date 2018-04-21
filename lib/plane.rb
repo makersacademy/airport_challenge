@@ -1,18 +1,22 @@
 class Plane
 
   attr_reader :weather
+  attr_accessor :status
+
+  def initialize
+    @status = "Flying"
+  end
 
   def land(airport)
     weather_warning
-    storm_warning
     airport_full_warning(airport)
     airport.planes.push(self)
+    self.status = "Landed"
   end
 
   def take_off(airport)
     weather_warning
-    storm_warning
-    in_airport(airport)
+    check_if_in_airport(airport)
     airport.planes.delete(self)
   end
 
@@ -22,9 +26,6 @@ class Plane
 
   def weather_warning
     raise "Please check weather report before" if @weather.nil?
-  end
-
-  def storm_warning
     raise "Storm warning: cannot make that action" if @weather.stormy?
   end
 
@@ -32,7 +33,7 @@ class Plane
     raise "Airport full" if airport.planes.length == airport.capacity
   end
 
-  def in_airport(airport)
+  def check_if_in_airport(airport)
     raise "Plane not in airport" unless airport.planes.include? self
   end
 end
