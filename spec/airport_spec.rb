@@ -20,5 +20,12 @@ describe Airport do
     end
   end
 
+  describe "#takeoff" do
+    it 'lets plane to takeoff' do
+      subject.land(plane)
+      expect(subject.takeoff(plane)).to eq plane
+    end
+  end
+
 
 end

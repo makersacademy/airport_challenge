@@ -11,6 +11,6 @@ attr_reader :planes
   end
 
   def takeoff(plane)
-
+    @planes.pop
   end
 end
