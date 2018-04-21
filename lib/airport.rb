@@ -27,6 +27,8 @@ attr_reader :planes, :capacity
 
   def error_msg(plane)
     fail 'airport is full' if @planes.size >= DEFAULT_CAPACITY
-    fail 'this plane has already landed' if @planes.include?(plane) || @landed == true
+    fail 'this plane has already landed' if @planes.include?(plane) 
   end
+
+
 end

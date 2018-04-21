@@ -29,6 +29,7 @@ describe Airport do
       expect { airport_2.land(plane) }.to raise_error 'this plane has already landed'
     end
 =end
+
   end
 
   context "#reports status" do
