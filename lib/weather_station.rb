@@ -1,4 +1,4 @@
-class Weather
+class WeatherStation
 
   def getWeather(random_number)
     return 'stormy' if random_number == 0
