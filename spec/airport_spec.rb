@@ -1,17 +1,24 @@
 require 'airport'
 # require 'plane'
-require 'weather'
+# require 'weather'
 
 describe Airport do
   let(:plane) {double :plane, landed: false, land: true}
   let(:landed_plane) {double :plane, landed: true, take_off: false}
   let(:landed_plane_badweather) {double :plane, landed: true}
+  let(:plane_badweather) {double :plane, landed: false}
   let(:weather) {double :weather, condition: 100}
 
   describe '#plane_lands' do
     it 'shows plane in airport once it lands' do
-      subject.plane_lands(plane)
-      expect(subject.planes.last).to eq plane
+      subject.plane_lands(plane, weather)
+      expect(subject.planes.include? plane).to eq true
+    end
+
+    it 'shows plane has not landed in airport due to bad weather conditions' do
+      allow(weather).to receive(:condition) { 5 }
+      expect{subject.plane_lands(plane_badweather, weather)}.to raise_error("Plane cannot land due to bad weather conditions!")
+      expect(subject.planes.include? plane_badweather).to eq false
     end
   end
 

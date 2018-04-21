@@ -8,11 +8,11 @@ require './lib/weather.rb'
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport
 
-def plane_land
+def plane_land 
   plane = Plane.new
   airport = Airport.new
-  weather = Weather.new
-  airport.plane_lands(plane)
+  weather = Weather.new(90)
+  airport.plane_lands(plane, weather)
   p airport.planes
   p plane.landed
 end
@@ -23,11 +23,10 @@ plane_land
 # So I can get passengers on the way to their destination
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-# Note: Weather is random
 def plane_take_off
-  plane = Plane.new
+  plane = Plane.new(landed = true)
   airport = Airport.new
-  weather = Weather.new
+  weather = Weather.new(90)
   airport.planes << plane
   airport.plane_take_off(plane, weather)
   p airport.planes
@@ -42,9 +41,9 @@ plane_take_off
 
 # Note: Weather is random
 def prevent_take_off
-  plane = Plane.new
+  plane = Plane.new(landed = true)
   airport = Airport.new
-  weather = Weather.new
+  weather = Weather.new(5)
   airport.planes << plane
   airport.plane_take_off(plane, weather)
   p airport.planes
@@ -52,3 +51,20 @@ def prevent_take_off
 end
 
 prevent_take_off
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when weather is stormy
+
+# Note: Weather is random
+
+def prevent_landing
+  plane = Plane.new
+  airport = Airport.new
+  weather = Weather.new(5)
+  airport.plane_lands(plane, weather)
+  p airport.planes
+  p plane.landed
+end
+
+prevent_landing
