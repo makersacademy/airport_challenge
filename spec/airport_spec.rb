@@ -2,8 +2,9 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
-  it 'responds to land method' do
-    expect(subject).to respond_to(:land).with(1).arguments
+
+  it 'responds to take_off method' do
+    expect(subject).to respond_to(:take_off).with(1).arguments
   end
 
   describe '#land', :land do
