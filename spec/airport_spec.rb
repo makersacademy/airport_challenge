@@ -7,6 +7,7 @@ describe Airport do
 
   # One plane ready to go
   let(:plane) { Plane.new }
+  before { subject.change_weather(true) }
 
   describe 'Set-up and capacity of Airport' do
     it 'Has a default capacity of 10 on set-up' do
@@ -40,7 +41,11 @@ describe Airport do
 
     it 'Throws an error if the airport is already at capacity' do
       subject.capacity.times { subject.land_plane(Plane.new) }
-      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, "Airport at capacity")
+      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Airport at capacity')
+    end
+
+    it 'States whether the weather is exceptable' do
+      expect(subject.weather_acceptable).to be(true).or be(false)
     end
   end
 
@@ -52,7 +57,20 @@ describe Airport do
     end
 
     it 'Throws an error if the plane was not in the airport' do
-      expect { subject.plane_take_off(Plane.new) }.to raise_error(RuntimeError, "Plane not in airport")
+      expect { subject.plane_take_off(Plane.new) }.to raise_error(RuntimeError, 'Plane not in airport')
+    end
+
+  end
+
+  describe 'When the weather is bad' do
+    before { subject.change_weather(false) }
+
+    it 'Planes can not take off' do
+      expect { subject.plane_take_off(plane) }.to raise_error(RuntimeError, 'Weather condition not acceptable')
+    end
+
+    it 'Planes can not land' do
+      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Weather condition not acceptable')
     end
 
   end
