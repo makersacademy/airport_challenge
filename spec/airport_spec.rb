@@ -13,5 +13,12 @@ describe Airport do
     end
   end
 
+  context "#plane" do
+    it 'shows landed planes' do
+      subject.land(plane)
+      expect(subject.planes).to eq [plane]
+    end
+  end
+
 
 end
