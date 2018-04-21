@@ -8,6 +8,10 @@ planes = Plane.new
       expect(subject).to respond_to(:land_plane).with(1).argument
       expect(subject.land_plane(planes)).to include planes
     end
+    it 'fails if the airport is full' do
+        Airport::DEFAULT_CAPACITY.times { subject.land_plane Plane.new }
+        expect { subject.land_plane(planes) }.to raise_error 'airport is full'
+    end
   end
 
   describe '#plane_depart'do
