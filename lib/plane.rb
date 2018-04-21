@@ -28,6 +28,6 @@ class Plane
   end
 
   def airport_full_warning(airport)
-    raise "Airport full" if airport.planes.length == 4
+    raise "Airport full" if airport.planes.length == airport.capacity
   end
 end

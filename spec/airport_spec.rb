@@ -12,5 +12,9 @@ describe Airport do
     is_expected.to respond_to(:capacity)
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+  it 'should let you change capacity on iniitilazation' do
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq 5
+  end
 
 end
