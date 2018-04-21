@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   attr_reader :planes
 
@@ -11,7 +13,15 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'The weather does not permit take off' if weather.stormy?
     @planes.delete(plane)
-    "This #{plane} has left the airport" unless @planes.include?(plane)
+    'This plane has left the airport'
   end
+
+  private
+
+  def weather
+    Weather.new
+  end
+
 end
