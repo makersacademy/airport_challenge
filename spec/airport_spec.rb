@@ -15,6 +15,11 @@ describe Airport do
     it 'returns an array containing a plane' do
       expect(subject.land(plane)).to eq [plane]
     end
+
+    it 'raises an error if trying to land a landed plane' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'This plane has already landed'
+    end
   end
 
   describe '#take_off', :take_off do
@@ -44,5 +49,27 @@ describe Airport do
         expect { subject.take_off(plane) }.to raise_error 'The weather does not permit take off'
       end
     end
+  end
+
+  describe '#plane_in_airport?', :plane_in_airport do
+    context 'when plane is landed' do
+      before { subject.land(plane) }
+
+      it 'returns true' do
+        expect(subject.plane_in_airport?(plane)).to eq true
+      end
+    end
+
+    context 'when plane is not landed' do
+      before do
+        subject.land(plane)
+        subject.take_off(plane)
+      end
+
+      it 'returns false' do
+        expect(subject.plane_in_airport?(plane)).to eq false
+      end
+    end
+
   end
 end
