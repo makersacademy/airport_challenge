@@ -31,5 +31,9 @@ describe Plane, :plane do
       subject.take_off
       expect(subject).to be_flying
     end
+
+    it 'is expected to raise an error is already flying' do
+      expect { subject.take_off }.to raise_error 'Plane already flying'
+    end
   end
 end
