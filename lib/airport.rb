@@ -9,5 +9,6 @@ def initialize
 end
 
   def land_plane(plane)
+    @planes << plane
   end
 end
