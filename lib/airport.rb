@@ -14,6 +14,7 @@ attr_reader :planes, :capacity
   end
 
   def takeoff(plane)
+    fail 'there are no planes at the airport' if @planes.empty?
     @planes.pop
   end
 
