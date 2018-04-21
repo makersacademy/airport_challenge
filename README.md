@@ -57,7 +57,7 @@ airport_name = Airport.new(NUMBER)
 ``
 
 ### Running The Program ###
-start the program in IRB and require the lib files
+Start the program in IRB and require the lib files
 ```
 irb
 2.5.0 :001 > require './lib/plane.rb'
