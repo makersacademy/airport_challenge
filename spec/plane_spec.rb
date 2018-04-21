@@ -2,6 +2,8 @@ require 'plane'
 
 describe Plane do
 
+  let(:airport) { instance_double("Airport") }
+
   describe '#flying?' do
     context 'when the plane is in an airport' do
         it 'returns false' do
@@ -16,6 +18,11 @@ describe Plane do
       it "takes off" do
         subject.take_off
         expect(subject.flying?).to eq true
+      end
+
+      it 'tells airport that it has taken off' do
+        expect(airport).to receive(:release_plane).with(subject)
+        subject.take_off
       end
     end
 

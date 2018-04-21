@@ -11,8 +11,9 @@ class Plane
     @flying = false
   end
 
-  def take_off
+  def take_off(airport)
     raise PlaneError, "Plane already in-flight" if flying?
+    airport.release_plane(self)
     @flying = true
   end
 
