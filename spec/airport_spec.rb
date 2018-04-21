@@ -10,9 +10,27 @@ describe Airport do
     expect(airport.holding.length).to eq 0
   end
 
+  it 'should have a read attribute' do
+    expect(airport).to respond_to(:capacity)
+  end
+
+  it 'should have a write attribute' do
+    expect(airport).to respond_to(:capacity=)
+  end
+
+  it 'should have a default capacity of 30 planes' do
+    expect(airport.capacity).to eq(30)
+  end
+
   describe ' #land ' do
+
     it 'should instruct a plane to land at an airport' do
       expect(airport).to respond_to(:land).with(1).argument
+    end
+
+    it 'should park plane in holding area' do
+      expect_any_instance_of(Weather).to receive(:generate).and_return('sunny')
+      expect { airport.land(plane) }.to change { airport.holding.length }.by(1)
     end
 
     it 'should prevent landing when weather is stormy' do
@@ -36,11 +54,7 @@ describe Airport do
       expect_any_instance_of(Weather).to receive(:generate).and_return('stormy')
       expect { airport.takeoff(plane) }.to raise_error(RuntimeError, "Unable to take off due to weather conditions")
     end
+
   end
 
-  describe '#capacity' do
-    it 'should have a default capacity of 30 planes' do
-      expect(airport.capacity).to eq(30)
-    end
-  end
 end

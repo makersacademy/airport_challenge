@@ -4,7 +4,8 @@ require_relative 'weather'
 class Airport
 
   DEFAULT_CAPACITY = 30
-  attr_reader :capacity, :holding
+  attr_reader :holding
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -13,6 +14,7 @@ class Airport
 
   def land(plane)
     raise "Unable to land due to weather conditions" if stormy?
+    @holding << plane
   end
 
   def takeoff(plane)
