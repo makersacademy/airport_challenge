@@ -1,5 +1,5 @@
 class Weather
   def generate
-    ['sunny', 'sunny', 'stormy'].sample
+    ['sunny', 'sunny', 'sunny', 'sunny', 'stormy'].sample
   end
 end
