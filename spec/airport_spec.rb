@@ -1,7 +1,9 @@
 require 'airport'
 
 describe Airport, :airport do
-  let(:plane) { instance_double Plane }
+  let(:flying_plane) { instance_double Plane, land: false }
+  let(:landed_plane) { instance_double Plane, take_off: true }
+  let(:other_landed_plane) { instance_double Plane, take_off: true }
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:calm_weather) { instance_double Weather, stormy?: false }
 
@@ -31,51 +33,51 @@ describe Airport, :airport do
     it { is_expected.to respond_to(:land).with(2).argument }
 
     it 'is expected to land planes' do
-      subject.land(plane, calm_weather)
-      expect(subject.planes).to eq [plane]
+      subject.land(flying_plane, calm_weather)
+      expect(subject.planes).to eq [flying_plane]
     end
 
     it 'is expected not to land planes in stormy weather', :storm_land do
-      expect { subject.land(plane, stormy_weather) }.to raise_error "It's too stormy!"
+      expect { subject.land(flying_plane, stormy_weather) }.to raise_error "It's too stormy!"
     end
 
     it 'wont land planes in a full airport' do
-      Airport::CAPACITY.times { subject.land(plane, calm_weather) }
-      expect { subject.land(plane, calm_weather) }.to raise_error 'Airport full.'
+      Airport::CAPACITY.times { subject.land(flying_plane, calm_weather) }
+      expect { subject.land(flying_plane, calm_weather) }.to raise_error 'Airport full.'
     end
   end
 
   describe '#take_off' do
+    class Airport
+      attr_writer :planes
+    end
+
     it { is_expected.to respond_to(:take_off).with(2).argument }
 
     it 'is expected to take off a plane' do
-      subject.land(plane, calm_weather)
-      expect(subject.take_off(plane, calm_weather)).to eq plane
+      subject.planes = [landed_plane]
+      expect(subject.take_off(landed_plane, calm_weather)).to eq landed_plane
     end
 
     it 'is expected to no longer contain plane after take off' do
-      subject.land(plane, calm_weather)
-      expect(subject.planes).to eq [plane]
-      subject.take_off(plane, calm_weather)
+      subject.planes = [landed_plane]
+      subject.take_off(landed_plane, calm_weather)
       expect(subject.planes).to eq []
     end
 
     it 'is expected to still contain one plane after another takes off' do
-      plane1 = double(:plane)
-      plane2 = double(:plane)
-      subject.land(plane1, calm_weather)
-      subject.land(plane2, calm_weather)
-      subject.take_off(plane1, calm_weather)
-      expect(subject.planes).to eq [plane2]
+      subject.planes = [landed_plane, other_landed_plane]
+      subject.take_off(landed_plane, calm_weather)
+      expect(subject.planes).to eq [other_landed_plane]
     end
 
     it 'is expected not to take off planes in stormy weather', :storm_take_off do
-      subject.land(plane, calm_weather)
-      expect { subject.take_off(plane, stormy_weather) }.to raise_error "It's too stormy!"
+      subject.planes = [landed_plane]
+      expect { subject.take_off(landed_plane, stormy_weather) }.to raise_error "It's too stormy!"
     end
 
     it 'raises an error if taking off plane not in airport', :no_plane do
-      expect { subject.take_off(plane, calm_weather) }.to raise_error 'Plane not in airport.'
+      expect { subject.take_off(landed_plane, calm_weather) }.to raise_error 'Plane not in airport.'
     end
   end
 end
