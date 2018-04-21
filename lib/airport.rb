@@ -6,8 +6,9 @@ class Airport
     @hangar = []
   end
 
-  def land(plane)
+  def land(plane, is_stormy = false)
     fail 'Plane already in airport' if @hangar.include?(plane)
+    fail 'Cannot land in stormy weather' if is_stormy
     plane.land
     @hangar.push(plane)
   end

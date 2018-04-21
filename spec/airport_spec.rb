@@ -15,6 +15,10 @@ describe Airport do
       subject.land(plane1)
       expect { subject.land(plane1) }.to raise_error 'Plane already in airport'
     end
+
+    it 'raises error when attempting to land a plane in stormy weather' do
+      expect { subject.land(plane1, stormy_weather.is_stormy) }.to raise_error 'Cannot land in stormy weather'
+    end
   end
 
   context '#instructing planes to take off' do
