@@ -10,6 +10,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @holding = []
+    @weather_conditions = Weather.new
   end
 
   def land(plane)
@@ -19,14 +20,14 @@ class Airport
 
   def takeoff(plane)
     raise "Unable to take off due to weather conditions" if stormy?
+    @holding.pop
     "The #{plane} is no longer in the Airport"
   end
 
   private
 
   def stormy?
-    weather_conditions = Weather.new
-    weather_conditions.generate == "stormy"
+    @weather_conditions.generate == "stormy"
   end
 
 end
