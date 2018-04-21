@@ -1,17 +1,23 @@
 class Airport
 
-  attr_reader :docked_planes
+  attr_reader :hangar
 
   def initialize
-    @docked_planes = []
+    @hangar = []
   end
 
   def land(plane)
-    docked_planes.push(plane)
+    plane.land
+    @hangar.push(plane)
   end
 
   def take_off(plane)
-      fail 'Plane unavailable' unless docked_planes.include? plane
+    fail 'No planes in airport' if @hangar.length <= 0
+    fail 'Plane not in airport' if !@hangar.include? plane
+    plane_index = @hangar.index(plane)
+    @hangar.delete_at(plane_index)
+    plane.take_off
+    return plane
   end
 
 end
