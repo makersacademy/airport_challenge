@@ -82,3 +82,16 @@ def prevent_landing_when_full_default_cap
 end
 
 prevent_landing_when_full_default_cap
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+
+def capacity
+  plane = Plane.new
+  landed_plane = Plane.new(true)
+  airport = Airport.new
+  p airport.capacity
+end
+
+capacity
