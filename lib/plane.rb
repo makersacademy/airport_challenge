@@ -1,7 +1,11 @@
 class Plane
 
-  def land(plane)
-    plane
+  def land
+    self
+  end
+
+  def landed
+    true
   end
 
 end
