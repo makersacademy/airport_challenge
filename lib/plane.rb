@@ -5,15 +5,17 @@ class Plane
   end
 
   def land
-    @flying
+    fail "Plane already on the ground" unless @flying
+    @flying = false
+  end
+
+  def take_off
+    fail "Plane already in-flight" if flying?
+    @flying = true
   end
 
   def flying?
     @flying
   end
 
-  def take_off
-    fail if flying?
-    @flying = true
-  end
 end
