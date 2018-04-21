@@ -6,6 +6,10 @@ describe Airport do
   end
 
   it 'lands a plane' do
-  expect(subject).to respond_to(:land).with(1).argument
-end
+    expect(subject).to respond_to(:land).with(1).argument
+  end
+
+  it 'responds to plane method' do
+    expect(subject).to respond_to :plane
+  end
 end
