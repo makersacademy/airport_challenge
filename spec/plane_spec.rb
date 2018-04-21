@@ -5,21 +5,26 @@ describe Plane do
   let(:airport) { instance_double("Airport") }
 
   describe '#set_departure_airport' do
+    before { subject.set_departure_airport(airport) }
 
-    it 'sets a departure airport' do
-      subject.set_departure_airport(airport)
-      expect(subject.departure_airport).to eq airport
+    context 'when a plane has no departure airport' do
+      it 'sets a departure airport' do
+        expect(subject.departure_airport).to eq airport
+      end
     end
 
+    context 'when a plane already has a departure airport' do
+      it 'raises an error' do
+        expect { subject.set_departure_airport(airport) }.to raise_error(PlaneError, "Departure airport already set")
+      end
+    end
   end
 
   describe '#set_destination_airport' do
-
-    it 'sets a destination airport' do
-      subject.set_destination_airport(airport)
-      expect(subject.destination_airport).to eq airport
-    end
-
+      it 'sets a destination airport' do
+        subject.set_destination_airport(airport)
+        expect(subject.destination_airport).to eq airport
+      end
   end
 
   describe '#flying?' do

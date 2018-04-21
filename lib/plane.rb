@@ -28,6 +28,7 @@ class Plane
   end
 
   def set_departure_airport(airport)
+    raise PlaneError, "Departure airport already set" if @departure_airport
     @departure_airport = airport
   end
 
