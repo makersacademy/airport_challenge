@@ -11,4 +11,9 @@ end
   def land_plane(plane)
     @planes << plane
   end
+
+  def plane_depart
+      @planes.pop
+  end
+
 end
