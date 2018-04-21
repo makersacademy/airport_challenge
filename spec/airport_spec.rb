@@ -10,6 +10,11 @@ describe Airport do
       subject.land(plane1)
       expect(subject.hangar.first).to eq plane1
     end
+
+    it 'raises error when landing a plane that is already landed' do
+      subject.land(plane1)
+      expect { subject.land(plane1) }.to raise_error 'Plane already in airport'
+    end
   end
 
   context '#instructing planes to take off' do
@@ -19,7 +24,7 @@ describe Airport do
 
     it 'raises error when requested plane not available' do
       subject.land(plane1)
-      expect{ subject.take_off plane2 }.to raise_error 'Plane not in airport'
+      expect { subject.take_off plane2 }.to raise_error 'Plane not in airport'
     end
 
     it 'returns plane when available' do
@@ -39,7 +44,7 @@ describe Airport do
   context '#prevents plane taking off in stormy weather' do
     it 'raies error when weather is stormy' do
       subject.land(plane1)
-      expect{ subject.take_off(plane1, stormy_weather.isStormy) }.to raise_error 'Cannot take off in stormy weather'
+      expect { subject.take_off(plane1, stormy_weather.isStormy) }.to raise_error 'Cannot take off in stormy weather'
     end
   end
 
