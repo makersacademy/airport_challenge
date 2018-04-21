@@ -1,4 +1,4 @@
-# Airport Challenge
+# Airport challenge
 
 ```
         ______
@@ -39,7 +39,11 @@ $ gem install bundler
 $ bundle install
 ```
 
-### Code Example
+### How to use?
+
+This program is designed to be used from a REPL, e.g. IRB or PRY. Please run one of these from the command line, and require the airport, plane and weather files. The code examples below show some of the uses.
+
+### Code example
 
 Plane travelling between airports:
 
@@ -119,5 +123,3 @@ Feature testing was carried out in irb, the file feature_spec.rb in the spec fol
  => true
 2.5.0 :002 > exit
 ```
-
-###
