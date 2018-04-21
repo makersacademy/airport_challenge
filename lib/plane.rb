@@ -11,11 +11,14 @@ class Plane
 
   def land
     raise PlaneError, "Plane already on the ground" unless @flying
+    raise PlaneError, "No destination airport set" unless @destination_airport
+    @destination_airport.receive_plane(self)
     @flying = false
   end
 
   def take_off
     raise PlaneError, "Plane already in-flight" if flying?
+    raise PlaneError, "No departure airport set" unless @departure_airport
     @departure_airport.release_plane(self)
     @flying = true
   end

@@ -42,27 +42,35 @@ describe Plane do
   end
 
   describe '#take_off' do
-    before do
-      subject.set_departure_airport(airport)
-      allow(airport).to receive(:release_plane)
-    end
-
-    context 'when the plane is not flying' do
-      it "takes off" do
-        subject.take_off
-        expect(subject.flying?).to eq true
-      end
-
-      it 'tells airport that it has taken off' do
-        expect(airport).to receive(:release_plane).with(subject)
-        subject.take_off
+    context 'when no departure airport has been set' do
+      it 'raises and exception' do
+        expect { subject.take_off }.to raise_error(PlaneError, "No departure airport set")
       end
     end
 
-    context 'when the plane is in the air' do
-      it "raises an error" do
-        subject.take_off
-        expect { subject.take_off }.to raise_error(PlaneError, "Plane already in-flight")
+    context 'when a departure airport has been set' do
+      before do
+        subject.set_departure_airport(airport)
+        allow(airport).to receive(:release_plane)
+      end
+
+      context 'when the plane is not flying' do
+        it "takes off" do
+          subject.take_off
+          expect(subject.flying?).to eq true
+        end
+
+        it 'tells airport that it has taken off' do
+          expect(airport).to receive(:release_plane).with(subject)
+          subject.take_off
+        end
+      end
+
+      context 'when the plane is in the air' do
+        it "raises an error" do
+          subject.take_off
+          expect { subject.take_off }.to raise_error(PlaneError, "Plane already in-flight")
+        end
       end
     end
   end
@@ -74,9 +82,22 @@ describe Plane do
         allow(airport).to receive(:release_plane)
         subject.take_off
       end
-      it 'lands the plane' do
-        subject.land
-        expect(subject.flying?).to eq false
+
+      context 'and no destination airport has been set' do
+        it 'returns an error' do
+          expect { subject.land }.to raise_error(PlaneError, "No destination airport set")
+        end
+      end
+
+      context 'and a destination airport has been set' do
+        before do
+          subject.set_destination_airport(airport)
+          allow(airport).to receive(:receive_plane)
+        end
+        it 'lands the plane' do
+          subject.land
+          expect(subject.flying?).to eq false
+        end
       end
     end
 
