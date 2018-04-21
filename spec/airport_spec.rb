@@ -19,10 +19,16 @@ describe Airport do
     end
   end
 
-  context "#plane" do
+  context "#planes" do
     it 'shows landed planes' do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
+    end
+  end
+
+  context "#capacity" do
+    it 'sets capacity to default value' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
