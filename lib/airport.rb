@@ -10,6 +10,7 @@ class Airport
 
   def land(plane, todays_weather)
     raise "It's too dangerous to land!" if todays_weather >= 8
+    raise "The airport is full!" if @planes.count == 1
     @planes << plane
   end
 

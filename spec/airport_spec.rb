@@ -5,6 +5,7 @@ require 'weather'
 describe Airport do
   let(:stormy_weather) { double 'Weather', weather_value: rand(8..10) }
   let(:sunny_weather) { double 'Weather', weather_value: rand(1..7) }
+
   describe "#land" do
     it 'should allow a plane to land' do
       expect(subject).to respond_to(:land)
@@ -12,6 +13,11 @@ describe Airport do
     it 'should raise error message when the weather is stormy' do
       a_plane = Plane.new
       expect { subject.land(a_plane, stormy_weather.weather_value) }.to raise_error("It's too dangerous to land!")
+    end
+    it 'should raise error message when the airport is full' do
+      a_plane = Plane.new
+      subject.land(a_plane, sunny_weather.weather_value)
+      expect { subject.land(a_plane, sunny_weather.weather_value) }.to raise_error("The airport is full!")
     end
   end
 
