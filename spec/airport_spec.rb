@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
   let(:plane) { double :plane }
 
-  it 'responds to take_off method' do
-    expect(subject).to respond_to(:take_off).with(1).arguments
+  it 'new instances of airport start empty' do
+    expect(subject.planes).to eq []
   end
 
   describe '#land', :land do
@@ -14,10 +14,16 @@ describe Airport do
   end
 
   describe '#take_off', :take_off do
+
     it 'removes plane from airport' do
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).to eq []
+    end
+
+    it 'returns the status of the plane' do
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq "This #{plane} has left the airport"
     end
   end
 end
