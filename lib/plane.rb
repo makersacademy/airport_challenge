@@ -1,5 +1,8 @@
 class Plane
-  def status
+  attr_reader :status
 
+  def flying
+    @status = :at_airport
   end
+
 end

@@ -8,7 +8,7 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'adds landed plane' do
-      expect(subject.land(plane)).to eq [plane]
+      expect(subject.land(plane)).to include plane
     end
 
     it 'raises error if airport is full' do
