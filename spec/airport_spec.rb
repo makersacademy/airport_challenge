@@ -22,7 +22,7 @@ describe Airport do
       expect(new_airport.capacity).to equal 30
     end
 
-    it 'Has an array for planes that is empty on set-up' do
+    it 'Has an array for planes (#landed_planes) that is empty on set-up' do
       expect(subject.landed_planes).to be_empty
     end
   end
@@ -36,6 +36,11 @@ describe Airport do
       subject.land_plane(plane)
       expect(subject.landed_planes).to include(plane)
     end
+
+    it 'Throws an error if the airport is already at capacity' do
+      subject.capacity.times { subject.land_plane(Plane.new) }
+      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, "Airport at capacity")
+    end
   end
 
   describe 'Can instruct a plane to take off' do
@@ -43,6 +48,10 @@ describe Airport do
 
     it 'Plane takes off' do
       expect(subject.plane_take_off(plane)).to eq "#{plane} plane has taken off"
+    end
+
+    it 'Throws an error if the plane was not in the airport' do
+      expect { subject.plane_take_off(Plane.new) }.to raise_error(RuntimeError, "Plane not in airport")
     end
 
   end

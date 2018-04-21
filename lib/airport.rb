@@ -13,11 +13,19 @@ class Airport
   end
 
   def land_plane(plane)
+    if @landed_planes.length >= @capacity
+      raise RuntimeError, 'Airport at capacity'
+    end
     @landed_planes << plane
     "#{plane} plane landed"
   end
 
   def plane_take_off(plane)
+    if @landed_planes.include?(plane) == false
+      raise RuntimeError, 'Plane not in airport'
+    end
+
+    @landed_planes.delete(plane)
     "#{plane} plane has taken off"
   end
 end
