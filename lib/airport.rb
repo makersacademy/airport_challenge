@@ -8,12 +8,13 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, todays_weather)
+    raise "It's too dangerous to land!" if todays_weather >= 8
     @planes << plane
   end
 
   def take_off(todays_weather)
-    raise "It's too dangerous!" if todays_weather >= 8
+    raise "It's too dangerous to take off!" if todays_weather >= 8
     @planes.pop
   end
 end
