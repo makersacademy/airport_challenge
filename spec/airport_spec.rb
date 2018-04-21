@@ -1,8 +1,8 @@
 require 'airport.rb'
 
 describe Airport do
-  let(:plane1) { double 'Plane1' }
-  let(:plane2) { double 'Plane2' }
+  let(:plane1) { double 'Plane1', land: true, take_off: true }
+  let(:plane2) { double 'Plane2', land: true, take_off: true }
 
   context '#instructing planes to land' do
     it 'lands one plane' do
