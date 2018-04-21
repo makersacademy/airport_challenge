@@ -1,3 +1,5 @@
+require_relative './exceptions'
+
 class Airport
 
   attr_reader :planes
@@ -8,5 +10,9 @@ class Airport
 
   def receive_plane(plane)
     @planes << plane
+  end
+
+  def release_plane(plane)
+    @planes.delete(plane)
   end
 end
