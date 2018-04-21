@@ -36,3 +36,33 @@ def full_airport
   20.times { airport.land(Plane.new, calm_weather) }
   airport.land(Plane.new, calm_weather)
 end
+
+def full_test
+  heathrow = Airport.new
+  hong_kong = Airport.new
+  plane1 = Plane.new
+  plane2 = Plane.new
+  calm_weather = Weather.new(10)
+  stormy_weather = Weather.new(38)
+  heathrow.land(plane1, calm_weather)
+  hong_kong.land(plane2, calm_weather)
+  p "*" * 10
+  p "Before takeoff"
+  p "*" * 10
+  p heathrow.planes
+  p hong_kong.planes
+  heathrow.take_off(plane1, calm_weather)
+  hong_kong.take_off(plane2, calm_weather)
+  p "*" * 10
+  p "After takeoff"
+  p "*" * 10
+  p plane1
+  p plane2
+  heathrow.land(plane2, calm_weather)
+  hong_kong.land(plane1, calm_weather)
+  p "*" * 10
+  p "After Landing"
+  p "*" * 10
+  p heathrow.planes
+  p hong_kong.planes
+end
