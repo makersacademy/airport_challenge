@@ -1,9 +1,12 @@
 require 'airport'
-require 'plane'
+# require 'plane'
+require 'weather'
 
 describe Airport do
   let(:plane) {double :plane, landed: false, land: true}
   let(:landed_plane) {double :plane, landed: true, take_off: false}
+  let(:landed_plane_badweather) {double :plane, landed: true}
+  let(:weather) {double :weather, condition: 100}
 
   describe '#plane_lands' do
     it 'shows plane in airport once it lands' do
@@ -13,11 +16,20 @@ describe Airport do
   end
 
   describe '#plane_take_off' do
-    it 'shows plane has left airport once it takes off' do
-      subject.plane_take_off(landed_plane)
+    it 'shows plane has left airport once it takes off in good weather' do
+      subject.planes << landed_plane
+      subject.plane_take_off(landed_plane, weather)
       expect(subject.planes.include? plane).to eq false
     end
 
+    it 'shows plane has not left airport due to bad weather conditions' do
+      subject.planes << landed_plane_badweather
+      allow(weather).to receive(:condition) { 5 }
+      expect{subject.plane_take_off(landed_plane_badweather, weather)}.to raise_error("Plane cannot take off due to bad weather conditions!")
+      expect(subject.planes.include? landed_plane_badweather).to eq true
+    end
+
   end
+
 
 end
