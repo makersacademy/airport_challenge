@@ -7,13 +7,11 @@ class Plane
   end
 
   def land(airport)
-    raise PlaneError, "Plane already on the ground" unless flying?
     @flying = false
     @location = airport
   end
 
   def take_off
-    raise PlaneError, "Plane already in-flight" if flying?
     @flying = true
     @location = nil
   end
