@@ -49,7 +49,7 @@ def prevent_take_off
   p plane.landed
 end
 
-prevent_take_off
+# prevent_take_off
 
 # As an air traffic controller
 # To ensure safety
@@ -64,7 +64,7 @@ def prevent_landing
   p plane.landed
 end
 
-prevent_landing
+# prevent_landing
 
 # As an air traffic controller
 # To ensure safety
@@ -81,7 +81,7 @@ def prevent_landing_when_full_default_cap
   p plane.landed
 end
 
-prevent_landing_when_full_default_cap
+# prevent_landing_when_full_default_cap
 
 # As the system designer
 # So that the software can be used for many different airports
@@ -91,6 +91,8 @@ def capacity
   plane = Plane.new
   landed_plane = Plane.new(true)
   airport = Airport.new
+  p airport.capacity
+  airport.capacity = 3
   p airport.capacity
 end
 

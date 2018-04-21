@@ -15,6 +15,11 @@ describe Airport do
       expect(subject.capacity).to eq DEFAULT_CAPACITY
     end
 
+    it 'overrides default capacity when specified' do
+      subject.capacity = 3
+      expect(subject.capacity).to eq 3
+    end
+
   end
 
   describe '#plane_lands' do
