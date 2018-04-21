@@ -4,25 +4,37 @@ describe Airport do
 planes = Plane.new
 
   describe '#land_plane' do
-    it 'lands a plane' do
-      expect(subject).to respond_to(:land_plane).with(1).argument
-      expect(subject.land_plane(planes)).to include planes
+    it 'fails if the weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land_plane(planes) }.to raise_error 'weather is stormy, cannot land plane'
     end
     it 'fails if the airport is full' do
+      allow(subject).to receive(:stormy?).and_return(false)
         Airport::DEFAULT_CAPACITY.times { subject.land_plane Plane.new }
         expect { subject.land_plane(planes) }.to raise_error 'airport is full'
+    end
+    it 'lands a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect(subject).to respond_to(:land_plane).with(1).argument
+      expect(subject.land_plane(planes)).to include planes
     end
   end
 
   describe '#plane_depart'do
-
+    it 'fails if the weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.plane_depart }.to raise_error 'weather is stormy, cannot depart plane'
+  end
+    it 'fails if the aiport is empty' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect { subject.plane_depart }.to raise_error 'airport is empty'
+    end
     it 'instructs a plane to take off' do
+      allow(subject).to receive(:stormy?).and_return(false)
       expect(subject).to respond_to(:plane_depart)
       subject.land_plane(planes)
       expect(subject.plane_depart).to eq planes
     end
-    it 'fails if the aiport is empty' do
-      expect { subject.plane_depart }.to raise_error 'airport is empty'
-    end
+
   end
 end
