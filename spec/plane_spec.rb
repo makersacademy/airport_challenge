@@ -47,6 +47,12 @@ describe Plane do
       is_expected.to respond_to(:take_off).with(1).argument
     end
 
+    it 'will only take off if plane is in airport' do
+      airbus = Plane.new
+      airbus.weather_report(weather)
+      expect { airbus.take_off(airport) }.to raise_error("Plane not in airport")
+    end
+
     it 'will not be in the airport stated after take_off' do
       subject.weather_report(weather)
       subject.take_off(airport)

@@ -12,6 +12,7 @@ class Plane
   def take_off(airport)
     weather_warning
     storm_warning
+    in_airport(airport)
     airport.planes.delete(self)
   end
 
@@ -29,5 +30,9 @@ class Plane
 
   def airport_full_warning(airport)
     raise "Airport full" if airport.planes.length == airport.capacity
+  end
+
+  def in_airport(airport)
+    raise "Plane not in airport" unless airport.planes.include? self
   end
 end
