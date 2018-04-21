@@ -11,10 +11,11 @@ describe Airport do
       expect(subject.land(plane)).to include plane
     end
 
-    #it 'raises error if airport is full' do
-      #50.times {subject.land(plane)}
-      #expect {subject.land(plane)}.to raise_error 'airport is full'
-    #end
+
+    it 'raises error if airport is full' do
+      50.times {subject.land(Plane.new)}
+      expect {subject.land(Plane.new)}.to raise_error 'airport is full'
+    end
 
     it 'raises error if plane already landed' do
       subject.land(plane)
