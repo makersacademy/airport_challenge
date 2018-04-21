@@ -22,7 +22,7 @@ describe Plane do
     context 'when the plane is in the air' do
       it "raises an error" do
         subject.take_off
-        expect { subject.take_off }.to raise_error "Plane already in-flight"
+        expect { subject.take_off }.to raise_error(PlaneError, "Plane already in-flight")
       end
     end
   end
@@ -38,7 +38,7 @@ describe Plane do
 
     context 'when the plane is in the airport' do
       it 'raises an error' do
-        expect { subject.land }.to raise_error "Plane already on the ground"
+        expect { subject.land }.to raise_error(PlaneError, "Plane already on the ground")
       end
     end
   end

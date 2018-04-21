@@ -1,3 +1,5 @@
+require_relative './exceptions'
+
 class Plane
 
   def initialize
@@ -5,12 +7,12 @@ class Plane
   end
 
   def land
-    fail "Plane already on the ground" unless @flying
+    raise PlaneError, "Plane already on the ground" unless @flying
     @flying = false
   end
 
   def take_off
-    fail "Plane already in-flight" if flying?
+    raise PlaneError, "Plane already in-flight" if flying?
     @flying = true
   end
 
