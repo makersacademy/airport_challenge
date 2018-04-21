@@ -67,3 +67,23 @@ def full_test
   p heathrow.planes
   p hong_kong.planes
 end
+
+def code_example_1
+  require './lib/airport'
+  require './lib/plane'
+  require './lib/weather'
+
+  calm_weather = Weather.new(Weather::STORMY_WIND_SPEED - 1)
+  houston_airport = Airport.new
+  gatwick_airport = Airport.new
+  airbus_a380 = Plane.new
+
+  houston_airport.land(airbus_a380, calm_weather)
+  houston_airport.planes # => [airbus_a380]
+
+  houston_airport.take_off(airbus_a380, calm_weather)
+  houston_airport.planes # => []
+
+  gatwick_airport.land(airbus_a380, calm_weather)
+  gatwick_airport.planes # => [airbus_a380]
+end
