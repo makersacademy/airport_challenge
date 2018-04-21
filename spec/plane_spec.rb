@@ -7,13 +7,28 @@ describe Plane do
 
   describe '#land' do
     let(:airport) { double('airport', planes: []) }
+    let(:weather) { double('weather', stormy?: false) }
     it 'can instuct a plane to land in a aiport' do
       is_expected.to respond_to(:land).with(1).argument
     end
 
     it 'will be in airport stated' do
+      subject.weather_report(weather)
       subject.land(airport)
       expect(airport.planes).to eq [subject]
+    end
+
+    it 'raise error if weather has not been reported' do
+      allow(subject).to receive(:weather) { nil }
+      expect { subject.land(airport) }.to raise_error("Please check weather report before")
+    end
+
+    describe 'stormy weather' do
+      let(:weather) { double('weather', stormy?: true) }
+      it 'can not land if weather is stormy' do
+        subject.weather_report(weather)
+        expect { subject.land(airport) }.to raise_error("Storm warning: cannot make that action")
+      end
     end
   end
 
@@ -39,7 +54,7 @@ describe Plane do
       let(:weather) { double('weather', stormy?: true) }
       it 'can not take off if weather is stormy' do
         subject.weather_report(weather)
-        expect { subject.take_off(airport) }.to raise_error("Plane cannot take off in the storm")
+        expect { subject.take_off(airport) }.to raise_error("Storm warning: cannot make that action")
       end
     end
   end
