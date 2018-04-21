@@ -1,4 +1,5 @@
 require_relative './exceptions'
+require 'weather'
 
 class Plane
 
