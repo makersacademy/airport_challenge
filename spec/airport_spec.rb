@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -17,7 +18,13 @@ describe Airport do
     end
 
     it 'should return which plane is no longer in the airport' do
+      expect_any_instance_of(Weather).to receive(:generate).and_return('sunny')
       expect(airport.takeoff(plane)).to eq("The #{plane} is no longer in the Airport")
+    end
+
+    it 'should prevent takeoff when weather is stormy' do
+      expect_any_instance_of(Weather).to receive(:generate).and_return('stormy')
+      expect { airport.takeoff(plane) }.to raise_error(RuntimeError, "Unable to take off due to weather conditions")
     end
   end
 end
