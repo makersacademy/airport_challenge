@@ -17,6 +17,7 @@ class Airport
     plane_index = @hangar.index(plane)
     @hangar.delete_at(plane_index)
     plane.take_off
+    puts "#{plane} has left the airport"
     return plane
   end
 
