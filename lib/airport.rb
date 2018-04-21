@@ -2,15 +2,18 @@ require_relative "plane.rb"
 require_relative "weather.rb"
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 5
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane, todays_weather)
     raise "It's too dangerous to land!" if todays_weather >= 8
-    raise "The airport is full!" if @planes.count == 1
+    raise "The airport is full!" if @planes.count == @capacity
     @planes << plane
   end
 
