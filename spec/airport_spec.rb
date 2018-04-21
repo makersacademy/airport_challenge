@@ -11,7 +11,7 @@ describe Airport do
       expect(subject.land(plane)).to include plane
     end
 
-    it 'does not land and raises an error if weather is stormy' do
+    it 'does not land if weather is stormy' do
       expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error 'cannot land due to stormy conditions'
     end
@@ -29,12 +29,20 @@ describe Airport do
 
     it 'instructs a plane to take off' do
       expect(subject).to receive(:stormy?).and_return(false)
+      subject.land(plane)
+      expect(subject).to receive(:stormy?).and_return(false)
       expect(subject.take_off).to_not include plane
     end
 
-    it 'does not take off and raises an error if weather is stormy' do
+    it 'does not take off if weather is stormy' do
+      expect(subject).to receive(:stormy?).and_return(false)
+      subject.land(plane)
       expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off }.to raise_error 'cannot take off due to stormy conditions'
+    end
+
+    it 'does not take off if airport is empty' do
+      expect { subject.take_off }.to raise_error 'no planes at airport'
     end
   end
 end

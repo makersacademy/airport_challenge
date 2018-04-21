@@ -3,7 +3,7 @@ require_relative './plane'
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_accessor :capacity 
+  attr_accessor :capacity
 
   def initialize
     @planes = []
@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off
+    fail 'no planes at airport' if empty?
     fail 'cannot take off due to stormy conditions' if stormy?
     @planes.pop
     @planes
@@ -32,4 +33,7 @@ private
     @planes.length == DEFAULT_CAPACITY
   end
 
+  def empty?
+    @planes.empty?
+  end
 end
