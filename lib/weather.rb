@@ -3,7 +3,7 @@ require_relative './randomizer'
 class Weather
   attr_reader :wind_speed
 
-  STORMY_WIND_SPEED = 35
+  STORMY_WIND_SPEED = 36
   MAX_WIND_SPEED = 40
 
   def randomized_wind_speed
@@ -15,6 +15,6 @@ class Weather
   end
 
   def stormy?
-    wind_speed > STORMY_WIND_SPEED
+    wind_speed >= STORMY_WIND_SPEED
   end
 end

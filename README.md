@@ -38,6 +38,30 @@ $ gem install bundler
 $ bundle install
 ```
 
+### Code Example
+
+Plane travelling between airports:
+
+```
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
+
+calm_weather = Weather.new(Weather::STORMY_WIND_SPEED - 1)
+houston_airport = Airport.new
+gatwick_airport = Airport.new
+airbus_a380 = Plane.new
+
+houston_airport.land(airbus_a380)
+houston_airport.planes # => [airbus_a380]
+
+houston_airport.take_off(airbus_a380)
+houston_airport.planes # => []
+
+gatwick_airport.land(airbus_a380)
+gatwick_airport.planes # => [airbus_a380]
+```
+
 ### Tests
 
 Testing was carried out using RSpec. tests can be run from the project home directory:
