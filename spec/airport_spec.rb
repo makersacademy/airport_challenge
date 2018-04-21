@@ -8,5 +8,9 @@ describe Airport do
     is_expected.to respond_to(:planes)
     expect(subject.planes).to eq []
   end
+  it 'should have a capacity' do
+    is_expected.to respond_to(:capacity)
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 
 end

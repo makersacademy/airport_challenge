@@ -5,6 +5,7 @@ class Plane
   def land(airport)
     weather_warning
     storm_warning
+    airport_full_warning(airport)
     airport.planes.push(self)
   end
 
@@ -14,7 +15,7 @@ class Plane
     airport.planes.delete(self)
   end
 
-  def weather_report(weather) 
+  def weather_report(weather)
     @weather = weather
   end
 
@@ -24,5 +25,9 @@ class Plane
 
   def storm_warning
     raise "Storm warning: cannot make that action" if @weather.stormy?
+  end
+
+  def airport_full_warning(airport)
+    raise "Airport full" if airport.planes.length == 4
   end
 end
