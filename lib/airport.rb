@@ -10,4 +10,8 @@ class Airport
   def change_capacity(capacity)
     @capacity = capacity
   end
+
+  def land_plane(plane)
+    "#{plane} plane landed"
+  end
 end
