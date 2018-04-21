@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     fail 'This plane has already landed' if plane_in_airport?(plane)
+    fail 'The weather does not permit landing' if weather.stormy?
     @planes << plane
     @planes
   end

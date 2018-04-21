@@ -20,10 +20,18 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'This plane has already landed'
     end
+
+    context 'when the weather is stormy' do
+      let(:stormy) { true }
+
+      it 'raises an error when trying to land a plane' do
+        expect { subject.land(plane) }.to raise_error 'The weather does not permit landing'
+      end
+    end
   end
 
   describe '#take_off', :take_off do
-    before { subject.land(plane) }
+    before { subject.planes == [plane] }
 
     context 'when the weather is clear' do
       let(:stormy) { false }
