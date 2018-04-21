@@ -29,4 +29,10 @@ describe Airport do
     end
   end
 
+  context '#confirming if a particular plane has left' do
+    it 'returns true if plane not in airport' do
+      expect(subject.confirmLeftAirport plane1).to be_truthy
+    end
+  end
+
 end
