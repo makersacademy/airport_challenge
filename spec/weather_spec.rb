@@ -3,6 +3,12 @@ require 'weather'
 describe Weather do
 subject(:weather) { described_class.new }
 
-  it { is_expected.to respond_to(:check).with(1).argument }
+  context "#stormy?"
+
+    it 'checks if weather is stormy' do
+      allow(weather).to receive(:random_weather) { :stormy }
+      expect(weather).to be_stormy
+    end
+
 
 end
