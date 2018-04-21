@@ -1,26 +1,24 @@
 class Airport
 
   attr_accessor :planes
+  CAPACITY = 2
 
   def initialize
     @planes = []
   end
 
   def plane_lands(plane, weather)
-    if weather.condition > 10
-      plane.land
-      @planes << plane
-    else
-      raise "Plane cannot land due to bad weather conditions!"
-    end
+    raise "Can't land: Bad weather conditions!" if weather.condition < 10
+    raise "Can't land: Airport is full!" unless planes.count < 2
+    can_land = (weather.condition > 10) && (planes.count < 2)
+    plane.land if can_land
+    @planes << plane if can_land
   end
 
   def plane_take_off(plane, weather)
-    if weather.condition > 10
-      plane.take_off
-      @planes.delete(plane)
-    else
-      raise "Plane cannot take off due to bad weather conditions!"
-    end
+    raise "Can't take off: Bad weather conditions!" if weather.condition < 10
+    can_take_off = weather.condition > 10
+    plane.take_off if can_take_off
+    @planes.delete(plane) if can_take_off
   end
 end
