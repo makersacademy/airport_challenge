@@ -8,10 +8,6 @@ describe Airport, :airport do
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
 
-  context "does the plane land at the airport?" do
-    it { is_expected.to respond_to(:land).with(1).argument }
-    let(:plane) { instance_double Plane }
-
   describe '#land' do
     it 'is expected to land planes' do
       subject.land(current_plane, good_weather)
@@ -33,6 +29,12 @@ describe Airport, :airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
+    it 'has a variable capacity on initialisation' do
+      capacity_two = 10
+      airport = Airport.new(capcity_two)
+      expect(airport.capacity).to eq capacity_two
+    end
+    
     it 'doesnt let a plane land if airport is at full capacity' do
       Airport::DEFAULT_CAPACITY.times { subject.land(current_plane, good_weather) }
       expect { subject.land(current_plane, good_weather) }.to raise_error 'Airport is full!'
