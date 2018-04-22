@@ -41,12 +41,8 @@ describe Airport do
   end
 
   describe "#takeoff" do
-    class Airport
-      attr_writer :planes
-    end
-
     it 'lets plane to takeoff' do
-      subject.planes = [landed_plane]
+      subject.planes << landed_plane
       expect(subject.takeoff(landed_plane, good_weather)).to eq landed_plane
     end
 
@@ -56,12 +52,8 @@ describe Airport do
   end
 
   context "#reports status" do
-    class Airport
-      attr_writer :planes
-    end
-
     it 'reports status of the plane when took off' do
-      subject.planes = [landed_plane]
+      subject.planes << landed_plane
       subject.takeoff(landed_plane, good_weather)
       expect(subject.report_status).to eq 'plane no longer at the airport'
     end
