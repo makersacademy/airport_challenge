@@ -47,8 +47,8 @@ I would like a default airport capacity that can be overridden as appropriate
 My approach
 ---------
 
-My solution for this program consist of 3 classes:
-* Airport: is able to instruct planes to land and take off, taking into account weather conditions and capacity of the airport. It also reports status of the planes.
+My solution for this program consists of 3 classes:
+* Airport: is able to instruct planes to land and take off, taking into account weather conditions and its capacity. It also reports status of the planes.
 * Plane: it creates instance plane objects with their status.
 * Weather: it creates generated randomly weather
 
@@ -63,7 +63,7 @@ Instruction for user
 ---------------------
 This program allows you to create airports, planes and generate a weather.
 It will let you land and take off plane from the airport, depending on weather conditions and capacity of the airport. It will not let you land already landed plane or take off if there is no planes at the airport.
-You can also check if plane is flying or landed at the airport, and see the all the planes you have landed.
+You can also check if plane is flying or landed at the airport, and see all the planes you have landed.
 
 To start a program in IRB
 
@@ -90,18 +90,19 @@ $ irb
 
 Methods
 ---------
-airport.capacity - returns capacity of the airport, which is set to default 50.
+* airport.capacity - returns capacity of the airport, which is set to default 50.
 To overwrite it pass capacity of your choice as parameter when create new airport
-eg.
+
+Example
 ```
 $ irb
 2.5.0 :007 > airport = Airport.new(30)
  => #<Airport:0x00007f8aa2194018 @capacity=30, @planes=[]>
  ```
-airport.land(plane, weather) - lands a plane at the airport if weather allows
-airport.takeoff(plane, weather) - takes off a plane from the airport if weather allows
-weather.stormy? - checks the weather and returns true if weather conditions are bad
-plane.landing and plane.flying - changes status of the plane, it starts with flying status and can be overwritten by plane.landing or by airport.land(plane, weather)
+* airport.land(plane, weather) - lands a plane at the airport if weather allows
+* airport.takeoff(plane, weather) - takes off a plane from the airport if weather allows
+* weather.stormy? - checks the weather and returns true if weather conditions are bad
+* plane.landing and plane.flying - changes status of the plane, it starts with 'flying' status and can be overwritten by plane.landing or by airport.land(plane, weather)
 
 Testing
 --------
