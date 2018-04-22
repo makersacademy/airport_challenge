@@ -12,6 +12,165 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Update
+---------
+#### Approach to solving the challenge
+*Creating the DOM model*
+
+I started with breaking down the User Stories into DOM, as follows:
+
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
+
+|Object|Message|
+|:---:|:---:|
+|ATC|
+|Airport|.order_landing
+|Plane|.land
+
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
+|Object|Message|
+|:---:|:---:|
+|ATC|
+|Airport|.order_takeoff
+|Plane|.takeoff
+| |.confirm_no_longer_in_airport
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy
+```
+
+|Object|Message|
+|:---:|:---:|
+|ATC|
+|Airport|no takeoff
+|Weather|if stormy
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy
+```
+
+|Object|Message|
+|:---:|:---:|
+|ATC|
+|Airport|no landing
+|Weather|if stormy
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+```
+
+|Object|Message|
+|:---:|:---:|
+|ATC|
+|Airport|no landing
+| |if full
+
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+|Object|Message|
+|:---:|:---:|
+|SysDesigner|
+|Airport|set capacity
+
+I also summarised additional conditions:
+
+- weather: normally sunny, rarely stormy;
+- planes 
+
+   - can only take off from the airport they are in;
+   - when flying:
+    
+      - cannot take-off;
+      - cannot be in airport;
+   - when landed:
+   
+      - cannot land again;
+      - must be at an airport.
+
+I decided that the easiest way to determine the state of the plane was by reference to an airport ID passed to the plane on landing. This ID is determined by Ruby's `__id__` method and is unique to every object. Thus, when the plane lands, it is given the airport's ID which then tells us that the plane has landed (ie it has an airport ID) and will prevent takeoff order coming from the wrong airport since the plane will check the airport ID of the airport giving a takeoff order against the airport ID of the airport it is parked in. This will therefore deal with the edge cases:
+
+- if a plane is parked, it cannot land again, since it already has an airport ID stored;
+- if a plane is in flight, it cannot takeoff again, since it does not have an airport ID stored;
+- is in the airport when it has an airport ID stored; and
+- is in in flight when does not have an airport ID stored.
+
+On the basis of the above, I proceeded with defining my classes.
+
+#### Classes & methods
+
+**Airport Class**
+
+- Responsibility: Directs planes
+- Lives in: `lib/airport.rb`
+- Spec lives in: `spec/airport_spec.rb`
+- *Airport Class Methods*:
+
+   - `new` - eg `Airport.new` | takes two optional arguments: (`capacity:` and `weather_station`)
+   
+      - `capacity:` - eg `Airport.new(capacity: 20)` - allows changing default capacity of the airport (default capacity is set to 1)
+      - `weather_station` - eg `Airport.new(weather_station: SpecificInstanceOfWeatherStationClass)`- allows assigning a specific weather station to the airport. Default value will create a new instance of `WeatherStation` class
+   - `planes` - an attribute, initialised as an array, that keeps track of parked planes
+   - `capacity` - an attribute, initialised as an optional value (as per above) or set to default by reference to a constant
+   - `weather` - an attribute, stores weather reports on each `check_weather`
+   - `order_landing(plane)` - takes instance of `Plane` class as an argument, performs a weather check and capacity check, orders the plane to land (as appropriate), passes it the airport ID and records the parked plane in `planes` attribute (TODO: probably needs some refactoring)
+   - `order_takeoff(plane)` - takes instance of `Plane` class as an argument, performs weather check, orders the plane to take off (as appropriate), tells the plane the airports's ID for verification purposes, removes the plane from the `planes` attribute (TODO: probably needs some refactoring)
+   - `check_weather` - checks the weather (helper method)
+
+
+
+**Plane Class**
+
+- Responsibility: Operates individual plane
+- Lives in: `lib/plane.rb`
+- Spec lives in: `spec/plane_spec.rb`
+- *Plane Class Methods*:
+
+   - `airport_id` - an attribute used for edge cases and takeoff verification
+   - `land(airport_id)` - takes `airport_id` as an argument, carries out verification check for edge cases, lands the plane, stores provided airport ID in `airport_id`
+   - `takeoff(airport_id)` - takes `airport_id` as an argument, carries out verification check for edge cases, takes the plane into the air, wipes `airport_id` and confirms that it has left the airport
+
+**Weather Station Class**
+
+- Responsibility: Reports weather
+- Lives in: `lib/weather_station.rb`
+- Spec lives in: `spec/weather_station_spec.rb`
+- *WeatherStation Class Methods*:
+
+   - `report` - samples weather from a constant `WEATHER` with 1/5 chance of 'stormy' weather
+
+#### Running tests
+
+Run `rspec -fd` from the project directory to run the entire suite.
+
+To test just the:
+
+- Airport Class: run `rspec spec/airport_spec.rb`
+- Plane Class: run `rspec spec/plane_spec.rb`
+- Weather Station Class: run `rspec spec/weather_station_spec.rb`
+
+#### Examples
+
+
+
 
 Instructions
 ---------

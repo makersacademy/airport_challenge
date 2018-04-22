@@ -86,7 +86,7 @@ describe Airport do
 
   end
 
-  describe '#order_takeoff and #order_landing in bad weather' do
+  context '#order_takeoff and #order_landing in bad weather' do
 
     it 'should check weather before ordering to land' do
       allow(weather_station).to receive(:report).and_return('sunny')
