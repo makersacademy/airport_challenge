@@ -68,6 +68,19 @@ describe Airport do
         end
       end
 
+      context 'when the airport is full' do
+        before do
+          allow(plane).to receive(:flying?).and_return(true)
+          airport.capacity.times { airport.land(plane) }
+        end
+
+        it 'raises an error' do
+          expect { airport.land(plane) }.to raise_error(AirportError, "Airport full")
+        end
+
+
+      end
+
     end
 
     describe '#release' do
