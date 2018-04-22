@@ -1,5 +1,13 @@
 require_relative '../lib/plane.rb'
 require_relative '../lib/airport.rb'
+require_relative '../lib/weather.rb'
+
+def land_plane
+  plane = Plane.new
+  airport = Airport.new
+  airport.land(plane, Weather.new(30))
+  airport.planes == [plane]
+end
 
 def its_stormy
   weather = Weather.new
