@@ -13,6 +13,7 @@ class Airport
   def take_off(plane)
     fail 'No planes available' if empty?
     @hangar.delete(plane)
+    puts "Plane has taken off"
   end
 
   def land(plane)
