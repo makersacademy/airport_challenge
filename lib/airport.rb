@@ -8,6 +8,7 @@ def initialize
 end
 
 def land(plane)
+  raise "It is too stormy for the plane to land" if self.weather == "stormy"
   @planes << plane
 end
 

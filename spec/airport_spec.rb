@@ -23,6 +23,12 @@ let(:plane) {double :plane}
 
   it "prevents planes taking off if weather is stormy" do
     allow(subject).to receive(:weather) { "stormy" }
-    expect { subject.take_off(plane) }.to raise_error(RuntimeError, "It is too stormy for the plane to take off")
+    expect { subject.take_off(plane) }.to raise_error(RuntimeError)
   end
+
+  it "prevents planes landing if weather is stormy" do
+    allow(subject).to receive(:weather) { "stormy" }
+    expect { subject.land(plane) }.to raise_error(RuntimeError)
+  end
+
 end
