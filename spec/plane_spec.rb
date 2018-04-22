@@ -45,4 +45,22 @@ describe Plane do
     end
   end
 
+  describe '#location' do
+
+    context 'when in flight' do
+
+      it 'returns In-flight' do
+        expect(plane.location?).to eq "In-flight"
+      end
+    end
+
+    context 'when on the ground' do
+
+      it 'returns the correct airport' do
+        plane.land(airport)
+        expect(plane.location?).to eq airport
+      end
+    end
+  end
+
 end
