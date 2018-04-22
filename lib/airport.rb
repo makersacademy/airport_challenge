@@ -17,8 +17,8 @@ class Airport
     @planes << plane
   end
 
-  def take_off(todays_weather)
+  def take_off(plane, todays_weather)
     raise "It's too dangerous to take off!" if todays_weather >= 8
-    @planes.pop
+    @planes.delete(plane)
   end
 end

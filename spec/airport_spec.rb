@@ -9,6 +9,7 @@ describe Airport do
   let(:sunny_weather) { double 'Weather', weather_value: rand(1..7) }
   let(:sunny_weather_value) { sunny_weather.weather_value }
   let(:a_plane) { Plane.new }
+  let(:another_plane) { Plane.new }
 
   describe "#capacity" do
     it 'should allow system designer to set a capacity' do
@@ -30,8 +31,16 @@ describe Airport do
   describe "#take_off" do
     it 'should raise an error message when weather is stormy' do
       subject.land(a_plane, sunny_weather_value)
-      expect { subject.take_off(stormy_weather_value) }.to raise_error("It's too dangerous to take off!")
+      expect { subject.take_off(a_plane, stormy_weather_value) }.to raise_error("It's too dangerous to take off!")
     end
+    it 'should let the user choose which plane to fly' do
+      subject.land(a_plane, sunny_weather_value)
+      expect(subject).to respond_to(:take_off).with(2).argument
+    end
+
+#    other_airport = Airport.new
+#    other_airport.land(a_plane, sunny_weather_value)
+#    expect { subject.take_off(a_plane, sunny_weather_value) }.to raise_error("This plane is in a different airport")
   end
 
   describe "#planes" do
@@ -41,8 +50,9 @@ describe Airport do
     end
     it 'should show that the the plane is no longer in the airport' do
       subject.land(a_plane, sunny_weather_value)
-      subject.take_off(sunny_weather_value)
-      expect(subject.planes).to eq []
+      subject.land(another_plane, sunny_weather_value)
+      subject.take_off(a_plane, sunny_weather_value)
+      expect(subject.planes).to eq [another_plane]
     end
   end
 
