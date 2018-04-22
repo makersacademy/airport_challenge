@@ -28,7 +28,8 @@ describe Airport do
 
     it 'should park plane in hangar area' do
       expect_any_instance_of(weather).to receive(:generate).and_return('sunny')
-      expect { airport.land(plane) }.to change { airport.hangar.length }.by(1)
+      airport.land(plane)
+      expect(airport.hangar).to include(plane)
     end
 
     it 'should prevent landing when weather is stormy' do
@@ -51,6 +52,7 @@ describe Airport do
     end
 
     it 'should return which plane is no longer in the airport' do
+      airport.instance_variable_set(:@hangar, [plane])
       expect_any_instance_of(weather).to receive(:generate).and_return('sunny')
       expect(airport.takeoff(plane)).to eq("The #{plane} is no longer in the Airport")
     end
@@ -62,28 +64,18 @@ describe Airport do
     end
 
     it 'should remove plane from hangar area after take off' do
-      airport.instance_variable_set(:@hangar, [plane])
+      different_plane = Plane.new
+      airport.instance_variable_set(:@hangar, [plane, different_plane])
       expect_any_instance_of(weather).to receive(:generate).and_return('sunny')
-      expect { airport.takeoff(plane) }.to change { airport.hangar.length }.by(-1)
+      airport.takeoff(plane)
+      expect(airport.hangar).not_to include(plane)
     end
 
+    it 'should only release planes that are in the hangar' do
+      airport.instance_variable_set(:@hangar, [])
+      expect_any_instance_of(weather).to receive(:generate).and_return('sunny')
+      expect { airport.takeoff(plane) }.to raise_error(RuntimeError,
+        "Plane not available in hangar for takeoff")
+    end
   end
 end
-
-# Bugs to fix:
-#
-# Use a random number generator to set the weather (it is normally
-# sunny but on rare occasions it may be stormy). In your tests, you'll
-# need to use a stub to override random weather to ensure consistent
-# test behaviour.
-#
-# - planes can only take off from airports they are in
-# - planes that are already flying cannot take off
-# * and/or be in an airport
-# - planes that are landed cannot land again and must be in an airport
-#
-# For overriding random weather behaviour, please read the documentation
-# to learn how to use test doubles:
-# https://www.relishapp.com/rspec/rspec-mocks/docs .
-
-# hangar.length can be no longer than DEFAULT_CAPACITY

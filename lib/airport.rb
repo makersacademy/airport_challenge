@@ -18,12 +18,13 @@ class Airport
     raise "Unable to land. Hangar is full" if @hangar.length >= @capacity
 
     @hangar << plane
-
   end
 
   def takeoff(plane)
     raise "Unable to take off due to weather conditions" if stormy?
-    @hangar.pop
+    raise "Plane not available in hangar for takeoff" unless available?(plane)
+
+    @hangar.delete(plane) if available?(plane)
     "The #{plane} is no longer in the Airport"
   end
 
@@ -31,6 +32,10 @@ class Airport
 
   def stormy?
     @weather_conditions.generate == "stormy"
+  end
+
+  def available?(plane)
+    @hangar.include?(plane)
   end
 
 end
