@@ -1,9 +1,17 @@
 class Weather
 
-attr_reader :current_weather
+attr_reader :weather
 
-def current_weather
-  @current_weather = random_weather
+def initialize
+  @weather = random_weather
+end
+
+def stormy?
+  if @weather == :stormy
+    return true
+  else
+    false
+  end
 end
 
 private

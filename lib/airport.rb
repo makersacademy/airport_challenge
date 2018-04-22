@@ -1,20 +1,23 @@
+require_relative '../lib/weather'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @weather = Weather.new
   end
 
-  def land(plane)
+  def land(plane, weather)
+    bad_weather_msg(weather)
     error_msg(plane)
     @planes << plane
   end
 
-  def takeoff(plane)
+  def takeoff(plane, weather)
+    bad_weather_msg(weather)
     fail 'there are no planes at the airport' if @planes.empty?
     report_status
     @planes.delete(plane)
@@ -28,4 +31,14 @@ class Airport
     fail 'airport is full' if @planes.size >= DEFAULT_CAPACITY
     fail 'this plane has already landed' if @planes.include?(plane)
   end
+
+
+  def bad_weather?(weather)
+    weather.stormy?
+  end
+
+  def bad_weather_msg(weather)
+    fail 'bad weather conditions, airport closed' if bad_weather?(weather)
+  end
+
 end
