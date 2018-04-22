@@ -8,8 +8,7 @@ class Airport
 
   def land(plane)
     fail "Weather stormy: unsafe to land." if @stormy_conditions == true
-    fail "Airport full." if full?
-    @plane = plane
+    @plane = plane unless full?
   end
 
   def take_off
@@ -20,7 +19,11 @@ class Airport
 
   def full?
     return false if @plane.nil?
-    true
+    fail "Airport full."
   end
+
+  private
+
+
 
 end
