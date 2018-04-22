@@ -2,7 +2,7 @@ require './lib/weather.rb'
 
 class Airport
 
-  attr_accessor :planes
+  attr_reader :planes
   attr_accessor :capacity
   DEFAULT_CAPACITY = 2
 
@@ -13,14 +13,14 @@ class Airport
 
   def plane_lands(plane, weather = Weather.new)
     check_errors_land(plane, weather)
-    plane.land if can_it_land(plane, weather)
-    @planes << plane if can_it_land(plane, weather)
+    plane.land if can_it_land(weather)
+    planes << plane if can_it_land(weather)
   end
 
   def plane_take_off(plane, weather = Weather.new)
     check_errors_take_off(plane, weather)
-    plane.take_off if can_it_take_off(plane, weather)
-    @planes.delete(plane) if can_it_take_off(plane, weather)
+    plane.take_off if can_it_take_off(weather)
+    planes.delete(plane) if can_it_take_off(weather)
   end
 
   def check_errors_land(plane, weather = Weather.new)
@@ -34,11 +34,11 @@ class Airport
     raise "Can't take off: Bad weather conditions!" if weather.condition < 10
   end
 
-  def can_it_land(plane, weather)
+  def can_it_land(weather)
     (weather.condition > 10) && (planes.count < 2)
   end
 
-  def can_it_take_off(plane, weather)
+  def can_it_take_off(weather)
     weather.condition > 10
   end
 end
