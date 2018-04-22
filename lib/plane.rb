@@ -1,7 +1,18 @@
 class Plane
+  def initialize
+    @flying = true
+  end
 
-  def land(airport)
-    
+  def flying?
+    @flying
+  end
+
+  def landed?
+    !@flying
+  end
+
+  def land
+
   end
 
 end
