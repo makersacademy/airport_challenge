@@ -1,3 +1,5 @@
+require './lib/weather.rb'
+
 class Airport
 
   attr_accessor :planes
@@ -9,7 +11,7 @@ class Airport
     @capacity = capacity
   end
 
-  def plane_lands(plane, weather)
+  def plane_lands(plane, weather = Weather.new)
     raise "Can't land: Bad weather conditions!" if weather.condition < 10
     raise "Can't land: Airport is full!" unless planes.count < 2
     can_land = (weather.condition > 10) && (planes.count < 2)
@@ -17,7 +19,7 @@ class Airport
     @planes << plane if can_land
   end
 
-  def plane_take_off(plane, weather)
+  def plane_take_off(plane, weather = Weather.new)
     raise "Can't take off: Bad weather conditions!" if weather.condition < 10
     can_take_off = weather.condition > 10
     plane.take_off if can_take_off

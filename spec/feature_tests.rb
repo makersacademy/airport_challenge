@@ -97,3 +97,25 @@ def capacity
 end
 
 capacity
+
+# Edge cases
+
+# As the system designer
+# So that the software is robust
+# Planes can only take off from the airport they are in
+
+def plane_take_off_edgecase
+  plane = Plane.new(true)
+  plane2 = Plane.new(true)
+  airport = Airport.new
+  airport.planes << plane
+  airport.plane_take_off(plane2)
+  p airport.planes
+  p plane2.landed
+end
+
+plane_take_off_edgecase
+
+# As the system designer
+# So that the software is robust
+# Planes that are landed cannot land again and must be in airport
