@@ -31,4 +31,9 @@ let(:plane) {double :plane}
     expect { subject.land(plane) }.to raise_error(RuntimeError)
   end
 
+  it "prevents planes landing if capacity is full" do
+    20.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error(RuntimeError)
+  end
+
 end
