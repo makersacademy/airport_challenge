@@ -167,6 +167,8 @@ To test just the:
 - Plane Class: run `rspec spec/plane_spec.rb`
 - Weather Station Class: run `rspec spec/weather_station_spec.rb`
 
+Each class is tested in isolation using spy doubles and stubs.
+
 #### Examples
 ##### Basic Usage
 
@@ -248,7 +250,7 @@ from /.../airport_challenge/lib/airport.rb:24:in `order_takeoff'
  @weather_station=#<WeatherStation:0x00007f8c7e963a40>>
 ```
 
-```ruby
+```
 "Create a second plane to test capacity and edge cases"
 
 [22] pry(main)> plane2 = Plane.new
@@ -256,7 +258,7 @@ from /.../airport_challenge/lib/airport.rb:24:in `order_takeoff'
 
 ```
 
-```ruby
+```
 "Park the first plane and then try to park the second"
 
 [23] pry(main)> airport.order_landing(plane_1)
