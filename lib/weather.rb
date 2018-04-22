@@ -1,5 +1,5 @@
 class Weather
-  def weather_value
+  def weather_check
     rand(10)
   end
 end
