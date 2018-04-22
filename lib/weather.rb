@@ -1,5 +1,5 @@
 class Weather
   def generate
-    ['sunny', 'sunny', 'sunny', 'sunny', 'stormy'].sample
+    rand(10) < 8 ? 'sunny' : 'stormy'
   end
 end

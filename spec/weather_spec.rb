@@ -10,12 +10,12 @@ describe Weather do
     end
 
     it 'should return sunny' do
-      expect_any_instance_of(Array).to receive(:sample).and_return('sunny')
+      expect(weather).to receive(:rand).and_return(1)
       expect(weather.generate).to eq('sunny')
     end
 
     it 'should return stormy' do
-      expect_any_instance_of(Array).to receive(:sample).and_return('stormy')
+      expect(weather).to receive(:rand).and_return(9)
       expect(weather.generate).to eq('stormy')
     end
   end
