@@ -1,11 +1,12 @@
 class Airport
 
-DEFAULT_CAPACITY = 50
-attr_reader :planes, :capacity
+  DEFAULT_CAPACITY = 50
+  attr_reader :planes, :capacity
 
-  def initialize( capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -16,19 +17,15 @@ attr_reader :planes, :capacity
   def takeoff(plane)
     fail 'there are no planes at the airport' if @planes.empty?
     report_status
-    @planes.pop
+    @planes.delete(plane)
   end
 
   def report_status
-    return "Plane no longer at the airport"
+    return 'plane no longer at the airport'
   end
-
-  private
 
   def error_msg(plane)
     fail 'airport is full' if @planes.size >= DEFAULT_CAPACITY
-    fail 'this plane has already landed' if @planes.include?(plane) 
+    fail 'this plane has already landed' if @planes.include?(plane)
   end
-
-
 end

@@ -1,7 +1,9 @@
 class Weather
 
-def stormy?
-  random_weather == :stormy
+attr_reader :current_weather
+
+def current_weather
+  @current_weather = random_weather
 end
 
 private
