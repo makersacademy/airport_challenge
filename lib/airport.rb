@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'This plane is already in flight' unless plane_in_airport?(plane)
     fail 'The weather does not permit take off' if weather.stormy?
     @planes.delete(plane)
     'This plane has left the airport'

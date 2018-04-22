@@ -31,7 +31,7 @@ describe Airport do
   end
 
   describe '#take_off', :take_off do
-    before { subject.planes == [plane] }
+    before { subject.planes << plane }
 
     context 'when the weather is clear' do
       let(:stormy) { false }
@@ -47,6 +47,11 @@ describe Airport do
 
       it 'returns the status of the plane' do
         expect(subject.take_off(plane)).to eq 'This plane has left the airport'
+      end
+
+      it 'raises an error if the plane is not in the airport' do
+        subject.take_off(plane)
+        expect { subject.take_off(plane) }.to raise_error 'This plane is already in flight'
       end
     end
 
@@ -78,6 +83,5 @@ describe Airport do
         expect(subject.plane_in_airport?(plane)).to eq false
       end
     end
-
   end
 end
