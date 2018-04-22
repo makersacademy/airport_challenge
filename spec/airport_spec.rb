@@ -3,7 +3,7 @@ require 'weather'
 require 'Plane'
 
 describe Airport do
-let(:plane) {double :plane}
+  let(:plane) { double :plane }
 
   context "landing in sunny conditions" do
 

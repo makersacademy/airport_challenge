@@ -20,7 +20,7 @@ class Airport
     @planes.include?(plane) ? @planes.delete(plane) : raise("This plane has already left")
   end
 
-  def is_plane_present?(plane)
+  def plane_present?(plane)
     @planes.include?(plane)
   end
 
