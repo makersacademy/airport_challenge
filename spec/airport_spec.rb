@@ -56,12 +56,10 @@ describe Airport do
   describe '#take_off' do
     it 'instructs a plane to take off' do
       allow(airport.weather).to receive(:stormy?) { false }
-      allow(airport.stationed_planes).to receive(:includes_plane?) { true }
       expect(airport.take_off(plane)).to eq plane
     end
     it 'removes the plane from the airport' do
       allow(airport.weather).to receive(:stormy?) { false }
-      allow(airport.stationed_planes).to receive(:includes_plane?) { true }
       airport.take_off(plane)
       expect(airport.stationed_planes).to eq []
     end

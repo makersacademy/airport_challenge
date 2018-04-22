@@ -29,8 +29,4 @@ class Airport
   def full?
     @stationed_planes.length >= @capacity
   end
-
-  def includes_plane
-    @stationed_planes.include?(plane)
-  end
 end
