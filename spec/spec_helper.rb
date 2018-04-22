@@ -2,6 +2,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'plane'
 require 'airport'
+require 'weather'
 require 'capybara/rspec'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([

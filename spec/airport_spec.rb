@@ -1,6 +1,8 @@
 describe Airport do
   let(:plane) { instance_double("Plane") }
-  let(:airport) { Airport.new }
+  let(:weather) { instance_double("Weather") }
+  let(:airport) { Airport.new(:weather_forecast => weather) }
+
 
   before do
     allow(plane).to receive(:land).with(an_instance_of(Airport))
@@ -8,7 +10,7 @@ describe Airport do
   end
 
   context 'when the weather is bad' do
-    before { allow(airport).to receive(:stormy?).and_return(true) }
+    before { allow(weather).to receive(:stormy?).and_return(true) }
 
     describe '#land' do
       it 'raises an error' do
@@ -21,11 +23,10 @@ describe Airport do
         expect { airport.release(plane) }.to raise_error(AirportError, "Weather is stormy, cannot take off.")
       end
     end
-
   end
 
   context 'when the weather is good' do
-    before { allow(airport).to receive(:stormy?).and_return(false) }
+    before { allow(weather).to receive(:stormy?).and_return(false) }
 
     describe '#initilize' do
 
@@ -37,7 +38,6 @@ describe Airport do
       it 'sets to the default capacity if not given' do
         expect(airport.capacity).to eq Airport::DEFAULTS[:capacity]
       end
-
     end
 
     describe '#land' do
@@ -54,7 +54,6 @@ describe Airport do
           airport.land(plane)
           expect(airport.planes).to include plane
         end
-
       end
 
       context 'when the plane is not flying' do
@@ -75,16 +74,13 @@ describe Airport do
         it 'raises an error' do
           expect { airport.land(plane) }.to raise_error(AirportError, "Airport full")
         end
-
       end
-
     end
 
     describe '#release' do
 
       context "when the plane is in the airport" do
         before do
-          allow(airport).to receive(:stormy?).and_return(false)
           allow(plane).to receive(:flying?).and_return(true)
           airport.land(plane)
           allow(plane).to receive(:flying?).and_return(false)
@@ -99,7 +95,6 @@ describe Airport do
           airport.release(plane)
           expect(airport.planes).not_to include plane
         end
-
       end
 
       context 'when the plane is in another airport' do
@@ -117,28 +112,21 @@ describe Airport do
           expect { airport.release(plane) }.to raise_error(PlaneError, "Plane already in-flight")
         end
       end
-
     end
 
     describe 'setting the capacity' do
-
       it 'changes the capacity' do
         airport.capacity = 25
         expect(airport.capacity).to eq 25
       end
-
     end
-
   end
 
 
-
   describe '#stormy?' do
-    it 'randomly generates weather' do
-      srand(10)
-      weather_arr = []
-      100.times { weather_arr << airport.stormy? }
-      expect(weather_arr).to include(true, false)
+    it 'request weather from assigned weather forecaster' do
+      expect(weather).to receive(:stormy?)
+      airport.stormy?
     end
   end
 end

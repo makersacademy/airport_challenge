@@ -2,16 +2,16 @@ require_relative './exceptions'
 require_relative './weather'
 
 class Airport
-  DEFAULTS = { capacity: 10 }
-  include Weather
+  DEFAULTS = { capacity: 10, weather_forecast: Weather.new }
 
-  attr_reader :planes
+  attr_reader :planes, :weather_forecast
   attr_accessor :capacity
 
   def initialize(args = Hash.new)
     args = DEFAULTS.merge(args)
     @planes = []
     @capacity = args[:capacity]
+    @weather_forecast = args[:weather_forecast]
   end
 
   def land(plane)
@@ -36,6 +36,10 @@ class Airport
 
   def full?
     planes.length == capacity
+  end
+
+  def stormy?
+    weather_forecast.stormy?
   end
 
 end

@@ -1,4 +1,4 @@
-module Weather
+class Weather
 
   def stormy?
     generate_weather
