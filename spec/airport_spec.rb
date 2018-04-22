@@ -10,7 +10,7 @@ describe Airport do
     it 'lands a plane' do
       expect(subject).to receive(:stormy?).and_return(false)
       allow(flying_plane).to receive(:land)
-      expect(subject.land(flying_plane)).to include landed_plane
+      expect(subject.land(flying_plane)).to include flying_plane
     end
 
     it 'does not land if weather is stormy' do
@@ -25,10 +25,6 @@ describe Airport do
         subject.land(flying_plane)
       end
       expect { subject.land(flying_plane) }.to raise_error 'cannot land as the airport is full'
-    end
-
-    it 'raises error if plane already landed' do
-
     end
 
   end
