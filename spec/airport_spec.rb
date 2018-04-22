@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do 
-  it { is expected_to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:land).with(1).argument }
   let(:plane) { instance_double Plane }
 
   describe '#land' do 
