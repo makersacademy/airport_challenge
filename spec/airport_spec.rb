@@ -13,14 +13,16 @@ describe Airport do
     end
 
     it 'raises error if weather stormy_conditions is true' do
-      expect { subject.stormy_conditions }.to raise_error
+      expect { subject.take_off.stormy_conditions }.to raise_error RuntimeError
     end
 
   end
 
   describe '#land' do
     it 'raises error if try to land plane when plane already landed' do
-      expect { subject.land }.to raise_error
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error RuntimeError
     end
   end
 

@@ -12,6 +12,7 @@ class Airport
   end
 
   def take_off
+    fail "Weather stormy: can't take off" if @stormy_conditions == true
     fail "No planes avaliable for take off." if @plane.nil?
     @plane = nil
   end
