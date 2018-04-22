@@ -1,11 +1,11 @@
 class Weather
+  WEATHER_CONDITIONS = [:stormy, :sunny]
 
   def stormy?
-    weather_generator == 1
+    random_weather_condition == :stormy
   end
 
-  private
-  def weather_generator
-    rand(2)
+  def random_weather_condition
+    WEATHER_CONDITIONS.sample
   end
 end

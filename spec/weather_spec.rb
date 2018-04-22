@@ -1,13 +1,19 @@
 require './docs/weather.rb'
 
 describe Weather do
-  weather = Weather.new
-  it "should be stormy when weather_generator is 1" do
-    allow(weather).to receive(:weather_generator) { 1 }
-    expect(weather.stormy?).to be true
+  describe '#stormy?' do
+    it "should return true if the weather is stormy" do
+      allow(subject).to receive(:random_weather_condition) { :stormy }
+      expect(subject.stormy?).to be true
+    end
+    it "should return false if the weather is sunny" do
+      allow(subject).to receive(:random_weather_condition) { :sunny }
+      expect(subject.stormy?).to be false
+    end
   end
-  it "should be sunny when weather_generator is 0" do
-    allow(weather).to receive(:weather_generator) { 0 }
-    expect(weather.stormy?).to be false
+  describe '#random_weather_condition' do
+    it 'should choose a weather condition at random' do
+      expect([:stormy, :sunny]).to include(subject.random_weather_condition)
+    end
   end
 end
