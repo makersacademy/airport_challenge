@@ -34,7 +34,7 @@ describe Airport, :airport do
       airport = Airport.new(capcity_two)
       expect(airport.capacity).to eq capacity_two
     end
-    
+
     it 'doesnt let a plane land if airport is at full capacity' do
       Airport::DEFAULT_CAPACITY.times { subject.land(current_plane, good_weather) }
       expect { subject.land(current_plane, good_weather) }.to raise_error 'Airport is full!'
@@ -49,7 +49,27 @@ describe Airport, :airport do
     end
   end
 
+  describe '#land' do
+    it 'can let planes land' do
+      subject.land(current_plane, good_weather)
+      expect(subject.planes).to include current_plane
+    end
+
+    it 'shouldnt land planes in stormy weather', :stormy_land do
+      expect { subject.land(current_plane, stormy_weather) }.to raise_error "It's stormy! No landing!"
+    end
+
+    it 'cant land planes in a full airport' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(current_plane, good_weather) }
+      expect { subject.land(current_plane, good_weather) }.to raise_error 'Airport is full!'
+  end
+end
+
   describe '#takeoff' do
+    class Airport
+      attr_writer :planes
+    end
+
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
     it 'is expected for planes to take off' do
@@ -67,5 +87,4 @@ describe Airport, :airport do
       expect { subject.takeoff(land_plane, stormy_weather) }.to raise_error "It's stormy! No take off!"
     end
   end
-end
 end

@@ -20,3 +20,4 @@ class Plane
     raise 'Plane is already in the air' if flying?
     @flying = true
   end
+end
