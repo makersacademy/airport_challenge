@@ -7,11 +7,7 @@ def initialize
 end
 
 def stormy?
-  if @weather == :stormy
-    return true
-  else
-    false
-  end
+  @weather == :stormy
 end
 
 private

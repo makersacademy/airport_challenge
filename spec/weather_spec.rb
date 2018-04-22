@@ -16,4 +16,10 @@ subject(:weather) { described_class.new }
       expect(weather.weather).to eq :sunny
     end
 
+    describe "#stormy?" do
+      it "confirms stormy weather" do
+        allow(weather).to receive(:stormy?) { true }
+        expect(subject).to be_stormy
+      end
+    end
 end
