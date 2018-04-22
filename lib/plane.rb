@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off
+    raise "Plane is already in air!" if !@landed
     @landed = false
   end
 

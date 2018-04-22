@@ -156,4 +156,4 @@ def plane_take_off_edgecase2
   plane.take_off
 end
 
-plane_take_off_edgecase2
+# plane_take_off_edgecase2

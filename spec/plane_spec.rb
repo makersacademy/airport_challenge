@@ -19,9 +19,10 @@ describe Plane do
 
     it 'raises an error when plane tries to take off if already in air' do
       expect { subject.take_off
-      }.to raise_error "Plane is already landed in an airport!"
+      }.to raise_error "Plane is already in air!"
     end
     it 'takes off from airport when instructed by air traffic controller' do
+      subject.land
       subject.take_off
       expect(subject.landed).to eq false
     end
