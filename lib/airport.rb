@@ -1,25 +1,24 @@
 require_relative 'plane'
 
 class Airport
-DEFAULT_CAPACITY = 50
-attr_reader :hangar
-attr_accessor :capacity
+  DEFAULT_CAPACITY = 3
+  attr_reader :hangar
+  attr_accessor :capacity
 
-
-  def initialize(capacity= DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
   end
 
-  def take_off
+  def take_off(plane)
     fail 'No planes available' if empty?
-    @hangar.pop
+    @hangar.delete(plane)
   end
 
   def land(plane)
     fail 'Airport is full' if full?
     @hangar << plane
-    @hangar[0]
+    @hangar[-1]
   end
 
   private

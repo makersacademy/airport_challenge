@@ -1,12 +1,6 @@
 class Weather
 
- def stormy?
-   storm = rand(2)
-   if storm == 1
-     true
-   else
-     false
-   end
- end
- 
+  def stormy?
+    rand(4).zero? ? :stormy : :sunny
+  end
 end
