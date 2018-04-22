@@ -7,6 +7,7 @@ class Plane
   end
 
   def land
+    raise "Plane is already landed in an airport!" if @landed 
     @landed = true
   end
 
