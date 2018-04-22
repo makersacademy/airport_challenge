@@ -5,7 +5,10 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather)
+    check_weather(weather)
+    raise 'Airport full.' if airport_full?
+    plane.land
     @planes.push(plane)
   end
 
