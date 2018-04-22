@@ -1,6 +1,3 @@
-require_relative '../lib/weather'
-require_relative '../lib/plane'
-
 class Airport
 
   DEFAULT_CAPACITY = 50

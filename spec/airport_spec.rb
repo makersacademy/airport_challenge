@@ -2,7 +2,6 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { instance_double Plane }
   let(:flying_plane_1) { instance_double Plane, flying: true }
   let(:flying_plane_2) { instance_double Plane, flying: true }
   let(:landed_plane) { instance_double Plane, landing: false }
@@ -25,7 +24,6 @@ describe Airport do
       subject.land(flying_plane_1, good_weather)
       expect { subject.land(flying_plane_1, good_weather) }.to raise_error 'this plane has already landed'
     end
-
   end
 
   context "#planes" do
@@ -36,7 +34,6 @@ describe Airport do
   end
 
   context "#capacity" do
-    it { is_expected.to respond_to(:capacity) }
 
     it 'sets capacity to default value' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -44,9 +41,6 @@ describe Airport do
   end
 
   describe "#takeoff" do
-
-    it { is_expected.to respond_to(:takeoff).with(2).arguments }
-
     class Airport
       attr_writer :planes
     end

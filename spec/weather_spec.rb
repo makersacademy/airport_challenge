@@ -3,8 +3,6 @@ require 'weather'
 describe Weather do
   subject(:weather) { described_class.new }
 
-  it { is_expected.to respond_to(:weather) }
-
   context '#initialize' do
     it "returns stromy weather when randomly generated weather is 'stormy'" do
       allow(weather).to receive(:weather) { :stormy }
