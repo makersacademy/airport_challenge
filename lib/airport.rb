@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Weather stormy: unsafe to land." if @stormy_conditions == true
     fail "Plane already landed." if @plane == plane
     @plane = plane
   end
