@@ -1,4 +1,5 @@
 require_relative '../lib/weather'
+require_relative '../lib/plane'
 
 class Airport
 
@@ -13,12 +14,14 @@ class Airport
   def land(plane, weather)
     bad_weather_msg(weather)
     error_msg(plane)
+    plane.flying
     @planes << plane
   end
 
   def takeoff(plane, weather)
     bad_weather_msg(weather)
     fail 'there are no planes at the airport' if @planes.empty?
+    plane.landing
     report_status
     @planes.delete(plane)
   end
@@ -32,7 +35,6 @@ class Airport
     fail 'this plane has already landed' if @planes.include?(plane)
   end
 
-
   def bad_weather?(weather)
     weather.stormy?
   end
@@ -40,5 +42,4 @@ class Airport
   def bad_weather_msg(weather)
     fail 'bad weather conditions, airport closed' if bad_weather?(weather)
   end
-
 end

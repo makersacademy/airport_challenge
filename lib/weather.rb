@@ -1,17 +1,17 @@
 class Weather
 
-attr_reader :weather
+  attr_reader :weather
 
-def initialize
-  @weather = random_weather
-end
+  def initialize
+    @weather = random_weather
+  end
 
-def stormy?
-  @weather == :stormy
-end
+  def stormy?
+    @weather == :stormy
+  end
 
-private
-WEATHER = [:sunny, :sunny, :sunny, :sunny, :stormy]
+  private
+  WEATHER = [:sunny, :sunny, :sunny, :sunny, :stormy]
 
   def random_weather
     WEATHER.sample
