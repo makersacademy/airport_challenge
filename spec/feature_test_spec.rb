@@ -22,3 +22,10 @@ def stormy_landing
   airport = Airport.new
   airport.land(plane, Weather.new(36))
 end
+
+def stormy_takeoff
+  plane = Plane.new
+  airport = Airport.new
+  airport.land(plane, Weather.new(34))
+  airport.take_off(plane, Weather.new(36))
++end
