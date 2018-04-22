@@ -1,38 +1,49 @@
 require 'airport'
 require 'weather'
+require 'Plane'
 
 describe Airport do
 let(:plane) {double :plane}
 
-  describe "in sunny conditions" do
+  context "landing in sunny conditions" do
 
     let(:sunny_weather) { double Weather, condition: "sunny" }
+    before do
+      subject.land(plane, sunny_weather)
+    end
 
     it "allows a plane to land" do
-      subject.land(plane, sunny_weather)
       expect(subject.planes).to include(plane)
     end
 
     it "allows a plane to take off from an airport" do
-      subject.land(plane, sunny_weather)
       subject.take_off(plane, sunny_weather)
       expect(subject.planes).not_to include(plane)
     end
 
     it "allows the user to check if a plane is in the airport" do
-      subject.land(plane, sunny_weather)
       expect(subject.is_plane_present?(plane)).to eq(true)
-      subject.take_off(plane)
+      subject.take_off(plane, sunny_weather)
       expect(subject.is_plane_present?(plane)).to eq(false)
     end
 
     it "prevents planes landing if capacity is full" do
-      subject.DEFAULT_CAPACITY.times { subject.land(plane, sunny_weather) }
+      (subject.DEFAULT_CAPACITY - 1).times { subject.land(Plane.new, sunny_weather) }
+      expect { subject.land(Plane.new) }.to raise_error(RuntimeError)
+    end
+
+    it "prevents a plane landing if it has already landed" do
       expect { subject.land(plane) }.to raise_error(RuntimeError)
     end
+
+    it "prevents a plane taking off if it has already left" do
+      subject.take_off(plane, sunny_weather)
+      expect { subject.take_off(plane, sunny_weather) }.to raise_error(RuntimeError)
+    end
+
   end
 
-  describe "in stormy conditions" do
+  context "in stormy conditions" do
     let(:stormy_weather) { double Weather, condition: "stormy" }
 
     it "prevents planes taking off if weather is stormy" do

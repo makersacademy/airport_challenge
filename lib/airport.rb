@@ -10,17 +10,22 @@ class Airport
   end
 
   def land(plane, weather = Weather.new)
-    raise "You are unable to land at this time" if weather.condition == "stormy" || @planes.length >= 20
-    @planes << plane
+    raise "This airport is full" if @planes.length >= @DEFAULT_CAPACITY
+    storm_error(weather)
+    @planes.include?(plane) ? raise("This plane is already here") : @planes << plane
   end
 
   def take_off(plane, weather = Weather.new)
-    raise "It is too stormy for the plane to take off" if weather.condition == "stormy"
-    @planes.delete(plane)
+    storm_error(weather)
+    @planes.include?(plane) ? @planes.delete(plane) : raise("This plane has already left")
   end
 
   def is_plane_present?(plane)
     @planes.include?(plane)
+  end
+
+  def storm_error(weather)
+    raise "It is too stormy to fly" if weather.condition == "stormy"
   end
 
 end
