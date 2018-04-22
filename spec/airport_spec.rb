@@ -6,6 +6,7 @@ describe Airport do
   let(:weather) { double :weather, stormy?: stormy }
   let(:stormy) { false }
   before { allow(Weather).to receive(:new).and_return(weather) }
+  MAX_CAPACITY = 100
 
   it 'new instances of airport start empty' do
     expect(subject.planes).to eq []
@@ -19,6 +20,11 @@ describe Airport do
     it 'raises an error if trying to land a landed plane' do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'This plane has already landed'
+    end
+
+    it 'raises an error if airport is at maximum capacity' do
+      MAX_CAPACITY.times { subject.planes << plane }
+      expect { subject.land(plane) }.to raise_error 'This airport is at maximum capacity'
     end
 
     context 'when the weather is stormy' do
