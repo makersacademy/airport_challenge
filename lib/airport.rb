@@ -17,7 +17,7 @@ class Airport
 
   def takeoff(plane, weather)
     check_weather(weather)
-    raise "Plane isn't docked in airport" if no_plane?(plane)
+    raise 'Plane isnt docked in airport' if no_plane?(plane)
     plane.takeoff
     @planes.delete(plane)
   end

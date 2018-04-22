@@ -70,11 +70,20 @@ end
       attr_writer :planes
     end
 
-    it { is_expected.to respond_to(:takeoff).with(1).argument }
+    it 'is expected to return the plane thats just landed' do
+      subject.planes = [land_plane]
+      expect(subject.take_off(land_plane, good_weather)).to eq land_plane
+    end
 
     it 'is expected for planes to take off' do
       subject.land(plane)
       expect(subject.takeoff(plane)).to eq plane
+    end
+
+    it 'is expected for planes array to be empty after take off' do
+      subject.planes = [land_plane]
+      subject.takeoff(land_plane, good_weather)
+      expect(subject.planes).to be_empty
     end
 
     it 'is expected to take away a plane after takeoff' do
@@ -82,9 +91,19 @@ end
       expect(subject.takeoff(plane)).to eq plane
     end
 
+    it 'is expected to still contain one plane in array when another takes off' do
+      subject.planes = [land_plane, next_land_plane]
+      subject.takeoff(land_plane, good_weather)
+      expect(subject.planes).to include next_land_plane
+    end
+
     it 'is expected not to let planes take off in stormy weather', :storm_take_off do
       subject.planes = [land_plane]
       expect { subject.takeoff(land_plane, stormy_weather) }.to raise_error "It's stormy! No take off!"
+    end
+
+    it "raises error if the plane taking off is not in airport", :no_plane do
+      expect { subject.takeoff(land_plane, good_weather) }.to raise_error 'Plane isnt docked in airport'
     end
   end
 end
