@@ -14,7 +14,6 @@ describe Weather do
         weather = Weather.new
         expect(weather.wind_speed).to be_between(0, 61).inclusive
       end
-      end
     end
   end
 end
