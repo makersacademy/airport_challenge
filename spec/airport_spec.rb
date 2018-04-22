@@ -1,5 +1,3 @@
-require 'airport'
-
 describe Airport do
   let(:plane) { instance_double("Plane") }
   let(:airport) { Airport.new }
@@ -77,7 +75,6 @@ describe Airport do
         it 'raises an error' do
           expect { airport.land(plane) }.to raise_error(AirportError, "Airport full")
         end
-
 
       end
 

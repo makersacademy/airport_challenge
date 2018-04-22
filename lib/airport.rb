@@ -17,6 +17,7 @@ class Airport
   def land(plane)
     raise AirportError, "Weather is stormy, cannot land." if stormy?
     raise PlaneError, "Plane already on the ground" unless plane.flying?
+    raise AirportError, "Airport full" if full?
     plane.land(self)
     planes << plane
   end
@@ -33,5 +34,8 @@ class Airport
     planes.include?(plane)
   end
 
+  def full?
+    planes.length == capacity
+  end
 
 end
