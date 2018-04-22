@@ -122,7 +122,7 @@ describe Airport do
 
     describe 'setting the capacity' do
 
-      it 'changes th capacity' do
+      it 'changes the capacity' do
         airport.capacity = 25
         expect(airport.capacity).to eq 25
       end
