@@ -9,5 +9,5 @@ class Weather
   def stormy
     @condition == "stormy"
   end
-
+  
 end
