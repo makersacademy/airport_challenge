@@ -12,8 +12,7 @@ class Airport
   end
 
   def plane_lands(plane, weather = Weather.new)
-    raise "Can't land: Bad weather conditions!" if weather.condition < 10
-    raise "Can't land: Airport is full!" unless planes.count < 2
+    check_errors_land(plane, weather)
     can_land = (weather.condition > 10) && (planes.count < 2)
     plane.land if can_land
     @planes << plane if can_land
@@ -26,4 +25,11 @@ class Airport
     plane.take_off if can_take_off
     @planes.delete(plane) if can_take_off
   end
+
+  def check_errors_land(plane, weather = Weather.new)
+    raise "Plane is already landed in airport!" if planes.include? plane
+    raise "Can't land: Bad weather conditions!" if weather.condition < 10
+    raise "Can't land: Airport is full!" unless planes.count < 2
+  end
+
 end

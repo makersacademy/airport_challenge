@@ -88,8 +88,6 @@ end
 # I would like a default airport capacity that can be overridden as appropriate
 
 def capacity
-  plane = Plane.new
-  landed_plane = Plane.new(true)
   airport = Airport.new
   p airport.capacity
   airport.capacity = 3
