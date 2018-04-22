@@ -1,15 +1,15 @@
 class Weather
 
   def stormy?
-    outlook == :stormy
+  # outlook == :stormy
+  false
   end
 
-private
 
-POTENTIAL = [:sunny, :sunny, :sunny, :sunny, :stormy]
+  POTENTIAL = [:sunny, :sunny, :sunny, :sunny, :stormy]
 
-def outlook
-POTENTIAL.sample
-end
+  def outlook
+    POTENTIAL.sample
+  end
 
 end
