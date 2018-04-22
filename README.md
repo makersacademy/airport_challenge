@@ -47,7 +47,7 @@ I would like a default airport capacity that can be overridden as appropriate
 My approach
 ---------
 
-My solution for this consist of 3 classes:
+My solution for this program consist of 3 classes:
 * Airport: is able to instruct planes to land and take off, taking into account weather conditions and capacity of the airport. It also reports status of the planes.
 * Plane: it creates instance plane objects with their status.
 * Weather: it creates generated randomly weather
@@ -90,6 +90,14 @@ $ irb
 
 Methods
 ---------
+airport.capacity - returns capacity of the airport, which is set to default 50.
+To overwrite it pass capacity of your choice as parameter when create new airport
+eg.
+```
+$ irb
+2.5.0 :007 > airport = Airport.new(30)
+ => #<Airport:0x00007f8aa2194018 @capacity=30, @planes=[]>
+ ```
 airport.land(plane, weather) - lands a plane at the airport if weather allows
 airport.takeoff(plane, weather) - takes off a plane from the airport if weather allows
 weather.stormy? - checks the weather and returns true if weather conditions are bad
