@@ -1,6 +1,6 @@
 class Airport
 
-attr_accessor :planes
+attr_reader :planes
 
 def initialize
   @planes = []
@@ -14,7 +14,7 @@ def take_off(plane)
   @planes.delete(plane)
 end
 
-def is_plane_present(plane)
+def is_plane_present?(plane)
   @planes.include?(plane)
 end
 

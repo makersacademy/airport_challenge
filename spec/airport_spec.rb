@@ -16,8 +16,8 @@ let(:plane) {double :plane}
 
   it "allows the user to check if a plane is in the airport" do
     subject.land(plane)
-    expect(subject.is_plane_present(plane)).to eq(true)
+    expect(subject.is_plane_present?(plane)).to eq(true)
     subject.take_off(plane)
-    expect(subject.is_plane_present(plane)).to eq(false)
+    expect(subject.is_plane_present?(plane)).to eq(false)
   end
 end
