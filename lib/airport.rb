@@ -11,16 +11,18 @@ class Airport
   def land(plane, weather)
     bad_weather_msg(weather)
     error_msg(plane)
-    plane.flying
+    plane.landing
     @planes << plane
+
   end
 
   def takeoff(plane, weather)
     bad_weather_msg(weather)
     fail 'there are no planes at the airport' if @planes.empty?
-    plane.landing
+    plane.flying
     report_status
     @planes.delete(plane)
+
   end
 
   def report_status
