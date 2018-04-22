@@ -4,13 +4,14 @@ require 'weather'
 
 describe Airport do
 
+  it { is_expected.to respond_to :full? }
+
   describe '#take_off' do
     it 'raises error if no planes avaliable to take_off' do
       expect { subject.take_off }.to raise_error
     end
 
     it 'raises error if stormy_conditions' do
-      # stormy_conditions = true
       expect { subject.take_off }.to raise_error RuntimeError
     end
 
