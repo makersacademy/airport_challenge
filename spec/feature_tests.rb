@@ -127,11 +127,11 @@ def plane_landed_edgecase
   p plane.landed
 end
 
-plane_landed_edgecase
+# plane_landed_edgecase
 
 # As the system designer
 # So that the software is robust
-# Planes that are already in another airport cannot land in a new airport
+# Planes that are already in another airport cannot land again
 
 def plane_landed_edgecase2
   plane = Plane.new(true)
@@ -144,4 +144,16 @@ def plane_landed_edgecase2
   p plane.landed
 end
 
-plane_landed_edgecase2
+# plane_landed_edgecase2
+
+# As the system designer
+# So that the software is robust
+# Planes already in air cannot take off again
+
+def plane_take_off_edgecase2
+  plane = Plane.new(true)
+  plane.take_off
+  plane.take_off
+end
+
+plane_take_off_edgecase2
