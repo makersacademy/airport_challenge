@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, ground: nil, take_flight: nil }
 
   let(:weather) { double :weather, stormy?: stormy }
   let(:stormy) { false }
@@ -38,6 +38,11 @@ describe Airport do
         subject.capacity.times { subject.planes << plane }
         expect { subject.land(plane) }.to raise_error 'This airport is at maximum capacity'
       end
+
+      it 'lands the plane' do
+        subject.land(plane)
+        expect(plane).to have_received(:ground)
+      end
     end
 
     context 'when the weather is stormy' do
@@ -71,6 +76,11 @@ describe Airport do
       it 'raises an error if the plane is not in the airport' do
         subject.take_off(plane)
         expect { subject.take_off(plane) }.to raise_error 'This plane is already in flight'
+      end
+
+      it 'takes off a plane' do
+        subject.take_off(plane)
+        expect(plane).to have_received(:take_flight)
       end
     end
 

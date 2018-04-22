@@ -12,14 +12,16 @@ describe Plane do
   end
 
   describe '#take_flight' do
-    it 'returns true' do
-      expect(subject.take_flight).to eq true
+    it 'sets flying status to true' do
+      subject.take_flight
+      expect(subject.flying?).to eq true
     end
   end
 
   describe '#ground' do
-    it 'returns false' do
-      expect(subject.ground).to eq false
+    it 'sets flying status to false' do
+      subject.ground
+      expect(subject.flying?).to eq false
     end
   end
 end

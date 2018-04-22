@@ -12,12 +12,14 @@ class Airport
   def land(plane)
     landing_errors(plane)
     @planes << plane
+    plane.ground
     @planes
   end
 
   def take_off(plane)
     take_off_errors(plane)
     @planes.delete(plane)
+    plane.take_flight
     'This plane has left the airport'
   end
 
