@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -10,6 +11,11 @@ describe Airport do
     it 'raises error if no planes avaliable to take_off' do
       expect { subject.take_off }.to raise_error
     end
+
+    it 'raises error if weather stormy_conditions is true' do
+      expect { subject.stormy_conditions }.to raise_error
+    end
+
   end
 
   describe '#land' do

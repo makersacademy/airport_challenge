@@ -1,11 +1,12 @@
 class Airport
-  attr_accessor :plane
+  attr_accessor :plane, :stormy_conditions
 
-  def initialize
+  def initialize(stormy_conditions = false)
     @plane = plane
+    @stormy_conditions = stormy_conditions
   end
 
-  def land
+  def land(plane)
     fail "Plane already landed." if @plane == plane
     @plane = plane
   end
