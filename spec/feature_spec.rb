@@ -2,9 +2,9 @@ require './spec/spec_helper.rb'
 
 RSpec.feature "Air Traffic Controller" do
 
-  let(:airport) { Airport.new}
-  let(:plane) {Plane.new}
-  let(:weather) { double :weather, stormy?: false}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+  let(:weather) { double :weather, stormy?: false }
   before { allow(Weather).to receive(:new).and_return(weather) }
   # airport = Airport.new
   # As an air traffic controller
@@ -103,9 +103,9 @@ RSpec.feature "Air Traffic Controller" do
 
   scenario "Lands and takes off a number of planes" do
     planes = [Plane.new, Plane.new]
-    planes.each {|plane| airport.land(plane)}
+    planes.each { |plane| airport.land(plane) }
     expect(airport.planes).to eq planes
-    planes.each {|plane| airport.take_off(plane)}
+    planes.each { |plane| airport.take_off(plane) }
     expect(airport.planes).to eq []
   end
 
