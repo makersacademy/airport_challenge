@@ -1,10 +1,11 @@
 class Airport
 
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :weather, :DEFAULT_CAPACITY
 
-  def initialize
+  def initialize(capacity = 20)
     @planes = []
-    @weather = "sunny"
+    @weather = random_weather
+    @DEFAULT_CAPACITY = capacity
   end
 
   def land(plane)
@@ -19,6 +20,10 @@ class Airport
 
   def is_plane_present?(plane)
     @planes.include?(plane)
+  end
+
+  def random_weather
+    rand(9) <= 7 ? "sunny" : "stormy"
   end
 
 end
