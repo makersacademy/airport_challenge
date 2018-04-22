@@ -5,7 +5,7 @@ describe Airport, :airport do
   let(:land_plane) { instance_double Plane, take_off: true }
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
-  
+
   context "does the plane land at the airport?" do
     it { is_expected.to respond_to(:land).with(1).argument }
     let(:plane) { instance_double Plane }
@@ -23,6 +23,12 @@ describe Airport, :airport do
     it 'stores the planes when they land' do
       is_expected.to respond_to(:planes)
       expect(subject.planes).to eq []
+    end
+  end
+
+  describe '#capacity' do
+    it 'should default to the capacity of 20' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
