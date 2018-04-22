@@ -4,9 +4,10 @@ describe Airport, :airport do
   let(:current_plane) { instance_double Plane, land: false }
   let(:next_fly_plane) { instance_double Plane, land: false }
   let(:land_plane) { instance_double Plane, takeoff: true }
-  let(:next_land_plane) { instance_double Plane, takeoff: true}
+  let(:next_land_plane) { instance_double Plane, takeoff: true }
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
+  let(:plane) { double Plane }
 
   describe '#land' do
     it 'is expected to land planes' do
@@ -45,7 +46,7 @@ describe Airport, :airport do
     it { is_expected.to respond_to(:planes) }
 
     it 'expected to initialize with no planes' do
-          expect(subject.planes).to eq []
+      expect(subject.planes).to eq []
     end
   end
 
@@ -62,33 +63,23 @@ describe Airport, :airport do
     it 'cant land planes in a full airport' do
       Airport::DEFAULT_CAPACITY.times { subject.land(current_plane, good_weather) }
       expect { subject.land(current_plane, good_weather) }.to raise_error 'Airport is full!'
+    end
   end
-end
 
   describe '#takeoff' do
     class Airport
       attr_writer :planes
     end
 
-    it 'is expected to return the plane thats just landed' do
+    it 'is expected to return a taking off a plane' do
       subject.planes = [land_plane]
       expect(subject.takeoff(land_plane, good_weather)).to eq land_plane
-    end
-
-    it 'is expected for planes to take off' do
-      subject.land(land_plane)
-      expect(subject.takeoff(land_plane)).to eq plane
     end
 
     it 'is expected for planes array to be empty after take off' do
       subject.planes = [land_plane]
       subject.takeoff(land_plane, good_weather)
       expect(subject.planes).to be_empty
-    end
-
-    it 'is expected to take away a plane after takeoff' do
-      subject.land(land_plane)
-      expect(subject.takeoff(land_plane)).to eq land_plane
     end
 
     it 'is expected to still contain one plane in array when another takes off' do

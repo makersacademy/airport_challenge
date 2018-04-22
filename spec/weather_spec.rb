@@ -13,7 +13,7 @@ describe Weather, :weather do
   end
 
   describe '#wind_speed' do
-  it { is_expected.to respond_to(:wind_speed) }
+    it { is_expected.to respond_to(:wind_speed) }
     it 'gives an integer wind speed between 0 and 61' do
       30.times do
         weather = Weather.new
