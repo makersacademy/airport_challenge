@@ -12,12 +12,15 @@ describe Airport do
     end
   end
 
-      describe '#planes' do
-        it { is_expected.to respond_to(:planes) }
+  describe '#planes' do
+    it { is_expected.to respond_to(:planes) }
 
-        it 'expected to initialize with no planes' do
+    it 'expected to initialize with no planes' do
           expect(subject.planes).to eq []
-        end
-      end
     end
+  end
+  describe '#takeoff' do
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
+  end
+  end
 end
