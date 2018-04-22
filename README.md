@@ -56,8 +56,24 @@ This program allows you to create Airports, Planes and random Weather. The progr
 airport_name = Airport.new(NUMBER)
 ``
 
+Create new instances as followed
+```
+gatwick = Airport.new
+airbus = Plane.new
+weather = Weather.new
+```
+Planes start off `"Flying"` so will need to be landed first.
+### Methods ###
+`plane.weather_report` - Checks weather for plane.
+`plane.land(airport)` - Lands plane in a airport of your choice.
+`plane.take_off(airport)` - Takes off plane from a airport of your choice.
+
+`airport.planes` - Checks collection of planes in a airport.
+`airport.capacity` - Checks the capacity of a apart.
+
+`weather.stormy?` - Checks the weather, `true` means the weather is bad.
 ### Running The Program ###
-Start the program in IRB and require the lib files
+start the program in IRB and require the lib files
 ```
 irb
 2.5.0 :001 > require './lib/plane.rb'
