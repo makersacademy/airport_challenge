@@ -13,16 +13,20 @@ class Airport
 
   def land(plane, todays_weather)
     raise "It's too dangerous to land!" if todays_weather >= 8
-    raise "This plane has already landed!" if plane.status == "Landed"
-    raise "The airport is full!" if @planes.count == @capacity
+    raise "This plane has already landed!" if plane.status == :landed
+    raise "The airport is full!" if full?
     @planes << plane
     plane.land
   end
 
   def take_off(plane, todays_weather)
     raise "It's too dangerous to take off!" if todays_weather >= 8
-    raise "This plane is already flying!" if plane.status == "Flying"
+    raise "This plane is already flying!" if plane.status == :flying
     raise "This plane is in a different airport!" unless @planes.include?(plane)
     @planes.delete(plane)
+  end
+
+  def full?
+    @planes.count >= @capacity
   end
 end
