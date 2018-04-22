@@ -5,7 +5,7 @@ describe Weather do
   let(:weather) { Weather.new }
 
   describe ' #generate ' do
-    it 'should generate a weather condition' do
+    it 'should generate a random weather condition' do
       expect(weather).to respond_to(:generate)
     end
 

@@ -48,7 +48,7 @@ describe Airport do
   end
 
   describe ' #takeoff ' do
-    it 'should allow a plane to take off' do
+    it 'should allow a plane to takeoff' do
       expect(airport).to respond_to(:takeoff).with(1).argument
     end
 
@@ -61,7 +61,7 @@ describe Airport do
     it 'raises an error when weather is stormy' do
       expect_any_instance_of(weather).to receive(:generate).and_return('stormy')
       expect { airport.takeoff(plane) }.to raise_error(RuntimeError,
-        "Unable to take off due to weather conditions")
+        "Unable to takeoff due to weather conditions")
     end
 
     it 'should remove the correct plane from the hangar' do
