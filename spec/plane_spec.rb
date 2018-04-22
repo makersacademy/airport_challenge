@@ -1,7 +1,9 @@
 require 'plane'
 
-describe Plane do
-  context "does the plane dock into the airport when it lands?" do
-    it { is_expected.to respond_to(:land).with(1).argument}
+describe Plane, :plane do
+  describe '#flying?' do
+    it 'is flying when initialised' do
+      expect(subject).to be_flying
+    end
   end
 end
