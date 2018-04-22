@@ -11,12 +11,12 @@ describe Weather do
 
     it 'should return clear' do
       expect_any_instance_of(Array).to receive(:sample).and_return('clear')
-      expect(weather.stormy).to eq false
+      expect(weather.condition).to eq 'clear'
     end
 
     it 'should return stormy' do
       expect_any_instance_of(Array).to receive(:sample).and_return('stormy')
-      expect(weather.stormy).to eq true
+      expect(weather.condition).to eq 'stormy'
     end
   end
 
