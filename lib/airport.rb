@@ -1,4 +1,7 @@
 class Airport
+  private
+  attr_accessor :capacity
+  public
   attr_accessor :planes, :stormy_conditions
 
   def initialize(capacity = 1, stormy_conditions = false)
@@ -6,6 +9,8 @@ class Airport
     @stormy_conditions = stormy_conditions
     @capacity = capacity
   end
+
+
 
   def land(plane)
     fail "Weather stormy: unsafe to land." if @stormy_conditions == true
@@ -20,12 +25,6 @@ class Airport
 
   def full?
     fail "Airport reached capacity." if @planes.size == @capacity
-  end
-
-  private
-
-  def capacity
-    @capacity
   end
 
 end
