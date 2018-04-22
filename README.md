@@ -168,8 +168,123 @@ To test just the:
 - Weather Station Class: run `rspec spec/weather_station_spec.rb`
 
 #### Examples
+##### Basic Usage
 
+```
+"First, we require our class files"
 
+[2] pry(main)> require './lib/airport.rb'
+=> true
+[3] pry(main)> require './lib/plane.rb'
+=> true
+"Weather station is required from Airport"
+```
+
+```
+"Create new airport with default values"
+
+[6] pry(main)> airport =Airport.new
+=> #<Airport:0x00007f8c7e963a68
+ @capacity=1,
+ @planes=[],
+ @weather_station=#<WeatherStation:0x00007f8c7e963a40>>
+```
+
+```
+"Create a plane"
+
+[8] pry(main)> plane_1 = Plane.new
+=> #<Plane:0x00007f8c7f9d63a0>
+```
+
+```
+"Airport orders the plane to land"
+
+[10] pry(main)> airport.order_landing(plane_1)
+=> [#<Plane:0x00007f8c7f9d63a0 @airport_id=70120697961780>]
+```
+
+```
+"Check the status of our airport after landing"
+
+[12] pry(main)> airport
+=> #<Airport:0x00007f8c7e963a68
+ @capacity=1,
+ @planes=[#<Plane:0x00007f8c7f9d63a0 @airport_id=70120697961780>],
+ @weather="sunny",
+ @weather_station=#<WeatherStation:0x00007f8c7e963a40>>
+```
+```
+"Order the plane to takeoff"
+
+[14] pry(main)> airport.order_takeoff(plane_1)
+RuntimeError: Takeoff prevented, stormy weather
+from /.../airport_challenge/lib/airport.rb:24:in `order_takeoff'
+
+"Could not take off since the GOD OF RNG said the weather was stormy. We can check that"
+
+[16] pry(main)> airport
+=> #<Airport:0x00007f8c7e963a68
+ @capacity=1,
+ @planes=[#<Plane:0x00007f8c7f9d63a0 @airport_id=70120697961780>],
+ @weather="stormy",
+ @weather_station=#<WeatherStation:0x00007f8c7e963a40>>
+
+"@weather attribute confirms that it is stormy"
+```
+
+```
+"Let's try again"
+ 
+[20] pry(main)> airport.order_takeoff(plane_1)
+=> #<Plane:0x00007f8c7f9d63a0 @airport_id=nil>
+
+"Check the status of the airport after takeoff"
+[21] pry(main)> airport
+=> #<Airport:0x00007f8c7e963a68
+ @capacity=1,
+ @planes=[],
+ @weather="sunny",
+ @weather_station=#<WeatherStation:0x00007f8c7e963a40>>
+```
+
+```ruby
+"Create a second plane to test capacity and edge cases"
+
+[22] pry(main)> plane2 = Plane.new
+=> #<Plane:0x00007f8c7fa02220>
+
+```
+
+```ruby
+"Park the first plane and then try to park the second"
+
+[23] pry(main)> airport.order_landing(plane_1)
+=> [#<Plane:0x00007f8c7f9d63a0 @airport_id=70120697961780>]
+[24] pry(main)> airport.order_landing(plane2)
+RuntimeError: Cannot land, airport full
+from /.../airport_challenge/lib/airport.rb:17:in `order_landing'
+
+```
+
+``` 
+"Create a second airport to check the airport ID verification"
+
+[25] pry(main)> airport2 = Airport.new
+=> #<Airport:0x00007f8c7e0dae50
+ @capacity=1,
+ @planes=[],
+ @weather_station=#<WeatherStation:0x00007f8c7e0dae28>>
+
+"Order plane_1 to take off, order issued by airport2"
+
+[28] pry(main)> airport2.order_takeoff(plane_1)
+RuntimeError: Instructions received from wrong airport
+from /.../airport_challenge/lib/plane.rb:15:in `takeoff'
+
+```
+
+And so on... 
 
 
 Instructions
