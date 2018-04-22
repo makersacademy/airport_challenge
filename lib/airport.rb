@@ -3,6 +3,7 @@ require_relative './plane'
 class Airport
 
   DEFAULT_CAPACITY = 20
+  attr_reader :planes
   attr_accessor :capacity
 
   def initialize
@@ -20,7 +21,7 @@ class Airport
 
   def take_off(plane)
     fail 'no planes at airport' if empty?
-    fail 'plane already flying' if flying?(plane)
+    fail 'plane not at airport' unless at_airport?(plane)
     fail 'cannot take off due to stormy conditions' if stormy?
     plane.take_off
     @planes.delete(plane)
@@ -43,6 +44,10 @@ private
 
   def flying?(plane)
     plane.flying?
+  end
+
+  def at_airport?(plane)
+    @planes.include?(plane)
   end
 
 end
