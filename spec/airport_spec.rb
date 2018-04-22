@@ -27,6 +27,10 @@ describe Airport do
     it 'Has an array for planes (#landed_planes) that is empty on set-up' do
       expect(subject.landed_planes).to be_empty
     end
+    
+    it 'States whether the weather is acceptable' do
+      expect(subject.weather_acceptable).to be(true).or be(false)
+    end
   end
 
   describe 'Can instruct a plane to land' do
@@ -44,8 +48,9 @@ describe Airport do
       expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Airport at capacity')
     end
 
-    it 'States whether the weather is exceptable' do
-      expect(subject.weather_acceptable).to be(true).or be(false)
+    it 'Throws an error if the plane has already landed in the airport' do
+      subject.land_plane(plane)
+      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Plane in airport')
     end
   end
 
@@ -54,6 +59,11 @@ describe Airport do
 
     it 'Plane takes off' do
       expect(subject.plane_take_off(plane)).to eq "#{plane} plane has taken off"
+    end
+
+    it 'Taken off plane no longer in #landed_planes' do
+      subject.plane_take_off(plane)
+      expect(subject.landed_planes).to_not include(plane)
     end
 
     it 'Throws an error if the plane was not in the airport' do
@@ -66,11 +76,11 @@ describe Airport do
     before { subject.change_weather(false) }
 
     it 'Planes can not take off' do
-      expect { subject.plane_take_off(plane) }.to raise_error(RuntimeError, 'Weather condition not acceptable')
+      expect { subject.plane_take_off(plane) }.to raise_error(RuntimeError, 'Weather not acceptable')
     end
 
     it 'Planes can not land' do
-      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Weather condition not acceptable')
+      expect { subject.land_plane(plane) }.to raise_error(RuntimeError, 'Weather not acceptable')
     end
 
   end
