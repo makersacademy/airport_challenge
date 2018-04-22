@@ -33,10 +33,9 @@ describe Airport, :airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'should initialize value in capacity' do
-      capacity_two = 10
-      airport = Airport.new(capacity_two)
-      expect(airport.capacity).to eq capacity_two
+    it 'doesnt let a plane land if airport is at full capacity' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(current_plane, good_weather) }
+      expect { subject.land(current_plane, good_weather) }.to raise_error 'Airport is full!'
     end
   end
 
