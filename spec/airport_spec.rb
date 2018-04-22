@@ -9,6 +9,19 @@ describe Airport do
     allow(plane).to receive(:take_off)
   end
 
+  describe '#initilize' do
+
+    it 'sets the capacity' do
+      airport2 = Airport.new(:capacity => 5)
+      expect(airport2.capacity).to eq 5
+    end
+
+    it 'sets to the default capacity if not given' do
+      expect(airport.capacity).to eq Airport::DEFAULTS[:capacity]
+    end
+
+  end
+
   describe '#land' do
     context "when the weather is good" do
       before { allow(airport).to receive(:stormy?).and_return(false) }
