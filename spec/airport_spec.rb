@@ -23,8 +23,12 @@ describe Airport do
       expect { subject.land(a_plane, stormy_weather_value) }.to raise_error("It's too dangerous to land!")
     end
     it 'should raise error message when the airport is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(a_plane, sunny_weather_value) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new, sunny_weather_value) }
       expect { subject.land(a_plane, sunny_weather_value) }.to raise_error("The airport is full!")
+    end
+    it 'should raise error message when the plane has already landed' do
+      subject.land(a_plane, sunny_weather_value)
+      expect {subject.land(a_plane, sunny_weather_value)}.to raise_error("This plane has already landed!")
     end
   end
 
