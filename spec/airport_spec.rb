@@ -11,8 +11,14 @@ describe Airport do
 
   describe '#lands_plane' do
     it 'shows plane in airport once it has landed' do
-      subject.lands_plane(plane)
+      subject.lands_plane(plane, clear_weather)
       expect(subject.planes.last).to eq plane
+    end
+
+    it 'shows plane not in the airport because weather is stormy' do
+      allow(stormy_weather).to receive(:condition) { "stormy" }
+      expect { subject.lands_plane(plane, stormy_weather) }.to raise_error("Weather is stormy. Plane cannot land.")
+      expect(subject.planes.include?(plane)).to eq false
     end
   end
 

@@ -6,7 +6,9 @@ class Airport
     @planes = []
   end
 
-  def lands_plane(plane)
+  def lands_plane(plane, weather)
+    weather = weather.condition
+    raise "Weather is stormy. Plane cannot land." if weather == "stormy"
     plane.land
     @planes << plane
   end
@@ -18,5 +20,4 @@ class Airport
     @planes.delete(plane)
     "#{plane} not in airport" unless @planes.include?(plane)
   end
-  
 end
