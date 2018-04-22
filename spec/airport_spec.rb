@@ -5,6 +5,7 @@ require './docs/plane.rb'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:plane2) { double :plane }
 
   it { is_expected.to respond_to :weather }
 
@@ -22,6 +23,9 @@ describe Airport do
   end
 
   describe '#stationed_planes' do
+    it 'should only inlcude planes' do
+      expect(airport.stationed_planes).to all(be_instance_of Plane)
+    end
     it 'should allow the controller to see which planes are stationed in the airport' do
       expect(airport.stationed_planes).to eq []
     end
@@ -29,7 +33,6 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane' do
-    #  stationed_planes = []
       allow(airport.weather).to receive(:stormy?) { false }
       airport.land(plane)
       expect(airport.stationed_planes).to eq [plane]
@@ -40,23 +43,41 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error "Airport full"
     end
     it 'raises an error when the weather is stormy' do
-      allow(subject.weather).to receive(:stormy?) { true }
-      expect { subject.land(Plane.new) }.to raise_error "Weather too stormy to land"
+      allow(airport.weather).to receive(:stormy?) { true }
+      expect { airport.land(Plane.new) }.to raise_error "Weather too stormy to land"
+    end
+    it 'raises an error if the plane has already landed' do
+      allow(airport.weather).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error "That plane has already landed"
     end
   end
 
   describe '#take_off' do
     it 'instructs a plane to take off' do
-    #  stationed_planes = [plane]
       allow(airport.weather).to receive(:stormy?) { false }
+      allow(airport.stationed_planes).to receive(:includes_plane?) { true }
+      expect(airport.take_off(plane)).to eq plane
+    end
+    it 'removes the plane from the airport' do
+      allow(airport.weather).to receive(:stormy?) { false }
+      allow(airport.stationed_planes).to receive(:includes_plane?) { true }
       airport.take_off(plane)
       expect(airport.stationed_planes).to eq []
     end
+    it 'raises an error if the plane is not stationed at the airport' do
+      allow(airport.weather).to receive(:stormy?) { false }
+      allow(airport.stationed_planes).to receive(:includes_plane?) { false }
+      expect { airport.take_off(plane) }.to raise_error "That plane is not stationed in this airport"
+    end
     it 'raises an error when the weather is stormy' do
-    #  stationed_planes = [plane]
       allow(airport.weather).to receive(:stormy?) { true }
       expect { airport.take_off(plane) }.to raise_error "Weather too stormy to take off"
-    #  expect(airport.stationed_planes).to eq [plane]
     end
+  #  it 'still contains the plane if the plane cannot take of due to stormy weather' do
+  #    stationed_planes = [plane]
+  #    allow(airport.weather).to receive(:stormy?) { true }
+  #    expect(airport.stationed_planes).to eq [plane]
+  #  end
   end
 end

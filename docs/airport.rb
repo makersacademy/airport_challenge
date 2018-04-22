@@ -15,17 +15,23 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
     raise "Weather too stormy to land" if @weather.stormy?
+    raise "That plane has already landed" if @stationed_planes.include?(plane)
     @stationed_planes << plane
   end
 
   def take_off(plane)
     raise "Weather too stormy to take off" if @weather.stormy?
+    raise "That plane is not not stationed in this airport" unless @stationed_planes.include?(plane)
     @stationed_planes.delete(plane)
-    @stationed_planes
+    plane
   end
 
   private
   def full?
     @stationed_planes.length >= @capacity
+  end
+
+  def includes_plane
+    @stationed_planes.include?(plane)
   end
 end
