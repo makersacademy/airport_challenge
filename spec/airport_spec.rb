@@ -36,6 +36,13 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error(RuntimeError,
         "Unable to land due to weather conditions")
     end
+
+    it 'should raise an error when hangar has reached its capacity' do
+      expect_any_instance_of(weather).to receive(:generate).and_return('sunny')
+      airport.instance_variable_set(:@hangar, [Plane.new, Plane.new, Plane.new])
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Unable to land. Hangar is full")
+    end
+
   end
 
   describe ' #takeoff ' do
@@ -63,20 +70,17 @@ describe Airport do
   end
 end
 
-# Bugs to fix: make sure I can't take off the plane if not in airport
-#              can't land if already in airport
-#              - (include method?)*
-#              change my weather generator to use rand numbers
+# Bugs to fix:
 #
 # Use a random number generator to set the weather (it is normally
 # sunny but on rare occasions it may be stormy). In your tests, you'll
 # need to use a stub to override random weather to ensure consistent
 # test behaviour.
 #
-# planes can only take off from airports they are in
-# planes that are already flying cannot take off
-# *and/or be in an airport
-# planes that are landed cannot land again and must be in an airport
+# - planes can only take off from airports they are in
+# - planes that are already flying cannot take off
+# * and/or be in an airport
+# - planes that are landed cannot land again and must be in an airport
 #
 # For overriding random weather behaviour, please read the documentation
 # to learn how to use test doubles:

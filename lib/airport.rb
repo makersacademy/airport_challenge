@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  DEFAULT_CAPACITY = 30
+  DEFAULT_CAPACITY = 3
   attr_reader :hangar
   attr_accessor :capacity
 
@@ -15,7 +15,10 @@ class Airport
 
   def land(plane)
     raise "Unable to land due to weather conditions" if stormy?
+    raise "Unable to land. Hangar is full" if @hangar.length >= @capacity
+
     @hangar << plane
+
   end
 
   def takeoff(plane)
