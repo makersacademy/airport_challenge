@@ -127,7 +127,7 @@ def plane_landed_edgecase
   p plane.landed
 end
 
-# plane_landed_edgecase
+plane_landed_edgecase
 
 # As the system designer
 # So that the software is robust

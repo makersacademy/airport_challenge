@@ -48,7 +48,7 @@ describe Airport do
     it 'raises an error when plane tries lands when it is already in airport' do
       subject.plane_lands(plane, weather)
       expect { subject.plane_lands(plane, weather)
-      }.to raise_error "Plane is already landed in airport!"
+      }.to raise_error "Plane is already landed in this airport!"
     end
 
   end
