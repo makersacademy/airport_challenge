@@ -2,7 +2,9 @@ require 'airport'
 
 describe Airport, :airport do
   let(:current_plane) { instance_double Plane, land: false }
-  let(:land_plane) { instance_double Plane, take_off: true }
+  let(:next_fly_plane) { instance_double Plane, land: false }
+  let(:land_plane) { instance_double Plane, takeoff: true }
+  let(:next_land_plane) { instance double Plane, takeoff: true}
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
 
@@ -29,6 +31,12 @@ describe Airport, :airport do
   describe '#capacity' do
     it 'should default to the capacity of 20' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'should initialize value in capacity' do
+      capacity_two = 10
+      airport = Airport.new(capacity_two)
+      expect(airport.capacity).to eq capacity_two
     end
   end
 
