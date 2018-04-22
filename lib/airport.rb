@@ -1,4 +1,5 @@
 require_relative './plane'
+require_relative './weather'
 
 class Airport
 
@@ -6,23 +7,18 @@ class Airport
   attr_reader :planes
   attr_accessor :capacity
 
-  def initialize
-    @planes = []
-    @capacity = DEFAULT_CAPACITY
-  end
-
-  def land(plane)
+  def land(plane, weather)
     fail 'cannot land as the airport is full' if full?
     fail 'plane already landed' unless flying?(plane)
-    fail 'cannot land due to stormy conditions' if stormy?
+    fail 'cannot land due to stormy conditions' if weather.stormy?
     plane.land
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(plane, weather)
     fail 'no planes at airport' if empty?
     fail 'plane not at airport' unless at_airport?(plane)
-    fail 'cannot take off due to stormy conditions' if stormy?
+    fail 'cannot take off due to stormy conditions' if weather.stormy?
     plane.take_off
     @planes.delete(plane)
     @planes
@@ -30,8 +26,10 @@ class Airport
 
 private
 
-  def stormy?
-    rand(10) == 9
+  def initialize
+    @planes = []
+    @capacity = DEFAULT_CAPACITY
+
   end
 
   def full?

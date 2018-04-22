@@ -1,7 +1,7 @@
 class Plane
 
-  def initialize
-    @flying = true
+  def flying?
+    @flying
   end
 
   def land
@@ -12,8 +12,10 @@ class Plane
     @flying = true
   end
 
-  def flying?
-    @flying
+private
+
+  def initialize
+    @flying = true
   end
 
 end
