@@ -133,14 +133,15 @@ end
 # So that the software is robust
 # Planes that are already in another airport cannot land in a new airport
 
-# def plane_landed_edgecase2
-#   plane = Plane.new(true)
-#   airport = Airport.new
-#   airport2 = Airport.new
-#   airport.planes << plane
-#   airport.plane_lands(plane)
-#   p airport.planes
-#   p plane.landed
-# end
-#
-# # plane_landed_edgecase2
+def plane_landed_edgecase2
+  plane = Plane.new(true)
+  airport = Airport.new
+  airport2 = Airport.new
+  airport.planes << plane
+  airport2.plane_lands(plane)
+  p airport.planes
+  p airport2.planes
+  p plane.landed
+end
+
+plane_landed_edgecase2
