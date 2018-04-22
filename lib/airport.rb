@@ -1,9 +1,10 @@
 class Airport
 
-attr_reader :planes
+attr_accessor :planes, :weather
 
 def initialize
   @planes = []
+  @weather = "sunny"
 end
 
 def land(plane)
@@ -11,6 +12,7 @@ def land(plane)
 end
 
 def take_off(plane)
+  raise "It is too stormy for the plane to take off" if self.weather == "stormy"
   @planes.delete(plane)
 end
 
