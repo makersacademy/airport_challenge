@@ -2,9 +2,14 @@ Airport Challenge
 =================
 
 Aim
------
+----
 
-The aim of this weekend challenge was to solidify our understanding of test driven development, as well as concepts such as mock tests within RSpec. In order to complete this task, I first defined what I believed the main objects would be: Airport, Plane, Weather. I also noted down the messages from the user stories that I believed would become instance methods; for example: land, take_off etc.
+The aim of this weekend challenge was to solidify our understanding of test driven development, as well as concepts such as mock tests within RSpec.
+
+Approach
+--------
+
+In order to complete this task, I first defined what I believed the main objects would be: Airport, Plane, Weather. I also noted down the messages from the user stories that I believed would become instance methods; for example: land, take_off etc.
 
 I completed the majority of this task without ever creating a Plane class, so that I could practice the use of doubles within my mock tests. This allowed me to narrow my tests down to testing the outcomes of my Airport methods without relying on external input from instances of Plane.
 
