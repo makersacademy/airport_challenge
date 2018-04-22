@@ -12,7 +12,7 @@ class Plane
   end
 
   def land
-
+  
   end
 
 end
