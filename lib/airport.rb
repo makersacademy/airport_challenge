@@ -2,15 +2,15 @@ require 'weather'
 
 class Airport
   MAX_CAPACITY = 100
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  def initialize(capacity = MAX_CAPACITY)
     @planes = []
-    @capacity = MAX_CAPACITY
+    @capacity = capacity
   end
 
   def land(plane)
-    land_errors(plane)
+    landing_errors(plane)
     @planes << plane
     @planes
   end
@@ -31,7 +31,7 @@ class Airport
     @planes.length >= @capacity
   end
 
-  def land_errors(plane)
+  def landing_errors(plane)
     fail 'This airport is at maximum capacity' if full?
     fail 'This plane has already landed' if plane_in_airport?(plane)
     fail 'The weather does not permit landing' if weather.stormy?
