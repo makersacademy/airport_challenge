@@ -20,7 +20,6 @@ describe Plane do
   end
 
   describe '#takeoff method' do
-
     before(:each) do
       subject.land(airport.object_id)
     end
