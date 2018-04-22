@@ -1,9 +1,17 @@
 class Weather
 
-  attr_reader :condition
+  attr_reader :stormy, :fine
 
-  def initialize(condition = rand(100))
-    @condition = condition
+  def stormy?
+    random_condition == :stormy
+  end
+
+  private
+
+  CONDITIONS = [:stormy, :fine, :fine, :fine, :fine]
+
+  def random_condition
+    CONDITIONS.sample
   end
 
 end

@@ -4,7 +4,8 @@ describe Airport do
 
   subject(:airport) { Airport.new }
   DEFAULT_CAPACITY = 2
-  let(:weather) { double :weather, condition: 100 }
+  let(:weather) { double :weather, stormy?: false }
+  before { allow(Weather).to receive(:new).and_return(weather) }
 
   describe '#initialize' do
 
@@ -24,7 +25,7 @@ describe Airport do
     let(:plane) { double :plane, landed: false, land: true }
 
     it 'shows plane in airport once it lands' do
-      airport.plane_lands(plane, weather)
+      airport.land(plane)
       expect(airport.planes.include? plane).to eq true
     end
 
@@ -32,22 +33,22 @@ describe Airport do
     let(:landed_plane) { double :plane, landed: true, take_off: false }
 
     it 'shows plane has not landed in airport due to bad weather conditions' do
-      allow(weather).to receive(:condition) { 5 }
-      expect { airport.plane_lands(plane_prevent_land, weather)
+      allow(weather).to receive(:stormy?) { true }
+      expect { airport.land(plane_prevent_land)
       }.to raise_error "Can't land: Bad weather conditions!"
       expect(airport.planes.include? plane_prevent_land).to eq false
     end
 
     it 'shows plane has not landed in airport when airport is full' do
       airport.planes.concat [landed_plane, landed_plane]
-      expect { airport.plane_lands(plane_prevent_land, weather)
+      expect { airport.land(plane_prevent_land)
       }.to raise_error "Can't land: Airport is full!"
       expect(airport.planes.include? plane_prevent_land).to eq false
     end
 
     it 'raises an error when plane tries lands when it is already in airport' do
-      airport.plane_lands(plane, weather)
-      expect { airport.plane_lands(plane, weather)
+      airport.land(plane)
+      expect { airport.land(plane)
       }.to raise_error "Plane is already landed in this airport!"
     end
 
@@ -59,7 +60,7 @@ describe Airport do
 
     it 'shows plane has left airport once it takes off in good weather' do
       airport.planes << landed_plane
-      airport.plane_take_off(landed_plane, weather)
+      airport.take_off(landed_plane)
       expect(airport.planes.include? landed_plane).to eq false
     end
 
@@ -67,8 +68,8 @@ describe Airport do
 
     it 'shows plane has not left airport due to bad weather conditions' do
       airport.planes << landed_plane_badweather
-      allow(weather).to receive(:condition) { 5 }
-      expect { airport.plane_take_off(landed_plane_badweather, weather)
+      allow(weather).to receive(:stormy?) { true }
+      expect { airport.take_off(landed_plane_badweather)
       }.to raise_error "Can't take off: Bad weather conditions!"
       expect(airport.planes.include? landed_plane_badweather).to eq true
     end
@@ -77,7 +78,7 @@ describe Airport do
 
     it 'raises error when plane takes off from airport it is not in' do
       airport.planes << landed_plane
-      expect { airport.plane_take_off(another_landed_plane, weather)
+      expect { airport.take_off(another_landed_plane)
       }.to raise_error "Plane is not landed in this airport!"
     end
 
