@@ -3,7 +3,6 @@ require_relative './plane'
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_reader :planes
   attr_accessor :capacity
 
   def initialize
@@ -13,7 +12,7 @@ class Airport
 
   def land(plane)
     fail 'cannot land as the airport is full' if full?
-    fail 'plane already landed' if !flying?(plane)
+    fail 'plane already landed' unless flying?(plane)
     fail 'cannot land due to stormy conditions' if stormy?
     plane.land
     @planes << plane
