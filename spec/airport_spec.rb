@@ -1,6 +1,4 @@
 require 'airport'
-require 'plane'
-require 'weather'
 
 describe Airport do
 
@@ -15,16 +13,16 @@ describe Airport do
   end
 
   describe '#land' do
-    plane = Plane.new
     it 'raises error if stormy during landing' do
+      plane = double 'Plane.new'
       subject = Airport.new(1, true) # capacity, stormy_weather
       expect { subject.land(plane) }.to raise_error RuntimeError
     end
   end
 
   describe "#full?"
-  plane = Plane.new
   it 'raises error if airport full' do
+    plane = double 'Plane.new'
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error RuntimeError
   end
