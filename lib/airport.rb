@@ -4,5 +4,6 @@ class Airport
   end
 
   def take_off
+    Plane.new
   end
 end
