@@ -114,7 +114,7 @@ def plane_take_off_edgecase
   p plane2.landed
 end
 
-plane_take_off_edgecase
+# plane_take_off_edgecase
 
 # As the system designer
 # So that the software is robust
@@ -122,10 +122,9 @@ plane_take_off_edgecase
 
 def plane_landed_edgecase
   plane = Plane.new(true)
-  plane2 = Plane.new(true)
   airport = Airport.new
   airport.planes << plane
-  airport.plane_landed(plane)
+  airport.plane_lands(plane)
   p airport.planes
   p plane.landed
 end
