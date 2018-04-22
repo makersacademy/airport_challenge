@@ -10,10 +10,10 @@ class Airport
   end
 
   def take_off
-    if @plane.nil?
-      return nil
+    if @plane.empty?
+      fail "No planes avaliable for take off."
     else
-      @plane = nil
+      @plane
     end
   end
 
