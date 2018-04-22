@@ -1,14 +1,19 @@
 require 'airport'
 
-describe Airport do
+describe Airport, :airport do
+  let(:current_plane) { instance_double Plane, land: false }
+  let(:land_plane) { instance_double Plane, take_off: true }
+  let(:stormy_weather) { instance_double Weather, stormy?: true }
+  let(:good_weather) { instance_double Weather, stormy?: false }
+  
   context "does the plane land at the airport?" do
     it { is_expected.to respond_to(:land).with(1).argument }
     let(:plane) { instance_double Plane }
 
   describe '#land' do
     it 'is expected to land planes' do
-      subject.land(flying_plane, calm_weather)
-      expect(subject.planes).to include flying_plane
+      subject.land(current_plane, good_weather)
+      expect(subject.planes).to include current_plane
     end
 
     it 'is expected in stormy weather for planes not to land', :stormy_land do
@@ -43,8 +48,8 @@ describe Airport do
     end
 
     it 'is expected not to let planes take off in stormy weather', :storm_take_off do
-      subject.planes = [landed_plane]
-      expect { subject.takeoff(landed_plane, stormy_weather) }.to raise_error "It's stormy! No take off!"
+      subject.planes = [land_plane]
+      expect { subject.takeoff(land_plane, stormy_weather) }.to raise_error "It's stormy! No take off!"
     end
   end
 end

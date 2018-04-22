@@ -28,4 +28,4 @@ def stormy_takeoff
   airport = Airport.new
   airport.land(plane, Weather.new(34))
   airport.take_off(plane, Weather.new(36))
-+end
+end
