@@ -14,6 +14,7 @@ class Airport
     planes_in_airport = planes.count
     raise "Weather is stormy. Plane cannot land." if weather == "stormy"
     raise "Airport full. Plane cannot land." if planes_in_airport >= @capacity
+    raise "Plane already in airport." if @planes.include?(plane)
     plane.land
     @planes << plane
   end
@@ -21,7 +22,7 @@ class Airport
   def instructs_takeoff(plane, weather)
     weather = weather.condition
     raise "Weather is stormy. Plane cannot take off." if weather == "stormy"
-    raise "Plane not in airport" unless @planes.include?(plane)
+    raise "Plane not in airport." unless @planes.include?(plane)
     plane.take_off
     @planes.delete(plane)
   end
