@@ -14,4 +14,8 @@ def take_off(plane)
   @planes.delete(plane)
 end
 
+def is_plane_present(plane)
+  @planes.include?(plane)
+end
+
 end
