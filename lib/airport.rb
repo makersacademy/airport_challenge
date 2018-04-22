@@ -15,7 +15,7 @@ class Airport
 
   def land(plane)
     raise "Unable to land due to weather conditions" if stormy?
-    raise "Unable to land. Hangar is full" if @hangar.length >= @capacity
+    raise "Unable to land. Hangar is full" if full_capacity?
 
     @hangar << plane
   end
@@ -36,6 +36,10 @@ class Airport
 
   def available?(plane)
     @hangar.include?(plane)
+  end
+
+  def full_capacity?
+    @hangar.length >= @capacity
   end
 
 end
