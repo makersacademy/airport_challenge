@@ -3,7 +3,6 @@ describe Airport do
   let(:weather) { instance_double("Weather") }
   let(:airport) { Airport.new(:weather_forecast => weather) }
 
-
   before do
     allow(plane).to receive(:land).with(an_instance_of(Airport))
     allow(plane).to receive(:take_off)
@@ -106,7 +105,7 @@ describe Airport do
       end
 
       context 'when the plane is in the air' do
-        before { allow(plane).to receive(:flying?).and_return(true)}
+        before { allow(plane).to receive(:flying?).and_return(true) }
 
         it "raises an error" do
           expect { airport.release(plane) }.to raise_error(PlaneError, "Plane already in-flight")
@@ -122,11 +121,4 @@ describe Airport do
     end
   end
 
-
-  describe '#stormy?' do
-    it 'request weather from assigned weather forecaster' do
-      expect(weather).to receive(:stormy?)
-      airport.stormy?
-    end
-  end
 end

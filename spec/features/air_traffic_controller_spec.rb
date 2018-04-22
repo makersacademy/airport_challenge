@@ -54,7 +54,7 @@ RSpec.feature "Air traffic controller" do
     airport_1.land(plane_2)
     expect(plane_2.flying?).to be false
     expect(plane_2.location?).to be airport_1
-    expect(airport_1.planes).to contain_exactly(plane_1, plane_2 )
+    expect(airport_1.planes).to contain_exactly(plane_1, plane_2)
   end
 
   scenario "Won't let a plane take off from another airport or when it is already in the air" do

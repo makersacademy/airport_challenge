@@ -4,7 +4,7 @@ require_relative './weather'
 class Airport
   DEFAULTS = { capacity: 10, weather_forecast: Weather.new }
 
-  attr_reader :planes, :weather_forecast
+  attr_reader :planes
   attr_accessor :capacity
 
   def initialize(args = Hash.new)
@@ -29,6 +29,10 @@ class Airport
     plane.take_off
     planes.delete(plane)
   end
+
+  private
+
+  attr_reader :weather_forecast
 
   def registered?(plane)
     planes.include?(plane)

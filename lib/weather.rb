@@ -7,7 +7,7 @@ class Weather
   private
 
   def generate_weather
-    rand(10) > 7 ? true : false
+    rand(10) > 7 
   end
 
 end
