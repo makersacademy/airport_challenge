@@ -20,6 +20,7 @@ class Airport
   end
 
   def plane_take_off(plane, weather = Weather.new)
+    raise "Plane is not landed in this airport!" unless planes.include? plane
     raise "Can't take off: Bad weather conditions!" if weather.condition < 10
     can_take_off = weather.condition > 10
     plane.take_off if can_take_off

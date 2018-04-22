@@ -119,3 +119,15 @@ plane_take_off_edgecase
 # As the system designer
 # So that the software is robust
 # Planes that are landed cannot land again and must be in airport
+
+def plane_landed_edgecase
+  plane = Plane.new(true)
+  plane2 = Plane.new(true)
+  airport = Airport.new
+  airport.planes << plane
+  airport.plane_landed(plane)
+  p airport.planes
+  p plane.landed
+end
+
+plane_landed_edgecase
