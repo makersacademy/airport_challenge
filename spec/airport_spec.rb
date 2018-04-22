@@ -7,8 +7,12 @@ describe Airport do
 
   describe '#land' do
     it 'is expected to land planes' do
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      subject.land(flying_plane, calm_weather)
+      expect(subject.planes).to include flying_plane
+    end
+
+    it 'is expected in stormy weather for planes not to land', :stormy_land do
+      expect { subject.land(current_plane, stormy_weather) }.to raise_error "It's stormy! No landing!"
     end
 
     it 'stores the planes when they land' do
