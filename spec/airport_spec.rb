@@ -110,6 +110,15 @@ describe Airport do
 
     end
 
+    describe 'setting the capacity' do
+
+      it 'changes th capacity' do
+        airport.capacity = 25
+        expect(airport.capacity).to eq 25
+      end
+
+    end
+
   end
 
 
