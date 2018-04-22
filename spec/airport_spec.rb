@@ -37,10 +37,11 @@ describe Airport do
       subject.land(a_plane, sunny_weather_value)
       expect(subject).to respond_to(:take_off).with(2).argument
     end
-
-#    other_airport = Airport.new
-#    other_airport.land(a_plane, sunny_weather_value)
-#    expect { subject.take_off(a_plane, sunny_weather_value) }.to raise_error("This plane is in a different airport")
+    it 'should raise an error when the plane is in a different airport' do
+      other_airport = Airport.new
+      other_airport.land(a_plane, sunny_weather_value)
+      expect { subject.take_off(a_plane, sunny_weather_value) }.to raise_error("This plane is in a different airport!")
+    end
   end
 
   describe "#planes" do
