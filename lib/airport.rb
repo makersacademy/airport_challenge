@@ -5,7 +5,7 @@ class Airport
     @plane = plane
   end
 
-  def land(plane)
+  def land
     fail "Plane already landed." if @plane == plane
     @plane = plane
   end
