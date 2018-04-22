@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) { double :plane, flying: true, land: false }
   let(:plane_in_airport) { double :plane, flying: false, take_off: true }
   let(:weather) { double :weather, condition: "clear" }
+  let(:another_plane) { double :plane, flying: false, take_off: true }
 
   describe '#initialize' do
     it 'sets a default capacity' do
@@ -61,6 +62,12 @@ describe Airport do
       expect { subject.instructs_takeoff(plane_in_airport, weather)
       }.to raise_error("Weather is stormy. Plane cannot take off.")
       expect(subject.planes.include?(plane_in_airport)).to eq true
+    end
+
+    it 'ensures planes can only take off from the airport they are in' do
+      subject.planes << plane_in_airport
+      expect { subject.instructs_takeoff(another_plane, weather)
+      }.to raise_error "Plane not in airport"
     end
   end
 end
