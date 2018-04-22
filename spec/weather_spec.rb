@@ -8,6 +8,7 @@ describe Weather, :weather do
       (Weather::STORMY_WIND_SPEED..Weather::MAX_WIND_SPEED).each do |wind_speed|
         weather = Weather.new(wind_speed)
         expect(weather).to be_stormy
+      end
     end
   end
 

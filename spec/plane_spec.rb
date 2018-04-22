@@ -27,7 +27,7 @@ describe Plane, :plane do
     end
 
     it 'will raise error if that plane is already flying' do
-      expect { subject.take_off }.to raise_error 'Plane is already in the air'
+      expect { subject.takeoff }.to raise_error 'Plane is already in the air'
     end
   end
 end

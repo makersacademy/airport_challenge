@@ -10,7 +10,7 @@ class Airport
 
   def land(plane, weather)
     check_weather(weather)
-    raise 'Airport full.' if airport_full?
+    raise 'Airport is full!' if airport_full?
     plane.land
     @planes.push(plane)
   end
@@ -37,6 +37,6 @@ class Airport
   end
 
   def check_weather(weather)
-    raise "It's stormy!" if too_stormy?(weather)
+    raise 'Its stormy!' if too_stormy?(weather)
   end
 end

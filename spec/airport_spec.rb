@@ -4,7 +4,7 @@ describe Airport, :airport do
   let(:current_plane) { instance_double Plane, land: false }
   let(:next_fly_plane) { instance_double Plane, land: false }
   let(:land_plane) { instance_double Plane, takeoff: true }
-  let(:next_land_plane) { instance double Plane, takeoff: true}
+  let(:next_land_plane) { instance_double Plane, takeoff: true}
   let(:stormy_weather) { instance_double Weather, stormy?: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
 
@@ -15,7 +15,7 @@ describe Airport, :airport do
     end
 
     it 'is expected in stormy weather for planes not to land', :stormy_land do
-      expect { subject.land(current_plane, stormy_weather) }.to raise_error "It's stormy! No landing!"
+      expect { subject.land(current_plane, stormy_weather) }.to raise_error "Its stormy!"
     end
 
     it 'stores the planes when they land' do
@@ -31,7 +31,7 @@ describe Airport, :airport do
 
     it 'has a variable capacity on initialisation' do
       capacity_two = 10
-      airport = Airport.new(capcity_two)
+      airport = Airport.new(capacity_two)
       expect(airport.capacity).to eq capacity_two
     end
 
@@ -56,7 +56,7 @@ describe Airport, :airport do
     end
 
     it 'shouldnt land planes in stormy weather', :stormy_land do
-      expect { subject.land(current_plane, stormy_weather) }.to raise_error "It's stormy! No landing!"
+      expect { subject.land(current_plane, stormy_weather) }.to raise_error "Its stormy!"
     end
 
     it 'cant land planes in a full airport' do
@@ -72,12 +72,12 @@ end
 
     it 'is expected to return the plane thats just landed' do
       subject.planes = [land_plane]
-      expect(subject.take_off(land_plane, good_weather)).to eq land_plane
+      expect(subject.takeoff(land_plane, good_weather)).to eq land_plane
     end
 
     it 'is expected for planes to take off' do
-      subject.land(plane)
-      expect(subject.takeoff(plane)).to eq plane
+      subject.land(land_plane)
+      expect(subject.takeoff(land_plane)).to eq plane
     end
 
     it 'is expected for planes array to be empty after take off' do
@@ -87,8 +87,8 @@ end
     end
 
     it 'is expected to take away a plane after takeoff' do
-      subject.land(plane)
-      expect(subject.takeoff(plane)).to eq plane
+      subject.land(land_plane)
+      expect(subject.takeoff(land_plane)).to eq land_plane
     end
 
     it 'is expected to still contain one plane in array when another takes off' do
@@ -99,7 +99,7 @@ end
 
     it 'is expected not to let planes take off in stormy weather', :storm_take_off do
       subject.planes = [land_plane]
-      expect { subject.takeoff(land_plane, stormy_weather) }.to raise_error "It's stormy! No take off!"
+      expect { subject.takeoff(land_plane, stormy_weather) }.to raise_error "Its stormy!"
     end
 
     it "raises error if the plane taking off is not in airport", :no_plane do
