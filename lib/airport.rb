@@ -1,4 +1,5 @@
 require "weather"
+require "plane"
 
 class Airport
 
