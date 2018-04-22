@@ -1,15 +1,13 @@
+require_relative './randomiser'
+
 class Weather
-  attr_reader :wind_speed, :rand
+  attr_reader :wind_speed
 
   STORMY_WIND_SPEED = 36
-  MAX_WIND_SPEED = 40
-
-  def rand
-    @rand = Random.rand(61)
-  end
+  MAX_WIND_SPEED = 61
 
   def randomized_wind
-    @rand.rand_between(0, MAX_WIND_SPEED)
+    Randomizer.random_range(0, MAX_WIND_SPEED)
   end
 
   def initialize(wind_speed = randomized_wind)
