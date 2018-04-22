@@ -33,9 +33,8 @@ I made it my goal to use doubles and mocking in my tests to improve in this area
 
 ## What I would like to do to improve my program
 
-I would like to guard against more edge cases e.g. so I cannot take of a plane that is not stationed at an airport.
-I would like to refactor my code further.
-I would like to make sure my program would work for multiple planes.
+I would like to refactor my code further i.e. use blocks to set up stubbing behaviour that is shared across a number of tests.
+I would like to include tests to make sure my program would work for multiple planes.
 
 
 ## irb Transcript sample

@@ -26,9 +26,6 @@ describe Airport do
     it 'should only inlcude planes' do
       expect(airport.stationed_planes).to all(be_instance_of Plane)
     end
-    it 'should allow the controller to see which planes are stationed in the airport' do
-      expect(airport.stationed_planes).to eq []
-    end
   end
 
   describe '#land' do
@@ -56,12 +53,18 @@ describe Airport do
   describe '#take_off' do
     it 'instructs a plane to take off' do
       allow(airport.weather).to receive(:stormy?) { false }
+      airport.land(plane)
       expect(airport.take_off(plane)).to eq plane
     end
     it 'removes the plane from the airport' do
       allow(airport.weather).to receive(:stormy?) { false }
+      airport.land(plane)
       airport.take_off(plane)
       expect(airport.stationed_planes).to eq []
+    end
+    it 'raises an error when the plane is not stationed in the aiport' do
+      allow(airport.weather).to receive(:stormy?) { false }
+      allow(airport).to receive(:include?) { false }
     end
     it 'raises an error when the weather is stormy' do
       allow(airport.weather).to receive(:stormy?) { true }
