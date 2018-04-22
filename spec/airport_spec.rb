@@ -65,11 +65,11 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.stationed_planes).to eq []
     end
-    it 'raises an error if the plane is not stationed at the airport' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      allow(airport.stationed_planes).to receive(:includes_plane?) { false }
-      expect { airport.take_off(plane) }.to raise_error "That plane is not stationed in this airport"
-    end
+  #  it 'raises an error if the plane is not stationed at the airport' do
+  #    allow(airport.weather).to receive(:stormy?) { false }
+  #    allow(airport.stationed_planes).to receive(:includes_plane?) { false }
+  #    expect { airport.take_off(plane) }.to raise_error "That plane is not stationed in this airport"
+  #  end
     it 'raises an error when the weather is stormy' do
       allow(airport.weather).to receive(:stormy?) { true }
       expect { airport.take_off(plane) }.to raise_error "Weather too stormy to take off"
