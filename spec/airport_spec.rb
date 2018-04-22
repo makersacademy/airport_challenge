@@ -45,6 +45,12 @@ describe Airport do
       expect(subject.planes.include? plane_prevent_land).to eq false
     end
 
+    it 'raises an error when plane tries lands when it is already in airport' do
+      subject.plane_lands(plane, weather)
+      expect { subject.plane_lands(plane, weather)
+      }.to raise_error "Plane is already landed in airport!"
+    end
+
   end
 
   describe '#plane_take_off' do
@@ -74,6 +80,7 @@ describe Airport do
       expect { subject.plane_take_off(another_landed_plane, weather)
       }.to raise_error "Plane is not landed in this airport!"
     end
+
   end
 
 end
