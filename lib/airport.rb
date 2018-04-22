@@ -13,7 +13,7 @@ class Airport
     weather = weather.condition
     planes_in_airport = planes.count
     raise "Weather is stormy. Plane cannot land." if weather == "stormy"
-    raise "Airport is full. Plane cannnot land." if planes_in_airport >= 5
+    raise "Airport full. Plane cannot land." if planes_in_airport >= @capacity
     plane.land
     @planes << plane
   end

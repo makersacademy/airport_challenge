@@ -6,6 +6,17 @@ describe Airport do
   let(:plane_in_airport) { double :plane, flying: false, take_off: true }
   let(:weather) { double :weather, condition: "clear" }
 
+  describe '#initialize' do
+    it 'sets a default capacity' do
+      expect(subject.capacity).to eq DEFAULT_CAPACITY
+    end
+
+    it 'overrides default capacity' do
+      subject.capacity = 3
+      expect(subject.capacity).to eq 3
+    end
+  end
+
   describe '#lands_a_plane' do
     it 'shows plane in airport once it has landed' do
       subject.lands_a_plane(plane, weather)
@@ -23,8 +34,17 @@ describe Airport do
       subject.planes.concat [plane_in_airport, plane_in_airport,
         plane_in_airport, plane_in_airport, plane_in_airport]
       expect { subject.lands_a_plane(plane, weather)
-      }.to raise_error("Airport is full. Plane cannnot land.")
+      }.to raise_error("Airport full. Plane cannot land.")
       expect(subject.planes.include?(plane)).to eq false
+    end
+
+    it 'prevents landing a plane given new default capacity' do
+      subject.capacity = 3
+      subject.lands_a_plane(plane, weather)
+      subject.lands_a_plane(plane, weather)
+      subject.lands_a_plane(plane, weather)
+      expect { subject.lands_a_plane(plane, weather)
+      }.to raise_error("Airport full. Plane cannot land.")
     end
   end
 
