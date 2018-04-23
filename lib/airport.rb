@@ -10,7 +10,7 @@ class Airport
     @stormy_conditions = stormy_conditions
     @capacity = capacity
   end
-  
+
   def land(plane)
     fail "Weather stormy: unsafe to land." if @stormy_conditions == true
     @planes << plane unless full?
