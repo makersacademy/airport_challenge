@@ -53,20 +53,22 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'instructs a plane to take off' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      airport.land(plane)
-      expect(airport.take_off(plane)).to eq plane
-    end
-    it 'removes the plane from the airport' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.stationed_planes).to eq []
-    end
-    it 'raises an error when the plane is not stationed in the aiport' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      allow(airport).to receive(:include?) { false }
+    describe 'tests that require the weather to not be stormy' do
+      before do
+        allow(airport.weather).to receive(:stormy?) { false }
+      end
+      it 'instructs a plane to take off' do
+        airport.land(plane)
+        expect(airport.take_off(plane)).to eq plane
+      end
+      it 'removes the plane from the airport' do
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.stationed_planes).to eq []
+      end
+      it 'raises an error when the plane is not stationed in the aiport' do
+        allow(airport).to receive(:include?) { false }
+      end
     end
     it 'raises an error when the weather is stormy' do
       allow(airport.weather).to receive(:stormy?) { true }
