@@ -7,7 +7,7 @@ class Airport
   attr_reader :planes
   attr_accessor :capacity
 
-  def land(plane, weather)
+  def land(plane, weather = Weather.new)
     fail 'cannot land as the airport is full' if full?
     fail 'plane already landed' unless flying?(plane)
     fail 'cannot land due to stormy conditions' if weather.stormy?
@@ -15,7 +15,7 @@ class Airport
     @planes << plane
   end
 
-  def take_off(plane, weather)
+  def take_off(plane, weather = Weather.new)
     fail 'no planes at airport' if empty?
     fail 'plane not at airport' unless at_airport?(plane)
     fail 'cannot take off due to stormy conditions' if weather.stormy?
