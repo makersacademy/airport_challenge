@@ -8,10 +8,10 @@ describe Airport do
   let(:another_airport) { Airport.new }
   let(:a_plane) { Plane.new }
   let(:another_plane) { Plane.new }
-  let(:stormy_weather) { double 'Weather', weather_check: rand(8..10) }
-  let(:stormy) { stormy_weather.weather_check }
-  let(:sunny_weather) { double 'Weather', weather_check: rand(1..7) }
-  let(:sunny) { sunny_weather.weather_check }
+  let(:stormy_weather) { double 'Weather', check: rand(8..10) }
+  let(:stormy) { stormy_weather.check }
+  let(:sunny_weather) { double 'Weather', check: rand(1..7) }
+  let(:sunny) { sunny_weather.check }
 
   # Run the tests
   describe "#capacity" do

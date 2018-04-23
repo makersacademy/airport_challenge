@@ -49,11 +49,12 @@ Create an airport (the default capacity of an airport is 5 planes, add an argume
 ```
 airport = Airport.new(7)
 plane = Plane.new
+weather = Weather.new
 ```
 You can then land the plane (providing the weather allows it!), then fly it.
 ```
-airport.land(plane, Weather.new.weather_check)
-airport.take_off(plane, Weather.new.weather_check)
+airport.land(plane, weather.check)
+airport.take_off(plane, weather.check)
 ```
 You can check the current planes landed at the airports by running
 ```
@@ -71,8 +72,3 @@ The commands will lead to errors in the following cases:
 4. A plane should not be able to take off in bad weather (>=8/10)
 5. A plane should not be able to land in bad weather (>=8/10)
 6. A plane should not be able to land if the airport is at full capacity.
-
-Comments
---------
-
-I chose not to initialize the weather when creating a new instance of an airport because I thought the weather should be checked every time a plane is taking off or landing. Therefore a new instance of the Weather must be checked every time the .land or.take_off method is called.
