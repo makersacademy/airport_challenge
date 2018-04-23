@@ -35,7 +35,7 @@ class Airport
   end
 
   def airport_full?
-    @hangar.length == @capacity
+    @hangar.length >= @capacity
   end
 
   def dock(plane)
