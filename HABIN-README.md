@@ -15,7 +15,8 @@ Airport Challenge
 Week one weekend challenge @ Makers Academy. Learning about TDD and OO programming. Includes concepts of classes (instantiating), modules (mixins) and doubles (mocking), using rspec and Ruby.
 
 ```
-Instructions for use, testing in irb shell:
+Testing package instructions:
+(irb shell testing in terminal)
 
 - Run command line
 - 'gem install bundle'
