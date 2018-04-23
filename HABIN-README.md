@@ -15,14 +15,11 @@ Airport Challenge
 Week one weekend challenge @ Makers Academy. Learning about TDD and OO programming. Includes concepts of classes (instantiating), modules (mixins) and doubles (mocking), using rspec and Ruby.
 
 ```
-Instructions for use:
+Instructions for use, testing in irb shell:
 
 - Run command line
 - 'gem install bundle'
 - 'run bundle'
-
-Test in irb shell
-
 - 'irb'
 - 'require './dir/airport.rb'' (change according to class you want to test methods for)
 - i.e. 'plane.land?'
@@ -32,6 +29,17 @@ Examples of creating instances in irb as follows:
 - plane = Plane.new
 - plane.takeoff > true
 - plane.land? > false
+
+```
+
+Methods for testing:
+
+- Plane: land, takeoff
+- Conditions: stormy_weather, good_weather, airport_full
+- Capacity can be overridden when needed?
+- Is a plane flying or landed?
+- Making sure a plane is taken away when taken off of planes array, returning that plane that has taken off
+- Making sure a plane that is landed is added to planes array, returning that plane that has landed
 
 ```
 
@@ -50,7 +58,7 @@ I started off by breaking down the client instructions into a table, putting nou
   5. Prevent plane landing, when airport is full
   6. Airport capacity can be overridden as appropriate
 
-I inferred that I would need two initial classes, one for Plane and one for Airport. I began working through each of the main client points, writing a feature test first, then the unit test in the spec file, then the methods in the class file. I made sure to test regularly and run Rubocop. I have also made frequent commits throughout with very clear commit messages. I have tried to use techniques that I learnt this week including Modules and Doubles. 
+I inferred that I would need two initial classes, one for Plane and one for Airport. I began working through each of the main client points, writing a feature test first, then the unit test in the spec file, then the methods in the class file. I made sure to test regularly and run Rubocop. I have also made frequent commits throughout with very clear commit messages. I have tried to use techniques that I learnt this week including Modules and Doubles.
 
 ```
 Original client instructions:
