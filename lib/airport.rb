@@ -12,13 +12,14 @@ class Airport
 
   def take_off(plane)
     fail "The weather is stormy" if weather.stormy?
-    fail "This plane is not in this airoport" unless landed(plane)
+    fail "This plane is not in this airport" unless landed(plane)
     @planes.delete(plane)
     puts "#{plane} has took off"
   end
 
   def land(plane)
     fail "The weather is stormy" if weather.stormy?
+    fail "This plane is already in this airport" if landed(plane)
     fail "Airport is full" if full?
     @planes << plane
   end
