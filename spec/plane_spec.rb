@@ -5,7 +5,7 @@ describe Plane do
   subject(:plane) { described_class.new }
 
   context "#land" do
-    it 'returns status for landed planes' do
+    it 'changes status for landed planes' do
       expect(subject.landing).to be_falsy
     end
 
@@ -13,11 +13,11 @@ describe Plane do
       subject.landing
       expect { subject.landing }. to raise_error "This plane has already landed"
     end
-
   end
 
   context "#flying" do
-    it 'returns status for flying plane' do
+    it 'changes status for flying plane' do
+      subject.landing
       expect(subject.flying).to be_truthy
     end
   end
