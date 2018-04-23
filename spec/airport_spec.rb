@@ -6,7 +6,11 @@ describe AirPort do
   let(:plane) {Plane.new}
 
   it 'shoud respond to land method' do
-    plane_in_bay = [plane]
-    expect(airport.land(plane)).to eq plane_in_bay
+    expect(airport.land(plane)).to include(plane)
   end
+  
+  it 'should respond to takeoff method' do
+    expect(airport).to respond_to(:takeoff).with(1).argument
+  end
+    
 end
