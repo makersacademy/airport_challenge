@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:flying_plane) { instance_double Plane, landing: true}
-  let(:landed_plane) { instance_double Plane, flying: true}
+  let(:flying_plane) { instance_double Plane, landing: true }
+  let(:landed_plane) { instance_double Plane, flying: true }
   let(:good_weather) { instance_double Weather, stormy?: false }
   let(:stormy_weather) { instance_double Weather, stormy?: true }
 

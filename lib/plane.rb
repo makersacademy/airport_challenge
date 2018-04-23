@@ -5,6 +5,7 @@ class Plane
   end
 
   def landing
+    fail "This plane has already landed" unless @flying
     @flying = false
   end
 
