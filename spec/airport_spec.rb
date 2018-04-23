@@ -35,7 +35,7 @@ describe Airport do
       end
       it 'lands a plane' do
         airport.land(plane)
-        expect(airport.stationed_planes).to eq [plane]
+        expect(airport.stationed_planes).to include plane
       end
       it 'raises an error when the airport is full' do
         allow(airport).to receive(:full?) { true }
