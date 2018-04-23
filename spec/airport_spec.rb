@@ -31,7 +31,7 @@ describe Airport do
   describe '#land' do
     describe 'a group of tests that require the weather to not be stormy' do
       before do
-        allow(airport.weather).to receive(:stormy?) { false }
+        allow(airport).to receive(:stormy?) { false }
       end
       it 'lands a plane' do
         airport.land(plane)
@@ -47,7 +47,7 @@ describe Airport do
       end
     end
     it 'raises an error when the weather is stormy' do
-      allow(airport.weather).to receive(:stormy?) { true }
+      allow(airport).to receive(:stormy?) { true }
       expect { airport.land(Plane.new) }.to raise_error "Weather too stormy to land"
     end
   end
@@ -55,7 +55,7 @@ describe Airport do
   describe '#take_off' do
     describe 'tests that require the weather to not be stormy' do
       before do
-        allow(airport.weather).to receive(:stormy?) { false }
+        allow(airport).to receive(:stormy?) { false }
       end
       it 'instructs a plane to take off' do
         airport.land(plane)
@@ -71,7 +71,7 @@ describe Airport do
       end
     end
     it 'raises an error when the weather is stormy' do
-      allow(airport.weather).to receive(:stormy?) { true }
+      allow(airport).to receive(:stormy?) { true }
       expect { airport.take_off(plane) }.to raise_error "Weather too stormy to take off"
     end
   end
