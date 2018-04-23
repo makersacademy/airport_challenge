@@ -29,24 +29,26 @@ describe Airport do
   end
 
   describe '#land' do
-    it 'lands a plane' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      airport.land(plane)
-      expect(airport.stationed_planes).to eq [plane]
-    end
-    it 'raises an error when the airport is full' do
-      allow(airport).to receive(:full?) { true }
-      allow(airport.weather).to receive(:stormy?) { false }
-      expect { airport.land(plane) }.to raise_error "Airport full"
+    describe 'a group of tests that require the weather to not be stormy' do
+      before do
+        allow(airport.weather).to receive(:stormy?) { false }
+      end
+      it 'lands a plane' do
+        airport.land(plane)
+        expect(airport.stationed_planes).to eq [plane]
+      end
+      it 'raises an error when the airport is full' do
+        allow(airport).to receive(:full?) { true }
+        expect { airport.land(plane) }.to raise_error "Airport full"
+      end
+      it 'raises an error if the plane has already landed' do
+        airport.land(plane)
+        expect { airport.land(plane) }.to raise_error "That plane has already landed"
+      end
     end
     it 'raises an error when the weather is stormy' do
       allow(airport.weather).to receive(:stormy?) { true }
       expect { airport.land(Plane.new) }.to raise_error "Weather too stormy to land"
-    end
-    it 'raises an error if the plane has already landed' do
-      allow(airport.weather).to receive(:stormy?) { false }
-      airport.land(plane)
-      expect { airport.land(plane) }.to raise_error "That plane has already landed"
     end
   end
 
