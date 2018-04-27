@@ -7,22 +7,32 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
 
   let(:plane) { double() }
+  let(:weather) { double :weather }
+  let(:subject) { Airport.new(weather: weather) }
 
   describe '#take_off' do
 
+    it 'raises an error when there are no planes to take off' do
+      expect { subject.take_off(plane) }.to raise_error 'No planes available'
+    end
+
+    it 'raises an error when the weather is stormy' do
+      subject.land(plane)
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.take_off(plane) }.to raise_error 'Weather is stormy'
+    end
+
     it 'checks if hangar does not include the plane anymore' do
       subject.land(plane)
+      allow(weather).to receive(:stormy?).and_return(false)
       subject.take_off(plane)
       expect(subject.hangar).to eq []
     end
 
     it 'displays message "Plane has taken off"' do
       subject.land(plane)
-      expect{ subject.take_off(plane) }.to output("Plane has taken off\n").to_stdout
-    end
-
-    it 'raises an error when there are no planes to take off' do
-      expect { subject.take_off(plane) }.to raise_error 'No planes available'
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { subject.take_off(plane) }.to output("Plane has taken off\n").to_stdout
     end
   end
 
