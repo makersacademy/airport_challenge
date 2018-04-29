@@ -6,6 +6,28 @@ describe Airport do
   let(:weather) { double() }
   let(:subject) { Airport.new(capacity, weather) }
 
+  describe '#land' do
+    it 'docks a landing plane' do
+      help_landing_when_sunny
+      expect(subject.hangar).to eq [plane]
+    end
+
+    it 'raises an error when the weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane) }.to raise_error 'Weather is stormy'
+    end
+
+    it 'raises an error when airport is full' do
+      subject.capacity.times { help_landing_when_sunny }
+      expect { subject.land(plane) }. to raise_error 'Airport is full'
+    end
+
+    it 'displays message "Plane has landed"' do
+      help_landing_when_sunny
+      expect { subject.land(plane) }.to output("#{plane} has landed\n").to_stdout
+    end
+  end
+
   describe '#take_off' do
     it 'raises an error when there are no planes to take off' do
       expect { subject.take_off(plane) }.to raise_error 'No planes available'
@@ -28,23 +50,6 @@ describe Airport do
       help_landing_when_sunny
       help_take_off_plane
       expect { subject.take_off(plane) }.to output("#{plane} is airborn\n").to_stdout
-    end
-  end
-
-  describe '#land' do
-    it 'docks a landing plane' do
-      help_landing_when_sunny
-      expect(subject.hangar).to eq [plane]
-    end
-
-    it 'raises an error when the weather is stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { subject.land(plane) }.to raise_error 'Weather is stormy'
-    end
-
-    it 'raises an error when airport is full' do
-      subject.capacity.times { help_landing_when_sunny }
-      expect { subject.land(plane) }. to raise_error 'Airport is full'
     end
   end
 
