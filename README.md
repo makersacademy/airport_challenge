@@ -15,7 +15,7 @@ Airport Challenge
 
 My approach
 ---------
-I was very excited to revisit this challenge as the weekend we were supposed to finish, it I could not implement the weather condition and my code did not defend against the edge cases. While my first attempt was relying on our Boris Bike challenge from week one, this time I was more confident to experiment more and trust my knowledge. Nevertheless, it was a fantastic opportunity to solidify my understanding of concepts (delegation, dependency injection, test doubles, method stubs). I also managed to achieve 100% test coverage, while last time it was only 91%.
+I was very excited to revisit this challenge as the weekend we were supposed to finish it, I could not implement the weather condition and my code did not defend against the edge cases. While my first attempt was relying on our Boris Bike challenge from week one, this time I was more confident to experiment more and trust my knowledge. In addition, it was a fantastic opportunity to solidify my understanding of concepts (delegation, dependency injection, test doubles, method stubs). I also managed to achieve 100% test coverage, while last time it was only 91%.
 It is likely that the code needs even more refactoring, and I am not entirely sure if the Single Responsibility Principle was properly followed in my land and take-off methods of the Airport class.
 
 Task
