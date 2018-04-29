@@ -25,12 +25,6 @@ describe Airport do
       expect(subject.hangar).to eq []
     end
 
-    it 'displays message "Plane has taken off"' do
-      help_landing
-      allow(weather).to receive(:stormy?).and_return(false)
-      expect { subject.take_off(plane) }
-        .to output("Plane has taken off\n").to_stdout
-    end
   end
 
   describe '#land' do
@@ -54,6 +48,8 @@ describe Airport do
 
   def help_landing
     allow(weather).to receive(:stormy?).and_return(false)
+    allow(plane).to receive(:flying?).and_return(true)
+    allow(plane).to receive(:land).and_return(false)
     subject.land(plane)
   end
 

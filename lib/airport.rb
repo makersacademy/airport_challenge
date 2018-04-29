@@ -16,12 +16,12 @@ class Airport
     fail 'No planes available' if empty?
     fail 'Weather is stormy' if weather.stormy?
     @hangar.delete(plane)
-    puts "Plane has taken off"
   end
 
   def land(plane)
     fail 'Airport is full' if full?
     fail 'Weather is stormy' if weather.stormy?
+    plane.land
     @hangar << plane
     @hangar[-1]
   end
