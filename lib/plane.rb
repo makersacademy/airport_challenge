@@ -1,6 +1,5 @@
 class Plane
-  attr_reader :id
-  attr_accessor :flying
+  attr_reader :id, :flying
 
   def initialize(id)
     @id = id

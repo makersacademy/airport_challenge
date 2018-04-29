@@ -17,6 +17,7 @@ class Airport
     fail 'Weather is stormy' if weather.stormy?
     plane.take_off
     @hangar.delete(plane)
+    puts "#{plane} is airborn"
   end
 
   def land(plane)
