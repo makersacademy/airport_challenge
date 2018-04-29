@@ -1,4 +1,4 @@
-# Airport Challenge :airplane:
+# Airport Challenge
 **Makers Academy - Weekend Challenge 1**
 
 Our first weekend challenge was to create a small sandbox environment to simulate a small airport.
