@@ -21,6 +21,8 @@ describe Airport do
     it 'checks if hangar does not include the plane anymore' do
       help_landing
       allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:flying?).and_return(false)
+      allow(plane).to receive(:take_off).and_return(true)
       subject.take_off(plane)
       expect(subject.hangar).to eq []
     end

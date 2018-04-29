@@ -15,6 +15,7 @@ class Airport
   def take_off(plane)
     fail 'No planes available' if empty?
     fail 'Weather is stormy' if weather.stormy?
+    plane.take_off
     @hangar.delete(plane)
   end
 
