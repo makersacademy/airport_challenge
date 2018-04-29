@@ -4,6 +4,11 @@ class Plane
 
   def initialize(id)
     @id = id
+    @flying = true
+  end
+
+  def land
+    raise 'Plane is not flying' unless @flying
     @flying = false
   end
 
