@@ -14,4 +14,10 @@ describe Plane do
       expect(subject.land).to eq false
     end
   end
+
+  describe '#take_off' do
+    it 'confirms Plane is flying' do
+      expect(subject.take_off).to eq true
+    end
+  end
 end

@@ -12,6 +12,11 @@ class Plane
     @flying = false
   end
 
+  def take_off
+    raise 'Plane is flying' if @flying
+    @flying = true
+  end
+
   def flying?
     @flying
   end
