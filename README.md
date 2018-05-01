@@ -1,6 +1,11 @@
 UPDATE:
 
-Airport created that can land planes, store planes up to a given capacity (default also included). Planes can also take off and no more planes can land when airport is full. Also written functionality for the weather to be either sunny or stormy however I could not get the mocking/stubbing to work and therefore get the tests to pass. Also ran out of time to check edge cases eg. same plane landing/taking off.
+This was the first of the weekend challenges that we were set at Maker's Academy, as such it was my first attempt to create real world object orientated programs by myseld. 
+I created an Airport that can land planes and store planes up to a given capacity (a default capacity was also set). 
+
+Planes can also take off and no more planes can land when airport is full. 
+
+I have also written functionality for the weather to be either sunny or stormy however I could not get the mocking/stubbing to work and therefore get the tests to pass consistently. I also ran out of time to work on the edge cases eg. same plane landing/taking off.
 
 Airport Challenge
 =================
