@@ -3,7 +3,7 @@
 
 Our first weekend challenge was to create a small sandbox environment to simulate a small airport.
 
-## Aim
+## Approach
 I began this challenge by breaking the user stories down, one at a time. I managed to get the basic functionality running, however unfortunately ran out of time to complete all of the additional requirements.
 
 #### To Do
