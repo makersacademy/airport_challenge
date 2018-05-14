@@ -17,7 +17,7 @@ A program for managing airports and planes, modelling for weather conditions:
 - Planes can land and take off if it is sunny.
 - If it is stormy, planes cannot land or take off.
 
-### Features:
+### Features
 - Allows the creation of multiple airports and planes.
 - Allows planes to land at and take off from airports.
 - Allows specific weather limits to be set for take off & landing
@@ -50,4 +50,13 @@ require './lib/weather'
 - Unit tested with RSpec.  
 - All unit tests can be run from the project home directory using: `$ rspec`  
 - Feature testing was carried out in IRB.  
-- Each feature test is contained in an isolated method, listed in: './spec/feature_spec.rb'
+- Each feature test is contained in an isolated method, all of which are listed in: './spec/feature_spec.rb'
+
+An example running of a feature test:
+
+[~Projects/airport_challenge]
+
+$ irb -r './spec/feature_spec.rb'
+2.5.0 :001 > plane.take_off
+ => true
+2.5.0 :002 > exit

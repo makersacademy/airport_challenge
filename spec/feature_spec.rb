@@ -1,5 +1,12 @@
-require 'plane'
-require 'airport'
+require_relative '../lib/plane'
+require_relative '../lib/airport'
+
+def land_plane
+  plane = Plane.new
+  airport = Airport.new
+  airport.land(plane)
+  airport.planes == [plane]
+end
 
 def take_off
   plane = Plane.new
@@ -8,4 +15,3 @@ def take_off
   airport.take_off(plane)
   airport.planes == []
 end
-    
