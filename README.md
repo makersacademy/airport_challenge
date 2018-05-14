@@ -13,7 +13,6 @@ Airport Challenge
 
 ```
 ### Overview
-
 A program for managing airports and planes, modelling for weather conditions:
 - Planes can land and take off if it is sunny.
 - If it is stormy, planes cannot land or take off.
@@ -30,7 +29,7 @@ A program for managing airports and planes, modelling for weather conditions:
 This program was developed in ruby 2.5.0 & formatted with the assistance of Rubocop.
 
 To set up the environment:
-` $ gem install bundler `
+` $ gem install bundler ` \n
 ` $ bundle install `
 
 ### User Instructions
@@ -49,8 +48,6 @@ require './lib/weather'
 
 ### Tests
 - Unit tested with RSpec.  
-- All unit tests can be run from the project home directory using:
-`$ rspec`  
+- All unit tests can be run from the project home directory using: `$ rspec`  
 - Feature testing was carried out in IRB.  
-- Each feature test is contained in an isolated method.  
-- All of these are in the file: './spec/feature_spec.rb'
+- Each feature test is contained in an isolated method, listed in: './spec/feature_spec.rb'
