@@ -30,14 +30,9 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.plane_depart(planes) }.to raise_error 'weather is stormy, cannot depart plane'
     end
-    #it 'fails if the aiport is empty' do
-    #  allow(subject).to receive(:stormy?).and_return(false)
-    #  expect { subject.plane_depart(planes) }.to raise_error 'airport is empty'
-    #end
     it 'fails if the plane is already in the air' do
-    allow(subject).to receive(:stormy?).and_return(false)
-    #subject.plane_depart(planes)
-    expect { subject.plane_depart(planes) }.to raise_error 'plane is already in the air'
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect { subject.plane_depart(planes) }.to raise_error 'plane is already in the air'
     end
     it 'instructs a plane to take off' do
       allow(subject).to receive(:stormy?).and_return(false)

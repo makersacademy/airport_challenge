@@ -25,16 +25,11 @@ class Airport
 
   def plane_depart(plane)
     fail 'weather is stormy, cannot depart plane' if stormy?
-    #fail 'airport is empty' if empty?
     fail 'plane is already in the air' unless @planes.include?(plane)
     @planes.delete(plane)
   end
 
   private
-
-  #def empty?
-  #  @planes.empty?
-  #end
 
   def full?
     planes.count >= DEFAULT_CAPACITY
