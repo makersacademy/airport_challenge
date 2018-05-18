@@ -1,35 +1,21 @@
-# Introduction
-Welcome to doing your first code review!  Firstly, don't worry - you are not expected to have all the answers. The following is a code-review scaffold for Airport Challenge that you can follow if you want to.  These are common issues to look out for in this challenge - but you may decide to take your own route.
+# Code review rubric
 
-Either way we'd very much appreciate you submitting the [form](https://docs.google.com/forms/d/1_QJxz8Twnc28e5wyVpB6xmXCvP3M_HPUXk65EGLhiZw/viewform?usp=send_form#start=invite), even if it's just to say that you didn't use it :-)
+**Don't read this until after you've completed the challenge!**
 
-If you can, please use [this form](https://docs.google.com/forms/d/1_QJxz8Twnc28e5wyVpB6xmXCvP3M_HPUXk65EGLhiZw/viewform?usp=send_form#start=invite) to tick off where your reviewee has successfully has successfully incorporated these guidelines!  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
+You're a beginner — your code will have some rough spots. This is a field guide to spotting common issues that crop up in the Airport challenge, and some guidance on how to fix them.
 
-# Step 0: Checkout and Run tests
+You'll be using this to review someone else's code. Help them improve by looking through their code for issues like this, or anything else that you might spot. Don't worry too much about being mistaken — if it looks like it could be a problem to you, try telling them about it! Even if they disagree, the discussion you'll have about it can be a great learning opportunity.
+
+Also, there's a tonne of stuff here. Pace yourself, take on the improvements that feel most powerful to you and keep the rest in mind for future.
+
+
+## Does it pass the tests?
 
 Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
 
-# Step 1:  How far did they get?
+## Is the README useful?
 
-* Features
-  * [ ] Plane status
-  * [ ] Plane landing
-  * [ ] Plane takeoff
-  * [ ] Storms prevent landing
-  * [ ] Storms prevent takeoff
-  * [ ] Full airport cannot land planes
-  * [ ] Variable and default capacity
-  * [ ] Errors raised for inconsistent actions
-
-* Bonus Features
-  * [ ] RSpec Feature test
-
-The relevance of the subsequent steps may depend on how far the reviewee got with their challenge
-
-
-# Step 2: Structure and supporting files
-
-## README is updated
+### README is updated
 
 Please do update your README following the [contribution notes](https://github.com/makersacademy/airport_challenge/blob/master/CONTRIBUTING.md), i.e.
 * Make sure you have written your own README that briefly explains your approach to solving the challenge.
@@ -39,7 +25,7 @@ The above is a relatively straightforward thing to do that doesn't involve much 
 
 * http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
 
-## Instructions in README
+### Instructions in README
 It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript
 
 ```
@@ -53,38 +39,15 @@ $ irb
 2.2.3 :004 >
 ```
 
-# Step 2: Tests and \*\_spec.rb files  
+## Are the tests well-written?
 
-## Use named subject with `described_class`
-
-It's easy to use `let` or `subject` or to create a local variable to refer to the class under test.  However, prefer instead to [name the subject explicitly](https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject), using `described_class` to refer to the class:
-
-```ruby
-describe Airport do
-  subject(:airport) { described_class.new }
-end
-```
-
-Instead of:
-
-```ruby
-describe Airport do
-  let(:airport) { Airport.new }
-
-  # or:
-  it 'does something' do
-    airport = Airport.new
-  end
-end
-```
-
-## Use `context` and `describe` blocks to create test scopes
+### Use `context` and `describe` blocks to create test scopes
 
 If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
 
 `let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
 
-## Avoid Vacuous Tests
+### Avoid Vacuous Tests
 
 Sometimes you are not really testing anything in your application code e.g.
 
@@ -115,7 +78,7 @@ it 'has the plane after landing' do
 end
 ```
 
-## Use `before` blocks to set up objects rather than repeat code
+### Use `before` blocks to set up objects rather than repeat code
 
 For example, to set up stubbing behaviour that is shared across a number of tests:
 
@@ -129,7 +92,7 @@ describe 'a group of tests that need to call #land on a plane double' do
 end
 ```
 
-## Ensure Sufficient Unit Tests
+### Ensure Sufficient Unit Tests
 
 The following test on its own is not sufficient for testing the landing of planes:
 
@@ -173,7 +136,7 @@ end
 
 And the airport has multiple planes, does it test that the _correct_ plane is removed from the airport?
 
-## Avoid multiple `expect`s in `it` block
+### Avoid multiple `expect`s in `it` block
 
 The previous example _could_ be combined into one test, but this is not good practice for unit tests:
 
@@ -203,7 +166,7 @@ it 'does not allow plane to take off' do
 end
 ```
 
-## Stub Randomness in Tests
+### Stub Randomness in Tests
 
 It's important that tests don't fail randomly, so it's critical that any randomness in your application is stubbed out to ensure tests pass reliably, e.g.
 
@@ -220,7 +183,7 @@ describe 'a plane can land after storm has cleared' do
 end
 ```
 
-## Eliminate Redundant `respond_to` expectations
+### Eliminate Redundant `respond_to` expectations
 
 Note that tests like this:
 
@@ -247,9 +210,30 @@ end
 
 The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
 
-# Step 3: Application code and \*.rb files
+### Breaking over multiple lines redundancy
 
-## Naming Convention Matching the Domain Model
+Note that by breaking some long lines (to go below 80 chars) in:
+
+```ruby
+  it 'a plane can only take off from an airport it is at' do
+    expect { airport.take_off(plane) }.to raise_error
+    'The plane is not currently landed at this airport'
+  end
+```
+
+creates two separate lines that are interpreted separately.  The expect now checks for any error (regardless of message) and the single string 'The plane is not currently landed at this airport' on the following line is effectively discarded.  Prefer something like the following:
+
+```ruby
+  it 'a plane can only take off from an airport it is at' do
+    message = 'The plane is not currently landed at this airport'
+    expect { airport.take_off(plane) }.to raise_error message
+  end
+```
+
+
+## Is the application code well-written?
+
+### Naming Convention Matching the Domain Model
 
 In general it's critical for maintainability that code is readable.  We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on.  That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
 
@@ -285,7 +269,7 @@ $ airport.land(plane)
 * [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
 * [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
 
-## Remove all Commented-out code
+### Remove all Commented-out code
 
 When submitting delete all "commented out" code.  You may not yet trust git to store all your old code, and you might not feel confident about rolling back to old commits to see that code, but that shouldn't be an excuse for leaving big chunks of commented out code in your files.  Make sure you commit to git (and push to GitHub) regularly, and start to get familiar with how to check out previous versions of your code.  If you are still worried store old versions of code in other files that you don't check in.  What we're trying to get you into the habit of, is polishing your submission so that it would be acceptable as a submission to a company as a technical test. So we don't want to see any of this:
 
@@ -300,18 +284,16 @@ end
 
 Just delete commented out lines in your final submission.  Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
 
-```ruby  
-  def land(plane) # this lands the plane at the airport
-    fail 'Cannot land since airport is full' if full?
-    fail 'Unable to land due to stormy weather' if weather.stormy?
-    planes << plane # this adds the plane to the planes at the airport
-    self
-  end
+```ruby
+def land(plane) # this lands the plane at the airport
+  fail 'Cannot land since airport is full' if full?
+  fail 'Unable to land due to stormy weather' if weather.stormy?
+  planes << plane # this adds the plane to the planes at the airport
+  self
+end
 ```
 
 Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date.  Prefer to name your methods so they describe exactly what they do.
-
-## Refactoring conditionals
 
 ### Use guard clause to improve readability and unrelated conditionals:
 
@@ -368,7 +350,7 @@ def stormy?
 end
 ```
 
-## Do not Expose Internal Implementation
+### Do not Expose Internal Implementation
 
 Be careful not to give 'public' access to objects and methods that are should only be accessed internally.  E.g.:
 
@@ -396,9 +378,9 @@ private
 end
 ```
 
-## Single Responsibility Principle (SRP)
+### Single Responsibility Principle (SRP)
 
-### Classes
+#### Classes
 
 A class should have one responsibility.  An airport is responsible for the coming and going of airplanes.  It needs access to weather information to make decisions, but it _should not be responsible for determining the weather_.  Weather information should be provided by a separate class and injected into airport as a dependency.  E.g.:
 
@@ -425,7 +407,7 @@ end
 ```
 
 
-### Methods
+#### Methods
 
 A method also should have only one responsibility.  E.g _the following method is too long_:
 
@@ -461,7 +443,7 @@ end
 ```
 Note: Ruby already handles the responsibility of choosing randomly from and array with the `sample` method.
 
-## Avoid Magic Numbers (e.g. on capacity)
+### Avoid Magic Numbers (e.g. on capacity)
 
 ```ruby
 def initialize
@@ -479,11 +461,11 @@ def initialize
 end
 ```
 
-## Prefer Symbols over Strings
+### Prefer Symbols over Strings
 
 Each time a string literal (e.g. `'flying'`) is interpreted by Ruby, a new string object is created in memory.  Therefore, every time a method is called that contains a string literal (e.g. `'sunny'`) a new object is created.  This can lead to lots of unnecessary objects being created when we're not interested in the _object identity_ of a string, just its _value_.  To overcome this, use symbols instead e.g.: `:flying`, `:sunny`.
 
-## Separately name Command and Query methods
+### Separately name Command and Query methods
 
 Methods should be _either_ **commands** or **queries**, not both.  As a general rule:
 
@@ -493,8 +475,6 @@ Methods should be _either_ **commands** or **queries**, not both.  As a general 
 - Avoid nounal command method names.
 - Avoid depending on the return value of a command method (this rule is often broken!).
 - Never have query methods that alter program state.
-
-## Correctly use `attr_*`
 
 ### Avoid defining `attr_reader` then accessing the instance variable directly.
 
@@ -538,7 +518,7 @@ plane.land
 ```
 *Prefer the custom method (`land`) for more control over the value of `@landed` and use `attr_reader` instead.*
 
-## Avoid Redundant lines of code
+### Avoid Redundant lines of code
 
 It's easy to have redundant lines of code hanging around.  Anything you think might be redundant can be checked by deleting it and re-running your tests.  If still green you didn't need that code.  If you think you really did then you need a test to match it - and you should have written that first before writing the code.
 
@@ -553,24 +533,4 @@ def initialize
   @name # does nothing
   @title = nil # totally redundant
 end
-```
-
-### Breaking over multiple lines redundancy
-
-Note that by breaking some long lines (to go below 80 chars) in:
-
-```ruby
-  it 'a plane can only take off from an airport it is at' do
-    expect { airport.take_off(plane) }.to raise_error
-    'The plane is not currently landed at this airport'
-  end
-```
-
-creates two separate lines that are interpreted separately.  The expect now checks for any error (regardless of message) and the single string 'The plane is not currently landed at this airport' on the following line is effectively discarded.  Prefer something like the following:
-
-```ruby
-  it 'a plane can only take off from an airport it is at' do
-    message = 'The plane is not currently landed at this airport'
-    expect { airport.take_off(plane) }.to raise_error message
-  end
 ```
