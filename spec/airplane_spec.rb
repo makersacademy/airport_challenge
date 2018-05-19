@@ -21,4 +21,10 @@ describe Airport do
     taken_off_plane = subject.takeoff
     expect(subject.hanger).to_not include (taken_off_plane)
   end
+
+  it 'raises an error for landing when hanger is full' do
+    Airport::DEFAULT_CAPACITY.times{ subject.land(Plane.new) }
+    expect{ subject.land(Plane.new) }.to raise_error('Airport is full')
+  end
+
 end
