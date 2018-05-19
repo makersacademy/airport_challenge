@@ -12,6 +12,4 @@ describe Plane do
 	# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 	it { is_expected.to respond_to :take_off }
 
-
-
 end
