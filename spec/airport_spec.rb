@@ -4,6 +4,13 @@ describe Airport do
 
   let(:plane) { Plane.new }
 
+  describe '#initialize' do
+    it 'prevents landing when the airport is full' do
+      described_class::DEFAULT_CAPACITY.times {subject.land(plane)}
+      expect { subject.land(plane) }.to raise_error 'Airport is full'
+    end
+  end
+
   describe '#land' do
     it 'responds to land' do
       expect(subject).to respond_to(:land)
@@ -32,11 +39,11 @@ describe Airport do
     end
   end
 
-  context 'when the weather is stormy' do
-    before { allow(subject).to receive(:stormy?) { true } }
-    it 'prevents take off when weather is stormy' do
-      subject.land(plane)
-      expect { subject.take_off(plane) }.to raise_error 'Cannot take off, weather is stormy'
-    end
-  end
+  # context 'when the weather is stormy' do
+  #   before { allow(subject).to receive(:stormy?) { true } }
+  #   it 'prevents take off when weather is stormy' do
+  #     subject.land(plane)
+  #     expect { subject.take_off(plane) }.to raise_error 'Cannot take off, weather is stormy'
+  #   end
+  # end
 end
