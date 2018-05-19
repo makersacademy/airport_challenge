@@ -45,3 +45,49 @@ tests:
 2 if the weather is stormy (randomise this) try to call take_off on airport. this should fail
 
 for number 2, I think we are going to need to create a mock in order to ensure that the weather is stormy
+
+4.
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+seems similar to 3 if anything easier
+tests:
+-  check let_plane_land method fails when weather is stormy
+- alter let_plane_land test to work when weather is sunny
+
+5.
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+how  big is the airport? pretty fucking small! only fits one plane (we assume at first)
+
+tests:
+set airport.full == full using sub
+actually, don't need a sub, can just land one plane
+check let_plane_land fails due to fullness
+
+6.
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+I want to set a capacity default as 20
+I want to make this overidable
+
+How shall I test this?
+1. check that the default capacity is 20
+do this by landing 20 aircraft and calling an error on the 21st
+2. overide the capacity
+land capacity aircraft and call an error on capacity + 1
+
+
+
+
+
+
+To do
+find way to clean laptop
+start blog ideas list
+revert to old to do list
