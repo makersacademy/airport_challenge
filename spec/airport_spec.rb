@@ -19,10 +19,6 @@ describe Airport do
 
   end
 
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
   describe "#take_off" do
 
     it "returns a message saying plane has taken off" do
@@ -35,6 +31,14 @@ describe Airport do
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.hangar).to be_empty
+    end
+
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent takeoff when weather is stormy
+
+    it "refuses to allow planes to take off if the weather is stormy" do
+      weather = Weather.new
     end
 
   end
