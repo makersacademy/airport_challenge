@@ -11,12 +11,17 @@ class Airport
 
   def land(plane)
   raise 'Airport is full' if full?
+  raise 'Plane already at airport' if include?(plane)
     @hanger.push(plane)
-    return @hanger
+    
   end
 
   def full?
     @hanger.count >= @capacity
+  end
+
+  def include?(plane)
+    @hanger.include?(plane)
   end
 
   def takeoff
