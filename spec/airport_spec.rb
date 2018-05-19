@@ -6,16 +6,15 @@ describe Airport do
 
   describe '#initialize' do
     it 'prevents landing when the airport is full' do
-      described_class::DEFAULT_CAPACITY.times {subject.land(plane)}
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+        plane.make_take_off
+      end
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
   end
 
   describe '#land' do
-    it 'responds to land' do
-      expect(subject).to respond_to(:land)
-    end
-
     it 'lands a plane at an airport' do
       subject.land(plane)
       expect(subject.planes).to include(plane)
@@ -23,10 +22,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'responds to take_off' do
-      expect(subject).to respond_to(:take_off)
-    end
-
     it 'takes off from the airport and is no longer there' do
       allow(subject).to receive(:stormy?) { false }
       subject.land(plane)

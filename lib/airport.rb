@@ -12,12 +12,15 @@ class Airport
 
   def land(plane)
     fail 'Airport is full' if planes.size == @capacity
+    fail 'Plane has already landed' if plane.landed?
+    plane.make_land
     @planes << plane
   end
 
   def take_off(plane)
     fail 'Plane is not at airport' unless @planes.include?(plane)
     # fail 'Cannot take off, weather is stormy' if stormy?
+    plane.make_take_off
     @planes.delete(plane)
   end
 end
