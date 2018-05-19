@@ -1,4 +1,8 @@
+require_relative 'plane'
+
+
 class Airport
-  def land
-  end 
+  def land(plane)
+    "#{plane} has landed"
+  end
 end
