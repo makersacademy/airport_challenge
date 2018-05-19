@@ -15,9 +15,10 @@ describe Airport do
   it 'allows an airplane to take off' do
     expect(subject).to respond_to(:takeoff)
   end
-  # it 'confirms that plane that took off is no longer in hanger' do
-  #   subject.land(Plane.new)
-  #   taken_off_plane = subject.takeoff
-  #   expect(@hanger).to_not include (taken_off_plane)
-  # end
+
+  it 'confirms that plane that took off is no longer in hanger' do
+    subject.land(Plane.new)
+    taken_off_plane = subject.takeoff
+    expect(subject.hanger).to_not include (taken_off_plane)
+  end
 end
