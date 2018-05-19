@@ -1,0 +1,143 @@
+require_relative '../lib/airport.rb'
+
+describe Airport do 
+  let(:plane) { double :plane }
+
+  before(:each) do
+    allow(subject).to receive(:weather_generator).and_return(50)
+  end
+
+  # the weather generator will fuck up all the tests because they always expect it to work, but it won't if the weather 
+  # gen is 75 or over 
+
+  describe 'initialize' do 
+    it 'should set default capacity as 30 planes' do
+      subject
+      expect(subject.capacity).to eq 30
+    end
+
+    it 'should allow you change default capacity' do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20 
+    end
+  end
+
+  describe '#land' do 
+    it 'responds to land with 1 argument' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+    it 'can instruct a plane to land' do
+      expect { subject.land(:plane) }.not_to raise_error 
+    end
+    it 'alerts the user that their plane has been stored' do
+      expect(subject.land(:plane)).to eq "Your plane has been successfully stored"
+    end
+    it 'can store the plane in the airport hangar' do
+      subject.land(:plane)
+      expect(subject.planes).to include(:plane)
+    end
+    it 'can land multiple planes' do
+      subject.land(:plane)
+      expect { subject.land(:plane) }.not_to raise_error
+    end
+
+    it 'can hold multiple planes in its hangar' do
+      5.times { subject.land(:plane) }
+      expect(subject.planes.length).to eq 5
+    end
+
+    it 'shouldnt land the plane if its stormy' do 
+      allow(subject).to receive(:weather_generator).and_return(80)
+      expect { subject.land(:plane) }.to raise_error "Plane can't land in stormy weather"
+    end
+
+    # it 'wont allow plane to land if airport is full' do
+    #   stub_const('Airport::DEFAULT_CAPACITY', 30) 
+    #   30.times { subject.land(:plane) }
+    #   expect { subject.land(:plane) }.to raise_error "Cannot land plane, airport is full"
+    # end
+  end
+
+  describe '#take_off' do
+    let(:plane) { double :plane }
+    it 'responds to take_off' do
+      expect(subject).to respond_to(:take_off)
+    end
+    it 'should be able to return a plane to the user' do 
+      subject.land(:plane)
+      expect(subject.take_off).to eq :plane
+    end
+    it 'should have 1 less plane in its hangar after taking one off' do
+      3.times { subject.land(:plane) }
+      subject.take_off 
+      expect(subject.planes.length).to eq 2
+    end
+    # Question here - I want to check if the plane that is released is no longer included in the hangar, 
+    # but I don't think I can use a double for that because the doubles will all be the same, 
+    # so I can't check if that specific object is in the array @planes 
+    it 'no longer has the plane that has taken off in its hangar' do 
+      3.times { subject.land(Plane.new) }
+      plane = subject.take_off
+      expect(subject.planes).not_to include(plane)
+    end 
+    it 'should show an error when no planes are available' do 
+      expect { subject.take_off }.to raise_error "No planes available"
+    end
+    it 'shouldnt take off if the weather is stormy' do 
+      subject.land(:plane)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.take_off }.to raise_error "Plane can't take off in stormy weather"
+    end
+
+    # it should take off if weather isn't stormy 
+  end
+
+  describe '#check_plane' do 
+    it 'should return false when the plane isnt in the hangar' do
+      subject.land(:plane)
+      allow(subject).to receive(:weather_generator).and_return(50)
+      plane = subject.take_off
+      expect(subject.check_plane(plane)).to eq false
+    end
+    it 'should return true when the plane is in the hangar' do
+      subject.land(:plane)
+      expect(subject.check_plane(:plane)).to eq true
+    end
+  end
+
+  describe '#stormy?' do
+    it 'should return true if random weather generator is 75 or above' do
+      allow(subject).to receive(:weather_generator).and_return(80)
+      expect(subject).to be_stormy 
+      allow(subject).to receive(:weather_generator).and_return(75)
+      expect(subject).to be_stormy 
+    end
+    it 'should return false if random weather generator is under 75' do
+      allow(subject).to receive(:weather_generator).and_return(25) 
+      expect(subject).not_to be_stormy
+    end
+  end
+
+  describe '#weather_generator' do 
+    it 'should return a number between 1-100' do
+      expect(subject.weather_generator).to be_between(1, 100).inclusive
+    end
+  end
+
+  describe '#full?' do 
+    it 'returns true if there are as many planes in hangar as the capacity' do
+      30.times { subject.land(:place) }
+      expect(subject).to be_full
+    end
+  end 
+
+
+
+    # it 'should respond true when the weather is stormy' do
+    #   allow()
+    #   expect(airport.closed?).to be true 
+    # end
+
+  # end
+
+end
