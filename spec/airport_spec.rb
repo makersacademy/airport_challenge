@@ -6,10 +6,10 @@ describe Airport do
 
   describe "#land" do
 
-    it "returns a message saying plane has landed" do
-      plane = Plane.new
-      expect(subject.land(plane)).to eq "Plane has landed"
-    end
+    # it "returns a message saying plane has landed" do
+    #   plane = Plane.new
+    #   expect(subject.land(plane)).to eq "Plane has landed"
+    # end
 
     it "adds the plane to the hangar" do
       plane = Plane.new
@@ -17,28 +17,28 @@ describe Airport do
       expect(subject.hangar).not_to be_empty
     end
 
+    it "throws an error message if plane is already in hangar" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.land(plane)).to eq "Error: Plane is already in hangar"
+    end
+
   end
 
   describe "#take_off" do
 
-    it "returns a message saying plane has taken off" do
+    it "throws an error message if plane is not in hangar" do
       plane = Plane.new
-      expect(subject.take_off(plane)).to eq "Plane has taken off"
-    end
-
-    it "removes the plane from the hangar" do
-      plane = Plane.new
-      subject.land(plane)
       subject.take_off(plane)
-      expect(subject.hangar).to be_empty
+      expect(subject.take_off(plane)).to eq "Error: Plane is not in hangar"
     end
-
-    # As an air traffic controller
-    # To ensure safety
-    # I want to prevent takeoff when weather is stormy
 
     it "refuses to allow planes to take off if the weather is stormy" do
-      weather = Weather.new
+      plane = Plane.new
+      subject.land(plane)
+      unless Weather.new.stormy? == false
+        expect(subject.take_off(plane)).to eq "Can't take off: weather stormy"
+      end
     end
 
   end
