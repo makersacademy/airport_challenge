@@ -23,22 +23,23 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 # Plane
-Land
-Take off
+<!-- Land -->
+<!-- Take off -->
 
 # Airport
-full?
+<!-- full? -->
 <!-- (default) airport capacity -->
-add/remove planes to capacity based on landing/takeoff
+<!-- add/remove planes to capacity based on landing/takeoff -->
 
 # Weather Inspector
 safe? (to take off or land)
 
-planes can only take off from airports they are in
-planes that are already flying cannot takes off and/or be in an airport 
+
+
 planes that are landed cannot land again and must be in an airport, etc.
 
-# TODO TASKS                                        DONE
+# TODO TASKS                                              DONE
 # ------------------------------------------------------------
-# Airport has a default capacity of 100             DONE
-# 
+# Airport has a default capacity of 100                   DONE
+# planes can only take off from airports they are in      DONE
+# flying planes cannot takes off/be in an airport         DONE

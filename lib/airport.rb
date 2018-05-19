@@ -9,16 +9,22 @@ class Airport
 	 
 	 def land plane
 		fail 'Airport is full!' if full?
+		fail "It's too stormy to land!" if stormy?
 		@planes << plane
 	 end
 
-	#  def depart plane
-	# 	@planes -= plane if @planes.include? plane
-	#  end
+	 def depart plane
+		fail "That plane isn't here!" unless @planes.include?(plane) 
+		@planes.delete(plane)
+	 end
+
 	private
-	
+
 	def full?
 		@planes.count >= capacity
+	end
+
+	def stormy?
 	end
 
 end
