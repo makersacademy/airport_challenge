@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-	subject(:airport){ Airport.new }
+	subject(:airport){ described_class.new }
 
 	it 'the airport has a default capacity' do
 		expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY

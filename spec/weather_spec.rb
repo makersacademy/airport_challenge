@@ -1,10 +1,11 @@
 require 'weather'
 
 describe Weather do
+	subject(:weather){ described_class.new }
 	
 	# As an air traffic controller 
 	# To ensure safety
 	# I want to prevent landing when weather is stormy
-	it { is_expected.to respond_to :stormy?}
+	it { is_expected.to respond_to :stormy? }
 
 end

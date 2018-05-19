@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+	subject(:plane){ described_class.new }
 
 	# As an air traffic controller
 	# So I can get passengers to a destination 
