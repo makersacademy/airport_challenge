@@ -2,11 +2,8 @@ class Weather
 
   def stormy?
     weather = rand(6)
-    if weather > 3
-      return true
-    else
-      return false
-    end
+    return true if weather > 3
+    return false
   end
 
 end
