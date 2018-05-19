@@ -28,8 +28,17 @@ Take off
 
 # Airport
 full?
-(default) airport capacity
+<!-- (default) airport capacity -->
 add/remove planes to capacity based on landing/takeoff
 
 # Weather Inspector
 safe? (to take off or land)
+
+planes can only take off from airports they are in
+planes that are already flying cannot takes off and/or be in an airport 
+planes that are landed cannot land again and must be in an airport, etc.
+
+# TODO TASKS                                        DONE
+# ------------------------------------------------------------
+# Airport has a default capacity of 100             DONE
+# 
