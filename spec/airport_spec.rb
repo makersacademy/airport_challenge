@@ -40,22 +40,25 @@ describe Airport do
       subject.land(:plane)
       expect { subject.land(:plane) }.not_to raise_error
     end
-
     it 'can hold multiple planes in its hangar' do
       5.times { subject.land(:plane) }
       expect(subject.planes.length).to eq 5
     end
-
     it 'shouldnt land the plane if its stormy' do 
       allow(subject).to receive(:weather_generator).and_return(80)
       expect { subject.land(:plane) }.to raise_error "Plane can't land in stormy weather"
     end
-
-    # it 'wont allow plane to land if airport is full' do
-    #   stub_const('Airport::DEFAULT_CAPACITY', 30) 
-    #   30.times { subject.land(:plane) }
-    #   expect { subject.land(:plane) }.to raise_error "Cannot land plane, airport is full"
-    # end
+    it 'wont allow plane to land if airport is full for default capacity' do
+      subject.capacity.times { subject.land(:plane) }
+      expect { subject.land(:plane) }.to raise_error "Cannot land plane, airport is full"
+    end
+    it 'wont allow plane to land for custom capacity' do 
+      airport = Airport.new(2)
+      allow(airport).to receive(:weather_generator).and_return(50)
+      airport.land(:plane) 
+      airport.land(:plane)
+      expect { airport.land(:plane) }.to raise_error "Cannot land plane, airport is full"
+    end 
   end
 
   describe '#take_off' do
@@ -130,14 +133,5 @@ describe Airport do
       expect(subject).to be_full
     end
   end 
-
-
-
-    # it 'should respond true when the weather is stormy' do
-    #   allow()
-    #   expect(airport.closed?).to be true 
-    # end
-
-  # end
 
 end

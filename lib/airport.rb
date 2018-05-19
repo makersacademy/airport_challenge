@@ -11,6 +11,7 @@ class Airport
 
   def land(plane)
     fail "Plane can't land in stormy weather" if stormy?
+    fail "Cannot land plane, airport is full" if full?
     @planes << plane
     "Your plane has been successfully stored"
   end
@@ -35,7 +36,7 @@ class Airport
   end
 
   def full?
-    true
+    @planes.length >= @capacity
   end
 
 end
