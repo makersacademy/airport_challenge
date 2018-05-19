@@ -20,7 +20,10 @@ describe Airport do
   end
 
   context '#take_off' do
-    it "placeholder" do
+    it "has left the airport" do
+      plane = Plane.new
+      # subject.take_off(plane)
+      expect(subject.take_off(plane).last).to eq "The plane #{plane} has left the airport."
 
     end
   end
