@@ -9,7 +9,7 @@ describe Airport do
   it 'can move a landed plane to the hanger' do
     plane = Plane.new
     subject.land(plane)
-    expect(@hanger).to include(plane)
+    expect(subject.hanger).to include(plane)
   end
 
   it 'allows an airplane to take off' do
