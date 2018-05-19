@@ -1,0 +1,29 @@
+
+user story:
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+at the moment, we have to take the assumption that he can only let the most recent plane that landed, take off
+We also have to assume that the aiport starts empty
+consequently we need to land a plane before it can take off
+so airport.take_off needs to return and remove? the last plane in the planes array
+I think we need 2 tests here:
+1 checks that the plane that has taken off is indeed a plane
+2 checks that the plane is no_longer in the airport.
+
+lets check our user story again:
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+create a test that:
+checks that airport has a plane..
+when the land method has been applied to plane
+ok, first we need to create a Plane
+then we need to land that plane
+then we need to check the airport has that Plane
+
+hmm.. feel I'm missing somehting here. lets just check the dock method
+ahh. so if we copy dock then the land method should be in the airport class
+so it says to the plane "hey plane, come and land at my airport."
