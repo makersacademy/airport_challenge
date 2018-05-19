@@ -7,9 +7,6 @@ describe Airport do
     allow(subject).to receive(:weather_generator).and_return(50)
   end
 
-  # the weather generator will fuck up all the tests because they always expect it to work, but it won't if the weather 
-  # gen is 75 or over 
-
   describe 'initialize' do 
     it 'should set default capacity as 30 planes' do
       subject
@@ -91,8 +88,11 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off }.to raise_error "Plane can't take off in stormy weather"
     end
-
-    # it should take off if weather isn't stormy 
+    it 'should take off if the weather isnt stormy' do 
+      subject.land(:plane)
+      allow(subject).to receive(:stormy).and_return(false)
+      expect { subject.take_off }.not_to raise_error
+    end
   end
 
   describe '#check_plane' do 
