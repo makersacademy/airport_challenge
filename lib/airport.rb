@@ -14,6 +14,7 @@ require_relative 'plane'
    end
 
    def let_plane_land(plane)
+     fail "cannot land due to stormy weather" if weather == :stormy
      @planes << plane
    end
 

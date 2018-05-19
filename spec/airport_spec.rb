@@ -5,8 +5,17 @@ describe Airport do
   describe "#let_plane_land" do
     it "checks plane has landed in airport" do
       plane = Plane.new
+      # let airport have sunny weather
+      allow(subject).to receive(:weather).and_return(:sunny)
       subject.let_plane_land(plane)
       expect(subject.planes.last).to eq plane
+    end
+
+    it "should raise error if weather is stormy" do
+      plane = Plane.new
+      # let airport have sunny weather
+      allow(subject).to receive(:weather).and_return(:stormy)
+      expect{subject.let_plane_land(plane)}.to raise_error "cannot land due to stormy weather"
     end
   end
 
