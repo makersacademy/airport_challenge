@@ -1,4 +1,4 @@
-class Airplane
+class Plane
 
 	def land
  	end
