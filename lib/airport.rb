@@ -4,7 +4,7 @@ class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :hanger, :capacity
 
-  def initialize (capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
   end
@@ -13,7 +13,6 @@ class Airport
   raise 'Airport is full' if full?
   raise 'Plane already at airport' if include?(plane)
     @hanger.push(plane)
-    
   end
 
   def full?
@@ -25,6 +24,8 @@ class Airport
   end
 
   def takeoff
+    
     @hanger.pop
+
   end
 end

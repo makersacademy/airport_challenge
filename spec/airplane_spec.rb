@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it 'can land an airplane' do
@@ -19,11 +20,11 @@ describe Airport do
   it 'confirms that plane that took off is no longer in hanger' do
     subject.land(Plane.new)
     taken_off_plane = subject.takeoff
-    expect(subject.hanger).to_not include (taken_off_plane)
+    expect(subject.hanger).to_not include(taken_off_plane)
   end
 
   it 'raises an error for landing when hanger is full' do
-    Airport::DEFAULT_CAPACITY.times{ subject.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect{ subject.land(Plane.new) }.to raise_error('Airport is full')
   end
 
@@ -31,6 +32,12 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     expect{ subject.land(plane) }.to raise_error('Plane already at airport')
+  end
+
+  it 'stops a plane from taking off when the weather is stormy'
+    plane = Plane.new
+    subject.land(plane)
+
   end
 
 end
