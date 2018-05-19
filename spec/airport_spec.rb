@@ -4,10 +4,11 @@ describe Airport do
 
   describe 'land' do
     it 'allows a plane to land' do
-      expect { plane.land }.to eq plane
+      plane = Plane.new
+      expect(subject).to respond_to (:land)
+      subject.land(plane)
     end
   end
 
 
-  
 end
