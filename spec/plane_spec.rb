@@ -16,15 +16,5 @@ describe Plane do
       expect(subject).not_to be_flying
       expect(subject.take_flight).to eq true
     end
-
-
-    # it 'when a plane has taken off from the airport, it returns true' do
-    #   allow(airport).to receive(:take_off).and_return(subject)
-    #   expect(subject).to be_flying
-    # end
-
   end
-
-    
-
 end

@@ -10,8 +10,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Plane can't land in stormy weather" if stormy?
-    fail "Cannot land plane, airport is full" if full?
+    run_land_guards
     @planes << plane
     "Your plane has been successfully stored"
   end
@@ -19,11 +18,19 @@ class Airport
   UNDEFINED = Object.new 
 
   def take_off(plane= UNDEFINED)
+    run_take_off_guards(plane)
+    release_plane(plane)
+  end
+
+  def run_land_guards
+    fail "Plane can't land in stormy weather" if stormy?
+    fail "Cannot land plane, airport is full" if full?
+  end
+
+  def run_take_off_guards(plane)
     fail "That plane is not in this airport" if plane != UNDEFINED && !check_plane(plane)
     fail "No planes available" if @planes.length.zero?
     fail "Plane can't take off in stormy weather" if stormy?
-
-    release_plane(plane)
   end
 
   def release_plane(plane)
@@ -57,5 +64,4 @@ class Airport
   def notify_plane(plane)
     plane.take_flight
   end
-
 end

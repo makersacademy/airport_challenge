@@ -14,7 +14,7 @@ describe Airport do
     end
 
     it 'should allow you change default capacity' do
-      airport = Airport.new(20)
+      airport = described_class.new(20)
       expect(airport.capacity).to eq 20 
     end
   end
@@ -50,7 +50,7 @@ describe Airport do
       expect { subject.land(:plane) }.to raise_error "Cannot land plane, airport is full"
     end
     it 'wont allow plane to land for custom capacity' do 
-      airport = Airport.new(2)
+      airport = described_class.new(2)
       allow(airport).to receive(:weather_generator).and_return(50)
       airport.land(:plane) 
       airport.land(:plane)
@@ -76,9 +76,10 @@ describe Airport do
     # but I don't think I can use a double for that because the doubles will all be the same, 
     # so I can't check if that specific object is in the array @planes 
     it 'no longer has the plane that has taken off in its hangar' do 
-      3.times { subject.land(Plane.new) }
+      plane = double(:plane)
+      3.times { subject.land(plane) }
       plane = subject.take_off
-      expect(subject.planes).not_to include(plane)
+      expect(subject.planes.length).not_to eq 3
     end 
     it 'should show an error when no planes are available' do 
       expect { subject.take_off }.to raise_error "No planes available"
@@ -98,37 +99,33 @@ describe Airport do
       expect { subject.take_off(:plane) }.to raise_error "That plane is not in this airport"
     end
     it 'should allow user to specify planes to take off, removing that plane from its hangar' do
-      plane = Plane.new
-      subject.land("Another plane")
+      plane = double(:plane)
       subject.land(plane)
-      subject.land("One more plane")
+      subject.land(plane)
+      subject.land(plane)
+      allow(plane).to receive(:take_flight).and_return(true)
       subject.take_off(plane)
       allow(plane).to receive(:take_flight).and_return(true)
-      expect(subject.planes).not_to include(plane)
+      expect(subject.planes.length).not_to eq 3
     end
     it 'when taking off a specific plane, should return that plane to user' do
-      plane = Plane.new
+      plane = double(:plane)
+      allow(plane).to receive(:take_flight).and_return(true)
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
 
-    ##### this is the one i'm working on 
-    # it 'should tell the plane that it is flying when it takes off' do
-    #   plane = Plane.new
-    #   subject.take_off
-    #   expect(plane).to be_flying
-    # end
-
-  end
-
-  describe "#tell_plane_flying" do
-    it 'can tell the plane that its flying status is true' do
-      plane = Plane.new
+    it 'tells the plane that it is flying after it takes off' do
+      plane = double(:plane)
+      allow(plane).to receive(:take_flight).and_return(true)
+      allow(plane).to receive(:flying?).and_return(true)
       subject.land(plane)
       subject.take_off(plane)
       expect(plane).to be_flying
     end
+
   end
+
 
   describe '#check_plane' do 
     it 'should return false when the plane isnt in the hangar' do
