@@ -4,7 +4,7 @@ require 'weather'
 
 describe Airport do
 	subject(:airport) { described_class.new }
-	let(:plane) { double Plane.new }
+	let(:plane) { Plane.new }
 
 	it 'the airport has a default capacity' do
 		expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)

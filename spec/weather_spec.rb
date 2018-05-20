@@ -2,28 +2,17 @@ require 'weather'
 
 describe Weather do
 	subject(:weather) { described_class.new }
-
-
-	it 'the weather has a default status' do
-		expect(weather.at_the_moment).to eq(Weather::STORMY)
-	end
-
-
-	describe 'attributes' do
-
-		it { is_expected.to respond_to :at_the_moment }
-		it { is_expected.to respond_to :at_the_moment= }
-
-		it 'allows for reading and writing for weather :at_the_moment' do
-			weather.at_the_moment = 'sunny'
-			expect(weather.at_the_moment).to eq('sunny')
-		end
-	end
+	
 
 	describe '#stormy?' do
 		it 'says whether it is stormy outside' do
-			allow(weather).to receive(:stormy?).and_return false
-			expect(weather.stormy?).to eq(false)
+			allow(Kernel).to receive(:rand).and_return 1
+			expect(weather.stormy?).to be(false)
+		end
+
+		it 'says whether it is nice weather outside' do
+			allow(Kernel).to receive(:rand).and_return 6
+			expect(weather.stormy?).to be(true)
 		end
 	end
 

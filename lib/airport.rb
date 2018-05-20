@@ -21,14 +21,14 @@ class Airport
 		@planes_on_the_ground.delete(plane)		
 	end
 
-	def maximum_capacity?
-		@planes_on_the_ground.count == @capacity
-	end
-
 	def land(plane)
 		fail 'Cannot land when stormy' if stormy?
 		fail 'No apron slots available' if maximum_capacity?
 		@planes_on_the_ground << plane
+	end
+
+	def maximum_capacity?
+		@planes_on_the_ground.count == @capacity
 	end
 
 	def stormy?
