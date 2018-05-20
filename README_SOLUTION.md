@@ -10,7 +10,9 @@ Starting with each user story, I have drawn out the objects and the behaviour th
 
 From the domain model, I have written a feature.rb file to write the desired software behaviour as a feature test - writing the lines of code that I envisage solving this particular issue for the user story.
 
-Once I've received the predicted our come I took the lines of feature test code and reworked into a Rspec user test.
+Once I've received the predicted our come I took the lines of feature test code and reworked into a Rspec unit test.
+
+Then use the red, green, refactor process to iterate on the tests and build the code base. Working to have 100% test coverage and all tests passing. 
 
 ### Status at point of push:
 
