@@ -11,6 +11,9 @@ class TrafficController
 
   # instruct a plane to take off
   def instruct_take_off(plane)
+    if plane.current_airport.clear_weather? == false
+      raise 'Cannot take off in bad conditions'
+    end
     plane.take_off
     return true
   end

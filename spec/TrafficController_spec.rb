@@ -17,9 +17,17 @@ describe TrafficController do
   end
 
   describe '#intruct_take_off' do
-    it 'Can make a plane take off' do
+    it 'Can make a plane take off in good conditions' do
+      allow(airport).to receive_messages(:clear_weather? => true)
       allow(plane).to receive(:take_off)
+      allow(plane).to receive_messages(:current_airport => airport)
       expect(subject.instruct_take_off(plane)).to eq(true)
+    end
+    it 'Does not allow the plane to take off in stormy conditions' do
+      allow(airport).to receive_messages(:clear_weather? => false)
+      allow(plane).to receive(:take_off)
+      allow(plane).to receive_messages(:current_airport => airport)
+      expect { subject.instruct_take_off(plane) }.to raise_error('Cannot take off in bad conditions')
     end
   end
 
