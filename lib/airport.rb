@@ -8,24 +8,23 @@ class Airport
 
   def initialize(capacity = AIRPORT_CAPACITY)
     @capacity = capacity
-    @planes = Array.new(capacity, Plane.new)
+    @plane = Plane.new
+    @planes = Array.new(capacity, @plane)
     @forecast = Weather.new
   end
-
 
   def land(plane)
     fail "The airport is full" if airport_full?
     fail "Weather is too stormy to land" if @forecast.stormy? == true
-    puts "The plane has landed."
     @planes << Plane.new
-    p @planes.count
+    puts "The plane has landed."
   end
 
   def take_off(plane)
-    fail "Weather is too stormy to take off" if @forecast.stormy? == true
     @planes.pop
-    p @planes.count
-    puts "There are now #{@planes.count} planes in the airport"
+    fail "Weather is too stormy to take off" if @forecast.stormy? == true
+    puts "This plane has now departed"
+
   end
 
   def airport_full?

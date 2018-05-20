@@ -1,6 +1,6 @@
 class Weather
 
-WEATHER = [:stormy, :not_stormy]
+  WEATHER = [:stormy, :not_stormy]
 
   def random_weather
     WEATHER.sample
