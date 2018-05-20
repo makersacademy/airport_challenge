@@ -60,14 +60,28 @@ require './lib/airport.rb'
 # I want to prevent landing when the airport is full
 
 # ** Feature Test 5 **
+# puts "Create an instance of an aiport:"
+# p airport = Airport.new
+# puts "Create an instance of a plane:"
+# p plane = Plane.new
+# puts "Land a first plane:"
+# p airport.land(plane)
+# puts "Create another instance of a plane:"
+# p plane = Plane.new
+# puts "Return error if airport is full, and no further planes can land,"
+# puts "or if airport is less than full, a plane will be able to land:"
+# p airport.land(plane)
+
+# ** User Story 6 **
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+
+# ** Feature Test 6 **
 puts "Create an instance of an aiport:"
 p airport = Airport.new
-puts "Create an instance of a plane:"
-p plane = Plane.new
-puts "Land a first plane:"
-p airport.land(plane)
-puts "Create another instance of a plane:"
-p plane = Plane.new
+puts "Create lots of instances of a plane and land them"
+airport.capacity.times { airport.land(Plane.new) }
 puts "Return error if airport is full, and no further planes can land,"
 puts "or if airport is less than full, a plane will be able to land:"
-p airport.land(plane)
+p airport.land(Plane.new)
