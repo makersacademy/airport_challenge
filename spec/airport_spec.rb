@@ -12,7 +12,7 @@ describe Airport do
  	end
 
 
-	 describe 'attributes' do
+	describe 'attributes' do
 
  		it 'checks that the airport is being initialized with the default capacity' do
   			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
@@ -69,6 +69,7 @@ describe Airport do
 
  	describe 'weather tests' do
  		it 'asks someone to look out the window and check the weather' do
+ 			expect(airport.stormy?).to eq(false)
   		end
  	end
 
