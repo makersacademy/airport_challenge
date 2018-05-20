@@ -44,7 +44,7 @@ describe Airport do
 		# As an air traffic controller 
 		# To ensure safety 
 		# I want to prevent landing when the airport is full 
-		it 'returns true if the number of :planes_on_the_ground >= :capacity' do
+		it 'returns true if the number of :planes_on_the_ground == :capacity' do
 			Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
 			expect(airport.maximum_capacity?).to eq(true)
 		end
