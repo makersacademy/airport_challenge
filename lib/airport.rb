@@ -24,15 +24,15 @@ class Airport
   UNDEFINED = Object.new 
 
   def take_off(plane= UNDEFINED)
-    if plane != UNDEFINED
-      fail "That plane is not in this airport" unless @planes.include?(plane)
-    else
-      plane = @planes[-1]
-    end
-
+    fail "That plane is not in this airport" if plane != UNDEFINED && !check_plane(plane)
     fail "No planes available" if @planes.length.zero?
     fail "Plane can't take off in stormy weather" if stormy?
-    plane
+
+    if plane != UNDEFINED && check_plane(plane)
+      @planes.delete(plane)
+      return plane
+    end
+    @planes[-1] 
     @planes.pop
   end
 

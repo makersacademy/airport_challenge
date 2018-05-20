@@ -96,6 +96,13 @@ describe Airport do
     it 'should only allow planes that are in its hangar to take off' do
       expect { subject.take_off(:plane) }.to raise_error "That plane is not in this airport"
     end
+    it 'should allow user to specify planes to take off, removing that plane from its hangar' do
+      subject.land("Another plane")
+      subject.land(:plane)
+      subject.land("One more plane")
+      subject.take_off(:plane)
+      expect(subject.planes).not_to include(:plane)
+    end
 
     # it should allow user to specify planes to take off, and remove those planes from hangar 
 
