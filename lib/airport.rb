@@ -12,7 +12,7 @@ class Airport
 
   def land(plane)
     fail "Unsafe. Due to the storm #{plane} can not land" if plane.stormy?
-    fail "Airport is full" if @hangar.count >= @capacity
+    fail "Airport is full" if full?
     @hangar << plane
     "The following plane: #{plane} has landed"
   end
@@ -20,6 +20,12 @@ class Airport
   def take_off(plane)
     fail "Unsafe. Due to the storm #{plane} can not take off" if plane.stormy?
     "The following plane: #{plane} has taken off"
+  end
+
+private
+
+  def full?
+    @hangar.count >= @capacity
   end
 
 end

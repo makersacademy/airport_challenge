@@ -14,7 +14,6 @@ class Plane
 
   def stormy?
     true if @weather == "stormy"
-  #  false if @weather == "sunny"
   end
 
 end
