@@ -16,11 +16,6 @@ class Airport
     "Your plane has been successfully stored"
   end
 
-# I'm trying to make it so that if the user entered a plane then check to see if it's
-# in the hangar before the guard that fails if there are no planes 
-
-# I would check if the user set a variable, and if they did then I would check if the plane was included in the @planes array 
-
   UNDEFINED = Object.new 
 
   def take_off(plane= UNDEFINED)
@@ -28,12 +23,18 @@ class Airport
     fail "No planes available" if @planes.length.zero?
     fail "Plane can't take off in stormy weather" if stormy?
 
+    release_plane(plane)
+  end
+
+  def release_plane(plane)
     if plane != UNDEFINED && check_plane(plane)
       @planes.delete(plane)
       return plane
+    else 
+      plane_to_return = @planes[-1] 
+      @planes.pop
+      return plane_to_return
     end
-    @planes[-1] 
-    @planes.pop
   end
 
 
