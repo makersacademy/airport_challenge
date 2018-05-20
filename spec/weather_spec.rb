@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 	subject(:weather) { described_class.new }
-	
+
 
 	describe '#stormy?' do
 		it 'says whether it is stormy outside' do
@@ -11,7 +11,7 @@ describe Weather do
 		end
 
 		it 'says whether it is nice weather outside' do
-			allow(Kernel).to receive(:rand).and_return 6
+			allow(Kernel).to receive(:rand).and_return 8
 			expect(weather.stormy?).to be(true)
 		end
 	end

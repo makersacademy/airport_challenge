@@ -1,7 +1,7 @@
 class Weather
 
 	def stormy?
-		Kernel.rand(6) > 4
+		Kernel.rand(8) > 6
 	end
 
 end
