@@ -15,7 +15,8 @@ describe AirTrafficController do
 		it 'lands a plane at an airport' do
 			#arrange
 			allow(plane).to receive(:state).and_return('in_air')
-			allow(airport).to receive(:planes).and_return([])
+			allow(airport).to receive(:land_a).with(plane).and_return(nil)
+			allow(airport).to receive(:planes).and_return([plane])
 			allow(airport).to receive(:full?).and_return(false)
 			#act
 			subject.weather = 'sunny'
@@ -68,7 +69,8 @@ describe AirTrafficController do
 		it 'confirm that plane is no longer in the airport after take off' do
 			#arrange
 			allow(plane).to receive(:state).and_return('in_air')
-			allow(airport).to receive(:planes).and_return([])
+			allow(airport).to receive(:land_a).with(plane).and_return(nil)
+			allow(airport).to receive(:planes).and_return([plane])
 			allow(airport).to receive(:full?).and_return(false)
 			#act
 			subject.weather = 'sunny'

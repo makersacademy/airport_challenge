@@ -11,7 +11,8 @@ class AirTrafficController
 		fail 'It is too stormy to land or take off' if @weather == 'stormy'
 		fail "Can't authorize landing! Airport is full" if airport.full?
 		fail 'Plane is already landed!' if plane.state == 'landed'
-		airport.planes << plane
+		#airport.planes << plane
+		airport.land_a(plane)
 	end
 
 	def take_off_from(airport, plane)
