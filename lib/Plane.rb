@@ -3,10 +3,14 @@ class Plane
 
   def initialize
     @current_airport = nil
+    @location = "Flying"
   end
 
   # lands a plane at an airport
   def land(airport)
+    unless @location == "Flying"
+      raise "Cannot land if already on ground"
+    end
     airport.add_plane(self)
     @current_airport = airport
     @location = airport.name

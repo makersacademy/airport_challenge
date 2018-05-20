@@ -5,7 +5,7 @@ class TrafficController
     if airport.clear_weather? == false
       raise "Can't land a plane in bad conditions"
     end
-    if airport.remaining_capacity == 0
+    if airport.remaining_capacity.zero?
       raise "Airport is full"
     end
     plane.land(airport)
