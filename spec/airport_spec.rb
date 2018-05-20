@@ -19,6 +19,16 @@ describe Airport do
 			expect(airport.capacity).to eq(10)
 		end
 
+		it 'allows for reading and writing for :planes_on_the_ground' do
+			airport.planes_on_the_ground = ['test']
+			expect(airport.planes_on_the_ground.pop).to eq('test')
+		end
+
+		it 'allows for reading and writing for :planes_in_the_sky' do
+			airport.planes_in_the_sky = ['test']
+			expect(airport.planes_in_the_sky.pop).to eq('test')
+		end
+
 	# As an air traffic controller 
 	# To ensure safety 
 	# I want to prevent landing when the airport is full 
