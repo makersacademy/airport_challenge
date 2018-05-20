@@ -6,13 +6,22 @@ describe Airport do
 	subject(:airport){ described_class.new }
 
 	it 'the airport has a default capacity' do
-		expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+		expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
 	end
 
-	describe 'attributes'
-		# Check for the airport capacity attr_accessor
+	describe 'attributes' do
+		# Snap check for the airport attr_accessors
 		it { is_expected.to respond_to :capacity }
-		it { is_expected.to respond_to :capacity= }
+		it { is_expected.to respond_to :capacity= }	
+		it { is_expected.to respond_to :planes_on_the_ground }
+		it { is_expected.to respond_to :planes_on_the_ground= }
+		it { is_expected.to respond_to :planes_in_the_sky }
+		it { is_expected.to respond_to :planes_in_the_sky= }
+
+
+		it 'checks that the airport is being initialized with the default capacity' do
+			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+		end
 
 		it 'allows for reading and writing for :airport_capacity' do
 			airport.capacity = 10
@@ -28,6 +37,7 @@ describe Airport do
 			airport.planes_in_the_sky = ['test']
 			expect(airport.planes_in_the_sky.pop).to eq('test')
 		end
+	end
 
 	# As an air traffic controller 
 	# To ensure safety 
