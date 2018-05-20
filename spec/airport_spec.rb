@@ -68,20 +68,12 @@ describe Airport do
 
 
  	describe 'weather tests' do
-
  		it 'asks someone to look out the window and check the weather' do
   		end
  	end
 
-	# allow(subject).to receive(:stormy) { true }
 
-	# As an air traffic controller
-	# So I can get passengers on the way to their destination 
-	# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 	describe 'takeoff tests' do
-  		# As an air traffic controller 
-  		# To ensure safety 
-  		# I want to prevent takeoff when weather is stormy
   		it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   		it 'prevents a plane from taking off when weather is stormy' do
