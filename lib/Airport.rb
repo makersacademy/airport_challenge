@@ -1,12 +1,13 @@
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
   attr_accessor :weather
-
+  DEFAULTCAPACITY = 20
   # initialize the airport
-  def initialize
+  def initialize(capacity = DEFAULTCAPACITY)
     @planes = []
     weather_options = ['Cloudy', 'Sunny']
     @weather = weather_options[rand(3)]
+    @capacity = capacity
   end
 
   # add a plane to the plane array
@@ -19,6 +20,7 @@ class Airport
     @planes.delete(plane)
   end
 
+  # checks if weather is clear, returns true if it is
   def clear_weather?
     return true if @weather == 'Sunny'
     return false

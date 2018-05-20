@@ -39,4 +39,13 @@ describe Airport do
     end
   end
 
+  describe '#initialize' do
+    it 'sets capacity to the default if no argument given' do
+      expect(subject.capacity).to eq Airport::DEFAULTCAPACITY
+    end
+    it 'sets capacity to 30 if passed 30 as an argument' do
+      tester = Airport.new(30)
+      expect(tester.capacity).to eq 30
+    end
+  end
 end
