@@ -48,4 +48,15 @@ describe Airport do
       expect(tester.capacity).to eq 30
     end
   end
+
+  describe '#remaining_capacity' do
+    it 'returns 10 when filled with 10 planes' do
+      10.times { subject.add_plane(plane) }
+      expect(subject.remaining_capacity).to eq 10
+    end
+    it 'returns 5 when filled with 15 planes' do
+      15.times { subject.add_plane(plane) }
+      expect(subject.remaining_capacity).to eq 5
+    end
+  end
 end

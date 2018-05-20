@@ -26,4 +26,9 @@ class Airport
     return false
   end
 
+  # how many more planes can be landed
+  def remaining_capacity
+    return @capacity - @planes.length
+  end
+
 end
