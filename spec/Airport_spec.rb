@@ -28,4 +28,15 @@ describe Airport do
     end
   end
 
+  describe '#clear_weather?' do
+    it 'returns false if weather is cloudy' do
+      subject.weather = 'Cloudy'
+      expect(subject.clear_weather?).to eq false
+    end
+    it 'returns true if the weatehr is sunny' do
+      subject.weather = 'Sunny'
+      expect(subject.clear_weather?).to eq true
+    end
+  end
+
 end
