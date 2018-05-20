@@ -93,6 +93,12 @@ describe Airport do
       allow(subject).to receive(:stormy).and_return(false)
       expect { subject.take_off }.not_to raise_error
     end
+    it 'should only allow planes that are in its hangar to take off' do
+      expect { subject.take_off(:plane) }.to raise_error "That plane is not in this airport"
+    end
+
+    # it should allow user to specify planes to take off, and remove those planes from hangar 
+
   end
 
   describe '#check_plane' do 
