@@ -1,9 +1,9 @@
 require_relative 'weather'
 
 class Airport
-	 attr_reader :capacity, :planes, :weather
-	# ask which is better, DEFAULT_CAPACITY or using ruby keyword arguments
-	 def initialize(capacity: 100, weather: Weather.new)
+	 attr_reader :planes
+	# ask which is better, constant DEFAULT_CAPACITY = 100 or using ruby keyword arguments
+	 def initialize(capacity: 100, weather: Weather)
 		  @capacity = capacity
 		  @planes = []
 		  @weather = weather
@@ -22,6 +22,7 @@ class Airport
 	 end
 
 	private
+	attr_reader :capacity, :weather
 
 	 def full?
  		 planes.count >= capacity
