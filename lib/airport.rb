@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -24,8 +25,7 @@ class Airport
   end
 
   def takeoff
-    
+  #raise 'Plane cannot takeoff when weather is stormy' if Weather.todays_weather == "stormy"
     @hanger.pop
-
   end
 end
