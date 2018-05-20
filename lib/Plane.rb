@@ -1,3 +1,4 @@
+require_relative 'Airport'
 class Plane
   attr_reader :location, :current_airport
 

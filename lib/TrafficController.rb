@@ -1,3 +1,5 @@
+require_relative 'Plane'
+require_relative 'Airport'
 class TrafficController
 
   # instruct a plane to land at a given airport
