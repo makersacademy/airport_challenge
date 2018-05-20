@@ -1,7 +1,5 @@
 class Plane
 
-  attr_reader :weather
-
   def initialize
     @weather = weather
   end
@@ -11,7 +9,7 @@ class Plane
   end
 
   def bad_weather
-   @weather = "stormy"
+    @weather = "stormy"
   end
 
   def stormy?

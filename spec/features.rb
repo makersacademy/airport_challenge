@@ -30,12 +30,26 @@ require './lib/airport.rb'
 # As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
+
+# ** Feature Test 3 **
+# puts "Create an instance of an aiport:"
+# p airport = Airport.new
+# puts "Create an instance of a plane:"
+# p plane = Plane.new
+# puts "Return error if the weather is stormy, and no planes leave,"
+# puts "or if sunny, a plane will take off:"
+# p airport.take_off(plane)
+
+# ** User Story 4 **
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when weather is stormy
+
+# ** Feature Test 4 **
 puts "Create an instance of an aiport:"
 p airport = Airport.new
 puts "Create an instance of a plane:"
 p plane = Plane.new
-puts "Return error if the weather is stormy, and no planes leave,"
-puts "or if sunny, a plane will take off:"
-p airport.take_off(plane)
-
-# ** User Story 4 **
+puts "Return error if the weather is stormy, and no planes land,"
+puts "or if sunny, a plane will be able to land:"
+p airport.land(plane)
