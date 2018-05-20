@@ -14,16 +14,15 @@ class Airport
 
 
   def land(plane)
-    # if plane_landed? == true
     fail "The airport is full" if airport_full?
+    fail "Weather is too stormy to land" if @forecast.stormy? == true
     puts "The plane has landed."
     @planes << Plane.new
     p @planes.count
-  # end
   end
 
   def take_off(plane)
-    fail "Weather is too stormy to take off" if Weather.stormy? == true
+    fail "Weather is too stormy to take off" if @forecast.stormy? == true
     @planes.pop
     p @planes.count
     puts "There are now #{@planes.count} planes in the airport"
