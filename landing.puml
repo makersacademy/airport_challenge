@@ -1,0 +1,22 @@
+```puml
+traffic_controller -> plane: land(location:, weather:)
+activate plane
+alt weather is sunny
+  plane -> airport: land(self)
+  airport -> airport: plane
+  activate airport
+  note right of airport: plane added to collection\nof planes in airport
+  airport --> plane: true
+  deactivate airport
+  plane --> traffic_controller: true
+else \t\tweather is stormy
+  note right of plane: raise error\n plane can't land, stormy weather
+else \t\tairport is full
+  plane -> airport: land(self)
+  activate airport
+  airport --> plane: false
+  deactivate airport
+  note right of plane: raise error\n plane can't land, airport full
+end
+deactivate plane
+```

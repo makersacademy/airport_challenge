@@ -1,0 +1,21 @@
+```puml
+traffic_controller -> plane: take_off(weather:)
+activate plane
+alt weather is sunny
+  plane -> airport: take_off(self)
+  activate airport
+  note right of airport: plane removed from\n collection of planes\n in airport
+  airport --> plane: true
+  deactivate airport
+  plane --> traffic_controller: true
+else \t\tweather is stormy
+  note right of plane: raise error\n plane can't land, stormy weather
+else \t\t weather sunny, but plane not at specified airport
+  plane -> airport: take_off(self)
+  activate airport
+  airport --> plane: false
+  deactivate airport
+  note right of plane: raise error\n plane not in specified airport
+end
+deactivate plane
+```

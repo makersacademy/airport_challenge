@@ -1,0 +1,6 @@
+```puml
+traffic_controller -> airport: plane_status(plane)
+airport --> traffic_controller: plane still at airport\nOR\nplane not at airport
+traffic_controller -> airport: capacity
+airport --> traffic_controller: capacity_as_integer
+```
