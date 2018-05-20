@@ -31,7 +31,7 @@ Here is an outline of the classes and their methods used:
 |instruct_take_off| take_off | remove_plane|
 |        |      |clear_weather? |
 |       |      | remaining_capacity|
-|----------------------|----------|------------|
+
 
 Task
 -----
