@@ -37,7 +37,6 @@ class Airport
     end
   end
 
-
   def check_plane(plane) 
     @planes.include?(plane) ? true : false
   end
@@ -52,6 +51,10 @@ class Airport
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def notify_plane(plane)
+    plane.take_flight
   end
 
 end

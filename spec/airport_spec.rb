@@ -109,8 +109,22 @@ describe Airport do
       expect(subject.take_off(:plane)).to eq :plane
     end
 
-    # it should allow user to specify planes to take off, and remove those planes from hangar 
+    ##### this is the one i'm working on 
+    # it 'should tell the plane that it is flying when it takes off' do
+    #   plane = Plane.new
+    #   subject.take_off
+    #   expect(plane).to be_flying
+    # end
 
+  end
+
+  describe "#tell_plane_flying" do
+    it 'can tell the plane that its flying status is true' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.notify_plane(plane)
+      expect(plane).to be_flying
+    end
   end
 
   describe '#check_plane' do 
@@ -151,5 +165,24 @@ describe Airport do
       expect(subject).to be_full
     end
   end 
+
+# my question is about writing a unit test for a class, and realising that if you were to 
+# stub the behaviour of its dependencies, there's amost no point in writing the test. 
+# my gut is telling me it shouldn't be in this class. 
+
+  # describe '#notify_plane' do
+  #   it 'should notify the plane that it is flying' do
+  #     plane = Plane.new
+  #     subject.land(plane)
+  #     subject.take_off(plane)
+  #     expect(plane).to be_flying
+  #   end
+    # it 'should notify the plane that it is flying' do
+    #   subject.land(:plane)
+    #   subject.take_off(:plane)
+    #   allow(plane).to receive(:flying?).and_return(false)
+    #   expect(plane).to be_flying
+    # end
+  # end
 
 end

@@ -1,16 +1,19 @@
 class Plane
 
+  attr_accessor :flying_status
+
+  def initialize 
+    @flying_status = false
+  end
+
   def flying?
-    false
+    @flying_status
+  end
+
+  def take_flight
+    @flying_status = true
   end
 
 end
 
 
-# @planes = [1,2,3]
-
-#   def check_plane(plane) 
-#     @planes.include?(plane) ? true : false
-#   end
-
-# puts !check_plane(2)
