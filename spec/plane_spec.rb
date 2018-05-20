@@ -19,6 +19,6 @@ describe Plane do
 	# that are already flying cannot takes off and/or be in
 	# an airport; planes that are landed cannot land again
 	# and must be in an airport, etc.
-	
+
 
 end
