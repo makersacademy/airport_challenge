@@ -1,9 +1,9 @@
 class Plane
 
-	def land
- 	end
+	 def land
+  	end
 
- 	def take_off
+  def take_off
  	end
 
 end
