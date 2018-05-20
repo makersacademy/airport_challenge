@@ -1,8 +1,7 @@
 require_relative 'plane'
-# include Weather
 
 class Airport
-  DEFAULT_CAPACITY = 2
+  DEFAULT_CAPACITY = 20
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -11,18 +10,33 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport full, no landing availability' if @planes.count >= @capacity
+    fail 'Airport full, no landing availability' if full?
     fail 'Error, plane already at the airport' if @planes.include?(plane)
     @planes << plane
   end
 
   def take_off
-    fail 'No planes at the airport' if @planes.count <= 0
+    fail 'Cannot take off, airport empty' if empty?
+    fail 'Stormy weather, no takes off' if stormy?
     puts print_take_off
     @planes.pop
   end
 
   def print_take_off
     'A plane has taken off'
+  end
+
+  private
+
+  def full?
+    @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.count <= 0
+  end
+
+  def stormy?
+    rand(1..8) > 6
   end
 end
