@@ -57,3 +57,14 @@ run `rspec` from the projects root directory.
 With thanks to the following resources that have helped me on this project
 
 * Akash Nimare for his blog on README's - https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3
+
+## Skills I used creating thing project 
+
+TDD</br />
+* Writing all tests before code 
+* Unit testing classes in isolation (using doubles)
+* Use Rspec matchers 
+* Write guard conditions 
+* Use constants
+Extract domain models from user stories, and turn them into feature tests.</br /> 
+
