@@ -17,4 +17,15 @@ describe Plane do
     end
   end
 
+  describe '#take_off' do
+    it 'can take off from an airport' do
+      allow(airport).to receive(:remove_plane)
+      allow(airport).to receive(:add_plane)
+      allow(airport).to receive_messages(:name => "Heathrow")
+      subject.land(airport)
+      subject.take_off
+      expect(subject.location).to eq "Flying"
+    end
+  end
+
 end
