@@ -1,5 +1,5 @@
 require_relative 'plane'
-# require_relative 'weather'
+# include Weather
 
 class Airport
   DEFAULT_CAPACITY = 2
@@ -12,11 +12,12 @@ class Airport
 
   def land(plane)
     fail 'Airport full, no landing availability' if @planes.count >= @capacity
+    fail 'Error, plane already at the airport' if @planes.include?(plane)
     @planes << plane
   end
 
   def take_off
-    # fail 'Stormy weather, no takes off' if @weather_conditions
+    fail 'No planes at the airport' if @planes.count <= 0
     puts print_take_off
     @planes.pop
   end
