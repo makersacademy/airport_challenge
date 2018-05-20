@@ -83,9 +83,10 @@ describe Airport do
 			expect { airport.takeoff.to raise_error('Cannot takeoff when stormy') }
 		end
 
-		it 'checks if a plane is in the airport' do
-			allow(airport).to receive(:stormy?).and_return false
-			expect { airport.takeoff(plane) }.to raise_error 'Plane is no longer in the airport'
+		it 'Raises an error if planes is not at this airport' do
+			JFK = described_class.new
+			JFK.land(plane)
+			expect { airport.takeoff(plane) }.to raise_error 'The plane cannot take off as it is not at this airport'
 		end
 	end
 
