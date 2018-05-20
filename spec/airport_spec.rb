@@ -92,7 +92,7 @@ describe Airport do
 		end
 
 		it 'raises an error if planes already in the sky try to take off' do
-			allow(airport).to receive(:stormy).and_return false
+			allow(airport).to receive(:stormy?).and_return false
 			airport.land(plane)
 			airport.takeoff(plane)
 			expect { airport.takeoff(plane) }.to raise_error 'Planes in the sky cannot take off'
