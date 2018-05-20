@@ -12,8 +12,7 @@ class Airport
   end
 
   def land(plane)
-  raise 'Airport is full' if full?
-  raise 'Plane already at airport' if include?(plane)
+    return if weather_at_airport == 'stormy'
     hanger.push(plane)
   end
 
@@ -26,8 +25,8 @@ class Airport
   end
 
   def takeoff
-  #raise 'Plane cannot takeoff when weather is stormy' if Weather.todays_weather == "stormy"
-  #   @hanger.pop
+
+    @hanger.pop
   end
 
   def weather_at_airport
