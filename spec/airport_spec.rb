@@ -34,7 +34,6 @@ describe Airport do
     let(:plane) { double :plane }
     it 'returns an error, and no planes land' do
       airport = Airport.new
-      # plane = Plane.new - shouldn't call a plane when the class under test is airport
       allow(plane).to receive(:stormy?) { true }
       expect { airport.land(plane) }.to raise_error "Unsafe. Due to the storm #{plane} can not land"
     end
@@ -52,7 +51,6 @@ describe Airport do
       let(:plane) { double :plane }
       it 'returns an error, and no planes leave' do
         airport = Airport.new
-        # plane = Plane.new - shouldn't call a plane when the class under test is airport
         allow(plane).to receive(:stormy?) { true }
         expect { airport.take_off(plane) }.to raise_error "Unsafe. Due to the storm #{plane} can not take off"
       end
