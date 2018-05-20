@@ -11,7 +11,7 @@ describe Weather do
  	# ensure consistent test behaviour.
 
 	it 'the weather has a default status' do
-  		expect(weather.at_the_moment).to eq(Weather::DEFAULT_WEATHER)
+  		expect(weather.at_the_moment).to eq(Weather::STORMY)
   	end
 
 
