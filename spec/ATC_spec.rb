@@ -71,8 +71,8 @@ describe AirTrafficController do
 			allow(airport).to receive(:planes).and_return([])
 			allow(airport).to receive(:full?).and_return(false)
 			#act
-			subject.land_at(airport, plane)
 			subject.weather = 'sunny'
+			subject.land_at(airport, plane)
 			#assert
 			expect(airport.planes.include?(plane)).to eq true
 			#arrange
