@@ -4,9 +4,15 @@ describe TrafficController do
   let(:airport) { double :airport }
 
   describe '#instruct_land' do
-    it 'Can make a plane land' do
+    it 'Can make a plane land in good conditions' do
       allow(plane).to receive(:land)
+      allow(airport).to receive_messages(:clear_weather? => true)
       expect(subject.instruct_land(plane, airport)).to eq([plane, airport])
+    end
+    it 'Does not allow plane to land in stormy conditions' do
+      allow(plane).to receive(:land)
+      allow(airport).to receive_messages(:clear_weather? => false)
+      expect { subject.instruct_land(plane, airport) }.to raise_error("Can't land a plane in bad conditions")
     end
   end
 
