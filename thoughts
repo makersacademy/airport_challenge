@@ -82,12 +82,34 @@ do this by landing 20 aircraft and calling an error on the 21st
 2. overide the capacity
 land capacity aircraft and call an error on capacity + 1
 
+Next section: edge cases. test that
+i) planes can only take off from airports they are in
+ii) planes that are already flying cannot takes off and/or be in an airport
+iii) planes that are landed cannot land again and must be in an airport, etc.
 
+lets go one by one
+i) planes can only take off from airports they are in
+hmm. we could land a plane in subject, then create a new instance of airport and try and get that same plane to take off, and say it should be a fail.
 
+this should be an action on take off
 
+actually we could make this better.
+let take_off take an argument which has to be in the plane array for take_off to work
 
+ii) planes that are already flying cannot takes off and/or be in an airport
+
+hmm. in order to be sure a plane is flying I guess we have to land it and then let it take off. I feel we have covered this already.
+
+iii) planes that are landed cannot land again and must be in an airport, etc.
+
+ok this is new. we need to raise an error for calling let_plane_land twice on the same plane
 
 To do
 find way to clean laptop
-start blog ideas list
+start blog ideas list:
+  food (with puns)
+  grass greener
+  me, myself and my command line
+  how a marmot taugt me to code
+  poem of the cohort
 revert to old to do list
