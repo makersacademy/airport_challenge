@@ -1,4 +1,3 @@
-require_relative 'plane'
 require_relative 'weather'
 
 class Airport
@@ -26,7 +25,7 @@ class Airport
   end
 
   def takeoff
-    return'You cannot takeoff due to the weather' if weather_at_airport == 'stormy'
+    return 'You cannot takeoff due to the weather' if weather_at_airport == 'stormy'
     @hanger.pop
   end
 

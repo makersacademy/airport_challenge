@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   let(:plane) { instance_double('Plane')}
