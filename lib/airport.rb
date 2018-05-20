@@ -12,7 +12,8 @@ class Airport
   end
 
   def land(plane)
-    return 'You cannont land due to the weather' if weather_at_airport == 'stormy'
+    return 'You cannot land due to the weather' if weather_at_airport == 'stormy'
+    return 'Airport is full' if full?
     hanger.push(plane)
   end
 
