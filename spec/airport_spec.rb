@@ -5,7 +5,6 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe '#land' do
-
 	context 'when it is sunny' do
 		before { allow(airport).to receive(:stormy?).and_return(false) }
 
