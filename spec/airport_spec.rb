@@ -98,15 +98,18 @@ describe Airport do
       expect { subject.take_off(:plane) }.to raise_error "That plane is not in this airport"
     end
     it 'should allow user to specify planes to take off, removing that plane from its hangar' do
+      plane = Plane.new
       subject.land("Another plane")
-      subject.land(:plane)
+      subject.land(plane)
       subject.land("One more plane")
-      subject.take_off(:plane)
-      expect(subject.planes).not_to include(:plane)
+      subject.take_off(plane)
+      allow(plane).to receive(:take_flight).and_return(true)
+      expect(subject.planes).not_to include(plane)
     end
     it 'when taking off a specific plane, should return that plane to user' do
-      subject.land(:plane)
-      expect(subject.take_off(:plane)).to eq :plane
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
     end
 
     ##### this is the one i'm working on 
@@ -122,7 +125,7 @@ describe Airport do
     it 'can tell the plane that its flying status is true' do
       plane = Plane.new
       subject.land(plane)
-      subject.notify_plane(plane)
+      subject.take_off(plane)
       expect(plane).to be_flying
     end
   end

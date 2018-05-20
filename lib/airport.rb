@@ -29,6 +29,7 @@ class Airport
   def release_plane(plane)
     if plane != UNDEFINED && check_plane(plane)
       @planes.delete(plane)
+      plane.take_flight
       return plane
     else 
       plane_to_return = @planes[-1] 
