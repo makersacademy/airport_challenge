@@ -23,6 +23,13 @@ describe Airport do
       plane = Plane.new
       expect(airport.take_off(plane)).to eq "The following plane: #{plane} has taken off"
     end
+
+    it 'returns an error if the weather is stormy, and no planes leave' do
+      airport = Airport.new
+      @weather = 'stormy'
+      plane = Plane.new
+      expect { airport.take_off(plane) }.to raise_error "Unsafe weather. Due to the storm #{plane} can not take off"
+    end
   end
 
 end

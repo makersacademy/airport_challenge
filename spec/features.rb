@@ -19,9 +19,22 @@ require './lib/airport.rb'
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 # ** Feature Test 2 **
+# puts "Create an instance of an aiport:"
+# p airport = Airport.new
+# puts "Create an instance of a plane:"
+# p plane = Plane.new
+# puts "Instruct a plane to take off and get confirmation"
+# p airport.take_off(plane)
+
+# ** User Story 3 **
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
 puts "Create an instance of an aiport:"
 p airport = Airport.new
 puts "Create an instance of a plane:"
 p plane = Plane.new
-puts "Instruct a plane to take off and get confirmation"
+puts "Return error if the weather is stormy, and no planes leave:"
 p airport.take_off(plane)
+
+# ** User Story 4 **
