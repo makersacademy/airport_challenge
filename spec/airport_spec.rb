@@ -3,7 +3,12 @@ require 'plane'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
+  before(:each) do
+    allow(plane).to receive(:landed?) { @landed }
+    allow(plane).to receive(:make_land) { @landed = true }
+    allow(plane).to receive(:make_take_off) { @landed = false }
+  end
 
   describe '#initialize' do
     before { allow(subject).to receive(:stormy) { false } }
@@ -72,6 +77,5 @@ describe Airport do
         expect { subject.take_off(plane) }.to raise_error 'Cannot take off, weather is stormy'
       end
     end
-
   end
 end
