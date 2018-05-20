@@ -18,17 +18,21 @@ describe Airport do
   end
 
   describe '#take_off' do
+    let(:plane) { double :plane }
     it 'instructs a plane to take off from an airport' do
       airport = Airport.new
-      plane = Plane.new
+      allow(plane).to receive(:stormy?) { false }
       expect(airport.take_off(plane)).to eq "The following plane: #{plane} has taken off"
     end
 
-    it 'returns an error if the weather is stormy, and no planes leave' do
-      airport = Airport.new
-      @weather = 'stormy'
-      plane = Plane.new
-      expect { airport.take_off(plane) }.to raise_error "Unsafe weather. Due to the storm #{plane} can not take off"
+    context 'when the weather is too bad to take off' do
+      let(:plane) { double :plane }
+      it 'returns an error, and no planes leave' do
+        airport = Airport.new
+        #plane = Plane.new - shouldn't call a plane when the class under test is airport
+        allow(plane).to receive(:stormy?) { true }
+        expect { airport.take_off(plane) }.to raise_error "Unsafe weather. Due to the storm #{plane} can not take off"
+      end
     end
   end
 

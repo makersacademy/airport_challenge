@@ -34,7 +34,8 @@ puts "Create an instance of an aiport:"
 p airport = Airport.new
 puts "Create an instance of a plane:"
 p plane = Plane.new
-puts "Return error if the weather is stormy, and no planes leave:"
+puts "Return error if the weather is stormy, and no planes leave,"
+puts "or if sunny, a plane will take off:"
 p airport.take_off(plane)
 
 # ** User Story 4 **
