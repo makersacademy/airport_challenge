@@ -29,20 +29,37 @@ describe Airport do
 		end
 
 		it 'allows for reading and writing for :planes_on_the_ground' do
-			airport.planes_on_the_ground = ['test']
-			expect(airport.planes_on_the_ground.pop).to eq('test')
+			airport.planes_on_the_ground = ['plane']
+			expect(airport.planes_on_the_ground.pop).to eq('plane')
 		end
 
 		it 'allows for reading and writing for :planes_in_the_sky' do
-			airport.planes_in_the_sky = ['test']
-			expect(airport.planes_in_the_sky.pop).to eq('test')
+			airport.planes_in_the_sky = ['plane']
+			expect(airport.planes_in_the_sky.pop).to eq('plane')
 		end
 	end
 
-	# As an air traffic controller 
-	# To ensure safety 
-	# I want to prevent landing when the airport is full 
-	it { is_expected.to respond_to :maximum_capacity? }
+
+	describe 'maximum_capacity tests' do
+		# As an air traffic controller 
+		# To ensure safety 
+		# I want to prevent landing when the airport is full 
+		it 'returns true if the number of :planes_on_the_ground >= :capacity' do
+			Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+			expect(airport.maximum_capacity?).to eq(true)
+		end
+
+		it 'returns false if the number of :planes_on_the_ground < :capacity' do
+			Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+			airport.takeoff
+			expect(airport.maximum_capacity?).to eq(false)
+		end
+
+		it 'raises an error if a plane tries to land when :planes_on_the_ground == :capacity' do
+      		Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+      		expect { airport.land('MA370').to raise_error('No apron slots available') }
+		end
+	end
 
 	# describe 'initialization' do
 	# 	it 'raises an error when full' do
@@ -59,7 +76,7 @@ describe Airport do
 	# As an air traffic controller 
 	# To ensure safety 
 	# I want to prevent takeoff when weather is stormy
-	it { is_expected.to respond_to :takeoff? }
+	it { is_expected.to respond_to :safe_to_takeoff? }
 
 	it { is_expected.to respond_to(:land).with(1).argument }
 
