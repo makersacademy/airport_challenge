@@ -18,6 +18,7 @@ class Plane
 
   # takes the plane off
   def take_off
+    raise "Can't take off if already flying" if @location == "Flying"
     @current_airport.remove_plane(self)
     @location = "Flying"
   end

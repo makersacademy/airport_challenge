@@ -32,6 +32,9 @@ describe Plane do
       subject.take_off
       expect(subject.location).to eq "Flying"
     end
+    it 'can not take off if already flying' do
+      expect { subject.take_off }.to raise_error("Can't take off if already flying")
+    end
   end
 
 end
