@@ -72,9 +72,6 @@ describe Airport do
       subject.take_off 
       expect(subject.planes.length).to eq 2
     end
-    # Question here - I want to check if the plane that is released is no longer included in the hangar, 
-    # but I don't think I can use a double for that because the doubles will all be the same, 
-    # so I can't check if that specific object is in the array @planes 
     it 'no longer has the plane that has taken off in its hangar' do 
       plane = double(:plane)
       3.times { subject.land(plane) }
@@ -94,7 +91,6 @@ describe Airport do
       allow(subject).to receive(:stormy).and_return(false)
       expect { subject.take_off }.not_to raise_error
     end
-    # Edge case - Planes can only takeoff from airports that they are in 
     it 'should only allow planes that are in its hangar to take off' do
       expect { subject.take_off(:plane) }.to raise_error "That plane is not in this airport"
     end
@@ -123,9 +119,7 @@ describe Airport do
       subject.take_off(plane)
       expect(plane).to be_flying
     end
-
   end
-
 
   describe '#check_plane' do 
     it 'should return false when the plane isnt in the hangar' do
@@ -164,25 +158,5 @@ describe Airport do
       30.times { subject.land(:place) }
       expect(subject).to be_full
     end
-  end 
-
-# my question is about writing a unit test for a class, and realising that if you were to 
-# stub the behaviour of its dependencies, there's amost no point in writing the test. 
-# my gut is telling me it shouldn't be in this class. 
-
-  # describe '#notify_plane' do
-  #   it 'should notify the plane that it is flying' do
-  #     plane = Plane.new
-  #     subject.land(plane)
-  #     subject.take_off(plane)
-  #     expect(plane).to be_flying
-  #   end
-    # it 'should notify the plane that it is flying' do
-    #   subject.land(:plane)
-    #   subject.take_off(:plane)
-    #   allow(plane).to receive(:flying?).and_return(false)
-    #   expect(plane).to be_flying
-    # end
-  # end
-
+  end
 end

@@ -17,7 +17,7 @@ class Airport
 
   UNDEFINED = Object.new 
 
-  def take_off(plane= UNDEFINED)
+  def take_off(plane = UNDEFINED)
     run_take_off_guards(plane)
     release_plane(plane)
   end
@@ -28,9 +28,13 @@ class Airport
   end
 
   def run_take_off_guards(plane)
-    fail "That plane is not in this airport" if plane != UNDEFINED && !check_plane(plane)
+    fail "That plane is not in this airport" if plane_not_in_airport(plane)
     fail "No planes available" if @planes.length.zero?
     fail "Plane can't take off in stormy weather" if stormy?
+  end
+
+  def plane_not_in_airport(plane)
+    plane != UNDEFINED && !check_plane(plane) 
   end
 
   def release_plane(plane)

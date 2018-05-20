@@ -13,7 +13,4 @@ class Plane
   def take_flight
     @flying_status = true
   end
-
 end
-
-
