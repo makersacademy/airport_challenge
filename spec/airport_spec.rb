@@ -4,8 +4,11 @@ require 'weather'
 
 describe Airport do
   let(:plane) { instance_double('Plane')}
+  let(:weather) { instance_double('Weather') }
 
   context 'When the weather is sunny' do
+    let(:subject) { described_class.new(weather) }
+
     it 'allows the plane to land' do
       subject.land(plane)
       expect(subject.hanger).to include(plane)
@@ -22,18 +25,19 @@ describe Airport do
     end
   end
 
-  context 'When weather is stormy' do
-    it 'does not allow a plane to land' do
-      subject.land(plane)
-      expect(subject.hanger).to_not include(plane)
-    end
-
-    it 'does not move plane to the hanger'
-
-    it 'does not allow a plane to take off'
-
-    it 'does not remove the plane from the hanger'
-  end
+  # context 'When weather is stormy' do
+  #   it 'does not allow a plane to land' do
+  #     subject.land(plane)
+  #     expect(subject.hanger).to_not include(plane)
+  #   end
+  #
+  #   it 'does not move plane to the hanger'
+  #
+  #
+  #   it 'does not allow a plane to take off'
+  #
+  #   it 'does not remove the plane from the hanger'
+  # end
 end
 
 
