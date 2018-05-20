@@ -6,13 +6,17 @@ describe Airport do
   let(:plane) { Plane.new }
 
   describe '#initialize' do
+    before { allow(subject).to receive(:stormy) { false } }
     it 'defaults capacity' do
-      allow(subject).to receive(:stormy) { false }
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
         plane.make_take_off
       end
       expect(subject.planes.size).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'allows the user to set capacity' do
+      expect(Airport.new(5).capacity).to eq 5
     end
   end
 
