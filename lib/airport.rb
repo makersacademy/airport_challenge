@@ -1,7 +1,10 @@
 require_relative 'weather'
 
 class Airport
-  def initialize(capacity, weather)
+
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY, weather)
     @capacity = capacity
     @weather = weather
     @planes = []

@@ -16,9 +16,14 @@ describe Airport do
 
       context 'when airport is full' do
         it 'raises an error' do
-          20.times do
+          described_class::DEFAULT_CAPACITY.times do
             airport.land(plane)
           end
+          expect { airport.land(plane) }.to raise_error 'Cannot land: airport full'
+        end
+        it "has a default capacity" do
+          allow(weather).to receive(:stormy?).and_return false
+          described_class::DEFAULT_CAPACITY.times { airport.land(plane) }
           expect { airport.land(plane) }.to raise_error 'Cannot land: airport full'
         end
       end
