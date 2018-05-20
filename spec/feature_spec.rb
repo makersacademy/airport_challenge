@@ -16,7 +16,6 @@ describe 'user stories diagrams' do
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
-    expect { airport.take_off(plane) }.not_to raise_error
     expect(airport.take_off(plane)).to eq plane
   end
 
@@ -26,7 +25,7 @@ describe 'user stories diagrams' do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return true
-    expect {airport.take_off(plane)}.to raise_error ' Weather is stormy - cannot take_off! '
+    expect { airport.take_off(plane) }.to raise_error ' Weather is stormy - cannot take_off! '
   end
 
   # 4th user story diagram
@@ -35,7 +34,19 @@ describe 'user stories diagrams' do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return true
-    expect {airport.land(plane)}.to raise_error ' Weather is stormy - cannot land! '
+    expect { airport.land(plane) }.to raise_error ' Weather is stormy - cannot land! '
+  end
+
+  # 5th user story diagram
+  # Airport <-- land(plane) ==> plane doesn't land when full
+  it "prevents the plane to land when the airport is full" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
+    20.times do
+      airport.land(plane)
+    end
+    expect { airport.land(plane) }.to raise_error ' Airport is full - cannot land '
   end
 
 end
