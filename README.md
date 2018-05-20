@@ -23,9 +23,9 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport*
 
 Create a test that checks that airport has a plane when the land method has been applied to plane
-Ok, first we need to create a Plane
-Then we need to land that plane
-Then we need to check the airport has that Plane
+Ok, first we need to create a plane.
+Then we need to land that plane.
+Then we need to check the airport has that Plane.
 
 It may sound counter-intuative, but I think the land method should be in the Airport class, not plane class
 So it says to the plane "hey plane, come and land at my airport."
@@ -35,13 +35,13 @@ As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport*
 
-at the moment, we have to take the assumption that we can only let the most recent plane that landed, take off
+At the moment, we have to take the assumption that we can only let the most recent plane that landed, take off.
 We also have to assume that the aiport starts empty
 consequently we need to land a plane before it can take off
 so airport.take_off needs to return and remove the last plane in the planes array
 I think we need 2 tests here:
-1 checks that the plane that has taken off is indeed a plane
-2 checks that the plane is no_longer in the airport.
+1. checks that the plane that has taken off is indeed a plane
+2. checks that the plane is no_longer in the airport.
 
 N.B. what we've created here is a test that checks that the airport is empty after the plane takes off which is not correct if there is more than one plane. how can we improve this?
 How about we search the planes array for the plane object?
@@ -56,8 +56,8 @@ Is weather an object? or is a method that either returns stormy or sunny.. I thi
 Hence, weather is a method of the airport class since it tells us something about the state of the airport
 
 Tests:
-1 check the weather can be called
-2 if the weather is stormy (randomise this) try to call take_off on airport. this should fail
+1. check the weather can be called
+2. if the weather is stormy (randomise this) try to call take_off on airport. this should fail
 
 For number 2, I think we are going to need to create a mock in order to ensure that the weather is stormy
 Ah yes, in fact we need to create a stub. Glorious.
@@ -69,15 +69,15 @@ I want to prevent landing when weather is stormy*
 
 Seems similar to 3 if anything easier
 Tests:
--  check let_plane_land method fails when weather is stormy
-- alter let_plane_land test to work when weather is sunny
+1. Check let_plane_land method fails when weather is stormy
+2. Alter let_plane_land test to work when weather is sunny
 
 *5.
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full*
 
-How  big is the airport? pretty f*cking small! only fits one plane (we assume at first)
+How big is the airport? pretty f*cking small! only fits one plane (we assume at first)
 
 Tests:
 set airport.full == full using sub
