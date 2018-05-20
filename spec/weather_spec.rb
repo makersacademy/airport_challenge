@@ -30,4 +30,10 @@ describe Weather do
  	# ensure consistent test behaviour.
  	end
 
+ 	describe '#stormy?' do
+ 		it 'says whether it is stormy outside' do
+ 			expect(weather.stormy?).to eq(false)
+ 		end
+ 	end
+
 end

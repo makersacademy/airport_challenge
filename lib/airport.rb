@@ -5,23 +5,22 @@ class Airport
 
 	DEFAULT_CAPACITY = 5
 
-	attr_accessor :capacity, :planes_on_the_ground, :planes_in_the_sky
+	attr_accessor :capacity, :planes_on_the_ground, :planes_in_the_sky, :weather
 
 
-	def initialize(capacity = DEFAULT_CAPACITY)
+	def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
  		 @capacity = capacity
  		 @planes_in_the_sky = []
  		 @planes_on_the_ground = []
+ 		 @weather = weather
  	end
 
-		# Take a plane from the front of :planes_on_ground queue
-		# and place it at the end of the :planes_in_the_sky queue
-	def takeoff(weather = 'sunny')
-	 	case weather
- 		when 'sunny'
-  		 @planes_in_the_sky << @planes_on_the_ground.first
-  		 @planes_on_the_ground.delete_at(0)
-  		end		
+
+	def takeoff(plane)
+	 	fail 'Cannot takeoff when stormy' if stormy?
+	 	fail 'Plane is no longer in the airport' unless @planes_on_the_ground.include?(plane)
+  		@planes_in_the_sky << plane
+  		@planes_on_the_ground.delete(plane)		
  	end
 
 
@@ -31,8 +30,14 @@ class Airport
 
 
 	def land(plane)
+		fail 'Cannot land when stormy' if stormy?
  		fail 'No apron slots available' if maximum_capacity?
  		@planes_on_the_ground << plane
  	end
+
+
+ 	def stormy?
+  		weather.stormy?
+  	end
 
 end

@@ -14,13 +14,6 @@ describe Airport do
 
 	 describe 'attributes' do
 
- 		it { is_expected.to respond_to :capacity }
- 		it { is_expected.to respond_to :capacity= }	
- 		it { is_expected.to respond_to :planes_on_the_ground }
- 		it { is_expected.to respond_to :planes_on_the_ground= }
- 		it { is_expected.to respond_to :planes_in_the_sky }
- 		it { is_expected.to respond_to :planes_in_the_sky= }
-
  		it 'checks that the airport is being initialized with the default capacity' do
   			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   		end
@@ -50,7 +43,7 @@ describe Airport do
 
   		it 'returns false if the number of :planes_on_the_ground < :capacity' do
   			Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-  			airport.takeoff
+  			airport.takeoff(plane)
   			expect(airport.maximum_capacity?).to eq(false)
   		end	
 	end
@@ -68,18 +61,19 @@ describe Airport do
   			expect(airport.land(plane).last).to eq plane
   		end
 
-		# As an air traffic controller 
-		# To ensure safety
-		# I want to prevent landing when weather is stormy
 		it 'prevents a plane from landing when weather is stormy' do
+      		expect { airport.land(plane).to raise_error('Cannot land when stormy') }
   		end	
 	end
 
 
  	describe 'weather tests' do
+
  		it 'asks someone to look out the window and check the weather' do
   		end
  	end
+
+	# allow(subject).to receive(:stormy) { true }
 
 	# As an air traffic controller
 	# So I can get passengers on the way to their destination 
@@ -89,6 +83,14 @@ describe Airport do
   		# To ensure safety 
   		# I want to prevent takeoff when weather is stormy
   		it { is_expected.to respond_to(:takeoff).with(1).argument }
+
+  		it 'prevents a plane from taking off when weather is stormy' do
+      		expect { airport.takeoff.to raise_error('Cannot takeoff when stormy') }
+      	end
+
+      	it 'checks if a plane is in the airport' do
+        	expect { airport.takeoff(plane) }.to raise_error 'Plane is no longer in the airport'
+      end
 	end
 
 	# Your code should defend against edge cases such as
