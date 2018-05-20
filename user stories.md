@@ -81,9 +81,31 @@ Airport           initialize(capacity)       message saying that the airport cap
 Edge cases 
 
 - Planes can only takeoff from airports that they are in 
-- Planes that are already flying cannot take off and/or be in an airport 
+
+
+Object          |   Message                    |      Return 
+Airport             take_off(specific_plane)      This plane is not in this airport 
+
+
+- Planes that are already flying cannot take off and/or be in an airport
+
+Objects         | Message                       | Return 
+Plane             flying?                         true
+Airport           take_off(plane)                 Error message "This plane is already flying" 
+Airport           check_plane(plane)              false                 
+
+
 - Planes that are landed cannot land again
+
+Objects         | Messages                      | Return 
+Plane             flying?                         false
+Airport           land(plane)                     error msg "Plane is already landed" 
+
+
+
 - Planes that are landed must be in an airport 
 
-
+Objects         | Messages                       | Result 
+Plane             flying?                          false
+Plane             in_airport?                      true 
 
