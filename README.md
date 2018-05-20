@@ -60,7 +60,7 @@ With thanks to the following resources that have helped me on this project
 
 ## Skills I used creating thing project 
 
-TDD</br />
+TDD
 * Writing all tests before code 
 * Unit testing classes in isolation (using doubles)
 * Use Rspec matchers 
