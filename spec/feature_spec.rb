@@ -5,6 +5,7 @@ describe 'user stories diagrams' do
   it "instructs the plane to land at the airport" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
 
@@ -13,18 +14,28 @@ describe 'user stories diagrams' do
   it "instructs a plane to take_off and checks if it has" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     expect { airport.take_off(plane) }.not_to raise_error
     expect(airport.take_off(plane)).to eq plane
   end
 
 # 3rd user story diagram
-# Plane <-- stormy? ==> plane doesn't take off when stormy
-  it "prevent plane take_off when weather is stormy " do
+# Airport <-- stormy? ==> plane doesn't take off when stormy
+  it "prevents plane take_off when the weather is stormy " do
     airport = Airport.new
     plane = Plane.new
-    airport.land(plane)
-    expect { plane.stormy? }.not_to raise_error
-    expect(airport.take_off(plane)).not_to be_stormy
+    allow(airport).to receive(:stormy?).and_return true
+    expect {airport.take_off(plane)}.to raise_error ' Weather is stormy - cannot take_off! '
   end
+
+  # 4th user story diagram
+  # Airport <-- stormy? ==> plane doesn't land when stormy
+  it "prevents plane landing when the weather is stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect {airport.land(plane)}.to raise_error ' Weather is stormy - cannot land! '
+  end
+
 end
