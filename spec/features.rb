@@ -46,10 +46,28 @@ require './lib/airport.rb'
 # I want to prevent landing when weather is stormy
 
 # ** Feature Test 4 **
+# puts "Create an instance of an aiport:"
+# p airport = Airport.new
+# puts "Create an instance of a plane:"
+# p plane = Plane.new
+# puts "Return error if the weather is stormy, and no planes land,"
+# puts "or if sunny, a plane will be able to land:"
+# p airport.land(plane)
+
+# ** User Story 5 **
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when the airport is full
+
+# ** Feature Test 5 **
 puts "Create an instance of an aiport:"
 p airport = Airport.new
 puts "Create an instance of a plane:"
 p plane = Plane.new
-puts "Return error if the weather is stormy, and no planes land,"
-puts "or if sunny, a plane will be able to land:"
+puts "Land a first plane:"
+p airport.land(plane)
+puts "Create another instance of a plane:"
+p plane = Plane.new
+puts "Return error if airport is full, and no further planes can land,"
+puts "or if airport is less than full, a plane will be able to land:"
 p airport.land(plane)

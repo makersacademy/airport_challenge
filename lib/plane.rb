@@ -5,7 +5,7 @@ class Plane
   end
 
   def weather
-    ["sunny", "stormy"].sample
+    ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"].sample
   end
 
   def bad_weather

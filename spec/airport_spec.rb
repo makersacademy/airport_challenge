@@ -18,6 +18,18 @@ describe Airport do
     end
   end
 
+  context 'when there are airport is full' do
+    let(:plane) { double :plane }
+    let(:plane2) { double :plane2 }
+    it 'returns an error and no more planes can land' do
+      airport = Airport.new
+      allow(plane).to receive(:stormy?) { false }
+      allow(plane2).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect { airport.land(plane2) }.to raise_error "Airport is full"
+    end
+  end
+
   context 'when the weather is too bad to land' do
     let(:plane) { double :plane }
     it 'returns an error, and no planes land' do
