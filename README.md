@@ -66,5 +66,5 @@ TDD</br />
 * Use Rspec matchers 
 * Write guard conditions 
 * Use constants
-Extract domain models from user stories, and turn them into feature tests.</br /> 
+* Extract domain models from user stories, and turn them into feature tests.
 
