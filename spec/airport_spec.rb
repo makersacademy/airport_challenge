@@ -4,7 +4,7 @@ require 'weather'
 
 describe Airport do
 	subject(:airport) { described_class.new }
-	let(:plane) { Plane.new }
+	let(:plane) { double Plane.new }
 
 	it 'the airport has a default capacity' do
 		expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
@@ -88,12 +88,5 @@ describe Airport do
 			expect { airport.takeoff(plane) }.to raise_error 'Plane is no longer in the airport'
 		end
 	end
-
-	# Your code should defend against edge cases such as
-	# inconsistent states of the system ensuring that planes
-	# can only take off from airports they are in; planes
-	# that are already flying cannot takes off and/or be in
-	# an airport; planes that are landed cannot land again
-	# and must be in an airport, etc.
 
 end
