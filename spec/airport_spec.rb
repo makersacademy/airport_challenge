@@ -1,50 +1,38 @@
 require 'airport'
 
 describe Airport do
+
+# --- tests working ---
   context "#initialize" do
-    airport = Airport.new
-    plane = Plane.new
-    it "sets capacity" do
-      described_class::AIRPORT_CAPACITY.times do
-        subject.land(plane)
-      end
+    it "makes capacity an integer" do
+      expect(subject.capacity).to be_an Integer
     end
+    it "makes planes an array" do
+      airport = Airport.new
+      expect(subject.planes).to be_an Array
+    end
+    it { is_expected.to respond_to(:capacity) }
   end
 
   context '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-    it "prevents landing when airport is full" do
-      subject.capacity.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error "Cannot land at this airport as it is full"
+    it "fails if the airport is full" do
+      expect {subject.land(Plane)}.to raise_error "The airport is full"
+    end
+    it "confirms a plane has landed." do
+      airport = Airport.new
+      airport.land(Plane)
+      expect(subject.land(Plane)).to eq "The plane has landed."
+    end
+    it "returns the array of planes" do
+      airport = Airport.new
+      plane_ num = airport.planes.count
+      expect(subject.planes.count).to eq plane_num
     end
   end
 
-  context '#take_off' do
-    it "has left the airport" do
-      plane = Plane.new
-      # subject.take_off(plane)
-      expect(subject.take_off(plane).last).to eq "The plane #{plane} has left the airport."
-
-    end
+  context '#airport_full?' do
   end
 
 end
-
-  #   context '#take_off' do
-  #     plane = Plane.new
-  #     it { is_expected.to respond_to(:take_off) }
-  #   end
-  # end
-
-# it "takes a plane out of the airport" do
-#   expect(subject.take_off).to eq { plane.count }
-# end
-
-    # context '#taken_off?' do
-    #   it "confirms plane is no longer in the airport" do
-    #     expect(subject.taken_off?).to eq
-    #     true
-    #   end
-    # end
 
 # require_relative './lib/airport.rb'
