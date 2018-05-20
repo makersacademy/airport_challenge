@@ -2,13 +2,7 @@ require 'weather'
 
 describe Weather do
 	subject(:weather) { described_class.new }
-	
 
- 	# You will need to use a random number generator to
- 	# set the weather (it is normally sunny but on rare 
- 	# occasions it may be stormy). In your tests, you'll 
- 	# need to use a stub to override random weather to
- 	# ensure consistent test behaviour.
 
 	it 'the weather has a default status' do
   		expect(weather.at_the_moment).to eq(Weather::STORMY)
@@ -28,6 +22,7 @@ describe Weather do
 
  	describe '#stormy?' do
  		it 'says whether it is stormy outside' do
+ 			allow(weather).to receive(:stormy?).and_return false
  			expect(weather.stormy?).to eq(false)
  		end
  	end
