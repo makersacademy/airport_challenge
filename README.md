@@ -22,12 +22,10 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport*
 
-create a test that:
-checks that airport has a plane..
-when the land method has been applied to plane
-ok, first we need to create a Plane
-then we need to land that plane
-then we need to check the airport has that Plane
+Create a test that checks that airport has a plane when the land method has been applied to plane
+Ok, first we need to create a Plane
+Then we need to land that plane
+Then we need to check the airport has that Plane
 
 It may sound counter-intuative, but I think the land method should be in the Airport class, not plane class
 So it says to the plane "hey plane, come and land at my airport."
@@ -45,7 +43,7 @@ I think we need 2 tests here:
 1 checks that the plane that has taken off is indeed a plane
 2 checks that the plane is no_longer in the airport.
 
-n.b. what we've created here is a test that checks that the airport is empty after the plane takes off which is not correct if there is more than one plane. how can we improve this?
+N.B. what we've created here is a test that checks that the airport is empty after the plane takes off which is not correct if there is more than one plane. how can we improve this?
 How about we search the planes array for the plane object?
 Sounds dreamy, lets do that.
 
@@ -54,14 +52,14 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy*
 
-is weather an object? or is a method that either returns stormy or sunny.. I think the latter... .weather should return stormy or sunny.
+Is weather an object? or is a method that either returns stormy or sunny.. I think the latter... .weather should return stormy or sunny.
 Hence, weather is a method of the airport class since it tells us something about the state of the airport
 
-tests:
+Tests:
 1 check the weather can be called
 2 if the weather is stormy (randomise this) try to call take_off on airport. this should fail
 
-for number 2, I think we are going to need to create a mock in order to ensure that the weather is stormy
+For number 2, I think we are going to need to create a mock in order to ensure that the weather is stormy
 Ah yes, in fact we need to create a stub. Glorious.
 
 *4.
@@ -69,8 +67,8 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy*
 
-seems similar to 3 if anything easier
-tests:
+Seems similar to 3 if anything easier
+Tests:
 -  check let_plane_land method fails when weather is stormy
 - alter let_plane_land test to work when weather is sunny
 
@@ -79,9 +77,9 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full*
 
-how  big is the airport? pretty f*cking small! only fits one plane (we assume at first)
+How  big is the airport? pretty f*cking small! only fits one plane (we assume at first)
 
-tests:
+Tests:
 set airport.full == full using sub
 actually, don't need a sub, can just land one plane
 check let_plane_land fails due to fullness
@@ -107,7 +105,7 @@ Test that:
 2. planes that are already flying cannot takes off and/or be in an airport
 3. planes that are landed cannot land again and must be in an airport, etc.
 
-lets go one by one
+Lets go one by one
 *1. planes can only take off from airports they are in
 hmm. we could land a plane in subject, then create a new instance of airport and try and get that same plane to take off, and say it should be a fail.*
 
@@ -117,10 +115,10 @@ Let take_off take an argument which has to be in the plane array for take_off to
 
 *2. planes that are already flying cannot takes off and/or be in an airport*
 
-hmm. in order to be sure a plane is flying I guess we have to land it and then let it take off. I have already built tests to cover this.
+Hmm. in order to be sure a plane is flying I guess we have to land it and then let it take off. I have already built tests to cover this.
 
 *3. planes that are landed cannot land again and must be in an airport, etc.*
 
-ok this is new. we need to raise an error for calling let_plane_land twice on the same plane
+Ok this is new. we need to raise an error for calling let_plane_land twice on the same plane
 
-All seems to work... splendid. 
+All seems to work... splendid.
