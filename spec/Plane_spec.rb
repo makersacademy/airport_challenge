@@ -1,6 +1,7 @@
 require 'Plane'
 describe Plane do
   let(:airport) { double :airport }
+
   describe '#land' do
     it 'can land at an airport with name Heathrow' do
       allow(airport).to receive(:add_plane)
@@ -15,4 +16,5 @@ describe Plane do
       expect(subject.location).to eq "Gatwick"
     end
   end
+
 end
