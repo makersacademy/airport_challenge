@@ -11,4 +11,10 @@ class Airport
     @planes << plane
   end
 
+  # removes a plane from the plane array
+  def remove_plane(plane)
+    @planes.delete(plane)
+  end
+
+
 end
