@@ -38,10 +38,22 @@ describe Airport do
       expect(subject.hanger).to_not include(plane)
     end
 
-    it 'does not move plane to the hanger'
+    it 'reports that plane is unable to land because of the weather' do
+      allow(weather).to receive(:todays_weather).and_return('stormy')
+      expect(subject.land(plane)).to eq 'You cannont land due to the weather'
+    end
 
+    it 'does not allow a plane to take off' do
+      allow(weather).to receive(:todays_weather).and_return('stormy')
+      subject.hanger << plane
+      subject.takeoff
+      expect(subject.hanger).to include(plane)
+    end
 
-    it 'does not allow a plane to take off'
+    # it 'reports that plane is unable to takeoff because of the weather' do
+    #   allow(weather).to receive(:todays_weather).and_return('stormy')
+    #   expect(subject.takeoff).to eq 'You cannot takeoff due to the weather'
+    # end
 
     it 'does not remove the plane from the hanger'
   end

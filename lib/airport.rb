@@ -12,7 +12,7 @@ class Airport
   end
 
   def land(plane)
-    return if weather_at_airport == 'stormy'
+    return 'You cannont land due to the weather' if weather_at_airport == 'stormy'
     hanger.push(plane)
   end
 
@@ -25,7 +25,7 @@ class Airport
   end
 
   def takeoff
-
+    return'You cannot takeoff due to the weather' if weather_at_airport == 'stormy'
     @hanger.pop
   end
 
