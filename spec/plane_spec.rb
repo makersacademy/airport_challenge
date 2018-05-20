@@ -63,7 +63,7 @@ describe Plane do
     it "#take_off fails if plans is not in specified airport" do
       allow(airport).to receive(:take_off).
         and_return(false)
-      expect{
+      expect {
         plane.take_off(
           airport: airport,
           weather: :sunny

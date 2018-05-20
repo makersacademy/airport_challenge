@@ -82,7 +82,7 @@ RuntimeError (plane can't land, airport full)
 
 ## My Process of Building The Application
 
-* built the sequence diagrams based on user stories
+* built sequence diagrams based on user stories
 * BDD cycle for unit tests
   * wrote a unit test
   * changed the class so that it passed

@@ -55,7 +55,6 @@ describe "Integrity Test" do
         plane.take_off(airport: airport, weather: :stormy)
       }.to raise_error "plane can't take off, stormy weather"
     end 
-  end
 
     it "should raise an error when plane is asked to take off from an airport it isn't at" do
       another_airport = Airport.new
@@ -63,6 +62,7 @@ describe "Integrity Test" do
         plane.take_off(airport: another_airport, weather: :sunny)
       }.to raise_error "plane is not in specified airport"
     end
+  end
 
   describe "Feature: Reporting of Plane Status" do
     before do
