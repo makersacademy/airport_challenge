@@ -147,4 +147,13 @@ Edge cases
 * Planes that are landed cannot land again and must be in an airport
 
   When `airport.land(plane)` is run, the `plane` is added to the `airport`'s `@planes` array and the method `make_land` is called on `plane`. This method is defined in the `Plane` class, and it sets `@landed` to `true`.
-  The next time the user tries to land that plane, a guard condition checks if `@landed` is `true` via the `landed?` method in `Plane`, and if so the error `Plane has already landed` is shown. 
+  The next time the user tries to land that plane, a guard clause checks if `@landed` is `true` via the `landed?` method in `Plane`, and if so the error `Plane has already landed` is shown.
+
+
+How to use
+---------
+* Fork this repo, and clone to your local machine
+* Run the command `gem install bundle` (if you don't have bundle already)
+* When the installation completes, run `bundle`
+
+This app is designed to be used on the command line, and was built in Ruby 2.5.0, with RSpec 3.7 for testing. All RSpec tests are green, and no offenses are detected by Rubocop.
