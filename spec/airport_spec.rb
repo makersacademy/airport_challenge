@@ -18,7 +18,7 @@ describe Airport do
 		it { is_expected.to respond_to :planes_in_the_sky }
 		it { is_expected.to respond_to :planes_in_the_sky= }
 
-
+		# Attribute Read/Write tests
 		it 'checks that the airport is being initialized with the default capacity' do
 			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
 		end
