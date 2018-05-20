@@ -1,10 +1,10 @@
 class Plane
 
-	 DEFAULT_FLIGHT_STATUS = true
+	DEFAULT_FLIGHT_STATUS = true
 
-	 attr_accessor :flying
+	attr_accessor :flying
 
-	 def initialize(flying = DEFAULT_FLIGHT_STATUS)
+	def initialize(flying = DEFAULT_FLIGHT_STATUS)
   		@flying = flying
   	end
 

@@ -1,17 +1,23 @@
 require 'weather'
 
 describe Weather do
-	 subject(:weather) { described_class.new }
+	subject(:weather) { described_class.new }
 	
-	 describe 'attributes' do
 
- 		 it { is_expected.to respond_to :at_the_moment }
- 		 it { is_expected.to respond_to :at_the_moment= }
+	it 'the weather has a default status' do
+  		expect(weather.at_the_moment).to eq(Weather::DEFAULT_WEATHER)
+  	end
 
- 		 it 'allows for reading and writing for weather :at_the_moment' do
+
+	describe 'attributes' do
+
+ 		it { is_expected.to respond_to :at_the_moment }
+ 		it { is_expected.to respond_to :at_the_moment= }
+
+ 		it 'allows for reading and writing for weather :at_the_moment' do
     		weather.at_the_moment = 'sunny'
     		expect(weather.at_the_moment).to eq('sunny')
-    end
+    	end
 
  	# As an air traffic controller 
  	# To ensure safety
