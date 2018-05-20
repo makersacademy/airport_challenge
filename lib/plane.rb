@@ -15,4 +15,6 @@ class Plane
 		@flying = flying
 	end
 
+
+
 end

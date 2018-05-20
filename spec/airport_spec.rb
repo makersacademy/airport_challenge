@@ -84,10 +84,12 @@ describe Airport do
 		end
 
 		it 'Raises an error if planes is not at this airport' do
+			allow(airport).to receive(:stormy?).and_return false
 			JFK = described_class.new
+			allow(JFK).to receive(:stormy?).and_return false
 			JFK.land(plane)
-			expect { airport.takeoff(plane) }.to raise_error 'The plane cannot take off as it is not at this airport'
+			expect { airport.takeoff(plane) }.to raise_error 'Plane cannot take off as it is not at this airport'
 		end
-	end
 
+	end
 end
