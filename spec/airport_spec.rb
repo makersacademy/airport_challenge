@@ -61,12 +61,6 @@ describe Airport do
 		end
 	end
 
-	# describe 'initialization' do
-	# 	it 'raises an error when full' do
-	# 	DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
-	# 	expect { subject.dock Bike.new }.to raise_error 'Docking station full'
-	# 	end
-	# end
 
 	# Planes on the ground
 	it { is_expected.to respond_to :planes_on_the_ground }
