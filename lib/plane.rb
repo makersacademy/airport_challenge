@@ -1,9 +1,11 @@
 class Plane
 
-	 def land
-   	end
+	 DEFAULT_FLIGHT_STATUS = true
 
-	 def take_off
+	 attr_accessor :flying
+
+	 def initialize(flying = DEFAULT_FLIGHT_STATUS)
+  		@flying = flying
   	end
 
 end

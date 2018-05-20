@@ -4,6 +4,7 @@ require 'weather'
 
 describe Airport do
 	 subject(:airport) { described_class.new }
+	 let(:plane) { Plane.new }
 
 	 it 'the airport has a default capacity' do
  		 expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
@@ -32,13 +33,13 @@ describe Airport do
   		end
 
  		 it 'allows for reading and writing for :planes_on_the_ground' do
-  			 airport.planes_on_the_ground = ['plane']
-  			 expect(airport.planes_on_the_ground.pop).to eq('plane')
+  			 airport.planes_on_the_ground = [plane]
+  			 expect(airport.planes_on_the_ground.pop).to eq(plane)
   		end
 
  		 it 'allows for reading and writing for :planes_in_the_sky' do
-  			 airport.planes_in_the_sky = ['plane']
-  			 expect(airport.planes_in_the_sky.pop).to eq('plane')
+  			 airport.planes_in_the_sky = [plane]
+  			 expect(airport.planes_in_the_sky.pop).to eq(plane)
   		end
  	end
 
@@ -47,12 +48,12 @@ describe Airport do
   		# To ensure safety 
   		# I want to prevent landing when the airport is full 
   		it 'returns true if the number of :planes_on_the_ground == :capacity' do
-  			 Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+  			 Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
   			 expect(airport.maximum_capacity?).to eq(true)
   		end
 
   		it 'returns false if the number of :planes_on_the_ground < :capacity' do
-  			 Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+  			 Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
   			 airport.takeoff
   			 expect(airport.maximum_capacity?).to eq(false)
   		end
@@ -61,9 +62,9 @@ describe Airport do
 	 describe 'landing tests' do
 
   		it 'raises an error if a plane tries to land when there is no space' do
-      		Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
-      		expect { airport.land('MA370').to raise_error('No apron slots available') }
-    	end
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect { airport.land('MA370').to raise_error('No apron slots available') }
+    end
 
   		it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -71,7 +72,6 @@ describe Airport do
 		# So I can get passengers to a destination 
 		# I want to instruct a plane to land at an airport
   		it 'allows a plane to land on the runway' do
-  			 plane = Plane.new
   			 expect(airport.land(plane).last).to eq plane
   		end
 
