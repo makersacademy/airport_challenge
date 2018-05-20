@@ -1,6 +1,5 @@
 class Weather
 
-	 def stormy?
- 	end
+	 attr_accessor :at_the_moment
 
 end

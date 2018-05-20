@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 	 subject(:airport) { described_class.new }
@@ -22,9 +23,9 @@ describe Airport do
   			 expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   		end
 
- 			# As the system designer
- 			# So that the software can be used for many different airports
- 			# I would like a default airport capacity that can be overridden as appropriate
+ 		# As the system designer
+ 		# So that the software can be used for many different airports
+ 		# I would like a default airport capacity that can be overridden as appropriate
  		 it 'allows for reading and writing for :airport_capacity' do
   			 airport.capacity = 10
   			 expect(airport.capacity).to eq(10)
@@ -42,47 +43,69 @@ describe Airport do
  	end
 
 	 describe 'maximum_capacity tests' do
- 		# As an air traffic controller 
- 		# To ensure safety 
- 		# I want to prevent landing when the airport is full 
- 		 it 'returns true if the number of :planes_on_the_ground == :capacity' do
+  		# As an air traffic controller 
+  		# To ensure safety 
+  		# I want to prevent landing when the airport is full 
+  		it 'returns true if the number of :planes_on_the_ground == :capacity' do
   			 Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
   			 expect(airport.maximum_capacity?).to eq(true)
   		end
 
- 		 it 'returns false if the number of :planes_on_the_ground < :capacity' do
+  		it 'returns false if the number of :planes_on_the_ground < :capacity' do
   			 Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
   			 airport.takeoff
   			 expect(airport.maximum_capacity?).to eq(false)
   		end
- 	end
+  end
 
 	 describe 'landing tests' do
 
- 		 it 'raises an error if a plane tries to land when there is no space' do
-      Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
-      expect { airport.land('MA370').to raise_error('No apron slots available') }
-    end
+  		it 'raises an error if a plane tries to land when there is no space' do
+      		Airport::DEFAULT_CAPACITY.times { airport.land('plane') }
+      		expect { airport.land('MA370').to raise_error('No apron slots available') }
+    	end
 
- 		 it { is_expected.to respond_to(:land).with(1).argument }
+  		it { is_expected.to respond_to(:land).with(1).argument }
 
- 		 it 'allows a plane to land on the runway' do
+		# As an air traffic controller
+		# So I can get passengers to a destination 
+		# I want to instruct a plane to land at an airport
+  		it 'allows a plane to land on the runway' do
   			 plane = Plane.new
   			 expect(airport.land(plane).last).to eq plane
   		end
+
+		# As an air traffic controller 
+		# To ensure safety
+		# I want to prevent landing when weather is stormy
+		  it 'prevents a plane from landing when weather is stormy' do
+  		end
+		
+  end
+
+ 	describe 'weather tests' do
+
+ 		 it 'asks someone to look out the window and check the weather' do
+  		end
+
  	end
 
+	# As an air traffic controller
+	# So I can get passengers on the way to their destination 
+	# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 	 describe 'takeoff tests' do
- 		# Planes on the ground
- 		 it { is_expected.to respond_to :planes_on_the_ground }
- 		# Planes in the sky
- 		 it { is_expected.to respond_to :planes_in_the_sky }
+  		# As an air traffic controller 
+  		# To ensure safety 
+  		# I want to prevent takeoff when weather is stormy
+  		it { is_expected.to respond_to(:takeoff).with(1).argument }
 
- 		# As an air traffic controller 
- 		# To ensure safety 
- 		# I want to prevent takeoff when weather is stormy
- 		 it { is_expected.to respond_to :safe_to_takeoff? }
+  end
 
- 	end
+	# Your code should defend against edge cases such as
+	# inconsistent states of the system ensuring that planes
+	# can only take off from airports they are in; planes
+	# that are already flying cannot takes off and/or be in
+	# an airport; planes that are landed cannot land again
+	# and must be in an airport, etc.
 
 end
