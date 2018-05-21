@@ -5,7 +5,9 @@ class Plane
   end
 
   def weather
-    ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"].sample
+    #["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"].sample
+    ["sunny", "stormy"][rand(3)]
+
   end
 
   def bad_weather
