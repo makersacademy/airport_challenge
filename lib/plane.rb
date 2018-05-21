@@ -6,8 +6,8 @@ class Plane
 
   def weather
     #["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"].sample
-    ["sunny", "stormy"][rand(3)]
-
+    return "stormy" if rand(11) > 9
+    "sunny"
   end
 
   def bad_weather
