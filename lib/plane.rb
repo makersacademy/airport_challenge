@@ -3,7 +3,7 @@ class Plane
   def initialize
     @flying = true
   end
-  
+
   def take_off
     fail "Plane already flying" if @flying
   end

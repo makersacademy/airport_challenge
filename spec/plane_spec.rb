@@ -3,7 +3,7 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
-  let(:airport) { double :airport  }
+  let(:airport) { double :airport }
 
   describe '#take_off' do
     it 'responds to take off' do
@@ -14,15 +14,11 @@ describe Plane do
     end
   end
   describe '#land' do
-    it 'stores the airport the plane landed at' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+    it 'raises an error if plane is already landed' do
       plane.land(airport)
-      expect(plane.airport).to eq airport
+      expect { plane.land(airport) }.to raise_error "Plane already landed"
     end
-     it { is_expected.to respond_to(:land).with(1).argument }
-     it 'raises an error if plane is already landed' do
-       plane.land(airport)
-       expect { plane.land(airport) }.to raise_error "Plane already landed"
-     end
   end
   describe '#airport' do
     it 'responds to airport' do
