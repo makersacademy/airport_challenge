@@ -25,7 +25,8 @@ class Airport
 private
 
   def full?
-    @hangar.count >= @capacity
+    # changed <= to == 
+    @hangar.count == @capacity
   end
 
 end
