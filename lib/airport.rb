@@ -24,7 +24,6 @@ class Airport
     fail "Stormy weather" if stormy?
     fail "Plane not at this airport" unless  @planes.include(plane)
     plane.take_off
-    @planes.delete(plane)
     plane
   end
 

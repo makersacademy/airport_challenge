@@ -62,12 +62,4 @@ describe Airport do
       end
     end
   end
-  context 'describe defaults' do
-    subject(:default_airport) { described_class.new(weather) }
-    it 'has a default capacity' do
-      allow(weather).to receive(:stormy?).and_return false
-      described_class::DEFAULT_CAPACITY.times { default_airport.land_plane(plane) }
-      expect { default_airport.land_plane(plane) }.to raise_error "Airport full "
-    end
-  end
 end
