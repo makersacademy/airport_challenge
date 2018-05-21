@@ -1,9 +1,10 @@
 require_relative 'weather'
 
 class Airport
+	DEFAULT_CAPACITY = 100
 	 attr_reader :planes
-	# ask which is better, constant DEFAULT_CAPACITY = 100 or using ruby keyword arguments
-	 def initialize(capacity: 100, weather: Weather)
+	 
+	 def initialize(capacity: DEFAULT_CAPACITY, weather: Weather)
 		  @capacity = capacity
 		  @planes = []
 		  @weather = weather
