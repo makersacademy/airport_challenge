@@ -44,9 +44,9 @@ describe 'user stories diagrams' do
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return false
     20.times do
-      airport.land(plane)
+      airport.land(Plane.new)
     end
-    expect { airport.land(plane) }.to raise_error ' Airport is full - cannot land '
+    expect { airport.land(Plane.new) }.to raise_error ' Airport is full - cannot land '
   end
 
   # 6th user story diagram
@@ -66,11 +66,11 @@ describe 'user stories diagrams' do
   end
 
   # planes cannot land after they hane already landed
-  # it "prevents planes from landing after they have already landed" do
-  #   airport = Airport.new(20)
-  #   plane = Plane.new
-  #   allow(airport).to receive(:stormy?).and_return false
-  #   airport.land(plane)
-  #   expect { airport.land(plane) }.to raise_error ' The plane has already landed '
-  # end
+  it "prevents planes from landing after they have already landed" do
+    airport = Airport.new(20)
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error ' The plane has already landed '
+  end
 end
