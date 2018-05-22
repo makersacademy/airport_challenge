@@ -1,6 +1,9 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { double :plane }
+  let(:plane2) { double :plane }
+
   it 'responds to #land' do
     expect(subject). to respond_to :land
   end
@@ -10,7 +13,6 @@ describe Airport do
   end
 
   describe '#land' do
-    let(:plane) { double :plane }
     it 'instructs a plane to land at an airport' do
       airport = Airport.new
       allow(plane).to receive(:stormy?) { false }
@@ -19,19 +21,16 @@ describe Airport do
   end
 
   context 'when the airport is full' do
-    let(:plane) { double :plane }
-    let(:plane2) { double :plane2 }
+
     it 'returns an error and no more planes can land' do
       allow(plane).to receive(:stormy?) { false }
-      allow(plane2).to receive(:stormy?) { false }
       airport = Airport.new
       airport.capacity.times { airport.land(plane) }
-      expect { airport.land(plane2) }.to raise_error "Airport is full"
+      expect { airport.land(plane) }.to raise_error "Airport is full"
     end
   end
 
   context 'when the weather is too bad to land' do
-    let(:plane) { double :plane }
     it 'returns an error, and no planes land' do
       airport = Airport.new
       allow(plane).to receive(:stormy?) { true }
@@ -40,7 +39,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    let(:plane) { double :plane }
     it 'instructs a plane to take off from an airport' do
       airport = Airport.new
       allow(plane).to receive(:stormy?) { false }
@@ -48,7 +46,6 @@ describe Airport do
     end
 
     context 'when the weather is too bad to take off' do
-      let(:plane) { double :plane }
       it 'returns an error, and no planes leave' do
         airport = Airport.new
         allow(plane).to receive(:stormy?) { true }

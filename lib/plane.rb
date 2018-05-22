@@ -8,7 +8,7 @@ class WeatherMachine
   end
 
   def stormy?
-    @weathers == "stormy"
+    @weather == "stormy"
   end
 
 end
