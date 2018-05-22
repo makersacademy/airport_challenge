@@ -1,19 +1,14 @@
-class Plane
+# Understands whether the weather is stormy
+class WeatherMachine
 
-  def initialize
-    @weather = weather
-  end
+  WEATHERS = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"]
 
-  def weather
-    ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"].sample
-  end
-
-  def bad_weather
-    @weather = "stormy"
+  def initialize(weathers = WEATHERS)
+    @weathers = weathers.sample
   end
 
   def stormy?
-    true if @weather == "stormy"
+    @weathers == "stormy"
   end
 
 end
