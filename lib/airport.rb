@@ -15,9 +15,7 @@ class Airport
 
   def take_off(plane_taking_off)
     return false unless @planes.include? plane_taking_off
-    @planes.reject! { |plane_at_airport|
-      plane_at_airport.equal? plane_taking_off
-    }
+    @planes.delete(plane_taking_off)
     true
   end
 
