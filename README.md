@@ -1,5 +1,5 @@
 # Airport Challenge
-### [Makers Academy](https://www.makersacademy.com) - Week 2 Pair Programming Project
+### [Makers Academy](https://www.makersacademy.com) - Week 2 Individual Project
 
 
 ```
@@ -15,9 +15,10 @@
 ```
 
 ## Outline
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. 
 
 ## The Task
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+I used this project to further my understanding of TDD. I explored mocks and stubs as a way to improve the performance of my tests and avoid testing dependencies. This project could be expanded to guard against edge cases, many of which have not been accounted for as of yet. 
 
 ## User Stories
 ```
