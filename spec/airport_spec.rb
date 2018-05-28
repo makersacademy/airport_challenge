@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
   planes = Plane.new
+  let(:stormy) { double weather, stormy?: true }
+  let(:not_stormy) { double weather, stormy?: false }
 
   describe '#land_plane' do
     it 'fails if the weather is stormy' do
@@ -14,9 +16,9 @@ describe Airport do
       expect { subject.land_plane(planes) }.to raise_error 'airport is full'
     end
     it 'fails if plane is already landed at the airport' do
-    allow(subject).to receive(:stormy?).and_return(false)
-    subject.land_plane(planes)
-    expect { subject.land_plane(planes) }.to raise_error 'plane already landed'
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.land_plane(planes)
+      expect { subject.land_plane(planes) }.to raise_error 'plane already landed'
     end
     it 'lands a plane' do
       allow(subject).to receive(:stormy?).and_return(false)
