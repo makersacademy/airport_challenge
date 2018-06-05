@@ -18,14 +18,7 @@ describe Plane do
     it 'raises an error if plane is already landed' do
       plane.land(airport)
       expect { plane.land(airport) }.to raise_error "Plane already landed"
-    end
-  end
-  describe '#airport' do
-    it 'responds to airport' do
-      expect(plane).to respond_to(:airport)
-    end
-    it 'raises error if already flying' do
-      expect { plane.airport }.to raise_error "Plane already flying"
+      expect(plane.airport).to eq(airport)
     end
   end
 end
