@@ -5,4 +5,8 @@ class Plane
   def land(airport)
     puts "Plane landed safely at #{airport}."
   end
+
+  def take_off
+    puts "Plane took off successfully."
+  end
 end
