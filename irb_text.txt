@@ -1,0 +1,8 @@
+2.5.0 :001 > idfgsdfkj
+Traceback (most recent call last):
+        2: from /Users/johnforster/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        1: from (irb):1
+NameError (undefined local variable or method `idfgsdfkj' for main:Object)
+2.5.0 :002 > 
+2.5.0 :003 > 
+2.5.0 :004 > 
