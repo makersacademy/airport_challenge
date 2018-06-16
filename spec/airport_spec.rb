@@ -1,9 +1,11 @@
 require_relative '../lib/airport.rb'
 
 describe Airport do
+  airport = Airport.new
+  plane = Plane.new
 
   describe 'landing planes' do
-    it { is_expected.to respond_to(:land) }
+    it { is_expected.to respond_to(:land_plane) }
     it 'allows planes to land when instructed' do
 
     end
@@ -14,12 +16,12 @@ describe Airport do
 
     end
     it 'prevents a plane from landing if the hangar is full' do
-      
+
     end
   end
 
   describe 'taking off planes' do
-    it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off_plane) }
     it 'allows a plane to take-off when instructed' do
 
     end
