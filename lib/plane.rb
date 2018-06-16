@@ -7,15 +7,15 @@ class Plane
 
   def land(airport)
     puts "Plane landed safely at #{airport}."
-    @at_airport = true
+    at_airport = true
   end
 
   def takeoff
     puts "Plane took off successfully."
-    @at_airport = false
+    at_airport = false
   end
 
   def at_airport?
-    @at_airport
+    at_airport
   end
 end
