@@ -6,13 +6,17 @@ describe Airport do
 
   it 'lands a plane' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
 
   it { is_expected.to respond_to :take_off }
 
   it 'plane takes off' do
     plane = Plane.new
-    expect(subject.take_off(plane)).to eq plane
+    expect(subject.take_off(plane)).to eq [plane]
+  end
+
+  it 'confirm plane no longer in airport' do
+    expect(subject.plane).to eq nil
   end
 end
