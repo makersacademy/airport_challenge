@@ -105,4 +105,17 @@ describe Airport do
       expect(airport2.capacity).to eq 15
     end
   end
+
+  describe '#generate_weather' do
+    it 'should return :stormy or :clear' do
+      expect([:stormy,:clear]).to include(airport.generate_weather)
+    end
+
+    it 'should return different weather at different times' do
+      srand 5
+      expect(airport.generate_weather).to eq :stormy
+      srand 0
+      expect(airport.generate_weather).to eq :clear
+    end
+  end
 end

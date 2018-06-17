@@ -20,13 +20,19 @@ class Airport
 
   def store_plane(plane)
     @landed_planes << plane
+    generate_weather
   end
 
   def remove_plane(plane)
     @landed_planes.delete(plane)
+    generate_weather
   end
 
   def full?
     @landed_planes.size >= @capacity
+  end
+
+  def generate_weather
+    rand < 0.25 ? @current_weather = :stormy : @current_weather = :clear
   end
 end

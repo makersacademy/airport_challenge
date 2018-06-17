@@ -1,5 +1,6 @@
 class Plane
   def initialize(current_location: :airborne)
+    current_location.store_plane(self) if current_location.class == Airport
     @current_location = current_location
   end
 
