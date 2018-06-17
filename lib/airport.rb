@@ -12,17 +12,15 @@ class Airport
   end
 
   def land(plane)
-    fail "Plane already at airport" if plane.in_hangar?
+    fail "Plane already at airport" if hangar.include?(plane)
     fail "Hangar is full" if full?
     fail "Too stormy to land" if stormy?
-    plane.land
     hangar.push(plane)
   end
 
   def take_off(plane)
-    fail "Plane not at airport" unless plane.in_hangar?
+    fail "Plane not at airport" unless hangar.include?(plane)
     fail "Too stormy to take off" if stormy?
-    plane.take_off
     hangar.delete(plane)
     "#{plane} has left the airport"
   end

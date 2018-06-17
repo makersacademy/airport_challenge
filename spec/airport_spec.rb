@@ -1,5 +1,3 @@
-# don't think I'm testing specified capacity requirement
-
 require 'airport'
 
 describe Airport do
@@ -12,6 +10,11 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'should have a specified capacity' do
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq 20
+  end
+
   it 'should create an empty hangar' do
     expect(subject.hangar).to eq []
   end
@@ -19,35 +22,38 @@ describe Airport do
   describe '#land' do
 
     context "when it is not stormy" do
-      it "should store landed plane" do
-        allow(subject).to receive(:stormy?) {false}
-        plane = double(:plane, in_hangar?: false, in_hanger: false, land: false)
+      it "should store plane in hangar" do
+        allow(subject).to receive(:stormy?) { false }
+        plane = double(:plane)
         subject.land(plane)
         expect(subject.hangar).to eq [plane]
       end
 
-      context "when plane has already landed" do
+      context "when plane is already in hangar" do
         it "should raise an error" do
-          plane = double(:plane, in_hangar?: true, land: false)
+          allow(subject).to receive(:stormy?) { false }
+          plane = double(:plane)
+          subject.land(plane)
           expect { subject.land(plane) }.to raise_error "Plane already at airport"
         end
       end
 
-      context "when the hangar's default capacity has been exceeded" do
+      context "when the hangar is full" do
         it 'should raise an error' do
-          allow(subject).to receive(:stormy?) {false}
-          plane = double(:plane, in_hangar?: false, land: false)
-          Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-          expect { subject.land(plane) }.to raise_error "Hangar is full"
+          # unsure how to replace Plane.new with a double here as
+          # it has to be a new instance each time
+          allow(subject).to receive(:stormy?) { false }
+          Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+          expect { subject.land(Plane.new) }.to raise_error "Hangar is full"
         end
       end
 
     end
 
-    context "when it is too stormy" do
+    context "when it is stormy" do
       it "should raise an error" do
         allow(subject).to receive(:stormy?) { true }
-        plane = double(:plane, in_hangar?: false)
+        plane = double(:plane)
         expect { subject.land(plane) }.to raise_error "Too stormy to land"
       end
     end
@@ -56,30 +62,36 @@ describe Airport do
 
   describe '#take_off' do
 
-    it "should remove plane from the hangar" do
-      allow(subject).to receive(:stormy?) { false }
-      plane = double(:plane, in_hangar?: true, take_off: false)
-      subject.take_off(plane)
-      expect(subject.hangar). to eq []
-    end
+    context 'when it is not stormy' do
+      it "should remove plane from hangar" do
+        allow(subject).to receive(:stormy?) { false }
+        plane = double(:plane)
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.hangar). to eq []
+      end
 
-    it "should confirm that plane has left the airport" do
-      allow(subject).to receive(:stormy?) { false }
-      plane = double(:plane, in_hangar?: true, take_off: true)
-      expect(subject.take_off(plane)).to eq "#{plane} has left the airport"
-    end
+      context "when plane is not in hangar" do
+        it "should raise an error" do
+          plane = double(:plane)
+          expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
+        end
+      end
 
-    context "when a plan tries to take off but is not at the airport" do
-      it "should raise an error" do
-        plane = double(:plane, in_hangar?: false)
-        expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
+      it "should confirm that plane has left the airport" do
+        allow(subject).to receive(:stormy?) { false }
+        plane = double(:plane)
+        subject.land(plane)
+        expect(subject.take_off(plane)).to eq "#{plane} has left the airport"
       end
     end
 
-    context "when it is too stormy" do
+    context "when it is stormy" do
       it "should raise an error" do
+        plane = double(:plane)
+        allow(subject).to receive(:stormy?) { false }
+        subject.land(plane)
         allow(subject).to receive(:stormy?) { true }
-        plane = double(:plane, in_hangar?: true)
         expect { subject.take_off(plane) }.to raise_error "Too stormy to take off"
       end
     end
