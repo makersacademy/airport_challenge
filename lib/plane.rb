@@ -1,4 +1,5 @@
 require_relative './airport.rb'
+require_relative './weather.rb'
 
 # Instances know how to land and take of from airports
 # and can report if they are currently at an airport.

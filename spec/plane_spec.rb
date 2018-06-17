@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  describe 'landing' do
+  describe '#land' do
     it 'Has a land function' do
       expect(subject).to respond_to(:land)
     end
@@ -11,7 +11,7 @@ describe Plane do
     end
   end
 
-  describe 'takeoff' do
+  describe '#takeoff' do
     it 'Has a takeoff function' do
       expect(subject).to respond_to(:takeoff)
     end
@@ -20,7 +20,7 @@ describe Plane do
     end
   end
 
-  describe 'Check if at airport' do
+  describe '#at_airport?' do
     it 'Checks if plane is at an airport after landing' do
       subject.land(Airport.new)
       expect(subject).to be_at_airport
