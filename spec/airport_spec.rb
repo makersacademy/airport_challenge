@@ -10,7 +10,16 @@ describe Airport do
       end
       it { is_expected.to respond_to(:land).with(1).argument }
 
+      context 'does not allow planes to land when at capacity' do
+        it 'raises an error' do
+          10.times do
+            subject.land(plane)
+          end
+          expect { subject.land(plane) }.to raise_error 'At capacity'
+        end
+      end
     end
+
     context 'when stormy' do
       it 'raises an error' do
         allow(subject).to receive(:stormy?).and_return true
@@ -24,12 +33,14 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?).and_return false
       end
+
       it { is_expected.to respond_to(:take_off).with(1).argument }
+
+      it 'confirm plane no longer in airport' do
+        expect(subject.plane).to eq nil
+      end
     end
 
-    it 'confirm plane no longer in airport' do
-      expect(subject.plane).to eq nil
-    end
     context 'when stormy' do
       before do
         allow(subject).to receive(:stormy?).and_return true
@@ -40,5 +51,4 @@ describe Airport do
       end
     end
   end
-
 end

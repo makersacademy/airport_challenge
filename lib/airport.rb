@@ -2,12 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize
+  def initialize(capacity = 10)
+    @capacity = capacity
     @planes = []
   end
 
   def land(plane)
     raise 'Stormy weather' if stormy?
+    raise 'At capacity' if @planes.length >= @capacity
     @planes << plane
   end
 
