@@ -15,7 +15,7 @@ describe Plane do
       expect(plane.status).to eq 'Landed'
     end
     it 'planes already flying cannot take-off' do
-
+      
     end
     it 'planes already landed cannot land' do
 

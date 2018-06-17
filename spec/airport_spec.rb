@@ -13,11 +13,6 @@ describe Airport do
   describe 'landing' do
     it { is_expected.to respond_to(:land_plane) }
     it { is_expected.to respond_to(:hangar_full?) }
-    it 'allows a plane to land when instructed' do
-      airport = Airport.new
-      plane = Plane.new
-      expect(airport.land_plane(plane)).to eq 'Plane has successfully landed'
-    end
     it 'stores a plane in a hangar when it lands' do
       airport = Airport.new
       plane = Plane.new
@@ -39,12 +34,15 @@ describe Airport do
 
   describe 'taking off' do
     it { is_expected.to respond_to(:take_off_plane) }
-    it 'allows a plane to take-off when instructed' do
-      airport = Airport.new
-      expect(airport.take_off_plane).to eq 'Plane has successfully taken off'
-    end
+    it { is_expected.to respond_to(:remove_plane_from_hangar) }
+    it { is_expected.to respond_to(:hangar_empty?) }
     it 'removes a landed plane from the hangar when it takes off' do
-
+      airport = Airport.new
+      plane = Plane.new
+      airport.land_plane(plane)
+      expect(airport.hangar).to include plane
+      airport.take_off_plane
+      expect(airport.hangar).to_not include plane
     end
     it 'confirms a plane is removed from the hanger after take-off' do
 

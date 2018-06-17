@@ -18,23 +18,24 @@ class Airport
     hangar.length == hangar_capacity
   end
 
+  def hangar_empty?
+    hangar.length < 1
+  end
+
   def land_plane(plane)
     raise 'It is too stormy to land!' if weather.stormy?
     raise 'The hangar is full!' if hangar_full?
     plane.change_status
     hangar << plane
-    'Plane has successfully landed'
   end
 
   def take_off_plane
     raise 'It is too stormy to take-off!' if weather.stormy?
-    remove_plane_from_hangar
-    # plane.change_status
-    'Plane has successfully taken off'
+    hangar_empty? ? (raise 'No planes!') : remove_plane_from_hangar
   end
 
   def remove_plane_from_hangar
-    released_plane = hangar.first
-    released_plane
+    hangar.pop.change_status
+    'A plane had been removed from the hangar!'
   end
 end
