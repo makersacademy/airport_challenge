@@ -2,16 +2,22 @@ require_relative './plane.rb'
 
 class Airport
 
-  def land(plane)
-    @plane = plane
-    @plane.flying = false
+  attr_reader :planes
+
+  def initialize
+    @planes = []
   end
 
-  def take_off
-    fail "No plane at the airport" unless @plane
-    fail "No plane at the airport" unless @plane.flying == false
-    @plane.flying = true
-    "#{@plane} has left the airport"
+  def land(plane)
+    @planes.push(plane)
+    plane.flying = false
+  end
+
+  def take_off(plane)
+    fail "No plane at the airport" if @planes.empty?
+    fail "No plane at the airport" unless plane.flying == false
+    plane.flying = true
+    "#{plane} has left the airport"
   end
 
 end

@@ -4,14 +4,20 @@ describe Airport do
 
   it { should respond_to(:land).with(1).argument }
 
-  it { should respond_to(:take_off) }
+  it { should respond_to(:take_off).with(1).argument }
+
+  describe '#initialize' do
+    it 'should create an empty array' do
+      expect(subject.planes).to eq []
+    end
+  end
 
   describe '#land' do
 
-    it "should land a plane" do
-      # not sure how to make this test pass / if it needs to be changed
+    it "should store landed plane" do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      subject.land(plane)
+      expect(subject.planes).to eq [plane]
     end
 
   end
@@ -21,12 +27,13 @@ describe Airport do
     it "should confirm that plane has left the airport" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.take_off).to eq "#{plane} has left the airport"
+      expect(subject.take_off(plane)).to eq "#{plane} has left the airport"
     end
 
     context "when a plane tries to take off without landing initially" do
       it "should raise an error" do
-        expect { subject.take_off }.to raise_error "No plane at the airport"
+        plane = Plane.new
+        expect { subject.take_off(plane) }.to raise_error "No plane at the airport"
       end
     end
 
@@ -34,8 +41,8 @@ describe Airport do
       it "should raise an error" do
         plane = Plane.new
         subject.land(plane)
-        subject.take_off
-        expect { subject.take_off }.to raise_error "No plane at the airport"
+        subject.take_off(plane)
+        expect { subject.take_off(plane) }.to raise_error "No plane at the airport"
       end
     end
 

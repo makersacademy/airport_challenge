@@ -19,7 +19,7 @@ describe Plane do
     it "should return true when plane is in the air" do
       airport = Airport.new
       airport.land(subject)
-      airport.take_off
+      airport.take_off(subject)
       expect(subject.flying).to eq true
     end
 
