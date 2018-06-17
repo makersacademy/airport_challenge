@@ -1,5 +1,4 @@
 require_relative './plane.rb'
-require_relative './weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 10
@@ -8,9 +7,9 @@ class Airport
   attr_reader :capacity
   attr_reader :planes
 
-  def initialize(weather)
-    @weather = weather
-    @capacity = DEFAULT_CAPACITY
+  def initialize(capacity = DEFAULT_CAPACITY)
+    rand(10) < 8 ? @weather = 'clear' : @weather = 'stormy'
+    @capacity = capacity
     @planes = []
   end
 
@@ -34,6 +33,6 @@ class Airport
   end
 
   def full?
-    planes.size >= @capacity
+    planes.size >= capacity
   end
 end
