@@ -3,7 +3,7 @@ require_relative './plane.rb'
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_accessor :weather
+  attr_reader :weather
   attr_reader :capacity
   attr_reader :planes
 

@@ -1,8 +1,10 @@
-require_relative '../lib/plane.rb'
+require_relative '../lib/airport.rb'
 
-airport = Airport.new(Weather.new)
+airport = Airport.new(20)
 plane = Plane.new
-plane.land(airport)
+airport.land(plane)
 puts plane.at_airport?
-plane.takeoff
+airport.takeoff(plane)
 puts plane.at_airport?
+20.times { airport.land(Plane.new) }
+airport.land(plane)
