@@ -1,4 +1,37 @@
-Airport Challenge
+# Airport Challenge
+
+=============================
+
+# Motivation
+
+Week 1 Makers Academy weekend project to practice topics covered during the week:
+* Test-Driven Development
+  - red, green, refactor
+  - using mocks and doubles
+* Object-Oriented Programming
+  - classes, methods, scope, instance variables
+  - ensuring code is DRY
+  - using Single Responsibility Principle
+* Debugging
+* (Original instructions preserved below)
+
+___
+
+# Tech/framework used
+
+Ruby, RSpec, Rubocop
+_____
+
+# Features
+* Instantiate airport and planes
+* Allow planes to land and take off if certain conditions are met eg:
+  - weather is not stormy
+  - plane is in air / on ground as applicable
+* Give airport a specified or default capacity
+
+_____
+
+Airport Challenge Instructions
 =================
 
 ```
@@ -36,25 +69,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +106,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
