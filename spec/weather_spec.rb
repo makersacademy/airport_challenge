@@ -4,8 +4,6 @@ describe Weather do
   weather = Weather.new
 
   describe 'condition' do
-    it { is_expected.to respond_to(:change_condition) }
-    it { is_expected.to respond_to(:stormy?) }
     it 'is sunny when instantiated' do
       expect(weather.condition).to eq('Sunny')
     end

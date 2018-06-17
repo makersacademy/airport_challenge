@@ -11,8 +11,6 @@ describe Airport do
   end
 
   describe 'landing' do
-    it { is_expected.to respond_to(:land_plane) }
-    it { is_expected.to respond_to(:hangar_full?) }
     it 'stores a plane in a hangar when it lands' do
       airport = Airport.new
       plane = Plane.new
@@ -25,7 +23,6 @@ describe Airport do
       allow(airport.weather).to receive(:condition) { 'Stormy' }
       expect { airport.land_plane(plane) }.to raise_error('It is too stormy to land!')
     end
-
     it 'prevents a plane from landing if the hangar is full' do
       airport = Airport.new
       expect { (airport.hangar_capacity + 1).times { airport.land_plane(Plane.new) } }.to raise_error('The hangar is full!')
@@ -33,9 +30,6 @@ describe Airport do
   end
 
   describe 'taking off' do
-    it { is_expected.to respond_to(:take_off_plane) }
-    it { is_expected.to respond_to(:remove_plane_from_hangar) }
-    it { is_expected.to respond_to(:hangar_empty?) }
     it 'removes a landed plane from the hangar when it takes off' do
       airport = Airport.new
       plane = Plane.new
