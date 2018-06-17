@@ -14,7 +14,7 @@ describe Airport do
     it 'denies permission to land when stormy' do
       allow(subject).to receive(:stormy?) { true }
       plane = double(:plane, at_airport?: false)
-      expect{subject.land_plane(plane)}.to raise_error "It is too stormy to land!"
+      expect { subject.land_plane(plane) }.to raise_error "It is too stormy to land!"
     end
 
     it 'lands a plane at the airport' do
@@ -27,7 +27,7 @@ describe Airport do
     it 'does not allow plane to land if the plane is already at the airport' do
       allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, at_airport?: true, take_off: false, land: true)
-      expect{subject.land_plane(plane)}.to raise_error "Plane already at the airport"
+      expect { subject.land_plane(plane) }.to raise_error "Plane already at the airport"
     end
   end
 
@@ -35,13 +35,13 @@ describe Airport do
     it 'denies permission to take off when stormy' do
       allow(subject).to receive(:stormy?) { true }
       plane = double(:plane, at_airport?: false)
-      expect{subject.take_off(plane)}.to raise_error "It is too stormy to take_off!"
+      expect { subject.take_off(plane) }.to raise_error "It is too stormy to take_off!"
     end
 
     it 'does not allow take_off if the plane is not at the airport' do
       allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, at_airport?: false)
-      expect{subject.take_off(plane)}.to raise_error "Plane not at the airport"
+      expect { subject.take_off(plane) }.to raise_error "Plane not at the airport"
     end
   end
 
@@ -59,23 +59,22 @@ describe Airport do
 
   describe '#initialize' do
     subject { Airport.new }
-    let(:plane) { double(:plane, at_airport?: false, land: false)}
-      it " has default capacity" do
-        allow(subject).to receive(:stormy?) {false}
-        described_class::DEFAULT_CAPACITY.times{
-          subject.land_plane(plane)
-        }
-        expect { subject.land_plane double(:plane, at_airport?: false, land: false)}.to raise_error 'Airport full, cannot land!'
-     end
+    let(:plane) { double(:plane, at_airport?: false, land: false) }
+    it "has default capacity" do
+      allow(subject).to receive(:stormy?) { false }
+      described_class::DEFAULT_CAPACITY.times {
+        subject.land_plane(plane)
+      }
+      expect { subject.land_plane double(:plane, at_airport?: false, land: false) }.to raise_error 'Airport full, cannot land!'
     end
-
-  describe '#initialize' do
-     it 'has a variable capacity' do
-       airport =  Airport.new(30)
-       allow(airport).to receive(:stormy?) {false}
-       30.times{ airport.land_plane double(:plane, at_airport?: false, land: false) }
-       expect { airport.land_plane double(:plane, at_airport?: false, land: false) }.to raise_error 'Airport full, cannot land!'
-     end
   end
 
+  describe '#initialize' do
+    it 'has a variable capacity' do
+      airport = Airport.new(30)
+      allow(airport).to receive(:stormy?) { false }
+      30.times { airport.land_plane double(:plane, at_airport?: false, land: false) }
+      expect { airport.land_plane double(:plane, at_airport?: false, land: false) }.to raise_error 'Airport full, cannot land!'
+    end
+  end
 end

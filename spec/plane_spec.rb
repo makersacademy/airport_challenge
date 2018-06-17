@@ -17,6 +17,5 @@ describe Plane do
     subject.land
     expect(subject).to be_at_airport
   end
-
-
+  
 end
