@@ -9,3 +9,16 @@ it 'so passengers get to destination, instruct a plane to land' do
     expect { airport.land(plane) }.not_to raise_error
   end
 end
+
+=begin
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and
+confirm that it is no longer in the airport
+=end
+
+it 'so passengers on their way to destination, instruct a plane to take off, confirm no longer at the airport' do
+  airport = Airport.new
+  plane = Plane.new
+  expect { airport.take_off(plane) }.not_to raise_error
+end
