@@ -108,7 +108,7 @@ describe Airport do
 
   describe '#generate_weather' do
     it 'should return :stormy or :clear' do
-      expect([:stormy,:clear]).to include(airport.generate_weather)
+      expect([:stormy, :clear]).to include(airport.generate_weather)
     end
 
     it 'should return different weather at different times' do

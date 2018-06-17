@@ -1,3 +1,4 @@
+# Represents airports in the airport challenge.
 class Airport
   def initialize(capacity: 15, current_weather: :clear)
     @capacity = capacity
