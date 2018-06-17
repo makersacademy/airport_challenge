@@ -1,6 +1,6 @@
 # Understands landing and taking off
 class Plane
-  attr_accessor :status
+  attr_reader :status
 
   def initialize
     @status = 'Flying'

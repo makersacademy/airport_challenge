@@ -1,14 +1,23 @@
 require_relative '../lib/weather.rb'
 
 describe Weather do
+  weather = Weather.new
 
-  describe 'weather conditions' do
-    it { is_expected.to respond_to(:change_weather) }
-    it 'selects a random weather condition when instantiated' do
-
+  describe 'condition' do
+    it { is_expected.to respond_to(:change_condition) }
+    it 'is either sunny or stormy' do
+      expect(weather.condition).to eq('Sunny').or(eq('Stormy'))
     end
-    it 'changes the weather when instructed' do
-
+    it 'is sunny when instantiated' do
+      expect(weather.condition).to eq('Sunny')
+    end
+    it 'selects a random weather pattern when instructed' do
+      dynamic_weather = Weather.new
+      dynamic_weather.change_condition
+      expect(dynamic_weather.condition).to eq('Sunny').or(eq('Stormy'))
+    end
+    it 'understands if it is sunny' do
+      expect(weather.sunny?).to eq true
     end
   end
 end

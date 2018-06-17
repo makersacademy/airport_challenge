@@ -4,11 +4,11 @@ describe Plane do
   airport = Airport.new
   plane = Plane.new
 
-  describe 'plane status' do
+  describe 'status' do
     it 'sets a default status value to flying when instantiated' do
       expect(plane.status).to eq 'Flying'
     end
-    it 'changes status value to landed when plane lands at an airport' do
+    it 'changes value to landed when plane lands at an airport' do
       airport.land_plane(plane)
       expect(plane.status).to eq 'Landed'
     end

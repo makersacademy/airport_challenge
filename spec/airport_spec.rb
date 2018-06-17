@@ -4,6 +4,14 @@ describe Airport do
   airport = Airport.new
   plane = Plane.new
 
+  describe 'capacity' do
+    it { expect(airport.hangar_capacity).to eq 10 }
+    it 'allows user to change default capacity on instantiation' do
+      large_airport = Airport.new(25)
+      expect(large_airport.hangar_capacity).to eq 25
+    end
+  end
+
   describe 'landing' do
     it { is_expected.to respond_to(:land_plane) }
     it 'allows a plane to land when instructed' do
@@ -24,6 +32,9 @@ describe Airport do
   describe 'taking off' do
     it { is_expected.to respond_to(:take_off_plane) }
     it 'allows a plane to take-off when instructed' do
+      expect(airport.take_off_plane).to eq 'Plane has successfully taken off'
+    end
+    it 'removes a landed plane from the hangar when it takes off' do
 
     end
     it 'confirms a plane is removed from the hanger after take-off' do
