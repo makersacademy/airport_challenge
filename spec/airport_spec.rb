@@ -1,3 +1,5 @@
+# don't think I'm testing specified capacity requirement
+
 require 'airport'
 
 describe Airport do
@@ -17,16 +19,34 @@ describe Airport do
   describe '#land' do
 
     it "should store landed plane" do
-      plane = Plane.new
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, in_hangar?: false, land: true)
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
     end
 
-    context "when the same plane tries to land twice without taking off in between" do
+    context "when plane has already landed" do
       it "should raise an error" do
-        plane = Plane.new
-        subject.land(plane)
+        allow(subject).to receive(:stormy?) { false }
+        plane = double(:plane, in_hangar?: true, land: false)
         expect { subject.land(plane) }.to raise_error "Plane already at airport"
+      end
+    end
+
+    context "when it is too stormy" do
+      it "should raise an error" do
+        allow(subject).to receive(:stormy?) { true }
+        plane = double(:plane, in_hangar?: false, land: false)
+        expect { subject.land(plane) }.to raise_error "Too stormy to land"
+      end
+    end
+
+    context "when the hangar's default capacity has been exceeded" do
+      it 'should raise an error' do
+        allow(subject).to receive(:stormy?) { false }
+        plane = double(:plane, in_hangar?: false, land: true)
+        Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error "Hangar is full"
       end
     end
 
@@ -35,50 +55,40 @@ describe Airport do
   describe '#take_off' do
 
     it "should remove plane from the hangar" do
-      plane = Plane.new
-      subject.land(plane)
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, in_hangar?: true, take_off: false)
       subject.take_off(plane)
       expect(subject.hangar). to eq []
     end
 
     it "should confirm that plane has left the airport" do
-      plane = Plane.new
-      subject.land(plane)
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, in_hangar?: true, take_off: false)
       expect(subject.take_off(plane)).to eq "#{plane} has left the airport"
     end
 
-    context "when a plane tries to take off without landing initially" do
+    context "when a plan tries to take off but is not at the airport" do
       it "should raise an error" do
-        plane = Plane.new
+        plane = double(:plane, in_hangar?: false, take_off: false)
         expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
       end
     end
 
-    context "when a plan tries to take off twice without landing in between" do
+    context "when it is too stormy" do
       it "should raise an error" do
-        plane = Plane.new
-        subject.land(plane)
-        subject.take_off(plane)
-        expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
+        allow(subject).to receive(:stormy?) { true }
+        plane = double(:plane, in_hangar?: true, land: true)
+        expect { subject.take_off(plane) }.to raise_error "Too stormy to take off"
       end
     end
 
-    context "when the hangar's default capacity has been exceeded" do
-      it 'should raise an error' do
-        Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-        expect { subject.land(Plane.new) }.to raise_error "Hangar is full"
-      end
+  end
+
+  describe '#stormy?' do
+    it 'should return true if stormy' do
+      allow(subject).to receive(:weather).and_return(0)
+      expect(subject.stormy?).to eq true
     end
-
-    # can't get this test to pass, feel like requirement isn't being covered
-    # context "when the hangar's specified capacity has been exceeded" do
-    #   it 'should raise an error' do
-    #     airport = Airport.new(6)
-    #     6.times { airport.land(Plane.new) }
-    #     expect(airport.land(Plane.new)).to raise_error "Hangar is full"
-    #   end
-    # end
-
   end
 
 end
