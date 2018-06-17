@@ -29,6 +29,14 @@ describe Airport do
       airport.capacity.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error('Cannot land: Airport at capacity.')
     end
+
+    it 'Returns an error if trying to land when already at an airport' do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error('Cannot land: already at airport.')
+    end
   end
 
   describe '#takeoff(plane)' do
@@ -56,6 +64,13 @@ describe Airport do
       airport.land(plane)
       allow(airport).to receive(:stormy?) { true }
       expect { airport.takeoff(plane) }.to raise_error("Cannot take off due to stormy weather.")
+    end
+
+    it 'Returns an error if trying to takeoff when not at the airport' do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:stormy?) { false }
+      expect { airport.takeoff(plane) }.to raise_error('Cannot take off: not at airport.')
     end
   end
 end

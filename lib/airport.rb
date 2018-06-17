@@ -16,6 +16,7 @@ class Airport
   def land(plane)
     raise 'Cannot land due to stormy weather.' if stormy?
     raise 'Cannot land: Airport at capacity.' if full?
+    raise 'Cannot land: already at airport.' if plane.at_airport == true
     puts 'Plane landed successfully.'
     plane.at_airport = true
     @planes << plane
@@ -23,6 +24,7 @@ class Airport
 
   def takeoff(plane)
     raise 'Cannot take off due to stormy weather.' if stormy?
+    raise 'Cannot take off: not at airport.' unless @planes.include?(plane)
     puts 'Plane took off successfully.'
     plane.at_airport = false
     @planes.delete(plane)
