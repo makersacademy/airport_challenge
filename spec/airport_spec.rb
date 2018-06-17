@@ -20,9 +20,22 @@ describe Airport do
       expect(subject.planes).to eq [plane]
     end
 
+    it "should stop the same plane landing twice" do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane already at airport"
+    end
+
   end
 
   describe '#take_off' do
+
+    it "should remove plane from planes array" do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes). to eq []
+    end
 
     it "should confirm that plane has left the airport" do
       plane = Plane.new
@@ -33,7 +46,7 @@ describe Airport do
     context "when a plane tries to take off without landing initially" do
       it "should raise an error" do
         plane = Plane.new
-        expect { subject.take_off(plane) }.to raise_error "No plane at the airport"
+        expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
       end
     end
 
@@ -42,7 +55,7 @@ describe Airport do
         plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
-        expect { subject.take_off(plane) }.to raise_error "No plane at the airport"
+        expect { subject.take_off(plane) }.to raise_error "Plane not at airport"
       end
     end
 
