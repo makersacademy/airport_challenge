@@ -15,7 +15,7 @@ class Airport
     @planes << plane
   end
 
-  attr_reader :plane
+  attr_reader :planes
   attr_reader :capacity
 
   def take_off(plane)
