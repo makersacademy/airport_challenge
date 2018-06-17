@@ -35,13 +35,26 @@ describe Airport do
     it 'denies permission to take off when stormy' do
       allow(subject).to receive(:stormy?) { true }
       plane = double(:plane, at_airport?: false)
-      expect { subject.take_off(plane) }.to raise_error "It is too stormy to take_off!"
+      expect { subject.take_off(plane) }.to raise_error "It is too stormy to take off!"
     end
 
     it 'does not allow take_off if the plane is not at the airport' do
       allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, at_airport?: false)
       expect { subject.take_off(plane) }.to raise_error "Plane not at the airport"
+    end
+
+    it 'tells air traffic controller plane has taken off' do
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, at_airport?: true, take_off: false)
+      expect(subject.take_off(plane)).to eq "Take off was a success"
+    end
+
+    it 'removes planes from airport when taken off' do
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, at_airport?: true, take_off: false)
+      subject.take_off(plane)
+      expect(subject.remove_planes_taken_off).to eq []
     end
   end
 

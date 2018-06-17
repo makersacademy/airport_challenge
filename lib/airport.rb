@@ -19,10 +19,11 @@ class Airport
   end
 
   def take_off(plane)
-    fail "It is too stormy to take_off!" if stormy?
+    fail "It is too stormy to take off!" if stormy?
     fail "Plane not at the airport" unless plane.at_airport?
     plane.take_off
     remove_planes_taken_off
+    "Take off was a success"
   end
 
   def stormy?
@@ -38,7 +39,7 @@ class Airport
   end
 
   def remove_planes_taken_off
-    airport.delete_if { |plane| !plane.at_airport }
+    airport.delete_if { |plane| !plane.at_airport? }
   end
 
 end
