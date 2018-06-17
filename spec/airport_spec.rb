@@ -44,8 +44,15 @@ describe Airport do
       airport.take_off_plane
       expect(airport.hangar).to_not include plane
     end
+    it 'raises an error if take_off_plane is called on an empty hangar' do
+      airport = Airport.new
+      expect { airport.take_off_plane }.to raise_error('No planes!')
+    end
     it 'confirms a plane is removed from the hanger after take-off' do
-
+      airport = Airport.new
+      plane = Plane.new
+      airport.land_plane(plane)
+      expect(airport.take_off_plane).to eq('A plane has been removed from the hangar!')
     end
     it 'prevents a plane from taking off if the weather is stormy' do
       airport = Airport.new

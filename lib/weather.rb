@@ -13,5 +13,4 @@ class Weather
   def change_condition
     rand(5) != 1 ? (@condition = 'Sunny') : (@condition = 'Stormy')
   end
-
 end

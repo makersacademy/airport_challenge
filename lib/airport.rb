@@ -25,6 +25,7 @@ class Airport
   def land_plane(plane)
     raise 'It is too stormy to land!' if weather.stormy?
     raise 'The hangar is full!' if hangar_full?
+    raise 'Plane already landed!' if plane.status == 'Landed'
     plane.change_status
     hangar << plane
   end
@@ -36,6 +37,6 @@ class Airport
 
   def remove_plane_from_hangar
     hangar.pop.change_status
-    'A plane had been removed from the hangar!'
+    'A plane has been removed from the hangar!'
   end
 end
