@@ -1,11 +1,11 @@
 require_relative './weather.rb'
 
 class Airport
-  def weather
-    Weather.new
+  def initialize(weather)
+    @weather = weather
   end
 
-  def stormy?(weather)
-    weather.condition == 'stormy'
+  def stormy?
+    @weather.condition == 'stormy'
   end
 end

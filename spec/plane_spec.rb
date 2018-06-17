@@ -6,8 +6,14 @@ describe Plane do
       expect(subject).to respond_to(:land)
     end
     it 'Reports if the plane has landed succesfully' do
-      airport = Airport.new
+      airport = double('airport')
+      allow(airport).to receive(:stormy?).and_return(false)
       expect { subject.land(airport) }.to output("Plane landed safely at #{airport}.\n").to_stdout
+    end
+    it 'Returns an error if trying to land in stormy weather' do
+      airport = double('airport')
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect { subject.land(airport) }.to raise_error("Cannot land at #{airport} due to stormy weather.")
     end
   end
 
@@ -22,7 +28,9 @@ describe Plane do
 
   describe '#at_airport?' do
     it 'Checks if plane is at an airport after landing' do
-      subject.land(Airport.new)
+      airport = double('airport')
+      allow(airport).to receive(:stormy?).and_return(false)
+      subject.land(airport)
       expect(subject).to be_at_airport
     end
     it 'Checks if plane is not at an airport after takeoff' do

@@ -8,6 +8,7 @@ class Plane
   attr_accessor :at_airport
 
   def land(airport)
+    raise "Cannot land at #{airport} due to stormy weather." if airport.stormy?
     puts "Plane landed safely at #{airport}."
     @at_airport = true
   end
