@@ -75,20 +75,34 @@ describe Airport do
     it { is_expected.to respond_to(:full?) }
 
     it 'should respond true when airport is full' do
-      airport.store_plane(double(:plane))
+      15.times { airport.store_plane(double(:plane)) }
+      expect(airport.full?).to eq(true)
+    end
 
+    it 'should respond false when airport is not full' do
+      expect(airport.full?).to eq(false)
     end
   end
 
-  it 'should remove a plane after it takes off' do
-    plane = double(:plane)
-    airport.remove_plane(plane)
-    expect(airport.landed_planes).not_to include(plane)
-  end
+  describe 'capacity' do
+    it 'should depend on initialization' do
+      airport = Airport.new(capacity: 5)
+      expect(airport.capacity).to eq 5
+    end
 
-  # Tests for capacity:
-  # * Raises an error if occupation > capacity
-  # * Capacity changeable
-  # * #full? works with changing capacity.
-  # * Default capacity = 15
+    it 'should affect the result of #full?' do
+      airport2 = Airport.new(capacity: 5)
+      5.times {
+        airport.store_plane(double(:plane))
+        airport2.store_plane(double(:plane))
+      }
+      expect(airport.full?).to eq false
+      expect(airport2.full?).to eq true
+    end
+
+    it 'should default to 15' do
+      airport2 = Airport.new
+      expect(airport2.capacity).to eq 15
+    end
+  end
 end

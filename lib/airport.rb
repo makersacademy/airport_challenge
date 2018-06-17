@@ -6,7 +6,7 @@ class Airport
     # Set with occupation?
   end
 
-  attr_reader :current_weather, :landed_planes
+  attr_reader :current_weather, :landed_planes, :capacity
   def request_landing
     raise 'Weather prevents landing' if @current_weather == :stormy
     raise 'Plane cannot land in a full airport' if full?
@@ -23,6 +23,7 @@ class Airport
   end
 
   def remove_plane(plane)
+    @landed_planes.delete(plane)
   end
 
   def full?

@@ -12,5 +12,8 @@ class Plane
   end
 
   def take_off
+    @current_location.request_takeoff
+    @current_location.remove_plane(self)
+    @current_location = :airborne
   end
 end
