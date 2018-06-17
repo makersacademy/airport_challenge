@@ -20,6 +20,8 @@ class Airport
 
   def take_off(plane)
     raise 'Stormy weather' if stormy?
+    raise 'Error: plane not at airport' unless @planes.include?(plane)
+    plane
   end
 
   def stormy?

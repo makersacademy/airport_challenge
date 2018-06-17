@@ -36,9 +36,10 @@ describe Airport do
 
       it { is_expected.to respond_to(:take_off).with(1).argument }
 
-      # it 'confirm plane no longer in airport' do
-      #   expect(subject.plane).to eq nil
-      # end
+      it 'confirm plane no longer in airport' do
+        subject.land(plane)
+        expect(subject.take_off(plane)).to eq plane
+      end
     end
 
     context 'when stormy' do
