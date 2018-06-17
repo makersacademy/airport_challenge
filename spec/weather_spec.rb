@@ -5,11 +5,11 @@ describe Weather do
 
   describe 'condition' do
     it { is_expected.to respond_to(:change_condition) }
-    it 'is either sunny or stormy' do
-      expect(weather.condition).to eq('Sunny').or(eq('Stormy'))
-    end
     it 'is sunny when instantiated' do
       expect(weather.condition).to eq('Sunny')
+    end
+    it 'is either sunny or stormy' do
+      expect(weather.condition).to eq('Sunny').or(eq('Stormy'))
     end
     it 'selects a random weather pattern when instructed' do
       dynamic_weather = Weather.new
