@@ -27,6 +27,7 @@ class Airport
   end
 
   def remove_plane_from_hangar
-
+    released_plane = hangar.pop
+    released_plane
   end
 end

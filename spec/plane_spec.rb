@@ -5,6 +5,7 @@ describe Plane do
   plane = Plane.new
 
   describe 'status' do
+    it { is_expected.to respond_to(:change_status) }
     it 'sets a default status value to flying when instantiated' do
       expect(plane.status).to eq 'Flying'
     end

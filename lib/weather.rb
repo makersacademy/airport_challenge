@@ -10,7 +10,7 @@ class Weather
     rand(5) != 1 ? (@condition = 'Sunny') : (@condition = 'Stormy')
   end
 
-  def sunny?
-    condition == 'Sunny'
+  def stormy?
+    condition == 'Stormy'
   end
 end

@@ -16,8 +16,9 @@ describe Weather do
       dynamic_weather.change_condition
       expect(dynamic_weather.condition).to eq('Sunny').or(eq('Stormy'))
     end
-    it 'understands if it is sunny' do
-      expect(weather.sunny?).to eq true
+    it 'understands if it is stormy' do
+      allow(weather).to receive(:condition) { 'Stormy' }
+      expect(weather.stormy?).to eq true
     end
   end
 end

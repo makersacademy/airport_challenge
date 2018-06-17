@@ -35,7 +35,7 @@ describe Airport do
       expect(airport.take_off_plane).to eq 'Plane has successfully taken off'
     end
     it 'removes a landed plane from the hangar when it takes off' do
-
+      
     end
     it 'confirms a plane is removed from the hanger after take-off' do
 
