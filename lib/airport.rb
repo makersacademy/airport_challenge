@@ -3,10 +3,6 @@ require_relative './plane.rb'
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_reader :weather
-  attr_reader :capacity
-  attr_reader :planes
-
   def initialize(capacity = DEFAULT_CAPACITY)
     rand(10) < 8 ? @weather = 'clear' : @weather = 'stormy'
     @capacity = capacity
@@ -24,11 +20,16 @@ class Airport
 
   def takeoff(plane)
     raise 'Cannot take off due to stormy weather.' if stormy?
-    raise 'Cannot take off: not at airport.' unless @planes.include?(plane)
+    raise 'Cannot take off: not at airport.' unless planes.include?(plane)
     puts 'Plane took off successfully.'
     plane.at_airport = false
-    @planes.delete(plane)
+    planes.delete(plane)
   end
+
+private
+  attr_reader :weather
+  attr_reader :capacity
+  attr_reader :planes
 
   def stormy?
     @weather == 'stormy'
