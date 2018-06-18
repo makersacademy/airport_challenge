@@ -17,6 +17,10 @@ land in stormy conditions.
 * All methods ≤ 5 lines long.
 * Code fully conforms to Rubocop style guide.
 
+## Framework
+
+Written in Ruby using Rspec for unit tests & irb for feature testing.
+
 ## Implementation
 
 ```shell
@@ -32,6 +36,6 @@ airport.weather.change_condition # Calls a random weather condition
 
 ## Further Improvements
 
-* Code improvements should allow for planes to accept airports as arguments, and take over the responsibility of landing.
+* Allow for planes to accept airports as arguments & take over landing responsibility.
 * Potential for further refactoring test code, add contexts.
 * Potential for tightening the take-off/hangar management system.

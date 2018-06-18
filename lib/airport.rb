@@ -23,16 +23,24 @@ class Airport
   end
 
   def land_plane(plane)
-    raise 'It is too stormy to land!' if weather.stormy?
-    raise 'The hangar is full!' if hangar_full?
-    raise 'Plane already landed!' if plane.status == 'Landed'
+    check_for_landing_errors(plane)
     plane.change_status
     hangar << plane
   end
 
+  def check_for_landing_errors(plane)
+    raise 'It is too stormy to land!' if weather.stormy?
+    raise 'The hangar is full!' if hangar_full?
+    raise 'Plane already landed!' if plane.status == 'Landed'
+  end
+
   def take_off_plane
-    raise 'It is too stormy to take-off!' if weather.stormy?
+    check_for_takeoff_errors
     hangar_empty? ? (raise 'No planes!') : remove_plane_from_hangar
+  end
+
+  def check_for_takeoff_errors
+    raise 'It is too stormy to take-off!' if weather.stormy?
   end
 
   def remove_plane_from_hangar
