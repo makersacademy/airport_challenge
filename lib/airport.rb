@@ -11,7 +11,6 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "Airport is empty." if empty?
     fail "Weather is bad." if weather?
     fail "Plane not in airport" unless @planes.include? plane
       @planes.delete(plane)
@@ -28,11 +27,6 @@ class Airport
     @planes
   end
 
-  def weather?
-    number = rand(10)
-    number.even?
-  end
-
   private
   def full?
     @planes.length >= @capacity
@@ -40,6 +34,11 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def bad_weather?
+    number = rand(10)
+    number.even?
   end
 
 end

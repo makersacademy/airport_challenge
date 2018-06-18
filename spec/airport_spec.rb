@@ -1,10 +1,6 @@
 require './lib/airport.rb'
 describe Airport do
 
-  it {should respond_to(:land)}
-  it {should respond_to(:takeoff)}
-  it {should respond_to(:grounded_planes)}
-
   describe "#land" do
     before do
       allow(subject).to receive(:weather?) { false }
@@ -104,11 +100,25 @@ context "verify that edge cases pass" do
     it "planes already flying cannot takeoff" do
       plane = Plane.new
       subject.land(plane)
-      subject.land(Plane.new)
       subject.takeoff(plane)
       expect {subject.takeoff(plane)}.to raise_error(RuntimeError)
     end
   end
 
+end
+
+context "verify private methods are working" do
+
+  describe "#empty?" do
+    it "#empty? returns true or false" do
+      expect(subject.send :empty?).to eq true || false
+    end
+  end
+
+  describe "#bad_weather?" do
+    it "#bad_weather? returns true or false" do
+      expect(subject.send :bad_weather?).to eq true || false
+    end
+  end
 end
 end
