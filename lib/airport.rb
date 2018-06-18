@@ -5,19 +5,21 @@ class Airport
   attr_reader :plane, :capacity, :weather
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = weather
+
 
   end
 
-  def takeoff_plane
+  def takeoff_plane(plane, weather)
+    weather.random_weather
     fail "Can't takeoff as stormy weather" if weather.stormy?
     @planes.pop
   end
 
-  def land_plane(plane)
+  def land_plane(plane, weather)
+    weather.random_weather
     fail "Can't land as airport full!" if full?
     fail "Can't land as stormy weather" if weather.stormy?
     @planes << plane  #use instance variable to store plane

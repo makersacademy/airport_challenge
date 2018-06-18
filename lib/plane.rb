@@ -5,6 +5,6 @@ class Plane
   end
 
   def land?
-    
+    true
   end
 end
