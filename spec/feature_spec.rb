@@ -11,7 +11,7 @@ end
 def take_off
   plane = Plane.new
   airport = Airport.new
-  airport.lane(plane)
+  airport.land(plane)
   airport.take_off(plane)
   airport.planes == []
 end
