@@ -11,12 +11,13 @@ def initialize(capacity = DEFAULT_CAPACITY)
 end
 
 def land(plane)
+  fail "Runway full" if @planes.count >= @capacity
   @planes << plane
+
 end
 
 def take_off(plane)
   @planes.pop
-  # fail "Runway full" if @planes > @capacity
 end
 
 

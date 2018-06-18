@@ -10,6 +10,9 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to include plane
     end
+    it "raises an error when full" do
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "Runway full"
   end
 
   describe "#take_off" do
@@ -20,10 +23,7 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes).to_not include plane
     end
-  #   it "raises an error when full" do
-  #     subject.capacity.times { subject.take_off(plane) }
-  #     expect { subject.take_off(plane) }.to raise_error "Runway full"
-  # end
+  end
 end
 
   describe "#initialize" do
@@ -31,10 +31,11 @@ end
     it "it has a default capacity" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-    # it 'has a variable capacity' do
-    #   airport = Airport.new(50)
-    #   50.times { airport.land Plane.new }
-    #   expect{ airport.land Plane.new }.to raise_error 'Runway full'
-    # end
+
+    it 'has a variable capacity' do
+      airport = Airport.new(50)
+      50.times { airport.land Plane.new }
+      expect{ airport.land Plane.new }.to raise_error 'Runway full'
+    end
   end
 end
