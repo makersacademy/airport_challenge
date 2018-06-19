@@ -37,5 +37,5 @@ airport.weather.change_condition # Calls a random weather condition
 ## Further Improvements
 
 * Allow for planes to accept airports as arguments & take over landing responsibility.
-* Potential for further refactoring test code, add contexts.
+* Potential for adding contexts to spec code.
 * Potential for tightening the take-off/hangar management system.
