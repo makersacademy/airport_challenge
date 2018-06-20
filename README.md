@@ -15,6 +15,14 @@ Airport Challenge
 
 This is my attempt at the airport challenge, a challenge part of the Makers Academy course.
 
+Design
+------
+
+I'll initially try and separate this into three classes:
+*Airport* that will have planes and will tell planes if they can land or take off
+*Plane* that can land and take off
+*Weather* that can tell if it's stormy
+
 Task
 -----
 
