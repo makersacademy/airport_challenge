@@ -11,4 +11,9 @@ describe Airport do
       expect(subject.can_takeoff?).to be true
     end
   end
+  describe '#landing' do
+    it 'adds the plane to the list of planes in airport' do
+
+    end
+  end
 end
