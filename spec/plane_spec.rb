@@ -7,7 +7,7 @@ describe Plane do
     end
     it 'asks the airport if landing is possible' do
       airport_double = double(:airport)
-      expect(airport_double).to receive(:can_land)
+      expect(airport_double).to receive(:can_land?)
       subject.land airport_double
     end
   end
@@ -18,7 +18,7 @@ describe Plane do
     end
     it 'asks the airport if takeoff is possible' do
       airport_double = double(:airport)
-      expect(airport_double).to receive(:can_takeoff)
+      expect(airport_double).to receive(:can_takeoff?)
       subject.takeoff airport_double
     end
   end
