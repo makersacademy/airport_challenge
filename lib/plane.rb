@@ -1,6 +1,8 @@
 class Plane
   def land airport
-    airport.can_land?
+    if airport.can_land?
+      airport.landing(self)
+    end
   end
 
   def takeoff airport
