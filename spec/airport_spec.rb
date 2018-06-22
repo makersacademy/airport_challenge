@@ -25,9 +25,4 @@ describe Airport do
       expect(subject.can_takeoff?).to be true
     end
   end
-  describe '#landing' do
-    it 'increments the number of planes in airport' do
-
-    end
-  end
 end
