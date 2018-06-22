@@ -2,14 +2,16 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @number_of_planes = 0
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def can_land?
-    !(full? or @weather.isStormy?)
+    return false if full?
+    return false if @weather.isStormy?
+    true
   end
 
   def can_takeoff?
