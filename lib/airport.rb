@@ -1,5 +1,6 @@
-class Airport
+require 'weather'
 
+class Airport
   DEFAULT_CAPACITY = 50
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
