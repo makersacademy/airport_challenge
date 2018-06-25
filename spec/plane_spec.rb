@@ -10,12 +10,12 @@ describe Plane do
       expect(airport_double).to receive(:can_land?)
       subject.land airport_double
     end
-    it 'tells the aiport that it\'s landing if it was possible' do
+    it 'tells the airport that it\'s landing if it was possible' do
       airport_double = double(:airport, :can_land? => true)
       expect(airport_double).to receive(:landing).with(subject)
       subject.land airport_double
     end
-    it 'does not tell the aiport that it\'s landing if it was not possible' do
+    it 'does not tell the airport that it\'s landing if it was not possible' do
       airport_double = double(:airport, :can_land? => false)
       expect(airport_double).not_to receive(:landing)
       subject.land airport_double
@@ -31,12 +31,12 @@ describe Plane do
       expect(airport_double).to receive(:can_takeoff?)
       subject.takeoff airport_double
     end
-    it 'tells the aiport that it\'s taking off if it was possible' do
+    it 'tells the airport that it\'s taking off if it was possible' do
       airport_double = double(:airport, :can_takeoff? => true)
       expect(airport_double).to receive(:takingoff)
       subject.takeoff airport_double
     end
-    it 'does not tell the aiport that it\'s taking off if it was not possible' do
+    it 'does not tell the airport that it\'s taking off if it was not possible' do
       airport_double = double(:airport, :can_takeoff? => false)
       expect(airport_double).not_to receive(:takingoff?)
       subject.takeoff airport_double
