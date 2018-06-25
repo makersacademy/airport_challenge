@@ -20,11 +20,21 @@ describe Plane do
       expect(airport_double).not_to receive(:landing)
       subject.land airport_double
     end
+    it 'raises an error if the plane has already successfully landed' do
+      airport_double = double(:airport, :can_land? => true, :landing => nil)
+      subject.land airport_double
+      expect{ subject.land airport_double }.to raise_error('Plane has already landed')
+    end
   end
 
   describe '#takeoff' do
+    before(:each) do
+      airport_double = double(:airport, :can_land? => true, :landing => nil)
+      subject.land(airport_double)
+    end
+
     it 'expects to be called with one argument' do
-      expect(subject).to respond_to(:land).with(1).argument
+      expect(subject).to respond_to(:takeoff).with(1).argument
     end
     it 'asks the airport if takeoff is possible' do
       airport_double = double(:airport)
@@ -40,6 +50,11 @@ describe Plane do
       airport_double = double(:airport, :can_takeoff? => false)
       expect(airport_double).not_to receive(:takingoff?)
       subject.takeoff airport_double
+    end
+    it 'raises an error if the plane has already successfully taken off' do
+      airport_double = double(:airport, :can_takeoff? => true, :takingoff => nil)
+      subject.takeoff airport_double
+      expect{ subject.takeoff airport_double }.to raise_error('Plane is already airborne')
     end
   end
   describe '#isAirborne?' do
