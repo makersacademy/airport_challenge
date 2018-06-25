@@ -23,6 +23,10 @@ class Airport
     @number_of_planes += 1
   end
 
+  def takingoff plane
+    @number_of_planes -= 1
+  end
+
   private
 
   def full?

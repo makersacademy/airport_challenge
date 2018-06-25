@@ -31,6 +31,16 @@ describe Plane do
       expect(airport_double).to receive(:can_takeoff?)
       subject.takeoff airport_double
     end
+    it 'tells the aiport that it\'s taking off if it was possible' do
+      airport_double = double(:airport, :can_takeoff? => true)
+      expect(airport_double).to receive(:takingoff)
+      subject.takeoff airport_double
+    end
+    it 'does not tell the aiport that it\'s taking off if it was not possible' do
+      airport_double = double(:airport, :can_takeoff? => false)
+      expect(airport_double).not_to receive(:takingoff?)
+      subject.takeoff airport_double
+    end
   end
   describe '#isAirborne?' do
     it 'returns true for new planes' do
@@ -47,13 +57,13 @@ describe Plane do
       expect(subject.isAirborne?).to be true
     end
     it 'returns true if the plane has taken off' do
-      airport_double = double(:airport, :can_land? => true, :can_takeoff? => true, :landing => nil)
+      airport_double = double(:airport, :can_land? => true, :can_takeoff? => true, :landing => nil, :takingoff => nil)
       subject.land(airport_double)
       subject.takeoff(airport_double)
       expect(subject.isAirborne?).to be true
     end
     it 'returns false if the plane couldn\'t take off' do
-      airport_double = double(:airport, :can_land? => true, :can_takeoff? => false, :landing => nil)
+      airport_double = double(:airport, :can_land? => true, :can_takeoff? => false, :landing => nil, :takingoff => nil)
       subject.land(airport_double)
       subject.takeoff(airport_double)
       expect(subject.isAirborne?).to be false

@@ -11,6 +11,7 @@ class Plane
 
   def takeoff airport
     if airport.can_takeoff?
+      airport.takingoff(self)
       @airborne = true
     end
   end

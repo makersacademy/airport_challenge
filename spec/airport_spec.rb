@@ -15,6 +15,11 @@ describe Airport do
         Airport::DEFAULT_CAPACITY.times{ subject.landing(plane) }
         expect(subject.can_land?).to be false
       end
+      it 'returns false if airport has capacity again' do
+        Airport::DEFAULT_CAPACITY.times{ subject.landing(plane) }
+        subject.takingoff(plane)
+        expect(subject.can_land?).to be true
+      end
       it 'returns true if airport is not full in big airport' do
         big_airport = Airport.new(sunnyweather, 500)
         499.times{ big_airport.landing(plane) }
