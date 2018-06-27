@@ -6,6 +6,7 @@ class Plane
 
   def takeoff
     raise 'Plane cannot take off, the plane is already flying' if flying
+    @flying = true
   end
 
   def land(airport)
