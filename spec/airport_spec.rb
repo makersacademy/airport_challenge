@@ -2,7 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new(weather, 20) }
-  let(:plane) { double :plane }
+  subject(:airport2) { described_class.new(weather, 10) }
+  let(:plane) { double :plane, land: nil, takeoff: nil }
   let(:weather) { double :weather }
 
 
@@ -13,7 +14,8 @@ describe Airport do
       end
 
       it 'lands a plane' do
-        expect(airport.land(plane)).to eq [plane]
+        expect(plane).to receive(:land)
+        airport.land(plane)
       end
 
       it 'returns a landed plane' do
@@ -22,7 +24,9 @@ describe Airport do
       end
 
       it 'returns an error if the airport if full' do
-        airport.capacity.times { airport.land(plane) }
+        20.times do
+          airport.land(plane)
+        end
         expect { airport.land(plane) }.to raise_error 'Airport is full to capacity'
       end
     end
@@ -46,13 +50,19 @@ describe Airport do
 
       it 'takes off a plane' do
         airport.land(plane)
-        expect(airport.takeoff(plane)).to eq plane
+        expect(plane).to receive(:takeoff)
+        airport.takeoff(plane)
       end
 
       it 'removes plane from airport' do
         airport.land(plane)
         airport.takeoff(plane)
         expect(airport.planes).not_to include plane
+      end
+
+      it 'raises an error if the plane is not at the airport' do
+        airport2.land(plane)
+        expect { airport.takeoff(plane) }.to raise_error 'Cannot take off plane, the plane is not at this airport'
       end
     end
 
