@@ -1,5 +1,6 @@
 Airport Challenge
 =================
+[![BCH compliance](https://bettercodehub.com/edge/badge/nixlim/airport_challenge?branch=master)](https://bettercodehub.com/)
 
 ```
         ______
