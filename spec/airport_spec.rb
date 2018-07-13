@@ -7,6 +7,8 @@ describe Airport do
     expect(Airport.new).to be_instance_of Airport
   end 
 end 
+
+
 # user story 1 
 # As an air traffic controller 
 # So I can get passengers to a destination 
