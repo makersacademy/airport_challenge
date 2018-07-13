@@ -1,13 +1,15 @@
 # die - do it expect
 
-require 'airport.rb'
+require 'airport'
 
 describe Airport do 
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
   end 
+  it "is able to land a plane" do 
+    expect(subject).to respond_to(:land).with(1).argument 
+  end 
 end 
-
 
 # user story 1 
 # As an air traffic controller 
