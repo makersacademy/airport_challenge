@@ -48,7 +48,7 @@ class Airport
 
   def stormy?
     # randomize weather from sunny to stormy
-    rand(1..17) > 16
+    !!rand(1..17) > 16
   end
 
 end
