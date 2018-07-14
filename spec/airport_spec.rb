@@ -2,7 +2,17 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-    subject(:airport) {described_class.new(20)}
+    subject(:airport) {described_class.new}
+    describe '#initialize' do
+        it 'is expected to have a default capacity' do
+            Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
+            expect(airport.planes.length).to eq Airport::DEFAULT_CAPACITY
+        end  
+        it 'allows users to override the capacity' do
+            expect(Airport.new(5).capacity).to eq 5
+        end
+    end
+
     describe '#land' do
         it 'is expected to respond to the method "land" with 1 argument' do
             expect(airport).to respond_to(:land).with(1).argument
@@ -13,7 +23,7 @@ describe Airport do
             expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy' 
         end
         it 'is expected to output an error message if attempt to land when airport is at capacity' do
-            20.times {airport.land(Plane.new)}
+            Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
             plane = Plane.new
             expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
         end

@@ -71,9 +71,16 @@ it 'prevents landing when airport capacity is exceeded' do
     expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
 end
 
+# User story 6
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
+it 'allows a default airport capacity to be overidden to 2' do
+    expect(Airport.new(2).capacity).to eq 2
+end
+it 'allows a default airport capacity to be overidden to 5' do
+    expect(Airport.new(5).capacity).to eq 5
+end
 
 end
