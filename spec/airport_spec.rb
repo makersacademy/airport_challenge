@@ -1,4 +1,5 @@
 # die - do it expect
+#need to add fail cases if planes < capacity and weather 
 
 require 'airport'
 
@@ -19,19 +20,21 @@ describe Airport do
   it "has the ability to instuct  a plane to take off" do 
     expect(subject).to respond_to(:takeoff).with(1).argument 
   end 
-  # it "shows that plane is no longer in airport, once it has taken off" do 
-  # plane = Plane.new 
-  # subject.land(plane)
-  # expect(subject).takeoff.to eq ""
-  # end 
+  it "shows that plane is no longer in airport, once it has taken off" do 
+   plane = Plane.new 
+   subject.land(plane)
+   expect(subject.takeoff(plane)).to eq("plane has taken off!")
+   expect(subject.hanger).not_to include(plane) #does running subject.takeoff on the previous line change the state of the hanger? Have not run subject.takeoff? 
+
+   end 
 end 
 
 # user story 1 
 # As an air traffic controller 
 # So I can get passengers to a destination 
-# I want to instruct a plane to land at an airport
+# I want to instruct a plane to land at an airport - done
 
 # As an air traffic controller 
 # So I can get passengers on the way to their destination 
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport - done
 
