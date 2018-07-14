@@ -3,9 +3,11 @@ require 'plane'
 
 describe Airport do
 
-  # describe '#initialize' do
-  #
-  # end
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
 
   describe '#stormy?' do
     it { is_expected.to respond_to :stormy? }
@@ -13,35 +15,37 @@ describe Airport do
 
   describe '#takeoff' do
     it { is_expected.to respond_to :takeoff }
+
     it 'loses a plane from the landing bay when plane takesoff' do
       airport = Airport.new
       airport.landing(Plane.new)
-      !(airport.stormy?)
+      allow(airport.stormy?).to receive(:rand).and_return(16)
       expect(airport.takeoff).to eq 'successful takeoff'
     end
 
     it 'raises an error when the airport has no planes' do
       airport = Airport.new
-      airport.stormy?
+      allow(airport.stormy?).to receive(:rand).and_return(16)
       expect { airport.takeoff }.to raise_error 'No planes available'
     end
 
     it 'raises an error when the weather is stormy' do
       airport = Airport.new
       airport.landing(Plane.new)
-      airport.should be_stormy
+      allow(airport.stormy?).to receive(:rand).and_return(17)
       expect { airport.takeoff }.to raise_error 'Weather is stormy'
     end
   end
 
   describe "#landing" do
     it { is_expected.to respond_to(:landing).with(1).argument }
+
     it 'adds a plane to the landing bay when plane lands' do
       plane = Plane.new
       airport = Airport.new
-      airport.should_not be_stormy
-      subject.landing(plane)
-      expect(subject.landing(plane)).to eq 'successful landing'
+      airport.landing(plane)
+      allow(airport.stormy?).to receive(:rand).and_return(16)
+      expect(airport.landing(plane)).to eq 'successful landing'
     end
 
     it 'raises an error when the airport is full' do
@@ -51,7 +55,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do
       airport = Airport.new
-      airport.should be_stormy
+      allow(airport.stormy?).to receive(:rand).and_return(17)
       expect { airport.landing(Plane.new) }.to raise_error 'Weather is stormy'
     end
   end
