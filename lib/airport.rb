@@ -26,7 +26,9 @@ class Airport
   end
 
   def stormy?
-    !!(rand(1..17) > 16)
+    random = rand(1..17)
+    return true if random == 17
+    false
   end
 
   def full?
@@ -37,24 +39,4 @@ class Airport
     !!(@planes.empty?)
   end
 
-  def bay_available?
-    !!(@capacity < @planes.size)
-  end
-
 end
-
-# IGNORE THIS
-#
-# require 'plane.rb'
-#
-# class Airport
-#   def land_plane
-#     Plane.new
-#     # want airport.land(plane) = plane
-#     # if plane.able_to_land? = true.
-#   end
-#
-#   def stormy?
-#
-#   end
-# end
