@@ -43,6 +43,14 @@ describe Airport do
             allow(airport).to receive(:stormy?) { true }
             expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
         end
+        it 'removes the plane from the airport' do
+            plane = Plane.new
+            2.times do
+                 airport.land(plane)
+                 airport.take_off(plane)
+            end
+            expect(airport.planes.length).to eq 0
+        end
     end
 
 end
