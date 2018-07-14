@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-    subject(:airport) {described_class.new}
+    subject(:airport) {described_class.new(20)}
     describe '#land' do
         it 'is expected to respond to the method "land" with 1 argument' do
             expect(airport).to respond_to(:land).with(1).argument
@@ -11,6 +11,11 @@ describe Airport do
             plane = Plane.new
             allow(airport).to receive(:stormy?) { true }
             expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy' 
+        end
+        it 'is expected to output an error message if attempt to land when airport is at capacity' do
+            20.times {airport.land(Plane.new)}
+            plane = Plane.new
+            expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
         end
 
     end
