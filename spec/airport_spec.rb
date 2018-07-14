@@ -7,6 +7,11 @@ describe Airport do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
+    it 'allows different capacity on initialization' do
+      airport = Airport.new(60)
+      expect(airport.capacity).to eq 60
+    end
   end
 
   describe '#stormy?' do
