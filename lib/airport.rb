@@ -29,7 +29,6 @@ class Airport
     !!(rand(1..17) > 16)
   end
 
-
   def full?
     !!(@planes.size >= @capacity)
   end

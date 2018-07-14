@@ -22,14 +22,14 @@ describe Airport do
 
     it 'raises an error when the airport has no planes' do
       airport = Airport.new
-      airport.stormy? == false
+      airport.stormy?
       expect { airport.takeoff }.to raise_error 'No planes available'
     end
 
     it 'raises an error when the weather is stormy' do
       airport = Airport.new
       airport.landing(Plane.new)
-      airport.stormy?
+      airport.should be_stormy
       expect { airport.takeoff }.to raise_error 'Weather is stormy'
     end
   end
@@ -38,8 +38,8 @@ describe Airport do
     it { is_expected.to respond_to(:landing).with(1).argument }
     it 'adds a plane to the landing bay when plane lands' do
       plane = Plane.new
-      !(subject.full?)
-      !(subject.stormy?)
+      airport = Airport.new
+      airport.should_not be_stormy
       subject.landing(plane)
       expect(subject.landing(plane)).to eq 'successful landing'
     end
@@ -51,7 +51,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do
       airport = Airport.new
-      airport.stormy? == true
+      airport.should be_stormy
       expect { airport.landing(Plane.new) }.to raise_error 'Weather is stormy'
     end
   end
