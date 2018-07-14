@@ -32,7 +32,7 @@ it 'prevents plane taking off if weather is stormy' do
     airport = Airport.new
     plane = Plane.new
     airport.weather = 'stormy'
-    expect { airport.take_off(plane) }.to raise_error("Cannot take-off: Weather is stormy")
+    expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
 end
 it "doesn't prevent plane taking off if weather is not stormy" do
     airport = Airport.new
@@ -41,9 +41,23 @@ it "doesn't prevent plane taking off if weather is not stormy" do
     expect { airport.take_off(plane) }.not_to raise_error
 end
 
+# User Story 4
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
+
+it 'prevents plane landing if weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.weather = 'stormy'
+    expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy'
+end
+it "doesn't prevent plane landing if weather is not stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.weather = 'fine'
+    expect { airport.land(plane) }.not_to raise_error
+end
 
 
 # As an air traffic controller 

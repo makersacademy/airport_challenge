@@ -6,7 +6,9 @@ class Airport
 	end
 	
 	def land(plane)
-
+		if @weather == 'stormy'
+			raise 'Cannot land: Weather is stormy'
+		end
 	end
 	def take_off(plane)
 		if @weather == 'stormy'
