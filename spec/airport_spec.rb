@@ -9,7 +9,7 @@ describe Airport do
         end
         it 'is expected to output an error message if landing is attempted in stormy weather' do
             plane = Plane.new
-            airport.weather = 'stormy'
+            allow(airport).to receive(:stormy?) { true }
             expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy' 
         end
 
@@ -25,7 +25,7 @@ describe Airport do
         end
         it 'is expected to output an error message if take-off is attempted in stormy weather' do
             plane = Plane.new
-            airport.weather = 'stormy'
+            allow(airport).to receive(:stormy?) { true }
             expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
         end
     end

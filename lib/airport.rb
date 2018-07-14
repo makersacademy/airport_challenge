@@ -2,19 +2,18 @@ class Airport
 	attr_accessor :weather
 	
 	def initialize
-		@weather = 'fine'
+		
 	end
 	
 	def land(plane)
-		if @weather == 'stormy'
-			raise 'Cannot land: Weather is stormy'
-		end
+		raise 'Cannot land: Weather is stormy' if stormy?
 	end
 	def take_off(plane)
-		if @weather == 'stormy'
-			raise 'Cannot take-off: Weather is stormy'
-		end
+		raise 'Cannot take-off: Weather is stormy' if stormy?
 		puts "Take-off: Successful"
 	end
-
+	private
+	def stormy?
+		@weather == 'stormy'
+	end
 end
