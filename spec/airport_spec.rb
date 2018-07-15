@@ -37,7 +37,16 @@ describe Airport do
   it "prohibits planes from landing if the weather is stormy" do 
     plane = Plane.new
     allow(subject).to receive(:weather).and_return(:stormy)
-    expect { subject.land(plane) } .to raise_error "cannot land due to stormy weather"    
+    expect { subject.land(plane) } .to raise_error "cannot land it is terrible weather for flying" 
+  end
+
+  it "prohibits planes from taking off if the weather is stormy" do 
+    plane = Plane.new
+    allow(subject).to receive(:weather).and_return(:sunny)
+    subject.land(plane)
+    allow(subject).to receive(:weather).and_return(:stormy)
+
+    expect { subject.takeoff(plane) } .to raise_error "cannot takeoff it is terrible weather for flying" 
   end
 
 end 
@@ -54,3 +63,9 @@ end
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy - done
+
+
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when weather is stormy - done
+
