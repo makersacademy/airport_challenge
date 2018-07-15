@@ -26,16 +26,5 @@ class Airport
 
   def airport_full?
     planes.length >= capacity
-	end
-
-  # def left?
-  #   @planes.pop == true
-  # end
-
-  # private
-
-	# def storm?
-	# 	weather.storm?
-  # end
-  
+  end 
 end

@@ -31,7 +31,7 @@ describe Airport do
   # stormy weather: prevent plane from taking off
   it 'refuses takeoff due to storm' do
     if subject.weather != "fair"
-      expect(subject.takeoff).to raise_error("Takeoff not allowed due to bad weather")
+      expect(subject.takeoff(plane)).to raise_error("Takeoff not allowed due to bad weather")
     end
   end
 
@@ -47,5 +47,11 @@ describe Airport do
     subject.airport_full? do
       expect(subject.land(plane)).to raise_error("Plane cannot land; airport is full")
     end
+  end
+
+  # default capacity
+  it 'has a default capacity' do
+    DEFAULT_CAPACITY = 10
+    expect(subject.capacity).to eq DEFAULT_CAPACITY
   end
 end
