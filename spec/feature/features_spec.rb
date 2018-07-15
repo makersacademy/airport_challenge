@@ -19,6 +19,7 @@ end
 it 'instructs a plane to take off and confirms the departure' do
     airport = Airport.new(20)
     plane = Plane.new
+    allow(airport).to receive(:stormy?) { false }
     expect { airport.take_off(plane) }.not_to raise_error
     expect { airport.take_off(plane) }.to output("Take-off: Successful\n").to_stdout
 end
@@ -31,13 +32,13 @@ end
 it 'prevents plane taking off if weather is stormy' do
     airport = Airport.new(20)
     plane = Plane.new
-    airport.weather = 'stormy'
+    allow(airport).to receive(:stormy?) { true }
     expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
 end
 it "doesn't prevent plane taking off if weather is not stormy" do
     airport = Airport.new(20)
     plane = Plane.new
-    airport.weather = 'fine'
+    allow(airport).to receive(:stormy?) { false }
     expect { airport.take_off(plane) }.not_to raise_error
 end
 
@@ -49,13 +50,13 @@ end
 it 'prevents plane landing if weather is stormy' do
     airport = Airport.new(20)
     plane = Plane.new
-    airport.weather = 'stormy'
+    allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy'
 end
 it "doesn't prevent plane landing if weather is not stormy" do
     airport = Airport.new(20)
     plane = Plane.new
-    airport.weather = 'fine'
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
 end
 
@@ -67,6 +68,7 @@ end
 it 'prevents landing when airport capacity is exceeded' do
     airport = Airport.new(20)
     plane = Plane.new
+    allow(airport).to receive(:stormy?) { false }
     20.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
 end
@@ -82,5 +84,8 @@ end
 it 'allows a default airport capacity to be overidden to 5' do
     expect(Airport.new(5).capacity).to eq 5
 end
+
+# Extra cases and edge cases
+
 
 end
