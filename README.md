@@ -37,6 +37,8 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## How to use
 
+[IRB](#1.) | [Requiring files](#2.) | [Initializing an airport](#3.) | [Initializing a plane](#4.) | [Landing a plane](#5.) | [Taking-off a plane](#6.) | [Check a plane's airport](#7.) | [Checking an airport's planes](#8.) | [Weather](#Each-time) | [Capacity](#If-an-airport)
+
 #### 1. Run IRB
 ```
 IRB
