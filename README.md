@@ -7,11 +7,11 @@
 I decided to use IRB as a method for feature testing this program. I did not want to create an interactive menu or a file that runs by itself. I only created two classes, one for airports and one for planes. The user acts as an air traffic controller, instructing planes to take off or land at airports. The random chances of bad weather are randomly decided any time a plane attempts to either land or take off from an airport. The user, as an air traffic controller, will receive a warning of poor weather and will therefore not be able complete the action on that attempt as it is unsafe. The user may also create airports and planes at will.
 
 ## State of project and changes to be made
-I added quite a bit of unnecessary features, mainly to promote better usability. For instance, the land and take off methods exist on both classes, so the program has more flexibility and intuitive-ness to the user.
+I added quite a bit of unnecessary features, mainly to promote better usability. For instance, the land and take off methods exist on both classes, so the program has more flexibility and 'intuitive-ness' to the user.
 
 Currently I have only one instance of rubocop finding an offense, which is a method that is 11 lines long, 1 over the limit of 10. This method (take_off_by_name) is a method I wanted to have because it adds to ease-of-use. The entire naming of planes and airports were unnecessary, in fact, though I thought it was a nice feature to add.
 
-There are a few additions that can be made, but I believe I've already went beyond the expected functionality of the program so I have left them out as of now. Most of these additions would come in the form of raised errors when trying to make an invalid method call.
+There are a few additions that can be made, but I believe I've already gone beyond the expected functionality of the program so I have left them out as of now. Most of these additions would come in the form of raised errors when trying to make an invalid method call.
 
 ## Feature testing
 Instructions on how to use this program are included below. These instructions act as a very short feature test if followed, however the full functionality of the program is not entirely explored by solely copy-and-paste-ing.
