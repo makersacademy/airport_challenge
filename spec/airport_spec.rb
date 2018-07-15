@@ -6,6 +6,7 @@ require 'airport'
 describe Airport do 
   
   let(:plane) { Plane.new }
+  subject(:airport) {described_class.new}
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
   end 
@@ -14,7 +15,7 @@ describe Airport do
     expect(subject.hanger).to eq([]) 
   end  
    
-    it "has the ability to accept a plane to land" do 
+  it "has the ability to accept a plane to land" do 
     expect(subject).to respond_to(:land).with(1).argument 
   end 
   # it "returns the plane (landed in the airport) when the plane has landed" do 
@@ -26,14 +27,24 @@ describe Airport do
     expect(subject).to respond_to(:takeoff).with(1).argument 
   end 
   it "shows that plane is no longer in airport, once it has taken off" do 
+    allow(airport).to receive(:weather).and_return :sunny
     plane = Plane.new 
     subject.land(plane)
     expect(subject.takeoff(plane)).to eq("plane has taken off!")
     expect(subject.hanger).not_to include(plane) # does running subject.takeoff on the previous line change the state of the hanger? Have not run subject.takeoff? 
   end 
 
-  it "prohibits planes from taking off if the weather is stormy" do 
+  it "prohibits planes from landing if the weather is stormy" do 
+    plane = Plane.new
+    allow(airport).to receive(:weather).and_return :stormy
+    expect { airport.land(plane) }.to raise_error "Plane cannot land! It is terrible weather for flying!" 
   end 
+  # it "prohibits planes from landing if the weather is stormy" do 
+  #   plane = Plane.new
+  #   allow(subject).to receive(:weather).and_return('stormy')
+  #   expect { subject.takeoff(plane) }.to raise_error "Plane cannot land! It is terrible weather for flying!" 
+  # end 
+  
 
 end 
 
@@ -48,4 +59,4 @@ end
 
 # As an air traffic controller 
 # To ensure safety 
-# I want to prevent takeoff when weather is stormy
+# I want to prevent takeoff when weather is stormy - done
