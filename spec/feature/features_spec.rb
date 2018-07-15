@@ -30,7 +30,7 @@ end
 # I want to prevent takeoff when weather is stormy 
 
 context 'when weather is stormy' do
-    it 'prevents plane taking off if weather is stormy' do
+    it 'prevents plane taking off' do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?) { true }
@@ -38,7 +38,7 @@ context 'when weather is stormy' do
     end
 end
 context 'when weather is not stormy' do
-    it "doesn't prevent plane taking off if weather is not stormy" do
+    it "allows take-off" do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?) { false }
@@ -52,7 +52,7 @@ end
 # I want to prevent landing when weather is stormy 
 
 context 'when weather is stormy' do
-    it 'prevents plane landing if weather is stormy' do
+    it 'prevents plane landing' do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return true
@@ -61,7 +61,7 @@ context 'when weather is stormy' do
 end
 
 context 'when weather is not stormy' do
-    it "doesn't prevent plane landing if weather is not stormy" do
+    it "allows plan to land" do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return false
@@ -75,7 +75,7 @@ end
 # I want to prevent landing when the airport is full 
 
 context 'when airport is full' do
-    it 'prevents landing when airport capacity is exceeded' do
+    it 'prevents landing' do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?) { false }
