@@ -4,9 +4,19 @@ describe Airport do
     # Check plane responds to land method
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    # rspeonds to take off method
+    # Responds to take off method
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
-    # Test confirm plane no longer in hanger
-   
+    # Land plane
+    it "Lands a plane" do
+        plane = Plane.new
+        expect(subject.land(plane)).to eq plane
+    end
+
+    # Take off
+    it "Allows a plane to take off" do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.take_off(plane)).to eq plane
+    end 
 end
