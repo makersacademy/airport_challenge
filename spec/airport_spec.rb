@@ -1,19 +1,12 @@
 require "Airport"
 describe Airport do
 
-    # Check plane resposds to land method
-    it "responds to land method" do
-        expect(subject).to respond_to(:land).with(1).argument
-    end
+    # Check plane responds to land method
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-    # Test, instruct a plane to take off
-    it "responds to take_off method" do
-        expect(subject).to respond_to(:take_off).with(1).argument
-    end
+    # rspeonds to take off method
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     # Test confirm plane no longer in hanger
-    it "Confirms plane is no longer in the hangar " do
-        plane = Plane.new
-        expect(subject.take_off(plane)).to eq("Plane not in hangar")
-    end
+   
 end
