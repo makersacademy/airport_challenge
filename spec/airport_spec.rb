@@ -6,7 +6,7 @@ require 'airport'
 describe Airport do 
   
   let(:plane) { Plane.new }
-  subject(:airport) {described_class.new}
+  subject(:airport) { described_class.new }
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
   end 
@@ -48,7 +48,30 @@ describe Airport do
 
     expect { subject.takeoff(plane) } .to raise_error "cannot takeoff it is terrible weather for flying" 
   end
-
+  it "raises an error if a plane that has already landed tried to land " do 
+    plane = Plane.new
+    subject.land(plane)
+    expect { subject.land(plane) } .to raise_error "This plane has already landed"  
+  end 
+  it "raises an error if plane that is not in hanger tries to take of" do 
+    plane = Plane.new
+    expect { subject.takeoff(plane) } .to raise_error "This plane cannot take off - not in hanger"  
+  end 
+  it "raises an error if a 6th plane tries to land (cap +1)" do 
+    a = Plane.new
+    b = Plane.new
+    c = Plane.new
+    d = Plane.new
+    e = Plane.new
+    f = Plane.new
+    subject.land(a)
+    subject.land(b)
+    subject.land(c)
+    subject.land(d)
+    subject.land(e)
+    expect { subject.land(f) } .to raise_error "The hanger is full"
+  end 
+   
 end 
 
 # user story 1 
@@ -64,8 +87,6 @@ end
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy - done
 
-
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy - done
-
