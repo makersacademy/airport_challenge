@@ -1,3 +1,4 @@
+require_relative "Plane"
 class Airport
 
     # Land method
