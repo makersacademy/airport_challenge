@@ -13,8 +13,12 @@ class Airport
   @weather = Weather.new 
   puts "The weather today is #{@weather.generate}"
   end 
+  
+  def safe_weather?
+  weather == 'sunny'
+  end 
 
-    def land(plane)
+  def land(plane)
       @hanger << plane #in irb this passes in the obj ref i.e. <gibberish> not "boeing1" for example, can somebody explain this
       @plane = plane
     end

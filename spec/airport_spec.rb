@@ -4,6 +4,8 @@
 require 'airport'
 require 'weather'
 describe Airport do 
+  let(:weather) { Weather.new }
+  let(:plane)   { Plane.new}
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
   end 
