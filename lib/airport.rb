@@ -6,17 +6,17 @@ class Airport
   attr_reader :weather 
   def initialize
     @hanger = []
-    rand(10) < 8 ? @weather = :sunny : @weather = :stormy
+    @weather = :sunny
   end 
 
   def land(plane)
-    fail "Plane cannot land! It is terrible weather for flying!" if @weather == :stormy 
+   fail "cannot land due to stormy weather" if weather == :stormy 
     @hanger << plane # in irb this passes in the obj ref i.e. <gibberish> not "boeing1" for example, can somebody explain this
     "plane has landed!"  
   end
   
   def takeoff(plane) 
-    fail "Plane cannot take off! It is terrible weather for flying!" if @weather == :stormy
+     fail "cannot land due to stormy weather" if weather == :stormy
     hanger.delete(plane) 
     "plane has taken off!"
   end 

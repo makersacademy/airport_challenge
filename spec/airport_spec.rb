@@ -36,15 +36,9 @@ describe Airport do
 
   it "prohibits planes from landing if the weather is stormy" do 
     plane = Plane.new
-    allow(airport).to receive(:weather).and_return :stormy
-    expect { airport.land(plane) }.to raise_error "Plane cannot land! It is terrible weather for flying!" 
-  end 
-  # it "prohibits planes from landing if the weather is stormy" do 
-  #   plane = Plane.new
-  #   allow(subject).to receive(:weather).and_return('stormy')
-  #   expect { subject.takeoff(plane) }.to raise_error "Plane cannot land! It is terrible weather for flying!" 
-  # end 
-  
+    allow(subject).to receive(:weather).and_return(:stormy)
+    expect { subject.land(plane) } .to raise_error "cannot land due to stormy weather"    
+  end
 
 end 
 
