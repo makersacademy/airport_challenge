@@ -82,16 +82,16 @@ Features to be Tested in RSpec Features:
 ## User Stories Complete - Additional Tasks
 
 - [x] Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories.  
-- [ ] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy).  
+- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy).  
 - [x] In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.  
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that: 
-- [ ] planes can only take off from airports they are in;  
+- [x] planes can only take off from airports they are in;  
 - [ ] planes that are already flying cannot take off and/or be in an airport;  
-- [ ] planes that are landed cannot land again and must be in an airport, etc.  
+- [x] planes that are landed cannot land again and must be in an airport, etc.  
 
 For overriding random weather behaviour, please read the documentation to  
-- [ ] learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.  
+- [x] learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.  
 
 ## Code Review
 In code review we'll be hoping to see:
@@ -101,5 +101,9 @@ In code review we'll be hoping to see:
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
-- [ ] Write an RSpec **feature** test that lands and takes off a number of planes
+- [x] Write an RSpec **feature** test that lands and takes off a number of planes
+
+**ISSUES TO RESOLVE**
+- [ ] I am stubbing randomness from the airport stormy? method and not the Weather class
+- [ ] My tests to see if plane flying etc use an Airport array and so will only include planes that have taken off from the same instance of airport. I need to amend to show a global planes array of flying? landed?
 
