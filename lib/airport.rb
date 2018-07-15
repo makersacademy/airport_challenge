@@ -19,11 +19,14 @@ class Airport
   end 
 
   def land(plane)
-      @hanger << plane #in irb this passes in the obj ref i.e. <gibberish> not "boeing1" for example, can somebody explain this
+    fail "Plane cannot land! It is terrible weather for flying!" if safe_weather? == false 
+  
+    @hanger << plane #in irb this passes in the obj ref i.e. <gibberish> not "boeing1" for example, can somebody explain this
       @plane = plane
     end
   
   def takeoff(plane) 
+    fail "Plane cannot take off! It is terrible weather for flying!" if safe_weather? == false 
     hanger.delete(plane) 
     "plane has taken off!"
   end 
