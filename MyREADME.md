@@ -38,7 +38,13 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 ```
-For this first user story, I will
+Object/method diagram for 1st user story:
+
+|object|method|
+|---|---|
+|plane|instruct|
+|airport|land|
+
 
 ```
 
