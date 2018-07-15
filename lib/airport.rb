@@ -11,16 +11,16 @@ class Airport
   end 
 
   def land(plane)
-   fail "cannot land it is terrible weather for flying" if weather == :stormy 
-   fail "This plane has already landed" if hanger.include? plane 
-   fail "The hanger is full" if hanger.length == capacity
-    @hanger << plane # in irb this passes in the obj ref i.e. <gibberish> not "boeing1" for example, can somebody explain this
+    fail "cannot land it is terrible weather for flying" if weather == :stormy 
+    fail "This plane has already landed" if hanger.include? plane 
+    fail "The hanger is full" if hanger.length == capacity
+    @hanger << plane # in passes in the obj ref  <gibberish> not "boeing1"
     "plane has landed!"  
   end
   
   def takeoff(plane) 
-     fail "cannot takeoff it is terrible weather for flying" if weather == :stormy
-     fail "This plane cannot take off - not in hanger" unless hanger.include? plane
+    fail "cannot takeoff - poor weather" if weather == :stormy
+    fail "plane cannot take off - not in hanger" unless hanger.include? plane
     hanger.delete(plane) 
     "plane has taken off!"
   end 

@@ -46,7 +46,7 @@ describe Airport do
     subject.land(plane)
     allow(subject).to receive(:weather).and_return(:stormy)
 
-    expect { subject.takeoff(plane) } .to raise_error "cannot takeoff it is terrible weather for flying" 
+    expect { subject.takeoff(plane) } .to raise_error "cannot takeoff - poor weather" 
   end
   it "raises an error if a plane that has already landed tried to land " do 
     plane = Plane.new
@@ -55,7 +55,7 @@ describe Airport do
   end 
   it "raises an error if plane that is not in hanger tries to take of" do 
     plane = Plane.new
-    expect { subject.takeoff(plane) } .to raise_error "This plane cannot take off - not in hanger"  
+    expect { subject.takeoff(plane) } .to raise_error "plane cannot take off - not in hanger" 
   end 
   it "raises an error if a 6th plane tries to land (cap +1)" do 
     a = Plane.new
@@ -90,7 +90,6 @@ end
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy - done
-
 
 # As an air traffic controller 
 # To ensure safety 
