@@ -10,6 +10,7 @@ describe Airport do
     describe '#initialize' do
         it 'is expected to have a default capacity' do
             allow(airport).to receive(:stormy?) { false }
+            allow(airport.landed).to receive(:include?) { false }
             Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
             expect(airport.landed.length).to eq Airport::DEFAULT_CAPACITY
         end  
@@ -25,8 +26,15 @@ describe Airport do
             end
             context 'when full' do
                 it 'raises an error' do
+                    allow(airport.landed).to receive(:include?) { false }
                     Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
                     expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
+                end
+            end
+            context 'when already landed' do
+                it 'raises an error' do
+                    allow(airport.landed).to receive(:include?) { true }
+                    expect { airport.land(plane) }.to raise_error 'Cannot land: Already landed'
                 end
             end
         end

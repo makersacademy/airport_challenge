@@ -63,6 +63,7 @@ describe 'user stories' do
         context 'when airport is full' do
             it 'prevents landing' do
                 allow(airport).to receive(:stormy?) { false }
+                allow(airport.landed).to receive(:include?) { false }
                 20.times { airport.land(plane) }
                 expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
             end
@@ -85,18 +86,23 @@ describe 'user stories' do
         it "doesn't allow take-off, if plane not at airport" do
             
             jfk = Airport.new
-            htw = Airport.new
+            lhr = Airport.new
             plane1 = Plane.new
             plane2 = Plane.new
             allow(jfk).to receive(:stormy?).and_return false
-            allow(htw).to receive(:stormy?).and_return false
+            allow(lhr).to receive(:stormy?).and_return false
             jfk.land(plane1)
-            htw.land(plane2)
-            expect { htw.take_off(plane1) }.to raise_error 'Cannot take-off: Not at this airport'
+            lhr.land(plane2)
+            expect { lhr.take_off(plane1) }.to raise_error 'Cannot take-off: Not at this airport'
         end
         # 8. planes that are already flying cannot take off and/or be in an airport;
         
         
         # 9. planes that are landed cannot land again and must be in an airport, etc.
-
+        it "doesn't allow planes that have already landed to land again" do
+            allow(airport).to receive(:stormy?) { false }
+            plane1 = Plane.new
+            airport.land(plane1)
+            expect{ airport.land(plane1) }.to raise_error 'Cannot land: Already landed'
+        end
 end
