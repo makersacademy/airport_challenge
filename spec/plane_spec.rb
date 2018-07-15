@@ -47,7 +47,7 @@ describe Plane do
     it { is_expected.to respond_to(:land).with(1).argument }
     context 'when sunny' do
       it "should puts '{airplane.name} landed at {airport.name}'" do
-        expect { @jetliner.land(@gatwick) }.to output("Jetliner landed at Gatwick\n").to_stdout
+        expect { @jetliner.land(@gatwick) }.to output("Jetliner landed at Gatwick\nGatwick now holds 1 plane\n").to_stdout
       end
     end
     context 'when stormy' do
@@ -64,7 +64,7 @@ describe Plane do
     context "when sunny" do
       it "should puts '{plane.name} took off from {airport.name}' when called" do
         @gatwick.land(@jetliner)
-        expect { @jetliner.take_off }.to output("Jetliner took off from Gatwick\n").to_stdout
+        expect { @jetliner.take_off }.to output("Jetliner took off from Gatwick\nGatwick is now empty\n").to_stdout
       end
       it "should set the plane's airport to nil" do
         @gatwick.land(@jetliner)

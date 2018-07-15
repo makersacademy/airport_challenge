@@ -104,7 +104,7 @@ require './lib/plane'
   ```
   boeing.airport_name
   ```  
-  * When a plane is in the air, it's airport will be _nil_  
+  * _When a plane is in the air, it's airport will be **nil**_  
 
 #### 8. There are two ways to check an airport's current list of planes  
   * Call the planes method to get a long array of all plane objects

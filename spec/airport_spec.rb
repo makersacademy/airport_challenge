@@ -31,8 +31,8 @@ describe Airport do
       it 'should set the airport.capacity to the second argument passed' do
         expect(@heathrow.capacity).to eq 30
       end
-
     end
+
   end
 
   describe '#name' do
@@ -73,11 +73,31 @@ describe Airport do
     end
   end
 
+  describe '#puts_planes_count' do
+    context 'airport is empty' do
+      it "says it's empty" do
+        expect { @gatwick.puts_planes_count }.to output("Gatwick is now empty\n").to_stdout
+      end
+    end
+    context 'airport has 1 plane left' do
+      it "uses singular count (1 plane)" do
+        @gatwick.land(@jetliner)
+        expect { @gatwick.puts_planes_count }.to output("Gatwick now holds 1 plane\n").to_stdout
+      end
+    end
+    context 'airport has more than one plane left' do
+      it "used plural count (x planes)" do
+        3.times { @gatwick.land(Plane.new) }
+        expect { @gatwick.puts_planes_count }.to output("Gatwick now holds 3 planes\n").to_stdout
+      end
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     context 'when sunny' do
       it "should puts '{airplane.name} landed at {airport.name}'" do
-        expect { @my_airport.land(@my_plane) }.to output("airplane landed at airport\n").to_stdout
+        expect { @my_airport.land(@my_plane) }.to output("airplane landed at airport\nairport now holds 1 plane\n").to_stdout
       end
       it "should set the plane's airport when being called" do
         @my_airport.land(@my_plane)
@@ -117,7 +137,7 @@ describe Airport do
       end
       it "should puts '{plane.name} took off from {airport.name}'" do
         @jetliner.land(@my_airport)
-        expect { @lax.take_off(@jetliner) }.to output("Jetliner took off from L.A.X.\n").to_stdout
+        expect { @lax.take_off(@jetliner) }.to output("Jetliner took off from L.A.X.\nL.A.X. is now empty\n").to_stdout
       end
     end
     context 'when stormy' do
@@ -146,7 +166,7 @@ describe Airport do
       end
       it "should puts '{plane.name} took off from {airport.name}'" do
         @boeing.land(@lax)
-        expect { @lax.take_off_by_name("Boeing 747") }.to output("Boeing 747 took off from L.A.X.\n").to_stdout
+        expect { @lax.take_off_by_name("Boeing 747") }.to output("Boeing 747 took off from L.A.X.\nL.A.X. is now empty\n").to_stdout
       end
     end
     context 'when stormy' do

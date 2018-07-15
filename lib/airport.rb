@@ -23,12 +23,23 @@ class Airport
     puts string
   end
 
+  def puts_planes_count
+    if planes.empty?
+      puts "#{name} is now empty"
+    elsif planes.size == 1
+      puts "#{name} now holds 1 plane"
+    else
+      puts "#{name} now holds #{planes.size} planes"
+    end
+  end
+
   def land(plane)
     fail "The weather is too stormy to land" if stormy?
     fail "#{name} is too full to land" if full?
     @planes.push(plane)
     plane.make_airport(self)
     puts "#{plane.name} landed at #{name}"
+    puts_planes_count
   end
 
   def take_off(plane)
@@ -36,8 +47,8 @@ class Airport
     fail "The weather is too stormy to take off" if stormy?
     puts "#{plane.name} took off from #{name}"
     @planes.delete(plane)
+    puts_planes_count
     plane.make_airport(nil)
-
   end
 
   def take_off_by_name(planename)
@@ -45,8 +56,9 @@ class Airport
     fail "The weather is too stormy to take off" if stormy?
     @planes.each do |planeobject|
       if planeobject.name == planename
-        puts "#{planeobject.name} took off from #{name}"
         @planes.delete(planeobject)
+        puts "#{planeobject.name} took off from #{name}"
+        puts_planes_count
         planeobject.make_airport(nil)
         break
       end

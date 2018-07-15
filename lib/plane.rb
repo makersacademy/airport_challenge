@@ -14,12 +14,14 @@ class Plane
     make_airport(airport)
     airport.planes.push(self)
     puts "#{name} landed at #{@airport.name}"
+    @airport.puts_planes_count
   end
 
   def take_off
     fail "The weather is too stormy to take off" if airport.stormy?
     puts "#{name} took off from #{@airport.name}"
     @airport.planes.delete(self)
+    @airport.puts_planes_count
     @airport = nil
   end
 
