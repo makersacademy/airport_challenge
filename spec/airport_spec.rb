@@ -1,8 +1,8 @@
-# die - do it expect
+# die - do it expect #sort out rspec run error (rubocop)
 #need to add fail cases if planes < capacity and weather 
-
+#look at rubric this pm 
 require 'airport'
-
+require 'weather'
 describe Airport do 
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
@@ -38,3 +38,6 @@ end
 # So I can get passengers on the way to their destination 
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport - done
 
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent takeoff when weather is stormy 
