@@ -1,19 +1,41 @@
-require './lib/plane'
+require_relative 'plane'
+# require_relative 'weather'
 
 class Airport
+  attr_reader :planes, :capacity, :weather
+  DEFAULT_CAPACITY = 10
+  DEFAULT_WEATHER = "fair"
 
-  attr_reader :planes, :weather
-
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY, weather = DEFAULT_WEATHER)
     @planes = []
+    @capacity = capacity
+    @weather = weather
   end
 
   def land(plane)
-    fail "Takeoff not allowed due to bad weather" if @weather == "stormy"
+    fail "Landing not allowed due to bad weather" if weather != "fair"
+    fail "Plane cannot land; airport is full" if airport_full?
     @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
+    fail "Takeoff not allowed due to bad weather" if weather != "fair"
     @planes.pop
+    "Successful takeoff!"
   end
+
+  def airport_full?
+    planes.length >= capacity
+	end
+
+  # def left?
+  #   @planes.pop == true
+  # end
+
+  # private
+
+	# def storm?
+	# 	weather.storm?
+  # end
+  
 end
