@@ -96,22 +96,22 @@ require './lib/plane'
   * _In this case,_ `gatwick.take_off_by_name('airplane')` _will remove one plane from Gatwick_
 
 #### 7. There are two ways to check a plane's current airport  
-  * Call the airport method to receive the airport as an object
+  * Call the airport method on a plane to receive the airport as an object
   ```
   boeing.airport
   ```  
-  * Call the airport_name method to receive just the airport's name (if it has one)
+  * Call the airport_name method on a plane to receive just the airport's name (if it has one)
   ```
   boeing.airport_name
   ```  
   * _When a plane is in the air, it's airport will be **nil**_  
 
 #### 8. There are two ways to check an airport's current list of planes  
-  * Call the planes method to get a long array of all plane objects
+  * Call the planes method on an airport to get a long array of all plane objects
   ```
   gatwick.planes
   ```  
-  * Call the planes_by_name method to print a string containing the names of all planes currently at the airport
+  * Call the planes_by_name method on an airport to print a string containing the names of all planes currently at the airport
   ```
   gatwick.planes_by_name
   ```
