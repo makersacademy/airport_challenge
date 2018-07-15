@@ -10,14 +10,21 @@ describe Plane do
     @heathrow = Airport.new('Heathrow', 30)
     @boeing = Plane.new('Boeing 747')
     @jetliner = Plane.new('Jetliner')
+    allow(@my_airport).to receive(:stormy?) { nil }
+    allow(@gatwick).to receive(:stormy?) { nil }
+    allow(@lax).to receive(:stormy?) { nil }
   end
 
   describe '#initialize' do
-    it 'should set the plane.name to the argument passed' do
-      expect(@boeing.name).to eq 'Boeing 747'
+    context 'passing no parameters' do
+      it "should set the plane.name to the 'airplane'" do
+        expect(@my_plane.name).to eq 'airplane'
+      end
     end
-    it 'should set the plane.name to the "airplane" if no argument is passed' do
-      expect(@my_plane.name).to eq 'airplane'
+    context 'passing optional name parameter' do
+      it 'should set the plane.name to the argument passed' do
+        expect(@boeing.name).to eq 'Boeing 747'
+      end
     end
   end
 
@@ -30,8 +37,7 @@ describe Plane do
 
   describe '#airport_name' do
     it { is_expected.to respond_to :airport_name }
-    it "returns the name of planes current airport (not the airport object)" do
-      allow(@gatwick).to receive(:stormy?) { false }
+    it "returns the name of the plane's current airport (not the airport object)" do
       @jetliner.land(@gatwick)
       expect(@jetliner.airport_name).to eq 'Gatwick'
     end
@@ -40,21 +46,12 @@ describe Plane do
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     context 'when sunny' do
-      before(:each) do
-        allow(@my_airport).to receive(:stormy?) { false }
-        allow(@gatwick).to receive(:stormy?) { false }
-        allow(@lax).to receive(:stormy?) { false }
-      end
-      it "using default names, should puts 'airplane landed at airport'" do
-        expect { @my_plane.land(@my_airport) }.to output("airplane landed at airport\n").to_stdout
-      end
-      it "using given names, should puts '{airplane.name} landed at {airport.name}'" do
+      it "should puts '{airplane.name} landed at {airport.name}'" do
         expect { @jetliner.land(@gatwick) }.to output("Jetliner landed at Gatwick\n").to_stdout
       end
     end
     context 'when stormy' do
       it "should raise an error" do
-        allow(@gatwick).to receive(:stormy?) { false }
         @gatwick.land(@jetliner)
         allow(@gatwick).to receive(:stormy?) { true }
         expect { @jetliner.take_off }.to raise_error("The weather is too stormy to take off")
@@ -65,11 +62,6 @@ describe Plane do
   describe '#take_off' do
     it { is_expected.to respond_to :take_off }
     context "when sunny" do
-      before(:each) do
-        allow(@my_airport).to receive(:stormy?) { false }
-        allow(@gatwick).to receive(:stormy?) { false }
-        allow(@lax).to receive(:stormy?) { false }
-      end
       it "should puts '{plane.name} took off from {airport.name}' when called" do
         @gatwick.land(@jetliner)
         expect { @jetliner.take_off }.to output("Jetliner took off from Gatwick\n").to_stdout
@@ -82,7 +74,6 @@ describe Plane do
     end
     context 'when stormy' do
       it "should raise an error" do
-        allow(@gatwick).to receive(:stormy?) { false }
         @gatwick.land(@jetliner)
         allow(@gatwick).to receive(:stormy?) { true }
         expect { @jetliner.take_off }.to raise_error("The weather is too stormy to take off")

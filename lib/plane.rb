@@ -8,19 +8,19 @@ class Plane
     @airport = airport
   end
 
-  def take_off
-    fail "The weather is too stormy to take off" if airport.stormy?
-    # ADD REMOVAL FROM HASH
-    puts "#{name} took off from #{@airport.name}"
-    @airport = nil
-  end
-
   def land(airport)
     fail "The weather is too stormy to land" if airport.stormy?
     fail "#{airport.name} is too full to land" if airport.full?
     make_airport(airport)
     airport.planes.push(self)
     puts "#{name} landed at #{@airport.name}"
+  end
+
+  def take_off
+    fail "The weather is too stormy to take off" if airport.stormy?
+    puts "#{name} took off from #{@airport.name}"
+    @airport.planes.delete(self)
+    @airport = nil
   end
 
   def airport_name

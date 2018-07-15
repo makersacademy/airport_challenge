@@ -5,7 +5,7 @@ class Airport
   def initialize(name = 'airport', capacity = DEFAULT_CAPACITY)
     @name = name
     @capacity = capacity
-    @planes = [] # CHANGE TO A HASH
+    @planes = Array.new
   end
 
   attr_reader :name
@@ -14,19 +14,43 @@ class Airport
 
   attr_reader :planes
 
+  def planes_by_name
+    string = ''
+    @planes[0..@planes.length - 2].each do |planeobject|
+      string += "#{planeobject.name}, "
+    end
+    string += @planes[planes.length - 1].name
+    puts string
+  end
+
   def land(plane)
     fail "The weather is too stormy to land" if stormy?
     fail "#{name} is too full to land" if full?
-    plane.make_airport(self)
     @planes.push(plane)
+    plane.make_airport(self)
     puts "#{plane.name} landed at #{name}"
   end
 
   def take_off(plane)
+    fail "Try using take_off_by_name instead" unless plane.is_a? Plane
     fail "The weather is too stormy to take off" if stormy?
-    # FIND A WAY TO NOT USE POP, BUT REMOVE SPECIFIC PLANE (HASH)
     puts "#{plane.name} took off from #{name}"
+    @planes.delete(plane)
     plane.make_airport(nil)
+
+  end
+
+  def take_off_by_name(planename)
+    fail "Try using take_off instead" unless planename.is_a? String
+    fail "The weather is too stormy to take off" if stormy?
+    @planes.each do |planeobject|
+      if planeobject.name == planename
+        puts "#{planeobject.name} took off from #{name}"
+        @planes.delete(planeobject)
+        planeobject.make_airport(nil)
+        break
+      end
+    end
   end
 
   def stormy?
@@ -35,6 +59,6 @@ class Airport
   end
 
   def full?
-    return true if @planes.length >= @capacity
+    return true if @planes.size >= @capacity
   end
 end
