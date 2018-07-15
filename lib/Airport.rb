@@ -9,5 +9,6 @@ class Airport
 
     # Take off method
     def take_off(plane)
+        return "Plane not in hangar"
     end
 end
