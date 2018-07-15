@@ -42,11 +42,11 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## How to use
 
-1. Run IRB `IRB`
+#### 1. Run IRB `IRB`
 
-2. Require the proper files `require './lib/airport'`, `require './lib/plane'`
+#### 2. Require the proper files `require './lib/airport'`, `require './lib/plane'`
 
-3. Set up at least one airport  
+#### 3. Set up at least one airport  
   * Optional name and capacity parameters can be passed
   ```
   gatwick = Airport.new('Gatwick', 30)
@@ -56,7 +56,7 @@ I would like a default airport capacity that can be overridden as appropriate
   my_airport = Airport.new
   ```  
 
-4. Airplanes can also be named by passing the name as an optional parameter
+#### 4. Airplanes can also be named by passing the name as an optional parameter
   ```
   boeing = Plane.new("Boeing 747")
   ```  
@@ -65,7 +65,7 @@ I would like a default airport capacity that can be overridden as appropriate
   my_plane = Plane.new
   ```
 
-5. There are two ways to land a plane  
+#### 5. There are two ways to land a plane  
   * Call the land method on an airport and pass the plane as an argument
   ```
   gatwick.land(boeing)
@@ -75,7 +75,7 @@ I would like a default airport capacity that can be overridden as appropriate
   boeing.land(gatwick)
   ```
 
-6. There are three ways to make a plane take off  
+#### 6. There are three ways to make a plane take off  
   * Call the take_off method on a plane object by it's name in memory
   ```
   boeing.take_off
@@ -88,10 +88,10 @@ I would like a default airport capacity that can be overridden as appropriate
   ```
   gatwick.take_off_by_name("Boeing 747")
   ```
-    * This third method is useful when many planes were landed at once but never assigned to a name in memory, such as with `10.times {gatwick.land(Plane.new)}`  
-    * In this case, `gatwick.take_off_by_name('airplane')` will remove one plane from Gatwick  
+  * _This third method is useful when many planes were landed at once but never assigned to a name in memory, such as with_ `10.times {gatwick.land(Plane.new)}`  
+  * _In this case,_ `gatwick.take_off_by_name('airplane')` _will remove one plane from Gatwick_
 
-7. There are two ways to check a plane's current airport  
+#### 7. There are two ways to check a plane's current airport  
   * Call the airport method to receive the airport as an object
   ```
   boeing.airport
@@ -102,7 +102,7 @@ I would like a default airport capacity that can be overridden as appropriate
   ```  
   * When a plane is in the air, it's airport will be _nil_  
 
-8. There are two ways to check an airport's current list of planes  
+#### 8. There are two ways to check an airport's current list of planes  
   * Call the planes method to get a long array of all plane objects
   ```
   gatwick.planes
@@ -112,6 +112,6 @@ I would like a default airport capacity that can be overridden as appropriate
   gatwick.planes_by_name
   ```
 
-### Each time a plane attempts to either take off or land at an airport, there is a 10% chance that the weather will be too stormy to safely allow the action, and an error will be given
+#### Each time a plane attempts to either take off or land at an airport, there is a 10% chance that the weather will be too stormy to safely allow the action, and an error will be given
 
-### If an airport is at capacity, an error will be given when attempting to land an additional plane
+#### If an airport is at capacity, an error will be given when attempting to land an additional plane
