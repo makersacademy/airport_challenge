@@ -10,7 +10,7 @@ class Plane
 
   def take_off(airport)
     return fail "cannot take off bad weather" unless airport.weather != 'stormy'
-    return fail "cannot take of, airport empty" unless airport.planes.length > 0
+    return fail "cannot take of airport empty" unless airport.planes.length >= 1
     airport.planes.delete(self) # remove self from array
   end
 end

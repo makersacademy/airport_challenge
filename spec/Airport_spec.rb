@@ -43,7 +43,7 @@ describe Airport do
 
     it 'raises an error when a plane takes off when none are in array' do
       airport.planes.clear # clear our planes array
-      expect { plane.take_off(airport) }.to raise_error("cannot take of, airport empty")
+      expect { plane.take_off(airport) }.to raise_error("cannot take of airport empty")
     end
   end
 
@@ -56,7 +56,24 @@ describe Airport do
     end
   end
 
-  describe 'multiple take off and landing tests'do
-
+  describe 'multiple take off and landing tests' do
+    it 'can land 10 planes' do
+      10.times { |_| Plane.new.land(subject) }
+      expect(subject.planes.length).to eq(10)
+      expect(subject.planes[0] && subject.planes[-1]).to be_a(Plane) 
+    end
+    it 'can take off 10 planes' do
+      10.times do |_| 
+        subject.planes.push(Plane.new)       
+        subject.planes.each { |p| p.take_off(subject) } 
+      end
+      expect(subject.planes.length).to eq(0)
+    end
+    it 'can land 5 planes and take off 3 planes' do
+      5.times { |_| Plane.new.land(subject) }
+      expect(subject.planes.length).to eq(5)
+      3.times { |i| subject.planes[i].take_off(subject) }
+      expect(subject.planes.length).to eq(2)
+    end
   end
 end
