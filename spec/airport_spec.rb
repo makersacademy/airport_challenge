@@ -58,7 +58,7 @@ describe Airport do
 
   describe '#planes' do
     it { is_expected.to respond_to :planes }
-    it 'returns a hash' do
+    it 'returns an array' do
       expect(@gatwick.planes).to be_an(Array)
     end
   end
