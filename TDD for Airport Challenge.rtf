@@ -1,0 +1,374 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset77 ZapfDingbatsITC;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs24 \cf0 \ul \ulc0 TDD for Airport Challenge\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ulc0 \
+1) User Story 1:\ulnone \
+
+\b0 As an air traffic controller \
+So I can get passengers to a destination \
+I want to instruct a plane to land at an airport\
+\
+
+\b \ul 2) Feature Test:
+\b0 \ulnone  
+\b fail\ul \
+
+\b0 \ulnone [kirtiman:.../Projects/airport_challenge]$ irb                       (master
+\f1 \uc0\u10033 
+\f0 )\
+2.5.0 :001 > airport = Airport.new\
+Traceback (most recent call last):\
+        2: from /Users/kirtiman/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'\
+        1: from (irb):1\
+
+\b NameError (uninitialized constant Airport)
+\b0 \
+2.5.0 :002 > plane = Plane.new\
+Traceback (most recent call last):\
+        2: from /Users/kirtiman/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'\
+        1: from (irb):2\
+
+\b NameError (uninitialized constant Plane)
+\b0 \
+2.5.0 :003 > airport.instruct_plane_to_land(plane)\
+Traceback (most recent call last):\
+        2: from /Users/kirtiman/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'\
+        1: from (irb):3\
+
+\b NoMethodError (undefined method `instruct_plane_to_land' for nil:NilClass)
+\b0 \
+\
+
+\b \ul 3) Create a  Feature Test from user stories so that you don\'92t have to do them through irb.\
+
+\b0 \ulnone describe "User Stories" do\
+  # As an air traffic controller\
+  # So I can get passengers to a destination\
+  # I want to instruct a plane to land at an airport\
+\
+  it "instruct a plane to land at an airport" do\
+      airport = Airport.new\
+      plane = Plane.new\
+      expect\{airport.instuct_plane_to_land(plane)\}.not_to raise_error\
+  end\
+\
+end\
+\
+
+\b \ul 4) rspec(feature test)\ulnone \
+
+\b0 [kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+\
+User Stories\
+  instruct a plane to land at an airport (FAILED - 1)\
+\
+Failures:\
+\
+  1) User Stories instruct a plane to land at an airport\
+     Failure/Error: airport = Airport.new\
+\
+     
+\b NameError:\
+       uninitialized constant Airport\
+
+\b0      # ./spec/features/user_story_feature_tests_spec.rb:7:in `block (2 levels) in <top (required)>'\
+\
+Finished in 0.00254 seconds (files took 2.22 seconds to load)\
+1 example, 1 failure\
+\
+Failed examples:\
+\
+rspec ./spec/features/user_story_feature_tests_spec.rb:6 # User Stories instruct a plane to land at an airport\
+\
+
+\b \ul 5) Create a unit test:
+\b0 \ulnone \
+describe Airport do\
+\
+end\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \ul \ulc0 5) Fail unit test:\ulnone  rspec fail
+\b0 \
+[kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+\
+An error occurred while loading ./spec/airport_spec.rb.\
+Failure/Error:\
+  descirbe Airport do\
+\
+  end\
+\
+
+\b NameError:\
+  uninitialized constant Airport
+\b0 \
+# ./spec/airport_spec.rb:2:in `<top (required)>'\
+\
+Finished in 0.01138 seconds (files took 0.67792 seconds to load)\
+0 examples, 0 failures, 1 error occurred outside of examples\
+
+\b \ul \
+6) Make unit test pass:\
+
+\b0 \ulnone (spec/airport_spec.rb)\
+require 'airport'\
+descirbe Airport do\
+end
+\b \ul \
+
+\b0 \ulnone \
+(lib/airport.rb)
+\b \ul \
+
+\b0 \ulnone class Airport \
+end
+\b \ul \
+\
+7) Run rspec:
+\b0 \ulnone  feature test error \
+uninitialised constant Plane\
+\
+
+\b \ul 8) Write a unit test:\
+
+\b0 \ulnone (spec/plane_spec.rb)\
+describe Plane do\
+end\
+\
+
+\b \ul 9) Run rspec: unit test error\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \ulnone uninitialised constant Plane\
+\
+
+\b \ul 10) Fix unit test error making it pass\
+
+\b0 \ulnone (spec/plane_spec.rb)\
+require \'93plane\'94\
+describe Plane do\
+end\
+\
+(lib/plane.rb)\
+class Plane \
+end\
+\
+
+\b \ul 11) Run Rspec and should get another feature test failure\
+
+\b0 \ulnone User Stories\
+  instruct a plane to land at an airport (FAILED - 1)\
+\
+Failures:\
+\
+  1) User Stories instruct a plane to land at an airport\
+     Failure/Error: expect \{ airport.instruct_plane_to_land(plane) \}.not_to raise_error\
+\
+       expected no Exception, got #<
+\b NoMethodError: undefined method `instruct_plane_to_land' for #<Airport:0x00007fd14092b238>
+\b0 > with backtrace:\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (3 levels) in <top (required)>'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+     # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+\
+Finished in 0.39275 seconds (files took 1.37 seconds to load)\
+1 example, 1 failure\
+\
+Failed examples:\
+\
+rspec ./spec/features/user_story_feature_tests_spec.rb:6 # User Stories instruct a plane to land at an airport\
+\
+
+\b \ul 12) Write a unit test for this noMethodError\
+
+\b0 \ulnone (spec/airport_spec.rb)\
+require "airport"\
+\
+describe Airport do\
+	it \{ is_expected.to respond_to(:instruct_plane_to_land) \}\
+end\ul \
+
+\b \
+\
+13) Run a failing unit test by running rspec:\
+\
+
+\b0 \ulnone [kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          (master
+\f1 \uc0\u10033 
+\f0 )\
+\
+Airport\
+  should respond to #instruct_plane_to_land (FAILED - 1)\
+\
+User Stories\
+  instruct a plane to land at an airport (FAILED - 2)\
+\
+Failures:\
+\
+  1) Airport should respond to #instruct_plane_to_land\
+     Failure/Error: it \{ is_expected.to respond_to(:instruct_plane_to_land) \}\
+       expected #<Airport:0x00007fcdd5341d90> to respond to :instruct_plane_to_land\
+     # ./spec/airport_spec.rb:4:in `block (2 levels) in <top (required)>'\
+\
+  2) User Stories instruct a plane to land at an airport\
+     Failure/Error: expect \{ airport.instruct_plane_to_land(plane) \}.not_to raise_error\
+\
+       expected no Exception, got #<NoMethodError: undefined method `instruct_plane_to_land' for #<Airport:0x00007fcdd614f9f0>> with backtrace:\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (3 levels) in <top (required)>'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+     # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+\
+Finished in 0.0662 seconds (files took 0.82686 seconds to load)\
+2 examples, 2 failures\
+\
+Failed examples:\
+\
+rspec ./spec/airport_spec.rb:4 # Airport should respond to #instruct_plane_to_land\
+rspec ./spec/features/user_story_feature_tests_spec.rb:6 # User Stories instruct a plane to land at an airport
+\b \ul \
+\
+14) Fix unit test
+\b0 \ulnone \
+(lib/airport.rb)\
+class Airport \
+	def instruct_plane_to_land\
+		\
+	end\
+end\
+\
+
+\b \ul 15) run rspec: feature test fail\
+
+\b0 \ulnone \
+[kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+Airport\
+  should respond to #instruct_plane_to_land\
+\
+User Stories\
+  instruct a plane to land at an airport (FAILED - 1)\
+\
+Failures:\
+\
+  1) User Stories instruct a plane to land at an airport\
+     Failure/Error: expect \{ airport.instruct_plane_to_land(plane) \}.not_to raise_error\
+\
+       expected no Exception, got #<
+\b ArgumentError: wrong number of arguments (given 1, expected 0)
+\b0 > with backtrace:\
+         # ./lib/airport.rb:3:in `instruct_plane_to_land'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (3 levels) in <top (required)>'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+     # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+\
+Finished in 0.07326 seconds (files took 1.03 seconds to load)\
+2 examples, 1 failure\
+\
+Failed examples:\
+\
+rspec ./spec/features/user_story_feature_tests_spec.rb:6 # User Stories instruct a plane to land at an airport\
+\
+
+\b \ul 16) Add to unit test\
+
+\b0 \ulnone (spec/airport_spec.rb)\
+require "airport"\
+\
+describe Airport do\
+	it \{ is_expected.to respond_to(:instruct_plane_to_land).with(1).argument \}\
+end\
+\
+
+\b \ul 17) Run Rspec
+\b0 \ulnone \
+[kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+\
+Airport\
+  should respond to #instruct_plane_to_land with 1 argument (FAILED - 1)\
+\
+User Stories\
+  instruct a plane to land at an airport (FAILED - 2)\
+\
+Failures:\
+\
+  1) Airport should respond to #instruct_plane_to_land with 1 argument\
+     Failure/Error: it \{ is_expected.to respond_to(:instruct_plane_to_land).with(1).argument \}\
+       expected #<Airport:0x00007fa98a27df40> to respond to :instruct_plane_to_land with 1 argument\
+     # ./spec/airport_spec.rb:4:in `block (2 levels) in <top (required)>'\
+\
+  2) User Stories instruct a plane to land at an airport\
+     Failure/Error: expect \{ airport.instruct_plane_to_land(plane) \}.not_to raise_error\
+\
+       expected no Exception, got #<ArgumentError: wrong number of arguments (given 1, expected 0)> with backtrace:\
+         # ./lib/airport.rb:3:in `instruct_plane_to_land'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (3 levels) in <top (required)>'\
+         # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+     # ./spec/features/user_story_feature_tests_spec.rb:9:in `block (2 levels) in <top (required)>'\
+\
+Finished in 0.05669 seconds (files took 0.87693 seconds to load)\
+2 examples, 2 failures\
+\
+Failed examples:\
+\
+rspec ./spec/airport_spec.rb:4 # Airport should respond to #instruct_plane_to_land with 1 argument\
+rspec ./spec/features/user_story_feature_tests_spec.rb:6 # User Stories instruct a plane to land at an airport\
+\
+
+\b \ul 18) Fix error to make Unit test and Feature Test Pass:
+\b0 \
+(lib/airport.rb)\
+\ulnone class Airport \
+	def instruct_plane_to_land(plane)\
+		\
+	end\
+end\
+\
+
+\b \ul 19) Run rspec to make Feature Test Pass: 
+\b0 \ulnone \
+[kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+\
+Airport\
+  should respond to #instruct_plane_to_land with 1 argument\
+\
+Feature Test - user stories\
+  instruct a plane to land at an airport\
+\
+Have you considered running rubocop? It will help you improve your code!\
+Try it now! Just run: rubocop\
+\
+Finished in 0.01533 seconds (files took 1.06 seconds to load)\
+2 examples, 0 failures\
+\
+
+\b 20) REFACTOR\
+
+\b0 (spec/airport_spec.rb)\
+require 'airport'\
+\
+describe Airport do\
+	airport = Airport.new\
+	it 'instructs plane to land' do\
+	  expect(airport).to respond_to(:instruct_plane_to_land).with(1).argument \
+	end\
+end\
+\
+
+\b run rspec:
+\b0 \
+[kirtiman:.../Projects/airport_challenge]$ rspec                                                                                                                          \
+Airport\
+  instructs plane to land\
+\
+Feature Test - user stories\
+  instruct a plane to land at an airport\
+\
+Finished in 0.03124 seconds (files took 0.4148 seconds to load)\
+2 examples, 0 failures\
+}
