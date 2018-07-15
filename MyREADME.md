@@ -18,11 +18,19 @@ Task
 
 **Use the TDD process to complete this challenge**
 
-### My approach & goals:
+### My approach:
 
 I'm using a project we worked on in pairs this week (the Boris Bikes challenge) as my framework for the Airport Challenge.  
- I spent most of Saturday redoing aforementioned challenge on my own, to make sure that I fully grasp the steps, thinking process, methods and syntax we used.  
-If I don't complete this challenge on time, then I'll (hopefully) still be able to say that I know what I'm supposed to do and how to do it, even if it takes me a bit too long at the moment.  
+ I spent most of Saturday redoing aforementioned challenge on my own, to make sure that I fully grasp the steps, thinking process, methods and syntax we used.
+
+## My Goals:
+
+- Correctly follow the TDD process
+- Create separate files for every class, module and test suite
+- Achieve above 95% test coverage
+- Learn about rubocop
+- Finish the project 
+- If I don't complete this challenge on time, then I'll (hopefully) still be able to say that I know what I'm supposed to do and how to do it, even if it takes me a bit too long at the moment 
 
 ------------------------------------
 
@@ -38,12 +46,13 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 ```
-Object/method diagram for 1st user story:
+**Domain model for 1st user story:**
 
-|object|method|
+| object | method |
 |---|---|
 |plane|instruct|
-|airport|land|
+|  |land|
+|airport|   |
 
 
 ```
