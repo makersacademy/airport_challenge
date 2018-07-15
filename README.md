@@ -3,37 +3,15 @@
 ### Completed by Marek Schmidt
 #### Instructions below
 
-## User Stories:
-```
-As an air traffic controller
-So I can get passengers to a destination
-I want to instruct a plane to land at an airport
-```
-```
-As an air traffic controller
-So I can get passengers on the way to their destination
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-```
-```
-As an air traffic controller
-To ensure safety
-I want to prevent takeoff when weather is stormy
-```
-```
-As an air traffic controller
-To ensure safety
-I want to prevent landing when weather is stormy
-```
-```
-As an air traffic controller
-To ensure safety
-I want to prevent landing when the airport is full
-```
-```
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+I decided to use IRB as a method for feature testing this program. I did not want to create an interactive menu or a file that runs by itself. I only created two classes, one for airports and one for planes. The random chances of bad weather are randomly decided any time a plane attempts to either land or take off from an airport.
+
+I added quite a bit of unnecessary features, mainly to promote better usability. For instance, the land and take off methods exist on both classes, so the program has more flexibility and intuitive-ness to the user.
+
+Currently I have only one instance of rubocop finding an offense, which is a method that is 11 lines long, 1 over the limit of 10. This method (take_off_by_name) is a method I wanted to have because it adds to ease-of-use. The entire naming of planes and airports were unnecessary, in fact, though I thought it was a nice feature to add.
+
+There are a few additions that can be made, but I believe I've already went beyond the expected functionality of the program so I have left them out as of now. Most of these additions would come in the form of raised errors when trying to make an invalid method call.
+
+Instructions on how to use this program are included below. These instructions act as a very short feature test if followed, however the full functionality of the program is not entirely explored.
 
 ## How to use
 
@@ -119,3 +97,35 @@ require './lib/plane'
 #### Each time a plane attempts to either take off or land at an airport, there is a 10% chance that the weather will be too stormy to safely allow the action, and an error will be given
 
 #### If an airport is at capacity, an error will be given when attempting to land an additional plane
+
+## User Stories:
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+```
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
