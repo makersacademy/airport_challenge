@@ -10,9 +10,12 @@ class Airport
   def land(plane)
     fail 'Weather is bad for landing' if @weather == 'bad'
     fail 'Capacity is full' if full?
-    @terminal.push(plane) unless @terminal.include?(plane)
-    @terminal[-1]
-
+    if @terminal.include?(plane)
+      return "#{plane} has already landed."
+    else
+      @terminal.push(plane)
+      return "#{plane} has landed."
+    end
   end
 
   def takeoff(plane)
@@ -29,7 +32,4 @@ class Airport
   def full?
     @terminal.count >= @capacity
   end
-
-
-
 end

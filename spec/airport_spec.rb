@@ -15,7 +15,7 @@ describe Airport do
 
     it 'should let a plane land' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to include("#{plane}")
     end
 
     it 'raises an error if capacity is reached' do
