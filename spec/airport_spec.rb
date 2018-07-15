@@ -38,10 +38,10 @@ describe Airport do
     end
 
     describe '#take_off' do
-        before do
-            allow(airport).to receive(:stormy?) { false }
-        end
         context 'when not stormy' do
+            before do
+                allow(airport).to receive(:stormy?) { false }
+            end   
             it 'is expected to respond to the method "take_off" and return a success message' do
                 expect {airport.take_off(plane)}.to output("Take-off: Successful\n").to_stdout
             end

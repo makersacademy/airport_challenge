@@ -29,17 +29,21 @@ end
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy 
 
-it 'prevents plane taking off if weather is stormy' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?) { true }
-    expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
+context 'when weather is stormy' do
+    it 'prevents plane taking off if weather is stormy' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.take_off(plane) }.to raise_error 'Cannot take-off: Weather is stormy'
+    end
 end
-it "doesn't prevent plane taking off if weather is not stormy" do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?) { false }
-    expect { airport.take_off(plane) }.not_to raise_error
+context 'when weather is not stormy' do
+    it "doesn't prevent plane taking off if weather is not stormy" do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?) { false }
+        expect { airport.take_off(plane) }.not_to raise_error
+    end
 end
 
 # User Story 4
@@ -47,17 +51,22 @@ end
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
 
-it 'prevents plane landing if weather is stormy' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return true
-    expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy'
+context 'when weather is stormy' do
+    it 'prevents plane landing if weather is stormy' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.land(plane) }.to raise_error 'Cannot land: Weather is stormy'
+    end
 end
-it "doesn't prevent plane landing if weather is not stormy" do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return false
-    expect { airport.land(plane) }.not_to raise_error
+
+context 'when weather is not stormy' do
+    it "doesn't prevent plane landing if weather is not stormy" do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
+        expect { airport.land(plane) }.not_to raise_error
+    end
 end
 
 # User Story 5
@@ -65,12 +74,14 @@ end
 # To ensure safety 
 # I want to prevent landing when the airport is full 
 
-it 'prevents landing when airport capacity is exceeded' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?) { false }
-    20.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
+context 'when airport is full' do
+    it 'prevents landing when airport capacity is exceeded' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?) { false }
+        20.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error 'Cannot land: Airport is full'
+    end
 end
 
 # User story 6
