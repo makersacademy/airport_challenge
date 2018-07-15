@@ -1,22 +1,27 @@
 require_relative 'weather.rb'
 class Airport
-	attr_accessor :capacity, :planes, :weather
+	attr_accessor :capacity, :weather, :landed, :flying
 	DEFAULT_CAPACITY = 20
 
 	def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
 		@capacity = capacity
-		@planes = []
+		@weather = weather
+		@landed = []
+		@flying = []
 	end
 	
 	def land(plane)
 		raise 'Cannot land: Weather is stormy' if stormy?
 		raise 'Cannot land: Airport is full' if full?
-		@planes << plane
+		@landed << plane
+		@flying.delete(plane)
 	end
 
 	def take_off(plane)
 		raise 'Cannot take-off: Weather is stormy' if stormy?
-		@planes.delete(plane)
+		raise 'Cannot take-off: Not at this airport' unless @landed.include?(plane) 
+		@flying << plane
+		@landed.delete(plane)
 		puts "Take-off: Successful"
 	end
 
@@ -27,6 +32,6 @@ class Airport
 	end
 
 	def full?
-		@planes.length >= capacity
+		@landed.length >= capacity
 	end
 end

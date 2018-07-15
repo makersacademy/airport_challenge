@@ -23,6 +23,7 @@ describe 'user stories' do
         # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
         it 'instructs a plane to take off and confirms the departure' do
+            allow(airport.landed).to receive(:include?) { true }
             expect { airport.take_off(plane) }.not_to raise_error
             expect { airport.take_off(plane) }.to output("Take-off: Successful\n").to_stdout
         end
@@ -80,6 +81,22 @@ describe 'user stories' do
         end
 
         # Extra cases and edge cases
-
+        # 7. planes can only take off from airports they are in;
+        it "doesn't allow take-off, if plane not at airport" do
+            
+            jfk = Airport.new
+            htw = Airport.new
+            plane1 = Plane.new
+            plane2 = Plane.new
+            allow(jfk).to receive(:stormy?).and_return false
+            allow(htw).to receive(:stormy?).and_return false
+            jfk.land(plane1)
+            htw.land(plane2)
+            expect { htw.take_off(plane1) }.to raise_error 'Cannot take-off: Not at this airport'
+        end
+        # 8. planes that are already flying cannot take off and/or be in an airport;
+        
+        
+        # 9. planes that are landed cannot land again and must be in an airport, etc.
 
 end
