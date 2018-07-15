@@ -39,7 +39,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 #### 1. Run IRB
 ```
-IRB
+irb
 ```
 
 #### 2. Require the proper files
