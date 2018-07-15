@@ -1,4 +1,4 @@
-require './lib/plane'
+# require './lib/plane'
 
 class Airport
 
@@ -10,5 +10,9 @@ class Airport
 
   def land(plane)
     @planes << plane
+  end
+
+  def take_off
+    @planes.pop
   end
 end
