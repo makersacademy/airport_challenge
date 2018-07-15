@@ -54,6 +54,7 @@ I want to instruct a plane to land at an airport
 |  |land|
 |airport|   |
 
+----------------------
 
 ```
 
@@ -67,13 +68,28 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 | object | method |
 |---|---|
 |plane|take off|
-|airport|confirm that plane is gone (left)|
+|airport|left (confirm that plane is gone)|
+
+------------------------
 
 ```
 
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+
+```
+
+**3rd user story Domain model:**
+
+| object | method |
+|---|---|
+|plane|grounded|
+|storm|  |
+
+-----------------------
+
+```
 
 As an air traffic controller 
 To ensure safety 

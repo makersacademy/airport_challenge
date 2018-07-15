@@ -1,18 +1,19 @@
-# require './lib/plane'
+require './lib/plane'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   def initialize
     @planes = []
   end
 
   def land(plane)
+    fail "Takeoff not allowed due to bad weather" if @weather == "stormy"
     @planes << plane
   end
 
-  def take_off
+  def takeoff
     @planes.pop
   end
 end
