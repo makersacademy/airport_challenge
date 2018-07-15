@@ -13,6 +13,7 @@ describe Airport do
 
     # Test confirm plane no longer in hanger
     it "Confirms plane is no longer in the hangar " do
-        expect(subject.take_off).to eq("Plane not in hangar")
+        plane = Plane.new
+        expect(subject.take_off(plane)).to eq("Plane not in hangar")
     end
 end
