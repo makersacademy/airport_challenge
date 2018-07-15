@@ -1,11 +1,17 @@
 require_relative 'plane'
 require_relative 'weather'
 
+
+
+
 class Airport 
   CAPACITY = 5
   attr_reader :hanger 
+  attr_reader :weather 
   def initialize
   @hanger = []
+  @weather = Weather.new 
+  puts "The weather today is #{@weather.generate}"
   end 
 
     def land(plane)

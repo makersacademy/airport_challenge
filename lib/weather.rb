@@ -1,9 +1,5 @@
 class Weather
-attr_reader :weather
-  def initialize 
-    @weather = ["sunny", "stormy"] 
-  end
   def generate
-     
+ rand(10) < 8 ? 'sunny' : 'stormy'
   end  
 end 

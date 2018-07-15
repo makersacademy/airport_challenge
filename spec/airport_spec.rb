@@ -7,9 +7,17 @@ describe Airport do
   it "airport.new creates a new airport" do
     expect(Airport.new).to be_instance_of Airport
   end 
+   
+it "accepts a weather object" do 
+    expect(Weather.new).to be_instance_of Weather 
+  end 
+
   it "contains a hanger for planes to be stored (a hanger)" do
     expect(subject.hanger).to eq([]) 
   end  
+   
+  
+
   it "has the ability to accept a plane to land" do 
     expect(subject).to respond_to(:land).with(1).argument 
   end 
@@ -25,8 +33,11 @@ describe Airport do
    subject.land(plane)
    expect(subject.takeoff(plane)).to eq("plane has taken off!")
    expect(subject.hanger).not_to include(plane) #does running subject.takeoff on the previous line change the state of the hanger? Have not run subject.takeoff? 
-
    end 
+
+   it "prohibits planes from taking off if the weather is stormy" do 
+   end 
+
 end 
 
 # user story 1 
