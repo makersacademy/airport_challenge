@@ -72,7 +72,7 @@ require './lib/plane'
 #### 5. There are two ways to land a plane  
   * Call the land method on an airport and pass the plane as an argument
   ```
-  gatwick.land(boeing)
+  gatwick.land(my_plane)
   ```
   * Call the land method on a plane and pass the airport as an argument
   ```
@@ -82,7 +82,7 @@ require './lib/plane'
 #### 6. There are three ways to make a plane take off  
   * Call the take_off method on a plane object by it's name in memory
   ```
-  boeing.take_off
+  my_plane.take_off
   ```  
   * Call the take_off method on an airport and pass a plane object by it's name in memory
   ```
