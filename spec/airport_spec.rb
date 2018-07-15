@@ -1,9 +1,11 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
     subject(:airport) {described_class.new}
     let(:plane) { double :plane }
+    let(:weather) { double :weather }
 
     describe '#initialize' do
         it 'is expected to have a default capacity' do

@@ -1,7 +1,8 @@
 # Airport Challenge User Stories
 describe 'user stories' do
-    let(:airport) { Airport.new(20) }
+    let(:airport) { Airport.new }
     let(:plane) { Plane.new }
+    let(:weather) {Weather.new}
 
     context 'weather not stormy' do
         before do
