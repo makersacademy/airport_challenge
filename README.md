@@ -37,7 +37,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## How to use
 
-[IRB](#1.) | [Requiring files](#2.) | [Initializing an airport](#3.) | [Initializing a plane](#4.) | [Landing a plane](#5.) | [Taking-off a plane](#6.) | [Check a plane's airport](#7.) | [Checking an airport's planes](#8.) | [Weather](#Each-time) | [Capacity](#If-an-airport)
+[IRB](#1.-Run-IRB) | [Requiring files](#2.-Require-the-proper-files) | [Initializing an airport](#3.-Set-up-at-least-one-airport) | [Initializing a plane](#4.-Airplanes-can-also-be-named-by-passing-the-name-as-an-optional-parameter) | [Landing a plane](#5.-There-are-two-ways-to-land-a-plane) | [Taking-off a plane](#6.-There-are-three-ways-to-make-a-plane-take-off) | [Check a plane's airport](#7.-There-are-two-ways-to-check-a-plane's-current-airport) | [Checking an airport's planes](#8.-There-are-two-ways-to-check-an-airport's-current-list-of-planes) | [Weather](#Each-time-a-plane-attempts-to-either-take-off-or-land-at-an-airport,-there-is-a-10%-chance-that-the-weather-will-be-too-stormy-to-safely-allow-the-action,-and-an-error-will-be-given) | [Capacity](#If-an-airport-is-at-capacity,-an error-will-be-given-when-attempting-to-land-an-additional-plane)
 
 #### 1. Run IRB
 ```
