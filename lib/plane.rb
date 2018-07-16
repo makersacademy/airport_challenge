@@ -1,4 +1,4 @@
 
-class Plane 
-
+class Plane
+  
 end
