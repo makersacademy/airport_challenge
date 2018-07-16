@@ -10,7 +10,7 @@ describe Airport do
   describe '#land' do
     it 'should not let a plane land if weather is bad' do
       plane = Plane.new
-      expect {(subject.land(plane)).weatherquality}.to raise_error ('Weather is bad for landing') if subject.weatherquality == 'bad'
+      expect {(subject.land(plane))}.to raise_error ('Weather is bad for landing') if subject.weatherquality == 'bad'
     end
 
     it 'should let a plane land' do
