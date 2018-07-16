@@ -2,14 +2,17 @@ require_relative 'plane'
 
 class Airport 
   attr_reader :hanger 
-  attr_reader :weather 
+  #attr_reader :weather 
   attr_accessor :capacity
-  def initialize
+    def initialize
     @capacity = 5
     @hanger = []
-    @weather = :sunny
+    rand(10) < 8 ? @weather = :sunny : @weather = :stormy
   end 
 
+  def weather
+    @weather
+  end 
   def land(plane)
     fail "cannot land it is terrible weather for flying" if weather == :stormy 
     fail "This plane has already landed" if hanger.include? plane 

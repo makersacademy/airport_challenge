@@ -54,10 +54,12 @@ describe Airport do
     expect { subject.land(plane) } .to raise_error "This plane has already landed"  
   end 
   it "raises an error if plane that is not in hanger tries to take of" do 
+    allow(subject).to receive(:weather).and_return(:sunny)
     plane = Plane.new
     expect { subject.takeoff(plane) } .to raise_error "plane cannot take off - not in hanger" 
   end 
   it "raises an error if a 6th plane tries to land (cap +1)" do 
+    allow(subject).to receive(:weather).and_return(:sunny)
     a = Plane.new
     b = Plane.new
     c = Plane.new
