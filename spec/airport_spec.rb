@@ -53,10 +53,8 @@ describe Airport do
                 allow(airport).to receive(:stormy?) { false }
             end   
             it 'removes the plane from the airport' do
-                2.times do
-                    airport.land(plane)
-                    airport.take_off(plane)
-                end
+                airport.land(plane)
+                airport.take_off(plane)
                 expect(airport.landed.length).to eq 0
             end
             it 'raises an error if plane not at this airport' do
