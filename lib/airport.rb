@@ -5,24 +5,22 @@ class Airport
   attr_reader :planes
   attr_reader :current_weather
 
+# sorting the weather
+  weather_array = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
+  @current_weather = weather_array[rand(5)]
+
   def initialize(cap = 20)
     @capacity = cap
     @planes = []
   end
 
   def land(plane)
-    number_of_planes = @planes
     fail 'Airport full' if @planes.size >= @capacity
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(_plane)
     fail "Bad weather: No takeoff" if @current_weather == 'sunny'
-      @planes.pop
+    @planes.pop
   end
-
-  def weather_safe?
-    @current_weather = puts ['sunny', 'sunny', 'sunny', 'sunny', 'stormy'][rand(weather_array.size)]
-  end
-
 end
