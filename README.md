@@ -3,6 +3,9 @@
 ### Completed by Marek Schmidt
 #### Instructions below
 
+## Context
+This was the first project I have attempted while at Maker's Academy. Prior to this, I had very limited experience in Ruby and no experience with Rspec. 
+
 ## Approach
 I decided to use IRB as a method for feature testing this program. I did not want to create an interactive menu or a file that runs by itself. I only created two classes, one for airports and one for planes. The user acts as an air traffic controller, instructing planes to take off or land at airports. The random chances of bad weather are randomly decided any time a plane attempts to either land or take off from an airport. The user, as an air traffic controller, will receive a warning of poor weather and will therefore not be able complete the action on that attempt as it is unsafe. The user may also create airports and planes at will.
 
