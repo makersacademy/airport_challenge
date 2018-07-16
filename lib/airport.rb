@@ -21,11 +21,11 @@ class Airport
 
   def land(plane)
 #    fail 'There is a storm, cannot land plane' if weather.stormy?
-    fail 'Airport at full capacity' if full?
+    fail 'Cannot land plane: Airport full' if full?
     @planes << plane
   end
 
-  def launch_plane
+  def launch(plane)
 #    fail 'There is a storm, cannot launch plane' if weather.stormy?
     fail 'Airport is empty' if empty?
     @planes.pop
