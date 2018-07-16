@@ -19,12 +19,14 @@ describe Airport do
     end
 
     it 'lands a plane' do
-      expect(subject).to respond_to(:land).with(1).argument
+      expect(subject).to respond_to(:land).with(1).arguments
     end
 
     it 'raises an error when full' do
-      50.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error 'Airport at full capacity'
+      #weather = Weather.new
+      #weather.storm? == false
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error 'Airport at full capacity'
     end
   end
 end
