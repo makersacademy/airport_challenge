@@ -1,9 +1,9 @@
 class Weather
   def generate_weather
-    rand(1..10)
+    rand(0..10)
   end
 
   def stormy?
-    generate_weather >= 9 ? true : false
+    generate_weather >= 9
   end
 end
