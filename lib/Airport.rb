@@ -10,13 +10,20 @@ class Airport
     # Takes a plane as an argument
     def land(plane) 
         @hangar << plane
+        "#{plane} has landed"
     end
 
     # Take off method
     def take_off(plane)
         # fail "Unable to take off due to storm" if stormy?
-        @hangar.pop()
-        "#{plane} has taken off"
+        # Remove plane from hangar
+        # If the plane is in the hangar
+        if hangar.include?(plane)
+            plane_index = @hangar.index(plane)
+            @hangar.delete_at(plane_index)
+            return plane
+            # "#{plane} has taken off"
+        end
     end
 
     # def stormy?

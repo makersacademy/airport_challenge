@@ -10,14 +10,13 @@ describe Airport do
     it "Lands a plane" do
         plane = Plane.new
         subject.land(plane)
-    
+        expect(subject.land(plane)).to eq "#{plane} has landed"
     end
+
     #Take off
     it "Allows a plane to take off" do
         plane = Plane.new
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq "#{plane} has taken off"
+        expect(subject.take_off(plane)).to eq plane
     end 
-
-
 end
