@@ -1,17 +1,12 @@
 require_relative './plane'
 class Airport
-
-  attr_reader :capacity
-  attr_reader :planes
-  attr_reader :current_weather
+  attr_reader :capacity, :planes, :current_weather
 
 # sorting the weather
-  weather_array = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
-  @current_weather = weather_array[rand(5)]
 
   def initialize(cap = 20)
     @capacity = cap
-    @planes = []
+    @planes = [Plane.new]
   end
 
   def land(plane)
@@ -20,7 +15,13 @@ class Airport
   end
 
   def take_off(_plane)
-    fail "Bad weather: No takeoff" if @current_weather == 'sunny'
+    fail "Bad weather: No takeoff" if @current_weather == 'stormy'
     @planes.pop
+  end
+
+  def weather
+    weather_array = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
+    @current_weather = weather_array[rand(0..4)]
+    return @current_weather
   end
 end
