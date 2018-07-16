@@ -1,6 +1,7 @@
 require_relative "Plane"
 class Airport
-    attr_reader :hangar
+    attr_reader :hangar, :weather
+    weather = "stormy"
 
     def initialize
         @hangar = []
@@ -14,6 +15,6 @@ class Airport
 
     # Take off method
     def take_off(plane)
-       @hangar.pop()
+        @hangar.pop()
     end
 end
