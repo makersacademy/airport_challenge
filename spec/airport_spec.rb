@@ -60,18 +60,8 @@ describe Airport do
   end 
   it "raises an error if a 6th plane tries to land (cap +1)" do 
     allow(subject).to receive(:weather).and_return(:sunny)
-    a = Plane.new
-    b = Plane.new
-    c = Plane.new
-    d = Plane.new
-    e = Plane.new
-    f = Plane.new
-    subject.land(a)
-    subject.land(b)
-    subject.land(c)
-    subject.land(d)
-    subject.land(e)
-    expect { subject.land(f) } .to raise_error "The hanger is full"
+    subject.capacity.times {subject.land(Plane.new)}
+    expect { subject.land(Plane.new) } .to raise_error "The hanger is full"
   end 
    
 end 
@@ -91,7 +81,6 @@ end
 
 # As an air traffic controller 
 # To ensure safety 
-
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when the airport is full - done
