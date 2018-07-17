@@ -1,5 +1,17 @@
+This is Week 1 of Makers - Weekend Challenge 1
+
 Airport Challenge
 =================
+
+Update: I have given a decent amount of effort into this challenge. When running RSpec, it has varying coverage of 95.71% - 100%. This is because I did not successfully stub the randomness in weather.  
+I will not be spending more time on this as I need to learn to be able to leave projects behind and move on to new ones if I will get more benefit from moving on.
+
+What I could do better in this challenge:  
+1. For each airport, I could create a 'landed' array to keep track of which planes are in the airport.  
+As such, I would only be able to call airport.takeoff(plane) iff landed.include?(plane) is true.
+2. Similarly, we could have a blanket array called 'in_flight' that keeps track of all planes that have taken off, but have not landed.  
+As such, I would only be able to call airport.land(plane) iff in_flight.include?(plane) is true.
+
 
 ```
         ______
