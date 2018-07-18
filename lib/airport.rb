@@ -1,11 +1,4 @@
-=begin
-The code below essentially works, but i need to run weatherquality on Airport
-to manually set the weather (no good). So, if i were to uncomment the comments below
-and then comment out lines 21 and 33, the code also works when i test it in IRB,
-allowing a random 'weather' to be set before each landing and take off.
-However my rspec isnt set for that and i could not figure out how to do that. So
-i decided to keep it like this.
-=end
+
 require_relative 'plane'
 class Airport
   attr_reader :terminal, :capacity

@@ -32,7 +32,7 @@ describe Airport do
         end
       end
     end
-    context 'when weather is good' do
+    context 'when weather is bad' do
       it 'should not let a plane land if weather is bad' do
         allow(airport).to receive(:weatherquality).and_return('bad')
         expect {(airport.land(plane))}.to raise_error ('Weather is bad for landing')
@@ -49,7 +49,7 @@ describe Airport do
       end
     end
     context 'when weather is bad' do
-      it 'should not let a plane take off if weather is bad' do
+      it 'should not let a plane take off' do
         allow(airport).to receive(:weatherquality).and_return('bad')
         expect {(airport.takeoff(plane))}.to raise_error ('Weather is bad for taking off')
       end
