@@ -4,16 +4,19 @@ describe Airport do
   # airport = Airport.new(20)
   # plane = Plane.new
   let(:airport) {described_class.new(20)}
-  let(:plane) {Plane.new}
+  # let(:plane) {Plane.new}
+  let(:plane) {double :plane}
+  # plane = double(:plane)
   describe '#land' do
+    # plane = double(:plane)
     it 'instructs plane to land' do
   	   expect(airport).to respond_to(:land).with(1).argument
     end
     it "cannot land plane when aiport at capacity" do
       20.times do
-        airport.land(:plane)
+        airport.land(plane)
       end
-      expect { airport.land(:plane) }.to raise_error "cannot land plane, airport has reached capacity"
+      expect { airport.land(plane) }.to raise_error "cannot land plane, airport has reached capacity"
     end
   end
 
