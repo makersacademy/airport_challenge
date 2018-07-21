@@ -6,25 +6,27 @@ describe Airport do
   let(:airport) {described_class.new(20)}
   # let(:plane) {Plane.new}
   let(:plane) {double :plane}
-  # plane = double(:plane)
+  # plane = double(:plane) can only be called within it statement or as above with a let/before do statement (memory efficient).
   describe '#land' do
-    # plane = double(:plane)
     it 'instructs plane to land' do
   	   expect(airport).to respond_to(:land).with(1).argument
     end
-    it "cannot land plane when aiport at capacity" do
-      20.times do
-        airport.land(plane)
+
+    #use context "when" something
+    context 'when at capacity' do
+      it "raises an error" do
+        # plane = double(:plane)  
+        20.times do
+          airport.land(plane)
+        end
+        expect { airport.land(plane) }.to raise_error "cannot land plane, airport has reached capacity"
       end
-      expect { airport.land(plane) }.to raise_error "cannot land plane, airport has reached capacity"
-    end
+    end  
   end
 
   describe '#take_off' do
     it "instructs plane to take_off" do
     expect(airport).to respond_to(:take_off).with(1).argument
     end
-    
-
   end
 end

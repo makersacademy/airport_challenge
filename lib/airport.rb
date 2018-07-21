@@ -15,6 +15,8 @@ class Airport
   
   end
 
+  private
+  #since full? method doesn't need to be called from outside the class
   def full?
     @planes.length >= @capacity
   end
