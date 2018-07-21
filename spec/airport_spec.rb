@@ -1,6 +1,4 @@
-# die - do it expect #sort out rspec run error (rubocop)
-# need to add fail cases if planes < capacity and weather 
-# look at rubric this pm 
+
 require 'airport'
 
 describe Airport do 
