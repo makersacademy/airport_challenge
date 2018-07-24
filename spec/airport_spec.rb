@@ -24,8 +24,13 @@ describe Airport do
   end
 
   # confirm takeoff
-  it 'confirms that plane has left the airport' do
+  it 'confirms that plane has left the airport via message' do
     expect(subject.takeoff(plane)).to eq("Successful takeoff!")
+  end
+  it 'confirms that this specific plane is not at airport' do
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(subject.planes).to_not include plane
   end
 
   # stormy weather: prevent plane from taking off
