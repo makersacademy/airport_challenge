@@ -98,7 +98,7 @@ airport = Airport.new
 ```  
 
 #### 4. Land the plane
-* When we create a new airport, a new plane has been initialized.
+* When we create a new airport, a new plane is initialized.
   ```
   airport.land(plane)
   ```
