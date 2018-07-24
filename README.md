@@ -13,78 +13,99 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
+## How to run:
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
------
+## Context
+This was the first Weekend challenge at Makers. This was given after one week of the course. This week we focused on understanding Ruby, creating a set of classes and modules, and passing objects into different methods and while testing said methods in Rspec.  
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+## Task
+I wrote software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+
+## User Stories
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+## Approach
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+My first challenge was to take each of the user stories and deduce their corresponding feature test. The third line of each story outlines the feature test and the method that ought to be tested in IRB. Through the week, we learned Test Driven Development and it seemed practical to use this project as an opportunity to implement this. Therefore, after identifying the feature test, unit tests were written to fail. After each failure, I wrote the code required to pass the test. At first this seemed unintuitive. It felt as though we were placing the cart before the horse. However, overtime I did observe its adoption provided a succinct way of coding. The same approach was taken for each of the feature tests outlined above.
+## Summary
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Overall, the airport challenge allowed the introduction of new concepts. For example, the use of attribute readers to create methods that only contained the instance variable. I learned about passing results from methods as arguments of another. For example, we pass each plane to the 'land' method to be placed into the airport. As it was week one, there were holes in my knowledge. For example, to inject realism into the code, it seems more logical to separate the airport and plane and use dependency injections to allow both to communicate and be aware of each other's environment and state. If a plane is aware that an airport is full, it may decide to land in another airport. Here, the importance of independent learning became increasingly obvious. For example, I noted that I need to fix the capacity of each airport. This led to the discovery of constants. All in all, as a week one project, the airport challenge made me excited for the more learning that is to come!
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## State of project and changes to be made
 
-Please create separate files for every class, module and test suite.
+At the moment, the basic user stories have been completed. However, there is always room for improvement. I will endeavour to refractor my code further and, perhaps, include my own user stories. The code currently has 95% coverage. This can also be improved.  
+## My additional User stories.
 
-In code review we'll be hoping to see:
+```
+As an air traffic controller
+To ensure that all planes land
+I would like to direct a plane to another airport and get a confirmation of landing
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+As the system designer
+So that the software can be used for many different airports
+I would like a list of different airports with different capacities.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+```
+## Feature testing
 
-**BONUS**
+The feature test can be run from the IRB as stated below:
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+## How to use
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+#### 1. Run IRB from the main folder 'airport_challenge'
+```
+irb
+```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+#### 2. Require the proper files
+```
+require './lib/airport.rb'
+```
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+#### 3. Create a new airport
+```
+airport = Airport.new
+```  
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+#### 4. Land the plane
+* When we create a new airport, a new plane is initialized.
+  ```
+  airport.land(plane)
+  ```
+#### 5. The plane takes off from the airport
+
+```
+airport.take_off(_plane)
+```
+#### 6. When finished, exit IRB
+```
+exit
+```
