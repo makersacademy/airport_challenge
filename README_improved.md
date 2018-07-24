@@ -61,9 +61,7 @@ Overall, the airport challenge allowed the introduction of new concepts. For exa
 
 ## State of project and changes to be made
 
-At the moment, the basic user stories have been completed. However, there is always room for improvement. I will endeavour to refractor my code further and, perhaps, include my own user stories. The code currently has 95% coverage. This can also be improved.
-
-
+At the moment, the basic user stories have been completed. However, there is always room for improvement. I will endeavour to refractor my code further and, perhaps, include my own user stories. The code currently has 95% coverage. This can also be improved.  
 ##My additional User stories.
 
 ```
