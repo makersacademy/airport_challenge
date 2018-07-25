@@ -1,21 +1,19 @@
 require_relative './plane'
 class Airport
-  attr_reader :capacity, :planes, :current_weather
+  attr_reader :planes
+  CAPACITY = 20
 
-# sorting the weather
-
-  def initialize(cap = 20)
-    @capacity = cap
+  def initialize()
     @planes = [Plane.new]
   end
 
   def land(plane)
-    fail 'Airport full' if @planes.size >= @capacity
+    fail 'Airport full' if @planes.size >= CAPACITY
     @planes << plane
   end
 
   def take_off(_plane)
-    fail "Bad weather: No takeoff" if @current_weather == 'stormy'
+    fail "Bad weather: No takeoff" if weather == 'stormy'
     @planes.pop
   end
 
