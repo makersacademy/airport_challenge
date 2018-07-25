@@ -62,7 +62,7 @@ Overall, the airport challenge allowed the introduction of new concepts. For exa
 ## State of project and changes to be made
 
 At the moment, the basic user stories have been completed. However, there is always room for improvement. I will endeavour to refractor my code further and, perhaps, include my own user stories. The code currently has 95% coverage. This can also be improved.  
-## My additional User stories.
+## My additional User stories.  
 
 ```
 As an air traffic controller
@@ -72,7 +72,6 @@ I would like to direct a plane to another airport and get a confirmation of land
 As the system designer
 So that the software can be used for many different airports
 I would like a list of different airports with different capacities.
-
 ```
 ## Feature testing
 
@@ -96,10 +95,10 @@ airport = Airport.new
 ```  
 
 #### 4. Land the plane
-* When we create a new airport, a new plane is initialized.
-  ```
-  airport.land(plane)
-  ```
+* When we create a new airport, a new plane is initialized.  
+```
+airport.land(plane)
+```
 #### 5. The plane takes off from the airport
 
 ```
