@@ -11,14 +11,14 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "Weather is bad." if weather?
+    fail "Weather is bad." if bad_weather?
     fail "Plane not in airport" unless @planes.include? plane
       @planes.delete(plane)
   end
 
   def land(plane)
     fail "Airport is full." if full?
-    fail "Weather is bad." if weather?
+    fail "Weather is bad." if bad_weather?
     fail "Plane already in airport." if @planes.include? plane
       @planes << plane
   end
