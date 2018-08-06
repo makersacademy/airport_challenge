@@ -1,5 +1,16 @@
 Airport Challenge - Week 1 Progress
 ====================================
+This the solo weekend challenge from the end of week 1 at Makers.
+
+By the end of week 1 all Makers developers can:
+
+- Test-drive a simple program using objects and methods  
+- Pair using the driver-navigator style  
+- Follow an effective debugging process  
+- Describe some basic OO principles like encapsulation, SRP  
+
+Approach
+--------
 I initially started this challenge wit a combination of wading in with the code and dabbling in rspec. Now I'm onto Day3 and I have sussed out the whole TDD process of feature testing and unit testing, I realise I should be using this method to help me crack the airport challenge.
 
 This will involve a little bit of back tracking.....
