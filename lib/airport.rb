@@ -5,14 +5,12 @@ class Airport
 
   def initialize(capacity = 3)
     @capacity = capacity
-    @terminal = [] #empty terminal
+    @terminal = []
   end
 
   def land(plane)
-    self.weatherquality
     fail 'Capacity is full' if full?
-    #fail 'Weather is bad for landing' if @weather == 'bad'
-    fail 'Weather is bad for landing' if self.weatherquality == 'bad'
+    fail 'Weather is bad for landing' if weatherquality == 'bad'
     if @terminal.include?(plane)
       return "#{plane} has already landed."
     else
@@ -22,9 +20,7 @@ class Airport
   end
 
   def takeoff(plane)
-    self.weatherquality
-    #fail 'Weather is bad for taking off' if @weather == 'bad'
-    fail 'Weather is bad for taking off' if self.weatherquality == 'bad'
+    fail 'Weather is bad for taking off' if weatherquality == 'bad'
     @terminal.delete(plane)
     return "Take off was successful, #{plane} is in the air."
   end
