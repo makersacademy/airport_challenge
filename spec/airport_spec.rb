@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   let(:airport)         { Airport.new }
   let(:mockplane)       { double :plane }
-  let(:mockgoodweather) { double :goodweather, stormy?: false }
+  let(:weather)         { double :goodweather, stormy?: false }
   let(:mockbadweather)  { double :badweather, stormy?: true }
 
   describe "#initialize" do
@@ -24,13 +24,13 @@ describe Airport do
 
     describe "when weather is not stormy" do
       it "puts plane in the airport" do
-        #allow(airport).to receive(:stormy?) { false }
+        allow(weather).to receive(:stormy?).and_return(false)
         airport.put_in_airport(mockplane)
-        expect(airport.planes).to eq [mockplane]
+        airport(airport.planes).to eq [mockplane]
       end
 
       it "does not put plane in airport if airport is full" do
-        allow(airport).to receive(:stormy?) { false }
+        allow(weather).to receive(:stormy?).and_return(false)
         DEFAULT_CAPACITY.times { airport.put_in_airport(mockplane) }
         expect { airport.put_in_airport(mockplane) }.to raise_error("Airport is full - plane can't land!")
       end
@@ -38,7 +38,7 @@ describe Airport do
 
     describe "when weather is stormy" do
       it "does not put plane in airport" do
-        allow(airport).to receive(:stormy?) { true }
+        allow(weather).to receive(:stormy?).and_return(true)
         expect { airport.put_in_airport(mockplane) }.to raise_error("Stormy weather - plane can't land!")
       end
     end
@@ -47,12 +47,12 @@ describe Airport do
   describe "#take_off" do
     describe "when weather is not stormy" do
       it "plane does take off" do
-        allow(airport).to receive(:stormy?) { false }
+        allow(weather).to receive(:stormy?).and_return(false)
         expect { airport.take_from_airport(mockplane) }.not_to raise_error
       end
 
       it "plane is taken from airport" do
-        allow(airport).to receive(:stormy?) { false }
+        allow(weather).to receive(:stormy?).and_return(false)
         airport.take_from_airport(mockplane)
         expect(airport.planes).not_to include(mockplane)
       end
@@ -60,12 +60,12 @@ describe Airport do
 
     describe "when weather is stormy" do
       it "plane does not take off" do
-        allow(airport).to receive(:stormy?) { true }
+        allow(weather).to receive(:stormy?).and_return(true)
         expect { airport.take_from_airport(mockplane) }.to raise_error("Stormy weather - plane can't take off!")
       end
 
       it "plane not taken from airport" do
-        allow(airport).to receive(:stormy?) { true }
+        allow(weather).to receive(:stormy?).and_return(true)
         # expect(airport.take_off(mockplane).planes).to contain(mockplane)
       end
     end

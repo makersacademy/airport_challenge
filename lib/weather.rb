@@ -1,7 +1,13 @@
 class Weather
 
+WEATHER = ["stormy", "fine", "fine", "fine"]
+
   def stormy?
-    rand(1..100) < 5
+    random_pick == "stormy"
+  end
+
+  def random_pick
+    WEATHER.sample
   end
 
 end

@@ -109,14 +109,12 @@ def given_there_is_a_new_plane
 end
 
 def given_that_the_weather_is_stormy
-  #@weather = Weather.new
   #allow(@weather).to receive(:stormy?) { true }
-  #allow(@airport).to receive(:weather) { true }
+  allow(@airport).to receive(:stormy?) { true }
 end
 
 def given_that_the_weather_is_not_stormy
-  #@weather = Weather.new
-  #allow(@weather).to receive(:stormy?) { false }
+  allow(@airport).to receive(:stormy?) { false }
 end
 
 def then_plane_can_land_at_airport
