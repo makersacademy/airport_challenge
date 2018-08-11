@@ -1,10 +1,8 @@
-# The weather is checked every time a plane wants to land or take off
-
 require_relative './weather'
 
 class Airport
 
-  include Weather
+  include Weather # supplies #stormy_weather
 
   attr_accessor :planes_on_ground, :capacity
 
