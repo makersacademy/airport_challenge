@@ -24,6 +24,9 @@ describe Airport do
     expect(heathrow.planes[0]).to eq nil 
   end
 
-  
+  it "should return a message to confirm takeoff" do
+    heathrow = Airport.new
+    expect(heathrow.confirm).to eq("Plane is no longer in the airport.")
+  end
 
 end
