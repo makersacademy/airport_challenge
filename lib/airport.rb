@@ -14,6 +14,7 @@ class Airport
 
 
   def take_off
+    fail "No planes on the ground!" if @hangar.size < 1
     @hangar.pop
   end
 
