@@ -16,7 +16,6 @@ class Airport
     fail "Cannot land due to weather." if weather == "stormy"
     fail "Airport is full." if full? 
     @planes << Plane.new(flight_number)
-
   end
 
   def takeoff(flight_number)
@@ -47,6 +46,13 @@ class Airport
 
   def weather
     
+    case rand(11)
+    when 1, 2, 3, 4, 5, 6, 7, 8
+      "sunny"
+    when 9, 10
+      "stormy"
+    end
+
   end
 
 end
