@@ -31,9 +31,7 @@ describe Airport do
 
   it "should prevent landing when airport is full" do 
     heathrow = Airport.new
-    heathrow.land("BA123")
-    heathrow.land("BA878")
-    heathrow.land("BA666")
+    Airport::DEFAULT_CAPACITY.times { heathrow.land("BA123") }
 
     expect { heathrow.land("EZ456") }.to raise_error("Airport is full.")
   end

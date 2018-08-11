@@ -2,9 +2,12 @@ require './lib/plane'
 
 class Airport
 
-  attr_reader :planes
+  DEFAULT_CAPACITY = 35
 
-  def initialize
+  attr_reader :planes, :capacity
+
+  def initialize(capacity =DEFAULT_CAPACITY)
+    @capacity = capacity 
     # array to store landed planes  
     @planes = [] 
   end
@@ -36,7 +39,7 @@ class Airport
   end
 
   def full?
-    @planes.length >= 3
+    @planes.length >= DEFAULT_CAPACITY
   end
 
 end
