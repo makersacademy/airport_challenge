@@ -3,10 +3,6 @@ require 'plane'
 
 describe Airport do
 
-  it 'responds to #landing' do
-    expect(subject).to respond_to(:landing).with(1).argument
-  end
-
   it 'stores the names of the planes landing in an array' do
     new_airport = Airport.new
     plane = Plane.new
