@@ -24,7 +24,7 @@ class Airport
   end
 
   def stormy?
-
+    
   end
 
 

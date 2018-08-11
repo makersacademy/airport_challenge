@@ -2,6 +2,7 @@ require 'airport'
 # Specs for testing the Airport class object
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
+#Here will need to put a stub to double for the die randomness
 
 
 # Specs to test the class object attributes
@@ -27,6 +28,7 @@ describe Airport do
 
 # Specs to test the land_plane method
   describe "#land_plane" do
+# Respond to tests can be collapsed into one liners and also can probably become redundant
     it ".land_plane - Airport responds to method with 1 argument" do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
@@ -63,6 +65,7 @@ describe Airport do
     it ".stormy? - Airport responds to this method" do
       expect(subject).to respond_to(:stormy?)
     end
+    
   end
 
 
