@@ -2,7 +2,7 @@
 
 Airport Challenge (see the Makers Github repo [here](https://github.com/makersacademy/airport_challenge "Makers Airport Challenge Github") for more info) responds to the following:
 
-        *We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.*
+*We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.*
 
 Using my TDD cycle tree to guide me, I wrote feature tests and then unit tests in order to create a roadmap for my code. Repeating this cycle over and over, simplifying and refactoring the unit tests as required allowed me to be clearer on what was needed in my actual code.
 
