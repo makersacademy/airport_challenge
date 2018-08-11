@@ -3,12 +3,17 @@ require 'airport'
 describe Airport do
 
 # Specs to test the class object attributes
-  describe "Airport instance attributes" do
+  describe "Initialize - Airport instance attributes" do
     it "@hangar - will store planes in an array - initialized empty" do
       expect(subject.hangar).to eq([])
     end
     it "@capacity - will record the capacity of the airport" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
+    it "#initialize - with 1 argument for capacity" do
+      airport = Airport.new(20)
+      20.times { airport.land_plane(Plane.new) }
+      expect { airport.land_plane(Plane.new) }.to raise_error "Hangar Full!!!"
     end
 
 
@@ -17,7 +22,7 @@ describe Airport do
 
 # Specs to test the land_plane method
   describe "#land_plane" do
-    it ".land_plane - Airport responds to method" do
+    it ".land_plane - Airport responds to method with 1 argument" do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
     it ".land_plane - returns a Plane object in an array" do

@@ -4,9 +4,9 @@ class Airport
 
   DEFAULT_CAPACITY = 1
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @hangar = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
 
