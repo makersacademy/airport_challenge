@@ -37,6 +37,12 @@ describe Airport do
             subject.take_off(mockPlane)
             expect(mockPlane.flying?).to be true
         end
+        it 'confirms plane is no longer at the airport' do 
+            allow(mockPlane).to receive(:fly).and_return(true)
+            allow(mockPlane).to receive(:flying?).and_return(true)
+            expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
+        end
+            
     end
 
 end

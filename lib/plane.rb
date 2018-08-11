@@ -14,7 +14,4 @@ attr_reader :flying
         @flying = true 
     end
 
-    
-
-
 end
