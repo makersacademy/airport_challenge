@@ -6,6 +6,11 @@ describe Airport do
     expect(subject.capacity).to eq 20
   end
 
+  it 'capacity can be overridden' do
+    ap = Airport.new(30)
+    expect(ap.capacity).to eq 30
+  end
+
   context 'when it is sunny' do
     let(:plane) { double :plane }
 
