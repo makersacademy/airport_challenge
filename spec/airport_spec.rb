@@ -15,9 +15,16 @@ describe Airport do
     expect(new_airport.planes_on_ground).to eq ([new_plane])
   end
 
-  it 'removes a named plane from @planes_on_ground when it takes off' do
+  it 'removes a named plane from @planes_on_ground when it takes off and #stormy = false' do
     specific_plane = Plane.new
     new_airport.landing(specific_plane)
     expect(new_airport.take_off(specific_plane)).to eq (specific_plane)
   end
+
+  it 'does not remove a named plane from @planes_on_ground when #stormy = true' do
+    specific_plane = Plane.new
+    new_airport.landing(specific_plane)
+    expect(new_airport.take_off(specific_plane)).to eq ('weather is stormy, plane can not take off')
+  end
+
 end
