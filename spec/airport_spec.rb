@@ -9,5 +9,4 @@ describe Airport do
   it "instructs a plane to land" do
     expect(Airport.new.land).to eq(landed)
   end
-
 end
