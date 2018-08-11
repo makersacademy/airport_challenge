@@ -1,4 +1,4 @@
-## Airport Challenge
+# Airport Challenge
 
 Airport Challenge (see the Makers Github repo [here](https://github.com/makersacademy/airport_challenge "Makers Airport Challenge Github") for more info) responds to the following:
 
