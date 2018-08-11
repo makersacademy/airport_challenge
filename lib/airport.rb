@@ -9,10 +9,12 @@ class Airport
 
   def landing(plane_landing)
     fail 'plane is already in the airport' if @planes_on_ground.include?(plane_landing)
+
     @planes_on_ground << plane_landing
   end
 
   def take_off(plane_taking_off)
+    fail 'plane is not currently at this airport' if !@planes_on_ground.include?(plane_taking_off)
     fail 'weather is stormy, plane can not take off' if @stormy == true
     @planes_on_ground.delete(plane_taking_off)
   end
