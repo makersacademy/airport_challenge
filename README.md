@@ -13,3 +13,20 @@ Using my TDD cycle tree to guide me, I wrote feature tests and then unit tests i
 3. Write the code which the errors are asking for.
 4. Unit test this code and refactor as required.
 5. Commit code and push to repo
+
+This challenge helps us to get to grips with two programming fundamentals: TDD and OOP.
+
+The OOP side, in its most basic form, comprises of the following - making a class and instantiating objects from it.
+
+```ruby
+class Airport
+  def land(plane)
+    true
+  end
+end
+```
+
+```ruby
+airport = Airport.new
+airport.land(plane)
+```
