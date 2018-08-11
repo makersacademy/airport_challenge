@@ -5,7 +5,6 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane' do
-      subject.land(plane)
       expect(subject.land(plane)[-1]).to eq plane
     end
   end
@@ -13,11 +12,18 @@ describe Airport do
   describe '#takeoff' do
     it 'allows a plane to takeoff' do
       subject.land(plane)
+      subject.should_receive(:stormy?).and_return(false)
       expect(subject.takeoff(plane)).to eq plane
     end
     it 'has planes flying after takeoff' do
       subject.land(plane)
+      subject.should_receive(:stormy?).and_return(false)
       expect(subject.takeoff(plane).flying).to eq true
+    end
+    it 'does not allow planes to takeoff in stormy weather' do
+      subject.land(plane)
+      subject.should_receive(:stormy?).and_return(true)
+      expect {subject.takeoff(plane)}.to raise_error 'plane cannot takeoff in a storm'
     end
   end
 
