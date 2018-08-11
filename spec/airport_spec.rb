@@ -2,31 +2,37 @@ require 'airport'
 
 describe Airport do
   let(:plane) { Plane.new }
-
   describe '#land' do
+    
     it 'lands a plane' do
       landed_plane = subject.land(plane)[-1]
+      allow(subject).to receive(:stormy?) { false }
       expect(landed_plane.flying).to eq false
     end
-    # it 'does not allow planes to land in stormy weather' do
-    #   subject.should_receive(:stormy?).and_return(true)
-    #   expect {subject.land(plane)}.to raise_error 'plane cannot land in a storm'
-    # end
     it 'does not allow landing if airport is full' do
+      allow(subject).to receive(:stormy?) { false }
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error 'no space in airport'
     end
-
+    it 'cannot land a landed plane' do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'plane is already landed'
+    end
+    it 'does not allow planes to land when stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(plane) }.to raise_error(RuntimeError, 'plane cannot land in a storm')
+    end
   end
 
   describe '#takeoff' do
     it 'has planes flying after takeoff' do
-      subject.land(plane)
       allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
       expect(subject.takeoff(plane).flying).to eq true
     end
     it 'does not allow planes to takeoff in stormy weather' do
-      subject.land(plane)
+      # subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.takeoff(plane) }.to raise_error 'plane cannot takeoff in a storm'
     end
@@ -37,6 +43,7 @@ describe Airport do
 
   describe '#at_airport?' do
     it 'says if plane is in airport' do
+      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
       expect(subject.at_airport?(plane)).to eq true
     end
@@ -44,7 +51,7 @@ describe Airport do
 
   describe '#stormy' do
     it 'can randomly generate weather conditions' do
-      srand(1)
+      srand(123)
       expect(subject.stormy?).to eq true
     end
   end
