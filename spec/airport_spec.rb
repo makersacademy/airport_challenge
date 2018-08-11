@@ -15,7 +15,11 @@ describe Airport do
       20.times { airport.land_plane(Plane.new) }
       expect { airport.land_plane(Plane.new) }.to raise_error "Hangar Full!!!"
     end
-
+    it "#initialize - with default capacity" do
+      plane = Plane.new
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
+      expect { subject.land_plane(plane) }.to raise_error 'Hangar Full!!!'
+    end
 
   end
 
@@ -29,9 +33,10 @@ describe Airport do
       plane = Plane.new # here we need to think about mocking
       expect(subject.land_plane(Plane)).to eq([Plane])
     end
-    it ".land_plane - gives error if there is already a plane in hangar" do
+    it ".land_plane - gives error if the hangar is full" do
       plane = Plane.new
-      expect { 2.times{ subject.land_plane(plane) }  } .to raise_error("Hangar Full!!!")
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
+      expect { subject.land_plane(plane) } .to raise_error("Hangar Full!!!")
     end
 
   end
@@ -50,8 +55,6 @@ describe Airport do
       expect { subject.take_off }.to raise_error("No planes on the ground!")
     end
   end
-
-
 
 
 
