@@ -8,6 +8,7 @@
 require 'plane'
 
 describe Plane do 
+    subject(:plane) { described_class.new }  
 
     describe '#initialize' do
         it 'defaults #flying as false' do 
