@@ -1,5 +1,5 @@
 class Airport
-  
+
   attr_accessor :planes_on_ground
 
   def initialize
@@ -11,6 +11,7 @@ class Airport
   end
 
   def take_off(plane_taking_off)
+    @planes_on_ground.delete(plane_taking_off)
   end
 
 end
