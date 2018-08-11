@@ -4,7 +4,7 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
   end
@@ -20,7 +20,7 @@ class Airport
   def take_off
     fail "No planes on the ground!" if empty?
     @hangar.pop
-    #@hanger.pop has left the airport - we need to confirm it is no longer in the airport
+# @hanger.pop has left the airport - we need to confirm it is no longer in the airport
   end
 
   def stormy?
