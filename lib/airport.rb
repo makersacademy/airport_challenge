@@ -27,6 +27,5 @@ class Airport
   def full?
     @planes.length >= @capacity
   end
-
-
+  
 end
