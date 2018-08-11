@@ -44,9 +44,13 @@ class Airport
     @planes.length >= DEFAULT_CAPACITY
   end
 
+  def random_number
+    rand(11)
+  end
+
   def weather
     
-    case rand(11)
+    case random_number
     when 0, 1, 2, 3, 4, 5, 6, 7, 8
       "sunny"
     when 9, 10

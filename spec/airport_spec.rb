@@ -64,4 +64,19 @@ describe Airport do
     expect(heathrow.planes.length).to eq(previous_number_planes - 1)
   end
 
+  it "#weather should return sunny when #random_numer is 1" do 
+    allow(heathrow).to receive(:random_number) { 1 }
+    expect(heathrow.weather).to eq("sunny")
+  end
+
+  it "#weather should return sunny when #random_numer is 5" do 
+    allow(heathrow).to receive(:random_number) { 5 }
+    expect(heathrow.weather).to eq("sunny")
+  end
+
+  it "#weather should return storym when #random_numer is 9" do 
+    allow(heathrow).to receive(:random_number) { 9 }
+    expect(heathrow.weather).to eq("stormy")
+  end
+
 end
