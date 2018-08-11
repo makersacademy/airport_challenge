@@ -1,7 +1,9 @@
+require_relative 'die'
+
 class Weather
 
-  def stormy?
-
+  def stormy?(num)
+    num == 6
   end
 
 end
