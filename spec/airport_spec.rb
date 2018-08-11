@@ -2,7 +2,6 @@ require 'airport'
 
 describe Airport do
 
-
   it 'stores the names of the planes landing in an array' do
     new_airport = Airport.new
     plane = double("plane")
