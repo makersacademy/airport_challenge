@@ -1,9 +1,9 @@
-# UR1. I want to instruct a plane to land at an airport
-# UR2. I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-# UR3. I want to prevent takeoff when weather is stormy 
-# UR4. I want to prevent landing when weather is stormy 
-# UR5. I want to prevent landing when the airport is full 
-# SR1. I would like a default airport capacity that can be overridden as appropriate
+# UR1. Instruct a plane to land at an airport
+# UR2. Instruct a plane to take off from an airport and confirm it's no longer in the airport
+# UR3. Prevent takeoff when weather is stormy 
+# UR4. Prevent landing when weather is stormy 
+# UR5. Prevent landing when the airport is full 
+# SR1. Default airport capacity that can be overridden as appropriate
 
 require 'airport'
 # require 'plane'
@@ -12,14 +12,13 @@ require 'airport'
 describe Airport do  
     subject(:airport) { described_class.new }
     let(:mockPlane) { double :plane }
+    let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
     # let(:mockNote) { double :note, :title => 't1', :body => 'b1' }
-    # let(:bike) { double :bike}
     # let(:broken_bike) { double :bike, working: false }
 
     describe '#land', :land do
         it { is_expected.to respond_to(:land).with(1).argument }
-   
-        it 'puts a plane in the hangar' do
+        it 'adds Plane to @hangar' do
             subject.land(:mockPlane)
             expect(subject.hangar).to include (:mockPlane)
         end
@@ -27,7 +26,11 @@ describe Airport do
 
     describe '#take_off', :take_off do 
         it { is_expected.to respond_to(:take_off).with(1).argument }
+        it 'removes Plane from @hangar' do 
+            subject.land(:mockPlane)
+            subject.take_off(:mockPlane)
+            expect(subject.hangar).to be_empty
+        end
     end
-
 
 end

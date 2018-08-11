@@ -14,6 +14,7 @@ class Airport
     end
 
     def take_off(plane)
+        @hangar.pop
     end
 
 end 
