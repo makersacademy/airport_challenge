@@ -1,4 +1,11 @@
 require "./lib/airport.rb"
+require "./lib/plane.rb"
 airport = Airport.new
-airport.land("plane1")
-airport.take_off("plane1")
+plane = Plane.new
+plane.land(airport)
+
+airport.hanger
+
+plane.take_off(airport)
+
+airport.hanger
