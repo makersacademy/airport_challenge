@@ -13,7 +13,7 @@ describe Airport do
     #   expect {subject.land(plane)}.to raise_error 'plane cannot land in a storm'
     # end
     it 'does not allow landing if airport is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error 'no space in airport'
     end
   end

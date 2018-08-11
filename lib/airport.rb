@@ -1,8 +1,10 @@
 class Airport
   DEFAULT_CAPACITY = 20
+  attr_accessor :capacity
 
   def initialize
     @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
@@ -12,7 +14,7 @@ class Airport
   end
 
   def full
-    @planes.size >= DEFAULT_CAPACITY
+    @planes.size >= capacity
   end
 
   def takeoff(plane)
