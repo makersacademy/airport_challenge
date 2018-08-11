@@ -16,6 +16,12 @@ Using my [TDD cycle tree](./tdd_cycle_tree.png) to guide me, I wrote feature tes
 
 This challenge helps us to get to grips with two programming fundamentals: TDD and OOP.
 
+### TDD
+
+The TDD side of things is the most important skill to learn, for it drives everything else that comes after it. As mentioned above, the tests create a roadmap going forward from which we can base our code on. Not only do the tests lead to more reliable and predictable code (if done correctly), they also provide structure for us developers to know what code to write. Moving through the user stories, creating tests from them, refactoring where necessary and finally writing code is the way to go.
+
+### OOP
+
 The OOP side, in its most basic form, comprises of the following - making a class and instantiating objects from it.
 
 ```ruby
