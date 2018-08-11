@@ -1,8 +1,9 @@
 require 'airport'
+
 # Specs for testing the Airport class object
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
-#  let(:mockWeather) { double :weather, :weather => "weather" }
+  let(:mockWeather) { double :weather, :weather => "weather" }
 #  let(:mockDie) { double :die, :die => "die" }
 
 
@@ -66,17 +67,5 @@ describe Airport do
       expect { subject.take_off(mockPlane) }.to raise_error("No planes on the ground!")
     end
   end
-
-
-
-
-# Specs to test how we determine the weather
-  describe "#stormy?" do
-    it ".stormy? - Airport responds to this method" do
-      expect(subject).to respond_to(:stormy?)
-    end
-
-  end
-
 
 end

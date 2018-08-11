@@ -7,6 +7,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
+
   end
 
 
@@ -21,9 +22,7 @@ class Airport
     @hangar.delete(plane)
   end
 
-  def stormy?
 
-  end
 
 
 
