@@ -8,6 +8,7 @@ class Airport
   end
 
   def landing(plane_landing)
+    fail 'plane is already in the airport' if @planes_on_ground.include?(plane_landing)
     @planes_on_ground << plane_landing
   end
 

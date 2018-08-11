@@ -10,21 +10,25 @@ describe Airport do
   end
 
   it 'stores the names of the planes landing in an array' do
-    new_plane = Plane.new
-    new_airport.landing(new_plane)
-    expect(new_airport.planes_on_ground).to eq ([new_plane])
+    plane1 = Plane.new
+    new_airport.landing(plane1)
+    expect(new_airport.planes_on_ground).to eq ([plane1])
+  end
+
+  it 'does not let a plane already in the airport land again' do
+    plane2 = Plane.new
+    new_airport.landing(plane2)
+    expect{new_airport.landing(plane2)}.to raise_error 'plane is already in the airport'
   end
 
   it 'removes a named plane from @planes_on_ground when it takes off and #stormy = false' do
     specific_plane = Plane.new
     new_airport.landing(specific_plane)
-    #expect(new_airport).to receive(:stormy).and_return(false)
-    #allow(new_airport).to receive(:stormy) {false}
     new_airport.stormy = false
     expect(new_airport.take_off(specific_plane)).to eq (specific_plane)
   end
 
-  it 'does not remove a named plane from @planes_on_ground when #stormy = true' do
+  it 'raises an error if a named plane from @planes_on_ground tries to take off and #stormy = true' do
     specific_plane = Plane.new
     new_airport.landing(specific_plane)
     new_airport.stormy = true
