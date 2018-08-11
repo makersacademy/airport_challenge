@@ -1,7 +1,14 @@
 class Plane
 
-  # maybe later we might think about does the plane know its in the sky or  at the  airport?
-  def land
+  attr_reader :status
+
+  def initialize
+    @status = "Air"
+  end
+
+
+
+  def land(airport)
   end
 
   def takeoff
