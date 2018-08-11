@@ -1,31 +1,34 @@
 require_relative 'plane'
 
+
 class Airport
-  attr_reader :planes
+  attr_reader :capacity
+
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @planes = []
     @capacity = capacity
+    @docked_planes = []
   end
 
   def land_plane(plane)
     raise 'weather is stormy' if forecast == 'stormy'
-    raise 'airport is full' if full?
-    @planes << plane
+    fail 'airport is full' if full?
+    @docked_planes << plane
+    @docked_planes.last
   end
 
   def takeoff
     raise 'weather is stormy' if forecast == 'stormy'
-    @planes.pop
+    @docked_planes.pop
   end
 
   def forecast
-    rand(1) == 0 ? 'stormy' : 'fine'
+    rand(15) == 3 ? 'stormy' : 'fine'
   end
 
   def full?
-    @planes.length >= @capacity
+    @docked_planes.length >= @capacity
   end
-  
+
 end
