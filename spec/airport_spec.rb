@@ -10,14 +10,22 @@ require 'airport'
 
 describe Airport do  
     subject(:airport) { described_class.new }   # let(:mockFlyingPlane) { double :plane, :flying => false } # OK?
+
     let(:mockPlane) { double :plane }           # let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
     let(:mockWeather) { double :weather }
     let(:calmWeather) { double :weather, generate_conditions => 'Calm' }
     let(:stormyWeather) { double :weather, generate_conditions => 'Stormy' }
 
     describe '#initialize' do 
-        it 'initializes with an empty @hangar' do 
+        it 'with an empty @hangar' do 
             expect(subject.hangar).to be_empty           
+        end
+        it 'with a default capacity of 20' do
+            expect(subject.capacity).to eq 20
+        end
+        it 'allows for variable capcity' do
+            large_airport = Airport.new(50)
+            expect(large_airport.capacity).to eq 50
         end
     end
 

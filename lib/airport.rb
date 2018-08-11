@@ -3,9 +3,10 @@ require_relative 'weather'
 
 class Airport
 
-    attr_reader :hangar, :conditions_safe
+    attr_reader :hangar, :capacity, :conditions_safe
     
-    def initialize 
+    def initialize(capacity = 20)
+        @capacity = capacity
         @hangar = []
     end
 
@@ -14,6 +15,8 @@ class Airport
     end
 
     def clear_to_land?(plane)
+        fail 'ERROR - Hanger is at capacity' if hangar.full?
+        fail 'WARNING - Weather is stormy' unless conditions_safe? == true
     end
 
     def take_off(plane)
@@ -34,5 +37,9 @@ class Airport
     def weather
         Weather.new
     end 
+
+    def full?
+        hangar.length >= capacity 
+    end
 
 end 

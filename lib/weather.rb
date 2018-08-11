@@ -1,6 +1,6 @@
 class Weather
 
-    attr_reader :conditions
+    attr_reader :conditions, :conditions_safe
     
     def generate_conditions
         rand(4) == 1 ? 'Stormy' : 'Calm'
