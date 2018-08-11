@@ -5,35 +5,43 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane' do
-      expect(subject.land(plane)[-1]).to eq plane
+      landed_plane = subject.land(plane)[-1]
+      expect(landed_plane.flying).to eq false
+    end
+    # it 'does not allow planes to land in stormy weather' do
+    #   subject.should_receive(:stormy?).and_return(true)
+    #   expect {subject.land(plane)}.to raise_error 'plane cannot land in a storm'
+    # end
+    it 'does not allow landing if airport is full' do
+      subject.land(Plane.new)
+      expect { subject.land(plane) }.to raise_error 'no space in airport'
     end
   end
 
   describe '#takeoff' do
-    it 'allows a plane to takeoff' do
-      subject.land(plane)
-      subject.should_receive(:stormy?).and_return(false)
-      expect(subject.takeoff(plane)).to eq plane
-    end
     it 'has planes flying after takeoff' do
       subject.land(plane)
-      subject.should_receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?) { false }
       expect(subject.takeoff(plane).flying).to eq true
     end
     it 'does not allow planes to takeoff in stormy weather' do
       subject.land(plane)
-      subject.should_receive(:stormy?).and_return(true)
-      expect {subject.takeoff(plane)}.to raise_error 'plane cannot takeoff in a storm'
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.takeoff(plane) }.to raise_error 'plane cannot takeoff in a storm'
     end
   end
 
   describe '#at_airport?' do
-    it 'says if plane is not in airport' do
-      expect(subject.at_airport?(plane)).to eq false
-    end
     it 'says if plane is in airport' do
       subject.land(plane)
       expect(subject.at_airport?(plane)).to eq true
+    end
+  end
+
+  describe '#stormy' do
+    it 'can randomly generate weather conditions' do
+      srand(1)
+      expect(subject.stormy?).to eq true
     end
   end
 

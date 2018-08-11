@@ -5,8 +5,13 @@ class Airport
   end
 
   def land(plane)
+    raise 'no space in airport' if full
     plane.flying = false
     @planes << plane
+  end
+
+  def full
+    @planes.size != 0
   end
 
   def takeoff(plane)
@@ -20,7 +25,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..2) % 2 == 0
+    (rand(1..2) % 2).zero?
   end
 
 end
