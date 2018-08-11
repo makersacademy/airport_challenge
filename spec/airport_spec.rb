@@ -29,4 +29,13 @@ describe Airport do
     expect(heathrow.confirm).to eq("Plane is no longer in the airport.")
   end
 
+  it "should prevent landing when airport is full" do 
+    heathrow = Airport.new
+    heathrow.land("BA123")
+    heathrow.land("BA878")
+    heathrow.land("BA666")
+
+    expect { heathrow.land("EZ456") }.to raise_error("Airport is full.")
+  end
+
 end

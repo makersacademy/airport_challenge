@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(flight_number)
-  
+    fail "Airport is full." if full? 
     @planes << Plane.new(flight_number)
 
   end
@@ -18,7 +18,6 @@ class Airport
   def takeoff(flight_number)
 
     counter = 0
-
     # iterate over planes array
     @planes.each do |plane|
       # compare flight_number of each item to supplied flight_number
@@ -29,13 +28,15 @@ class Airport
         counter += 1
         confirm
       end
-
     end
-
   end
 
   def confirm
     "Plane is no longer in the airport."
+  end
+
+  def full?
+    @planes.length >= 3
   end
 
 end
