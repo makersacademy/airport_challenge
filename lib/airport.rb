@@ -20,7 +20,7 @@ class Airport
 
   def takeoff(flight_number)
 
-    fail "Cannot land due to weather." if weather == "stormy"
+    fail "Cannot takeoff due to weather." if weather == "stormy"
 
     counter = 0
     # iterate over planes array
@@ -31,7 +31,7 @@ class Airport
         # delete the plane from the array
         @planes.delete_at(counter)
         counter += 1
-        confirm
+        puts confirm
       end
     end
   end
