@@ -20,6 +20,7 @@ describe Airport do
   end
 
   it 'when airport is full, plane cannot land' do
+    allow(subject).to receive(:weather_random) { 15 }
     allow(subject).to receive(:full?) { true }
     expect { subject.plane_land(Plane.new) }.to raise_error "Airport full, plane cannot land"
   end

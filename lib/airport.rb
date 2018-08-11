@@ -12,10 +12,13 @@ class Airport
   def plane_land(plane)
     fail "Bad weather, plane cannot land" if weather_random <= 10
     fail "Airport full, plane cannot land" if full?
+    @planes << plane
+    plane.land_airport
   end
 
   def plane_take_off(plane)
     fail "Bad weather, plane cannot take off" if weather_random <= 10
+    @planes.delete(plane)
     plane.leave_airport
   end
 
@@ -25,7 +28,6 @@ class Airport
   end
 
   def full?
-  	# airport capacity is 1 plane
     @planes.count >= @capacity
   end
 
