@@ -57,10 +57,13 @@ describe Airport do
     end
     it ".take_off - method returns a plane object" do
       subject.land_plane(mockPlane)
-      expect(subject.take_off).to eq(mockPlane)
+      expect(subject.take_off(mockPlane)).to eq(mockPlane)
+    end
+    it ".take_off - method responds to method with 1 argument" do
+      expect(subject).to respond_to(:take_off).with(1).argument
     end
     it ".take_off - method returns error if there are no planes to take off" do
-      expect { subject.take_off }.to raise_error("No planes on the ground!")
+      expect { subject.take_off(mockPlane) }.to raise_error("No planes on the ground!")
     end
   end
 
