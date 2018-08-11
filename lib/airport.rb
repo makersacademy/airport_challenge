@@ -6,19 +6,22 @@ class Airport
 
   attr_reader :planes, :capacity
 
-  def initialize(capacity =DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity 
     # array to store landed planes  
     @planes = [] 
   end
 
   def land(flight_number)
+    fail "Cannot land due to weather." if weather == "stormy"
     fail "Airport is full." if full? 
     @planes << Plane.new(flight_number)
 
   end
 
   def takeoff(flight_number)
+
+    fail "Cannot land due to weather." if weather == "stormy"
 
     counter = 0
     # iterate over planes array
@@ -40,6 +43,10 @@ class Airport
 
   def full?
     @planes.length >= DEFAULT_CAPACITY
+  end
+
+  def weather
+    
   end
 
 end

@@ -36,4 +36,17 @@ describe Airport do
     expect { heathrow.land("EZ456") }.to raise_error("Airport is full.")
   end
 
+  it "should be able to prevent takeoff during stormy weather" do
+    heathrow = Airport.new 
+    heathrow.land("BA123")
+    allow(heathrow).to receive(:weather) { "stormy" }
+    expect { heathrow.takeoff("BA123") }.to raise_error("Cannot land due to weather.")
+  end
+
+  it "should be able to prevent landing during stormy weather" do
+    heathrow = Airport.new 
+    allow(heathrow).to receive(:weather) { "stormy" }
+    expect { heathrow.land("BA123") }.to raise_error("Cannot land due to weather.")
+  end
+
 end
