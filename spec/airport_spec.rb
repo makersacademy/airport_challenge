@@ -11,6 +11,9 @@ require 'airport'
 describe Airport do  
     subject(:airport) { described_class.new }   # let(:mockFlyingPlane) { double :plane, :flying => false } # OK?
     let(:mockPlane) { double :plane }           # let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
+    let(:mockWeather) { double :weather }
+    let(:calmWeather) { double :weather, generate_conditions => 'Calm' }
+    let(:stormyWeather) { double :weather, generate_conditions => 'Stormy' }
 
     describe '#initialize' do 
         it 'initializes with an empty @hangar' do 
@@ -24,28 +27,45 @@ describe Airport do
             subject.land(mockPlane)
             expect(subject.hangar).to include (mockPlane)
         end
+        context 'when weather is calm' do 
+            it 'allows Plane landing' do 
+            end
+        end
+        context 'when weather is stormy' do
+            it 'denies Plane landing' do 
+            end
+        end
     end
 
     describe '#take_off', :take_off do 
+        before { subject.hangar << mockPlane}
         it { is_expected.to respond_to(:take_off).with(1).argument }
-        it 'removes Plane from @hangar' do 
-            allow(mockPlane).to receive(:fly).and_return(true)
-            subject.land(mockPlane)  # What is good practice here?
-            subject.take_off(mockPlane)
-            expect(subject.hangar).to be_empty
+   
+        context 'when weather is calm' do
+            let(:calmWeather) { double :weather, generate_conditions => 'Calm' }
+            it 'allows Plane launch' do 
+                allow(mockPlane).to receive(:fly).and_return(true)
+                allow(mockPlane).to receive(:flying?).and_return(true)
+                subject.take_off(mockPlane)
+                expect(mockPlane.flying?).to be true
+            end
+            it 'confirms Plane is no longer at the airport' do 
+                allow(mockPlane).to receive(:fly).and_return(true)
+                allow(mockPlane).to receive(:flying?).and_return(true)
+                expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
+            end
         end
-        it 'toggles #flying? to true' do 
-            allow(mockPlane).to receive(:fly).and_return(true)
-            allow(mockPlane).to receive(:flying?).and_return(true)
-            subject.take_off(mockPlane)
-            expect(mockPlane.flying?).to be true
+
+        context 'when weather is stormy' do 
+            let(:stormyWeather) { double :weather, generate_conditions => 'Stormy' }
+            it 'denies Plane launch' do 
+                # allow(mockWeather).to receive(:generate_conditions).and_return('Stormy') 
+                expect(subject.take_off(mockPlane)).to eq 'WARNING - Weather is stormy'
+            end
+
+
         end
-        it 'confirms Plane is no longer at the airport' do 
-            allow(mockPlane).to receive(:fly).and_return(true)
-            allow(mockPlane).to receive(:flying?).and_return(true)
-            expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
-        end
-            
+
     end
 
 end
