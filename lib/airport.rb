@@ -12,7 +12,7 @@ class Airport
 
   def land_plane(plane)
     fail "Hangar Full!!!" if full?
-
+    
     @hangar << plane
   end
 
@@ -24,7 +24,7 @@ class Airport
   end
 
   def stormy?
-    
+
   end
 
 

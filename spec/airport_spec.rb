@@ -2,7 +2,9 @@ require 'airport'
 # Specs for testing the Airport class object
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
-#Here will need to put a stub to double for the die randomness
+#  let(:mockWeather) { double :weather, :weather => "weather" }
+#  let(:mockDie) { double :die, :die => "die" }
+
 
 
 # Specs to test the class object attributes
@@ -39,6 +41,11 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
       expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
     end
+
+#    it ".land_plane - gives error if the weather is stormy" do
+#      allow(mockDie).to receive(:roll) { 6 }
+#      expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to stormy weather!!!")
+#    end
   end
 
 
@@ -65,7 +72,7 @@ describe Airport do
     it ".stormy? - Airport responds to this method" do
       expect(subject).to respond_to(:stormy?)
     end
-    
+
   end
 
 
