@@ -8,6 +8,7 @@ class Airport
 
 
   def land_plane(plane)
+    fail "Hangar Full!!!" if @hangar.size >= 1
     @hangar << plane
   end
 
