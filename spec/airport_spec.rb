@@ -21,4 +21,11 @@ describe Airport do
     expect(subject.takeoff(plane)).to eq "#{plane} has taken off"
   end
 
+  it "removes a plane that has just taken off from the airport hangar" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(subject.hangar).not_to include(plane)
+  end
+
 end
