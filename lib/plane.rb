@@ -1,3 +1,3 @@
 class Plane
-  # ready for future plane variables
+  # ready for future plane related objects
 end
