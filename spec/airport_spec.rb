@@ -12,6 +12,10 @@ describe Airport do
     it ".land_plane - Airport responds to method" do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
+    it ".land_plane - returns a Plane object in an array" do
+      plane = Plane.new # here we need to think about mocking
+      expect(subject.land_plane(Plane)).to eq([Plane])
+    end
 
   end
 
