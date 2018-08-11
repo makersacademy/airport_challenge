@@ -12,6 +12,7 @@ class Airport
 
   def land_plane(plane)
     fail "Hangar Full!!!" if full?
+
     @hangar << plane
   end
 
@@ -19,6 +20,11 @@ class Airport
   def take_off
     fail "No planes on the ground!" if empty?
     @hangar.pop
+    #@hanger.pop has left the airport - we need to confirm it is no longer in the airport
+  end
+
+  def stormy?
+
   end
 
 
@@ -32,6 +38,7 @@ class Airport
   def empty?
     @hangar.empty?
   end
+
 
 
 end

@@ -35,7 +35,7 @@ describe Airport do
     end
     it ".land_plane - gives error if the hangar is full" do
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
-      expect { subject.land_plane(mockPlane) } .to raise_error("Hangar Full!!!")
+      expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
     end
   end
 
@@ -54,4 +54,16 @@ describe Airport do
       expect { subject.take_off }.to raise_error("No planes on the ground!")
     end
   end
+
+
+
+
+# Specs to test how we determine the weather
+  describe "#stormy?" do
+    it ".stormy? - Airport responds to this method" do
+      expect(subject).to respond_to(:stormy?)
+    end
+  end
+
+
 end
