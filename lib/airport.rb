@@ -1,4 +1,5 @@
 class Airport
+  DEFAULT_CAPACITY = 20
 
   def initialize
     @planes = []
@@ -11,7 +12,7 @@ class Airport
   end
 
   def full
-    @planes.size != 0
+    @planes.size >= DEFAULT_CAPACITY
   end
 
   def takeoff(plane)
