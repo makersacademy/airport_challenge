@@ -10,11 +10,12 @@ require 'plane'
 describe Plane do 
 
     describe '#initialize' do
-        it 'defaults #grounded as true' do 
-            expect(subject.grounded).to be true 
+        it 'defaults #flying as false' do 
+            expect(subject.flying).to be false
         end
-    describe '#grounded?'
-        it { is_expected.to respond_to(:grounded?) }
-        
     end
+    describe '#flying?' do 
+        it { is_expected.to respond_to(:flying?) }
+    end
+
 end

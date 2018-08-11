@@ -12,24 +12,30 @@ require 'airport'
 describe Airport do  
     subject(:airport) { described_class.new }
     let(:mockPlane) { double :plane }
-    let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
-    # let(:mockNote) { double :note, :title => 't1', :body => 'b1' }
-    # let(:broken_bike) { double :bike, working: false }
+    # let(:mockFlyingPlane) { double :plane, :flying => false } # OK?
+    # let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
 
     describe '#land', :land do
         it { is_expected.to respond_to(:land).with(1).argument }
         it 'adds Plane to @hangar' do
-            subject.land(:mockPlane)
-            expect(subject.hangar).to include (:mockPlane)
+            subject.land(mockPlane)
+            expect(subject.hangar).to include (mockPlane)
         end
     end
 
     describe '#take_off', :take_off do 
         it { is_expected.to respond_to(:take_off).with(1).argument }
         it 'removes Plane from @hangar' do 
-            subject.land(:mockPlane)
-            subject.take_off(:mockPlane)
+            allow(mockPlane).to receive(:fly).and_return(true)
+            subject.land(mockPlane)  # What is good practice here?
+            subject.take_off(mockPlane)
             expect(subject.hangar).to be_empty
+        end
+        it 'toggles #flying? to true' do 
+            allow(mockPlane).to receive(:fly).and_return(true)
+            allow(mockPlane).to receive(:flying?).and_return(true)
+            subject.take_off(mockPlane)
+            expect(mockPlane.flying?).to be true
         end
     end
 
