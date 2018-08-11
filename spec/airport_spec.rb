@@ -67,4 +67,9 @@ describe Airport do
     expect { new_airport.landing(plane) }.to raise_error 'landing denied, airport full'
   end
 
+  it 'can set the #capacity= to 30 when creating new instance of Airport class' do
+    new_airport = Airport.new(30)
+    expect(new_airport.capacity).to eq 30
+  end
+
 end
