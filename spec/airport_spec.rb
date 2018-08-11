@@ -15,6 +15,10 @@ describe Airport do
       subject.land(plane)
       expect(subject.takeoff(plane)).to eq plane
     end
+    it 'has planes flying after takeoff' do
+      subject.land(plane)
+      expect(subject.takeoff(plane).flying).to eq true
+    end
   end
 
   describe '#at_airport?' do
