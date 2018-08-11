@@ -1,17 +1,26 @@
 require_relative 'plane'
-require_relative 'weather'
+# require_relative 'weather'
 
 class Airport
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def land_plane(plane)
-    @plane = plane
+    raise 'weather is stormy' if forecast == 'stormy'
+    @planes << plane
   end
 
   def takeoff
-    @plane
+    raise 'weather is stormy' if forecast == 'stormy'
+    @planes.pop
   end
 
-  def weather_condition
+  def forecast
+    rand(5) == 2 ? 'stormy' : 'fine'
+  end
 
 
 end
