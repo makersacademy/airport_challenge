@@ -27,7 +27,8 @@ describe Airport do
   end
 
   it 'raises error if the weather is stormy' do
-    expect {subject.land_plane.with(1).argument}.to raise_error 'weather is stormy'
+    plane = Plane.new
+    expect {subject.land_plane(plane)}.to raise_error 'weather is stormy'
   end
 
 end
