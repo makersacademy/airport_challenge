@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
 
   attr_accessor :planes_on_ground
