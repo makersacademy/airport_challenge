@@ -8,8 +8,10 @@ describe Airport do
       expect(subject.hangar).to eq([])
     end
     it "@capacity - will record the capacity of the airport" do
-      expect(subject.capacity).to eq(1)
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
+
+
   end
 
 
