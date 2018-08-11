@@ -14,9 +14,9 @@ class Airport
   end
 
   def landing(plane)
+    fail 'plane is already in the airport' if at_airport?(plane)
     fail 'landing denied, airport full' if @planes_on_ground.count >= @capacity
     fail 'landing denied, weather is stormy' if stormy_weather == true
-    fail 'plane is already in the airport' if at_airport?(plane)
     @planes_on_ground << plane
   end
 

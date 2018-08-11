@@ -24,7 +24,7 @@ describe Airport do
     expect { new_airport.take_off(plane) }.to raise_error 'plane is not currently at this airport'
   end
 
-  it 'removes a named plane from @planes_on_ground when it takes off and #stormy = false' do
+  it 'removes a named plane from @planes_on_ground when it takes off and #stormy_weather == false' do
     new_airport = Airport.new
     plane = double("plane")
     allow(new_airport).to receive(:stormy_weather) { false }
@@ -32,7 +32,7 @@ describe Airport do
     expect(new_airport.take_off(plane)).to eq plane
   end
 
-  it 'raises an error if a named plane from @planes_on_ground tries to take off and #stormy == true' do
+  it 'raises an error if a named plane from @planes_on_ground tries to take off and #stormy_weather == true' do
     new_airport = Airport.new
     plane = double("plane")
     allow(new_airport).to receive(:stormy_weather) { false }
@@ -41,14 +41,14 @@ describe Airport do
     expect { new_airport.take_off(plane) }.to raise_error 'weather is stormy, plane can not take off'
   end
 
-  it 'adds a named plane to @planes_on_ground array when it lands and #stormy == false' do
+  it 'adds a named plane to @planes_on_ground array when it lands and #stormy_weather == false' do
     new_airport = Airport.new
     plane = double("plane")
     allow(new_airport).to receive(:stormy_weather) { false }
     expect(new_airport.landing(plane)).to eq [plane]
   end
 
-  it 'raises an error if a named plane tries to land and #stormy == true' do
+  it 'raises an error if a named plane tries to land and #stormy.weather == true' do
     new_airport = Airport.new
     plane = double("plane")
     allow(new_airport).to receive(:stormy_weather) { true }
