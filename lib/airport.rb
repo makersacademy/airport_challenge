@@ -4,7 +4,7 @@ class Airport
 
   include Weather # supplies #stormy_weather
 
-  attr_accessor :planes_on_ground, :capacity
+  attr_reader :planes_on_ground, :capacity
 
   DEFAULT_CAPACITY = 8
 
@@ -14,6 +14,7 @@ class Airport
   end
 
   def landing(plane)
+    fail 'not an identifiable plane' if plane.class != Plane
     fail 'plane is already in the airport' if at_airport?(plane)
     fail 'landing denied, airport full' if @planes_on_ground.count >= @capacity
     fail 'landing denied, weather is stormy' if stormy_weather == true
