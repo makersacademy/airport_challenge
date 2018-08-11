@@ -3,8 +3,6 @@ require 'plane'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:land) }
-
   it { is_expected.to respond_to(:land).with(1).argument }
 
   it "should have somewhere to store instances of planes" do 
@@ -16,5 +14,16 @@ describe Airport do
     heathrow.land("BA123")
     expect(heathrow.planes[0].flight_number).to eq("BA123")
   end
+
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
+
+  it "should remove given plane from airport when #takeoff is called" do
+    heathrow = Airport.new
+    heathrow.land("BA123")
+    heathrow.takeoff("BA123")
+    expect(heathrow.planes[0]).to eq nil 
+  end
+
+  
 
 end
