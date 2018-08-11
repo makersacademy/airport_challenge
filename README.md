@@ -9,15 +9,17 @@ We have a request from a client to write the software to control the flow of pla
 Requiements: 
 -----------
 User (air traffic controller) Requirements:
-    UR1. I want to instruct a plane to land at an airport
-    UR2. I want to instruct a plane to take off from an airport & confirm it is no longer in the airport
-    UR3. I want to prevent takeoff when weather is stormy 
-    UR4. I want to prevent landing when weather is stormy 
-    UR5. I want to prevent landing when the airport is full 
-System (administrator) Requirements:
-    SR1. I would like a default airport capacity that can be overridden as appropriate
+UR1. Instruct a plane to land at an airport
+UR2. Instruct a plane to take off from an airport and confirm it's no longer in the airport
+UR3. Prevent takeoff when weather is stormy 
+UR4. Prevent landing when weather is stormy 
+UR5. Prevent landing when the airport is full 
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+System (administrator) Requirements:
+SR1. Default airport capacity that can be overridden as appropriate
+
+
+Code defends against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 

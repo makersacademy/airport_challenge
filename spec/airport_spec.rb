@@ -6,14 +6,17 @@
 # SR1. Default airport capacity that can be overridden as appropriate
 
 require 'airport'
-# require 'plane'
-# Do I need to require 'plane' in order to double instances of the Plane class?
+# require 'plane' # Do I need to require 'plane' in order to double instances of the Plane class? No
 
 describe Airport do  
-    subject(:airport) { described_class.new }
-    let(:mockPlane) { double :plane }
-    # let(:mockFlyingPlane) { double :plane, :flying => false } # OK?
-    # let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
+    subject(:airport) { described_class.new }   # let(:mockFlyingPlane) { double :plane, :flying => false } # OK?
+    let(:mockPlane) { double :plane }           # let(:mockHangar) { double :hangar } # Can you add real/dummy objects to hangar array?
+
+    describe '#initialize' do 
+        it 'initializes with an empty @hangar' do 
+            expect(subject.hangar).to be_empty           
+        end
+    end
 
     describe '#land', :land do
         it { is_expected.to respond_to(:land).with(1).argument }
@@ -37,7 +40,7 @@ describe Airport do
             subject.take_off(mockPlane)
             expect(mockPlane.flying?).to be true
         end
-        it 'confirms plane is no longer at the airport' do 
+        it 'confirms Plane is no longer at the airport' do 
             allow(mockPlane).to receive(:fly).and_return(true)
             allow(mockPlane).to receive(:flying?).and_return(true)
             expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
