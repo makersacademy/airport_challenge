@@ -1,8 +1,10 @@
 require 'airport'
 
 describe Airport do
-  let(:airport)   { Airport.new }
-  let(:mockplane) { double :plane }
+  let(:airport)         { Airport.new }
+  let(:mockplane)       { double :plane }
+  let(:mockgoodweather) { double :goodweather, stormy?: false }
+  let(:mockbadweather)  { double :badweather, stormy?: true }
 
   describe "#initialize" do
     it "sets capacity at default value when no argument is provided" do
@@ -22,7 +24,7 @@ describe Airport do
 
     describe "when weather is not stormy" do
       it "puts plane in the airport" do
-        allow(airport).to receive(:stormy?) { false }
+        #allow(airport).to receive(:stormy?) { false }
         airport.put_in_airport(mockplane)
         expect(airport.planes).to eq [mockplane]
       end

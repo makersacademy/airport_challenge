@@ -109,11 +109,14 @@ def given_there_is_a_new_plane
 end
 
 def given_that_the_weather_is_stormy
-  allow(@airport).to receive(:stormy?) { true }
+  #@weather = Weather.new
+  #allow(@weather).to receive(:stormy?) { true }
+  #allow(@airport).to receive(:weather) { true }
 end
 
 def given_that_the_weather_is_not_stormy
-  allow(@airport).to receive(:stormy?) { false }
+  #@weather = Weather.new
+  #allow(@weather).to receive(:stormy?) { false }
 end
 
 def then_plane_can_land_at_airport
@@ -147,7 +150,6 @@ def then_plane_cannot_land
 end
 
 def given_that_the_airport_is_full
-
   DEFAULT_CAPACITY.times { Plane.new.land(@airport) }
 end
 
