@@ -1,6 +1,8 @@
 require 'airport'
 # Specs for testing the Airport class object
 describe Airport do
+  let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
+
 
 # Specs to test the class object attributes
   describe "Initialize - Airport instance attributes" do
@@ -12,16 +14,15 @@ describe Airport do
     end
     it "#initialize - with 1 argument for capacity" do
       airport = Airport.new(20)
-      20.times { airport.land_plane(Plane.new) }
-      expect { airport.land_plane(Plane.new) }.to raise_error "Hangar Full!!!"
+      20.times { airport.land_plane(mockPlane) }
+      expect { airport.land_plane(mockPlane) }.to raise_error "Hangar Full!!!"
     end
     it "#initialize - with default capacity" do
-      plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
-      expect { subject.land_plane(plane) }.to raise_error 'Hangar Full!!!'
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
+      expect { subject.land_plane(mockPlane) }.to raise_error 'Hangar Full!!!'
     end
-
   end
+
 
 
 # Specs to test the land_plane method
@@ -30,16 +31,15 @@ describe Airport do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
     it ".land_plane - returns a Plane object in an array" do
-      plane = Plane.new # here we need to think about mocking
-      expect(subject.land_plane(Plane)).to eq([Plane])
+      expect(subject.land_plane(mockPlane)).to eq([mockPlane])
     end
     it ".land_plane - gives error if the hangar is full" do
-      plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
-      expect { subject.land_plane(plane) } .to raise_error("Hangar Full!!!")
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
+      expect { subject.land_plane(mockPlane) } .to raise_error("Hangar Full!!!")
     end
-
   end
+
+
 
 # Specs to test the take_off method
   describe "#take_off" do
@@ -47,19 +47,11 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
     it ".take_off - method returns a plane object" do
-      plane = Plane.new
-      subject.land_plane(plane)
-      expect(subject.take_off).to eq(plane)
+      subject.land_plane(mockPlane)
+      expect(subject.take_off).to eq(mockPlane)
     end
     it ".take_off - method returns error if there are no planes to take off" do
       expect { subject.take_off }.to raise_error("No planes on the ground!")
     end
   end
-
-
-
-
-
-
-
 end
