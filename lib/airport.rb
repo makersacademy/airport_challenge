@@ -3,22 +3,22 @@ DEFAULT_CAPACITY = 10
 
 class Airport
 
-  attr_reader :hanger, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @hanger = []
+    @planes = []
     @capacity = capacity
   end
 
-  def land(plane)
+  def put_in_airport(plane)
     fail "Stormy weather - plane can't land!" if stormy?
-    fail "Hanger is full - plane can't land!" if hanger_full?
-    @hanger << plane
+    fail "Airport is full - plane can't land!" if airport_full?
+    @planes << plane
   end
 
-  def take_off(plane)
+  def take_from_airport(plane)
     fail "Stormy weather - plane can't take off!" if stormy?
-    @hanger.delete(plane)
+    @planes.delete(plane)
   end
 
   private
@@ -31,8 +31,8 @@ class Airport
     random < 5
   end
 
-  def hanger_full?
-    @hanger.size >= @capacity
+  def airport_full?
+    @planes.size >= @capacity
   end
 
 end
