@@ -40,10 +40,6 @@ class Airport
     "Plane is no longer in the airport."
   end
 
-  def full?
-    @planes.length >= DEFAULT_CAPACITY
-  end
-
   def random_number
     rand(11)
   end
@@ -57,6 +53,12 @@ class Airport
       "stormy"
     end
 
+  end
+
+  private
+
+  def full?
+    @planes.length >= DEFAULT_CAPACITY
   end
 
 end
