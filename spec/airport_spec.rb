@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -8,6 +9,12 @@ describe Airport do
 
   it "should have somewhere to store instances of planes" do 
     expect(subject.planes).to eq([])
+  end
+
+  it "should land a plane" do 
+    heathrow = Airport.new
+    heathrow.land("BA123")
+    expect(heathrow.planes[0].flight_number).to eq("BA123")
   end
 
 end
