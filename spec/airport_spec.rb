@@ -10,4 +10,5 @@ describe Airport do
     plane = Plane.new
     expect(subject.land(plane)).to eq(plane.landed?)
   end
+
 end

@@ -6,4 +6,4 @@ describe Plane do
     expect(subject).to be_a(Object)
   end
 
-end 
+end

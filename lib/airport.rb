@@ -1,7 +1,7 @@
 require './lib/plane'
 
 class Airport
-  def land(plane)
+  def land(*)
     true
   end
 end

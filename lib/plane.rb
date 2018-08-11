@@ -1,5 +1,5 @@
 class Plane
   def landed?
-    true
+    @Plane
   end
 end
