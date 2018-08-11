@@ -16,6 +16,7 @@ describe Airport do
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error 'no space in airport'
     end
+
   end
 
   describe '#takeoff' do
@@ -28,6 +29,9 @@ describe Airport do
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.takeoff(plane) }.to raise_error 'plane cannot takeoff in a storm'
+    end
+    it 'cannot takeoff a flying plane' do
+      expect { subject.takeoff(plane) }.to raise_error 'plane is already flying'
     end
   end
 

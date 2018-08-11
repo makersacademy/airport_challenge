@@ -18,6 +18,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise 'plane is already flying' if plane.flying
     raise 'plane cannot takeoff in a storm' if stormy?
     plane.flying = true
     @planes.delete(plane)
