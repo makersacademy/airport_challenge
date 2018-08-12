@@ -2,6 +2,14 @@
 
 I was given a list of user stories mainly from the point of view of an air traffic controller except for one requirement as a system designer. The project was to create an airport that could land and take off planes with certain conditions attached to those actions.
 
+## Main features derived from the user stories
+- A plane can land at an airport
+- A plane can take off from an airport
+- A plane will be stopped from landing when it is stormy
+- A plane will be stopped from taking off when it is stormy
+- A plane will be stopped from landing when the airport is full
+- Airport default capacity can be overridden when creating a new airport
+
 ## My approach to the project
 I wrote down the main objects and messages from the user requirements and shaped a decision map then followed the TDD procedures when writing the code.
 
