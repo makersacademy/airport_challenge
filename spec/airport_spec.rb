@@ -16,18 +16,22 @@ describe Airport do
   end
 
   it 'plane takes off and confirms no longer in airport' do
+    allow(subject).to receive(:forecast) {false}
     plane = Plane.new
     subject.land_plane(plane)
-    expect(subject.takeoff).to eq plane
+    expect(subject.takeoff(plane)).to eq plane
   end
 
   it 'raises error if the weather is stormy' do
+    allow(subject).to receive(:forecast).and_return('stormy')
     plane = Plane.new
     expect {subject.land_plane(plane)}.to raise_error 'weather is stormy'
   end
 
   it 'raises error for takeoff if the weather is stormy' do
-    expect {subject.takeoff}.to raise_error 'weather is stormy'
+    allow(subject).to receive(:forecast).and_return('stormy')
+    plane = Plane.new
+    expect {subject.takeoff(plane)}.to raise_error 'weather is stormy'
   end
 
   it 'plane cannot land if airport is full' do
@@ -41,9 +45,8 @@ describe Airport do
    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
  end
 
-  # it 'has a variable capacity' do
-  #   airport = Airport.new(50)
-  #   50.times { airport.land_plane(Plane.new) }
-  #   expect{ airport.land_plane(plane) }.to raise_error 'airport is full'
-  # end
+  it 'has a variable capacity' do
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq 50
+  end
 end
