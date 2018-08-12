@@ -21,12 +21,13 @@ describe Airport do
     expect { subject.take_off }.to raise_error "Weather is stormy - no taking off, please"
   end
 
+  it "prevents plane from landing if stormy" do
+    subject.report_stormy
+    expect { subject.land }.to raise_error "Weather is stormy - no landing, please"
+  end
 
 
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy 
 
 # As an air traffic controller 
 # To ensure safety 
