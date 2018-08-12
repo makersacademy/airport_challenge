@@ -8,4 +8,4 @@ airport.land(plane)
 airport.takeoff(plane)
 airport.planes.empty?
 
-#5.times {airport.land(plane)}
+5.times { airport.land(plane) }

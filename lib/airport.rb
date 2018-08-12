@@ -17,11 +17,11 @@ class Airport
 
   def takeoff(plane, weather = Weather.new)
     fail "Stormy weather, can't take off" if weather.stormy?
-    @planes.pop
+    @planes.delete_at(@planes.index(plane))
   end
 
   private
   def full?
-    @planes.count == @capacity ? true : false
+    @planes.count == @capacity
   end
 end

@@ -3,21 +3,21 @@ require "airport"
 describe Airport do
   let(:plane) { double :plane }
   let(:stormy_weather) { double :weather, :stormy? => true }
-  let(:gw) { double :weather, :stormy? => false}
+  let(:gw) { double :weather, :stormy? => false }
   describe "#land" do
     it "lands a plane" do
       expect(subject.land(plane, gw)).to eq plane
     end
     it "won't allow a plane to land if the airport is full" do
-      5.times {subject.land(plane, gw)}
-      expect{subject.land(plane, gw)}.to raise_error "This airport is full"
+      5.times { subject.land(plane, gw) }
+      expect { subject.land(plane, gw) }.to raise_error "This airport is full"
     end
     it "won't allow a plane to land if the weather is stormy" do
-      expect{subject.land(plane, stormy_weather)}.to raise_error "Stormy weather, can't land"
+      expect { subject.land(plane, stormy_weather) }.to raise_error "Stormy weather, can't land"
     end
     it "allows planes to be landed up to the airport capacity" do
       sub2 = Airport.new(10)
-      9.times {sub2.land(plane, gw)}
+      9.times { sub2.land(plane, gw) }
       expect(sub2.land(plane, gw)).to eq plane
     end
   end
@@ -28,7 +28,7 @@ describe Airport do
     end
     it "won't take off in stormy weather" do
       subject.land(plane, gw)
-      expect{subject.takeoff(plane, stormy_weather)}.to raise_error "Stormy weather, can't take off"
+      expect { subject.takeoff(plane, stormy_weather) }.to raise_error "Stormy weather, can't take off"
     end
   end
   describe "#planes" do
