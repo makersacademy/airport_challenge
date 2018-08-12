@@ -9,9 +9,9 @@ describe Plane do
   end
 
   describe "#land" do
-    it ".land - Plane class responds to land method" do
-      expect(subject).to respond_to :land
-    end
+#    it ".land - Plane class responds to land method" do
+#      expect(subject).to respond_to :land
+#    end
     it ".land - Plane class responds to land method with 1 argument" do
       expect(subject).to respond_to(:land).with(1).argument
     end

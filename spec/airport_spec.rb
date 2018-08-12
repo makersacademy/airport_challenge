@@ -25,6 +25,11 @@ describe Airport do
 #      Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
 #      expect { subject.land_plane(mockPlane) }.to raise_error 'Hangar Full!!!'
 #    end
+
+
+
+
+
   end
 
 
@@ -36,11 +41,20 @@ describe Airport do
 #      expect(subject).to respond_to(:land_plane).with(1).argument
 #    end
     it ".land_plane - returns a Plane object in an array" do
+      allow(subject).to receive(:stormy?) {false}
       expect(subject.land_plane(mockPlane)).to eq([mockPlane])
     end
     it ".land_plane - gives error if the hangar is full" do
+      allow(subject).to receive(:stormy?) {false}
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
       expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
+    end
+
+
+
+    it ".land_plane - gives error if the weather is stormy" do
+      allow(subject).to receive(:stormy?) {true}
+      expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to bad weather!")
     end
 
 #    it ".land_plane - gives error if the weather is stormy" do
@@ -57,6 +71,7 @@ describe Airport do
 #      expect(subject).to respond_to(:take_off)
 #    end
     it ".take_off - method returns a plane object" do
+      allow(subject).to receive(:stormy?) {false}
       subject.land_plane(mockPlane)
       expect(subject.take_off(mockPlane)).to eq(mockPlane)
     end
@@ -66,6 +81,12 @@ describe Airport do
     it ".take_off - method returns error if there are no planes to take off" do
       expect { subject.take_off(mockPlane) }.to raise_error("No planes on the ground!")
     end
-  end
 
+    it ".take_off - gives an error if weather is stormy" do
+      allow(subject).to receive(:stormy?) {false}
+      subject.land_plane(mockPlane)
+      allow(subject).to receive(:stormy?) {true}
+      expect { subject.take_off(mockPlane) }.to raise_error("Cannot take off due to bad weather!")
+    end
+  end
 end
