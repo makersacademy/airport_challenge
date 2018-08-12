@@ -19,13 +19,14 @@ What does it do?
 
 In response to user stories (included [below](#user-stories) for reference) this program simulates planes landing and taking off from airports. The program accounts for simple edge cases. It also incorpates a random weather generator that prevents planes landing/taking off during stormy weather. 
 
-The code comes with unit and feature [tests](#running-tests] - all currently passing.
+The code comes with unit and feature [tests](#running-tests) - all currently passing.
 
 
 Usage
 -----
 
 Code snippets below demonstrate the usage of the program:
+
 `2.5.0 :001 > require \'./lib/airport.rb\'
  => true
 2.5.0 :002 > airport = Airport.new
