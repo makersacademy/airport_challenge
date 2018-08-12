@@ -15,8 +15,7 @@ class Plane
   end
 
   def take_off(airport)
-    check_if_already_flying # Method to handle edge case
-    check_if_in_airport_requested(airport)
+    check_take_off_edge_cases(airport) # Method to handle edge cases
     airport.take_from_airport(self)
     change_state(nil) # Nil because no longer in airport
   end
@@ -24,6 +23,11 @@ class Plane
   def check_already_landed
     message = "Plane that has already landed cannot land again"
     raise message unless @flying
+  end
+
+  def check_take_off_edge_cases(airport)
+    check_if_already_flying
+    check_if_in_airport_requested(airport)
   end
 
   def check_if_already_flying

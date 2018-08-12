@@ -17,21 +17,20 @@ describe Airport do
 
   describe "#put_in_airport" do
     describe "when weather is not stormy" do
-
       before(:each) do
         allow(airport.weather).to receive(:stormy?).and_return(false)
       end
 
       it "puts plane in the airport" do
         airport.put_in_airport(mockplane)
-        expect(airport.planes).to include(mockplane)
+        expect(airport.planes).to eq [mockplane]
       end
 
       it "does not put plane in airport if airport is full" do
         DEFAULT_CAPACITY.times { airport.put_in_airport(mockplane) }
         expect { airport.put_in_airport(mockplane) }.to raise_error("Airport is full - plane can't land!")
       end
-     end
+    end
 
     describe "when weather is stormy" do
       it "does not put plane in airport" do
@@ -39,13 +38,13 @@ describe Airport do
         expect { airport.put_in_airport(mockplane) }.to raise_error("Stormy weather - plane can't land!")
       end
     end
-   end
+  end
 
   describe "#take_off" do
     describe "when weather is not stormy" do
 
-      before (:each) do
-          allow(airport.weather).to receive(:stormy?).and_return(false)
+      before(:each) do
+        allow(airport.weather).to receive(:stormy?).and_return(false)
       end
 
       it "plane does take off" do
@@ -63,10 +62,10 @@ describe Airport do
         allow(airport.weather).to receive(:stormy?).and_return(true)
         expect { airport.take_from_airport(mockplane) }.to raise_error("Stormy weather - plane can't take off!")
       end
-      
+
       it "plane not taken from airport" do
         # Not super happy with this test
-        # I have to generate an error and then check my planes array
+        # I want to generate an error and then check my planes array
         # So I end up having two 'expects' in one 'it' block
         allow(airport.weather).to receive(:stormy?).and_return(false)
         airport.put_in_airport(mockplane)
