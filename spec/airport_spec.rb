@@ -1,10 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:airport)         { Airport.new }
-  let(:mockplane)       { double :plane }
-  let(:weather)         { double :goodweather, stormy?: false }
-  let(:mockbadweather)  { double :badweather, stormy?: true }
+  let(:airport)     { Airport.new }
+  let(:mockplane)   { double :plane }
 
   describe "#initialize" do
     it "sets capacity at default value when no argument is provided" do
@@ -18,41 +16,43 @@ describe Airport do
   end
 
   describe "#put_in_airport" do
-    it "accepts plane object" do
-      expect(airport).to respond_to(:put_in_airport).with(1).argument
-    end
-
     describe "when weather is not stormy" do
+
+      before(:each) do
+        allow(airport.weather).to receive(:stormy?).and_return(false)
+      end
+
       it "puts plane in the airport" do
-        allow(weather).to receive(:stormy?).and_return(false)
         airport.put_in_airport(mockplane)
-        airport(airport.planes).to eq [mockplane]
+        expect(airport.planes).to include(mockplane)
       end
 
       it "does not put plane in airport if airport is full" do
-        allow(weather).to receive(:stormy?).and_return(false)
         DEFAULT_CAPACITY.times { airport.put_in_airport(mockplane) }
         expect { airport.put_in_airport(mockplane) }.to raise_error("Airport is full - plane can't land!")
       end
-    end
+     end
 
     describe "when weather is stormy" do
       it "does not put plane in airport" do
-        allow(weather).to receive(:stormy?).and_return(true)
+        allow(airport.weather).to receive(:stormy?).and_return(true)
         expect { airport.put_in_airport(mockplane) }.to raise_error("Stormy weather - plane can't land!")
       end
     end
-  end
+   end
 
   describe "#take_off" do
     describe "when weather is not stormy" do
+
+      before (:each) do
+          allow(airport.weather).to receive(:stormy?).and_return(false)
+      end
+
       it "plane does take off" do
-        allow(weather).to receive(:stormy?).and_return(false)
         expect { airport.take_from_airport(mockplane) }.not_to raise_error
       end
 
       it "plane is taken from airport" do
-        allow(weather).to receive(:stormy?).and_return(false)
         airport.take_from_airport(mockplane)
         expect(airport.planes).not_to include(mockplane)
       end
@@ -60,13 +60,19 @@ describe Airport do
 
     describe "when weather is stormy" do
       it "plane does not take off" do
-        allow(weather).to receive(:stormy?).and_return(true)
+        allow(airport.weather).to receive(:stormy?).and_return(true)
         expect { airport.take_from_airport(mockplane) }.to raise_error("Stormy weather - plane can't take off!")
       end
-
+      
       it "plane not taken from airport" do
-        allow(weather).to receive(:stormy?).and_return(true)
-        # expect(airport.take_off(mockplane).planes).to contain(mockplane)
+        # Not super happy with this test
+        # I have to generate an error and then check my planes array
+        # So I end up having two 'expects' in one 'it' block
+        allow(airport.weather).to receive(:stormy?).and_return(false)
+        airport.put_in_airport(mockplane)
+        allow(airport.weather).to receive(:stormy?).and_return(true)
+        expect { airport.take_from_airport(mockplane) }.to raise_error("Stormy weather - plane can't take off!")
+        expect(airport.planes).to include(mockplane)
       end
     end
   end

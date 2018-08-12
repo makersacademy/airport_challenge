@@ -4,12 +4,15 @@ DEFAULT_CAPACITY = 10
 
 class Airport
 
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
+  # Maybe making weather publicly accessible isn't the best idea
+  # However it doesn't have any properties that can be changed
+  # It only returns whether it is stormy or not
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = weather
+    @weather = Weather.new # Instantiate weather when instantiating airport
   end
 
   def put_in_airport(plane)
@@ -24,9 +27,7 @@ class Airport
   end
 
   private
-
-  attr_reader :weather
-
+  # These are methods/objects I only want to access from within the class
   def airport_full?
     @planes.size >= @capacity
   end

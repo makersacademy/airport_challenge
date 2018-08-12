@@ -10,7 +10,7 @@ describe Plane do
       expect { plane.land(mockairport) }.not_to raise_error
     end
 
-    it "raises error if plane attempts to land what already in airport" do
+    it "raises error if plane attempts to land when already in airport" do
       plane.land(mockairport)
       message = "Plane that has already landed cannot land again"
       expect { plane.land(mockairport) }.to raise_error(message)
@@ -21,6 +21,11 @@ describe Plane do
     it "request to take plane from airport" do
       plane.land(mockairport)
       expect { plane.take_off(mockairport) }.not_to raise_error
+    end
+
+    it "raises error if take off is requested when already flying" do
+      message = "Flying plane cannot take off"
+      expect { plane.take_off(mockairport) }.to raise_error(message)
     end
 
     it "raises error if take off is requested from another airport" do
