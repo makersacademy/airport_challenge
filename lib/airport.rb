@@ -13,4 +13,9 @@ class Airport
     planes[0]
   end
 
+  def take_off(plane)
+    @planes.pop
+    planes[-1]
+  end
+
 end
