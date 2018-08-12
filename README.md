@@ -28,12 +28,19 @@ Usage
 Code snippets below demonstrate the usage of the program:
 
 `2.5.0 :001 > require \'./lib/airport.rb\'
+
  => true
+ 
 2.5.0 :002 > airport = Airport.new
- => #<Airport:0x00007ff59f929b08 @planes=[], @capacity=10, @weather=#<Weather:0x00007ff59f929ab8>>
-2.5.0 :003 > plane = Plane.new
+
+ => #<Airport:0x00007ff59f929b08 @planes=[], @capacity=10, @weather=#<Weather:0x00007ff59f929ab8>> 
+ 
+ 2.5.0 :003 > plane = Plane.new
+ 
  => #<Plane:0x00007ff59f926368 @flying=true>
+ 
 2.5.0 :004 > airport.land(plane)
+
  => [#<Plane:0x00007ff59f926368 @flying=false, @current_airport=#<Airport:0x00007ff59f929b08 @planes=[...], @capacity=10, @weather=#<Weather:0x00007ff59f929ab8>>>]`
  
  Other useful commands:
