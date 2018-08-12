@@ -5,7 +5,7 @@ class Aeroplane
     @status = status
     @location = nil
   end
-
+  
   def grounded?
     @status == "grounded"
   end

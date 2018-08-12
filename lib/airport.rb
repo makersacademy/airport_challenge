@@ -22,6 +22,7 @@ class Airport
 end
 
 class AirTrafficController < Airport
+  # Air traffic Controller inherits an airport checks its variables before landing and releasing planes
   attr_reader :airport
 
   def initialize(airport = Airport.new)
@@ -73,11 +74,5 @@ class AirTrafficController < Airport
     plane.status = "airborne"
     hangar.delete(plane)
   end
-
-  # inherits Airport
-  # checks if airport is full
-  # checks airport weather
-  # checks airport hangar for plane
-  # checks flight status
 
 end
