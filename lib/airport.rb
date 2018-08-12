@@ -13,7 +13,7 @@ class Airport
     @capacity = capacity
   end
 
-  def landing(plane)
+  def land(plane)
     fail 'not an identifiable plane' if plane.class != Plane
     fail 'plane is already in the airport' if at_airport?(plane)
     fail 'landing denied, airport full' if @planes_on_ground.count >= @capacity

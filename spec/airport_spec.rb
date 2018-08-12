@@ -9,7 +9,7 @@ describe Airport do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { false }
-    new_airport.landing(plane)
+    new_airport.land(plane)
     expect(new_airport.planes_on_ground).to eq [plane]
   end
 
@@ -18,15 +18,15 @@ describe Airport do
     end
     new_airport = Airport.new
     plane = StarFighter.new
-    expect { new_airport.landing(plane) }.to raise_error 'not an identifiable plane'
+    expect { new_airport.land(plane) }.to raise_error 'not an identifiable plane'
   end
 
   it 'does not let a plane already in the airport land again' do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { false }
-    new_airport.landing(plane)
-    expect { new_airport.landing(plane) }.to raise_error 'plane is already in the airport'
+    new_airport.land(plane)
+    expect { new_airport.land(plane) }.to raise_error 'plane is already in the airport'
   end
 
   it 'does not let a plane take off if it is not in the airport' do
@@ -39,7 +39,7 @@ describe Airport do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { false }
-    new_airport.landing(plane)
+    new_airport.land(plane)
     expect(new_airport.take_off(plane)).to eq plane
   end
 
@@ -47,7 +47,7 @@ describe Airport do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { false }
-    new_airport.landing(plane)
+    new_airport.land(plane)
     allow(new_airport).to receive(:stormy?) { true }
     expect { new_airport.take_off(plane) }.to raise_error 'weather is stormy, plane can not take off'
   end
@@ -56,14 +56,14 @@ describe Airport do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { false }
-    expect(new_airport.landing(plane)).to eq [plane]
+    expect(new_airport.land(plane)).to eq [plane]
   end
 
   it 'raises an error if a named plane tries to land and #stormy.weather == true' do
     new_airport = Airport.new
     plane = Plane.new
     allow(new_airport).to receive(:stormy?) { true }
-    expect { new_airport.landing(plane) }.to raise_error 'landing denied, weather is stormy'
+    expect { new_airport.land(plane) }.to raise_error 'landing denied, weather is stormy'
   end
 
   it 'creates a default capacity of 8 for the number of planes it can hold' do
@@ -75,7 +75,7 @@ describe Airport do
     new_airport = Airport.new
     plane = Plane.new
     new_airport.instance_variable_set(:@planes_on_ground, [*1..8])
-    expect { new_airport.landing(plane) }.to raise_error 'landing denied, airport full'
+    expect { new_airport.land(plane) }.to raise_error 'landing denied, airport full'
   end
 
   it 'can set the capacity to 30 when creating new instance of Airport class' do
