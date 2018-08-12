@@ -1,9 +1,9 @@
-require 'airport.rb'
+#require 'airport.rb'
 
 class AirTrafficController < Airport
   # Air traffic Controller inherits an airport checks its variables 
   # before landing and releasing planes
-  attr_reader :airport
+  attr_accessor :airport
 
   def initialize(airport = Airport.new)
     @airport = airport
@@ -41,7 +41,7 @@ class AirTrafficController < Airport
   def hangar
     airport.hangar
   end
-  
+
   private
   def ground_plane(plane)
     raise "Plane already landed at #{plane.location}" if plane.grounded?
@@ -53,6 +53,7 @@ class AirTrafficController < Airport
   def clear_plane(plane)
     raise "Plane already airborne" if plane.airborne?
     plane.status = "airborne"
+    plane.location = nil
     hangar.delete(plane)
   end
 
