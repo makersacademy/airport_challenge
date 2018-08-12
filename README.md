@@ -16,16 +16,35 @@ Airport Challenge
 What does it do?
 --------------
 
-In response to user stories (included [below](#user-stories) for reference) this program simulates planes landing and taking off from airports. The code covers simple edge cases and also incorpates a random weather generator to prevent planes landing/taking off. 
+In response to user stories (included [below](#user-stories) for reference) this program simulates planes landing and taking off from airports. The code covers simple edge cases and also incorpates a random weather generator that prevent planes landing/taking off during stormy weather. 
 
-The code comes with unit and feature tests - all currently passing.
+The code comes with unit and feature [tests](#running-tests] - all currently passing.
 
 
 Development Process
 ------------------
 
+**OOP & (TDD using RSpec)**
+
+The user stories were broken down into objects and methods:
+| Objects       | Messages         |
+| ------------- | -------------    |
+| airport       | land plane       |
+|               | take off plane   |
+|               | check edge cases |
+|               |                  |
+| plane         | landing          |
+|               | taking off       |
+|               | check edge cases |
+|               |                  |
+| weather       | stormy?          |
+
+The objects and messages defined my Classes and Methods, and how I intended my User to interact with the program.
+
 The program was developed test-first:
-1. Initially `irb` was used to create feature tests: how I wanted my program to work in response to a user. These commands are detailed below.
+- Initially `irb` was used to create feature tests (i.e.how I wanted my program to work in response to user input). These commands are detailed in section [Usage](#usage). These feature tests have now been incorporated into RSpec so they can be run automatically. Take a look at the features tests [here](specs/feature_tests.rb).
+- Unit tests were also created in RSpec. These shape how I intend specific blocks of code to work in isolation. 
+- 
 
 Usage
 -----
@@ -63,7 +82,3 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
