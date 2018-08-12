@@ -1,4 +1,4 @@
-#require 'airport.rb'
+require 'airport.rb'
 
 class AirTrafficController < Airport
   # Air traffic Controller inherits an airport checks its variables 
