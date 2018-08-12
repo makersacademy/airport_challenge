@@ -1,3 +1,5 @@
+require 'airport.rb'
+
 class AirTrafficController
 
 # inherited by Airport

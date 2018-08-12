@@ -1,7 +1,5 @@
-require 'air_traffic_controller.rb'
-
 class Airport
-  attr_reader :name
+  attr_reader :name, :hangar
   attr_accessor :weather, :plane, :capacity
 
   DEFAULT_CAPACITY = 200
@@ -10,6 +8,7 @@ class Airport
   # @name = name
     @capacity = capacity
     @weather = rand(6) > 4 ? "stormy" : "clear"
+    @hangar = Array.new(capacity)
   end
 
   def land(plane)
@@ -25,4 +24,14 @@ class Airport
     @plane = nil
   end
 
+end
+
+class AirTrafficController < Airport
+
+  # inherited by Airport
+  # checks if airport is full
+  # checks airport weather
+  # checks airport hangar
+  # checks flight status
+  
 end

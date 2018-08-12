@@ -6,18 +6,19 @@ describe Airport do
   before(:each) do
     @airport = Airport.new
   end
-
+  
   it "has either stormy or clear weather" do
     expect(subject.weather).to eq("clear").or eq "stormy"
   end
-
+  
   it "has a default capacity" do
-    expect(@airport.capacity). to eq(Airport::DEFAULT_CAPACITY)
+    expect(@airport.hangar.length). to eq(Airport::DEFAULT_CAPACITY)
   end
-
+  
   it "has a variable .capacity" do
+    @airport = Airport.new(500)
     @airport.capacity = 500
-    expect(@airport.capacity).to eq 500
+    expect(@airport.hangar.length).to eq 500
   end
 
   context "when .weather is clear" do
@@ -63,5 +64,15 @@ describe Airport do
       expect { @airport.take_off(mockAeroplane) }.to raise_error "Stormy weather preventing take off"
     end
 
+  end
+
+  describe AirTrafficController do
+    it "checks Airport weather" do
+      expect(subject.weather).to eq("clear").or eq "stormy"
+    end
+    
+    it "checks if airport is full" do
+
+    end
   end
 end
