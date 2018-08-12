@@ -79,6 +79,12 @@ describe AirTrafficController do
         subject.land(plane)
         expect(plane.status).to eq "grounded"
       end
+
+      it "prevents a plane from landing if already present" do
+        plane = Aeroplane.new
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error "Plane already landed at airport"
+      end
     end
 
     describe "#take_off" do

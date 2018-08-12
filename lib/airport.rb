@@ -32,6 +32,7 @@ class AirTrafficController < Airport
   def land(plane)
     raise "Stormy weather preventing landing" if stormy?
     raise "Airport Full" if hangar_full?
+    raise "Plane already landed at airport" if hangar_include?(plane)
     ground_plane(plane)
     hangar << plane
   end
