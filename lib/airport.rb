@@ -1,3 +1,4 @@
+require_relative "weather"
 class Airport
   DEFAULT_CAPACITY = 5
   attr_reader :planes, :capacity
@@ -7,24 +8,20 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane, stormy = false)
+  def land(plane, weather = Weather.new)
     fail "This airport is full" if full?
-    fail "Stormy weather, can't land" if stormy
+    fail "Stormy weather, can't land" if weather.stormy?
     @planes << plane
     @planes.last
   end
 
-  def takeoff(plane, stormy = false)
-    fail "Stormy weather, can't take off" if stormy
+  def takeoff(plane, weather = Weather.new)
+    fail "Stormy weather, can't take off" if weather.stormy?
     @planes.pop
   end
 
   private
   def full?
-    if @planes.count == @capacity
-      true
-    else
-      false
-    end
+    @planes.count == @capacity ? true : false
   end
 end
