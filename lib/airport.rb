@@ -19,19 +19,23 @@ class Airport
   
   def take_off(plane)
     raise "Stormy weather preventing take off" if weather == "stormy"
-    raise "#{plane} not in airport" if !hangar.include?(plane)
-  # "#{plane} left the airport"
+    raise "#{plane} not in airport" unless hangar.include?(plane)
     hangar.delete(plane)
   end
 
 end
 
 class AirTrafficController < Airport
+  attr_reader :airport
+
+  def initialize(airport = Airport.new)
+    @airport = airport
+  end
 
   # inherited by Airport
   # checks if airport is full
   # checks airport weather
   # checks airport hangar
   # checks flight status
-  
+
 end

@@ -62,16 +62,15 @@ describe Airport do
       @airport.plane = mockAeroplane
       expect { @airport.take_off(mockAeroplane) }.to raise_error "Stormy weather preventing take off"
     end
-
   end
+end
 
-  describe AirTrafficController do
-    it "checks Airport weather" do
-      expect(subject.weather).to eq("clear").or eq "stormy"
-    end
-    
-    it "checks if airport is full" do
-
-    end
+describe AirTrafficController do
+  it "checks Airport weather" do
+    expect(subject.airport.weather).to eq("clear").or eq "stormy"
   end
+  
+# it "checks if airport is full" do
+
+# end
 end
