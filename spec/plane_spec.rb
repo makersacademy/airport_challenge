@@ -17,7 +17,6 @@ describe Plane do
     end
   end
 
-
   describe "#takeoff" do
     it ".takeoff - Plane class responds to takeoff method" do
       expect(subject).to respond_to :takeoff

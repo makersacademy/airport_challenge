@@ -1,13 +1,8 @@
 require 'airport'
-
 # Specs for testing the Airport class object
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
   let(:mockWeather) { double :weather, :weather => "weather" }
-#  let(:mockDie) { double :die, :die => "die" }
-
-
-
 # Specs to test the class object attributes
   describe "Initialize - Airport instance attributes" do
     it "@hangar - will store planes in an array - initialized empty" do
@@ -25,14 +20,7 @@ describe Airport do
 #      Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
 #      expect { subject.land_plane(mockPlane) }.to raise_error 'Hangar Full!!!'
 #    end
-
-
-
-
-
   end
-
-
 
 # Specs to test the land_plane method
   describe "#land_plane" do
@@ -41,19 +29,17 @@ describe Airport do
 #      expect(subject).to respond_to(:land_plane).with(1).argument
 #    end
     it ".land_plane - returns a Plane object in an array" do
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       expect(subject.land_plane(mockPlane)).to eq([mockPlane])
     end
     it ".land_plane - gives error if the hangar is full" do
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
       expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
     end
 
-
-
     it ".land_plane - gives error if the weather is stormy" do
-      allow(subject).to receive(:stormy?) {true}
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to bad weather!")
     end
 
@@ -62,16 +48,13 @@ describe Airport do
 #      expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to stormy weather!!!")
 #    end
   end
-
-
-
 # Specs to test the take_off method
   describe "#take_off" do
 #    it ".take_off - Airport responds to this method" do
 #      expect(subject).to respond_to(:take_off)
 #    end
     it ".take_off - method returns a plane object" do
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       subject.land_plane(mockPlane)
       expect(subject.take_off(mockPlane)).to eq(mockPlane)
     end
@@ -83,9 +66,9 @@ describe Airport do
     end
 
     it ".take_off - gives an error if weather is stormy" do
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       subject.land_plane(mockPlane)
-      allow(subject).to receive(:stormy?) {true}
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(mockPlane) }.to raise_error("Cannot take off due to bad weather!")
     end
   end
