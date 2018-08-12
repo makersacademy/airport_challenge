@@ -37,19 +37,10 @@ describe Airport do
     end 
   end
 
-  describe "#isStormy" do
-    context "stomry" do
-      it "return true" do
-        allow(weather).to receive(:generate) { "Stomry" }
-        expect(airport.isStormy?).to eq true
-      end
+  describe "#stormy?" do
+    it "delegates wether generation to weather object" do
+      expect(weather).to receive(:generate)
+      weather.generate
     end
-
-    context "sunny" do
-      it "returns false" do
-        allow(weather).to receive(:generate) { "Sunny" }
-        expect(airport.isStormy?).to eq false
-      end  
-    end 
   end
 end
