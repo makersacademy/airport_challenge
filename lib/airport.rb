@@ -2,11 +2,15 @@ require './lib/plane'
 
 class Airport
 
+  DEFAULT_CAPACITY = 2
+
   attr_reader :planes
   attr_reader :stormy
+  attr_reader :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -22,6 +26,10 @@ class Airport
   end
 
   def weather
+    @stormy = false
+  end
+
+  def variable_weather
     chance = rand(1..20)
     if chance == 20
       @stormy = true

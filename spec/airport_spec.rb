@@ -27,12 +27,14 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error "Weather is stormy - no landing, please"
   end
 
+  it "prevents plane from landing if airport full" do
+    plane = Plane.new
+    expect { subject.land(plane) }.to raise_error "Airport is full - no landing, please"
+  end
 
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
+  it 'has a max capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 
 # As the system designer
 # So that the software can be used for many different airports
