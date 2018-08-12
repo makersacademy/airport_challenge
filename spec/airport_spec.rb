@@ -1,9 +1,8 @@
 require 'airport'
-# Specs for testing the Airport class object
+
 describe Airport do
-  let(:mockPlane) { double :plane, :plane => "plane" } # Mock plane object created to avoid creating a dependency issue
-  let(:mockWeather) { double :weather, :weather => "weather" }
-# Specs to test the class object attributes
+  let(:mockPlane) { double :plane, :plane => "plane" }
+
   describe "Initialize - Airport instance attributes" do
     it "@hangar - will store planes in an array - initialized empty" do
       expect(subject.hangar).to eq([])
@@ -11,23 +10,9 @@ describe Airport do
     it "@capacity - will record the capacity of the airport" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
-#    it "#initialize - with 1 argument for capacity" do
-#      airport = Airport.new(20)
-#      20.times { airport.land_plane(mockPlane) }
-#      expect { airport.land_plane(mockPlane) }.to raise_error "Hangar Full!!!"
-#    end
-#    it "#initialize - with default capacity" do
-#      Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
-#      expect { subject.land_plane(mockPlane) }.to raise_error 'Hangar Full!!!'
-#    end
   end
 
-# Specs to test the land_plane method
   describe "#land_plane" do
-# Respond to tests can be collapsed into one liners and also can probably become redundant
-#    it ".land_plane - Airport responds to method with 1 argument" do
-#      expect(subject).to respond_to(:land_plane).with(1).argument
-#    end
     it ".land_plane - returns a Plane object in an array" do
       allow(subject).to receive(:stormy?) { false }
       expect(subject.land_plane(mockPlane)).to eq([mockPlane])
@@ -37,34 +22,21 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
       expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
     end
-
     it ".land_plane - gives error if the weather is stormy" do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to bad weather!")
     end
-
-#    it ".land_plane - gives error if the weather is stormy" do
-#      allow(mockDie).to receive(:roll) { 6 }
-#      expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to stormy weather!!!")
-#    end
   end
-# Specs to test the take_off method
+
   describe "#take_off" do
-#    it ".take_off - Airport responds to this method" do
-#      expect(subject).to respond_to(:take_off)
-#    end
     it ".take_off - method returns a plane object" do
       allow(subject).to receive(:stormy?) { false }
       subject.land_plane(mockPlane)
       expect(subject.take_off(mockPlane)).to eq(mockPlane)
     end
-#    it ".take_off - method responds to method with 1 argument" do
-#      expect(subject).to respond_to(:take_off).with(1).argument
-#    end
     it ".take_off - method returns error if there are no planes to take off" do
       expect { subject.take_off(mockPlane) }.to raise_error("No planes on the ground!")
     end
-
     it ".take_off - gives an error if weather is stormy" do
       allow(subject).to receive(:stormy?) { false }
       subject.land_plane(mockPlane)
@@ -74,10 +46,8 @@ describe Airport do
   end
 
   describe "#Private method" do
-
     it ".stormy? - returns true or false" do
       expect(subject.send :stormy?).to be(true).or be(false)
     end
   end
-
 end
