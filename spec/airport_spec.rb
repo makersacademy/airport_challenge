@@ -34,10 +34,23 @@ describe Airport do
     expect {subject.takeoff(plane)}.to raise_error 'weather is stormy'
   end
 
+  it 'raises error if plane is already at the airport' do
+    allow(subject).to receive(:forecast) {false}
+    plane = Plane.new
+    subject.land_plane(plane)
+    expect {subject.land_plane(plane)}.to raise_error 'plane already at airport'
+  end
+
+  it 'raises error if takeoff plane is not at airport' do
+    allow(subject).to receive(:forecast) {false}
+    plane = Plane.new
+    expect {subject.takeoff(plane)}.to raise_error 'plane not at airport'
+  end
+
   it 'plane cannot land if airport is full' do
     allow(subject).to receive(:forecast) {false}
     plane = Plane.new
-    20.times {subject.land_plane(plane)}
+    20.times {|x| subject.land_plane(x += 1)}
     expect {subject.land_plane(plane)}.to raise_error 'airport is full'
   end
 
