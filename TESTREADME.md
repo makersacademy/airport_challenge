@@ -59,25 +59,25 @@ I employed the use of stubbing and mocking in the cases of getting a consistent 
     ruby
 
 
-####All code based on the user story
+#### All code based on the user story
 
     ./lib/airport.rb
     ./lib/plane.rb
     ./lib/weather.rb
 
 
-####All tests can be run through the root directory using rspec
+#### All tests can be run through the root directory using rspec
 
     ./rspec
 
 
-####rspec test files
+#### rspec test files
 
     ./spec/airport_spec.rb
     ./spec/plane_spec.rb    # is here just to check if the plane class exists
     ./spec/weather_spec.rb
 
 
-##Conclusion
+## Conclusion
 
 I really enjoyed writing and testing this project. It has a lot of scope to be added to and I found myself wanted to create a few more user stories to add to the ones already stated. I had a bit of trouble getting the stubbing of methods to work but after a bit of research and experimenting I managed to get all my tests to work.
