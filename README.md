@@ -3,7 +3,7 @@
 I was given a list of user stories mainly from the point of view of an air traffic controller except for one requirement as a system designer. The project was to create an airport that could land and take off planes with certain conditions attached to those procedures.
 
 ## My approach to the project
-I wrote down the main objects and messages from the user requirements and shaped a decision map and followed the TDD procedures when writing the code.
+I wrote down the main objects and messages from the user requirements and shaped a decision map then followed the TDD procedures when writing the code.
 
 eg. first user story
 ```
