@@ -3,23 +3,23 @@ class Plane
 attr_reader :flying, :grounded
 
     def initialize(flying = false)
-        @flying = flying
+       @flying = flying
     end
 
     def flying?
-        @flying
+      @flying
     end
 
     def grounded?
-        !@flying
+      !@flying
     end
 
     def fly 
-        @flying = true 
+      @flying = true 
     end
 
     def land
-        @flying = false
+      @flying = false
     end
 
 end

@@ -20,30 +20,29 @@ class Airport
     end
 
     def take_off(plane)
-        check_weather  # clear_to_launch?(plane)
-        fail 'WARNING - Weather is stormy' if @safe == true
+        clear_to_launch?(plane)
         plane.fly 
         @hangar.delete(plane)
         "#{plane} has left the airport"
     end
 
-    # def clear_to_launch?(plane)
-    #     fail 'ERROR - Plane not in hangar' unless @hangar.include?(plane)
-    #     fail 'WARNING - Weather is stormy' if conditions_safe? == false
-    # end 
+    def clear_to_launch?(plane)
+        fail 'ERROR - Plane not in hangar' unless @hangar.include?(plane)
+        check_weather
+        fail 'ERROR - Weather is stormy' if @safe == false
+    end 
 
     def land(plane)
-        check_weather   # clear_to_land?(plane)
-        fail 'WARNING - Weather is stormy' if @safe == false
+        clear_to_land?(plane)
         @hangar << plane
     end
 
     def clear_to_land?(plane)
-        fail 'ERROR - Plane is already grounded' if hangar.include?(plane) 
-        fail 'WARNING - Hanger is at capacity' if hangar.full?
-        fail 'WARNING - Weather is stormy' unless conditions_safe == true
+        fail 'ERROR - Plane is already grounded' if @hangar.include?(plane) 
+        fail 'ERROR - Hanger is at capacity' if full?
+        check_weather
+        fail 'ERROR - Weather is stormy' unless @safe == true
     end
-
 
 
     private 
@@ -53,7 +52,7 @@ class Airport
     end 
 
     def full?
-        hangar.length >= capacity 
+        @hangar.length >= @capacity 
     end
 
 end 
