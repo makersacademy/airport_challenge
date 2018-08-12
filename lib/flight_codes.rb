@@ -1,7 +1,6 @@
-class CountryCodes
-  attr_reader :country_codes, :full_names
-  def initialize
-    @country_codes = ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG",
+module CountryCodes
+
+    @@country_codes = ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG",
                       "AR", "AM", "AW", "AU", "AT", "AZ", "BH", "BS", "BD", "BB",
                       "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW",
                       "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA",
@@ -27,9 +26,9 @@ class CountryCodes
                       "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", 
                       "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW", "xx"]
 
-    @full_names = ["Afghanistan", "Åland_Islands", "Albania", "Algeria",
-                   "American_Samoa", "Andorra", "Angola", "Anguilla", 
-                   "Antarctica", "Antigua_and_Barbuda", "Argentina", "Armenia",
+    @@full_names = ["Afghanistan", "Åland_Islands", "Albania", "Algeria",
+                    "American_Samoa", "Andorra", "Angola", "Anguilla", 
+                    "Antarctica", "Antigua_and_Barbuda", "Argentina", "Armenia",
                     "Aruba", "Australia", "Austria", "Azerbaijan", "Bahrain",
                     "Bahamas", "Bangladesh", "Barbados", "Belarus", "Belgium",
                     "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia",
@@ -86,18 +85,33 @@ class CountryCodes
                     "Vanuatu", "Venezuela_Bolivarian_Republic_of", "Viet_Nam", 
                     "Virgin_Islands_British", "Virgin_Islands_U.S.", "Wallis_and_Futuna", 
                     "Western_Sahara", "Yemen", "Zambia", "Zimbabwe", "!!!This_Airport!!!"]
+
+    def country_codes
+      @@country_codes
+    end
+
+    def full_names
+      @@full_names
+    end
+
+    def generate_code
+      @@country_codes.sample
+    end
+
+    def generate_name
+      full_names.sample
     end
 
     def search_by_name(country)
-      raise('country not in list') if !@full_names.include?(country)
-      index = @full_names.index(country)
-      @country_codes[index]
+      raise('country not in list') if !@@full_names.include?(country)
+      index = @@full_names.index(country)
+      @@country_codes[index]
     end
 
     def search_by_code(c_code)
-      raise('code not in list') if !@country_codes.include?(c_code)
-      index = @country_codes.index(c_code)
-      @full_names[index]
+      raise('code not in list') if !@@country_codes.include?(c_code)
+      index = @@country_codes.index(c_code)
+      @@full_names[index]
     end
   end
 

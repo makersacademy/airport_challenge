@@ -1,18 +1,16 @@
 require_relative 'plane'
+require_relative 'weather_module'
 
 class Airport
-  DEFAULT_CAPACITY = 20
+  include Weather
 
-  attr_reader :capacity, :parked_planes
+  DEFAULT_CAPACITY = 20
+  attr_reader :capacity, :parked_planes, :weather_condition
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @weather_condition = set_weather
     @capacity = capacity
     @parked_planes = []
-  end
-
-  def set_weather
-    (0..2).include?(rand(10)) ? :stormy : :sunny 
   end
 
   def full?
@@ -38,3 +36,4 @@ class Airport
     @parked_planes.delete_if { |p| flight_nos.include?(p.flight_no) }
   end
 end
+

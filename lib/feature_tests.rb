@@ -20,15 +20,16 @@ p ap.parked_planes.map { |p| "#{p.flight_no}, #{p.origin}" }
 puts
 
 p1.set_destination
-puts 'After changing the destination of p1 (Same obj, different destination & origin):'
+puts 'After changing the destination of p1, at this airport'
+puts '(Same obj, different destination & origin):'
 p p1
 puts
 
 puts 'Planes now currently parked:'
-p ap.parked_planes.map { |p| "#{p.flight_no}, #{p.origin}" }
+p ap.parked_planes.map { |p| "#{p.flight_no}, #{p.destination}" }
 puts
 
 ap.take_off([p1])
 puts 'And after the first has taken off:'
-p ap.parked_planes.map { |p| "#{p.flight_no}, #{p.origin}" }
+p ap.parked_planes.map { |p| "#{p.flight_no}, #{p.destination}" }
 puts
