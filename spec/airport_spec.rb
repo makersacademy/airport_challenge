@@ -13,10 +13,9 @@ describe Airport do
     it "sets variable capacity when argument is provided" do
       expect(Airport.new(25).capacity).to eq 25
     end
-
   end
 
-  describe "#put_in_airport" do
+  describe "#land" do
     describe "when weather is not stormy" do
       before(:each) do
         allow(airport.weather).to receive(:stormy?).and_return(false)
@@ -27,21 +26,23 @@ describe Airport do
         expect(airport.planes).to eq [mockplane]
       end
 
-      it "does not put plane in airport if airport is full" do
-        DEFAULT_CAPACITY.times { airport.land(mockplane) }
-        expect { airport.land(mockplane) }.to raise_error("Airport is full - plane can't land!")
+      describe "#check_land_edge_cases" do
+        it "does not put plane in airport if airport is full" do
+          DEFAULT_CAPACITY.times { airport.land(mockplane) }
+          expect { airport.land(mockplane) }.to raise_error("Airport is full - plane can't land!")
+        end
       end
     end
 
     describe "when weather is stormy" do
       it "does not put plane in airport" do
         allow(airport.weather).to receive(:stormy?).and_return(true)
-        expect { airport.land(mockplane) }.to raise_error("Stormy weather - plane can't land!")
+        expect { airport.check_land_edge_cases }.to raise_error("Stormy weather - plane can't land!")
       end
     end
   end
 
-  describe "#take_from_airport" do
+  describe "#take_off" do
     describe "when weather is not stormy" do
 
       before(:each) do
@@ -63,7 +64,7 @@ describe Airport do
     describe "when weather is stormy" do
       it "plane does not take off" do
         allow(airport.weather).to receive(:stormy?).and_return(true)
-        expect { airport.take_off(mockplane) }.to raise_error("Stormy weather - plane can't take off!")
+        expect { airport.check_take_off_edge_cases }.to raise_error("Stormy weather - plane can't take off!")
       end
 
       it "plane not taken from airport" do
