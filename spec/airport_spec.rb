@@ -66,11 +66,29 @@ describe Airport do
 end
 
 describe AirTrafficController do
+  let(:mockAeroplane) { double :aeroplane }
+  let(:mockGroundedAeroplane) { double :aeroplane, status: "grounded"}
+  let(:mockAirborneAeroplane) { double :aeroplane, status: "airborne"}
+  
   it "checks Airport weather" do
     expect(subject.airport.weather).to eq("clear").or eq "stormy"
   end
   
-# it "checks if airport is full" do
+  it "checks if airport is full" do
+    expect(subject.hangar_full?).to eq(true).or eq false
+  end
 
-# end
+  it "checks if a plane is in the hangar" do
+    subject.airport.weather = "clear"
+    subject.airport.land(mockAeroplane)
+    expect(subject.hangar_include?(mockAeroplane)).to eq(true)
+  end
+
+  it "checks if the weather is stormy" do
+    expect(subject.stormy?).to eq(true).or eq(false)
+  end
+
+  it "checks a flights status" do
+    expect(subject.flight_status(mockAirborneAeroplane)).to eq("grounded").or eq "airborne"
+  end
 end

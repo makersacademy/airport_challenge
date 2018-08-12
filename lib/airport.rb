@@ -32,10 +32,26 @@ class AirTrafficController < Airport
     @airport = airport
   end
 
+  def hangar_full?
+    airport.hangar.length >= airport.capacity
+  end
+
+  def hangar_include?(plane)
+    airport.hangar.include?(plane)
+  end
+
+  def stormy?
+    weather == "stormy"
+  end
+
+  def flight_status(plane)
+    plane.status
+  end
+
   # inherited by Airport
   # checks if airport is full
   # checks airport weather
-  # checks airport hangar
+  # checks airport hangar for plane
   # checks flight status
 
 end
