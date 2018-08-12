@@ -15,6 +15,7 @@ class Airport
   def land(flight_number)
     fail "Cannot land due to weather." if weather == "stormy"
     fail "Airport is full." if full? 
+
     @planes << Plane.new(flight_number)
   end
 
@@ -22,20 +23,22 @@ class Airport
 
     fail "Cannot takeoff due to weather." if weather == "stormy"
 
-    counter = 0
     # iterate over planes array
+    counter = 0
+    found = false
     @planes.each do |plane|
       # compare flight_number of each item to supplied flight_number
       if plane.flight_number == flight_number
-        # if it matches
         # delete the plane from the array
         @planes.delete_at(counter)
         counter += 1
+        found = true
         puts confirm
       end
     end
+    fail "Flight '#{flight_number}' not found" if found == false
   end
-
+  
   def confirm
     "Plane is no longer in the airport."
   end

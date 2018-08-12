@@ -30,6 +30,13 @@ describe Airport do
     expect(heathrow.confirm).to eq("Plane is no longer in the airport.")
   end
 
+  it "should raise an error if #takeoff can't match plane" do
+    allow(heathrow).to receive(:weather) { "sunny" }
+    heathrow.land("BA123")
+
+    expect { heathrow.takeoff("BA456") }.to raise_error("Flight 'BA456' not found")
+  end
+
   it "should prevent landing when airport is full" do 
     allow(heathrow).to receive(:weather) { "sunny" }
     Airport::DEFAULT_CAPACITY.times { heathrow.land("BA123") }
