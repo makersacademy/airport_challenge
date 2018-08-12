@@ -1,4 +1,5 @@
 require 'airport'
+require 'aeroplane'
 
 describe Airport do
   let(:mockAeroplane) { double :aeroplane }
@@ -66,14 +67,34 @@ describe AirTrafficController do
       subject.airport.weather = "clear"
     end
 
-    it "#lands planes at its Airport" do
-      expect(subject.land(mockAeroplane)).to include mockAeroplane
+    describe "#land" do
+      it "stores planes at its Airport" do
+        plane = Aeroplane.new
+        subject.land(plane)
+        expect(subject.hangar).to include plane
+      end
+
+      it "changes planes flight .status to 'grounded'" do
+        plane = Aeroplane.new
+        subject.land(plane)
+        expect(plane.status).to eq "grounded"
+      end
     end
 
-    it "clears planes from airport" do
-      subject.hangar << mockAeroplane
-      subject.take_off(mockAeroplane)
-      expect(subject.hangar).to_not include mockAeroplane
+    describe "#take_off" do
+      it "clears planes from airport" do
+        plane = Aeroplane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.hangar).to_not include plane
+      end
+
+      it "changes planes .status to 'airborne'" do
+        plane = Aeroplane.new("grounded")
+        subject.hangar << plane
+        subject.take_off(plane)
+        expect(plane.status).to eq "airborne"
+      end
     end
   end
 
