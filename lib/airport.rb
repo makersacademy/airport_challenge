@@ -6,7 +6,7 @@ class Airport
   attr_reader :capacity, :parked_planes
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    @weather_condition = set_weather
+    @weather_condition = :sunny
     @capacity = capacity
     @parked_planes = []
   end
@@ -19,16 +19,16 @@ class Airport
     @parked_planes.count == capacity
   end
 
-  def land(plane)
+  def land(planes)
     raise 'Airport is full' if full?
     raise 'Unable to land due to storm' if @weather_condition == :stormy
-    @parked_planes << plane
+    @parked_planes << planes
   end
 
-  def take_off(plane)
+  def take_off(planes)
     raise 'No planes in airport' if @parked_planes.empty?
     raise 'Unable to take off due to storm' if @weather_condition == :stormy
-    @parked_planes.delete(plane)
+    flight_nos = planes.map { |p| p.flight_no }
+    @parked_planes.delete_if { |p| flight_nos.include?(p.flight_no) }
   end
 end
-

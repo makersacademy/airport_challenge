@@ -1,6 +1,12 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { double :plane }
+  let(:planes) { double :plane, map: %w[11111AA 22222BB 33333CC 44444DD] }
+  let(:p1) { double :plane, flight_no: '11111AA', map: ['11111AA'] }
+  let(:p2) { double :plane, flight_no: '22222BB' }
+  let(:p3) { double :plane, flight_no: '33333CC' }
+  let(:p4) { double :plane, flight_no: '44444DD' }
 
   it 'capacity is set to 20 by default' do
     expect(subject.capacity).to eq 20
@@ -12,20 +18,19 @@ describe Airport do
   end
 
   context 'when it is sunny' do
-    let(:plane) { double :plane }
 
     before(:each) do
       subject.instance_variable_set(:@weather_condition, :sunny)
     end
 
     it 'allows a plane to land when there is space' do
-      subject.land(plane)
-      expect(subject.parked_planes.count).to eq 1
+      subject.land(p1)
+      expect(subject.parked_planes[0].flight_no).to eq '11111AA'
     end
 
     it 'allows a plane to take off' do
-      subject.land(plane)
-      subject.take_off(plane)
+      subject.land(p1)
+      subject.take_off(p1)
       expect(subject.parked_planes.empty?).to be true
     end
 
@@ -36,8 +41,6 @@ describe Airport do
   end
 
   context 'when it is stormy, with one plane parked already' do
-    let(:plane) { double :plane }
-
     before(:each) do
       subject.instance_variable_set(:@weather_condition, :sunny)
       subject.land(plane)
