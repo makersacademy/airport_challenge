@@ -16,7 +16,7 @@ Airport Challenge
 What does it do?
 --------------
 
-In response to user stories (included [below](#user-stories) for reference) this program simulates planes landing and taking off from airports. The code covers simple edge cases and also incorpates a random weather generator that prevent planes landing/taking off during stormy weather. 
+In response to user stories (included [below](#user-stories) for reference) this program simulates planes landing and taking off from airports. The program accounts for simple edge cases. It also incorpates a random weather generator that prevents planes landing/taking off during stormy weather. 
 
 The code comes with unit and feature [tests](#running-tests] - all currently passing.
 
@@ -24,29 +24,30 @@ The code comes with unit and feature [tests](#running-tests] - all currently pas
 Development Process
 ------------------
 
-**OOP & (TDD using RSpec)**
+**OOP**
 
-The user stories were broken down into objects and methods:
+User stories were broken down into objects and methods:
 
 | Objects       | Messages         |
 | ------------- | -------------    |
 | airport       | land plane       |
 |               | take off plane   |
 |               | check edge cases |
-|               |                  |
 | plane         | landing          |
 |               | taking off       |
 |               | check edge cases |
-|               |                  |
 | weather       | stormy?          |
 
 
-The objects and messages defined my Classes and Methods, and how I intended my User to interact with the program.
+The objects and messages defined my Classes and Methods and therefore how I intended my User to interact with the program.
+
+**TDD using RSpec**
 
 The program was developed test-first:
-- Initially `irb` was used to create feature tests (i.e.how I wanted my program to work in response to user input). These commands are detailed in section [Usage](#usage). These feature tests have now been incorporated into RSpec so they can be run automatically. Take a look at the features tests [here](specs/feature_tests.rb).
+- Initially `irb` was used to create feature tests (i.e. how I wanted my program to work in response to user input). These commands are detailed in section [Usage](#usage). These feature tests have been incorporated into RSpec so they can be run automatically. Take a look at the features tests [here](specs/feature_tests.rb).
 - Unit tests were also created in RSpec. These shape how I intend specific blocks of code to work in isolation. 
-- 
+- Using the TDD process I developed chunks of code to ensure my unit tests passed. I followed the RED, GREEN, REFACTOR process before adding code to satisfy the next unit/feature test.
+
 
 Usage
 -----
