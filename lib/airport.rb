@@ -9,11 +9,12 @@ class Airport
   end
 
   def land(plane)
+    raise "Too stormy to land!" if Weather.new.report == "stormy"
     @hangar << plane
   end
 
   def takeoff(plane)
-    raise "Too stormy to fly!" if Weather.new.report == "stormy"
+    raise "Too stormy to take off!" if Weather.new.report == "stormy"
     @hangar.delete(plane)
     "#{plane} has taken off"
   end
