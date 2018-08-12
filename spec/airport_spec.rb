@@ -1,12 +1,13 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, count: 1 }
   let(:planes) { double :plane, map: %w[11111AA 22222BB 33333CC 44444DD] }
-  let(:p1) { double :plane, flight_no: '11111AA', map: ['11111AA'] }
+  let(:p1) { double :plane, flight_no: '11111AA', map: ['11111AA'], count: 1 }
   let(:p2) { double :plane, flight_no: '22222BB' }
   let(:p3) { double :plane, flight_no: '33333CC' }
   let(:p4) { double :plane, flight_no: '44444DD' }
+  let(:p1_p2) { [p1, p2] }
 
   it 'capacity is set to 20 by default' do
     expect(subject.capacity).to eq 20
@@ -28,6 +29,12 @@ describe Airport do
       expect(subject.parked_planes[0].flight_no).to eq '11111AA'
     end
 
+    it 'allows as many planes as possible to land' do
+      (subject.capacity - 1).times { subject.land(plane) }
+      subject.land(p1_p2)
+      expect(subject.parked_planes.include?(p1) && !subject.parked_planes.include?(p2)).to be true
+    end
+
     it 'allows a plane to take off' do
       subject.land(p1)
       subject.take_off(p1)
@@ -35,7 +42,7 @@ describe Airport do
     end
 
     it 'raises an error if a plane tries to land & there is no space' do
-      20.times { subject.land(plane) }
+      subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error('Airport is full')
     end
   end

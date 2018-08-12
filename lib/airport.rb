@@ -22,7 +22,13 @@ class Airport
   def land(planes)
     raise 'Airport is full' if full?
     raise 'Unable to land due to storm' if @weather_condition == :stormy
-    @parked_planes << planes
+    spaces = (capacity - @parked_planes.count)
+    if planes.count > spaces
+      @parked_planes = [@parked_planes, planes.first(spaces)].flatten
+      puts "Couldn\'t fit all planes, landed the first #{spaces}: #{@parked_planes.first(spaces)}"
+    else
+      @parked_planes = [@parked_planes, planes].flatten
+    end
   end
 
   def take_off(planes)

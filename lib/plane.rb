@@ -6,7 +6,7 @@ class Plane
   def initialize(condition=:working, origin=nil)
     @flight_no = flight_no_generator
     @condition = condition
-    @origin = nil
+    @origin = get_origin
     @destination = nil
   end
 
