@@ -7,15 +7,13 @@ class Plane
     @flying = true
   end
 
-  def land(airport)
+  def landing(airport)
     check_already_landed
-    airport.put_in_airport(self)
     change_state(airport)
   end
 
-  def take_off(airport)
+  def taking_off(airport)
     check_take_off_edge_cases(airport)
-    airport.take_from_airport(self)
     change_state(nil) # Nil because plane no longer in airport
   end
 

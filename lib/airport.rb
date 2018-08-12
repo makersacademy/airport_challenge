@@ -15,15 +15,25 @@ class Airport
     @weather = Weather.new
   end
 
-  def put_in_airport(plane)
-    fail "Stormy weather - plane can't land!" if @weather.stormy?
-    fail "Airport is full - plane can't land!" if airport_full?
+  def land(plane)
+    check_land_edge_cases
+    plane.landing(self)
     @planes << plane
   end
 
-  def take_from_airport(plane)
-    fail "Stormy weather - plane can't take off!" if @weather.stormy?
+  def take_off(plane)
+    check_take_off_edge_cases
+    plane.taking_off(self)
     @planes.delete(plane)
+  end
+
+  def check_land_edge_cases
+    fail "Stormy weather - plane can't land!" if @weather.stormy?
+    fail "Airport is full - plane can't land!" if airport_full?
+  end
+
+  def check_take_off_edge_cases
+    fail "Stormy weather - plane can't take off!" if @weather.stormy?
   end
 
   private

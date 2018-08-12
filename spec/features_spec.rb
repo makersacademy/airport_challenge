@@ -72,6 +72,7 @@ describe 'Feature Tests' do
   it 'Plane already flying cannot take off' do
     given_there_is_a_new_plane
     given_there_is_a_new_airport
+    assuming_that_the_weather_is_not_stormy
     then_flying_plane_cannot_take_off
   end
 
@@ -119,24 +120,24 @@ def assuming_that_the_weather_is_not_stormy
 end
 
 def then_plane_can_land_at_airport
-  expect { @plane.land(@airport) }.not_to raise_error
+  expect { @airport.land(@plane) }.not_to raise_error
 end
 
 def given_that_plane_is_in_airport
-  @plane.land(@airport)
+  @airport.land(@plane)
 end
 
 def then_plane_can_take_off
-  expect { @plane.take_off(@airport) }.not_to raise_error
+  expect { @airport.take_off(@plane) }.not_to raise_error
 end
 
 def then_plane_cannot_take_off
   message = "Stormy weather - plane can't take off!"
-  expect { @plane.take_off(@airport) }.to raise_error(message)
+  expect { @airport.take_off(@plane) }.to raise_error(message)
 end
 
 def given_that_plane_has_taken_off
-  @plane.take_off(@airport)
+  @airport.take_off(@plane)
 end
 
 def then_user_can_confirm_plane_not_in_airport
@@ -145,16 +146,16 @@ end
 
 def then_plane_cannot_land
   message = "Stormy weather - plane can't land!"
-  expect { @plane.land(@airport) }.to raise_error(message)
+  expect { @airport.land(@plane) }.to raise_error(message)
 end
 
 def given_that_the_airport_is_full
-  DEFAULT_CAPACITY.times { Plane.new.land(@airport) }
+  DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 end
 
 def then_another_plane_cannot_land
   message = "Airport is full - plane can't land!"
-  expect { @plane.land(@airport) }.to raise_error(message)
+  expect { @airport.land(@plane) }.to raise_error(message)
 end
 
 def then_user_can_confirm_default_capacity
@@ -171,17 +172,17 @@ end
 
 def then_plane_cannot_take_off_from_another_airport
   message = "Plane can only take off from airport it is in"
-  expect { @plane.take_off(@airport_custom) }.to raise_error(message)
+  expect { @airport_custom.take_off(@plane) }.to raise_error(message)
 end
 
 def then_flying_plane_cannot_take_off
   message = "Flying plane cannot take off"
-  expect { @plane.take_off(@airport) }.to raise_error(message)
+  expect { @airport.take_off(@plane) }.to raise_error(message)
 end
 
 def then_plane_cannot_land_again
   message = "Plane that has already landed cannot land again"
-  expect { @plane.land(@airport) }.to raise_error(message)
+  expect { @airport.land(@plane) }.to raise_error(message)
 end
 
 def then_plane_is_not_in_airport
