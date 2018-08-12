@@ -31,7 +31,7 @@ describe Airport do
 
   it 'does not let a plane take off if it is not in the airport' do
     new_airport = Airport.new
-    plane = double("plane")
+    plane = Plane.new
     expect { new_airport.take_off(plane) }.to raise_error 'plane is not currently at this airport'
   end
 

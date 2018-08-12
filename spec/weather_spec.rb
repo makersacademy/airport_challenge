@@ -13,7 +13,7 @@ describe Weather do
     expect(test.stormy?).to eq true
   end
 
-  it 'returns #stormy? as false when the numbers 1 to 5 are selected randomly from numbers 1 to 6' do
+  it 'returns #stormy? as false when the number 1 is selected randomly from numbers 1 to 6' do
     allow(test).to receive(:rand) { 1 }
     expect(test.stormy?).to eq false
   end
