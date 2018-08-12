@@ -1,15 +1,15 @@
 class Airport
   attr_reader :name
   attr_accessor :weather, :plane
-  
+
   def initialize
 # @name = name
     @weather = rand(6) > 4 ? "stormy" : "clear"
   end
 
   def land(plane)
-    p weather
     raise "Stormy weather preventing landing" if weather == "stormy"
+    raise "Airport Full" if @plane != nil
     @plane = plane
   end
   
@@ -19,5 +19,5 @@ class Airport
   # "#{plane} left the airport"
     @plane = nil
   end
-  
+
 end

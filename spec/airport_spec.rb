@@ -20,6 +20,11 @@ describe Airport do
       it "stores planes in an airport" do
         expect(@airport.land(mockAeroplane)).to eq mockAeroplane
       end
+
+      it "raises error if airport is full" do
+        @airport.land(mockAeroplane)
+        expect { @airport.land(mockAeroplane) }.to raise_error "Airport Full"
+      end
     end
 
     describe "#take_off()" do
