@@ -22,13 +22,41 @@ In response to user stories (included [below](#user-stories) for reference) this
 The code comes with unit and feature [tests](#running-tests) - all currently passing.
 
 
+Development Process
+------------------
+
+**OOP:**
+User stories were broken down into objects and methods:
+
+| Objects       | Messages         |
+| ------------- | -------------    |
+| airport       | land plane       |
+|               | take off plane   |
+|               | check edge cases |
+| plane         | landing          |
+|               | taking off       |
+|               | check edge cases |
+| weather       | stormy?          |
+
+
+The objects and messages defined my Classes and Methods and how I intended my User to interact with the program.
+
+**TDD using RSpec:**
+The program was developed test-first:
+- Initially `irb` was used to create feature tests (i.e. how I wanted my program to work in response to user input). These are detailed in section [Usage](#usage). The feature tests have been incorporated into RSpec so they can be run automatically. Take a look at the features tests [here](specs/feature_tests.rb).
+- Unit tests were also created in RSpec. These describe how I intend specific blocks of code to work in isolation. 
+- Using the TDD process I developed chunks of code to ensure my unit tests passed. I followed the RED, GREEN, REFACTOR process before moving onto the next unit/feature test.
+- `simplecov` was used to show the test coverage (current version shows 100% coverage).
+- `rubocop` was used to ensure that coding standards were met in all files (no offenses in current version).
+
+
 Usage
 -----
 
 Code snippets below demonstrate the usage of the program:
 
 ```
-2.5.0 :001 > require \'./lib/airport.rb\'
+2.5.0 :001 > require './lib/airport.rb'
  => true
 2.5.0 :002 > airport = Airport.new
  => #<Airport:0x00007ff59f929b08 @planes=[], @capacity=10, @weather=#<Weather:0x00007ff59f929ab8>> 
@@ -37,6 +65,8 @@ Code snippets below demonstrate the usage of the program:
 2.5.0 :004 > airport.land(plane)
  => [#<Plane:0x00007ff59f926368 @flying=false, @current_airport=#<Airport:0x00007ff59f929b08 @planes=[...], @capacity=10, @weather=#<Weather:0x00007ff59f929ab8>>>]
  ```
+ Note: a Weather object is instantiated as part of the initialisation of the Airport class.
+ 
  
  Other useful commands:
  - `airport.take_off(plane)` will attempt to remove the plane from the airport and allow the plane to fly (only allowed if the weather is not stormy).
@@ -55,34 +85,6 @@ The following test specs are included:
 `./spec/features_spec.rb`
 
 To run these tests call `rspec` from the root of the directory.
-
-
-Development Process
-------------------
-
-**OOP:**
-User stories were broken down into objects and methods:
-
-| Objects       | Messages         |
-| ------------- | -------------    |
-| airport       | land plane       |
-|               | take off plane   |
-|               | check edge cases |
-| plane         | landing          |
-|               | taking off       |
-|               | check edge cases |
-| weather       | stormy?          |
-
-
-The objects and messages defined my Classes and Methods and therefore how I intended my User to interact with the program.
-
-**TDD using RSpec:**
-The program was developed test-first:
-- Initially `irb` was used to create feature tests (i.e. how I wanted my program to work in response to user input). These commands are detailed in section [Usage](#usage). These feature tests have been incorporated into RSpec so they can be run automatically. Take a look at the features tests [here](specs/feature_tests.rb).
-- Unit tests were also created in RSpec. These describe how I intend specific blocks of code to work in isolation. 
-- Using the TDD process I developed chunks of code to ensure my unit tests passed. I followed the RED, GREEN, REFACTOR process before adding code to satisfy the next unit/feature test.
-- `simplecov` was used to show the test coverage (current version shows 100% coverage).
-- `rubocop` was used to ensure that coding standards were met in all files.
 
 
 User Stories
