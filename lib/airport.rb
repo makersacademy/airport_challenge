@@ -12,20 +12,24 @@ class Airport
   end
 
   def land(plane)
-    raise "Too stormy to land!" if Weather.new.report == "stormy"
+    raise "Too stormy to land!" if weather_bad?
     @hangar << plane
   end
 
   def takeoff(plane)
-    raise "Too stormy to take off!" if Weather.new.report == "stormy"
-    raise "Error: plane is not at the airport" if plane_present?(plane) == false
+    raise "Too stormy to take off!" if weather_bad?
+    raise "Error: plane is not at the airport" unless plane_present?(plane)
     @hangar.delete(plane)
     "#{plane} has taken off"
   end
 
   private
-
   def plane_present?(plane)
     @hangar.include?(plane)
   end
+
+  def weather_bad?
+    Weather.new.report == "stormy"
+  end
+
 end
