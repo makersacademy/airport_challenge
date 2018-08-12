@@ -16,10 +16,12 @@ attr_reader :flying, :grounded
     end
 
     def fly 
+        @grounded = false
         @flying = true 
     end
 
     def land
+        @flying = false
         @grounded = true
     end
 

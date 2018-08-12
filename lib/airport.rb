@@ -8,15 +8,18 @@ class Airport
     def initialize(capacity = 20)
         @capacity = capacity
         @hangar = []
+        # @weather = weather 
     end
 
     def land(plane)
+        # clear_to_land?(plane)
         @hangar << plane
     end
 
     def clear_to_land?(plane)
-        fail 'ERROR - Hanger is at capacity' if hangar.full?
-        fail 'WARNING - Weather is stormy' unless conditions_safe? == true
+        fail 'ERROR - Plane is already grounded' if hangar.include?(plane) 
+        fail 'WARNING - Hanger is at capacity' if hangar.full?
+        fail 'WARNING - Weather is stormy' unless weather.conditions_safe == true
     end
 
     def take_off(plane)
@@ -28,7 +31,7 @@ class Airport
 
     def clear_to_launch?(plane)
         fail 'ERROR - Plane not in hangar' unless @hangar.include?(plane)
-        fail 'WARNING - Weather is stormy' unless conditions_safe == true
+        fail 'WARNING - Weather is stormy' unless weather.conditions_safe == true
     end 
 
 
