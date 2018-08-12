@@ -1,11 +1,10 @@
 class Airport
-  attr_reader :name, :hangar
+  attr_reader :hangar
   attr_accessor :weather, :plane, :capacity
 
   DEFAULT_CAPACITY = 200
 
   def initialize(capacity = DEFAULT_CAPACITY)
-  # @name = name
     @capacity = capacity
     @weather = rand(6) > 4 ? "stormy" : "clear"
     @hangar = []
@@ -63,11 +62,14 @@ class AirTrafficController < Airport
   end
 
   def ground_plane(plane)
+    raise "Plane already landed at #{plane.location}" if plane.grounded?
     plane.status = "grounded"
+    plane.location = airport
     hangar << plane
   end
 
   def clear_plane(plane)
+    raise "Plane already airborne" if plane.airborne?
     plane.status = "airborne"
     hangar.delete(plane)
   end
