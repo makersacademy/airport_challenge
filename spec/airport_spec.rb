@@ -7,7 +7,7 @@ describe Airport do
     it "@hangar - will store planes in an array - initialized empty" do
       expect(subject.hangar).to eq([])
     end
-    it "@capacity - will record the capacity of the airport" do
+    it "@capacity - will record the capacity of the airport with a default" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
   end
