@@ -1,90 +1,82 @@
-Airport Challenge
-=================
+# Airport Challenge
 
+I was given a list of user stories mainly from the point of view of an air traffic controller except for one requirement as a system designer. The project was to create an airport that could land and take off planes with certain conditions attached to those procedures.
+
+## My approach to the project
+I wrote down the main objects and messages from the user requirements and shaped a decision map and followed the TDD procedures when writing the code.
+
+eg. first user story
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
+```
+This has the air traffic controller as the user of the software. The passengers need to get to a destination, they will be travelling in the plane object and the plane object needs to be able to land at an airport object. The main instruction or message being conveyed is that a plane needs to be able to land at an airport.
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+I followed the TDD procedure of feature testing in irb first, writing a unit test in rspec, running the unit test and then writing the code for it to pass. Once passed and if necessary I would refactor and run the unit test again. After adding and committing the code I would then move on to the next user story requirement.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+### Things I had to consider
+Involved in the decision map was the idea of defending against edge cases. I had to make sure a plane could not be cleared to land again if it was already on the ground in an airport or planes that had already taken off are able to take off again even though they were not on the ground.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+eg. plane object not being able to land again once on the ground.
+```
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007fcb0f9c2b10 @planes_on_ground=[], @capacity=8>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fcb0f9bb018>
+2.5.0 :004 > airport.land(plane)
+ => [#<Plane:0x00007fcb0f9bb018>]
+2.5.0 :005 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/js/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):5
+        1: from /Users/js/projects/weekends/airport_challenge/lib/airport.rb:18:in `land'
+RuntimeError (plane is already in the airport)
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Another factor that was to be considered was the weather. A random weather return of true or false to it being stormy was required by the instructions to be used. I created a weather file that containing a module that had a stormy? method. This module was included in the airport class file so that the airport could check the state of the weather (in this case if it was stormy or not) and then prevent planes from landing or taking off if this was true. I did this as I thought that the airport should be checking (as an example) the MET office weather (in this case a weather module) for weather updates. I also decided on checking the weather whenever a plane wanted to land or take off so as to make sure the weather report was always up to date. Stormy weather was decided on a "dice" roll, being that if a 6 was rolled then true was returned for stormy weather.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+### Notes on testing
+I employed the use of stubbing and mocking in the cases of getting a consistent number returned when running the rand methods within the weather module. In the example below I created a mock class Test to place my module in. I then made the rand method only return a 6 instead of a random number from 1 to 6. This allowed me to consistently test that true was returned if a 6 was returned at random.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+    class Test
+      include Weather
+    end
 
-Please create separate files for every class, module and test suite.
+    test = Test.new
 
-In code review we'll be hoping to see:
+    it 'returns #stormy? as true when 6 is selected randomly from the numbers 1 to 6' do
+      allow(test).to receive(:rand) { 6 }
+    expect(test.stormy?).to eq true
+    end
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+### Requirements
 
-**BONUS**
+#### The code for this project was written in ruby 2.5.0
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+    ruby
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+#### All code based on the user story
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+    ./lib/airport.rb
+    ./lib/plane.rb
+    ./lib/weather.rb
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+#### All tests can be run through the root directory using rspec
+
+    ./rspec
+
+
+#### rspec test files
+
+    ./spec/airport_spec.rb
+    ./spec/plane_spec.rb    # is here just to check if the plane class exists
+    ./spec/weather_spec.rb
+
+
+## Conclusion
+
+I really enjoyed writing and testing this project. It has a lot of scope to be added to and I found myself wanting to create a few more user stories to add to the ones already stated. I had a bit of trouble getting the stubbing of methods to work but after a bit of research and experimenting I managed to get all my tests to work.
