@@ -1,17 +1,18 @@
-require_relative "./airport.rb"
-
 class Plane
 
   def land(airport, weather)
-    fail "bad weather: can't land" unless weather == true
+    raise "hanger is full" if airport.full?
+    raise "bad weather: can't land" unless weather == true
     airport.hanger << self
   end
 
   def take_off(airport, weather)
-    fail "no planes in hanger" if airport.hanger == []
-    fail "bad weather: can't take-off" unless weather == true
-    p "The plane is no longer at #{airport}"
+    raise "no planes in hanger" if airport.empty?
+    raise "bad weather: can't take-off" unless weather == true
+    raise "#{self} is not at #{airport}" if airport.hanger.include? self == false
+    p "The plane #{self} is no longer at #{airport}"
     airport.hanger -= [self]
-    # need test for this print out
   end
+
+
 end
