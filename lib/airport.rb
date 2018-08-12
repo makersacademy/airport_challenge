@@ -1,6 +1,5 @@
 require_relative 'plane'
 
-
 class Airport
   attr_reader :capacity
 
@@ -26,7 +25,7 @@ class Airport
   end
 
   def forecast
-    rand(15) == 3 ? 'stormy' : 'fine'
+    rand(10) == 3 ? 'stormy' : 'fine'
   end
 
   # def plane_already_at_airport?
