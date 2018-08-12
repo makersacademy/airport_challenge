@@ -33,7 +33,7 @@ class Airport
   end
 
   def stormy?
-    num = rand(1..7)
-    num == 6
+    rand(1..7) == 6
   end
+
 end

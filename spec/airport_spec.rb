@@ -72,4 +72,12 @@ describe Airport do
       expect { subject.take_off(mockPlane) }.to raise_error("Cannot take off due to bad weather!")
     end
   end
+
+  describe "#Private method" do
+
+    it ".stormy? - returns true or false" do
+      expect(subject.send :stormy?).to be(true).or be(false)
+    end
+  end
+
 end
