@@ -17,8 +17,10 @@ describe Airport do
   end
 
   it "prevents plane from taking off if stormy" do
-    expect(subject.take_off).to raise error if subject.stormy?
+    subject.report_stormy
+    expect { subject.take_off }.to raise_error "Weather is stormy - no taking off, please"
   end
+
 
 
 
