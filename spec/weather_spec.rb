@@ -7,5 +7,5 @@ describe Weather do
       expect(["sunny", "stormy"]).to include(subject.report)
     end
   end
-  
+
 end

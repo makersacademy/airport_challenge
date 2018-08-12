@@ -1,7 +1,10 @@
 class Weather
 
   def report
-    ["sunny", "stormy"].sample
+    case rand(6)
+      when 1 then "stormy"
+      else "sunny"
+    end
   end
 
 end
