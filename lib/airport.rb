@@ -5,36 +5,36 @@ class Airport
     attr_reader :hangar, :capacity, :weather
     DEFAULT_CAPACITY = 1
 
-    def initialize(capacity = DEFAULT_CAPACITY, weather_station: WeatherStation.new)
+    def initialize(capacity = DEFAULT_CAPACITY, weather_station = WeatherStation.new)
         @capacity = capacity
         @hangar = []
         @weather_station = weather_station 
     end
 
     def status(plane)
-        p "#{plane} is in the hangar" if hangar.include?(plane)
-        p "#{plane} is in the sky" unless hangar.include?(plane)
+       @hangar.include?(plane) ? "#{plane} is in the hangar" : "#{plane} is in the sky" 
     end
 
     def check_weather
-        @weather = @weather_station.conditions_report
+        @safe = @weather_station.conditions_safe?
     end
 
     def take_off(plane)
-        check_weather
-        raise 'WARNING - Weather is stormy' if 
-        # clear_to_launch?(plane)
-        @hangar.delete(plane)
+        check_weather  # clear_to_launch?(plane)
+        fail 'WARNING - Weather is stormy' if @safe == true
         plane.fly 
+        @hangar.delete(plane)
         "#{plane} has left the airport"
     end
+
     # def clear_to_launch?(plane)
     #     fail 'ERROR - Plane not in hangar' unless @hangar.include?(plane)
-    #     fail 'WARNING - Weather is stormy' if conditions_safe == false
+    #     fail 'WARNING - Weather is stormy' if conditions_safe? == false
     # end 
 
     def land(plane)
-        # clear_to_land?(plane)
+        check_weather   # clear_to_land?(plane)
+        fail 'WARNING - Weather is stormy' if @safe == false
         @hangar << plane
     end
 
