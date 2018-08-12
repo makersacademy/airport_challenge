@@ -8,7 +8,7 @@ describe Airport do
   it 'stores the names of the planes landing in an array' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { false }
+    allow(new_airport).to receive(:stormy?) { false }
     new_airport.landing(plane)
     expect(new_airport.planes_on_ground).to eq [plane]
   end
@@ -24,7 +24,7 @@ describe Airport do
   it 'does not let a plane already in the airport land again' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { false }
+    allow(new_airport).to receive(:stormy?) { false }
     new_airport.landing(plane)
     expect { new_airport.landing(plane) }.to raise_error 'plane is already in the airport'
   end
@@ -38,7 +38,7 @@ describe Airport do
   it 'removes a named plane from @planes_on_ground when it takes off and #stormy_weather == false' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { false }
+    allow(new_airport).to receive(:stormy?) { false }
     new_airport.landing(plane)
     expect(new_airport.take_off(plane)).to eq plane
   end
@@ -46,23 +46,23 @@ describe Airport do
   it 'raises an error if a named plane from @planes_on_ground tries to take off and #stormy_weather == true' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { false }
+    allow(new_airport).to receive(:stormy?) { false }
     new_airport.landing(plane)
-    allow(new_airport).to receive(:stormy_weather) { true }
+    allow(new_airport).to receive(:stormy?) { true }
     expect { new_airport.take_off(plane) }.to raise_error 'weather is stormy, plane can not take off'
   end
 
   it 'adds a named plane to @planes_on_ground array when it lands and #stormy_weather == false' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { false }
+    allow(new_airport).to receive(:stormy?) { false }
     expect(new_airport.landing(plane)).to eq [plane]
   end
 
   it 'raises an error if a named plane tries to land and #stormy.weather == true' do
     new_airport = Airport.new
     plane = Plane.new
-    allow(new_airport).to receive(:stormy_weather) { true }
+    allow(new_airport).to receive(:stormy?) { true }
     expect { new_airport.landing(plane) }.to raise_error 'landing denied, weather is stormy'
   end
 
