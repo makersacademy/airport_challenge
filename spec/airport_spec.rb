@@ -22,6 +22,15 @@ describe Airport do
         subject.capacity.times { subject.land(plane) }
         expect { subject.land(plane) }.to raise_error("Error: airport is full")
       end
+
+      context "when the airport capacity is >1 (else airport.full? to superceed)" do
+        let(:airport) { Airport.new(2) }
+
+        it "prevents landing if the plane has already landed" do
+          airport.land(plane)
+          expect { airport.land(plane) }.to raise_error("Plane already in airport")
+        end
+      end
     end
 
     context "during stormy weather" do
