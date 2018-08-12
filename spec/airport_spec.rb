@@ -16,9 +16,22 @@ describe Airport do
     expect(plane).not_to eql(subject.take_off)
   end
 
+  it "prevents plane from taking off if stormy" do
+    plane = Plane.new
+    expect(subject.take_off).to raise error if stormy? == true
+  end
+
 # As an air traffic controller 
 # To ensure safety 
-# I want to prevent takeoff when weather is stormy 
+# I want to prevent landing when weather is stormy 
+
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when the airport is full 
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
 end
 
 
