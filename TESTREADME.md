@@ -1,5 +1,4 @@
 # Airport Challenge
-# =================
 
 I was given a list of user stories mainly from the point of view of an air traffic controller except for one requirement as a system designer. The project was to create an airport that could land and take off planes with certain conditions attached to those procedures.
 
@@ -80,4 +79,4 @@ I employed the use of stubbing and mocking in the cases of getting a consistent 
 
 ## Conclusion
 
-I really enjoyed writing and testing this project. It has a lot of scope to be added to and I found myself wanted to create a few more user stories to add to the ones already stated. I had a bit of trouble getting the stubbing of methods to work but after a bit of research and experimenting I managed to get all my tests to work.
+I really enjoyed writing and testing this project. It has a lot of scope to be added to and I found myself wanting to create a few more user stories to add to the ones already stated. I had a bit of trouble getting the stubbing of methods to work but after a bit of research and experimenting I managed to get all my tests to work.
