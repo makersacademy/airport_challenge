@@ -9,10 +9,10 @@ Using my [TDD cycle tree](./tdd_cycle_tree.png) to guide me, I wrote feature tes
 ### The TDD and Code Process 
 
 1. Read each user story and write a feature test for it in IRB - e.g. airport.land(plane)
-2. Write a unit test (or several) which deal with the error feedback from the feature test. e.g. verify 'Airport' class exists as well as the 'land' method.
+2. Write a unit test (or several) which deals with the error feedback from the feature test. e.g. verify 'Airport' class exists as well as the 'land' method.
 3. Write the code which the errors are asking for.
 4. Unit test this code and refactor as required.
-5. Commit code and push to repo
+5. Commit code and push to repo.
 
 This challenge helps us to get to grips with two programming fundamentals: TDD and OOP.
 
