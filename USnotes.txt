@@ -1,4 +1,9 @@
 plane
-airport - confirm a plane no longer at airport, can set a default capacity
-      land a plane (not if airport full), take off a plane (not if stormy)
-weather - returns random weather
+airport
+weather -
+
+confirm a plane no longer at airport
+can set a default capacity
+land a plane (not if airport full, not if stormy),
+take off a plane (not if stormy)
+random weather

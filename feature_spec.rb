@@ -1,9 +1,13 @@
 require "./lib/airport"
 require "./lib/plane"
 
-airport = Airport.new
+airport = Airport.new(5)
 plane = Plane.new
 airport.land(plane)
 
 airport.takeoff(plane)
-airport.plane == nil
+airport.plane.nil?
+
+
+
+5.times {airport.land(plane)}

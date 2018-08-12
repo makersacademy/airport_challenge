@@ -1,7 +1,6 @@
 class Weather
-  attr_reader :stormy?
-
-  def
-
+  def stormy?
+    # 25% chance of storm
+    [true, false, false, false].sample
   end
 end
