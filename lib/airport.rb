@@ -34,14 +34,12 @@ class AirTrafficController < Airport
     raise "Airport Full" if hangar_full?
     raise "Plane already landed at airport" if hangar_include?(plane)
     ground_plane(plane)
-    hangar << plane
   end
     
   def take_off(plane)
     raise "Stormy weather preventing take off" if stormy?
     raise "#{plane} not in airport" unless hangar_include?(plane)
     clear_plane(plane)
-    hangar.delete(plane)
   end
 
   def hangar_full?
@@ -66,13 +64,15 @@ class AirTrafficController < Airport
 
   def ground_plane(plane)
     plane.status = "grounded"
+    hangar << plane
   end
 
   def clear_plane(plane)
     plane.status = "airborne"
+    hangar.delete(plane)
   end
 
-  # inherited by Airport
+  # inherits Airport
   # checks if airport is full
   # checks airport weather
   # checks airport hangar for plane

@@ -8,7 +8,7 @@ describe Airport do
     expect(subject.weather).to eq("clear").or eq "stormy"
   end
   
-  it "has a default capacity" do
+  it "has a default .capacity" do
     expect(subject.capacity). to eq(Airport::DEFAULT_CAPACITY)
   end
   
