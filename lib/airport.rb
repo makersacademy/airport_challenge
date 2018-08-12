@@ -13,19 +13,25 @@ class Airport
 
   def land_plane(plane)
     raise 'weather is stormy' if forecast == 'stormy'
-    fail 'airport is full' if full?
+    raise 'airport is full' if full?
+    raise 'plane already at airport' if @docked_planes.include?(plane)
     @docked_planes << plane
     @docked_planes.last
   end
 
-  def takeoff
+  def takeoff(plane)
     raise 'weather is stormy' if forecast == 'stormy'
-    @docked_planes.pop
+    raise 'plane not at airport' if !@docked_planes.include?(plane)
+    @docked_planes.delete(plane)
   end
 
   def forecast
     rand(15) == 3 ? 'stormy' : 'fine'
   end
+
+  # def plane_already_at_airport?
+  #   @docked_planes.uniq.length != @docked_planes.length
+  # end
 
   def full?
     @docked_planes.length >= @capacity
