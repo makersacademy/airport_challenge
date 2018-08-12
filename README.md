@@ -16,7 +16,7 @@ Airport Challenge
 What does it do?
 --------------
 
-In response to user stories (included [below](User Stories) for reference) this program simulates planes landing and taking off from airports. The code covers simple edge cases and also incorpates a random weather generator to prevent planes landing/taking off. 
+In response to user stories (included [below](.user-stories) for reference) this program simulates planes landing and taking off from airports. The code covers simple edge cases and also incorpates a random weather generator to prevent planes landing/taking off. 
 
 The code comes with unit and feature tests - all currently passing.
 
