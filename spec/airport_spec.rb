@@ -29,6 +29,7 @@ describe Airport do
 
   it "prevents plane from landing if airport full" do
     plane = Plane.new
+    2.times { subject.land plane }
     expect { subject.land(plane) }.to raise_error "Airport is full - no landing, please"
   end
 
@@ -36,14 +37,12 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
+  describe 'initialization' do
+    it 'has a variable capacity' do
+      airport = Airport.new(10)
+      10.times { airport.land Plane.new }
+      expect(airport.planes.length).to eq airport.capacity
+    end
+  end
+
 end
-
-
-
-
-
-
-
