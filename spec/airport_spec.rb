@@ -61,4 +61,19 @@ describe Airport do
       end
     end
   end
+
+  describe "#capacity" do
+    it "shows the airport capacity" do
+      airport = Airport.new
+      capacity = Airport::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq airport.capacity
+    end
+
+    it "allows a user to override the default and set the capacity" do
+      new_capacity = 20
+      airport = Airport.new(new_capacity)
+      expect(airport::capacity).to eq new_capacity
+    end
+  end
+
 end
