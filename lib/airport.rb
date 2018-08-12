@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     raise "Too stormy to land!" if weather_bad?
+    raise "Error: airport is full" if @hangar.length == @capacity
     @hangar << plane
   end
 

@@ -17,6 +17,11 @@ describe Airport do
         subject.land(plane)
         expect(subject.hangar).to include(plane)
       end
+
+      it "prevents landing when the airport is full" do
+        subject.capacity.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error("Error: airport is full")
+      end
     end
 
     context "during stormy weather" do
