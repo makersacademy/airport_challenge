@@ -17,9 +17,10 @@ describe Airport do
   end
 
   it "prevents plane from taking off if stormy" do
-    plane = Plane.new
-    expect(subject.take_off).to raise error if stormy? == true
+    expect(subject.take_off).to raise error if subject.stormy?
   end
+
+
 
 # As an air traffic controller 
 # To ensure safety 
