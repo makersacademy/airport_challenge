@@ -15,6 +15,7 @@ class Airport
 
   def take_off(plane)
     @planes.pop
+    p "airport now empty"
     planes[-1]
   end
 
