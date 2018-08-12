@@ -1,3 +1,5 @@
+require 'air_traffic_controller.rb'
+
 class Airport
   attr_reader :name
   attr_accessor :weather, :plane, :capacity
