@@ -1,9 +1,12 @@
 class Airport
   attr_reader :name
-  attr_accessor :weather, :plane
+  attr_accessor :weather, :plane, :capacity
 
-  def initialize
-# @name = name
+  DEFAULT_CAPACITY = 200
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+  # @name = name
+    @capacity = capacity
     @weather = rand(6) > 4 ? "stormy" : "clear"
   end
 

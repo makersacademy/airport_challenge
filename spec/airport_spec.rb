@@ -11,6 +11,15 @@ describe Airport do
     expect(subject.weather).to eq("clear").or eq "stormy"
   end
 
+  it "has a default capacity" do
+    expect(@airport.capacity). to eq(Airport::DEFAULT_CAPACITY)
+  end
+
+  it "has a variable .capacity" do
+    @airport.capacity = 500
+    expect(@airport.capacity).to eq 500
+  end
+
   context "when .weather is clear" do
     before(:each) do
       @airport.weather = "clear"
