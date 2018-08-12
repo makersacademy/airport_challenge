@@ -1,7 +1,7 @@
 require_relative "./plane.rb"
 
 class Airport
-DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
   attr_accessor :hanger
   attr_accessor :capacity
 
@@ -9,9 +9,6 @@ DEFAULT_CAPACITY = 20
     @hanger = []
     @capacity = capacity
   end
-# initailize with weather?
-# check plane for weather?
-# generate new instance of weather Class to know weather?
 
   def good_weather?
     [false, true].sample

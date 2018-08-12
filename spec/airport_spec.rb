@@ -3,7 +3,6 @@ require "airport"
 describe Airport do
   let(:cap)         { 30 }
   let(:sub2)        { Airport.new(cap) }
-  # let(:mockPlane)   { double :plane, land: subject.hanger << self }
 
   context "when first initialized" do
     it { is_expected.not_to eql(nil) }
@@ -31,11 +30,16 @@ describe Airport do
   end
 
   describe "#full?" do
-    # it "returns true when at max capacity" do
-    #   allow(mockPlane).to receive(:land) { subject.hanger << self }
-    #   cap.times {sub2.land(mockPlane)}
-    #   expect(sub2.dock(mockPlane)).to raise_error("full capacity")
-    # end
+    it "returns true if hanger is at max capacity" do
+      20.times { subject.hanger << "plane" }
+      expect(subject.full?).to eq true
+    end
+  end
+
+  describe "#empty?" do
+    it "returns true if hanger is empty" do
+      expect(subject.hanger.empty?).to eq true
+    end
   end
 
   describe "#good_weather?" do
