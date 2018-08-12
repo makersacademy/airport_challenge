@@ -12,13 +12,12 @@ describe Airport do
   end
   
   it "has a default capacity" do
-    expect(@airport.hangar.length). to eq(Airport::DEFAULT_CAPACITY)
+    expect(@airport.capacity). to eq(Airport::DEFAULT_CAPACITY)
   end
   
   it "has a variable .capacity" do
     @airport = Airport.new(500)
-    @airport.capacity = 500
-    expect(@airport.hangar.length).to eq 500
+    expect(@airport.capacity).to eq 500
   end
 
   context "when .weather is clear" do
@@ -28,11 +27,11 @@ describe Airport do
 
     describe "#land()" do
       it "stores planes in an airport" do
-        expect(@airport.land(mockAeroplane)).to eq mockAeroplane
+        expect(@airport.land(mockAeroplane)).to include mockAeroplane
       end
 
       it "raises error if airport is full" do
-        @airport.land(mockAeroplane)
+        Airport::DEFAULT_CAPACITY.times { @airport.land(mockAeroplane) }
         expect { @airport.land(mockAeroplane) }.to raise_error "Airport Full"
       end
     end
@@ -40,7 +39,7 @@ describe Airport do
     describe "#take_off()" do
       it "clears a plane from the airport" do
         @airport.land(mockAeroplane)
-        expect(@airport.take_off(mockAeroplane)).to eq nil
+        expect(@airport.take_off(mockAeroplane)).to eq mockAeroplane
       end
 
       it "will not release planes that aren't in the airport" do
