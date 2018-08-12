@@ -2,73 +2,43 @@ require 'airport'
 
 describe Airport do
   let(:mockAeroplane) { double :aeroplane }
-
-  before(:each) do
-    @airport = Airport.new
-  end
   
   it "has either stormy or clear weather" do
     expect(subject.weather).to eq("clear").or eq "stormy"
   end
   
   it "has a default capacity" do
-    expect(@airport.capacity). to eq(Airport::DEFAULT_CAPACITY)
+    expect(subject.capacity). to eq(Airport::DEFAULT_CAPACITY)
   end
   
   it "has a variable .capacity" do
-    @airport = Airport.new(500)
-    expect(@airport.capacity).to eq 500
+    subject = Airport.new(500)
+    expect(subject.capacity).to eq 500
   end
 
-  context "when .weather is clear" do
-    before(:each) do
-      @airport.weather = "clear"
+  describe "#land()" do
+    it "stores planes in an airport" do
+      expect(subject.land(mockAeroplane)).to include mockAeroplane
     end
-
-    describe "#land()" do
-      it "stores planes in an airport" do
-        expect(@airport.land(mockAeroplane)).to include mockAeroplane
-      end
-
-      it "raises error if airport is full" do
-        Airport::DEFAULT_CAPACITY.times { @airport.land(mockAeroplane) }
-        expect { @airport.land(mockAeroplane) }.to raise_error "Airport Full"
-      end
-    end
-
-    describe "#take_off()" do
-      it "clears a plane from the airport" do
-        @airport.land(mockAeroplane)
-        expect(@airport.take_off(mockAeroplane)).to eq mockAeroplane
-      end
-
-      it "will not release planes that aren't in the airport" do
-        expect { @airport.take_off("BA344") }.to raise_error "BA344 not in airport"
-      end
-    end
-
   end
-  
-  context "when .weather is 'stormy'" do
-    before(:each) do
-      @airport.weather = "stormy"
+
+  describe "#take_off()" do
+    it "clears a plane from the airport" do
+      subject.land(mockAeroplane)
+      expect(subject.take_off(mockAeroplane)).to eq mockAeroplane
     end
 
-    it "won't #land planes" do      
-      expect { @airport.land(mockAeroplane) }.to raise_error "Stormy weather preventing landing"
+    it "will not release planes that aren't in the airport" do
+      expect { subject.take_off("BA344") }.to raise_error "BA344 not in airport"
     end
 
-    it "won't #take_off planes" do
-      @airport.plane = mockAeroplane
-      expect { @airport.take_off(mockAeroplane) }.to raise_error "Stormy weather preventing take off"
-    end
   end
 end
 
 describe AirTrafficController do
   let(:mockAeroplane) { double :aeroplane }
-  let(:mockGroundedAeroplane) { double :aeroplane, status: "grounded"}
-  let(:mockAirborneAeroplane) { double :aeroplane, status: "airborne"}
+  let(:mockGroundedAeroplane) { double :aeroplane, status: "grounded" }
+  let(:mockAirborneAeroplane) { double :aeroplane, status: "airborne" }
   
   it "checks Airport weather" do
     expect(subject.airport.weather).to eq("clear").or eq "stormy"
@@ -79,8 +49,7 @@ describe AirTrafficController do
   end
 
   it "checks if a plane is in the hangar" do
-    subject.airport.weather = "clear"
-    subject.airport.land(mockAeroplane)
+    subject.airport.hangar << mockAeroplane
     expect(subject.hangar_include?(mockAeroplane)).to eq(true)
   end
 
@@ -90,5 +59,36 @@ describe AirTrafficController do
 
   it "checks a flights status" do
     expect(subject.flight_status(mockAirborneAeroplane)).to eq("grounded").or eq "airborne"
+  end
+
+  context "when Airport.weather is 'clear'" do
+    before(:each) do
+      subject.airport.weather = "clear"
+    end
+
+    it "#lands planes at its Airport" do
+      expect(subject.land(mockAeroplane)).to include mockAeroplane
+    end
+
+    it "clears planes from airport" do
+      subject.hangar << mockAeroplane
+      subject.take_off(mockAeroplane)
+      expect(subject.hangar).to_not include mockAeroplane
+    end
+  end
+
+  context "when Airport.weather is 'stormy'" do
+    before(:each) do
+      subject.airport.weather = "stormy"
+    end
+
+    it "prevents planes from landing" do
+      expect { subject.land(mockAeroplane) }.to raise_error "Stormy weather preventing landing"
+    end
+
+    it "prevents planes from taking off" do
+      subject.hangar << mockAeroplane
+      expect { subject.take_off(mockAeroplane) }.to raise_error "Stormy weather preventing take off"
+    end
   end
 end

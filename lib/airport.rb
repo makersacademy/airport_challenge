@@ -11,14 +11,11 @@ class Airport
     @hangar = []
   end
 
-  def land(plane)
-    raise "Stormy weather preventing landing" if weather == "stormy"
-    raise "Airport Full" if @hangar.length >= capacity
+  def land(plane)  
     hangar << plane
   end
   
-  def take_off(plane)
-    raise "Stormy weather preventing take off" if weather == "stormy"
+  def take_off(plane)   
     raise "#{plane} not in airport" unless hangar.include?(plane)
     hangar.delete(plane)
   end
@@ -32,20 +29,36 @@ class AirTrafficController < Airport
     @airport = airport
   end
 
+  def land(plane)
+    raise "Stormy weather preventing landing" if stormy?
+    raise "Airport Full" if hangar_full?
+    hangar << plane
+  end
+    
+  def take_off(plane)
+    raise "Stormy weather preventing take off" if stormy?
+    raise "#{plane} not in airport" unless hangar_include?(plane)
+    hangar.delete(plane)
+  end
+
   def hangar_full?
-    airport.hangar.length >= airport.capacity
+    hangar.length >= airport.capacity
   end
 
   def hangar_include?(plane)
-    airport.hangar.include?(plane)
+    hangar.include?(plane)
   end
 
   def stormy?
-    weather == "stormy"
+    airport.weather == "stormy"
   end
 
   def flight_status(plane)
     plane.status
+  end
+
+  def hangar
+    airport.hangar
   end
 
   # inherited by Airport
