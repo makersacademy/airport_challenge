@@ -13,7 +13,7 @@ describe Airport do
 
   it "makes a plane take off" do
     plane = Plane.new
-    expect(plane).not_to eql(subject.take_off(plane))
+    expect(plane).not_to eql(subject.take_off)
   end
 
 # As an air traffic controller 
