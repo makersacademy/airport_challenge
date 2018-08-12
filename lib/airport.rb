@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
   attr_reader :hangar
@@ -12,6 +13,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "Too stormy to fly!" if Weather.new.report == "stormy"
     @hangar.delete(plane)
     "#{plane} has taken off"
   end

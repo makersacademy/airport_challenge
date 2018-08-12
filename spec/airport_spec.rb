@@ -1,5 +1,4 @@
 require "airport"
-require "plane"
 
 describe Airport do
   let(:plane) { Plane.new }
@@ -28,6 +27,16 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.hangar).not_to include(plane)
+    end
+
+    context "during a stormy weather" do
+      before do
+        allow_any_instance_of(Weather).to receive(:report).and_return("stormy")
+      end
+
+      it "raises an error" do
+        expect { subject.takeoff(plane) }.to raise_error("Too stormy to fly!")
+      end
     end
   end
 
