@@ -6,7 +6,7 @@ describe Plane do
   let(:mockairport2) { double :airport, put_in_airport: true, take_from_airport: true }
 
   describe "#land" do
-    it "request to put plane into airport" do
+    it "request to put plane into airport successful" do
       expect { plane.land(mockairport) }.not_to raise_error
     end
 

@@ -3,21 +3,20 @@ class Plane
   attr_reader :current_airport, :flying
 
   def initialize
-    # When instantiated assume plane is flying and not in an airport
+    # When initialized assume plane is flying
     @flying = true
-    @current_airport = nil
   end
 
   def land(airport)
-    check_already_landed # Method to handle edge case
+    check_already_landed
     airport.put_in_airport(self)
     change_state(airport)
   end
 
   def take_off(airport)
-    check_take_off_edge_cases(airport) # Method to handle edge cases
+    check_take_off_edge_cases(airport)
     airport.take_from_airport(self)
-    change_state(nil) # Nil because no longer in airport
+    change_state(nil) # Nil because plane no longer in airport
   end
 
   def check_already_landed

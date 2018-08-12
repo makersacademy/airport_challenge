@@ -12,7 +12,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = Weather.new # Instantiate weather when instantiating airport
+    @weather = Weather.new
   end
 
   def put_in_airport(plane)
@@ -27,7 +27,7 @@ class Airport
   end
 
   private
-  # These are methods/objects I only want to access from within the class
+
   def airport_full?
     @planes.size >= @capacity
   end

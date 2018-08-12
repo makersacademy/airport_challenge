@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   let(:airport)     { Airport.new }
   let(:mockplane)   { double :plane }
+  let(:mockplane2)  { double :plane2 }
 
   describe "#initialize" do
     it "sets capacity at default value when no argument is provided" do
@@ -40,7 +41,7 @@ describe Airport do
     end
   end
 
-  describe "#take_off" do
+  describe "#take_from_airport" do
     describe "when weather is not stormy" do
 
       before(:each) do
@@ -51,7 +52,9 @@ describe Airport do
         expect { airport.take_from_airport(mockplane) }.not_to raise_error
       end
 
-      it "plane is taken from airport" do
+      it "correct plane is taken from airport" do
+        airport.put_in_airport(mockplane)
+        airport.put_in_airport(mockplane2)
         airport.take_from_airport(mockplane)
         expect(airport.planes).not_to include(mockplane)
       end
