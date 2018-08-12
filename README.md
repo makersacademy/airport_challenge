@@ -27,6 +27,7 @@ Development Process
 **OOP & (TDD using RSpec)**
 
 The user stories were broken down into objects and methods:
+
 | Objects       | Messages         |
 | ------------- | -------------    |
 | airport       | land plane       |
@@ -38,6 +39,7 @@ The user stories were broken down into objects and methods:
 |               | check edge cases |
 |               |                  |
 | weather       | stormy?          |
+
 
 The objects and messages defined my Classes and Methods, and how I intended my User to interact with the program.
 
