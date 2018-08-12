@@ -7,7 +7,7 @@ class Plane
   end
 
   def land_airport
-  	@at_airport = true
+    @at_airport = true
   end
 
 end
