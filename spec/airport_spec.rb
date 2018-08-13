@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" }
+  let(:mockWeather) { double :weather, :conditions => :sunny }
 
   describe "Initialize - Airport instance attributes" do
     it "@hangar - will store planes in an array - initialized empty" do
@@ -10,6 +11,10 @@ describe Airport do
     it "@capacity - will record the capacity of the airport with a default" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
+#    it "@weather - will record the weather of the airport defaults with new weather instance" do
+#      jfk = Airport.new(mockWeather)
+#      expect(jfk.weather).to eq(mockWeather)
+#    end
   end
 
   describe "#land_plane" do
