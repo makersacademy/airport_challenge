@@ -36,3 +36,7 @@ end
 airport = Airport.new
 airport.land(plane)
 ```
+
+### How to Use
+
+run irb in terminal: require './lib/airport.rb'
