@@ -1,0 +1,25 @@
+    # let(:mockWeather) { double :weather }
+    # let(:calmWeather) { double :weather, conditions_safe? => true }
+    # let(:stormyWeather) { double :weather, conditions_safe? => false }
+    # let(:spyPlane) { spy :plane_double}
+    # let(:spyWeatherStation) { spy :weatherstation_double, conditions_safe? => true}
+    
+
+    FOR CONTEXTS:
+    wrap allows in before do / end blocks
+    if you're going to do something where double state will be changed .e.g adding something to an array then do BEFORE EACH i.e. resetting test doubles before every test 
+    if we need to stub all answers then just do BEFORE 
+
+    before do 
+        allow(weather).to receive(:generate).and_return "Sunny"
+    end
+
+    If we need :generate to result in 'sunny', we need to land a plane first 
+
+    allow weather to receive generate and return sunny 
+    subject.land(mockPlane)
+    expect { subject.land(mockPlane) }.to raise_error "too stormy"
+
+    We want to inject weather.  And allow 
+
+    Allow for mocking behaviour and/or stubbing return values?

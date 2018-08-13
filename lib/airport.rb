@@ -21,7 +21,7 @@ class Airport
 
     def take_off(plane)
         clear_to_launch?(plane)
-        plane.fly 
+        plane.fly
         @hangar.delete(plane)
         "#{plane} has left the airport"
     end
@@ -34,6 +34,7 @@ class Airport
 
     def land(plane)
         clear_to_land?(plane)
+        plane.land
         @hangar << plane
     end
 
@@ -47,9 +48,9 @@ class Airport
 
     private 
 
-    def weather
-        Weather.new
-    end 
+    # def weather
+    #     Weather.new
+    # end 
 
     def full?
         @hangar.length >= @capacity 
