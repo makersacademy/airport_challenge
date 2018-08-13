@@ -58,4 +58,21 @@ describe Airport do
       weather.generate
     end
   end
+
+  describe "at_capacity?" do
+    it "checks if hangar is at maximum capacity" do
+      airport.land(plane)
+      p2 = Plane.new
+      airport.land(p2)
+      p3 = Plane.new
+      airport.land(p3)
+      p4 = Plane.new
+      airport.land(p4)
+      p5 = Plane.new
+      airport.land(p5) 
+      expect(airport.at_capacity?).to eq true
+      p6 = Plane.new
+      expect(airport.hangar.length).to eq 5
+    end 
+  end
 end
