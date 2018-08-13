@@ -1,12 +1,11 @@
 require 'airport' # Require 'plane' in order to double instances of the Plane class? No
 
 describe Airport do  
-  subject { described_class.new(mockWeatherStation) }  # subject(:airport) { described_class.new }
-  let(:mockWeatherStation) { double :weatherstation }  # These top two lines should be ordered other wayaround but RSpec is very forgiving.  i.e. we should say 'let mockWS double WS' then change the subject.  
-  let(:mockPlane) { double :plane }                    # let(:plane) { instance_double("Plane") }
+  subject { described_class.new(mockWeatherStation) }            # subject(:airport) { described_class.new }
+  let(:mockWeatherStation) { double :weatherstation }            # These top two lines should be ordered other wayaround but RSpec is very forgiving.  i.e. we should say 'let mockWS double WS' then change the subject.  
+  let(:mockPlane) { double :plane }                              # let(:plane) { instance_double("Plane") }
   let(:mockPlane2) { double :plane }                  
-  let(:mockWeatherStation) { double :weatherstation }  # If we don't initialize Airports with Weather.new would this be valid: et(calmWeather) { double :weather, :conditions_safe? => true }
-  subject { described_class.new(mockWeatherStation) }    
+  let(:mockWeatherStation) { double :weatherstation }            # If we don't initialize Airports with Weather.new would this be valid: et(calmWeather) { double :weather, :conditions_safe? => true }
   
   describe '#initialize ', :initialize do 
     it 'with an empty @hangar' do 
@@ -38,7 +37,7 @@ describe Airport do
         expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
       end
     end  
-    context 'when weather is stormy' do # let(:stormyWeather) { double :weather, conditions_safe? => false }
+    context 'when weather is stormy' do                         # let(:stormyWeather) { double :weather, conditions_safe? => false }
       before { subject.hangar << mockPlane }
       it 'does not allow plane to launch' do 
         allow(mockWeatherStation).to receive(:conditions_safe?).and_return(false)
@@ -65,8 +64,7 @@ describe Airport do
       it 'allows planes to land' do 
         allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true)
         allow(:mockPlane).to receive(:touch_down)
-        subject.land(mockPlane)
-        # allow(subject).to receive(:status).and_return("#{mockPlane} is in the hangar")
+        subject.land(mockPlane)                                   # allow(subject).to receive(:status).and_return("#{mockPlane} is in the hangar")
         expect(subject.status(mockPlane)).to eq "#{mockPlane} is in the hangar"
       end
     end

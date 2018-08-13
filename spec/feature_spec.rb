@@ -10,3 +10,12 @@
 # ---------------------------
 # AFT1. Airport default capacity
 # AFT2. Airport variable capacity
+
+launch irb
+require './lib/airport'
+
+# Plane Features
+
+# Airport Features
+
+# WeatherStation Features
