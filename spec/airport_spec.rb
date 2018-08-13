@@ -10,6 +10,9 @@ describe Airport do
     # Instance of weather class
   let(:weather_class) { double :weather_class, new: weather }
   let(:weather)       { double :weather_instance }
+
+  # Max capacity
+  let(:max_capacity)  { 5 } 
   subject(:airport)   { described_class.new }
 
   describe "#land" do
@@ -25,7 +28,23 @@ describe Airport do
         expect { airport.land(plane) }.to raise_error("Cannot land due to storm")
         expect(airport.hangar).not_to include(plane)
       end
-    end 
+    end
+
+    context "at maximum capacity" do
+      it "does not allow a plane to land" do
+        i = 0
+        while i < max_capacity do
+          plane = Plane.new
+          expect(airport).to receive(:stormy?) { false }
+          airport.land(Plane)
+          i += 1
+        end
+        p6 = Plane.new
+        allow(airport).to receive(:stormy?) { false }
+        expect { airport.land(p6) }.to raise_error("Cannot land, airport is at maximum capacity")
+        expect(airport.hangar).not_to include(p6)
+      end 
+    end
   end
 
   describe "#takeoff" do
@@ -59,20 +78,16 @@ describe Airport do
     end
   end
 
-  describe "at_capacity?" do
+  describe "max_capacity?" do
     it "checks if hangar is at maximum capacity" do
-      airport.land(plane)
-      p2 = Plane.new
-      airport.land(p2)
-      p3 = Plane.new
-      airport.land(p3)
-      p4 = Plane.new
-      airport.land(p4)
-      p5 = Plane.new
-      airport.land(p5) 
-      expect(airport.at_capacity?).to eq true
-      p6 = Plane.new
-      expect(airport.hangar.length).to eq 5
+      i = 0
+      while i < max_capacity do
+        plane = Plane.new
+        expect(airport).to receive(:stormy?) { false }
+        airport.land(Plane)
+        i += 1
+      end
+      expect(airport.max_capacity?).to eq true
     end 
   end
 end

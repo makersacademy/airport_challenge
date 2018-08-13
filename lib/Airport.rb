@@ -3,12 +3,14 @@ require_relative "weather"
 class Airport
   attr_reader :hangar 
 
-  def initialize(weather_class = Weather)
+  def initialize(weather_class = Weather, max_capacity = 5)
     @hangar = []
     @weather = weather_class.new
+    @max_capacity = max_capacity
   end
     
   def land(plane)
+    fail "Cannot land, airport is at maximum capacity" if max_capacity?
     fail "Cannot land due to storm" if stormy? 
     @hangar << plane
     "#{plane} has landed"
@@ -24,5 +26,9 @@ class Airport
 
   def stormy?
     @weather.generate == "Stormy"
-end
+  end
+
+  def max_capacity?
+    @hangar.length == @max_capacity
+  end
 end
