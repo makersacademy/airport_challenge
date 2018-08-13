@@ -15,7 +15,7 @@ describe Airport do
   describe "#land_plane" do
     it ".land_plane - returns a Plane object in an array" do
       allow(subject).to receive(:stormy?) { false }
-      expect(subject.land_plane(mockPlane)).to eq([mockPlane])
+      expect(subject.land_plane(mockPlane)).to eq [mockPlane]
     end
     it ".land_plane - gives error if the hangar is full" do
       allow(subject).to receive(:stormy?) { false }

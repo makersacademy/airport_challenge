@@ -18,11 +18,15 @@ class Airport
   def take_off(plane)
     fail "No planes on the ground!" if empty?
     fail "Cannot take off due to bad weather!" if stormy?
-    puts "#{plane} has left the airport"
     @hangar.delete(plane)
   end
 
   private
+
+  # think about adding a def at_airport?(plane) method @hangar.include?(plane)
+  # think about making weather its own class/or module?? and having the airport use it as an attribute
+
+
 
   def full?
     @hangar.size >= @capacity
