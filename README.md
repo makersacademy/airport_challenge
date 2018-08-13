@@ -33,10 +33,10 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ### Features
 
-The plane can land and take off from an airport if the weather is sunny
-A plane cannot land if it is already in the airport
-A plane cannot take off, if it is not in the airport
-The airport capacity can be overwritten
+* The plane can land and take off from an airport if the weather is sunny
+* A plane cannot land if it is already in the airport
+* A plane cannot take off, if it is not in the airport
+* The airport capacity can be overwritten
 
 
 It can be run in command line as follows:
