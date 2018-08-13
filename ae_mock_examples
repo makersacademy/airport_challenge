@@ -23,3 +23,16 @@
     We want to inject weather.  And allow 
 
     Allow for mocking behaviour and/or stubbing return values?
+
+        # subject { described_class.new(weather) }
+    # let(:weather) { double :weather }
+    If we don't initialize Airports with Weather.new would this be valid?
+    
+
+    Think of doubles like key value pairs.  We choose the value to a key. 
+
+    Either stub behaviour of a method or return value of a variable
+    
+            # subject { described_class.new(weather) }
+            # let(:weather) { double :weather }
+            # If we don't initialize Airports with Weather.new would this be valid?

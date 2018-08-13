@@ -16,10 +16,9 @@ attr_reader :flying, :grounded
 
     def fly 
       @flying = true
-    #   @hangar.delete(plane) 
     end
 
-    def land
+    def touch_down
       @flying = false
     end
 

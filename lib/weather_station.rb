@@ -8,5 +8,4 @@ class WeatherStation
         WEATHER.sample == 'calm' ? true : false  
     end
 
-
 end

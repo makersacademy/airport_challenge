@@ -1,7 +1,7 @@
 require 'weather_station'
 
 describe WeatherStation do 
-    subject(:weatherstation) { described_class.new }  
+    subject(:weatherstation) { described_class.new }      # Or: subject(:weatherstation) { WeatherStation.new }
 
     describe '#conditions_safe?' do 
         it 'checks conditions safe to manouevre' do

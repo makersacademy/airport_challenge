@@ -2,58 +2,56 @@ require_relative 'plane'
 require_relative 'weather_station'
 
 class Airport
-    attr_reader :hangar, :capacity, :weather
+    attr_reader :hangar, :capacity, :weather, :safe, :weather_station
+    
     DEFAULT_CAPACITY = 1
 
-    def initialize(capacity = DEFAULT_CAPACITY, weather_station = WeatherStation.new)
+    def initialize(weather_station = WeatherStation.new, capacity = DEFAULT_CAPACITY)
         @capacity = capacity
         @hangar = []
         @weather_station = weather_station 
     end
 
     def status(plane)
-       @hangar.include?(plane) ? "#{plane} is in the hangar" : "#{plane} is in the sky" 
+       hangar.include?(plane) ? "#{plane} is in the hangar" : "#{plane} is in the sky" 
     end
 
     def check_weather
-        @safe = @weather_station.conditions_safe?
+        @safe = weather_station.conditions_safe?
     end
 
     def take_off(plane)
         clear_to_launch?(plane)
         plane.fly
-        @hangar.delete(plane)
+        hangar.delete(plane)
         "#{plane} has left the airport"
     end
 
     def clear_to_launch?(plane)
-        fail 'ERROR - Plane not in hangar' unless @hangar.include?(plane)
+        fail 'ERROR - Plane not in hangar' unless hangar.include?(plane)
         check_weather
-        fail 'ERROR - Weather is stormy' if @safe == false
+        fail 'DANGER - Weather is stormy' if safe == false
     end 
 
     def land(plane)
         clear_to_land?(plane)
-        plane.land
-        @hangar << plane
+        plane.touch_down
+        hangar << plane
+        "#{plane} is in the hangar"
     end
 
     def clear_to_land?(plane)
-        fail 'ERROR - Plane is already grounded' if @hangar.include?(plane) 
-        fail 'ERROR - Hanger is at capacity' if full?
+        fail 'ERROR - Plane already grounded' if hangar.include?(plane) 
+        fail 'WARNING - Hanger is at capacity' if full?
         check_weather
-        fail 'ERROR - Weather is stormy' unless @safe == true
+        fail 'DANGER - Weather is stormy' unless safe == true
     end
 
 
-    private 
-
-    # def weather
-    #     Weather.new
-    # end 
+    # private 
 
     def full?
-        @hangar.length >= @capacity 
+        hangar.length >= @capacity 
     end
 
 end 
