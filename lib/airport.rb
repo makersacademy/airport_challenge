@@ -3,9 +3,10 @@ require_relative 'weather'
 
 class Airport
   
+  DEFAULT_CAPACITY = 50
   attr_reader :capacity
   
-  def initialize(capacity = 50, weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
     @weather = weather
@@ -15,12 +16,14 @@ class Airport
     check_plane_can_land(plane)
     planes << plane
     plane.land_airport
+    "#{plane.flight_no} has landed"
   end
 
   def plane_take_off(plane)
     check_plane_can_take_off(plane)
     planes.delete(plane)
     plane.leave_airport
+    "#{plane.flight_no} has taken off"
   end
 
   private

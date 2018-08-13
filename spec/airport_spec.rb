@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane) { Plane.new("BA123") }
 
   context '#stormy weather' do
     let(:mockBadWeather) { double :weather, stormy?: true }
@@ -12,7 +12,7 @@ describe Airport do
     end
 
     it 'error when plane cannot land' do
-      expect { airportStormy.plane_land(Plane.new) }.to raise_error "Bad weather, plane cannot land"
+      expect { airportStormy.plane_land(plane) }.to raise_error "Bad weather, plane cannot land"
     end
   end
   
@@ -33,15 +33,13 @@ describe Airport do
   end
 
   context '#landing and taking off' do
-    it 'when plane has landed returns true' do
-      airport.plane_land(plane)
-      expect(plane.at_airport).to eq(true)
+    it 'when plane has landed returns plane has landed' do
+      expect(airport.plane_land(plane)).to eq("#{plane.flight_no} has landed")
     end
 
-    it 'when plane has left airport, returns false' do
+    it 'when plane has left airport, returns plane has taken off' do
       airport.plane_land(plane)
-      airport.plane_take_off(plane)
-      expect(plane.at_airport).to eq(false)
+      expect(airport.plane_take_off(plane)).to eq("#{plane.flight_no} has taken off")
     end
 
     it 'plane cannot take off if plane not in airport' do
