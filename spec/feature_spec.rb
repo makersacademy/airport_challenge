@@ -11,8 +11,8 @@
 # AFT1. Airport default capacity
 # AFT2. Airport variable capacity
 
-launch irb
-require './lib/airport'
+# launch irb
+# require './lib/airport'
 
 # Plane Features
 

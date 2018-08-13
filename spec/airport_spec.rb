@@ -41,7 +41,7 @@ describe Airport do
       before { subject.hangar << mockPlane }
       it 'does not allow plane to launch' do 
         allow(mockWeatherStation).to receive(:conditions_safe?).and_return(false)
-        expect { subject.take_off(mockPlane) }.to raise_error 'DANGER - Weather is stormy'
+        expect { subject.take_off(mockPlane) }.to raise_error 'Error - Weather is stormy'
       end 
     end
   end
@@ -52,7 +52,7 @@ describe Airport do
       allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true)
       allow(:mockPlane2).to receive(:touch_down)
       Airport::DEFAULT_CAPACITY.times { subject.land(mockPlane) } # This is a class constant
-      expect { subject.land(mockPlane2) }.to raise_error 'WARNING - Hangar is at capacity'
+      expect { subject.land(mockPlane2) }.to raise_error 'Error - Hangar is at capacity'
     end  
     context 'when weather is calm' do 
       it 'adds planes to @hangar' do
@@ -72,7 +72,7 @@ describe Airport do
     context 'when weather is stormy' do
       it 'does not allow planes to land' do 
         allow(mockWeatherStation).to receive(:conditions_safe?).and_return(false)
-        expect { subject.land(mockPlane) }.to raise_error 'DANGER - Weather is stormy'
+        expect { subject.land(mockPlane) }.to raise_error 'Error - Weather is stormy'
       end
     end
   end

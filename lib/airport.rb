@@ -28,9 +28,9 @@ class Airport
   end  
   
   def clear_to_launch?(plane)
-    fail 'ERROR - Plane not in hangar' unless hangar.include?(plane)
+    fail 'Error - Plane not in hangar' unless hangar.include?(plane)
     check_weather
-    fail 'DANGER - Weather is stormy' if safe == false
+    fail 'Error - Weather is stormy' if safe == false
   end   
   
   def land(plane)
@@ -41,10 +41,10 @@ class Airport
   end  
   
   def clear_to_land?(plane)
-    fail 'ERROR - Plane already grounded' if hangar.include?(plane) 
-    fail 'WARNING - Hanger is at capacity' if full?
+    fail 'Error - Plane already grounded' if hangar.include?(plane) 
+    fail 'Error - Hanger is at capacity' if full?
     check_weather
-    fail 'DANGER - Weather is stormy' unless safe == true
+    fail 'Error - Weather is stormy' unless safe == true
   end  
   
 # private   
