@@ -1,4 +1,4 @@
-require './lib/plane'
+require_relative 'plane'
 
 class Airport
 
@@ -23,19 +23,16 @@ class Airport
 
     fail "Cannot takeoff due to weather." if weather == "stormy"
 
-    # iterate over planes array
-    counter = 0
     found = false
-    @planes.each do |plane|
-      # compare flight_number of each item to supplied flight_number
+
+    @planes.each_with_index do |plane, index|
       if plane.flight_number == flight_number
-        # delete the plane from the array
-        @planes.delete_at(counter)
-        counter += 1
+        @planes.delete_at(index)
         found = true
         puts confirm
       end
     end
+    
     fail "Flight '#{flight_number}' not found" if found == false
   end
   
@@ -55,8 +52,12 @@ class Airport
     when 9, 10
       "stormy"
     end
-
   end
+
+# def weather
+#   "sunny" if random_number < 9
+#   "stormy"
+# end
 
   private
 
