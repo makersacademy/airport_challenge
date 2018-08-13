@@ -8,14 +8,15 @@ class Airport
     @weather = weather_class.new
   end
     
-  def land(plane) 
+  def land(plane)
+    fail "Cannot land due to storm" if stormy? 
     @hangar << plane
     "#{plane} has landed"
   end
     
-  def take_off(plane)  
-    # fail "Unable to take off due to storm" if stormy?
-    return "This plane is not in the hangar" unless @hangar.include?(plane)
+  def take_off(plane)
+    fail "This plane is not in the hangar" unless @hangar.include?(plane)
+    fail "Cannot takeoff due to storm" if stormy?
     plane_index = @hangar.index(plane)
     @hangar.delete_at(plane_index)
     "#{plane} has taken off"

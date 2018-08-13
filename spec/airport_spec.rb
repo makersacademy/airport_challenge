@@ -9,30 +9,45 @@ describe Airport do
     # Weather class
     # Instance of weather class
   let(:weather_class) { double :weather_class, new: weather }
-  let(:weather)       { double :weather_instance            }
-  subject(:airport) { described_class.new }
+  let(:weather)       { double :weather_instance }
+  subject(:airport)   { described_class.new }
 
   describe "#land" do
     it "Lands a plane" do
+      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
       expect(airport.land(plane)).to eq "#{plane} has landed"
     end
   
     context "stormy weather" do
       it "does not allow a plane to land" do
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.land(plane) }.to raise_error("Cannot land due to storm")
+        expect(airport.hangar).not_to include(plane)
       end
     end 
   end
 
   describe "#takeoff" do
     it "Allows a plane to take off, confirm it is no longer in the hangar" do
+      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
       expect(airport.take_off(plane)).to eq "#{plane} has taken off"
       expect(airport.hangar).not_to include(plane)
     end 
+
+    context "plane not in hangar" do
+      it "returns pessage that plane is not in hangar" do
+        expect { airport.take_off(plane) }.to raise_error("This plane is not in the hangar")
+      end
+    end
   
     context "stormy weather" do
       it "does not allow a plane to takeoff" do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land(plane)
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.take_off(plane) }.to raise_error("Cannot takeoff due to storm")
       end
     end 
   end
