@@ -25,8 +25,6 @@ class Airport
     @hangar.delete(plane)
   end
 
-
-
   private
 
   # think about adding a def at_airport?(plane) method @hangar.include?(plane)
