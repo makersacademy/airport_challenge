@@ -11,7 +11,6 @@ class Airport
     raise 'plane cannot land in a storm' if stormy?
     raise 'plane is already landed' unless plane.flying
     raise 'no space in airport' if full
-    # raise 'plane cannot land in a storm' if stormy?
     plane.flying = false
     @planes << plane
   end
@@ -32,7 +31,7 @@ class Airport
   end
 
   def stormy?
-    (rand(1..7) % 7).zero?
+    rand(9).zero?
   end
 
 end

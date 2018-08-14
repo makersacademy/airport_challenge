@@ -3,12 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
   describe '#land' do
-    
-    it 'lands a plane' do
-      landed_plane = subject.land(plane)[-1]
-      allow(subject).to receive(:stormy?) { false }
-      expect(landed_plane.flying).to eq false
-    end
+
     it 'does not allow landing if airport is full' do
       allow(subject).to receive(:stormy?) { false }
       subject.capacity.times { subject.land(Plane.new) }
