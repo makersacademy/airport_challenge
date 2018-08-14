@@ -1,4 +1,7 @@
+require_relative 'weather'
+
 class Airport
+
 
   attr_reader :hangar, :capacity, :weather
 
@@ -7,7 +10,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @hangar = []
     @capacity = capacity
-    @weather = weather # ???? still working on this!
+    @weather = weather
   end
 
   def land_plane(plane)
@@ -22,12 +25,11 @@ class Airport
     @hangar.delete(plane)
   end
 
+
+
   private
 
   # think about adding a def at_airport?(plane) method @hangar.include?(plane)
-  # think about making weather its own class/or module?? and having the airport use it as an attribute
-
-
 
   def full?
     @hangar.size >= @capacity
@@ -38,7 +40,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..7) == 6
+    weather.conditions == :stormy
   end
 
 end
