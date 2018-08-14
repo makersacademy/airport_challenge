@@ -45,7 +45,6 @@ class Airport
   end
 
   def weather
-    
     case random_number
     when 0, 1, 2, 3, 4, 5, 6, 7, 8
       "sunny"
@@ -53,11 +52,6 @@ class Airport
       "stormy"
     end
   end
-
-# def weather
-#   "sunny" if random_number < 9
-#   "stormy"
-# end
 
   private
 
