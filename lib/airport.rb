@@ -16,6 +16,7 @@ class Airport
   def land_plane(plane)
     fail "Hangar Full!!!" if full?
     fail "Cannot land due to bad weather!" if stormy?
+    fail "Plane is already on the ground!" if @hangar.include?(plane)
     @hangar << plane
   end
 
@@ -26,8 +27,6 @@ class Airport
   end
 
   private
-
-  # think about adding a def at_airport?(plane) method @hangar.include?(plane)
 
   def full?
     @hangar.size >= @capacity
@@ -40,5 +39,4 @@ class Airport
   def stormy?
     weather.conditions == :stormy
   end
-
 end

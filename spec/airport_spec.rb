@@ -11,10 +11,6 @@ describe Airport do
     it "@capacity - will record the capacity of the airport with a default" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
-#    it "@weather - will record the weather of the airport defaults with new weather instance" do
-#      jfk = Airport.new(mockWeather)
-#      expect(jfk.weather).to eq(mockWeather)
-#    end
   end
 
   describe "#land_plane" do
@@ -23,6 +19,7 @@ describe Airport do
       expect(subject.land_plane(mockPlane)).to eq [mockPlane]
     end
     it ".land_plane - gives error if the hangar is full" do
+      stub_const("Airport::DEFAULT_CAPACITY", 1)
       allow(subject).to receive(:stormy?) { false }
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(mockPlane) }
       expect { subject.land_plane(mockPlane) }.to raise_error("Hangar Full!!!")
@@ -30,6 +27,11 @@ describe Airport do
     it ".land_plane - gives error if the weather is stormy" do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.land_plane(mockPlane) }.to raise_error("Cannot land due to bad weather!")
+    end
+    it ".land_plane - gives error if the plane is already at the airport" do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land_plane(mockPlane)
+      expect {subject.land_plane(mockPlane) }.to raise_error("Plane is already on the ground!")
     end
   end
 
