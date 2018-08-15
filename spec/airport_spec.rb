@@ -2,36 +2,32 @@ require 'airport'
 
 describe Airport do
 
-  class Plane
-  end
-
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
   let(:new_airport) { Airport.new }
 
   describe "Landing" do
 
-    it 'stores the names of the planes landing in an array' do
-      allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      expect(subject.planes_on_ground).to eq [plane]
-    end
-
-    it 'raises and error if anything other than a Plane class instance tries to land' do
-      class StarFighter
+    context 'When the weather is not stormy' do
+      before(:example) do
+        allow(subject).to receive(:stormy?) { false }
       end
-      plane = StarFighter.new
-      expect { subject.land(plane) }.to raise_error 'not an identifiable plane'
-    end
 
-    it 'does not let a plane already in the airport land again' do
-      allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'plane is already in the airport'
-    end
 
-    it 'adds a named plane to @planes_on_ground array when it lands and #stormy? == false' do
-      allow(subject).to receive(:stormy?) { false }
-      expect(subject.land(plane)).to eq [plane]
+      it 'stores the names of the planes landing in an array' do
+        subject.land(plane)
+        expect(subject.planes_on_ground).to eq [plane]
+      end
+
+
+      it 'does not let a plane already in the airport land again' do
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error 'plane is already in the airport'
+      end
+
+      it 'adds a named plane to @planes_on_ground array when it lands and #stormy? == false' do
+        expect(subject.land(plane)).to eq [plane]
+      end
+
     end
 
     it 'raises an error if a named plane tries to land and #stormy? == true' do
@@ -54,8 +50,7 @@ describe Airport do
     end
 
     it 'raises an error if a named plane from @planes_on_ground tries to take off and #stormy? == true' do
-      allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
+      subject.instance_variable_set("@planes_on_ground", [plane])
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error 'weather is stormy, plane can not take off'
     end
@@ -82,8 +77,8 @@ describe Airport do
 
   describe "Airport Weather Check" do
 
-    it 'expects a return of true or false from #weather_check' do
-      expect(subject.send :weather_check).to be(true).or be (false)
+    it 'expects a return of true or false from #weather_stormy?' do
+      expect(subject.send :weather_stormy?).to be(true).or be(false)
     end
 
   end
