@@ -23,6 +23,7 @@ class Airport
   def take_off(plane)
     fail "No planes on the ground!" if empty?
     fail "Cannot take off due to bad weather!" if stormy?
+    fail "Plane is not at the airport!" unless @hangar.include?(plane)
     @hangar.delete(plane)
   end
 

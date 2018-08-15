@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:mockPlane) { double :plane, :plane => "plane" }
+  let(:mockPlane2) { double :plane, :plane => "plane2" }
   let(:mockWeather) { double :weather, :conditions => :sunny }
 
   describe "Initialize - Airport instance attributes" do
@@ -49,6 +50,11 @@ describe Airport do
       subject.land_plane(mockPlane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(mockPlane) }.to raise_error("Cannot take off due to bad weather!")
+    end
+    it ".take_off - plane can only take if at the airport" do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land_plane(mockPlane)
+      expect {subject.take_off(mockPlane2)}.to raise_error("Plane is not at the airport!")
     end
   end
 
