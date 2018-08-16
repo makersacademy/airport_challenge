@@ -21,6 +21,12 @@ describe Airport do
       airport.land(plane)
       expect(airport.land(plane)).to eq "#{plane} has landed"
     end
+
+    it"Cannot land the same plane twice" do
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect{ airport.land(plane) }.to raise_error("#{plane} has already landed")
+    end
   
     context "stormy weather" do
       it "does not allow a plane to land" do
