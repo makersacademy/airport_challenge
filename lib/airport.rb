@@ -45,7 +45,7 @@ class Airport
   def clear_to_land?(plane)
     # fail 'Error - Plane already grounded' if hangar.include?(plane) 
     fail 'Error - Plane already grounded' if plane.grounded?
-    fail 'Error - Hanger is at capacity' if full?
+    fail 'Error - Hangar is at capacity' if full?
     check_weather
     fail 'Error - Weather is stormy' unless safe == true
   end  

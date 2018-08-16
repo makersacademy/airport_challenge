@@ -4,7 +4,7 @@ describe Airport do
   subject { described_class.new(mockWeatherStation) }            # subject(:airport) { described_class.new }
   let(:mockWeatherStation) { double :weatherstation }            # These top two lines should be ordered other wayaround but RSpec is very forgiving.  i.e. we should say 'let mockWS double WS' then change the subject.  
   let(:mockPlane) { double :plane }                              # let(:plane) { instance_double("Plane") }
-#   let(:mockPlane2) { double :plane2 }                  
+  let(:mockPlane2) { double :plane2 }                  
   let(:mockWeatherStation) { double :weatherstation }            # If we don't initialize Airports with Weather.new would this be valid: et(calmWeather) { double :weather, :conditions_safe? => true }
   let(:spyPlane) { spy :spyPlane }
 
@@ -36,8 +36,6 @@ describe Airport do
         allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true) 
         allow(mockPlane).to receive(:fly)
         expect(subject.take_off(mockPlane)).to eq "#{mockPlane} has left the airport"
-        
-
       end
     end  
     context 'when weather is stormy' do                         # let(:stormyWeather) { double :weather, conditions_safe? => false }
@@ -52,22 +50,25 @@ describe Airport do
   describe '#land', :land do
     it { is_expected.to respond_to(:land).with(1).argument }
     it 'denies landing when hangar is full' do
-      allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true)
+      allow(mockWeatherStation).to receive(:conditions_safe?).and_return true
       allow(mockPlane).to receive(:touch_down)
+      allow(mockPlane).to receive(:grounded?)
+      allow(mockPlane2).to receive(:grounded?).and_return false
       Airport::DEFAULT_CAPACITY.times { subject.land(mockPlane) } # This is a class constant
       expect { subject.land(mockPlane2) }.to raise_error 'Error - Hangar is at capacity'
     end  
     context 'when weather is calm' do 
       it 'adds planes to @hangar' do
-        allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true)
+        allow(mockWeatherStation).to receive(:conditions_safe?).and_return true
         allow(mockPlane).to receive(:grounded?)
         allow(mockPlane).to receive(:touch_down)
         subject.land(mockPlane)
         expect(subject.hangar).to include(mockPlane)
       end
       it 'allows planes to land' do 
-        allow(mockWeatherStation).to receive(:conditions_safe?).and_return(true)
+        allow(mockWeatherStation).to receive(:conditions_safe?).and_return true
         allow(mockPlane).to receive(:touch_down)
+        allow(mockPlane).to receive(:grounded?) 
         subject.land(mockPlane)           # allow(subject).to receive(:status).and_return("#{mockPlane} is in the hangar")
         expect(subject.status(mockPlane)).to eq "#{mockPlane} is in the hangar"  # expect(spyPlane).to have_received (:touch_down) + comment out allow line.  Generall with spies, call real command and then ask whether it was received
       end
@@ -75,7 +76,7 @@ describe Airport do
   
     context 'when weather is stormy' do
       it 'does not allow planes to land' do 
-        allow(mockWeatherStation).to receive(:conditions_safe?).and_return(false)
+        allow(mockWeatherStation).to receive(:conditions_safe?).and_return false
         allow(mockPlane).to receive(:grounded?)
         expect { subject.land(mockPlane) }.to raise_error 'Error - Weather is stormy'
 
