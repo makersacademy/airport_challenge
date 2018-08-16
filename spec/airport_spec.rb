@@ -53,7 +53,7 @@ describe Airport do
       allow(mockWeatherStation).to receive(:conditions_safe?).and_return true
       allow(mockPlane).to receive(:touch_down)
       allow(mockPlane).to receive(:grounded?)
-      allow(mockPlane2).to receive(:grounded?).and_return false
+      allow(mockPlane2).to receive(:grounded?)
       Airport::DEFAULT_CAPACITY.times { subject.land(mockPlane) } # This is a class constant
       expect { subject.land(mockPlane2) }.to raise_error 'Error - Hangar is at capacity'
     end  

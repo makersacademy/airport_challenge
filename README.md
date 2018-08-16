@@ -4,7 +4,7 @@ This program models an airport.
 
 Task:
 -----
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. Use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  The task is to test drive the creation of a set of classes/modules to satisfy all user stories below using a random weather generator to set the weather (it is normally calm but on rare occasions it may be stormy). The tests will need you to use a stub to override random weather to ensure consistent test behaviour.
 
 Requiements: 
 -----------
@@ -26,10 +26,8 @@ Reviewers will potentially be using this [code review rubric](docs/review.md).
 
 Code Review:
 -----------
-All tests passing
-High Test coverage (>95% is good)
+All tests passing / high test coverage (>95% is good)
 The code is elegant: every class has a clear responsibility, methods are short etc.
-Reviewers will potentially be using this code review rubric. Referring to this rubric in advance will make the challenge somewhat easier. You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 
