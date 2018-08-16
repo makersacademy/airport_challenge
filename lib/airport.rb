@@ -1,7 +1,9 @@
 require_relative 'plane'
 require_relative 'weather_station'
+require_relative 'weather_mod'
 
 class Airport
+
   attr_reader :hangar, :capacity, :weather, :safe, :weather_station
   
   DEFAULT_CAPACITY = 1  
@@ -41,7 +43,8 @@ class Airport
   end  
   
   def clear_to_land?(plane)
-    fail 'Error - Plane already grounded' if hangar.include?(plane) 
+    # fail 'Error - Plane already grounded' if hangar.include?(plane) 
+    fail 'Error - Plane already grounded' if plane.grounded?
     fail 'Error - Hanger is at capacity' if full?
     check_weather
     fail 'Error - Weather is stormy' unless safe == true
