@@ -18,14 +18,15 @@ describe Airport do
   describe "#land" do
     it "Lands a plane" do
       allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
       expect(airport.land(plane)).to eq "#{plane} has landed"
+      expect(airport.hangar).to include(plane)
     end
 
-    it"Cannot land the same plane twice" do
+    it "Cannot land the same plane twice" do
       allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
-      expect{ airport.land(plane) }.to raise_error("#{plane} has already landed")
+      expect{ airport.land(plane) }.to raise_error("This plane has already landed")
+      expect(airport.hangar.length).to eq(1)
     end
   
     context "stormy weather" do
@@ -42,7 +43,7 @@ describe Airport do
         while i < max_capacity do
           plane = Plane.new
           expect(airport).to receive(:stormy?) { false }
-          airport.land(Plane)
+          airport.land(plane)
           i += 1
         end
         p6 = Plane.new
@@ -90,7 +91,7 @@ describe Airport do
       while i < max_capacity do
         plane = Plane.new
         expect(airport).to receive(:stormy?) { false }
-        airport.land(Plane)
+        airport.land(plane)
         i += 1
       end
       expect(airport.max_capacity?).to eq true

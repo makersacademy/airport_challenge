@@ -10,6 +10,7 @@ class Airport
   end
     
   def land(plane)
+    fail "This plane has already landed" if @hangar.include?(plane)
     fail "Cannot land, airport is at maximum capacity" if max_capacity?
     fail "Cannot land due to storm" if stormy? 
     @hangar << plane
