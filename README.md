@@ -1,10 +1,11 @@
-#Airport Challenge
+# Airport Challenge
 
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
+## User Stories
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -31,7 +32,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-##Steps
+## Steps
 
 1. Clone this repo
 2. Run the command `gem install bundle`)
@@ -40,7 +41,7 @@ I would like a default airport capacity that can be overridden as appropriate
 5. Create a new instance of airport with airport = Airport.new
 6. Create a new instance of plane with plane = Plane.new
 
-##Using
+## Using
 
 Where plane is an instance of Plane and airport is an instance of Airport, the following commands can be used:
 
@@ -79,7 +80,7 @@ RuntimeError (Stormy weather)
  => [#<Plane:0x00007f98f80c3440>, #<Plane:0x00007f98f80c3440>, #<Plane:0x00007f98f80c3440>]
 ```
 
-##Approach
+## Approach
 
 I approached the challenge by creating two classes:
 
