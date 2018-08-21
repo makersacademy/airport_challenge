@@ -76,7 +76,6 @@ How to use
 ----
 
 1. After cloning, cd into the airport_challenge on your machine.
-
 ```
 cd airport_challenge
 ```
@@ -90,11 +89,26 @@ require './lib/Airport'
 3. Instantiate Airport. Airport takes two parameters, a Weather class and a maximum capacity integer.  
 Weather and 5 are defaults.
 ```
-LondonCity = Airport.new
+londonCity = Airport.new
 ```
 
 4. Instantiate Plane.
 ```
 s3bViking = Plane.new
 ```
+5. To land a plane call the land method on the airport object. The land method takes a single parameter, a plane. Planes will be unable to land if the weather is stomry, or if the plane is already in the hangar.
+```
+londonCity.land(s3bViking)
+```
+
+6. To tell a plane to take off call the take_off method on the airport object. The take_off method takes a single parameter, a plane. Planes will be unable to take off if the weather is stomry, or if the plane is not in the hangar.
+```
+londonCity.take_off(s3bViking)
+```
+
+You can check which planes are in the hangar by calling the hangar method on the airport.
+```
+londonCity.hangar
+```
+
 
