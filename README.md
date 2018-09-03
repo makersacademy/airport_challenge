@@ -1,5 +1,4 @@
 # Airport Challenge
-===================
 This program models an airport from the user-perspective of an air traffic controller.  
 
 ## Task:
