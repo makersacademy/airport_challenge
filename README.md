@@ -1,5 +1,3 @@
-TESTING GIT
-
 Airport Challenge
 =================
 
