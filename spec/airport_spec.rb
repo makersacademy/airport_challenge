@@ -29,8 +29,7 @@ describe Airport do
                             #     expect(subject.take_off(plane)).to eq(plane)
                             # end
 
-    it 'expect "plane" to be able to take off from the airport 
-        confirm that the plane takes off and is no longer in the airport' do
+    it 'expect "plane" to be able to take off from the airport confirm that the plane takes off and is no longer in the airport' do
         plane = Plane.new
         subject.land_plane(plane)
         subject.take_off(plane)
@@ -42,12 +41,14 @@ describe Airport do
     # I want to prevent takeoff when weather is stormy 
 
     it 'expect planes to not be able to take off if the weather is "stormy"' do
-        subject { Airport.new }
+        # subject {Airport.new("stormy")} 
+        ace = Airport.new("stormy")
+        p ace
         plane = Plane.new
-        subject.land_plane(plane)
-        subject("stormy")
-        expect(subject.take_off(plane)).to raise "Weather is too harsh for planes to take off"
+        ace.land_plane(plane)
+        # p "***********************", ace::weather
+        expect{ace.take_off(plane)}.to raise_error("Weather is too harsh for planes to take off")
     end
     
-        
+
 end
