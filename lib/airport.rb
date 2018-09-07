@@ -1,4 +1,9 @@
 class Airport
+
+  def initialize
+    @storage = []
+  end
+
   def land(plane)
   end
 
