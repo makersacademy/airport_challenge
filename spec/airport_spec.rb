@@ -33,6 +33,16 @@ describe Airport do
       expect(airport.takeoff(plane)).to eq(plane)
       expect(airport.hangar).to eq([])
     end
+
+    it 'removes a specific plane from the airport' do
+      airport = Airport.new(2)
+      airbus = Plane.new
+      boeing = Plane.new
+      airport.land(airbus)
+      airport.land(boeing)
+      expect(airport.takeoff(boeing)).to eq(boeing)
+      expect(airport.hangar).to eq([airbus])
+    end
   end
 
   describe 'hangar' do
