@@ -13,7 +13,15 @@ class Airport
   end
 
   def take_off(plane)
-    plane_list.delete(plane) 
+    if stormy? == 6
+      "Sorry, it's too stormy"
+    else
+      plane_list.delete(plane)
+    end
+  end
+
+  def stormy?
+    rand(7)
   end
 
 end
