@@ -29,10 +29,10 @@ describe Airport do
         expect(subject.take_off(plane)).to eq(plane)
     end
 
-    # it 'confirm that the plane takes off and is no longer in the airport' do
-    #     plane = Plane.new
-    #     subject.land_plane(plane)
-    #     subject.take_off(plane)
-    #     expect(subject.plane_list().to eq([])
-    # end
+    it 'confirm that the plane takes off and is no longer in the airport' do
+        plane = Plane.new
+        subject.land_plane(plane)
+        subject.take_off(plane)
+        expect(subject.plane_list).to eq([])
+    end
 end
