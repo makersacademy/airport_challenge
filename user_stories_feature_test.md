@@ -45,4 +45,12 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-  airport = Airport.new(default_capacity_that_can_be_changed)
+  load './lib/plane.rb'
+  stansted = Airport.new
+  stansted.capacity == 1
+  stansted.land(Plane.new)
+  stansted.land(Plane.new) # RuntimeError (Airport full)
+  heathrow = Airport.new(50)
+  heathrow.capacity == 50
+  50.times { heathrow.land(Plane.new) }
+  heathrow.land(plane) # Runtime Error (Airport full)

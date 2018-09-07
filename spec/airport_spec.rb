@@ -9,8 +9,20 @@ describe Airport do
       expect(airport.land(plane)).to eq([plane])
     end
 
+    it 'allows multiple planes to land in an airport with a larger capacity' do
+      airport = Airport.new(2)
+      airport.land(plane)
+      expect(airport.land(plane)).to eq([plane, plane])
+    end
+
     it 'prevents landing when the airport is full' do
       airport.land(plane)
+      expect { airport.land(plane) }.to raise_error 'Airport full'
+    end
+
+    it 'prevents landing in a larger airport when the airport is full' do
+      airport = Airport.new(2)
+      2.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error 'Airport full'
     end
   end
@@ -20,6 +32,20 @@ describe Airport do
       airport.land(plane)
       expect(airport.takeoff(plane)).to eq(plane)
       expect(airport.hangar).to eq([])
+    end
+  end
+
+  describe 'hangar' do
+    it 'has a variable capacity' do
+      airport = Airport.new(50)
+      expect(airport.capacity).to eq(50)
+      airport_2 = Airport.new(20)
+      expect(airport_2.capacity).to eq(20)
+    end
+
+    it 'has a default capacity if no capacity given' do
+      airport = Airport.new
+      expect(airport.capacity).to eq(1)
     end
   end
 end

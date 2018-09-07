@@ -1,8 +1,11 @@
 class Airport
-  attr_reader :hangar
+  attr_reader :hangar, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -14,7 +17,9 @@ class Airport
     @hangar.delete(plane)
   end
 
+  private
+
   def full?
-    @hangar.length >= 1
+    @hangar.length >= @capacity
   end
 end
