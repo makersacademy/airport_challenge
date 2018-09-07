@@ -5,7 +5,6 @@ class Airport
     def initialize(weather = "sunny")
         @plane_list = []
         @weather = weather
-        p @weather
     end
 
     def land_plane(plane)

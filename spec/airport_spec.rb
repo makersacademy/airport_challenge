@@ -41,12 +41,9 @@ describe Airport do
     # I want to prevent takeoff when weather is stormy 
 
     it 'expect planes to not be able to take off if the weather is "stormy"' do
-        # subject {Airport.new("stormy")} 
         ace = Airport.new("stormy")
-        p ace
         plane = Plane.new
         ace.land_plane(plane)
-        # p "***********************", ace::weather
         expect{ace.take_off(plane)}.to raise_error("Weather is too harsh for planes to take off")
     end
     
