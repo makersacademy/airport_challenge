@@ -2,7 +2,9 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-  plane.land(airport)
+  load './lib/plane.rb'
+  airport = Airport.new
+  airport.land(Plane.new) # [Plane.new]
 
 As an air traffic controller
 So I can get passengers on the way to their destination
