@@ -3,3 +3,7 @@ class Airport
     
     end
 end
+
+class Plane
+    attr_reader :plane
+end

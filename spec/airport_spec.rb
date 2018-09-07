@@ -7,6 +7,7 @@ describe Airport do
     end
 
     it 'expect airport to be able to land a plane at the airport' do
+        plane = Plane.new
         expect(subject.land_plane(plane)).to eq(plane)
     end
 end
