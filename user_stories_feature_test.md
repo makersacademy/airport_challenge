@@ -18,26 +18,28 @@ I want to instruct a plane to take off from an airport and confirm that it is no
   airport.takeoff(plane) == plane
   airport.hangar == [] # true
 
-As an air traffic controller
-To ensure safety
-I want to prevent takeoff when weather is stormy
+          As an air traffic controller
+          To ensure safety
+          I want to prevent takeoff when weather is stormy
 
-  when weather = stormy
-  plane.takeoff # error
+            when weather = stormy
+            plane.takeoff # error
 
-As an air traffic controller
-To ensure safety
-I want to prevent landing when weather is stormy
+          As an air traffic controller
+          To ensure safety
+          I want to prevent landing when weather is stormy
 
-  when weather = stormy
-  airport.land(plane) # error
+            when weather = stormy
+            airport.land(plane) # error
 
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
-  when airport.full?
-  airport.land(plane) # error
+  load './lib/plane.rb'
+  airport = Airport.new
+  airport.land(Plane.new)
+  airport.land(Plane.new) # RuntimeError (Airport full)
 
 As the system designer
 So that the software can be used for many different airports

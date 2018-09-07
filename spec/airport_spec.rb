@@ -8,6 +8,11 @@ describe Airport do
     it 'allows a plane to land at an airport' do
       expect(airport.land(plane)).to eq([plane])
     end
+
+    it 'prevents landing when the airport is full' do
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error 'Airport full'
+    end
   end
 
   describe 'takeoff' do
