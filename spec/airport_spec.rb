@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   describe '#land' do
@@ -18,11 +19,18 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
-    it 'clears the plane which take off from airport' do
+    # it 'clears the plane which take off from airport' do
+    #   plane = Plane.new
+    #   subject.land(plane)
+    #   subject.take_off(plane)
+    #   expect(subject.planes).not_to include(plane)
+    # end
+
+    it 'prevents plane from take off when it stromy' do
       plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.planes).not_to include(plane)
+      Weather.new.condition == 'stromy'
+      expect(subject.take_off(plane)).to eq ("Sorry! Plane can not take due to bad weather condition")
     end
+
   end
 end
