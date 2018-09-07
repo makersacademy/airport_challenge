@@ -24,15 +24,30 @@ describe Airport do
         expect(subject).to respond_to(:take_off)
     end
 
-    it 'expect "plane" to be able to take off from the airport' do
-        plane = Plane.new
-        expect(subject.take_off(plane)).to eq(plane)
-    end
+                            # it 'expect "plane" to be able to take off from the airport' do
+                            #     plane = Plane.new
+                            #     expect(subject.take_off(plane)).to eq(plane)
+                            # end
 
-    it 'confirm that the plane takes off and is no longer in the airport' do
+    it 'expect "plane" to be able to take off from the airport 
+        confirm that the plane takes off and is no longer in the airport' do
         plane = Plane.new
         subject.land_plane(plane)
         subject.take_off(plane)
         expect(subject.plane_list).to eq([])
     end
+
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent takeoff when weather is stormy 
+
+    it 'expect planes to not be able to take off if the weather is "stormy"' do
+        subject { Airport.new }
+        plane = Plane.new
+        subject.land_plane(plane)
+        subject("stormy")
+        expect(subject.take_off(plane)).to raise "Weather is too harsh for planes to take off"
+    end
+    
+        
 end
