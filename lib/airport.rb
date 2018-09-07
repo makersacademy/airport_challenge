@@ -11,8 +11,7 @@ class Airport
     end
 
     def take_off(plane)
-        @plane_list.pop
-        plane
+        @plane_list.delete(plane)
     end
 end
 
