@@ -12,7 +12,7 @@ describe Airport do
 
     it 'expect airport to be able to land a plane at the airport' do
         plane = Plane.new
-        expect(subject.land_plane(plane)).to eq(plane)
+        expect(subject.land_plane(plane)).to eq([plane])
     end
 
     # As an air traffic controller 

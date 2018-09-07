@@ -12,6 +12,7 @@ class Airport
 
     def take_off(plane)
         @plane_list.pop
+        plane
     end
 end
 
