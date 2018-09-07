@@ -42,4 +42,10 @@ describe Airport do
     expect(subject.take_off(plane)).to eq "Sorry, it's too stormy"
   end
 
+  it "does not allow a plane to land when stormy? is 6" do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?) { 6 }
+    expect(subject.land_plane(plane)).to eq "Sorry, it's too stormy"
+  end
+
 end

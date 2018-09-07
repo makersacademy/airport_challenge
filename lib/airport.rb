@@ -9,7 +9,11 @@ class Airport
   end
 
   def land_plane(plane)
-    plane_list << plane
+    if stormy? == 6
+      "Sorry, it's too stormy"
+    else
+      plane_list << plane
+    end
   end
 
   def take_off(plane)
