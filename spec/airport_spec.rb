@@ -50,4 +50,26 @@ describe Airport do
     allow(subject).to receive(:stormy?) { true }
     expect { subject.land(plane) }.to raise_error('No landing, weather is stormy!')
   end
+
+  it 'prevents landing when the airport is full' do
+    allow(subject).to receive(:stormy?) { false }
+    20.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error('Airport is full!')
+  end
+
+  it 'checks when is full' do
+    allow(subject).to receive(:stormy?) { false }
+    20.times { subject.land(Plane.new) }
+    expect(subject.full?).to eq true
+  end
+
+  it 'set the default capacity to 20' do
+    expect(subject.capacity).to eq 20
+  end
+
+  it 'allows the default capacity to be overridden' do
+    capacity = 30
+    airport = Airport.new(capacity)
+    expect(airport.capacity).to eq(capacity)
+  end
 end
