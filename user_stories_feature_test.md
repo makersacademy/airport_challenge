@@ -4,13 +4,19 @@ I want to instruct a plane to land at an airport
 
   load './lib/plane.rb'
   airport = Airport.new
-  airport.land(Plane.new) # [Plane.new]
+  plane = Plane.new
+  airport.land(plane) == [plane]
 
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-  plane.takeoff # plane not in the airport
+  load './lib/plane.rb'
+  airport = Airport.new
+  plane = Plane.new
+  airport.land(plane)
+  airport.takeoff(plane) == plane
+  airport.hangar == [] # true
 
 As an air traffic controller
 To ensure safety
