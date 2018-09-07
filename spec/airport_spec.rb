@@ -16,12 +16,14 @@ describe Airport do
 
   it "stores a plane in it's plane list when a plane is instructed to land" do
     plane = Plane.new
+    allow(subject).to receive(:stormy?) { 1 }
     subject.land_plane(plane)
     expect(subject.plane_list.include?(plane)).to eq true
   end
 
   it "removes a plane from it's plane list when the plane takes off" do
     plane = Plane.new
+    allow(subject).to receive(:stormy?) { 1 }
     subject.land_plane(plane)
     subject.take_off(plane)
     expect(subject.plane_list.include?(plane)).to eq false
@@ -46,6 +48,19 @@ describe Airport do
     plane = Plane.new
     allow(subject).to receive(:stormy?) { 6 }
     expect(subject.land_plane(plane)).to eq "Sorry, it's too stormy"
+  end
+
+  it "does not allow a plane to land if the airport is at capacity" do
+    allow(subject).to receive(:stormy?) { 1 }
+    10.times { subject.land_plane(Plane.new) }
+    expect(subject.land_plane(Plane.new)).to eq "Sorry, this airport is full"
+  end
+
+  it "does not allow a plane to land if the airport is at capacity and it is story" do
+    allow(subject).to receive(:stormy?) { 1 }
+    10.times { subject.land_plane(Plane.new) }
+    allow(subject).to receive(:stormy?) { 6 }
+    expect(subject.land_plane(Plane.new)).to eq "Sorry, it's too stormy and this airport is full"
   end
 
 end
