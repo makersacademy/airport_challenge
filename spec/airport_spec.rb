@@ -10,12 +10,19 @@ describe Airport do
 
   it "has a working Airport#takeoff(plane) method" do
     plane = Plane.new
-    expect(subject.takeoff(plane)).to eq(plane)
+    expect(subject.takeoff(plane)).to eq("Airborn")
   end
 
   it "can set Airport @hanger capacity to 0" do
     airport = Airport.new(0)
     expect(airport.land(Plane.new)).to eq("The plane can't land because the hanger is full")
+  end
+
+  it "rejects edge cases: Airborn plane trying to takeoff" do
+    plane = Plane.new
+    airport = Airport.new
+    airport.takeoff(plane)
+    expect(airport.takeoff(plane)).to eq("Cannot takeoff. Plane already airborn")
   end
 
 end
