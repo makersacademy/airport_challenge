@@ -6,8 +6,12 @@ describe Plane do
     expect(subject.location).to eq("The Factory")
   end
 
-  it "sets @location to 'Airborn' while in flight" do
-    subject.airborn
-    expect(subject.location).to eq("Airborn")
+  it "can set @location to 'Airborn' while in flight" do
+    expect(subject.airborn).to eq("Airborn")
+  end
+
+  it "can set @location to specific airport" do
+    airport = Airport.new
+    expect(subject.grounded(airport)).to eq(airport)
   end
 end
