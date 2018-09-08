@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    return "Cannot land. Plane already on the ground" if plane.location == self || plane.location == "The Factory"
     return "The weather is too bad to land" if bad_weather?
     return "The plane can't land because the hanger is full" if hanger_full?
     plane.grounded(self)
