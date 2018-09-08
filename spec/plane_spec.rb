@@ -17,4 +17,8 @@ describe Plane do
   it "wont land in a storm" do
     expect(subject.land_at(Airport.new)).to eq("Landing is too dangerous")
   end
+
+  it "can't land at a full airport" do
+    expect(subject.land_at(Airport.new)).to eq("Sorry, the hanger is full")
+  end
 end
