@@ -1,6 +1,7 @@
 require 'plane'
 require 'passenger'
 require 'ticket'
+require 'airport'
 
 describe Plane do
   context 'flying' do
@@ -62,6 +63,35 @@ describe Plane do
       subject.flying = false
       100.times { subject.board(Passenger.new) }
       expect { subject.board(Passenger.new) }.to raise_error('Plane is full!')
+    end
+  end
+
+  context 'disembarking' do
+
+    it 'lets a specific passenger off the plane and confirms passenger is not in plane' do
+      subject.flying = false
+      passenger1 = Passenger.new
+      passenger2 = Passenger.new
+      subject.board(passenger1)
+      subject.board(passenger2)
+      subject.disembark(passenger1)
+      expect(subject.on_board?(passenger1)).to be false
+    end
+
+    it 'prevents a passenger disembarking if already off the plane' do
+      subject.flying = false
+      passenger = Passenger.new
+      subject.board(passenger)
+      subject.disembark(passenger)
+      expect { subject.disembark(passenger) }.to raise_error('Passenger already off the plane!')
+    end
+
+    it 'prevents a passenger disembarking if plane is flying' do
+      subject.flying = false
+      passenger = Passenger.new
+      subject.board(passenger)
+      subject.flying = true
+      expect { subject.disembark(passenger) }.to raise_error('Plane is flying!')
     end
   end
 end
