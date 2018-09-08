@@ -1,6 +1,5 @@
 class Weather
-  attr_reader :weather
-  def initialize
-    @weather
+  def forecast
+    'sunny'
   end
 end

@@ -13,10 +13,12 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if full?
+    fail 'Plane already landed' if plane_in_hangar(plane)
     @hangar << plane
   end
 
   def takeoff(plane)
+    fail 'Plane not in airport' unless plane_in_hangar(plane)
     @hangar.delete(plane)
   end
 
@@ -24,5 +26,9 @@ class Airport
 
   def full?
     @hangar.length >= @capacity
+  end
+
+  def plane_in_hangar(plane)
+    @hangar.include?(plane)
   end
 end

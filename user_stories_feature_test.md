@@ -28,6 +28,7 @@ I want to prevent takeoff when weather is stormy
 
 ```
 load './lib/airport.rb'
+  when weather is stormy (stub it)
 airport = Airport.new
 plane = Plane.new
 airport.land(plane)
@@ -70,10 +71,8 @@ heathrow.land(plane) # Runtime Error (Airport full)
 ```
 
 
-Tests to add:
+Edge Cases:
 
-Planes can only take off from airports they are in
-Planes that are already flying cannot takeoff
-Planes that are already flying cannot be in an airport
-Planes that are landed cannot land again
-Planes that are landed must be in an airport
+* Planes can only take off from airports they are in
+* Planes that are already flying cannot takeoff
+* Planes that are landed cannot land again

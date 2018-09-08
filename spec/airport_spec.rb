@@ -11,8 +11,10 @@ describe Airport do
 
     it 'allows multiple planes to land in an airport with a larger capacity' do
       airport = Airport.new(2)
-      airport.land(plane)
-      expect(airport.land(plane)).to eq([plane, plane])
+      boeing = Plane.new
+      airbus = Plane.new
+      airport.land(boeing)
+      expect(airport.land(airbus)).to eq([boeing, airbus])
     end
 
     it 'prevents landing when the airport is full' do
@@ -22,8 +24,15 @@ describe Airport do
 
     it 'prevents landing in a larger airport when the airport is full' do
       airport = Airport.new(2)
-      2.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error 'Airport full'
+      2.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error 'Airport full'
+    end
+
+    it 'prevents planes that are landed from landing again' do
+      boeing = Plane.new
+      airport = Airport.new(2)
+      airport.land(boeing)
+      expect { airport.land(boeing) }.to raise_error 'Plane already landed'
     end
   end
 
@@ -42,6 +51,17 @@ describe Airport do
       airport.land(boeing)
       expect(airport.takeoff(boeing)).to eq(boeing)
       expect(airport.hangar).to eq([airbus])
+    end
+
+    it 'only allows a plane to take off from the airport they are in' do
+      heathrow = Airport.new
+      stansted = Airport.new
+      heathrow.land(plane)
+      expect { stansted.takeoff(plane) }.to raise_error 'Plane not in airport'
+    end
+
+    it 'raises an error when a plane that is flying tries to take off' do
+      expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
     end
   end
 
