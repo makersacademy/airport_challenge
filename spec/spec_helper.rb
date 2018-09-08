@@ -8,7 +8,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   # SimpleCov::Formatter::HTMLFormatter
 ])
 SimpleCov.start
-
+=begin
 RSpec.configure do |config|
   config.after(:suite) do
     puts
@@ -16,3 +16,4 @@ RSpec.configure do |config|
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
 end
+=end
