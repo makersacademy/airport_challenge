@@ -1,4 +1,4 @@
-require "airport"
+require_relative "airport"
 
 class Plane
 
@@ -15,6 +15,7 @@ class Plane
 
   def take_off
     return "Taking off is too dangerous" if @location.bad_weather?
+    airport.remove_plane_from_hanger(self)
     @location = "In the air."
   end
 
