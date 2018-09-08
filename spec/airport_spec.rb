@@ -29,6 +29,12 @@ describe Airport do
       expect(subject.planes).to include(plane)
     end
 
+    it 'raises error and prevent landing when the airport is full' do
+      weather = Weather.new('sunny')
+      airport = Airport.new(weather, [])
+      described_class::MAX_CAPACITY.times{ airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error(RuntimeError, "Airport is full")
+    end
   end
 
   describe '#take_off' do
@@ -53,7 +59,6 @@ describe Airport do
       weather = Weather.new('sunny')
       airport = Airport.new(weather, planes)
       plane = Plane.new
-
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).not_to include(plane)
@@ -63,8 +68,7 @@ describe Airport do
       weather = Weather.new('stormy')
       airport = Airport.new(weather, planes)
       plane = Plane.new
-
-      expect(airport.take_off(plane)).to eq ("Sorry! Plane can not take due to bad weather condition")
+      expect(airport.take_off(plane)).to eq ("Sorry! Plane can not take off due to bad weather condition")
     end
 
   end
