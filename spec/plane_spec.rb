@@ -4,11 +4,11 @@ RSpec.describe Plane do
   subject(:plane) { Plane.new }
   let(:airport) { double :airport }
 
-  context 'when the weather is fine' do
+  context 'when the weather is sunny' do
     # As an air traffic controller 
     # So I can get passengers to a destination 
     # I want to instruct a plane to land at an airport
-    it 'should land a plane' do
+    it 'should land at an airport' do
       expect(plane.land(airport)).to eq true
     end
     # As an air traffic controller 
