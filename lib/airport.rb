@@ -9,11 +9,11 @@ class Airport
     @hanger_size = hanger_size
   end
 
-  def put_plane_in_hanger(plane)
+  def hanger_plane(plane)
     @hanger.push(plane)
   end
 
-  def remove_plane_from_hanger(plane)
+  def unhanger_plane(plane)
     @hanger.delete(plane)
   end
 
@@ -22,8 +22,8 @@ class Airport
   end
 
   def bad_weather?
-    # true if rand(10).zero?
+    true if rand(10).zero?
     # true
-    false
+    # false
   end
 end
