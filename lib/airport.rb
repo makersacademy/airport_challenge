@@ -15,7 +15,7 @@ class Airport
     fail 'Airport full' if full?
     fail 'Plane already landed' if plane_in_hangar(plane)
     @hangar << plane
-  end
+  end 
 
   def takeoff(plane)
     fail 'Plane not in airport' unless plane_in_hangar(plane)

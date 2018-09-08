@@ -2,7 +2,9 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { Plane.new }
+  let(:plane) { double(:plane) }
+  let(:boeing) { double(:plane) }
+  let(:airbus) { double(:plane) }
 
   describe 'land' do
     it 'allows a plane to land at an airport' do
@@ -11,8 +13,6 @@ describe Airport do
 
     it 'allows multiple planes to land in an airport with a larger capacity' do
       airport = Airport.new(2)
-      boeing = Plane.new
-      airbus = Plane.new
       airport.land(boeing)
       expect(airport.land(airbus)).to eq([boeing, airbus])
     end
@@ -24,12 +24,12 @@ describe Airport do
 
     it 'prevents landing in a larger airport when the airport is full' do
       airport = Airport.new(2)
-      2.times { airport.land(Plane.new) }
-      expect { airport.land(Plane.new) }.to raise_error 'Airport full'
+      airport.land(boeing)
+      airport.land(airbus)
+      expect { airport.land(plane) }.to raise_error 'Airport full'
     end
 
     it 'prevents planes that are landed from landing again' do
-      boeing = Plane.new
       airport = Airport.new(2)
       airport.land(boeing)
       expect { airport.land(boeing) }.to raise_error 'Plane already landed'
@@ -45,8 +45,6 @@ describe Airport do
 
     it 'removes a specific plane from the airport' do
       airport = Airport.new(2)
-      airbus = Plane.new
-      boeing = Plane.new
       airport.land(airbus)
       airport.land(boeing)
       expect(airport.takeoff(boeing)).to eq(boeing)
