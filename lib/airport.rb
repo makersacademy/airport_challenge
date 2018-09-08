@@ -1,8 +1,12 @@
-class Airport
-  def takeoff_plane
 
+class Airport
+  def takeoff
+    Plane.new
+    "Plane departed."
   end
 
-  def land_plane
+  def land(plane)
+    @plane = plane
+    "Plane landed."
   end
 end
