@@ -2,8 +2,11 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize
+  DEFAULT_HANGER_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_HANGER_CAPACITY)
     @hanger = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -15,7 +18,7 @@ class Airport
   def takeoff(plane)
     return "The weather is too bad to fly" if bad_weather?
     @hanger.delete(plane)
-    plane
+    plane.airborn
   end
 
   def bad_weather?
@@ -25,7 +28,7 @@ class Airport
   end
 
   def hanger_full?
-    @hanger.count == 0
+    @hanger.count == @capacity
   end
 
 end
