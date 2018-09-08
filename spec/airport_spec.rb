@@ -32,18 +32,18 @@ describe Airport do
     plane = Airplane.new
     airport.land(plane)
     airport.weather(Weather.new.stormy)
-    expect { airport.take_off(plane) }.to raise_error "Sorry, no take-off. There's a storm."
+    expect { airport.take_off(plane) }.to raise_error "Sorry, there's a storm."
   end
 
   it "should not let planes land if the weather at airport is stormy" do
     plane = double(:Airplane)
     weather = double(:Weather, stormy: "Stormy")
     subject.weather(weather.stormy)
-    expect { subject.land(plane) }.to raise_error "Sorry, no landing. There's a storm."
+    expect { subject.land(plane) }.to raise_error "Sorry, there's a storm."
   end
 
   it "should not let more planes land if the airport has reached it's capacity" do
-    20.times { subject.land(Airplane.new) } 
+    subject.default_capacity.times { subject.land(Airplane.new) } 
     expect { subject.land(Airplane.new) }.to raise_error "Sorry, the hanger is full."
   end
 end
