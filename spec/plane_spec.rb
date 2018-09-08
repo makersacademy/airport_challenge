@@ -14,4 +14,15 @@ describe Plane do
     airport = Airport.new
     expect(subject.grounded(airport)).to eq(airport)
   end
+
+  it "instances know where they are" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(plane.location).to eq("The Factory")
+    airport.takeoff(plane)
+    expect(plane.location).to eq("Airborn")
+    airport.land(plane)
+    expect(plane.location).to eq(airport)
+  end
+
 end
