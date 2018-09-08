@@ -14,7 +14,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail("weather is too bad for take-off") if bad_weather == true
+    fail("weather is too bad for take-off") if stormy == true
     @planes.pop
     "plane has taken off"
   end
@@ -27,7 +27,7 @@ class Airport
     end
   end
 
-  def bad_weather
+  def stormy
     rand(1..100) > 80
   end
 

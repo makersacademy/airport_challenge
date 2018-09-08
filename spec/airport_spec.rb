@@ -30,9 +30,9 @@ describe Airport do
   #   expect(subject.take_off(plane)).to eq("weather is too bad for take-off")
   # end
 
-  it 'doesnt allow take off when bad weather' do
-    bad_weather = double("bad_weather")
-    allow(bad_weather).to receive(:rand).and_return(true)
+  it 'doesnt allow take off when stormy' do
+    stormy = double("stormy")
+    allow(stormy).to receive(:rand).and_return(true)
     expect{subject.take_off(plane)}.to raise_error("weather is too bad for take-off")
   end
 
