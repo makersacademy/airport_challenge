@@ -11,13 +11,17 @@ describe Airport do
     20.times do
       subject.hanger_plane(Plane.new)
     end
-    expect(Plane.new.land_at(subject)).to eq("Sorry, the hanger is full")
+    plane = Plane.new
+    plane.take_off
+    expect(plane.land_at(subject)).to eq("Sorry, the hanger is full")
   end
 
   it "the DEFAULT_HANGER_SIZE can be overidden" do
     airport = Airport.new(1)
+    plane1 = Plane.new
+    plane1.take_off
     airport.hanger_plane(Plane.new)
-    expect(Plane.new.land_at(airport)).to eq("Sorry, the hanger is full")
+    expect(plane1.land_at(airport)).to eq("Sorry, the hanger is full")
   end
 
   it "planes can be removed from the hanger" do

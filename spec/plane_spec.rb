@@ -21,4 +21,9 @@ describe Plane do
   xit "can't land at a full airport" do
     expect(subject.land_at(Airport.new)).to eq("Sorry, the hanger is full")
   end
+
+  it "can only land if in the air (edge case)" do
+    subject.land_at(Airport.new)
+    expect(subject.land_at(Airport.new)).to eq("You are already, on the ground")
+  end
 end
