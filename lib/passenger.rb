@@ -1,12 +1,18 @@
 class Passenger
   TICKET = true
+  ON_PLANE = true
 
   attr_reader :luggages
-  attr_accessor :ticket
+  attr_accessor :ticket, :on_plane
 
-  def initialize(ticket = TICKET)
+  def initialize(ticket = TICKET, on_plane = ON_PLANE)
     @ticket = ticket
     @luggages = []
+    @on_plane = on_plane
+  end
+
+  def on_plane?
+    @on_plane
   end
 
   def ticket?
@@ -21,6 +27,7 @@ class Passenger
 
   def get_luggage(luggage)
     fail 'Passenger already got luggage!' if luggage_dropped?(luggage) == false
+    fail 'Passenger still on plane!' if on_plane?
     @luggages.delete(luggage)
   end
 

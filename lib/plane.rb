@@ -17,12 +17,14 @@ class Plane
     fail 'Plane is flying!' if flying?
     fail 'Passenger does not have a ticket!' unless passenger.ticket?
     @on_board << passenger
+    passenger.on_plane = true
   end
 
   def disembark(passenger)
     fail 'Passenger already off the plane!' if on_board?(passenger) == false
     fail 'Plane is flying!' if flying?
     @on_board.delete(passenger)
+    passenger.on_plane = false
   end
 
   def on_board?(passenger)
