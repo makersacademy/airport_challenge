@@ -8,11 +8,18 @@ describe Airport do
     end
   end
 
-  context 'landing planes' do
-    it 'lets planes land and confirms plane is in hangar' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.plane_in_hangar?(plane)).to eq true
+  context 'landing' do
+    before(:each) do
+      @plane = Plane.new
+      subject.land(@plane)
+    end
+
+    it 'lets plane land and confirms plane is in hangar' do
+      expect(subject.plane_in_hangar?(@plane)).to eq true
+    end
+
+    it 'prevents a plane to land if already landed' do
+      expect { subject.land(@plane) }.to raise_error('Plane already landed!')
     end
   end
 
@@ -24,6 +31,13 @@ describe Airport do
       subject.land(plane2)
       subject.take_off(plane1)
       expect(subject.plane_in_hangar?(plane1)).to eq false
+    end
+
+    it 'prevents a plane to take off if already flying' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error('Plane already flying!')
     end
   end
 
@@ -64,12 +78,5 @@ describe Airport do
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error('Airport is full!')
     end
-  end
-
-  it 'prevents a plane to take off if already flying' do
-    plane = Plane.new
-    subject.land(plane)
-    subject.take_off(plane)
-    expect { subject.take_off(plane) }.to raise_error('Plane already flying!')
   end
 end

@@ -1,4 +1,4 @@
-class Plane
+class Plasne
   FLYING = true
 
   attr_accessor :flying
@@ -6,5 +6,4 @@ class Plane
   def initialize(flying = FLYING)
     @flying = flying
   end
-
 end
