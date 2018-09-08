@@ -5,6 +5,7 @@ describe Airport do
 # and the hanger can't be full
   it "has a working Airport#land(plane) method" do
     plane = Plane.new
+    subject.takeoff(plane)
     expect(subject.land(plane)).to eq([plane])
   end
 
@@ -15,7 +16,9 @@ describe Airport do
 
   it "can set Airport @hanger capacity to 0" do
     airport = Airport.new(0)
-    expect(airport.land(Plane.new)).to eq("The plane can't land because the hanger is full")
+    plane = Plane.new
+    subject.takeoff(plane)
+    expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
   end
 
   it "rejects edge cases: Airborn plane trying to takeoff" do
