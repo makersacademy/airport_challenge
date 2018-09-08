@@ -10,7 +10,8 @@ class Airport
     @hanger << plane
   end
 
-  def take_off(plane)
+  def takeoff(plane)
+    return "The weather is too bad to fly" if bad_weather?
     @hanger.delete(plane)
     plane
   end
