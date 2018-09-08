@@ -1,8 +1,9 @@
 require 'plane'
 
 describe Plane do
-  it { is_expected.to respond_to(:name) }  
   describe "@name" do
+    it { is_expected.to respond_to(:name) }  
+
     it 'assigns default value to @name' do
       expect(subject.name).to eq("Plane")
     end
