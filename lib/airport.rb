@@ -10,6 +10,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "Error! There is no #{plane.name} in the hangar!" unless @hangar.include?(plane)
     @hangar.delete(plane) 
     puts "#{plane.name} has taken off.\n#{display_hangar}"
   end
