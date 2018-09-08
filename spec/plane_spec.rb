@@ -8,7 +8,7 @@ describe Plane do
     end
 
     it 'assigns initialised parameter as @name' do
-      subject =  Plane.new("Boeing 74")  
+      subject = Plane.new("Boeing 74")  
       expect(subject.name).to eq("Boeing 74")
     end
   end
