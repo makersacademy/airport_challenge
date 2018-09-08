@@ -65,9 +65,22 @@ I want to instruct a plane to land at an airport
 
 ---
 
-## Feature test 1
-
 Air Traffic controller should take object plane and tell it to land at airport.
+
+## Feature test 1
+load './lib/airtraffic_controller.rb'
+## Feature test 2
+load './lib/plane.rb'
+## Feature test 3
+load './airtraffic_controller.rb'
+luton = Airport.new
+## Feature test 4
+load './plane.rb'
+spitfire = Plane.new
+## Feature test 5
+load './airtraffic_controller.rb'
+luton = Airport.new
+spitfire = Plane.new
 
 __Therefore__
 'Plane' should repsond to method 'Land'
