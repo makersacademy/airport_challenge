@@ -5,22 +5,27 @@ require 'weather'
 describe Airport do
   subject { Airport.new(weather, planes) }
   let(:weather) { Weather.new }
-  let(:planes) { [ Plane.new, Plane.new ] }
+  let(:planes) { [] }
 
+  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:change_capacity).with(1).argument }
 
-  describe '#land' do
-    it 'instruct a plane to land' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject).to respond_to(:land).with(1).argument
+  describe '#initialize' do
+    it "raises an error when number of planes are more than maximum capacity" do
+      expect { Airport.new(weather, [Plane.new, Plane.new], 1) }.to raise_error(RuntimeError, "Planes count is greater than maximum capacity")
     end
 
+    it "should not raising any errors when all arguments are correctly passed" do
+      expect { Airport.new(weather, [Plane.new], 1) }.not_to raise_error
+    end
+  end
+
+  describe '#land' do
     it 'should not land a landed plane' do
       plane = Plane.new
-      initial_length = subject.planes.length
       subject.land(plane)
-      subject.land(plane)
-      expect(subject.planes.length).to eq(initial_length + 1)
+      expect { subject.land(plane) }.to raise_error(RuntimeError, "Plan has already landed")
     end
 
     it 'includes the plane which landed' do
@@ -32,17 +37,12 @@ describe Airport do
     it 'raises error and prevent landing when the airport is full' do
       weather = Weather.new('sunny')
       airport = Airport.new(weather, [])
-      described_class::MAX_CAPACITY.times{ airport.land(Plane.new) }
+      airport.max_capacity.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error(RuntimeError, "Airport is full")
     end
   end
 
   describe '#take_off' do
-    it 'instruct a plane to take off' do
-      plane = Plane.new
-      subject.take_off(plane)
-      expect(subject).to respond_to(:take_off).with(1).argument
-    end
 
     it 'should not take off a plane which is already taken off' do
       plane = Plane.new
@@ -68,8 +68,28 @@ describe Airport do
       weather = Weather.new('stormy')
       airport = Airport.new(weather, planes)
       plane = Plane.new
-      expect(airport.take_off(plane)).to eq ("Sorry! Plane can not take off due to bad weather condition")
+      expect(airport.take_off(plane)).to eq "Sorry! Plane can not take off due to bad weather condition"
     end
 
+  end
+
+  describe '#change_capacity' do
+    it 'changes capacity' do
+      subject.change_capacity(20)
+      expect(subject.max_capacity).to eq(20)
+    end
+
+    it 'raises an error when new capacity is less than existing number of planes in airport' do
+      planes = [Plane.new, Plane.new, Plane.new]
+      airport = Airport.new(weather, planes, 3)
+      expect { airport.change_capacity(2) }.to raise_error(RuntimeError, 'New capacity is less than existing plane')
+    end
+
+    it 'changes to new capacity when new capcity is greater that existing planes in airport' do
+      planes = [Plane.new, Plane.new]
+      airport = Airport.new(weather, planes, 2)
+      airport.change_capacity(20)
+      expect(airport.max_capacity).to eq(20)
+    end
   end
 end
