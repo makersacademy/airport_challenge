@@ -1,8 +1,14 @@
 require 'airport'
 
 class MockPlane
-  "mockplane"
+  attr_reader :name
+  def initialize(name)
+    @name = name
+  end
 end
+
+mockplane1 = MockPlane.new("Plane 1")
+mockplane2 = MockPlane.new("Plane 2")
 
 describe Airport do
   describe 'Tests for initialized instance' do
@@ -14,17 +20,11 @@ describe Airport do
   end
   
   describe '#land' do
-    it 'adds a plane object to @hangar' do
-      mockplane = MockPlane.new
-      subject.land(mockplane)
-      expect(subject.hangar).to eq([mockplane])
-    end
-
-    it 'adds multiple planes to @hangar' do
-      mockplane = MockPlane.new
-      subject.land(mockplane)
-      subject.land(mockplane)
-      expect(subject.hangar).to eq([mockplane, mockplane])
+    it 'adds a plane object to @hangar and puts a confirmation message' do
+      expect { subject.land(mockplane1) }.to output("Plane 1 has landed\n").to_stdout
+      expect(subject.hangar).to eq([mockplane1])
+      expect { subject.land(mockplane2) }.to output("Plane 2 has landed\n").to_stdout
+      expect(subject.hangar).to eq([mockplane1, mockplane2])
     end
   end
 end
