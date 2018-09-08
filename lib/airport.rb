@@ -22,8 +22,8 @@ class Airport
   end
 
   def bad_weather?
-    true if rand(10).zero?
+    # true if rand(10).zero?
     # true
-    # false
+    false
   end
 end
