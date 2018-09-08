@@ -1,21 +1,15 @@
-require 'weather'
-
 class Plane
 
-  def initialize(airport = nil, weather = Weather.new)
-    @airport = airport
-    @weather = weather
+  def initialize(status = :grounded)
+    @status = status
   end
 
-  def land(airport)
-    fail 'It is too stormy to land' if @weather.forecast == :stormy
-    @airport = airport
-    true
+  def land
+    @status = :grounded
   end
 
   def take_off
-    fail 'It is too stormy to take off' if @weather.forecast == :stormy
-    @airport = nil
+    @status = :flying
   end
 
 end
