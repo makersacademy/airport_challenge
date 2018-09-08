@@ -1,6 +1,6 @@
 require 'airport'
 require 'plane'
-require 'passengers'
+require 'passenger'
 
 describe Airport do
   RSpec.configure do |config|

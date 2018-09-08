@@ -13,6 +13,7 @@ class Plane
 
   def board(passenger)
     fail 'Plane is full!' if plane_full?
+    fail 'Passenger already on board!' if on_board?(passenger) == true
     @boarding << passenger
   end
 

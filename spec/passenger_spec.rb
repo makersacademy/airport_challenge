@@ -1,5 +1,5 @@
-require 'passengers'
+require 'passenger'
 
 describe Passenger do
-
+  
 end

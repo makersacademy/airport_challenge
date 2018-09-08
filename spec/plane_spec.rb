@@ -1,5 +1,5 @@
 require 'plane'
-require 'passengers'
+require 'passenger'
 
 describe Plane do
   it 'checks if flying' do
@@ -38,5 +38,11 @@ describe Plane do
       100.times { subject.board(Passenger.new) }
       expect { subject.board(Passenger.new) }.to raise_error('Plane is full!')
     end
+  end
+
+  it 'prevents boarding of a passenger if already on board' do
+    passenger = Passenger.new
+    subject.board(passenger)
+    expect { subject.board(passenger) }.to raise_error('Passenger already on board!')
   end
 end
