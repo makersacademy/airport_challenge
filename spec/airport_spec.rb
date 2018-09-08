@@ -12,13 +12,13 @@ describe Airport do
   end
 
   it "expects airport to have a list for many planes" do
-    expect(subject.planes).to eq []
+    expect(subject.plane_hanger).to eq []
   end
 
   it "expects list of planes to contain planes that have landed" do
     plane = Airplane.new
     subject.land(plane)
-    expect(subject.planes).not_to be_empty
+    expect(subject.plane_hanger).not_to be_empty
   end
 
   it "expects that when plane takes off, it is no longer at the airport" do
@@ -40,5 +40,10 @@ describe Airport do
     weather = double(:Weather, stormy: "Stormy")
     subject.weather(weather.stormy)
     expect { subject.land(plane) }.to raise_error "Sorry, no landing. There's a storm."
+  end
+
+  it "should not let more planes land if the airport has reached it's capacity" do
+    20.times { subject.land(Airplane.new) } 
+    expect { subject.land(Airplane.new) }.to raise_error "Sorry, the hanger is full."
   end
 end
