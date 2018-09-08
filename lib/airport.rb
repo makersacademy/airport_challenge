@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(plane)
+    raise "#{plane.name} has already landed!" if @hangar.include?(plane)
     @hangar.push(plane)
     puts confirmation("landed", plane), display_hangar
   end
