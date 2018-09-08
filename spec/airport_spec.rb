@@ -11,7 +11,7 @@ describe Airport do
     expect(subject.take_off(plane)).to eq(plane)
   end
 
-  it "has a working Airport#weather method" do
-    expect(subject.weather?).to eq(false)
+  it "has a working Airport#bad_weather? method" do
+    expect(subject.bad_weather?).to eq(true)
   end
 end
