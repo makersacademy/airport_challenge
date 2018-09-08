@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'passengers'
 
 describe Airport do
   RSpec.configure do |config|
@@ -59,7 +60,7 @@ describe Airport do
   end
 
   context 'capacity' do
-    it 'set the default capacity to 20' do
+    it 'sets the default capacity to 20' do
       expect(subject.capacity).to eq 20
     end
 
@@ -69,7 +70,7 @@ describe Airport do
       expect(airport.capacity).to eq(capacity)
     end
 
-    it 'checks when is full' do
+    it 'checks if it is full' do
       20.times { subject.land(Plane.new) }
       expect(subject.full?).to eq true
     end
