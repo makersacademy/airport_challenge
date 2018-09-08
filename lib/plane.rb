@@ -19,6 +19,12 @@ class Plane
     @boarding << passenger
   end
 
+  def disembark(passenger)
+    fail 'Passenger already off the plane!' if on_board?(passenger) == false
+    fail 'Plane is flying!' if flying?
+    @boarding.delete(passenger)
+  end
+
   def on_board?(passenger)
     @boarding.include?(passenger)
   end
@@ -29,11 +35,5 @@ class Plane
 
   def flying?
     @flying
-  end
-
-  def disembark(passenger)
-    fail 'Passenger already off the plane!' if on_board?(passenger) == false
-    fail 'Plane is flying!' if flying?
-    @boarding.delete(passenger)
   end
 end
