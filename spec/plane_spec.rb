@@ -36,6 +36,14 @@ RSpec.describe Plane do
       expect { plane.take_off }.to raise_error('It is too stormy to take off')
     end
 
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent landing when weather is stormy 
+    it 'should not land at an airport' do
+      allow(weather).to receive(:forecast).and_return(:stormy)
+      expect { plane.land(airport) }.to raise_error('It is too stormy to land')
+    end
+
   end
 
 end

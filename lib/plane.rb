@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    fail 'It is too stormy to land' if @weather.forecast == :stormy
     @airport = airport
     true
   end
