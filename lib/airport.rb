@@ -14,7 +14,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is full" unless @planes.length < @max_capacity
+    fail "Airport is full" if full?
     if !@planes.include?(plane)
       @planes.push(plane)
     end
@@ -26,5 +26,10 @@ class Airport
      elsif @weather.condition == 'stormy'
        "Sorry! Plane can not take off due to bad weather condition"
      end
+  end
+
+  private
+  def full?
+    @planes.length >= @max_capacity
   end
 end
