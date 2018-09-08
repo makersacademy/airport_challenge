@@ -4,7 +4,7 @@ require 'weather'
 
 describe Airport do
   it "doesn't raise error when creating airport" do
-    expect { Airport.new }.not_to raise_error
+    expect { subject }.not_to raise_error
   end
 
   it "expects airports to be able to taken in an argument, such as plane" do
