@@ -7,7 +7,7 @@ class Passenger
 
   def initialize(ticket = TICKET, on_plane = ON_PLANE)
     @ticket = ticket
-    @luggages = []
+    @luggage = true
     @on_plane = on_plane
   end
 
@@ -19,19 +19,19 @@ class Passenger
     @ticket
   end
 
-  def drop_luggage(luggage)
-    fail 'Luggage already dropped!' if luggage_dropped?(luggage) == true
-    fail 'Passenger does not have ticket!' if ticket? == false
-    @luggages << luggage
+  def drop_luggage
+    fail 'Luggage already dropped!' if luggage_dropped?
+    fail 'Passenger does not have ticket!' if !ticket?
+    @luggage = false
   end
 
-  def get_luggage(luggage)
-    fail 'Passenger already got luggage!' if luggage_dropped?(luggage) == false
+  def get_luggage
+    fail 'Passenger already got luggage!' if !luggage_dropped?
     fail 'Passenger still on plane!' if on_plane?
-    @luggages.delete(luggage)
+    @luggage = true
   end
 
-  def luggage_dropped?(luggage)
-    @luggages.include?(luggage)
+  def luggage_dropped?
+    !@luggage
   end
 end
