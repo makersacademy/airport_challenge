@@ -3,8 +3,8 @@ require_relative "airport"
 class Weather
   
   def rng
-    @random_number = rand(100)
-    sunny if @random_number >= 50
+    random_number = rand(100)
+    random_number >= 10 ? sunny : stormy
   end
 
   def sunny
@@ -12,6 +12,6 @@ class Weather
   end
   
   def stormy
-    "Stay put"
+    "Stormy"
   end
 end

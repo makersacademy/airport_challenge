@@ -11,10 +11,24 @@ describe Weather do
       allow(subject).to receive(:rng) { 59 }
     end
 
-    it "returns string sunny if number is between 50 and 100" do
-      weather = Weather.new
-      
-      expect(weather.rng).to eq "Fly away, baby"
+    it "returns method sunny if number is between 50 and 100" do
+      allow(subject).to receive(:rng) { sunny }
+    end
+    
+    it "returns method stormy if number is between 51 and 100" do
+      allow(subject).to receive(:rng) { stormy }
+    end
+  end
+
+  describe "#sunny" do
+    it "should output 'fly away baby'" do
+      expect(subject.sunny).to eq "Fly away, baby"
+    end
+  end
+
+  describe "#stormy" do
+    it "should output 'stay put'" do
+      expect(subject.stormy).to eq "Stormy"
     end
   end
 end

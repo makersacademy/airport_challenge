@@ -21,10 +21,24 @@ describe Airport do
     expect(subject.planes).not_to be_empty
   end
 
-  it "expects that when plane takes off, it is no longer at airport" do
+  it "expects that when plane takes off, it is no longer at the airport" do
     plane = Airplane.new
     subject.land(plane)
-    subject.take_off(plane)
-    expect(subject.planes).to be_empty
+    expect(subject.take_off(plane)).to eq plane
+  end
+
+  it "should not let planes take off if the weather is stormy" do
+    airport = Airport.new
+    plane = Airplane.new
+    airport.land(plane)
+    airport.weather(Weather.new.stormy)
+    expect { airport.take_off(plane) }.to raise_error "Sorry, no take-off. There's a storm."
+  end
+
+  it "should not let planes land if the weather at airport is stormy" do
+    plane = double(:Airplane)
+    weather = double(:Weather, stormy: "Stormy")
+    subject.weather(weather.stormy)
+    expect { subject.land(plane) }.to raise_error "Sorry, no landing. There's a storm."
   end
 end
