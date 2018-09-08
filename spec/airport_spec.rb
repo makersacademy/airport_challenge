@@ -18,22 +18,27 @@ describe Airport do
   end
 
   it 'lands planes' do
-    expect(subject.land(plane)).to eq ("plane has landed")
+    expect(subject.land(plane)).to eq("plane has landed")
   end
 
-  it 'takes off planes' do
-    expect(subject.take_off(plane)).to eq("plane has taken off")
+  it 'doesnt allow landing when stormy' do
+    airport = Airport.new
+    # stormy = double("stormy")
+    allow(airport).to receive(:stormy).and_return(true)
+    expect { airport.land(plane) }.to raise_error("weather is too bad for landing")
   end
-
-  # it 'doesnt allow take off when bad weather' do
-  #   allow(bad_weather?).to receive {90}
-  #   expect(subject.take_off(plane)).to eq("weather is too bad for take-off")
-  # end
 
   it 'doesnt allow take off when stormy' do
+    airport = Airport.new
+    # stormy = double("stormy")
+    allow(airport).to receive(:stormy).and_return(true)
+    expect { airport.take_off(plane) }.to raise_error("weather is too bad for take-off")
+  end
+
+  it 'returns stormy weather "true"' do
+    airport = Airport.new
     stormy = double("stormy")
-    allow(stormy).to receive(:rand).and_return(true)
-    expect{subject.take_off(plane)}.to raise_error("weather is too bad for take-off")
+    allow(airport).to receive(:stormy).and_return(true)
   end
 
 end
