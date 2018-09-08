@@ -4,14 +4,14 @@ require_relative "weather"
 class Airport
   attr_reader :plane_hanger
 
-  def initialize(capacity=20)
+  def initialize(capacity = 20)
     @plane_hanger = []
-    @CAPACITY = capacity
+    @DEFAULT_CAPACITY = capacity
   end
 
   def land(plane)
     raise "Sorry, no landing. There's a storm." if @weather == "Stormy"
-    if @plane_hanger.size >= 20
+    if @plane_hanger.size >= @DEFAULT_CAPACITY
       raise "Sorry, the hanger is full."
     else
       @plane_hanger << plane
@@ -26,4 +26,5 @@ class Airport
   def weather(weather = Weather.new.rng)
     @weather = weather
   end
+
 end
