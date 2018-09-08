@@ -10,4 +10,8 @@ class Plane
     @location = airport
   end
 
+  def take_off
+    @location = "In the air."
+  end
+
 end
