@@ -2,74 +2,74 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  it 'lets planes land' do
-    plane = Plane.new
-    allow(subject).to receive(:stormy?) { false }
-    subject.land(plane)
-    allow(subject).to receive(:stormy?) { false }
-    expect(subject.hangar).to include(plane)
+  RSpec.configure do |config|
+    config.before(:each) do
+      allow(subject).to receive(:stormy?) { false }
+    end
   end
 
-  it 'lets specific plane take off' do
-    plane1 = Plane.new
-    plane2 = Plane.new
-    allow(subject).to receive(:stormy?) { false }
-    subject.land(plane1)
-    subject.land(plane2)
-    subject.take_off(plane1)
-    allow(subject).to receive(:stormy?) { false }
-    expect(subject.hangar).not_to include(plane1)
+  context 'landing planes' do
+    it 'lets planes land and confirms plane is in hangar' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.plane_in_hangar?(plane)).to eq true
+    end
   end
 
-  it 'confirms that plane is in hangar' do
-    plane = Plane.new
-    allow(subject).to receive(:stormy?) { false }
-    subject.land(plane)
-    expect(subject.plane_in_hangar?(plane)).to eq true
+  context 'take off' do
+    it 'lets specific plane take off and confirms plane is not in hangar' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land(plane1)
+      subject.land(plane2)
+      subject.take_off(plane1)
+      expect(subject.plane_in_hangar?(plane1)).to eq false
+    end
   end
 
-  it 'confirms that plane is not in hangar' do
+  context 'when weather is stormy' do
+    before(:each) do
+      @plane = Plane.new
+    end
+
+    it 'prevents take off ' do
+      subject.land(@plane)
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.take_off(@plane) }.to raise_error('No take off, weather is stormy!')
+    end
+
+    it 'prevents landing' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(@plane) }.to raise_error('No landing, weather is stormy!')
+    end
+  end
+
+  context 'capacity' do
+    it 'set the default capacity to 20' do
+      expect(subject.capacity).to eq 20
+    end
+
+    it 'allows the default capacity to be overridden' do
+      capacity = 30
+      airport = Airport.new(capacity)
+      expect(airport.capacity).to eq(capacity)
+    end
+
+    it 'checks when is full' do
+      20.times { subject.land(Plane.new) }
+      expect(subject.full?).to eq true
+    end
+
+    it 'prevents landing when it is full' do
+      20.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error('Airport is full!')
+    end
+  end
+
+  it 'prevents a plane to take off if already flying' do
     plane = Plane.new
-    allow(subject).to receive(:stormy?) { false }
     subject.land(plane)
     subject.take_off(plane)
-    allow(subject).to receive(:stormy?) { false }
-    expect(subject.plane_in_hangar?(plane)).to eq false
-  end
-
-  it 'prevents take off when weather is stormy' do
-    plane = Plane.new
-    allow(subject).to receive(:stormy?) { false }
-    subject.land(plane)
-    allow(subject).to receive(:stormy?) { true }
-    expect { subject.take_off(plane) }.to raise_error('No take off, weather is stormy!')
-  end
-
-  it 'prevents landing when weather is stormy' do
-    plane = Plane.new
-    allow(subject).to receive(:stormy?) { true }
-    expect { subject.land(plane) }.to raise_error('No landing, weather is stormy!')
-  end
-
-  it 'prevents landing when the airport is full' do
-    allow(subject).to receive(:stormy?) { false }
-    20.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error('Airport is full!')
-  end
-
-  it 'checks when is full' do
-    allow(subject).to receive(:stormy?) { false }
-    20.times { subject.land(Plane.new) }
-    expect(subject.full?).to eq true
-  end
-
-  it 'set the default capacity to 20' do
-    expect(subject.capacity).to eq 20
-  end
-
-  it 'allows the default capacity to be overridden' do
-    capacity = 30
-    airport = Airport.new(capacity)
-    expect(airport.capacity).to eq(capacity)
+    expect { subject.take_off(plane) }.to raise_error('Plane already flying!')
   end
 end
