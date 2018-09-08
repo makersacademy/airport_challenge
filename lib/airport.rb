@@ -6,16 +6,20 @@ class Airport
 
   def land(plane)
     @hangar.push(plane)
-    puts "#{plane.name} has landed.\n#{display_hangar}"
+    puts confirmation("landed", plane), display_hangar
   end
 
   def takeoff(plane)
-    raise "Error! There is no #{plane.name} in the hangar!" unless @hangar.include?(plane)
+    raise "#{plane.name} not in the hangar!" unless @hangar.include?(plane)
     @hangar.delete(plane) 
-    puts "#{plane.name} has taken off.\n#{display_hangar}"
+    puts confirmation("taken off", plane), display_hangar
   end
 
-  private
+  # Make them private
+  def confirmation(action, plane)
+    "#{plane.name} has #{action}." 
+  end
+
   def display_hangar
     return "There are no planes in the hangar." if @hangar.empty?
     names = @hangar.map { |plane| plane.name }
