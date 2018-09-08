@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     return "The weather is too bad to land" if bad_weather?
+    return "The plane can't land because the hanger is full" if hanger_full?
     @hanger << plane
   end
 
@@ -19,8 +20,8 @@ class Airport
 
   def bad_weather?
     # rand(10).zero?
-    true
-    # false
+    # true
+    false
   end
 
   def hanger_full?
