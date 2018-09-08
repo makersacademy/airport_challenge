@@ -17,6 +17,7 @@ class Airport
   end
 
   def takeoff(plane)
+    return "Cannot takeoff. Plane already airborn" if plane.location == "Airborn"
     return "The weather is too bad to fly" if bad_weather?
     @hanger.delete(plane)
     plane.airborn
