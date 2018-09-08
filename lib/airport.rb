@@ -15,4 +15,10 @@ class Airport
     plane
   end
 
+  def bad_weather?
+    # rand(10).zero?
+    true
+    # false
+  end
+
 end
