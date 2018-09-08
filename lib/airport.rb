@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
 
@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    return "The weather is too bad to land" if bad_weather?
     @hanger << plane
   end
 
@@ -20,6 +21,10 @@ class Airport
     # rand(10).zero?
     true
     # false
+  end
+
+  def hanger_full?
+    @hanger.count == 0
   end
 
 end
