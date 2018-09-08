@@ -43,18 +43,34 @@ describe Airport do
     end
     
     it 'raises error if #takeoff uses plane not present in @hangar' do
-      expect { subject.takeoff(mockplane1) }.to raise_error("Error! There is no Plane 1 in the hangar!")  
+      expect { subject.takeoff(mockplane1) }.to raise_error("Plane 1 not in the hangar!")  
     end
   end
 
   # Test for private methods
   describe '#display_hangar' do
     it 'displays @hangar elements in user-friendly format' do
-      expect(subject.send(:display_hangar)).to eq("There are no planes in the hangar.")
+      expect(subject.display_hangar).to eq("There are no planes in the hangar.")
       subject.land(mockplane1)
-      expect(subject.send(:display_hangar)).to eq("The hangar contains Plane 1.")
+      expect(subject.display_hangar).to eq("The hangar contains Plane 1.")
       subject.land(mockplane2)
-      expect(subject.send(:display_hangar)).to eq("The hangar contains Plane 1, Plane 2.")
+      expect(subject.display_hangar).to eq("The hangar contains Plane 1, Plane 2.")
+    end
+  end
+
+  describe '#confirmation' do
+    it { is_expected.to respond_to(:confirmation).with(2).argument }
+
+    context 'when called inside #land' do
+      it 'returns name of Plane landing' do
+        expect(subject.confirmation("landed", mockplane1)).to eq("Plane 1 has landed.")
+      end
+    end
+
+    context 'when called inside #takeoff' do
+      it 'returns name of Plane taking off' do
+        expect(subject.confirmation("taken off", mockplane1)).to eq("Plane 1 has taken off.")
+      end
     end
   end
 end
