@@ -6,14 +6,18 @@ class Airport
 
   def land(plane)
     @hangar.push(plane)
-    puts "#{plane.name} has landed"
-    puts "Hangar now holds #{display_hangar}"
+    puts "#{plane.name} has landed.\n#{display_hangar}"
+  end
+
+  def takeoff(plane)
+    @hangar.delete(plane) 
+    puts "#{plane.name} has taken off.\n#{display_hangar}"
   end
 
   private
   def display_hangar
-    return if @hangar.empty?
+    return "There are no planes in the hangar." if @hangar.empty?
     names = @hangar.map { |plane| plane.name }
-    names.join(", ")
+    "The hangar contains #{names.join(", ")}."
   end
 end
