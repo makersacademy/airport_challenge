@@ -20,7 +20,7 @@ describe Airport do
     end
     it ' raises error if #land used for plane already in hangar' do
       mockplane1 = double(:Plane, name: "Plane 1")
-      subject.land(mockplane1)
+      subject.instance_eval { @hangar = [mockplane1] }
       expect { subject.land(mockplane1) }.to raise_error("Plane 1 has already landed!")
     end
   end
@@ -30,8 +30,7 @@ describe Airport do
     it 'removes a plane from @hangar and puts a confirmation message' do
       mockplane1 = double(:Plane, name: "Plane 1")
       mockplane2 = double(:Plane, name: "Plane 2")
-      subject.land(mockplane1)
-      subject.land(mockplane2)
+      subject.instance_eval { @hangar = [mockplane1, mockplane2] }
       expect { subject.takeoff(mockplane1) }.to output("Plane 1 has taken off.\nThe hangar contains Plane 2.\n").to_stdout
       expect(subject.hangar).to eq([mockplane2])
       expect { subject.takeoff(mockplane2) }.to output("Plane 2 has taken off.\nThere are no planes in the hangar.\n").to_stdout
@@ -50,9 +49,9 @@ describe Airport do
       mockplane1 = double(:Plane, name: "Plane 1")
       mockplane2 = double(:Plane, name: "Plane 2")
       expect(subject.display_hangar).to eq("There are no planes in the hangar.")
-      subject.land(mockplane1)
+      subject.instance_eval { @hangar = [mockplane1] }
       expect(subject.display_hangar).to eq("The hangar contains Plane 1.")
-      subject.land(mockplane2)
+      subject.instance_eval { @hangar = [mockplane1, mockplane2] }
       expect(subject.display_hangar).to eq("The hangar contains Plane 1, Plane 2.")
     end
   end
