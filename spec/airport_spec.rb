@@ -32,8 +32,12 @@ require 'airport'
 
 describe Airport do
 # weather need to be good
-# and hanger needs to empty
+# and hanger needs to full
   it "has a working Airport.hanger_full? method" do
     expect(subject.hanger_full?).to eq(true)
+  end
+
+  it "can prevent landing when the hanger is full" do
+    expect(subject.land(Plane.new)).to eq("The plane can't land because the hanger is full.")
   end
 end
