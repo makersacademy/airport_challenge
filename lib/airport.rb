@@ -1,11 +1,11 @@
 class Airport
-  CAPACITY = 20
+  AIRPORT_CAPACITY = 20
 
-  attr_reader :hangar, :capacity
+  attr_reader :hangar, :airport_capacity
 
-  def initialize(capacity = CAPACITY)
+  def initialize(airport_capacity = AIRPORT_CAPACITY)
     @hangar = []
-    @capacity = capacity
+    @airport_capacity = airport_capacity
   end
 
   def land(plane)
@@ -32,7 +32,7 @@ class Airport
   end
 
   def full?
-    @hangar.count >= @capacity
+    @hangar.count >= @airport_capacity
   end
 
 end

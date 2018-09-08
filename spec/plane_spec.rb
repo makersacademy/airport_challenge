@@ -3,16 +3,16 @@ require 'passenger'
 
 describe Plane do
   it 'checks if flying' do
-    expect(subject.flying).to eq true
+    expect(subject.flying?).to eq true
   end
 
   it 'allows flying to be changed' do
-    flying = false
     plane = Plane.new(false)
-    expect(plane.flying).to eq(flying)
+    expect(plane.flying?).to eq(false)
   end
 
   it 'accepts a passenger on board' do
+    subject.flying = false
     passenger = Passenger.new
     subject.board(passenger)
     expect(subject.on_board?(passenger)).to eq true
@@ -25,16 +25,18 @@ describe Plane do
 
     it 'allows the default capacity to be overridden' do
       plane_capacity = 150
-      plane = Plane.new(nil, plane_capacity)
+      plane = Plane.new(false, plane_capacity)
       expect(plane.plane_capacity).to eq(plane_capacity)
     end
 
     it 'checks if it is full' do
+      subject.flying = false
       100.times { subject.board(Passenger.new) }
       expect(subject.plane_full?).to eq true
     end
 
     it 'prevents boarding if it is full' do
+      subject.flying = false
       100.times { subject.board(Passenger.new) }
       expect { subject.board(Passenger.new) }.to raise_error('Plane is full!')
     end
@@ -42,7 +44,13 @@ describe Plane do
 
   it 'prevents boarding of a passenger if already on board' do
     passenger = Passenger.new
+    subject.flying = false
     subject.board(passenger)
     expect { subject.board(passenger) }.to raise_error('Passenger already on board!')
+  end
+
+  it 'prevents boarding if flying' do
+    subject.flying = true
+    expect { subject.board(Passenger.new) }.to raise_error('Plane is flying!')
   end
 end

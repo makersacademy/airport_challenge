@@ -61,13 +61,13 @@ describe Airport do
 
   context 'capacity' do
     it 'sets the default capacity to 20' do
-      expect(subject.capacity).to eq 20
+      expect(subject.airport_capacity).to eq 20
     end
 
     it 'allows the default capacity to be overridden' do
-      capacity = 30
-      airport = Airport.new(capacity)
-      expect(airport.capacity).to eq(capacity)
+      airport_capacity = 30
+      airport = Airport.new(airport_capacity)
+      expect(airport.airport_capacity).to eq(airport_capacity)
     end
 
     it 'checks if it is full' do
