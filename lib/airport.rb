@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
 
@@ -11,6 +11,10 @@ class Airport
 
   def put_plane_in_hanger(plane)
     @hanger.push(plane)
+  end
+
+  def remove_plane_from_hanger(plane)
+    @hanger.delete(plane)
   end
 
   def hanger_full?
