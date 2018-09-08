@@ -25,11 +25,17 @@ describe Airport do
     expect(airport.takeoff(plane)).to eq("Cannot takeoff. Plane already airborn")
   end
 
+  it "rejects edge cases: Grounded plane trying to land" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(airport.land(plane)).to eq("Cannot land. Plane already on the ground")
+  end
+
 end
 
 # describe Airport do
 # # weather needs to be bad
-# # and the hanger can't be full
+# # and the hanger can't be full
 #   it "has a working Airport#bad_weather? method" do
 #     expect(subject.bad_weather?).to eq(true)
 #   end
