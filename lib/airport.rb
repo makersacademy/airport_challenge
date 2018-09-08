@@ -12,6 +12,7 @@ class Airport
   def land(plane)
     return "The weather is too bad to land" if bad_weather?
     return "The plane can't land because the hanger is full" if hanger_full?
+    plane.grounded(self)
     @hanger << plane
   end
 
