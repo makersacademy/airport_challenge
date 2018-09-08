@@ -13,6 +13,7 @@ mockplane2 = MockPlane.new("Plane 2")
 describe Airport do
   describe '@hangar' do
     it { is_expected.to respond_to(:hangar) }
+
     it 'has @hangar as empty array' do
       expect(subject.hangar).to eq([])
     end
@@ -20,6 +21,7 @@ describe Airport do
   
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
+
     it 'adds a plane object to @hangar and puts a confirmation message' do
       expect { subject.land(mockplane1) }.to output("Plane 1 has landed.\nThe hangar contains Plane 1.\n").to_stdout
       expect(subject.hangar).to eq([mockplane1])
@@ -30,13 +32,18 @@ describe Airport do
 
   describe '#takeoff' do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
+
     it 'removes a plane from @hangar and puts a confirmation message' do
       subject.land(mockplane1)
       subject.land(mockplane2)
-      expect{ subject.takeoff(mockplane1) }.to output("Plane 1 has taken off.\nThe hangar contains Plane 2.\n").to_stdout
+      expect { subject.takeoff(mockplane1) }.to output("Plane 1 has taken off.\nThe hangar contains Plane 2.\n").to_stdout
       expect(subject.hangar).to eq([mockplane2])
-      expect{ subject.takeoff(mockplane2) }.to output("Plane 2 has taken off.\nThere are no planes in the hangar.\n").to_stdout
+      expect { subject.takeoff(mockplane2) }.to output("Plane 2 has taken off.\nThere are no planes in the hangar.\n").to_stdout
       expect(subject.hangar).to eq([])
+    end
+    
+    it 'raises error if #takeoff uses plane not present in @hangar' do
+      expect { subject.takeoff(mockplane1) }.to raise_error("Error! There is no Plane 1 in the hangar!")  
     end
   end
 
