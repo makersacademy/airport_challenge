@@ -37,6 +37,9 @@ describe Airport do
     it 'prevents plane to land when it stormy' do
       weather = Weather.new('stormy')
       airport = Airport.new(weather, planes)
+      # If we uncomment the line below, this passing test would fail.
+      # This is one way to stub weather conditions.
+      # airport.stub(:stormy?) { false }
       plane = Plane.new
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Plane can not land due to bad weather condition")
     end

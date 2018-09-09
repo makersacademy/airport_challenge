@@ -35,7 +35,13 @@ class Airport
   end
 
   def stormy?
-    @weather.condition == 'stormy'
+    # @weather.condition == 'stormy'
+    # The line above is an example of leakage i.e. airport class is aware
+    # of details of weather class, which is not ideal. It violates the
+    # principle of keeping internal details of a class hidden (I in SOLID)
+    #
+    # To fix this, we define a stormy? method in weather class and use it.
+    @weather.stormy?
   end
 
   def cannot_change_to_capacity?(new_capacity)

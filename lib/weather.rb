@@ -9,4 +9,8 @@ class Weather
       @condition = conditions[rand(0..1)]
     end
   end
+
+  def stormy?
+    @condition == "stormy"
+  end
 end
