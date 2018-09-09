@@ -35,12 +35,16 @@ airport = Airport.new(Airport::DEFAULT_CAPACITY, weather, [plane])
 airport.takeoff(plane) # error
 ```
 
-          As an air traffic controller
-          To ensure safety
-          I want to prevent landing when weather is stormy
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
 ```
-when weather = stormy
+load './lib/airport.rb'
+plane = Plane.new
+weather = Weather.new
+# when weather.stormy? = true
+airport = Airport.new(Airport::DEFAULT_CAPACITY, weather)
 airport.land(plane) # error
 ```
 
