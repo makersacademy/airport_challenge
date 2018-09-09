@@ -4,11 +4,14 @@ describe Airport do
   context "The weather is good and there is space in the hanger" do
     # weather needs to be good
     # and the hanger can't be full
-    let(:plane) {double :plane}
+    let(:plane) { double :plane }
 
-    it "has a working Airport#land(plane) method" do
+    before(:each) do
       allow(subject).to receive(:bad_weather?).and_return(false)
       allow(subject).to receive(:hanger_full?).and_return(false)
+    end
+
+    it "has a working Airport#land(plane) method" do
       allow(plane).to receive(:location).and_return("Airborn")
       allow(plane).to receive(:grounded)
 
@@ -16,23 +19,13 @@ describe Airport do
     end
 
     it "has a working Airport#takeoff(plane) method" do
-      allow(subject).to receive(:bad_weather?).and_return(false)
-      allow(subject).to receive(:hanger_full?).and_return(false)
       allow(plane).to receive(:location).and_return(subject)
       allow(plane).to receive(:airborn).and_return("Airborn")
 
       expect(subject.takeoff(plane)).to eq("Airborn")
     end
 
-    it "can set Airport @hanger capacity to 0" do
-      airport = Airport.new(0)
-      plane = Plane.new
-      subject.takeoff(plane)
-      expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
-    end
-
     it "rejects edge cases: Airborn plane trying to takeoff" do
-      plane = Plane.new
       airport = Airport.new
       airport.takeoff(plane)
       expect(airport.takeoff(plane)).to eq("Cannot takeoff. Plane already airborn")
@@ -51,6 +44,22 @@ describe Airport do
       airport1.takeoff(plane)
       airport2.land(plane)
       expect(airport1.takeoff(plane)).to eq("Plane at wrong airport")
+    end
+  end
+
+  context "The weather is good but there is no space in the hanger" do
+
+    let(:plane) { double :plane }
+
+    it "can set Airport @hanger capacity to 0" do
+      airport = Airport.new(0)
+      allow(airport).to receive(:bad_weather?).and_return(false)
+      allow(airport).to receive(:hanger_full?).and_return(true)
+
+      allow(plane).to receive(:location).and_return("Airborn")
+      allow(plane).to receive(:grounded)
+
+      expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
     end
   end
 
