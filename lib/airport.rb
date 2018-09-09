@@ -15,8 +15,16 @@ class Airport
      @hangar << plane
   end
 
-  def take_off
-
+  def take_off(plane)
+    i = nil
+    hangar.each_with_index do |stored_plane, index|
+      if stored_plane[:flight_num] == plane[:flight_num]
+        i = index
+        break
+      end
+    end
+    puts "Flight #{plane[:flight_num]} taking off, heading for #{plane[:destination]}"
+    hangar.delete_at(i)
   end
 
   def stormy?

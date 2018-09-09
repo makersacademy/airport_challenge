@@ -73,12 +73,18 @@ describe Airport do
       end
 
     end
-    # context 'take_off' do
-    #
-    #   it 'should remove plane from hangar which has taken off' do
-    #
-    #   end
-    #
-    # end
+    context 'take_off' do
+
+      it 'should remove plane from hangar which has taken off' do
+        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
+        plane2 = {destination:'Melbourne', flight_num:'AUS9978'}
+        gatwick = Airport.new("Gatwick", 2)
+        gatwick.instruct_landing(plane1)
+        gatwick.instruct_landing(plane2)
+        gatwick.take_off(plane1)
+        expect(gatwick::hangar).to eq([plane2])
+      end
+
+    end
   end
 end
