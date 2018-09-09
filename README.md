@@ -83,3 +83,23 @@ Traceback (most recent call last):
 RuntimeError (Plane 62 has already landed!)
 ```
 
+If `@hangar` has reached capacity, then #land will raise an error.
+
+```
+2.5.0 :016 > airport = Airport.new(1)
+ => #<Airport:0x00007fc427893a30 @capacity=1, @hangar=[]>
+2.5.0 :017 > plane1 = Plane.new("Plane 1")
+ => #<Plane:0x00007fc42786a0b8 @name="Plane 1">
+2.5.0 :018 > plane2 = Plane.new("Plane 2")
+ => #<Plane:0x00007fc427115100 @name="Plane 2">
+2.5.0 :019 > airport.land(plane1)
+Plane 1 has landed.
+The hangar contains Plane 1.
+ => nil
+2.5.0 :020 > airport.land(plane2)
+Traceback (most recent call last):
+        3: from /Users/andres/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):20
+        1: from /Users/andres/Projects/airport_challenge/lib/airport.rb:19:in `land'
+RuntimeError (No room in hangar!)
+```
