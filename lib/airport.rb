@@ -11,8 +11,8 @@ class Airport
 
   def land(plane)
     stormy?
+    already_landed?(plane)
     hanger_full?
-    raise "Sorry, this plane already landed at another airport." if plane.flying_status == false
     plane.landed
     @plane_hanger << plane
   end
@@ -35,6 +35,11 @@ class Airport
   def hanger_full?
     raise "Sorry, the hanger is full." if 
     @plane_hanger.size >= @default_capacity
+  end
+
+  def already_landed?(plane)
+    raise "Sorry, this plane already landed at an airport." if 
+    plane.flying_status == false
   end
 
 end

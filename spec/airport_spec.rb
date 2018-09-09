@@ -52,7 +52,7 @@ describe Airport do
     gatwick = subject
     canadian_plane = Airplane.new
     heathrow.land(canadian_plane)
-    expect { gatwick.land(canadian_plane) }.to raise_error "Sorry, this plane already landed at another airport."
+    expect { gatwick.land(canadian_plane) }.to raise_error "Sorry, this plane already landed at an airport."
 
   end 
 end
