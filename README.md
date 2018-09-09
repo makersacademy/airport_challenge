@@ -103,3 +103,37 @@ Traceback (most recent call last):
         1: from /Users/andres/Projects/airport_challenge/lib/airport.rb:19:in `land'
 RuntimeError (No room in hangar!)
 ```
+
+### #takeoff
+
+#takeoff uses a Plane object as an argument. It removes a Plane object from `@hangar` and outputs a confirmation message.
+
+```
+2.5.0 :021 > airport = Airport.new
+ => #<Airport:0x00007fc427202568 @capacity=4, @hangar=[]>
+2.5.0 :022 > plane = Plane.new
+ => #<Plane:0x00007fc4271fae58 @name="Plane 70">
+2.5.0 :023 > airport.land(plane)
+Plane 70 has landed.
+The hangar contains Plane 70.
+ => nil
+2.5.0 :024 > airport.takeoff(plane)
+Plane 70 has taken off.
+There are no planes in the hangar.
+ => nil
+```
+
+If the Plane object is not present in `@hangar` it will raise an error.
+```
+2.5.0 :021 > airport = Airport.new
+ => #<Airport:0x00007fc427202568 @capacity=4, @hangar=[]>
+2.5.0 :022 > plane = Plane.new
+ => #<Plane:0x00007fc4271fae58 @name="Plane 70">
+2.5.0 :025 > airport.takeoff(plane)
+Traceback (most recent call last):
+        3: from /Users/andres/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):25
+        1: from /Users/andres/Projects/airport_challenge/lib/airport.rb:26:in `takeoff'
+RuntimeError (Plane 70 not in the hangar!)
+```
+
