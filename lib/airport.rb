@@ -1,6 +1,6 @@
 class Airport
     attr_accessor :plane_list
-    # attr_accessor :weather
+    attr_accessor :weather
     
     def initialize(weather = "sunny")
         @plane_list = []
@@ -8,6 +8,7 @@ class Airport
     end
 
     def land_plane(plane)
+        fail "Weather is too harsh for planes to land" unless @weather == "sunny"
         @plane_list.push(plane)
     end
 
