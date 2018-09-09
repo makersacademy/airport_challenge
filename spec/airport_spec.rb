@@ -105,4 +105,22 @@ describe Airport do
     end
   end
 
+  #***BOUNS***
+  #Feature test: Land and take off a couple of planes
+  it 'can land and take off a couple of planes' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    subject.land(plane1)
+    subject.land(plane2)
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.land(plane3) }.to raise_error 'Cannot land, too stormy.'
+    expect { subject.take_off(plane2) }.to raise_error 'Cannot take off, too stormy.'
+    allow(subject).to receive(:stormy?) { false }
+    subject.take_off(plane2)
+    expect(subject.confirm_takeoff(plane2)).to eq true
+    (Airport::DEFAULT_CAPACITY-1).times { subject.land(Plane.new) }
+    expect(subject.full?).to eq true
+  end
+
 end

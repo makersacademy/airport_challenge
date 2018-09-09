@@ -32,7 +32,7 @@ class Airport
   end
 
   def stormy?
-    Weather.new.stormy
+    Weather.new.stormy?
   end
 
   def full?
