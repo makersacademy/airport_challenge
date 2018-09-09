@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new(Airport::CAPACITY, weather) }
+  let(:heathrow) { Airport.new(Airport::CAPACITY, weather) }
+  let(:stansted) { Airport.new(Airport::CAPACITY, weather) }
   let(:plane) { double(:plane, :location => 'flying') }
   let(:boeing) { double(:plane, :location => 'flying') }
   let(:airbus) { double(:plane, :location => 'flying') }
@@ -25,22 +27,16 @@ describe Airport do
     it 'prevents landing when the airport is full' do
       allow(plane).to receive(:location=)
       airport.land(plane)
-      expect { airport.land(plane) }.to raise_error 'Airport full'
+      expect { airport.land(airbus) }.to raise_error 'Airport full'
     end
 
     it 'prevents landing in a larger airport when the airport is full' do
-      airport = Airport.new(2, weather)
-      allow(airbus).to receive(:location=)
-      allow(boeing).to receive(:location=)
-      airport.land(boeing)
-      airport.land(airbus)
+      airport = Airport.new(2, weather, [airbus, boeing])
       expect { airport.land(plane) }.to raise_error 'Airport full'
     end
 
     it 'prevents planes that are landed from landing again' do
-      airport = Airport.new(2, weather)
-      allow(boeing).to receive(:location=)
-      airport.land(boeing)
+      airport = Airport.new(2, weather, [boeing])
       expect { airport.land(boeing) }.to raise_error 'Plane already landed'
     end
 
@@ -51,8 +47,6 @@ describe Airport do
     end
 
     it 'prevents landing when the plane is landed in another airport' do
-      heathrow = Airport.new(Airport::CAPACITY, weather)
-      stansted = Airport.new(Airport::CAPACITY, weather)
       allow(plane).to receive(:location=)
       allow(plane).to receive(:location).and_return('flying', object_id)
       heathrow.land(plane)
@@ -69,18 +63,13 @@ describe Airport do
     end
 
     it 'removes a specific plane from the airport' do
-      airport = Airport.new(2, weather)
-      allow(airbus).to receive(:location=)
+      airport = Airport.new(2, weather, [airbus, boeing])
       allow(boeing).to receive(:location=)
-      airport.land(airbus)
-      airport.land(boeing)
       airport.takeoff(boeing)
       expect(airport.hangar).to eq([airbus])
     end
 
     it 'only allows a plane to take off from the airport they are in' do
-      heathrow = Airport.new(Airport::CAPACITY, weather)
-      stansted = Airport.new(Airport::CAPACITY, weather)
       allow(plane).to receive(:location=)
       heathrow.land(plane)
       expect { stansted.takeoff(plane) }.to raise_error 'Plane not in airport'

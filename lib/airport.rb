@@ -16,14 +16,14 @@ class Airport
     fail 'Airport full' if full?
     fail 'Plane already landed' if plane_in_hangar(plane)
     fail 'Plane in another airport' unless plane_flying?(plane)
-    fail 'Too stormy to land' if @weather.stormy?
+    fail 'Too stormy to land' if too_stormy?
     @hangar << plane
     plane.location = object_id
   end
 
   def takeoff(plane)
     fail 'Plane not in airport' unless plane_in_hangar(plane)
-    fail 'Too stormy to take off' if @weather.stormy?
+    fail 'Too stormy to take off' if too_stormy?
     @hangar.delete(plane)
     plane.location = 'flying'
   end
@@ -40,5 +40,9 @@ class Airport
 
   def plane_flying?(plane)
     plane.location == 'flying'
+  end
+
+  def too_stormy?
+    @weather.stormy?
   end
 end

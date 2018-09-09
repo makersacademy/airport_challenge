@@ -1,11 +1,13 @@
 require 'airport'
 
 describe Airport do
+  let(:weather) { double(:weather, :stormy? => false) }
 
   it 'feature test allows multiple airports to land and take off planes' do
-    heathrow = Airport.new(5)
-    stansted = Airport.new(2)
-    city = Airport.new
+    allow(weather).to receive(:stormy?).and_return(false)
+    heathrow = Airport.new(5, weather)
+    stansted = Airport.new(2, weather)
+    city = Airport.new(Airport::CAPACITY, weather)
     airbus = Plane.new
     boeing = Plane.new
     bombardier = Plane.new
