@@ -11,6 +11,7 @@ Airport Challenge
                 `---~~\___________/------------`````
                 =  ===(_________)
 
+```
 
 Getting started
 -------
@@ -90,6 +91,7 @@ My approach to solving this challenge
 ---
 1. I created an Airport class from where a plane can land and take off
   - Using TDD:
+  
     - I tested that an instance of the Airport class can be created with a capacity
     - I tested that the airport capacity can be overridden
     - I tested that a plane can land and take off from an instance of
