@@ -40,17 +40,19 @@ describe Airport do
   describe "#initialize" do
 
     it "allows Airport to have a custom capacity set on initalize" do
-
+      
       heathrow = Airport.new(20)
-      allow(subject).to receive(:rand).and_return(1)
-      expect(heathrow.capacity).to eq(20)
+      allow(heathrow).to receive(:rand).and_return(1)
+      20.times { Plane.new.land(heathrow) }
+      expect { Plane.new.land(heathrow) }.to raise_error("Airport is full!")
   
     end
 
     it "sets a default capacity of 10 if none is supplied" do
 
-      heathrow = Airport.new
-      expect(heathrow.capacity).to eq(10)
+      allow(subject).to receive(:rand).and_return(1)
+      10.times { Plane.new.land(subject) }
+      expect { Plane.new.land(subject) }.to raise_error("Airport is full!")
   
     end
 

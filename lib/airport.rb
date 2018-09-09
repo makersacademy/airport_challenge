@@ -1,6 +1,6 @@
 class Airport
   
-  attr_reader :capacity, :planes
+  attr_reader :planes
 
   DEFAULT_CAPACITY = 10
 
