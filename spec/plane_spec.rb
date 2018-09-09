@@ -21,9 +21,9 @@ describe Plane do
 
     expect(plane.location).to eq("The Factory")
 
-    allow(airport).to receive(:takeoff).and_return(plane.airborne)
+    allow(airport).to receive(:take_off).and_return(plane.airborne)
 
-    airport.takeoff(plane)
+    airport.take_off(plane)
     expect(plane.location).to eq("Airborne")
 
     allow(airport).to receive(:land).and_return(plane.grounded(airport))
