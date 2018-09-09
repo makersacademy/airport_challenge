@@ -72,19 +72,19 @@ __Therefore__
 'Airtraffic_Controller' should apply the method 'Land' to the 'Plane
 
 ## Feature test 1
-load './lib/airtraffic_controller.rb'
+load './lib/airtraffic_controller.rb' <br />
 ## Feature test 2
-load './lib/plane.rb'
+load './lib/plane.rb' <br />
 ## Feature test 3
-load './airtraffic_controller.rb'
-luton = Airport.new
+load './airtraffic_controller.rb' <br />
+luton = Airport.new <br />
 ## Feature test 4
-load './plane.rb'
-spitfire = Plane.new
+load './plane.rb' <br />
+spitfire = Plane.new <br />
 ## Feature test 5
-load './airtraffic_controller.rb'
-luton = Airport.new
-spitfire = Plane.new
+load './airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+spitfire = Plane.new <br />
 
 ---
 
@@ -133,32 +133,32 @@ __Therefore__
 'Airport' has 'check' method which takes arguement 'Plane' to see if 'Plane' is still in 'hanger'
 
 ## Feature test 1
-load './lib/airtraffic_controller.rb'
-luton = Airport.new
-luton.hanger
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+luton.hanger <br />
 ## Feature test 2
-load './lib/airtraffic_controller.rb'
-luton = Airport.new
-slingsby_firefly = Plane.new
-luton.take_off(slingsby_firefly)
-p luton.hanger == []
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+slingsby_firefly = Plane.new <br />
+luton.take_off(slingsby_firefly) <br />
+p luton.hanger == [] <br />
 ## Feature test 3
-load './lib/airtraffic_controller.rb'
-luton = Airport.new
-slingsby_firefly = Plane.new
-luton.land(slingsby_firefly)
-p luton.hanger == [slingsby_firefly]
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+slingsby_firefly = Plane.new <br />
+luton.land(slingsby_firefly) <br />
+p luton.hanger == [slingsby_firefly] <br />
 ## Feature test 4
-load './lib/airtraffic_controller.rb'
-luton = Airport.new
-slingsby_firefly = Plane.new
-luton.check(slingsby_firefly) == false
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+slingsby_firefly = Plane.new <br />
+luton.check(slingsby_firefly) == false <br />
 ## Feature test 5
-load './lib/airtraffic_controller.rb'
-luton = Airport.new
-slingsby_firefly = Plane.new
-luton.land(slingsby_firefly)
-luton.check(slingsby_firefly) == true
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+slingsby_firefly = Plane.new <br />
+luton.land(slingsby_firefly) <br />
+luton.check(slingsby_firefly) == true <br />
 
 ---
 
@@ -185,3 +185,64 @@ End User Story 2
 ---
 ---
 
+# User story 3
+
+---
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy
+
+---
+
+Air Traffic controller should 'prevent' 'take_off' when 'weather' == 'stormy'.
+__Therefore__
+There should be a class 'Weather'
+'Weather' should be able to be 'stormy'
+'Airport' should have method 'prevent'
+Method 'prevent' should take arguement ('weather')
+if the 'weather' evaluates as 'stormy' 'airport' should raise an error and fail to run 'take_off'
+
+~~## Feature test 1~~
+~~load './lib/weather.rb' <br />~~
+~~## Feature test 2~~
+~~load './lib/weather.rb' <br />~~
+~~stormy = Weather.new <br />~~
+~~## Feature test 3~~
+~~load './lib/airtraffic_controller.rb' <br />~~
+~~luton = Airport.new <br />~~
+~~stormy = Weather.new <br />~~
+## Feature test 4
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+luton.prevent<br />
+## Feature test 5
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+luton.weather_condition('stormy')<br />
+## Feature test 6
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+luton.weather_condition('stormy')<br />
+slingsby_firefly = Plane.new <br />
+luton.take_off(slingsby_firefly) <br />
+Expect this to return RuntimeError 'Stormy weather all flights grounded!'
+
+---
+
+~~Test 1) This test is first run in IRB we try load the file 'weather', it doesnt load as the file doesnt exist this is our first failing test.
+We create a spec file so we can test this file we then run rspec with require 'weather' we get the same error. So we make a file 'weather.rb' in 'lib' thus creating the file which will store our weather class.~~
+
+~~Test 2) We come back to IRB and test to see the file works and try to create a new instance of 'weather'. First error: undefined constant 'weather'. so we roll into our Spec file for weather and create a test. Then run the rspec, the same failure shows confirming we have written the appropriate test. We then create a class 'weather' and retest in IRB which works then using the rspec which concludes this test when it passes.~~
+
+Test 4) So, in the interest of YAGNI I've decided the approach was long winded and not likely to be needed. As such we have written a new test. we want to see that we can 'prevent' the plane from taking off. so we go to IRB create an instance of an 'airport' and try to apply the 'prevent' method to it.
+This brings up an error which we need to write a test for. We do and swiflty follow this by writing the passing code as well (the method 'prevent').
+
+Test 5) We follow suite by creating a new test. 'prevent' should stop a 'plane' from 'take_off' when 'weather' is 'stormy. So we know that there should be a way of changing the 'weather' and I want to for now manually be able to input the 'conditions' for our 'weather'. I run the feature test and it supplys me first with the error, no method 'weather_condition' defined and then that there is no arguement being taken. So we write our first test and stipulate that we want it to not only respond to 'weather_condition' but also make sure that it takes one arguement. It passes and we move on.
+
+Test 6) Finally we want to 'prevent' the 'plane' from a 'take_off' while the 'conditions' 'stormy' == true. So we write a feature test for this. it fails as the plane can still take off when the 'weather_condition' is set to 'stormy' so we create our unit test. We expect an error to be 'raised' when the 'weather' is 'stormy' thus preventing the 'take_off' of any plane we write this test and get a failure indicating that no error was 'raised'. Now its time to enter the green phase and right a code that satisfies this test. A fail RuntimeError is written with a custom message to indicate the problem more clearly for the user and the test is subsequentlly passed and refactored.
+
+End User Story 3
+
+---
+---

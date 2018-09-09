@@ -1,10 +1,18 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :hanger
-  
+  attr_accessor :hanger
+
   def initialize
     @hanger = []
+  end
+
+  def weather_condition(conditions)
+    @weather = conditions
+  end
+
+  def prevent
+    @weather == 'stormy'
   end
 
   def land(plane)
@@ -12,6 +20,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail RuntimeError, "Stormy weather all flights grounded!" if prevent == true
     @hanger.delete(plane)
     @hanger
   end
