@@ -60,4 +60,15 @@ describe Airport do
         expect{ace.land_plane(plane)}.to raise_error("Weather is too harsh for planes to land")
     end
 
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent landing when the airport is full 
+
+    it 'expect planes to not be able to land if the Airport is at "max" capacity' do
+        ace = Airport.new("sunny")
+        plane = Plane.new
+        ace.land_plane(plane)
+        expect{DEAFAULT_CAPACITY.times{ace.land_plane(plane)}}.to raise_error("Airport capacity at max, can not land planes")
+    end
+
 end
