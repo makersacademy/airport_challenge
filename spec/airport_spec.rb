@@ -4,7 +4,7 @@ require 'weather.rb'
 
 describe Airport do
   subject { Airport.new(weather) }
-  let(:weather) { Weather.new }
+  let(:weather) { Weather.new('sunny') }
   it {is_expected.to respond_to :planes_arr}
   it {is_expected.to respond_to(:land).with(1).argument}
   it {is_expected.to respond_to(:take_off).with(1).argument}
@@ -52,14 +52,13 @@ describe Airport do
       expect(airport.planes_arr).to include(plane)
     end
 
-    # it 'raises an error when the plane is already landed' do
-    #   weather = Weather.new('sunny')
-    #   plane = Plane.new
-    #   subject.land(plane)
-    #   # plane.report_landed
-    #   # expect(plane.landed).to eq(true)
-    #   expect { subject.land plane }.to raise_error 'The plane is already landed'
-    # end
+    it 'raises an error when the plane is already landed' do
+      plane = Plane.new
+      subject.land(plane)
+      # plane.report_landed
+      # expect(plane.landed).to eq(true)
+      expect { subject.land plane }.to raise_error 'The plane is already landed'
+    end
 
     it 'raises an error when the airport is full' do
       weather = Weather.new('sunny')
@@ -68,11 +67,11 @@ describe Airport do
       expect { airport.land Plane.new }.to raise_error 'Airport is full'
     end
 
-    # it 'raises an error when weather is stormy' do
-    #   weather = Weather.new('stormy')
-    #   airport = Airport.new(weather)
-    #   expect(airport.land(Plane.new)).to eq "Sorry! Plane can not take off due to bad weather condition"
-    # end
+    it 'raises an error when weather is stormy' do
+      weather = Weather.new('stormy')
+      airport = Airport.new(weather)
+      expect(airport.land(Plane.new)).to eq "Sorry! Plane can not take off due to bad weather condition"
+    end
   end
 
   describe '#take_off' do

@@ -17,15 +17,14 @@ attr_accessor :capacity
   def land(plane)
     fail 'Airport is full' if full?
     fail 'The plane is already landed' if plane.landed?
-    # if @weather.condition == 'sunny'
-    #   plane.report_landed
-    #   @planes_arr << plane
-    # elsif
-    #   @weather.condition == 'stormy'
-    #     "Sorry! Plane can not take off due to bad weather condition"
-    #   end
-    plane.report_landed
-    @planes_arr << plane
+    if @weather.condition == 'sunny'
+      plane.report_landed
+      @planes_arr << plane
+    elsif
+      @weather.condition == 'stormy'
+        "Sorry! Plane can not take off due to bad weather condition"
+      end
+    
   end
 
   def take_off(plane)
