@@ -12,19 +12,22 @@ class Airport
 
   def land_plane(plane)
     fail 'This airplane is already in the airport' if plane_exists?(plane)
+    fail 'This airplane is not in the air' if plane.grounded
     fail 'The airport is full' if full?
     fail 'Weather is stormy: no planes are to land' if @weather.stormy
+    plane.lands
     @planes << plane
   end
 
   def take_off(plane)
     fail 'Weather is stormy: no planes are to take off' if @weather.stormy
-    fail 'that plane is not at this airport' if !@planes.include? (plane)
+    fail 'that plane is not at this airport' unless @planes.include?(plane)
+    plane.takes_off
     @planes.delete(plane)
     'airplane has taken off and is no longer in the airport'
   end
 
-  private #---------------------------------------------
+  # private #---------------------------------------------
 
   def full?
     @planes.size >= @capacity
