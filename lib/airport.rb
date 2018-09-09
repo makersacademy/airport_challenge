@@ -11,20 +11,20 @@ class Airport
   end
 
   def land(plane)
-    fail "Unable to land: bad weather" if is_stormy?
+    fail "Unable to land: bad weather" if stormy?
     fail "Unable to land: airport full" if full?
     @grounded_planes << plane
   end
 
-  def takeoff(plane)
-    fail "Unable to takeoff: bad weather" if is_stormy?
+  def takeoff(_plane)
+    fail "Unable to takeoff: bad weather" if stormy?
     fail "Unable to takeoff: no planes in airport" if empty?
     @grounded_planes.shift
     "Plane has taken off"
   end
 
-  def is_stormy?
-    @weather.is_stormy?
+  def stormy?
+    @weather.stormy?
   end
 
   def full?
