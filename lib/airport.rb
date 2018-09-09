@@ -12,12 +12,14 @@ class Airport
   def land(plane)
     stormy?
     hanger_full?
-    !plane.flying
+    raise "Sorry, this plane already landed at another airport." if plane.flying_status == false
+    plane.landed
     @plane_hanger << plane
   end
 
   def take_off(plane)
     stormy?
+    plane.ready_to_take_off
     @plane_hanger.delete(plane)
   end
 

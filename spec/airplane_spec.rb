@@ -7,13 +7,17 @@ describe Airplane do
     expect { Airplane.new }.not_to raise_error
   end
 
-  it { is_expected.to respond_to :flying }
+  it { is_expected.to respond_to :flying_status }
   
   it "switches flying to false when plane lands" do
-    airport = double(:Airport)
-    allow(airport).to receive(:land)
+    airport = double(:Airport, land: subject.landed)
     airport.land(subject)
-    expect(subject.flying).to eq false
+    expect(subject.flying_status).to eq false
+  end
+
+  it "switching flying to true when plane takes off" do
+    airport = double(:Airport, take_off: subject.landed)
+    airport.take_off(subject)
   end
 
 end

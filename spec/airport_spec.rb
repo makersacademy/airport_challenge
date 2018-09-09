@@ -46,4 +46,13 @@ describe Airport do
     subject.default_capacity.times { subject.land(Airplane.new) } 
     expect { subject.land(Airplane.new) }.to raise_error "Sorry, the hanger is full."
   end
+
+  it "can't land airplane at another airport if it has already landed" do
+    heathrow = subject
+    gatwick = subject
+    canadian_plane = Airplane.new
+    heathrow.land(canadian_plane)
+    expect { gatwick.land(canadian_plane) }.to raise_error "Sorry, this plane already landed at another airport."
+
+  end 
 end
