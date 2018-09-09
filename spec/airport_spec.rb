@@ -69,7 +69,7 @@ describe Airport do
 
     it 'raises an error when there are no planes in the airport' do
       expect(subject.planes_arr).to include([])
-      #expect(subject.planes_arr).to be_empty?
+      #expect(subject.planes_arr).to be_nil
       expect{subject.take_off}.to raise_error 'no planes available'
     end
 
@@ -89,6 +89,7 @@ describe Airport do
     it 'raises an error when the plane is not in this airport' do
       plane = Plane.new
       expect(subject.planes_arr).not_to include(plane)
+      expect(subject.planes_arr).not_to be_empty?
       expect { subject.take_off plane }.to raise_error "Can't take off, plane is not in this airport"
     end
 

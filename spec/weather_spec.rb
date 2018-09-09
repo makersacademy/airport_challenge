@@ -6,7 +6,7 @@ describe Weather do
 
   describe "stormy" do
     it "checks whether weather is stormy" do
-    allow(subject).to receive(:stormy?).and_return(2,3,50)
+      allow(subject).to receive(:stormy?).and_return(2,3,50)
     end
   end
 
