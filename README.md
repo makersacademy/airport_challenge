@@ -15,8 +15,12 @@ Airport Challenge
 
 # How to use it
 
-'airport.rb', 'weather.rb', and 'plane.rb' are all required in order for the application to function.
-
+Please enter the following commands in `irb` in order to use the program
+```
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
+```
 
 ## Plane Objects
 
