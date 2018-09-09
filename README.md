@@ -20,7 +20,7 @@ Airport Challenge
 
 # Plane Objects
 
-Plane objects have one instance variable `@name`. \n
+Plane objects have one instance variable `@name`. <br/>
 `@name` defaults to a random number, but can be set on instantiation:
 
 ```
@@ -32,8 +32,8 @@ Plane objects have one instance variable `@name`. \n
 
 # Airport Objects
 
-An airport object contains two instance variables: \n
-`@hangar` is an empty array which is used to store Plane objects. \n
+An airport object contains two instance variables: <br/>
+`@hangar` is an empty array which is used to store Plane objects. <br/>
 `@capacity` is the total capacity permitted for Plane objects. It defaults to Airport::DEFAULT_CAPACITY.
 
 ```
