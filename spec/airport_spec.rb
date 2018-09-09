@@ -42,6 +42,11 @@ describe '#take_off' do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
 
+    it 'returns the plane that took off' do
+      airport.land(plane)
+      expect(airport.take_off(plane)).to eq plane 
+    end
+
     it 'raises an error if plane is not at this airport' do
       airport2 = described_class.new(10)
       airport2.land(plane)
