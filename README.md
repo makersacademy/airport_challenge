@@ -30,15 +30,27 @@ An example of testing the code
 
 
 What this looks like in irb
+
 2.5.1 :001 > require'./lib/airport.rb'
+
  => true
+
 2.5.1 :002 > gatwick = Airport.new(30)
- => #<Airport:0x00007fa57c0defc0 @planes=[], @capacity=30, @weather=#<Weather:0x00007fa57c0def98 @stormy=false>>
+
+ => #<Airport:0x00007fa57c0defc0 @planes=[], @capacity=30,
+
+ @weather=#<Weather:0x00007fa57c0def98 @stormy=false>>
+
 2.5.1 :003 > boeingUH370 = Airplane.new
+
  => #<Airplane:0x00007fa57c0ce8c8>
+
 2.5.1 :004 > gatwick.land_plane(boeingUH370)
+
  => [#<Airplane:0x00007fa57c0ce8c8>]
+
 2.5.1 :005 > gatwick.take_off(boeingUH370)
+
  => "airplane has taken off and is no longer in the airport"
 
 You can also test if it's stormy where at the airport you created by
@@ -48,8 +60,15 @@ You can also test if it's stormy where at the airport you created by
 3. Call the .stormy method on the weather class to return a true or false as to whether it's stormy or not
 
 2.5.1 :005 > heathrow = Airport.new
- => #<Airport:0x00007f8ab703a5b8 @planes=[], @capacity=20, @weather=#<Weather:0x00007f8ab703a590 @stormy=false>>
+
+ => #<Airport:0x00007f8ab703a5b8 @planes=[], @capacity=20,
+
+ @weather=#<Weather:0x00007f8ab703a590 @stormy=false>>
+
 2.5.1 :006 > heathrow.weather
+
  => #<Weather:0x00007f8ab703a590 @stormy=false>
+
 2.5.1 :007 > heathrow.weather.stormy
+
  => false
