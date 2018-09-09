@@ -110,7 +110,6 @@ My approach to solving this challenge
         - I tested that the plane capacity can be overridden
         - I tested that the plane lets a passenger board and disembark  
         - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
-
            - A plane prevents a passenger from boarding a plane if they don't have a ticket or are already on board or if the plane is full
            - A plane prevents a passenger disembarking a plane if plane is flying or if they are not on board
            - etc...
@@ -124,7 +123,6 @@ My approach to solving this challenge
       - I tested that an instance of the Passenger class can be created a ticket and on_plane arguments
       - I tested that a passenger can drop and collect luggage
       - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
-
         - A passenger cannot drop a luggage if they don't have a ticket
         - A passenger cannot drop/collect luggage if already dropped/collected
         - etc...
