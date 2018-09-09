@@ -1,46 +1,57 @@
 require 'airport'
 
 describe Airport do
-# weather needs to be good
-# and the hanger can't be full
-  it "has a working Airport#land(plane) method" do
-    plane = Plane.new
-    subject.takeoff(plane)
-    expect(subject.land(plane)).to eq([plane])
-  end
+  context "The weather is good and there is space in the hanger" do
+    # weather needs to be good
+    # and the hanger can't be full
+    let(:plane) {double :plane}
 
-  it "has a working Airport#takeoff(plane) method" do
-    plane = Plane.new
-    expect(subject.takeoff(plane)).to eq("Airborn")
-  end
+    it "has a working Airport#land(plane) method" do
+      allow(subject).to receive(:bad_weather?).and_return(false)
+      allow(subject).to receive(:hanger_full?).and_return(false)
+      allow(plane).to receive(:location).and_return("Airborn")
+      allow(plane).to receive(:grounded)
 
-  it "can set Airport @hanger capacity to 0" do
-    airport = Airport.new(0)
-    plane = Plane.new
-    subject.takeoff(plane)
-    expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
-  end
+      expect(subject.land(plane)).to eq([plane])
+    end
 
-  it "rejects edge cases: Airborn plane trying to takeoff" do
-    plane = Plane.new
-    airport = Airport.new
-    airport.takeoff(plane)
-    expect(airport.takeoff(plane)).to eq("Cannot takeoff. Plane already airborn")
-  end
+    it "has a working Airport#takeoff(plane) method" do
+      allow(subject).to receive(:bad_weather?).and_return(false)
+      allow(subject).to receive(:hanger_full?).and_return(false)
+      allow(plane).to receive(:location).and_return(subject)
+      allow(plane).to receive(:airborn).and_return("Airborn")
 
-  it "rejects edge cases: Grounded plane trying to land" do
-    plane = Plane.new
-    airport = Airport.new
-    expect(airport.land(plane)).to eq("Cannot land. Plane already on the ground")
-  end
+      expect(subject.takeoff(plane)).to eq("Airborn")
+    end
 
-  it "rejects edge cases: Planes cannot takeoff from airports that they aren't in" do
-    plane = Plane.new
-    airport1 = Airport.new
-    airport2 = Airport.new
-    airport1.takeoff(plane)
-    airport2.land(plane)
-    expect(airport1.takeoff(plane)).to eq("Plane at wrong airport")
+    it "can set Airport @hanger capacity to 0" do
+      airport = Airport.new(0)
+      plane = Plane.new
+      subject.takeoff(plane)
+      expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
+    end
+
+    it "rejects edge cases: Airborn plane trying to takeoff" do
+      plane = Plane.new
+      airport = Airport.new
+      airport.takeoff(plane)
+      expect(airport.takeoff(plane)).to eq("Cannot takeoff. Plane already airborn")
+    end
+
+    it "rejects edge cases: Grounded plane trying to land" do
+      plane = Plane.new
+      airport = Airport.new
+      expect(airport.land(plane)).to eq("Cannot land. Plane already on the ground")
+    end
+
+    it "rejects edge cases: Planes cannot takeoff from airports that they aren't in" do
+      plane = Plane.new
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport1.takeoff(plane)
+      airport2.land(plane)
+      expect(airport1.takeoff(plane)).to eq("Plane at wrong airport")
+    end
   end
 
 end
@@ -57,7 +68,11 @@ end
 #   end
 #
 #   it "can prevent landing when there is bad weather" do
-#     expect(subject.land(Plane.new)).to eq("The weather is too bad to land")
+#     plane = Plane.new
+#     # takeoff under good weather
+#     subject.takeoff(plane)
+#     # try to land during bad weather
+#     expect(subject.land(plane)).to eq("The weather is too bad to land")
 #   end
 # end
 
