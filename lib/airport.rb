@@ -26,6 +26,7 @@ class Airport
   end
 
   def dock(plane)
+    fail "Plane already landed!" if @planes.include?(plane)
     @planes.push(plane)
   end
 

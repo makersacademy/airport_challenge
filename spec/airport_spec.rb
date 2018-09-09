@@ -41,10 +41,10 @@ describe Airport do
 
     it "allows Airport to have a custom capacity set on initalize" do
       
-      heathrow = Airport.new(20)
-      allow(heathrow).to receive(:rand).and_return(1)
-      20.times { Plane.new.land(heathrow) }
-      expect { Plane.new.land(heathrow) }.to raise_error("Airport is full!")
+      airport = Airport.new(20)
+      allow(airport).to receive(:rand).and_return(1)
+      20.times { Plane.new.land(airport) }
+      expect { Plane.new.land(airport) }.to raise_error("Airport is full!")
   
     end
 

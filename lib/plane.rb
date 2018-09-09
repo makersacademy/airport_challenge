@@ -4,7 +4,7 @@ class Plane
 
     fail "Airport is full!" if airport.full?
     fail "Too stormy to land!" if airport.stormy?
-    
+
     airport.dock(self)
 
   end
