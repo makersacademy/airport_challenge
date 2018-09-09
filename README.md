@@ -90,17 +90,16 @@ How my app looks like from a user perspective
 My approach to solving this challenge
 ---
 1. I created an Airport class from where a plane can land and take off
-  - Using TDD:
-  
-    - I tested that an instance of the Airport class can be created with a capacity
-    - I tested that the airport capacity can be overridden
-    - I tested that a plane can land and take off from an instance of
-  the Airport class
-    - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
-        - plane cannot land or take off if weather is stormy or if airport is full
+    - Using TDD:
 
-      - plane cannot land/take off if already landed/taken off
-      - etc...
+      - I tested that an instance of the Airport class can be created with a capacity
+      - I tested that the airport capacity can be overridden
+      - I tested that a plane can land and take off from an instance of
+  the Airport class
+      - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
+          - plane cannot land or take off if weather is stormy or if airport is full
+          - plane cannot land/take off if already landed/taken off
+          - etc...
 
 
 2. I created a Plane class that lets a passenger board and disembark
@@ -120,15 +119,15 @@ My approach to solving this challenge
 
 3. I created a Passenger class that can drop and collect luggage
 
-  - Using TDD:
+    - Using TDD:
 
-    - I tested that an instance of the Passenger class can be created a ticket and on_plane arguments
-    - I tested that a passenger can drop and collect luggage
-    - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
+      - I tested that an instance of the Passenger class can be created a ticket and on_plane arguments
+      - I tested that a passenger can drop and collect luggage
+      - After implementing all basic functionality, I drove out edge cases to ensure that my code could run in a predictable way in unpredictable circumstances such as:
 
-      - A passenger cannot drop a luggage if they don't have a ticket
-      - A passenger cannot drop/collect luggage if already dropped/collected
-      - etc...
+        - A passenger cannot drop a luggage if they don't have a ticket
+        - A passenger cannot drop/collect luggage if already dropped/collected
+        - etc...
 
 
 4. I added strings that are returned when an action has completed successfully (e.g: Plane has landed!). This was done for better user experience but in a real system, a user wouldn't be directly using these strings.
