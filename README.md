@@ -13,19 +13,10 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
 Steps
 -------
 
-1. Fork this repo, and clone to your local machine
+1. Clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 4. Complete the following task:
@@ -61,30 +52,40 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Our task was to write a program that satisfied each of these user stories. My program was able to effectively answer each problem, with a key focus on **Test-Driven Development** as well as **Refactoring**.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+One strength that appeared whilst solving this challenge was being able to break down the problem into smaller, more clearer goals. I realised that, at a glance, that a program like this feels very enormous and challenging, yet when I wrote a test that simply checked if I was able to create an instance of an Airplane class, it felt satisfying making a smaller step. By keeping this methodical approach, I was able to write a program that focused on solving the tests I wrote alongside. As a result, my test coverage is at 100%, showing evidence of both TDD and solving problems.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+However TDD was a double-edged sword in this challenge. A great weakness that appeared was testing multiple classes at once. A lot of the weekend was spent learning on my own and trying to understand dependency injection. I believe I have a lot to improve on and will have that as a explicit goal when continuing my learnings in Makers. I also struggled to write the tests that dealt with randomness. With more research I started gathering evidence that  there are simpler ways of writing the random weather code. I decided to keep it, because I think it will be good review to discuss it with coaches and peers.
 
-Please create separate files for every class, module and test suite.
+Some examples of the code working in the terminal: 
 
-In code review we'll be hoping to see:
+```bash
+[1] pry(main)> Heathrow = Airport.new
+=> #<Airport:0x00007fa556204d08 @default_capacity=20, @plane_hanger=[]>
+[2] pry(main)> Gatwick = Airport.new
+=> #<Airport:0x00007fa55619f610 @default_capacity=20, @plane_hanger=[]>
+[3] pry(main)> Canadian_Airlines = Airplane.new
+=> #<Airplane:0x00007fa556909568 @flying_status=true>
+[4] pry(main)> Heathrow.weather
+=> "Fly away, baby"
+[34] pry(main)> Gatwick.weather
+=> "Stormy"
+```
+```bash
+[36] pry(main)> British_Airways = Airplane.new
+=> #<Airplane:0x00007fa556a8c098 @flying_status=true>
+[37] pry(main)> Heathrow.land(British_Airways)
+=> [#<Airplane:0x00007fa556a8c098 @flying_status=false>]
+[38] pry(main)> Gatwick.land(Canadian_Airlines)
+RuntimeError: Sorry, theres a storm.
+from /Users/alexkharouk/Desktop/Makers/weekend-challenges/airport_challenge/lib/airport.rb:32:in `stormy?`
+[39] pry(main)> Gatwick.weather
+=> "Fly away, baby"
+[40] pry(main)> Gatwick.land(Canadian_Airlines)
+=> [#<Airplane:0x00007fa556909568 @flying_status=false>]
+[41] pry(main)> Heathrow.land(Canadian_Airlines)
+RuntimeError: Sorry, this plane already landed at an airport.
+from /Users/alexkharouk/Desktop/Makers/weekend-challenges/airport_challenge/lib/airport.rb:41:in `already_landed?`
+```
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
