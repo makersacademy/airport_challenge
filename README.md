@@ -1,6 +1,6 @@
-##Week 1 - Weekend Challenge
+Week 1 - Weekend Challenge
 
-##Technologies used: Ruby, Rspec
+Technologies used: Ruby, Rspec
 
 Airport Challenge
 =================
