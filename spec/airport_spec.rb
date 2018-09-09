@@ -21,14 +21,22 @@ describe Airport do
       expect(subject.planes.include?(plane)).to be(true)
     end
     it 'raises error when a plane tries to land at a full airport with default capacity' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane)) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
     it 'raises error when a plane tries to land at a full airport with manual capacity' do
       capacity = (1..100).to_a.sample
       airport = described_class.new(capacity)
-      capacity.times { airport.land(plane) }
+      capacity.times { airport.land(double(:plane)) }
       expect { airport.land(plane) }.to raise_error("Airport full")
+    end
+
+    describe 'Edge case: Instrucing plane to land that has already landed' do
+      it 'raises error when a plane tries to land that has already landed' do
+        specific_plane = double(:plane)
+        subject.land(specific_plane)
+        expect { subject.land(specific_plane) }.to raise_error('Plane has already landed')
+      end
     end
 
     describe 'landing during stormy weather' do
@@ -48,6 +56,7 @@ describe Airport do
       expect(subject.take_off(plane)).to eq(plane)
     end
     it 'removes a plane that has left from the airport' do
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes.include?(plane)).to be(false)
     end
@@ -59,6 +68,14 @@ describe Airport do
       it 'raises error when plane tries to take off during stormy weather' do
         subject.weather = weather
         expect { subject.take_off(plane) }.to raise_error('Cannot take off because of stormy weather')
+      end
+    end
+    describe 'Edge case: instrucint a plane to take off that is no longer at the airport' do
+      it 'raises error when a plane is instruced to take off that is not in the airport' do
+        specific_plane = double(:plane)
+        subject.land(specific_plane)
+        subject.take_off(specific_plane)
+        expect { subject.take_off(specific_plane) }.to raise_error('Plane is not at this airport')
       end
     end
   end

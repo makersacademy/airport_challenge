@@ -47,7 +47,7 @@ describe 'Features' do
       @plane = Plane.new
     end
     it 'raises error when plane tries to land at a full airport' do
-      DEFAULT_CAPACITY.times { @airport.land(@plane) }
+      DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
       expect { @airport.land(@plane) }.to raise_error('Airport full')
     end
   end
