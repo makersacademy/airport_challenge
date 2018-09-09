@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:boeing) { double(:plane) }
   let(:airbus) { double(:plane) }
+  let(:weather) { double(:weather) }
 
   describe 'land' do
     it 'allows a plane to land at an airport' do
@@ -61,19 +62,25 @@ describe Airport do
     it 'raises an error when a plane that is flying tries to take off' do
       expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
     end
+
+    it 'raises an error when a plane tries to take off when stormy' do
+      airport = Airport.new(Airport::CAPACITY, weather, [plane])
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { airport.takeoff(plane) }.to raise_error 'Too stormy to take off'
+    end
   end
 
   describe 'hangar' do
     it 'has a variable capacity' do
+      airport_2 = Airport.new(2)
+      expect(airport_2.capacity).to eq(2)
       airport = Airport.new(50)
       expect(airport.capacity).to eq(50)
-      airport_2 = Airport.new(20)
-      expect(airport_2.capacity).to eq(20)
     end
 
     it 'has a default capacity if no capacity given' do
       airport = Airport.new
-      expect(airport.capacity).to eq(1)
+      expect(airport.capacity).to eq(Airport::CAPACITY)
     end
   end
 end

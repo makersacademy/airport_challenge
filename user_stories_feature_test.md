@@ -28,10 +28,10 @@ I want to prevent takeoff when weather is stormy
 
 ```
 load './lib/airport.rb'
-  when weather is stormy (stub it)
-airport = Airport.new
 plane = Plane.new
-airport.land(plane)
+weather = Weather.new
+# when weather.stormy? = true
+airport = Airport.new(Airport::DEFAULT_CAPACITY, weather, [plane])
 airport.takeoff(plane) # error
 ```
 
