@@ -2,11 +2,12 @@ require_relative 'plane'
 
 class Airport
 
-attr_reader :store
-attr_writer :store
+attr_reader :store, :weather
+attr_writer :store, :weather
 
   def initialize
     @store = []
+    @weather = ["Sunny", "Stormy"] #remember to put in more values
   end
 
 
@@ -17,7 +18,14 @@ attr_writer :store
 
   def take_off(plane)
     @store.delete(plane)
+    print "#{plane} has taken off"
     #return @store
   end
+
+  def forecast
+    @weather[rand(@weather.length)]
+
+  end
+
 
 end
