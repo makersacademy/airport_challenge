@@ -65,6 +65,19 @@ RSpec.describe Airport do
       expect { clear_airport.take_off(plane) }.to raise_error "Plane not landed at airport"
     end
 
+    it "can land and take off a number of planes and keep track of them" do
+      landed_planes, taken_off_planes = [], []
+      10.times do
+        landed_planes << FakePlane.new
+        taken_off_planes << FakePlane.new
+      end
+      (taken_off_planes + landed_planes).each do |plane|
+        clear_airport.land(plane)
+      end
+      taken_off_planes.each { |plane| clear_airport.take_off(plane) }
+      expect(clear_airport.landed_planes).to eq landed_planes
+    end
+
   end
 
   context "when it is stormy" do
