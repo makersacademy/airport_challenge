@@ -2,12 +2,12 @@ require 'plane'
 
 RSpec.describe Plane do
 
-  subject(:plane) { Plane.new }
+  subject(:plane) { described_class.new }
 
   context 'when flying' do
 
     before(:each) do
-      @flying_plane = Plane.new(:flying)
+      @flying_plane = described_class.new(:flying)
     end
     
     it 'should land at an airport' do

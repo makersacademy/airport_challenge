@@ -1,7 +1,7 @@
 require 'weather'
 
 RSpec.describe Weather do
-  subject(:weather) { Weather.new }
+  subject(:weather) { described_class.new }
   it 'should be sunny or stormy' do
     expect([:sunny, :stormy]).to include(weather.forecast)
   end
