@@ -6,3 +6,4 @@ airport.take_off(plane)
 airport.planes?
 
 airport.capacity?
+p DEFAULT_CAPACITY

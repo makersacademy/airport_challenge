@@ -18,7 +18,6 @@ describe Airport do
   end
 
   it 'lands planes' do
-
     airport = Airport.new
     # stormy = double("stormy")
     allow(airport).to receive(:stormy).and_return(false)
@@ -46,13 +45,13 @@ describe Airport do
     allow(airport).to receive(:stormy).and_return(true)
   end
 
-  # it 'responds to full?' do
-  #   expect(subject).to respond_to :full?
-  # end
-
   it 'doesnt allow landing when full capacity' do
     subject.capacity.times { subject.land(plane) }
-    expect{subject.land(plane)}.to raise_error("airport full")
+    expect(subject.land(plane)).to eq("airport is full - no landings allowed")
   end
+
+  # it 'responds to DEFAULT_CAPACITY' do
+  #   expect(subject).to respond_to :DEFAULT_CAPACITY
+  # end
 
 end
