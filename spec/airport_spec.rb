@@ -19,13 +19,15 @@ describe Airport do
     plane = Plane.new
 
     expect(heathrow.take_off(plane)). to eq (heathrow.store.delete(plane))
+
   end
 
   it "confirms that a plane has taken off" do
     heathrow = Airport.new
     plane = Plane.new
-
-    expect{heathrow.take_off(plane)}. to output("#{plane} has taken off").to_stdout
+    departure = heathrow.take_off(plane)
+    #expect{heathrow.confirm(departure)}. to output("#{plane} has taken off").to_stdout
+    expect(heathrow.confirm(departure)). to eq("plane has taken off")
   end
 
   it "checks the current weather" do

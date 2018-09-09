@@ -16,9 +16,14 @@ attr_writer :store, :weather
   end
 
   def take_off(plane)
+      confirm(plane)
       @store.delete(plane)
-      "#{plane} has taken off"
 
+    #  "#{plane} has taken off"
+  end
+
+  def confirm(plane)
+     "plane has taken off"
   end
 
   def forecast
