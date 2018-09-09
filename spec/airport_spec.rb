@@ -60,7 +60,7 @@ describe Airport do
 
     it 'raises an error when weather is stormy' do
       weather = Weather.new
-      expect(weather.stormy?).to be_stormy?
+      weather.random = "stormy"
       expect{subject.land(Plane.new)}.to raise_error "Can't land because weather is stormy"
     end
   end
@@ -75,7 +75,7 @@ describe Airport do
 
     it 'raises an error when weather is stormy' do
       weather = Weather.new
-      expect(weather.stormy?).to be_stormy?
+      expect(weather.random).to include("stormy")
       expect{subject.take_off}.to raise_error 'Can not take off weather is stormy'
     end
 

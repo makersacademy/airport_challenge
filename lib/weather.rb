@@ -1,12 +1,14 @@
 class Weather
+
   attr_accessor :random
+
 
   def stormy?
     @random = rand(1550)
     if (48..50).include?(@random)
-      return true
+      @random = "stormy"
     else
-    return false
+     @random = "sunny"
     end
   end
 

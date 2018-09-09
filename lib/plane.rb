@@ -5,7 +5,6 @@ attr_accessor :landed, :is_flying
 
   def initialize
     @landed = false
-
   end
 
   def confirm_takeoff
@@ -13,7 +12,7 @@ attr_accessor :landed, :is_flying
   end
 
   def takeoff?
-     @is_flying
+     @is_flying = true
   end
 
   def report_landed
