@@ -16,7 +16,6 @@ class Airport
   def initialize(capacity = DEFAULT_HANGER_CAPACITY)
     @hanger = []
     @capacity = capacity
-    # @guard = nil
   end
 
   def land(plane)
@@ -24,6 +23,14 @@ class Airport
     plane.grounded(self)
     @hanger << plane
   end
+
+  def takeoff(plane)
+    return @guard if takeoff_guards(plane, self)
+    @hanger.delete(plane)
+    plane.airborn
+  end
+
+private
 
   def landing_guards(plane)
     return @guard = GUARDS[:on_ground] if plane_grounded?(plane)
@@ -41,12 +48,6 @@ class Airport
 
   def bad_weather?
     rand(10).zero?
-  end
-
-  def takeoff(plane)
-    return @guard if takeoff_guards(plane, self)
-    @hanger.delete(plane)
-    plane.airborn
   end
 
   def takeoff_guards(plane, airport)
