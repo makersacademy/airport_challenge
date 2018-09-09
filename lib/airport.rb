@@ -12,6 +12,7 @@ class Airport
   def land(plane)
     stormy?
     hanger_full?
+    !plane.flying
     @plane_hanger << plane
   end
 
