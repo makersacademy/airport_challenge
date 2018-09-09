@@ -12,7 +12,6 @@ attr_writer :store, :weather
 
 
   def land_plane(plane)
-
     @store << plane
   end
 
@@ -24,8 +23,14 @@ attr_writer :store, :weather
 
   def forecast
     @weather[rand(@weather.length)]
-
   end
+
+
+  def is_it_safe(weather)
+     return "Unsafe" if weather == "Stormy"
+     return "Safe" if weather == "Sunny"
+  end
+
 
 
 end

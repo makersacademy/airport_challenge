@@ -34,6 +34,14 @@ describe Airport do
     expect(current_weather). to eq("Sunny").or eq("Stormy")
   end
 
+  it "checks if the weather is safe enough to fly a plane" do
+    heathrow = Airport.new
+    current_weather = heathrow.forecast
+    safety_status = heathrow.is_it_safe(current_weather) #why didn't it work with just current_weather?
+    expect(safety_status). to eq("Safe").or eq("Unsafe")
+  end
+
+
 end
 
 #to eq (heathrow.store)
