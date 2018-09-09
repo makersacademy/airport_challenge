@@ -48,11 +48,11 @@ describe Airport do
         gatwick = Airport.new("Gatwick", 1)
         allow(gatwick).to receive(:stormy?).and_return(false)
         gatwick.instruct_landing(plane)
-        expect{gatwick.instruct_landing(plane2)}.to raise_error("Full capacity. Keep flying buddy.")
+        expect { gatwick.instruct_landing(plane2) }.to raise_error("Full capacity. Keep flying buddy.")
       end
 
       it 'should allow plane to land if weather is good' do
-        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
+        plane1 = { flight_num: 'FIN0099', destination: 'Helsinki' }
         gatwick = Airport.new("Gatwick", 2)
         allow(gatwick).to receive(:stormy?).and_return(false)
         gatwick.instruct_landing(plane1)
@@ -60,10 +60,10 @@ describe Airport do
       end
 
       it "shouldn't allow plane to land if weather is stormy" do
-        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
+        plane1 = { flight_num: 'FIN0099', destination: 'Helsinki' }
         gatwick = Airport.new("Gatwick", 2)
         allow(gatwick).to receive(:stormy?).and_return(true)
-        expect{gatwick.instruct_landing(plane1)}.to raise_error("I don't care if you're running out of fuel, it's too stormy to aid you. Keep circling!")
+        expect { gatwick.instruct_landing(plane1) }.to raise_error("Don't land, it's too stormy to aid you safely!")
       end
 
     end
@@ -90,8 +90,8 @@ describe Airport do
     context 'take_off' do
 
       it 'should remove plane from hangar which has taken off' do
-        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
-        plane2 = {destination:'Melbourne', flight_num:'AUS9978'}
+        plane1 = { flight_num: 'FIN0099', destination: 'Helsinki' }
+        plane2 = { destination: 'Melbourne', flight_num: 'AUS9978' }
         gatwick = Airport.new("Gatwick", 2)
         allow(gatwick).to receive(:stormy?).and_return(false)
         gatwick.instruct_landing(plane1)
@@ -101,16 +101,16 @@ describe Airport do
       end
 
       it 'should not allow plane to take off if stormy' do
-        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
+        plane1 = { flight_num: 'FIN0099', destination: 'Helsinki' }
         gatwick = Airport.new("Gatwick", 2)
         allow(gatwick).to receive(:stormy?).and_return(false)
         gatwick.instruct_landing(plane1)
         allow(gatwick).to receive(:stormy?).and_return(true)
-        expect{gatwick.take_off(plane1)}.to raise_error("Due to adverse weather conditions, all planes are to remain grounded.")
+        expect { gatwick.take_off(plane1) }.to raise_error("Due to adverse weather conditions, planes must stay grounded.")
       end
 
       it 'should allow plane to take off if weather is good' do
-        plane1 = {flight_num:'FIN0099', destination: 'Helsinki'}
+        plane1 = { flight_num: 'FIN0099', destination: 'Helsinki' }
         gatwick = Airport.new("Gatwick", 2)
         allow(gatwick).to receive(:stormy?).and_return(false)
         gatwick.instruct_landing(plane1)
