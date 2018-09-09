@@ -4,11 +4,11 @@ class Airport
 
   DEFAULT_HANGER_CAPACITY = 20
 
-  GUARDS = {
-    airborne: "Cannot takeoff. Plane already airborne",
+  ERRORS = {
+    airborne: "Cannot take off. Plane already airborne",
     on_ground: "Cannot land. Plane already on the ground",
     on_site: "Plane at wrong airport",
-    weather_takeoff: "The weather is too bad to fly",
+    weather_take_off: "The weather is too bad to fly",
     weather_landing: "The weather is too bad to land",
     full_hanger: "The plane can't land because the hanger is full"
   }
@@ -19,23 +19,23 @@ class Airport
   end
 
   def land(plane)
-    return @guard if landing_guards(plane)
+    landing_errors?(plane)
     plane.grounded(self)
     @hanger << plane
   end
 
-  def takeoff(plane)
-    return @guard if takeoff_guards(plane, self)
+  def take_off(plane)
+    take_off_errors(plane, self)
     @hanger.delete(plane)
     plane.airborne
   end
 
 private
 
-  def landing_guards(plane)
-    return @guard = GUARDS[:on_ground] if plane_grounded?(plane)
-    return @guard = GUARDS[:weather_landing] if bad_weather?
-    return @guard = GUARDS[:full_hanger] if hanger_full?
+  def landing_errors?(plane)
+    fail ERRORS[:on_ground] if plane_grounded?(plane)
+    fail ERRORS[:weather_landing] if bad_weather?
+    fail ERRORS[:full_hanger] if hanger_full?
   end
 
   def plane_grounded?(plane)
@@ -50,10 +50,10 @@ private
     rand(10).zero?
   end
 
-  def takeoff_guards(plane, airport)
-    return @guard = GUARDS[:airborne] if plane_airborne?(plane)
-    return @guard = GUARDS[:on_site] unless plane_at_airport?(plane, airport)
-    return @guard = GUARDS[:weather_takeoff] if bad_weather?
+  def take_off_errors(plane, airport)
+    fail ERRORS[:airborne] if plane_airborne?(plane)
+    fail ERRORS[:on_site] unless plane_at_airport?(plane, airport)
+    fail ERRORS[:weather_take_off] if bad_weather?
   end
 
   def plane_airborne?(plane)
