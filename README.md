@@ -16,6 +16,8 @@ Airport Challenge
 This repository contains the Makers Academy week 1 homework challenge. The code is run on the command line and
 allow you to create airports that let you land and take off planes, provided that the weather is not stormy. if the weather is stormy no take offs or landings are allowed. To ensure safety when an airport is at full capacity no more airplanes can land, this capacity can be set when you create the airport instance.
 
+Probably the biggest assumption made here is that when a new Airplane class is created it's assumed to be "flying". In practice flying actually means it's just not grounded in an airport.
+
 To use this on the command line: clone this repo, navigate to that folder in your command line, open up irb and then require './lib/airport.rb'
 
 Example
