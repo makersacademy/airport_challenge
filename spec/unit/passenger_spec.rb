@@ -1,8 +1,12 @@
 require 'passenger'
-require 'ticket'
-require 'luggage'
 
 describe Passenger do
+
+  context 'creates a new passenger who has ticket and knows if on plane' do
+    it { is_expected.to have_attributes(ticket: true) }
+    it { is_expected.to have_attributes(on_plane: true) }
+  end
+  
   it 'checks if has ticket' do
     expect(subject.ticket?).to eq true
   end
@@ -31,26 +35,26 @@ describe Passenger do
     end
   end
 
-  context 'getting luggage' do
+  context 'collecting luggage' do
     before(:each) do
       subject.ticket = true
       subject.drop_luggage
     end
 
-    it 'gets luggage' do
+    it 'collects luggage' do
       subject.on_plane = false
-      subject.get_luggage
+      subject.collect_luggage
       expect(subject.luggage_dropped?).to eq false
     end
 
-    it 'prevents getting luggage if passenger already got it' do
+    it 'prevents collecting luggage if passenger already got it' do
       subject.on_plane = false
-      subject.get_luggage
-      expect { subject.get_luggage }.to raise_error('Passenger already got luggage!')
+      subject.collect_luggage
+      expect { subject.collect_luggage }.to raise_error('Passenger already got luggage!')
     end
 
-    it 'prevents getting luggage if passenger still on plane' do
-      expect { subject.get_luggage }.to raise_error('Passenger still on plane!')
+    it 'prevents collecting luggage if passenger still on plane' do
+      expect { subject.collect_luggage }.to raise_error('Passenger still on plane!')
     end
   end
 end

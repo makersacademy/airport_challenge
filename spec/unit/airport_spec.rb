@@ -1,6 +1,11 @@
 require 'airport'
-require 'plane'
-require 'passenger'
+
+class PlaneMock
+  attr_accessor :flying
+  def initialize(flying = true)
+    @flying = flying
+  end
+end
 
 describe Airport do
   RSpec.configure do |config|
@@ -9,9 +14,13 @@ describe Airport do
     end
   end
 
+  context 'creates a new airport that has a capacity' do
+    it { is_expected.to have_attributes(airport_capacity: 20) }
+  end
+
   context 'landing' do
     before(:each) do
-      @plane = Plane.new
+      @plane = PlaneMock.new
       subject.land(@plane)
     end
 
@@ -26,8 +35,8 @@ describe Airport do
 
   context 'take off' do
     it 'lets specific plane take off and confirms plane is not in hangar' do
-      plane1 = Plane.new
-      plane2 = Plane.new
+      plane1 = PlaneMock.new
+      plane2 = PlaneMock.new
       subject.land(plane1)
       subject.land(plane2)
       subject.take_off(plane1)
@@ -35,16 +44,21 @@ describe Airport do
     end
 
     it 'prevents a plane to take off if already flying' do
-      plane = Plane.new
+      plane = PlaneMock.new
       subject.land(plane)
       subject.take_off(plane)
       expect { subject.take_off(plane) }.to raise_error('Plane already flying!')
+    end
+
+    it 'prevents a plane to take off if not in hangar' do
+      plane = PlaneMock.new(false)
+      expect { subject.take_off(plane) }.to raise_error('Plane not in hangar!')
     end
   end
 
   context 'when weather is stormy' do
     before(:each) do
-      @plane = Plane.new
+      @plane = PlaneMock.new
     end
 
     it 'prevents take off ' do
@@ -71,13 +85,13 @@ describe Airport do
     end
 
     it 'checks if it is full' do
-      20.times { subject.land(Plane.new) }
+      20.times { subject.land(PlaneMock.new) }
       expect(subject.full?).to eq true
     end
 
     it 'prevents landing when it is full' do
-      20.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error('Airport is full!')
+      20.times { subject.land(PlaneMock.new) }
+      expect { subject.land(PlaneMock.new) }.to raise_error('Airport is full!')
     end
   end
 end

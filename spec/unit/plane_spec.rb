@@ -1,9 +1,23 @@
 require 'plane'
-require 'passenger'
-require 'ticket'
-require 'airport'
+
+class PassengerMock
+  attr_accessor :ticket, :on_plane
+  def initialize(ticket = true)
+    @ticket = ticket
+  end
+  
+  def ticket?
+    @ticket
+  end
+end
 
 describe Plane do
+
+  context 'creates a new plane that can be flying and has a capacity' do
+    it { is_expected.to have_attributes(flying: true) }
+    it { is_expected.to have_attributes(plane_capacity: 100) }
+  end
+
   context 'flying' do
     it 'checks if flying' do
       expect(subject.flying?).to eq true
@@ -18,13 +32,13 @@ describe Plane do
   context 'boarding' do
     it 'accepts a passenger on board' do
       subject.flying = false
-      passenger = Passenger.new
+      passenger = PassengerMock.new
       subject.board(passenger)
       expect(subject.on_board?(passenger)).to eq true
     end
 
     it 'prevents boarding of a passenger if already on board' do
-      passenger = Passenger.new
+      passenger = PassengerMock.new
       subject.flying = false
       subject.board(passenger)
       expect { subject.board(passenger) }.to raise_error('Passenger already on board!')
@@ -32,12 +46,12 @@ describe Plane do
 
     it 'prevents boarding if flying' do
       subject.flying = true
-      expect { subject.board(Passenger.new) }.to raise_error('Plane is flying!')
+      expect { subject.board(PassengerMock.new) }.to raise_error('Plane is flying!')
     end
 
     it 'prevents boarding if passenger has no ticket' do
       subject.flying = false
-      passenger = Passenger.new(false)
+      passenger = PassengerMock.new(false)
       expect { subject.board(passenger) }.to raise_error('Passenger does not have a ticket!')
     end
   end
@@ -46,8 +60,8 @@ describe Plane do
 
     it 'lets a specific passenger off the plane and confirms passenger is not in plane' do
       subject.flying = false
-      passenger1 = Passenger.new
-      passenger2 = Passenger.new
+      passenger1 = PassengerMock.new
+      passenger2 = PassengerMock.new
       subject.board(passenger1)
       subject.board(passenger2)
       subject.disembark(passenger1)
@@ -56,7 +70,7 @@ describe Plane do
 
     it 'prevents a passenger disembarking if already off the plane' do
       subject.flying = false
-      passenger = Passenger.new
+      passenger = PassengerMock.new
       subject.board(passenger)
       subject.disembark(passenger)
       expect { subject.disembark(passenger) }.to raise_error('Passenger already off the plane!')
@@ -64,7 +78,7 @@ describe Plane do
 
     it 'prevents a passenger disembarking if plane is flying' do
       subject.flying = false
-      passenger = Passenger.new
+      passenger = PassengerMock.new
       subject.board(passenger)
       subject.flying = true
       expect { subject.disembark(passenger) }.to raise_error('Plane is flying!')
@@ -84,14 +98,14 @@ describe Plane do
 
     it 'checks if it is full' do
       subject.flying = false
-      100.times { subject.board(Passenger.new) }
+      100.times { subject.board(PassengerMock.new) }
       expect(subject.plane_full?).to eq true
     end
 
     it 'prevents boarding if it is full' do
       subject.flying = false
-      100.times { subject.board(Passenger.new) }
-      expect { subject.board(Passenger.new) }.to raise_error('Plane is full!')
+      100.times { subject.board(PassengerMock.new) }
+      expect { subject.board(PassengerMock.new) }.to raise_error('Plane is full!')
     end
   end
 end
