@@ -45,4 +45,11 @@ describe Airport do
     expect { luton.take_off(slingsby_firefly) }.to raise_error("Stormy weather all flights grounded!")
   end
 
+  it 'Raises an error and prevents landing during storm' do
+    luton = Airport.new
+    luton.weather_condition('stormy')
+    slingsby_firefly = Plane.new
+    expect { luton.land(slingsby_firefly) }.to raise_error("Stormy weather all flights diverted!")
+  end
+
 end

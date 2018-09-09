@@ -197,7 +197,7 @@ I want to prevent takeoff when weather is stormy
 
 Air Traffic controller should 'prevent' 'take_off' when 'weather' == 'stormy'.
 __Therefore__
-There should be a class 'Weather'
+~~There should be a class 'Weather'~~
 'Weather' should be able to be 'stormy'
 'Airport' should have method 'prevent'
 Method 'prevent' should take arguement ('weather')
@@ -243,6 +243,38 @@ Test 5) We follow suite by creating a new test. 'prevent' should stop a 'plane' 
 Test 6) Finally we want to 'prevent' the 'plane' from a 'take_off' while the 'conditions' 'stormy' == true. So we write a feature test for this. it fails as the plane can still take off when the 'weather_condition' is set to 'stormy' so we create our unit test. We expect an error to be 'raised' when the 'weather' is 'stormy' thus preventing the 'take_off' of any plane we write this test and get a failure indicating that no error was 'raised'. Now its time to enter the green phase and right a code that satisfies this test. A fail RuntimeError is written with a custom message to indicate the problem more clearly for the user and the test is subsequentlly passed and refactored.
 
 End User Story 3
+
+---
+---
+
+# User story 4
+
+---
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+---
+
+Air Traffic controller should 'prevent' 'land' when 'weather' == 'stormy'.
+__Therefore__
+Should reuse method 'weather_condition'
+if the 'weather_condition' evaluates as 'stormy' 'airport' should raise an error and fail to run 'land'
+
+## Feature test 1
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+luton.weather_condition('stormy')<br />
+slingsby_firefly = Plane.new <br />
+luton.land(slingsby_firefly) <br />
+Expect this to return RuntimeError 'Stormy weather all flights diverted!'
+
+---
+
+Test 1) In this instance we would like to maintain code functionality. We already have a working a re-usable 'weather_condition' and 'prevent' method both of which can be applied in the same way as they were to out 'take_off' method. So we repeat the steps. We start by creating our IRB test only ammending our expected error as we don't want our planes landing. We run our test and we can still land our planes during 'stormy' 'weather'. So we next write our failing test for the spec file. We run our tests and they provide us with the same expected error. We write our passing code and test it, it passes and we can refactor
+
+End User Story 4
 
 ---
 ---

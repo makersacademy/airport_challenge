@@ -16,6 +16,7 @@ class Airport
   end
 
   def land(plane)
+    fail RuntimeError, "Stormy weather all flights diverted!" if prevent == true
     @hanger << plane
   end
 
