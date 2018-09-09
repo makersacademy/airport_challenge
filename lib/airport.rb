@@ -2,7 +2,7 @@ require './lib/airplane.rb'
 require './lib/weather.rb'
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   def initialize(capacity = 20, weather = Weather.new)
     @planes = []
