@@ -19,6 +19,7 @@ class Airport
   def take_off(plane)
     fail 'No take off, weather is stormy!' if stormy?
     fail 'Plane already flying!' if plane.flying
+    fail 'Plane not in hangar!' unless plane_in_hangar?(plane)
     @hangar.delete(plane)
     plane.flying = true
   end
