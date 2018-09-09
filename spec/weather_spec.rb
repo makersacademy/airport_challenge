@@ -10,7 +10,7 @@ RSpec.describe Weather do
     expect(subject).to respond_to(:stormy?).with(0).argument
   end
 
-  it "always returns weather which is either stormy or clear" do
+  it "always returns weather which is either true or false i.e. stormy or not stormy" do
     expect([true, false].include?(subject.stormy?)).to eq true
   end
 
