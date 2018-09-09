@@ -38,18 +38,21 @@ describe Airport do
     heathrow = Airport.new
     current_weather = heathrow.forecast
     safety_status = heathrow.is_it_safe(current_weather) #why didn't it work with just current_weather?
-    expect(safety_status). to eq("Safe").or eq("Unsafe")
+    allow(safety_status).to receive("Sunny") {"Safe"}
+    allow(safety_status).to receive("Storm") {"Unsafe"}
   end
 
   it "tells a plane to takeoff or not depending on weather safety" do
     heathrow = Airport.new
     current_weather = heathrow.forecast
     safety_status = heathrow.is_it_safe(current_weather)
-    expect(heathrow.go_or_stay(safety_status)). to eq("Go").or eq("Stay")
+    #expect(heathrow.go_or_stay(safety_status)). to eq("Go").or eq("Stay")
+    allow(heathrow.go_or_stay(safety_status)).to receive("Safe") {"Go"}
+    allow(heathrow.go_or_stay(safety_status)).to receive("Unsafe") {"Stay"}
   end
 
 end
-
+#
 #to eq (heathrow.store)
 
 
