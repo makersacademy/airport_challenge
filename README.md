@@ -38,7 +38,6 @@ $ rspec
 To check for any code styling offenses:
 ```
 $ rubocop
-
 ```
 
 Task
