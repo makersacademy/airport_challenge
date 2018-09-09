@@ -6,7 +6,7 @@ describe Passenger do
     it { is_expected.to have_attributes(ticket: true) }
     it { is_expected.to have_attributes(on_plane: true) }
   end
-  
+
   it 'checks if has ticket' do
     expect(subject.ticket?).to eq true
   end
@@ -21,6 +21,11 @@ describe Passenger do
       subject.ticket = true
       subject.drop_luggage
       expect(subject.luggage_dropped?).to eq true
+    end
+
+    it 'outputs that luggage has been dropped' do
+      subject.ticket = true
+      expect(subject.drop_luggage).to eq('Luggage dropped!')
     end
 
     it 'prevents dropping luggage if already dropped' do
@@ -45,6 +50,11 @@ describe Passenger do
       subject.on_plane = false
       subject.collect_luggage
       expect(subject.luggage_dropped?).to eq false
+    end
+
+    it 'outputs that luggage has been collected' do
+      subject.on_plane = false
+      expect(subject.collect_luggage).to eq('Luggage collected!')
     end
 
     it 'prevents collecting luggage if passenger already got it' do

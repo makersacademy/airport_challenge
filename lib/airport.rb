@@ -14,6 +14,7 @@ class Airport
     fail 'Plane already landed!' if plane.flying == false
     @hangar << plane
     plane.flying = false
+    'Plane has landed!'
   end
 
   def take_off(plane)
@@ -22,6 +23,7 @@ class Airport
     fail 'Plane not in hangar!' unless plane_in_hangar?(plane)
     @hangar.delete(plane)
     plane.flying = true
+    'Plane has taken off!'
   end
 
   def plane_in_hangar?(plane)

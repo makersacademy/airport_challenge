@@ -21,14 +21,19 @@ describe Airport do
   context 'landing' do
     before(:each) do
       @plane = PlaneMock.new
-      subject.land(@plane)
     end
 
     it 'lets plane land and confirms plane is in hangar' do
+      subject.land(@plane)
       expect(subject.plane_in_hangar?(@plane)).to eq true
     end
 
+    it 'outputs that plane has landed' do
+      expect(subject.land(@plane)).to eq 'Plane has landed!'
+    end
+
     it 'prevents a plane to land if already landed' do
+      subject.land(@plane)
       expect { subject.land(@plane) }.to raise_error('Plane already landed!')
     end
   end
@@ -41,6 +46,12 @@ describe Airport do
       subject.land(plane2)
       subject.take_off(plane1)
       expect(subject.plane_in_hangar?(plane1)).to eq false
+    end
+
+    it 'outputs that a plane has taken off' do
+      plane = PlaneMock.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq 'Plane has taken off!'
     end
 
     it 'prevents a plane to take off if already flying' do

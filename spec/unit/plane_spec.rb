@@ -5,7 +5,7 @@ class PassengerMock
   def initialize(ticket = true)
     @ticket = ticket
   end
-  
+
   def ticket?
     @ticket
   end
@@ -37,6 +37,12 @@ describe Plane do
       expect(subject.on_board?(passenger)).to eq true
     end
 
+    it 'outputs that a passenger is on board' do
+      subject.flying = false
+      passenger = PassengerMock.new
+      expect(subject.board(passenger)).to eq('Passenger on board!')
+    end
+
     it 'prevents boarding of a passenger if already on board' do
       passenger = PassengerMock.new
       subject.flying = false
@@ -66,6 +72,13 @@ describe Plane do
       subject.board(passenger2)
       subject.disembark(passenger1)
       expect(subject.on_board?(passenger1)).to be false
+    end
+
+    it 'outputs that a passenger has disembark' do
+      subject.flying = false
+      passenger = PassengerMock.new
+      subject.board(passenger)
+      expect(subject.disembark(passenger)).to eq('Passenger has disembarked!')
     end
 
     it 'prevents a passenger disembarking if already off the plane' do
