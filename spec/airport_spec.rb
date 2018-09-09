@@ -47,10 +47,12 @@ describe Airport do
     current_weather = heathrow.forecast
     safety_status = heathrow.is_it_safe(current_weather)
     plane = Plane.new
-    allow(heathrow.go_or_stay(safety_status, plane)).to receive("Safe") {heathrow.store.delete(plane)}
+    allow(heathrow.go_or_stay(safety_status, plane)).to receive("Safe") {heathrow.take_off(plane)}
+    #allow(heathrow.go_or_stay(safety_status, plane)).to receive("Safe") {"#{plane} has taken off"}
     allow(heathrow.go_or_stay(safety_status, plane)).to receive("Unsafe") {"Plane not safe"}
   end
 
+#{heathrow.store.delete(plane)}
   # it "uses the go or stay commands to prevent a plane from taking off" do
   #   heathrow = Airport.new
   #   current_weather = heathrow.forecast

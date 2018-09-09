@@ -17,7 +17,7 @@ attr_writer :store, :weather
 
   def take_off(plane)
       @store.delete(plane)
-      print "#{plane} has taken off"
+      "#{plane} has taken off"
 
   end
 
@@ -32,7 +32,7 @@ attr_writer :store, :weather
   end
 
 
-  def go_or_stay(safety_status, plane) 
+  def go_or_stay(safety_status, plane)
     if safety_status == "Safe"
       take_off(plane)
     elsif safety_status == "Unsafe"
