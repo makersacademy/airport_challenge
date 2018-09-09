@@ -1,6 +1,4 @@
 class Airport
-  
-  attr_reader :planes
 
   DEFAULT_CAPACITY = 10
 
@@ -15,7 +13,7 @@ class Airport
 
     fail "Too stormy to take off!" if stormy?
     plane = @planes.pop
-    return "#{plane} successfully taken off from #{self}"
+    "#{plane} successfully taken off from #{self}" if plane
 
   end
 
