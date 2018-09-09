@@ -11,13 +11,13 @@ RSpec.describe Airport do
 
     before do
       allow(weather).to receive(:forecast).and_return(:sunny)
+      expect(plane).to receive(:land)
     end
 
     # As an air traffic controller 
     # So I can get passengers to a destination 
     # I want to instruct a plane to land at an airport
     it 'should land a plane' do
-      expect(plane).to receive(:land)
       allow(airport).to receive(:full?).and_return(false)
       expect { airport.land(plane) }.to_not raise_error
     end
@@ -26,7 +26,7 @@ RSpec.describe Airport do
     # So I can get passengers on the way to their destination 
     # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it 'should allow a plane to take off and return the plane' do
-      expect(plane).to receive(:land)
+      expect(plane).to receive(:take_off)
       airport.land(plane)
       expect(airport.take_off(plane)).to eq plane
     end
