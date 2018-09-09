@@ -4,8 +4,9 @@ describe Plane do
   describe "@name" do
     it { is_expected.to respond_to(:name) }  
 
-    it 'assigns default value to @name' do
-      expect(subject.name).to eq("Plane")
+    it 'assigns default randomised value to @name' do
+      subject.instance_eval { @name = "Plane 23" }
+      expect(subject.name).to eq("Plane 23")
     end
 
     it 'assigns initialised parameter as @name' do
