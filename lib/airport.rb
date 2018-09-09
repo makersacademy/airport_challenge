@@ -13,6 +13,7 @@ class Airport
   def land(plane)
     fail "Unable to land: bad weather" if stormy?
     fail "Unable to land: airport full" if full?
+    fail "Unable to land: plane already in airport!" if landed?
     @grounded_planes << plane
   end
 
@@ -28,10 +29,10 @@ class Airport
   end
 
   def full?
-    true if @grounded_planes.count >= DEFAULT_CAPACITY
+    @grounded_planes.count >= DEFAULT_CAPACITY
   end
 
   def empty?
-    true if @grounded_planes.empty?
+    @grounded_planes.empty?
   end
 end
