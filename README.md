@@ -21,6 +21,12 @@ How to use it
 Creating an Airport Object
 
 An airport object contains two instance variables:
-        @hangar is an empty array which is used to store Plane objects
-        @capacity is the total capacity permitted for Plane objects. It default to Airport::DEFAULT_CAPACITY by default.
+@hangar is an empty array which is used to store Plane objects
+@capacity is the total capacity permitted for Plane objects. It defaults to Airport::DEFAULT_CAPACITY.
 
+```
+2.5.0 :004 > airport = Airport.new
+ => #<Airport:0x00007fc42719bc78 @capacity=4, @hangar=[]>
+2.5.0 :005 > airport = Airport.new(3)
+ => #<Airport:0x00007fc427132d18 @capacity=3, @hangar=[]>
+```
