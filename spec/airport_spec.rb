@@ -68,7 +68,7 @@ describe Airport do
         ace = Airport.new("sunny")
         plane = Plane.new
         ace.land_plane(plane)
-        expect{DEAFAULT_CAPACITY.times{ace.land_plane(plane)}}.to raise_error("Airport capacity at max, can not land planes")
+        expect{Airport::DEFAULT_CAPACITY.times{ace.land_plane(Plane.new)}}.to raise_error("Airport capacity at max, can not land plane")
     end
 
 end

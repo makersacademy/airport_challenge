@@ -1,14 +1,19 @@
 class Airport
+    DEFAULT_CAPACITY = 5
+
     attr_accessor :plane_list
     attr_accessor :weather
+    attr_accessor :capacity
     
-    def initialize(weather = "sunny")
+    def initialize(weather = "sunny", capacity = DEFAULT_CAPACITY)
         @plane_list = []
         @weather = weather
+        @capacity = capacity
     end
 
     def land_plane(plane)
         fail "Weather is too harsh for planes to land" unless @weather == "sunny"
+        fail "Airport capacity at max, can not land plane" unless plane_list.count < capacity
         @plane_list.push(plane)
     end
 
