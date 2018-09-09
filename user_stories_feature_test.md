@@ -32,7 +32,7 @@ plane = Plane.new
 weather = Weather.new
 # when weather.stormy? = true
 airport = Airport.new(Airport::DEFAULT_CAPACITY, weather, [plane])
-airport.takeoff(plane) # error
+airport.takeoff(plane) # Runtime Error (Too stormy to take off)
 ```
 
 As an air traffic controller
@@ -45,7 +45,7 @@ plane = Plane.new
 weather = Weather.new
 # when weather.stormy? = true
 airport = Airport.new(Airport::DEFAULT_CAPACITY, weather)
-airport.land(plane) # error
+airport.land(plane) # Runtime Error (Too stormy to land)
 ```
 
 As an air traffic controller
@@ -73,7 +73,6 @@ heathrow.capacity == 50
 50.times { heathrow.land(Plane.new) }
 heathrow.land(plane) # Runtime Error (Airport full)
 ```
-
 
 Edge Cases:
 
