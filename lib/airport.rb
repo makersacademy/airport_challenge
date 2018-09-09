@@ -6,12 +6,19 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 2
   end
 
   def land(plane)
     fail("weather is too bad for landing") if stormy == true
-    @planes << plane
-    "plane has landed"
+
+    if @planes.length == @capacity
+      "airport is full - no landings allowed"
+    else
+      @planes << plane
+      "plane has landed"
+    end
+
   end
 
   def take_off(plane)
@@ -22,7 +29,7 @@ class Airport
 
   def planes?
     if @planes.length > 0
-      "plane at airport"
+      "there are " + @planes.length.to_s + " plane(s) at airport"
     else
       "plane in the air"
     end
@@ -31,5 +38,15 @@ class Airport
   def stormy
     rand(1..100) > 80
   end
+
+  # def capacity
+  #   @capacity
+  # end
+
+  # def capacity?
+  #   p "$$$$$"
+  #   @planes.count >= capacity
+  #   p "%%%%%"
+  # end
 
 end
