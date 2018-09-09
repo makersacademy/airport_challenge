@@ -74,6 +74,9 @@ In addition to the user stories I also tested for edge cases like the below:
 * Planes can only take off from airports they are in
 * Planes that are already flying cannot takeoff
 * Planes that are landed cannot land again
+* Planes that are landed (not flying) cannot land in another airport
+
+An rspec feature test was also written to test multiple planes landing and taking off from multiple airports
 
 ## Author
 
