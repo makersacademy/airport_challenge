@@ -71,4 +71,17 @@ describe Airport do
         expect{Airport::DEFAULT_CAPACITY.times{ace.land_plane(Plane.new)}}.to raise_error("Airport capacity at max, can not land plane")
     end
 
+    # As the system designer
+    # So that the software can be used for many different airports
+    # I would like a default airport capacity that can be overridden as appropriate
+
+    it 'expect default capacity to be set if none is provided' do
+        ace = Airport.new("sunny")
+        expect(ace.capacity).to eq (Airport::DEFAULT_CAPACITY)
+    end
+
+    it 'expect the default capacity of airport to be overridden as appropriate' do
+        ace = Airport.new("sunny", 50)
+        expect(ace.capacity).to eq (50)
+    end
 end
