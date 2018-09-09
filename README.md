@@ -68,13 +68,14 @@ In code review we'll be hoping to see:
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
-**STATUS**
+STATUS
+-----
 
 * Allows planes to land and take off while the weather is not stormy
 
-* Does not permit planes to take of during stormy weather
+* Does not permit planes to land or take of during stormy weather
 
-* Does not permit planes from landing if they have already landed
+* Does not permit planes to land if they have already landed
 
 * Does not permit planes to take off that are not at the airport
 
@@ -90,6 +91,5 @@ Reviewers will potentially be using this [code review rubric](docs/review.md).  
 
 * Test edge cases
 
-Author
------
+**Author**
 Freya Becker [fbl11](https://github.com/fbl11/)
