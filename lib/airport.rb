@@ -20,6 +20,7 @@ class Airport
   def land(plane)
     raise "Unable to land plane due to stormy weather" if stormy?
     raise "Airport at capacity" if full?
+    raise "Plane already landed" if plane.landed
     landed_planes << plane
     plane.land
   end

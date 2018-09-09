@@ -14,12 +14,23 @@ class ClearWeather
   end
 end
 
+# A fake plane class which thinks it is already landed.
+class LandedPlane
+  def landed
+    true
+  end
+end
+
 # Fake plane class which can recieve to land and take_off instuctions.
 class FakePlane
   def land
   end
 
   def take_off
+  end
+
+  def landed
+    false
   end
 end
 
@@ -29,6 +40,7 @@ RSpec.describe Airport do
   before(:each) do
     allow(plane).to receive(:land)
     allow(plane).to receive(:take_off)
+    allow(plane).to receive(:landed).and_return false
   end
 
   context "when it is clear weather" do
@@ -41,6 +53,10 @@ RSpec.describe Airport do
       # The next line is used to make sure plane doubles don't bleed from one
       # example into the next.
       clear_airport.take_off(plane)
+    end
+
+    it "won't land landed planes" do
+      expect { clear_airport.land(LandedPlane.new) }.to raise_error "Plane already landed"
     end
 
     it "can instruct planes to take off" do
