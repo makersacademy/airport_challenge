@@ -8,8 +8,8 @@ describe Plane do
     expect(subject.location).to eq("The Factory")
   end
 
-  it "can set @location to 'Airborn' while in flight" do
-    expect(subject.airborn).to eq("Airborn")
+  it "can set @location to 'Airborne' while in flight" do
+    expect(subject.airborne).to eq("Airborne")
   end
 
   it "can set @location to a specific airport" do
@@ -21,10 +21,10 @@ describe Plane do
 
     expect(plane.location).to eq("The Factory")
 
-    allow(airport).to receive(:takeoff).and_return(plane.airborn)
+    allow(airport).to receive(:takeoff).and_return(plane.airborne)
 
     airport.takeoff(plane)
-    expect(plane.location).to eq("Airborn")
+    expect(plane.location).to eq("Airborne")
 
     allow(airport).to receive(:land).and_return(plane.grounded(airport))
 

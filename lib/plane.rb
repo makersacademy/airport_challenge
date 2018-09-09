@@ -8,8 +8,8 @@ class Plane
     @location = "The Factory"
   end
 
-  def airborn
-    @location = "Airborn"
+  def airborne
+    @location = "Airborne"
   end
 
   def grounded(airport)

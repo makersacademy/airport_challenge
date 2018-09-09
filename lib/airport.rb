@@ -5,7 +5,7 @@ class Airport
   DEFAULT_HANGER_CAPACITY = 20
 
   GUARDS = {
-    airborn: "Cannot takeoff. Plane already airborn",
+    airborne: "Cannot takeoff. Plane already airborne",
     on_ground: "Cannot land. Plane already on the ground",
     on_site: "Plane at wrong airport",
     weather_takeoff: "The weather is too bad to fly",
@@ -27,7 +27,7 @@ class Airport
   def takeoff(plane)
     return @guard if takeoff_guards(plane, self)
     @hanger.delete(plane)
-    plane.airborn
+    plane.airborne
   end
 
 private
@@ -39,7 +39,7 @@ private
   end
 
   def plane_grounded?(plane)
-    true unless plane.location == "Airborn"
+    true unless plane.location == "Airborne"
   end
 
   def hanger_full?
@@ -51,13 +51,13 @@ private
   end
 
   def takeoff_guards(plane, airport)
-    return @guard = GUARDS[:airborn] if plane_airborn?(plane)
+    return @guard = GUARDS[:airborne] if plane_airborne?(plane)
     return @guard = GUARDS[:on_site] unless plane_at_airport?(plane, airport)
     return @guard = GUARDS[:weather_takeoff] if bad_weather?
   end
 
-  def plane_airborn?(plane)
-    true if plane.location == "Airborn"
+  def plane_airborne?(plane)
+    true if plane.location == "Airborne"
   end
 
   def plane_at_airport?(plane, airport)
