@@ -12,11 +12,11 @@ class Airport
   end
 
   def land_plane(plane)
-    if stormy? == 6 && plane_list.length == 10
+    if stormy? && plane_list.length == capacity
       "Sorry, it's too stormy and this airport is full"
-    elsif stormy? == 6
+    elsif stormy?
       "Sorry, it's too stormy"
-    elsif plane_list.length == 10
+    elsif plane_list.length == capacity
       "Sorry, this airport is full"
     else
       plane_list << plane
@@ -24,7 +24,7 @@ class Airport
   end
 
   def take_off(plane)
-    if stormy? == 6
+    if stormy?
       "Sorry, it's too stormy"
     else
       plane_list.delete(plane)
@@ -32,7 +32,7 @@ class Airport
   end
 
   def stormy?
-    rand(7)
+    rand(7) == 6
   end
 
 end
