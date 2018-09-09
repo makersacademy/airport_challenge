@@ -17,14 +17,15 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     fail 'Weather is stormy: no planes are to take off' if @weather.stormy
-    @planes.pop
+    fail 'that plane is not at this airport' if !@planes.include? (plane)
+    @planes.delete(plane)
     'airplane has taken off and is no longer in the airport'
   end
 
   private #---------------------------------------------
-  
+
   def full?
     @planes.size >= @capacity
   end

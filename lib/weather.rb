@@ -6,7 +6,6 @@ class Weather
   end
 
   def weather_random
-    # false
-    rand(6).zero?
+    @stormy = rand(6).zero?
   end
 end
