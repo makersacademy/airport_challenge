@@ -70,7 +70,7 @@ RSpec.describe Airport do
     # I want to prevent landing when the airport is full
     it 'should not land' do
       allow(weather).to receive(:forecast).and_return(:sunny)
-      Airport::DEFAULT_CAPACITY.times do
+      until airport.full? do
         mock_plane = double('mock_plane')
         expect(mock_plane).to receive(:land)
         airport.land(mock_plane)
