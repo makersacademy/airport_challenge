@@ -110,7 +110,6 @@ describe Airport do
   end
 
   # Tests for private methods
-
   describe '#display_hangar (private)' do
     it 'displays @hangar elements in user-friendly format' do
       # Set up
@@ -126,18 +125,24 @@ describe Airport do
   end
 
   describe '#confirmation (private)' do
-    context 'when called inside #land' do
-      it 'returns name of Plane landing' do
-        mockplane1 = double(name: "Plane 1")
-        expect(subject.send(:confirmation, "landed", mockplane1)).to eq("Plane 1 has landed.")
-      end
+    it 'returns name of Plane landing inside #land' do
+      mockplane1 = double(name: "Plane 1")
+      expect(subject.send(:confirmation, "landed", mockplane1)).to eq("Plane 1 has landed.")
     end
 
-    context 'when called inside #takeoff' do
-      it 'returns name of Plane taking off' do
-        mockplane1 = double(name: "Plane 1")
-        expect(subject.send(:confirmation, "taken off", mockplane1)).to eq("Plane 1 has taken off.")
-      end
+    it 'returns name of Plane taking off inside #takeoff' do
+      mockplane1 = double(name: "Plane 1")
+      expect(subject.send(:confirmation, "taken off", mockplane1)).to eq("Plane 1 has taken off.")
+    end
+  end
+
+  describe '#storm_check (private)' do
+    it 'raises error if true' do
+      expect { subject.send(:storm_check, MockStormy) }.to raise_error("It is too stormy to do that!")
+    end
+
+    it 'raises no error if not true' do
+      expect { subject.send(:storm_check, MockNotStormy) }.not_to raise_error
     end
   end
 end
