@@ -9,7 +9,7 @@ describe Airport do
     expect(subject.planes). to eq ["Plane 1"]
   end
   it "system designer is able to set the capacity when created" do
-    airport = Airport.new(capacity = 5)
+    airport = Airport.new(5)
     expect(airport.capacity).to eq 5
   end
   it "system designer is able to set modify capacity of an already created airport" do

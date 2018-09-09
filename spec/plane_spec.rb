@@ -6,7 +6,6 @@ describe Plane do
 
   plane = Plane.new
   plane2 = Plane.new
-
   it "adds a plane to the airport when plane lands there" do
     airport = Airport.new
     expect(plane.land(airport)).to eq [plane]
@@ -25,11 +24,11 @@ describe Plane do
   it "confirms that plane took off" do
     airport = Airport.new
     plane.land(airport)
-    expect{plane.take_off(airport)}.to output("#{plane} has taken off from #{airport}.\n").to_stdout
+    expect { plane.take_off(airport) }.to output("#{plane} has taken off from #{airport}.\n").to_stdout
   end
   it "raises an error and does not land when the airport is full" do
     airport = Airport.new
-    airport.capacity.times { Plane.new.land(airport)}
-    expect{plane.land(airport)}.to raise_error "Sorry, this airport is full"
+    airport.capacity.times { Plane.new.land(airport) }
+    expect { plane.land(airport) }.to raise_error "Sorry, this airport is full"
   end
 end

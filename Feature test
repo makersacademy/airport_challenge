@@ -1,0 +1,10 @@
+require "./lib/plane"
+require "./lib/airport"
+
+plane = Plane.new
+plane2 = Plane.new
+airport = Airport.new
+
+plane.land(airport)
+plane2.land(airport)
+plane.take_off(airport)
