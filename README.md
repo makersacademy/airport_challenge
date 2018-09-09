@@ -13,12 +13,12 @@ Airport Challenge
 
 ```
 
-## How to use it
+# How to use it
 
 'airport.rb', 'weather.rb', and 'plane.rb' are all required in order for the application to function.
 
 
-# Plane Objects
+## Plane Objects
 
 Plane objects have one instance variable `@name`. <br/>
 `@name` defaults to a random number, but can be set on instantiation:
@@ -30,7 +30,19 @@ Plane objects have one instance variable `@name`. <br/>
  => #<Plane:0x00007fc427125f28 @name="MH372">
  ```
 
-# Airport Objects
+## Weather Objects
+
+Weather objects have one method: stormy <br/>
+Upon instantiation, Weather generates a randomised number which results in stormy either evaluating `true` or `false`
+
+```
+2.5.0 :008 > weather = Weather.new.stormy
+ => false
+2.5.0 :010 > weather = Weather.new.stormy
+ => true
+```
+
+## Airport Objects
 
 An airport object contains two instance variables: <br/>
 `@hangar` is an empty array which is used to store Plane objects. <br/>
