@@ -4,7 +4,7 @@ require 'weather'
 
 describe Airport do
   subject { Airport.new(weather, planes) }
-  let(:weather) { Weather.new }
+  let(:weather) { Weather.new("sunny") }
   let(:planes) { [] }
 
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -32,6 +32,13 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       expect(subject.planes).to include(plane)
+    end
+
+    it 'prevents plane to land when it stormy' do
+      weather = Weather.new('stormy')
+      airport = Airport.new(weather, planes)
+      plane = Plane.new
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Plane can not land due to bad weather condition")
     end
 
     it 'raises error and prevent landing when the airport is full' do
@@ -68,7 +75,7 @@ describe Airport do
       weather = Weather.new('stormy')
       airport = Airport.new(weather, planes)
       plane = Plane.new
-      expect(airport.take_off(plane)).to eq "Sorry! Plane can not take off due to bad weather condition"
+      expect { airport.take_off(plane) }.to raise_error(RuntimeError, "Plane can not take off due to bad weather condition")
     end
 
   end

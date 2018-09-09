@@ -13,16 +13,14 @@ class Airport
 
   def land(plane)
     fail "Plan has already landed" if @planes.include?(plane)
+    fail "Plane can not land due to bad weather condition" if stormy?
     fail "Airport is full" if full?
     @planes.push(plane)
   end
 
   def take_off(plane)
-    if @weather.condition == 'sunny'
-      @planes.delete(plane)
-    elsif @weather.condition == 'stormy'
-      "Sorry! Plane can not take off due to bad weather condition"
-    end
+    fail "Plane can not take off due to bad weather condition" if stormy?
+    @planes.delete(plane)
   end
 
   def change_capacity(new_capacity)
@@ -34,6 +32,10 @@ class Airport
   private
   def full?
     @planes.length >= @max_capacity
+  end
+
+  def stormy?
+    @weather.condition == 'stormy'
   end
 
   def cannot_change_to_capacity?(new_capacity)
