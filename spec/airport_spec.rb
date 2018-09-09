@@ -3,12 +3,14 @@ require 'airport'
 describe Airport do
 	# subject(:airport) { described_class.new }
   	let(:plane) { double :plane }
+  	let(:weather) {double :weather}
 
 	it { is_expected.to respond_to(:land).with(1).argument }
 	it { is_expected.to respond_to(:take_off).with(1).argument }
 	it { is_expected.to respond_to(:planes) }
 	it { is_expected.to respond_to(:contains?).with(1).argument }
 	it { is_expected.to respond_to(:capacity) }
+	it { is_expected.to respond_to(:weather=) }
 
 	describe '#land' do
 		it 'instructs a plane to land at airport' do
@@ -29,6 +31,15 @@ describe Airport do
 			capacity.times { airport.land(plane) }
 			expect { airport.land(plane) }.to raise_error("Airport full")
 		end
+		describe 'landing during stormy weather' do
+			before do
+  				allow(weather).to receive(:is_stormy?).and_return(true)
+  			end
+			it 'raises error when plane tries to land during stormy weather' do
+				subject.weather = weather
+				expect { subject.land(plane) }.to raise_error('Cannot land because of stormy weather')
+			end
+		end
 	end
 
 	describe '#take_off' do
@@ -39,6 +50,15 @@ describe Airport do
 		it 'removes a plane that has left from the airport' do
 			subject.take_off(plane)
 			expect(subject.planes.include?(plane)).to be(false)
+		end
+		describe 'landing during stormy weather' do
+			before do
+  				allow(weather).to receive(:is_stormy?).and_return(true)
+  			end
+			it 'raises error when plane tries to take off during stormy weather' do
+				subject.weather = weather
+				expect { subject.take_off(plane) }.to raise_error('Cannot take off because of stormy weather')
+			end
 		end
 	end
 

@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 DEFAULT_CAPACITY = 10
 
@@ -54,7 +55,6 @@ describe 'Features' do
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
-
 	describe 'set capacity of airport' do
 		it 'initialises default capacity' do
 			airport = Airport.new
@@ -70,9 +70,28 @@ describe 'Features' do
 # As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
-
+	describe 'prevents planes from landing during stormy weather' do
+		it 'raises error when plane tries to land during stormy weather' do
+			weather = Weather.new
+			airport = Airport.new
+			plane = Plane.new
+			airport.weather = weather
+			weather.stormy!
+			expect { airport.land(plane) }.to raise_error('Cannot land because of stormy weather')
+		end
+	end
 
 # As an air traffic controller
 # To ensure safety
 # I want to prevent landing when weather is stormy
+	describe 'prevents planes from landing during stormy weather' do
+		it 'raises error when plane tries to land during stormy weather' do
+			weather = Weather.new
+			airport = Airport.new
+			plane = Plane.new
+			airport.weather = weather
+			weather.stormy!
+			expect { airport.take_off(plane) }.to raise_error('Cannot take off because of stormy weather')
+		end
+	end
 end
