@@ -1,11 +1,10 @@
 require 'airport'
 
 describe Airport do
-  context "The weather is good and there is space in the hanger" do
-    # weather needs to be good
-    # and the hanger can't be full
 
-    let(:plane) { double :plane }
+  let(:plane) { double :plane }
+
+  context "The weather is good and there is space in the hanger" do
 
     before(:each) do
       allow(subject).to receive(:bad_weather?).and_return(false)
@@ -51,10 +50,6 @@ describe Airport do
   end
 
   context "The weather is good but there is no space in the hanger" do
-    # weather need to be good
-    # and hanger needs to full
-
-    let(:plane) { double :plane }
 
     it "can prevent landing when the hanger is full" do
       airport = Airport.new(0)
@@ -69,17 +64,11 @@ describe Airport do
     end
   end
 
-
-
-# weather needs to be bad
-# and the hanger can't be full
   context "The weather is bad but there's space in the hanger" do
 
-    let(:plane) { double :plane }
-
     before(:each) do
-        allow(subject).to receive(:bad_weather?).and_return(true)
-        allow(subject).to receive(:hanger_full?).and_return(false)
+      allow(subject).to receive(:bad_weather?).and_return(true)
+      allow(subject).to receive(:hanger_full?).and_return(false)
     end
 
     it "has a working Airport#bad_weather? method" do
