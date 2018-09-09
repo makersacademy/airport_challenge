@@ -4,4 +4,5 @@ class Plane
     def initialize(id = 0000)
         @id = id.to_s
     end
+
 end
