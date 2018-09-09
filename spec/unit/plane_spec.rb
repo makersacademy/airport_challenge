@@ -1,16 +1,5 @@
 require 'plane'
 
-class PassengerMock
-  attr_accessor :ticket, :on_plane
-  def initialize(ticket = true)
-    @ticket = ticket
-  end
-
-  def ticket?
-    @ticket
-  end
-end
-
 describe Plane do
 
   context 'creates a new plane that can be flying and has a capacity' do
@@ -23,51 +12,66 @@ describe Plane do
       expect(subject.flying?).to eq true
     end
 
-    it 'allows flying to be changed' do
+    it 'allows the default flying state to be changed' do
       plane = Plane.new(false)
+      expect(plane.flying?).to eq(false)
+    end
+
+    it 'changes flying status on take off' do
+      plane = Plane.new(false)
+      plane.takeoff
+      expect(plane.flying?).to eq(true)
+    end
+
+    it 'changes flying status on land' do
+      plane = Plane.new
+      plane.landed
       expect(plane.flying?).to eq(false)
     end
   end
 
   context 'boarding' do
+    let(:passenger) { double :passenger, ticket?: true, boarded: true }
+
     it 'accepts a passenger on board' do
-      subject.flying = false
-      passenger = PassengerMock.new
+      subject.landed
       subject.board(passenger)
       expect(subject.on_board?(passenger)).to eq true
     end
 
     it 'outputs that a passenger is on board' do
-      subject.flying = false
-      passenger = PassengerMock.new
+      subject.landed
+
       expect(subject.board(passenger)).to eq('Passenger on board!')
     end
 
     it 'prevents boarding of a passenger if already on board' do
-      passenger = PassengerMock.new
-      subject.flying = false
+
+      subject.landed
       subject.board(passenger)
       expect { subject.board(passenger) }.to raise_error('Passenger already on board!')
     end
 
     it 'prevents boarding if flying' do
-      subject.flying = true
-      expect { subject.board(PassengerMock.new) }.to raise_error('Plane is flying!')
+      subject.takeoff
+      expect { subject.board(passenger) }.to raise_error('Plane is flying!')
     end
 
     it 'prevents boarding if passenger has no ticket' do
-      subject.flying = false
-      passenger = PassengerMock.new(false)
+      subject.landed
+      allow(passenger).to receive(:ticket?) { false }
       expect { subject.board(passenger) }.to raise_error('Passenger does not have a ticket!')
     end
   end
 
   context 'disembarking' do
 
+    let(:passenger) { double :passenger, ticket?: true, boarded: true, leave: true }
+    let(:passenger1) { double :passenger, ticket?: true, boarded: true, leave: true }
+    let(:passenger2) { double :passenger, ticket?: true, boarded: true }
+
     it 'lets a specific passenger off the plane and confirms passenger is not in plane' do
-      subject.flying = false
-      passenger1 = PassengerMock.new
-      passenger2 = PassengerMock.new
+      subject.landed
       subject.board(passenger1)
       subject.board(passenger2)
       subject.disembark(passenger1)
@@ -75,30 +79,29 @@ describe Plane do
     end
 
     it 'outputs that a passenger has disembark' do
-      subject.flying = false
-      passenger = PassengerMock.new
+      subject.landed
       subject.board(passenger)
       expect(subject.disembark(passenger)).to eq('Passenger has disembarked!')
     end
 
     it 'prevents a passenger disembarking if already off the plane' do
-      subject.flying = false
-      passenger = PassengerMock.new
+      subject.landed
       subject.board(passenger)
       subject.disembark(passenger)
       expect { subject.disembark(passenger) }.to raise_error('Passenger already off the plane!')
     end
 
     it 'prevents a passenger disembarking if plane is flying' do
-      subject.flying = false
-      passenger = PassengerMock.new
+      subject.landed
       subject.board(passenger)
-      subject.flying = true
+      subject.takeoff
       expect { subject.disembark(passenger) }.to raise_error('Plane is flying!')
     end
   end
 
   context 'capacity' do
+    let(:passenger) { double :passenger, ticket?: true, boarded: true, leave: true }
+
     it 'sets default capacity to 100' do
       expect(subject.plane_capacity).to eq 100
     end
@@ -110,15 +113,22 @@ describe Plane do
     end
 
     it 'checks if it is full' do
-      subject.flying = false
-      100.times { subject.board(PassengerMock.new) }
+      subject.landed
+      100.times {
+        passenger = double(:passenger, ticket?: true, boarded: true, leave: true)
+        subject.board(passenger)
+       }
       expect(subject.plane_full?).to eq true
     end
 
     it 'prevents boarding if it is full' do
-      subject.flying = false
-      100.times { subject.board(PassengerMock.new) }
-      expect { subject.board(PassengerMock.new) }.to raise_error('Plane is full!')
+      subject.landed
+      100.times {
+        passenger = double(:passenger, ticket?: true, boarded: true, leave: true)
+        subject.board(passenger)
+       }
+       passenger = double(:passenger, ticket?: true, boarded: true, leave: true)
+      expect { subject.board(passenger) }.to raise_error('Plane is full!')
     end
   end
 end

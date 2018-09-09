@@ -1,9 +1,8 @@
 class Passenger
   TICKET = true
-  ON_PLANE = true
+  ON_PLANE = false
 
-  attr_reader :luggages
-  attr_accessor :ticket, :on_plane
+  attr_reader :luggages, :ticket, :on_plane
 
   def initialize(ticket = TICKET, on_plane = ON_PLANE)
     @ticket = ticket
@@ -35,5 +34,13 @@ class Passenger
 
   def luggage_dropped?
     !@luggage
+  end
+
+  def leave
+    @on_plane = false
+  end
+
+  def boarded
+    @on_plane = true
   end
 end

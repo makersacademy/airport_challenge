@@ -2,8 +2,7 @@ class Plane
   FLYING = true
   PLANE_CAPACITY = 100
 
-  attr_accessor :flying, :plane_capacity
-  attr_reader :on_board
+  attr_reader :on_board, :flying, :plane_capacity
 
   def initialize(flying = FLYING, plane_capacity = PLANE_CAPACITY)
     @flying = flying
@@ -17,7 +16,7 @@ class Plane
     fail 'Plane is flying!' if flying?
     fail 'Passenger does not have a ticket!' unless passenger.ticket?
     @on_board << passenger
-    passenger.on_plane = true
+    passenger.boarded
     'Passenger on board!'
   end
 
@@ -25,7 +24,7 @@ class Plane
     fail 'Passenger already off the plane!' if on_board?(passenger) == false
     fail 'Plane is flying!' if flying?
     @on_board.delete(passenger)
-    passenger.on_plane = false
+    passenger.leave
     'Passenger has disembarked!'
   end
 
@@ -35,6 +34,14 @@ class Plane
 
   def plane_full?
     @on_board.count >= @plane_capacity
+  end
+
+  def takeoff
+    @flying = true
+  end
+
+  def landed
+    @flying = false
   end
 
   def flying?

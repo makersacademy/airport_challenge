@@ -11,18 +11,18 @@ class Airport
   def land(plane)
     fail 'No landing, weather is stormy!' if stormy?
     fail 'Airport is full!' if full?
-    fail 'Plane already landed!' if plane.flying == false
+    fail 'Plane already landed!' if plane_in_hangar?(plane)
     @hangar << plane
-    plane.flying = false
+    plane.landed
     'Plane has landed!'
   end
 
   def take_off(plane)
     fail 'No take off, weather is stormy!' if stormy?
-    fail 'Plane already flying!' if plane.flying
+    fail 'Plane already flying!' if plane.flying?
     fail 'Plane not in hangar!' unless plane_in_hangar?(plane)
     @hangar.delete(plane)
-    plane.flying = true
+    plane.takeoff
     'Plane has taken off!'
   end
 
