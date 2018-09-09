@@ -69,4 +69,17 @@ describe Airport do
     expect(airport.capacity).to eq 20
   end
 
+  it "will not let a plane land if it is already in the airport" do
+    allow(subject).to receive(:stormy?) { false }
+    plane = Plane.new
+    subject.land_plane(plane)
+    expect { subject.land_plane(plane) }.to raise_error("Plane is already in airport")
+  end
+
+  it "will not let a plane take off it is already in the airport" do
+    allow(subject).to receive(:stormy?) { false }
+    plane = Plane.new
+    expect { subject.take_off(plane) }.to raise_error("Plane is not airport")
+  end
+
 end
