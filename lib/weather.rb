@@ -1,8 +1,9 @@
 class Weather
   def initialize
-    number = rand(100)
+    @number = rand(100)
   end
+
   def stormy
-    @stormy = number >= 90 ? true : false 
+    @stormy = @number >= 90
   end
 end
