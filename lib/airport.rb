@@ -26,6 +26,7 @@ class Airport
   def take_off(plane)
     fail 'The plane is not at this airport' unless @planes.include?(plane)
     fail 'It is too stormy to take off' if @weather.forecast == :stormy
+    plane.take_off
     return @planes.delete(plane)
   end
 
