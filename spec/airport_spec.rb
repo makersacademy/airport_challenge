@@ -18,30 +18,30 @@ describe Airport do
       expect(subject.land(plane)).to eq([plane])
     end
 
-    it "has a working Airport#takeoff(plane) method" do
+    it "has a working Airport#take_off(plane) method" do
       allow(plane).to receive(:location).and_return(subject)
       allow(plane).to receive(:airborne).and_return("Airborne")
 
-      expect(subject.takeoff(plane)).to eq("Airborne")
+      expect(subject.take_off(plane)).to eq("Airborne")
     end
 
-    it "rejects edge cases: Airborne plane trying to takeoff" do
+    it "rejects edge cases: Airborne plane trying to take off" do
       allow(plane).to receive(:location).and_return("Airborne")
 
-      expect(subject.takeoff(plane)).to eq("Cannot takeoff. Plane already airborne")
+      expect { subject.take_off(plane) }.to raise_error("Cannot take off. Plane already airborne")
     end
 
     it "rejects edge cases: Grounded plane trying to land" do
       allow(plane).to receive(:location).and_return(subject)
 
-      expect(subject.land(plane)).to eq("Cannot land. Plane already on the ground")
+      expect { subject.land(plane) }.to raise_error("Cannot land. Plane already on the ground")
     end
 
-    it "rejects edge cases: Planes cannot takeoff from airports that they aren't at" do
+    it "rejects edge cases: Planes cannot take off from airports that they aren't at" do
       airport2 = Airport.new
       allow(plane).to receive(:location).and_return(subject)
 
-      expect(airport2.takeoff(plane)).to eq("Plane at wrong airport")
+      expect { airport2.take_off(plane) }.to raise_error("Plane at wrong airport")
     end
 
   end
@@ -57,7 +57,7 @@ describe Airport do
       allow(plane).to receive(:location).and_return("Airborne")
       allow(plane).to receive(:grounded)
 
-      expect(airport.land(plane)).to eq("The plane can't land because the hanger is full")
+      expect { airport.land(plane) }.to raise_error("The plane can't land because the hanger is full")
     end
   end
 
@@ -68,14 +68,14 @@ describe Airport do
       allow(subject).to receive(:hanger_full?).and_return(false)
     end
 
-    it "can prevent takeoff when there is bad weather" do
+    it "can prevent take off when there is bad weather" do
       allow(plane).to receive(:location).and_return(subject)
-      expect(subject.takeoff(plane)).to eq("The weather is too bad to fly")
+      expect { subject.take_off(plane) }.to raise_error("The weather is too bad to fly")
     end
 
     it "can prevent landing when there is bad weather" do
       allow(plane).to receive(:location).and_return("Airborne")
-      expect(subject.land(plane)).to eq("The weather is too bad to land")
+      expect { subject.land(plane) } .to raise_error("The weather is too bad to land")
     end
   end
 end
