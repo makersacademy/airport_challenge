@@ -16,9 +16,9 @@ attr_writer :store, :weather
   end
 
   def take_off(plane)
-    @store.delete(plane)
-    print "#{plane} has taken off"
-    #return @store
+      @store.delete(plane)
+      print "#{plane} has taken off"
+
   end
 
   def forecast
@@ -32,9 +32,20 @@ attr_writer :store, :weather
   end
 
 
-  def go_or_stay(safety_status)
-     return "Go" if safety_status == "Safe"
-     return "Stay" if safety_status == "Unsafe"
+  def go_or_stay(safety_status, plane) 
+    if safety_status == "Safe"
+      take_off(plane)
+    elsif safety_status == "Unsafe"
+      return "Plane not safe"
+    end
   end
+
+  # def red_or_green_light(command)
+  #   if command == "Go"
+  #     take_off(plane)
+  #   end
+
+  #end
+
 
 end

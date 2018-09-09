@@ -42,20 +42,37 @@ describe Airport do
     allow(safety_status).to receive("Storm") {"Unsafe"}
   end
 
-  it "tells a plane to takeoff or not depending on weather safety" do
+  it "uses the safety_status to issue a commands 'Go' or 'Stay' " do
     heathrow = Airport.new
     current_weather = heathrow.forecast
     safety_status = heathrow.is_it_safe(current_weather)
-    #expect(heathrow.go_or_stay(safety_status)). to eq("Go").or eq("Stay")
-    allow(heathrow.go_or_stay(safety_status)).to receive("Safe") {"Go"}
-    allow(heathrow.go_or_stay(safety_status)).to receive("Unsafe") {"Stay"}
+    plane = Plane.new
+    allow(heathrow.go_or_stay(safety_status, plane)).to receive("Safe") {heathrow.store.delete(plane)}
+    allow(heathrow.go_or_stay(safety_status, plane)).to receive("Unsafe") {"Plane not safe"}
   end
 
+  # it "uses the go or stay commands to prevent a plane from taking off" do
+  #   heathrow = Airport.new
+  #   current_weather = heathrow.forecast
+  #   safety_status = heathrow.is_it_safe(current_weather)
+  #   plane = Plane.new
+  #   command = heathrow.go_or_stay(safety_status)
+  #   allow(heathrow.red_or_green_light(command)).to receive("Go") {heathrow.store.delete(plane)}
+  # end
+
 end
-#
+# #
+# allow(heathrow.take_off(plane, command)).to receive("Stay") {"Plane is not safe to take off"}
+# allow(heathrow.take_off(plane, command)).to receive("Go") {heathrow.store.delete(plane)}
+# allow(heathrow.take_off(plane, command)).to receive("Go") {"#{plane} has taken off"}
+
+
+
+
+#allow(heathrow.red_light(command)).to eq ("Plane is not safe to take off")
 #to eq (heathrow.store)
-
-
+#allow(heathrow.take_off(plane, command)).to receive("Stay") {"Plane is not safe to take off"}
+#allow(heathrow.green_light(plane, command)).to receive("Go") {heathrow.store.delete(plane)}
 
 # describe Airport do
 #   describe "land_plane" do
