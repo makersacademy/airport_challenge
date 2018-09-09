@@ -18,23 +18,11 @@ class Airport
   end
 
   def stormy?
-
-    if rand(1..10) >= 7
-      true
-    else
-      false
-    end
-
+    rand(1..10) >= 7
   end
 
   def full?
-
-    if @planes.count >= @capacity
-      true
-    else
-      false
-    end
-
+    @planes.count >= @capacity
   end
 
   def dock(plane)

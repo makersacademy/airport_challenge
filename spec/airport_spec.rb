@@ -8,7 +8,7 @@ describe Airport do
 
       # Force stormy? to false
       allow(subject).to receive(:rand).and_return(1)
-      airbus = Plane.new.land(subject)
+      Plane.new.land(subject)
       subject.take_off
       expect(subject.take_off).to eq(nil)
 
