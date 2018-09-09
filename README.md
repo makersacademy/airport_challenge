@@ -92,4 +92,4 @@ STATUS
 * Test edge cases
 
 **Author**
-Freya Becker [fbl11](https://github.com/fbl11/)
+Freya Becker ([fbl11](https://github.com/fbl11/))
