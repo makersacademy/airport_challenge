@@ -31,6 +31,9 @@ attr_writer :store, :weather
      return "Safe" if weather == "Sunny"
   end
 
-
+  def go_or_stay(safety_status)
+    return "Go" if safety_status == "Safe"
+    return "Stay" if safety_status == "Unsafe"
+  end
 
 end

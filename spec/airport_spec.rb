@@ -41,6 +41,12 @@ describe Airport do
     expect(safety_status). to eq("Safe").or eq("Unsafe")
   end
 
+  it "tells a plane to takeoff or not depending on weather safety" do
+    heathrow = Airport.new
+    current_weather = heathrow.forecast
+    safety_status = heathrow.is_it_safe(current_weather)
+    expect(heathrow.go_or_stay(safety_status)). to eq("Go").or eq("Stay")
+  end
 
 end
 
