@@ -52,15 +52,25 @@ describe Airport do
 
   it "does not allow a plane to land if the airport is at capacity" do
     allow(subject).to receive(:stormy?) { 1 }
-    10.times { subject.land_plane(Plane.new) }
+    subject.capacity.times { subject.land_plane(Plane.new) }
     expect(subject.land_plane(Plane.new)).to eq "Sorry, this airport is full"
   end
 
   it "does not allow a plane to land if the airport is at capacity and it is story" do
     allow(subject).to receive(:stormy?) { 1 }
-    10.times { subject.land_plane(Plane.new) }
+    subject.capacity.times { subject.land_plane(Plane.new) }
     allow(subject).to receive(:stormy?) { 6 }
     expect(subject.land_plane(Plane.new)).to eq "Sorry, it's too stormy and this airport is full"
+  end
+
+  it "is initialized with a default capacity of 10" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 10
+  end
+
+  it "can be initialized with a specific capacity" do
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq 20
   end
 
 end
