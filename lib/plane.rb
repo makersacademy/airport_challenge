@@ -5,6 +5,7 @@ class Plane
   end
 
   def land
+    fail 'Plane is already grounded' if @status == :grounded
     @status = :grounded
   end
 
