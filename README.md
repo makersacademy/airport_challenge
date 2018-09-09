@@ -30,7 +30,7 @@ An example of testing the code
 
 
 What this looks like in irb
-
+```
 2.5.1 :001 > require'./lib/airport.rb'
 
  => true
@@ -61,14 +61,20 @@ You can also test if it's stormy where at the airport you created by
 
 2.5.1 :005 > heathrow = Airport.new
 
+
  => #<Airport:0x00007f8ab703a5b8 @planes=[], @capacity=20,
+
 
  @weather=#<Weather:0x00007f8ab703a590 @stormy=false>>
 
+
 2.5.1 :006 > heathrow.weather
+
 
  => #<Weather:0x00007f8ab703a590 @stormy=false>
 
+
 2.5.1 :007 > heathrow.weather.stormy
 
- => false
+
+ => false```
