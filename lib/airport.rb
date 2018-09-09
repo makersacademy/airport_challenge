@@ -8,23 +8,28 @@ class Airport
     @hangar = []
   end
 
-  # Find a way to refactor stormy error in a way that can be tested in rspec
+  # #land and #takeoff use Weather class in order generate value for 
+  # stormy whenever called
   def land(plane, weather = Weather)
     raise "#{plane.name} has already landed!" if @hangar.include?(plane)
     raise "No room in hangar!" if @hangar.size == @capacity
-    raise "It is too stormy to do that!" if weather.new.stormy
+    storm_check(weather)
     @hangar.push(plane)
     puts confirmation("landed", plane), display_hangar
   end
 
   def takeoff(plane, weather = Weather)
     raise "#{plane.name} not in the hangar!" unless @hangar.include?(plane)
-    raise "It is too stormy to do that!" if weather.new.stormy
+    storm_check(weather)
     @hangar.delete(plane) 
     puts confirmation("taken off", plane), display_hangar
   end
 
   private
+  def storm_check(weather)
+    raise "It is too stormy to do that!" if weather.new.stormy
+  end
+
   def confirmation(action, plane)
     "#{plane.name} has #{action}." 
   end
