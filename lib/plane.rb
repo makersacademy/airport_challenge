@@ -3,7 +3,7 @@ require './lib/weather'
 
 class Plane
   attr_accessor :landed
-
+  attr_accessor :weather
   def initialize
     @landed = false
   end
