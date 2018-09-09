@@ -39,7 +39,7 @@ private
   end
 
   def plane_grounded?(plane)
-    true unless plane.location == "Airborne"
+    plane.location != "Airborne"
   end
 
   def hanger_full?
@@ -57,11 +57,11 @@ private
   end
 
   def plane_airborne?(plane)
-    true if plane.location == "Airborne"
+    plane.location == "Airborne"
   end
 
   def plane_at_airport?(plane, airport)
-    true if plane_on_site?(plane, airport) || new_plane?(plane)
+    plane_on_site?(plane, airport) || new_plane?(plane)
   end
 
   def plane_on_site?(plane, airport)
