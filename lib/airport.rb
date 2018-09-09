@@ -29,7 +29,7 @@ class Airport
   end
 
   def stormy?
-    (0..10).sample > 8
+    (0..10).to_a.sample > 8
   end
 
   def full?
