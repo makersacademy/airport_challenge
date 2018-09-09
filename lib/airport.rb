@@ -7,7 +7,7 @@ attr_writer :store, :weather
 
   def initialize
     @store = []
-    @weather = ["Sunny", "Stormy"] #remember to put in more values
+    @weather = ["Sunny", "Stormy", "Sunny", "Sunny"]
   end
 
 
@@ -18,8 +18,6 @@ attr_writer :store, :weather
   def take_off(plane)
       confirm(plane)
       @store.delete(plane)
-
-    #  "#{plane} has taken off"
   end
 
   def confirm(plane)
@@ -41,16 +39,16 @@ attr_writer :store, :weather
     if safety_status == "Safe"
       take_off(plane)
     elsif safety_status == "Unsafe"
-      return "Plane not safe"
+      return "Takeoff not safe"
     end
   end
 
-  # def red_or_green_light(command)
-  #   if command == "Go"
-  #     take_off(plane)
-  #   end
-
-  #end
-
+  def land_or_not(safety_status, plane)
+    if safety_status == "Safe"
+      land_plane(plane)
+    elsif safety_status == "Unsafe"
+      return "Landing not safe"
+    end
+  end
 
 end
