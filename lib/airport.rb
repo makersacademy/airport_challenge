@@ -1,3 +1,7 @@
+# Airport objects have @capacity and @hangar variables
+# Airport objects have two public methods #land and #takeoff
+# #land and #takeoff require Plane and Weather objects
+
 class Airport
   DEFAULT_CAPACITY = 4
 

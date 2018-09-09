@@ -1,11 +1,13 @@
 require 'airport'
 
+# MockStormy is a mock for when Weather object is stormy
 class MockStormy
   def stormy
     true
   end
 end
 
+# MockNotStormy is a mock for when Weather object is not stormy
 class MockNotStormy
   def stormy
     false
