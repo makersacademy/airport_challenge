@@ -17,9 +17,10 @@ Getting started
 -------
 
 1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+1. Run the command `gem install bundle` (if you don't have bundle already)
+1. When the installation completes, run `bundle`
+1. Run `Rubocop` to check code quality
+1. Complete the following task:
 
 Task
 -----
@@ -131,3 +132,5 @@ My approach to solving this challenge
 4. I added strings that are returned when an action has completed successfully (e.g: Plane has landed!). This was done for better user experience but in a real system, a user wouldn't be directly using these strings.
 
 5. I added a feature test to ensure that all my components integrate properly.
+
+6. I decided to wrap things which changed class attributes in methods rather than letting other classes edit them directly. It seems a safer way to handle data.
