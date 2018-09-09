@@ -24,7 +24,7 @@ class Airport
   end
 
   private #---------------------------------------------
-
+  
   def full?
     @planes.size >= @capacity
   end
