@@ -6,8 +6,8 @@ class Weather
     @stormy_probability = stormy_probability
   end
 
-  def check_weather
-    rand > stormy_probability ? :stormy : :clear
+  def stormy?
+    rand < stormy_probability
   end
 
 end
