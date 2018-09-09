@@ -1,15 +1,12 @@
 class Weather
-  STATUS = rand(1...10)
-  attr_reader :status
+  STORM_SCALE = rand(1...10)
+  attr_reader :storm_scale
   def initialize
-    @status = STATUS
+    @storm_scale = STORM_SCALE
   end
 
   def stormy?
-    @status < 4
+    @storm_scale < 3
   end
 
-  def sunny?
-    @status > 3
-  end
 end

@@ -3,8 +3,6 @@ describe Weather do
   let(:fake_weather) { Weather.new }
 
   it "has a status" do
-    expect(subject.status).to be_an(Integer)
+    expect(subject.storm_scale).to be_an(Integer)
   end
-
-  
 end
