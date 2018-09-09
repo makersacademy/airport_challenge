@@ -13,16 +13,28 @@ Airport Challenge
 
 ```
 
-How to use it
----------
+## How to use it
 
 'airport.rb', 'weather.rb', and 'plane.rb' are all required in order for the application to function.
 
-Creating an Airport Object
+
+# Plane Objects
+
+Plane objects have one instance variable `@name`
+`@name` defaults to a random number, but can be set on instantiation:
+
+```
+2.5.0 :006 > plane = Plane.new
+ => #<Plane:0x00007fc42712f028 @name="Plane 21">
+2.5.0 :007 > plane = Plane.new("MH372")
+ => #<Plane:0x00007fc427125f28 @name="MH372">
+ ```
+
+# Airport Objects
 
 An airport object contains two instance variables:
-@hangar is an empty array which is used to store Plane objects
-@capacity is the total capacity permitted for Plane objects. It defaults to Airport::DEFAULT_CAPACITY.
+`@hangar` is an empty array which is used to store Plane objects
+`@capacity` is the total capacity permitted for Plane objects. It defaults to Airport::DEFAULT_CAPACITY.
 
 ```
 2.5.0 :004 > airport = Airport.new
