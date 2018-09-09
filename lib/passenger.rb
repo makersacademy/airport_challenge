@@ -21,14 +21,16 @@ class Passenger
 
   def drop_luggage
     fail 'Luggage already dropped!' if luggage_dropped?
-    fail 'Passenger does not have ticket!' if !ticket?
+    fail 'Passenger does not have ticket!' unless ticket?
     @luggage = false
+    'Luggage dropped!'
   end
 
-  def get_luggage
-    fail 'Passenger already got luggage!' if !luggage_dropped?
+  def collect_luggage
+    fail 'Passenger already got luggage!' unless luggage_dropped?
     fail 'Passenger still on plane!' if on_plane?
     @luggage = true
+    'Luggage collected!'
   end
 
   def luggage_dropped?
