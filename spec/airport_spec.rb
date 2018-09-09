@@ -7,19 +7,20 @@ describe Airport do
   let(:mockAirplane2) { double :Airplane }
   let(:mockAirplane3) { double :Airplane }
 
-  it 'instructs a plane to land at the airport' do
+  before(:each) do
     allow(mockWeather).to receive(:stormy).and_return(false)
+  end
+
+  it 'instructs a plane to land at the airport' do
     expect(subject.land_plane(Airplane.new)).to be_a_kind_of(Array)
   end
 
   it 'expects everything landed at the airport to be a Plane' do
-    allow(mockWeather).to receive(:stormy).and_return(false)
     7.times { subject.land_plane(Airplane.new) }
     expect(subject.land_plane(Airplane.new)).to all(be_an(Airplane))
   end
 
   it 'expects a plane to take off from an airport and return that it has taken off' do
-    allow(mockWeather).to receive(:stormy).and_return(false)
     subject.land_plane(:mockPlane)
     expect(subject.take_off(:mockPlane)).to eq 'airplane has taken off and is no longer in the airport'
   end
@@ -45,7 +46,6 @@ describe Airport do
   end
 
   it 'raises an error when the airport is full' do
-    allow(mockWeather).to receive(:stormy).and_return(false)
     expect { 21.times { subject.land_plane(Airplane.new) } }.to raise_error('The airport is full')
   end
 
@@ -57,7 +57,6 @@ describe Airport do
   end
 
   it 'raises an error if you try to land a plane when it is already in the airport' do
-    allow(mockWeather).to receive(:stormy).and_return(false)
     subject.land_plane(:mockPlane)
     expect { subject.land_plane(:mockPlane) }.to raise_error('This airplane is already in the airport')
   end
