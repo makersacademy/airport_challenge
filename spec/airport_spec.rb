@@ -37,7 +37,7 @@ describe Airport do
       expect(subject.land(plane)).to eq("Cannot land. Plane already on the ground")
     end
 
-    it "rejects edge cases: Planes cannot takeoff from airports that they aren't in" do
+    it "rejects edge cases: Planes cannot takeoff from airports that they aren't at" do
       airport2 = Airport.new
       allow(plane).to receive(:location).and_return(subject)
 

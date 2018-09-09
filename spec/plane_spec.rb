@@ -4,7 +4,7 @@ describe Plane do
 
   let(:airport) { double :airport }
 
-  it "makes planes on the ground" do
+  it "makes planes on the ground and the Factory" do
     expect(subject.location).to eq("The Factory")
   end
 
@@ -12,7 +12,7 @@ describe Plane do
     expect(subject.airborn).to eq("Airborn")
   end
 
-  it "can set @location to specific airport" do
+  it "can set @location to a specific airport" do
     expect(subject.grounded(airport)).to eq(airport)
   end
 
