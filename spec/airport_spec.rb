@@ -50,7 +50,7 @@ describe Airport do
 
     it "sets a default capacity of 10 if none is supplied" do
 
-      allow(subject).to receive(:rand).and_return(1)
+      allow(subject).to receive(:stormy?).and_return(false)
       10.times { Plane.new.land(subject) }
       expect { Plane.new.land(subject) }.to raise_error("Airport is full!")
   
