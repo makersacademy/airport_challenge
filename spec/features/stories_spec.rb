@@ -8,7 +8,7 @@ describe Stories do
 it 'planes land and instucted to land at an airport' do
   airport = Airport.new
   plane = Plane.new
-  expect{ airport.land(plane) }.not_to raise_error
+  expect{ airport.land(plane) }.to raise_error("Can't land: the weather is stormy")
  end
 
  # As an air traffic controller
