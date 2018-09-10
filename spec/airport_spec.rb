@@ -2,7 +2,7 @@ require 'airport'
 
 RSpec.describe Airport do
   let(:plane) { double :plane }
-  let(:weather) { double :weather}
+  let(:weather) { double :weather }
   subject { described_class.new(weather) }
 
   before(:each) do
