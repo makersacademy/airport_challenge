@@ -4,11 +4,11 @@ describe Plane do
 
   let(:airport) { double:airport }
 
-  it 'is flying when created' do
+  it 'is flying' do
     expect(subject).to be_flying
   end
 
-  it 'can land' do
+  it 'able to land' do
     allow(airport).to receive(:weather) { "sunny" }
     is_expected.to respond_to :land
   end
@@ -18,7 +18,7 @@ describe Plane do
     expect(subject).not_to be_flying
   end
 
-  it 'can take off and is flying after take off' do
+  it 'can take off and flying' do
     allow(airport).to receive(:weather) { "sunny" }
     allow(airport).to receive(:take_off) { subject }
     is_expected.to respond_to :take_off
@@ -26,7 +26,7 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-  it 'takes off and is flying' do
+  it 'takes off and flying' do
     allow(airport).to receive(:take_off) { subject }
     subject.take_off
     expect(subject).to be_flying
