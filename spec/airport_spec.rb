@@ -1,14 +1,14 @@
 require 'airport.rb'
-require 'plane.rb'
-require 'weather.rb'
+# require 'plane.rb'
+# require 'weather.rb'
 
 describe Airport do
   subject { Airport.new(weather) }
-  let(:weather) { Weather.new('sunny') }
-  it {is_expected.to respond_to :planes_arr}
-  it {is_expected.to respond_to(:land).with(1).argument}
-  it {is_expected.to respond_to(:take_off).with(1).argument}
-  it {is_expected.to respond_to :capacity}
+  let(:weather) { Weather.new('sunny')}
+  it { is_expected.to respond_to :planes_arr }
+  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to :capacity }
 
   it "has a default capacity attribute that can be overriden" do
     expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
@@ -16,19 +16,19 @@ describe Airport do
 
   describe 'initialization' do
     it 'has a variable capacity' do
-      weather = Weather.new('sunny')
+      # weather = Weather.new('sunny')
       airport = Airport.new(40, weather)
       40.times { airport.land Plane.new }
-      expect{ airport.land Plane.new }.to raise_error 'Airport is full'
+      expect { airport.land Plane.new }.to raise_error 'Airport is full'
     end
   end
 
   describe 'initialization' do
     it 'defaults capacity' do
-      weather = Weather.new('sunny')
+      #weather = Weather.new('sunny')
       airport = Airport.new(Airport::DEFAULT_CAPACITY, weather)
       Airport::DEFAULT_CAPACITY.times { airport.land Plane.new }
-      expect{ airport.land Plane.new }.to raise_error 'Airport is full'
+      expect { airport.land Plane.new }.to raise_error 'Airport is full'
     end
   end
 
@@ -45,7 +45,7 @@ describe Airport do
 
   describe "#land" do
     it "instructs a plane to land at airport" do
-      weather = Weather.new('sunny')
+    #  weather = Weather.new('sunny')
       airport = Airport.new(weather)
       plane = Plane.new
       airport.land(plane)
@@ -61,7 +61,7 @@ describe Airport do
     end
 
     it 'raises an error when the airport is full' do
-      weather = Weather.new('sunny')
+      #weather = Weather.new('sunny')
       airport = Airport.new(weather)
       airport.capacity.times{ airport.land Plane.new }
       expect { airport.land Plane.new }.to raise_error 'Airport is full'
@@ -70,6 +70,7 @@ describe Airport do
     it 'raises an error when weather is stormy' do
       weather = Weather.new('stormy')
       airport = Airport.new(weather)
+      p weather
       expect(airport.land(Plane.new)).to eq "Sorry! Plane can not take off due to bad weather condition"
     end
   end
@@ -78,7 +79,7 @@ describe Airport do
 
     # it 'raises an error when there are no planes in the airport' do
     #   weather = Weather.new('sunny')
-    #   expect(subject.planes_arr).to include([])
+    #   expect(subject.planes_arr).to eq([])
     #   #expect(subject.planes_arr).to be_nil
     #   expect{subject.take_off}.to raise_error 'no planes available'
     # end
@@ -95,7 +96,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new(weather)
       airport.take_off(plane)
-      expect(plane.is_flying).to eq(true)
+      expect(plane.is_flying).to eq true
       expect { airport.take_off plane }.to raise_error "Can't take off already flying"
     end
 

@@ -3,10 +3,9 @@ require_relative 'weather'
 
 class Airport
 
-DEFAULT_CAPACITY = 20
-attr_reader :planes_arr, :weather
-attr_accessor :capacity
-
+  DEFAULT_CAPACITY = 20
+  attr_reader :planes_arr, :weather
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY, weather)
     @capacity = capacity
@@ -24,7 +23,7 @@ attr_accessor :capacity
       @weather.condition == 'stormy'
         "Sorry! Plane can not take off due to bad weather condition"
       end
-    
+
   end
 
   def take_off(plane)

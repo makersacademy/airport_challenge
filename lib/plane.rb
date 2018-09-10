@@ -12,7 +12,7 @@ attr_accessor :landed, :is_flying
   end
 
   def takeoff?
-     @is_flying
+    @is_flying
   end
 
   def report_landed
@@ -22,6 +22,5 @@ attr_accessor :landed, :is_flying
   def landed?
     @landed
   end
-
 
 end
