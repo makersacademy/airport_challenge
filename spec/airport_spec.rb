@@ -13,6 +13,7 @@ describe Airport do
     it 'allows a plane to land at an airport' do
       allow(plane).to receive(:location=)
       expect(airport.land(plane)).to eq(airport.object_id)
+      expect(airport.hangar).to eq([plane])
     end
 
     it 'allows multiple planes to land in an airport with a larger capacity' do
@@ -75,7 +76,7 @@ describe Airport do
       expect { stansted.takeoff(plane) }.to raise_error 'Plane not in airport'
     end
 
-    it 'raises an error when a plane that is flying tries to take off' do
+    it 'raises an error when a plane that is not in the airport tries to take off' do
       expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
     end
 
@@ -88,10 +89,10 @@ describe Airport do
 
   describe '#hangar' do
     it 'has a variable capacity' do
-      airport_2 = Airport.new(2)
-      expect(airport_2.capacity).to eq(2)
-      airport = Airport.new(50)
-      expect(airport.capacity).to eq(50)
+      airport = Airport.new(2)
+      expect(airport.capacity).to eq(2)
+      airport_2 = Airport.new(50)
+      expect(airport_2.capacity).to eq(50)
     end
 
     it 'has a default capacity if no capacity given' do
