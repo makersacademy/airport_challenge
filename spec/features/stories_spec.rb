@@ -18,4 +18,24 @@ it 'planes land and instucted to land at an airport' do
    plane = Plane.new
    expect { airport.takeoff(plane) }.not_to raise_error
  end
+
+ # As an air traffic controller
+ # To ensure safety
+ # I want to prevent takeoff when weather is stormy
+ it 'prevents taking off when stormy' do
+   airport = Airport.new
+   plane = Plane.new
+   allow(airport).to receive(:stormyweather?).and_return true
+   expect { airport.takeoff(plane) }.to raise_error "Can't land: the weather is stormy"
+ end
+
+ # As an air traffic controller
+ # To ensure safety
+ # I want to prevent landing when weather is stormy
+  it 'prevents landing when stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormyweather?).and_return true
+    expect { airport.land(plane) }.to raise_error "Can't land: the weather is stormy"
+  end
 end
