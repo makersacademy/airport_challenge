@@ -14,10 +14,10 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     fail "The weather is too bad to take off" if stormy?
-    puts "Plane #{@planes[-1]} has departed"
-    @planes.pop
+    puts "Plane #{plane} has departed"
+    @planes.delete(plane)
   end
 
   def stormy?
@@ -26,7 +26,7 @@ class Airport
   end
 
   def airport_full?
-    @planes.count > DEFAULT_CAPACITY
+    @planes.count >= DEFAULT_CAPACITY
   end
 
 end
