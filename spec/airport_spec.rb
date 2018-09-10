@@ -12,13 +12,11 @@ describe Airport do
     end
 
     it 'should be created with an existing instance variable @hangar' do
-      # purpose: result.
       gatwick = Airport.new("Gatwick")
       expect(gatwick::hangar).to be_empty
     end
 
     it 'should allow for Airport to be initalized with custom capacity' do
-      # purpose:result
       gatwick = Airport.new("Gatwick", 500)
       expect(gatwick::capacity).to eq(500)
     end

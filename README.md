@@ -5,10 +5,12 @@ This project is to practice OOP and TDD on two classes. Alongside I will be chec
 ___
 
 ## Setup
-
-- Fork
+To continue on with my version:
+- Fork from my repo: [Here](https://github.com/ShinyVerse/airport_challenge)
 - In Terminal: Clone using : git clone git@github.com:YOURNAME/airport_challenge.git
 - In Terminal: bundle
+
+___
 
 ## Using Airport.rb
 
