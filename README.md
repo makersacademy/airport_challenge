@@ -1,5 +1,9 @@
 # Airport Challenge - weekend 1
 
+This project is to practice OOP and TDD on two classes. Alongside I will be checking for error messages, to improve my debugging skills and running checks on acceptable code, to make a clear project for any who chose to have a play or extend the code.
+
+___
+
 ## Setup
 
 - Fork
