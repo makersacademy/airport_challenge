@@ -40,7 +40,7 @@ class Airport
     # of details of weather class, which is not ideal. It violates the
     # principle of keeping internal details of a class hidden (I in SOLID)
     #
-    # To fix this, we define a stormy? method in weather class and use it.
+    # To fix this, we define a stormy? method in weather class and use it.  
     @weather.stormy?
   end
 

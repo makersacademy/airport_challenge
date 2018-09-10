@@ -23,7 +23,7 @@ describe Airport do
 
   describe '#land' do
     it 'should not land a landed plane' do
-      plane = Plane.new
+      plane = double("Plane")
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error(RuntimeError, "Plan has already landed")
     end
@@ -75,9 +75,10 @@ describe Airport do
     end
 
     it 'prevents plane from take off when it stormy' do
-      weather = Weather.new('stormy')
+      weather = double("weather")
+      allow(weather).to receive(:stormy?).and_return(true)
       airport = Airport.new(weather, planes)
-      plane = Plane.new
+      plane = double("Plane")
       expect { airport.take_off(plane) }.to raise_error(RuntimeError, "Plane can not take off due to bad weather condition")
     end
 
