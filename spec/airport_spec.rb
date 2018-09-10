@@ -1,112 +1,70 @@
 require 'airport'
 
-# Fake weather class which is always stormy.
-class StormyWeather
-  def stormy?
-    true
-  end
-end
-
-# Fake weather class which is never stormy.
-class ClearWeather
-  def stormy?
-    false
-  end
-end
-
-# A fake plane class which thinks it is already landed.
-class LandedPlane
-  def landed
-    true
-  end
-end
-
-# Fake plane class which can recieve to land and take_off instuctions.
-class FakePlane
-  def land
-  end
-
-  def take_off
-  end
-
-  def landed
-    false
-  end
-end
-
 RSpec.describe Airport do
   let(:plane) { double :plane }
+  let(:weather) { double :weather}
+  subject { described_class.new(weather) }
 
   before(:each) do
     allow(plane).to receive(:land)
     allow(plane).to receive(:take_off)
     allow(plane).to receive(:landed).and_return false
+    allow(weather).to receive(:stormy?).and_return false
   end
 
   context "when it is clear weather" do
-    clear_weather = ClearWeather.new
-    clear_airport = Airport.new(clear_weather)
 
     it "can instruct planes to land" do
-      clear_airport.land(plane)
-      expect(clear_airport.landed_planes).to eq [plane]
-      # The next line is used to make sure plane doubles don't bleed from one
-      # example into the next.
-      clear_airport.take_off(plane)
+      subject.land(plane)
+      expect(subject.landed_planes).to eq [plane]
     end
 
     it "won't land landed planes" do
-      expect { clear_airport.land(LandedPlane.new) }.to raise_error "Plane already landed"
+      allow(plane).to receive(:landed).and_return true
+      expect { subject.land(plane) }.to raise_error "Plane already landed"
     end
 
     it "can instruct planes to take off" do
-      clear_airport.land(plane)
-      clear_airport.take_off(plane)
-      expect(clear_airport.landed_planes).to eq []
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.landed_planes).to eq []
     end
 
     it "can check whether it is stormy" do
-      expect(clear_airport.send(:stormy?)).to eq false
+      expect(subject.send(:stormy?)).to eq false
     end
 
     it "raises an error when a controller attempts to exceed plane capacity" do
-      clear_airport.capacity.times { clear_airport.land(plane) }
-      expect { clear_airport.land(plane) }.to raise_error "Airport at capacity"
-      # Since the doubles are all identical they can be removed in 'delete'.
-      # Again, this is to make sure doubles don't bleed into other examples.
-      clear_airport.take_off(plane)
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "Airport at capacity"
     end
 
     it "raises an error when a controller attempts to take off a plane not in the airport" do
-      expect { clear_airport.take_off(plane) }.to raise_error "Plane not landed at airport"
+      expect { subject.take_off(plane) }.to raise_error "Plane not landed at airport"
     end
 
     it "can land and take off a number of planes and keep track of them" do
-      landed_planes, taken_off_planes = [], []
-      10.times do
-        landed_planes << FakePlane.new
-        taken_off_planes << FakePlane.new
-      end
-      (taken_off_planes + landed_planes).each do |plane|
-        clear_airport.land(plane)
-      end
-      taken_off_planes.each { |plane| clear_airport.take_off(plane) }
-      expect(clear_airport.landed_planes).to eq landed_planes
+      taken_off_plane = double(:plane, :land => nil, :take_off => nil, :landed => false)
+      subject.land(plane)
+      subject.land(taken_off_plane)
+      subject.take_off(taken_off_plane)
+      expect(subject.landed_planes).to eq [plane]
     end
 
   end
 
   context "when it is stormy" do
-    stormy_weather = StormyWeather.new
-    stormy_airport = Airport.new(stormy_weather)
+
     it "raises an error when the controller attempts to take off a plane" do
+      allow(weather).to receive(:stormy?).and_return true
       message = "Unable to take off plane due to stormy weather"
-      expect { stormy_airport.take_off(plane) }.to raise_error message
+      expect { subject.take_off(plane) }.to raise_error message
     end
 
     it "raises an error when the controller attempts to land a plane" do
+      allow(weather).to receive(:stormy?).and_return true
       message = "Unable to land plane due to stormy weather"
-      expect { stormy_airport.land(plane) }.to raise_error message
+      expect { subject.land(plane) }.to raise_error message
     end
 
   end
