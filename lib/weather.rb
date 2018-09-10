@@ -11,15 +11,12 @@ class Weather
     rand(-30..50)
   end
 
-  def stormy
+  def stormy(plane)
     if weather_rand > 13
-      @take_off
+      plane.take_off
     else
       raise 'Unable to land due to stormy weather'
     end
   end
 
 end
-
-weather = Weather.new
-weather.stormy

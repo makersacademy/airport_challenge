@@ -1,10 +1,13 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
 
+attr_reader :weather
 
-  def initialize(plane_id)
+  def initialize(plane_id, weather = Weather.new)
     @plane_id = plane_id
+    @weather = weather
   end
 #
   def land

@@ -3,11 +3,13 @@ require_relative 'plane'
 class Airport
 
   attr_reader :full
+  attr_reader :weather
 
   def initialize(planes_parked)
     @planes = []
     @planes_parked = planes_parked
     @full = @planes_parked > 100
+    @weather = Weather.new
   end
 
   def park_plane
