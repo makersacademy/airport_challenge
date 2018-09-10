@@ -91,7 +91,7 @@ STATUS
 
 * Test edge cases
 
-* Test and implement more than one planes landing and starting at the same time
+* Test and implement more than one plane landing and starting at the same time
 
 **Author**
 Freya Becker ([fbl11](https://github.com/fbl11/))
