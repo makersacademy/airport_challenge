@@ -3,10 +3,6 @@ require 'plane'
 RSpec.describe Plane do
 
   context "on initializing" do
-    it "has a landed attribute" do
-      expect(subject).to respond_to(:landed).with(0).argument
-    end
-
     it "is in the air" do
       # This is so that planes can be landed when they are initialized
       expect(Plane.new.landed).to eq false
