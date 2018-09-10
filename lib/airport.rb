@@ -7,6 +7,6 @@ class Airport
   end
 
   def stormy?
+  	@weather.is_stormy?
   end
-
 end
