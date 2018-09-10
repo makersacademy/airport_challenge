@@ -1,4 +1,5 @@
 class Airport
+
   def land(plane)
     raise "Can't land: the weather is stormy" if stormyweather?
   end
@@ -8,6 +9,6 @@ class Airport
   end
 
   def stormyweather?
-    (1..4).sample > 3
+    rand(1..4) > 3
   end
 end
