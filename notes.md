@@ -69,20 +69,19 @@ I want to prevent takeoff when weather is stormy
   - ```ruby
     # weather.rb
     class Weather
-      attr_reader :is_stormy?
-    	def initialize
-      	@is_stormy? = (rand(5) == 0) ? true : false
+      def is_stormy?
+        (rand(5) == 0) ? true : false
       end
     end
     
-    # airport.rb class Airport
-    def stormy?(weather)
-    	weather.is_stormy?
+    # airport.rb class Airport(weather)
+    def stormy?
+    	@weather.is_stormy?
     end
     
-    # plane.rb Plane#take_off
-    if airport.stormy?(weather)
-      raise "Can't take off in stormy conditions"
+    # plane.rb Plane#take_off(airport)
+    if airport.stormy?
+      raise "Can't take off in stormy conditions!"
     end
     
     #plane_spec

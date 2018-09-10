@@ -1,0 +1,1 @@
+- [ ] Change take off to take no airport parameter and use ground location instead.
