@@ -6,6 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 2
 
+# code review ... "capacity = DEFAULT_CAPACITY"...
   def initialize(capacity = 2)
     @planes = []
     @capacity = capacity
@@ -36,7 +37,7 @@ class Airport
       "plane in the air"
     end
   end
-
+# code review ... "stormy?"... yes, a "convention" in Ruby
   def stormy
     rand(1..100) > 80
   end

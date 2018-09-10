@@ -17,12 +17,14 @@ describe Airport do
     expect(subject.planes?)
   end
 
+# code review... use "subject" instead of airport(s)..
   it 'lands planes' do
-    airport = Airport.new
+    airport = Airport.new #... and get rid of this line.
     # stormy = double("stormy")
     allow(airport).to receive(:stormy).and_return(false)
+# code review... alternative.....    ){false}
 
-    expect(subject.land(plane)).to eq("plane has landed")
+    expect(airport.land(plane)).to eq("plane has landed")
   end
 
   it 'doesnt allow landing when stormy' do
@@ -41,13 +43,15 @@ describe Airport do
 
   it 'returns stormy weather "true"' do
     airport = Airport.new
-    stormy = double("stormy")
+    # stormy = double("stormy")
     allow(airport).to receive(:stormy).and_return(true)
   end
 
   it 'doesnt allow landing when full capacity' do
-    subject.capacity.times { subject.land(plane) }
-    expect(subject.land(plane)).to eq("airport is full - no landings allowed")
+    airport = Airport.new # code review
+    allow(airport).to receive(:stormy).and_return(false) # code review
+    airport.capacity.times { airport.land(plane) }
+    expect(airport.land(plane)).to eq("airport is full - no landings allowed")
   end
 
   it 'has a default capacity' do
