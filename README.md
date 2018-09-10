@@ -73,7 +73,7 @@ STATUS
 
 * Allows planes to land and take off while the weather is not stormy
 
-* Does not permit planes to land or take of during stormy weather
+* Does not permit planes to land or take off during stormy weather
 
 * Does not permit planes to land if they have already landed
 
