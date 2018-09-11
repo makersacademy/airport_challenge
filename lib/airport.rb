@@ -1,21 +1,18 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
   DEFAULT_HANGER_CAPACITY = 20
 
-  ERRORS = {
-    airborne: "Cannot take off. Plane already airborne",
-    on_ground: "Cannot land. Plane already on the ground",
-    on_site: "Plane at wrong airport",
-    weather_take_off: "The weather is too bad to fly",
-    weather_landing: "The weather is too bad to land",
-    full_hanger: "The plane can't land because the hanger is full"
-  }
+  attr_writer  :capacity
 
-  def initialize(capacity = DEFAULT_HANGER_CAPACITY)
+  attr_reader :weather
+
+  def initialize(weather = Weather.new)
+    @weather = weather
     @hanger = []
-    @capacity = capacity
+    @capacity = DEFAULT_HANGER_CAPACITY
   end
 
   def land(plane)
@@ -32,9 +29,18 @@ class Airport
 
 private
 
+ERRORS = {
+  airborne: "Cannot take off. Plane already airborne",
+  on_ground: "Cannot land. Plane already on the ground",
+  on_site: "Plane at wrong airport",
+  weather_take_off: "The weather is too bad to fly",
+  weather_landing: "The weather is too bad to land",
+  full_hanger: "The plane can't land because the hanger is full"
+}
+
   def landing_errors?(plane)
     fail ERRORS[:on_ground] if plane_grounded?(plane)
-    fail ERRORS[:weather_landing] if bad_weather?
+    fail ERRORS[:weather_landing] if weather.storms?
     fail ERRORS[:full_hanger] if hanger_full?
   end
 
@@ -46,14 +52,10 @@ private
     @hanger.count == @capacity
   end
 
-  def bad_weather?
-    rand(10).zero?
-  end
-
   def take_off_errors(plane, airport)
     fail ERRORS[:airborne] if plane_airborne?(plane)
     fail ERRORS[:on_site] unless plane_at_airport?(plane, airport)
-    fail ERRORS[:weather_take_off] if bad_weather?
+    fail ERRORS[:weather_take_off] if weather.storms?
   end
 
   def plane_airborne?(plane)
