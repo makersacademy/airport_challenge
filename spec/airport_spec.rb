@@ -17,7 +17,10 @@ describe Airport do
     end
 
     it 'checks if airport is full' do
-      expect(airport).to respond_to(:full?)
+      allow(airport).to receive(:stormy?) { false }
+      allow(airport).to receive(:landed?) { false }
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect(airport.full?).to eq(true)
     end
 
     it 'prevents landing when the airport is full' do
