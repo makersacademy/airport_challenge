@@ -1,6 +1,7 @@
 require 'airport'
 require 'plane'
 require 'passenger'
+require 'weather'
 
 describe 'Full airport integration' do
   context 'On a sunny day' do
@@ -33,9 +34,10 @@ describe 'Full airport integration' do
   context 'Testing airport capacity' do
     it 'lets several planes land and take off' do
       planes = []
-      airport = Airport.new
+      airport = Airport.new(30, weather = Weather.new)
       5.times { planes << Plane.new }
-      allow_any_instance_of(Airport).to receive(:stormy?).and_return(false)
+
+      allow(weather).to receive(:stormy?) { false }
       planes.each { |plane| airport.land(plane) }
       planes.each { |plane| airport.take_off(plane) }
     end
@@ -75,4 +77,4 @@ describe 'Full airport integration' do
       passengers.each { |passenger| plane.board(passenger) }
       expect { plane.board(Passenger.new) }.to raise_error('Plane is full!')
     end
-end
+  end

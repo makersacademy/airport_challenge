@@ -1,11 +1,12 @@
 class Airport
   AIRPORT_CAPACITY = 20
 
-  attr_reader :hangar, :airport_capacity
+  attr_reader :hangar, :airport_capacity, :weather
 
-  def initialize(airport_capacity = AIRPORT_CAPACITY)
+  def initialize(airport_capacity = AIRPORT_CAPACITY, weather = Weather.new)
     @hangar = []
     @airport_capacity = airport_capacity
+    @weather = weather
   end
 
   def land(plane)
@@ -21,21 +22,22 @@ class Airport
     fail 'No take off, weather is stormy!' if stormy?
     fail 'Plane already flying!' if plane.flying?
     fail 'Plane not in hangar!' unless plane_in_hangar?(plane)
-    @hangar.delete(plane)
     plane.takeoff
+    @hangar.delete(plane)
+
     'Plane has taken off!'
   end
 
-  def plane_in_hangar?(plane)
-    @hangar.include?(plane)
+  def stormy?
+    @weather.stormy?
   end
 
-  def stormy?
-    (0..10).to_a.sample > 8
+ private
+  def plane_in_hangar?(plane)
+    @hangar.include?(plane)
   end
 
   def full?
     @hangar.count >= @airport_capacity
   end
-
 end

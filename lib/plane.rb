@@ -27,7 +27,7 @@ class Plane
     passenger.leave
     'Passenger has disembarked!'
   end
-
+  
   def on_board?(passenger)
     @on_board.include?(passenger)
   end
