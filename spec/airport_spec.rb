@@ -1,5 +1,4 @@
 require_relative "../lib/airport"
-# require_relative "../lib/plane"
 
 describe Airport do
     
@@ -13,8 +12,7 @@ describe Airport do
 
     it 'expect airport to be able to land a plane at the airport' do
         plane = Plane.new
-        # subject.weather = "sunny" - old code
-        allow(subject).to receive(:stormy).and_return(false)
+        allow(subject).to receive(:stormy?).and_return(false)
         expect(subject.land_plane(plane)).to eq([plane])
     end
 
@@ -29,8 +27,7 @@ describe Airport do
 
     it 'expect "plane" to be able to take off from the airport confirm that the plane takes off and is no longer in the airport' do
         plane = Plane.new
-        # subject.weather = "sunny" - old code
-        allow(subject).to receive(:stormy).and_return(false)
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.plane_list.push(plane)
         subject.take_off(plane)
         expect(subject.plane_list).to eq([])
@@ -38,42 +35,24 @@ describe Airport do
 
     # As an air traffic controller 
     # To ensure safety 
-    # I want to prevent takeoff when weather is stormy 
+    # I want to prevent takeoff when weather is stormy? 
 
-    it 'expect planes to not be able to take off if the weather is "stormy"' do
-        ace = Airport.new
+    it 'expect planes to not be able to take off if the weather is "stormy?"' do
         plane = Plane.new
-        ace.plane_list.push(plane)
-        # ace.weather = "stormy"
-        allow(ace).to receive(:stormy).and_return(true)
-        expect{ace.take_off(plane)}.to raise_error("Weather is too harsh for planes to take off")
+        subject.plane_list.push(plane)
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect{subject.take_off(plane)}.to raise_error("Weather is too harsh for planes to take off")
     end
     
 
     # As an air traffic controller 
     # To ensure safety 
-    # I want to prevent landing when weather is stormy 
-                                    # let's extract the double to a let
-                                # statement so we can use it repeatedly
-                                # let(:bike) { double :bike }
-                                # it 'releases working bikes' do
-                                # # let's superpower our double
-                                # # using allow().to receive().and_return()
-                                # allow(bike).to receive(:working?).and_return(true)
-                                # subject.dock(bike)
-                                # released_bike = subject.release_bike
-                                # # Now the double responds to working?
-                                # # with the value true
-                                # expect(released_bike).to be_working
-
+    # I want to prevent landing when weather is stormy? 
     
-    it 'expect planes to not be able to land if the weather is "stormy"' do
-        # let(:weather_gen) {double :weather_gen}
-        ace = Airport.new
+    it 'expect planes to not be able to land if the weather is "stormy?"' do
         plane = Plane.new
-        # ace.weather = "stormy" - old code
-        allow(ace).to receive(:stormy).and_return(true)
-        expect{ace.land_plane(plane)}.to raise_error("Weather is too harsh for planes to land")
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect{subject.land_plane(plane)}.to raise_error("Weather is too harsh for planes to land")
     end
 
     # As an air traffic controller 
@@ -81,12 +60,10 @@ describe Airport do
     # I want to prevent landing when the airport is full 
 
     it 'expect planes to not be able to land if the Airport is at "max" capacity' do
-        ace = Airport.new
         plane = Plane.new
-        # ace.weather = "sunny"
-        allow(ace).to receive(:stormy).and_return(false)
-        ace.land_plane(plane)
-        expect{Airport::DEFAULT_CAPACITY.times{ace.land_plane(Plane.new)}}.to raise_error("Airport capacity at max, can not land plane")
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.land_plane(plane)
+        expect{Airport::DEFAULT_CAPACITY.times{subject.land_plane(Plane.new)}}.to raise_error("Airport capacity at max, can not land plane")
     end
 
     # As the system designer
@@ -94,12 +71,11 @@ describe Airport do
     # I would like a default airport capacity that can be overridden as appropriate
 
     it 'expect default capacity to be set if none is provided' do
-        ace = Airport.new()
-        expect(ace.capacity).to eq (Airport::DEFAULT_CAPACITY)
+        expect(subject.capacity).to eq (Airport::DEFAULT_CAPACITY)
     end
 
     it 'expect the default capacity of airport to be overridden as appropriate' do
-        ace = Airport.new(50)
-        expect(ace.capacity).to eq (50)
+        allow(subject).to receive(:capacity) {50}
+        expect(subject.capacity).to eq (50)
     end
 end
