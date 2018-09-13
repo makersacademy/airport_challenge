@@ -27,7 +27,7 @@ To play around with my code follow these instructions:
 * heathrow = Airport.new
 * easyJet = Plane.new
 ```
-* You can instantiate Airport with an arguement (ie. Airport.new(n)) if you would like to change the capacity of the airport from 3 (default) to n
+* You can instantiate Airport with an argument (ie. Airport.new(n)) if you would like to change the capacity of the airport from 3 (default) to n
 
 ```
 * heathrow.land(easyJet)
