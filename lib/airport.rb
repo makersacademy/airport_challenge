@@ -1,7 +1,8 @@
 
 require_relative 'plane'
 class Airport
-  attr_reader :terminal, :capacity
+  attr_reader :terminal,
+              :capacity
 
   def initialize(capacity = 3)
     @capacity = capacity
@@ -10,7 +11,7 @@ class Airport
 
   def land(plane)
     fail 'Capacity is full' if full?
-    fail 'Weather is bad for landing' if weatherquality == 'bad'
+    fail 'Weather is bad for landing' if bad_weather
     if @terminal.include?(plane)
       return "#{plane} has already landed."
     else
@@ -20,16 +21,21 @@ class Airport
   end
 
   def takeoff(plane)
-    fail 'Weather is bad for taking off' if weatherquality == 'bad'
+    fail 'Weather is bad for taking off' if bad_weather
     @terminal.delete(plane)
     return "Take off was successful, #{plane} is in the air."
   end
 
   def weatherquality
-    @weather = ['bad', 'good'].sample
+    @weather = ['bad', 'good', 'good', 'good'].sample
   end
 
   private
+
+  def bad_weather
+    weatherquality == 'bad'
+  end
+
   def full?
     @terminal.count >= @capacity
   end
