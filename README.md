@@ -34,6 +34,10 @@ To play around with my code follow these instructions:
 * heathrow.takeoff(easyJet)
 ```
 * If weather conditions are bad you will not be able to land or take off!
+* For testing please run
+```
+* rspec
+```
 * Enjoy
 
 
