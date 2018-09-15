@@ -44,7 +44,7 @@ describe '#take_off' do
 
     it 'returns the plane that took off' do
       airport.land(plane)
-      expect(airport.take_off(plane)).to eq plane 
+      expect(airport.take_off(plane)).to eq plane
     end
 
     it 'raises an error if plane is not at this airport' do
