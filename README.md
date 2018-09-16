@@ -1,7 +1,10 @@
 Airport Challenge - Week 1 (TDD, Object Oriented Design)
 =================
+Week 1 - Weekend challenge!
 
-```
+Solo challenge testing my ability to build with objects and TDD.
+
+```conosle
         ______
         _\____\___
 =  = ==(____MA____)
@@ -11,6 +14,53 @@ Airport Challenge - Week 1 (TDD, Object Oriented Design)
                 `---~~\___________/------------`````
                 =  ===(_________)
 
+```
+
+## How to use
+
+1. Clone this repo, run `bundle install` in the projects directory to install all the necessary dependencies.
+
+```console
+$ git clone https://github.com/MarcusKerr/https://github.com/MarcusKerr/airport_challenge.git
+$ cd airport_challenge
+$ bundle install
+```
+
+2. Enter IRB and require `Airport.rb` from the `lib` directory.
+
+```console
+$ irb
+> require './lib/Airport'
+```
+
+3. Instantiate an Airport. Airport takes two parameters, a Weather class and a maximum capacity integer. Weather and 5 are defaults.
+
+```console
+> londonCity = Airport.new
+```
+
+4. Instantiate a Plane.
+
+```console
+> s3bViking = Plane.new
+```
+
+5. To land a plane call the land method on the airport object. The land method takes a single parameter, a plane. Planes will be unable to land if the weather is stomry, or if the plane is already in the hangar.
+
+```console
+> londonCity.land(s3bViking)
+```
+
+6. To tell a plane to take off call the take_off method on the airport object. The take_off method takes a single parameter, a plane. Planes will be unable to take off if the weather is stomry, or if the plane is not in the hangar.
+
+```console
+> londonCity.take_off(s3bViking)
+```
+
+You can check which planes are in the hangar by calling the hangar method on the airport.
+
+```console
+> londonCity.hangar
 ```
 
 Task
@@ -71,44 +121,3 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
-
-How to use
-----
-
-1. After cloning, cd into the airport_challenge on your machine.
-```
-cd airport_challenge
-```
-
-2. In the terminal start irb and require Airport from the lib directory.
-```
-irb
-require './lib/Airport'
-```
-
-3. Instantiate Airport. Airport takes two parameters, a Weather class and a maximum capacity integer.  
-Weather and 5 are defaults.
-```
-londonCity = Airport.new
-```
-
-4. Instantiate Plane.
-```
-s3bViking = Plane.new
-```
-5. To land a plane call the land method on the airport object. The land method takes a single parameter, a plane. Planes will be unable to land if the weather is stomry, or if the plane is already in the hangar.
-```
-londonCity.land(s3bViking)
-```
-
-6. To tell a plane to take off call the take_off method on the airport object. The take_off method takes a single parameter, a plane. Planes will be unable to take off if the weather is stomry, or if the plane is not in the hangar.
-```
-londonCity.take_off(s3bViking)
-```
-
-You can check which planes are in the hangar by calling the hangar method on the airport.
-```
-londonCity.hangar
-```
-
-
