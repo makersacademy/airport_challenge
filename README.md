@@ -26,7 +26,7 @@ $ cd airport_challenge
 $ bundle install
 ```
 
-2. Enter IRB and require `Airport.rb` from the `lib` directory.
+2. Enter `irb` and require `Airport.rb` from the `lib` directory.
 
 ```console
 $ irb
