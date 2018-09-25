@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :hanger
+  MAXCAP = 2
 
   def initialize
     @hanger = []
@@ -17,6 +18,7 @@ class Airport
 
   def land(plane)
     fail RuntimeError, "Stormy weather all flights diverted!" if prevent == true
+    fail RuntimeError, "Airport at capacity!" if MAXCAP < (@hanger.length + 1)
     @hanger << plane
   end
 

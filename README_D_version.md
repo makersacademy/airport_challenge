@@ -278,3 +278,28 @@ End User Story 4
 
 ---
 ---
+
+# User story 5
+
+---
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+
+---
+
+## Feature Test 1
+
+load './lib/airtraffic_controller.rb' <br />
+luton = Airport.new <br />
+slingsby_firefly = Plane.new <br />
+falcon = Plane.new <br />
+luton.land(slingsby_firefly) <br />
+luton.land(falcon) <br />
+Should return an error stating that the airport is full.
+
+End User Story 5
+
+---
+---

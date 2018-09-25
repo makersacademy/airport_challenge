@@ -52,4 +52,9 @@ describe Airport do
     expect { luton.land(slingsby_firefly) }.to raise_error("Stormy weather all flights diverted!")
   end
 
+  it 'Raises an error when airport is at capacity and plane attempts to land' do
+    slingsby_firefly = Plane.new
+    expect { 3.times { subject.land(slingsby_firefly) } }.to raise_error("Airport at capacity!")
+  end
+
 end
