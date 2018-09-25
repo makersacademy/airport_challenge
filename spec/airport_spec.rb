@@ -49,7 +49,6 @@ describe '#take_off' do
 
     it 'raises an error if plane is not at this airport' do
       airport2 = described_class.new(10)
-      airport2.land(plane)
       expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport"
     end
   end
