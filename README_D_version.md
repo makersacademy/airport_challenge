@@ -295,11 +295,27 @@ load './lib/airtraffic_controller.rb' <br />
 luton = Airport.new <br />
 slingsby_firefly = Plane.new <br />
 falcon = Plane.new <br />
-luton.land(slingsby_firefly) <br />
-luton.land(falcon) <br />
-Should return an error stating that the airport is full.
+2.times { luton.land(slingsby_firefly) } <br />
+Should raise an error stating that the airport is full.
 
 End User Story 5
+
+---
+---
+
+# User story 6
+
+---
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+---
+
+No feature for this just a default capacity stored as a constants known as MAXCAP.
+
+End User Story 6
 
 ---
 ---

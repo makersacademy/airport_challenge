@@ -1,19 +1,22 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_accessor :hanger
+  attr_accessor :hanger, :forecast
+  # MAXCAP is the maximum airport capacity default.
   MAXCAP = 2
 
   def initialize
+    @forecast = Weather.new
     @hanger = []
   end
 
-  def weather_condition(conditions)
-    @weather = conditions
-  end
+  # def weather_condition(conditions)
+  #   @weather = conditions
+  # end
 
   def prevent
-    @weather == 'stormy'
+    forecast.weather_system == "stormy"
   end
 
   def land(plane)
