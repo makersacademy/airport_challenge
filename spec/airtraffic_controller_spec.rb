@@ -21,14 +21,15 @@ describe Airport do
 
       it 'Should remove plane from hanger' do
         luton = Airport.new
-        allow(luton.prevent).to receive('false')
+        allow(luton).to receive(:prevent).and_return(false)
 
         slingsby_firefly = Plane.new
-        expect(subject.take_off(slingsby_firefly)).to eq []
+        expect(luton.take_off(slingsby_firefly)).to eq []
       end
 
       it 'Should land plane in hanger' do
         slingsby_firefly = Plane.new
+        allow(subject).to receive(:prevent).and_return(false)
         expect(subject.land(slingsby_firefly)).to eq [slingsby_firefly]
       end
 
@@ -47,7 +48,7 @@ describe Airport do
 
     it 'Should check plane is in the hanger' do
       heathrow = Airport.new
-        allow(heathrow.prevent).to receive('false')
+      allow(heathrow).to receive(:prevent).and_return(false)
 
       slingsby_firefly = Plane.new
       heathrow.land(slingsby_firefly)
@@ -59,6 +60,7 @@ describe Airport do
   describe '#land' do
 
     it 'Raises an error when airport is at capacity and plane attempts to land' do
+      allow(subject).to receive(:prevent).and_return(false)
       slingsby_firefly = Plane.new
       expect { 3.times { subject.land(slingsby_firefly) } }.to raise_error("Airport at capacity!")
     end
@@ -68,20 +70,18 @@ describe Airport do
   describe '#prevent' do
   
     it 'Raises an error and prevents take_off during storm' do
-    luton = Airport.new
-    srand(1)
-    rand(2)
-    allow(luton.prevent).to receive('true')
-    slingsby_firefly = Plane.new
-    expect { luton.take_off(slingsby_firefly) }.to raise_error("Stormy weather all flights grounded!")
+      luton = Airport.new
+      srand(1)
+      rand(2)
+      allow(luton.prevent).to receive('true')
+      slingsby_firefly = Plane.new
+      expect { luton.take_off(slingsby_firefly) }.to raise_error("Stormy weather all flights grounded!")
     end
 
     it 'Raises an error and prevents landing during storm' do
-    luton = Airport.new
-    slingsby_firefly = Plane.new
-    expect { luton.land(slingsby_firefly) }.to raise_error("Stormy weather all flights diverted!")
+      luton = Airport.new
+      slingsby_firefly = Plane.new
+      expect { luton.land(slingsby_firefly) }.to raise_error("Stormy weather all flights diverted!")
     end
   end
-
 end
-

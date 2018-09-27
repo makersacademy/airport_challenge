@@ -11,10 +11,6 @@ class Airport
     @hanger = []
   end
 
-  # def weather_condition(conditions)
-  #   @weather = conditions
-  # end
-
   def prevent
     forecast.weather_system == "stormy"
   end
