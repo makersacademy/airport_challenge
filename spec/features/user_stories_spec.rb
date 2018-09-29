@@ -1,7 +1,7 @@
 describe "user_stories" do
   let(:airport) { Airport.new(20) }
   let(:plane) { Plane.new }
-    context "when not stormy" do
+  context "when not stormy" do
     before do
       allow(airport).to receive(:stormy?).and_return(false)
     end

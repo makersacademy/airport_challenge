@@ -24,8 +24,6 @@ describe Airport do
       end
     end
 
-
-
     context "when stormy" do
       it "raises an error" do
         allow(airport).to receive(:stormy?).and_return(true)
@@ -33,8 +31,6 @@ describe Airport do
       end
     end
   end
-
-
 
   describe "#take_off" do
     context "when not stormy" do

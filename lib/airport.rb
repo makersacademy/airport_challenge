@@ -5,30 +5,15 @@ class Airport
     @planes = []
   end
 
-
-
-
-
   def land(plane)
     raise "Cannot land plane: airport full" if full?
     raise "Cannot land plane: weather is stormy" if stormy?
     @planes << plane
   end
 
-
-  def take_off(plane)
+  def take_off(*)
     raise "Cannot take off plane: weather is stormy" if stormy?
   end
-
-
-
-
-
-
-
-
-
-
 
   private
 
@@ -36,12 +21,7 @@ class Airport
     @planes.length >= @capacity
   end
 
-
   def stormy?
     rand(1..6) > 4
   end
-
-
-
-
 end
