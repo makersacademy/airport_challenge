@@ -13,78 +13,146 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+description
+------------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This is a simple program for air traffic controllers. It is designed to simulate the taking off and landings of planes at an airport, with barrier conditions like bad weather prevents landing and take off, and landing prevented when airport is full. The code was written to follow a set of user stories below and it was test driven at a feature and a unit test level.
 
-Steps
--------
+Planning and structure
+----------------------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+The program was split into two main objects the plane and the airport. As this program was intended for use by an air traffic controller, the take off and land methods belong to the airport object taking an instance of the plane object as an argument. I also decided to model the weather state as a private method on the airport class using a random number generator.
+
+Using the program
+-----------------
+
+clone the project and then cd into it and then run RSpec to see the passing tests
+
+```
+Airport
+  #land
+    when not stormy
+      instructs a plane to land
+      when full
+        raises an error
+    when stormy
+      raises an error
+  #take_off
+    when not stormy
+      instructs a plane to take off
+    when stormy
+      raises an error
+
+user_stories
+  when not stormy
+    so planes land at airports, instruct a plane to land
+    so planes take off from airports, instruct a plane to take off
+    when airport is full
+      does not allow planes to land
+  when weather is stormy
+    does not allow planes to land
+    does not allow planes to take off
+
+Have you considered running rubocop? It will help you improve your code!
+Try it now! Just run: rubocop
+
+Finished in 0.00993 seconds (files took 0.13277 seconds to load)
+10 examples, 0 failures
+
+
+COVERAGE:  98.51% -- 66/67 lines in 5 files
+
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  93.33%  | lib/airport.rb | 15    | 1      | 41      |
++----------+----------------+-------+--------+---------+
+4 file(s) with 100% coverage not shown
+
+```
+
+
+example of simple usage in the teminal using pry or irb
+
+```
+[1] pry(main)> require "./lib/airport.rb"
+=> true
+[2] pry(main)> require "./lib/plane.rb"
+=> true
+[3] pry(main)> jfk = Airport.new(20)
+=> #<Airport:0x00007f99e9225378 @capacity=20, @planes=[]>
+[4] pry(main)> plane1 = Plane.new
+=> #<Plane:0x00007f99e9154ca0>
+[5] pry(main)> jfk.land(plane1)
+RuntimeError: Cannot land plane: weather is stormy
+```
+
+
 
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
+User stories
+------------
+
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Test coverage and code formatting
+---------------------------------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Rubocop
+Simplecov
 
-Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
+Project file structure
+----------------------
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+```
+.
+├── CONTRIBUTING.md
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── README.md
+├── Rakefile
+├── coverage
+├── docs
+│   └── review.md
+├── lib
+│   ├── airport.rb
+│   └── plane.rb
+└── spec
+    ├── airport_spec.rb
+    ├── features
+    │   └── user_stories_spec.rb
+    ├── plane_spec.rb
+    └── spec_helper.rb
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
