@@ -18,5 +18,10 @@ describe Airport do
     subject.take_off(plane)
     expect(@plane).to eq nil
   end
-  
+
+  it 'should allow airport weather to be checked' do
+    weather = subject.set_weather
+    expect(weather.clear?).to eq true
+  end
+
 end
