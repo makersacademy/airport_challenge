@@ -4,17 +4,30 @@ require_relative "Traffic_Controller"
 require_relative "Passanger"
 require_relative "Flight"
 
-@plane = nil
+@plane0001 = nil
+@airportGatwick = nil
+@gatwickTrafficControl = nil
+@airportHeathrow = nil
+@heathrowTrafficControl = nil
+@passanger = nil
+@flight = nil
 def initialize_objs()
-  @plane = Plane.new("CG", 120, "Gatwick", "Miami", "CG0901")
-  #@airport = Airport.new
-  #@passanger = Passanger.new
-  #@flight = Flight.new
+  @airportGatwick = Airport.new("Gatwick", "GTW", 15, 1000)
+  @gatwickTrafficControl = Traffic_Controller.new(@airportGatwick)
+  @airportHeathrow = Airport.new("Heathrow", "HRW", 18, 1200)
+  @heathrowTrafficControl = Traffic_Controller.new(@airportHeathrow)
+  @plane0001 = Plane.new("CG", 120, @airportGatwick, @airportHeathrow, "CG0001")
+  @flight = Flight.new(@plane0001)
+  @passanger = Passanger.new("Liam Kwammy", "MIA")
 end
 
 def Main()
   initialize_objs()
-  puts @plane.getPlaneId()
+  @gatwickTrafficControl.planeTakeOff(@plane0001)
+  puts @plane0001.getPlaneStatus()
+  puts "# Journey Time is 1 hour # "
+  @heathrowTrafficControl.planeLand(@plane0001)
+  puts @plane0001.getPlaneStatus()
 end
 
 Main()

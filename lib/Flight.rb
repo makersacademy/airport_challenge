@@ -4,11 +4,18 @@ class Flight
   @flightDestination = nil
   @flightStartingLocation = nil
   @flightStatus = nil
+  $count = 0
   def initialize(plane)
-    @flightPlaneId = plane.getId()
-    @flightDestination = plane.getDesination()
-    @flightStartingLocation = plane.getLocation()
-    @flightStatus = plane.getStatus()
+    @flightPlaneId = plane.getPlaneId()
+    @flightDestination = plane.getPlaneDestination()
+    @flightStartingLocation = plane.getPlaneLocation()
+    @flightStatus = plane.getPlaneStatus()
+    @flightId = $count
+    $count += 1
+  end
+  
+  def getFlightId()
+    @flightId
   end
 end
     

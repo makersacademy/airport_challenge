@@ -2,9 +2,8 @@ class Passanger
   @passangerName = nil
   @passangerDestination = nil
   @passangerFlight = nil
-  def initialize(name, destination, flightId)
+  def initialize(name, destination)
     @passangerName = name
     @passangerDestination = destination
-    @passangerFlight = flightId
   end
 end

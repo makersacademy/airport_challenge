@@ -14,14 +14,14 @@ class Plane
     @planeId = planeId
   end
   
-  def land(airport)
-    @planeLocation = airport.getAirportId()
-    @planeStatus = "Landed at #{@planeLocation}"
+  def land()
+    @planeLocation = @planeDestination
+    @planeStatus = "Landed at #{@planeLocation.getAirportName()}"
   end
   
-  def takeOff(airport)
+  def takeOff()
     @planeLocation = "In Transit to #{@planeDestination}"
-    @planeStatus = "In Transit"
+    @planeStatus = "In Transit to #{@planeDestination}"
   end
   
 #Setters
@@ -54,7 +54,7 @@ class Plane
     @planeLocation
   end
   
-  def getPlaneDesination()
+  def getPlaneDestination()
     @planeDestination
   end
 end
