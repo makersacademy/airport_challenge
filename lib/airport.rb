@@ -1,10 +1,25 @@
 class Airport
-  def plane_land
+  def land
   end
 
-  def plane_takeoff
+  def takeoff
   end
 
-  def plane_statuscheck
+  def statuscheck
+  end
+
+  def prevent_takeoff
+  end
+
+  def check_weather
+  end
+
+  def prevent_landing
+  end
+
+  def check_capacity
+  end
+
+  def set_capacity
   end
 end
