@@ -2,23 +2,24 @@ class Airport
   attr_accessor :weather
   attr_accessor :hanger
 
-  def initialize
-    @weather = ["sunny", "stormy"].sample
-    @hanger = []
+  def initialize(hanger = Plane.new)
+    @hanger = [hanger]
   end
 
   def land(plane)
-    self.weather == "sunny"
-    @hanger << plane
+    @weather == "sunny" ? @hanger << plane : false
   end
 
-  def take_off(*)
-    self.weather == "sunny"
-    @hanger.delete(plane)
+  def take_off(plane)
+    @weather == "sunny" ? @hanger.delete(plane) : false
   end
 
   def check
-    return []
+    return @hanger
+  end
+
+  def set_weather(weather)
+    @weather = weather
   end
 end
 
