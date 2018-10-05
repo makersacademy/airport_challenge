@@ -11,4 +11,9 @@ describe Airport do
     expect(subject.take_off(plane)).to eq plane
   end
 
+  it 'Check if plane is in the hanger' do
+    subject.land(plane)
+    expect(subject.in_hanger?(plane)).to eq true
+  end
+
 end
