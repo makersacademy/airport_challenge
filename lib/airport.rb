@@ -18,7 +18,7 @@ class Airport
 
   def allowtakeoff(plane,destination)
     raise "The plane isnt here!" unless @planesatairport.include?(plane)
-    raise "Bad weather; no landing" unless setweather == "sunny"
+    raise "Bad weather; no takeoff" unless setweather == "sunny"
     @planesatairport.delete(plane)
     plane.takeoff(destination)
     true

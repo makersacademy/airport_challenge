@@ -16,8 +16,8 @@ let(:plane1) {double :plane1}
     allow(plane1).to receive(:land).and_return(true)
     allow(plane2).to receive(:land).and_return(true)
     allow(plane3).to receive(:land).and_return(true)
-    allow(subject).to receive(:setweather) { 'sunny'}
     airport = Airport.new("London",2)
+    allow(airport).to receive(:setweather) { 'sunny'}
     airport.allowland(plane1)
     airport.allowland(plane2)
     expect{airport.allowland(plane3)}.to raise_error("Cant land; NO capacity")
@@ -65,14 +65,13 @@ let(:plane1) {double :plane1}
     expect(subject.allowtakeoff(plane1,destination)).to eq(true)
   end
 
-  it "does NOT allow a plane to take off from airport towards speficified destination on stormy weather" do
+  it "does NOT allow a plane to take off towards speficified destination on stormy weather" do
     allow(plane1).to receive(:takeoff).and_return(true)
     allow(plane1).to receive(:land).and_return(true)
-    destination = Airport.new("Morocco")
-    allow(subject).to receive(:setweather) { 'sunny'}
+    allow(subject).to receive(:setweather).and_return('sunny')
     subject.allowland(plane1)
-    allow(subject).to receive(:setweather) { 'stormy'}
-    expect{subject.allowtakeoff(plane1,destination)}.to raise_error("Bad weather; no takeoff")
+    allow(subject).to receive(:setweather).and_return('stormy')
+    expect{subject.allowtakeoff(plane1,Airport.new("Paris"))}.to raise_error("Bad weather; no takeoff")
   end
 
 end
