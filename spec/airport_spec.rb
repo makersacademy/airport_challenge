@@ -1,18 +1,19 @@
 require 'airport'
-require 'pry'
 
 describe Airport do
-  let(:airport) { subject }
+  let(:airport) { Airport.new }
   let(:plane) { double(:plane) }
 
-  it "tracks number of planes in airport with #full?" do
+  it "tracks number of planes with #full?" do
     5.times { airport.planes << plane }
     expect(airport).to be_full
   end
 
   it "can be given a new capacity" do
     airport = Airport.new(10)
-    10.times { airport.planes << plane }
+    5.times { airport.planes << plane }
+    expect(airport).not_to be_full
+    5.times { airport.planes << plane }
     expect(airport).to be_full
   end
 

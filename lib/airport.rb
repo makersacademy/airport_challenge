@@ -1,5 +1,5 @@
 class Airport
-  attr_accessor :capacity, :weather, :planes
+  attr_reader :planes, :weather
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -9,16 +9,11 @@ class Airport
   end
 
   def full?
-    @planes.length >= @capacity
+    planes.length >= @capacity
   end
 
   private
   def random_weather
-    if rand(10).zero?
-      "stormy"
-    else
-      "sunny"
-    end
+    rand(10).zero? ? "stormy" : "sunny"
   end
-
 end
