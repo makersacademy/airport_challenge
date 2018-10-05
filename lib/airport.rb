@@ -1,8 +1,11 @@
 class Airport
-  def land
+
+  def land(plane)
+    true
   end
 
-  def takeoff
+  def takeoff(plane)
+    true
   end
 
   def statuscheck
