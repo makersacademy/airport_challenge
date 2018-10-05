@@ -6,8 +6,8 @@ class Airport
   attr_reader :weather
   attr_reader :plane
 
-  def set_weather
-    Weather.new
+  def initialize
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -15,7 +15,11 @@ class Airport
   end
 
   def take_off(plane)
-    @plane = nil
+    if @weather.clear == false
+      fail 'Plane cannot take-off in a storm.'
+    else
+      @plane = nil
+    end
   end
 
 end

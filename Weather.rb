@@ -1,6 +1,6 @@
 class Weather
   
-  def clear?
+  def clear
     true
   end
 
