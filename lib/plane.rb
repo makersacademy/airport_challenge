@@ -1,3 +1,5 @@
+require 'pry'
+
 class Plane
 
   def land(airport)
