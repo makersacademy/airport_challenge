@@ -4,9 +4,16 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:plane_2) { double(:plane) }
 
-  it "should be able to land a plane" do
-    subject.land(plane)
-    expect(subject.landed_planes).to eq [plane]
+  describe "#land" do
+    it "should be able to land a plane" do
+      subject.land(plane)
+      expect(subject.landed_planes).to eq [plane]
+    end
+
+    it "should not land a plane if the weather is stormy" do
+      allow(subject).to receive(:weather) { "stormy" }
+      expect { subject.land(plane) }.to raise_error "Stormy weather, cannot land."
+    end
   end
 
   it "should be able to display a landed plane" do
@@ -23,7 +30,7 @@ describe Airport do
 
     it "should raise an error if the specified plane is not in the airport" do
       subject.land(plane)
-      expect { subject.take_off(plane_2) }.to raise_error "Specified plane is not in the airport!"
+      expect { subject.take_off(plane_2) }.to raise_error "Plane is not in the airport!"
     end
 
     it "should not let a plane take off if the weather is stormy" do
