@@ -1,11 +1,15 @@
 class Airport
 
+  def initialize
+    @weather = "stormy"
+  end
+
   def land(plane)
     plane.set_status("land")
   end
 
   def takeoff(plane)
-    true
+    plane.set_status("air")
   end
 
   def statuscheck(plane)
@@ -16,19 +20,19 @@ class Airport
     true
   end
 
-  def check_weather(airport)
-    true
+  def weather?
+    @weather
   end
 
   def prevent_landing(plane)
     true
   end
 
-  def check_capacity(airport)
+  def capacity?
     true
   end
 
-  def set_capacity(airport)
+  def set_capacity
     true
   end
 end
