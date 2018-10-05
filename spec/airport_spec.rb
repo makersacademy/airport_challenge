@@ -12,6 +12,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.hanger << plane
+    allow(airport).to receive(:weather) { "sunny" }
     expect(airport.take_off(plane)).to eq plane
     expect(airport.check(plane)).to eq false
   end
