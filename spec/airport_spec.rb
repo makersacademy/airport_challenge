@@ -5,7 +5,8 @@ describe Airport do
   let(:plane_2) { double(:plane) }
 
   it 'should be able to land a plane' do
-    expect(subject.land(plane)).to eq "#{plane} landed successfully."
+    subject.land(plane)
+    expect(subject.landed_planes).to eq [plane]
   end
 
   it 'should be able to display a landed plane' do
@@ -16,7 +17,8 @@ describe Airport do
   describe "#take_off" do
     it 'should be able to instruct a plane to take off' do
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq "#{plane} taken off successfully."
+      subject.take_off(plane)
+      expect(subject.landed_planes).to eq []
     end
 
     it 'should raise an error if the specified plane is not in the airport' do
