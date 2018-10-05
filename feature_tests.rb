@@ -1,4 +1,4 @@
-Dir["./feature_tests/*.rb"].sort.each {|file|
+Dir["./feature_tests/*.rb"].sort.each { |file|
   puts "\n**** #{file} ****"
   require file
   puts "passed"
