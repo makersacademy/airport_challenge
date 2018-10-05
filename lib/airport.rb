@@ -4,14 +4,23 @@ class Airport
 
   def initialize
     @stored_planes = []
+    @stormy = false
   end
 
   def receive_plane(plane)
-    @stored_planes << plane
+    @stored_planes << plane unless stormy?
   end
 
   def release_plane(plane)
-    @stored_planes.delete(plane)
+    @stored_planes.delete(plane) unless stormy?
+  end
+
+  def report_storm
+    @stormy = true
+  end
+
+  def stormy?
+    @stormy
   end
 
 end
