@@ -1,4 +1,4 @@
-### User Stories ###
+## User Stories ##
 
 As an air traffic controller:
 - I want to instruct a plane to land at an airport
@@ -12,3 +12,9 @@ Verbs: Land, Takeoff, Confirm no longer at airport => whereabouts
 
 As the system designer
 - I would like a default airport capacity that can be overridden as appropriate
+
+### Edge Cases ###
+Edge Cases such as:
+- inconsistent states of the system ensuring that planes can only take off from airports they are in;
+-planes that are already flying cannot takes off and/or be in an airport;
+-planes that are landed cannot land again and must be in airport 

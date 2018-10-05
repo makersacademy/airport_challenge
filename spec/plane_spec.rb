@@ -1,4 +1,5 @@
 require_relative '../docs/plane.rb'
+require 'pry'
 
 describe Plane do
 
@@ -11,7 +12,13 @@ describe Plane do
   end
 
   it 'can confirm that once its taken off its no longer at the airport' do
-    expect(subject.whereabouts).to eq "flying"
+    expect(subject.status).to eq "flying"
+  end
+
+  it 'can confirm when in airport that its at the airport' do
+    plane = Plane.new
+    plane.land 
+    expect(plane.status).to eq "airport"
   end
 
 end
