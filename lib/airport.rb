@@ -8,4 +8,13 @@ class Airport
     return "Plane has taken off"
   end
 
+  def check_weather
+    chance = rand(10)
+    if (0..7).include?(chance)
+      @weather = "sunny"
+    else
+      @weather = "stormy"
+    end
+  end
+
 end
