@@ -1,7 +1,6 @@
 # Airport Challenge #
 
 ## User Story 1 ##
-
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -44,5 +43,57 @@ I want to prevent takeoff when weather is stormy
 require './lib/airport_challenge'
 airport = Airport.new
 plane = Plane.new
-airport.take_off(plane) # this should return false as the weather is stormy #
+airport.take_off(plane)
 ```
+
+This should return an error as the weather is stormy.
+
+## User Story 4 ##
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+#### Feature Test ####
+```
+require './lib/airport_challenge'
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+```
+
+This should return an error as the weather is stormy.
+
+## User Story 5 ##
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+#### Feature Test ####
+```
+require './lib/airport_challenge'
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+```
+
+This should return an error as the airport is full.
+
+## User Story 6 ##
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+#### Feature Test ####
+```
+require './lib/airport_challenge'
+airport = Airport.new(20)
+plane = Plane.new
+```
+
+This should return an airport with a capacity of 20.
