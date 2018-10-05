@@ -42,9 +42,10 @@ describe Plane do
 
 
   describe "#take_off" do
-    context "when it is sunny" do
+    context "plan is able to take off" do
 
       before { airport.weather = "sunny"}
+      before { plane.location = airport }
       before { plane.take_off(airport) }
 
       it { should respond_to(:take_off).with(1).argument }
@@ -58,12 +59,17 @@ describe Plane do
       end
     end
 
-    context "when it is stormy" do
-      before { airport.weather = "stormy" }
+    context "plane cannot take off" do
 
       it "doesn't take off in a storm" do
-        expect { plane.land(airport) }.to raise_error("Can't land - too stormy!")
+        airport.weather = "stormy"
+        expect { plane.take_off(airport) }.to raise_error("Can't take off - too stormy!")
       end
+
+      it "can only take off from airport it is in" do
+        expect { plane.take_off(airport) }.to raise_error("The plane is not in that airport. The plane's current location is #{plane.location}")
+      end
+
     end
   end
 

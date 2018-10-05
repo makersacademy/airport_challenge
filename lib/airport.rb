@@ -15,6 +15,7 @@ class Plane
 
   def take_off(airport)
     fail("Can't take off - too stormy!") if airport.weather == "stormy"
+    fail("The plane is not in that airport. The plane's current location is #{@location}") unless @location == airport
     @location = "sky"
     airport.planes.delete(self)
   end
@@ -28,7 +29,7 @@ end
 class Airport
   attr_accessor :capacity, :weather, :planes
   DEFAULT_CAPACITY = 5
-  
+
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @weather = get_weather
