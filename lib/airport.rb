@@ -1,17 +1,17 @@
 class Airport
 
   def initialize(capacity = 0)
-    @currenttraffic = 0
     @capacity = capacity
+    @planesatairport = []
   end
 
-  def addtraffic
-    @currenttraffic +=1
+  def addtraffic(plane)
+    @planesatairport << plane
     true
   end
 
-  def reducetraffic
-    @currenttraffic -=1
+  def reducetraffic(plane)
+    @planesatairport.delete(plane)
     true
   end
 

@@ -1,21 +1,27 @@
 require "./lib/plane.rb"
 
-describe "Plane" do
+describe Plane do
 
   let (:airport) {double :airport}
 
-  before(:each) do
-    @plane = Plane.new
-  end
-
   it "lands at the specified airport" do
     allow(airport).to receive(:addtraffic).and_return(true)
-    expect(@plane.land(airport)).to eq(true)
+    weather = ["sunny","stormy"].sample
+    if weather == "sunny"
+      expect(subject.land(airport,weather)).to eq(true)
+    elsif weather == "stormy"
+      expect{subject.land(airport,weather)}.to raise_error("Bad weather; no landing")
+    end
   end
 
   it "takes off from at airport towards speficified destination" do
     allow(airport).to receive(:reducetraffic).and_return(true)
-    expect(@plane.takeoff(airport)).to eq(true)
+    weather = ["sunny","stormy"].sample
+    if weather == "sunny"
+      expect(subject.takeoff(airport,weather)).to eq(true)
+    elsif weather == "stormy"
+      expect{subject.takeoff(airport,weather)}.to raise_error("Bad weather; no takeoff")
+    end
   end
 
 end
