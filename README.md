@@ -198,13 +198,13 @@ End with an example of getting some data out of the system or using it for a lit
 All feature tests can be run using:
 
 ```
-$ rvm feature_test.rb
+$ irb require 'feature_test'
 ```
 
 Individual feature tests can be run executing the individual files contained within the feature_test directory. For example:
 
 ```
-$ rvm ./feature_test/feature_test_one.rb
+$ irb require './feature_test/feature_test_one'
 ```
 
 ### Unit tests
