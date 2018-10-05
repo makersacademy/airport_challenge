@@ -92,7 +92,69 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 # Project Title
 
-A week end task set by Makers Academy to gage our understanding of test driven development. The instructions for the task given can be found in the instruction section of this document,.
+A week end task set by Makers Academy to gage our understanding of test driven development. The instructions for the task given can be found in the instruction section of this document.
+
+# Progress
+
+## User Stories
+- [ ] User Story 1
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+- [ ] User Story 2
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+- [ ] User Story 3
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+- [ ] User Story 4
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+- [ ] User Story 5
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+- [ ] User Story 6
+  - [ ] feature tests written
+  - [ ] unit tests written
+  - [ ] unit tests pass
+  - [ ] feature tests pass
+  - [ ] refactored
+
+##
+
+# Consideration
+A list of things that I need to consider throughout the challenge:
+
+* Planes can land and take off provided that the weather is sunny
+* You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
+* Your code should defend against edge cases such as inconsistent states of the system
+  * Planes can only take off from airports they are in
+  * Planes that are already flying cannot takes off and/or be in an airport
+  * {lanes that are landed cannot land again and must be in an airport
+  * etc.
+* Override weather conditions using use test doubles
+* create a separate file for each:
+  * class
+  * test suite
+* In code review we'll be hoping to see:
+  * All tests passing
+  * High Test coverage (>95% is good)
+  * The code is elegant: every class has a clear responsibility, methods are short etc
+
 
 ## Getting Started
 
