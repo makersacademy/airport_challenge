@@ -12,4 +12,10 @@ describe Airport do
       expect(subject).to respond_to :plane_takeoff
     end
   end
+
+  describe 'plane_statuscheck' do
+    it "responds to plane statuscheck" do
+      expect(subject).to respond_to :plane_statuscheck
+    end
+  end
 end

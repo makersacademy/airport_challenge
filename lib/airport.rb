@@ -4,4 +4,7 @@ class Airport
 
   def plane_takeoff
   end
+
+  def plane_statuscheck
+  end
 end
