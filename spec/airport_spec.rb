@@ -1,8 +1,9 @@
 require 'airport'
+require 'plane'
 require 'pry'
 
 describe Airport do
-  let(:airport) {subject}
+  let(:airport) { subject }
   before { airport.weather = "sunny" }
 
   it "tracks number of planes in airport with #full?" do
@@ -17,11 +18,11 @@ describe Airport do
   end
 
   it "can be given a new capacity" do
-    airport.capacity = 10
+    airport = Airport.new(10)
+    airport.weather = "sunny"
     10.times { Plane.new.land(airport) }
     expect { Plane.new.land(airport) }.to raise_error("Airport is full!")
   end
-
 
   it "has weather" do
     expect(airport.weather).not_to be_nil
