@@ -13,7 +13,8 @@ class Airport
     false
   end
 
-  def weather
+  def weather(weather = "sunny")
+    weather
   end
 end
 
