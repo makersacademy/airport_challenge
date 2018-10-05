@@ -198,7 +198,7 @@ End with an example of getting some data out of the system or using it for a lit
 All feature tests can be run using:
 
 ```
-$ irb require 'feature_test'
+$ ruby feature_tests.rb
 ```
 
 Individual feature tests can be run executing the individual files contained within the feature_test directory. For example:
