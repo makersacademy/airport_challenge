@@ -69,6 +69,12 @@ describe Airport do
       expect{@airport.land(@plane)}.to raise_error("Unable to land; plane is already in airport")
     end
 
+    it "shows plane as in airport once landed" do
+      $weather = "sunny"
+      @airport.land(@plane)
+      expect(@airport.planes_in_airport).to eq([@plane])
+    end
+
   end
 
   describe "Weather" do
