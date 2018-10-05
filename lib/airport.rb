@@ -22,6 +22,7 @@ class Airport
     raise "Unable to takeoff due to stormy weather" if $weather == "stormy"
     raise "Unable to takeoff; plane not in airport" unless @planes_in_airport.include?(plane)
     @planes_in_airport.delete(plane)
+    $planes_outside_airports << plane.object_id
     return "Plane has taken off"
   end
 

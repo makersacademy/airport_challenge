@@ -27,8 +27,16 @@ describe Airport do
     end
 
     it "prevents a plane from taking off if plane is not in airport" do
-      $weater = "sunny"
+      $weather = "sunny"
       expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff; plane not in airport")
+    end
+
+    it "plane id is added to planes_outside_airports array when plane takes off" do
+      $weather = "sunny"
+      plane2 = Plane.new
+      @airport.land(plane2)
+      @airport.takeoff(plane2)
+      expect($planes_outside_airports[-1]).to eq(plane2.object_id)
     end
 
   end
