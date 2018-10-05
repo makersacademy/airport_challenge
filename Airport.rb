@@ -14,7 +14,11 @@ class Airport
     if @weather.clear == false
       fail 'Plane cannot land in a storm.'
     else
-      @plane = plane
+      if @plane == nil
+        @plane = plane
+      else
+        fail 'Plane cannot land, airport is full.'
+      end
     end
   end
 

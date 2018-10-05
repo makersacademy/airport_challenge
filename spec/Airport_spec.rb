@@ -28,4 +28,9 @@ describe Airport do
     allow_any_instance_of(Weather).to receive(:clear) { false }
     expect{ subject.land(Plane.new) }.to raise_error 'Plane cannot land in a storm.'
   end
+
+  it 'should prevent planes from landing if airport is full' do
+    subject.land(Plane.new)
+    expect{ subject.land(Plane.new) }.to raise_error 'Plane cannot land, airport is full.'
+  end
 end
