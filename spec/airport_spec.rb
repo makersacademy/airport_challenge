@@ -24,4 +24,8 @@ describe Airport do
     allow(subject).to receive(:weather) { "stormy" }
     expect { subject.land(Plane.new) }.to raise_error "Cannot land, weather is stormy."
   end
+
+  it 'returns "stormy" when setting the weather' do
+    expect(subject.weather("stormy")).to eq "stormy"
+  end
 end
