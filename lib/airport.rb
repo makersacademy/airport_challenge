@@ -1,13 +1,17 @@
 class Airport
+  DEFAULT_CAPACITY = 5
 
-  def initialize
+  attr_accessor :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     check_weather
     @planes_in_airport = []
   end
 
   def land(plane)
     raise "Unable to land due to stormy weather" if $weather == "stormy"
-    raise "Unable to land; airport is full" if @planes_in_airport.length >= 5
+    raise "Unable to land; airport is full" if @planes_in_airport.length >= @capacity
     @planes_in_airport << plane
     return "Plane has landed"
   end
