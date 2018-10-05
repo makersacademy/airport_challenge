@@ -14,7 +14,7 @@ describe Airport do
     airport.hanger << plane
     allow(airport).to receive(:weather) { "sunny" }
     expect(airport.take_off(plane)).to eq plane
-    expect(airport.check(plane)).to eq false
+    expect(airport.check_hanger(plane)).to eq false
   end
 
   it 'allows a plane to take off and confirms that it is no longer in the airport' do
@@ -23,7 +23,7 @@ describe Airport do
     airport.hanger << plane
     allow(airport).to receive(:weather) { "sunny" }
     airport.take_off(plane)
-    expect(airport.check(plane)).to eq false
+    expect(airport.check_hanger(plane)).to eq false
   end
 
   it 'returns an error in take off when weather is stormy' do
@@ -52,5 +52,9 @@ describe Airport do
 
   it "raises an error when trying to take off a plane that isn't in the airport" do
     expect{subject.take_off(Plane.new)}.to raise_error "Cannot take off, plane is not in airport."
+  end
+
+  it 'returns a random number between 0 and 100 when checking the weather' do
+    expect(subject.weather).to eq "sunny"
   end
 end

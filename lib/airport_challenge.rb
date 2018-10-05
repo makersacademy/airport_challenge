@@ -19,11 +19,12 @@ class Airport
     @hanger.delete(plane)
   end
 
-  def check(plane)
+  def check_hanger(plane)
     @hanger.include?(plane)
   end
 
   def weather
+    srand(1)
     rand(100) < 80 ? "sunny" : "stormy"
   end
 end
