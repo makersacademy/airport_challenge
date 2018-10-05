@@ -11,10 +11,16 @@ class Airport
 
   def take_off(plane)
     raise "Specified plane is not in the airport!" unless @landed_planes.include? plane
+    raise "Stormy weather, cannot take off." if weather == "stormy"
     @landed_planes.delete(plane)
   end
 
   def hangar_report
     "Planes currently in the airport: #{@landed_planes}"
+  end
+
+  private
+
+  def weather
   end
 end
