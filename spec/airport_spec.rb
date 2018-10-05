@@ -8,4 +8,10 @@ describe Airport do
   it 'allows a plane to take off' do
     expect(subject.take_off(Plane.new)).to eq true
   end
+
+  it 'allows a plane to take off and confirms that it is no longer in the airport' do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to eq true
+    expect(subject.check(plane)).to eq false
+  end
 end
