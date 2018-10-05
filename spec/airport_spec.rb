@@ -29,9 +29,9 @@ describe Airport do
     expect(subject.weather("stormy")).to eq "stormy"
   end
 
-  it 'raises an error when landing a plane in a full airport' do
+  it 'raises an error when landing a plane in a full airport with a capacity of 1' do
     airport = Airport.new(1)
     airport.hanger << Plane.new
-    expect { subject.land(Plane.new) }.to raise_error "Cannot land, airport is full."
+    expect { airport.land(Plane.new) }.to raise_error "Cannot land, airport is full."
   end
 end

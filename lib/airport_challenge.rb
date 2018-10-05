@@ -1,7 +1,19 @@
 class Airport
+  attr_accessor :hanger
+
+  def initialize(capacity = 20)
+    @capacity = capacity
+    @hanger = []
+  end
+
   def land(*)
-    raise "Cannot land, weather is stormy." unless weather != "stormy"
-    true
+    if weather == "stormy"
+      raise "Cannot land, weather is stormy."
+    elsif @hanger.length < @capacity
+      true
+    else
+      raise "Cannot land, airport is full." unless @hanger.size < @capacity
+    end
   end
 
   def take_off(*)
