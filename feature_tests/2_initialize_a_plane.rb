@@ -1,4 +1,4 @@
-## test that a plane can be initialize
 require './lib/plane'
 
-p1 = Plane.new
+puts "Plane initilaized"
+puts p1 = Plane.new
