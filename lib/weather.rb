@@ -3,10 +3,6 @@ class Weather
     rand()
   end
   def check
-    if seed >= 0.2
-      "sunny"
-    else
-      "stormy"
-    end
+    seed >= 0.2 ? "sunny" : "stormy"
   end
 end

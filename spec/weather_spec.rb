@@ -2,12 +2,12 @@ require 'weather'
 
 describe Weather do
   it 'can be sunny' do
-    allow(subject).to receive(:seed) { 1 }
+    allow(subject).to receive(:seed) { 0.9 }
     expect(subject.check).to eq ("sunny")
   end
 
   it 'can be stormy' do
-    allow(subject).to receive(:seed) { 0 }
+    allow(subject).to receive(:seed) { 0.1 }
     expect(subject.check).to eq "stormy"
   end
 
@@ -26,7 +26,7 @@ describe Weather do
     expect(subject.check).to eq "sunny"
     expect(subject.check).to eq "stormy"
     expect(subject.check).to eq "sunny"
-    expect(subject.check).to eq "stormy" 
+    expect(subject.check).to eq "stormy"
   end
 
 end
