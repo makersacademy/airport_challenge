@@ -5,4 +5,10 @@ class Airport
     Plane.new
   end
 
+  def land(plane)
+    @plane = plane
+  end
+
+  attr_reader :plane
+
 end
