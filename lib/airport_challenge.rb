@@ -1,5 +1,6 @@
 class Airport
   attr_accessor :hanger
+  attr_reader :capacity
 
   def initialize(capacity = 20)
     @capacity = capacity
