@@ -1,4 +1,4 @@
-require 'plane_spec'
+
 require 'simplecov'
 require 'simplecov-console'
 

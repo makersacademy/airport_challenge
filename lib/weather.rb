@@ -1,6 +1,9 @@
 class Weather
-  def check(x)
-    if x == 1
+  def seed
+    rand()
+  end
+  def check
+    if seed >= 0.2
       "sunny"
     else
       "stormy"
