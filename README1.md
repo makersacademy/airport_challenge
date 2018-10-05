@@ -94,8 +94,8 @@ I would like a default airport capacity that can be overridden as appropriate
 #### Feature Test ####
 ```
 require './lib/airport_challenge'
-airport = Airport.new(20)
-plane = Plane.new
+airport = Airport.new
+airport.capacity
 ```
 
 This should return an airport with a capacity of 20.
