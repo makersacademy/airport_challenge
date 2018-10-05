@@ -11,7 +11,11 @@ class Airport
   end
 
   def land(plane)
-    @plane = plane
+    if @weather.clear == false
+      fail 'Plane cannot land in a storm.'
+    else
+      @plane = plane
+    end
   end
 
   def take_off(plane)

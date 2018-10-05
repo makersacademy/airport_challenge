@@ -24,4 +24,8 @@ describe Airport do
     expect{ subject.take_off(Plane.new) }.to raise_error 'Plane cannot take-off in a storm.'
   end
 
+  it 'should prevent planes from taking off when weather is stormy' do
+    allow_any_instance_of(Weather).to receive(:clear) { false }
+    expect{ subject.land(Plane.new) }.to raise_error 'Plane cannot land in a storm.'
+  end
 end
