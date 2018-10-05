@@ -57,4 +57,11 @@ describe Airport do
   it 'returns a random number between 0 and 100 when checking the weather' do
     expect(subject.weather).to eq "sunny"
   end
+
+  it 'raises an error when trying to land a plane that is already in the airport' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.hanger << plane
+    expect { subject.land(plane)}.to raise_error "Cannot land, plane is already in airport."
+  end
 end
