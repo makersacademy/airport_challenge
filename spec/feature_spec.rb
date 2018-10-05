@@ -10,4 +10,4 @@ $weather = "sunny"
 #$weather = "stormy"
 #airport.land(plane)
 #airport.takeoff(plane)
-6.times { airport.land(plane) }
+5.times { airport.land(plane) }
