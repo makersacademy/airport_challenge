@@ -12,4 +12,8 @@ class Airport
     @planes << plane
   end
 
+  def sendoff(plane)
+    @planes.delete(plane)
+  end
+
 end
