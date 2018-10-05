@@ -2,20 +2,21 @@
 
 class Plane
 
-  def initialize(location=Airport.new)
+  def initialize(location="sky")
     @location = location
   end
 
   def land(airport)
     fail("Can't land - too stormy!") if airport.weather == "stormy"
     fail("Airport is full!") if airport.full?
+    fail("Can't land when already in an airport!") unless @location == "sky"
     @location = airport
     airport.planes << self
   end
 
   def take_off(airport)
     fail("Can't take off - too stormy!") if airport.weather == "stormy"
-    fail("The plane is not in that airport. The plane's current location is #{@location}") unless @location == airport
+    fail("The plane is not in that airport. The plane's current location is #{@location}") unless (@location == airport && @location != "sky")
     @location = "sky"
     airport.planes.delete(self)
   end
@@ -23,7 +24,10 @@ class Plane
   def in?(airport)
   end
 
-  attr_accessor :location
+  attr_reader :location
+
+  private
+  attr_writer :location
 end
 
 class Airport
