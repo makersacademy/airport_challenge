@@ -7,5 +7,7 @@ class Airport
     @hanger
   end
 
-
+  def in_hanger?(plane)
+    @hanger == plane
+  end
 end
