@@ -68,28 +68,6 @@ describe Airport do
     end
   end
 
-  # describe 'statuscheck' do
-  #   it "responds to statuscheck" do
-  #     expect(subject).to respond_to :statuscheck
-  #   end
-  #
-  #   it 'asks a plane for its status' do
-  #     plane = Plane.new
-  #     expect(subject.statuscheck(plane)).to eq (true)
-  #   end
-  # end
-
-#  describe 'prevent_takeoff' do
-#    it "responds to prevent takeoff" do
-#      expect(subject).to respond_to :prevent_takeoff
-#    end
-
-#    it 'stops a plane from taking off' do
-#      plane = Plane.new
-#      expect(subject.prevent_takeoff(plane)).to eq (true)
-#    end
-#  end
-
   describe 'check_weather' do
     it "responds to check weather" do
       expect(subject).to respond_to :weather?

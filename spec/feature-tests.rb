@@ -16,7 +16,12 @@ airport.takeoff(plane)
 puts plane.status? == "air"
 puts plane.status?
 puts airport.weather? == "stormy" || airport.weather? == "sunny"
-weather = "stormy"
-puts weather
+airport.set_weather("stormy")
+puts airport.weather?
 puts airport.takeoff(plane) == "takeoff not allowed"
 puts airport.land(plane) == "landing not allowed"
+airport.set_weather("sunny")
+#puts airport.weather?
+#puts airport.takeoff(plane) == "takeoff not allowed"
+#puts airport.land(plane) == "landing not allowed"
+puts airport.capacity? == 10

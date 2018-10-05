@@ -9,7 +9,6 @@ class Airport
     return  "landing not allowed"
     else
       plane.set_status("land")
-      #return "land"
     end
   end
 
@@ -20,14 +19,6 @@ class Airport
       plane.set_status("air")
     end
   end
-
-  # def statuscheck(plane)
-  #   true
-  # end
-
-  # def prevent_takeoff(plane)
-  #   true
-  # end
 
   def weather?
     @weather
