@@ -1,4 +1,5 @@
 require 'airport'
+require 'pry'
 
 describe Plane do
   let(:plane) { subject }
@@ -9,23 +10,30 @@ describe Plane do
   end
 
   describe "#land" do
-    context "when it is sunny" do
-      before { plane.land(airport) }
-      it { should respond_to(:land).with(1).argument }
 
+    context "plane is able to land" do
+      before { airport.weather = "sunny"}
+      before { plane.land(airport) }
+
+      it { should respond_to(:land).with(1).argument }
       it "should update its location upon landing" do
         expect(plane.location).to eq(airport)
       end
-
       it "should update airport's planes upon landing" do
         expect(airport.planes).to include(plane)
       end
     end
 
-    context "when it is stormy" do
-      before { airport.weather = "stormy" }
+    context "plane cannot land" do
+
+      it "cannot land if airport is full" do
+        airport.weather = "sunny"
+        5.times { Plane.new.land(airport) }
+        expect{plane.land(airport)}.to raise_error("Airport is full!")
+      end
 
       it "doesn't land in a storm" do
+        airport.weather = "stormy"
         expect { plane.land(airport) }.to raise_error("Can't land - too stormy!")
       end
     end
@@ -35,6 +43,8 @@ describe Plane do
 
   describe "#take_off" do
     context "when it is sunny" do
+
+      before { airport.weather = "sunny"}
       before { plane.take_off(airport) }
 
       it { should respond_to(:take_off).with(1).argument }
@@ -60,5 +70,4 @@ describe Plane do
   describe "#in?" do
     it { should respond_to(:in?).with(1).argument }
   end
-
 end

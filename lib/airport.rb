@@ -8,6 +8,7 @@ class Plane
 
   def land(airport)
     fail("Can't land - too stormy!") if airport.weather == "stormy"
+    fail("Airport is full!") if airport.full?
     @location = airport
     airport.planes << self
   end
@@ -25,16 +26,27 @@ class Plane
 end
 
 class Airport
-  def initialize(capacity=5)
+  attr_accessor :capacity, :weather, :planes
+  DEFAULT_CAPACITY = 5
+  
+  def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
-    @weathers = ["sunny", "stormy"]
-    @weather = "sunny"
-    # @weather = @weathers[rand(2)]
+    @weather = get_weather
     @planes = []
   end
 
   def full?
-    true
+    @planes.length >= @capacity
   end
-  attr_accessor :capacity, :weather, :planes
+
+  private
+  def get_weather
+    if rand(10) == 0
+      "stormy"
+    else
+      "sunny"
+    end
+  end
+
+
 end
