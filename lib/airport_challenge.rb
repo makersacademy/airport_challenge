@@ -8,13 +8,9 @@ class Airport
   end
 
   def land(*)
-    if weather == "stormy"
-      raise "Cannot land, weather is stormy."
-    elsif @hanger.length < @capacity
-      true
-    else
-      raise "Cannot land, airport is full." unless @hanger.size < @capacity
-    end
+    raise "Cannot land, weather is stormy." unless weather == "sunny"
+    raise "Cannot land, airport is full." unless @hanger.size < @capacity
+    true
   end
 
   def take_off(*)
