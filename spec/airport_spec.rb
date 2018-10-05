@@ -1,5 +1,6 @@
 require "airport"
 
+
 describe Airport do
   describe 'land' do
     it 'responds to land' do
@@ -7,8 +8,9 @@ describe Airport do
     end
 
     it 'instructs a plane to land' do
-      airport = Airport.new
-      airport.set_weather("sunny")
+      #airport = Airport.new
+      puts subject.weather?
+      subject.set_weather("sunny")
       #subject.dock double(:bike)
       #subject.land double(:airport)
       #airport = double("airport")
@@ -20,22 +22,22 @@ describe Airport do
       plane = Plane.new
       #plane.set_status("land")
       # airport.set_weather("clear")
-      airport.land(plane)
+      subject.land(plane)
       expect(plane.status?).to eq ("land")
     end
 
     it 'prevents landing if stormy' do
       plane = Plane.new
-      airport = Airport.new
-      airport.set_weather("stormy")
-      expect(airport.land(plane)).to eq ("landing not allowed")
+      #airport = Airport.new
+      subject.set_weather("stormy")
+      expect(subject.land(plane)).to eq ("landing not allowed")
     end
 
     it 'plane is set as landed' do
-      airport = Airport.new
+      #airport = Airport.new
       plane = Plane.new
-      airport.set_weather("sunny")
-      airport.land(plane)
+      subject.set_weather("sunny")
+      subject.land(plane)
       expect(plane.status?).to eq ("land")
     end
   end
@@ -46,9 +48,9 @@ describe Airport do
     end
 
     it 'instructs a plane to take off' do
-      airport = Airport.new
+      #airport = Airport.new
       plane = Plane.new
-      airport.set_weather("sunny")
+      subject.set_weather("sunny")
       expect(plane.status?).to eq ("air")
     end
 
@@ -73,8 +75,8 @@ describe Airport do
     end
 
     it 'checks the weather' do
-      airport = Airport.new
-      expect(airport.weather?).to eq('stormy').or(eq('sunny'))
+      #airport = Airport.new
+      expect(subject.weather?).to eq('stormy').or(eq('sunny'))
     end
   end
 
@@ -94,9 +96,21 @@ describe Airport do
       expect(subject).to respond_to :capacity?
     end
 
-    it 'checks capacity of the airport - should be 10' do
-      airport = Airport.new
-      expect(subject.capacity?).to eq (10)
+    it 'checks capacity of the airport' do
+      #airport = Airport.new
+      expect(subject.capacity?).to eq (Airport::DEFAULT_CAPACITY)
+    end
+  end
+
+  describe 'full?' do
+    it "responds to full?" do
+      expect(subject).to respond_to :full?
+    end
+
+    it 'raises an error when full' do
+      subject.set_weather("sunny")
+      subject.capacity.times { subject.land(Plane.new)}
+      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
     end
   end
 
@@ -106,8 +120,8 @@ describe Airport do
     end
 
     it 'sets capacity of the airport' do
-      airport = Airport.new
-      expect(airport.set_capacity).to eq (true)
+      #airport = Airport.new
+      expect(subject.set_capacity).to eq (true)
     end
   end
 
