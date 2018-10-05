@@ -13,10 +13,12 @@ describe Airport do
   end
 
   it "confirms a plane has landed" do
+    $weather = "sunny"
     expect(@airport.land(@plane)).to eq("Plane has landed")
   end
 
   it "lets a plane takeoff" do
+    $weather = "sunny"
     expect(@airport).to respond_to(:takeoff).with(1).argument
   end
 
@@ -41,6 +43,7 @@ describe Airport do
   end
 
   it "prevents landing when airport is full" do
+    $weather = "sunny"
     5.times { @airport.land(@plane) }
     expect{@airport.land(@plane)}.to raise_error("Unable to land; airport is full")
   end

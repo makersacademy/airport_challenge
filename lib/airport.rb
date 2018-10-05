@@ -2,10 +2,13 @@ class Airport
 
   def initialize
     check_weather
+    @planes_in_airport = []
   end
 
   def land(plane)
     raise "Unable to land due to stormy weather" if $weather == "stormy"
+    raise "Unable to land; airport is full" if @planes_in_airport.length >= 5
+    @planes_in_airport << plane
     return "Plane has landed"
   end
 
