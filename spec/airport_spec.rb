@@ -8,4 +8,7 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq(plane)
   end
+  it 'responds to takeoff' do
+      expect(subject).to respond_to(:takeoff)
+  end
 end
