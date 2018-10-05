@@ -18,6 +18,7 @@ class Airport
 
   def takeoff(plane)
     raise "Unable to takeoff due to stormy weather" if $weather == "stormy"
+    raise "Unable to takeoff; plane not in airport" if @planes_in_airport.include?(plane) == false
     return "Plane has taken off"
   end
 

@@ -16,14 +16,18 @@ describe Airport do
     end
 
     it "confirms a plane has taken off" do
-      #allow(@airport).to receive(:check_weather) { "sunny" }
       $weather = "sunny"
+      @airport.land(@plane)
       expect(@airport.takeoff(@plane)).to eq("Plane has taken off")
     end
 
     it "prevents takeoff when weather is stormy" do
       $weather = "stormy"
       expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff due to stormy weather")
+    end
+
+    it "prevents a plane from taking off if plane is not in airport" do
+      expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff; plane not in airport")
     end
 
   end
