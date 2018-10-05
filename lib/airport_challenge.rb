@@ -7,22 +7,23 @@ class Airport
     @hanger = []
   end
 
-  def land(*)
+  def land(plane)
     raise "Cannot land, weather is stormy." unless weather != "stormy"
     raise "Cannot land, airport is full." unless @hanger.size < @capacity
-    true
+    @hanger << plane
   end
 
-  def take_off(*)
+  def take_off(plane)
+    raise "Cannot take off, plane is not in airport." unless @hanger.include?(plane)
     raise "Cannot take off, weather is stormy." unless weather != "stormy"
-    true
+    @hanger.delete(plane)
   end
 
-  def check(*)
-    false
+  def check(plane)
+    @hanger.include?(plane)
   end
 
-  def weather(*)
+  def weather
     rand(100) < 80 ? "sunny" : "stormy"
   end
 end
