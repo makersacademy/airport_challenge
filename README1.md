@@ -99,3 +99,7 @@ airport.capacity
 ```
 
 This should return an airport with a capacity of 20.
+
+## Edge Cases ##
+
+* Planes can only take off from airports that they are currently in.
