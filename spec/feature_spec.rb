@@ -5,8 +5,9 @@ airport = Airport.new
 plane = Plane.new
 
 $weather = "sunny"
-airport.land(plane)
-airport.takeoff(plane)
-$weather = "stormy"
-airport.land(plane)
-airport.takeoff(plane)
+#airport.land(plane)
+#airport.takeoff(plane)
+#$weather = "stormy"
+#airport.land(plane)
+#airport.takeoff(plane)
+6.times { airport.land(plane) }

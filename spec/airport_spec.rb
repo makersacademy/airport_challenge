@@ -35,4 +35,14 @@ describe Airport do
     expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff due to stormy weather")
   end
 
+  it "prevents landing when weather is stormy" do
+    $weather = "stormy"
+    expect{@airport.land(@plane)}.to raise_error("Unable to land due to stormy weather")
+  end
+
+  it "prevents landing when airport is full" do
+    5.times { @airport.land(@plane) }
+    expect{@airport.land(@plane)}.to raise_error("Unable to land; airport is full")
+  end
+
 end

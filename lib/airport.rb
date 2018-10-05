@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Unable to land due to stormy weather" if $weather == "stormy"
     return "Plane has landed"
   end
 
