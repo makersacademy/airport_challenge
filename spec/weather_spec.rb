@@ -6,5 +6,7 @@ describe Weather do
     weather = Weather.new
     subject.met_report
     expect(subject.met_report).to eq("sun").or(eq("stormy"))
+    allow(weather).to receive(:stormy).and_return true
+    allow(weather).to receive(:stormy).and_return false
   end
 end

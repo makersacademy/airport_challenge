@@ -4,6 +4,7 @@ class Weather
     a = "stormy"
     b = "sun"
     rand(2) == 1 ? a : b
+
   end
 
 end
