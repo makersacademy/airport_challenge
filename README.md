@@ -1,4 +1,3 @@
-test
 Airport Challenge
 =================
 
@@ -89,3 +88,87 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+# Project Title
+
+A week end task set by Makers Academy to gage our understanding of test driven development. The instructions for the task given can be found in the instruction section of this document,.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+* Ruby 2.5.0
+* RSpec gem
+* Bundle gem
+
+### Installing
+
+
+Installing Ruby 2.5.0
+
+```
+$ rvm install "ruby-2.5.0"
+```
+
+Installing RSpec
+
+```
+$ gem install rspec
+```
+
+Installing Bundle
+
+```
+$ gem install bundle
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+### Feature tests
+
+All feature tests can be run using:
+
+```
+$ rvm feature_test.rb
+```
+
+Individual feature tests can be run executing the individual files contained within the feature_test directory. For example:
+
+```
+$ rvm ./feature_test/feature_test_one.rb
+```
+
+### Unit tests
+
+unit tests can be running the following script from the root:
+
+```
+$ rspec
+```
+
+### Test coverage
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## contributors
+[makersacademy](https://github.com/makersacademy) - author of the challenge
+[Terence Mace](https://github.com/Tolvic) - solution for the challenge
+
+
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
