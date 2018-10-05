@@ -1,9 +1,13 @@
 class Airport
-  def land(plane)
-    true
+  def land(*)
+    if self.weather == "stormy"
+      raise "Cannot land, weather is stormy."
+    else
+      true
+    end
   end
 
-  def take_off(plane)
+  def take_off(*)
     if self.weather == "stormy"
       raise "Cannot take off, weather is stormy."
     else
