@@ -37,7 +37,7 @@ describe Plane do
   end
 
   describe "#take_off" do
-    context "plan is able to take off" do
+    context "plane is able to take off" do
       before { plane.land(airport); plane.take_off(airport) }
 
       it "should update its location upon take-off" do

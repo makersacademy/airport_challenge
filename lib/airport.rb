@@ -1,6 +1,7 @@
 class Airport
   attr_reader :planes, :weather
   DEFAULT_CAPACITY = 5
+  STORM_CHANCE = 0.1
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -14,6 +15,6 @@ class Airport
 
   private
   def random_weather
-    rand(10).zero? ? "stormy" : "sunny"
+    rand(1 / STORM_CHANCE).zero? ? "stormy" : "sunny"
   end
 end
