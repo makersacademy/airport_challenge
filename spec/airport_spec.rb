@@ -8,7 +8,15 @@ describe Airport do
 
     it 'instructs a plane to land' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq (true)
+      plane.status? == "land"
+      expect(subject.land(plane)).to eq ("land")
+    end
+
+    it 'plane is set as landed' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(plane.status?).to eq ("land")
     end
   end
 

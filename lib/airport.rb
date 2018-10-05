@@ -1,7 +1,7 @@
 class Airport
 
   def land(plane)
-    true
+    plane.set_status("land")
   end
 
   def takeoff(plane)

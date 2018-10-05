@@ -10,3 +10,5 @@ airport.check_weather(airport)
 airport.prevent_landing(plane)
 airport.check_capacity(airport)
 airport.set_capacity(airport)
+airport.land(plane)
+puts plane.status? == "land"
