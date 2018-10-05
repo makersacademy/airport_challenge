@@ -97,18 +97,18 @@ A week end task set by Makers Academy to gage our understanding of test driven d
 # Progress
 
 ## User Stories
-- [ ] User Story 1
-  - [ ] feature tests written
-  - [ ] unit tests written
-  - [ ] unit tests pass
-  - [ ] feature tests pass
-  - [ ] refactored
-- [ ] User Story 2
-  - [ ] feature tests written
-  - [ ] unit tests written
-  - [ ] unit tests pass
-  - [ ] feature tests pass
-  - [ ] refactored
+- [x] User Story 1
+  - [x] feature tests written
+  - [x] unit tests written
+  - [x] unit tests pass
+  - [x] feature tests pass
+  - [x] refactored
+- [x] User Story 2
+  - [x] feature tests written
+  - [x] unit tests written
+  - [x] unit tests pass
+  - [x] feature tests pass
+  - [x] refactored
 - [ ] User Story 3
   - [ ] feature tests written
   - [ ] unit tests written
