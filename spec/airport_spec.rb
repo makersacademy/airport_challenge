@@ -27,6 +27,7 @@ describe Airport do
     end
 
     it "prevents a plane from taking off if plane is not in airport" do
+      $weater = "sunny"
       expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff; plane not in airport")
     end
 
@@ -50,8 +51,14 @@ describe Airport do
 
     it "prevents landing when airport is full" do
       $weather = "sunny"
-      5.times { @airport.land(@plane) }
+      5.times { @airport.land(Plane.new) }
       expect{@airport.land(@plane)}.to raise_error("Unable to land; airport is full")
+    end
+
+    it "only lands planes that are not already in airports" do
+      $weather = "sunny"
+      @airport.land(@plane)
+      expect{@airport.land(@plane)}.to raise_error("Unable to land; plane is already in airport")
     end
 
   end
