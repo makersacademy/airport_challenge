@@ -6,6 +6,10 @@ class Airport
   def take_off(plane)
     true
   end
+
+  def check(*)
+    false
+  end
 end
 
 class Plane
