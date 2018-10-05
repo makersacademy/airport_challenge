@@ -34,4 +34,8 @@ describe Airport do
     airport.hanger << Plane.new
     expect { airport.land(Plane.new) }.to raise_error "Cannot land, airport is full."
   end
+
+  it 'returns a new airport with a default capacity of 20' do
+    expect(subject.capacity).to eq 20
+  end
 end
