@@ -11,4 +11,10 @@ describe Airport do
     expect(subject.take_off(plane)).to eq true
     expect(subject.check).to eq []
   end
+
+  it 'prevents a plane from taking off when the weather is stormy' do
+    plane = Plane.new
+    weather = "stormy"
+    expect(subject.take_off(plane)).to eq false
+  end
 end
