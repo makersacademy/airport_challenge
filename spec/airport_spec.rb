@@ -83,6 +83,10 @@ describe Airport do
       expect(@airport.check_weather).to be_a(String)
     end
 
+    it "returns sunny or stormy" do
+      expect(@airport.check_weather).to eq("stormy").or(eq("sunny"))
+    end
+
   end
 
   describe "Capacity" do
