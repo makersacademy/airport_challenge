@@ -11,7 +11,7 @@ class Airport
   end
 
   def receive(plane)
-    # raise "Airport is closed due to weather conditions" if Weather.stormy? == true
+    raise "Airport is closed due to weather conditions" if Weather.stormy? == true
     @planes << plane
   end
 

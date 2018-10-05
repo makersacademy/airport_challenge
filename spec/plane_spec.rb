@@ -14,6 +14,7 @@ describe Plane do
   it 'can take off from an airport' do
     airport = Airport.new
     plane = Plane.new
+    allow(Weather).to receive(:stormy?) { false }
     plane.land(airport)
     allow(Weather).to receive(:stormy?) { false }
     plane.takeoff
