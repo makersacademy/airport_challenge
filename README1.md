@@ -77,9 +77,9 @@ I want to prevent landing when the airport is full
 #### Feature Test ####
 ```
 require './lib/airport_challenge'
-airport = Airport.new
-plane = Plane.new
-airport.land(plane)
+airport = Airport.new(1)
+airport.hanger << Plane.new
+airport.land(Plane.new)
 ```
 
 This should return an error as the airport is full.
