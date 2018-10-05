@@ -24,4 +24,13 @@ describe Plane do
     end
   end
 
+  it "cannot land if it is not flying" do
+    subject.land(airport,"sunny")
+    expect{subject.land(airport,"sunny")}.to raise_error "Already landed; Cant do it twice!"
+  end
+
+  it "cannot take off if it is already flying" do
+    subject.takeoff(airport,"sunny")
+    expect{subject.takeoff(airport,"sunny")}.to raise_error "Already flying; Cant takeoff again!"
+  end
 end

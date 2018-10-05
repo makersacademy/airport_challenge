@@ -5,6 +5,7 @@ class Plane
   def initialize
     @currentairport = ""
     @destination=""
+
   end
 
   def land(airport, weather)
