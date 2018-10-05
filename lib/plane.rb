@@ -2,11 +2,10 @@ require "./lib/airport.rb"
 
 class Plane
 
-def initialize
-  @currentairport = ""
-  @destination=""
-end
-
+  def initialize
+    @currentairport = ""
+    @destination=""
+  end
 
   def land(airport, weather)
     raise "Bad weather; no landing" unless weather == "sunny"

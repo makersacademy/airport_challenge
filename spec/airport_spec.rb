@@ -16,7 +16,7 @@ let(:plane1) {double :plane1}
     airport = Airport.new(2)
     airport.addtraffic(plane1)
     airport.addtraffic(plane2)
-    expect(airport.addtraffic(plane3)).to eq(false)
+    expect{airport.addtraffic(plane3)}.to raise_error("Cant land; NO capacity")
   end
 
   it "allows a plane to takeoff" do
