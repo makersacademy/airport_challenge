@@ -2,6 +2,7 @@ class Airport
 
   def initialize
     @weather = ["stormy","sunny"].sample
+    @capacity = 10
   end
 
   def land(plane)
@@ -33,7 +34,7 @@ class Airport
   end
 
   def capacity?
-    true
+    @capacity
   end
 
   def set_capacity

@@ -28,7 +28,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.set_weather("stormy")
-      expect(subject.land(plane)).to eq ("landing not allowed")
+      expect(airport.land(plane)).to eq ("landing not allowed")
     end
 
     it 'plane is set as landed' do
@@ -56,7 +56,6 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.set_weather("stormy")
-      airport.takeoff(plane)
       expect(airport.takeoff(plane)).to eq ("takeoff not allowed")
     end
 
@@ -95,9 +94,9 @@ describe Airport do
       expect(subject).to respond_to :capacity?
     end
 
-    it 'checks capacity of the airport' do
+    it 'checks capacity of the airport - should be 10' do
       airport = Airport.new
-      expect(subject.capacity?).to eq (true)
+      expect(subject.capacity?).to eq (10)
     end
   end
 
