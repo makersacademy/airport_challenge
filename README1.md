@@ -43,7 +43,7 @@ I want to prevent takeoff when weather is stormy
 require './lib/airport_challenge'
 airport = Airport.new
 plane = Plane.new
-airport.weather = "stormy"
+airport.weather("stormy")
 airport.take_off(plane)
 ```
 
@@ -61,7 +61,7 @@ I want to prevent landing when weather is stormy
 require './lib/airport_challenge'
 airport = Airport.new
 plane = Plane.new
-airport.weather = "stormy"
+airport.weather("stormy")
 airport.land(plane)
 ```
 
