@@ -14,4 +14,8 @@ describe Airport do
     expect(subject.take_off(plane)).to eq true
     expect(subject.check(plane)).to eq false
   end
+
+  it 'returns an error in take off when weather is stormy' do
+    expect{subject.take_off(Plane.new)}.to raise_error ("Cannot take off, weather is stormy.")
+  end
 end
