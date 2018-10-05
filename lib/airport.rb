@@ -4,7 +4,8 @@ class Airport
   end
 
   def take_off(plane)
-    @hanger
+    @hanger = ""
+    plane
   end
 
   def in_hanger?(plane)
