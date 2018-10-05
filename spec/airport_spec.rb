@@ -2,10 +2,12 @@ require 'airport_challenge'
 
 describe Airport do
   it 'lands a plane' do
+    allow(subject).to receive(:weather) { "sunny" }
     expect(subject.land(Plane.new)).to eq true
   end
 
   it 'allows a plane to take off' do
+    allow(subject).to receive(:weather) { "sunny" }
     expect(subject.take_off(Plane.new)).to eq true
   end
 
@@ -25,13 +27,10 @@ describe Airport do
     expect { subject.land(Plane.new) }.to raise_error "Cannot land, weather is stormy."
   end
 
-  it 'returns "stormy" when setting the weather' do
-    expect(subject.weather("stormy")).to eq "stormy"
-  end
-
   it 'raises an error when landing a plane in a full airport with a capacity of 1' do
     airport = Airport.new(1)
     airport.hanger << Plane.new
+    allow(subject).to receive(:weather) { "sunny" }
     expect { airport.land(Plane.new) }.to raise_error "Cannot land, airport is full."
   end
 
