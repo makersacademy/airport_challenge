@@ -2,11 +2,9 @@ require 'pry'
 
 class Airport
 
-  attr_reader :capacity
+  attr_reader :capacity, :planes
 
   DEFAULT_CAPACITY = 10
-
-  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
