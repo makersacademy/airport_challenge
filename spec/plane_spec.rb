@@ -1,5 +1,5 @@
 require_relative '../docs/plane.rb'
-require_relative '../docs/airport.rb'
+# require_relative '../docs/airport.rb'
 require 'pry'
 
 describe Plane do
@@ -50,27 +50,26 @@ describe Plane do
 
 # will need to sub Airport
   it 'can not land when airport if full' do
-    airport = Airport.new("airport")
-    airport.hanger.push(Plane.new)
+    hanger.push(Plane.new)
     allow(plane).to receive(:check_weather).and_return("sunny")
+    allow(airport).to receive(:full?).and_return(true)
     expect { plane.land(airport) }.to raise_error "Error: Airport is full"
   end
 
-  it 'cannot take off from an airport its not at' do
-    a1 = Airport.new("a1")
-    a2 = Airport.new("a2")
-    allow(plane).to receive(:check_weather).and_return("sunny")
-    plane.land(a1)
-    expect { plane.takeoff(a2) }.to raise_error "Error: Not at that airport"
-  end
-
-  it 'can take off from the airport its at' do
-    airport = Airport.new("airport")
-    plane3 = Plane.new
-    allow(plane3).to receive(:check_weather).and_return("sunny")
-    plane3.land(airport)
-    plane3.takeoff(airport)
-    expect(plane3.status).to eq "flying"
-  end
+  # it 'can take off from the airport its at' do
+  #   airport = Airport.new("airport")
+  #   allow(plane).to receive(:check_weather).and_return("sunny")
+  #   plane.land(airport)
+  #   plane.takeoff(airport)
+  #   expect(plane.status).to eq "flying"
+  # end
+  #
+  # it 'cannot take off from an airport its not at' do
+  #   a1 = Airport.new("a1")
+  #   a2 = Airport.new("a2")
+  #   allow(plane).to receive(:check_weather).and_return("sunny")
+  #   plane.land(a1)
+  #   expect { plane.takeoff(a2) }.to raise_error "Error: Not at that airport"
+  # end
 
 end
