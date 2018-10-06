@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise('Cannot take off in stormy weather') if check_weather == 'stormy'
     @hanger = ""
     plane
   end

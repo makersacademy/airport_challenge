@@ -76,7 +76,7 @@ describe Airport do
       allow(subject).to receive(:check_weather) { 'stormy' }
       subject.take_off(plane)
       rescue
-      expect(subject.in_hanger?(plane)).to eq false
+      expect(subject.in_hanger?(plane)).to eq true
     end
 
   end
