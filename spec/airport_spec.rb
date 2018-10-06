@@ -1,6 +1,7 @@
 # This spec tests the airport in airport.rb
 require 'airport'
 
+
 describe Airport do
 
   describe '#Landing procedures' do
@@ -9,6 +10,14 @@ describe Airport do
       expect(subject.instruct_landing(plane)).to eq [plane]
     end
 
+    it 'Should hold multiple planes' do
+      p1, p2, p3, p4 = Plane.new
+      subject.instruct_landing(p1)
+      subject.instruct_landing(p2)
+      subject.instruct_landing(p3)
+      subject.instruct_landing(p4)
+      expect(subject.number_grounded).to eq 4
+    end
   end
 
   describe '#Takeoff procedures' do

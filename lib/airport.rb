@@ -20,4 +20,10 @@ class Airport
     @airport.empty?
   end
 
+  def number_grounded
+    @airport.length
+  end
+
+
+
 end

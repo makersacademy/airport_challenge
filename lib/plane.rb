@@ -8,7 +8,7 @@ class Plane
 
   # Defines the takeoff feature
   def takeoff
-    true
+
   end
 
 end
