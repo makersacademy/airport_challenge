@@ -8,7 +8,6 @@ describe Plane do
 
   it "should know when it is landed" do
     subject.land
-    expect(subject.flying?).to eq false
+    expect(subject.landed?).to eq true
   end
-
 end
