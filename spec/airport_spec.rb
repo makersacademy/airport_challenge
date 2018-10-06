@@ -49,7 +49,7 @@ describe Airport do
     it 'When full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
-      expect{subject.land(p1)}.to raise_error('Cannot land. Airport is full.')
+      expect{subject.land(p2)}.to raise_error('Cannot land. Airport is full.')
     end
   end
 
@@ -115,7 +115,7 @@ describe Airport do
       expect(subject.in_hanger?(p1)).to eq true
     end
 
-    it 'After attempting to land a plane when full' do
+    it 'After atempting to land when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       subject.land(p2)
