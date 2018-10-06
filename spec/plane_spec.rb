@@ -7,4 +7,14 @@ describe Plane do
     is_expected.to respond_to :land
   end
 
+  describe '#takeoff' do
+    it {is_expected.to respond_to :takeoff}
+
+    it 'returns left status' do
+      expect(subject.takeoff).to eq true
+    end
+
+
+  end
+
 end

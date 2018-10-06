@@ -6,4 +6,9 @@ class Plane
 
   end
 
+  # Defines the takeoff feature
+  def takeoff
+    true
+  end
+
 end

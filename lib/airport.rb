@@ -7,4 +7,8 @@ class Airport
     plane
   end
 
+  def instruct_takeoff(plane)
+    plane
+  end
+
 end
