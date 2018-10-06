@@ -36,3 +36,15 @@ Traceback (most recent call last):
         1: from /Users/muge/Projects/airport_challenge/lib/airport.rb:5:in `land'
 ArgumentError (wrong number of arguments (given 1, expected 0))
 2.5.0 :006 >
+
+#### undefined method `takeoff
+
+2.5.0 :009 > airport = Airport.new
+ => #<Airport:0x00007fc3760bc3b8>
+2.5.0 :010 > plane = Plane.new
+ => #<Plane:0x00007fc375864f58>
+2.5.0 :011 > airport.takeoff
+Traceback (most recent call last):
+        2: from /Users/muge/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        1: from (irb):11
+NoMethodError (undefined method `takeoff' for #<Airport:0x00007fc3760bc3b8>)
