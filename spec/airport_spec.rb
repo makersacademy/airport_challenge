@@ -1,4 +1,5 @@
 require 'airport'
+require 'pry'
 
 describe Airport do
   let(:plane) { double(:plane) }

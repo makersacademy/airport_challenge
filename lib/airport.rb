@@ -1,4 +1,6 @@
 class Airport
+  WEATHER_CONDITIONS = Array.new(30, "sunny") << "stormy"
+
   attr_reader :landed_planes
 
   def initialize
@@ -22,7 +24,6 @@ class Airport
   end
 
   def check_weather
-    conditions = Array.new(30, "sunny") << ("stormy")
-    conditions.sample
+    WEATHER_CONDITIONS.sample
   end
 end
