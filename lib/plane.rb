@@ -3,7 +3,8 @@ class Plane
   def initialize
   end
 
-  def land
+  def land(weather)
+    fail "The weather is stormy" if weather == true
     "The plane has landed"
   end
 
