@@ -22,7 +22,7 @@ describe Airport do
       expect { airport.arrive(plane) }.to raise_error('The ground fleet is at capacity')
     end
 
-    it 'should not allow arrivals when stormy weather' do
+    it 'raises an error when stormy' do
       airport = Airport.new(20, stormy_weather)
       expect { airport.arrive(plane) }.to raise_error('The weather is too stormy to land')
     end
@@ -40,6 +40,13 @@ describe Airport do
 
     it 'raises an error if no planes in ground fleet' do
       expect { subject.depart }.to raise_error('No planes available in ground fleet')
+    end
+
+    it 'raises an error if stormy weather' do
+      airport = Airport.new(20, stormy_weather)
+      allow(plane).to receive(:takeoff).and_return(plane)
+      airport.ground_fleet << plane
+      expect { airport.depart }.to raise_error('The weather is too stormy to takeoff')
     end
 
   end
