@@ -13,6 +13,20 @@ Airport Challenge
 
 ```
 
+The first weekend challenge at Makers, involving creating a basic model for air traffic control.
+
+The model has two classes: airports and planes, which interact with each other in a couple of ways: planes can take off or land at airports. This behaviour is actually controlled from within the airport class, which then passes messages to the plane class to tell it its new location (in flight once it has taken off or in the airport once in has landed).
+
+Each time an airport attempts to land or take off a plane, a random generator is used to create weather conditions to see whether it is safe to take off or land: in practice this is done by generating a number between one and five, with five being stormy conditions. One way of making this model more realistic might be to add ability to initialize airports with different chances of stormy weather than the 20% in here.
+
+Edge cases are dealt with: planes cannot land if they are not in flight already, and planes cannot take off from airports they aren't already in.
+
+The tests use mocks to ensure that classes are tested independently of each other and that random elements are controlled within the testing environment. This is my first project using mocks; the tests are in obvious need of refactoring!
+
+
+
+
+
 Instructions
 ---------
 
@@ -36,25 +50,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +87,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
