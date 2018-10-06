@@ -1,5 +1,5 @@
 require_relative '../docs/plane.rb'
-# require_relative '../docs/airport.rb'
+require_relative '../docs/airport.rb'
 require 'pry'
 
 describe Plane do
@@ -48,7 +48,6 @@ describe Plane do
     expect(subject.check_weather).to eq('sunny').or(eq('stormy'))
   end
 
-# will need to sub Airport
   it 'can not land when airport if full' do
     hanger.push(Plane.new)
     allow(plane).to receive(:check_weather).and_return("sunny")
@@ -56,13 +55,14 @@ describe Plane do
     expect { plane.land(airport) }.to raise_error "Error: Airport is full"
   end
 
-  # it 'can take off from the airport its at' do
-  #   airport = Airport.new("airport")
-  #   allow(plane).to receive(:check_weather).and_return("sunny")
-  #   plane.land(airport)
-  #   plane.takeoff(airport)
-  #   expect(plane.status).to eq "flying"
-  # end
+# No sub. Problems with takeoff and equating @airport_name == "airport"
+  it 'can take off from the airport its at' do
+    real_airport = Airport.new("airport")
+    allow(plane).to receive(:check_weather).and_return("sunny")
+    plane.land(real_airport)
+    plane.takeoff(real_airport)
+    expect(plane.status).to eq "flying"
+  end
   #
   # it 'cannot take off from an airport its not at' do
   #   a1 = Airport.new("a1")
