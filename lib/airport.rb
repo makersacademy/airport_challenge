@@ -10,7 +10,7 @@ class Airport
   end
 
   def hangar_report
-    "Planes currently in the airport: #{@landed_planes}"
+    "Planes currently in the hangar: #{@landed_planes}"
   end
 
   def weather
