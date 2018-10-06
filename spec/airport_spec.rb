@@ -11,8 +11,13 @@ describe Airport do
     end
 
     it "should not land a plane if the weather is stormy" do
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(subject).to receive(:check_weather) { "stormy" }
       expect { subject.land(plane) }.to raise_error "Stormy weather, cannot land."
+    end
+
+    it "should not land a plane that is already in the airport" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane already in the airport."
     end
   end
 
@@ -35,7 +40,7 @@ describe Airport do
 
     it "should not let a plane take off if the weather is stormy" do
       subject.land(plane)
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(subject).to receive(:check_weather) { "stormy" }
       expect { subject.take_off(plane) }.to raise_error "Stormy weather, cannot take off."
     end
   end
@@ -46,4 +51,5 @@ describe Airport do
     subject.take_off(plane)
     expect(subject.hangar_report).to eq "Planes currently in the airport: #{[plane_2]}"
   end
+
 end
