@@ -1,4 +1,4 @@
-require 'weather'
+require_relative 'weather'
 
 class Airport
 
@@ -16,15 +16,17 @@ class Airport
   end
 
   def arrive(plane)
-    raise 'The ground fleet is at capacity' if full?
+    raise 'Plane is already grounded' if plane.grounded?
     raise 'The weather is too stormy to land' if @weather.stormy?
-    @ground_fleet << plane
+    raise 'The ground fleet is at capacity' if full?
+    @ground_fleet << plane.land
   end
 
   def depart
     raise 'No planes available in ground fleet' if empty?
     raise 'The weather is too stormy to takeoff' if @weather.stormy?
-    @ground_fleet.pop
+    plane = @ground_fleet.pop
+    plane.takeoff
   end
 
   def full?
