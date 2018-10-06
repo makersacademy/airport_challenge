@@ -6,7 +6,7 @@ class Airport
   attr_reader :landed_planes
   attr_reader :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
   end
@@ -27,9 +27,9 @@ class Airport
     elsif empty?
       raise "No planes available"
     else
-     @landed_planes.delete(plane)
-     "Plane has taken off"
-   end
+      @landed_planes.delete(plane)
+      "Plane has taken off"
+    end
   end
 end
 

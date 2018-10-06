@@ -1,6 +1,6 @@
 class Weather
 
-PROBABILITY_OF_STORM = 0.1
+  PROBABILITY_OF_STORM = 0.1
 
   # def initialize(stormy = false)
   #   @stormy = stormy
@@ -15,11 +15,7 @@ PROBABILITY_OF_STORM = 0.1
   # end
 
   def stormy?
-    if rand < PROBABILITY_OF_STORM
-      true
-    else
-      false
-    end
+    rand < PROBABILITY_OF_STORM
   end
 
 end

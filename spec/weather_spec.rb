@@ -1,7 +1,7 @@
 require 'weather.rb'
 
 describe Weather do
-  it { is_expected.to respond_to :stormy?}
+  it { is_expected.to respond_to :stormy? }
 
   # describe "#report_storm" do
   #   it "can report a storm" do
@@ -13,6 +13,6 @@ describe Weather do
   describe "#stormy?" do
     it "returns true or false using a random number generator" do
       expect(subject.stormy?).to be(true).or be(false)
+    end
   end
-end
 end
