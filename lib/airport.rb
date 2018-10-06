@@ -1,25 +1,24 @@
-require_relative 'plane'
-
 class Airport
 
-  def land(plane)
-    true
+attr_accessor :hanger
+
+  def initialize
+    @hanger = []
   end
 
-#USERSTORY 2 Attempt
-#  def take_off(plane)
-  #  true
-    #return "Plane no longer in the airport"
-  #  status(false)
-#  end
+  def land(plane)
 
-  #def status(true_or_false)
+  @hanger << plane
+  end
 
-#    if true
-  #    return 'Ready to takeoff'
-  #  elsif false
-  #    return 'Plane has left the airport'
-  #  end
+  def total_planes(plane)
+  @hanger.include?(plane)
 
-  #end
+  end
+
+end
+
+class Plane
+
+
 end
