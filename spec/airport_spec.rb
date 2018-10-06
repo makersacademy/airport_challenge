@@ -3,11 +3,6 @@ require 'airport'
 describe Airport do
   it { is_expected.to respond_to :release_plane }
 
-  #it "releases a plane that has landed" do
-  #  plane = subject.release_plane
-  #  expect(plane).to be_landed
-  #end
-
   it { is_expected.to respond_to(:land).with(1).argument }
 
   it { is_expected.to respond_to(:plane) }
@@ -36,4 +31,12 @@ describe Airport do
       expect { subject.release_plane }.to raise_error "No planes at the airport to take off"
     end
   end
+
+  describe '#land' do
+    it 'raises an error when full' do
+      subject.land(Plane.new)
+      expect { subject.land Plane.new }.to raise_error "Airport is full"
+    end
+  end
+
 end
