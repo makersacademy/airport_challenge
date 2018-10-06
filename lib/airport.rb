@@ -19,6 +19,7 @@ class Airport
     raise("Plane is not at airport") unless @hangar.include?(plane)
     raise("Cannot takeoff in stormy weather") if current_weather == "Stormy"
     @hangar.delete(plane)
+    "Plane has taken off"
   end
 
   private
