@@ -13,9 +13,9 @@ describe Plane do
       weather = Weather.new("no")
       expect(plane.take_off(weather.stormy)).to eq "The plane has taken off"
     end
-     it 'allows a plane to take off if the weather is not stormy' do
-       weather = Weather.new("yes")
-       expect{ plane.take_off(weather.stormy) }.to raise_error "The weather is stormy"
-     end
+    it 'allows a plane to take off if the weather is not stormy' do
+      weather = Weather.new("yes")
+      expect { plane.take_off(weather.stormy) }.to raise_error "The weather is stormy"
+    end
   end
 end
