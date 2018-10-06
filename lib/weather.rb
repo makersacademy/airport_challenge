@@ -1,12 +1,13 @@
 class Weather
-  def initialize(sunny=true)
-    @sunny = sunny
+  def initialize(stormy = false)
+    @stormy = stormy
   end
-  def sunny?
-    @sunny
+
+  def stormy?
+    @stormy
   end
 
   def report_storm
-    @sunny = false
+    @stormy = true
   end
 end
