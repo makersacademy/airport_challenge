@@ -3,34 +3,35 @@ require 'weather'
 
 describe Airport do
 
+  before :each do
+    @airport = Airport.new
+    @plane = Plane.new
+    @good_weather = allow(Weather).to receive(:stormy?) { false }
+  end
+
   it "prevents takeoff when weather is stormy" do
-    plane = Plane.new
-    airport = Airport.new
-    allow(Weather).to receive(:stormy?) { false }
-    plane.land(airport)
+    @plane.land(@airport)
     allow(Weather).to receive(:stormy?) { true }
-    expect { plane.takeoff }.to raise_error "Airport is closed"
+    expect { @plane.takeoff }.to raise_error "Airport is closed"
   end
 
   it "prevents landing when weather is stormy" do
-    plane = Plane.new
-    airport = Airport.new
     allow(Weather).to receive(:stormy?) { true }
-    expect { plane.land(airport) }.to raise_error "Airport is closed"
+    expect { @plane.land(@airport) }.to raise_error "Airport is closed"
   end
 
   it "prevents landing if airport is full" do
-    airport = Airport.new
+    Airport::DEFAULT_CAPACITY.times { @airport.receive(Plane.new) }
     allow(Weather).to receive(:stormy?) { false }
-    Airport::DEFAULT_CAPACITY.times { airport.receive(Plane.new) }
-    allow(Weather).to receive(:stormy?) { false }
-    plane = Plane.new
-    expect { plane.land(airport) }.to raise_error "Airport is closed"
+    expect { @plane.land(@airport) }.to raise_error "Airport is closed"
   end
 
   it "has a default capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    expect(@airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
+
+  # it "cannot receive a plane that's requested to land elsewhere" do
+  #
+  # end
 
 end
