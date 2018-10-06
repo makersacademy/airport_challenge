@@ -5,7 +5,7 @@ describe Airport do
     plane = Plane.new
     allow(subject).to receive(:weather) { "sunny" }
     subject.land(plane)
-    expect(subject.hanger).to include(plane)
+    expect(subject.check_hanger(plane)).to eq true
   end
 
   it 'allows a plane to take off' do
@@ -62,6 +62,6 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.hanger << plane
-    expect { subject.land(plane)}.to raise_error "Cannot land, plane is already in airport."
+    expect { airport.land(plane)}.to raise_error "Cannot land, plane is already in airport."
   end
 end
