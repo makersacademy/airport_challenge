@@ -1,6 +1,8 @@
 require 'airport'
+
 describe Airport do
   let(:plane) { double :plane }
+  before { allow(subject.weather).to receive(:current).and_return("Sunny") }
 
   it "should have a default capacity" do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -13,18 +15,15 @@ describe Airport do
 
   describe "#land" do
     it "should instruct a plane to land" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       expect(subject.land(plane)).to eq "Plane has landed"
     end
 
     it "should store the plane in the airport" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
     end
 
     it "should raise error if planes are already in the airport" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("Plane has already landed")
     end
@@ -35,7 +34,6 @@ describe Airport do
     end
 
     it "should raise error when airport is full" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       subject.capacity.times { airplane = double(:plane); subject.land(airplane) }
       expect { subject.land(plane) }.to raise_error("Airport is full!")
     end
@@ -43,7 +41,6 @@ describe Airport do
 
   describe "#takeoff" do
     it "should confirm plane is no longer at airport after takeoff" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.hangar).to eq []
@@ -54,7 +51,6 @@ describe Airport do
     end
 
     it "should prevent takeoff when the weather is stormy" do
-      allow(subject.weather).to receive(:current).and_return("Sunny")
       subject.land(plane)
       allow(subject.weather).to receive(:current).and_return("Stormy")
       expect { subject.takeoff(plane) }.to raise_error("Cannot takeoff in stormy weather")
