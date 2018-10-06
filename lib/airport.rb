@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    raise("Plane has already landed") if @hangar.include?(plane)
     @hangar << plane
     "Plane has landed"
   end

@@ -11,6 +11,10 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
     end
+    it "should raise error if planes are already in the airport" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("Plane has already landed")
+    end
   end
 
   describe "#takeoff" do
