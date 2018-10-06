@@ -24,6 +24,13 @@ describe Airport do
       expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.instruct_landing Plane.new }.to raise_error 'Can not land do to stormy weather'
     end
+
+    it 'prevents landing when full' do
+      airport = Airport.new
+      expect(airport).to receive(:stormy?).at_least(51).times.and_return(false)
+      50.times { airport.instruct_landing(Plane.new) }
+      expect { airport.instruct_landing(Plane.new) }.to raise_error 'No free places to land'
+    end
   end
 
   describe '#Takeoff procedures' do

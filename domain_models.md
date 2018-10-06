@@ -27,3 +27,11 @@ Weather | stormy?
 airport <-- prevent_landing --> true/false
 airport <-- prevent_takeoff --> true/false
 weather <-- stormy? ---> true/false
+
+Objects  | Messages
+------------- | -------------
+capacity | override
+airport | prevent_landing_when_full
+
+airport <-- capacity --> set/default
+airport <-- prevent landing when full -->
