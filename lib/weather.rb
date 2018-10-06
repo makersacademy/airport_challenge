@@ -1,13 +1,16 @@
+require 'pry'
+
 class Weather
-  def initialize(stormy)
-    @stormy = stormy
+  def initialize
+    @weather = rand(2)
   end
 
-  def stormy
-    if @stormy == "yes"
-      true
+  def check_weather
+    if @weather == 1
+      "stormy"
     else
-      false
+      "fine"
     end
   end
+
 end

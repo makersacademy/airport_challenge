@@ -1,12 +1,14 @@
 require 'weather'
 
 describe Weather do
-  it "checks to see if the weather is stormy" do
-    bad_weather = Weather.new("yes")
-    expect(bad_weather.stormy).to eq(true)
+  it "checks the weather forcast on a stormy day" do
+    weather = Weather.new
+    weather.stub(:initialize) {1}
+    expect(weather.check_weather).to eq("stormy")
   end
-  it "checks if the weather is not stormy" do
-    good_weather = Weather.new("no")
-    expect(good_weather.stormy).to eq(false)
+  it "checks the weather forcast on a fine day" do
+    weather2 = Weather.new
+    weather2.stub(:initialize) {0}
+    expect(weather2.check_weather).to eq("fine")
   end
 end
