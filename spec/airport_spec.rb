@@ -29,10 +29,6 @@ describe Airport do
       allow(plane).to receive(:fly).and_return true
     }
 
-    it "should instruct a plane to land" do
-      expect(subject.land(plane)).to eq "Plane has landed"
-    end
-
     it "should store the plane in the airport" do
       subject.land(plane)
       expect(subject.hangar).to eq [plane]

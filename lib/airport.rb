@@ -19,7 +19,6 @@ class Airport
     raise("This plane has already landed") if plane.landed?
     plane.land
     @hangar << plane
-    "Plane has landed"
   end
 
   def takeoff(plane)
@@ -28,7 +27,6 @@ class Airport
     raise("Cannot takeoff in stormy weather") if weather.stormy?
     plane.fly
     @hangar.delete(plane)
-    "Plane has taken off"
   end
 
   private
