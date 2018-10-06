@@ -9,8 +9,15 @@ describe Weather do
 
     it 'is false' do
       weather = Weather.new(false)
-      expect(weather.stormy?).to be_falsey
+      expect(weather).not_to be_stormy
     end
 
   end
+
+  # describe '#random_boo' do
+  #   it 'returns true or false' do
+  #     expect(subject.random_boo(1,4)).to be_kind_of(Boolean.new)
+  #   end
+  # end
+
 end

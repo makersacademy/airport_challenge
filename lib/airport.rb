@@ -1,22 +1,30 @@
+require 'weather'
+
 class Airport
 
   DEFAULT_GROUND_FLEET_CAPACITY = 20
 
-  attr_reader :ground_fleet, :capacity
+  attr_reader :ground_fleet, :capacity, :weather
 
-  def initialize(capacity=DEFAULT_GROUND_FLEET_CAPACITY)
+  def initialize(
+    capacity = DEFAULT_GROUND_FLEET_CAPACITY,
+    weather = Weather.new
+  )
     @ground_fleet = []
     @capacity = capacity
+    @weather = weather
   end
 
   def arrive(plane)
-    return @ground_fleet << plane unless full?
-    raise 'The ground fleet is at capacity'
+    raise 'The ground fleet is at capacity' if full?
+    raise 'The weather is too stormy to land' if @weather.stormy?
+    @ground_fleet << plane
   end
 
   def depart
-    return @ground_fleet.pop unless empty?
-    raise 'No planes available in ground fleet'
+    raise 'No planes available in ground fleet' if empty?
+    raise 'The weather is too stormy to takeoff' if @weather.stormy?
+    @ground_fleet.pop
   end
 
   def full?
