@@ -13,6 +13,10 @@ describe Plane do
       allow(airport).to receive(:full?).and_return(true)
       expect{plane.land(airport)}.to raise_error "Airport is full"
     end
+    it "should raise an error if stormy weather" do
+      plane.land(airport)
+      expect(plane.location).to raise_error "Too stormy to land"
+    end
   end
 
   describe "#take_off" do
