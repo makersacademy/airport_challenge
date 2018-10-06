@@ -1,23 +1,21 @@
 # This is a weathe class that keeps track of the weather and generates random conditions
 class Weather
 
-  def forcast
-    conditions = 1 + rand(7)
+  def stormy?
+    conditions = 1 + rand(6)
     case conditions
     when 1
-      excelent_weather = true
+      excelent_weather = false
     when 2
-      good_weather = true
+      good_weather = false
     when 3
-      acceptable_weather = true
+      acceptable_weather = false
     when 4
-      rainy = true
+      rainy = false
     when 5
-      overcast = true
+      overcast = false
     when 6
-      low_ceiling = false
-    when 7
-      no_fly = false
+      stormy = true
     end
   end
 end

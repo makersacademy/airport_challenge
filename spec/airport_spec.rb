@@ -18,6 +18,12 @@ describe Airport do
       subject.instruct_landing(p4)
       expect(subject.number_grounded).to eq 4
     end
+
+    it 'prevents landing when stormy' do
+    weather = Weather.new
+    expect(weather.stormy?).to receive(:rand).and_return(5)
+    expect(subject.instruct_landing Plane.new).to raise_error 'Can not land do to stormy weather'
+    end
   end
 
   describe '#Takeoff procedures' do
