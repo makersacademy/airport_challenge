@@ -1,5 +1,7 @@
 require 'airport'
 require 'weather'
+require 'plane'
+require 'pry'
 
 describe Airport do
 
@@ -29,9 +31,5 @@ describe Airport do
   it "has a default capacity" do
     expect(@airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
-
-  # it "cannot receive a plane that's requested to land elsewhere" do
-  #
-  # end
 
 end

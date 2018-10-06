@@ -21,11 +21,8 @@ class Airport
   end
 
   def sendoff(plane)
-    # binding.pry
     raise "Airport is closed" if Weather.stormy? == true
-    # binding.pry
     @planes.delete(plane)
-    # binding.pry
   end
 
   def full?

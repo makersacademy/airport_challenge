@@ -2,6 +2,8 @@ require 'pry'
 
 class Plane
 
+  attr_accessor :location
+
   def land(airport)
     raise "This plane has already landed" if @location == airport
     airport.receive(self)
@@ -13,9 +15,5 @@ class Plane
     @location.sendoff(self)
     @location = "air"
   end
-
-  private
-
-  attr_accessor :location
 
 end
