@@ -115,12 +115,12 @@ A week end task set by Makers Academy to gage our understanding of test driven d
   - [ ] unit tests pass
   - [ ] feature tests pass
   - [ ] refactored
-- [ ] User Story 4
-  - [ ] feature tests written
-  - [ ] unit tests written
-  - [ ] unit tests pass
-  - [ ] feature tests pass
-  - [ ] refactored
+- [x] User Story 4
+  - [x] feature tests written
+  - [x] unit tests written
+  - [x] unit tests pass
+  - [x] feature tests pass
+  - [x] refactored
 - [ ] User Story 5
   - [ ] feature tests written
   - [ ] unit tests written
@@ -139,25 +139,25 @@ A week end task set by Makers Academy to gage our understanding of test driven d
 # Consideration
 A list of things that I need to consider throughout the challenge:
 
--[ ] Planes can land and take off provided that the weather is sunny
--[x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
--[ ] Your code should defend against edge cases such as inconsistent states of the system
-  -[ ] Planes can only take off from airports they are in
-  -[ ] Planes that are already flying cannot takes off and/or be in an airport
-  -[ ] {lanes that are landed cannot land again and must be in an airport
-  -[ ] etc.
--[ ] Override weather conditions using use test doubles
--[ ] create a separate file for each:
-  -[ ] class
-  -[ ] test suite
--[ ] In code review we'll be hoping to see:
-  -[ ] All tests passing
-  -[ ] High Test coverage (>95% is good)
-  -[ ] The code is elegant:
-    -[ ] Every class has a clear responsibility
-    -[ ] Methods are short
-    -[ ] Etc.
-  -[ ] README file
+- [ ] Planes can land and take off provided that the weather is sunny
+- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
+- [ ] Your code should defend against edge cases such as inconsistent states of the system
+  -  [ ] Planes can only take off from airports they are in
+  - [ ] Planes that are already flying cannot takes off and/or be in an airport
+  - [ ] {lanes that are landed cannot land again and must be in an airport
+  - [ ] etc.
+- [ ] Override weather conditions using use test doubles
+- [ ] create a separate file for each:
+  - [ ] class
+  - [ ] test suite
+- [ ] In code review we'll be hoping to see:
+  - [ ] All tests passing
+  - [ ] High Test coverage (>95% is good)
+  - [ ] The code is elegant:
+    - [ ] Every class has a clear responsibility
+    - [ ] Methods are short
+    - [ ] Etc.
+  - [ ] README file
 
 
 ## Getting Started
