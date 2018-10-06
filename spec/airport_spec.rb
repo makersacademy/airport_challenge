@@ -1,8 +1,11 @@
 require 'airport'
-
+require 'pry'
 describe Airport do
   let(:plane) { double :plane }
-  before { allow(subject.weather).to receive(:current).and_return("Sunny") }
+  let(:weather) { double :weather }
+  let(:subject) { Airport.new(Airport::DEFAULT_CAPACITY, weather) }
+
+  before { allow(weather).to receive(:stormy?).and_return false }
 
   it "should have a default capacity" do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -29,7 +32,7 @@ describe Airport do
     end
 
     it "should raise when the weather is stormy" do
-      allow(subject.weather).to receive(:current).and_return("Stormy")
+      allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
     end
 
@@ -52,7 +55,7 @@ describe Airport do
 
     it "should prevent takeoff when the weather is stormy" do
       subject.land(plane)
-      allow(subject.weather).to receive(:current).and_return("Stormy")
+      allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.takeoff(plane) }.to raise_error("Cannot takeoff in stormy weather")
     end
   end

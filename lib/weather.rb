@@ -1,9 +1,11 @@
 class Weather
-  def initialize
-    @possible_weather = ["Sunny", "Stormy"]
+  POSSIBLE_WEATHER = ["Sunny", "Stormy"]
+
+  def stormy?
+    current == "Stormy"
   end
 
   def current
-    @possible_weather.sample
+    POSSIBLE_WEATHER.sample
   end
 end
