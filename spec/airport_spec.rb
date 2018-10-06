@@ -51,7 +51,7 @@ describe Airport do
   end
 
   it "raises an error when trying to take off a plane that isn't in the airport" do
-    expect{subject.take_off(Plane.new)}.to raise_error "Cannot take off, plane is not in airport."
+    expect { subject.take_off(Plane.new) }.to raise_error "Cannot take off, plane is not in airport."
   end
 
   it 'returns a random number between 0 and 100 when checking the weather' do
@@ -62,6 +62,6 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.hanger << plane
-    expect { airport.land(plane)}.to raise_error "Cannot land, plane is already in airport."
+    expect { airport.land(plane) }.to raise_error "Cannot land, plane is already in airport."
   end
 end
