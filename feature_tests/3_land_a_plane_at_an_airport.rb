@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+srand(1)
 
 puts "Airport initilaized"
 puts  a1 = Airport.new
