@@ -28,6 +28,10 @@ describe Plane do
       plane.take_off
       expect(airport.hanger).to be_empty
     end
+    it "should not take off if stormy" do
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect{plane.take_off(airport)}.to raise_error "Too stormy to take off"
+    end
   end
 
 
