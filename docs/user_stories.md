@@ -7,9 +7,6 @@ As an air traffic controller:
 - I want to prevent landing when weather is stormy
 - I want to prevent landing when the airport is full
 
-Nouns: Plane, Airport
-Verbs: Land, Takeoff, Confirm no longer at airport => whereabouts
-
 As the system designer
 - I would like a default airport capacity that can be overridden as appropriate
 
@@ -17,4 +14,4 @@ As the system designer
 Edge Cases such as:
 - inconsistent states of the system ensuring that planes can only take off from airports they are in;
 -planes that are already flying cannot takes off and/or be in an airport;
--planes that are landed cannot land again and must be in airport 
+-planes that are landed cannot land again and must be in airport

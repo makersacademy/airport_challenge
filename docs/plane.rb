@@ -24,7 +24,7 @@ class Plane
     current_weather = check_weather
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already flying" if (@status == "flying")
-    fail "Error: Not at that airport" unless (@airport_name == airport )
+    fail "Error: Not at that airport" unless (@airport_name == airport)
     @status = "flying"
     # need to delete plane from hanger when taken off
   end
