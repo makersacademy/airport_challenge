@@ -2,8 +2,8 @@ class Airport
   DEFAULT_CAPACITY = 10
   attr_accessor :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
-    @weather = ["stormy","sunny"].sample
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @weather = ["stormy", "sunny"].sample
     @capacity = capacity
     @planes = []
   end
@@ -11,19 +11,19 @@ class Airport
   def land(plane)
     fail 'Airport full' if full?
     if @weather == "stormy"
-    return  "landing not allowed"
+      return "landing not allowed"
     else
-      plane.set_status("land")
+      plane.update_status("land")
       @planes << plane
-      #puts @planes
+      # puts @planes
     end
   end
 
   def takeoff(plane)
     if @weather == "stormy"
-    return  "takeoff not allowed"
+      return "takeoff not allowed"
     else
-      plane.set_status("air")
+      plane.update_status("air")
     end
   end
 
@@ -31,13 +31,13 @@ class Airport
     @weather
   end
 
-  def set_weather(weather)
-     @weather = weather
+  def update_weather(weather)
+    @weather = weather
   end
 
-  def prevent_landing(plane)
-    true
-  end
+  # def prevent_landing(plane)
+  #   true
+  # end
 
   def capacity?
     @capacity
@@ -47,7 +47,7 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def set_capacity
+  def update_capacity
     true
   end
 end

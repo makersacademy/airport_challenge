@@ -8,18 +8,18 @@ describe Plane do
 
     it 'gets plane status' do
       plane = Plane.new
-      expect(plane.status?).to eq ("air")
+      expect(plane.status?).to eq "air"
     end
   end
 
-  describe 'plane set status' do
-    it "responds to set_status" do
-      expect(subject).to respond_to :set_status
+  describe 'plane update status' do
+    it "responds to update_status" do
+      expect(subject).to respond_to :update_status
     end
 
     it 'sets plane status' do
       plane = Plane.new
-      expect(plane.set_status("land")).to eq ("land")
+      expect(plane.update_status("land")).to eq "land"
     end
   end
 end

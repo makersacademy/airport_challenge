@@ -7,7 +7,7 @@ class Plane
     @status
   end
 
-  def set_status(status)
+  def update_status(status)
     @status = status
   end
 end

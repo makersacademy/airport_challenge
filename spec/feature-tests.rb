@@ -1,11 +1,11 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
 airport = Airport.new
-#plane = Plane.new
+# plane = Plane.new
 
 # airport.weather?
 # airport.capacity?
-# airport.set_capacity
+# airport.update_capacity
 # airport.land(plane)
 # puts plane.status? == "land"
 # airport.takeoff(plane)
@@ -18,7 +18,7 @@ airport = Airport.new
 # puts airport.land(plane) == "landing not allowed"
 airport.set_weather("sunny")
 puts airport.capacity? == 10
-10.times{airport.land(Plane.new)}
-#airport.land(Plane.new)
+10.times { airport.land(Plane.new) }
+# airport.land(Plane.new)
 airport.land(Plane.new)
 puts airport.full?
