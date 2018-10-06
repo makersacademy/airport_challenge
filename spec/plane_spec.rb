@@ -27,4 +27,16 @@ describe Plane do
     expect {plane.takeoff}.to raise_error "Unable to takeoff in these weather conditions"
   end
 
+  it 'wont land if the weather is stormy' do
+    plane = Plane.new
+    allow(plane).to receive(:check_weather).and_return("stormy")
+    expect {plane.land}.to raise_error "Unable to land in these weather conditions"
+  end
+
+  it 'wont takeoff if its already flying' do
+    plane = Plane.new
+    allow(plane).to receive(:check_weather).and_return("sunny")
+    expect {plane.takeoff}.to raise_error "Error: Already flying"
+  end
+
 end
