@@ -3,6 +3,23 @@ require 'plane'
 describe Plane do
   let(:airport) { double(:airport, capacity: 20, landed_planes: [], weather: "sunny") }
 
+  describe "#location" do
+    it 'should have a default location of the sky' do
+      expect(subject.location).to eq "sky"
+    end
+
+    it 'changes its location to airport once landed' do
+      subject.land(airport)
+      expect(subject.location).to eq "airport"
+    end
+
+    it 'should be in the sky after taking off again' do
+      subject.land(airport)
+      subject.take_off(airport)
+      expect(subject.location).to eq "sky"
+    end
+  end
+
   describe "#land" do
     it 'should be able to land in an airport' do
       subject.land(airport)
