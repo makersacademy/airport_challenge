@@ -18,21 +18,20 @@ describe Airport do
     end
   end
 
-  decribe 'Can check if full' do
-    it 'Returns a boolean'
-      expect(subject.full?).to be_in([true, false])
+  describe 'Can check if full' do
+    it 'Returns a boolean' do
+      expect(subject.full?).to be(true).or be(false)
     end
 
-    it 'true when not full'
+    it 'true when not full' do
       expect(subject.full?).to eq false
     end
 
-    it 'false when full'
+    it 'false when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(plane)
       expect(subject.full?).to eq true
     end
-
   end
 
   describe 'Landing a plane' do
@@ -63,8 +62,8 @@ describe Airport do
   end
 
   describe 'Check if plane is in the hanger:' do
-    it 'Returns a boolean'
-      expect(subject.in_hanger?).to be_in([true, false])
+    it 'Returns a boolean' do
+      expect(subject.in_hanger?(plane)).to be(true).or be(false)
     end
 
     it 'Before it has landed' do
@@ -99,7 +98,6 @@ describe Airport do
       rescue
       expect(subject.in_hanger?(plane)).to eq true
     end
-
   end
 
 end
