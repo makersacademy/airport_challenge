@@ -1,7 +1,8 @@
 class Weather
 
   def self.stormy?
-    [true, false].sample
+    return true if rand(100) <= 25
+    false
   end
 
 end
