@@ -1,9 +1,10 @@
 class Plane
 
   def initialize
-    @flying = false
+    @location = :not_in_use
   end
 
-  attr_reader :flying
+  attr_reader :location
+  attr_writer :location
 
 end
