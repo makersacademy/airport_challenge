@@ -2,6 +2,7 @@ require 'plane'
 
 describe Plane do
   let(:airport) { double(:airport, capacity: 20, landed_planes: [], weather: "sunny") }
+  let(:airport_2) { double(:airport, capacity: 20, landed_planes: [], weather: "sunny") }
 
   describe "#land" do
     it 'should be able to land in an airport' do
@@ -16,7 +17,7 @@ describe Plane do
 
     it 'cannot land if it is already in the airport' do
       subject.land(airport)
-      expect { subject.land(airport) }.to raise_error "Plane already in the airport."
+      expect { subject.land(airport) }.to raise_error "Already in the airport."
     end
 
     it 'cannot land if the airport is full' do
@@ -33,7 +34,7 @@ describe Plane do
     end
 
     it "cannot take off if not already in the airport" do
-      expect { subject.take_off(airport) }.to raise_error "Plane not in the airport."
+      expect { subject.take_off(airport) }.to raise_error "Not in the airport."
     end
 
     it "cannot take off if the weather is stormy" do
@@ -58,5 +59,10 @@ describe Plane do
       subject.take_off(airport)
       expect(subject.location).to eq "sky"
     end
+
+    it "cannot be instructed to land if already in an airport" do
+      subject.land(airport)
+      expect { subject.land(airport_2) }.to raise_error "Already in a different airport."
+    end 
   end
 end

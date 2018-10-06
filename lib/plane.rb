@@ -21,12 +21,13 @@ class Plane
 
   def landing_checks(airport)
     raise "Airport is full!" if airport.landed_planes.count >= airport.capacity
-    raise "Plane already in the airport." if airport.landed_planes.include? self
+    raise "Already in the airport." if airport.landed_planes.include? self
+    raise "Already in a different airport." if @location == "airport"
     raise "Stormy weather, cannot land." if airport.weather == "stormy"
   end
 
   def take_off_checks(airport)
-    raise "Plane not in the airport." unless airport.landed_planes.include? self
+    raise "Not in the airport." unless airport.landed_planes.include? self
     raise "Stormy weather, cannot take off." if airport.weather == "stormy"
   end
 end
