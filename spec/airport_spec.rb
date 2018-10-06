@@ -39,8 +39,10 @@ describe Airport do
       subject.instruct_takeoff(plane)
       expect(subject.empty?).to eq true
     end
+
+    it 'expects plain can not take off due to weather' do
+      subject.should_receive(:is_stormy).and_return(true)
+      expect { subject.instruct_takeoff Plane.new }.to raise_error 'Can not takeoff do to stormy weather'
+    end
   end
-
-
-
 end

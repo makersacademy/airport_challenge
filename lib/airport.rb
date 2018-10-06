@@ -1,5 +1,6 @@
 # This is the master class of the airport
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -13,6 +14,7 @@ class Airport
   end
 
   def instruct_takeoff(plane)
+    fail 'Can not takeoff do to stormy weather' if is_stormy
     @airport.pop
     plane
   end
