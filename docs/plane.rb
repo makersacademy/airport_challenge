@@ -10,6 +10,7 @@ class Plane
   def land
     current_weather = check_weather
     fail "Unable to land in these weather conditions" if (current_weather == "stormy")
+    fail "Error: Already at the airport" if (@status = "airport")
     @status = "airport"
   end
 

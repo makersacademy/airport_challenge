@@ -16,8 +16,7 @@ describe Plane do
   end
 
   it 'can confirm when in airport that its at the airport' do
-    plane = Plane.new
-    plane.land
+    plane = Plane.new("airport")
     expect(plane.status).to eq "airport"
   end
 
@@ -37,6 +36,16 @@ describe Plane do
     plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("sunny")
     expect {plane.takeoff}.to raise_error "Error: Already flying"
+  end
+
+  it 'wont land if its already at the airport' do
+    plane = Plane.new("airport")
+    allow(plane).to receive(:check_weather).and_return("sunny")
+    expect {plane.land}.to raise_error "Error: Already at the airport"
+  end
+
+  it 'can check the current weather' do
+    expect(subject.check_weather).to eq('sunny').or(eq('stormy'))
   end
 
 end
