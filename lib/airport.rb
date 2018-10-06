@@ -13,16 +13,20 @@ class Airport
   end
 
   def land(plane)
-    raise("Plane has already landed") if @hangar.include?(plane)
+    raise("Plane is already in the hangar") if @hangar.include?(plane)
     raise("Cannot land in stormy weather") if weather.stormy?
     raise("Airport is full!") if full?
+    raise("This plane has already landed") if plane.landed?
+    plane.land
     @hangar << plane
     "Plane has landed"
   end
 
   def takeoff(plane)
+    raise("This plane is already flying") if plane.flying?
     raise("Plane is not at airport") unless @hangar.include?(plane)
     raise("Cannot takeoff in stormy weather") if weather.stormy?
+    plane.fly
     @hangar.delete(plane)
     "Plane has taken off"
   end
