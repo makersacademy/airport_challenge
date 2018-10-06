@@ -9,6 +9,6 @@ describe Weather do
   it "checks the weather forcast on a fine day" do
     weather2 = Weather.new
     weather2.stub(:initialize) { 0 }
-    expect(weather2.check_weather).to eq("fine")
+    expect(weather2.check_weather).to eq("sunny")
   end
 end

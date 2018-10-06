@@ -9,7 +9,7 @@ class Weather
     if @weather == 1
       "stormy"
     else
-      "fine"
+      "sunny"
     end
   end
 
