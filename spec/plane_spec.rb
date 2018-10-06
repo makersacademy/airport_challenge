@@ -9,6 +9,9 @@ describe Plane do
       plane.land(airport)
       expect(plane.location).to eq airport
     end
+    it "should raise an error if airport is full" do
+      expect{plane.land(airport)}.to raise_error "Airport is full"
+    end
   end
 
   describe "#take_off" do
