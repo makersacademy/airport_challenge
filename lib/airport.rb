@@ -9,4 +9,8 @@ class Airport
     @hangar << plane
     "Plane has landed"
   end
+
+  def takeoff(plane)
+    @hangar.delete(plane)
+  end
 end
