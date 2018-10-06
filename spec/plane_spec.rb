@@ -39,7 +39,7 @@ describe Plane do
 
   it 'wont land if its already at the airport' do
     allow(plane2).to receive(:check_weather).and_return("sunny")
-    expect { plane2.land(airport) }.to raise_error "Error: Already at the airport"
+    expect { plane2.land(airport) }.to raise_error "Error: Already at airport"
   end
 
   it 'can check the current weather' do
