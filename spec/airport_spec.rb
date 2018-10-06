@@ -8,6 +8,11 @@ describe Airport do
       weather = Weather.new
       expect(subject.land(plane)).to eq [plane]
     end
+    it 'stops plane landing if airport full' do
+      airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "Unable to land"
+    end
   end
 
   describe '#takeoff' do
