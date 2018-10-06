@@ -24,11 +24,11 @@ describe Airport do
   end
 
   describe "#capacity" do
-    it 'should have a default capacity of 20 planes' do
+    it "should have a default capacity of 20 planes" do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
-    it 'should be able to override its default capacity' do
+    it "should be able to override its default capacity" do
       expect(Airport.new(50).capacity).to eq 50
     end
   end
