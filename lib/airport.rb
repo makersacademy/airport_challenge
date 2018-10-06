@@ -4,6 +4,6 @@ class Airport
   def land(plane)
   end
 
-  def takeoff
+  def takeoff(plane)
   end
 end
