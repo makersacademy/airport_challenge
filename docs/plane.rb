@@ -11,14 +11,14 @@ class Plane
 
   def land
     current_weather = check_weather
-    fail "Error: adverse weather conditions" if (current_weather == "stormy")
+    fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already at the airport" if (@status = "airport")
     @status = "airport"
   end
 
   def takeoff
     current_weather = check_weather
-    fail "Error: adverse weather conditions" if (current_weather == "stormy")
+    fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already flying" if (@status = "flying")
     @status = "flying"
   end

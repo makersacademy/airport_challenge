@@ -23,13 +23,13 @@ describe Plane do
   it 'wont takeoff if the weather is stormy' do
     plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("stormy")
-    expect { plane.takeoff }.to raise_error "Error: adverse weather conditions"
+    expect { plane.takeoff }.to raise_error "Error: Adverse weather conditions"
   end
 
   it 'wont land if the weather is stormy' do
     plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("stormy")
-    expect { plane.land }.to raise_error "Error: adverse weather conditions"
+    expect { plane.land }.to raise_error "Error: Adverse weather conditions"
   end
 
   it 'wont takeoff if its already flying' do
