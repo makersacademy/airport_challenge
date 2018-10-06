@@ -1,15 +1,15 @@
 require 'airport'
 describe Airport do
   let(:airport) { Airport.new }
+  let(:plane) { double(:plane, land: "The plane has landed") }
   describe '#count' do
     it 'counts a plane that landed' do
-      plane = double(:plane, land: "the plane has landed")
+      plane = double(:plane, land: "The plane has landed")
       expect(airport.count([plane])).to eq 1
     end
 
     it "counts 2 planes that landed" do
-      plane = double(:plane, land: "the plane has landed")
-      plane2 = double(:Plane, land: "the plane has landed") #could you 2 times?
+      plane2 = double(:Plane, land: "the plane has landed")
       planes = [plane, plane2]
       expect(airport.count(planes)).to eq 2
     end
