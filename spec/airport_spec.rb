@@ -115,7 +115,7 @@ describe Airport do
       expect(subject.in_hanger?(p1)).to eq true
     end
 
-    it 'After a 2nd plane attempts to land' do
+    it 'After attempting to land a plane when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       subject.land(p2)
