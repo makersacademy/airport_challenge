@@ -8,7 +8,7 @@ describe Plane do
   end
 
   describe '#takeoff' do
-    it {is_expected.to respond_to :takeoff}
+    it { is_expected.to respond_to :takeoff }
   end
 
 end

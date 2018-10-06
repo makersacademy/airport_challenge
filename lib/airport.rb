@@ -9,12 +9,12 @@ class Airport
   end
 
   def instruct_landing(plane)
-    fail 'Can not land do to stormy weather' if is_stormy
+    fail 'Can not land do to stormy weather' if stormy?
     @airport << plane
   end
 
   def instruct_takeoff(plane)
-    fail 'Can not takeoff do to stormy weather' if is_stormy
+    fail 'Can not takeoff do to stormy weather' if stormy?
     @airport.pop
     plane
   end
@@ -23,15 +23,11 @@ class Airport
     @airport.empty?
   end
 
-  def is_stormy
-    weather = Weather.new
-    weather.stormy?
+  def stormy?(weather)
+    weather
   end
 
   def number_grounded
     @airport.length
   end
-
-
-
 end
