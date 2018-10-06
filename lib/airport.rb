@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :hangar
+  attr_reader :hangar, :weather
 
   def initialize
     @hangar = []
@@ -11,20 +11,16 @@ class Airport
 
   def land(plane)
     raise("Plane has already landed") if @hangar.include?(plane)
+    raise("Cannot land in stormy weather") if @weather.current == "Stormy"
     @hangar << plane
     "Plane has landed"
   end
 
   def takeoff(plane)
     raise("Plane is not at airport") unless @hangar.include?(plane)
-    raise("Cannot takeoff in stormy weather") if current_weather == "Stormy"
+    raise("Cannot takeoff in stormy weather") if @weather.current == "Stormy"
     @hangar.delete(plane)
-    "Plane has taken off"
-  end
+    "Plane has landed"
 
-  private
-
-  def current_weather
-    @weather.current
   end
 end
