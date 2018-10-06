@@ -6,7 +6,7 @@ describe Airport do
   let(:plane_2) { double(:plane) }
 
   def sunny_weather
-    allow(subject).to receive(:check_weather) { "sunny" }
+    allow(subject).to receive(:weather) { "sunny" }
   end
 
   describe "#land" do
@@ -17,7 +17,7 @@ describe Airport do
     end
 
     it "should not land a plane if the weather is stormy" do
-      allow(subject).to receive(:check_weather) { "stormy" }
+      allow(subject).to receive(:weather) { "stormy" }
       expect { subject.land(plane) }.to raise_error "Stormy weather, cannot land."
     end
 
@@ -51,7 +51,7 @@ describe Airport do
     it "should not let a plane take off if the weather is stormy" do
       sunny_weather
       subject.land(plane)
-      allow(subject).to receive(:check_weather) { "stormy" }
+      allow(subject).to receive(:weather) { "stormy" }
       expect { subject.take_off(plane) }.to raise_error "Stormy weather, cannot take off."
     end
   end
@@ -64,9 +64,9 @@ describe Airport do
     expect(subject.hangar_report).to eq "Planes currently in the airport: #{[plane_2]}"
   end
 
-  describe "#check_weather" do
+  describe "#weather" do
     it "should always be either 'sunny' or 'stormy'" do
-      100.times { expect(subject.check_weather).to eq('sunny').or eq('stormy') }
+      100.times { expect(subject.weather).to eq("sunny").or eq("stormy") }
     end
   end
 
