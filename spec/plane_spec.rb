@@ -2,12 +2,13 @@ require 'plane'
 
 describe Plane do
 
-  # it 'plane takes off from airport' do
-  #   plane = Plane.new
-  #   airport = double :Airport, planes: [plane]
-  #   plane.take_off(airport)
-  #   expect(airport.planes).to eq []
-  #
-  # end
+  it 'plane location updates to in flight once taken off' do
+    plane = Plane.new
+    airport = double :Airport, planes: [plane]
+    allow(airport).to receive(:take_off).with(plane).and_return(plane.location = :in_flight)
+    airport.take_off(plane)
+    expect(plane.location).to eq :in_flight
+
+  end
 
 end

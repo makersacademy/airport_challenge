@@ -8,6 +8,15 @@ describe Airport do
 
   end
 
+  describe '#check_storm?' do
+    
+    it 'returns true when random number is 5' do
+      allow(subject).to receive(:random_generator).and_return(5)
+      expect(subject.check_storm?).to eq true
+    end
+
+  end
+
   describe '#take_off' do
 
     it 'plane takes off from airport' do
