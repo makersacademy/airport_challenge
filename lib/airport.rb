@@ -1,8 +1,10 @@
 class Airport
   attr_reader :hanger
-
-  def initialize
+  DEFAULT_CAPACITY = 10
+  
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
+    @capacity = capacity
   end
 
 end

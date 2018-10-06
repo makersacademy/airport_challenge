@@ -2,7 +2,7 @@ require "plane"
 
 describe Plane do
   let(:plane) {Plane.new}
-  let(:airport) {double(:airport, hanger: []), full?: true }
+  let(:airport) {double(:airport, hanger: [], full?: false) }
 
   describe "#land" do
     it "should land a plane at an airport" do
@@ -10,6 +10,7 @@ describe Plane do
       expect(plane.location).to eq airport
     end
     it "should raise an error if airport is full" do
+      allow(airport).to receive(:full?).and_return(true)
       expect{plane.land(airport)}.to raise_error "Airport is full"
     end
   end
