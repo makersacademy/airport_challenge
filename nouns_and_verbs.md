@@ -1,4 +1,5 @@
-Nouns | Verbs/Actions
+
+All Nouns | All Verbs/Actions
 --- | ---
 air traffic controller | get (to destination)
 passengers | instruct (to land)
