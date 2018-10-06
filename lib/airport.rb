@@ -1,8 +1,10 @@
 class Airport
   attr_reader :weather
+  attr_reader :capacity
   def initialize
     @weather = Weather.new
     @hanger = ""
+    @capacity = 1
   end
 
   def check_weather
