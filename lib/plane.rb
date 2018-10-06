@@ -6,6 +6,7 @@ attr_reader :location
   end
 
   def land(airport)
+    raise "Too stormy to land" if airport.stormy?
     raise "Airport is full" if airport.full?
     @location = airport
   end

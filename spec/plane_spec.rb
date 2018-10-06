@@ -2,7 +2,7 @@ require "plane"
 
 describe Plane do
   let(:plane) {Plane.new}
-  let(:airport) {double(:airport, hanger: [], full?: false) }
+  let(:airport) {double(:airport, hanger: [], full?: false, stormy?: false) }
 
   describe "#land" do
     it "should land a plane at an airport" do
@@ -14,8 +14,8 @@ describe Plane do
       expect{plane.land(airport)}.to raise_error "Airport is full"
     end
     it "should raise an error if stormy weather" do
-      plane.land(airport)
-      expect(plane.location).to raise_error "Too stormy to land"
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect{plane.land(airport)}.to raise_error "Too stormy to land"
     end
   end
 

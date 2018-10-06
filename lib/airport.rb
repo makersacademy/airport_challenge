@@ -10,4 +10,8 @@ class Airport
   def full?
     @hanger.length == @capacity
   end
+
+  def stormy?
+    true if rand(10) == 1
+  end
 end
