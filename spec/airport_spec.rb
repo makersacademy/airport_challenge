@@ -12,7 +12,7 @@ describe Airport do
     it 'a plane does not land if weather is stormy' do
       plane = double :plane
       weather = double :weather, stormy?: true
-      expect(subject.land(plane, weather)).to eq "Cannot land, Weather is stormy"
+      expect { subject.land(plane, weather) }.to raise_error "Cannot land, Weather is stormy"
     end
 
     it 'raises an error when airport is full' do
@@ -35,7 +35,7 @@ describe Airport do
     it 'a plane does not take off if weather is stormy' do
       plane = double :plane
       weather = double :weather, stormy?: true
-      expect(subject.takeoff(plane, weather)).to eq "Cannot takeoff, Weather is stormy"
+      expect { subject.takeoff(plane, weather) }.to raise_error "Cannot takeoff, Weather is stormy"
     end
 
     it 'raises an error when there are no planes' do
