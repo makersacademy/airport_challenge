@@ -8,4 +8,8 @@ attr_reader :location
   def land(airport)
     @location = airport
   end
+
+  def take_off
+    @location = "sky"
+  end
 end
