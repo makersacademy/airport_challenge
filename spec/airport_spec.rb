@@ -1,26 +1,26 @@
 require 'airport'
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { double(:plane, land: "The plane has landed") }
   let(:good_weather) { double(:weather, check_weather: "sunny") }
   let(:bad_weather) { double(:weather, check_weather: "stormy") }
 
   describe '#count' do
     it 'counts a plane that landed' do
-      plane = double(:plane, land: "The plane has landed")
-      expect(airport.count([plane])).to eq 1
+      airport.land(good_weather)
+      expect(airport.count).to eq 1
     end
 
     it "counts 2 planes that landed" do
-      plane2 = double(:Plane, land: "the plane has landed")
-      planes = [plane, plane2]
-      expect(airport.count(planes)).to eq 2
+      airport.land(good_weather)
+      airport.land(good_weather)
+      expect(airport.count).to eq 2
     end
 
-    # it 'adds a plane to the airport when it lands' do
-    #   landed_plane = plane.land(good_weather)
-    #   expect(airport.count()).to eq
-    # end
+    it "counts that a plane has taken off" do
+      airport.land(good_weather)
+      airport.take_off(good_weather)
+      expect(airport.count).to eq 0
+    end
   end
 
   describe '#land' do
@@ -31,7 +31,7 @@ describe Airport do
       forcast = bad_weather.check_weather
       expect { airport.land(forcast) }.to raise_error "The weather is stormy"
   end
-end
+  end
 
 describe '#take_off' do
   it 'allows a plane to take off and shows that the plane has left' do
