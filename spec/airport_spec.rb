@@ -22,13 +22,6 @@ describe Airport do
   end
 
   describe "#land" do
-    before {
-      allow(weather).to receive(:stormy?).and_return false;
-      allow(plane).to receive(:landed?).and_return false;
-      allow(plane).to receive(:land).and_return true
-      allow(plane).to receive(:fly).and_return true
-    }
-
     it "should store the plane in the airport" do
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
