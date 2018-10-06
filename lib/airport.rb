@@ -22,6 +22,7 @@ class Airport
   end
 
   def release_plane
+    fail "Its too stormy to take off" if stormy?
     fail "No planes at the airport to take off" if empty?
     planes.pop
   end

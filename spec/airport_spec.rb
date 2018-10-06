@@ -34,6 +34,13 @@ describe Airport do
     end
   end
 
+  describe "#release_plane" do
+    it "raises error when stormy" do
+      allow(Airport).to receive(:stormy?).and_return true
+      expect { subject.release_plane }.to raise_error "Its too stormy to take off"
+    end
+  end
+
   describe '#land' do
     it 'raises an error when full' do
       subject.capacity.times { subject.land Plane.new }
