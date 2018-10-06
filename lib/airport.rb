@@ -2,6 +2,7 @@ class Airport
   attr_reader :weather
   def initialize
     @weather = Weather.new
+    @hanger = ""
   end
 
   def check_weather
@@ -21,5 +22,9 @@ class Airport
 
   def in_hanger?(plane)
     @hanger == plane
+  end
+
+  def full?
+    @hanger != ""
   end
 end

@@ -23,11 +23,11 @@ describe Airport do
       expect(subject.full?).to be(true).or be(false)
     end
 
-    it 'true when not full' do
+    it 'false when not full' do
       expect(subject.full?).to eq false
     end
 
-    it 'false when full' do
+    it 'true when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(plane)
       expect(subject.full?).to eq true
