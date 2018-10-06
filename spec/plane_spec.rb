@@ -3,7 +3,8 @@ require_relative '../docs/airport.rb'
 require 'pry'
 
 describe Plane do
-
+  plane = Plane.new
+  plane2 = Plane.new("airport")
   let(:airport) { double(:airport) }
   let(:hanger)  { [] }
 
@@ -20,32 +21,27 @@ describe Plane do
   end
 
   it 'can confirm when in airport that its at the airport' do
-    plane = Plane.new("airport")
-    expect(plane.status).to eq "airport"
+    expect(plane2.status).to eq "airport"
   end
 
   it 'wont takeoff if the weather is stormy' do
-    plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("stormy")
     expect { plane.takeoff(airport) }.to raise_error "Error: Adverse weather conditions"
   end
 
   it 'wont land if the weather is stormy' do
-    plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("stormy")
     expect { plane.land(airport) }.to raise_error "Error: Adverse weather conditions"
   end
 
   it 'wont takeoff if its already flying' do
-    plane = Plane.new
     allow(plane).to receive(:check_weather).and_return("sunny")
     expect { plane.takeoff(airport) }.to raise_error "Error: Already flying"
   end
 
   it 'wont land if its already at the airport' do
-    plane = Plane.new("airport")
-    allow(plane).to receive(:check_weather).and_return("sunny")
-    expect { plane.land(airport) }.to raise_error "Error: Already at the airport"
+    allow(plane2).to receive(:check_weather).and_return("sunny")
+    expect { plane2.land(airport) }.to raise_error "Error: Already at the airport"
   end
 
   it 'can check the current weather' do
@@ -54,11 +50,15 @@ describe Plane do
 
 # will need to sub Airport
   it 'can not land when airport if full' do
-    plane = Plane.new
     airport = Airport.new
     airport.hanger.push(Plane.new)
     allow(plane).to receive(:check_weather).and_return("sunny")
     expect { plane.land(airport) }.to raise_error "Error: Airport is full"
   end
+
+  # it 'cannot take off from an airport its not at' do
+  #   a1 = Airport.new
+  #   a2 = Airport.new
+  # end
 
 end

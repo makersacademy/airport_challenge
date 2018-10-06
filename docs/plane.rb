@@ -24,6 +24,7 @@ class Plane
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already flying" if (@status == "flying")
     @status = "flying"
+    # need to delete plane from hanger when taken off
   end
 
   def check_weather
