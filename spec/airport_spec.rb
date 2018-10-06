@@ -9,17 +9,6 @@ describe Airport do
     allow(subject).to receive(:check_weather) { "sunny" }
   end
 
-  describe "#capacity" do
-    it 'should have a default capacity of 20 planes' do
-      described_class::DEFAULT_CAPACITY.times { subject.landed_planes << plane }
-      expect { subject.land(plane) }.to raise_error "Airport is full!"
-    end
-
-    it 'should be able to override its default capacity' do
-      expect(Airport.new(50).capacity).to eq 50
-    end
-  end
-
   describe "#land" do
     it "should be able to land a plane" do
       sunny_weather
@@ -78,6 +67,17 @@ describe Airport do
   describe "#check_weather" do
     it "should always be either 'sunny' or 'stormy'" do
       100.times { expect(subject.check_weather).to eq('sunny').or eq('stormy') }
+    end
+  end
+
+  describe "#capacity" do
+    it 'should have a default capacity of 20 planes' do
+      described_class::DEFAULT_CAPACITY.times { subject.landed_planes << plane }
+      expect { subject.land(plane) }.to raise_error "Airport is full!"
+    end
+
+    it 'should be able to override its default capacity' do
+      expect(Airport.new(50).capacity).to eq 50
     end
   end
 
