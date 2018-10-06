@@ -5,11 +5,11 @@ describe Airport do
   describe '#landing' do
     it 'allows planes to land' do
       plane = Plane.new
-      weather = Weather.new
       expect(subject.land(plane)).to eq [plane]
     end
     it 'stops plane landing if airport full' do
       airport = Airport.new
+      allow(airport).to receive(:stormy?) { false }
       Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error "Unable to land"
     end
@@ -18,7 +18,6 @@ describe Airport do
   describe '#takeoff' do
     it 'allows the plane to take off' do
       plane = Plane.new
-      weather = Weather.new
       subject.land(plane)
       expect(subject.takeoff_plane).to eq plane
     end
