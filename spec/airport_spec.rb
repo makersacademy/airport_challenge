@@ -11,13 +11,14 @@ describe Airport do
 
     it 'in stormy weather' do
       allow(subject).to receive(:check_weather) { 'stormy' }
-      expect(subject.land(plane)).to raise_error("Cannot land in stormy weather")
+      expect{subject.land(plane)}.to raise_error('Cannot land in stormy weather')
     end
   end
 
 
 
   it 'A plane can take off' do
+    allow(subject).to receive(:check_weather) { 'sunny' }
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end
@@ -28,11 +29,13 @@ describe Airport do
     end
 
     it 'after it has landed' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(plane)
       expect(subject.in_hanger?(plane)).to eq true
     end
 
     it 'after it has taken off' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.in_hanger?(plane)).to eq false
@@ -41,6 +44,7 @@ describe Airport do
     it 'after attempting to land in stormy weather' do
       allow(subject).to receive(:check_weather) { 'stormy' }
       subject.land(plane)
+      rescue
       expect(subject.in_hanger?(plane)).to eq false
     end
 
