@@ -23,5 +23,8 @@ describe Airport do
       subject.takeoff(plane)
       expect(subject.hangar).to eq []
     end
+    it "should raise error if plane is not in airport" do
+      expect { subject.takeoff(plane) }.to raise_error("Plane is not at airport")
+    end
   end
 end

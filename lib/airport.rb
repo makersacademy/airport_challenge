@@ -12,6 +12,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise("Plane is not at airport") if !@hangar.include?(plane)
     @hangar.delete(plane)
   end
 end
