@@ -20,9 +20,9 @@ describe Airport do
     it 'raises error when trying to take off in stormy weather' do
       plane = double :plane
       allow(subject).to receive(:check_storm?).and_return(true)
-      expect { subject.take_off(plane) }.to raise_error 'Cannot take off in storm'
+      expect { subject.take_off(plane) }.to raise_error 'Cannot land or take off in storm'
     end
-
+    
   end
 
   describe '#land' do
@@ -37,7 +37,7 @@ describe Airport do
     it 'raises error when trying to land in stormy weather' do
       plane = double :plane
       allow(subject).to receive(:check_storm?).and_return(true)
-      expect { subject.land(plane) }.to raise_error 'Cannot land in storm'
+      expect { subject.land(plane) }.to raise_error 'Cannot land or take off in storm'
     end
 
   end

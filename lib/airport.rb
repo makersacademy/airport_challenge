@@ -14,17 +14,17 @@ class Airport
     random_generator == 5
   end
 
-  def landing_take_off_error
-    raise 'Cannot land or take off in storm' if check_storm
+  def error_if_storm
+    raise 'Cannot land or take off in storm' if check_storm?
   end
 
   def land(plane)
-    raise 'Cannot land in storm' if check_storm?
+    error_if_storm
     @planes << plane
   end
 
   def take_off(plane)
-    raise 'Cannot take off in storm' if check_storm?
+    error_if_storm
     @planes.delete(plane)
   end
 
