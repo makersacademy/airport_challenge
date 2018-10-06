@@ -17,10 +17,15 @@ class Airport
   end
 
   def takeoff_plane
+    fail "Unable to take off" if empty? == true
     @planes.pop
   end
 
   def full?
     @planes.length >= @capacity
-end
+  end
+
+  def empty?
+    @planes.length == 0
+  end
 end

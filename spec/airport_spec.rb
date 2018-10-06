@@ -22,7 +22,12 @@ describe Airport do
       subject.land(plane)
       expect(subject.takeoff_plane).to eq plane
     end
+
+    it 'stops plane from taking off if airport is empty' do
+    airport = Airport.new
+    expect { subject.takeoff_plane }.to raise_error "Unable to take off"
   end
+end
 
   describe '#initialize' do
     it 'should initialize with given capacity' do
