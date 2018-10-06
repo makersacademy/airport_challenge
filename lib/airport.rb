@@ -22,7 +22,7 @@ class Airport
   end
 
   def check_weather
-    conditions = Array.new(30, "sunny").push("stormy")
+    conditions = Array.new(30, "sunny") << ("stormy")
     conditions.sample
   end
 end
