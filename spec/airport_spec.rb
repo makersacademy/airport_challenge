@@ -19,6 +19,7 @@ describe Airport do
 
   describe "#takeoff" do
     it "should confirm plane is no longer at airport after takeoff" do
+      allow(subject).to receive(:check_weather).and_return("Sunny")
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.hangar).to eq []
@@ -26,5 +27,12 @@ describe Airport do
     it "should raise error if plane is not in airport" do
       expect { subject.takeoff(plane) }.to raise_error("Plane is not at airport")
     end
+  end
+
+  it "should prevent takeoff when the weather is stormy" do
+    allow(subject).to receive(:check_weather).and_return("Stormy")
+    subject.land(plane)
+    subject.check_weather
+    expect { subject.takeoff(plane) }.to raise_error("Cannot takeoff in stormy weather")
   end
 end
