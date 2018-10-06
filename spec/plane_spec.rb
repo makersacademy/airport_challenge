@@ -16,7 +16,6 @@ describe Plane do
   end
 
   it 'can take off from an airport' do
-    @good_weather
     @plane.takeoff
     expect(@airport.planes).to be_empty
   end
@@ -26,7 +25,6 @@ describe Plane do
   end
 
   it 'cannot take off if it\'s already in the air' do
-    @good_weather
     @plane.takeoff
     expect { @plane.takeoff }.to raise_error "This plane is already in the air"
   end

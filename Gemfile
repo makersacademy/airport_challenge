@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'pry'
 gem 'rake'
 gem 'rubocop', '0.56.0'
-gem 'pry'
 
 group :test do
   gem 'rspec'
