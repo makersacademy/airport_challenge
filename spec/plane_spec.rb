@@ -2,7 +2,7 @@ require "plane"
 
 describe Plane do
   let(:plane) {Plane.new}
-  let(:airport) {double(:airport, hanger: []) }
+  let(:airport) {double(:airport, hanger: []), full?: true }
 
   describe "#land" do
     it "should land a plane at an airport" do

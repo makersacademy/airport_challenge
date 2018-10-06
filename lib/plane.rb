@@ -6,6 +6,7 @@ attr_reader :location
   end
 
   def land(airport)
+    raise "Airport is full" if airport.capacity == 10 
     @location = airport
   end
 
