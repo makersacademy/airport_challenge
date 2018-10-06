@@ -44,6 +44,12 @@ describe Airport do
       allow(subject).to receive(:check_weather) { 'stormy' }
       expect{subject.land(plane)}.to raise_error('Cannot land in stormy weather')
     end
+
+    it 'When full' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error('Cannot land. Airport is full.')
+    end
   end
 
   describe 'Plane taking off' do
