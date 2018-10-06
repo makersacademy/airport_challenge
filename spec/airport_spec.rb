@@ -78,7 +78,10 @@ describe Airport do
       rescue
       expect(subject.in_hanger?(plane)).to eq true
     end
+  end
 
+  it 'can return capacity' do
+    expec(subject.capacity).to eq 1
   end
 
 end
