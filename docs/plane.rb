@@ -1,13 +1,14 @@
 require_relative '../docs/weather.rb'
 require_relative '../docs/airport.rb'
 require 'pry'
-# try and make current_weather @
+
 class Plane
 
-  attr_reader :status
+  attr_reader :status, :airport_name
 
   def initialize(status = "flying")
     @status = status
+    @airport_name = nil
   end
 
   def land(airport)
@@ -20,13 +21,14 @@ class Plane
     airport.hanger << self
   end
 
-  def takeoff(airport)
+  def takeoff(airport) #can't get this to work in irb get third error
     current_weather = check_weather
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already flying" if (@status == "flying")
-    fail "Error: Not at that airport" unless (@airport_name == airport)
+    fail "Error: Not at that airport" unless (@airport_name == "airport")
+    airport.hanger.delete(self)
+    @airport_name = nil
     @status = "flying"
-    # need to delete plane from hanger when taken off
   end
 
   def check_weather

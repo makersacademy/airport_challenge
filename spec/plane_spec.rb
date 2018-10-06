@@ -25,8 +25,8 @@ describe Plane do
   end
 
   it 'wont takeoff if the weather is stormy' do
-    allow(plane).to receive(:check_weather).and_return("stormy")
-    expect { plane.takeoff(airport) }.to raise_error "Error: Adverse weather conditions"
+    allow(plane2).to receive(:check_weather).and_return("stormy")
+    expect { plane2.takeoff(airport) }.to raise_error "Error: Adverse weather conditions"
   end
 
   it 'wont land if the weather is stormy' do
@@ -62,6 +62,15 @@ describe Plane do
     allow(plane).to receive(:check_weather).and_return("sunny")
     plane.land(a1)
     expect { plane.takeoff(a2) }.to raise_error "Error: Not at that airport"
+  end
+
+  it 'can take off from the airport its at' do
+    airport = Airport.new("airport")
+    plane3 = Plane.new
+    allow(plane3).to receive(:check_weather).and_return("sunny")
+    plane3.land(airport)
+    plane3.takeoff(airport)
+    expect(plane3.status).to eq "flying"
   end
 
 end
