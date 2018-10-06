@@ -1,10 +1,11 @@
 require_relative 'plane'
+require 'pry'
 class Airport
   attr_reader :stored_planes
 
-  def initialize
+  def initialize(weather_generator)
     @stored_planes = []
-    @stormy = false
+    @weather_generator = weather_generator
   end
 
   def receive_plane(plane)
@@ -15,12 +16,9 @@ class Airport
     @stored_planes.delete(plane) unless stormy?
   end
 
-  def report_storm
-    @stormy = true
-  end
-
   def stormy?
-    @stormy
+    weather = @weather_generator.generate_weather
+    weather == "stormy" ? true : false
   end
 
 end

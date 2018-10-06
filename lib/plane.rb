@@ -1,4 +1,5 @@
 require_relative 'airport'
+require 'pry'
 class Plane
   attr_reader :location
 
