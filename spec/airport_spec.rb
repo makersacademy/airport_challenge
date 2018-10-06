@@ -19,6 +19,12 @@ describe Airport do
     end
   end
 
+  describe "Capcity" do
+    it "Returns airport capcity" do
+      expect(subject.capacity).to eq 1
+    end
+  end
+
   describe 'Can check if full' do
     it 'Returns a boolean' do
       expect(subject.full?).to be(true).or be(false)

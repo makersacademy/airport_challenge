@@ -14,7 +14,7 @@ puts "Plane lands"
 puts a1.land(p1)
 puts "Check if airport is full"
 puts a1.full?
-puts "2nd Plane initialized"
+puts "initialize second plane"
 puts p2 = Plane.new
-puts "Plane attempts to land"
+puts "Second plane attempts to land"
 puts a1.land(p2)
