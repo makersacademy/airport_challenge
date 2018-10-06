@@ -1,8 +1,15 @@
 require 'airport'
-
 describe Airport do
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
+
+  it "should have a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "should have a capacity that can be changed" do
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq 20
+  end
 
   describe "#land" do
     it "should instruct a plane to land" do
