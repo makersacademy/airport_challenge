@@ -7,11 +7,13 @@ describe Airport do
   describe '#Landing procedures' do
     it 'adds plane to the at_airport array' do
       plane = Plane.new
+      subject.should_receive(:is_stormy).and_return(false)
       expect(subject.instruct_landing(plane)).to eq [plane]
     end
 
     it 'Should hold multiple planes' do
       p1, p2, p3, p4 = Plane.new
+      subject.should_receive(:is_stormy).at_least(4).times.and_return(false)
       subject.instruct_landing(p1)
       subject.instruct_landing(p2)
       subject.instruct_landing(p3)
@@ -20,9 +22,8 @@ describe Airport do
     end
 
     it 'prevents landing when stormy' do
-    weather = Weather.new
-    expect(weather.stormy?).to receive(:rand).and_return(5)
-    expect(subject.instruct_landing Plane.new).to raise_error 'Can not land do to stormy weather'
+    subject.should_receive(:is_stormy).and_return(true)
+    expect { subject.instruct_landing Plane.new }.to raise_error 'Can not land do to stormy weather'
     end
   end
 
