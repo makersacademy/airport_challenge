@@ -1,6 +1,7 @@
 require_relative '../docs/weather.rb'
+require_relative '../docs/airport.rb'
 require 'pry'
-
+# try and make current_weather @
 class Plane
 
   attr_reader :status
@@ -9,17 +10,19 @@ class Plane
     @status = status
   end
 
-  def land
+  def land(airport)
     current_weather = check_weather
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
-    fail "Error: Already at the airport" if (@status = "airport")
+    fail "Error: Already at the airport" if (@status == "airport")
+    fail "Error: Airport is full" if airport.full?
     @status = "airport"
+    airport.hanger << self
   end
 
-  def takeoff
+  def takeoff(airport)
     current_weather = check_weather
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
-    fail "Error: Already flying" if (@status = "flying")
+    fail "Error: Already flying" if (@status == "flying")
     @status = "flying"
   end
 
