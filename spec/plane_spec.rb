@@ -17,7 +17,7 @@ describe Plane do
 
   it 'can confirm when in airport that its at the airport' do
     plane = Plane.new
-    plane.land 
+    plane.land
     expect(plane.status).to eq "airport"
   end
 
