@@ -16,6 +16,7 @@ class Plane
     fail "Error: Already at the airport" if (@status == "airport")
     fail "Error: Airport is full" if airport.full?
     @status = "airport"
+    @airport_name = airport.name
     airport.hanger << self
   end
 
@@ -23,6 +24,7 @@ class Plane
     current_weather = check_weather
     fail "Error: Adverse weather conditions" if (current_weather == "stormy")
     fail "Error: Already flying" if (@status == "flying")
+    fail "Error: Not at that airport" unless (@airport_name == airport )
     @status = "flying"
     # need to delete plane from hanger when taken off
   end

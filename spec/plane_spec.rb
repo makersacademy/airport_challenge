@@ -50,15 +50,18 @@ describe Plane do
 
 # will need to sub Airport
   it 'can not land when airport if full' do
-    airport = Airport.new
+    airport = Airport.new("airport")
     airport.hanger.push(Plane.new)
     allow(plane).to receive(:check_weather).and_return("sunny")
     expect { plane.land(airport) }.to raise_error "Error: Airport is full"
   end
 
-  # it 'cannot take off from an airport its not at' do
-  #   a1 = Airport.new
-  #   a2 = Airport.new
-  # end
+  it 'cannot take off from an airport its not at' do
+    a1 = Airport.new("a1")
+    a2 = Airport.new("a2")
+    allow(plane).to receive(:check_weather).and_return("sunny")
+    plane.land(a1)
+    expect { plane.takeoff(a2) }.to raise_error "Error: Not at that airport"
+  end
 
 end
