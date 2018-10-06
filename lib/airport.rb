@@ -9,6 +9,18 @@ class Airport
     @planes = []
   end
 
+  def weather_selector
+    rand(1..6)
+  end
+
+  def stormy?
+    if weather_selector == 6
+      return true
+    else
+      return false
+    end
+  end
+
   def release_plane
     fail "No planes at the airport to take off" if empty?
     planes.pop
