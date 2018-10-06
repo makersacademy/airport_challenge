@@ -1,12 +1,10 @@
 require_relative '../docs/plane.rb'
-require_relative '../docs/airport.rb'
-require 'pry'
 
 describe Plane do
   plane = Plane.new
   plane2 = Plane.new("airport")
-  let(:airport) { double(:airport) }
-  let(:hanger)  { [] }
+  let(:airport) { double(:airport, name: "airport", capacity: 1, hanger: []) }
+  let(:airport2) { double(:airport, name: "airport2", capacity: 1, hanger: []) }
 
   it 'can land at an airport' do
     expect(subject.respond_to?(:land)).to eq true
@@ -49,27 +47,25 @@ describe Plane do
   end
 
   it 'can not land when airport if full' do
-    hanger.push(Plane.new)
+    airport.hanger.push(Plane.new)
     allow(plane).to receive(:check_weather).and_return("sunny")
     allow(airport).to receive(:full?).and_return(true)
     expect { plane.land(airport) }.to raise_error "Error: Airport is full"
   end
 
-# No sub. Problems with takeoff and equating @airport_name == "airport"
   it 'can take off from the airport its at' do
-    real_airport = Airport.new("airport")
     allow(plane).to receive(:check_weather).and_return("sunny")
-    plane.land(real_airport)
-    plane.takeoff(real_airport)
+    allow(airport).to receive(:full?).and_return(false)
+    plane.land(airport)
+    plane.takeoff(airport)
     expect(plane.status).to eq "flying"
   end
 
   it 'cannot take off from an airport its not at' do
-    a1 = Airport.new("a1")
-    a2 = Airport.new("a2")
     allow(plane).to receive(:check_weather).and_return("sunny")
-    plane.land(a1)
-    expect { plane.takeoff(a2) }.to raise_error "Error: Not at that airport"
+    allow(airport).to receive(:full?).and_return(false)
+    plane.land(airport)
+    expect { plane.takeoff(airport2) }.to raise_error "Error: Not at that airport"
   end
 
 end
