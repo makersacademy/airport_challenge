@@ -1,5 +1,5 @@
 class Airport
   def count(planes)
-    1
+    planes.count
   end
 end
