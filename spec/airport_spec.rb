@@ -44,4 +44,9 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error "Capacity is full."
   end
 
+ # User Story 6
+
+  it 'I would like a default airport capacity that can be overridden as appropriate' do
+    expect(subject.capacity).to eq 50
+  end
 end
