@@ -40,12 +40,19 @@ Airport
   * *flying?* takes a plane argument passed from the take off method to see if the plane requested is actually in the air
   * *full?* private method that checks if the airport is at capacity
 
-##Plane
+
+
+
+Plane
 _________
 
 #### A simple class that has a status trigger that returns true/false
 
-##Weather
+
+
+
+
+Weather
 ________
 
 #### A simple class that creats a random weather condition and returns if it is stormy or not
