@@ -44,6 +44,16 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+#### Edge cases
+
+```
+Ensuring that planes can only take off from airports they are in
+
+Planes that are already flying cannot takes off and/or be in an airport
+
+Planes that are landed cannot land again and must be in an airport
+```
+
 ### Domain Model
 
 | Objects        | Methods           
