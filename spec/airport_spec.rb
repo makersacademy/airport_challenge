@@ -29,22 +29,6 @@ describe Airport do
       airport = Airport.new(2)
       expect(airport.capacity).to eq 2
     end
-
-    it "no. planes in hanger" do
-      airport = Airport.new(5)
-      3.times do
-        airport.land(plane)
-      end
-      expect(airport.no_in_hanger).to eq 3
-    end
-
-    it 'return remaining capacity' do
-      airport = Airport.new(5)
-      3.times do
-        airport.land(plane)
-      end
-      expect(airport.remaining_capacity).to eq 2
-    end
   end
 
   describe 'Can check if full' do
@@ -68,7 +52,7 @@ describe Airport do
   describe 'Landing a plane' do
     it 'In sunny weather' do
       allow(subject).to receive(:check_weather) { 'sunny' }
-      expect(subject.land(p1)).to eq p1
+      expect(subject.land(p1)).to eq [p1]
     end
 
     it 'In stormy weather' do
@@ -140,12 +124,13 @@ describe Airport do
 
     it 'After atempting to land when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
       subject.land(p1)
-      subject.land(p2)
       rescue
-      expect(subject.in_hanger?(p1)).to eq true
-      expect(subject.in_hanger?(p2)).to eq false
-    end
+      expect(subject.in_hanger?(p1)).to eq false
+      end
   end
 
 end
