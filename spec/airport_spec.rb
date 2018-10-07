@@ -1,25 +1,28 @@
 require 'airport'
+require 'pry'
+
 describe Airport do
   let(:airport) { Airport.new }
   let(:good_weather) { double(:weather, check_weather: "sunny") }
   let(:bad_weather) { double(:weather, check_weather: "stormy") }
+  let(:plane) { double :plane }
 
-  describe '#count' do
+  describe '#planes' do
     it 'counts a plane that landed' do
       airport.land(good_weather)
-      expect(airport.count).to eq 1
+      expect(airport.planes_count).to eq 1
     end
 
     it "counts 2 planes that landed" do
       airport.land(good_weather)
       airport.land(good_weather)
-      expect(airport.count).to eq 2
+      expect(airport.planes_count).to eq 2
     end
 
     it "counts that a plane has taken off" do
       airport.land(good_weather)
       airport.take_off(good_weather)
-      expect(airport.count).to eq 0
+      expect(airport.planes_count).to eq 0
     end
   end
 
@@ -30,25 +33,21 @@ describe Airport do
     it 'will not allow a plane to land if the weather is stormy' do
       forcast = bad_weather.check_weather
       expect { airport.land(forcast) }.to raise_error "The weather is stormy"
-  end
+    end
+    it 'raises an exception when the maximum of 2 planes have landed' do
+      airport.land(good_weather)
+      airport.land(good_weather)
+      expect { airport.land(good_weather) }.to raise_exception "The airport is full"
+    end
   end
 
-describe '#take_off' do
-  it 'allows a plane to take off and shows that the plane has left' do
-    expect(airport.take_off(good_weather)).to eq "The plane has taken off"
+  describe '#take_off' do
+    it 'allows a plane to take off and shows that the plane has left' do
+      expect(airport.take_off(good_weather)).to eq "The plane has taken off"
+    end
+    it 'will not allow the plane to take off if the weather is stormy' do
+      forcast = bad_weather.check_weather
+      expect { airport.take_off(forcast) }.to raise_exception "The weather is stormy"
+    end
   end
-  it 'will not allow the plane to take off if the weather is stormy' do
-    forcast = bad_weather.check_weather
-    expect { airport.take_off(forcast) }.to raise_exception "The weather is stormy"
-  end
-end
-
-  # describe '#full' do
-  #   it 'raises an exception when the maximum of 1 planes have landed' do
-  #     airport = Airport.new
-  #     plane = double(:plane, land: "The plane has landed")
-  #     landed_planes = plane.land
-  #     expect {airport.count(landed_planes)}.to raise_exception "The airport is full"
-  #   end
-  # end
 end
