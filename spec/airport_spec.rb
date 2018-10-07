@@ -9,6 +9,13 @@ describe Airport do
       expect { subject.land(plane, weather).to_not raise_error }
     end
 
+      it 'instructs a plane to land and confirms plane is at the airport' do
+        plane = double :plane
+        weather = double :weather, stormy?: false
+        subject.land(plane, weather)
+        expect(subject.landed_planes).not_to be_empty
+      end
+
     it 'a plane does not land if weather is stormy' do
       plane = double :plane
       weather = double :weather, stormy?: true
