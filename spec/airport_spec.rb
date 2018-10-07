@@ -21,19 +21,27 @@ describe Airport do
   end
 
 # User Story 3
-it 'I want to prevent takeoff when weather is stormy' do
-   airport = Airport.new
-   plane = Plane.new
-   allow(airport).to receive(:weather) { "stormy" }
-   expect { airport.take_off(plane) }.to raise_error "You cannot takeoff. It is too stormy"
- end
+  it 'I want to prevent takeoff when weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:weather) { "stormy" }
+    expect { airport.take_off(plane) }.to raise_error "You cannot takeoff. It is too stormy"
+  end
 
 # User Story 4
-it 'I want to prevent takeoff when weather is stormy' do
-   airport = Airport.new
-   plane = Plane.new
-   allow(airport).to receive(:weather) { "stormy" }
-   expect { airport.land(plane) }.to raise_error "You cannot land. It is too stormy"
- end
+  it 'I want to prevent landing when weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:weather) { "stormy" }
+    expect { airport.land(plane) }.to raise_error "You cannot land. It is too stormy"
+  end
+
+ # User Story 5
+  it 'I want to prevent landing when airport is full' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:reached_capacity) { "full" }
+    expect { airport.land(plane) }.to raise_error "Capacity is full."
+  end
 
 end

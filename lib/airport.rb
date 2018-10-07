@@ -4,11 +4,13 @@ class Airport
 
   def initialize
     @hanger = []
+    @capacity = rand(50)
   end
 
   def land(plane)
-    @hanger << plane
     raise "You cannot land. It is too stormy" unless weather != "stormy"
+    raise "Capacity is full." unless reached_capacity != "full"
+    @hanger << plane
   end
 
   def total_planes(plane)
@@ -21,9 +23,15 @@ class Airport
   end
 
   def weather
-     x = rand(2)
+    x = rand(2)
     if x > 1 then return "stormy"
     end
+  end
+end
+
+def reached_capacity
+
+  if @hanger.length > @capacity then return "full"
   end
 end
 
