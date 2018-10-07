@@ -19,7 +19,8 @@ class Airport
     raise "plane already landed" if plane.status? == "land"
     raise "landing not allowed" if stormy?
     plane.update_status("land")
-    @planes << plane
+    # @planes << plane
+    to_hangar(plane)
   end
 
   def takeoff(plane)
@@ -32,10 +33,6 @@ class Airport
 
   def capacity?
     @capacity
-  end
-
-  def update_capacity
-    true
   end
 
   def full?

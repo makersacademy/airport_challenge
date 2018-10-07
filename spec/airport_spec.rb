@@ -143,10 +143,6 @@ describe Airport do
       airport = Airport.new(2)
       expect(airport.capacity?).to eq 2
     end
-
-    it 'sets capacity of the airport' do
-      expect(subject.update_capacity).to eq true
-    end
   end
 
 end
