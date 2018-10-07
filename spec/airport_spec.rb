@@ -7,9 +7,9 @@ describe Airport do
     end
 
     describe 'landing and take off in good weather' do
-      it 'responds to land' do
-        expect(subject).to respond_to :land
-      end
+      # it 'responds to land' do
+      #   expect(subject).to respond_to :land
+      # end
 
       it 'instructs a plane to land' do
         plane = Plane.new
@@ -23,9 +23,9 @@ describe Airport do
         expect(plane.status?).to eq "land"
       end
 
-      it 'responds to takeoff' do
-        expect(subject).to respond_to :takeoff
-      end
+      # it 'responds to takeoff' do
+      #   expect(subject).to respond_to :takeoff
+      # end
 
       it 'instructs a plane to take off' do
         plane = Plane.new
@@ -75,20 +75,20 @@ describe Airport do
   # end
 
   describe 'check_capacity' do
-    it "responds to check capacity" do
-      expect(subject).to respond_to :capacity?
-    end
+    # it "responds to check capacity" do
+    #   expect(subject).to respond_to :capacity?
+    # end
 
-    it 'checks capacity of the airport' do
+    it 'checks capacity of the airport to see if its the default, which is 10' do
       # airport = Airport.new
       expect(subject.capacity?).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
   describe 'full?' do
-    it "responds to full?" do
-      expect(subject).to respond_to :full?
-    end
+    # it "responds to full?" do
+    #   expect(subject).to respond_to :full?
+    # end
 
     it 'raises an error when full' do
       subject.update_weather("sunny")
@@ -98,9 +98,9 @@ describe Airport do
   end
 
   describe 'update_capacity' do
-    it "responds to set capacity" do
-      expect(subject).to respond_to :update_capacity
-    end
+    # it "responds to set capacity" do
+    #   expect(subject).to respond_to :update_capacity
+    # end
 
     it 'sets capacity of the airport' do
       # airport = Airport.new
