@@ -20,7 +20,7 @@ class Airport
   end
 
   def takeoff(plane)
-    if @weather == "stormy"
+    if stormy?
       return "takeoff not allowed"
     else
       plane.update_status("air")

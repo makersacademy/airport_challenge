@@ -49,8 +49,8 @@ describe Airport do
     describe 'prevent landing and take off in bad weather' do
       it 'prevents takeoff if stormy' do
         plane = Plane.new
-        airport = Airport.new
-        expect(airport.takeoff(plane)).to eq "takeoff not allowed"
+        # airport = Airport.new
+        expect(subject.takeoff(plane)).to eq "takeoff not allowed"
       end
 
       it 'prevents landing if stormy' do
