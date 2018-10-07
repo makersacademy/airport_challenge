@@ -1,6 +1,8 @@
 class Plane
-  def initialize(location = "land")
-    @status = location
+  def initialize(airport = nil)
+    airport.nil? ? @status = "air" : @status = "land"
+    # airport.to_hangar(self) unless airport.nil?
+    airport&.to_hangar(self)
   end
 
   def status?

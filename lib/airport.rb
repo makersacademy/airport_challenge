@@ -26,7 +26,7 @@ class Airport
   def takeoff(plane)
     # puts stormy?
     raise "takeoff not allowed" if stormy?
-    raise "plane not at this airport" if !in_hangar(plane)
+    raise "plane not at this airport" unless in_hangar(plane)
       # return "takeoff not allowed"
     # else
     plane.update_status("air")
@@ -67,6 +67,10 @@ class Airport
 
   def in_hangar(plane)
     @planes.include?(plane)
+  end
+
+  def to_hangar(plane)
+    @planes << plane
   end
 
 end
