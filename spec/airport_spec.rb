@@ -1,4 +1,3 @@
-require './lib/airport'
 require './lib/plane'
 require './lib/weather'
 require './lib/airport'
@@ -7,19 +6,27 @@ describe Airport do
     plane = Plane.new
     airport = Airport.new
     airport.land(plane)
-    allow(airport).to receive(:stormy).and_return(false)
-    expect(airport.planes).to eq [plane]
   end
+  #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
   it "instruct a plane to take off" do
-    expect(Airport.new).to respond_to(:take_off)
+    plane = Plane.new
+    plane_2 = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    airport.land(plane_2)
+    airport.take_off(plane)
+    expect(airport.planes).to eq [plane_2]
   end
   it "prevent the plane to take off if weather is stormy" do
     plane = Plane.new
     airport = Airport.new
-    expect(airport).to receive(:stormy).and_return(true)
-    expect { airport.take_off(plane) }.to raise_exception "Can not take of if the weather is stormy"
+    expect(airport).to receive(:stormy?).and_return(true)
+    expect { airport.take_off(plane) }.to raise_exception "Can not take off if the weather is stormy"
   end
-  it "Checks if stormy return's true or false" do
-    expect(subject.stormy(true)).to eq true
+  it "prevent the plain to land if the weather is stormy" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(airport).to receive(:stormy?).and_return(true)
+    expect { airport.land(plane) }.to raise_exception "Can not land if the weather is stormy"
   end
 end
