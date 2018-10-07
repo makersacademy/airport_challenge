@@ -5,7 +5,7 @@ class Weather
     @rng = rng
   end
 
-  def stormy?
+  def stormy?(_airport)
     @rng.rand(100) > 90
   end
 

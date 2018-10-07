@@ -10,11 +10,12 @@ describe Weather do
         Weather.new(rng) 
       }
       it 'has a method to check stromy weather' do
-        expect(subject).to respond_to(:stormy?)
+        expect(subject).to respond_to(:stormy?).with(1).argument
       end
 
       it 'is sunny, if random number is below 90' do
-        expect(subject.stormy?).to eq false
+        airport = double :airport
+        expect(subject.stormy?(airport)).to eq false
       end
     end
 
@@ -24,7 +25,8 @@ describe Weather do
         Weather.new(rng) 
       }
       it 'is stormy, if random number is above 90' do
-        expect(subject.stormy?).to eq true
+        airport = double :airport
+        expect(subject.stormy?(airport)).to eq true
       end
 
     end
