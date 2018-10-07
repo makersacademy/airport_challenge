@@ -22,7 +22,7 @@ class Plane
   def landing_checks(airport, weather)
     raise "Airport is full!" if airport.landed_planes.count >= airport.capacity
     raise "Already in the airport." if airport.landed_planes.include? self
-    raise "Already in a different airport." unless @location == :sky
+    raise "Already in a different airport." unless location == :sky
     raise "Stormy weather, cannot land." if weather.stormy?
   end
 
