@@ -34,6 +34,19 @@ describe Airport do
     expect(subject.planes).to be_empty
   end
 
+  it "prevents landing when airport is full" do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    capacity = 2
+
+    subject = Airport.new(create_normal_weather, capacity)
+    subject.land(plane1)
+    subject.land(plane2)
+
+    expect { subject.land(Plane.new) }.to raise_error("Unable to land, airport full.")
+    expect(subject.planes).to eq [plane1, plane2]
+  end
+
   it 'can take off a landed plane' do
     plane = Plane.new
     subject = Airport.new(create_normal_weather)
