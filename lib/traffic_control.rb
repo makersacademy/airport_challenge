@@ -4,11 +4,12 @@ require_relative 'weather.rb'
 class TrafficControl
   DEFAULT_CAPACITY = 20
 
-  attr_reader :planes
+  attr_reader :planes, :weather, :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @airport = []
-    @apacity = capacity
+    @capacity = capacity
+    @weather = weather.weather_conditions
   end
 
   def landing_request(plane)
@@ -40,7 +41,7 @@ class TrafficControl
   end
 
   def full?
-    @airport.length == DEFAULT_CAPACITY
+    @airport.length == @capacity
   end
 
   def empty?

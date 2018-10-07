@@ -22,16 +22,42 @@ describe 'TrafficControl' do
   it 'cannot land more planes than capacity' do
     t_c = TrafficControl.new
     plane = Plane.new
-    expect { 21.times { t_c.landing_request(plane) } }.to raise_error
+    weather = double('Weather', :weather_conditions => 'sunny')
+    @weather = weather.weather_conditions
+    expect { 21.times { t_c.landing_request(plane) } }.to raise_error 'airport at capacity'
   end
 
-  it 'stops traffic in adverse weather' do
+  it 'stops landing in adverse weather' do
+    t_c = TrafficControl.new
+    plane = Plane.new
+    weather = double('Weather', :weather_conditions => 'stormy')
+    expect{ t_c.landing_request(plane) }.to raise_error 'adverse landing conditions'
+  end
 
+  it 'stops take-off if airport empty' do
+    t_c = TrafficControl.new
+    expect { t_c.take_off_request }.to raise_error 'airport is empty'
+  end
+
+  it 'checks if the weather is adverse' do
+    t_c = TrafficControl.new
+    plane = Plane.new
+    weather = double('weather', :weather_conditions => 'stormy')
+    @weather = weather.weather_conditions
+    expect(t_c.weather_check(@weather)).to eq 'take-off denied'
   end
 
   it 'checks if airport is empty' do
-    traffic_control = TrafficControl.new
-    puts @airport
-    expect(subject.empty?).to eq true
+    t_c = TrafficControl.new
+    expect(t_c.empty?).to eq true
+  end
+
+  it 'checks if airport is full' do
+    t_c =TrafficControl.new
+    plane = Plane.new
+    weather = double('Weather', :weather_conditions => 'sunny')
+    p @weather = weather.weather_conditions
+    20.times { t_c.landing_request(plane) }
+    expect(t_c.full?).to eq true
   end
 end
