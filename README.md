@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-(updated: 7 Oct 2018)
+(updated: 7 Oct 2018 - COVERAGE:  97.59% -- 81/83 lines in 6 files)
 
 Installation
 -------
