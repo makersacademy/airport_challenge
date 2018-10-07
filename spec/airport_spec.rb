@@ -16,7 +16,7 @@ describe Airport do
     expect(airport.capacity).to eq 50
   end
 
-  describe '#planes' do
+  describe '#planes_count' do
     it 'counts a plane that landed' do
       airport.land(good_weather)
       expect(airport.planes_count).to eq 1
@@ -43,19 +43,29 @@ describe Airport do
       forcast = bad_weather.check_weather
       expect { airport.land(forcast) }.to raise_error "The weather is stormy"
     end
-    it 'raises an exception when the maximum of 20 planes have landed' do
-      20.times { airport.land(good_weather) }
+    it 'raises an exception when the maximum of default planes have landed' do
+      Airport::DEFAULT_CAPACITY.times { airport.land(good_weather) }
+      expect { airport.land(good_weather) }.to raise_exception "The airport is full"
+    end
+    it 'raises an exception when the maximum of 50 planes have landed' do
+      airport = Airport.new(50)
+      50.times { airport.land(good_weather) }
       expect { airport.land(good_weather) }.to raise_exception "The airport is full"
     end
   end
 
   describe '#take_off' do
     it 'allows a plane to take off and shows that the plane has left' do
+      airport.land(good_weather)
       expect(airport.take_off(good_weather)).to eq "The plane has taken off"
     end
     it 'will not allow the plane to take off if the weather is stormy' do
+      airport.land(good_weather)
       forcast = bad_weather.check_weather
       expect { airport.take_off(forcast) }.to raise_exception "The weather is stormy"
+    end
+    it 'will only allow a plane to take off if there is one' do
+      expect { airport.take_off(good_weather) }.to raise_exception "There is no planes here"
     end
   end
 end
