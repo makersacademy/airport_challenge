@@ -46,18 +46,18 @@ describe Plane do
 
   describe "#location" do
     it "should have a default location of the sky" do
-      expect(subject.location).to eq "sky"
+      expect(subject.location).to eq :sky
     end
 
     it "changes its location to airport once landed" do
       regular_land
-      expect(subject.location).to eq "airport"
+      expect(subject.location).to eq airport
     end
 
     it "should be in the sky after taking off again" do
       regular_land
       regular_takeoff
-      expect(subject.location).to eq "sky"
+      expect(subject.location).to eq :sky
     end
 
     it "cannot be instructed to land if already in an airport" do
