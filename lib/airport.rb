@@ -14,7 +14,7 @@ class Airport
 
   def hangar
     return "Hangar is empty" if @hangar.empty?
-    @hangar.map { |plane| plane }.join
+    list_planes
   end
 
   def land(plane)
@@ -36,6 +36,10 @@ class Airport
 
   private
   attr_reader :weather
+
+  def list_planes
+    @hangar.map { |plane| plane }.join
+  end
 
   def full?
     return true if @hangar.count == @capacity
