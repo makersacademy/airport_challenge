@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-This challenge was completed using TDD. The unit tests were written in RSpec (and isolated using doubles) and the feature tests were performed in irb.
+This challenge was completed using TDD. The unit tests were written in RSpec (and isolated using doubles) and the feature tests were performed in `irb`.
 
 ```
         ______
@@ -43,18 +43,25 @@ weather_generator = WeatherGenerator.new(Random.new)
 ```
 airport = Airport.new(weather_generator, [], 100)
 ```
+
 - The `airport` object needs to be fed a weather generator in order to know whether it is clear or stormy.
 - The second argument is the list of planes currently at the airport, which will default to an empty list if not specified.
 - The third argument is the capacity of the airport which will default to 100 unless specified.
 
 ### Landing a plane:
-```plane.land(airport)```
+```
+plane.land(airport)
+```
 
 ### Take off:
-```plane.take_off(airport)```
+```
+plane.take_off(airport)
+```
 
 ### Checking if it is stormy:
-```airport.stormy?```
+```
+airport.stormy?
+```
 - This will return `true` if it is stormy and `false` if it is clear.
 
 ### Confirming that the plane is flying:
