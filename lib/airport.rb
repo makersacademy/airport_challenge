@@ -1,11 +1,13 @@
 class Airport
-  attr_reader :name
+  attr_reader :name, :planes
 
   def initialize(name = self)
     @name = name
+    @planes = []
   end
 
-  def list_planes
-    "There are no planes in the airport."
+  def request_landing(plane)
+    @planes << plane
+    plane.landed = true
   end
 end

@@ -1,9 +1,9 @@
 require 'plane'
 
 describe Plane do
-  describe "#location" do
-    it "can report its own location" do
-      expect(subject.location).to eq "factory"
+  describe "#landed?" do
+    it "can track whether it is landed or not" do
+      expect(subject.landed?).to eq false
     end
   end
   describe "#name" do
