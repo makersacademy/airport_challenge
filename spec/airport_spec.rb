@@ -11,7 +11,7 @@ describe Airport do
 
     subject.land(plane)
 
-    expect(subject.planes.first).to eq plane
+    expect(subject.planes).to eq [plane]
   end
 
   it 'can land multiple planes' do
@@ -21,11 +21,10 @@ describe Airport do
     subject.land(plane1)
     subject.land(plane2)
 
-    expect(subject.planes[0]).to eq plane1
-    expect(subject.planes[1]).to eq plane2
+    expect(subject.planes).to eq [plane1, plane2]
   end
 
-  it 'can take off planes' do
+  it 'can take off a landed plane' do
     plane = Plane.new
     subject.land(plane)
 
@@ -33,4 +32,19 @@ describe Airport do
 
     expect(subject.planes).to be_empty
   end
+
+  it 'can take off a landed plane without affecting other landed planes' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+
+    subject.land(plane1)
+    subject.land(plane2)
+    subject.land(plane3)
+
+    subject.take_off(plane2)
+
+    expect(subject.planes).to eq [plane1, plane3]
+  end
+
 end
