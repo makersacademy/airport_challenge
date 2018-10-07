@@ -6,8 +6,8 @@ describe Airport do
 
   let(:flying_plane) { double(:plane, flying?: true) }
   let(:landed_plane) { double(:plane, flying?: false) }
-  let(:sunny_weather) {double(:weather, stormy?: false) }
-  let(:stormy_weather) {double(:weather, stormy?: true) }
+  let(:sunny_weather) { double(:weather, stormy?: false) }
+  let(:stormy_weather) { double(:weather, stormy?: true) }
 
   describe "#land" do
     it 'should land a plane at an airport' do
