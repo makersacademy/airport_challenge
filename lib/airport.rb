@@ -1,5 +1,5 @@
 require_relative 'plane'
-
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 100
@@ -12,7 +12,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Unable to land" if full? == true || stormy? == true
+    fail "Unable to land" if full? == true || bad_weather? == true
     @planes << plane
   end
 
@@ -29,8 +29,11 @@ class Airport
     @planes.length == 0
   end
 
-  def stormy?
-    return true if rand * 100 < 10
-    false
+  def bad_weather?
+    weather.stormy?
+  end
+
+  def weather
+    @weather ||= Weather.new
   end
 end
