@@ -43,16 +43,16 @@ Airport
 
 
 
-Plane
+**Plane**
 _________
 
-#### A simple class that has a status trigger that returns true/false
+A simple class that has a status trigger that returns true/false
 
 
 
 
 
-Weather
+**Weather**
 ________
 
-#### A simple class that creats a random weather condition and returns if it is stormy or not
+A simple class that creates a random weather condition and returns if it is stormy or not
