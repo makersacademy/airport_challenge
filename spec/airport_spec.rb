@@ -1,8 +1,18 @@
 require 'airport'
 
-describe Airport do  
+describe Airport do
+  let(:airport) { Airport.new }
   let(:plane) { double :plane }
-  it "should be able to land planes" do
-    expect { subject.land(plane) }.not_to raise_error
+
+  describe 'landing planes' do
+    it 'has the plane after it has landed' do
+      allow(:airport).to receive(:land)
+      airpot.land(plane)
+    end
+
+    it 'has plane landed at airport' do
+      subject.land(plane)
+      allow(airport.arrival).to receive(:planes).and_return "#{plane}"
+    end
   end
 end
