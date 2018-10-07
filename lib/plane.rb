@@ -1,13 +1,7 @@
-require_relative 'airport'
+require 'airport.rb'
+
 class Plane
-
-  attr_accessor :plane, :status
-
-  def land(plane)
-    plane.status = "parked"
-  end
-
-  def takeoff(plane)
-    plane.status = "flying"
+  def flying?
+    true
   end
 end
