@@ -19,14 +19,14 @@ describe Airport do
     end
   end
 
-  describe "Capcity" do
-    it "Returns airport capcity" do
+  describe "Capacity" do
+    it "Returns airport capacity" do
       expect(subject.capacity).to eq 1
     end
 
     it "capcity can be variable" do
-      subject { DockingStation.new(2) }
-      expect(subject.capacity).to eq 2
+      cap = Airport.new(2)
+      expect(cap.capacity).to eq 2
     end
   end
 
