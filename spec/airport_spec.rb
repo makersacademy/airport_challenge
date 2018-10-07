@@ -16,13 +16,7 @@ describe Airport do
       expect(subject.hangar_report).to eq "Planes currently in the hangar: #{[plane, plane_2]}"
     end
   end
-
-  describe "#weather" do
-    it "should always be either 'sunny' or 'stormy'" do
-      100.times { expect(subject.weather).to eq("sunny").or eq("stormy") }
-    end
-  end
-
+  
   describe "#capacity" do
     it "should have a default capacity of 20 planes" do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY

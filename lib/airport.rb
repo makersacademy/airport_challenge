@@ -1,6 +1,5 @@
 class Airport
   DEFAULT_CAPACITY = 20
-  STORM_CHANCE = 0.05
 
   attr_reader :landed_planes, :capacity
 
@@ -11,9 +10,5 @@ class Airport
 
   def hangar_report
     "Planes currently in the hangar: #{@landed_planes}"
-  end
-
-  def weather
-    rand < STORM_CHANCE ? "stormy" : "sunny"
   end
 end
