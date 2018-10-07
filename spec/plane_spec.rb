@@ -8,7 +8,7 @@ describe Plane do
 
   describe "#land" do
     it 'should be able to land in an airport' do
-      subject.land(airport, weather_fine)
+      regular_land
       expect(airport.landed_planes). to eq [subject]
     end
 
@@ -17,7 +17,7 @@ describe Plane do
     end
 
     it 'cannot land if it is already in the airport' do
-      subject.land(airport, weather_fine)
+      regular_land
       expect { subject.land(airport, weather_fine) }.to raise_error "Already in the airport."
     end
 
@@ -29,17 +29,17 @@ describe Plane do
 
   describe "#take_off" do
     it "should be able to take off from an airport" do
-      subject.land(airport, weather_fine)
-      subject.take_off(airport, weather_fine)
+      regular_land
+      regular_takeoff
       expect(airport.landed_planes).to eq []
     end
 
     it "cannot take off if not already in the airport" do
-      expect { subject.take_off(airport, weather_fine) }.to raise_error "Not in the airport."
+      expect { regular_takeoff }.to raise_error "Not in the airport."
     end
 
     it "cannot take off if the weather is stormy" do
-      subject.land(airport, weather_fine)
+      regular_land
       expect { subject.take_off(airport, weather_stormy) }.to raise_error "Stormy weather, cannot take off."
     end
   end
@@ -50,19 +50,27 @@ describe Plane do
     end
 
     it "changes its location to airport once landed" do
-      subject.land(airport, weather_fine)
+      regular_land
       expect(subject.location).to eq "airport"
     end
 
     it "should be in the sky after taking off again" do
-      subject.land(airport, weather_fine)
-      subject.take_off(airport, weather_fine)
+      regular_land
+      regular_takeoff
       expect(subject.location).to eq "sky"
     end
 
     it "cannot be instructed to land if already in an airport" do
-      subject.land(airport, weather_fine)
+      regular_land
       expect { subject.land(airport_2, weather_fine) }.to raise_error "Already in a different airport."
     end
+  end
+
+  def regular_land
+    subject.land(airport, weather_fine)
+  end
+
+  def regular_takeoff
+    subject.take_off(airport, weather_fine)
   end
 end
