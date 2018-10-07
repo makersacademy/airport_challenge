@@ -44,6 +44,7 @@ describe Airport do
     it 'expects plane to takeoff and leave the airport' do
       plane = Plane.new
       expect(subject).to receive(:stormy?).and_return(false)
+      expect(subject).to receive(:flying?).and_return(false)
       expect(subject.instruct_takeoff(plane)).to eq plane
     end
 
@@ -51,6 +52,7 @@ describe Airport do
       plane = Plane.new
       expect(subject).to receive(:stormy?).at_least(2).times.and_return(false)
       subject.instruct_landing(plane)
+      expect(subject).to receive(:flying?).and_return(false)
       subject.instruct_takeoff(plane)
       expect(subject.empty?).to eq true
     end
@@ -58,6 +60,13 @@ describe Airport do
     it 'expects plain can not take off due to weather' do
       expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.instruct_takeoff Plane.new }.to raise_error 'Can not takeoff do to stormy weather'
+    end
+
+    it 'expected to read error when taking off but plane is in the air' do
+      plane = Plane.new
+      expect(subject).to receive(:stormy?).and_return(false)
+      expect(subject).to receive(:flying?).and_return(true)
+      expect { subject.instruct_takeoff(plane) }.to raise_error 'Plane is in the air'
     end
   end
 
