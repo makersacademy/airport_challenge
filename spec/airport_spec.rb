@@ -42,15 +42,17 @@ describe Airport do
   it "prevents landing when airport is full with given capacity" do
     plane1 = create_flying_plane
     plane2 = create_flying_plane
+    plane3 = create_flying_plane
     capacity = 2
 
     subject = Airport.new(create_normal_weather, capacity)
     subject.land(plane1)
     subject.land(plane2)
 
-    expect { subject.land(create_flying_plane) }.to raise_error("Unable to land, airport full.")
+    expect { subject.land(plane3) }.to raise_error("Unable to land, airport full.")
     expect(plane1).not_to be_flying
     expect(plane2).not_to be_flying
+    expect(plane3).to be_flying
   end
 
   it "cannot take off a non landed plane" do
