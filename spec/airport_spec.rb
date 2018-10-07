@@ -67,6 +67,20 @@ describe Airport do
       end
       expect{subject.land(plane)}.to raise_error('Cannot land. Airport is full.')
     end
+
+    it 'Attempt landing twice' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
+      subject.land(p1)
+      expect{subject.land(p1)}.to raise_error('Cannot land. Plane not in the air.')
+    end
+
+    it 'Attempt landing at second airport when already landed' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
+      subject.land(p1)
+      a2 = Airport.new
+      allow(a2).to receive(:check_weather) { 'sunny' }
+      expect{a2.land(p1)}.to raise_error('Cannot land. Plane not in the air.')
+    end
   end
 
   describe 'Plane taking off' do
