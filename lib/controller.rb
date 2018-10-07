@@ -8,7 +8,12 @@ class Controller
     end
   end
 
-  def instruct_plane_to_take_off
-    "Taken off!"
+  def instruct_plane_to_take_off(plane, airport)
+    airport.request_take_off(plane)
+    if !plane.landed?
+      "#{plane.name} taken off from #{airport.name}!"
+    else
+      "ERROR: Plane didn't take off!"
+    end
   end
 end
