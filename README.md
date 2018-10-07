@@ -1,3 +1,15 @@
+My Approach
+=================
+* Use user stories to build file structure and think about how I want them to interact with one another
+* Build a test for a method I want, let it fail, then write the code and rework until it passes
+* Created three classes: Airport, Plane, and Weather, which are what I identified as the nouns from the user stories
+* Allowed limitations to be weather(aka stormy? method, within the Weather class), capacity (aka full?/empty? methods, within the Airport class, and finally plane status (so that a plane in flight could not take off, and a grounded plane could not be landed again, within the Plane class)
+* Ran feature tests every step along the way to make sure the code was doing what I wanted it to be doing, and the tests weren't just passing by accident
+* Refactored the code to include doubles (but will hopefully be able to refactor again next week as not sure I totally have the hang of this just yet)
+* Used effective debugging methods as I had been taught to this week when I found myself blocked and my tests failing
+* Effectively used the given tests to gain 100% coverage and no Rubocop infractions.
+
+
 Airport Challenge
 =================
 
