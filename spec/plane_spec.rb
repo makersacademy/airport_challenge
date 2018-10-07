@@ -5,14 +5,14 @@ describe Plane do
 
       describe "#land" do
       it "can land a plane" do
-        subject.land
+        subject.landed
         expect(subject.flying?).to be false
       end
     end
 
     describe "#takeoff" do
     it "can takeoff a plane" do
-      subject.takeoff
+      subject.takenoff
       expect(subject.flying?).to be true
     end
   end
