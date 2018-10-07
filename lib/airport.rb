@@ -7,9 +7,10 @@ class Airport
 
   def land(plane)
     @planes << plane
+    "#{plane} landed at Arrival"
   end
 
   def arrival
-    @arrival = 'plane'
+    @planes
   end
 end
