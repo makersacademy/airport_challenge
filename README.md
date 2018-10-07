@@ -95,3 +95,6 @@ RuntimeError (Airport is full!)
 ```
 
 Run `irb` in the terminal in order to use the app. Run `rspec` inside the project directory to test the app.
+
+:)
+===========
