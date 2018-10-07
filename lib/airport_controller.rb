@@ -11,6 +11,7 @@ class AirportController
   def instruct_plane_to_land(plane, airport)
     fail Plane::NOT_AIRBORN unless plane.location == Plane::AIRBORN
     fail WEATHER_IS_STORMY if weather.stormy?(airport)
+    fail Airport::IS_FULL if airport.full?
     airport.add_plane(plane)
     plane.location = airport
     true

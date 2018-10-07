@@ -10,19 +10,19 @@ describe AirportController do
   describe '#instruct_plane_to_land' do
   
     it 'instructs a plane to land at an airport' do
-      airport = double :airport, :add_plane => nil
+      airport = double :airport, :add_plane => nil, :full? => false
       plane = double :plane, location: Plane::AIRBORN, :location= => airport
       expect(subject.instruct_plane_to_land(plane, airport)).to eq true
     end
 
     it "doesn't instructs a plane to land at an airport, unless the plane is flying" do
-      airport = double :airport, :add_plane => nil
+      airport = double :airport, :add_plane => nil, :full? => false
       plane = double :plane, location: 'landed'
       expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error Plane::NOT_AIRBORN
     end
 
     it 'after landing, the plane location is updated' do
-      airport = double :airport, :add_plane => nil
+      airport = double :airport, :add_plane => nil, :full? => false
       plane = double(:plane, :location => Plane::AIRBORN)
       expect(plane).to receive(:location=)
       subject.instruct_plane_to_land(plane, airport)
@@ -30,7 +30,7 @@ describe AirportController do
 
     it 'after landing, the plane is added to the airport' do
       plane = double :plane, :location => Plane::AIRBORN, :location= => nil 
-      airport = double :airport, :add_plane => plane
+      airport = double :airport, :add_plane => plane, :full? => false
       expect(airport).to receive(:add_plane).with(plane)
       subject.instruct_plane_to_land(plane, airport)
     end
@@ -53,13 +53,21 @@ describe AirportController do
           AirportController.new(weather) 
         }
         it 'should not prevent landing when weather is sunny' do
-          airport = double :airport, :plane? => true, :add_plane => true
+          airport = double :airport, :add_plane => true, :full? => false
           plane = double :plane, location: Plane::AIRBORN, :location= => airport
           expect(subject.instruct_plane_to_land(plane, airport)).to eq true
         end
       end
     end
 
+    context 'airport full' do
+
+      it 'should prevent landing when the airport is full' do
+        airport = double :airport, :full? => true
+        plane = double :plane, location: Plane::AIRBORN
+        expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error Airport::IS_FULL
+      end
+    end
   end
 
   describe ' #instructs_plane_to_take_off' do
