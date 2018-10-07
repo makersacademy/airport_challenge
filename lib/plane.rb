@@ -1,6 +1,6 @@
 class Plane
 
-  attr_accessor :location
+  attr_reader :location
 
   def initialize(location = "Factory")
     @location = location

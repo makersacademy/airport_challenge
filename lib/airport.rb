@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :capacity, :planes, :location, :weather
+  attr_reader :capacity, :location, :weather
 
   DEFAULT_CAPACITY = 20
 
@@ -42,8 +42,11 @@ class Airport
     add(plane)
   end
 
+  private
+  attr_reader :planes
+
   def full?
-    @planes.count == capacity
+    planes.count == capacity
   end
 
 end

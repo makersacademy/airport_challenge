@@ -22,7 +22,7 @@ describe Airport do
   describe '#take_off' do
     it 'removes the plane from the airport' do
       test_airport.take_off(landed_plane)
-      expect(test_airport.planes).to eq []
+      expect(test_airport.send(:planes)).to eq []
     end
 
     it 'puts the plane in the sky' do
@@ -38,7 +38,7 @@ describe Airport do
   describe '#add' do
     it 'adds the plane to the airport' do
       test_airport.add(test_plane)
-      expect(test_airport.planes).to eq [test_plane]
+      expect(test_airport.send(:planes)).to eq [test_plane]
     end
   end
 
@@ -48,7 +48,7 @@ describe Airport do
     end
 
     it "can't land a plane when the airport is full" do
-      test_cap.times { test_airport.planes << test_plane }
+      test_cap.times { test_airport.send(:planes) << test_plane }
       expect { test_airport.land(test_plane) }.to raise_error("#{test_airport.location} has no capacity")
     end
 
@@ -56,8 +56,8 @@ describe Airport do
 
   describe '#full' do
     it 'lets a plane know when the airport is full' do
-      test_cap.times { test_airport.planes << test_plane }
-      expect(test_airport).to be_full
+      test_cap.times { test_airport.send(:planes) << test_plane }
+      expect(test_airport.send(:full?)).to eq true
 
     end
   end

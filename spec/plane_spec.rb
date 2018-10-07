@@ -1,10 +1,9 @@
 require 'plane'
-test_plane = Plane.new
 
 describe Plane do
 
   let(:test_airport) { double(:airport) }
-
+  let(:test_plane) { Plane.new }
   it 'is made in a factory' do
     expect(test_plane.location).to eq "Factory"
   end

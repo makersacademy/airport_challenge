@@ -1,7 +1,7 @@
 class Weather
 
-  def stormy?
-    rand(100) >= 90
+  def stormy?(random_seed = rand(100))
+    random_seed >= 90
   end
 
 end

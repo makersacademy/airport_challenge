@@ -1,5 +1,5 @@
 require 'weather'
 
 describe Weather do
-  # it "can get stormy"
+  it { is_expected.to respond_to :stormy? }
 end
