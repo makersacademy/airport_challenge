@@ -1,5 +1,5 @@
 require 'airport'
-require 'pry'
+
 describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather }
@@ -24,7 +24,7 @@ describe Airport do
   describe "#land" do
     it "should store the plane in the airport" do
       subject.land(plane)
-      expect(subject.hangar).to eq [plane]
+      expect(subject.hangar).to eq "#{plane}"
     end
 
     it "should raise error if planes are already in the airport" do
@@ -58,7 +58,7 @@ describe Airport do
       allow(plane).to receive(:flying?).and_return false
       subject.land(plane)
       subject.takeoff(plane)
-      expect(subject.hangar).to eq []
+      expect(subject.hangar).to eq "Hangar is empty"
     end
 
     it "should raise error if the plane is already flying" do
