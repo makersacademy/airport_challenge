@@ -100,9 +100,17 @@ describe Airport do
     end
   end
 
-  describe 'check_capacity' do
+  describe 'Checks across airport and network' do
     it 'checks capacity of the airport to see if its the default, which is 10' do
       expect(subject.capacity?).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'checks to see if there are any landed planes not in an airport' do
+      expect(subject.orphan_landed_planes?.empty?).to eq true
+    end
+
+    it 'checks to see if there are any flying planes listed as being in an airport' do
+      expect(subject.flying_in_airport?.empty?).to eq true
     end
   end
 

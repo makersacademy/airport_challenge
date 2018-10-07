@@ -78,4 +78,20 @@ class Airport
     @planes << plane
   end
 
+  def flying_planes
+    $all_planes.select { |plane| plane.flying? }
+  end
+
+  def landed_planes
+    $all_planes.reject { |plane| plane.flying? }
+  end
+
+  def flying_in_airport?
+    flying_planes.select { |plane| plane.in_airport?.count.positive? }
+  end
+
+  def orphan_landed_planes?
+    landed_planes.select { |plane| plane.in_airport?.count.zero? }
+  end
+
 end
