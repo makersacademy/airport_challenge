@@ -12,14 +12,14 @@ class Airport
   def land(plane)
     raise "Unable to land due to stormy weather" if bad_weather?
     raise "Unable to land; airport is full" if full?
-    raise "Unable to land; plane is already in airport" unless plane_in_airport?(plane)
+    raise "Unable to land; plane is already in airport" unless plane_outside_airport?(plane)
     land_plane_status(plane)
     return "Plane has landed"
   end
 
   def takeoff(plane)
-    raise "Unable to takeoff due to stormy weather" if $weather == "stormy"
-    raise "Unable to takeoff; plane not in airport" unless @planes_in_airport.include?(plane)
+    raise "Unable to takeoff due to stormy weather" if bad_weather?
+    raise "Unable to takeoff; plane not in airport" unless plane_in_airport?(plane)
     takeoff_plane_status(plane)
     return "Plane has taken off"
   end
@@ -41,8 +41,12 @@ class Airport
     $weather == "stormy"
   end
 
-  def plane_in_airport?(plane)
+  def plane_outside_airport?(plane)
     $planes_outside_airports.include?(plane.object_id)
+  end
+
+  def plane_in_airport?(plane)
+    @planes_in_airport.include?(plane)
   end
 
   def land_plane_status(plane)
