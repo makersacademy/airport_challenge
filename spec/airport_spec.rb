@@ -68,6 +68,7 @@ describe Airport do
     allow(weather).to receive(:stormy?).and_return(true)
 
     expect { subject.take_off(plane) }.to raise_error("Unable to take off, stormy weather.")
+    expect(subject.planes).to eq [plane]
   end
 
   def create_stormy_weather
