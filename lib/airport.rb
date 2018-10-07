@@ -1,14 +1,21 @@
 class Airport
-  attr_reader :name, :planes
+  attr_reader :name, :planes, :capacity
 
-  def initialize(name = self)
+  DEFAULT_CAPACITY = 50
+
+  def initialize(name = self, capacity = DEFAULT_CAPACITY)
     @name = name
     @planes = []
+    @capacity = capacity
   end
 
   def request_landing(plane)
-    @planes << plane
-    plane.landed = true
+    if @planes.count < @capacity
+      @planes << plane
+      plane.landed = true
+    else
+      raise "ERROR: Airport is full. Request rejected."
+    end
   end
 
   def request_take_off(plane)
