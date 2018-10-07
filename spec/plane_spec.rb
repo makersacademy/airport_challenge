@@ -3,25 +3,16 @@ require 'plane'
 
 describe Plane do
 
-  describe '#landing procedures' do
-    it { is_expected.to respond_to :landed }
+  describe '#Flight Status' do
+    it { is_expected.to respond_to :status }
 
-    it 'is landed at specific airport' do
-      expect(subject.landed Airport.new).to eq true
+    it 'is expected to be flying by default' do
+      expect(subject.status).to eq false
     end
 
-    it 'is not landed at specific airport' do
-      expect(subject.landed Weather.new).to eq false
+    it 'is expected to be true when passed true arg' do
+      expect(subject.status(true)).to eq true
     end
-
-    it 'is not landed at specific airport test 2' do
-      airport = []
-      expect(subject.landed airport).to eq false
-    end
-  end
-
-  describe '#takeoff' do
-    it { is_expected.to respond_to :flying }
   end
 
 end

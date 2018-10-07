@@ -31,6 +31,13 @@ describe Airport do
       50.times { airport.instruct_landing(Plane.new) }
       expect { airport.instruct_landing(Plane.new) }.to raise_error 'No free places to land'
     end
+
+    it 'prevents landing when plane at other airport' do
+      plane = Plane.new
+      expect(subject).to receive(:stormy?).and_return(false)
+      expect(subject).to receive(:grounded?).and_return(true)
+      expect { subject.instruct_landing(plane) }.to raise_error 'Plane grounded at other airport'
+    end
   end
 
   describe '#Takeoff procedures' do
