@@ -10,11 +10,13 @@ class Airport
   def initialize
   @weather = Weather.new.met_report
   #@plane_inv = []
-  #@max_cap = 1
+  @max_cap = []
   end
 
   def land(plane)
-    @plane = plane
+    raise "Airport full" unless @max_cap.length < 1
+    @max_cap << plane
+    return "Plane has landed"
 
   end
 

@@ -9,6 +9,14 @@ describe Airport do
     expect(subject.land(plane)).not_to eq nil
   end
 
+  it 'if airport at below capacity accept planes' do
+    expect{1.times {subject.land(Plane.new)}}.not_to raise_error "Airport full"
+  end
+
+  it 'if airport at capacity don\'t accept more and Error' do
+    expect{2.times {subject.land(Plane.new)}}.to raise_error "Airport full"
+  end
+
   it 'returns plane has taken off' do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "Plane has taken off"
