@@ -67,8 +67,8 @@ A simple class that creates a random weather condition and returns if it is stor
     * I thought about how a user would expect this paragraph to work on their end and wrote a test that expected those results
     *  After the test was made and passing I would write the actual code. it wasn't anything fancy just the bare minimum i needed to write the test.
     * after my rspec and coverage passed I would clean my code.
-* Many times I would write something new and it would fail alot of my old tests
-    * most of this was due to lack of knowledge for testing syntex
-    * I would look up more accurate methods and then try to incorpate them.
+* Many times I would write something new and it would fail a lot of my old tests
+    * most of this was due to lack of knowledge for testing syntax
+    * I would look up more accurate methods and then try to implement them.
     * once the old tests didn't fail, I would try to make new methods and make sure they didn't fail my old ones.
     * My approach may have been initially time consuming, but it saved me a lot of heartache by the time I got to implementing the more serious and complex features.    
