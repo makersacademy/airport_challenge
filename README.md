@@ -2,7 +2,7 @@
 The first weekend challenge at Makers Academy
 
 ## Task
-The task was to create a set of classes that fulfilled the following user stories
+The task was to create a program that fulfilled the following user stories
 
 ```
 As an air traffic controller
