@@ -1,9 +1,11 @@
 require_relative 'plane'
-require 'pry'
+
 class Airport
+
   attr_reader :stored_planes
   attr_reader :capacity
   DEFAULT_CAPACITY = 100
+  
   def initialize(weather_generator, stored_planes, capacity = DEFAULT_CAPACITY)
     @stored_planes = stored_planes
     @weather = weather_generator.generate_weather

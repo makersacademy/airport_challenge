@@ -1,8 +1,7 @@
 require 'airport'
-require 'pry'
 
 describe Airport do
-  
+
   let(:weather_generator) { double :weather_generator }
   let(:plane) { double :plane }
 
@@ -23,7 +22,7 @@ describe Airport do
     end
   end
 
-  describe "edge cases" do
+  context "edge cases" do
     it "should only release a plane that is already in the airport" do
       allow(weather_generator).to receive(:generate_weather) { "clear" }
       airport = Airport.new(weather_generator, [])
@@ -44,7 +43,7 @@ describe Airport do
     end
   end
 
-  describe "stormy weather" do
+  context "stormy weather" do
     it "should not release a plane if it's stormy" do
       allow(weather_generator).to receive(:generate_weather) { "stormy" }
       airport = Airport.new(weather_generator, [plane])
@@ -60,7 +59,7 @@ describe Airport do
   end
 
   describe "airport capacity" do
-    it "should not receive planes when full" do
+    it "should not receive planes if default capacity is reached" do
       allow(weather_generator).to receive(:generate_weather) { "clear" }
       allow(plane).to receive(:flying?) { true }
       airport = Airport.new(weather_generator, [])

@@ -1,4 +1,5 @@
 class WeatherGenerator
+  
   def initialize(instance_of_class_random)
     @random = instance_of_class_random
   end
