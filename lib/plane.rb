@@ -9,9 +9,13 @@ attr_reader :location
     raise "Too stormy to land" if airport.stormy?
     raise "Airport is full" if airport.full?
     @location = airport
+    airport.hanger << self
   end
 
-  def take_off
+  def take_off(airport)
+    raise "Plane is skyborn" if @location == "sky"
+    raise "Too stormy to take off" if airport.stormy?
     @location = "sky"
+    airport.hanger.delete(self)
   end
 end

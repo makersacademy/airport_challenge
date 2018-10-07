@@ -21,16 +21,21 @@ describe Plane do
 
   describe "#take_off" do
     it "should put the plane in the sky" do
-      plane.take_off
+      plane.take_off(airport)
       expect(plane.location).to eq "sky"
     end
     it "should remove the plane from the airport hanger" do
-      plane.take_off
+      plane.take_off(airport)
       expect(airport.hanger).to be_empty
     end
     it "should not take off if stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
       expect{plane.take_off(airport)}.to raise_error "Too stormy to take off"
+    end
+    it "cannot take off if already in the sky" do
+      plane.land(airport)
+      plane.take_off(airport)
+      expect{plane.take_off(airport)}.to raise_error "Plane is skyborn"
     end
   end
 
