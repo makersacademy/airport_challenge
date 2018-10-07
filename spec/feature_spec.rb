@@ -1,8 +1,3 @@
-require 'airport'
-require 'plane'
-require 'weather'
-require 'spec_helper'
-
 feature "controlling air traffic" do
 
   background do
@@ -55,10 +50,10 @@ feature "controlling air traffic" do
   end
 
   def expect_at(airport)
-    expect(airport.send(:planes)).to eq @planes
+    expect([airport.send(:planes)]).to include @planes
   end
 
   def expect_left(airport)
-    expect(airport.send(:planes)).to_not eq @planes
+    expect(airport.send(:planes)).not_to include @planes
   end
 end
