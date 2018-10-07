@@ -53,7 +53,7 @@ airport = Airport.new(weather_generator, [], 100)
 plane.land(airport)
 ```
 
-### Take off:
+### Taking off:
 ```
 plane.take_off(airport)
 ```
