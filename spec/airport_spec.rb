@@ -7,14 +7,17 @@ describe Airport do
   let(:plane3) { double :plane3 }
 
   it 'allows a plane to land' do
-    allow(subject).to receive(:safe_to_land) { true }
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying) { true }
     allow(plane1).to receive(:flying=)
     subject.land_plane(plane1)
     expect(subject.terminal).to eq [plane1]
   end
 
   it 'allows multiple planes to land' do
-    allow(subject).to receive(:safe_to_land) { true }
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying) { true }
+    allow(plane2).to receive(:flying) { true }
     allow(plane1).to receive(:flying=)
     allow(plane2).to receive(:flying=)
     subject.land_plane(plane1)
@@ -23,8 +26,10 @@ describe Airport do
   end
 
   it 'allows planes to to take off & confirm they have left the airport' do
-    allow(subject).to receive(:safe_to_land) { true }
-    allow(subject).to receive(:safe_to_take_off) { true }
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying) { true }
+    allow(plane2).to receive(:flying) { true }
+    allow(plane3).to receive(:flying) { true }
     allow(plane1).to receive(:flying=)
     allow(plane2).to receive(:flying=)
     allow(plane3).to receive(:flying=)
@@ -49,6 +54,20 @@ describe Airport do
     expect { subject.take_off(plane2) }.to raise_error("#{plane2} is not at this airport")
   end
 
+  it 'should only allow planes at the airport to take off (storm conditions)' do
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying=)
+    allow(plane2).to receive(:flying=)
+    allow(plane1).to receive(:flying) { true }
+    allow(plane2).to receive(:flying) { true }
+    subject.land_plane(plane1)
+    allow(plane1).to receive(:flying) { false }
+    allow(subject).to receive(:stormy) { false }
+    subject.take_off(plane1)
+    expect { subject.take_off(plane1) }.to raise_error("#{plane1} is not at this airport")
+    expect { subject.take_off(plane2) }.to raise_error("#{plane2} is not at this airport")
+  end
+
   it 'should not allow planes at the airport to land again' do
     allow(subject).to receive(:stormy) { false }
     allow(plane1).to receive(:flying) { true }
@@ -56,6 +75,30 @@ describe Airport do
     subject.land_plane(plane1)
     allow(plane1).to receive(:flying) { false }
     expect { subject.land_plane(plane1) }.to raise_error("#{plane1} is already at the airport")
+  end
+
+  it 'should not allow planes at the airport to land again (storm conditions)' do
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying) { true }
+    allow(plane1).to receive(:flying=)
+    subject.land_plane(plane1)
+    allow(plane1).to receive(:flying) { false }
+    allow(subject).to receive(:stormy) { true }
+    expect { subject.land_plane(plane1) }.to raise_error("#{plane1} is already at the airport")
+  end
+
+  it 'should not allow planes that are not flying to land' do
+    allow(subject).to receive(:stormy) { false }
+    allow(plane1).to receive(:flying) { false }
+    allow(plane1).to receive(:flying=)
+    expect { subject.land_plane(plane1) }. to raise_error("#{plane1} is not flying.")
+  end
+
+  it 'should not allow planes that are not flying to land (storm condition)' do
+    allow(subject).to receive(:stormy) { true }
+    allow(plane1).to receive(:flying) { false }
+    allow(plane1).to receive(:flying=)
+    expect { subject.land_plane(plane1) }. to raise_error("#{plane1} is not flying.")
   end
 
   it 'should not allow planes that have landed at another airport to land again' do
@@ -71,7 +114,16 @@ describe Airport do
 
   it 'refuses further landings when airport is at capcity' do
     plane1 = Plane.new
+    allow(subject).to receive(:stormy) { false }
     10.times { subject.land_plane(Plane.new) }
+    expect(subject.land_plane(plane1)).to eq "#{plane1} cannot land. #{subject} is at capacity."
+  end
+
+  it 'refuses further landings when airport is at capcity (storm condition)' do
+    plane1 = Plane.new
+    allow(subject).to receive(:stormy) { false }
+    10.times { subject.land_plane(Plane.new) }
+    allow(subject).to receive(:stormy) { true }
     expect(subject.land_plane(plane1)).to eq "#{plane1} cannot land. #{subject} is at capacity."
   end
 
@@ -88,6 +140,15 @@ describe Airport do
     subject.land_plane(plane1)
     allow(subject).to receive(:stormy) { true }
     expect(subject.take_off(plane1)).to eq "#{plane1} cannot take off. Weather is too stormy."
+  end
+
+  it 'can have capacity set to higher value' do
+    big_airport = Airport.new(15)
+    allow(big_airport).to receive(:stormy) { false }
+    14.times { subject.land_plane(Plane.new) }
+    plane1, plane2 = Plane.new, Plane.new
+    subject.land_plane(plane1)
+    expect(subject.land_plane(plane2)).to eq "#{plane2} cannot land. #{subject} is at capacity."
   end
 
 end
