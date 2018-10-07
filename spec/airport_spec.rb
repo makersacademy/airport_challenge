@@ -1,7 +1,4 @@
-require 'pry'
 require 'airport'
-require 'plane'
-require 'weather'
 
 describe Airport do
   let(:test_plane) { double(:plane, fly: nil, location: "Sky") }
