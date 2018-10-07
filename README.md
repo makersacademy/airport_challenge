@@ -44,7 +44,7 @@ The `land` and `take_off` methods inside the `Plane` class take 2 arguments: the
 
 Each plane object has a `location` attribute that defaults to the sky, and when the plane lands is assigned to the current airport object. This protects against an edge case where a plane is asked to land in an airport, when it is already in a *different* airport.
 
-##### Improvements
+### Improvements
 
 Currently, improvements could be made relating to the `attr_reader` `landed_planes`. This should not be publicly readable, but for testing purposes and methods inside other classes, I have had to leave it in this state. Given more time, I would refactor my code to have this attribute as private.
 
@@ -95,3 +95,5 @@ RuntimeError (Airport is full!)
 ```
 
 Run `irb` in the terminal in order to use the app. Run `rspec` inside the project directory to test the app.
+
+# :) 
