@@ -1,6 +1,9 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
-airport = Airport.new
+require './lib/weather.rb'
+# airport = Airport.new
+# puts airport.stormy?
+# puts weather.stormy?
 # plane = Plane.new
 
 # airport.weather?
@@ -22,8 +25,22 @@ airport = Airport.new
 # airport.land(Plane.new)
 # puts airport.capacity? == 10
 airport = Airport.new(2)
-puts airport.capacity? == 2
-puts airport.capacity?
+airport.update_weather("sunny")
+plane = Plane.new
+plane2 = Plane.new
+puts plane.status?
+puts plane2.status?
+airport.takeoff(plane)
+# airport.land(plane)
+# airport.land(plane2)
+# puts airport.get_planes?
+# puts "---"
+# # airport.takeoff(plane)
+# airport.in_hangar(plane)
+# puts airport.get_planes?
+# puts @plances
+# puts airport.capacity? == 2
+# puts airport.capacity?
 # 10.times { airport.land(Plane.new) }
 # puts airport.full?
 # airport.land(Plane.new)

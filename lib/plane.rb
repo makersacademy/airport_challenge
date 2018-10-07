@@ -1,6 +1,6 @@
 class Plane
-  def initialize
-    @status = "air"
+  def initialize(location = "land")
+    @status = location
   end
 
   def status?

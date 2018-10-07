@@ -5,16 +5,29 @@ describe Airport do
     before(:each) do
       allow(subject).to receive(:stormy?).and_return(false)
     end
-
+    describe 'check if sunny' do
+      it 'weather is stormy = false' do
+        expect(subject.stormy?).to eq false
+        # expect ( subject.stormy? ).to eq false
+      end
+    end
     describe 'landing and take off in good weather' do
-      # it 'responds to land' do
-      #   expect(subject).to respond_to :land
-      # end
 
       it 'instructs a plane to land' do
         plane = Plane.new
         subject.land(plane)
         expect(plane.status?).to eq "land"
+      end
+
+      it 'plane is added to planes array' do
+        plane = Plane.new
+        # plane2 = Plane.new
+        subject.land(plane)
+        # puts subject.get_planes?.to_s
+        # subject.land(plane2)
+        # puts subject.get_planes?.to_s
+        # expect(subject.get_planes?).to include(plane)
+        expect(subject.in_hangar(plane)).to eq true
       end
 
       it 'plane is set as landed' do
@@ -23,20 +36,42 @@ describe Airport do
         expect(plane.status?).to eq "land"
       end
 
-      # it 'responds to takeoff' do
-      #   expect(subject).to respond_to :takeoff
-      # end
+      it 'plane is in hangar at this airport' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.in_hangar(plane)).to eq true
+      end
 
       it 'instructs a plane to take off' do
         plane = Plane.new
+        subject.land(plane)
+        subject.takeoff(plane)
         expect(plane.status?).to eq "air"
+      end
+
+      it "returns error if plane not at this airport" do
+        plane = Plane.new
+        # subject.takeoff(plane)
+        expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "plane not at this airport")
       end
 
       it 'plane is set as taken off' do
         # airport = Airport.new
         plane = Plane.new
+        subject.land(plane)
         subject.takeoff(plane)
         expect(plane.status?).to eq "air"
+      end
+
+      it 'plane is no longer in planes array - in_hangar = false' do
+        plane = Plane.new
+        subject.land(plane)
+        subject.takeoff(plane)
+        puts plane
+        puts "---"
+        # puts subject.get_planes?
+        # expect(subject.get_planes?).not_to include(plane)
+        expect(subject.in_hangar(plane)).to eq false
       end
     end
   end
@@ -46,19 +81,21 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(true)
     end
 
+    describe 'check if stormy' do
+      it 'weather is stormy = true' do
+        expect(subject.stormy?).to eq true
+      end
+    end
+
     describe 'prevent landing and take off in bad weather' do
       it 'prevents takeoff if stormy' do
         plane = Plane.new
-        # airport = Airport.new
-        # expect(subject.takeoff(plane)).to eq "takeoff not allowed"
         expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "takeoff not allowed")
-        # ('takeoff not allowed')
       end
 
       it 'prevents landing if stormy' do
         plane = Plane.new
         expect { subject.land(plane) }.to raise_error(RuntimeError, "landing not allowed")
-        # expect(subject.land(plane)).to eq "landing not allowed"
       end
     end
   end
@@ -106,7 +143,7 @@ describe Airport do
       expect(airport.capacity?).to eq 2
     end
   end
-describe 'update_capacity' do
+  describe 'update_capacity' do
     it 'sets capacity of the airport' do
       # airport = Airport.new
       expect(subject.update_capacity).to eq true
