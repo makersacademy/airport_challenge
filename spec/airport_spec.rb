@@ -9,6 +9,7 @@ describe Airport do
   it 'can land a plane' do
     plane = Plane.new
 
+    subject = Airport.new(create_normal_weather)
     subject.land(plane)
 
     expect(subject.planes).to eq [plane]
@@ -18,10 +19,19 @@ describe Airport do
     plane1 = Plane.new
     plane2 = Plane.new
 
+    subject = Airport.new(create_normal_weather)
     subject.land(plane1)
     subject.land(plane2)
 
     expect(subject.planes).to eq [plane1, plane2]
+  end
+
+  it "prevents landing in stormy weather" do
+    plane = Plane.new
+    subject = Airport.new(create_stormy_weather)
+
+    expect { subject.land(plane) }.to raise_error("Unable to land, stormy weather.")
+    expect(subject.planes).to be_empty
   end
 
   it 'can take off a landed plane' do
@@ -50,9 +60,12 @@ describe Airport do
   end
 
   it 'prevents take off if weather is stormy' do
-    subject = Airport.new(create_stormy_weather)
     plane = Plane.new
+    weather = create_normal_weather
+    subject = Airport.new(weather)
     subject.land(plane)
+
+    allow(weather).to receive(:stormy?).and_return(true)
 
     expect { subject.take_off(plane) }.to raise_error("Unable to take off, stormy weather.")
   end
