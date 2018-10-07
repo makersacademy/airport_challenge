@@ -30,14 +30,11 @@ class Airport
   end
 
   def empty?
-    @planes.length == 0
+    @planes.length.zero?
   end
 
   def bad_weather?
     Weather.stormy?
   end
 
-  def weather
-    @weather ||= Weather.new
-  end
 end

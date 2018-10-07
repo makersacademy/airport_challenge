@@ -2,7 +2,6 @@ require_relative 'airport'
 
 class Plane
 
-  attr_accessor :broken
   attr_accessor :status
 
   def initialize(status = false)
@@ -15,15 +14,11 @@ class Plane
   end
 
   def landed?
-    @status == "Flying" ? false : true
+    @status == "Landed"
   end
 
   def flying?
-    @status == "Flying" ? true : false
-  end
-
-  def working?
-    !@broken
+    @status == "Flying"
   end
 
 end
