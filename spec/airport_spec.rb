@@ -82,6 +82,11 @@ describe Airport do
       allow(subject).to receive(:check_weather) { 'stormy' }
       expect{subject.take_off(p1)}.to raise_error('Cannot take off in stormy weather')
     end
+
+    it 'Attemp takeoff of plane not in hanger' do
+      allow(subject).to receive(:check_weather) { 'sunny' }
+      expect{subject.take_off(p1)}.to raise_error('Cannot take off. Plane not in hanger.')
+    end
   end
 
   describe 'Check if plane is in the hanger:' do
