@@ -1,7 +1,9 @@
 require 'weather'
 
 describe Weather do
+
   describe '#stromy?' do
+    
     context 'sunny' do
       subject { 
         rng = double :random, :rand => 42

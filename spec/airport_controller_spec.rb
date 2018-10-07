@@ -34,6 +34,32 @@ describe AirportController do
       expect(airport).to receive(:add_plane).with(plane)
       subject.instruct_plane_to_land(plane, airport)
     end
+
+    context "weather" do
+      context "stromy weather" do
+        subject { 
+          weather = double :weather, stormy?: true
+          AirportController.new(weather) 
+        }
+        it 'should prevent landing when weather is stormy' do
+          airport = double :airport, :plane? => true
+          plane = double :plane, location: Plane::AIRBORN
+          expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error AirportController::WEATHER_IS_STORMY
+        end
+      end
+      context "sunny weather" do
+        subject { 
+          weather = double :weather, stormy?: false
+          AirportController.new(weather) 
+        }
+        it 'should not prevent landing when weather is sunny' do
+          airport = double :airport, :plane? => true, :add_plane => true
+          plane = double :plane, location: Plane::AIRBORN, :location= => airport
+          expect(subject.instruct_plane_to_land(plane, airport)).to eq true
+        end
+      end
+    end
+
   end
 
   describe ' #instructs_plane_to_take_off' do
