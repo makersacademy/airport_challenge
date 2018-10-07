@@ -68,6 +68,19 @@ describe Airport do
       expect(subject).to receive(:flying?).and_return(true)
       expect { subject.instruct_takeoff(plane) }.to raise_error 'Plane is in the air'
     end
+
+    it 'expects right plane to take off' do
+      airport = Airport.new
+      plane_one = Plane.new
+      plane_two = Plane.new
+      expect(airport).to receive(:stormy?).at_least(8).times.and_return(false)
+      expect(airport).to receive(:grounded?).at_least(7).times.and_return(false)
+      airport.instruct_landing(plane_one)
+      airport.instruct_landing(plane_two)
+      5.times { airport.instruct_landing(Plane.new) }
+      expect(airport).to receive(:flying?).and_return(false)
+      expect(airport.instruct_takeoff(plane_two)).to eq plane_two
+    end
   end
 
   describe '#stormy? feature' do

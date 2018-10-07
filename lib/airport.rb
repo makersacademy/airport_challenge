@@ -24,7 +24,7 @@ class Airport
   def instruct_takeoff(plane)
     fail 'Can not takeoff do to stormy weather' if stormy?
     fail "Plane is in the air" if flying?(plane)
-    @airport.pop
+    @airport.delete(plane)
     plane
   end
 
