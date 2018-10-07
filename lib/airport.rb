@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :hangar, :capacity
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 19
 
@@ -10,6 +10,11 @@ class Airport
     @hangar = []
     @weather = weather
     @capacity = capacity
+  end
+
+  def hangar
+    return "Hangar is empty" if @hangar.empty?
+    @hangar.map { |plane| plane }.join
   end
 
   def land(plane)
