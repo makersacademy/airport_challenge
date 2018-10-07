@@ -14,4 +14,12 @@ describe Airport do
     expect(subject.planes.first).to eq plane
   end
 
+  it 'can take off planes' do
+    plane = Plane.new
+    subject.land(plane)
+
+    subject.take_off(plane)
+    
+    expect(subject.planes).to be_empty
+  end
 end
