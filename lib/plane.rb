@@ -15,12 +15,12 @@ class Plane
   end
 
   def landed?
-      @status == "Flying" ? false : true
-    end
+    @status == "Flying" ? false : true
+  end
 
-    def flying?
-      @status == "Flying" ? true : false
-    end
+  def flying?
+    @status == "Flying" ? true : false
+  end
 
   def working?
     !@broken
