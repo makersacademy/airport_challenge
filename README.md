@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,69 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+My final commit to the Airport challenge.
+
+My approach to this challenge was to test as much as possible in as many small steps as possible. Setting up thorough tests that I understood which presented me with coding challenges for myself to solve. As far as possible I have tried to break the code down after passing a test to make it read like English, and keeping it DRY, trying never to repeat myself.
+
+I believe I have completed all the user stories whilst covering a few edge cases such as plane duplication at an Airport (I didn't notice this part until late, so didn't get through many). I also decided to introduce a name initialiser for the Planes as I felt it helped make the error codes more readable.
+
+Example:
+
+Heathrow = Airport.new
+plane1 = Plane.new("Plane 1")
+plane2 = Plane.new("Plane 2")
+plane3 = Plane.new("Plane 3")
+Heathrow.land(plane1)
+Heathrow.land(plane2)
+Heathrow.land(plane3)
+Heathrow.hangar
+Heathrow.take_off(plane1)
+Heathrow.take_off(plane1)
+Heathrow.take_off(plane2)
+Heathrow.hangar
+
+HX3084T1:airport_challenge thomas.lightfoot$ irb
+2.5.1 :001 > require './lib/Airport.rb'
+ => true
+2.5.1 :002 > Heathrow = Airport.new
+ => #<Airport:0x00007f8c4c0d36a0 @hangar=[], @capacity=20>
+2.5.1 :003 > plane1 = Plane.new("Plane 1")
+ => #<Plane:0x00007f8c4c0ca280 @name="Plane 1">
+2.5.1 :004 > plane2 = Plane.new("Plane 2")
+ => #<Plane:0x00007f8c4c0c4d80 @name="Plane 2">
+2.5.1 :005 > plane3 = Plane.new("Plane 3")
+ => #<Plane:0x00007f8c4c0a5070 @name="Plane 3">
+2.5.1 :006 > Heathrow.land(plane1)
+ => [#<Plane:0x00007f8c4c0ca280 @name="Plane 1">]
+2.5.1 :007 > Heathrow.land(plane2)
+ => [#<Plane:0x00007f8c4c0ca280 @name="Plane 1">, #<Plane:0x00007f8c4c0c4d80 @name="Plane 2">]
+2.5.1 :008 > Heathrow.land(plane3)
+Traceback (most recent call last):
+        3: from /Users/thomas.lightfoot/.rvm/rubies/ruby-2.5.1/bin/irb:11:in `<main>'
+        2: from (irb):8
+        1: from /Users/thomas.lightfoot/Projects/airport_challenge/lib/Airport.rb:17:in `land'
+RuntimeError (BAD WEATHER: can't land)
+2.5.1 :009 > Heathrow.hangar
+ => [#<Plane:0x00007f8c4c0ca280 @name="Plane 1">, #<Plane:0x00007f8c4c0c4d80 @name="Plane 2">]
+2.5.1 :010 > Heathrow.take_off(plane1)
+ => #<Plane:0x00007f8c4c0ca280 @name="Plane 1">
+2.5.1 :011 > Heathrow.take_off(plane1)
+Traceback (most recent call last):
+        3: from /Users/thomas.lightfoot/.rvm/rubies/ruby-2.5.1/bin/irb:11:in `<main>'
+        2: from (irb):11
+        1: from /Users/thomas.lightfoot/Projects/airport_challenge/lib/Airport.rb:26:in `take_off'
+RuntimeError (Plane 1 isn't in the hangar)
+2.5.1 :012 > Heathrow.take_off(plane2)
+ => #<Plane:0x00007f8c4c0c4d80 @name="Plane 2">
+2.5.1 :013 > Heathrow.hangar
+ => "empty"
+
+ ^^^
+ The above shows a full use of my application. Landing multiple planes in the airport, preventing a landing due to bad weather, a few planes taking off including a RuntimeError showing how a plane can't take off more than once finally showing an empty hangar.
+
+Finished in 0.01993 seconds (files took 0.19066 seconds to load)
+14 examples, 0 failures
+COVERAGE: 100.00% -- 109/109 lines in 7 files.
+10 files inspected, no offenses detected
+These were my final results for test coverage.
