@@ -18,8 +18,10 @@ describe Airport do
   describe '#takeoff' do
     it 'allows the plane to take off' do
       plane = Plane.new
-      subject.land(plane)
-      expect(subject.takeoff_plane).to eq plane
+      airport = Airport.new
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect(airport.takeoff_plane).to eq plane
     end
 
     it 'stops plane from taking off if airport is empty' do
