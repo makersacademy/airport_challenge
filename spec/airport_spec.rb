@@ -87,16 +87,18 @@ describe Airport do
     expect(plane).not_to be_flying
   end
 
-  def create_stormy_weather
-    weather = double("Weather")
-    allow(weather).to receive(:stormy?).and_return(true)
+  def create_fake_weather(stormy)
+    weather = double("FakeWeather")
+    allow(weather).to receive(:stormy?).and_return(stormy)
     weather
   end
 
+  def create_stormy_weather
+    create_fake_weather(true)
+  end
+
   def create_normal_weather
-    weather = double("Weather")
-    allow(weather).to receive(:stormy?).and_return(false)
-    weather
+    create_fake_weather(false)
   end
 
   def create_flying_plane

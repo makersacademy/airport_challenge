@@ -1,5 +1,3 @@
-require 'weather.rb'
-
 class Airport
 
   DEFAULT_CAPACITY = 20
