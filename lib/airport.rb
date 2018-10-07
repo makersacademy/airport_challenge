@@ -5,11 +5,15 @@ class Airport
   attr_reader :capacity
   attr_reader :weather
 
+  $airports = Array.new
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @weather = ["stormy", "sunny"].sample
     # @weather = Weather.new
     @capacity = capacity
     @planes = []
+    $airports << self
+    # puts @@airports
   end
 
   def land(plane)
