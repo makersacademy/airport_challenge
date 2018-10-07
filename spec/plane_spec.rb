@@ -26,14 +26,9 @@ describe Plane do
       expect(airport.in_hangar(plane)).to eq false
     end
 
-    # it 'gets plane status of manually located plane' do
-    #   plane = Plane.new("air")
-    #   expect(plane.status?).to eq "air"
-    # end
   end
 
   describe 'plane update status' do
-
     it 'sets plane status - land to air' do
       plane = Plane.new
       expect(plane.update_status("air")).to eq "air"

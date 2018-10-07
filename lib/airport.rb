@@ -14,7 +14,7 @@ class Airport
 
   def land(plane)
     raise 'Airport full' if full?
-    # if stormy?
+    raise "plane already landed" if plane.status? == "land"
     raise "landing not allowed" if stormy?
     # else
     plane.update_status("land")
@@ -26,6 +26,7 @@ class Airport
   def takeoff(plane)
     # puts stormy?
     raise "takeoff not allowed" if stormy?
+    raise "plane already in air" if plane.status? == "air"
     raise "plane not at this airport" unless in_hangar(plane)
       # return "takeoff not allowed"
     # else

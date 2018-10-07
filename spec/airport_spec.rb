@@ -8,7 +8,6 @@ describe Airport do
     describe 'check if sunny' do
       it 'weather is stormy = false' do
         expect(subject.stormy?).to eq false
-        # expect ( subject.stormy? ).to eq false
       end
     end
     describe 'landing and take off in good weather' do
@@ -19,14 +18,15 @@ describe Airport do
         expect(plane.status?).to eq "land"
       end
 
+      it "returns error if plane already landed" do
+        plane = Plane.new
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error(RuntimeError, "plane already landed")
+      end
+
       it 'plane is added to planes array' do
         plane = Plane.new
-        # plane2 = Plane.new
         subject.land(plane)
-        # puts subject.get_planes?.to_s
-        # subject.land(plane2)
-        # puts subject.get_planes?.to_s
-        # expect(subject.get_planes?).to include(plane)
         expect(subject.in_hangar(plane)).to eq true
       end
 
@@ -49,14 +49,18 @@ describe Airport do
         expect(plane.status?).to eq "air"
       end
 
-      it "returns error if plane not at this airport" do
+      it "returns error if plane already in the air" do
         plane = Plane.new
-        # subject.takeoff(plane)
+        expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "plane already in air")
+      end
+
+      it "returns error if plane not at this airport" do
+        airport2 = Airport.new
+        plane = Plane.new(airport2)
         expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "plane not at this airport")
       end
 
       it 'plane is set as taken off' do
-        # airport = Airport.new
         plane = Plane.new
         subject.land(plane)
         subject.takeoff(plane)
@@ -67,10 +71,6 @@ describe Airport do
         plane = Plane.new
         subject.land(plane)
         subject.takeoff(plane)
-        puts plane
-        puts "---"
-        # puts subject.get_planes?
-        # expect(subject.get_planes?).not_to include(plane)
         expect(subject.in_hangar(plane)).to eq false
       end
     end
@@ -100,32 +100,13 @@ describe Airport do
     end
   end
 
-  # describe 'check_weather' do
-  #   it "responds to check weather" do
-  #     expect(subject).to respond_to :weather?
-  #   end
-  #
-  #   it 'checks the weather' do
-  #     # airport = Airport.new
-  #     expect(subject.weather?).to eq('stormy').or(eq('sunny'))
-  #   end
-  # end
-
   describe 'check_capacity' do
-    # it "responds to check capacity" do
-    #   expect(subject).to respond_to :capacity?
-    # end
-
     it 'checks capacity of the airport to see if its the default, which is 10' do
-      # airport = Airport.new
       expect(subject.capacity?).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
   describe 'full?' do
-    # it "responds to full?" do
-    #   expect(subject).to respond_to :full?
-    # end
 
     it 'raises an error when full' do
       subject.update_weather("sunny")
@@ -135,9 +116,7 @@ describe Airport do
   end
 
   describe 'override default capacity of airport' do
-    # it "responds to set capacity" do
-    #   expect(subject).to respond_to :update_capacity
-    # end
+
     it 'checks capacity of the airport to 2 when created' do
       airport = Airport.new(2)
       expect(airport.capacity?).to eq 2
@@ -145,7 +124,6 @@ describe Airport do
   end
   describe 'update_capacity' do
     it 'sets capacity of the airport' do
-      # airport = Airport.new
       expect(subject.update_capacity).to eq true
     end
   end

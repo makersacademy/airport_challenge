@@ -4,7 +4,12 @@ require './lib/plane.rb'
 airport = Airport.new
 # puts airport.stormy?
 # puts weather.stormy?
-plane = Plane.new(airport)
+airport.update_weather("sunny")
+plane = Plane.new
+airport.land(plane)
+puts plane.status?
+airport.land(plane)
+puts plane.status?
 puts airport.in_hangar(plane)
 # airport.weather?
 # airport.capacity?
