@@ -27,29 +27,37 @@ describe Airport do
       expect(subject.hangar).to eq "#{plane}"
     end
 
-    it "should raise error if planes are already in the airport" do
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error("Plane is already in the hangar")
+    context "when planed is already at the airport" do
+      it "should not land again" do
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error("Plane is already in the hangar")
+      end
     end
 
-    it "should raise when the weather is stormy" do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
+    context "when stormy" do
+      it "should prevent landing" do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
+      end
     end
 
-    it "should raise error when airport is full" do
-      subject.capacity.times {
-        airplane = double(:plane);
-        allow(airplane).to receive(:landed?).and_return false;
-        allow(airplane).to receive(:land).and_return true;
-        subject.land(airplane)
-      }
-      expect { subject.land(plane) }.to raise_error("Airport is full!")
+    context "when airport is full" do
+      it "should not allow plane to land" do
+        subject.capacity.times {
+          airplane = double(:plane);
+          allow(airplane).to receive(:landed?).and_return false;
+          allow(airplane).to receive(:land).and_return true;
+          subject.land(airplane)
+        }
+        expect { subject.land(plane) }.to raise_error("Airport is full!")
+      end
     end
 
-    it "should raise error if the plane has already landed" do
-      allow(plane).to receive(:landed?).and_return true
-      expect { subject.land(plane) }.to raise_error("This plane has already landed")
+    context "when a plane has already landed" do
+      it "should not land again" do
+        allow(plane).to receive(:landed?).and_return true
+        expect { subject.land(plane) }.to raise_error("This plane has already landed")
+      end
     end
   end
 
@@ -61,16 +69,20 @@ describe Airport do
       expect(subject.hangar).to eq "Hangar is empty"
     end
 
-    it "should raise error if the plane is already flying" do
-      allow(plane).to receive(:flying?).and_return true
-      expect { subject.takeoff(plane) }.to raise_error("This plane is already flying")
+    context "when stormy" do
+      it "should prevent takeoff" do
+        subject.land(plane)
+        allow(weather).to receive(:stormy?).and_return(true)
+        allow(plane).to receive(:flying?).and_return false
+        expect { subject.takeoff(plane) }.to raise_error("Cannot takeoff in stormy weather")
+      end
     end
 
-    it "should prevent takeoff when the weather is stormy" do
-      subject.land(plane)
-      allow(weather).to receive(:stormy?).and_return(true)
-      allow(plane).to receive(:flying?).and_return false
-      expect { subject.takeoff(plane) }.to raise_error("Cannot takeoff in stormy weather")
+    context "when the plane is already flying" do
+      it "should not takeoff again" do
+        allow(plane).to receive(:flying?).and_return true
+        expect { subject.takeoff(plane) }.to raise_error("This plane is already flying")
+      end
     end
   end
 end
