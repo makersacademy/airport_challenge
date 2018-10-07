@@ -33,9 +33,9 @@ describe Airport do
       end
 
       it 'plane is set as taken off' do
-        airport = Airport.new
+        # airport = Airport.new
         plane = Plane.new
-        airport.takeoff(plane)
+        subject.takeoff(plane)
         expect(plane.status?).to eq "air"
       end
     end
@@ -50,26 +50,29 @@ describe Airport do
       it 'prevents takeoff if stormy' do
         plane = Plane.new
         # airport = Airport.new
-        expect(subject.takeoff(plane)).to eq "takeoff not allowed"
+        # expect(subject.takeoff(plane)).to eq "takeoff not allowed"
+        expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "takeoff not allowed")
+        # ('takeoff not allowed')
       end
 
       it 'prevents landing if stormy' do
         plane = Plane.new
-        expect(subject.land(plane)).to eq "landing not allowed"
+        expect { subject.land(plane) }.to raise_error(RuntimeError, "landing not allowed")
+        # expect(subject.land(plane)).to eq "landing not allowed"
       end
     end
   end
 
-  describe 'check_weather' do
-    it "responds to check weather" do
-      expect(subject).to respond_to :weather?
-    end
-
-    it 'checks the weather' do
-      # airport = Airport.new
-      expect(subject.weather?).to eq('stormy').or(eq('sunny'))
-    end
-  end
+  # describe 'check_weather' do
+  #   it "responds to check weather" do
+  #     expect(subject).to respond_to :weather?
+  #   end
+  #
+  #   it 'checks the weather' do
+  #     # airport = Airport.new
+  #     expect(subject.weather?).to eq('stormy').or(eq('sunny'))
+  #   end
+  # end
 
   describe 'check_capacity' do
     it "responds to check capacity" do

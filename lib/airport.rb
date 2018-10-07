@@ -10,26 +10,27 @@ class Airport
 
   def land(plane)
     raise 'Airport full' if full?
-    if stormy?
-      return "landing not allowed"
-    else
-      plane.update_status("land")
-      @planes << plane
+    # if stormy?
+    raise "landing not allowed" if stormy?
+    # else
+    plane.update_status("land")
+    @planes << plane
       # puts @planes
-    end
+    # end
   end
 
   def takeoff(plane)
-    if stormy?
-      return "takeoff not allowed"
-    else
-      plane.update_status("air")
-    end
+    # puts stormy?
+    raise "takeoff not allowed" if stormy?
+      # return "takeoff not allowed"
+    # else
+    plane.update_status("air")
+    # end
   end
 
-  def weather?
-    @weather
-  end
+  # def weather?
+  #   @weather
+  # end
 
   def stormy?
     @weather == "stormy"
@@ -43,11 +44,12 @@ class Airport
     @capacity
   end
 
+  def update_capacity
+    true
+  end
+
   def full?
     @planes.count >= @capacity
   end
 
-  def update_capacity
-    true
-  end
 end
