@@ -1,26 +1,30 @@
 
-
 class Airport
-  attr_reader :flights
-  def initialize
+     
+  def initialize(capacity)
+    @capacity = capacity
     @flights = []
   end
 
   def land(plane)
-    @flights << plane
+    raise 'No landing permitted due to bad weather' if stormy?
+    raise 'Airport is full' if full?
+    @flights.push(plane)
+
   end
 
   def takeoff(plane)
-    fail 'No takeoff due to bad weather condition' if stormy?
-    @flights.delete(plane)
-  end
-
-  private
-  def stormy?
-    rand(3..10) > 6
+    raise 'No takeoff permitted due to bad weather' if stormy?
 
   end
+end
 
+private
 
+def stormy?
+   rand(1..6) > 4
+ end
 
+def full?
+  @flights.count >= @capacity
 end
