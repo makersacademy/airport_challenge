@@ -1,10 +1,12 @@
+require 'weather.rb'
 
 class Airport
 
   attr_reader :planes
 
-  def initialize()
+  def initialize(weather = Weather.new)
     @planes = []
+    @weather = weather
   end
 
   def land(plane)
@@ -12,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Unable to take off, stormy weather." if @weather.stormy?
     @planes.delete(plane)
   end
 
