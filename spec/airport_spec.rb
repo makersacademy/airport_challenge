@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  it 'lands the plane with a land() method' do
-    expect(subject).to respond_to(:land).with(1).argument
-  end
-
   it 'can land a plane' do
     plane = Plane.new
 
