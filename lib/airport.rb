@@ -1,6 +1,6 @@
 # Airport Class, keep track of airplanes in the airport
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :capacity
   DEFAULT_CAPACITY = 100
 
   NOT_IN_THIS_AIRPORT = 'Plane is not in this airport!'

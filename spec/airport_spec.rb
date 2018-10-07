@@ -33,7 +33,9 @@ describe Airport do
       subject.add_plane(plane1)
       subject.add_plane(plane2)
       subject.add_plane(plane3)
-      expect(subject.planes).to eq [plane1, plane2, plane3]
+      expect([plane1, plane2, plane3].map do |plane|
+        subject.plane?(plane)
+      end).to all be true
     end
 
     it 'fails to add a plane twice' do
