@@ -1,4 +1,6 @@
 require 'controller'
+require 'airport'
+require 'plane'
 
 describe Controller do
   describe "#instruct_plane_to_land" do
