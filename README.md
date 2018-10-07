@@ -9,6 +9,47 @@ My Approach
 * Used effective debugging methods as I had been taught to this week when I found myself blocked and my tests failing
 * Effectively used the given tests to gain 100% coverage and no Rubocop infractions.
 
+Instructions for Use
+=================
+         Chloes-MacBook-Pro:airport_challenge chloeverity$ irb
+        2.5.0 :001 > require './lib/airport.rb'
+         => true 
+        2.5.0 :002 > plane = Plane.new
+         => #<Plane:0x00007fb3b890dad0 @status="Flying"> 
+        2.5.0 :003 > plane.status
+         => "Flying" 
+        2.5.0 :004 > airport = Airport.new(1)
+         => #<Airport:0x00007fb3b88fe2d8 @planes=[], @capacity=1> 
+        2.5.0 :005 > airport.capacity
+         => 1 
+        2.5.0 :006 > @planes
+         => nil 
+        2.5.0 :007 > airport.land(plane)
+         => [#<Plane:0x00007fb3b890dad0 @status="Landed">] 
+        2.5.0 :008 > plane2 = Plane.new
+         => #<Plane:0x00007fb3b88cc9e0 @status="Flying"> 
+        2.5.0 :009 > airport.land(plane2)
+        Traceback (most recent call last):
+                3: from /Users/chloeverity/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+                2: from (irb):10
+                1: from /Users/chloeverity/Projects/airport_challenge/lib/airport.rb:15:in `land'
+        RuntimeError (Unable to land)
+        2.5.0 :010 > weather = Weather.new
+        2.5.0 :011 > Weather.stormy?
+        => true 
+        2.5.0 :012 > airport.bad_weather?
+        => true 
+        2.5.0 :013 > airport.land(plane)
+        Traceback (most recent call last):
+        3: from /Users/chloeverity/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):41
+        1: from /Users/chloeverity/Projects/airport_challenge/lib/airport.rb:16:in `land'
+        RuntimeError (This plane has already landed!)
+        2.5.0 :014 > plane.status
+        => "Landed"
+
+
+
 
 Airport Challenge
 =================
