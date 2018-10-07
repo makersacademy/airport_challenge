@@ -1,9 +1,8 @@
 require_relative 'plane.rb'
 
 class Airport
-
   DEFAULT_CAPACITY = 20
-  attr_reader :plane
+  attr_reader :airport
   attr_reader :capacity
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -11,28 +10,29 @@ class Airport
   end
 
   def take_off
-    if empty?
-      raise "No planes available"
-    else
-      @airport[0]
+    raise "No planes available" if empty?
+    @airport.each do |plane|
+      if plane.good_weather?
+        return plane
+        break
+      end
     end
   end
 
-  def land_plane(plane)
-    if full?
-      raise "Airport full"
-    else
-      @airport
-      "Plane landed"
-    end
+  def land_plane(plane, good_weather = true)
+    raise "Airport full" if full?
+    plane.report_bad_weather if good_weather == false
+    @airport.push(plane)
+    "Plane has landed"
   end
 
   private
+
   def full?
     @airport.count >= DEFAULT_CAPACITY
   end
+
   def empty?
     @airport.empty?
   end
-
 end
