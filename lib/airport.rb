@@ -9,12 +9,12 @@ class Airport
     @capacity = capacity
   end
 
-  def check_weather
-    weather.check
+  def flight_clearance?
+    weather.check == 'sunny'
   end
 
   def land(plane)
-    raise('Cannot land in stormy weather') if check_weather == 'stormy'
+    raise('Cannot land in stormy weather') unless flight_clearance?
     raise('Cannot land. Airport is full.') if full?
     raise('Cannot land. Plane not in the air.') if plane.location != "air"
     plane.location = self.object_id
@@ -23,7 +23,7 @@ class Airport
 
   def take_off(plane)
     raise('Cannot take off. Plane not in hanger.') unless in_hanger?(plane)
-    raise('Cannot take off in stormy weather') if check_weather == 'stormy'
+    raise('Cannot take off in stormy weather') unless flight_clearance?
     plane.location = "air"
     @hanger.delete(plane)
   end
