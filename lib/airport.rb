@@ -19,6 +19,7 @@ class Airport
 
   def take_off(plane)
     raise "Unable to take off, stormy weather." if @weather.stormy?
+    raise "Unable to take off, plane not landed." if !@planes.include?(plane)
     @planes.delete(plane)
   end
 
