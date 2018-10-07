@@ -1,11 +1,12 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { Plane.new }
-  let(:p1) {double :plane}
-  let(:p2) {double :plane}
+  let(:plane) {Plane.new}
 
-  describe 'Can check the weather' do
+  let(:p1) {Plane.new}
+  let(:p2) {Plane.new}
+
+  describe '#check_weather' do
     it 'Weather is either sunny or stormy' do
       expect(subject.check_weather).to eq('stormy').or eq('sunny')
     end
@@ -20,7 +21,7 @@ describe Airport do
     end
   end
 
-  describe "Capacity" do
+  describe '#capacity' do
     it 'Airport has a default capcity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -31,7 +32,7 @@ describe Airport do
     end
   end
 
-  describe 'Can check if full' do
+  describe '#full?' do
     it 'Returns a boolean' do
       expect(subject.full?).to be(true).or be(false)
     end
@@ -42,6 +43,7 @@ describe Airport do
 
     it 'true when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
+      allow(plane).to receive(:location) { 'air' }
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
@@ -49,32 +51,33 @@ describe Airport do
     end
   end
 
-  describe 'Landing a plane' do
+  describe '#land' do
     it 'In sunny weather' do
       allow(subject).to receive(:check_weather) { 'sunny' }
-      expect(subject.land(p1)).to eq [p1]
+      expect(subject.land(plane)).to eq [plane]
     end
 
-    it 'In stormy weather' do
+    it 'Raise error when stormy weather' do
       allow(subject).to receive(:check_weather) { 'stormy' }
       expect{subject.land(p1)}.to raise_error('Cannot land in stormy weather')
     end
 
-    it 'When full' do
+    it 'Raises error when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
+      allow(plane).to receive(:location) { 'air' }
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
       expect{subject.land(plane)}.to raise_error('Cannot land. Airport is full.')
     end
 
-    it 'Attempt landing twice' do
+    it 'Riase error when attempting landing twice' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       expect{subject.land(p1)}.to raise_error('Cannot land. Plane not in the air.')
     end
 
-    it 'Attempt landing at second airport when already landed' do
+    it 'Riase error when attempting to land plane already landed at another airport' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       a2 = Airport.new
@@ -83,27 +86,27 @@ describe Airport do
     end
   end
 
-  describe 'Plane taking off' do
+  describe '#take_off' do
     it 'In sunny weather' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       expect(subject.take_off(p1)).to eq p1
     end
 
-    it 'In stormy weather' do
+    it 'Raise error in stormy weather' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       subject.land(p1)
       allow(subject).to receive(:check_weather) { 'stormy' }
       expect{subject.take_off(p1)}.to raise_error('Cannot take off in stormy weather')
     end
 
-    it 'Attemp takeoff of plane not in hanger' do
+    it 'Raise error when plane not in hanger' do
       allow(subject).to receive(:check_weather) { 'sunny' }
       expect{subject.take_off(p1)}.to raise_error('Cannot take off. Plane not in hanger.')
     end
   end
 
-  describe 'Check if plane is in the hanger:' do
+  describe '#in_hanger?' do
     it 'Returns a boolean' do
       expect(subject.in_hanger?(p1)).to be(true).or be(false)
     end
@@ -143,6 +146,8 @@ describe Airport do
 
     it 'After atempting to land when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
+      allow(plane).to receive(:location) { 'air' }
+      allow(p1).to receive(:location) { 'air' }
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
