@@ -20,8 +20,6 @@ class Plane
   end
 
   def in_airport?
-    # puts $airports[0]
     $airports.select { |airport| airport.in_hangar(self) }
-
   end
 end

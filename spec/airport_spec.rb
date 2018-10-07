@@ -10,7 +10,7 @@ describe Airport do
         expect(subject.stormy?).to eq false
       end
     end
-    describe 'landing and take off in good weather' do
+    describe 'landing in good weather' do
 
       it 'instructs a plane to land' do
         plane = Plane.new
@@ -41,7 +41,8 @@ describe Airport do
         subject.land(plane)
         expect(subject.in_hangar(plane)).to eq true
       end
-
+    end
+    describe 'take off in good weather' do
       it 'instructs a plane to take off' do
         plane = Plane.new
         subject.land(plane)
@@ -67,7 +68,7 @@ describe Airport do
         expect(plane.status?).to eq "air"
       end
 
-      it 'plane is no longer in planes array - in_hangar = false' do
+      it 'plane is no longer in hangar' do
         plane = Plane.new
         subject.land(plane)
         subject.takeoff(plane)
