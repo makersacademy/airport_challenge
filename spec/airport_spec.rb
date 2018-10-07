@@ -22,6 +22,16 @@ describe Airport do
     expect(subject.planes).to eq [plane1, plane2]
   end
 
+  it 'prevents landing a plane which is already landed' do
+    plane = Plane.new
+
+    subject = Airport.new(create_normal_weather)
+    subject.land(plane)
+
+    expect { subject.land(plane) }.to raise_error("Unable to land, plane already landed.")
+    expect(subject.planes).to eq [plane]
+  end
+
   it "prevents landing in stormy weather" do
     plane = Plane.new
     subject = Airport.new(create_stormy_weather)
