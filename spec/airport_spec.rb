@@ -33,5 +33,4 @@ describe Airport do
       expect(Airport.new(50).capacity).to eq 50
     end
   end
-
 end
