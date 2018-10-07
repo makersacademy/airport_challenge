@@ -55,7 +55,7 @@ describe Airport do
     expect(plane3).to be_flying
   end
 
-  it "cannot take off a non landed plane" do
+  it "cannot take off an already flying plane" do
     subject = Airport.new(create_normal_weather)
 
     expect { subject.take_off(create_flying_plane) }.to raise_error("Unable to take off, plane is already flying.")
