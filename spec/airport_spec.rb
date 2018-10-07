@@ -7,32 +7,37 @@ describe Airport do
   let(:plane) { double :plane }
   describe "landing and take off" do
     it "should store landed planes" do
-      airport = Airport.new(weather_generator)
       allow(weather_generator).to receive(:generate_weather) { "clear" }
+      airport = Airport.new(weather_generator, [])
       airport.receive_plane(plane)
       expect(airport.stored_planes).to eq [plane]
     end
-    it "should not store a landed plane after take off" do
-      airport = Airport.new(weather_generator)
+
+    it "should not store a landed plane after releasing it" do
       allow(weather_generator).to receive(:generate_weather) { "clear" }
+      airport = Airport.new(weather_generator, [])
       airport.receive_plane(plane)
       airport.release_plane(plane)
       expect(airport.stored_planes).to eq []
     end
+
+    it "should only release a plane that is already in the airport" do
+      allow(weather_generator).to receive(:generate_weather) { "clear" }
+      airport = Airport.new(weather_generator, [])
+      expect { airport.release_plane(plane) }.to raise_error "Plane not in airport"
+    end
   end
 
   describe "stormy weather" do
-    it "should not allow the plane to take off if it's stormy" do
-      airport = Airport.new(weather_generator)
-      allow(weather_generator).to receive(:generate_weather) { "clear" }
-      airport.receive_plane(plane)
+    it "should not release a plane if it's stormy" do
       allow(weather_generator).to receive(:generate_weather) { "stormy" }
+      airport = Airport.new(weather_generator, [plane])
       airport.release_plane(plane)
       expect(airport.stored_planes).to eq [plane]
     end
-    it "should not allow the plane to land if it's stormy" do
-      airport = Airport.new(weather_generator)
+    it "should not receive a plane if it's stormy" do
       allow(weather_generator).to receive(:generate_weather) { "stormy" }
+      airport = Airport.new(weather_generator, [])
       airport.receive_plane(plane)
       expect(airport.stored_planes).to eq []
     end

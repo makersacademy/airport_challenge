@@ -3,9 +3,9 @@ require 'pry'
 class Airport
   attr_reader :stored_planes
 
-  def initialize(weather_generator)
-    @stored_planes = []
-    @weather_generator = weather_generator
+  def initialize(weather_generator, stored_planes)
+    @stored_planes = stored_planes
+    @weather = weather_generator.generate_weather
   end
 
   def receive_plane(plane)
@@ -13,12 +13,15 @@ class Airport
   end
 
   def release_plane(plane)
-    @stored_planes.delete(plane) unless stormy?
+    if @stored_planes.include?(plane) == false
+      raise "Plane not in airport"
+    else
+      @stored_planes.delete(plane) unless stormy?
+    end
   end
 
   def stormy?
-    weather = @weather_generator.generate_weather
-    weather == "stormy" ? true : false
+    @weather == "stormy" ? true : false
   end
 
 end

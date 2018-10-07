@@ -8,11 +8,13 @@ class Plane
   end
 
   def land(airport)
+    raise "You are already landed" if @location == "AIRPORT"
     airport.receive_plane(self)
     @location = "AIRPORT" unless airport.stormy?
   end
 
   def take_off(airport)
+    raise "You are already flying" if @location == "AIR"
     airport.release_plane(self)
     @location = "AIR" unless airport.stormy?
   end
