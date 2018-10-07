@@ -12,24 +12,15 @@ class Airport
   end
 
   def land(plane, weather)
-    if weather.stormy?
-      raise "Cannot land, Weather is stormy"
-    elsif full?
-      raise "Airport is full"
-    else
+      raise "Cannot land, Weather is stormy" if weather.stormy?
+      raise "Airport is full" if full?
       @landed_planes.push(plane)
-    end
   end
 
   def takeoff(plane, weather)
-    if weather.stormy?
-      raise "Cannot takeoff, Weather is stormy"
-    elsif empty?
-      raise "No planes available"
-    else
+      raise "Cannot takeoff, Weather is stormy" if weather.stormy?
+      raise "No planes available" if empty?
       @landed_planes.delete(plane)
-      "Plane has taken off"
-    end
   end
 end
 
