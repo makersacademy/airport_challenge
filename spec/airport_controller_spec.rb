@@ -3,12 +3,6 @@ require 'plane'
 require 'airport'
 
 describe AirportController do
-
-  context 'Not Airborn' do
-    it "has a constatnt NOT_AIRBORN, which is the string, 'Plane is not airborn'" do
-      expect(AirportController::NOT_AIRBORN).to eq 'Plane is not airborn'
-    end
-  end
   
   describe '#instruct_plane_to_land' do
     it 'instructs a plane to land at an airport' do
@@ -20,7 +14,7 @@ describe AirportController do
     it "doesn't instructs a plane to land at an airport, unless the plane is flying" do
       airport = double :airport, :add_plane => nil
       plane = double :plane, location: 'landed'
-      expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error AirportController::NOT_AIRBORN
+      expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error Plane::NOT_AIRBORN
     end
 
     it 'after landing, the plane location is updated' do
@@ -36,6 +30,43 @@ describe AirportController do
       expect(airport).to receive(:add_plane).with(plane)
       subject.instruct_plane_to_land(plane, airport)
     end
+  end
+
+  describe ' #instructs_plane_to_take_off' do
+
+    it 'instructs a plane to take off from an airport' do
+      airport = double :airport, :plane? => true, :remove_plane => true
+      plane = double :plane, location: airport, :location= => Plane::AIRBORN
+      expect(subject.instruct_plane_to_take_off(plane, airport)).to eq true
+    end
+
+    it "doesn't instruct a plane to take_off from an airport, if it's airborn" do
+      airport = double :airport, :plane? => false, :remove_plane => false
+      plane = double :plane, location: Plane::AIRBORN
+      expect { subject.instruct_plane_to_take_off(plane, airport) }.to raise_error Plane::IS_AIRBORN
+    end
+
+    it "doesn't instruct a plane to take_off from an airport, if the plane is in a different airport" do
+      airport = double :airport, :plane? => false, :remove_plane => true
+      airport2 = double :airport2, :plane? => true, :remove_plane => false
+      plane = double :plane, location: airport2
+      expect { subject.instruct_plane_to_take_off(plane, airport) }.to raise_error Airport::NOT_IN_THIS_AIRPORT
+    end
+
+    it "instructs a plane to take_off from an airport, and remove the plane from airport" do
+      airport = double :airport, :plane? => true, :remove_plane => true
+      plane = double :plane, location: airport, :location= => airport
+      expect(airport).to receive(:remove_plane).with(plane)
+      subject.instruct_plane_to_take_off(plane, airport)
+    end
+
+    it 'after take off the plane location is updated' do
+      airport = double :airport, :plane? => true, :remove_plane => true
+      plane = double :plane, location: airport, :location= => airport
+      expect(plane).to receive(:location=).with(Plane::AIRBORN)
+      subject.instruct_plane_to_take_off(plane, airport)
+    end
+
   end
 
 end
