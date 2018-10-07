@@ -9,3 +9,4 @@ analysis/**/*
 airport-challenge-domain-model.csv
 spec_copy/**/*
 lib_copy/**/*
+spec/feature_tests.rb
