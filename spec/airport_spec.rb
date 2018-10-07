@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  it "has default capacity of 20" do
-    expect(Airport::DEFAULT_CAPACITY).to eq 20
-  end
-
   it 'can land a plane' do
     plane = Plane.new
 
@@ -34,7 +30,20 @@ describe Airport do
     expect(subject.planes).to be_empty
   end
 
-  it "prevents landing when airport is full" do
+  it "has default capacity of 20" do
+    expect(Airport::DEFAULT_CAPACITY).to eq 20
+  end
+
+  it "prevents landing when airport is full with default capacity" do
+    subject = Airport.new(create_normal_weather)
+
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+
+    expect { subject.land(Plane.new) }.to raise_error("Unable to land, airport full.")
+    expect(subject.planes.count).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "prevents landing when airport is full with given capacity" do
     plane1 = Plane.new
     plane2 = Plane.new
     capacity = 2
