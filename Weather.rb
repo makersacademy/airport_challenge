@@ -1,7 +1,7 @@
 class Weather
-  
+
   def clear
-    true
+    [false, true, true, true, true, true, true].sample
   end
 
 end

@@ -43,9 +43,20 @@ describe Airport do
   it 'should allow airport capacity to be changed' do
     allow_any_instance_of(Weather).to receive(:clear) { true }
     subject.capacity(2)
-    plane_1 = Plane.new
-    subject.land(plane_1)
-    plane_2 = Plane.new
-    expect(subject.take_off(plane_1)).not_to match_array(plane_2)
+    2.times { subject.land(Plane.new) }
+    expect(subject.hangar.length).to eq 2
+  end
+
+  it 'returns error if plane which takes-off is not in airport' do
+    allow_any_instance_of(Weather).to receive(:clear) { true }
+    subject.capacity(1)
+    expect{ subject.take_off(Plane.new) }.to raise_error 'Plane is not in airport.'
+  end
+
+  it 'returns error if plane is not flying' do
+    allow_any_instance_of(Weather).to receive(:clear) { true }
+    allow_any_instance_of(Plane).to receive(:status) { "landed"}
+    subject.capacity(1)
+    expect{ subject.land(Plane.new) }.to raise_error 'Plane is not flying.'
   end
 end

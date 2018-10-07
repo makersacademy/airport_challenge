@@ -5,7 +5,8 @@ class Airport
 
   attr_reader :weather
   attr_reader :plane
-  attr_reader :hangar
+  attr_accessor :status
+  attr_accessor :hangar
 
   def initialize
     @hangar = []
@@ -19,8 +20,11 @@ class Airport
   def land(plane)
     if @weather.clear == false
       fail 'Plane cannot land in a storm.'
+    elsif plane.status == "landed"
+      fail 'Plane is not flying.'
     else
-      if @hangar.length < @size
+      if @hangar.length < @size && plane.status == "flying"
+        @status = "landed"
         @hangar.push(plane)
       else
         fail 'Plane cannot land, airport is full.'
@@ -31,9 +35,12 @@ class Airport
   def take_off(plane)
     if @weather.clear == false
       fail 'Plane cannot take-off in a storm.'
+    elsif @hangar.include?(plane)
+      @status = "flying"
+      @hangar.delete(plane)
     else
-      @hangar.shift
+      fail 'Plane is not in airport.'
     end
   end
-
+  
 end
