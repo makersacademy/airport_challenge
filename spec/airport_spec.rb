@@ -9,4 +9,6 @@ describe Airport do
      expect(plane.good_weather?).to eq true
    end
 
+   it { is_expected.to respond_to :land_plane }
+
 end
