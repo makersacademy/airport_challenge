@@ -1,6 +1,10 @@
 require 'airport.rb'
 class Plane
-  def initialize(flying = false)
-    @@flying = flying
+  def initialize
+    $plane_status = true
+  end
+
+  def flying?
+    return $plane_status
   end
 end

@@ -3,21 +3,24 @@ require_relative 'weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  def initialize
+  attr_accessor :plane, :capacity, :flying
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def depart_plane(plane)
     fail "No Planes in the hangar!" if @hangar.empty?
-    @hangar.pop
-    plane(@@flying = true)
+    @hangar.delete(plane)
+    $plane_status = true
+    plane
   end
 
   def land_plane(plane)
-    fail "Hangar is full!" if @hangar.count >= 20
+    fail "Hangar is full!" if @hangar.count >= @capacity
     @hangar << plane
-    plane(@@flying = false)
+    $plane_status = false
+    plane
   end
 
-  attr_accessor :plane
 end

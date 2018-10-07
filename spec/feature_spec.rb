@@ -3,10 +3,10 @@ require "./lib/plane.rb"
 require "./lib/weather.rb"
 weather = Weather.new
 airport = Airport.new
-@plane = Plane.new
-10.times airport.land_plane(@plane)
+plane = Plane.new
+10.times airport.land_plane(plane)
 plane = airport.depart_plane
 plane.flying?
 airport.land_plane(plane)
 airport.plane
-puts weather.conditions
+weather.conditions
