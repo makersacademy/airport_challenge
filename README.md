@@ -45,7 +45,7 @@ airport = Airport.new(weather_generator, [], 100)
 ```
 
 - The `airport` object needs to be fed a `weather_generator` object in order to know whether it is clear or stormy.
-- The second argument is the list of `plane`s currently stored on the `airport`, which will default to an empty list if not specified.
+- The second argument is the list of planes currently stored on the `airport`, which will default to an empty list if not specified.
 - The third argument is the capacity of the `airport` which will default to 100 unless specified.
 
 ### Landing a plane:
