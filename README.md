@@ -8,7 +8,7 @@ Airport Challenge
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
-                `---~~\___________/------------`
+                `---~~\___________/------------` `` `
                 =  ===(_________)
 
 ```
@@ -130,3 +130,13 @@ There are also checks for the following:
 
 Run
 ```rspec``` in terminal
+
+#### Test results
+
+```
+100% COVERAGE
+```
+
+```
+0 Offenses in Rubocop
+```
