@@ -2,6 +2,10 @@ require 'airport'
 
 describe Airport do
 
+  it "has default capacity of 20" do
+    expect(Airport::DEFAULT_CAPACITY).to eq 20
+  end
+
   it 'can land a plane' do
     plane = Plane.new
 
