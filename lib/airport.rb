@@ -17,7 +17,7 @@ class Airport
   end
 
   def takeoff_plane
-    fail "Unable to take off" if empty? == true
+    fail "Unable to take off" if empty? == true || bad_weather? == true
     @planes.pop
   end
 
@@ -30,7 +30,7 @@ class Airport
   end
 
   def bad_weather?
-    weather.stormy?
+    Weather.stormy?
   end
 
   def weather
