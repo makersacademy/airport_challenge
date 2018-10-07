@@ -1,5 +1,7 @@
 require_relative 'plane'
 require_relative 'airport'
+
+# AirportController Class, control landing and take off of planes at airports
 class AirportController
   attr_reader :weather
 

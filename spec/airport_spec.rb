@@ -67,7 +67,7 @@ describe Airport do
     end
   end
 
-  context ' #remove_plane' do
+  context '#remove_plane' do
     it 'removes a plane from an airport' do
       plane = double :plane
       subject.add_plane(plane)
@@ -89,7 +89,7 @@ describe Airport do
   end
 
   context '#full?' do
-    it "is not full by default" do
+    it 'is not full by default' do
       expect(subject.full?).to eq false
     end
 
@@ -105,7 +105,7 @@ describe Airport do
   end
 
   context 'Capacity' do
-    it "has a constant DEFAULT_CAPACITY, which is 100" do
+    it 'has a constant DEFAULT_CAPACITY, which is 100' do
       expect(Airport::DEFAULT_CAPACITY).to eq 100
     end
 

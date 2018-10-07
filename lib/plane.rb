@@ -1,3 +1,4 @@
+# Plane Class, keeps track fo the location of a plane 
 class Plane
   attr_accessor :location
   

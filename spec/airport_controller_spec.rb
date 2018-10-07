@@ -35,8 +35,8 @@ describe AirportController do
       subject.instruct_plane_to_land(plane, airport)
     end
 
-    context "weather" do
-      context "stromy weather" do
+    context 'weather' do
+      context 'stromy weather' do
         subject { 
           weather = double :weather, stormy?: true
           AirportController.new(weather) 
@@ -47,7 +47,8 @@ describe AirportController do
           expect { subject.instruct_plane_to_land(plane, airport) }.to raise_error AirportController::WEATHER_IS_STORMY
         end
       end
-      context "sunny weather" do
+
+      context 'sunny weather' do
         subject { 
           weather = double :weather, stormy?: false
           AirportController.new(weather) 
@@ -70,7 +71,7 @@ describe AirportController do
     end
   end
 
-  describe ' #instructs_plane_to_take_off' do
+  describe '#instructs_plane_to_take_off' do
 
     it 'instructs a plane to take off from an airport' do
       airport = double :airport, :plane? => true, :remove_plane => true
@@ -91,7 +92,7 @@ describe AirportController do
       expect { subject.instruct_plane_to_take_off(plane, airport) }.to raise_error Airport::NOT_IN_THIS_AIRPORT
     end
 
-    it "instructs a plane to take_off from an airport, and remove the plane from airport" do
+    it 'instructs a plane to take_off from an airport, and remove the plane from airport' do
       airport = double :airport, :plane? => true, :remove_plane => true
       plane = double :plane, location: airport, :location= => airport
       expect(airport).to receive(:remove_plane).with(plane)
@@ -105,8 +106,8 @@ describe AirportController do
       subject.instruct_plane_to_take_off(plane, airport)
     end
 
-    context "weather" do
-      context "stromy weather" do
+    context 'weather' do
+      context 'stromy weather' do
         subject { 
           weather = double :weather, stormy?: true
           AirportController.new(weather) 
@@ -117,7 +118,7 @@ describe AirportController do
           expect { subject.instruct_plane_to_take_off(plane, airport) }.to raise_error AirportController::WEATHER_IS_STORMY
         end
       end
-      context "sunny weather" do
+      context 'sunny weather' do
         subject { 
           weather = double :weather, stormy?: false
           AirportController.new(weather) 

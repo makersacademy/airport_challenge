@@ -1,3 +1,4 @@
+# Airport Class, keep track of airplanes in the airport
 class Airport
   attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 100

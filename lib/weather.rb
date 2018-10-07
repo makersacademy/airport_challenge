@@ -1,3 +1,4 @@
+# Weather Class, allows to check if it's stormy
 class Weather
 
   def initialize(rng)
