@@ -7,7 +7,7 @@ describe Weather do
 
   describe "#stormy?" do
     it 'should always return true or false' do
-      100.times { expect(subject.stormy?).to eq(true).or eq(false) }
+      expect(subject.stormy?).to eq(true).or eq(false)
     end
 
     it 'should be true when the random number is less than the storm chance' do
