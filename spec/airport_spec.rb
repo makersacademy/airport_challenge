@@ -1,63 +1,62 @@
 require "airport"
 
 describe Airport do
-  describe 'land' do
-    it 'responds to land' do
-      expect(subject).to respond_to :land
+  context('when the weather is sunny') do
+    before(:each) do
+      allow(subject).to receive(:stormy?).and_return(false)
     end
 
-    it 'instructs a plane to land' do
-      # airport = Airport.new
-      puts subject.weather?
-      subject.update_weather("sunny")
-      # allow(airport).to receive(:weather?).and_return("sunny")
-      plane = Plane.new
-      # plane.update_status("land")
-      # airport.update_weather("clear")
-      subject.land(plane)
-      expect(plane.status?).to eq "land"
-    end
+    describe 'landing and take off in good weather' do
+      it 'responds to land' do
+        expect(subject).to respond_to :land
+      end
 
-    it 'prevents landing if stormy' do
-      plane = Plane.new
-      # airport = Airport.new
-      subject.update_weather("stormy")
-      expect(subject.land(plane)).to eq "landing not allowed"
-    end
+      it 'instructs a plane to land' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(plane.status?).to eq "land"
+      end
 
-    it 'plane is set as landed' do
-      # airport = Airport.new
-      plane = Plane.new
-      subject.update_weather("sunny")
-      subject.land(plane)
-      expect(plane.status?).to eq "land"
+      it 'plane is set as landed' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(plane.status?).to eq "land"
+      end
+
+      it 'responds to takeoff' do
+        expect(subject).to respond_to :takeoff
+      end
+
+      it 'instructs a plane to take off' do
+        plane = Plane.new
+        expect(plane.status?).to eq "air"
+      end
+
+      it 'plane is set as taken off' do
+        airport = Airport.new
+        plane = Plane.new
+        airport.takeoff(plane)
+        expect(plane.status?).to eq "air"
+      end
     end
   end
 
-  describe 'takeoff' do
-    it 'responds to takeoff' do
-      expect(subject).to respond_to :takeoff
+  context('when the weather is stormy') do
+    before(:each) do
+      allow(subject).to receive(:stormy?).and_return(true)
     end
 
-    it 'instructs a plane to take off' do
-      # airport = Airport.new
-      plane = Plane.new
-      subject.update_weather("sunny")
-      expect(plane.status?).to eq "air"
-    end
+    describe 'prevent landing and take off in bad weather' do
+      it 'prevents takeoff if stormy' do
+        plane = Plane.new
+        airport = Airport.new
+        expect(airport.takeoff(plane)).to eq "takeoff not allowed"
+      end
 
-    it 'prevents takeoff if stormy' do
-      plane = Plane.new
-      airport = Airport.new
-      airport.update_weather("stormy")
-      expect(airport.takeoff(plane)).to eq "takeoff not allowed"
-    end
-
-    it 'plane is set as taken off' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.takeoff(plane)
-      expect(plane.status?).to eq "air"
+      it 'prevents landing if stormy' do
+        plane = Plane.new
+        expect(subject.land(plane)).to eq "landing not allowed"
+      end
     end
   end
 
@@ -71,17 +70,6 @@ describe Airport do
       expect(subject.weather?).to eq('stormy').or(eq('sunny'))
     end
   end
-
-  # describe 'prevent_landing' do
-  #   it "responds to prevent landing" do
-  #     expect(subject).to respond_to :prevent_landing
-  #   end
-  #
-  #   it 'stops a plane from landing' do
-  #     plane = Plane.new
-  #     expect(subject.prevent_landing(plane)).to eq (true)
-  #   end
-  # end
 
   describe 'check_capacity' do
     it "responds to check capacity" do

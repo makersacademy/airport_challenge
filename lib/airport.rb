@@ -9,8 +9,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport full' if full?
-    if @weather == "stormy"
+    raise 'Airport full' if full?
+    if stormy?
       return "landing not allowed"
     else
       plane.update_status("land")
@@ -31,13 +31,13 @@ class Airport
     @weather
   end
 
+  def stormy?
+    @weather == "stormy"
+  end
+
   def update_weather(weather)
     @weather = weather
   end
-
-  # def prevent_landing(plane)
-  #   true
-  # end
 
   def capacity?
     @capacity

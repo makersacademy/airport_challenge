@@ -7,3 +7,5 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 airport-challenge-domain-model.csv
+spec_copy/**/*
+lib_copy/**/*

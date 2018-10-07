@@ -16,9 +16,10 @@ airport = Airport.new
 # puts airport.weather?
 # puts airport.takeoff(plane) == "takeoff not allowed"
 # puts airport.land(plane) == "landing not allowed"
-airport.set_weather("sunny")
-puts airport.capacity? == 10
-10.times { airport.land(Plane.new) }
-# airport.land(Plane.new)
+airport.update_weather("sunny")
 airport.land(Plane.new)
-puts airport.full?
+# puts airport.capacity? == 10
+# 10.times { airport.land(Plane.new) }
+# # airport.land(Plane.new)
+# airport.land(Plane.new)
+# puts airport.full?
