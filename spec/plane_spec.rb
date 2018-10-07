@@ -3,7 +3,6 @@ require './lib/plane'
 describe Plane do
   let(:airport) { Airport.new }
 
-
   it "can return it's location" do
     expect(subject.location).to eq "air"
   end

@@ -1,11 +1,11 @@
 require_relative '0_dependencies'
 
 puts "Airport initilaized"
-puts  a1 = Airport.new
+puts a1 = Airport.new
 
 a1.capacity.times do
   puts "Check if airport full"
-  puts  a1.full?
+  puts a1.full?
   puts "set seed to ensure sunny"
   srand(1)
   puts "Land a new plane"

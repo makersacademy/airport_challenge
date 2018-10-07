@@ -3,7 +3,7 @@ class Airport
   attr_reader :weather
   attr_reader :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @weather = Weather.new
     @hanger = Array.new
     @capacity = capacity
@@ -16,8 +16,8 @@ class Airport
   def land(plane)
     raise('Cannot land in stormy weather') unless flight_clearance?
     raise('Cannot land. Airport is full.') if full?
-    raise('Cannot land. Plane not in the air.') if plane.location != "air"
-    plane.location = self.object_id
+    raise('Cannot land. Plane not in the air.') unless plane.location == "air"
+    plane.location = object_id
     @hanger << plane
   end
 
