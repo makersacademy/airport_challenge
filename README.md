@@ -56,3 +56,18 @@ A simple class that has a status trigger that returns true/false
 ________
 
 A simple class that creates a random weather condition and returns if it is stormy or not
+
+
+#My process
+
+* The first thing I did was create a domain_model.md
+* Then I transferred the first character story to the domain model
+    * After i had a clear look at my domain model I began writing my test
+    * I thought about how a user would expect this paragraph to work on their end and wrote a test that expected those results
+    *  After the test was made and passing I would write the actual code. it wasn't anything fancy just the bare minimum i needed to write the test.
+    * after my rspec and coverage passed I would clean my code.
+* Many times I would write something new and it would fail alot of my old tests
+    * most of this was due to lack of knowledge for testing syntex
+    * I would look up more accurate methods and then try to incorpate them.
+    * once the old tests didn't fail, I would try to make new methods and make sure they didn't fail my old ones. 
+    * My approach may have been initially time consuming, but it saved me a lot of heartache by the time I got to implementing the more serious and complex features.    
