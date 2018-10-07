@@ -1,14 +1,15 @@
-# require_relative 'weather.rb'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :capacity
-  attr_reader :weather
+
+  include Weather
 
   $airports = Array.new
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @weather = ["stormy", "sunny"].sample
+    # @weather = ["stormy", "sunny"].sample
     @capacity = capacity
     @planes = []
     $airports << self
@@ -30,13 +31,10 @@ class Airport
     @planes.delete(plane)
   end
 
-  def stormy?
-    @weather == "stormy"
-  end
-
-  def update_weather(weather)
-    @weather = weather
-  end
+  # def stormy?
+  #   sunny? != "sunny"
+  #   puts sunny?
+  # end
 
   def capacity?
     @capacity

@@ -47,12 +47,20 @@ describe Plane do
       plane = Plane.new(airport)
       expect(plane.in_airport?[0]).to eq airport
     end
-
+  end
+  # context('when the weather is sunny') do
+  #   before(:each) do
+  #     allow(Airport).to receive(:stormy?).and_return(false)
+  #   end
+  describe 'plane status check' do
     it 'checks that a new plane is in only one airport after take off and land at another airport' do
+
       airport = Airport.new
-      airport.update_weather("sunny")
+      allow(airport).to receive(:stormy?).and_return(false)
+      # airport.update_weather("sunny")
       airport2 = Airport.new
-      airport2.update_weather("sunny")
+      allow(airport2).to receive(:stormy?).and_return(false)
+      # airport2.update_weather("sunny")
       plane = Plane.new(airport)
       airport.takeoff(plane)
       airport2.land(plane)
@@ -61,9 +69,11 @@ describe Plane do
 
     it 'new plane is in airport2 after take off from airport1 and land at airport2' do
       airport1 = Airport.new
-      airport1.update_weather("sunny")
+      allow(airport1).to receive(:stormy?).and_return(false)
+      # airport.update_weather("sunny")
       airport2 = Airport.new
-      airport2.update_weather("sunny")
+      allow(airport2).to receive(:stormy?).and_return(false)
+      # airport2.update_weather("sunny")
       plane = Plane.new(airport1)
       airport1.takeoff(plane)
       airport2.land(plane)

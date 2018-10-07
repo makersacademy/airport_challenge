@@ -1,11 +1,18 @@
 require "airport"
+require 'weather'
 
 describe Airport do
+  describe 'check weather' do
+    it 'is sunny or stormy' do
+      # expect(subject.weather).to eq "sunny"
+      expect(subject.weather).to eq('sunny').or(eq('stormy'))
+    end
+  end
   context('when the weather is sunny') do
     before(:each) do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:weather).and_return("sunny")
     end
-    describe 'check if sunny' do
+    describe 'check if not stormy' do
       it 'weather is stormy = false' do
         expect(subject.stormy?).to eq false
       end
@@ -75,11 +82,21 @@ describe Airport do
         expect(subject.in_hangar(plane)).to eq false
       end
     end
+
+    describe 'full?' do
+
+      it 'raises an error when full' do
+        # subject.update_weather("sunny")
+        subject.capacity.times { subject.land(Plane.new) }
+        expect { subject.land(Plane.new) }.to raise_error 'Airport full'
+      end
+    end
   end
 
   context('when the weather is stormy') do
     before(:each) do
-      allow(subject).to receive(:stormy?).and_return(true)
+      # allow(subject).to receive(:stormy?).and_return(true)
+      allow(subject).to receive(:weather).and_return("stormy")
     end
 
     describe 'check if stormy' do
@@ -115,23 +132,18 @@ describe Airport do
     end
   end
 
-  describe 'full?' do
+  describe 'overrides' do
 
-    it 'raises an error when full' do
+    it 'Forces weather update' do
       subject.update_weather("sunny")
-      subject.capacity.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
+      expect(subject.weather).to eq "sunny"
     end
-  end
-
-  describe 'override default capacity of airport' do
 
     it 'checks capacity of the airport to 2 when created' do
       airport = Airport.new(2)
       expect(airport.capacity?).to eq 2
     end
-  end
-  describe 'update_capacity' do
+
     it 'sets capacity of the airport' do
       expect(subject.update_capacity).to eq true
     end

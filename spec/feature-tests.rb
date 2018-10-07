@@ -2,9 +2,14 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 # require './lib/weather.rb'
 airport = Airport.new
-plane = Plane.new(airport)
-plane.update_status("air")
-puts airport.flying_in_airport?
+puts airport.weather
+puts airport.weather
+puts airport.weather
+puts airport.weather
+puts airport.weather
+# plane = Plane.new(airport)
+# plane.update_status("air")
+# puts airport.flying_in_airport?
 # puts airport
 # puts plane.flying?
 # puts airport.in_hangar(plane)
