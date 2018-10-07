@@ -18,22 +18,23 @@ describe Airport do
     expect(subject.take_off).to eq "The plane has taken off"
     weather = Weather.new
     weather.condition == "stormy"
-    expect{subject.take_off}.to raise_error "Weather is stormy, do not take off!"
+    expect {subject.take_off}.to raise_error "Weather is stormy, do not take off!"
   end
-
-#  it "allows take off if weather is sunny" do
-#    plane = Plane.new
-#    weather = Weather.new
-#    subject.land(plane)
-#    weather.condition == 'sunny'
-#    expect(subject.take_off).to eq "The plane has taken off"
-#  end
 
   it "does not allow landing if stormy" do
     plane = Plane.new
     weather = Weather.new
     weather.condition == 'stormy'
-    expect{subject.land(plane)}.to raise_error "Weather is stormy, do not land!"
+    expect {subject.land(plane)}.to raise_error "Weather is stormy, do not land!"
+  end
+
+  it "does not allow more planes to land if hanger is at full capacity" do
+    subject.capacity.times {subject.land(Plane.new)}
+    expect {subject.land(Plane.new)}.to raise_error "Hanger is full"
+  end
+
+  it "has a default capacity, if no params to Airport" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
 end
