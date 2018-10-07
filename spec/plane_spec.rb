@@ -1,9 +1,9 @@
 require "plane"
 
 describe Plane do
-  let(:plane) {Plane.new}
-  let(:airport) {double(:airport, hanger: [], full?: false, stormy?: false) }
-
+  let(:plane) { Plane.new }
+  let(:airport) { double(:airport, hanger: [], full?: false, stormy?: false) }
+  
   describe "#land" do
     it "should land a plane at an airport" do
       plane.land(airport)
@@ -11,11 +11,11 @@ describe Plane do
     end
     it "should raise an error if airport is full" do
       allow(airport).to receive(:full?).and_return(true)
-      expect{plane.land(airport)}.to raise_error "Airport is full"
+      expect { plane.land(airport) }.to raise_error "Airport is full"
     end
     it "should raise an error if stormy weather" do
       allow(airport).to receive(:stormy?).and_return(true)
-      expect{plane.land(airport)}.to raise_error "Too stormy to land"
+      expect { plane.land(airport) }.to raise_error "Too stormy to land"
     end
   end
 
@@ -30,14 +30,13 @@ describe Plane do
     end
     it "should not take off if stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
-      expect{plane.take_off(airport)}.to raise_error "Too stormy to take off"
+      expect { plane.take_off(airport) }.to raise_error "Too stormy to take off"
     end
-    it "cannot take off if already in the sky" do
+    it "raises error if trying to take off if already in the sky" do
       plane.land(airport)
       plane.take_off(airport)
-      expect{plane.take_off(airport)}.to raise_error "Plane is skyborn"
+      expect { plane.take_off(airport) }.to raise_error "Plane is not in this airport"
     end
   end
-
 
 end

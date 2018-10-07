@@ -1,5 +1,5 @@
 class Plane
-attr_reader :location
+  attr_reader :location
 
   def initialize
     @location
@@ -13,7 +13,7 @@ attr_reader :location
   end
 
   def take_off(airport)
-    raise "Plane is skyborn" if @location == "sky"
+    raise "Plane is not in this airport" if @location == "sky"
     raise "Too stormy to take off" if airport.stormy?
     @location = "sky"
     airport.hanger.delete(self)
