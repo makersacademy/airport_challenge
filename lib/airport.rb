@@ -2,7 +2,6 @@ require 'weather.rb'
 
 class Airport
 
-  attr_reader :planes
   DEFAULT_CAPACITY = 20
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
@@ -21,7 +20,9 @@ class Airport
 
   def take_off(plane)
     raise "Unable to take off, stormy weather." if @weather.stormy?
-    raise "Unable to take off, plane not landed." unless @planes.include?(plane)
+    raise "Unable to take off, plane is already flying." if plane.flying?
+    raise "Unable to take off, plane not landed in this airport." unless @planes.include?(plane)
+    plane.fly
     @planes.delete(plane)
   end
 
