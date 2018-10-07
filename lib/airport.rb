@@ -2,7 +2,7 @@ class Airport
   attr_reader :planes
   NOT_IN_THIS_AIRPORT = 'Plane is not in this airport'
   ALREADY_AT_THIS_AIRPORT = 'Plane is already at an airport!'
-
+  
   def initialize
     @planes = []
   end
