@@ -8,10 +8,12 @@ class Plane
 
   def fly
     @location = "Sky"
+    "Take off successful for #{self}"
   end
 
   def arrive(airport)
     @location = airport
+    "#{self} arrived at #{airport}"
   end
 
 end
