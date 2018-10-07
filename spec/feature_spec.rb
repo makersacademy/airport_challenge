@@ -28,7 +28,7 @@ describe 'Lands and takes off a number of planes' do
     end).to all be true
   end
 
-  it 'land all @planes in Heathrow' do
+  it 'land all planes in Heathrow' do
     @planes.each do |plane|
       @airport_controller.instruct_plane_to_land(plane, @heathrow)
     end
