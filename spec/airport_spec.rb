@@ -26,6 +26,7 @@ describe Airport do
 
   it 'can take off a landed plane' do
     plane = Plane.new
+    subject = Airport.new(create_normal_weather)
     subject.land(plane)
 
     subject.take_off(plane)
@@ -33,11 +34,12 @@ describe Airport do
     expect(subject.planes).to be_empty
   end
 
-  it 'can take off a landed plane without affecting other landed planes' do
+  it 'can take off a landed plane without affecting other landed planes in normal weather' do
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new
 
+    subject = Airport.new(create_normal_weather)
     subject.land(plane1)
     subject.land(plane2)
     subject.land(plane3)
@@ -48,13 +50,22 @@ describe Airport do
   end
 
   it 'prevents take off if weather is stormy' do
+    subject = Airport.new(create_stormy_weather)
+    plane = Plane.new
+    subject.land(plane)
+
+    expect { subject.take_off(plane) }.to raise_error("Unable to take off, stormy weather.")
+  end
+
+  def create_stormy_weather
     weather = double("Weather")
     allow(weather).to receive(:stormy?).and_return(true)
+    weather
+  end
 
-    airport = Airport.new(weather)
-    plane = Plane.new
-    airport.land(plane)
-
-    expect { airport.take_off(plane) }.to raise_error("Unable to take off, stormy weather.")
+  def create_normal_weather
+    weather = double("Weather")
+    allow(weather).to receive(:stormy?).and_return(false)
+    weather
   end
 end
