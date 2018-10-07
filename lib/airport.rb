@@ -1,9 +1,17 @@
+
+require './lib/weather'
+require './lib/plane'
+
+
+
+
 class Airport
 
-  #def initialize
-    #@plane_inv = []
-  #  @max_cap = 6
-  #end
+  def initialize
+  @weather = Weather.new.met_report
+  #@plane_inv = []
+  #@max_cap = 1
+  end
 
   def land(plane)
     @plane = plane
@@ -11,9 +19,8 @@ class Airport
   end
 
   def take_off(plane)
-    #weather? = stormy
-    #if weather? == stormy return "Can't take off bad weather!"
-    @plane = plane
+    #raise "Unable to take off due to bad weather!" if @weather == "stormy"
+    return "Plane has taken off"
 
   end
 end
