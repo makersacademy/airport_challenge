@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { Plane.new }
   let(:p1) {double :plane}
   let(:p2) {double :plane}
 
@@ -20,13 +21,29 @@ describe Airport do
   end
 
   describe "Capacity" do
-    it "Returns airport capacity" do
-      expect(subject.capacity).to eq 1
+    it 'Airport has a default capcity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it "capcity can be variable" do
-      cap = Airport.new(2)
-      expect(cap.capacity).to eq 2
+      airport = Airport.new(2)
+      expect(airport.capacity).to eq 2
+    end
+
+    it "no. planes in hanger" do
+      airport = Airport.new(5)
+      3.times do
+        airport.land(plane)
+      end
+      expect(airport.no_in_hanger).to eq 3
+    end
+
+    it 'return remaining capacity' do
+      airport = Airport.new(5)
+      3.times do
+        airport.land(plane)
+      end
+      expect(airport.remaining_capacity).to eq 2
     end
   end
 
@@ -41,7 +58,9 @@ describe Airport do
 
     it 'true when full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
-      subject.land(p1)
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
       expect(subject.full?).to eq true
     end
   end
@@ -59,8 +78,10 @@ describe Airport do
 
     it 'When full' do
       allow(subject).to receive(:check_weather) { 'sunny' }
-      subject.land(p1)
-      expect{subject.land(p2)}.to raise_error('Cannot land. Airport is full.')
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect{subject.land(plane)}.to raise_error('Cannot land. Airport is full.')
     end
   end
 

@@ -1,10 +1,4 @@
-require './lib/weather'
-require './lib/airport'
-require './lib/plane'
-
-a1 = Airport.new
-p1 = Plane.new
-a1.in_hanger?(p1)
+require_relative '0_dependencies'
 
 puts "Airport initilaized"
 puts  a1 = Airport.new

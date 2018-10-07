@@ -1,5 +1,5 @@
 class Airport
-  DEFAULT_CAPACITY = 1
+  DEFAULT_CAPACITY = 2
   attr_reader :weather
   attr_reader :capacity
 
