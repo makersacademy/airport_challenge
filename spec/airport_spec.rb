@@ -97,11 +97,16 @@ describe Airport do
     end
   end
 
-  describe 'update_capacity' do
+  describe 'override default capacity of airport' do
     # it "responds to set capacity" do
     #   expect(subject).to respond_to :update_capacity
     # end
-
+    it 'checks capacity of the airport to 2 when created' do
+      airport = Airport.new(2)
+      expect(airport.capacity?).to eq 2
+    end
+  end
+describe 'update_capacity' do
     it 'sets capacity of the airport' do
       # airport = Airport.new
       expect(subject.update_capacity).to eq true

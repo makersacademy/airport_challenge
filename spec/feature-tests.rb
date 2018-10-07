@@ -20,7 +20,10 @@ airport = Airport.new
 # airport.update_weather("sunny")
 # airport.land(Plane.new)
 # airport.land(Plane.new)
-puts airport.capacity? == 10
+# puts airport.capacity? == 10
+airport = Airport.new(2)
+puts airport.capacity? == 2
+puts airport.capacity?
 # 10.times { airport.land(Plane.new) }
 # puts airport.full?
 # airport.land(Plane.new)
