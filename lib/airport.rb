@@ -37,7 +37,7 @@ class Airport
   end
 
   def stormy?(weather)
-    @weather = weather
+    weather.is_a?(Weather) ? @weather = weather.forcast : false
   end
 
   def grounded?(plane)
@@ -46,7 +46,7 @@ class Airport
 
   def flying?(plane)
     flying = plane.status if plane.is_a?(Plane)
-    flying == false ? true : false 
+    flying == false
   end
 
   private

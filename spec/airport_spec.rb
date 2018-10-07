@@ -84,7 +84,13 @@ describe Airport do
     it 'expected to equal new weather' do
       weather = Weather.new
       allow(weather).to receive(:rand).and_return(6)
-      expect(subject.stormy?(weather)).to eq weather
+      expect(subject.stormy?(weather)).to eq true
+    end
+  end
+
+  describe '#flying? feature' do
+    it ' should return true when passed a plane' do
+      expect(subject.flying?(Plane.new)).to eq true
     end
   end
 end
