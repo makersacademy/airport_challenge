@@ -9,6 +9,7 @@ class Airport
   end
 
   def hangar_report
-    "Planes currently in the hangar: #{@landed_planes}"
+    return "No planes currently in the airport." if landed_planes.count < 1
+    "Planes currently in the hangar: #{landed_planes.join(", ")}"
   end
 end
