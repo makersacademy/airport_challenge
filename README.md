@@ -1,38 +1,160 @@
-Airport Challenge
-=================
+# Airport Challenge
+A week end task, set by Makers Academy, to gage our understanding of test driven development. The instructions for the challenge can be found in the instruction section at the bottom of this document.
+
+The approach taken was that for each user story, I would write a feature tests for a single aspect of that story. For example:
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+I want to prevent takeoff when weather is stormy
+```
+I first would have tested that weather can be returned.
+
+Once I had a feature tests I would create a unit tests that replicates any errors or unexpected behaviour seen in the feature test.
+
+I would then work to pass these tests.
+
+Once passed, I would repeat this process until the entire until there are feature and unit tests of the user story and all tests pass.
+
+I would then refactor my code.
+
+Once tests were written and passed for all user stories, I would repeat the process for edge cases and any considerations not picked up while completing the user stories.
+
+With the exception of the bonus task, I believe that the challenge has been completed.
+
+# Progress
+## User Stories
+- [x] User Story 1
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 2
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 3
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 4
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 5
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 6
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+
+
+## Consideration
+A list of things to consider throughout the challenge:
+
+- [x] Planes can land and take off provided that the weather is sunny
+- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
+- [x] Your code should defend against edge cases such as inconsistent states of the system
+  - [x] Planes can only take off from airports they are in
+  - [x] Planes that are already flying cannot takes off and/or be in an airport
+  - [x] Planes that are landed cannot land again and must be in an airport
+- [x] Override weather conditions using use test doubles
+- [x] create a separate file for each:
+  - [x] class
+  - [x] test suite
+- [x] In code review we'll be hoping to see:
+  - [x] All tests passing
+  - [x] High Test coverage (>95% is good)
+  - [x] The code is elegant:
+    - [x] Every class has a clear responsibility
+    - [x] Methods are short
+- [x] Refactor
+- [x] README file
+
+
+## Getting Started
+
+### Prerequisites
+
+The following are required in order to run and test this solution to the challenge.
+* Ruby 2.5.0
+* RSpec gem
+* Bundle gem
+
+### Installation
+
+
+Ruby 2.5.0:
 
 ```
+$ rvm install "ruby-2.5.0"
+```
 
-Instructions
----------
+RSpec:
 
+```
+$ gem install rspec
+```
+
+Bundle:
+
+```
+$ gem install bundle
+```
+
+## Testing
+
+### Feature tests
+
+All feature tests can be run using:
+
+```
+$ ruby 4_take_off_plane.rb
+```
+
+Individual feature tests can be run by running the individual contained within the `feature_test` directory. For example:
+
+```
+$ ruby ./feature_tests/13_check_if_airport_full.rb
+```
+
+### Unit tests
+
+Unit tests can be runusing:
+
+```
+$ rspec
+```
+
+### Test coverage
+
+All code has been written test-first.
+
+Test coverage is at 100% as checked by `SimpleCov`.
+
+Test cover all user stories and edge cases such planes taking off from airports that they are not in.
+
+
+## contributors
+* [makersacademy](https://github.com/makersacademy) - author of the challenge
+* [Terence Mace](https://github.com/Tolvic) - author of the solution for the challenge
+
+
+
+
+## Challenge Instructions
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
-
+## Steps
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 4. Complete the following task:
 
-Task
------
-
+## Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
@@ -88,152 +210,3 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
-
-
-# Project Title
-
-A week end task set by Makers Academy to gage our understanding of test driven development. The instructions for the task given can be found in the instruction section of this document.
-
-# Progress
-
-## User Stories
-- [x] User Story 1
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-- [x] User Story 2
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-- [x] User Story 3
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-- [x] User Story 4
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-- [x] User Story 5
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-- [x] User Story 6
-  - [x] feature tests written
-  - [x] unit tests written
-  - [x] unit tests pass
-  - [x] feature tests pass
-  - [x] refactored
-
-
-# Consideration
-A list of things that I need to consider throughout the challenge:
-
-- [x] Planes can land and take off provided that the weather is sunny
-- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
-- [ ] Your code should defend against edge cases such as inconsistent states of the system
-  - [x] Planes can only take off from airports they are in
-  - [ ] Planes that are already flying cannot takes off and/or be in an airport
-  - [ ] Planes that are landed cannot land again and must be in an airport
-  - [ ] etc.
-- [x] Override weather conditions using use test doubles
-- [x] create a separate file for each:
-  - [x] class
-  - [x] test suite
-- [ ] In code review we'll be hoping to see:
-  - [ ] All tests passing
-  - [ ] High Test coverage (>95% is good)
-  - [ ] The code is elegant:
-    - [ ] Every class has a clear responsibility
-    - [ ] Methods are short
-    - [ ] Etc.
-  - [ ] README file
-
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-* Ruby 2.5.0
-* RSpec gem
-* Bundle gem
-
-### Installing
-
-
-Installing Ruby 2.5.0
-
-```
-$ rvm install "ruby-2.5.0"
-```
-
-Installing RSpec
-
-```
-$ gem install rspec
-```
-
-Installing Bundle
-
-```
-$ gem install bundle
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-### Feature tests
-
-All feature tests can be run using:
-
-```
-$ ruby feature_tests.rb
-```
-
-Individual feature tests can be run executing the individual files contained within the feature_test directory. For example:
-
-```
-$ irb require './feature_test/feature_test_one'
-```
-
-### Unit tests
-
-unit tests can be running the following script from the root:
-
-```
-$ rspec
-```
-
-### Test coverage
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## contributors
-[makersacademy](https://github.com/makersacademy) - author of the challenge
-[Terence Mace](https://github.com/Tolvic) - solution for the challenge
-
-
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
