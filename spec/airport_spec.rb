@@ -7,7 +7,6 @@ describe Airport do
     airport = Airport.new
     airport.land(plane)
   end
-  #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
   it "instruct a plane to take off" do
     plane = Plane.new
     plane_2 = Plane.new
@@ -28,5 +27,17 @@ describe Airport do
     airport = Airport.new
     expect(airport).to receive(:stormy?).and_return(true)
     expect { airport.land(plane) }.to raise_exception "Can not land if the weather is stormy"
+  end
+  #I want to prevent landing when the airport is full
+  it "prevent landing when the airport is full" do
+    plane = Plane.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    airport = Airport.new
+    airport.land(plane1)
+    airport.land(plane2)
+    airport.land(plane3)
+    expect { airport.land(plane) }.to raise_exception "The airport is full ,piss off"
   end
 end
