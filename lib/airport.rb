@@ -9,7 +9,6 @@ class Airport
   $airports = Array.new
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    # @weather = ["stormy", "sunny"].sample
     @capacity = capacity
     @planes = []
     $airports << self
@@ -30,11 +29,6 @@ class Airport
     plane.update_status("air")
     @planes.delete(plane)
   end
-
-  # def stormy?
-  #   sunny? != "sunny"
-  #   puts sunny?
-  # end
 
   def capacity?
     @capacity
