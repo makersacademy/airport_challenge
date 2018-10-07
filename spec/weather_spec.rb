@@ -2,12 +2,12 @@ require 'weather'
 
 describe Weather do
 
-  it "returns true if passed a value <= 25" do
+  it "sometimes weather is stormy (25% of the time)" do
     allow(Weather).to receive(:rand) { 20 }
     expect(Weather.stormy?).to eq(true)
   end
 
-  it "returns false if passed a value > 25" do
+  it "sometimes weather is fine (75% of the time)" do
     allow(Weather).to receive(:rand) { 70 }
     expect(Weather.stormy?).to eq(false)
   end

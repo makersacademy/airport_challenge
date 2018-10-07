@@ -3,7 +3,7 @@ require 'airport'
 require 'plane'
 require 'weather'
 
-describe 'Airport', :type => :feature do
+describe 'Airport Feature', :type => :feature do
 
   scenario 'Land and take off several planes' do
     given_airports_and_planes
@@ -18,11 +18,11 @@ describe 'Airport', :type => :feature do
   def given_airports_and_planes
     @lax = Airport.new
     @ord = Airport.new
-    @boeing777 = Plane.new
-    @boeing747 = Plane.new
-    @boeing767 = Plane.new
-    @airbusA300 = Plane.new
-    @airbusA310 = Plane.new
+    @boeing_777 = Plane.new
+    @boeing_747 = Plane.new
+    @boeing_767 = Plane.new
+    @airbus_a300 = Plane.new
+    @airbus_a310 = Plane.new
   end
 
   def given_good_weather
@@ -30,33 +30,33 @@ describe 'Airport', :type => :feature do
   end
 
   def when_those_planes_land
-    @boeing777.land(@lax)
-    @boeing747.land(@lax)
-    @boeing767.land(@ord)
-    @airbusA300.land(@lax)
-    @airbusA310.land(@ord)
+    @boeing_777.land(@lax)
+    @boeing_747.land(@lax)
+    @boeing_767.land(@ord)
+    @airbus_a300.land(@lax)
+    @airbus_a310.land(@ord)
   end
 
   def the_right_planes_should_be_at_right_airports
-    expect(@lax.planes).to eq([@boeing777, @boeing747, @airbusA300])
-    expect(@ord.planes).to eq([@boeing767, @airbusA310])
+    expect(@lax.planes).to eq([@boeing_777, @boeing_747, @airbus_a300])
+    expect(@ord.planes).to eq([@boeing_767, @airbus_a310])
   end
 
   def when_some_planes_takeoff
-    @boeing777.takeoff
-    @boeing767.takeoff
-    @airbusA310.takeoff
+    @boeing_777.takeoff
+    @boeing_767.takeoff
+    @airbus_a310.takeoff
   end
 
   def the_right_planes_should_be_left_at_right_airports
-    expect(@lax.planes).to eq([@boeing747, @airbusA300])
+    expect(@lax.planes).to eq([@boeing_747, @airbus_a300])
     expect(@ord.planes).to be_empty
   end
 
   def the_right_planes_should_be_in_the_air
-    expect(@boeing777.location).to eq("air")
-    expect(@boeing767.location).to eq("air")
-    expect(@airbusA310.location).to eq("air")
+    expect(@boeing_777.location).to eq("air")
+    expect(@boeing_767.location).to eq("air")
+    expect(@airbus_a310.location).to eq("air")
   end
 
 end
