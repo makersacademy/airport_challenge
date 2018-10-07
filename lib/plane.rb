@@ -10,4 +10,8 @@ class Plane
     @location = "Sky"
   end
 
+  def arrive(airport)
+    @location = airport
+  end
+
 end
