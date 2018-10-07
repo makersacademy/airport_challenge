@@ -28,7 +28,6 @@ describe Airport do
     expect(airport).to receive(:stormy?).and_return(true)
     expect { airport.land(plane) }.to raise_exception "Can not land if the weather is stormy"
   end
-  #I want to prevent landing when the airport is full
   it "prevent landing when the airport is full" do
     plane = Plane.new
     plane1 = Plane.new
@@ -40,4 +39,9 @@ describe Airport do
     airport.land(plane3)
     expect { airport.land(plane) }.to raise_exception "The airport is full ,piss off"
   end
+  #As the system designer
+  #So that the software can be used for many different airports
+  #I would like a default airport capacity that can be overridden as appropriate
+  it "defaults airport capacity that can be overriden for diferent airports"
+  
 end
