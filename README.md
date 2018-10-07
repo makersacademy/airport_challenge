@@ -13,10 +13,23 @@ Airport Challenge
 
 ```
 
+- [Task](#task)
+  * [User Stories](#user-stories)
+    + [Edge cases](#edge-cases)
+  * [Domain Model](#domain-model)
+  * [Instructions](#instructions)
+    + [Before you start](#before-you-start)
+    + [Running in IRB](#running-in-irb)
+    + [Testing in Rspec](#testing-in-rspec)
+  * [Test results](#test-results)
+
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
+
+### User Stories
+Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller
@@ -129,9 +142,12 @@ There are also checks for the following:
 #### Testing in Rspec
 
 Run
-```rspec``` in terminal
+`
+rspec
+`
+in terminal
 
-#### Test results
+### Test results
 
 ```
 100% COVERAGE
