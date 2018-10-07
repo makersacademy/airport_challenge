@@ -1,7 +1,6 @@
 require 'airport.rb'
-
 class Plane
-  def flying?
-    true
+  def initialize(flying = false)
+    @@flying = flying
   end
 end
