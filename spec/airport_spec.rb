@@ -2,10 +2,19 @@ require 'airport'
 require 'pry'
 
 describe Airport do
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new(Airport::DEFAULT_CAPACITY) }
   let(:good_weather) { double(:weather, check_weather: "sunny") }
   let(:bad_weather) { double(:weather, check_weather: "stormy") }
   let(:plane) { double :plane }
+
+  it 'checks the default capacity of the airport is 20' do
+    airport = Airport.new(Airport::DEFAULT_CAPACITY)
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  it 'allows the capacity of the airport to be changed' do
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq 50
+  end
 
   describe '#planes' do
     it 'counts a plane that landed' do
@@ -34,9 +43,8 @@ describe Airport do
       forcast = bad_weather.check_weather
       expect { airport.land(forcast) }.to raise_error "The weather is stormy"
     end
-    it 'raises an exception when the maximum of 2 planes have landed' do
-      airport.land(good_weather)
-      airport.land(good_weather)
+    it 'raises an exception when the maximum of 20 planes have landed' do
+      20.times { airport.land(good_weather) }
       expect { airport.land(good_weather) }.to raise_exception "The airport is full"
     end
   end

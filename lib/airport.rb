@@ -3,17 +3,21 @@ require_relative 'plane'
 require 'pry'
 
 class Airport
-  def initialize
+  DEFAULT_CAPACITY = 20
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
-  def planes_count
+  def planes_count #Do I need this?
     @planes.count
   end
 
   def land(weather)
     plane = Plane.new
-    fail "The airport is full" if planes_count > 1
+    fail "The airport is full" if planes_count > (DEFAULT_CAPACITY - 1)
     fail "The weather is stormy" if weather == "stormy"
     @planes << plane
     "The plane has landed"
