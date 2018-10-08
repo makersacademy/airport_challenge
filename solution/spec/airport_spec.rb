@@ -12,23 +12,29 @@ describe Airport do
     expect(subject.hanger).to eq [plane]
   end
 
-  it "does not allow take-off if stormy" do
+  it "allows take off" do
     plane = Plane.new
     subject.land(plane)
     expect(subject.take_off).to eq "The plane has taken off"
+  end
+
+  it "does not allow take off if stormy" do
+    plane = Plane.new
+    subject.land(plane)
     weather = Weather.new
-    weather.condition == "stormy"
+    subject.weather.condition = "stormy"
     expect {subject.take_off}.to raise_error "Weather is stormy, do not take off!"
   end
 
   it "does not allow landing if stormy" do
     plane = Plane.new
     weather = Weather.new
-    weather.condition == 'stormy'
+    subject.weather.condition = "stormy"
     expect {subject.land(plane)}.to raise_error "Weather is stormy, do not land!"
   end
 
   it "does not allow more planes to land if hanger is at full capacity" do
+    subject.weather.condition = "sunny"
     subject.capacity.times {subject.land(Plane.new)}
     expect {subject.land(Plane.new)}.to raise_error "Hanger is full"
   end
