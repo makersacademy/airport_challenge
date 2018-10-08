@@ -1,7 +1,9 @@
 class Weather
 
   def check
-    "sunny"
+#    result = rand(6)
+#    return "sunny" unless rand(6) == 5
+    "stormy"
   end
 
 end
