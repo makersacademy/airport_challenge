@@ -6,7 +6,7 @@ def menu      # providing the user with a series of options
   puts "Select an option:"
   puts "1. Arrive"
   puts "2. Depart"
-  puts "3. Change airport size"
+  puts "3. Change airfield capacity"
   option = gets.chomp 
   if option == "1"
     add_plane
@@ -23,6 +23,14 @@ def add_plane #adds plane to airport
   puts "Is there a plane inbound? (type 'yes' or 'no')"
   input = gets.chomp
   while input == "yes"
+    total_aircraft_grounded = @airport.length
+    puts "Total aircraft grounded: #{total_aircraft_grounded}"
+    if total_aircraft_grounded == @size
+        puts "*WARNING*"
+        puts "There are #{total_aircraft_grounded} aircraft grounded. The maximum is #{@size}"
+        puts "Aircraft must depart before any more arrive!"
+        take_off
+    end
     puts "Enter the flight number"
     planenumber = gets.chomp
     puts "*WARNING*"
@@ -53,15 +61,19 @@ def add_plane #adds plane to airport
         if menureturn == "m"
           menu
         end
+       
         break
+        
       end
   end
 end
 
 def take_off
-  puts "Is a plane ready take off?"
+  puts "Is a plane ready take off? (type 'yes' or 'no')"
   input = gets.chomp
   while input == "yes"
+    total_aircraft_grounded = @airport.length
+    puts "Total aircraft grounded: #{total_aircraft_grounded}"
     puts"Enter plane number"
     planenumber = gets.chomp
     puts "*WARNING*"
@@ -110,16 +122,15 @@ def airport_size
     @size = 0
     @size += new_size
     puts "The new capacity is #{@size} aircraft!"
+    puts "Type 'm' to return to the menu"
+    input = gets.chomp
+    if input == "m"
+      menu
+    else puts "Youre update has been saved. Enter 'm'"
+    end
   end
 end
     
-    
-    
-    
-    
-    
-
-
 
 initialize
 
