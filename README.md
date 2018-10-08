@@ -1,3 +1,8 @@
+I have not yet fully completed the challenge, however the planes are now no longer able to take off when the weather returns true to stormy. 
+
+The next step will be giving the same error message when the planes are trying to land. However I will be able to action this later today and complete the full README file.
+
+
 Airport Challenge
 =================
 
