@@ -7,6 +7,6 @@ class Plane
  end
 
  def take_off
-  "Took off successfully"
+  "Departed successfully"
  end
 end

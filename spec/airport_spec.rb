@@ -12,22 +12,20 @@ describe Airport do
 
   it "Land a plane" do
     weather = "sunny"
-    if weather == "sunny"
-      plane = Plane.new
-      expect(subject.land_plane(plane,weather)).to eq "Landed successfully"
-    else
-      expect{subject.land_plane(plane,weather)}.to raise_error("Bad Weather")
-    end
+    plane = Plane.new
+    expect(subject.land_plane(plane,weather)).to eq "Landed successfully"
+  end
+
+  it "Land planes beyond the default capacity of 10 planes given weather is 'sunny'" do
+    weather = "sunny"
+    expect{11.times{subject.land_plane(Plane.new,weather)}}.to raise_error("Airport out of capacity cannot land the plane")
   end
 
   it "Take off a plane" do
     weather = "sunny"
-    if weather == "sunny"
-      plane = Plane.new
-       expect(subject.take_off(plane,weather)).to eq "Took off successfully"
-    else
-       expect{subject.take_off(plane,weather)}.to raise_error("Bad Weather")
-    end
+    airport = Airport.new
+    airport.landedplanes_register[1] = Plane.new
+    expect(airport.take_off(1,weather)).to eq "Departed successfully"
   end
 
 end
