@@ -32,11 +32,11 @@ Plan
 Objects  | Methods
 ------------- | -------------
 plane  | land
-|take-off       
+ |take-off       
 Airport  | land
-|take-off plane
+ |take-off plane
 Weather  |  
-|stormy
+ |stormy
 
 
 
