@@ -32,13 +32,12 @@ Plan
 Objects  | Methods
 ------------- | -------------
 plane  | land
-take-off  
-----------|----------------       
+|take-off       
 Airport  | land
-take-off plane
-----------|----------------
-Weather  |  stormy
-----------|-----------------
+|take-off plane
+Weather  |  
+|stormy
+
 
 
 Task
