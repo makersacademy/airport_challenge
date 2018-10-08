@@ -73,13 +73,13 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error('Cannot land. Airport is full.')
     end
 
-    it 'Riase error when attempting landing twice' do
+    it 'Raise error when attempting landing twice' do
       allow(subject).to receive(:flight_clearance?) { true }
       subject.land(p1)
       expect { subject.land(p1) }.to raise_error('Cannot land. Plane not in the air.')
     end
 
-    it 'Riase error when attempting to land plane already landed at another airport' do
+    it 'Raise error when attempting to land plane already landed at another airport' do
       allow(subject).to receive(:flight_clearance?) { true }
       subject.land(p1)
       a2 = Airport.new
