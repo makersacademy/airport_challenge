@@ -1,14 +1,15 @@
-require 'weather'
+require 'weather.rb'
 
 describe Weather do
-  it "checks the weather forcast on a stormy day" do
-    weather = Weather.new
-    weather.stub(:initialize) { 0 }
-    expect(weather.check_weather).to eq("stormy")
-  end
-  it "checks the weather forcast on a fine day" do
-    weather2 = Weather.new
-    weather2.stub(:initialize) { 1 || 2 || 3 }
-    expect(weather2.check_weather).to eq("sunny")
+  let(:weather) { Weather.new }
+  describe '#stormy?' do
+    it "checks the weather" do
+      allow(Kernel).to receive(:rand).and_return(3)
+      expect(weather.stormy?).to eq false
+    end
+    it "checks the weather" do
+      allow(Kernel).to receive(:rand).and_return(5)
+      expect(weather.stormy?).to eq true
+    end
   end
 end
