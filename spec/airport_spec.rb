@@ -2,7 +2,7 @@ require 'airport'
 require 'airtraffic'
 require 'plane'
 
-#test all airport methods respond
+# test all airport methods respond
 describe Airport do
   it 'full?' do
     expect(subject).to respond_to(:full?)
@@ -15,7 +15,7 @@ describe Airport do
   end
 end
 
-#test all airtraffic methods respond
+# test all airtraffic methods respond
 describe Airtraffic do
   it 'target_destination' do
     expect(subject).to respond_to(:target_destination)
@@ -31,31 +31,31 @@ describe Airtraffic do
   end
 end
 
-#test all plane methods respond
+# test all plane methods respond
 describe Plane do
   it 'receive_target' do
-    subject = plane_doBefore
+    subject = plane_do_before
     expect(subject).to respond_to(:receive_target)
   end
   it 'take_off' do
-    subject = plane_doBefore
+    subject = plane_do_before
     expect(subject).to respond_to(:take_off)
   end
   it 'successful_take_off?' do
-    subject = plane_doBefore
+    subject = plane_do_before
     expect(subject).to respond_to(:successful_take_off?)
   end
   it 'coming_in_to_land' do
-    subject = plane_doBefore
+    subject = plane_do_before
     expect(subject).to respond_to(:coming_in_to_land)
   end
 end
 
-def plane_doBefore
+def plane_do_before
   Plane.new(true)
 end
 
-#behaviour tests
+# behaviour tests
 describe Airport do
   it 'full? returns false (no plans are landed)' do
     expect(subject.full?).to eq(true).or(eq(false))
