@@ -11,11 +11,7 @@ class Airport
   end
 
   def full?
-    if @spaces.length == @capacity
-      true
-    else
-      false
-    end
+    @spaces.length == @capacity
   end
   
   def instruct_take_off(terminal_no)
