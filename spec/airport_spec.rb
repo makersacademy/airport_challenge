@@ -28,4 +28,13 @@ describe Airport do
     expect(airport.take_off(1,weather)).to eq "Departed successfully"
   end
 
+  it "Cannot take-off a plane already in flight" do
+    weather = "sunny"
+    airport = Airport.new
+    airport.landedplanes_register[1] = Plane.new
+    airport.landedplanes_register[2] = Plane.new
+    airport.take_off(1,weather)
+    expect{airport.take_off(1,weather)}.to raise_error("Cannot take-off plane already in flight")
+  end
+
 end
