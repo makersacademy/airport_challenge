@@ -9,8 +9,10 @@ describe Airport do
 
   it 'I want to instruct a plane to land at an airport' do
     plane = Plane.new
-    subject.land(plane)
-    expect(subject.total_planes(plane)).to eq true
+    airport = Airport.new
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land(plane)
+    expect(airport.total_planes(plane)).to eq true
   end
 
 # User Story 2
@@ -40,6 +42,7 @@ describe Airport do
   it 'I want to prevent landing when airport is full' do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:weather) { "sunny" }
     allow(airport).to receive(:reached_capacity) { "full" }
     expect { airport.land(plane) }.to raise_error "Capacity is full."
   end

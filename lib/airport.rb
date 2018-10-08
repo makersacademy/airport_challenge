@@ -24,16 +24,13 @@ class Airport
   end
 
   def weather
-    x = rand(2)
-    if x > 1 then return "stormy"
-    end
+   ["stormy","sunny"].sample
   end
 end
 
 def reached_capacity
+  "full" if @hanger.length > @capacity
 
-  if @hanger.length > @capacity then return "full"
-  end
 end
 
 class Plane
