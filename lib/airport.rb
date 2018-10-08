@@ -25,6 +25,7 @@ class Airport
     fail 'Can not takeoff do to stormy weather' if stormy?
     fail "Plane is in the air" if flying?(plane)
     @airport.delete(plane)
+    plane.status(false) if plane.is_a?(Plane)
     plane
   end
 
