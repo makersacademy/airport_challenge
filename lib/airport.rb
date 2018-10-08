@@ -15,23 +15,24 @@ class Airport
     raise "Plane has already landed" unless plane.flying?
     raise "Cannot land, Weather is stormy" if weather.stormy?
     raise "Airport is full" if full?
-    @landed_planes.push(plane)
     plane.landed
+    @landed_planes.push(plane)
   end
 
   def takeoff(plane, weather)
     raise "Plane has already takenoff" if plane.flying?
     raise "Cannot takeoff, Weather is stormy" if weather.stormy?
     raise "No planes available" if empty?
-    @landed_planes.delete(plane)
     plane.takenoff
+    @landed_planes.delete(plane)
+
   end
 end
 
 private
 
 def full?
-  @landed_planes.count >= @capacity
+  @landed_planes.count >= capacity
 end
 
 def empty?

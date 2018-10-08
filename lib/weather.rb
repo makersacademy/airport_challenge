@@ -1,9 +1,7 @@
 class Weather
 
-  PROBABILITY_OF_STORM = 0.1
-
   def stormy?
-    rand < PROBABILITY_OF_STORM
+    Random.rand(1..5) == 5 
   end
 
 end
