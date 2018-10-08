@@ -6,6 +6,7 @@ class Plane
   @planeDestination = nil
   @planeId = nil
   @planeStatus = nil
+  @planePassangers = Hash.new()
   def initialize(planeCompany, planeTotalCapacity, planeLocation, planeDestination, planeId, planeStatus = "Loading", planeCurrentCapacity = planeTotalCapacity)
     @planeCompany = planeCompany
     @planeTotalCapacity = planeTotalCapacity
@@ -22,6 +23,11 @@ class Plane
   def takeOff()
     @planeLocation = "In Transit to #{@planeDestination}"
     @planeStatus = "In Transit to #{@planeDestination}"
+  end
+  
+  def addPassanger(passanger)
+    @passanger = passanger
+    @planePassangers.store(:one, passanger)
   end
   
 #Setters
@@ -56,5 +62,9 @@ class Plane
   
   def getPlaneDestination()
     @planeDestination
+  end
+  
+  def getPlanePassangers()
+    @planePassangers
   end
 end
