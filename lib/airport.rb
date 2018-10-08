@@ -1,11 +1,12 @@
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
   
-  def initialize(weather = 1)
+  def initialize
     @planes = []
     @parked = false
-    @weather = weather
+    @weather = Weather.new
   end
   
   def land(plane)
@@ -21,13 +22,7 @@ class Airport
   
   attr_reader :parked
   
-  def weather
-     @weather = rand(1..10)
-  end
-  
-  private
-  
   def stormy?
-      @weather > 5 ? false : true
+    @weather == true
   end
 end
