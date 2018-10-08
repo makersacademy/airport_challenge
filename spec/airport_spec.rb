@@ -39,9 +39,4 @@ describe Airport do
     airport.land(plane3)
     expect { airport.land(plane) }.to raise_exception "The airport is full ,piss off"
   end
-  #As the system designer
-  #So that the software can be used for many different airports
-  #I would like a default airport capacity that can be overridden as appropriate
-  it "defaults airport capacity that can be overriden for diferent airports"
-  
 end
