@@ -23,12 +23,12 @@ describe Airport do
 
     it "prevents takeoff when weather is stormy" do
       $weather = "stormy"
-      expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff due to stormy weather")
+      expect { @airport.takeoff(@plane) }.to raise_error("Unable to takeoff due to stormy weather")
     end
 
     it "prevents a plane from taking off if plane is not in airport" do
       $weather = "sunny"
-      expect{@airport.takeoff(@plane)}.to raise_error("Unable to takeoff; plane not in airport")
+      expect { @airport.takeoff(@plane) }.to raise_error("Unable to takeoff; plane not in airport")
     end
 
     it "plane id is added to planes_outside_airports array when plane takes off" do
@@ -54,19 +54,19 @@ describe Airport do
 
     it "prevents landing when weather is stormy" do
       $weather = "stormy"
-      expect{@airport.land(@plane)}.to raise_error("Unable to land due to stormy weather")
+      expect { @airport.land(@plane) }.to raise_error("Unable to land due to stormy weather")
     end
 
     it "prevents landing when airport is full" do
       $weather = "sunny"
       5.times { @airport.land(Plane.new) }
-      expect{@airport.land(@plane)}.to raise_error("Unable to land; airport is full")
+      expect { @airport.land(@plane) }.to raise_error("Unable to land; airport is full")
     end
 
     it "only lands planes that are not already in airports" do
       $weather = "sunny"
       @airport.land(@plane)
-      expect{@airport.land(@plane)}.to raise_error("Unable to land; plane is already in airport")
+      expect { @airport.land(@plane) }.to raise_error("Unable to land; already in airport")
     end
 
     it "shows plane as in airport once landed" do
@@ -100,6 +100,5 @@ describe Airport do
     end
 
   end
-
 
 end
