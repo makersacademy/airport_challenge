@@ -1,4 +1,4 @@
-require_relative '../docs/plane.rb'
+require_relative '../lib/plane.rb'
 
 describe Plane do
   plane = Plane.new

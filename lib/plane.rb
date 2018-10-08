@@ -1,5 +1,5 @@
-require_relative '../docs/weather.rb'
-require_relative '../docs/airport.rb'
+require_relative '../lib/weather.rb'
+require_relative '../lib/airport.rb'
 
 class Plane
 

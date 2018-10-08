@@ -1,4 +1,4 @@
-require_relative '../docs/airport.rb'
+require_relative '../lib/airport.rb'
 
 describe Airport do
   let(:plane) { double(:plane) }
