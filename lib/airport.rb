@@ -24,7 +24,7 @@ class Airport
   end
 
   def take_off(weather)
-    fail "There is no planes here" if planes_count == 0
+    fail "There is no planes here" if planes_count.zero?
     fail "The weather is stormy" if weather == "stormy"
     @planes.pop
     "The plane has taken off"

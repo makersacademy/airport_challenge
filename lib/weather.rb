@@ -2,11 +2,11 @@ require 'pry'
 
 class Weather
   def initialize
-    @weather = rand(2)
+    @weather = rand(4)
   end
 
   def check_weather
-    if @weather == 1
+    if @weather == 0
       "stormy"
     else
       "sunny"

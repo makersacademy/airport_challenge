@@ -5,10 +5,8 @@ describe Airport do
   let(:airport) { Airport.new(Airport::DEFAULT_CAPACITY) }
   let(:good_weather) { double(:weather, check_weather: "sunny") }
   let(:bad_weather) { double(:weather, check_weather: "stormy") }
-  let(:plane) { double :plane }
 
   it 'checks the default capacity of the airport is 20' do
-    airport = Airport.new(Airport::DEFAULT_CAPACITY)
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
   it 'allows the capacity of the airport to be changed' do
@@ -23,8 +21,7 @@ describe Airport do
     end
 
     it "counts 2 planes that landed" do
-      airport.land(good_weather)
-      airport.land(good_weather)
+      2.times{ airport.land(good_weather) }
       expect(airport.planes_count).to eq 2
     end
 
