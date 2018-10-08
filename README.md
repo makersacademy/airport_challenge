@@ -33,9 +33,12 @@ Objects  | Methods
 ------------- | -------------
 plane  | land
        | take-off  
+----------|----------------       
 Airport  | land
          | take-off plane
+----------|----------------
 Weather  |  stormy
+----------|-----------------
 
 
 Task
