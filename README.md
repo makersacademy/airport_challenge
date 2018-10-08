@@ -32,6 +32,7 @@ Plan
 Objects  | Methods
 ------------- | -------------
 plane  | land
+       | take-off  
 --------------|---------------
        | take-off  
 
