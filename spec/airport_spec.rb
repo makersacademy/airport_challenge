@@ -77,6 +77,7 @@ describe Airport do
     expect(subject.instance_variable_get(:@at_control)).to be_instance_of(Airtraffic)  
   end
 end
+
 describe Airtraffic do
   it 'sets destination of plane' do
     dest = "London"
