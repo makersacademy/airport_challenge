@@ -95,7 +95,8 @@ In turn, it calls the Plane class and changes the status of the planes to landed
 The airport class has an array of planes that are currently in that airport.
 As planes land successfully, they get added to the array.
 As planes takeoff successfully, they get deleted from that array.
-The airport class has a method to get the weather which is randomly picked.
+We have another class for Weather. This class returns the weather using a random method.
+The airport class calls this method of the Weather class to get the weather which is randomly picked.
 Before takeoff and landing, this method gets called and planes are allowed to proceed with action only if weather is sunny.
 Additionally, the airport can be set a capacity at the time of initialization or it will get a default capacity of 10.
 Planes can only land of array size at airport is below capacity.

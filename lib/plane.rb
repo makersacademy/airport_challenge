@@ -3,7 +3,7 @@ class Plane
   def initialize
     @currentairport = ""
     @destination=""
-    @state="landed"
+    @state="flying"
   end
 
   def land(airport)
