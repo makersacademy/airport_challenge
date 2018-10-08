@@ -10,15 +10,15 @@ class Airport
   end
 
   def weather_selector
-    rand(1..6)
+    rand(1..3)
   end
 
   def stormy?
-    if weather_selector == 6
-      return true
-    else
-      return false
-    end
+   if weather_selector == 3
+     true
+   else
+     false
+   end
   end
 
   def release_plane

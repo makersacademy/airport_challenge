@@ -23,6 +23,7 @@ describe Airport do
   describe "#release_plane" do
     it "releases a plane" do
       plane = Plane.new
+      allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
       expect(subject.release_plane).to eq plane
     end
@@ -30,14 +31,19 @@ describe Airport do
 
   describe "#release_plane" do
     it "raises an error message when there are no planes at the airport which can take off" do
-      expect { subject.release_plane }.to raise_error "No planes at the airport to take off"
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
+      expect { airport.release_plane }.to raise_error "No planes at the airport to take off"
     end
   end
 
   describe "#release_plane" do
     it "raises error when stormy" do
-      allow(Airport).to receive(:stormy?).and_return true
-      expect { subject.release_plane }.to raise_error "Its too stormy to take off"
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      allow(airport).to receive(:stormy?).and_return true
+      expect { airport.release_plane }.to raise_error "Its too stormy to take off"
     end
   end
 
