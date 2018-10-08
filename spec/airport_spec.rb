@@ -49,4 +49,10 @@ describe Airport do
   it 'I would like a default airport capacity that can be overridden as appropriate' do
     expect(subject.capacity).to eq 50
   end
+
+  it 'I would like a default airport capacity that can be overridden as appropriate' do
+    airport = Airport.new(30)
+    expect(airport.capacity).to eq 30
+  end
+
 end
