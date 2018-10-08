@@ -1,16 +1,20 @@
 def initialize
-  @airport = []   # airport array created to track number of planes on the ground
+   @airport = []   # airport array created to track number of planes on the ground
 end
 
 def menu      # providing the user with a series of options
   puts "Select an option:"
   puts "1. Arrive"
   puts "2. Depart"
+  puts "3. Change airport size"
   option = gets.chomp 
   if option == "1"
     add_plane
     elsif option == "2"
       take_off
+      elsif option == "3"
+        airport_size
+      
   else
   end
 end
@@ -92,8 +96,22 @@ def take_off
   end
 end
     
-    
-    
+
+def airport_size
+  current_size = 5 
+  @size = current_size
+  
+  puts "Enter a new airfield capacity or press 'm' to return to the menu"
+  puts "Current max capacity: #{@size} aircraft"
+  input = gets.chomp
+  if input == "m"
+    menu
+  else new_size = input.to_i
+    @size = 0
+    @size += new_size
+    puts "The new capacity is #{@size} aircraft!"
+  end
+end
     
     
     
