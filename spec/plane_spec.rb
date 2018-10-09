@@ -1,5 +1,5 @@
 require 'plane'
 
 describe Plane do
-  it{expect(subject).to respond_to(:working?)}
+  it{is_expected.to respond_to(:working?)}
 end
