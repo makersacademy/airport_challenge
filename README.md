@@ -28,7 +28,7 @@ This program controls the landing and takeoff of planes at an airport.
 
 ## Usage
 
-App runs in the command line
+App runs in the command line.
 Run irb in terminal and `require './lib/airport.rb'`
 
 ## Running tests
