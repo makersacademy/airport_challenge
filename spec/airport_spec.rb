@@ -23,13 +23,10 @@ describe Airport do
   it 'check if plane has left airport' do
     subject.land(Plane.new)
     subject.takeoff
-    allow(subject).to receive(:stormy?) { true }
+    allow(subject).to receive(:stormy?) { false }
     expect(subject.parked).to eq false
   end
   
-  it 'Check if weather is stormy or sunny' do
-    
-  end
   describe '#takeoff' do
     it 'raises an error when weather is stormy' do
       allow(subject).to receive(:stormy?) { true }

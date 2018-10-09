@@ -5,24 +5,23 @@ class Airport
   
   def initialize
     @planes = []
-    @parked = false
     @weather = Weather.new
   end
   
   def land(plane)
-    @parked = true
+    plane.location = "land"
     @planes << plane
   end
   
   def takeoff
     fail 'Weather is Stormy' if stormy?
-    @parked = false
+    plane.location = "sky"
     @planes.pop
   end
   
   attr_reader :parked
   
   def stormy?
-    @weather == true
+    @weather.check == true
   end
 end
