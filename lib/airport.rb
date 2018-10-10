@@ -9,17 +9,15 @@ class Airport
   end
   
   def land(plane)
-    plane.location = "land"
+    plane.location = 'land'
     @planes << plane
   end
   
-  def takeoff
+  def takeoff(plane)
     fail 'Weather is Stormy' if stormy?
-    plane.location = "sky"
+    plane.location = 'sky'
     @planes.pop
   end
-  
-  attr_reader :parked
   
   def stormy?
     @weather.check == true

@@ -12,26 +12,32 @@ describe Airport do
   end
   
   it 'responds to takeoff' do
-    expect(subject).to respond_to(:takeoff)
+    expect(subject).to respond_to(:takeoff).with(1).argument
   end
   
-  it 'check is plane is in airport' do
-    subject.land(Plane.new)
-    expect(subject.parked).to eq true
-  end
   
-  it 'check if plane has left airport' do
-    subject.land(Plane.new)
-    subject.takeoff
-    allow(subject).to receive(:stormy?) { false }
-    expect(subject.parked).to eq false
+  describe '#land' do
+    let(:plane) { Plane.new }
+    it 'check is plane is in airport' do
+      subject.land(plane)
+      expect(plane.location).to eq 'land'
+    end
   end
   
   describe '#takeoff' do
+    let(:plane) { Plane.new }
+    it 'check if plane has left airport' do
+      subject.land(plane)
+      subject.takeoff(plane)
+      allow(subject).to receive(:stormy?) { false }
+      expect(plane.location).to eq 'sky'
+    end
+    
     it 'raises an error when weather is stormy' do
       allow(subject).to receive(:stormy?) { true }
-      subject.land(Plane.new)
-      expect { subject.takeoff }.to raise_error 'Weather is Stormy'
+      subject.land(plane)
+      expect { subject.takeoff(plane) }.to raise_error 'Weather is Stormy'
     end
+    
   end
 end
