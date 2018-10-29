@@ -15,11 +15,11 @@ class Airport
   end
 
   def empty?
-    @hanger.empty?
+    hanger.empty?
   end
 
   def full?
-    @hanger.length >= @capacity
+    hanger.length >= @capacity
   end
 
 end
