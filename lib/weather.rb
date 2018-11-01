@@ -2,7 +2,7 @@
 module Weather
 
   def weather
-    ["stormy","sunny"].sample
+    [:stormy, :sunny].sample
   end
 
 end

@@ -9,7 +9,7 @@ describe Plane do
   end
 
   it 'able to land' do
-    allow(airport).to receive(:weather) { "sunny" }
+    allow(airport).to receive(:weather) { :sunny }
     is_expected.to respond_to :land
   end
   it 'lands and is not flying' do
@@ -19,7 +19,7 @@ describe Plane do
   end
 
   it 'can take off and flying' do
-    allow(airport).to receive(:weather) { "sunny" }
+    allow(airport).to receive(:weather) { :sunny }
     allow(airport).to receive(:take_off) { subject }
     is_expected.to respond_to :take_off
     airport.take_off subject
