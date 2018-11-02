@@ -46,4 +46,10 @@ describe Airport do
     bad_weather_airport.receive_plane(landed_plane)
     expect(bad_weather_airport.release_plane(landed_plane)).to eq(false)
   end
+
+  #US5 setting default and changing default capacity
+  it "Capacity default works but can also be changed on initialisation" do
+    expect(Airport.new(10).capacity).to eq(10)
+    expect(Airport.new.capacity).to eq(20)
+  end
 end

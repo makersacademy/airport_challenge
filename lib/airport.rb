@@ -12,12 +12,13 @@ class Airport
   end
 
   def receive_plane(plane)
-    if !full
-      @landed_planes.push(plane)
-      return true
-    else
-      return false
-    end
+    error_message = nil
+    error_message = "Plane could not land due to weather"  if is_stormy
+    error_message = "Airport is full" if full
+
+    @landed_planes.push(plane) if !error_message
+
+    return error_message
   end
 
   def release_plane(plane)

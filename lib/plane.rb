@@ -5,12 +5,13 @@ class Plane
   attr_reader :landed_in
 
   def land(airport)
-    if airport.receive_plane(self)
+    error_message = airport.receive_plane(self)
+    if !error_message
       @flying = false
       @landed_in = airport
       return "Plane has landed"
     else
-      return "Airport is full"
+      return error_message
     end
   end
 

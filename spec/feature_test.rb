@@ -46,24 +46,28 @@ plane_array.push(plane3)
 bad_weather_airport = Airport.new(20, Always_stormy.new, plane_array)
 puts bad_weather_airport.release_plane(plane3) == false ? "test passed" : "Test failed"
 
+puts "----------------------------------------------------------"
+puts "US4: Testing that a plane cannot land in bad weather (force bad weather)"
+puts "----------------------------------------------------------"
 
-#
-# p "Does weather.report return stormy or good?"
-# Weather.new.report
-#
-#
-# puts "feature test starting"
-#
-#
-# p airport.landed_planes
-# puts "hello"
-# puts airport.capacity
-#
-#
-# puts "should be able to land a plane"
-#
-# plane.land(airport)
-#
-# puts "plane should be able to fly"
-#
-# plane.fly
+bad_weather_airport = Airport.new(20, Always_stormy.new)
+
+plane4 = Plane.new
+puts plane4.land(bad_weather_airport)
+puts "----------------------------------------------------------"
+puts "US5: Can't land in full airport"
+puts "----------------------------------------------------------"
+
+full_airport = Airport.new(0, Always_sunny.new)
+plane5 = Plane.new
+
+puts plane5.land(full_airport)
+
+puts "----------------------------------------------------------"
+puts "US6: Can't land in full airport"
+puts "----------------------------------------------------------"
+
+airport_default_capacity = Airport.new
+puts airport_default_capacity.capacity == 20 ? "Default capacity works" : "Default capacity doens't work"
+airport_capacity_10 = Airport.new(10)
+puts airport_capacity_10.capacity == 10 ? "changing capacity works" : "changing capacity doesn't work"
