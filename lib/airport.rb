@@ -3,10 +3,11 @@ class Airport
 
   def initialize
     @planes = []
-    @stormy_weather = [true, false].sample
+    @stormy_weather = false #[true, false].sample
   end
 
   def land(plane)
+    fail "Planes can't land, weather is stormy" if @stormy_weather == true
     @planes << plane
   end
 
@@ -14,5 +15,4 @@ class Airport
     fail "Weather is stormy" if @stormy_weather == true
     @planes.pop
   end
-
 end
