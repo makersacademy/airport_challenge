@@ -46,4 +46,9 @@ describe Plane do
     expect(airport.planes.length).to be <= 20
   end
 
+  it "has a default capacity of 20 planes" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 20
+  end
+
 end
