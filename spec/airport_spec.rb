@@ -29,4 +29,9 @@ describe Airport do
     stansted.weather = "stormy"
     expect { stansted.land(Plane.new) }.to raise_error "The weather is stormy, planes cannot land."
   end
+  it "expects #land to raise an error if trying to land a plane that has already landed" do
+    of815 = Plane.new
+    subject.land(of815)
+    expect { subject.land(of815) }.to raise_error "That plane has already landed."
+  end
 end
