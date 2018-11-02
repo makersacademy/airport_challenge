@@ -1,8 +1,9 @@
 
 class Airport
-  attr_accessor :planes
+  attr_accessor :planes, :weather
   
   def initialize
     @planes = []
+    @weather = true
   end
 end

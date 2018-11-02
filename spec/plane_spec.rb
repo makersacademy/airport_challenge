@@ -21,21 +21,24 @@ describe Plane do
   end
 
   it "can #take_off from an airport" do
-    airport.stub(:weather) { true }
     plane.land(airport)
     plane.take_off(airport)
     expect(airport.planes.include?(plane)).to eq false
   end 
 
   it "confirms when it has left the airport" do
-    airport.stub(:weather) { true }
     plane.land(airport)
     expect{plane.take_off(airport)}.to output("Taking off and no longer in airport\n").to_stdout
   end
 
-  it "can #prevent_takeoff when weather is stormy" do
-    airport.stub(:weather) { false }
-    expect{plane.take_off(airport)}.to output("Stopped take off\n").to_stdout
+  it "can prevent takeoff when weather is stormy" do
+    airport.weather = false
+    expect{plane.take_off(airport)}.to output("Stopped take off due to weather\n").to_stdout
+  end
+
+  it "can prevent landing when weather is stormy" do
+    airport.weather = false
+    expect{plane.land(airport)}.to output("Stopped landing due to weather\n").to_stdout
   end
 =begin 
   it "responds to #in_airport?" do

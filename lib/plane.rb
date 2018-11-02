@@ -2,7 +2,11 @@
 class Plane
 
   def land(airport)
-    airport.planes << self
+    if in_airport?(airport) && airport.weather
+      airport.planes << self
+    else
+      puts "Stopped landing due to weather\n"
+    end
   end
 
   def take_off(airport)
@@ -10,7 +14,7 @@ class Plane
       airport.planes.delete(self)
       puts "Taking off and no longer in airport\n" 
     else
-      puts "Stopped take off\n"
+      puts "Stopped take off due to weather\n"
     end
   end
 
@@ -19,11 +23,7 @@ class Plane
 
   def in_airport?(airport)
     airport.planes.each do |plane|
-      if plane == self
-        true
-      else
-        false
-      end
+      plane == self ? true : false
     end
   end
 
