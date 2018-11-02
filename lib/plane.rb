@@ -4,5 +4,6 @@ class Plane
 	end
 
 	def takeoff_from_airport (airport)
+		airport.confirm_departure(self)
 	end
 end

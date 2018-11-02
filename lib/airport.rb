@@ -4,6 +4,7 @@ class Airport
 		@planes_present = []
 	end
 
-	def confirm_departure
+	def confirm_departure (plane)
+		planes_present.delete(plane)
 	end
 end

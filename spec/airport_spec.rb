@@ -7,7 +7,11 @@ describe Airport do
 
 	describe '#confirm_departure' do
 		it 'checks that a plane is no longer in the airport' do
-			expect(airport).to respond_to(:confirm_departure)
+			plane.land_at_airport(airport)
+			plane.takeoff_from_airport(airport)
+			airport.confirm_departure(plane)
+
+			expect(airport.planes_present).not_to include(plane)
 		end
 	end
 end
