@@ -4,4 +4,8 @@ class Plane
     "Safely landed"
   end
 
+  def take_off
+
+  end
+
 end

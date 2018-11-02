@@ -16,4 +16,10 @@ describe 'Plane' do
     expect(plane.land).to eq "Safely landed"
   end
 
+  it 'Plane takes off' do
+    expect(plane).to respond_to(:take_off)
+  end
+
+
+
 end
