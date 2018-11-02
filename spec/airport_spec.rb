@@ -1,1 +1,4 @@
-airport_spec.rb
+require 'airport'
+
+describe Airport do
+end
