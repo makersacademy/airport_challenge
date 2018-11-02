@@ -9,11 +9,12 @@ class Plane
     airport.planes.each do |plane|
       if plane == self
         airport.planes.delete(self)
+        puts "Taking off" 
       end
     end
   end
 
-  def in_airport?
+  def in_airport?(airport)
   end
 
 end

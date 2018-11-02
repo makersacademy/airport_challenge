@@ -26,7 +26,8 @@ describe Plane do
   end 
 
   it "confirms when it has left the airport" do
-   expect(plane.in_airport?).to eq(true).or(eq(false))
+    plane.land(airport)
+    expect{plane.take_off(airport)}.to output("Taking off\n").to_stdout
   end
 =begin 
   it "responds to #in_airport?" do
