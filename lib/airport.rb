@@ -3,9 +3,9 @@ class Airport
   attr_reader :landed_planes
   attr_reader :weather
 
-  def initialize
+  def initialize(capacity=10)
     @landed_planes = Array.new
-    @capacity = 10
+    @capacity = capacity
     weather_forecast
   end
 
