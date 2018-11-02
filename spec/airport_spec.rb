@@ -15,7 +15,14 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Planes can't land, weather is stormy"
     end
 
-    it "prevents landing if the airport is full" do
+    it "prevents landing after airport's default capacity was exceeded " do
+      subject.stormy_weather = false
+      expect { (subject.capacity + 1).times { subject.land(plane) } }.to raise_error "Planes can't land, the airport is full"
+    end
+
+    it "prevents landing if the airport is full if default capacity is overridden" do
+      subject.stormy_weather = false
+      subject.capacity = 5
       expect { (subject.capacity + 1).times { subject.land(plane) } }.to raise_error "Planes can't land, the airport is full"
     end
 

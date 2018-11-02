@@ -1,10 +1,14 @@
+require '/Users/agnieszkadufrat/Projects/airport_challenge/lib/plane.rb'
+
 class Airport
   attr_accessor :planes, :stormy_weather, :capacity
 
-  def initialize
+   DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @stormy_weather = [true, false].sample
-    @capacity = 5
+    @capacity = capacity
   end
 
   def land(plane)
