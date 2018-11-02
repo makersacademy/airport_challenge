@@ -4,11 +4,16 @@ class Airport
   def initialize(weather = Weather.new)
     @weather = weather
     @planes = []
+    @capacity = 10
+  end
+
+  def set_capacity(num)
+    @capacity = num
   end
 
   def land(plane)
     fail 'it is too stormy to land' if @weather.stormy?
-    fail 'the airport is full' if @planes.count == 10
+    fail 'the airport is full' if @planes.count == @capacity
     @planes.push(plane)
   end
 
