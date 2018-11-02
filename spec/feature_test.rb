@@ -1,5 +1,6 @@
-require_relative './../lib/plane.rb'
-require_relative './../lib/airport.rb'
+require './lib/plane'
+require './lib/airport'
+
 p "Creates new Airport"
 p airport1 = Airport.new
 p "Creates new plane"
