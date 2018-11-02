@@ -1,18 +1,23 @@
 class Airport
+  def initialize(weather = Weather.new)
+    @weather = weather
+    @planes = []
+  end
 
   def land(plane)
-    plane
+    @planes.push(plane)
   end
 
   def takeoff(plane)
-    check_stormy ? "it is too stormy to take off" : "#{plane} has taken off"
+    fail 'it is too stormy to take off' if @weather.stormy?
+    @planes.delete(plane)
+    "#{plane} has taken off"
   end
+end
 
-  private
-  
-  def check_stormy
+class Weather
+  def stormy?
     weather = rand(10)
-    weather < 8 ? stormy = false : stormy = true
+    weather < 8 ? false : true
   end
-
 end
