@@ -5,12 +5,6 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
 
-  describe '#hangar' do
-
-    it { expect(subject).to respond_to(:hangar) }
-
-  end
-
   describe '#plane_in_hangar' do
 
     it 'returns false if plane is not in hangar' do
@@ -37,15 +31,19 @@ describe Airport do
 
   end
 
-  it 'can set capacity of airport on creation' do
-    small_airport = Airport.new(10)
-    expect(small_airport.capacity).to eq(10)
-  end
+  describe '#capacity' do
 
-  it 'can set capacity of airport after creation' do
-    large_airport = Airport.new
-    large_airport.capacity = 30
-    expect(large_airport.capacity).to eq(30)
+    it 'can set capacity of airport on creation' do
+      small_airport = Airport.new(10)
+      expect(small_airport.capacity).to eq(10)
+    end
+
+    it 'can set capacity of airport after creation' do
+      large_airport = Airport.new
+      large_airport.capacity = 30
+      expect(large_airport.capacity).to eq(30)
+    end
+
   end
 
 end

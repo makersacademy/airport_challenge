@@ -2,19 +2,17 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport) { double :airport }
+  let(:airport) { double :airport, hangar: [] }
 
   describe '#land' do
 
     it 'plane can land at an airport' do
-      allow(airport).to receive(:hangar) { [] }
       allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
       allow(airport).to receive(:hangar_full?) { false }
       expect(subject.land(airport)).to be_a_kind_of Array
     end
 
     it 'plane cannot land if already at an airport' do
-      allow(airport).to receive(:hangar) { [] }
       allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
       allow(airport).to receive(:hangar_full?) { false }
       subject.land(airport)
@@ -27,7 +25,6 @@ describe Plane do
     end
 
     it 'cannot land at an airport if there is no space left' do
-      allow(airport).to receive(:hangar) { [] }
       allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
       allow(airport).to receive(:hangar_full?) { true }
       expect { subject.land(airport) }.to raise_error 'Cannot land at full airport'
