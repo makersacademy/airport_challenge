@@ -3,6 +3,10 @@ class Airport
     @planes = []
   end
 
+  def stormy?
+    rand(9) == 0 ? true : false
+  end
+
   def show_planes
     planes
   end
