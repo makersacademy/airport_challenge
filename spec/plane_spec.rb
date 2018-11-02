@@ -13,7 +13,7 @@ describe Plane do
 
     plane.land(airport)
 
-    expect(airport.landed_planes.first.status).to eq "landed"
+    expect(airport.landed_planes.first.is_landed?).to eq true
   end
 
   it "can take off from an airport" do
@@ -24,7 +24,7 @@ describe Plane do
     plane.land(airport)
     plane.take_off(airport)
 
-    expect(plane.status).to eq "flying"
+    expect(plane.is_flying?).to eq true
   end
 
   it "is no longer at an airport after take-off" do

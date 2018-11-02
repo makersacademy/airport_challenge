@@ -12,11 +12,13 @@ class Airport
   def arrival(plane)
     return false if stormy_weather? || landed_planes.size == @capacity
     @landed_planes << plane
+    true
   end
 
   def departure(plane)
     return false if stormy_weather? || plane.location != self
     @landed_planes.delete plane
+    true
   end
 
   def weather_forecast
