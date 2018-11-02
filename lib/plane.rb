@@ -2,8 +2,10 @@
 class Plane
 
   def land(airport)
-    if airport.weather
+    if airport.weather && (airport.planes.length <= 20)
       airport.planes << self if !airport.planes.include?(self)
+    elsif airport.planes.length >= 20
+      puts "Airport is full\n"
     else
       puts "Stopped landing due to weather\n"
     end
