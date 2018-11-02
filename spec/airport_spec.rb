@@ -36,6 +36,10 @@ describe 'Airport' do
     expect { airport.land(plane) }.to raise_error("Sorry, too stormy")
   end
 
+  it 'will prvent #land from executing if landing strip is full (max can be 20)' do
+    expect { 21.times { airport.land(plane) } }.to raise_error("Sorry, no room")
+  end
+
   it 'will throw an error if #take_off is called when whether is stormy' do
     airport.weather = "Stormy"
     expect { airport.take_off }.to raise_error("Sorry, too stormy")

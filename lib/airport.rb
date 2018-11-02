@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Sorry, no room' if @landing_strip.length == 20
     fail 'Sorry, too stormy' if @weather == "Stormy"
     @landing_strip << plane
     "Safely landed"
