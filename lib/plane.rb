@@ -9,6 +9,7 @@ class Plane
 
   def land(airport)
     fail 'Plane has already landed' if landed?
+    fail 'Cannot land in stormy weather' if airport.weather.what_is_weather == 'stormy'
     @landed = true
     airport.hangar << self
   end

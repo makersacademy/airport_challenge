@@ -19,6 +19,10 @@ describe Plane do
       expect { subject.land(airport) }.to raise_error 'Plane has already landed'
     end
 
+    it 'cannot land at an airport if stormy' do
+      allow(airport).to receive(:weather.what_is_weather) { 'stormy' }
+    end
+
   end
 
 end
