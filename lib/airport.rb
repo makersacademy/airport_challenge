@@ -11,7 +11,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @weather = Weather.new
-    @capacity = capacity
+    @capacity = capacity  
   end
 
   def plane_in_hangar?(plane)
