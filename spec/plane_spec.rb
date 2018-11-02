@@ -15,20 +15,23 @@ describe Plane do
     expect(airport.planes.include?(plane)).to eq true
   end
 
-=begin 
   it "plane responds to #take_off" do
     expect(subject).to respond_to(:take_off)
   end
-  
+
+  it "can #take_off from an airport" do
+    plane.land(airport)
+    plane.take_off(airport)
+    expect(airport.planes.include?(plane)).to eq false
+  end 
+
+  it "confirms when it has left the airport" do
+   expect(plane.in_airport?).to eq(true).or(eq(false))
+  end
+=begin 
   it "responds to #in_airport?" do
     expect(subject).to respond_to(:in_airport?)
   end
-
-  it "can #take_off from an airport" do
-    airport.stub(:planes) { false }
-    plane.take_off
-    expect(airport.planes).to eq false
-  end 
 =end
 
 end
