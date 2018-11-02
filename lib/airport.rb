@@ -3,11 +3,11 @@ require '/Users/agnieszkadufrat/Projects/airport_challenge/lib/plane.rb'
 class Airport
   attr_accessor :planes, :stormy_weather, :capacity
 
-   DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @stormy_weather = [true, false].sample
+    @stormy_weather = false #[true, false].sample
     @capacity = capacity
   end
 
@@ -19,6 +19,7 @@ class Airport
 
   def take_off(plane)
     fail "Weather is stormy" if @stormy_weather == true
+    fail "The plane is flying, cannot take off" if plane.position == "air"
     @planes.pop
   end
 
