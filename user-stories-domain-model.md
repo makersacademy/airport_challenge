@@ -24,8 +24,9 @@
 
 Object | Message
 --- | ---
-Plane | Land
-Airport |
+Plane | Land, Takeoff
+Airport | Hangar
 
 
 Planes -- land(airport)
+Planes -- takeoff, airport -- remove(plane)
