@@ -4,9 +4,8 @@ require 'airport'
 describe Plane do
   it 'can land at an airport if not already landed' do
     plane = Plane.new
-    airport = Airport.new
+    airport = instance_double('Airport', :stormy? => false, :accept => nil)
     plane.land(airport)
-    expect(airport.show_planes).to include(plane)
     expect { plane.land(airport) }.to raise_error('This plane has already landed')
   end
 
@@ -19,9 +18,17 @@ describe Plane do
     expect { plane.take_off }.to raise_error('The plane is not on the ground')
   end
 
-  it 'will not take off if the weather is stormy' do
-    storm_port = instance_double('Airport', :stormy? => true, :accept => nil)
-    subject.land(storm_port)
-    expect { subject.take_off }.to raise_error('Stormy weather prevents the plane from taking off')
+  describe 'stormy weather' do
+    it 'will not take off if the weather is stormy' do
+      storm_port = instance_double('Airport', :stormy? => false, :accept => nil)
+      subject.land(storm_port)
+      allow(storm_port).to receive(:stormy?) {true}
+      expect { subject.take_off }.to raise_error('Stormy weather prevents the plane from taking off')
+    end
+
+    it 'will not land if the weather is stormy' do
+      storm_port = instance_double('Airport', :stormy? => true, :accept => nil)
+      expect { subject.land(storm_port) }.to raise_error('Stormy weather prevents the plane from landing')
+    end
   end
 end

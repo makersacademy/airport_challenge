@@ -6,7 +6,9 @@ describe Airport do
     it 'displays only the planes currently at the airport' do
       airport = Airport.new
       expect(airport.show_planes).to eq([])
-      plane = Plane.new
+      plane = instance_double('Plane')
+      allow(plane).to receive(:land) {airport.accept(plane)}
+      allow(plane).to receive(:take_off) {airport.release(plane)}
       plane.land(airport)
       expect(airport.show_planes).to eq([plane])
       plane.take_off

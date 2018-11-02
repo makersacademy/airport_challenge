@@ -1,6 +1,7 @@
 class Plane
   def land(airport)
     raise 'This plane has already landed' unless @current_port.nil?
+    raise 'Stormy weather prevents the plane from landing' if airport.stormy?
     airport.accept(self)
     @current_port = airport
   end
@@ -11,8 +12,4 @@ class Plane
     @current_port.release(self)
     @current_port = nil
   end
-
-  private
-  attr_accessor :current_port
-
 end
