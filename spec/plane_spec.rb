@@ -30,4 +30,10 @@ describe Plane do
 			expect {plane.takeoff_from_airport(airport, weather_stormy)}.to raise_error("Danger stormy weather")
 		end
 	end
+
+	describe 'stormy weather landing' do
+		it 'plane should not land when weather is stormy' do
+			expect {plane.land_at_airport(airport, weather_stormy)}.to raise_error("Danger stormy weather")
+		end
+	end
 end

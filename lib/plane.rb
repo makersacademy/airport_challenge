@@ -1,6 +1,6 @@
 class Plane
 	def land_at_airport (airport, weather)
-		if weather = "sunny"
+		if weather == "sunny"
 			airport.planes_present << self
 		else
 			raise "Danger stormy weather"
