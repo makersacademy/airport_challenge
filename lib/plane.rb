@@ -14,6 +14,7 @@ class Plane
     if airport.weather.what_is_weather == 'stormy'
       fail 'Cannot land in stormy weather'
     end
+    fail 'Cannot land at full airport' if airport.hangar_full?
     @landed = true
     @at_airport = airport
     airport.hangar << self
