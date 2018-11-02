@@ -1,4 +1,6 @@
 class Airport
+  attr_reader :planes
+
   def initialize
     @planes = []
   end
@@ -7,8 +9,8 @@ class Airport
     rand(9) == 0 ? true : false
   end
 
-  def show_planes
-    planes
+  def full?
+    @planes.length >= 5
   end
 
   def accept(plane)
@@ -18,8 +20,4 @@ class Airport
   def release(plane)
     @planes.reject! { |p| p == plane }
   end
-
-  private
-  attr_reader :planes
-
 end
