@@ -11,8 +11,6 @@ p "Lands plane at airport"
 p plane1.land(airport1)
 p "Shows plane in airport hangar"
 p airport1.hangar
-p "Changes weather to sunny"
-p airport1.weather.what_is_weather = 'sunny'
 p "Makes the plane take off from the airport"
 p plane1.takeoff
 p "Shows the plane has been removed from the hangar"
