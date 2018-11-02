@@ -1,3 +1,6 @@
+class Airport
+end
+
 class Plane
 
   def land
