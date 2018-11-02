@@ -12,6 +12,14 @@ describe Plane do
 		end
 	end
 
+	describe '#land_at_airport' do
+		it 'checks plane stored as instance variable when landed' do
+			plane.land_at_airport(airport)
+
+			expect(airport.planes_present).to include(plane)
+		end
+	end
+
 	describe '#takeoff_from_airport' do
 		before {expect(plane).to receive(:takeoff_from_airport).with(airport)}
 		it 'takes off from the passed airport' do
