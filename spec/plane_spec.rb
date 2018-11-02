@@ -21,4 +21,10 @@ describe Plane do
     airport = Airport.new
     expect(subject.takeoff(airport)).to eq("The plane is not in the airport")
   end
+  it 'checks weather before taking off and will not if raining' do
+    airport = Airport.new
+    puts airport.weather.setweather("raining")
+    airport.plane_is_added_to_available_fleet(subject)
+    expect(subject.takeoff(airport)).to eq("It is raining, so the plane can't take off")
+  end
 end
