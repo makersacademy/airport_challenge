@@ -2,7 +2,7 @@
 class Airport
   attr_accessor :planes
 
-  def park(plane)
-    @planes << plane
+  def initialize
+    @planes = []
   end
 end
