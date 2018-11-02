@@ -3,8 +3,8 @@ require 'plane'
 
 describe Airport do
   describe 'inspect docked planes' do
-    airport = Airport.new
     it 'displays only the planes currently at the airport' do
+      airport = Airport.new
       expect(airport.show_planes).to eq([])
       plane = Plane.new
       plane.land(airport)
