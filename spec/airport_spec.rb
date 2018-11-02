@@ -14,6 +14,11 @@ describe Airport do
       subject.stormy_weather = true
       expect { subject.land(plane) }.to raise_error "Planes can't land, weather is stormy"
     end
+
+    it "prevents landing if the airport is full" do
+      expect { (subject.capacity + 1).times { subject.land(plane) } }.to raise_error "Planes can't land, the airport is full"
+    end
+
   end
 
   context "#take_off" do
