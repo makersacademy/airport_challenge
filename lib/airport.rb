@@ -1,11 +1,14 @@
 class Airport
   attr_reader :landing_strip, :departure
+  attr_accessor :weather
 
   def initialize
     @landing_strip = []
+    @weather = ""
   end
 
   def land(plane)
+    fail 'Sorry, too stormy' if @weather == "Stormy"
     @landing_strip << plane
     "Safely landed"
   end

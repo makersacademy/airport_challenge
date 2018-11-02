@@ -31,6 +31,11 @@ describe 'Airport' do
     expect(airport.landing_strip).not_to include(plane)
   end
 
+  it 'will throw an error if #land is called when whether is stormy' do
+    airport.weather = "Stormy"
+    expect { airport.land(plane) }.to raise_error("Sorry, too stormy")
+  end
+
   describe 'Plane' do
     let(:plane) {Plane.new}
 
