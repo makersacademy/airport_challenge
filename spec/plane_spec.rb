@@ -22,7 +22,7 @@ describe Plane do
     it 'will not take off if the weather is stormy' do
       storm_port = instance_double('Airport', :stormy? => false, :full? => false, :accept => nil)
       subject.land(storm_port)
-      allow(storm_port).to receive(:stormy?) {true}
+      allow(storm_port).to receive(:stormy?) { true }
       expect { subject.take_off }.to raise_error('Stormy weather prevents the plane from taking off')
     end
 

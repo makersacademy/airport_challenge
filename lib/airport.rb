@@ -1,16 +1,18 @@
 class Airport
   attr_reader :planes
+  attr_accessor :capacity
 
   def initialize
     @planes = []
+    @capacity = 2
   end
 
   def stormy?
-    rand(9) == 0 ? true : false
+    rand(9).zero? ? true : false
   end
 
   def full?
-    @planes.length >= 5
+    @planes.length >= @capacity
   end
 
   def accept(plane)
