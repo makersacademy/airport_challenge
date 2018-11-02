@@ -21,13 +21,20 @@ describe 'Airport' do
   end
 
   it 'confirms plane not at aiport using #take_off' do
-    expect(airport.take_off).to eq "Plane is no longer at the airport"
+    2.times { airport.land(plane) }
+    expect(airport.take_off).to eq "flight number #{plane} is no longer at the airport"
+  end
+
+  it 'confirms plane is not at the airport after #take_off' do
+    airport.land(plane)
+    airport.take_off
+    expect(airport.landing_strip).not_to include(plane)
   end
 
   describe 'Plane' do
     let(:plane) {Plane.new}
 
-    it 'can creates a plane' do
+    it 'can create a plane' do
       expect(plane).to be_instance_of(Plane)
     end
   end
