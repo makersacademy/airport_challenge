@@ -24,3 +24,11 @@ describe Airport do
     end
   end
 end
+
+describe Weather do
+  describe '#stormy?' do
+    it 'should return true or false' do
+      expect(subject.stormy?).to eq(true).or eq(false)
+    end
+  end
+end
