@@ -24,9 +24,12 @@
 
 Object | Message
 --- | ---
-Plane | Land, Takeoff
-Airport | Hangar
+Plane | Land, Landed?
+Airport | Hangar, Takeoff
+Weather | What is the weather?
 
 
-Planes -- land(airport)
-Planes -- takeoff, airport -- remove(plane)
+Plane -- land(airport) unless weather is stormy
+Plane -- landed?
+Airport -- takeoff(plane), Hangar(remove plane) unless weather is stormy
+Weather -- What is the weather?
