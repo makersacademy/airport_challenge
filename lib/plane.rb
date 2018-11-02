@@ -1,11 +1,17 @@
-require_relative 'airport'
-
 class Plane
-  attr_accessor :landed
 
-  def land
-    landed = true
+  def initialize
+    @landed
+    @flying
   end
-  def take_off
+
+  def landed?
+    @landed = true
+    @flying = nil
+  end
+
+  def flying?
+    @flying = true
+    @landed = nil
   end
 end
