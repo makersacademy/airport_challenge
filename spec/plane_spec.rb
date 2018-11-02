@@ -43,7 +43,7 @@ describe Plane do
 
   it "prevents #land when airport is full" do
     50.times { Plane.new.land(airport) }
-    expect(airport.planes.length).to <= 20
+    expect(airport.planes.length).to be <= 20
   end
 
 end

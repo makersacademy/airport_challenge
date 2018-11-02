@@ -2,7 +2,7 @@
 class Plane
 
   def land(airport)
-    if airport.weather && (airport.planes.length <= 20)
+    if airport.weather && (airport.planes.length < 20)
       airport.planes << self if !airport.planes.include?(self)
     elsif airport.planes.length >= 20
       puts "Airport is full\n"
