@@ -23,3 +23,11 @@ describe Airport do
     expect(subject.land_plane(plane)).to eq plane
   end
 end
+
+describe Airport do
+  it 'lets one plane take_off' do
+    plane = Plane.new
+    subject.land_plane(plane)
+    expect(subject.take_off).to eq plane
+  end
+end
