@@ -23,25 +23,25 @@ describe Airport do
     expect(Plane.new.land(airport)).to eq false
   end
 
-  it "correctly responts to stormy_weather? when it's stormy" do
+  it "correctly responds to stormy_weather? when it's stormy" do
     allow(subject).to receive(:weather).and_return("stormy")
 
     expect(subject.stormy_weather?).to be true
   end
 
-  it "correctly responts to stormy_weather? when it's fine" do
+  it "correctly responds to stormy_weather? when it's fine" do
     allow(subject).to receive(:weather).and_return("fine")
 
     expect(subject.stormy_weather?).to be false
   end
 
-  it "correctly responts to fine_weather? when it's fine" do
+  it "correctly responds to fine_weather? when it's fine" do
     allow(subject).to receive(:weather).and_return("fine")
 
     expect(subject.fine_weather?).to be true
   end
 
-  it "correctly responts to fine_weather? when it's stormy" do
+  it "correctly responds to fine_weather? when it's stormy" do
     allow(subject).to receive(:weather).and_return("stormy")
 
     expect(subject.fine_weather?).to be false
