@@ -4,7 +4,7 @@ class Airport
     @landing_strip = []
   end
 
-  def land()
+  def land(plane)
     "Safely landed"
   end
 
@@ -15,5 +15,9 @@ class Airport
 end
 
 class Plane
+
+  def initialize
+    @plane
+  end
 
 end

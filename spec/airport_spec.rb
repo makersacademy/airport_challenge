@@ -2,6 +2,7 @@ require 'airport'
 
 describe 'Airport' do
   let(:airport) {Airport.new}
+  let(:plane) {Plane.new}
 
   it 'can create an airport' do
     expect(Airport.new).to be_instance_of(Airport)
@@ -12,7 +13,7 @@ describe 'Airport' do
   end
 
   it 'can land and conmfirms the plane has landed' do
-    expect(airport.land).to eq "Safely landed"
+    expect(airport.land(plane)).to eq "Safely landed"
   end
 
   it 'can respond to #take_off' do
