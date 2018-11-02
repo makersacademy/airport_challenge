@@ -1,12 +1,14 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
-	let(:plane) {plane = Plane.new}
+	let(:plane) 	{plane = Plane.new}
+	let(:airport) {airport = Airport.new}
 	
 	describe '#land_at_airport' do
-		it 'lands at an airport' do
-			expect(plane).to respond_to(:land_at_airport)
+		before {expect(plane).to receive(:land_at_airport).with(airport)}
+		it 'lands at the passed airport' do
+			plane.land_at_airport(airport)
 		end
 	end
-
 end
