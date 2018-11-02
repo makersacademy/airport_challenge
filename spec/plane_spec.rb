@@ -28,21 +28,21 @@ describe Plane do
 
   it "confirms when it has left the airport" do
     plane.land(airport)
-    expect{plane.take_off(airport)}.to output("Taking off and no longer in airport\n").to_stdout
+    expect { plane.take_off(airport) }.to output("Taking off and no longer in airport\n").to_stdout
   end
 
   it "can prevent takeoff when weather is stormy" do
     airport.weather = false
-    expect{plane.take_off(airport)}.to output("Stopped take off due to weather\n").to_stdout
+    expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
   end
 
   it "can prevent landing when weather is stormy" do
     airport.weather = false
-    expect{plane.land(airport)}.to output("Stopped landing due to weather\n").to_stdout
+    expect { plane.land(airport) }.to output("Stopped landing due to weather\n").to_stdout
   end
 
   it "prevents #land when airport is full" do
-    expect(50.times {airport.planes << plane}).to output("Plane is full\n").to_stdout
+    expect(50.times { airport.planes << plane }).to output("Plane is full\n").to_stdout
   end
 
 end
