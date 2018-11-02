@@ -2,10 +2,14 @@ class Airport
 
   attr_reader :planes_in_airport
   attr_reader :weather
+  attr_accessor :plane_capacity
+
+  DEFAULT_PLANE_CAPACITY = 50
 
   def initialize
     @planes_in_airport = []
     @weather = Weather.new
+    @plane_capacity = DEFAULT_PLANE_CAPACITY
   end
 
   def plane_is_added_to_available_fleet(plane)
