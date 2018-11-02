@@ -37,4 +37,15 @@ describe Airport do
 
   end
 
+  it 'can set capacity of airport on creation' do
+    small_airport = Airport.new(10)
+    expect(small_airport.capacity).to eq(10)
+  end
+
+  it 'can set capacity of airport after creation' do
+    large_airport = Airport.new
+    large_airport.capacity = 30
+    expect(large_airport.capacity).to eq(30)
+  end
+
 end
