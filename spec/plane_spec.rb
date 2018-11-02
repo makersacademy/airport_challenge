@@ -11,4 +11,11 @@ describe Plane do
 			plane.land_at_airport(airport)
 		end
 	end
+
+	describe '#takeoff_from_airport' do
+		before {expect(plane).to receive(:takeoff_from_airport).with(airport)}
+		it 'takes off from the passed airport' do
+			plane.takeoff_from_airport(airport)
+		end
+	end
 end
