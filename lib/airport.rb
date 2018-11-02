@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     fail 'it is too stormy to land' if @weather.stormy?
+    fail 'the airport is full' if @planes.count == 10
     @planes.push(plane)
   end
 
