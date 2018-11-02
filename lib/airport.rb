@@ -19,10 +19,8 @@ class Airport
   def plane_is_removed_from_available_fleet(plane)
     @planes_in_airport -= [plane]
   end
-  def check_weather_and_if_OK_take_off?
-    if @weather.weather != "raining" then true
-    else
-      false
-    end
+
+  def check_weather_is_fine?
+    @weather.weather != "raining"
   end
 end
