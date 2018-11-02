@@ -9,24 +9,24 @@ class Plane
   end
 
   def land(airport)
-    return false if !airport.arrival(self) || is_landed?
+    return false if !airport.arrival(self) || landed?
     @status = "landed"
     @location = airport
     true
   end
 
   def take_off(airport)
-    return false if !airport.departure(self) || is_flying?
+    return false if !airport.departure(self) || flying?
     @status = "flying"
     @location = ""
     true
   end
 
-  def is_flying?
+  def flying?
     status == "flying"
   end
 
-  def is_landed?
+  def landed?
     status == "landed"
   end
 
