@@ -5,5 +5,5 @@ class Plane
   def land(airport)
     airport.hangar << self
   end
-  
+
 end
