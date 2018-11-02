@@ -5,7 +5,7 @@ class Weather
   end
 
   def set_weather
-    rand(100) < 20 ? @weather = "stormy" : @weather = "fine"
+    rand(100) < 20 ? @weather = :stormy : @weather = :fine
   end
 
   def weather_report

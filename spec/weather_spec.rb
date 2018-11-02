@@ -11,7 +11,7 @@ describe Weather do
   end
 
   it "is randomly set to 'fine' or 'stormy'" do
-    expect(1000.times.map { Weather.new.weather_report }).to include("fine", "stormy")
+    expect(Array.new(1000) { Weather.new.weather_report }).to include(:fine, :stormy)
   end
 
 end

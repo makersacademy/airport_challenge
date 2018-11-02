@@ -23,11 +23,11 @@ class Airport
   end
 
   def fine_weather?
-    weather.weather_report == "fine"
+    weather.weather_report == :fine
   end
 
   def stormy_weather?
-    weather.weather_report == "stormy"
+    weather.weather_report == :stormy
   end
 
 end

@@ -10,7 +10,7 @@ describe Plane do
 
   it "can land at an airport" do
     airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("fine")
+    allow(airport.weather).to receive(:weather_report).and_return(:fine)
 
     subject.land(airport)
 
@@ -26,7 +26,7 @@ describe Plane do
 
   it "is no longer at an airport after take-off" do
     airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("fine")
+    allow(airport.weather).to receive(:weather_report).and_return(:fine)
 
     subject.land(airport)
     subject.take_off(airport)
@@ -36,7 +36,7 @@ describe Plane do
 
   it "cannot take off if the weather is stormy" do
     airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("fine", "stormy")
+    allow(airport.weather).to receive(:weather_report).and_return(:fine, :stormy)
 
     subject.land(airport)
     subject.take_off(airport)
@@ -46,7 +46,7 @@ describe Plane do
 
   it "cannot land if the weather is stormy" do
     airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("stormy")
+    allow(airport.weather).to receive(:weather_report).and_return(:stormy)
 
     subject.land(airport)
 
@@ -55,7 +55,7 @@ describe Plane do
 
   it "cannot land if the airport is full" do
     airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("fine")
+    allow(airport.weather).to receive(:weather_report).and_return(:fine)
 
     10.times { Plane.new.land(airport) }
 
@@ -65,7 +65,7 @@ describe Plane do
   it "can only take off from an airport it is in" do
     airport = Airport.new
     wrong_airport = Airport.new
-    allow(airport.weather).to receive(:weather_report).and_return("fine")
+    allow(airport.weather).to receive(:weather_report).and_return(:fine)
 
     subject.land(airport)
 
