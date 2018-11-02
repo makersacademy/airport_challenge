@@ -9,8 +9,9 @@ describe Airport do
   #user story 1
   it { expect(subject).to respond_to(:receive_plane).with(1).argument }
   it "Once landed the plane appears in the aiport @landed_planes" do
-    subject.receive_plane(plane)
-    expect(subject.landed_planes).to include(plane)
+    good_weather_airport = Airport.new(20, good_weather)
+    good_weather_airport.receive_plane(plane)
+    expect(good_weather_airport.landed_planes).to include(plane)
   end
 
   #user story 2: plane can take take take off

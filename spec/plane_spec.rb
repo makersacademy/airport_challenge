@@ -37,4 +37,14 @@ describe Plane do
     expect(subject.land(bad_weather_airport)).to eq("Plane could not land due to bad weather")
   end
 
+  it "plane can't land if already landed" do
+    subject.land(airport)
+    expect{subject.land(airport)}.to raise_error("Plane already in airport")
+  end
+
+  it "plane can't take off if already flying" do
+    plane = Plane.new(true)
+    expect{plane.fly}.to raise_error("Already flying")
+  end
+
 end

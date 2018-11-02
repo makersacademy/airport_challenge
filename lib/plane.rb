@@ -4,7 +4,12 @@ class Plane
   attr_reader :flying
   attr_reader :landed_in
 
+  def initialize(flying=nil)
+    @flying = flying
+  end
+
   def land(airport)
+    fail "Plane already in airport" if @landed_in
     error_message = airport.receive_plane(self)
     if !error_message
       @flying = false
@@ -16,6 +21,7 @@ class Plane
   end
 
   def fly
+    fail "Already flying" if @flying
     if landed_in.release_plane(self)
       @flying = true
       @landed_in = nil
