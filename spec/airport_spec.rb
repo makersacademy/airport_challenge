@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 require 'plane'
 
 describe Airport do
@@ -34,14 +35,6 @@ describe Airport do
         airport = Airport.new(weather)
         expect{ airport.takeoff(plane) }.to raise_error 'it is too stormy to take off'
       end
-    end
-  end
-end
-
-describe Weather do
-  describe '#stormy?' do
-    it 'should return true or false' do
-      expect(subject.stormy?).to eq(true).or eq(false)
     end
   end
 end
