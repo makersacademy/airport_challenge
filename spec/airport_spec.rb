@@ -4,13 +4,21 @@ describe Airport do
   it "expects #takeoff to take an argument" do
     expect(subject.takeoff(Plane.new)).to eq "The plane has taken off."
   end
+  it "expects #takeoff to remove plane from hangar" do
+    of815 = Plane.new
+    subject.land(of815)
+    subject.takeoff(of815)
+    expect(subject.hangar).not_to include(of815)
+  end
   it "expects #takeoff to raise an error if weather is stormy" do
     stansted = Airport.new
     stansted.weather = "stormy"
     expect { stansted.takeoff(Plane.new) }.to raise_error "The weather is stormy, planes cannot take off."
   end
   it "expects #land to take an argument" do
-    expect(subject.land(Plane.new)).to eq "The plane has landed."
+    of815 = Plane.new
+    subject.land(of815)
+    expect(subject.hangar).to include(of815)
   end
   it "expects #land to raise an error if hangar is full" do
     subject.capacity.times { subject.land(Plane.new) }

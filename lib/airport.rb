@@ -17,10 +17,10 @@ class Airport
     fail "The hanger is full, planes cannot land." if full?
     fail "The weather is stormy, planes cannot land." if stormy_weather?
     hangar << plane
-    "The plane has landed."
   end
   def takeoff(plane)
     fail "The weather is stormy, planes cannot take off." if stormy_weather?
+    hangar.delete(plane)
     "The plane has taken off."
   end
   def full?
