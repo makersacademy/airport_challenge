@@ -9,7 +9,8 @@ class Airport
     @weather = weather
   end
   def land
-
+    fail "The weather is stormy, we cannot land." if stormy_weather?
+    "We're now in the airport, not the sky."
   end
   def takeoff
     fail "The weather is stormy, we cannot take off." if stormy_weather?

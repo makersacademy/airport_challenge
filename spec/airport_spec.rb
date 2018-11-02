@@ -14,4 +14,8 @@ describe Airport do
     stansted = Airport.new("stormy")
     expect { stansted.takeoff }.to raise_error "The weather is stormy, we cannot take off."
   end
+  it "expects #land not to run if weather is stormy" do
+    stansted = Airport.new("stormy")
+    expect { stansted.land }.to raise_error "The weather is stormy, we cannot land."
+  end
 end
