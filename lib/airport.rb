@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   def land(plane)
@@ -5,7 +7,13 @@ class Airport
   end
 
   def takeoff(plane)
-    "#{plane} has taken off"
+    check_stormy ? "it is too stormy to take off" : "#{plane} has taken off"
+  end
+
+  private
+  def check_stormy
+    weather = rand(10)
+    weather < 8 ? stormy = false : stormy = true
   end
 
 end
