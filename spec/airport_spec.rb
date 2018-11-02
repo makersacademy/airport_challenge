@@ -40,6 +40,11 @@ describe 'Airport' do
     expect { 21.times { airport.land(plane) } }.to raise_error("Sorry, no room")
   end
 
+  it "Will allow you to increase the max capacity of the aiport (default is 20)" do
+    airport.max_capacity = 21
+    expect { 21.times { airport.land(plane) } }.not_to raise_error
+  end
+
   it 'will throw an error if #take_off is called when whether is stormy' do
     airport.weather = "Stormy"
     expect { airport.take_off }.to raise_error("Sorry, too stormy")
