@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off
+    fail 'Sorry, too stormy' if @weather == "Stormy"
     @departure = @landing_strip.pop
     "flight number #{departure} is no longer at the airport"
   end

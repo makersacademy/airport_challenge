@@ -36,6 +36,11 @@ describe 'Airport' do
     expect { airport.land(plane) }.to raise_error("Sorry, too stormy")
   end
 
+  it 'will throw an error if #take_off is called when whether is stormy' do
+    airport.weather = "Stormy"
+    expect { airport.take_off }.to raise_error("Sorry, too stormy")
+  end
+
   describe 'Plane' do
     let(:plane) {Plane.new}
 
