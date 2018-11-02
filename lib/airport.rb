@@ -10,10 +10,8 @@ class Airport
     @weather = Weather.new
   end
 
-  def takeoff(plane)
-    fail 'Plane not at this airport' unless @hangar.include?(plane)
-    plane.landed = false
-    @hangar.delete(plane)
+  def plane_in_hangar?(plane)
+    @hangar.include?(plane)
   end
 
 end

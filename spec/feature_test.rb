@@ -11,7 +11,7 @@ p airport1.weather.what_is_weather = 'stormy'
 begin
   p "Shows plane cannot land while stormy"
   p plane1.land(airport1)
-rescue
+rescue('Cannot land in stormy weather')
   p "Cannot land while it's stormy"
 else
   p "Plane somehow landed while stormy and everyone died"
@@ -29,7 +29,7 @@ p airport1.weather.what_is_weather = 'stormy'
 begin
   p "Shows plane cannot take off while weather is stormy"
   p airport1.takeoff(plane1)
-rescue
+rescue('Cannot take off in stormy weather')
   p "Cannot take off while it's stormy"
 else
   p "Plane somehow took off while stormy and everyone died"

@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double(:plane) }
+  let(:weather) { double(:weather) }
 
   describe '#hangar' do
 
@@ -10,19 +11,17 @@ describe Airport do
 
   end
 
-  describe '#takeoff' do
+  describe '#plane_in_hangar' do
 
-    it 'can make a plane in its hangar take off' do
-      allow(plane).to receive(:landed=).with(false)
+    it 'returns false if plane is not in hangar' do
+      expect(subject.plane_in_hangar?(plane)).to eq(false)
+    end
+
+    it 'returns true if plane is in hangar' do
       subject.hangar << plane
-      subject.takeoff(plane)
-      expect(subject.hangar).to eq([])
+      expect(subject.plane_in_hangar?(plane)).to eq(true)
     end
-
-    it "cannot make a plane that isn't in its hangar take off" do
-      expect { subject.takeoff(plane) }.to raise_error 'Plane not at this airport'
-    end
-
+    
   end
 
 end
