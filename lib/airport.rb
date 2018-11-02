@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(aeroplane)
+    raise "Too stormy" if @storm
     raise "#{self.class.name} full" if full?
     @aeroplanes << aeroplane
   end

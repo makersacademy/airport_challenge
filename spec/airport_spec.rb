@@ -8,13 +8,13 @@ describe Airport do
     it { is_expected.to respond_to :land }
 
     it 'lands aeroplane at airport' do
+      subject.storm = false
       expect(subject.land(aeroplane)).to eq [aeroplane]
     end
 
-    it "won't allow takeoff when stormy" do
+    it "won't allow landing when stormy" do
       subject.storm = true
-      subject.aeroplanes = [aeroplane]
-      expect { subject.takeoff(aeroplane) }.to raise_error "Too stormy"
+      expect { subject.land(aeroplane) }.to raise_error "Too stormy"
     end
   end
 
@@ -26,6 +26,12 @@ describe Airport do
       subject.land(aeroplane)
       subject.takeoff(aeroplane)
       expect(subject.aeroplanes).to eq []
+    end
+
+    it "won't allow takeoff when stormy" do
+      subject.storm = true
+      subject.aeroplanes = [aeroplane]
+      expect { subject.takeoff(aeroplane) }.to raise_error "Too stormy"
     end
   end
 
