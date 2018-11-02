@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 	let(:plane) 	{plane = Plane.new}
@@ -7,8 +8,9 @@ describe Airport do
 
 	describe '#confirm_departure' do
 		it 'checks that a plane is no longer in the airport' do
-			plane.land_at_airport(airport)
-			plane.takeoff_from_airport(airport)
+			weather = "sunny"
+			plane.land_at_airport(airport, weather)
+			plane.takeoff_from_airport(airport, weather)
 			airport.confirm_departure(plane)
 
 			expect(airport.planes_present).not_to include(plane)
