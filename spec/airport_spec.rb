@@ -15,25 +15,25 @@ describe Airport do
   end
 
   it "correctly responds to stormy_weather? when it's stormy" do
-    allow(subject).to receive(:weather).and_return("stormy")
+    allow(subject.weather).to receive(:weather_report).and_return("stormy")
 
     expect(subject.stormy_weather?).to be true
   end
 
   it "correctly responds to stormy_weather? when it's fine" do
-    allow(subject).to receive(:weather).and_return("fine")
+    allow(subject.weather).to receive(:weather_report).and_return("fine")
 
     expect(subject.stormy_weather?).to be false
   end
 
   it "correctly responds to fine_weather? when it's fine" do
-    allow(subject).to receive(:weather).and_return("fine")
+    allow(subject.weather).to receive(:weather_report).and_return("fine")
 
     expect(subject.fine_weather?).to be true
   end
 
   it "correctly responds to fine_weather? when it's stormy" do
-    allow(subject).to receive(:weather).and_return("stormy")
+    allow(subject.weather).to receive(:weather_report).and_return("stormy")
 
     expect(subject.fine_weather?).to be false
   end
