@@ -1,13 +1,5 @@
 require 'airport'
 
-describe 'Plane' do
-  let(:plane) {Plane.new}
-
-  it 'can creates a plane' do
-    expect(plane).to be_instance_of(Plane)
-  end
-end
-
 describe 'Airport' do
   let(:airport) {Airport.new}
 
