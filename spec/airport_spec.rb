@@ -1,21 +1,24 @@
 require "airport"
 
 describe Airport do
-  it "expects a plane to #land" do
-    expect(subject).to respond_to(:land)
+  it "expects #takeoff to take an argument" do
+    expect(subject.takeoff(Plane.new)).to eq "The plane has taken off."
   end
-  # it "expects a plane to #takeoff" do
-  #   expect(subject).to respond_to(:takeoff)
-  # end
-  it "expects #takeoff to return a message" do
-    expect(subject.takeoff).to eq "We're now in the sky, not the airport."
+  it "expects #takeoff to raise an error if weather is stormy" do
+    stansted = Airport.new
+    stansted.weather = "stormy"
+    expect { stansted.takeoff(Plane.new) }.to raise_error "The weather is stormy, planes cannot take off."
   end
-  it "expects #takeoff not to run if weather is stormy" do
-    stansted = Airport.new("stormy")
-    expect { stansted.takeoff }.to raise_error "The weather is stormy, we cannot take off."
+  it "expects #land to take an argument" do
+    expect(subject.land(Plane.new)).to eq "The plane has landed."
   end
-  it "expects #land not to run if weather is stormy" do
-    stansted = Airport.new("stormy")
-    expect { stansted.land }.to raise_error "The weather is stormy, we cannot land."
+  it "expects #land to raise an error if hangar is full" do
+    subject.capacity.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error "The hanger is full, planes cannot land."
+  end
+  it "expects #land to raise an error if weather is stormy" do
+    stansted = Airport.new
+    stansted.weather = "stormy"
+    expect { stansted.land(Plane.new) }.to raise_error "The weather is stormy, planes cannot land."
   end
 end

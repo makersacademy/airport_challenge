@@ -1,22 +1,31 @@
 require_relative 'plane'
 
 class Airport
-  DEAFULT_WEATHER = "fine"
+  DEFAULT_CAPACITY = 10
+  DEFAULT_WEATHER = "fine"
 
+  attr_reader :hangar
+  attr_accessor :capacity
   attr_accessor :weather
 
-  def initialize(weather=DEAFULT_WEATHER)
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @hangar = []
+    @capacity = capacity
     @weather = weather
   end
-  def land
-    fail "The weather is stormy, we cannot land." if stormy_weather?
-    "We're now in the airport, not the sky."
+  def land(plane)
+    fail "The hanger is full, planes cannot land." if full?
+    fail "The weather is stormy, planes cannot land." if stormy_weather?
+    hangar << plane
+    "The plane has landed."
   end
-  def takeoff
-    fail "The weather is stormy, we cannot take off." if stormy_weather?
-    "We're now in the sky, not the airport."
+  def takeoff(plane)
+    fail "The weather is stormy, planes cannot take off." if stormy_weather?
+    "The plane has taken off."
   end
-
+  def full?
+    hangar.length >= capacity
+  end
   def stormy_weather?
     weather == "stormy"
   end
