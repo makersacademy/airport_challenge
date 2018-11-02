@@ -2,9 +2,9 @@ require_relative 'plane'
 
 class Airport
   attr_reader :landed_planes, :weather, :capacity
-  attr_writer :weather, :capacity
+  attr_writer :capacity
 
-  def initialize(capacity=5)
+  def initialize(capacity = 5)
     weather_random = rand(1..5) # Pull this out into another method?
     (weather_random == 5) ? @weather = "stormy" : @weather = "clear"
     @capacity = capacity
