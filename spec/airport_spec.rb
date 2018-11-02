@@ -20,6 +20,8 @@ describe 'Plane' do
     expect(plane).to respond_to(:take_off)
   end
 
-
+  it 'Plane takes off and confirms not at aiport' do
+    expect(plane.take_off).to eq "Plane is no longer at the airport"
+  end
 
 end
