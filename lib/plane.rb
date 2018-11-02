@@ -15,7 +15,7 @@ class Plane
   end
 
   def fly
-    if landed_in.release_plane(self, Weather.new.report)
+    if landed_in.release_plane(self)
       @flying = true
       @landed_in = nil
       return "Plane has taken off"
@@ -23,5 +23,7 @@ class Plane
       return "Plane could not take off due to weather"
     end
   end
+
+
 
 end
