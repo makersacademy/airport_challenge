@@ -4,8 +4,21 @@ require 'plane'
 describe Airport do
   let(:weather) { double :weather }
   let(:plane) { double :plane }
-  it 'should land a plane' do
-    expect(subject.land(plane)).to include plane
+  describe '#land' do
+    context "when not stormy" do
+      it 'should land a plane' do
+        allow(weather).to receive(:stormy?).and_return false
+        airport = Airport.new(weather)
+        expect(airport.land(plane)).to include plane
+      end
+    end
+    context "when stormy" do
+      it 'should not land a plane' do
+        allow(weather).to receive(:stormy?).and_return true
+        airport = Airport.new(weather)
+        expect{ airport.land(plane) }.to raise_error 'it is too stormy to land'
+      end
+    end
   end
   describe '#takeoff' do
     context "when not stormy" do

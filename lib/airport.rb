@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'it is too stormy to land' if @weather.stormy?
     @planes.push(plane)
   end
 
