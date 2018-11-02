@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  it "can create a new plane" do
+  it "can be created" do
     expect(subject).to be_a(Plane)
   end
 

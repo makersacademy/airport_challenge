@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   it "can be created" do
-    expect(Airport.new).to be_an(Airport)
+    expect(subject).to be_an(Airport)
   end
 
   it "has a default capacity of 10" do
