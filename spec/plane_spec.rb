@@ -2,6 +2,8 @@ require 'plane'
 
 describe Plane do
 
+  let(:airport) { double :airport, :weather => "fine", :arrival => true, :departure => true }
+
   it "can be created" do
     expect(subject).to be_a(Plane)
   end
@@ -16,9 +18,6 @@ describe Plane do
   end
 
   it "can take off from an airport" do
-    airport = Airport.new
-    allow(airport).to receive(:weather).and_return("fine")
-
     subject.land(airport)
     subject.take_off(airport)
 
@@ -74,25 +73,16 @@ describe Plane do
   end
 
   it "cannot take off if already flying" do
-    airport = Airport.new
-    allow(airport).to receive(:weather).and_return("fine")
-
     expect(subject.take_off(airport)).to eq false
   end
 
   it "cannot land if already landed" do
-    airport = Airport.new
-    allow(airport).to receive(:weather).and_return("fine")
-
     subject.land(airport)
 
     expect(subject.land(airport)).to eq false
   end
 
   it "is in an airport when landed" do
-    airport = Airport.new
-    allow(airport).to receive(:weather).and_return("fine")
-
     subject.land(airport)
 
     expect(subject.location).to eq airport

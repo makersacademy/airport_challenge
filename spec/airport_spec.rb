@@ -7,20 +7,11 @@ describe Airport do
   end
 
   it "has a default capacity of 10" do
-    allow(subject).to receive(:weather).and_return("fine")
-
-    10.times { Plane.new.land(subject) }
-
-    expect(Plane.new.land(subject)).to eq false
+    expect(subject.capacity).to eq 10
   end
 
   it "can be created with a different capacity" do
-    airport = Airport.new(5)
-    allow(airport).to receive(:weather).and_return("fine")
-
-    5.times { Plane.new.land(airport) }
-
-    expect(Plane.new.land(airport)).to eq false
+    expect(Airport.new(5).capacity).to eq 5
   end
 
   it "correctly responds to stormy_weather? when it's stormy" do
