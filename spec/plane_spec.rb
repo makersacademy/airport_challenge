@@ -12,6 +12,7 @@ describe Plane do
   end
 
   it "can #land at an airport" do
+    airport.weather = "sunny"
     plane.land(airport)
     expect(airport.planes.include?(plane)).to eq true
   end
@@ -27,18 +28,19 @@ describe Plane do
   end 
 
   it "confirms when it has left the airport" do
+    airport.weather = "sunny"
     plane.land(airport)
     expect { plane.take_off(airport) }.to output("Taking off and no longer in airport\n").to_stdout
   end
 
   it "can prevent takeoff when weather is stormy" do
-    airport.weather = false
+    airport.weather = "stormy"
     expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
   end
 
   it "can prevent landing when weather is stormy" do
-    airport.weather = false
-    expect { plane.land(airport) }.to output("Stopped landing due to weather\n").to_stdout
+    airport.weather = "stormy"
+    expect { plane.land(airport) }.to output("Stopped landing\n").to_stdout
   end
 
   it "prevents #land when airport is full" do
@@ -47,8 +49,7 @@ describe Plane do
   end
 
   it "has a default capacity of 20 planes" do
-    airport = Airport.new
-    expect(airport.capacity).to eq 20
+    expect(Airport::DEFAULT_CAPACITY).to eq 20
   end
 
 end

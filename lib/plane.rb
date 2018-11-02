@@ -3,16 +3,14 @@ class Plane
 
   def land(airport)
     if airport.can_land?
-      airport.planes << self if !airport.planes.include?(self)
-    elsif airport.is_full?
-      puts "Airport is full\n"
+      airport.planes << self unless airport.planes.include?(self)
     else
-      puts "Stopped landing due to weather\n"
+      puts "Stopped landing\n"
     end
   end
 
   def take_off(airport)
-    if in_airport?(airport) && airport.weather
+    if in_airport?(airport) && airport.weather_ok?
       airport.planes.delete(self)
       puts "Taking off and no longer in airport\n" 
     else
