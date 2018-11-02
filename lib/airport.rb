@@ -15,7 +15,4 @@ class Airport
     @planes.pop
   end
 
-  def stormy?
-    @stormy_weather
-  end
 end
