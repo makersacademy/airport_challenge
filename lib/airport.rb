@@ -4,7 +4,7 @@ class Airport
 
   def initialize
     @planes = []
-    @capacity = 2
+    @capacity = 5
   end
 
   def stormy?

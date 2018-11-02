@@ -14,6 +14,7 @@ describe Airport do
       expect(subject.planes).to eq([])
     end
   end
+  
   describe 'airport capacity' do
     it 'correctly reports when it is full' do
       subject.capacity.times do

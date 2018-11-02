@@ -15,12 +15,12 @@ class Plane
 
   def can_i_land_at?(airport)
     raise 'This plane is on the ground' unless @current_port.nil?
-    raise 'Stormy weather prevents the plane from landing' if airport.stormy?
-    raise 'Cannot land at this airport as it is full' if airport.full?
+    raise 'A storm prevents the plane from landing' if airport.stormy?
+    raise 'This airport is full' if airport.full?
   end
 
   def can_i_take_off?
-    raise 'The plane is not on the ground' if @current_port.nil?
-    raise 'Stormy weather prevents the plane from taking off' if @current_port.stormy?
+    raise 'This plane is not on the ground' if @current_port.nil?
+    raise 'A storm prevents the plane from taking off' if @current_port.stormy?
   end
 end
