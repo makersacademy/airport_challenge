@@ -1,4 +1,7 @@
 class Plane
-  def something
+
+  def in_the_sky?
+    true
   end
+
 end

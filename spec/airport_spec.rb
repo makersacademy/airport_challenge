@@ -15,4 +15,10 @@ describe Airport do
     expect(subject.planes).to eq plane
   end
 
+  it "allows a plane to take-off, and confirm it is no longer in the airport" do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect(plane.in_the_sky?).to eq true
+  end
+
 end
