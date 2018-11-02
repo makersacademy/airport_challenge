@@ -1,5 +1,3 @@
-require_relative 'plane'
-
 class Airport
 
   def land(plane)
@@ -11,6 +9,7 @@ class Airport
   end
 
   private
+  
   def check_stormy
     weather = rand(10)
     weather < 8 ? stormy = false : stormy = true
