@@ -40,10 +40,9 @@ describe Plane do
     airport.weather = false
     expect{plane.land(airport)}.to output("Stopped landing due to weather\n").to_stdout
   end
-=begin 
-  it "responds to #in_airport?" do
-    expect(subject).to respond_to(:in_airport?)
+
+  it "prevents #land when airport is full" do
+    expect(50.times {airport.planes << plane}).to output("Plane is full\n").to_stdout
   end
-=end
 
 end
