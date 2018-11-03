@@ -1,6 +1,5 @@
 require_relative 'plain.rb'
 
-
 class Airport
 
   def initialize
@@ -15,16 +14,13 @@ class Airport
 
   def departure
 #                 \/  line17  above to fixed \/
-    fail "no plane on airport to departure" if @plains == nil
+    fail "no plane on airport to departure" if @plains.nil?
     @plains.pop if @plains.length != 0
     @plains.length
-
-
   end
 
   def weather_rand
     rand(100)
   end
-
 
 end

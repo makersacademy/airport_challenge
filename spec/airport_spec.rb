@@ -12,14 +12,14 @@ describe Airport do
 
     it 'add plane to airport' do
       plane = Plane.new
-      expect(subject.arrival(plane, 1)).to eq (1)
+      expect(subject.arrival(plane, 1)).to eq(1)
     end
   end
 
   describe '#departure' do
     it { is_expected.to respond_to :departure }
     it 'remove plane from airport when plane off' do
-    expect(subject.departure).to eq 0
+      expect(subject.departure).to eq 0
     end
     # it 'raise error when no plane to departure' do
     #   expect { subject.departure }.to raise_error "no plane on airport to departure"
