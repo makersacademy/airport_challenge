@@ -21,12 +21,21 @@ describe Airport do
     expect(plane.in_the_sky?).to eq true
   end
 
-  it "checks the weather is sunny" do
-    plane = Plane.new
-    @weather = Weather.new
-    allow(@weather).to receive(:conditions) {"Stormy"}
-    expect(subject.take_off(plane)).to eq ("You're not cleared for take off due to adverse weather conditions")
-
-    # expect(subject.take_off(plane)).to eq ("You're not cleared for take off due to adverse weather conditions")
+  it "returns stormy" do
+    expect_any_instance_of(Airport).to receive(:weather_check) {("Sunny")}
+    expect(subject.take_off(1)).to eq "You're clear for take off"
   end
 end
+
+
+
+#   require "airport.rb"
+#
+#
+# describe Airport do
+#
+#       it "returns stormy" do
+#         expect_any_instance_of(Airport).to receive(:weather_check) {("Sunny")}
+#         expect(subject.take_off(1)).to eq "You'rasdfsdae clear for take off"
+#       end
+#     end

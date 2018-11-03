@@ -24,7 +24,7 @@ I am aware that a plane is being created out of thin-air here. I am expecting to
 > To ensure safety
 > I want to prevent takeoff when weather is stormy
 
-Here, I spent a bit of time figuring out whether checking the Weather should be a separate Class. Eventually I decided it should be. Reflecting on this, it seems obvious, but my thought process initially was that the weather is specific to the airport, so it should sit within the Airport. However, as Weather is very much 'separated' from what would be expected within an Airport, I decided to go with a dedicated Weather Class. 
+Here, I spent a bit of time figuring out whether checking the Weather should be a separate Class. Eventually I decided it should be. Reflecting on this, it seems obvious, but my thought process initially was that the weather is specific to the airport, so it should sit within the Airport. However, as Weather is very much 'separated' from what would be expected within an Airport, I decided to go with a dedicated Weather Class.
 
 I had a lot of struggle figuring out the syntax for the tests, so I had to do quite a bit of back-and-forth with test Ruby code and RSpec code to figure out how to get my tests to check what I want them to be checking. I have completed this test in the simplest way for me I found - as this will be coming up again in the following user story, I decided to accept what I did initially, and then force the refactoring after the completion of the following.
 

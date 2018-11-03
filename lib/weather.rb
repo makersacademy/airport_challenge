@@ -5,7 +5,7 @@ class Weather
   end
 
   def randomizer
-    return rand(1..5)
+    return rand(1..2)
   end
 
 end
