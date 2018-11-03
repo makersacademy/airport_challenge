@@ -10,7 +10,7 @@ class WeatherSystem
   end
 
   def weather_output
-    self.weather_options[rand_num_generator]
+    @weather_options[rand_num_generator]
   end
 
 end

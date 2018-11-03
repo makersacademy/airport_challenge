@@ -24,7 +24,7 @@ describe Airport do
     it 'raises an error if a plane that has landed attempts to land' do
       plane = Plane.new
       airport.land_at_airport(plane)
-      expect{airport.land_at_airport(plane)}.to raise_error 'That plane has already landed!'
+      expect { airport.land_at_airport(plane) }.to raise_error 'That plane has already landed!'
     end
   end
 
@@ -38,14 +38,14 @@ describe Airport do
 
     it 'raises an error when there are no planes left at the airport' do
       plane = Plane.new
-      expect{airport.take_off_from_airport(plane)}.to raise_error "There are no planes left at this airport!"
+      expect { airport.take_off_from_airport(plane) }.to raise_error "There are no planes left at this airport!"
     end
 
     it 'raises an error when the requested plane to take off is not at the airport' do
       plane = Plane.new
       plane2 = Plane.new
       airport.land_at_airport(plane)
-      expect{airport.take_off_from_airport(plane2)}.to raise_error 'That plane is not at the airport!'
+      expect { airport.take_off_from_airport(plane2) }.to raise_error 'That plane is not at the airport!'
     end
   end
 
@@ -60,7 +60,7 @@ describe Airport do
     it 'raises an error if the plane has not taken off' do
       plane = Plane.new
       airport.land_at_airport(plane)
-      expect{airport.confirm_take_off(plane)}.to raise_error "#{plane} has not taken off!"
+      expect { airport.confirm_take_off(plane) }.to raise_error "#{plane} has not taken off!"
     end
   end
 
