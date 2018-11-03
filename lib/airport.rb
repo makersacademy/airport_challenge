@@ -3,23 +3,23 @@ require_relative 'plain.rb'
 class Airport
 
   def initialize
-    @stormy = true
     @plains = []
   end
 
   def arrival(plane, airport_size)
-    fail 'airport is full' if @plains.length == airport_size
+    fail "airport is full you can't land" if @plains.length == airport_size
     @plains << plane
     @plains.length
   end
 
   def departure
+     fail "no plane on airport to departure" if @plains.length == nil
     @plains.pop
     @plains.length
   end
 
-  def weather
-    fail 'departure unavaible its stormy'
+  def weather_rand
+    rand(100)
   end
 
 
