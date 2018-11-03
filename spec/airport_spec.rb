@@ -66,7 +66,7 @@ describe Airport do
 
   describe '#weather_check' do
     it 'allows user to check the weather' do
-      expect(airport.weather_check).to eq 'Sunshine'.to eq 'Fine'.to eq 'Overcast'.to eq 'Stormy'
+      expect(airport.weather_check).to eq('Sunshine').or eq('Fine').or eq('Overcast').or eq ('Stormy')
     end
   end
 

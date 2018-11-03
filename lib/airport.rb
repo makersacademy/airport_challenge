@@ -22,6 +22,10 @@ class Airport
     "Confirmed: #{plane} has taken off!"
   end
 
+  def weather_check
+    self.weather.weather_output
+  end
+
   private
 
   def not_valid_take_off?(plane)
