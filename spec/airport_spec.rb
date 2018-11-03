@@ -58,6 +58,12 @@ describe Airport do
       airport.land_at_airport(plane)
       expect { airport.take_off_from_airport(plane2) }.to raise_error 'That plane is not at the airport!'
     end
+
+    it 'raises an error when a plane attempts to take off during a storm' do
+      allow(airport).to receive(:weather_check).and_return('Stormy')
+      plane = Plane.new
+      expect { airport.plane_take_off(plane) }.to raise_error 'Plane cannot take off during storm!'
+    end
   end
 
   describe '#confirm_take_off' do
