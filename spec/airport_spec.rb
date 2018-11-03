@@ -8,6 +8,10 @@ describe Airport do
     it 'creates an empty hangar when initialized' do
       expect(airport.hangar).to eq []
     end
+
+    it 'creates a weather system when initialized' do
+      expect(airport.weather).to be_an_instance_of WeatherSystem
+    end
   end
 
   describe '#land_at_airport' do
