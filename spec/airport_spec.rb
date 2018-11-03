@@ -1,37 +1,55 @@
 require "airport"
 
 describe Airport do
-  it "expects #takeoff to take an argument" do
-    expect(subject.takeoff(Plane.new)).to eq "The plane has taken off."
+  @plane = Plane.new
+  it "expects #new to create an instance of Airport" do
+    expect(Airport.new).to be_a Airport
   end
-  it "expects #takeoff to remove plane from hangar" do
-    of815 = Plane.new
-    subject.land(of815)
-    subject.takeoff(of815)
-    expect(subject.hangar).not_to include(of815)
+  describe "#land" do
+    it { is_expected.to respond_to(:land).with(1).argument }
+    it "expects to add plane to hangar" do
+      subject.land(@plane)
+      expect(subject.hangar).to include(@plane)
+    end
+    it "expects to raise an error if weather is stormy" do
+      subject.weather = "stormy"
+      expect { subject.land(@plane) }.to raise_error "The weather is stormy, planes cannot land."
+    end
+    it "expects to raise an error if Plane is already in hangar" do
+      subject.land(@plane)
+      expect { subject.land(@plane) }.to raise_error "That plane has already landed."
+    end
+    it "expects to raise an error if hangar is full" do
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.land(@plane) }.to raise_error "The hanger is full, planes cannot land."
+    end
   end
-  it "expects #takeoff to raise an error if weather is stormy" do
-    stansted = Airport.new
-    stansted.weather = "stormy"
-    expect { stansted.takeoff(Plane.new) }.to raise_error "The weather is stormy, planes cannot take off."
+  describe "#takeoff" do
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
+    it "expects to remove plane from hangar" do
+      subject.land(@plane)
+      subject.takeoff(@plane)
+      expect(subject.hangar).not_to include(@plane)
+    end
+    it "expects to raise an error if weather is stormy" do
+      subject.weather = "stormy"
+      expect { subject.takeoff(@plane) }.to raise_error "The weather is stormy, planes cannot take off."
+    end
+    it "expects to raise an error if Plane is not in hangar" do
+      expect { subject.takeoff(@plane) }.to raise_error "That plane is not in this airport's hangar."
+    end
   end
-  it "expects #land to take an argument" do
-    of815 = Plane.new
-    subject.land(of815)
-    expect(subject.hangar).to include(of815)
+  describe "#capacity" do
+    it "expects to raise an error if used directly" do
+      expect { subject.capacity = 1 }.to raise_error(NoMethodError)
+    end
   end
-  it "expects #land to raise an error if hangar is full" do
-    subject.capacity.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error "The hanger is full, planes cannot land."
-  end
-  it "expects #land to raise an error if weather is stormy" do
-    stansted = Airport.new
-    stansted.weather = "stormy"
-    expect { stansted.land(Plane.new) }.to raise_error "The weather is stormy, planes cannot land."
-  end
-  it "expects #land to raise an error if trying to land a plane that has already landed" do
-    of815 = Plane.new
-    subject.land(of815)
-    expect { subject.land(of815) }.to raise_error "That plane has already landed."
+  describe "#change_capacity" do
+    it { is_expected.to respond_to(:change_capacity).with(1).argument }
+    it "expects to raise an error if hangar holding more planes than argument" do
+      subject.change_capacity(3)
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.change_capacity(2) }.to raise_error "More than #{2} already in hangar"
+    end
   end
 end

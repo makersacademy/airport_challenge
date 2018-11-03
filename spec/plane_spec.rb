@@ -1,7 +1,7 @@
 require "plane"
 
 describe Plane do
-  it "expects a new plane to be created" do
-    expect(Plane.new).to_not eq nil
+  it "expects Plane.new to create an instance of Plane" do
+    expect(Plane.new).to be_a Plane
   end
 end
