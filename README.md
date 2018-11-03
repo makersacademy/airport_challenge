@@ -7,7 +7,7 @@ This project is an application to control the landing and takeoff of planes from
 
 ## Getting started
 
-In terminal, in the directory you would like this application:
+In terminal, in the directory you would like this project:
 
 `git clone git@github.com:alittlecross/airport_challenge.git`
 
