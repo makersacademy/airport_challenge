@@ -64,4 +64,10 @@ describe Airport do
     end
   end
 
+  describe '#weather_check' do
+    it 'allows user to check the weather' do
+      expect(airport.weather_check).to eq 'Sunshine'.to eq 'Fine'.to eq 'Overcast'.to eq 'Stormy'
+    end
+  end
+
 end
