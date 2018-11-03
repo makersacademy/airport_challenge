@@ -30,4 +30,14 @@ I had a lot of struggle figuring out the syntax for the tests, so I had to do qu
 
 ## User Story 4
 
->
+> As an air traffic controller
+> To ensure safety
+> I want to prevent landing when weather is stormy
+
+Due to the similarity of this User Story with User Story 3, I used the same technique but assigned it to the Landing method as opposed to the take_off method
+
+## User Story 5
+
+> As an air traffic controller
+> To ensure safety
+> I want to prevent landing when the airport is full

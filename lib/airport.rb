@@ -8,15 +8,22 @@ class Airport
     @planes = [1, 2, 3, 4, 5] # stores planes
   end
 
+# plane cannot land if stormy
   def landing(plane)
-    @planes << plane # landed plane is stored in the array
+    if weather_check == "Sunny" # add .conditions to fix this
+      "You're clear for landing"
+    else
+      "You're not cleared for landing due to adverse weather conditions"
+    end
+    # @planes << plane # landed plane is stored in the array
   end
 
-  def take_off(plane) # plane cannot take off if stormy
+# plane cannot take off if stormy
+  def take_off(plane)
     if weather_check == "Sunny" # add .conditions to fix this
-       "You're clear for take off"
+      "You're clear for take off"
     else
-       "You're not cleared for take off due to adverse weather conditions"
+      "You're not cleared for take off due to adverse weather conditions"
     end
   end
 
