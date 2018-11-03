@@ -12,13 +12,19 @@ class Airport
   end
 
   def take_off_from_airport(plane)
-    raise 'There are no planes left at this airport!' if @hangar.empty?
-    @hangar.delete(plane)
+    @hangar.delete(plane) unless not_valid_take_off?(plane)
   end
 
   def confirm_take_off(plane)
-    return "#{plane} has taken off!" unless @hangar.include?(plane)
-    "#{plane} has not taken off yet!"
+    raise "#{plane} has not taken off!" if @hangar.include?(plane)
+    "Confirmed: #{plane} has taken off!"
+  end
+
+  private
+
+  def not_valid_take_off?(plane)
+    raise 'There are no planes left at this airport!' if @hangar.empty?
+    raise 'That plane is not at the airport!' if !@hangar.include?(plane)
   end
 
 end
