@@ -16,6 +16,12 @@ describe Airport do
       airport.land_at_airport(plane)
       expect(airport.hangar).to eq [plane]
     end
+
+    it 'raises an error if a plane that has landed attempts to land' do
+      plane = Plane.new
+      airport.land_at_airport(plane)
+      expect{airport.land_at_airport(plane)}.to raise_error 'That plane has already landed!'
+    end
   end
 
   describe '#plane_take_off' do
