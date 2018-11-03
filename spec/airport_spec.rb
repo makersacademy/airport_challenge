@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  # let(:plane) { double("plane", position => true ) }
-  let(:flying_plane) { double("flying plane", :position => "air" ) }
-  let(:landed_plane) { double("landed plane", :position => "airport") }
+  let(:plane) { double("plane", :location => "air") }
+  let(:flying_plane) { double("flying plane", :location => "air") }
+  let(:plane_at_airport) { double("landed plane", :location => "airport") }
 
 
   context "#land" do
@@ -23,26 +23,32 @@ describe Airport do
       expect { (subject.capacity + 1).times { subject.land(flying_plane) } }.to raise_error "Planes can't land, the airport is full"
     end
 
-    it "prevents landing if the airport is full if default capacity is overridden" do
+    it "prevents landing if the airport is full after the default capacity is overridden" do
       subject.stormy_weather = false
       subject.capacity = 5
       expect { (subject.capacity + 1).times { subject.land(flying_plane) } }.to raise_error "Planes can't land, the airport is full"
     end
+
+    it "prevents landing if plane has already landed" do
+      subject.stormy_weather = false
+      expect { subject.land(plane_at_airport) }.to raise_error "The plane landed and cannot land again"
   end
+end
 
   context "#take_off" do
     it "allows a plane to take off from the airport" do
       subject.stormy_weather = false
-      subject.take_off(landed_plane)
-      expect(subject.planes).to_not include(landed_plane)
+      subject.take_off(plane_at_airport)
+      expect(subject.planes).to_not include(plane_at_airport)
     end
 
     it "prevents take off if weather is stormy" do
       subject.stormy_weather = true
-      expect { subject.take_off(landed_plane) }.to raise_error "Weather is stormy"
+      expect { subject.take_off(plane_at_airport) }.to raise_error "Weather is stormy"
     end
 
     it "prevents take off if the plane is flying" do
+      subject.stormy_weather = false
       expect { subject.take_off(flying_plane) }.to raise_error "The plane is flying, cannot take off"
     end
   end

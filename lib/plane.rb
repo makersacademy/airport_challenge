@@ -1,7 +1,7 @@
 class Plane
-  attr_accessor :position
+  attr_accessor :location
 
   def initialize
-    @position = "air"
+    @location = "air"
   end
 end
