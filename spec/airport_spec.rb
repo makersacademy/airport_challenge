@@ -1,8 +1,10 @@
 require 'airport'
 
 describe 'Airport' do
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+  let(:sunny) { allow(WEATHER).to receive(:sample) { "Sunny" } }
+  let(:stormy) { allow(WEATHER).to receive(:sample) { "Stormy" } }
 
   it 'can create an airport' do
     expect(Airport.new).to be_instance_of(Airport)
@@ -13,6 +15,7 @@ describe 'Airport' do
   end
 
   it 'can land and conmfirms the plane has landed' do
+    sunny
     expect(airport.land(plane)).to eq "Safely landed"
   end
 
@@ -21,37 +24,41 @@ describe 'Airport' do
   end
 
   it 'confirms plane not at aiport using #take_off' do
+    sunny
     2.times { airport.land(plane) }
     expect(airport.take_off).to eq "flight number #{plane} is no longer at the airport"
   end
 
   it 'confirms plane is not at the airport after #take_off' do
+    sunny
     airport.land(plane)
     airport.take_off
     expect(airport.landing_strip).not_to include(plane)
   end
 
   it 'will throw an error if #land is called when whether is stormy' do
-    airport.weather = "Stormy"
+    stormy
     expect { airport.land(plane) }.to raise_error("Sorry, too stormy")
   end
 
   it 'will prvent #land from executing if landing strip is full (max can be 20)' do
+    sunny
     expect { 21.times { airport.land(plane) } }.to raise_error("Sorry, no room")
   end
 
   it "Will allow you to increase the max capacity of the aiport (default is 20)" do
+    sunny
     airport.max_capacity = 21
     expect { 21.times { airport.land(plane) } }.not_to raise_error
   end
 
   it 'will throw an error if #take_off is called when whether is stormy' do
-    airport.weather = "Stormy"
+    stormy
     expect { airport.take_off }.to raise_error("Sorry, too stormy")
   end
 
   describe 'Plane' do
-    let(:plane) {Plane.new}
+    let(:plane) { Plane.new }
 
     it 'can create a plane' do
       expect(plane).to be_instance_of(Plane)
