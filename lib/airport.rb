@@ -11,6 +11,7 @@ class Airport
   end
 
   def take_off_from_airport(plane)
+    raise "There are no planes left at this airport!" if @hangar.empty?
     @hangar.delete(plane)
   end
 

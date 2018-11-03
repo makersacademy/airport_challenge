@@ -21,8 +21,16 @@ describe Airport do
   describe '#plane_take_off' do
     it 'allows planes to take off from an airport' do
       plane = Plane.new
+      airport.land_at_airport(plane)
       airport.take_off_from_airport(plane)
-      expect(airport.hangar).to eq []
+      expect(airport.hangar).to be_empty
+    end
+  end
+
+  describe '#confirm_take_off' do
+    it 'raises an error when there are no planes left at the airport' do
+      plane = Plane.new
+      expect{airport.take_off_from_airport(plane)}.to raise_error "There are no planes left at this airport!"
     end
   end
 
