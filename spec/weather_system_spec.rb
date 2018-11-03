@@ -19,19 +19,19 @@ describe WeatherSystem do
   describe '#weather_selection' do
     it 'it cant set the weather as Sunshine' do
       allow(weather_system).to receive(:rand_num_generator).and_return(0)
-      expect(weather_system.weather_selection).to eq "Sunshine"
+      expect(weather_system.weather_output).to eq "Sunshine"
     end
     it 'it cant set the weather as Fine' do
       allow(weather_system).to receive(:rand_num_generator).and_return(1)
-      expect(weather_system.weather_selection).to eq "Fine"
+      expect(weather_system.weather_output).to eq "Fine"
     end
     it 'it cant set the weather as Overcast' do
       allow(weather_system).to receive(:rand_num_generator).and_return(2)
-      expect(weather_system.weather_selection).to eq "Overcast"
+      expect(weather_system.weather_output).to eq "Overcast"
     end
     it 'it cant set the weather as Stormy' do
       allow(weather_system).to receive(:rand_num_generator).and_return(3)
-      expect(weather_system.weather_selection).to eq "Stormy"
+      expect(weather_system.weather_output).to eq "Stormy"
     end
   end
 

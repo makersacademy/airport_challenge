@@ -9,7 +9,7 @@ class WeatherSystem
     rand(0..3)
   end
 
-  def weather_selection
+  def weather_output
     self.weather_options[rand_num_generator]
   end
 
