@@ -60,8 +60,10 @@ describe Airport do
     end
 
     it 'raises an error when a plane attempts to take off during a storm' do
-      allow(airport).to receive(:weather_check).and_return('Stormy')
+      allow(airport).to receive(:weather_check).and_return('Sunshine')
       plane = Plane.new
+      airport.land_at_airport(plane)
+      allow(airport).to receive(:weather_check).and_return('Stormy')
       expect { airport.take_off_from_airport(plane) }.to raise_error 'Plane cannot take off during storm!'
     end
   end
