@@ -3,13 +3,6 @@
 Airport Challenge
 =================
 
-Instructions
----------
-
-
-
-# Airport Challenge
-
 This project is an application to control the landing and takeoff of planes from an airport
 
 ## Getting started
