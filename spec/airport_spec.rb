@@ -48,7 +48,7 @@ describe Airport do
     it 'raises an error when there are no planes left at the airport' do
       plane = Plane.new
       allow(airport).to receive(:weather_check).and_return('Sunshine')
-      expect { airport.take_off_from_airport(plane) }.to raise_error "There are no planes left at this airport!"
+      expect { airport.take_off_from_airport(plane) }.to raise_error 'There are no planes left at this airport!'
     end
 
     it 'raises an error when the requested plane to take off is not at the airport' do
@@ -62,7 +62,7 @@ describe Airport do
     it 'raises an error when a plane attempts to take off during a storm' do
       allow(airport).to receive(:weather_check).and_return('Stormy')
       plane = Plane.new
-      expect { airport.plane_take_off(plane) }.to raise_error 'Plane cannot take off during storm!'
+      expect { airport.take_off_from_airport(plane) }.to raise_error 'Plane cannot take off during storm!'
     end
   end
 
@@ -85,7 +85,7 @@ describe Airport do
 
   describe '#weather_check' do
     it 'allows user to check the weather' do
-      expect(airport.weather_check).to eq('Sunshine').or eq('Fine').or eq('Overcast').or eq ('Stormy')
+      expect(airport.weather_check).to eq('Sunshine').or eq('Fine').or eq('Overcast').or eq('Stormy')
     end
   end
 
