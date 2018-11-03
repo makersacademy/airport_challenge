@@ -52,9 +52,9 @@ describe Airport do
     end
 
     it 'raises an error when the requested plane to take off is not at the airport' do
+      allow(airport).to receive(:weather_check).and_return('Sunshine')
       plane = Plane.new
       plane2 = Plane.new
-      allow(airport).to receive(:weather_check).and_return('Sunshine')
       airport.land_at_airport(plane)
       expect { airport.take_off_from_airport(plane2) }.to raise_error 'That plane is not at the airport!'
     end
@@ -68,8 +68,8 @@ describe Airport do
 
   describe '#confirm_take_off' do
     it 'allows user to confirm a plane has taken off' do
-      plane = Plane.new
       allow(airport).to receive(:weather_check).and_return('Sunshine')
+      plane = Plane.new
       airport.land_at_airport(plane)
       airport.take_off_from_airport(plane)
       expect(airport.confirm_take_off(plane)).to eq "Confirmed: #{plane} has taken off!"
