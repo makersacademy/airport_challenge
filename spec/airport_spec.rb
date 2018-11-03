@@ -12,7 +12,7 @@ describe Airport do
 
     it 'add plane to airport' do
       plane = Plane.new
-      expect(subject.arrival(plane, 5)).to eq (1)
+      expect(subject.arrival(plane, 1)).to eq (1)
     end
   end
 
@@ -26,11 +26,12 @@ describe Airport do
     # end
   end
 
-  describe '#weather_rand'
+  describe '#weather_rand' do
     it { is_expected.to respond_to :weather_rand }
 
     it 'return random numbers for weather_rand' do
       expect(subject.weather_rand).to be_between(0, 100)
     end
+  end
 
 end
