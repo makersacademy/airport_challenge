@@ -9,6 +9,7 @@ class Airport
   end
 
   def land_at_airport(plane)
+    raise 'Plane cannot land during storm!' if not_safe_to_land?
     raise 'That plane has already landed!' if @hangar.include?(plane)
     @hangar << plane
   end
@@ -23,7 +24,7 @@ class Airport
   end
 
   def weather_check
-    self.weather.weather_output
+    weather.weather_output
   end
 
   private
@@ -31,6 +32,11 @@ class Airport
   def not_valid_take_off?(plane)
     raise 'There are no planes left at this airport!' if @hangar.empty?
     raise 'That plane is not at the airport!' unless @hangar.include?(plane)
+  end
+
+  def not_safe_to_land?
+    weather_conditions = weather_check
+    weather_conditions == 'Stormy'
   end
 
 end
