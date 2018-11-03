@@ -4,7 +4,7 @@ describe Airport do
 
   let(:airport) { Airport.new }
 
-  describe "initialize" do
+  describe "#initialize" do
     it 'creates an empty hangar when initialized' do
       expect(airport.hangar).to eq []
     end
