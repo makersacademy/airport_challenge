@@ -10,7 +10,7 @@ describe Airport do
     end
   end
 
-  describe '#plane_land' do
+  describe '#land_at_airport' do
     it 'allows a plane to land at an airport' do
       plane = Plane.new
       airport.land_at_airport(plane)
