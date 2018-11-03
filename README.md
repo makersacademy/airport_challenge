@@ -41,3 +41,17 @@ Due to the similarity of this User Story with User Story 3, I used the same tech
 > As an air traffic controller
 > To ensure safety
 > I want to prevent landing when the airport is full
+
+I came to this User Story last - this was because i felt that there was need to do a few additional steps (I was also really enjoying this challenge and put more effort into personal quality of life changes such as plane names etc.)
+
+To complete this challenge, I gave names to planes (3 A-Z + 2 1-9). Further, I set up facility to store the plane names in the airport of any plane that landed. This allowed me to count the number of planes in the airport, ensuring that there wasn't 'duplication' - i.e., you cannot land twice
+
+
+
+## User Story 6
+
+>As the system designer
+> So that the software can be used for many different airports
+> I would like a default airport capacity that can be overridden as appropriate
+
+This was a very simple implementation - I added a new argument to the Class for when it is created, and set the default to be 20, with scope to be overwridden

@@ -12,4 +12,8 @@ describe Weather do
     expect(subject.conditions).to eq "Sunny"
   end
 
+  it "ensures randomizer only provides numbers between 1 and 5" do
+    expect(subject.randomizer).to be_between(1, 5).inclusive
+  end
+
 end
