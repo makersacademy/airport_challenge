@@ -12,11 +12,11 @@ class Airport
 
   def take_off_from_airport(plane)
     @hangar.delete(plane)
-    confirm_take_off(plane)
   end
 
   def confirm_take_off(plane)
-    "#{plane} has taken off!" if !@hangar.include?(plane) 
+    return "#{plane} has taken off!" unless @hangar.include?(plane)
+    "#{plane} has not taken off yet!"
   end
 
 end

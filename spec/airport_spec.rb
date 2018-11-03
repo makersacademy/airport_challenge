@@ -33,6 +33,12 @@ describe Airport do
       airport.take_off_from_airport(plane)
       expect(airport.confirm_take_off(plane)).to eq "#{plane} has taken off!"
     end
+
+    it 'allows user to see if a plane has not taken off' do
+      plane = Plane.new
+      airport.land_at_airport(plane)
+      expect(airport.confirm_take_off(plane)).to eq "#{plane} has not taken off yet!"
+    end
   end
 
 end
