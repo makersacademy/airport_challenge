@@ -34,8 +34,7 @@ class Airport
   end
 
   def set_weather
-    weather_quality = rand(10)
-    weather_quality < 1 ? @storm = true : @storm = false
+    rand(10) < 1 ? true : false
   end
 
 end

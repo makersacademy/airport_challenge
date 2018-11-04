@@ -15,4 +15,9 @@ describe Aeroplane do
     subject.land("An airport")
     expect(subject.takeoff).to eq 'flying'
   end
+
+  it 'can land' do
+    subject.land('Somewhere')
+    expect(subject.flying).to eq false
+  end
 end
