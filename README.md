@@ -208,7 +208,7 @@ Below is an IRB session demonstrating the setting of a custom capacity to 100.
 
 # Final thoughts
 
-Overall, I am pleased with my implementation. I didn't have to use any external resources in order to complete the challenge barring looking up syntax.
+Overall, I am relatively pleased with my implementation - it works and each user story has been satisfied.
 
 However, I am still getting to grips with TDD and RSpec and I am aware that my unit tests could be refactored and make proper use of Mocks, Stubs and Doubles. My use of them has been rudimental.
 
