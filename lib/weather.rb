@@ -7,7 +7,13 @@ class Weather
   end
 
   def is_stormy?
-    true
+    case weather_today
+      when 1 then false
+      when 2 then true
+      when 3 then false
+      when 4 then true
+      when 5 then false
+    end
   end
 
 end
