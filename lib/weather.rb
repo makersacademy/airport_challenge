@@ -1,19 +1,17 @@
 require_relative 'plane'
+require_relative 'airport'
 
 class Weather
+  attr_reader :weather
 
-  def weather_today
-    rand(1..5)
+  @@conditions = [:stormy, :sunny, :sunny, :sunny]
+
+  def initialize
+    @@conditions.sample
   end
 
-  def is_stormy?
-    case weather_today
-      when 1 then false
-      when 2 then true
-      when 3 then false
-      when 4 then true
-      when 5 then false
-    end
+  def stormy?
+    weather == :stormy
   end
 
 end
