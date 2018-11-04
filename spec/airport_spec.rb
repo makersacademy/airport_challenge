@@ -47,9 +47,9 @@ describe Status do
 
 	context 'Prevent landing aircraft when the airport is full' do
 		it 'Raising an error when the airport is full and some aircraft is trying to land' do
-			safety = Status.new
-			safety.full?
-			expect{safety.land}.to raise_error('You can not land the aircraft because the airport is full')
+			airport = Status.new
+			airport.full?
+			expect{airport.land}.to raise_error('You can not land the aircraft because the airport is full')
 		end
 	end
 end
