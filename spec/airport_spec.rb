@@ -12,7 +12,7 @@ describe Status do
 	# Second test, we need to give permission to the plane to take off and confirm is not longer in the airport
 	context 'Givin permission to take off the plane from the airpot' do
 		it 'We need to confirm if is not longer in the airport the aircraft' do
-			status. Status.new
+			status = Status.new
 			expect(status.take_off).to eq true
 		end
 	end
