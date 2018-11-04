@@ -1,6 +1,5 @@
 class WeatherSystem
   attr_reader :weather_options
-
   def initialize
     @weather_options = ["Sunshine", "Fine", "Overcast", "Stormy"]
   end
