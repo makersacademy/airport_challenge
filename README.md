@@ -23,6 +23,8 @@ My process in implementing each user story was to use a test driven approach:
   - Write minimal code to pass the unit test.
   - Refactor the code.
 
+# How I tackled each User Story
+
 ## User Story 1
 ```
 As an air traffic controller
@@ -65,7 +67,7 @@ Once the plane had been removed from the hangar it was no longer at the airport 
 
 In order to confirm this, and satisfy the second part of the user story, I created a 'confirm_take_off' method. This accepted an argument - the plane's take off you were seeking to confirm - and return 'plane has taken off' if indeed that plane had taken off by checking to see if it was no longer in the hangar array.
 
-This behavriour is demonstrated in IRB below.
+This behaviour is demonstrated in IRB below.
 ```
 2.5.0 :001 > require './lib/airport'
  => true
@@ -202,4 +204,12 @@ Below is an IRB session demonstrating the setting of a custom capacity to 100.
  => #<Airport:0x00007ffa4c16a230 @hangar=[], @weather=#<WeatherSystem:0x00007ffa4c16a1e0>, @capacity=100>
 2.5.0 :003 > airport.capacity
  => 100
-```
+```  
+
+# Final thoughts
+
+Overall, I am pleased with my implementation. I didn't have to use any external resources in order to complete the challenge barring looking up syntax.
+
+However, I am still getting to grips with TDD and RSpec and I am aware that my unit tests could be refactored and make proper use of Mocks, Stubs and Doubles. My use of them has been rudimental.
+
+Usefully, the challenge has made me aware of these techniques and they will be the next area of my focus.
