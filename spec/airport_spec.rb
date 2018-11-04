@@ -3,27 +3,36 @@ require 'airport'
 
 describe Airport do
 
+describe 'weather condition' do
   it { is_expected.to respond_to :condition }
   it { is_expected.to respond_to(:safe?).with(1).argument }
 
-  it 'is safe to flight' do
+  it 'is safe to fly or land' do
     expect(subject.safe?('yes')).to eq true
   end
 
-  it 'is safe to flight' do
+  it 'is safe not to fly or land' do
     expect(subject.safe?('no')).to eq false
   end
 
-  it 'is safe to flight' do
+  it 'is safe not to land' do
     plane = Plane.new
     subject.safe?('no')
     expect { subject.landing(plane) }.to raise_error 'It is not safe to land'
   end
 
+  it 'is safe not to fly' do
+    plane = Plane.new
+    subject.landing(plane)
+    subject.safe?('no')
+    expect { subject.taking_off(plane) }.to raise_error 'It is not safe to fly'
+  end
+end
+
   describe '#hangar' do
   it { is_expected.to respond_to :hangar }
 
-  it 'returns the plane(s) in the hangar' do
+  it 'returns an empty hangar' do
     expect(subject.hangar).to eq []
   end
 
@@ -32,11 +41,9 @@ describe Airport do
     subject.landing(plane)
     expect(subject.hangar).to eq [plane]
   end
-  
 end
 
   describe '#landing' do
-
     it { is_expected.to respond_to(:landing).with(1).argument }
 
     it 'returns the plane landed' do
@@ -53,7 +60,6 @@ end
       plane = Plane.new
       expect { subject.landing(plane) }.to raise_error 'Hangar is full'
     end
-
   end
 
   describe '#taking_off' do
@@ -78,13 +84,6 @@ end
       subject.taking_off(b50)
       expect(subject.hangar).to eq [b60]
       expect(b60.status).to eq 'landed'
-    end
-
-    it 'is safe to flight' do
-      plane = Plane.new
-      subject.landing(plane)
-      subject.safe?('no')
-      expect { subject.taking_off(plane) }.to raise_error 'It is not safe to fly'
     end
   end
 end

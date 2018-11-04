@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  describe '#' do
+  describe '#landed' do
 
     it { is_expected.to respond_to(:landed).with(1).argument }
 
@@ -39,6 +39,11 @@ describe Plane do
     it 'returns flying if the plane has taken off' do
       subject.taken_off
       expect(subject.status).to eq 'flying'
+    end
+
+    it 'returns flying if the plane has taken off' do
+      subject.landed
+      expect(subject.status).to eq 'landed'
     end
   end
 
