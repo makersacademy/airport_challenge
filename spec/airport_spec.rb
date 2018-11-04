@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
 
+  it { is_expected.to respond_to(:capacity) }
+
   it { is_expected.to respond_to(:land) }
 
   describe '#land' do
@@ -22,10 +24,16 @@ describe Airport do
     end
 
     it 'raises an error if the weather is stormy' do
-      plane = double(plane)
+      plane = double(:plane)
       subject.land(plane)
       subject.set_weather(0)
-      expect { subject.land(plane) }.to raise_error "Sorry, it is too stormy to take off."
+      expect { subject.land(plane) }.to raise_error "Sorry, it is too stormy."
+    end
+
+    it 'raises an error if airport is full' do
+      (subject.capacity).times { subject.land(double(:plane)) }
+      plane = double(:plane)
+      expect { subject.land(plane) }.to raise_error "Sorry, airport is full."
     end
 
   end
@@ -45,17 +53,17 @@ describe Airport do
     end
 
     it 'removes instance of Plane from list of planes at the airport' do
-      plane = double(plane)
+      plane = double(:plane)
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
     end
 
     it 'raises an error if the weather is stormy' do
-      plane = double(plane)
+      plane = double(:plane)
       subject.land(plane)
       subject.set_weather(0)
-      expect { subject.take_off(plane) }.to raise_error "Sorry, it is too stormy to take off."
+      expect { subject.take_off(plane) }.to raise_error "Sorry, it is too stormy."
     end
 
   end
