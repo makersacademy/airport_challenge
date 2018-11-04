@@ -32,6 +32,7 @@ describe Airport do
       it 'should take off a plane' do
         allow(weather).to receive(:stormy?).and_return false
         airport = Airport.new(weather)
+        airport.land(plane)
         expect(airport.takeoff(plane)).to eq "#{plane} has taken off"
       end
     end
