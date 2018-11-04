@@ -4,7 +4,7 @@ describe Airport do
 
   let(:aeroplane_landed) { double :aeroplane, airport: subject, takeoff: 'flying', land: subject, flying: false }
   let(:aeroplane) { double :aeroplane, flying: true, airport: subject, land: subject, takeoff: 'flying' }
-  let(:aeroplane_other) { double :aeroplane, airport: Airport.new(100) }
+  let(:aeroplane_other) { double :aeroplane, airport: Airport.new(21) }
 
   describe ' #land' do
 
@@ -52,9 +52,9 @@ describe Airport do
   describe ' #capacity' do
 
     it "capacity can be changed" do
-      larger_airport = Airport.new(100)
+      larger_airport = Airport.new(21)
       larger_airport.storm = false
-      100.times { larger_airport.land(aeroplane) }
+      21.times { larger_airport.land(aeroplane) }
       expect { larger_airport.land(aeroplane_other) }.to raise_error "#{described_class.name} full"
     end
 

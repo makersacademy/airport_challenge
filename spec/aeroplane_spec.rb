@@ -3,7 +3,7 @@ require 'aeroplane'
 describe Aeroplane do
 
   it 'can tell it is in the air' do
-    expect(subject.status).to eq 'flying'
+    expect(subject.flying).to eq true
   end
 
   it 'can tell it is at an airport' do
@@ -12,7 +12,7 @@ describe Aeroplane do
   end
 
   it 'can takeoff and know it is flying' do
-    subject.land
+    subject.land("An airport")
     expect(subject.takeoff).to eq 'flying'
   end
 end

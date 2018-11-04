@@ -4,13 +4,11 @@ class Aeroplane
 
   DEFAULT_STATE = 'flying'
 
-  attr_reader :status
-
   def initialize(state = DEFAULT_STATE)
     @status = state
   end
 
-  def land(where = 'airport')
+  def land(where)
     @status = where
   end
 
@@ -23,7 +21,7 @@ class Aeroplane
   end
 
   def flying
-    @status == flying
+    @status == 'flying'
   end
 
 end
