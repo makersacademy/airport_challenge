@@ -2,10 +2,11 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
-  def initialize(planes = [])
+  def initialize(planes = [], weather = nil)
     @planes = planes
+    @weather = weather
   end
 
   def land(plane)
