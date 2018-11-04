@@ -15,7 +15,7 @@ describe Airport do
       expect(subject.land(plane)).to include plane
     end
 
-    it 'adds the instance of Plane to the list of planes at the airport' do
+    it 'adds instance of Plane to list of planes at the airport' do
       plane = double(:plane)
       subject.land(plane)
       expect(subject.planes).to include plane
@@ -33,7 +33,15 @@ describe Airport do
 
     it 'accepts an instance of Plane as the argument' do
       plane = double(:plane)
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
+    end
+
+    it 'removes instance of Plane from list of planes at the airport' do
+      plane = double(plane)
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include plane
     end
 
   end
