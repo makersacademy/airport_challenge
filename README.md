@@ -90,7 +90,7 @@ In file :
 ```
 ./lib/airport.rb'
 ```
-I can't inplement weather issue for arrival and departure, witch is undercomment.
+I can't inplement weather issue for arrival and departure, which is undercomment.
 ```
 Line : 13  and Line : 20
 ```
