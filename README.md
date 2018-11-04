@@ -14,6 +14,15 @@ Airport Challenge
 ```
 # My approach to the challenge  
 
+My process in implementing each user story was to use a test driven approach:
+
+1. Identify the objects and messages in each user story.
+2. Translate this into a feature test in IRB.
+3. Use a TDD approach to implement each user story:
+  - Write a unit test and watch it fail.
+  - Write minimal code to pass the unit test.
+  - Refactor the code.
+
 ## User Story 1
 ```
 As an air traffic controller
