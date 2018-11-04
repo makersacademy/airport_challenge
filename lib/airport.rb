@@ -9,7 +9,7 @@ class Airport
   end
 
   def land_at_airport(plane)
-    @hangar << plane unless not_safe_to_land?(plane)
+    @hangar << plane.ground_plane unless not_valid_land?(plane)
   end
 
   def take_off_from_airport(plane)
@@ -34,9 +34,10 @@ class Airport
 
   end
 
-  def not_safe_to_land?(plane)
+  def not_valid_land?(plane)
     raise 'Plane cannot land during storm!' if weather_check == 'Stormy'
     raise 'That plane has already landed!' if @hangar.include?(plane)
+    raise 'That plane has already landed at another airport!' if plane.in_flight == false
   end
 
 end
