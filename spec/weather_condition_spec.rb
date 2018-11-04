@@ -5,8 +5,6 @@ describe Weather do
   it { is_expected.to be_instance_of(Weather) }
   it { is_expected.to respond_to(:random_weather) }
   it { is_expected.to respond_to(:stormy?) }
-  it { is_expected.to respond_to(:weather_condition) }
-
 
   it 'return true when weather is stormy' do
     allow(weather).to receive(:stormy?).and_return(true)
