@@ -3,18 +3,18 @@ require_relative 'weather_system'
 
 class Airport
   attr_reader :hangar, :weather, :capacity
-  CAPACITY = 5
-  def initialize(capacity = CAPACITY)
+  DEFAULT_CAPACITY = 5
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @weather = WeatherSystem.new
     @capacity = capacity
   end
 
-  def land_at_airport(plane)
+  def land(plane)
     @hangar.push(plane.ground_plane) unless not_valid_land?(plane)
   end
 
-  def take_off_from_airport(plane)
+  def take_off(plane)
     @hangar.delete(plane.unground_plane) unless not_valid_take_off?(plane)
   end
 
@@ -44,7 +44,7 @@ class Airport
   end
 
   def airport_full?
-    @hangar.size >= CAPACITY
+    @hangar.size >= @capacity
   end
 
 end
