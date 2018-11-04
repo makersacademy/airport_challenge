@@ -1,15 +1,12 @@
 class WeatherSystem
   attr_reader :weather_options
-  def initialize
-    @weather_options = ["Sunshine", "Fine", "Overcast", "Stormy"]
-  end
 
   def rand_num_generator
-    rand(0..3)
+    rand(1..4)
   end
 
   def weather_output
-    @weather_options[rand_num_generator]
+    rand_num_generator == 1 ? 'Stormy' : 'Sunshine'
   end
 
 end
