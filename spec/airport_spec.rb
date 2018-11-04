@@ -26,7 +26,7 @@ describe Airport do
       plane = Plane.new
       allow(airport).to receive(:weather_check).and_return('Sunshine')
       airport.land_at_airport(plane)
-      expect { airport.land_at_airport(plane) }.to raise_error 'That plane has already landed!'
+      expect { airport.land_at_airport(plane) }.to raise_error 'Plane has already landed!'
     end
 
     it 'raises an error when a plane tries to land during a storm' do
@@ -41,7 +41,7 @@ describe Airport do
       allow(airport_2).to receive(:weather_check).and_return('Sunshine')
       plane = Plane.new
       airport.land_at_airport(plane)
-      expect { airport_2.land_at_airport(plane) }.to raise_error 'That plane has already landed at another airport!'
+      expect { airport_2.land_at_airport(plane) }.to raise_error 'Plane has already at another airport!'
     end
   end
 
