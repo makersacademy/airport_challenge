@@ -9,7 +9,7 @@ class Airport
   end
 
   def land_at_airport(plane)
-    @hangar << plane.ground_plane unless not_valid_land?(plane)
+    @hangar.push(plane.ground_plane) unless not_valid_land?(plane)
   end
 
   def take_off_from_airport(plane)

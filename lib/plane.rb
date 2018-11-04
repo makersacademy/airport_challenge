@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :in_flight
+  attr_reader :in_flight
   def initialize
     @in_flight = true
   end
