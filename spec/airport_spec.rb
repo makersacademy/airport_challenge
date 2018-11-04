@@ -86,4 +86,9 @@ describe Airport do
 
   it { is_expected.to respond_to(:weather) }
 
+  it 'can land and take off multiple planes (20)' do
+    20.times { plane = double(:plane); subject.land(plane); subject.take_off(plane) }
+    expect(subject.planes.count).to eq 0
+  end
+
 end
