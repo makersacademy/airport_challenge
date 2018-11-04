@@ -16,4 +16,23 @@ describe Status do
 			expect(status.take_off).to eq true
 		end
 	end
+
+	# We need to raise and error and change the status of the aircraft because of the weather
+	context 'Change the status of the aircraft because of the weather' do
+		it 'Calcel the take off status of the aircraft' do
+			safety = Safety.new
+			safety.stormy?
+			expect { safety.take_off }.to raise_error('You can not take off the aircraft because of the storm')
+		end
+	end
+end
+
+describe Weather do
+	# Funtions to know how is the weather to prevent to land and take off the aircraft
+	context 'Is necessary to know if is stormy' do
+		it 'We need to receive a true value from this test' do
+			weather = Weather.new
+			expect(weather.stormy?).to eq true
+		end
+	end
 end
