@@ -77,6 +77,11 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error "Sorry, it is too stormy."
     end
 
+    it 'raises an error if the plane is not in the airport' do
+      plane = double(:plane)
+      expect { subject.take_off(plane) }.to raise_error "That plane is not at the airport."
+    end
+
 
   end
 
