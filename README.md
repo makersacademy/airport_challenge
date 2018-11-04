@@ -181,3 +181,16 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+This user story built on the previous one and was therefore relatively straightforward to implement.
+
+In order to do this, I added an instance variable '@capacity' into the Airport's initialize method. I let it accept an argument - the custom capacity - but if this wasn't set it would simply default to the 'DEFAULT_CAPACITY' which I had set at 5.
+
+Below is an IRB session demonstrating the setting of a custom capacity to 100.
+```
+2.5.0 :001 > require './lib/airport'
+ => true
+2.5.0 :002 > airport = Airport.new(100)
+ => #<Airport:0x00007ffa4c16a230 @hangar=[], @weather=#<WeatherSystem:0x00007ffa4c16a1e0>, @capacity=100>
+2.5.0 :003 > airport.capacity
+ => 100
+```
