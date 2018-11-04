@@ -16,4 +16,8 @@ describe Weather do
     expect(weather.stormy?).to eq false
   end
 
+  it 'needs to return stormy or sunny' do
+    expect(weather.random_weather).to eq('sunny').or(eq('stormy'))
+  end
+
 end

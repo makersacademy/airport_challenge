@@ -13,78 +13,148 @@ Airport Challenge
 
 ```
 
-Instructions
+User Story 1
 ---------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+```
+My first approach was to initiate rspec with the command rspec --init.
+I then created my test file airport_spec.rb to write the first test.
+As we used method stubs for the Boris bike project, I decided before hand to use it for this project. I used double for the Boris bike project, but searched more about it and decided to use let() {}.
+As the first user story required the airport class to instruct a plane to land, my first test would be to expect to have this method present.
+After rspec failed on it, I created the lib directory and created the airport.rb file with the instruct_plane_land method.
+To implement the method and a better test I created a failing test and made it pass
+
+```
+it 'instructs plane to land and confirms it landed' do
+  expect(airport.instruct_plane_land(plane)).to eq "#{plane} has landed"
+end
+```
+User Story 2
+---------
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+For the second user story I did more or less the same as the first I created and failed a test and implemented the method to make the test pass
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+```
+it 'instructs plane to take off and confirms plane has left airport' do
+  airport.instruct_plane_land(plane)
+  expect(airport.instruct_plane_take_off(plane)).to eq "#{plane} has left airport"
+end
+```
+But this time I had to land a plane first, so there was a plane to take off.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+User Story 3
+---------
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+With this user story weather condition was essential for plane landing and  taking off the test written was:
 
+```
+it 'Will prevent takeoff when weather is stormy' do
+  airport.instruct_plane_land(plane)
+  allow(airport).to receive(:bad_weather?).and_return(true)
+  expect{ airport.instruct_plane_take_off(plane) }.to raise_error "Weather is not good, #{plane} cannot take off"
+end
+```
+First of all an airplane needed to be landed, then I had to force the bad weather? method to return true and then raise an error when plane was trying to take off.
+This started to get more complicated, I decided to create a new class for Weather and instead of using a random number to determine if the weather was stormy or not, I created a method with an array with more sunny values than stormy and used the sample method to return a random value.
+Then I created a different method called stormy? that would return true if the weather was stormy and false it is was sunny.
+I had an issue with accessing this inside airport class, when I was trying to make my test force bad weather to be true, it wasn't being able to force it and I've spent some time trying to figure out why.
+I decided to create a private method inside airport that would evaluate if the weather was bad, I created an instance of the weather class inside initialize and called the stormy? method. After that tests were able to force the return I wanted and test passed.
+After I had this method I've added them to my other tests.
+
+User Story 4
+---------
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+```
+After figuring out how to force the return of the bad_weather? method, this one was straight forward
+
+```
+it 'Will prevent landing when weather is stormy' do
+  allow(airport).to receive(:bad_weather?).and_return(true)
+  expect{ airport.instruct_plane_land(plane) }.to raise_error "Weather is not good, #{plane} cannot land"
+end
+```
+User Story 5
+---------
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+For this user story I used what I learned with Boris bike, and set a default capacity for my airport hangar. Now I just had to create a method that would return true for fulness if I tried to land an airplane beyond the hangar capacity. I set the default capacity for 15 planes.
+
+```
+it 'plane cannot land if hangar is already full' do
+  15.times { airport.instruct_plane_land(plane) }
+  expect{ airport.instruct_plane_land(plane) }.to raise_error "Hangar is full, #{plane} not able to land"
+end
+```
+
+User Story 6
+---------
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+With my default capacity already created I need to made it available for being overridden. I decided to pass the capacity as a parameter to the airport initialize, so if I wanted to change the capacity I just had to pass a new value as an argument to the new instance of the airport class.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Edge cases
+---------
+Overall I've written 24 unit tests, but some edge cases were:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+it 'counts how many planes are in hangar' do
+  10.times { airport.instruct_plane_land(plane) }
+  expect(airport.planes_count).to eq 10
+end
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+it 'counts how many planes are in hangar after two plane takes off' do
+  10.times { airport.instruct_plane_land(plane) }
+  2.times { airport.instruct_plane_take_off(plane) }
+  expect(airport.planes_count).to eq 8
+end
 
-Please create separate files for every class, module and test suite.
+it 'Depending on the weather it will allow or deny landing' do
+  if :bad_weather? == true
+    expect{ airport.instruct_plane_land(plane) }.to raise_error "Weather is not good, #{plane} cannot land"
+  else
+    expect(airport.instruct_plane_land(plane)).to eq "#{plane} has landed"
+  end
+end
+```
 
-In code review we'll be hoping to see:
+What went well?
+---------
+Spending the week working with the Boris bike project helped a lot with this challenge.
+Although I am still not 100% fluent with rspec and using multiple classes interacting with each other, I could learn enough to make my job easier.
+I also learned new ways of using mocking behavior and method stubs that I thought was neater and better then what I used for the Boris bike project. I could also unblock myself when I got stuck with stormy? method.
+I felt very proud of myself.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+What could have gone better?
+---------
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+I am still struggling a bit with over thinking problems and not being methodical enough.
 
-**BONUS**
+What will I change for next week?
+---------
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Being more methodical, research and learn more about classes/modules.
