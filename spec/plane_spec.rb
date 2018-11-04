@@ -44,9 +44,9 @@ describe Plane do
     airport1 = Airport.new
     airport2 = Airport.new
     plane1 = Plane.new
-    plane.land(airport1)
+    plane1.land(airport1)
 
-    expect{ plane1.take_off(airport1) }.to output("Can't take off from this airport\n").to_stdout
+    expect{ plane1.take_off(airport2) }.to output("Can't take off from this airport\n").to_stdout
 
   end
 
