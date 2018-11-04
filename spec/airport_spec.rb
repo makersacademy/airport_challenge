@@ -12,4 +12,11 @@ describe Airport do
     expect(subject.planes).to include plane
   end
 
+  it 'allows planes to take-off' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(subject.planes).not_to include plane
+  end
+
 end

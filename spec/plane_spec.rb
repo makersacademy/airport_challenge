@@ -2,6 +2,9 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :departed? }
-
+  it 'should know when it is flying' do
+    plane = Plane.new
+    expect(plane.status).to eq "Flying"
+  end
+  
 end
