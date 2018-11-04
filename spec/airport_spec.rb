@@ -22,7 +22,7 @@ describe Airport do
       allow(subject).to receive(:current_weather) { 'fine' }
       plane = Plane.new
       subject.land(plane)
-      expect(plane.status).to eq 'landed'
+      expect(plane.status).to eq subject
     end
     it 'will not allow planes to land when stormy' do
       allow(subject).to receive(:current_weather) { 'stormy' }

@@ -10,7 +10,8 @@ describe Plane do
       expect { subject.land('airport') }.to raise_error 'This plane has already landed'
     end
     it 'is possible to land a plane at a specific airport' do
-      expect(subject.land('here').status).to eq 'here'
+      airport = Airport.new
+      expect(subject.land(airport).status).to eq airport
     end
   end
 
