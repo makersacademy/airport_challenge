@@ -1,11 +1,14 @@
+require_relative 'weather'
+require_relative 'airport'
+
 class Plane
 
   def land
-    #is_stormy?
+    fail "There's a storm" if Weather.new.is_stormy?
   end
 
   def take_off
-    #is_stormy?
+    fail "There's a storm" if Weather.new.is_stormy?
   end
 
 end
