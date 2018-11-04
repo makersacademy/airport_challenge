@@ -76,5 +76,24 @@ This is demonstrated in IRB as follows:
  => "Confirmed: #<Plane:0x00007fd8a2907900> has taken off!"
 2.5.0 :008 > airport.hangar
  => []
-2.5.0 :009 >
 ```
+
+## User Story 3
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+For this user story I decided to create a new class - the WeatherSystem. This would be responsible for generating the weather as either 'sunshine' or 'stormy'. We were instructed that it should only be stormy in rare cases so I decided to make it a 1 in 4 chance of being so - I wanted a bit of drama.
+
+In order to do this, inside the WeatherSystem class I created the method 'rand_num_generator' which would simply generate a number between 1 and 4.
+
+I then created a 'weather_output' method. This would return 'Stormy' if when called, the 'rand_num_generator' method returned a 1. This meant 3/4s of the time it would be 'Sunshine'.
+
+I decided that when the Airport class was instantiated it should have it's own weather system. To do this, I added an instance variable '@weather' and set it to a new instance of the WeatherSystem class.
+
+I then created a 'weather_check' method in the Airport class and this would return the current weather conditions by calling 'weather_output' on @weather.
+
+Therefore, in order to prevent planes from taking off when the weather was stormy, I created a private method called 'not_valid_take_off?'. I added this to the existing 'take_off' method and set it to only allow planes to take off if 'not_valid_take_off?' was not returning an error.
+
+I instructed 'not_valid_take_off?' to raise the error 'Plane cannot land during storm!' if when it called the 'weather_check' method it returned stormy weather.
