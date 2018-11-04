@@ -23,7 +23,7 @@ describe Airport do
     it 'should not land if airport full' do
       allow(weather).to receive(:stormy?).and_return false
       airport = Airport.new(weather)
-      10.times { airport.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect{ airport.land(plane) }.to raise_error 'the airport is full'
     end
   end
@@ -46,11 +46,9 @@ describe Airport do
   end
   describe '#set_capacity' do
     it 'should accept a new capacity' do
-      allow(weather).to receive(:stormy?).and_return false
-      airport = Airport.new(weather)
-      airport.set_capacity(5)
-      5.times { airport.land(plane) }
-      expect{ airport.land(plane) }.to raise_error 'the airport is full'
+      airport = Airport.new
+      new_cap = Airport::DEFAULT_CAPACITY + 1
+      expect(airport.set_capacity(new_cap)).to eq new_cap
     end
   end
 end
