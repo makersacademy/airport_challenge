@@ -1,4 +1,5 @@
-require '/Users/agnieszkadufrat/Projects/airport_challenge/lib/plane.rb'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_accessor :planes, :stormy_weather, :capacity
@@ -7,7 +8,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @stormy_weather = [true, false].sample
+    @weather = [true, false, false, false, false].sample
     @capacity = capacity
   end
 

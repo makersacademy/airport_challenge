@@ -5,7 +5,6 @@ describe Airport do
   let(:flying_plane) { double("flying plane", :location => "air") }
   let(:plane_at_airport) { double("landed plane", :location => "airport") }
 
-
   context "#land" do
     it "is able to land a plane at the airport" do
       subject.stormy_weather = false
@@ -32,8 +31,8 @@ describe Airport do
     it "prevents landing if plane has already landed" do
       subject.stormy_weather = false
       expect { subject.land(plane_at_airport) }.to raise_error "The plane landed and cannot land again"
+    end
   end
-end
 
   context "#take_off" do
     it "allows a plane to take off from the airport" do
