@@ -11,12 +11,12 @@ describe Plane do
   end
 
   describe '#ground_plane' do
-    it 'user can check if plane has landed' do
+    it 'user can check if is in flight' do
       plane.ground_plane
       expect(plane.in_flight).to eq false
     end
 
-    it 'user can check if plane has taken off' do
+    it 'user can check if plane is not in flight' do
       plane.unground_plane do
         plane.ground_plane
         plane.unground_plane
