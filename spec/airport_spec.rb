@@ -7,12 +7,16 @@ describe Airport do
   end
 
   it "instruct a plane to take off and confirm it is no longer in the airport" do
-    status = subject.plane_is_in_airport
-    expect(status).to eq_to true
+    expect(subject.plane_is_in_airport).to eq_to true
     subject.instruct_take_off
-    status = subject.plane_is_in_airport
-    expect(status).to eq_to false
+    expect(subject.plane_is_in_airport).to eq_to false
   end
 
+  it "should prevent take off when weather is stormy" do
+    subject.set_stormy(true)
+    expect(subject.plane_is_in_airport).to eq_to true
+    subject.instruct_take_off
+    expect(subject.plane_is_in_airport).to eq_to true
+  end
 
 end
