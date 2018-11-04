@@ -26,7 +26,7 @@ describe Weather do
   describe '#weather_error' do
     it { is_expected.to respond_to :weather_error }
     it 'send error if plane cant land' do
-      expect { subject.weather_error }.to raise_error 'action unavaible its stormy'
+      expect { subject.weather_error }.to raise_error 'action is unavaible its stormy'
     end
   end
 end

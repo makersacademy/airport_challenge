@@ -10,7 +10,7 @@ class Weather
   end
 
   def weather_error
-    fail 'action unavaible its stormy'
+    fail 'action is unavaible its stormy'
   end
 
 end
