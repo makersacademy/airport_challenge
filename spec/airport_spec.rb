@@ -24,7 +24,7 @@ describe Airport do
     it 'raises an error if the weather is stormy' do
       plane = double(plane)
       subject.land(plane)
-      subject.set_weather
+      subject.set_weather(0)
       expect { subject.land(plane) }.to raise_error "Sorry, it is too stormy to take off."
     end
 
@@ -54,7 +54,7 @@ describe Airport do
     it 'raises an error if the weather is stormy' do
       plane = double(plane)
       subject.land(plane)
-      subject.set_weather
+      subject.set_weather(0)
       expect { subject.take_off(plane) }.to raise_error "Sorry, it is too stormy to take off."
     end
 
