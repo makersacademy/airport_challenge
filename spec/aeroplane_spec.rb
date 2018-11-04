@@ -7,8 +7,12 @@ describe Aeroplane do
   end
 
   it 'can tell it is at an airport' do
-    subject.land
-    expect(subject.status).to eq 'airport'
+    subject.land('An airport')
+    expect(subject.airport).to eq 'An airport'
   end
 
+  it 'can takeoff and know it is flying' do
+    subject.land
+    expect(subject.takeoff).to eq 'flying'
+  end
 end

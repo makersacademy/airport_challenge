@@ -1,4 +1,5 @@
 require_relative 'aeroplane'
+require 'pry'
 
 class Airport
   attr_reader :capacity
@@ -14,18 +15,22 @@ class Airport
   def land(aeroplane)
     raise "Too stormy" if @storm
     raise "#{self.class.name} full" if full?
+    raise "Plane already landed" unless aeroplane.flying
     @aeroplanes << aeroplane
+    aeroplane.land(self)
   end
 
   def takeoff(aeroplane)
     raise "Too stormy" if @storm
+    raise "Aeroplane not at airport" if aeroplane.airport != self
     @aeroplanes.delete(aeroplane)
+    aeroplane.takeoff
   end
 
   private
 
   def full?
-    @aeroplanes.count == @capacity
+    @aeroplanes.count >= @capacity
   end
 
   def set_weather

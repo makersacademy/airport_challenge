@@ -14,4 +14,16 @@ class Aeroplane
     @status = where
   end
 
+  def takeoff
+    @status = 'flying'
+  end
+
+  def airport
+    @status != 'flying' ? @status : false
+  end
+
+  def flying
+    @status == flying
+  end
+
 end
