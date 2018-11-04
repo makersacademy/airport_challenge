@@ -14,12 +14,19 @@ class Airport
   end
 
   def land(plane)
+    stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    fail "Sorry, it is too stormy to take off." if @weather == 'stormy'
+    stormy?
     @planes.delete(plane)
+  end
+
+private
+
+  def stormy?
+    fail "Sorry, it is too stormy to take off." if @weather == 'stormy'
   end
 
 end

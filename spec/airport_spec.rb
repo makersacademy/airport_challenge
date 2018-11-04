@@ -21,6 +21,13 @@ describe Airport do
       expect(subject.planes).to include plane
     end
 
+    it 'raises an error if the weather is stormy' do
+      plane = double(plane)
+      subject.land(plane)
+      subject.set_weather
+      expect { subject.land(plane) }.to raise_error "Sorry, it is too stormy to take off."
+    end
+
   end
 
   it { is_expected.to respond_to(:take_off) }
