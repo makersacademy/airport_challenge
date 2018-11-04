@@ -12,19 +12,17 @@ describe Plane do
 
   describe '#ground_plane' do
     it 'user can check if a plane is in flight' do
-      plane.ground_plane
-      expect(plane.in_flight).to eq false
+      expect(plane.ground_plane.in_flight).to eq false
     end
 
     it 'returns self after switching in flight to false' do
-      plane_1 = Plane.new
-      expect(plane_1.ground_plane).to eq plane_1
+      plane = Plane.new
+      expect(plane.ground_plane).to eq plane
     end
 
     it 'user can check if a plane is not in flight' do
       plane.ground_plane
-      plane.unground_plane
-      expect(plane.in_flight).to eq true
+      expect(plane.unground_plane.in_flight).to eq true
     end
 
     it 'returns self after switching in flight to true' do
