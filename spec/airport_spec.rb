@@ -9,10 +9,6 @@ describe Airport do
       expect(airport.hangar).to eq []
     end
 
-    it 'creates a weather system when initialized' do
-      expect(airport.weather).to be_an_instance_of WeatherSystem
-    end
-
     it 'it has a default capacity' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end

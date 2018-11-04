@@ -2,11 +2,10 @@ require_relative 'plane'
 require_relative 'weather_system'
 
 class Airport
-  attr_reader :hangar, :weather, :capacity
+  attr_reader :hangar, :capacity
   DEFAULT_CAPACITY = 5
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @weather = WeatherSystem.new
     @capacity = capacity
   end
 
@@ -24,7 +23,7 @@ class Airport
   end
 
   def weather_check
-    weather.weather_output
+    WeatherSystem.new.weather_output
   end
 
   private
