@@ -206,7 +206,7 @@ Below is an IRB session demonstrating the setting of a custom capacity to 100.
  => 100
 ```  
 
-## Solving the edge cases
+# Solving the edge cases
 
 The main edge cases were as follows: a plane being able to land at multiple airports, planes that have landed being able to land again, planes that have taken off being able to take off again, etc.
 
