@@ -17,14 +17,14 @@ class Airport
   end
 
   def land(plane)
-    fail "That plane is already at the airport." if landed?(plane)
+    fail "That plane is already at the airport." if at_airport?(plane)
     full?
     stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    fail "That plane is not at the airport." unless landed?(plane)
+    fail "That plane is not at the airport." unless at_airport?(plane)
     stormy?
     @planes.delete(plane)
   end
@@ -39,7 +39,7 @@ private
     fail "Sorry, airport is full." unless @planes.count < @capacity
   end
 
-  def landed?(plane)
+  def at_airport?(plane)
     @planes.include?(plane)
   end
 
