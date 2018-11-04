@@ -206,6 +206,22 @@ Below is an IRB session demonstrating the setting of a custom capacity to 100.
  => 100
 ```  
 
+## Solving the edge cases
+
+The main edge cases were as follows: a plane being able to land at multiple airports, planes that have landed being able to land again, planes that have taken off being able to take off again, etc.
+
+To solve these, I firstly added an '@in_flight' instance variable into the Plane class's initialize method.
+
+As mentioned previously, I decided that planes by default would be created in the air rather than appear in airports. Therefore, to reflect this, I set their '@in_flight' to be true upon instantiation.
+
+I then set the 'land' method to switch '@in_flight' to false and the 'take_off' method to do the opposite. This proved an effective way of tracking planes status and something I could use to be checked when attempting to take off or land planes.
+
+Therefore, I incorporated checks into the 'not_valid_land?' and 'not_valid_take_off?' to take this into account and not allow planes that had already landed, land again, or planes that have taken off, take off again.
+
+I also added in a couple of other checks. One was to see if the plane you were attempting to take off was at the airport you were trying to get it to take off from. This was done by searching the hangar array for the requested plane to check if it was there was expected. An error would be raised if not.
+
+Similarly, if a plane was not in flight but not at the requested airport, it would therefore be at a different airport and an error would inform the user of this.
+
 # Final thoughts
 
 Overall, I am relatively pleased with my implementation - it as I want in IRB, it has 100% test coverage, and each user story has been satisfied.

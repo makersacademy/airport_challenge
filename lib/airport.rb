@@ -31,9 +31,7 @@ class Airport
 
   def not_valid_take_off?(plane)
     raise 'Plane cannot take off during storm!' if weather_check == 'Stormy'
-    raise 'There are no planes left at this airport!' if @hangar.empty?
     raise 'That plane is not at the airport!' unless @hangar.include?(plane)
-
   end
 
   def not_valid_land?(plane)

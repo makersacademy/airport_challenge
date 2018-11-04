@@ -80,13 +80,7 @@ describe Airport do
         airport.take_off(plane)
         expect(airport.hangar).to be_empty
       end
-
-      it 'raises an error when there are no planes left at the airport' do
-        allow(airport).to receive(:weather_check).and_return('Sunshine')
-        plane = Plane.new
-        expect { airport.take_off(plane) }.to raise_error 'There are no planes left at this airport!'
-      end
-
+      
       it 'raises an error when the requested plane to take off is not at the airport' do
         allow(airport).to receive(:weather_check).and_return('Sunshine')
         plane = Plane.new
