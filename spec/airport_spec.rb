@@ -17,4 +17,6 @@ describe Airport do
 
   end
 
+  it { is_expected.to respond_to(:take_off) }
+
 end
