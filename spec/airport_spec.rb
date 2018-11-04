@@ -47,6 +47,12 @@ describe Airport do
       airport.land_at_airport(plane)
       expect { airport_2.land_at_airport(plane) }.to raise_error 'Plane has already at another airport!'
     end
+
+    it 'raises an error when attempting to land a plane when the airport is full' do
+      allow(airport).to receive(:weather_check).and_return('Sunshine')
+      5.times { airport.land_at_airport(Plane.new) }
+      expect { airport.land_at_airport(Plane.new) }.to raise_error 'Unable to land when airport full!'
+    end
   end
 
   describe '#plane_take_off' do
