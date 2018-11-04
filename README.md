@@ -23,7 +23,7 @@ My process in implementing each user story was to use a test driven approach:
   - Write minimal code to pass the unit test.
   - Refactor the code.
 
-# How I tackled each User Story
+# How I approached each User Story
 
 ## User Story 1
 ```
