@@ -39,7 +39,7 @@ class Airport
   def not_valid_land?(plane)
     raise 'Plane cannot land during storm!' if weather_check == 'Stormy'
     raise 'Plane has already landed!' if @hangar.include?(plane)
-    raise 'Plane has already at another airport!' if plane.in_flight == false
+    raise 'Plane has already at another airport!' if !plane.in_flight
     raise 'Unable to land when airport full!' if airport_full?
   end
 
