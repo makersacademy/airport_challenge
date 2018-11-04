@@ -1,26 +1,24 @@
 require_relative 'plain.rb'
+require_relative 'weather.rb'
 
 class Airport
 
+  attr_reader :planes
+
   def initialize
-    @stormy = true
-    @plains = []
+    @planes = []
   end
 
   def arrival(plane, airport_size)
-    fail 'airport is full' if @plains.length == airport_size
-    @plains << plane
-    @plains.length
+    # weather_error if stormy == true
+    fail 'airport is full' if @planes.length == airport_size
+    @planes << plane
+    @planes.length
   end
 
   def departure
-    @plains.pop
-    @plains.length
+    # weather_error if stormy == true
+    @planes.pop
+    @planes.length
   end
-
-  def weather
-    fail 'departure unavaible its stormy'
-  end
-
-
 end

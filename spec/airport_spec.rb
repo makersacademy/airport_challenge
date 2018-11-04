@@ -2,20 +2,18 @@ require 'airport'
 
 describe Airport do
 
-
-
   describe '#arrival' do
 
     it { is_expected.to respond_to(:arrival).with(2).argument }
 
     it 'throw error when airport is full' do
-    50.times { subject.arrival(Plane.new, 50) }
-    expect { subject.arrival(Plane.new, 50) }.to raise_error 'airport is full'
+      50.times { subject.arrival(Plane.new, 50) }
+      expect { subject.arrival(Plane.new, 50) }.to raise_error 'airport is full'
     end
 
     it 'add plane to airport' do
       plane = Plane.new
-      expect(subject.arrival(plane, 5)).to eq (1)
+      expect(subject.arrival(plane, 5)).to eq 1
     end
   end
 
@@ -26,14 +24,4 @@ describe Airport do
       expect(subject.departure).to eq 0
     end
   end
-
-describe '#weather' do
-
-  it {is_expected.to respond_to :weather }
-
-  it 'throw error when is stormy' do
-    expect {subject.weather}.to raise_error 'departure unavaible its stormy'
-  end
-end
-
 end
