@@ -69,7 +69,7 @@ require './lib/airport.rb'
 There is a 20% chance of a storm:
 ```
 weather = Weather.new
-weather.stormy?
+weather.stormy
 => false
 ```
 
