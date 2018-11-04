@@ -1,4 +1,4 @@
-
+require_relative 'airport'
 
 class Plane
 
@@ -11,13 +11,21 @@ class Plane
   end
 
   def land(airport)
+    fail 'This plane has already landed' if landed?
     @status = airport
     self
   end
 
   def take_off
+    fail 'This plane is already in the air' unless landed?
     @status = DEFAULT_STATUS
     self
+  end
+
+  private
+
+  def landed?
+    @status != 'flying'
   end
 
 end
