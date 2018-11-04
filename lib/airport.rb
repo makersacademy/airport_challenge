@@ -16,7 +16,6 @@ class Airport
     else
       fail "You're not cleared for landing due to adverse weather conditions"
     end
-    # @planes << plane # landed plane is stored in the array
   end
 
 # checks if the plane is at the airport if
