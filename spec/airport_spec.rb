@@ -19,4 +19,8 @@ describe Airport do
     expect(subject.planes).not_to include plane
   end
 
+  it 'stops planes from taking-off in stormy weather' do
+
+  end  
+
 end

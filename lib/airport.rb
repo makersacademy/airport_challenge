@@ -9,10 +9,12 @@ class Airport
 
   def land(plane)
     @planes << plane
+    plane.landed
   end
 
   def takeoff(plane)
     @planes.delete_at(@planes.index(plane))
+    plane.flying
   end
 
 end
