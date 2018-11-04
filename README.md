@@ -59,6 +59,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Interface
 -----
+The expected interface for the Air Traffic Controller to use is irb or pry. The following notes and accompanying code explain how to interact with the program.
 
 Getting started:
 ```
