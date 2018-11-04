@@ -1,32 +1,36 @@
 
 class Plane
-  attr_accessor :airport
+  attr_accessor :location
 
   def initialize
-    @airport = nil
+    @location = ""
   end
 
   def land(airport)
     if airport.can_land?
       airport.planes << self unless airport.planes.include?(self)
-      @airport = airport
+      @location = "landed"
     else
       puts "Stopped landing\n"
     end
   end
 
   def take_off(airport)
-    if in_airport?(airport) && airport.weather_ok? && airport == @airport
+
+    if !in_airport?(airport) && (@location == "landed") && airport.weather_ok?
+      puts "Can't take off from this airport" 
+    end
+
+    if in_airport?(airport) && airport.weather_ok? && "landed" == @location
       airport.planes.delete(self)
-      @airport = nil
-      puts "Taking off and no longer in airport\n" 
-    elsif airport != @airport
-      puts "Can't take off from this airport"
-    elsif in_airport?(airport) == false
+      @location = "flight"
+      puts "Taking off and no longer in airport\n"
+    elsif in_airport?(airport) == false && (@location == "flight")
       puts "Already taken off"
-    else
+    elsif !airport.weather_ok?
       puts "Stopped take off due to weather\n"
     end
+
   end
 
   def in_airport?(airport)

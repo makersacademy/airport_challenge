@@ -7,21 +7,21 @@ describe Plane do
   let(:plane) { Plane.new }
   let(:weather) { double(:weather) }
 
-  it "responds to #land" do
+  it "responds to .land" do
     expect(subject).to respond_to(:land)
   end
 
-  it "can #land at an airport" do
+  it "can .land at an airport" do
     airport.weather = "sunny"
     plane.land(airport)
     expect(airport.planes.include?(plane)).to eq true
   end
 
-  it "responds to #take_off" do
+  it "responds to .take_off" do
     expect(subject).to respond_to(:take_off)
   end
 
-  it "can #take_off from an airport" do
+  it "can .take_off from an airport" do
     plane.land(airport)
     plane.take_off(airport)
     expect(airport.planes.include?(plane)).to eq false
@@ -33,7 +33,7 @@ describe Plane do
     expect { plane.take_off(airport) }.to output("Taking off and no longer in airport\n").to_stdout
   end
 
-  it "can prevent takeoff when weather is stormy" do
+  it "can prevent .take_off when weather is stormy" do
     plane.land(airport)
     airport.weather = "stormy"
     expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
@@ -46,7 +46,10 @@ describe Plane do
     plane1 = Plane.new
     plane1.land(airport1)
 
-    expect{ plane1.take_off(airport2) }.to output("Can't take off from this airport\n").to_stdout
+    airport2.weather = "sunny"
+    airport1.weather = "sunny"
+    
+    expect { plane1.take_off(airport2) }.to output("Can't take off from this airport\n").to_stdout
 
   end
 
@@ -56,7 +59,7 @@ describe Plane do
     expect { plane.land(airport) }.to output("Stopped landing\n").to_stdout
   end
 
-  it "prevents #land when airport is full" do
+  it "prevents .land when airport is full" do
     50.times { Plane.new.land(airport) }
     expect(airport.planes.length).to be <= 20
   end
