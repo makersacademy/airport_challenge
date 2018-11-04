@@ -1,8 +1,39 @@
 require 'airport'
+# require 'weather'
 
 describe Airport do
 
+  it { is_expected.to respond_to :condition }
+  it { is_expected.to respond_to(:safe?).with(1).argument }
+
+  it 'is safe to flight' do
+    expect(subject.safe?('yes')).to eq true
+  end
+
+  it 'is safe to flight' do
+    expect(subject.safe?('no')).to eq false
+  end
+
+  it 'is safe to flight' do
+    plane = Plane.new
+    subject.safe?('no')
+    expect { subject.landing(plane) }.to raise_error 'It is not safe to land'
+  end
+
+  describe '#hangar' do
   it { is_expected.to respond_to :hangar }
+
+  it 'returns the plane(s) in the hangar' do
+    expect(subject.hangar).to eq []
+  end
+
+  it 'returns the plane(s) in the hangar' do
+    plane = Plane.new
+    subject.landing(plane)
+    expect(subject.hangar).to eq [plane]
+  end
+  
+end
 
   describe '#landing' do
 
@@ -10,13 +41,17 @@ describe Airport do
 
     it 'returns the plane landed' do
       plane = Plane.new
+      subject.safe?('yes')
+      plane.status =='flying'
       expect(subject.landing(plane)).to eq [plane]
+      expect(plane.landed).to eq 'landed'
+      expect(plane.status).to eq 'landed'
     end
 
     it 'raises an error when full' do
       Airport::DEFAULT_CAPACITY.times { subject.landing Plane.new }
-      plane1 = Plane.new
-      expect { subject.landing plane1 }.to raise_error 'Hangar is full'
+      plane = Plane.new
+      expect { subject.landing(plane) }.to raise_error 'Hangar is full'
     end
 
   end
@@ -35,6 +70,21 @@ describe Airport do
       expect { subject.taking_off(plane) }.to raise_error 'Hangar is empty'
     end
 
-  end
+    it 'returns the plane(s) in the hangar' do
+      b50 = Plane.new
+      subject.landing(b50)
+      b60 = Plane.new
+      subject.landing(b60)
+      subject.taking_off(b50)
+      expect(subject.hangar).to eq [b60]
+      expect(b60.status).to eq 'landed'
+    end
 
+    it 'is safe to flight' do
+      plane = Plane.new
+      subject.landing(plane)
+      subject.safe?('no')
+      expect { subject.taking_off(plane) }.to raise_error 'It is not safe to fly'
+    end
+  end
 end

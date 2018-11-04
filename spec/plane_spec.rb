@@ -2,30 +2,32 @@ require 'plane'
 
 describe Plane do
 
-  describe '#landed?' do
+  describe '#' do
 
-    it { is_expected.to respond_to(:landed?).with(1).argument }
+    it { is_expected.to respond_to(:landed).with(1).argument }
 
     it 'returns true if the plane has landed' do
-      expect(subject.landed?).to eq "Landed"
+      subject.landed
+      expect(subject.status).to eq 'landed'
     end
 
     it 'returns true if the plane has landed' do
-      expect(subject.landed?("no")).to eq "The plane is still flying"
+      expect(subject.landed('no')).to eq 'The plane is still flying'
     end
 
   end
 
-  describe '#taken_off?' do
+  describe '#taken_off' do
 
-    it { is_expected.to respond_to(:landed?).with(1).argument }
+    it { is_expected.to respond_to(:landed).with(1).argument }
 
     it 'returns true if the plane has taken off' do
-      expect(subject.taken_off?).to eq "Flying"
+      expect(subject.taken_off).to eq 'flying'
     end
 
     it 'returns true if the plane has taken off' do
-      expect(subject.taken_off?("no")).to eq  "The plane is in the hangar"
+      subject.taken_off('no')
+      expect(subject.taken_off("no")).to eq 'The plane is in the hangar'
     end
 
   end
@@ -35,10 +37,9 @@ describe Plane do
     it { is_expected.to respond_to :status }
 
     it 'returns flying if the plane has taken off' do
-      subject.taken_off?
-      expect(subject.status).to eq "Flying"
+      subject.taken_off
+      expect(subject.status).to eq 'flying'
     end
-
   end
 
 end
