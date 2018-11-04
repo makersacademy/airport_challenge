@@ -26,7 +26,7 @@ Firstly, I decided to create both an Airport class and Plane class. I then creat
 
 This would accept an argument (i.e plane) and store it in an array. I then decided when the Airport class was instantiated, it should have an empty array to act as a hangar ready to store planes in.
 
-This is demonstrated in IRB as so:
+This is behaviour is shown in IRB below.
 ```
 2.5.0 :001 > require './lib/airport'
  => true
@@ -38,7 +38,6 @@ This is demonstrated in IRB as so:
  => [#<Plane:0x00007ffdb0083d00 @in_flight=false>]
 2.5.0 :005 > airport.hangar
  => [#<Plane:0x00007ffdb0083d00 @in_flight=false>]
-2.5.0 :006 >
 ```
 
 ## User Story 2
@@ -57,7 +56,7 @@ Once the plane had been removed from the hangar it was no longer at the airport 
 
 In order to confirm this, and satisfy the second part of the user story, I created a 'confirm_take_off' method. This accepted an argument - the plane's take off you were seeking to confirm - and return 'plane has taken off' if indeed that plane had taken off by checking to see if it was no longer in the hangar array.
 
-This is demonstrated in IRB as follows:
+This behavriour is demonstrated in IRB below.
 ```
 2.5.0 :001 > require './lib/airport'
  => true
@@ -116,7 +115,6 @@ Traceback (most recent call last):
         2: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:18:in `take_off'
         1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:33:in `not_valid_take_off?'
 RuntimeError (Plane cannot take off during storm!)
-2.5.0 :010 >
 ```
 
 ## User Story 4
@@ -125,11 +123,11 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
-This user story very much built on the previous one. I simply mirrored the 'not_valid_take_off?' method and built the private 'not_valid_land?' method. I used this in the existing 'land' method and set planes to only land when 'not_valid_land?' was not returning an error.
+This user story very much built on the previous one. I simply mirrored the 'not_valid_take_off?' method and built a private 'not_valid_land?' method. I then used this in the existing 'land' method and set planes to only be able to land if 'not_valid_land?' did not raise an error.
 
 As I did with 'not_valid_take_off?', I instructed 'not_valid_land?' to raise an error if when it called the weather_check method it did not return 'stormy'.
 
-Here is an IRB session demonstrating the described behaviour (once again edited due to the random weather):
+Here is an IRB session demonstrating the described behaviour.
 ```
 2.5.0 :001 > require './lib/airport'
  => true
@@ -144,5 +142,42 @@ Traceback (most recent call last):
         2: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:14:in `land'
         1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:40:in `not_valid_land?'
 RuntimeError (Plane cannot land during storm!)
-2.5.0 :007 >
+```
+
+## User Story 5
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+In order to classify what 'full' would be, I created a constant 'DEFAULT_CAPACITY', in the Airport class. I initially set it at 5 to make it manageable and easy to test.
+
+I then created another private method 'airport_full?' which would simply check to see if the hangar size was equal or greater than the capacity. If it was, it would return true.
+
+I inserted a new error message into 'not_valid_land?' which would raise 'Unable to land when airport is full!' if 'airport_full?' was returning true.
+
+I then used this in my existing 'land' method, and like the stormy weather, set it to only allow planes to land if the airport was not full.
+
+Here is a shortened IRB session to demonstrate the behaviour. There are 4 planes in the airport's hangar. I land a 5th and then try and land a 6th but an error is thrown as expected.
+```
+2.5.0 :017 > airport.hangar.size
+ => 4
+2.5.0 :018 > airport.land(p5)
+ => [#<Plane:0x00007ff46b903f28 @in_flight=false>, #<Plane:0x00007ff46b900530 @in_flight=false>, #<Plane:0x00007ff46b888a08 @in_flight=false>, #<Plane:0x00007ff46b8f4de8 @in_flight=false>, #<Plane:0x00007ff46b8bc970 @in_flight=false>]
+2.5.0 :019 > plane = Plane.new
+ => #<Plane:0x00007ff46d00c3c8 @in_flight=true>
+2.5.0 :020 > airport.land(plane)
+Traceback (most recent call last):
+        4: from /Users/chris/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        3: from (irb):20
+        2: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:14:in `land'
+        1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:43:in `not_valid_land?'
+RuntimeError (Unable to land when airport full!)
+```
+
+## User Story 6
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
 ```
