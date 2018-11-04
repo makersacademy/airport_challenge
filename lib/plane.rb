@@ -1,6 +1,6 @@
 class Plane
 
-  def take_off
+  def departed?
   end
 
 end
