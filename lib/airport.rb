@@ -12,8 +12,8 @@ class Airport
     @weather = weather
   end
 
-  def set_weather(condition = rand(10))
-    condition == 0 ? @weather = 'stormy' : @weather = 'sunny'
+  def find_weather(condition = rand(10))
+    condition.zero? ? @weather = 'stormy' : @weather = 'sunny'
   end
 
   def land(plane)
