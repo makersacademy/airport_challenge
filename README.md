@@ -45,14 +45,16 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 
 ```
-Functional Representation
-
-
-         Objects                   |                 Messages
- * Air Traffic Controller          |
- * Plane                           |
- * Weather                         |               - stormy
- * Airport                         |               - arrival, departure                
+                        Functional Representation
+---------------------------------------------------------------------------
+                                   |                                      |
+         Objects                   |                 Messages             |
+--------------------------------------------------------------------------|  
+ * Air Traffic Controller          |                                      |
+ * Plane                           |                                      |  
+ * Weather                         |               - stormy               |
+ * Airport                         |               - arrival, departure   |
+ -------------------------------------------------------------------------            
 ```
 
 Interface
@@ -61,6 +63,34 @@ Interface
 Getting started:
 ```
 require './lib/airport.rb'
-require './lib/plane.rb'
-require './lib/plane.rb'
+
 ```
+There is a 20% chance of a storm:
+```
+weather = Weather.new
+weather.stormy?
+=> false
+```
+
+Creating a new plane:
+```
+plane = Plane.new
+```
+"plane" arrival adding plane to airport
+"airport_size" setting the capacity of Airport
+
+```
+arrival(plane, airport_size)
+```
+
+PROBLEMS
+-------
+In file :
+```
+./lib/airport.rb'
+```
+I can't inplement weather issue for arrival and departure, witch is undercomment.
+```
+Line : 13  and Line : 20
+```
+That's break other test. Nedeed to be updated.
