@@ -31,7 +31,6 @@ describe Airport do
 
     it 'raises an error if the weather is stormy' do
       plane = double(:plane)
-      subject.land(plane)
       subject.set_weather(0)
       expect { subject.land(plane) }.to raise_error "Sorry, it is too stormy."
     end
@@ -40,6 +39,12 @@ describe Airport do
       (subject.capacity).times { subject.land(double(:plane)) }
       plane = double(:plane)
       expect { subject.land(plane) }.to raise_error "Sorry, airport is full."
+    end
+
+    it 'raises an error if the plane is already in the airport' do
+      plane = double(:plane)
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "That plane is already at the airport."
     end
 
   end
@@ -71,6 +76,7 @@ describe Airport do
       subject.set_weather(0)
       expect { subject.take_off(plane) }.to raise_error "Sorry, it is too stormy."
     end
+
 
   end
 
