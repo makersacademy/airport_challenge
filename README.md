@@ -15,7 +15,6 @@ Airport Challenge
 # My approach to the challenge  
 
 ## User Story 1
-
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -118,4 +117,32 @@ Traceback (most recent call last):
         1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:33:in `not_valid_take_off?'
 RuntimeError (Plane cannot take off during storm!)
 2.5.0 :010 >
+```
+
+## User Story 4
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+This user story very much built on the previous one. I simply mirrored the 'not_valid_take_off?' method and built the private 'not_valid_land?' method. I used this in the existing 'land' method and set planes to only land when 'not_valid_land?' was not returning an error.
+
+As I did with 'not_valid_take_off?', I instructed 'not_valid_land?' to raise an error if when it called the weather_check method it did not return 'stormy'.
+
+Here is an IRB session demonstrating the described behaviour (once again edited due to the random weather):
+```
+2.5.0 :001 > require './lib/airport'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007ff4d78a3be8 @hangar=[], @weather=#<WeatherSystem:0x00007ff4d78a3b98>, @capacity=5>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007ff4d7893cc0 @in_flight=true>
+2.5.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        4: from /Users/chris/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        3: from (irb):6
+        2: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:14:in `land'
+        1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:40:in `not_valid_land?'
+RuntimeError (Plane cannot land during storm!)
+2.5.0 :007 >
 ```
