@@ -13,13 +13,14 @@ class Airport
   end
 
   def land(plane)
+    fail 'This Airport is full' if full?
     current_weather
     fail 'Too stormy to try landing' if stormy?
-    fail 'This Airport is full' if full?
     @planes << plane.land(self)
   end
 
   def take_off(plane)
+    fail 'Plane not at this airport' unless @planes.include?(plane)
     current_weather
     fail 'Too stormy to try take off' if stormy?
     @planes.delete(plane.take_off)
