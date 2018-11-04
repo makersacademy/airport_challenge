@@ -16,7 +16,7 @@ class Status < Weather
 	end
 
 	def take_off
-		# fail 'You can not take off the aircraft because of the storm' if @@status == true
+		fail 'You can not take off the aircraft because of the storm' if @@storm == true
 		@take_of = true
 	end
 end
