@@ -44,4 +44,12 @@ describe Status do
 			expect{safety.take_off}.to raise_error('You can not take off the aircraft because of the storm')
 		end
 	end
+
+	context 'Prevent landing aircraft when the airport is full' do
+		it 'Raising an error when the airport is full and some aircraft is trying to land' do
+			safety = Status.new
+			safety.full?
+			expect{safety.land}.to raise_error('You can not land the aircraft because the airport is full')
+		end
+	end
 end
