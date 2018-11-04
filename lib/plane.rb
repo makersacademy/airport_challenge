@@ -9,4 +9,9 @@ class Plane
     self
   end
 
+  def unground_plane
+    @in_flight = true
+    self
+  end
+
 end

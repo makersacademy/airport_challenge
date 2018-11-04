@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off_from_airport(plane)
-    @hangar.delete(plane) unless not_valid_take_off?(plane)
+    @hangar.delete(plane.unground_plane) unless not_valid_take_off?(plane)
   end
 
   def confirm_take_off(plane)

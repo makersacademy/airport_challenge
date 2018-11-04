@@ -15,6 +15,14 @@ describe Plane do
       plane.ground_plane
       expect(plane.in_flight).to eq false
     end
+
+    it 'user can check if plane has taken off' do
+      plane.unground_plane do
+        plane.ground_plane
+        plane.unground_plane
+        expect(plane.in_flight).to eq true
+      end
+    end
   end
 
 end
