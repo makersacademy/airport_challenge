@@ -6,8 +6,9 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @planes = []
-    @weather = random_weather
+    @hanger = []
+    @weather = "random_weather"
+    random_weather
   end
 
   def can_land?
@@ -27,8 +28,11 @@ class Airport
   end
 
   def random_weather
-    @weather = "sunny"
-    @weather = "stormy" if rand(1..10) > 7 
+    if rand(1..10) > 7
+      @weather = "stormy" 
+    else 
+      @weather = "sunny" 
+    end
   end
 
 end

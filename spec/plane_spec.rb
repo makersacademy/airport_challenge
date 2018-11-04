@@ -35,11 +35,24 @@ describe Plane do
 
   it "can prevent takeoff when weather is stormy" do
     airport.weather = "stormy"
+    plane.land(airport)
     expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
+  end
+
+  it "prevents plane from taking off in airport they are not in" do
+    
+    airport1 = Airport.new
+    airport2 = Airport.new
+    plane1 = Plane.new
+    plane.land(airport1)
+
+    expect{ plane1.take_off(airport1) }.to output("Can't take off from this airport\n").to_stdout
+
   end
 
   it "can prevent landing when weather is stormy" do
     airport.weather = "stormy"
+    plane.land(airport)
     expect { plane.land(airport) }.to output("Stopped landing\n").to_stdout
   end
 
