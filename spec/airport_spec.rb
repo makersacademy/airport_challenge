@@ -10,7 +10,7 @@ describe Airport do
     end
 
     it 'creates a weather system when initialized' do
-      expect(airport.weather).to be_an_instance_of WeatherSystem
+      expect(airport.weather).to be_a_kind_of WeatherSystem
     end
 
     it 'it has a default capacity' do

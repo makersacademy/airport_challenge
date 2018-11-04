@@ -97,3 +97,25 @@ I then created a 'weather_check' method in the Airport class and this would retu
 Therefore, in order to prevent planes from taking off when the weather was stormy, I created a private method called 'not_valid_take_off?'. I added this to the existing 'take_off' method and set it to only allow planes to take off if 'not_valid_take_off?' was not returning an error.
 
 I instructed 'not_valid_take_off?' to raise the error 'Plane cannot land during storm!' if when it called the 'weather_check' method it returned stormy weather.
+
+This behaviour is demonstrated in IRB below. Beware I had to edit this demo together due to the weather being unpredictable!
+```
+2.5.0 :001 > require './lib/airport'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007f92289337f0 @hangar=[], @weather=#<WeatherSystem:0x00007f92289337a0>, @capacity=5>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007f9228923968 @in_flight=true>
+2.5.0 :004 > airport.land(plane)
+ => [#<Plane:0x00007f9228923968 @in_flight=false>]
+2.5.0 :005 > airport.weather_check
+ => "Stormy"
+2.5.0 :009 > airport.take_off(plane)
+Traceback (most recent call last):
+        4: from /Users/chris/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        3: from (irb):9
+        2: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:18:in `take_off'
+        1: from /Users/chris/CodeProjects/Makers/wk-1/airport_challenge/lib/airport.rb:33:in `not_valid_take_off?'
+RuntimeError (Plane cannot take off during storm!)
+2.5.0 :010 >
+```
