@@ -22,14 +22,18 @@ class Airport
   def instruct_plane_take_off(plane)
     fail @plane.unsucessful_take_off_bad_weather(plane) if bad_weather?
     fail 'Hangar is empty, no plane to take off' if empty?
-    @hangar.delete(plane)
+    @hangar.pop
     @plane.sucessful_take_off(plane)
+  end
+
+  def planes_count
+    @hangar.count
   end
 
   private
 
   def bad_weather?
-    @weather.stormy? ? true: false
+    @weather.stormy? ? true : false
   end
 
   def full?
