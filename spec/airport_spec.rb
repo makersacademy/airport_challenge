@@ -6,7 +6,7 @@ describe Airport do
   let(:landed_plane) { double }
   let(:bad_weather) { double(:report => "stormy") }
   let(:good_weather) { double(:report => "good") }
-  #user story 1
+  # user story 1
   it { expect(subject).to respond_to(:receive_plane).with(1).argument }
   it "Once landed the plane appears in the aiport @landed_planes" do
     good_weather_airport = Airport.new(20, good_weather)
@@ -14,7 +14,7 @@ describe Airport do
     expect(good_weather_airport.landed_planes).to include(plane)
   end
 
-  #user story 2: plane can take take take off
+  # user story 2: plane can take take take off
   it "When we release the plane (when weather is good), the plane is removed from the landed_planes array" do
     good_weather_airport = Airport.new(20, good_weather)
     good_weather_airport.receive_plane(plane)
@@ -22,12 +22,11 @@ describe Airport do
     expect(good_weather_airport.landed_planes).not_to include(plane)
   end
 
-  #user story 3: plane can't take off in bad weather
+  # user story 3: plane can't take off in bad weather
   it "release plane returns false if the weather is stormy" do
     bad_weather_airport = Airport.new(20, bad_weather, plane)
     expect(bad_weather_airport.release_plane(plane)).to eq(false)
   end
-
 
   it { expect(Airport::DEFAULT_CAPACITY).to eq(20) }
   it "can change the capacity when initialising airport" do
@@ -48,7 +47,7 @@ describe Airport do
     expect(bad_weather_airport.release_plane(landed_plane)).to eq(false)
   end
 
-  #US5 setting default and changing default capacity
+  # uS5 setting default and changing default capacity
   it "Capacity default works but can also be changed on initialisation" do
     expect(Airport.new(10).capacity).to eq(10)
     expect(Airport.new.capacity).to eq(20)
