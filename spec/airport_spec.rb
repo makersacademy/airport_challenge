@@ -2,9 +2,9 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:airport) { Airport.new }
-  let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
+  let(:airport) { described_class.new }
+  let(:plane) { described_class.new }
+  let(:weather) { described_class.new }
 
   it { is_expected.to respond_to(:instruct_plane_land) }
   it { is_expected.to respond_to(:instruct_plane_take_off) }

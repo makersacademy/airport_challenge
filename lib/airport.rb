@@ -9,28 +9,27 @@ class Airport
     @hangar = []
     @capacity = capacity
     @weather = Weather.new
+    @plane = Plane.new
   end
 
   def instruct_plane_land(plane)
-
-    fail "Weather is not good, #{plane} cannot land" if bad_weather?
-    fail "Hangar is full, #{plane} not able to land" if full?
+    fail @plane.unsucessful_land_bad_weather(plane) if bad_weather?
+    fail @plane.unsucessful_land_hangar_full(plane) if full?
     @hangar << plane
-    "#{plane} has landed"
-
+    @plane.sucessful_land(plane)
   end
 
   def instruct_plane_take_off(plane)
-    fail "Weather is not good, #{plane} cannot take off" if bad_weather?
+    fail @plane.unsucessful_take_off_bad_weather(plane) if bad_weather?
     fail 'Hangar is empty, no plane to take off' if empty?
     @hangar.delete(plane)
-    "#{plane} has left airport"
+    @plane.sucessful_take_off(plane)
   end
 
   private
 
   def bad_weather?
-    :weather_condition == "stormy" ? true : false
+    @weather.stormy? ? true: false
   end
 
   def full?

@@ -2,7 +2,11 @@ class Weather
   attr_reader :weather_condition
 
   def random_weather
-    @weather_condition = ['stormy', 'sunny', 'sunny', 'sunny'].sample
+    @weather_condition << ['stormy', 'sunny', 'sunny', 'sunny'].sample
+  end
+
+  def stormy?
+    @weather_condition == "stormy" ? true : false
   end
 
 end
