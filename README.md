@@ -97,8 +97,11 @@ my_plane - Aeroplane.new
 #At this point Airport has a weather and a default capacity(20)
 
 my_airport.land(my_plane)
-#This lands the plane and both the plane and airport now know that one is in the other. This won't work unless the plane is flying(default) and the airport isn't at capacity. Can't happen in bad weather.
+#This lands the plane and both the plane and airport now know that one is in the other.
+#This won't work unless the plane is flying(default) and the airport isn't at capacity.
+#Can't happen in bad weather.
 
 my_airport.takeoff(my_plane)
-#Same but with takeoff, plane has to be in that airport to takeoff from it and both are aware of this. Can't happen in bad weather.
+#Same but with takeoff, plane has to be in that airport to takeoff from it and both are aware of this. 
+#Can't happen in bad weather.
 ```
