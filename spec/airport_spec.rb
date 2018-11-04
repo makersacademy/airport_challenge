@@ -12,6 +12,10 @@ describe Airport do
     it 'creates a weather system when initialized' do
       expect(airport.weather).to be_an_instance_of WeatherSystem
     end
+
+    it 'it has a capacity' do
+      expect(airport.capacity).to eq Airport::CAPACITY
+    end
   end
 
   describe '#land_at_airport' do
