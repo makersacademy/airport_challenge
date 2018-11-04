@@ -92,29 +92,37 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 **My code - an example**
 
 ```
-#Once airport.rb has been required, instances of the Plane and Airport classes can be initialized with 'new'.
+#Once airport.rb has been required, instances of the Plane and Airport classes can be initialized with
+'new'.
 
 #Planes have an instance variable, :status, which defaults to flying but will change when the plane lands.
 
 2.5.0 :002 > jumbo_jet = Plane.new
  => #<Plane:0x00007ff6dd13fb60 @status="flying">
 
-#Airports are initialized with three instance variables; :weather, :capacity and :planes. :weather is randomly set and may be 'fine' or 'stormy'.  :capacity defaults to 20, but may be set by use of an argument at initialization.  :planes is an empty array used to store planes which land at the airport.
+#Airports are initialized with three instance variables; :weather, :capacity and :planes. :weather is
+randomly set and may be 'fine' or 'stormy'.  :capacity defaults to 20, but may be set by use of an
+argument at initialization.  :planes is an empty array used to store planes which land at the airport.
 
 2.5.0 :004 > gatwick = Airport.new(25)
  => #<Airport:0x00007ff6dd135958 @weather="fine", @capacity=25, @planes=[]>
 
-Planes can be landed at a particular airport, but only if :weather is 'fine' and if the :capacity has not been reached. :weather is randomly set ahead each attempted landing.  On landing, the plane is stored in :planes and the plane's :status is changed to the airport id.  A plane can only land if :status == 'flying'
+Planes can be landed at a particular airport, but only if :weather is 'fine' and if the :capacity has
+not been reached. :weather is randomly set ahead each attempted landing.  On landing, the plane is
+stored in :planes and the plane's :status is changed to the airport id.  A plane can only land if
+:status == 'flying'
 
-Similarly, planes can take off from an airport, again only if weather permits. A plane can only take off from and airport it has landed at.  On take off, a plane's :status is changed to 'flying'.  
+Similarly, planes can take off from an airport, again only if weather permits. A plane can only take
+off from and airport it has landed at.  On take off, a plane's :status is changed to 'flying'.  
 
 2.5.0 :005 > gatwick.land(jumbo_jet)
- => [#<Plane:0x00007ff6dd13fb60 @status=#<Airport:0x00007ff6dd135958 @weather="fine", @capacity=25, @planes=[...]>>]
+ => [#<Plane:0x00007ff6dd13fb60 @status=#<Airport:0x00007ff6dd135958 @weather="fine", @capacity=25,
+ @planes=[...]>>]
 2.5.0 :006 > stansted = Airport.new
  => #<Airport:0x00007ff6de083ba8 @weather="fine", @capacity=20, @planes=[]>
 2.5.0 :007 > stansted.take_off(jumbo_jet)
 Traceback (most recent call last):...
-        
+
 RuntimeError (Plane not at this airport)
 2.5.0 :008 > gatwick.take_off(jumbo_jet)
  => #<Plane:0x00007ff6dd13fb60 @status="flying">
