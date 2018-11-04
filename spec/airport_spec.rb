@@ -72,12 +72,12 @@ describe Airport do
   end
 
   it "prevents landing at the airport if the airport is full" do
-    planeA = Plane.new
-    planeB = Plane.new
+    plane1 = Plane.new
+    plane2 = Plane.new
     airport = Airport.new(1)
     expect_any_instance_of(Airport).to receive(:weather_check) { "Sunny" }
-    airport.landing(planeA)
-    expect { airport.landing_procedure(planeB) }.to raise_error "Airport is at max capacity"
+    airport.landing(plane1)
+    expect { airport.landing_procedure(plane2) }.to raise_error "Airport is at max capacity"
   end
 
   it "checks if the plane is already in the air when taking_off" do
@@ -92,4 +92,22 @@ describe Airport do
     expect(subject.weather_check).to eq("Stormy").or eq("Sunny")
   end
 
+end
+
+describe Airport do
+  it "Completes the bonus challenge - landing and taking off multiple planes" do
+    airport = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    expect_any_instance_of(Airport).to receive(:weather_check) { "Sunny" }
+    airport.landing(plane1)
+    expect_any_instance_of(Airport).to receive(:weather_check) { "Sunny" }
+    airport.landing(plane2)
+    airport.take_off(plane1)
+    airport.landing(plane3)
+    airport.landing(plane1)
+    airport.take_off(plane2)
+    expect(airport.planes.length).to be(2)
+  end
 end

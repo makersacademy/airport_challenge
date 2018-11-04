@@ -7,6 +7,7 @@ class Plane
     name
   end
 
+# gives the plane a name
   def name
     if @name.length == 5
       return @name
@@ -15,6 +16,7 @@ class Plane
     end
   end
 
+# creates a unique name for the plane
   def create_name
     characters = ('A'..'Z').to_a
     numbers = ('1'..'9').to_a

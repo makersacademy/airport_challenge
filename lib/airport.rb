@@ -4,14 +4,14 @@ require "./lib/weather.rb"
 class Airport
   attr_reader :capacity, :planes
 
-  def initialize(capacity= 20)
+  def initialize(capacity = 20)
     @planes = [] # stores planes
-    @capacity = capacity
+    @capacity = capacity # capacity of the airport default = 20)
   end
 
 # plane cannot land if stormy
   def landing(plane)
-    if weather_check == "Sunny" # add .conditions to fix this
+    if weather_check == "Sunny"
       landing_procedure(plane)
     else
       fail "You're not cleared for landing due to adverse weather conditions"
@@ -25,8 +25,7 @@ class Airport
   def landing_procedure(plane)
     if @planes.include? plane.name
       fail "You've already landed"
-    elsif
-      @planes.length >= @capacity
+    elsif @planes.length >= @capacity
       fail "Airport is at max capacity"
     else
       plane.location = "Ground"
@@ -36,6 +35,7 @@ class Airport
   end
 
 # plane cannot take off if stormy
+
   def take_off(plane)
     if weather_check == "Sunny"
       take_off_procedure(plane)
@@ -45,13 +45,14 @@ class Airport
   end
 
 # checks if the plane is already Flying
-# if so, raises error. else adjusts location of plane
+# manages planes at airport by removing it from @planes
+# alters its location to the sky
   def take_off_procedure(plane)
     if plane.location == "Flying"
       fail "You're already in the air"
     else
       plane.location = "Flying"
-      @planes.delete (plane.name)
+      @planes.delete(plane.name)
       return "You're clear for take off"
     end
   end

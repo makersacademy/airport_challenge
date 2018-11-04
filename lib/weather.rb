@@ -1,5 +1,6 @@
 class Weather
 
+# 1 in 5 chance for weather to be Stormy
   def conditions
     randomizer == 1 ? "Stormy" : "Sunny"
   end
