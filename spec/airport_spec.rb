@@ -13,10 +13,30 @@ describe Airport do
   end
 
   it "should prevent take off when weather is stormy" do
-    subject.set_stormy(true)
-    expect(subject.plane_is_in_airport).to eq_to true
-    subject.instruct_take_off
-    expect(subject.plane_is_in_airport).to eq_to true
+
+
+
+
+
+    # subject.set_stormy(true)
+    # expect(subject.plane_is_in_airport).to eq_to true
+    # subject.instruct_take_off
+    # expect(subject.plane_is_in_airport).to eq_to true
+  end
+
+  it "should prevent landing when weather is stormy" do
+
+
+
+
+    # subject.set_stormy(true)
+    # expect(subject.plane_not_in_airport).to eq_to false
+    # subject.instruct_land
+    # expect(subject.plane_not_in_airport).to eq_to false
+  end
+
+  it "should prevent a plane landing when airport is full" do
+
   end
 
 end
