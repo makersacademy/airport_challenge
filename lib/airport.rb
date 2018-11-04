@@ -6,7 +6,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @hanger = []
+    @planes = []
     @weather = "random_weather"
     random_weather
   end

@@ -7,7 +7,7 @@ describe Plane do
   let(:plane) { Plane.new }
   let(:weather) { double(:weather) }
 
-  it "plane responds to #land" do
+  it "responds to #land" do
     expect(subject).to respond_to(:land)
   end
 
@@ -17,7 +17,7 @@ describe Plane do
     expect(airport.planes.include?(plane)).to eq true
   end
 
-  it "plane responds to #take_off" do
+  it "responds to #take_off" do
     expect(subject).to respond_to(:take_off)
   end
 
@@ -34,8 +34,8 @@ describe Plane do
   end
 
   it "can prevent takeoff when weather is stormy" do
-    airport.weather = "stormy"
     plane.land(airport)
+    airport.weather = "stormy"
     expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
   end
 
