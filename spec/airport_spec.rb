@@ -27,12 +27,21 @@ describe Status do
 		end
 	end
 
-	# We need to raise and error and change the status of the aircraft because of the weather
+	# We need to raise an error to land and change the status of the aircraft because of the weather
+	context 'Change the status of the aircraft because of the weather' do
+		it 'Calcel the land status of the aircraft' do
+			safety = Status.new
+			safety.stormy?
+			expect{safety.land}.to raise_error('You can not land the aircraft because of the storm')
+		end
+	end
+
+		# We need to raise an error to take off and change the status of the aircraft because of the weather
 	context 'Change the status of the aircraft because of the weather' do
 		it 'Calcel the take off status of the aircraft' do
 			safety = Status.new
 			safety.stormy?
-			expect{safety.land}.to raise_error('You can not land the aircraft because of the storm')
+			expect{safety.take_off}.to raise_error('You can not take off the aircraft because of the storm')
 		end
 	end
 end
