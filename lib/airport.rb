@@ -13,24 +13,25 @@ class Airport
 
   def safe?(status = 'yes')
     status == 'yes' ? (@condition = 'safe') : (@condition = 'not safe')
-    @condition == 'safe' ? true : false
+    @condition == 'safe'
   end
 
   def landing(plane)
     fail 'Hangar is full' if full?
-    if @condition == 'safe'
+    if !safe?
+      fail 'It is not safe to land'
+    else
       plane.landed
       @hangar << plane
-    else
-      fail 'It is not safe to land'
     end
   end
 
   def taking_off(plane)
     fail 'Hangar is empty' if @hangar.empty?
-    if @condition == 'safe'
+    if safe?
       plane.taken_off
-      @hangar.include?(plane) ? @hangar.delete_at(@hangar.index(plane)) : "Plane not in the hangar"
+      @hangar.include?(plane) ? @hangar.delete_at(@hangar.index(plane)) :
+      "Plane not in the hangar"
       plane
     else
       fail 'It is not safe to fly'
