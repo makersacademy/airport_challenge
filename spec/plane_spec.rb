@@ -38,7 +38,7 @@ describe Plane do
 	end
 
 	describe 'double landing' do
-		it 'plane should not be able to land at an airport without first taking off' do
+		it 'plane cannot land at the same airport without first taking off' do
 			plane.land_at_airport(airport, weather_sunny)
 
 			expect{plane.land_at_airport(airport, weather_sunny)}.to raise_error("Plane is already landed!")
@@ -46,7 +46,7 @@ describe Plane do
 	end
 
 	describe 'double takeoff' do
-		it 'plane should not be able to takeoff from an airport without first landing' do
+		it 'plane cannot takeoff from the same airport without first landing' do
 			expect{plane.takeoff_from_airport(airport, weather_sunny)}.to raise_error("Plane is already flying!")
 		end
 	end
