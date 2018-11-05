@@ -14,10 +14,8 @@ class Plane
 	end
 
 	def takeoff_from_airport (airport, weather)
-		if weather == "sunny"
-			airport.confirm_departure(self)
-		else
-			raise "Danger stormy weather"
-		end
+		raise "Danger stormy weather" if weather == "stormy"
+		raise "Plane is already flying!" if self.is_flying == true
+		airport.confirm_departure(self)
 	end
 end
