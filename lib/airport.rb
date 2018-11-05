@@ -13,7 +13,6 @@ class Airport
   end
 
   def land(plane)
-    fail 'Too busy to land!' if @planes.length > @capacity
     @planes << plane unless cant_land
     plane.landed
   end
