@@ -48,5 +48,5 @@ end
 
 # Need to add random weather
 # Need to prevent push'ing and <<'ing to the hangar
-# Need to create a class valiable on Plane of all planes in existance and their locations
+# Need to create a class variable on Plane of all planes in existence and their locations
 # Need to prevent land'ing and takeoff'ing an Airport from another Airport
