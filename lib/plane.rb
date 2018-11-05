@@ -7,12 +7,8 @@ class Plane
     @flying = true
   end
 
-  def flying
-    @flying = true
-  end
-
   def landed
-    @status = false
+    @flying = false
   end
 
 end
