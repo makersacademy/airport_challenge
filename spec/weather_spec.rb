@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 	let(:weather) {weather = Weather.new}
-	# All tests set up with generate_weather producing storms at 33% of time
+	# All tests set up with generate_weather producing storms at 33% of time.
 
 	describe '#generate_weather' do
 		it 'generates a random state of weather' do

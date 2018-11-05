@@ -36,4 +36,12 @@ describe Plane do
 			expect {plane.land_at_airport(airport, weather_stormy)}.to raise_error("Danger stormy weather")
 		end
 	end
+
+	describe 'double landing' do
+		it 'plane should not be able to land at an airport without first taking off' do
+			plane.land_at_airport(airport, weather_sunny)
+
+			expect{plane.land_at_airport(airport, weather_sunny)}.to raise_error("Plane is already landed!")
+		end
+	end
 end
