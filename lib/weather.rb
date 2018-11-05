@@ -3,7 +3,8 @@ class Weather
   attr_accessor :weather
 
   def initialize
-    @weather = "OK"
+    weather_choices = ["stormy", "sunny"]
+    @weather = weather_choices.sample
   end
 
   def setweather(weather)

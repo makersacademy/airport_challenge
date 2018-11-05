@@ -1,7 +1,7 @@
 class Airport
 
   attr_reader :planes_in_airport
-  attr_reader :weather
+  attr_accessor :weather
   attr_accessor :plane_capacity
 
   DEFAULT_PLANE_CAPACITY = 50
@@ -24,7 +24,11 @@ class Airport
     @planes_in_airport -= [plane]
   end
 
-  def check_weather_is_fine?
-    @weather.weather != "raining"
+  def check_weather?
+    @weather != "stormy"
+  end
+
+  def full?
+    @planes_in_airport.length >= @plane_capacity
   end
 end
