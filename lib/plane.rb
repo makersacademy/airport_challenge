@@ -10,13 +10,13 @@ class Plane
     @status = DEFAULT_STATUS
   end
 
-  def land(airport)
+  def landed(airport)
     fail 'This plane has already landed' if landed?
     @status = airport
     self
   end
 
-  def take_off
+  def taken_off
     fail 'This plane is already in the air' unless landed?
     @status = DEFAULT_STATUS
     self
