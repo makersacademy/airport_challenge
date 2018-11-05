@@ -15,19 +15,17 @@ describe Airport do
       expect(subject.safe?('no')).to eq false
     end
 
-    it 'is safe not to land' do
+    it 'is not safe to land' do
+      subject.safe?('no')
       allow(subject).to receive(:safe?).and_raise('It is not safe to land')
-      # plane = Plane.new
-      # subject.safe?('no')
-      # expect { subject.landing(plane) }.to raise_error 'It is not safe to land'
     end
 
-    it 'is safe not to fly' do
+    it 'is not safe to fly' do
       plane = Plane.new
       subject.landing(plane)
+      subject.safe?('no')
       allow(subject).to receive(:safe?).and_raise('It is not safe to fly')
-      # subject.safe?('no')
-      # expect { subject.taking_off(plane) }.to raise_error 'It is not safe to fly'
+
     end
   end
 
@@ -80,8 +78,8 @@ describe Airport do
 
     it 'returns the plane(s) in the hangar' do
       b50 = Plane.new
-      subject.landing(b50)
       b60 = Plane.new
+      subject.landing(b50)
       subject.landing(b60)
       subject.taking_off(b50)
       expect(subject.hangar).to eq [b60]
