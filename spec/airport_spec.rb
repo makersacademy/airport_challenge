@@ -4,10 +4,12 @@ describe Airport do
   let(:airport) {airport = Airport.new}
   let(:plane) {plane = Plane.new}
   it "plane landed at airpot" do
+    airport.weather = "good"
     airport.land(plane)
     expect(airport.capacity).to eq [plane]
   end
   it "plane released for take off" do
+    airport.weather = "good"
     airport.land(plane)
     expect(airport.take_off?).to eq true
     expect(airport.capacity).to eq []
@@ -27,13 +29,16 @@ describe Airport do
     expect(airport.land(plane)).to eq false
   end
   it "doesn't release a plane for take off when there are no planes" do
+    airport.weather = "good"
     expect(airport.take_off?).to eq false
   end
   it "returns true if the airport is full" do
+    airport.weather = "good"
     airport.land(plane)
     expect(airport.full?).to eq true
   end
   it "doesn't land a plane if the airport is full" do
+    airport.weather = "good"
     airport.land(plane)
     expect(airport.land(plane)).to eq false
   end

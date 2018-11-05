@@ -7,7 +7,7 @@ class Airport
   DEFAULT_CAPACITY = 1
   def initialize(size = DEFAULT_CAPACITY)
     @capacity = []
-    @weather = "good"
+    @weather = random_weather
     @size = size
   end
   def take_off?
@@ -29,5 +29,9 @@ class Airport
   end
   def full?
     @capacity.length == size ? true : false
+  end
+  def random_weather
+    weather = ["good", "stormy"]
+    weather[rand(2)]
   end
 end
