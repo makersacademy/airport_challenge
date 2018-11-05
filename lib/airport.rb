@@ -18,7 +18,7 @@ class Airport
     return false
   end
   def land(plane)
-    if @weather == "stormy" || full? == true
+    if @weather == "stormy" || full? == true || plane.status == "landed"
       return false
     end
     @capacity << plane

@@ -5,11 +5,13 @@ describe Airport do
   let(:plane) {plane = Plane.new}
   it "plane landed at airpot" do
     airport.weather = "good"
+    plane.status = "flying"
     airport.land(plane)
     expect(airport.capacity).to eq [plane]
   end
   it "plane released for take off" do
     airport.weather = "good"
+    plane.status = "flying"
     airport.land(plane)
     expect(airport.take_off?).to eq true
     expect(airport.capacity).to eq []
@@ -26,6 +28,7 @@ describe Airport do
   end
   it "doesn't land plane when weather is stormy" do
     airport.weather = "stormy"
+    plane.status = "flying"
     expect(airport.land(plane)).to eq false
   end
   it "doesn't release a plane for take off when there are no planes" do
@@ -34,11 +37,13 @@ describe Airport do
   end
   it "returns true if the airport is full" do
     airport.weather = "good"
+    plane.status = "flying"
     airport.land(plane)
     expect(airport.full?).to eq true
   end
   it "doesn't land a plane if the airport is full" do
     airport.weather = "good"
+    plane.status = "flying"
     airport.land(plane)
     expect(airport.land(plane)).to eq false
   end
@@ -49,5 +54,9 @@ describe Airport do
   it "sets the size to the argument provided" do
     airport_1 = Airport.new(10)
     expect(airport_1.size).to eq 10
+  end
+  it "doesn't land a plane that is already landed" do
+    airport.weather = "good"
+    expect(airport.land(plane)).to eq false
   end
 end
