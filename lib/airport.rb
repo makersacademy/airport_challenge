@@ -4,7 +4,6 @@ class Airport
 	def initialize (capacity = DEFAULT_CAPACITY)
 		@planes_present = []
 		@capacity = capacity
-
 	end
 
 	def confirm_departure (plane)

@@ -8,8 +8,8 @@ Fork and clone project. Run from terminal.
 
 ### Prerequisites
 ```
-* Ruby
-* Rspec
+Ruby
+Rspec
 ```
 
 ## Running the Tests
@@ -39,3 +39,28 @@ I decided that I would need three main classes:
 
 I tried to apply the Single Responsibility Principle to my code and have methods that were only responsible for a single action specific to that class.
 
+### Plane
+
+The Plane class has only two methods as per the first draft of the Domain Model.
+```
+land_at_airport(airport, weather)
+
+takeoff_from_airport(airport, weather)
+```
+Each of these methods takes an airport object and weather object as an argument. Initially these methods only had an airport object argument. During the project I modified these methods to factor in weather in order to comply with initial specifications.
+
+### Airport
+
+The Airport class has three methods that differ slightly from the original [Domain Model](https://github.com/Max-Stevenson/airport_challenge/blob/master/DomainModel.md). There is no `check_weather()` method as this function was moved the Weather class.
+```
+initialize(capacity = DEFAULT_CAPACITY)
+
+confirm_depature(plane)
+
+full?
+```
+The first method specifies a default capacity for an Airport object in relation to the planes that can be stored. This can be altered if an `Int` argument is passed when an new instance of Airport is created.
+
+The second method takes a plane object and confirms that plane is no longer present in `planes_present`.
+
+The final method checks if the Airport's `planes_present` instance variable is equal to the `capacity`
