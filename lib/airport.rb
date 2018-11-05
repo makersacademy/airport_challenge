@@ -25,6 +25,6 @@ class Airport
   end
 
   def full?
-   @aeroplanes.size <= @capacity
+   @aeroplanes.size == @capacity
   end
 end
