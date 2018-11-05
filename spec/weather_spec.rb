@@ -1,9 +1,11 @@
 require 'weather'
 
-describe Weather do
-
-  it 'should respond to #status' do
-    expect(subject).to respond_to :status
-  end
-
-end
+# describe Weather do
+#
+#   describe Weather.weather_generator do
+#
+#   it '' do
+#     expect(subject).to respond_to :current_weather
+#   end
+#
+# end

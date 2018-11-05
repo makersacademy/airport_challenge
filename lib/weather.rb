@@ -1,10 +1,13 @@
 require_relative 'airport'
 
 class Weather
-attr_reader :status
 
-def initialize
-  @status = "Sunny"
+def weather_generator
+  randomizer == 1 ? "Stormy" : "Sunny"
+end
+
+def randomizer
+  return rand(1..10)
 end
 
 end

@@ -2,9 +2,10 @@ require 'plane'
 
 describe Plane do
 
-  it 'should know when it is flying' do
-    plane = Plane.new
-    expect(plane.status).to eq "Flying"
+  let(:plane) { Plane.new }
+
+  it 'plane is flying by default' do
+    expect(plane.flying).to eq true
   end
-  
+
 end
