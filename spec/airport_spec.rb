@@ -12,6 +12,12 @@ describe Airport do
         airport = Airport.new(weather)
         expect(airport.land(plane)).to include plane
       end
+      it 'should not land if airport full' do
+        allow(weather).to receive(:stormy?).and_return false
+        airport = Airport.new(weather)
+        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+        expect{ airport.land(plane) }.to raise_error 'the airport is full'
+      end
     end
     context 'when stormy' do
       it 'should not land a plane' do
@@ -19,12 +25,6 @@ describe Airport do
         airport = Airport.new(weather)
         expect{ airport.land(plane) }.to raise_error 'it is too stormy to land'
       end
-    end
-    it 'should not land if airport full' do
-      allow(weather).to receive(:stormy?).and_return false
-      airport = Airport.new(weather)
-      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect{ airport.land(plane) }.to raise_error 'the airport is full'
     end
   end
   describe '#takeoff' do
