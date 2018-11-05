@@ -1,28 +1,35 @@
 #Class Weather
 class Weather
 	def initialize
-		@@storm = false
+		@storm = false
 	end
-	def stormy?
-		@@storm = true
+	def stormy?(status = true)
+		@storm = status
 	end
 end
 
-# Class to know the status of the aircraft
-class Status < Weather
+# Class to know the status of the aircraft and airport
+class Airport < Weather
+	def initialize()
+		@hangar = []
+	end
 
+	DEFAULT_CAPACITY = 20
+	
 	def full?
 		@full = true
 	end
 
 	def land
-		fail 'You can not land the aircraft because the airport is full' if @full == true
-		fail 'You can not land the aircraft because of the storm' if @@storm == true
-		@land = true
+		# fail 'You can not land the aircraft because the airport is full' if @full == true
+		fail 'You can not land the aircraft because of the storm' if @storm == true
+		@hangar << +1
+		@hangar.count
 	end
 
 	def take_off
-		fail 'You can not take off the aircraft because of the storm' if @@storm == true
-		@take_of = true
+		fail 'You can not take off the aircraft because of the storm' if @storm == true
+		@hangar.pop
+		@hangar
 	end
 end
