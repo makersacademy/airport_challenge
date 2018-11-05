@@ -26,7 +26,7 @@ class Plane
       @location = "flight"
       puts "Taking off and no longer in airport\n"
     elsif !in_airport?(airport) && @location == "flight"
-      puts "Already in flight"
+      puts "Already in flight\n"
     elsif !airport.weather_ok?
       puts "Stopped take off due to weather\n"
     end

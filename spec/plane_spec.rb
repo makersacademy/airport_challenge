@@ -37,8 +37,9 @@ describe Plane do
 
   it "prevents .take_off when already in flight" do
     airport.weather = "sunny"
-    # plane.land(airport)
-    expect { plane.take_off(airport) }.to output("Already in flight").to_stdout
+    plane.land(airport)
+    plane.take_off(airport)
+    expect { plane.take_off(airport) }.to output("Already in flight\n").to_stdout
   end
 
   it "prevents plane from .take_off in airport they are not in" do
@@ -46,10 +47,10 @@ describe Plane do
     airport1 = Airport.new
     airport2 = Airport.new
     plane1 = Plane.new
-    plane1.land(airport1)
-
     airport2.weather = "sunny"
     airport1.weather = "sunny"
+
+    plane1.land(airport1)
     
     expect { plane1.take_off(airport2) }.to output("Can't take off from this airport\n").to_stdout
 
