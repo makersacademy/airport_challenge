@@ -13,8 +13,8 @@ end
 
 describe Airport do
 	# First test, we need to know if the plane has permission to land
-	context 'Status to know if is possible to land at the airport' do
-		it 'Permission to land at the airport' do
+	context 'We need to confirm if the plane has landed' do
+		it 'Add the aircraft landed to our counter' do
 			aircraft = Airport.new
 			expect(aircraft.land).to eq 1
 		end
