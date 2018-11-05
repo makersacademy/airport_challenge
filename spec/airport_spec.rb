@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double(:plane) }
-  let(:weather) { double(:weather) }
 
   describe '#plane_in_hangar' do
 

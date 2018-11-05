@@ -3,6 +3,7 @@ require 'plane'
 describe Plane do
 
   let(:airport) { double :airport, hangar: [] }
+  RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
 
   describe '#land' do
 
@@ -39,16 +40,16 @@ describe Plane do
     end
 
     it 'cannot take off if it is stormy' do
-      subject.landed = true
+      subject.at_airport = airport
       allow(subject.at_airport).to receive_message_chain(:weather, :what_is_weather) { 'stormy' }
       expect { subject.takeoff }.to raise_error('Plane cannot takeoff when weather is stormy')
     end
 
     it 'can take off when in airport and weather is sunny' do
-      subject.landed = true
+      subject.at_airport = airport
       allow(subject.at_airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
       allow(subject.at_airport).to receive_message_chain(:hangar, :delete) { [] }
-      expect(subject.takeoff).to eq('none')
+      expect(subject.takeoff).to eq(nil)
     end
 
   end
