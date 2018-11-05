@@ -17,16 +17,16 @@ class Plane
 
   def take_off(airport)
 
-    if !in_airport?(airport) && (@location == "landed") && airport.weather_ok?
+    if !in_airport?(airport) && @location == "landed" && airport.weather_ok?
       puts "Can't take off from this airport" 
     end
 
-    if in_airport?(airport) && airport.weather_ok? && "landed" == @location
+    if in_airport?(airport) && airport.weather_ok? && @location == "landed"
       airport.planes.delete(self)
       @location = "flight"
       puts "Taking off and no longer in airport\n"
-    elsif in_airport?(airport) == false && (@location == "flight")
-      puts "Already taken off"
+    elsif !in_airport?(airport) && @location == "flight"
+      puts "Already in flight"
     elsif !airport.weather_ok?
       puts "Stopped take off due to weather\n"
     end

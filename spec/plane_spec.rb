@@ -7,10 +7,6 @@ describe Plane do
   let(:plane) { Plane.new }
   let(:weather) { double(:weather) }
 
-  it "responds to .land" do
-    expect(subject).to respond_to(:land)
-  end
-
   it "can .land at an airport" do
     airport.weather = "sunny"
     plane.land(airport)
@@ -39,7 +35,13 @@ describe Plane do
     expect { plane.take_off(airport) }.to output("Stopped take off due to weather\n").to_stdout
   end
 
-  it "prevents plane from taking off in airport they are not in" do
+  it "prevents .take_off when already in flight" do
+    airport.weather = "sunny"
+    # plane.land(airport)
+    expect { plane.take_off(airport) }.to output("Already in flight").to_stdout
+  end
+
+  it "prevents plane from .take_off in airport they are not in" do
     
     airport1 = Airport.new
     airport2 = Airport.new
