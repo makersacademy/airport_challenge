@@ -13,22 +13,16 @@ Airport Challenge
 
 ```
 
-Instructions
+Background
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Fist large individual project in the first week at Makers, which is helping to achieve the following development goals:
 
-Steps
--------
+* I version-control my projects
+* I test-drive my code
+* I can work to a specification
+* I can write standards-compliant, clean object-oriented code
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
@@ -77,14 +71,43 @@ In code review we'll be hoping to see:
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Approach to solving the challenge
+-----
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+In order to complete the challenge I followed TDD process by feature testing and writing unit tests before writing the actual code that makes the tests pass. At each stage I checked if the test coverage is high enough and if code conforms to the Rubocop style guide.
+The software to control the flow of planes at an airport can fulfil user stories and allows air traffic controller to:
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+* instruct a plane to land at an airport,
+* instruct a plane to take off from an airport and confirm that it is no longer in the airport,
+* prevent takeoff when weather is stormy,
+* prevent landing when weather is stormy,
+* prevent landing when the airport is full,
+as well as allow the system designer to override default airport capacity.
+The code currently defends against some edge cases (planes that are already flying cannot takeoff and planes that landed cannot land again)
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+In the next steps I'm going to:
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* refactor by separating weather information into its own class and file (to meet SRP)
+* test further edge cases (planes can only take off from airport they are in, planes that landed must be at the airport). I'm thinking about using methods stubs `allow(obj).to receive(:method).and_return(:value)` to write the unit tests and later use `object_id` method to make the tests pass.
+
+Instructions
+-----
+```
+$ irb
+2.5.0 :003 > airport = Airport.new
+ => #<Airport:0x00007fb5c81a53d0 @planes=[], @capacity=20> 
+2.5.0 :004 > plane = Plane.new
+ => #<Plane:0x00007fb5c819d658 @location=:air> 
+2.5.0 :005 > airport.land(plane)
+ => :airport 
+2.5.0 :006 > airport.take_off(plane)
+ => :air 
+ ```
+ To change airport's capacity
+ ```
+$ irb
+2.5.0 :003 > another_airport = Airport.new(50)
+ ```
+
+
