@@ -2,8 +2,9 @@ class Plane
   def initialize
   end
 
-  def land
-# land the plane
+  def land(airport)
+    airport.hangar << self
   end
+
 
 end
