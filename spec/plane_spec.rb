@@ -4,7 +4,7 @@ describe Plane do
 
   let(:airport) { double :airport }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:landed).with(1).argument }
 
   describe '#landed' do
     it 'is only possible to land a flying plane' do
