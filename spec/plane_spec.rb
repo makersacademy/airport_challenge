@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:plane) { Plane.new }
+  let(:plane) { described_class.new }
 
   describe '#initialize' do
     it 'sets a plane to be in flight by default' do
@@ -16,7 +16,6 @@ describe Plane do
     end
 
     it 'returns self after switching in flight to false' do
-      plane = Plane.new
       expect(plane.ground_plane).to eq plane
     end
 
@@ -26,9 +25,8 @@ describe Plane do
     end
 
     it 'returns self after switching in flight to true' do
-      plane_1 = Plane.new
-      plane_1.ground_plane
-      expect(plane_1.unground_plane).to eq plane_1
+      plane.ground_plane
+      expect(plane.unground_plane).to eq plane
     end
   end
 

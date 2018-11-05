@@ -27,8 +27,10 @@ describe Airport do
 
   describe '#land' do
     context 'whilst no storm is present' do
+
       before do
         allow(airport).to receive(:weather_check).and_return('Sunshine')
+
         it 'allows a plane to land at an airport' do
           allow(plane).to receive(:ground_plane).and_return(plane)
           airport.land(plane)
@@ -52,9 +54,9 @@ describe Airport do
         end
 
         it 'raises an error when attempting to land a plane when the airport is full having set a default capacity' do
-          Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
+          Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
           message = 'Unable to land when airport full!'
-          expect { airport.land(Plane.new) }.to raise_error message
+          expect { airport.land(plane) }.to raise_error message
         end
 
         it 'raises an error when atempting to land a plane when the airport is full having set a custom capacity' do
@@ -79,8 +81,10 @@ describe Airport do
 
   describe '#plane_take_off' do
     context 'when no storm is present' do
+
       before do
         allow(airport).to receive(:weather_check).and_return('Sunshine')
+
         it 'allows planes to take off from an airport' do
           airport.land(plane)
           airport.take_off(plane)
@@ -94,36 +98,38 @@ describe Airport do
     end
 
     context 'during a storm' do
+
       it 'raises an error when a plane attempts to take off during a storm' do
         allow(airport).to receive(:weather_check).and_return('Sunshine')
-        plane = Plane.new
+        allow(plane).to receive(:ground_plane).and_return(plane)
         airport.land(plane)
         allow(airport).to receive(:weather_check).and_return('Stormy')
         expect { airport.take_off(plane) }.to raise_error 'Plane cannot take off during storm!'
       end
+
     end
   end
 
   describe '#confirm_take_off' do
-    it 'allows user to confirm a plane has taken off' do
-      allow(airport).to receive(:weather_check).and_return('Sunshine')
-      plane = Plane.new
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.confirm_take_off(plane)).to eq "Confirmed: #{plane} has taken off!"
-    end
 
-    it 'raises an error if the plane has not taken off' do
+    before do
       allow(airport).to receive(:weather_check).and_return('Sunshine')
-      plane = Plane.new
-      airport.land(plane)
-      expect { airport.confirm_take_off(plane) }.to raise_error "#{plane} has not taken off!"
-    end
-  end
 
-  describe '#weather_check' do
-    it 'allows user to check the weather' do
-      expect(airport.weather_check).to eq('Sunshine').or eq('Stormy')
+      it 'allows user to confirm a plane has taken off' do
+        allow(plane).to receive(:ground_plane).and_return(plane)
+        airport.land(plane)
+        allow(plane).to receive(:in_flight).and_return(false)
+        allow(plane).to receive(:unground_plane).and_return(plane)
+        airport.take_off(plane)
+        allow(plane).to receive(:in_flight).and_return(true)
+        expect(airport.confirm_take_off(plane)).to eq "Confirmed: #{plane} has taken off!"
+      end
+
+      it 'raises an error if the plane has not taken off' do
+        allow(plane).to receive(:ground_plane).and_return(plane)
+        airport.land(plane)
+        expect { airport.confirm_take_off(plane) }.to raise_error "#{plane} has not taken off!"
+      end
     end
   end
 

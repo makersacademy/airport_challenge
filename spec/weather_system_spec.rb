@@ -2,7 +2,7 @@ require 'weather_system'
 
 describe WeatherSystem do
 
-  let(:weather_system) { WeatherSystem.new }
+  let(:weather_system) { described_class.new }
 
   describe '#rand_num_generator' do
     it 'generates a number between 1 and 4' do
