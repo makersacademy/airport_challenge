@@ -7,28 +7,24 @@ describe Plane do
 
   describe '#land' do
 
-    it 'plane can land at an airport' do
+    before do
       allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
       allow(airport).to receive(:hangar_full?) { false }
-      expect(subject.land(airport)).to be_a_kind_of Array
     end
 
     it 'plane cannot land if already at an airport' do
-      allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
-      allow(airport).to receive(:hangar_full?) { false }
       subject.land(airport)
       expect { subject.land(airport) }.to raise_error 'Plane has already landed'
+    end
+
+    it 'cannot land at an airport if there is no space left' do
+      allow(airport).to receive(:hangar_full?) { true }
+      expect { subject.land(airport) }.to raise_error 'Cannot land at full airport'
     end
 
     it 'cannot land at an airport if stormy' do
       allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'stormy' }
       expect { subject.land(airport) }.to raise_error 'Cannot land in stormy weather'
-    end
-
-    it 'cannot land at an airport if there is no space left' do
-      allow(airport).to receive_message_chain(:weather, :what_is_weather) { 'sunny' }
-      allow(airport).to receive(:hangar_full?) { true }
-      expect { subject.land(airport) }.to raise_error 'Cannot land at full airport'
     end
 
   end
