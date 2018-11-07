@@ -3,7 +3,7 @@ class Weather
 	def initialize
 		@storm = false
 	end
-	def stormy?(status = true)
-		@storm = status
+	def stormy?
+		@storm = [true, false].sample
 	end
 end
