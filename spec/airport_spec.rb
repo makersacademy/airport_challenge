@@ -37,21 +37,30 @@ describe 'Airport' do
       before '#take_off, set weather to be sunny' do
         sunny
       end
-      it 'confirms plane not at aiport using #take_off' do
+      it 'confirms plane not at aiport after #take_off' do
         2.times { airport.land(plane) }
         expect(airport.take_off).to eq "flight number #{plane} is no longer at the airport"
       end
 
-      it 'confirms plane is not at the airport after #take_off' do
+      it 'confirms plane is not on the landing_strip after #take_off' do
         airport.land(plane)
         airport.take_off
         expect(airport.landing_strip).not_to include(plane)
       end
 
       it "will thrown an error if a plane takes tires to #take_off while flying" do
-        allow(plane).to receive(:flying?).and_return(true)
-        expect { airport.take_off(plane) }.to raise_error("Already in the air")
+        flying_plane = Plane.new(true)
+        expect { airport.take_off(flying_plane) }.to raise_error("Can not take off: Plane is in the air")
       end
+
+      it "will throw an error if plane tries to take off but is not at the airport" do
+        bowing_747 = Plane.new(true)
+        gatwick = Airport.new
+        heathrow = Airport.new
+        gatwick.land(bowing_747)
+        expect { heathrow.take_off(bowing_747) }.to raise_error("Can not take off: Plane is not at the airport")
+      end
+
     end
 
     context 'when the weather is stormy' do

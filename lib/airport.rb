@@ -13,21 +13,26 @@ class Airport
   def land(plane)
     fail 'Sorry, no room' if @landing_strip.length == @max_capacity
     fail 'Sorry, too stormy' if WEATHER.sample == "Stormy"
-    # plane.status = "landed"
+    plane.flying = false
     @landing_strip << plane
     "Safely landed"
   end
 
   def take_off(plane = landing_strip.last)
-    fail 'Sorry, too stormy' if WEATHER.sample == "Stormy"
-    fail 'Already in the air' if plane.flying?
+    fail 'Sorry, too stormy' if stormy?
+    fail 'Can not take off: Plane is in the air' if plane.flying?
+    fail 'Can not take off: Plane is not at the airport' unless plane_at_terminal?(plane)
     @departure = @landing_strip.pop
-    departure.flying = true
+    @departure.flying = true
     "flight number #{departure} is no longer at the airport"
   end
 
-  def flying?
-    @flying
+  def stormy?
+    WEATHER.sample == "Stormy"
+  end
+
+  def plane_at_terminal?(plane)
+    @landing_strip.include?(plane)
   end
 
 end
@@ -35,8 +40,8 @@ end
 class Plane
   attr_accessor :flying
 
-  def initialize
-    @flying = false
+  def initialize(flying = false)
+    @flying = flying
   end
 
   def flying?
