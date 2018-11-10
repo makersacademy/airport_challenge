@@ -3,6 +3,7 @@ require 'airport'
 describe 'Airport' do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:flying_plane) {Plane.new(true)}
   let(:sunny) { allow(WEATHER).to receive(:sample) { "Sunny" } }
   let(:stormy) { allow(WEATHER).to receive(:sample) { "Stormy" } }
 
@@ -16,11 +17,17 @@ describe 'Airport' do
         sunny
       end
       it 'can land and conmfirms the plane has landed' do
-        expect(airport.land(plane)).to eq "Safely landed"
+        expect(airport.land(flying_plane)).to eq "Safely landed"
       end
 
-      it 'will prvent #land from executing if landing strip is full (max can be 20)' do
-        expect { 21.times { airport.land(plane) } }.to raise_error("Sorry, no room")
+      it 'will throw an error if #land is attempted when landing strip is full (max can be 20)' do
+        expect { 20.times { airport.land(Plane.new(true)) } }.to raise_error("Sorry, no room")
+      end
+
+      it 'will throw an error if a landed plane tries to #land' do
+        landed_plane = Plane.new
+        gatwick = Airport.new
+        expect{ gatwick.land(landed_plane) }.to raise_error("Can not land plane: Plane is already on the ground")
       end
     end
 
@@ -38,18 +45,17 @@ describe 'Airport' do
         sunny
       end
       it 'confirms plane not at aiport after #take_off' do
-        2.times { airport.land(plane) }
-        expect(airport.take_off).to eq "flight number #{plane} is no longer at the airport"
+        2.times { airport.land(Plane.new(true)) }
+        expect(airport.take_off).to eq "flight number #{airport.departure} is no longer at the airport"
       end
 
       it 'confirms plane is not on the landing_strip after #take_off' do
-        airport.land(plane)
+        airport.land(flying_plane)
         airport.take_off
         expect(airport.landing_strip).not_to include(plane)
       end
 
       it "will thrown an error if a plane takes tires to #take_off while flying" do
-        flying_plane = Plane.new(true)
         expect { airport.take_off(flying_plane) }.to raise_error("Can not take off: Plane is in the air")
       end
 
@@ -74,7 +80,7 @@ describe 'Airport' do
   it "Will allow you to increase the max capacity of the aiport (default is 20)" do
     sunny
     airport.max_capacity = 22
-    expect { 21.times { airport.land(plane) } }.not_to raise_error
+    expect { 21.times { airport.land(Plane.new(true)) } }.not_to raise_error
   end
 end
 

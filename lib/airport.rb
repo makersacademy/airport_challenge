@@ -12,7 +12,8 @@ class Airport
 
   def land(plane)
     fail 'Sorry, no room' if @landing_strip.length == @max_capacity
-    fail 'Sorry, too stormy' if WEATHER.sample == "Stormy"
+    fail 'Sorry, too stormy' if stormy?
+    fail 'Can not land plane: Plane is already on the ground' unless plane.flying?
     plane.flying = false
     @landing_strip << plane
     "Safely landed"
