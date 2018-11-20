@@ -1,8 +1,9 @@
 class Plane
 
   def land(landing_at)
-    if landing_at.weather == 'good'
+    if landing_at.weather.current_weather == 'good'
       check_for_duplicate(landing_at)
+    else
       raise Exception.new("Don't do it captain, we don't have power!")
     end
   end
@@ -17,7 +18,7 @@ class Plane
   end
 
   def take_off(from)
-    if from.weather == 'good'
+    if from.weather.current_weather == 'good'
       find_plane(from)
     else
       raise Exception.new("Are you mad! It's stormy outside!")
