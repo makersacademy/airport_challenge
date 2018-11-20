@@ -4,10 +4,11 @@ require 'airport'
 describe Plane do
 
   let(:plane) { Plane.new }
-  let(:airport) { Airport.new }
-  let(:weather) { double("weather",
+  let(:double_weather) { double("double_weather",
+    :current_weather => @current_weather =  "good",
     :set_weather_stormy => @current_weather = "storm",)
   }
+  let(:airport) { Airport.new(double_weather) }
 
   it "can check that the plane is in the hanger after landing" do
     plane.land(airport)
@@ -38,12 +39,12 @@ describe Plane do
 
   it "cannot take of if weather is stormy" do
     plane.land(airport)
-    airport.weather.set_weather_stormy
+    airport.double_weather.set_weather_stormy
     expect { plane.take_off(airport) }.to raise_exception(Exception, "Are you mad! It's stormy outside!")
   end
 
   it "cannopt land if the weather is stormy" do
-    airport.weather.set_weather_stormy
+    airport.double_weather.set_weather_stormy
     expect { plane.land(airport) }.to raise_exception(Exception, "Don't do it captain, we don't have power!")
   end
 end
