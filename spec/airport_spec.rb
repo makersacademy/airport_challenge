@@ -3,16 +3,21 @@ require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
 
-  it { is_expected.to respond_to(:plane)}
 
   describe '#land' do
     it 'responds to .land(plane)' do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it 'expects .land to not return plane' do
+    it 'expects .land to plane' do
       plane = Plane.new
       expect(airport.land(plane)).to eq plane
+    end
+
+    it 'expects .plane to return landed plane ID' do
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.plane).to eq plane
     end
   end
 
@@ -26,4 +31,5 @@ describe Airport do
       expect(airport.release(plane)).to eq plane
     end
   end
+
 end

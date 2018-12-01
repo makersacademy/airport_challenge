@@ -1,9 +1,9 @@
-# require_relative 'plane'
+require_relative 'plane'
 
 class Airport
 
   def land(plane)
-    plane
+    @plane = plane
   end
 
   def release(plane)
@@ -11,6 +11,7 @@ class Airport
   end
 
   def plane
+    @plane
   end
 
 end
