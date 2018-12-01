@@ -3,7 +3,7 @@ require "airport"
 describe Airport do
 
   it "should respond to the method landing_possibility" do
-    airport = Airport.new("Marignane", 100, 80)
+    airport = Airport.new("Marseille", 100, 80)
     expect(airport).to respond_to :landing_possibility
   end
 
