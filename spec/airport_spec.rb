@@ -35,28 +35,42 @@ describe Airport do
     plane2 = Plane.new
     plane3 = Plane.new
     expect(subject.takeoff(plane2)).equal? plane2
+    expect(subject.takeoff(plane1)).equal? plane1
+    expect(subject.takeoff(plane3)).equal? plane3
   end
 
   it "creates airport with a capacity of 20" do
-    big_airport = Airport.new(capacity = 20)
+    Airport.new(capacity = 20)
     expect(@capacity).equal? 20
   end
 
   it "creates airport with default capacity of 5" do
-    airport = Airport.new
+    Airport.new
     expect(@capacity).equal? 5
   end
 
   it "prevents landing when airport is at default capacity" do
     airport = Airport.new
     5.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error("The hanger is full. Plane can't land.")
+    expect { airport.land(Plane.new) }.to raise_error("The hanger is full.")
   end
 
   it "prevents landing if airport is at custom capacity" do
     big_airport = Airport.new(capacity = 20)
     20.times { big_airport.land(Plane.new) }
-    expect { big_airport.land(Plane.new) }.to raise_error("The hanger is full. Plane can't land.")
+    expect { big_airport.land(Plane.new) }.to raise_error("The hanger is full.")
+  end
+
+  it "prevents landing if weather is stormy" do
+    airport = Airport.new
+    airport.weather(1)
+    expect { airport.land(Plane.new) }.to raise_error("The weather is too rough.")
+  end
+
+  it "prevents takeoff if weather is stormy" do
+    airport = Airport.new
+    airport.weather(1)
+    expect { airport.takeoff(Plane.new) }.to raise_error("The weather is too rough.")
   end
 
 end
