@@ -37,6 +37,12 @@ describe Airport do
     expect(subject.takeoff(plane2)).equal? plane2
   end
 
+  it "creates airport with a capacity of 20" do
+    big_airport = Airport.new(capacity = 5)
+    expect(@capacity).equal? 5
+  end
+
+
 end
 
 describe Plane do
