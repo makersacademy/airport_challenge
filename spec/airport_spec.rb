@@ -8,9 +8,9 @@ describe Airport do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it 'only allows .land argument to be kind of plane' do
+    it 'expects .land to not return nil' do
       plane = Airport.new.land(plane)
-      expect(plane).to be_kind_of(Plane)
+      expect { plane.should_not be_nil }
     end
   end
 
@@ -19,9 +19,9 @@ describe Airport do
       expect(airport).to respond_to(:release).with(1).argument
     end
 
-    it 'only allows planes to .release_plane' do
+    it 'expects .release to not return nil' do
       plane = Airport.new.release(plane)
-      expect(plane).to be_kind_of(Plane)
+      expect { plane.should_not be_nil }
     end
   end
 end
