@@ -1,13 +1,16 @@
-require_relative 'plane'
+# require_relative 'plane'
 
 class Airport
 
   def land(plane)
-    Plane.new
+    plane
   end
 
   def release(plane)
-    Plane.new
+    plane
+  end
+
+  def plane
   end
 
 end
