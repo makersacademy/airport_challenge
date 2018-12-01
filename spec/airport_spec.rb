@@ -11,4 +11,10 @@ describe Airport do
     end
   end
 
+  describe ".takeoff" do
+    it "allows a plane to takeoff from the airport" do
+      expect(subject).to respond_to :takeoff
+    end
+  end
+
 end
