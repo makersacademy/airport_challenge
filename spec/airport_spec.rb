@@ -1,4 +1,5 @@
 require 'airport.rb'
+require 'plane.rb'
 
 describe Airport do
 
@@ -9,9 +10,5 @@ describe Airport do
       expect (subject.land(plane)).equal? plane
     end
   end
-
-end
-
-describe Plane do
 
 end
