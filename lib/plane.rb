@@ -1,4 +1,4 @@
 class Plane
-  def in_airport?
+  def landed?
   end
 end

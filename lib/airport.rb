@@ -14,8 +14,13 @@ class Airport
   def take_off
     hangar.pop
   end
+
+  def in_airport?(plane)
+    hangar.include?(plane)
+  end
+
 end
 
-# def airport
-#   @airport
+# def hangar
+#   @hangar
 # end
