@@ -9,7 +9,7 @@ describe Airport do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it 'expects .land to plane' do
+    it 'expects .land to return plane' do
       plane = Plane.new
       expect(airport.land(plane)).to eq plane
     end
@@ -22,13 +22,14 @@ describe Airport do
   end
 
   describe '#release' do
-    it 'responds to .release(plane)' do
-      expect(airport).to respond_to(:release).with(1).argument
+    it 'responds to .release_plane' do
+      expect(airport).to respond_to(:release_plane)
     end
 
-    it 'expects .release to return plane' do
+    it 'expects .plane to return released plane ID' do
       plane = Plane.new
-      expect(airport.release(plane)).to eq plane
+      airport.land(plane)
+      expect {airport.release_plane}.to output("#{plane} departed").to_stdout
     end
   end
 
