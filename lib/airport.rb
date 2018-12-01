@@ -1,11 +1,18 @@
 class Airport
 
-  def land_plane(plane)
-    @plane
+  attr_reader :hanger
+
+  def initialize
+    @hanger = []
+  end
+
+  def land(plane)
+    @hanger.push(plane)
+    @hanger
   end
 
   def takeoff(plane)
-    @plane
+    @hanger.delete(plane)
   end
 
 end
