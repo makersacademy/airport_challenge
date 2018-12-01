@@ -13,13 +13,13 @@ describe Airport do
     end
   end
 
-  describe '#release_plane' do
-    it 'responds to .release_plane' do
-      expect(subject).to respond_to(:release_plane)
+  describe '#release' do
+    it 'responds to .release(plane)' do
+      expect(subject).to respond_to(:release).with(1).argument
     end
 
     it 'only allows planes to .release_plane' do
-      plane = Airport.new.release_plane
+      plane = Airport.new.release(plane)
       expect(plane).to be_kind_of(Plane)
     end
   end

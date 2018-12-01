@@ -6,7 +6,7 @@ class Airport
     Plane.new
   end
 
-  def release_plane
+  def release(plane)
     Plane.new
   end
 
