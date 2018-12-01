@@ -1,12 +1,21 @@
 require 'airport'
 
 describe Airport do
-  it 'responds to .land' do
-    expect(subject).to respond_to(:land_plane)
+
+  describe '#land_plane' do
+    it 'responds to .land_plane' do
+      expect(subject).to respond_to(:land_plane)
+    end
+
+    it 'only allows planes to .land_plane' do
+      plane = Airport.new.land_plane
+      expect(plane).to be_kind_of(Plane)
+    end
   end
 
-  it 'only allows planes to .land_plane' do
-    plane = Airport.new.land_plane
-    expect(plane).to be_kind_of(Plane)
+  describe '#release_plane' do
+    it 'responds to .release_plane' do
+      expect(subject).to respond_to(:release_plane)
+    end
   end
 end
