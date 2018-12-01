@@ -8,11 +8,15 @@ class Airport
   end
 
   def land(plane)
+    raise 'Plane already landed' if plane.landed == true
+    plane.landed = true
     hangar << plane
   end
 
-  def take_off
-    hangar.pop
+  def take_off(plane)
+    raise 'Plane already flying' if plane.landed == false
+    plane.landed = false
+    hangar.delete(plane)
   end
 
   def in_airport?(plane)
