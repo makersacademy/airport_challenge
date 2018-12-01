@@ -47,6 +47,17 @@ describe Airport do
     expect(@capacity).equal? 5
   end
 
+  it "prevents landing when airport is at default capacity" do
+    airport = Airport.new
+    5.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error("The hanger is full. Plane can't land.")
+  end
+
+  it "prevents landing if airport is at custom capacity" do
+    big_airport = Airport.new(capacity = 20)
+    20.times { big_airport.land(Plane.new) }
+    expect { big_airport.land(Plane.new) }.to raise_error("The hanger is full. Plane can't land.")
+  end
 
 end
 
