@@ -34,7 +34,7 @@ describe Airport do
 
       it "raises an error if the airport is full" do
         allow(plane).to receive(:landing).with(airport)
-        10.times{airport.land(plane)}
+        10.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error "Airport full"
       end
 
