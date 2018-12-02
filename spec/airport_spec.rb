@@ -7,4 +7,6 @@ describe Airport do
     expect(airport).to respond_to(:land).with(1).argument
   end
 
+it { is_expected.to respond_to(:takeoff) }
+
 end
