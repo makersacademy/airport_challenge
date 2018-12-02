@@ -9,7 +9,7 @@ describe Airport do
 
   context 'when the weather is sunny' do
     before do
-      allow(subject).to receive(:weather) { "sunny" }
+      allow(subject).to receive(:weather) { :sunny }
     end
 
     describe '#land' do
@@ -47,8 +47,8 @@ describe Airport do
       it 'does not take_off if the plane is not in the current airport' do
         airport1 = Airport.new
         airport2 = Airport.new
-        allow(airport1).to receive(:weather) { "sunny" }
-        allow(airport2).to receive(:weather) { "sunny" }
+        allow(airport1).to receive(:weather) { :sunny }
+        allow(airport2).to receive(:weather) { :sunny }
         airport1.land(plane)
 
         expect { airport2.take_off(plane) }.to raise_error 'Plane not in current airport'
@@ -71,7 +71,7 @@ describe Airport do
   context 'when the weather is stormy' do
     describe '#land' do
       it 'does not land if the weather is stormy' do
-        allow(subject).to receive(:weather) { "stormy" }
+        allow(subject).to receive(:weather) { :stormy }
 
         expect { subject.land(plane) }.to raise_error 'Plane cannot land due to stormy weather'
       end
@@ -79,9 +79,9 @@ describe Airport do
 
     describe '#take_off' do
       it 'does not take_off if the weather is stormy' do
-        allow(subject).to receive(:weather) { "sunny" }
+        allow(subject).to receive(:weather) { :sunny }
         subject.land(plane)
-        allow(subject).to receive(:weather) { "stormy" }
+        allow(subject).to receive(:weather) { :stormy }
 
         expect { subject.take_off(plane) }.to raise_error 'Plane cannot take_off due to stormy weather'
       end

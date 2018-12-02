@@ -6,7 +6,7 @@ class Weather
   end
 
   def generate_weather
-    (0..3) === random ? "sunny" : "stormy"
+    (0..3) === random ? :sunny : :stormy
   end
 
   private
