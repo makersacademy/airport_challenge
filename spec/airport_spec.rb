@@ -43,9 +43,8 @@ describe Airport do
     it 'lets a plane take_off' do
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane)
-      subject.take_off(plane)
 
-      expect(subject.hangar).to eq []
+      expect(subject.take_off(plane)).to eq plane
     end
 
     it 'does not let the same plane take_off twice' do

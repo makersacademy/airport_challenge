@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   DEFAULT_CAPACITY = 2
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
@@ -31,6 +31,8 @@ class Airport
   end
 
   private
+
+  attr_reader :hangar
 
   def full?
     hangar.count >= capacity
