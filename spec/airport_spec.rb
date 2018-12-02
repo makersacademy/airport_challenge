@@ -60,9 +60,7 @@ RSpec.describe Airport do
   end
 
   it 'should be able to set airports capacity to a desired capacity' do
-    
     airport = Airport.new(20)
-    
     expect(airport.capacity).to eq 20
   end
 
