@@ -8,7 +8,7 @@ describe Weather do
   end
 
   describe '#weather_forecast' do
-    it 'responds to .sunny_or_stormy' do
+    it 'responds to .weather_forecast' do
       expect(weather).to respond_to(:weather_forecast).with(1).argument
     end
 
