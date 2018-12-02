@@ -1,13 +1,14 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 2
-  attr_reader :capacity, :weather
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
-    @weather = generate_weather
+    @weather = Weather.new.weather
   end
 
   def land(plane)
@@ -32,14 +33,10 @@ class Airport
 
   private
 
-  attr_reader :hangar
+  attr_reader :hangar, :weather
 
   def full?
     hangar.count >= capacity
   end
 
-  def generate_weather
-    result = rand(0..4)
-    (0..3) === result ? "sunny" : "stormy"
-  end
 end
