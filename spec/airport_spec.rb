@@ -16,8 +16,14 @@ describe '#airport' do
   end
 
   describe "#take_off" do
-    it "interacts with #land method and take 1 argument" do
-      expect(airport).to respond_to(:take_off).with(1).argument
+    it "accepts with #land method" do
+      expect(airport).to respond_to(:take_off)
+    end
+
+    it "#take_off removes a plane from the hangar array" do
+      airport.land(plane)
+      airport.take_off
+      expect(airport.hangar).not_to include(plane)
     end
   end
 end
