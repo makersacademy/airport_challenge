@@ -12,12 +12,15 @@ class Airport
   def land(plane)
     raise 'Airport full' if full?
     raise 'Bad weather' if stormy?
+    plane.land
 
     @planes << plane
   end
 
   def takeoff(plane)
     raise 'Bad weather' if stormy?
+    raise 'Plane not here' unless @planes.include?(plane)
+    plane.takeoff
 
     @planes.delete(plane)
   end

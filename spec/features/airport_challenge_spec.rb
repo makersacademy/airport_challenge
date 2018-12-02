@@ -35,7 +35,7 @@ RSpec.describe 'Airport Challenge' do
     expect { heathrow.land(plane1) }.to raise_error('Already landed')
 
     # - can't takeoff a plane if it's already taken off
-    expect { heathrow.takeoff(plane2) }.to raise_error('Already taken off')
+    expect { heathrow.takeoff(plane2) }.to raise_error('Plane not here')
 
     # - can't takeoff a plane from a different airport if it's landed in another
     gatwick = Airport.new(weather: weather)

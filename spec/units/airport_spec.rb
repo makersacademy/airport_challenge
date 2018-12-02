@@ -1,4 +1,4 @@
-require 'Airport'
+require 'airport'
 
 RSpec.describe Airport do
   describe '#land' do
