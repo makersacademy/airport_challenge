@@ -1,18 +1,21 @@
 require_relative 'airplane'
+require_relative 'weather'
 
 class Airport
 
+  def initialize(weather = Weather.new)
+    @airplanes = []
+    @weather = weather
+  end
+
   def land(airplane)
-    @airplane = airplane unless stormy?
+    @airplanes << airplane unless @weather.stormy?
   end
 
-  def take_off
-    @airplane unless stormy?
+  # for the take off we need to ensure the plane has previously landed
+  # take_off(airplane) => look for plane in the array
+  def take_off(airplane)
+    @airplanes.select { |plane| plane == airplane }.first unless @weather.stormy?
   end
-
-  def stormy?
-    rand(0..1) == 1 ? true : false
-  end
-  # 0 is sunny , 1 is stormy
 
 end
