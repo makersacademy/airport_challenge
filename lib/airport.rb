@@ -21,8 +21,11 @@ class Airport
   end
 
   def take_off
-     @hangar.pop
-     @hangar
+     if @weather.get_weather == 'clear'
+       @hangar.pop
+     end 
+       @hangar
+
   end
 
 private
@@ -30,5 +33,4 @@ private
   def full?
     @hangar.size >= @capacity
   end
-
 end
