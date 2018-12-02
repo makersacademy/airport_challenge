@@ -9,8 +9,11 @@ describe Plane do
     allow(Plane).to receive(:status) { "In Air" }
   end
 
-  it { is_expected.to respond_to :working }
   it { is_expected.to respond_to :status }
+
+  it 'should ensure that planes always begin in the air' do
+    expect(@plane.status).to eq "In Air"
+  end
 
   it 'should return true when asked if grounded plane is grounded' do
     @plane.status.equal? "Landed"
@@ -22,4 +25,7 @@ describe Plane do
     expect(@plane.in_air).to eq false
   end
 
+  describe '#update_status' do
+    it { is_expected.to respond_to(:update_status) }
+  end
 end

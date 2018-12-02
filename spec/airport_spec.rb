@@ -14,7 +14,7 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       airport.landing_plane(plane)
-      expect { Airport::DEFAULT_CAPACITY.times airport.landing_plane(plane) }.to raise_error "Unable to land"
+      expect { Airport::DEFAULT_CAPACITY.times (airport.landing_plane(plane)) }.to raise_error "Unable to land"
     end
 
     it "raises an error when you try and land the same plane multiple times at the same airport" do

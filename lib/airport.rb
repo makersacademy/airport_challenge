@@ -11,14 +11,14 @@ class Airport
   end
 
   def landing_plane(plane)
-    fail "Unable to land" if (full_airport || weather)
+    fail "Unable to land" if full_airport == true || weather == true
     fail "This plane has already landed!" if @planes.include? plane
     plane.update_status
     @planes << plane
   end
 
   def take_off(plane)
-    fail "Unable to take off" if (no_planes || weather)
+    fail "Unable to take off" if no_planes == true || weather == true
     fail "This plane is not at the airport!" unless @planes.include? plane
     plane.update_status
     @planes.pop

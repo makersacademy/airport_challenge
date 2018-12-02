@@ -2,11 +2,10 @@ require_relative 'airport'
 
 class Plane
 
-  attr_accessor :broken
   attr_accessor :status
 
 # start with false - links to update_status and intialises planes in air
-  def initialize(status = false)
+  def initialize(status = "In Air")
     @status = status
   end
 

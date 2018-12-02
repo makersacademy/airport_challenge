@@ -13,6 +13,72 @@ Airport Challenge
 
 ```
 
+My approach to this challenge
+---------
+* Use user stories to build file structure and think about how I want them to interact with one another
+* Build a test for a method I want, let it fail, then write the code and rework until it passes - using the TDD process learned in week 1 at Makers Academy
+* Three items were present in the user stories - Airports, Planes, and Weather
+* Used the user stories info to build these classes, for example the weather was stormy or not, the airport had a given capacity & could be full or empty
+* Ran feature tests every step along the way to make sure the code was doing what I wanted it to be doing, and the tests weren't just passing by accident
+* Used effective debugging methods as I had been taught to this week when I found myself blocked and my tests failing
+* Effectively used the given tests to gain 0 rubocop infractions & 99% test coverage
+* Were I to continue with this I would try to refactor it & reach 100% test coverage
+
+[Imgur](https://i.imgur.com/RD5Fxio.png)
+
+An example of how the program can be run in irb
+
+```
+Simons-MBP:airport_challenge simon$ irb
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007f8a768dacb8 @planes=[], @capacity=9001>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007f8a768d2e28 @status="In Air">
+2.5.0 :004 > plane.status
+ => "In Air"
+2.5.0 :005 > @planes
+ => nil
+2.5.0 :006 > airport.landing_plane(plane)
+ => [#<Plane:0x00007f8a768d2e28 @status="Landed">]
+2.5.0 :007 > plane.status
+ => "Landed"
+2.5.0 :008 > @planes
+ => nil
+2.5.0 :009 > airport.landing_plane(plane)
+Traceback (most recent call last):
+        3: from /Users/simon/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):9
+        1: from /Users/simon/Projects/airport_challenge/lib/airport.rb:14:in `landing_plane'
+RuntimeError (Unable to land)
+2.5.0 :010 > weather = Weather.new
+ => #<Weather:0x00007f8a77828d78>
+2.5.0 :011 > weather.stormy
+ => false
+2.5.0 :012 > airport.take_off(plane)
+Traceback (most recent call last):
+        3: from /Users/simon/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):12
+        1: from /Users/simon/Projects/airport_challenge/lib/airport.rb:21:in `take_off'
+RuntimeError (Unable to take off)
+2.5.0 :013 > weather.stormy
+ => false
+2.5.0 :014 > weather.stormy
+ => false
+2.5.0 :015 > weather.stormy
+ => true
+2.5.0 :016 > weather.stormy
+ => true
+2.5.0 :017 > airport.take_off(plane)
+Traceback (most recent call last):
+        3: from /Users/simon/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):17
+        1: from /Users/simon/Projects/airport_challenge/lib/airport.rb:21:in `take_off'
+RuntimeError (Unable to take off)
+```
+
+
 Instructions
 ---------
 
@@ -36,25 +102,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +139,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
