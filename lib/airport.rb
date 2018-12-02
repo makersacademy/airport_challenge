@@ -19,9 +19,8 @@ class Airport
   end
 
   def take_off(plane)
-    if weather_reporter(3) == "Sunny"
-      p "The weather is sunny, safe to take off. 
-      Plane #{plane.object_id} has successfully left the airport"
+    if weather_reporter(1) == "Sunny"
+      p "The weather is sunny, safe to take off.\nPlane #{plane.object_id} has successfully left the airport"
     else
       p "The weather is too stormy, you cannot take_off"
     end
