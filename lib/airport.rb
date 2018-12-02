@@ -1,4 +1,5 @@
-require "plane"
+require_relative "plane"
+require_relative "weather"
 
 class Airport
   attr_reader :planes
@@ -13,6 +14,10 @@ class Airport
 
   def take_off
     @planes.pop
+  end
+
+  def weather
+    @weather ||= Weather.new.stormy
   end
 
 end
