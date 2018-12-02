@@ -1,5 +1,4 @@
 require 'airport'
-require 'pry'
 
 RSpec.describe Airport do
   before(:each) do

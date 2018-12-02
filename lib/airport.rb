@@ -1,8 +1,6 @@
 require_relative 'airplane'
 require_relative 'weather'
 
-require 'pry'
-
 class Airport
 
   DEFAULT_CAPACITY = 3
@@ -21,7 +19,7 @@ class Airport
   end
 
   def take_off(airplane)
-    fail 'The plane hasnt landed yet' unless in_the_airport?(airplane) 
+    fail 'The plane hasnt landed yet' unless in_the_airport?(airplane)
     fail 'The weather is stormy' if @weather.stormy?
     @airplanes.select { |plane| plane == airplane }.first
   end
