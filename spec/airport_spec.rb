@@ -22,4 +22,11 @@ describe Airport do
     end
   end
 
+  describe "#initialize" do
+    it "it should start wth a given capacity defined by the user" do
+      airport = Airport.new(1337)
+      expect(airport.capacity).to eq(1337)
+    end
+  end
+
 end
