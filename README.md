@@ -37,11 +37,11 @@ $ pry
 [2] pry(main)> airport = Airport.new
 => #<Airport:0x00007fa172bd6170 @capacity=20, @hangar=[], @weather=:sunny>
 [3] pry(main)> plane = Plane.new
-=> #<Plane:0x00007fa172b9fb48 @landed=false>
+=> #<Plane:0x00007fa172b9fb48 @flying=true>
 [4] pry(main)> airport.land(plane)
-=> [#<Plane:0x00007fa172b9fb48 @landed=true>]
+=> [#<Plane:0x00007fa172b9fb48 @flying=false>]
 [5] pry(main)> airport.take_off(plane)
-=> #<Plane:0x00007fa172b9fb48 @landed=false>
+=> #<Plane:0x00007fa172b9fb48 @flying=true>
 [6] pry(main)> airport.in_airport?(plane)
 => false
 
