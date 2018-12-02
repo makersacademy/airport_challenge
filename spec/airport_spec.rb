@@ -7,7 +7,12 @@ describe Airport do
    it { is_expected.to respond_to(:land).with(1).arguments }
 
    it 'Lands and keeps a plane' do
-     expect(airport.land(plane)).to eq plane
+     expect(airport.land(plane)).equal? plane
+   end
+
+   it 'Lets a plane take off' do
+     expect(subject.take_off).to eq nil
+
    end
 end
 
