@@ -24,7 +24,7 @@ My approach to this challenge
 * Effectively used the given tests to gain 0 rubocop infractions & 99% test coverage
 * Were I to continue with this I would try to refactor it & reach 100% test coverage
 
-[Imgur](https://i.imgur.com/RD5Fxio.png)
+![Imgur](https://i.imgur.com/RD5Fxio.png)
 
 An example of how the program can be run in irb
 
