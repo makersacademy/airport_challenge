@@ -12,27 +12,23 @@ class Airport
   end
   
   def stormy?
-  x = Random.rand(1..2)
+    x = rand(1..2)
     if x == 1
       true
-    else
+    elsif x == 2
       false
     end
   end
 
   def land(plane)
+    fail 'Airport full' if @hanger.length == @capacity
     @plane = plane
     @hanger.push @plane
     @hanger
-
   end
 
-  def take_off
+  def take_off(plane)
     fail 'Planes grounded because of stormy weather' if stormy? 
-    @hanger.pop
+    @hanger.delete plane
   end
-
-
-
-end 
-
+end
