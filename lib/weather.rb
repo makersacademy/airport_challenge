@@ -1,7 +1,5 @@
 class Weather
 
-  attr_reader :stormy
-
   def random
     rand(1..7)
   end
@@ -9,9 +7,9 @@ class Weather
   def conditions
     case random
     when 1
-      @stormy = true
+      true
     else
-      @stormy = false
+      false
     end
   end
 

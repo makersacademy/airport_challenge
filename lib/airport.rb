@@ -2,21 +2,32 @@ require './lib/weather'
 
 class Airport < Weather
 
-  attr_reader :plane, :hangar
+  attr_reader :plane, :hangar, :capacity
 
   def initialize
     @hangar = []
+    @capacity = 1
   end
 
   def land(plane)
-    raise "It is too stormy to land" unless stormy == false
+    raise "The plane cannot land" if stormy? || full?
     @hangar << plane
   end
 
   def take_off
-    raise "It is too stormy to fly" unless stormy == false
+    raise "It is too stormy to fly" if stormy?
     departed_plane = @hangar.pop
     puts "#{departed_plane} has left the airport"
+  end
+
+  private
+
+  def stormy?
+    conditions
+  end
+
+  def full?
+    @hangar.count >= @capacity
   end
 
 end

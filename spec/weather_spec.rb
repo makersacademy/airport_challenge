@@ -3,8 +3,10 @@ require 'weather'
 describe "#weather" do
   let(:weather) { Weather.new }
 
-  it "chooses a number at random" do
-    expect(weather.random).to be_between(1, 7)
+  describe "#random" do
+    it "chooses a number at random" do
+      expect(weather.random).to be_between(1, 7)
+    end
   end
 
   describe "stormy?" do
