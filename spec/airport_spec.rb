@@ -3,7 +3,7 @@ require 'airplane'
 
 RSpec.describe Airport do
   let(:airport) { Airport.new }
-  let(:airplane) { Airplane.new}
+  let(:airplane) { Airplane.new }
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
