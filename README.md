@@ -14,8 +14,7 @@
 
 ## Makers Academy - Weekend 1 Challenge
 
-A piece of software to control the flow of planes at an airport. The User is able to create instances of airports and planes which can interact in appropriate manners.
-
+A piece of software to control the flow of planes at an airport. The user is able to create instances of airports and planes which can interact with each other in appropriate manners.
 
 Planes are able to take off and land at airports when the weather is sunny and will be prevented from doing so if the weather is stormy.
 
@@ -29,7 +28,7 @@ The state of an airport's weather is determined randomly.
 
 ## Usage
 
-Run pry or a similar REPL eg.:
+Use pry or a similar REPL to interact with the program eg.:
 ```
 $ pry
 [1] pry(main)> require "./lib/airport"
@@ -46,7 +45,6 @@ $ pry
 => false
 
 ```
-
 
 ## Running tests
 
