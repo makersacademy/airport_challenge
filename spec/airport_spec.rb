@@ -12,12 +12,12 @@ describe Airport do
 
    it 'Lets a plane take off' do
      expect(subject.take_off).to eq nil
-
    end
+
+  describe 'land' do
+   it 'raises an error when hangar is ful' do
+     1.times { subject.land Plane.new}
+     expect{ subject.land(plane)}.to raise_error 'Hangar full'
+    end
+  end
 end
-
-
-#it 'docks a bike' do
-#  bike = Bike.new
-#  expect(subject.dock(bike)).equal? bike
-#end

@@ -3,11 +3,26 @@ require_relative 'plane'
 class Airport
 
 
+
+  def initialize(capacity = 1)
+    @capacity = capacity
+    @hangar = []
+  end
+
   def land(plane)
-    @plane = plane
+    fail 'Hangar full' if full?
+    @hangar << @plane
+    "Plane landed safely"
   end
 
   def take_off
-    @plane = nil
+    @hangar.pop
+    "Plane has left the runway"
   end
+
+private
+  def full?
+    @hangar.size >= @capacity
+  end
+
 end
