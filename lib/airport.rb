@@ -11,6 +11,7 @@ class Airport
   end
 
   def take_off(plane)
+    p "plane #{plane.object_id} has successfully left the airport"
   end
 
 end

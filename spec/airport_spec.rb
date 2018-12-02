@@ -23,4 +23,8 @@ describe Airport do
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
+  it 'confirms a plane is no longer in airport' do
+    expect(airport.take_off(plane)).to eql("plane #{plane.object_id} has successfully left the airport")
+  end
+
 end
