@@ -1,26 +1,32 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
-
-
-  def initialize(capacity = 1)
+  def initialize(capacity = 1, weather = Weather.new)
     @capacity = capacity
     @hangar = []
+    @weather = weather
   end
 
   def land(plane)
-    fail 'Hangar full' if full?
-    @hangar << @plane
-    "Plane landed safely"
+     weather = @weather.get_weather
+     if weather == 'stormy'
+       @hangar
+     elsif full?
+      fail 'Hangar full'
+     else
+      @hangar << plane
+    end
   end
 
   def take_off
-    @hangar.pop
-    "Plane has left the runway"
+     @hangar.pop
+     @hangar
   end
 
 private
+
   def full?
     @hangar.size >= @capacity
   end
