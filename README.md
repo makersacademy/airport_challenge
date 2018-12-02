@@ -29,12 +29,13 @@ The state of an airport's weather is determined randomly.
 ## Usage
 
 Use pry or a similar REPL to interact with the program eg.:
+
 ```
 $ pry
 [1] pry(main)> require "./lib/airport"
 => true
 [2] pry(main)> airport = Airport.new
-=> #<Airport:0x00007fa172bd6170 @capacity=2, @hangar=[], @weather="sunny">
+=> #<Airport:0x00007fa172bd6170 @capacity=20, @hangar=[], @weather=:sunny>
 [3] pry(main)> plane = Plane.new
 => #<Plane:0x00007fa172b9fb48 @landed=false>
 [4] pry(main)> airport.land(plane)
@@ -43,6 +44,29 @@ $ pry
 => #<Plane:0x00007fa172b9fb48 @landed=false>
 [6] pry(main)> airport.in_airport?(plane)
 => false
+
+```
+
+Planes will not be able to land if the airport is at capacity.
+
+```
+[10] pry(main)> 20.times { airport.land(Plane.new) }
+=> 20
+[11] pry(main)> airport.land(Plane.new)
+RuntimeError: Airport at capacity
+
+```
+
+ Users can set this capacity at initialization.
+
+```
+
+[12] pry(main)> another_airport = Airport.new(5)
+=> #<Airport:0x00007fdae8855ed8 @capacity=5, @hangar=[], @weather=:sunny>
+[13] pry(main)> 5.times { another_airport.land(Plane.new) }
+=> 5
+[14] pry(main)> another_airport.land(Plane.new)
+RuntimeError: Airport at capacity
 
 ```
 
