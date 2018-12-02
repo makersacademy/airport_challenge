@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 RSpec.describe 'Airport Challenge' do
 
@@ -13,7 +14,10 @@ RSpec.describe 'Airport Challenge' do
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
   it 'can take off and land a number of planes' do
-    heathrow = Airport.new
+    weather = Weather.new
+    allow(weather).to receive(:stormy?).and_return(false)
+
+    heathrow = Airport.new(weather: weather)
     plane1 = Plane.new
     plane2 = Plane.new
 
@@ -26,15 +30,6 @@ RSpec.describe 'Airport Challenge' do
     expect(heathrow.land(plane1)).to eq [plane1]
   end
 
-  it 'can prevent landing at an airport with custom capacity' do
-    la_guardia = Airport.new(capacity: 1)
-    plane1 = Plane.new
-    plane2 = Plane.new
-
-    expect(la_guardia.land(plane1)).to eq [plane1]
-    expect { la_guardia.land(plane2) }.to raise_error('Airport full')
-  end
-
 # Version 2
 # As an air traffic controller
 # To ensure safety
@@ -44,6 +39,17 @@ RSpec.describe 'Airport Challenge' do
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
+  it 'can prevent landing at an airport with custom capacity' do
+    weather = Weather.new
+    allow(weather).to receive(:stormy?).and_return(false)
+    la_guardia = Airport.new(capacity: 1, weather: weather)
+    plane1 = Plane.new
+    plane2 = Plane.new
+
+    expect(la_guardia.land(plane1)).to eq [plane1]
+    expect { la_guardia.land(plane2) }.to raise_error('Airport full')
+  end
+
 # Version 3
 # As an air traffic controller
 # To ensure safety
@@ -52,5 +58,18 @@ RSpec.describe 'Airport Challenge' do
 # As an air traffic controller
 # To ensure safety
 # I want to prevent landing when weather is stormy
+
+  it 'can prevent landing or taking off when the weather is stormy' do
+    weather = Weather.new
+    allow(weather).to receive(:stormy?).and_return(false)
+    city_airport = Airport.new(weather: weather)
+    plane1 = Plane.new
+    plane2 = Plane.new
+    city_airport.land(plane1)
+    allow(weather).to receive(:stormy?).and_return(true)
+
+    expect { city_airport.takeoff(plane1) }.to raise_error('Bad weather')
+    expect { city_airport.land(plane2) }.to raise_error('Bad weather')
+  end
 
 end
