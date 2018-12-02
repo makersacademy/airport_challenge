@@ -27,6 +27,14 @@ RSpec.describe Airport do
 
       expect(airport.land(plane)).to eq [plane]
     end
+
+    it 'can be set when needed' do
+      airport = Airport.new(capacity: 1)
+      plane = double('a plane')
+      airport.land(plane)
+
+      expect { airport.land(plane) }.to raise_error('Airport full')
+    end
   end
 
 end
