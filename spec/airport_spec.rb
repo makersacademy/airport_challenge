@@ -16,9 +16,14 @@ RSpec.describe Airport do
   it 'should respond to take off' do
     expect(subject).to respond_to :take_off
   end
+  it 'should take plane out of hanger when taking off' do
+    plane = Plane.new
+    expect(subject.take_off).to eq nil
+  end
+
   it 'should be able to set to the default capacity if no capacity given' do
     airport = Airport.new
-    expect(airport.capacity).to eq 50
+    expect(airport.capacity).to eq 1
   end
   it 'should be able to set airports capacity to a desired capacity' do
     airport = Airport.new(20)
