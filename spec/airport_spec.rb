@@ -6,6 +6,19 @@ describe "#airport" do
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
+  context "#initialize with parameter" do
+    it "takes an argument for capacity" do
+      airport1 = Airport.new(100)
+      expect(airport1.capacity).to eql(100)
+    end
+  end
+
+  context "#initialize with default" do
+    it "returns the default value for capacity if no argument is given" do
+      expect(airport.capacity).to eql(Airport::DEFAULT_CAPACITY)
+    end
+  end
+
   context "#land" do
     it "accepts land method and takes 1 argument" do
       allow(weather).to receive(:stormy).and_return(false)
@@ -27,9 +40,16 @@ describe "#airport" do
     end
 
     context "airport hangar is full" do
-      it "will not allow a plane to land" do
+      it "will not allow a plane to land (custom capacity)" do
+        airport2 = Airport.new(1)
+        allow(airport2).to receive(:stormy?).and_return(false)
+        1.times{ airport2.land(plane) }
+        expect{ airport2.land(plane) }.to raise_error "The plane cannot land"
+      end
+      
+      it "will not allow a plane to land (default capacity)" do
         allow(airport).to receive(:stormy?).and_return(false)
-        1.times{ airport.land(plane) }
+        Airport::DEFAULT_CAPACITY.times{ airport.land(plane) }
         expect{ airport.land(plane) }.to raise_error "The plane cannot land"
       end
     end
