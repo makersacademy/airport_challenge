@@ -3,7 +3,9 @@ require 'Airport'
 RSpec.describe Airport do
   describe '#land' do
     it 'instructs a plane to land' do
-      airport = Airport.new
+      weather = double('weather')
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport = Airport.new(weather: weather)
       plane = double('a plane')
 
       expect(airport.land(plane)).to eq [plane]
@@ -12,7 +14,9 @@ RSpec.describe Airport do
 
   describe '#takeoff' do
     it 'instructs a plane to takeoff' do
-      airport = Airport.new
+      weather = double('weather')
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport = Airport.new(weather: weather)
       plane = double('a plane')
       airport.land(plane)
 
@@ -22,14 +26,18 @@ RSpec.describe Airport do
 
   describe 'capacity' do
     it 'can be set when needed' do
-      airport = Airport.new(capacity: 2)
+      weather = double('weather')
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport = Airport.new(capacity: 2, weather: weather)
       plane = double('a plane')
 
       expect(airport.land(plane)).to eq [plane]
     end
 
     it 'can be set when needed' do
-      airport = Airport.new(capacity: 1)
+      weather = double('weather')
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport = Airport.new(capacity: 1, weather: weather)
       plane = double('a plane')
       airport.land(plane)
 
