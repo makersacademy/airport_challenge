@@ -10,10 +10,11 @@ describe Airport do
       @weather = allow(subject).to receive(:weather) { false }
       expect(subject.landing_plane(plane)).to eq [plane]
     end
+    # shamelessly stole the below from my boris-bike task file
     it "it prevents landings at a full airport" do
       airport = Airport.new
-      Airport::DEFAULT_CAPACITY.times { airport.landing_plane(Plane.new) }
-      expect { airport.landing_plane(Plane.new) }.to raise_error "There's no space for more planes!"
+      airport.landing_plane(Plane.new)
+      expect { Airport::DEFAULT_CAPACITY.times airport.landing_plane(Plane.new) }.to raise_error "Unable to land"
     end
   end
 
@@ -25,12 +26,22 @@ describe Airport do
       subject.landing_plane(plane)
       expect(subject.take_off).to eq plane
     end
+
+    it "It prevents planes taking off from an empty airport" do
+      airport = Airport.new
+      expect { airport.take_off }.to raise_error "Unable to take off"
+    end
   end
 
   describe "#initialize" do
     it "it should start wth a given capacity defined by the user" do
       airport = Airport.new(1337)
       expect(airport.capacity).to eq(1337)
+    end
+
+    it "It initializes with default capacity given no capacity" do
+      airport = Airport.new
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
