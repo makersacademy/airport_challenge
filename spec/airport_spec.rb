@@ -69,19 +69,22 @@ describe Airport do
   end
 
   context 'when the weather is stormy' do
-    it 'does not take_off if the weather is stormy' do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
-      allow(subject).to receive(:weather) { "stormy" }
+    describe '#land' do
+      it 'does not land if the weather is stormy' do
+        allow(subject).to receive(:weather) { "stormy" }
 
-      expect { subject.take_off(plane) }.to raise_error 'Plane cannot take_off due to stormy weather'
+        expect { subject.land(plane) }.to raise_error 'Plane cannot land due to stormy weather'
+      end
     end
 
-    it 'does not land if the weather is stormy' do
-      allow(subject).to receive(:weather) { "stormy" }
+    describe '#take_off' do
+      it 'does not take_off if the weather is stormy' do
+        allow(subject).to receive(:weather) { "sunny" }
+        subject.land(plane)
+        allow(subject).to receive(:weather) { "stormy" }
 
-      expect { subject.land(plane) }.to raise_error 'Plane cannot land due to stormy weather'
+        expect { subject.take_off(plane) }.to raise_error 'Plane cannot take_off due to stormy weather'
+      end
     end
   end
-
 end
