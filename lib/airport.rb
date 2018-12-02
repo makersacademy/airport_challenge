@@ -10,21 +10,21 @@ class Airport
   end
 
   def land(plane)
-     weather = @weather.get_weather
-     if weather == 'stormy'
-       @hangar
-     elsif full?
+    weather = @weather.weather_condition
+    if weather == 'stormy'
+      @hangar
+    elsif full?
       fail 'Hangar full'
-     else
+    else
       @hangar << plane
     end
   end
 
   def take_off
-     if @weather.get_weather == 'clear'
-       @hangar.pop
-     end 
-       @hangar
+    if @weather.weather_condition == 'clear'
+      @hangar.pop
+    end
+    @hangar
 
   end
 

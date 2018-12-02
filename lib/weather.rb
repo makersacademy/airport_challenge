@@ -1,5 +1,5 @@
 class Weather
-  def get_weather
-    rand(10) == 0 ? 'stormy' : 'clear'
+  def weather_condition
+    rand(10).zero? ? 'stormy' : 'clear'
   end
 end
