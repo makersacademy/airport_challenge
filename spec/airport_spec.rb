@@ -11,8 +11,9 @@ RSpec.describe Airport do
   end
 
   describe '#take_off' do
-    it 'lets the plane take off' do
+    it 'lets the plane take off if the weather is good' do
       airplane = Airplane.new
+      allow(@airport).to receive(:stormy?) { 0 }
       @airport.land(airplane)
       expect(@airport.take_off).to eq airplane
     end

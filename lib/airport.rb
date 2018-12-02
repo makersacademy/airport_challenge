@@ -7,7 +7,12 @@ class Airport
   end
 
   def take_off
-    @airplane
+    @airplane unless stormy? == 1
   end
+
+  def stormy?
+    rand(0..1)
+  end
+  # 0 is sunny , 1 is stormy
 
 end
