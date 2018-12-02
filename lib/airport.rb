@@ -28,7 +28,7 @@ class Airport
   end
 
   def take_off
-    raise "storm" if stormy? == true 
+    fail 'Planes grounded because of stormy weather' if stormy? 
     @hanger.pop
   end
 
