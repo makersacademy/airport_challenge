@@ -1,18 +1,18 @@
 class Plane
 
-  def initialize (origin, destination, plane_state)
-    @origin = origin
-    @destination = destination
+  def initialize(plane_state)
     @plane_state = plane_state
 
   end
 
+  attr_accessor :plane_state
+
   def flying?
-    return true if @plane_state == "flying"
+    @plane_state == "flying"
   end
 
   def landed?
-    return true if @plane_state == "landed"
+    @plane_state == "landed"
   end
 
 end

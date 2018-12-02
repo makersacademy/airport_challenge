@@ -1,90 +1,98 @@
-Airport Challenge
-=================
+# Airport Challenge #
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+The client request to have a software to control the flow of planes at an airport.<br/>
+The planes are allow to land and take off only if the weather is sunny.Sometimes it can be stormy, which make the land and take_off of the planes not allowed.<br/>
+Also, the planes cannot take_off if they are already flying and cannot land if they are already landed.<br/>
+The planes can take_off only from the airport they are in, and should be in an airport when they are landed.<br/>
+An airport as a certain capacity which have to be respected. So if an airport is full, no plane is allowed to land.<br/>
 
-```
+Based on the user story, I have decided to create 4 classes and 1 module :<br/>
 
-Instructions
----------
+1. The class Weather, which is having 2 constants for sunny and stormy weather.<br/>
+This class has 2 methods, one which randomly give a forecast and one which is checking if the weather is sunny or not.<br/>
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+2. The class Plane, inside of which I will check if the plane state is flying or landed.<br/>
 
-Steps
--------
+3. The class Airport, which is taking 3 parameters : name, capacity and landed_planes, which will allow to create an airport instance with a name, a capacity to respect and the number of planes already in.<br/>
+In this class I am checking the landing_possibility.<br/>
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+4. Finally, I have created a file where all the previous classes are required. And I have created a general module System, which is wrapping the SystemControl class.<br/>
+This class takes 3 parameters. The airport_origin, the airport_destination and the plane.<br/>
+The airport_origin and airport_destination objects are instances of the Airport class.<br/>
+The plane object is an instance of the Plane class.<br/>
+This class also needs the instance variable weather which is an instance of the Weather class.<br/>
+Then check if the planes can land or not and take_off or not based on the weather, plane state and origin and destination airport.<br/>
+The action of land or take off will also inside of each method change the number of planes landed in the airports every times that one or this other method will be called.
 
-Task
------
+All the tests have been been written before to build the code
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+## How to use ##
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+1. clone the repo<br/>
+Under the repo name click *clone or download*<br/>
+Click on *use HTTPs*, copy the clone URL of the repo<br/>
+In the terminal go on the working directory where you want the cloned directory to be<br/>
+Use the `git clone` command and paste the clone URL then press enter :
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+```shell
+$ git clone https://github.com/your-username/your-repositary.git
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+2. On your local machine go inside of the *airport_challenge* directory :
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```shell
+$ cd airport_challenge
+```
+3. To install all the *gems* contained in the *Gemfile*, intall and run *Bundle* :
+Install :
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+```shell
+$ install bundle
+```
+Run:
 
-Please create separate files for every class, module and test suite.
+```shell
+$ bundle
+```
 
-In code review we'll be hoping to see:
+4. You can see the differents directories, with the `ls` command. If you want to see all the *.rb* files built for the challenge, go inside of the *lib* directory :
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+```shell
+$ cd lib
+```
+Or if you want to see all the tests built for all the code, go inside of the *sepc* directory :
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+```shell
+$ cd lib
+```
 
-**BONUS**
+5. You can open the *.rb* file that you wanted to read and change the code in your text editor or using `vim` :
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+```shell
+$ vim wanted_file.rb
+```
+Or you can just read the contains of it from the command line with `cat` :
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+```shell
+$ cat wanted_file.rb
+```
+6. Check that the codes are passing the tests by going back to the root *airport_challenge* directory and by running the *spec*.<br/>
+You can check all the code files in one time :
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+```shell
+$ cd airport_challenge
+$ rspec
+```
+You can check only one code file at a time :
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+```shell
+$ cd airport_challenge
+$ rspec spec/file_name_spec.rb
+```
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+7. Check that the code respect the quality of the *Rubocop* guideline, by running `rubocop` from the *airport_challenge* directory :
+
+```shell
+$ cd airport_challenge
+$ rubocop
+```

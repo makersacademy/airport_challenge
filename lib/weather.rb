@@ -7,12 +7,8 @@ class Weather
     rand(1..2)
   end
 
-  def is_sunny?(weather)
-    if weather == SUNNY
-      true
-    else
-      false
-    end
+  def sunny?(weather)
+    weather == SUNNY
   end
 
 end
