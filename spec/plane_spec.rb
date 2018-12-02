@@ -10,5 +10,4 @@ describe Plane do
     plane = Plane.new
     expect(subject.takeoff).equal? plane
   end
-
 end
