@@ -5,12 +5,12 @@ class Weather
   end
 
   def weather_condition
+
     case random_weather
-    when 1
-      @stormy = true
-    else
-      @stormy = false
+    when 1 then @stormy = true
+    when 2 then @stormy = false
     end
+
   end
 
 end
