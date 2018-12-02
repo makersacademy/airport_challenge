@@ -20,4 +20,13 @@ RSpec.describe Airport do
     end
   end
 
+  describe 'capacity' do
+    it 'can be set when needed' do
+      airport = Airport.new(capacity: 2)
+      plane = double('a plane')
+
+      expect(airport.land(plane)).to eq [plane]
+    end
+  end
+
 end
