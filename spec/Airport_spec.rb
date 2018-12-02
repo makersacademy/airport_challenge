@@ -1,32 +1,42 @@
 require "Airport.rb"
 
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport
-# and confirm that it is no longer in the airport
-
 describe Airport do
 
-  plane = Plane.new
-  it 'can instruct a plane to takeoff' do
-    subject.land(plane, "clear")
-    expect(subject.takeoff(plane, "clear")).is_a? Plane
+  let(:airport) { Airport.new(50) }
+  let(:plane) { Plane.new }
+
+  context '#land' do
+
+    it 'responds to land' do
+      expect(airport).to respond_to(:land)
+    end
+
+    it 'lands the plane in the airport' do
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+
   end
-  it "can confirm plane has left airport" do
-    subject.land(plane, "clear")
-    subject.takeoff(plane, "clear")
-    expect(subject.planes.empty?).to be true
+
+  context '#takeoff' do
+
+    it 'responds to take off' do
+      expect(airport).to respond_to(:takeoff)
+    end
+
+    it 'confrims the plane is no longer in the airport' do
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(airport.planes).not_to include(plane)
+    end
+
   end
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent takeoff when weather is stormy
-  it 'does not allow plane to take off, when stormy' do
-    expect { subject.takeoff(plane, "stormy") }.to raise_error("#{plane} Cannot take off")
-  end
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when weather is stormy
-  it 'does not allow plane to land, when stormy' do
-    expect { subject.land(plane, "stormy") }.to raise_error("#{plane} Cannot land")
+
+  context 'stormy #weather' do
+    let(:airport) { Airport.new(90) }
+    it 'cannot take off if weather is stormy' do
+      expect { airport.takeoff(plane) }.to raise_error("#{plane} Cannot take off")
+    end
+
   end
 end
