@@ -9,6 +9,7 @@ class Airport < Weather
   end
 
   def land(plane)
+    raise "It is too stormy to land" unless stormy == false
     @hangar << plane
   end
 

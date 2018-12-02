@@ -1,18 +1,27 @@
 require 'airport'
 
-describe '#airport' do
+describe "#airport" do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
-  describe "#land" do
+  context "#land" do
     it "accepts land method and takes 1 argument" do
+      allow(weather).to receive(:stormy).and_return(false)
       expect(airport).to respond_to(:land).with(1).argument
     end
 
     it "stores the landed plane in the hangar array" do
+      allow(airport).to receive(:stormy).and_return(false)
       airport.land(plane)
       expect(airport.hangar).to include(plane)
+    end
+
+    context "stormy weather" do
+      it "will not allow a plane to #land when it's stormy" do
+        allow(airport).to receive(:stormy).and_return(true)
+        expect { airport.land(plane) }.to raise_error "It is too stormy to land"
+      end
     end
   end
 
@@ -32,8 +41,8 @@ describe '#airport' do
 
     context "stormy weather" do
       it "will not allow #take_off if it is stormy" do
-        allow(airport).to receive(:conditions).and_return(true)
-        airport.land(plane)
+        allow(airport).to receive(:stormy).and_return(true)
+        allow(airport.hangar).to receive(:plane)
         expect{ airport.take_off }.to raise_error "It is too stormy to fly"
       end
     end
