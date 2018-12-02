@@ -25,8 +25,7 @@ describe Airport do
 
   it 'confirms a plane is no longer in airport' do
     allow(airport.take_off(plane)).to receive(airport.weather_reporter(3)).and_return("Sunny")
-    expect(airport.take_off(plane)).to eql("The weather is sunny, safe to take off.\n
-      Plane #{plane.object_id} has successfully left the airport")
+    expect(airport.take_off(plane)).to eql("The weather is sunny, safe to take off.\n Plane #{plane.object_id} has successfully left the airport")
   end
 
   it 'responds to #weather_reporter' do
@@ -41,6 +40,15 @@ describe Airport do
   it 'only allows #land in sunny weather' do
     allow(airport.land(plane)).to receive(airport.weather_reporter(1)).and_return("Stormy")
     expect(airport.land(plane)).to eql("The weather is too stormy, you cannot land")
+  end
+
+  it 'only allows 5 planes to land' do
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    expect(airport.land(plane)).to eql("This airport is full, you cannot land here")
   end
 
 end
