@@ -1,9 +1,9 @@
 require 'weather'
 require 'airport'
 describe Weather do
-  let (:weather) {Weather.new}
-  let (:airport) {Airport.new}
-  
+  let(:weather) { Weather.new }
+  let(:airport) { Airport.new }
+
   context '#stormy?' do
 
     it 'responds to stormy?' do

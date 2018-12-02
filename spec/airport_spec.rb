@@ -2,8 +2,8 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let (:airport) {Airport.new}
-  let (:plane) {Plane.new}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   context '#responds' do
 
@@ -18,7 +18,7 @@ describe Airport do
   end
 
   context '#non-stormy weather' do
-    before { allow(airport).to receive(:weather) {false} }
+    before { allow(airport).to receive(:weather) { false } }
 
     it 'take off removes the plane from the airport' do
       airport.land(plane)
@@ -32,21 +32,21 @@ describe Airport do
     end
 
     it 'cannot land if the airport is full' do
-      Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
-      expect{airport.land(plane)}.to raise_error 'Airport is full'
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Airport is full'
     end
 
   end
 
   context '#stormy weather' do
-    before { allow(airport).to receive(:weather) {true} }
+    before { allow(airport).to receive(:weather) { true } }
 
     it 'cannot take off if weather is stormy' do
-      expect{ airport.take_off }.to raise_error 'It is too stormy for take off'
+      expect { airport.take_off }.to raise_error 'It is too stormy for take off'
     end
 
     it 'cannot land if weather is stormy' do
-      expect{ airport.land(plane) }.to raise_error 'It is too stormy to land'
+      expect { airport.land(plane) }.to raise_error 'It is too stormy to land'
     end
 
   end
