@@ -43,14 +43,14 @@ describe "#airport" do
       it "will not allow a plane to land (custom capacity)" do
         airport2 = Airport.new(1)
         allow(airport2).to receive(:stormy?).and_return(false)
-        1.times{ airport2.land(plane) }
-        expect{ airport2.land(plane) }.to raise_error "The plane cannot land"
+        1.times { airport2.land(plane) }
+        expect { airport2.land(plane) }.to raise_error "The plane cannot land"
       end
-      
+
       it "will not allow a plane to land (default capacity)" do
         allow(airport).to receive(:stormy?).and_return(false)
-        Airport::DEFAULT_CAPACITY.times{ airport.land(plane) }
-        expect{ airport.land(plane) }.to raise_error "The plane cannot land"
+        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "The plane cannot land"
       end
     end
   end
@@ -73,7 +73,7 @@ describe "#airport" do
       it "will not allow #take_off if it is stormy" do
         allow(airport).to receive(:conditions).and_return(true)
         allow(airport.hangar).to receive(:plane)
-        expect{ airport.take_off }.to raise_error "It is too stormy to fly"
+        expect { airport.take_off }.to raise_error "It is too stormy to fly"
       end
     end
   end
