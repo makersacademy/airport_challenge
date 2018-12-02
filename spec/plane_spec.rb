@@ -2,10 +2,13 @@ require "plane"
 
 describe Plane do
   it "lands a plane" do
-  expect(subject).to respond_to(:land)
+    plane = Plane.new
+    expect(subject.land(plane)).equal? plane
   end
 
   it "takes off from the airport" do
-    expect(subject).to respond_to(:takeoff)
+    plane = Plane.new
+    expect(subject.takeoff).equal? plane
   end
+
 end
