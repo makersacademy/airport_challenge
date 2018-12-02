@@ -1,4 +1,6 @@
-class Airport
+require './lib/weather'
+
+class Airport < Weather
 
   attr_reader :plane, :hangar
 
@@ -11,6 +13,7 @@ class Airport
   end
 
   def take_off
+    raise "It is too stormy to fly" unless stormy == false
     departed_plane = @hangar.pop
     puts "#{departed_plane} has left the airport"
   end

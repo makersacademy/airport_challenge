@@ -1,5 +1,7 @@
 class Weather
 
+  attr_reader :stormy
+
   def random
     rand(1..7)
   end
