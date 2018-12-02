@@ -2,8 +2,7 @@ require_relative "plane"
 require_relative "weather"
 
 class Airport
-  attr_accessor :planes
-  attr_accessor :capacity
+  attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 9001
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -12,12 +11,16 @@ class Airport
   end
 
   def landing_plane(plane)
-    fail "Unable to land" if full_airport || weather
+    fail "Unable to land" if (full_airport || weather)
+    fail "This plane has already landed!" if @planes.include? plane
+    plane.update_status
     @planes << plane
   end
 
-  def take_off
-    fail "Unable to take off" if no_planes || weather
+  def take_off(plane)
+    fail "Unable to take off" if (no_planes || weather)
+    fail "This plane is not at the airport!" unless @planes.include? plane
+    plane.update_status
     @planes.pop
   end
 
