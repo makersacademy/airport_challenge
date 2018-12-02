@@ -26,6 +26,15 @@ RSpec.describe 'Airport Challenge' do
     expect(heathrow.land(plane1)).to eq [plane1]
   end
 
+  it 'can prevent landing at an airport with custom capacity' do
+    la_guardia = Airport.new(capacity: 1)
+    plane1 = Plane.new
+    plane2 = Plane.new
+
+    expect(la_guardia.land(plane1)).to eq [plane1]
+    expect { la_guardia.land(plane2) }.to raise_error('Airport full')
+  end
+
 # Version 2
 # As an air traffic controller
 # To ensure safety
