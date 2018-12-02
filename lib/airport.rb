@@ -12,6 +12,7 @@ class Airport
   end
 
   def landing_plane(plane)
+    fail "There's no space for more planes!" if @planes.length >= @capacity
     @planes << plane
   end
 

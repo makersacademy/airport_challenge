@@ -4,11 +4,16 @@ require "weather"
 describe Airport do
 
   describe "#landing" do
-    it 'It allows planes to land' do
+    it "It allows planes to land" do
       plane = Plane.new
-      # Will land when weather isn't stormy - 60% of the time
+    # Will land when weather isn't stormy - 60% of the time
       @weather = allow(subject).to receive(:weather) { false }
       expect(subject.landing_plane(plane)).to eq [plane]
+    end
+    it "it prevents landings at a full airport" do
+      airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times { airport.landing_plane(Plane.new) }
+      expect { airport.landing_plane(Plane.new) }.to raise_error "There's no space for more planes!"
     end
   end
 
