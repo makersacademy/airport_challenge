@@ -25,6 +25,7 @@ describe Airport do
     end
 
     it 'removes the plane from the airport' do
+      allow(airport).to receive(:weather) {false}
       airport.land(plane)
       airport.take_off
       expect(airport.planes).to eql([])
@@ -32,11 +33,11 @@ describe Airport do
 
   end
 
-  context 'stormy #weather' do
-    before { allow(weather).to receive(:stormy?).and_return(true) }
+  context '#take off in storm' do
 
     it 'cannot take off if weather is stormy' do
-      expect{airport.take_off}.to raise_error
+      allow(airport).to receive(:weather) {true}
+      expect{ airport.take_off }.to raise_error 'It is too stormy for take off'
     end
 
   end
