@@ -32,13 +32,13 @@ describe Airport do
 
   end
 
-#   context 'stormy #weather' do
-#     before { allow(airport).to receive(:weather).and_return("stormy") }
-#
-#     it 'cannot take off if weather is stormy' do
-#       expect{airport.take_off}.to raise_error
-#     end
-#
-#   end
-#
-# end
+  context 'stormy #weather' do
+    before { allow(weather).to receive(:stormy?).and_return(true) }
+
+    it 'cannot take off if weather is stormy' do
+      expect{airport.take_off}.to raise_error
+    end
+
+  end
+
+end
