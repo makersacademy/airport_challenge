@@ -45,8 +45,7 @@ describe Airport do
       end
 
       it 'does not take_off if the plane is not in the current airport' do
-        airport1 = Airport.new
-        airport2 = Airport.new
+        airport1, airport2 = Airport.new, Airport.new
         allow(airport1).to receive(:weather) { :sunny }
         allow(airport2).to receive(:weather) { :sunny }
         airport1.land(plane)
