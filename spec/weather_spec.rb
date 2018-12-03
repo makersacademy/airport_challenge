@@ -8,10 +8,6 @@ describe Weather do
   end
 
   describe '#weather_forecast' do
-    it 'responds to .weather_forecast' do
-      expect(weather).to respond_to(:weather_forecast).with(1).argument
-    end
-
     it 'returns sunny when 1 passed as argument' do
       expect(weather.weather_forecast(1)).to eq 'sunny'
     end
@@ -20,4 +16,5 @@ describe Weather do
       expect(weather.weather_forecast(2)).to eq 'stormy'
     end
   end
+
 end
