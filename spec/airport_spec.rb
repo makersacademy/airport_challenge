@@ -15,5 +15,18 @@ require "airport"
     plane = Plane.new
     expect(subject.take_off(plane)).equal? plane
     end 
-  end 
+
+    it "Does not allow plane to take off if weather is stormy" do
+      airport = Airport.new 
+      airport.weather(1)
+      expect { airport.take_off(Plane.new) }.to raise_error "Weather is too stormy to take_off"
+    end
+
+    it "Good weather" do
+      airport = Airport.new 
+      airport.weather(0)
+      expect { airport.take_off(Plane.new) }.equal? [airport]
+    end
+  end  
+
 
