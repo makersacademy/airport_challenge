@@ -11,7 +11,6 @@ describe "#weather" do
 
   describe "stormy?" do
     context "it is not stormy" do
-      let(:cheese) { Weather.new }
       it "means the weather is sunny" do
         allow(weather).to receive(:rand).and_return(5)
         expect(weather.conditions).to eql(false)
