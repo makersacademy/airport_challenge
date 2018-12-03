@@ -1,5 +1,5 @@
 require 'airport'
-require 'plane'
+#  require 'plane'
 
 describe "#airport" do
   let(:airport) { Airport.new }
@@ -71,7 +71,7 @@ describe "#airport" do
 
     context "stormy weather" do
       it "will not allow #take_off if it is stormy" do
-        allow(airport).to receive(:conditions).and_return(true)
+        allow(airport).to receive(:stormy?).and_return(true)
         allow(airport.hangar).to receive(:plane)
         expect { airport.take_off }.to raise_error "It is too stormy to fly"
       end

@@ -1,6 +1,4 @@
-require './lib/weather'
-
-class Airport < Weather
+class Airport
 
   attr_reader :plane, :hangar, :capacity
   DEFAULT_CAPACITY = 50
