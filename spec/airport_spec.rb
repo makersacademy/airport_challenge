@@ -6,10 +6,13 @@ describe Airport do
   let(:weather) { double :weather }
 
   context 'if the weather is stormy' do
+    before do
+      allow(weather).to receive(:weather_forecast).and_return(false)
+    end
+
     it 'storm blocks departure' do
       airport.land(plane)
-      allow(weather).to receive(:random_number).and_return(2)
-      allow(weather).to receive(:weather_forecast).with(2).and_return('stormy')
+      allow(weather).to receive(:weather_forecast).and_return(:stormy)
       message = 'departure prevented due to stormy weather'
       expect { airport.release_plane }.to raise_error message
     end
@@ -27,11 +30,11 @@ describe Airport do
       end
     end
 
-  #   describe '#release_plane' do
-  #     it 'expects .release_plane to return released plane ID' do
-  #       airport.land(plane)
-  #       expect { airport.release_plane }.to output("#{plane} departed").to_stdout
-  #     end
-  #   end
+    # describe '#release_plane' do
+    #   it 'expects .release_plane to return released plane ID' do
+    #     airport.land(plane)
+    #     expect { airport.release_plane }.to output("#{plane} departed").to_stdout
+    #   end
+    # end
   end
 end
