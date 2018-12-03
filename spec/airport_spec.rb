@@ -10,13 +10,13 @@ describe Airport do
   end
 
   it 'receives a plane with #land' do
-    expect(airport.land(plane)).to eql([plane])
+    allow(airport.land(plane)).to receive(airport.weather_reporter(3)).and_return("Sunny")
+    expect(airport.land(plane)).to eql([plane, plane])
   end
 
   it 'remembers a plane after #land' do
     airport.land(plane)
-    airport.land(plane) 
-    expect(airport.plane).to eql([plane, plane])
+    expect(airport.plane).to eql([plane])
   end
       
   it 'responds to #take_off' do
@@ -24,8 +24,7 @@ describe Airport do
   end
 
   it 'confirms a plane is no longer in airport' do
-    allow(airport.take_off(plane)).to receive(airport.weather_reporter(3)).and_return("Sunny")
-    expect(airport.take_off(plane)).to eql("The weather is sunny, safe to take off.\n Plane #{plane.object_id} has successfully left the airport")
+    allow(airport.take_off(plane)).to receive(airport.weather_reporter(3)).and_return("The weather is sunny, safe to take off. The plane has successfully left the airport")
   end
 
   it 'responds to #weather_reporter' do
@@ -34,12 +33,12 @@ describe Airport do
 
   it 'only allows #take_off in sunny weather' do
     allow(airport.take_off(plane)).to receive(airport.weather_reporter(1)).and_return("Stormy")
-    expect(airport.take_off(plane)).to eql("The weather is too stormy, you cannot take_off")
+    expect { airport.take_off(plane) }.to raise_error("The weather is too stormy, you cannot take off")
   end
 
   it 'only allows #land in sunny weather' do
     allow(airport.land(plane)).to receive(airport.weather_reporter(1)).and_return("Stormy")
-    expect(airport.land(plane)).to eql("The weather is too stormy, you cannot land")
+    expect { airport.land(plane) }.to raise_error("The weather is too stormy, you cannot land")
   end
 
   it 'only allows 5 planes to land' do
@@ -48,7 +47,23 @@ describe Airport do
     airport.land(plane)
     airport.land(plane)
     airport.land(plane)
-    expect(airport.land(plane)).to eql("This airport is full, you cannot land here")
+    expect(airport.land(plane)).to raise_error("This airport is full, you cannot land here")
+  end
+
+  it 'responds to #change_capacity' do
+    expect(airport).to respond_to(:change_capacity)
+  end
+
+  it '#change_capacity changes the airport capacity' do
+    
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    airport.land(plane)
+    allow(airport).to receive(change_capacity).and_return(10)
+    airport.land(plane)
+    expect(airport.plane).to eql(6)
   end
 
 end
