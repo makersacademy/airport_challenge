@@ -14,12 +14,12 @@ class Airport
   end
 
   def land(plane)
-    raise "no planes can land" unless @weather.weather_condition == false
+    raise "No planes can land, stormy weather." if @weather.stormy?
     @airport << plane
   end
 
   def takeoff
-    raise "No planes can take off, stormy weather." unless @weather.weather_condition == false
+    raise "No planes can take off, stormy weather." if @weather.stormy?
     @airport.pop
   end
 
