@@ -11,6 +11,8 @@ RSpec.describe Airport do
 
   it { is_expected.to respond_to(:takeoff) }
 
+  it { is_expected.to respond_to(:full?) }
+
   describe '#take off' do
     it "prevents to take off in case of stormy" do
       forecast = create_sunny_weather
@@ -27,6 +29,16 @@ RSpec.describe Airport do
       subject = Airport.new(forecast)
       allow(forecast).to receive(:stormy?).and_return(true)
       expect { subject.land(airplane) }.to raise_error "No planes can land, stormy weather."
+    end
+  end
+
+  describe '#full?' do
+    it "prevents to land planes in case of full airport" do
+      capacity = 2
+      gatwick = Airport.new(create_sunny_weather, capacity)
+      gatwick.land(airplane)
+      gatwick.land(airplane)
+      expect { gatwick.land(airplane) }.to raise_error "No more planes can land, airport full."
     end
   end
 
