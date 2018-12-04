@@ -59,9 +59,11 @@ We were required to use a random number generator to set the weather (it is norm
 
 I was unable to get past the third user story. In the tests, the use of doubles and a stub to override random weather to ensure consistent test behaviour was required. I didn't manage to successfully implement these, and felt that in the spirit of TDD I couldn't move on as I hadn't technically satisfied the red-green process.
 
+## Progress made since initial pull request:
+1. Discussed and now understand correct implementation of doubles/stubs with peers and coaches, as this was the block to progressing further with the task.
+2. Followed the TTD approach strictly to develop code for user story 4 and 5.
+
 ## How I plan to finish the task:
 
-1. Discuss my research and attempts to implement doubles/stubs with peers and coaches, as this was the block to progressing further with the task
-2. After the above, TDD the 4th, 5th and 6th user stories
-3. Ensure that code defends against [edge cases], such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-4. Write an RSpec **feature** test that lands and takes off a number of planes
+1. Ensure that code defends against [edge cases], such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+2. Write an RSpec **feature** test that lands and takes off a number of planes

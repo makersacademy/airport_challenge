@@ -10,14 +10,21 @@ describe Airport do
   end
 
   describe '#land' do
+
     it 'expects .plane to return landed plane ID' do
       airport.land(plane)
       expect(airport.plane).to eq plane
     end
 
+    it 'blocks landing if hanger full' do
+      airport = Airport.new(weather: weather, capacity: Airport::HANGER_CAPACITY)
+      Airport::HANGER_CAPACITY.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error('Hanger full')
+    end
+
     it 'storm blocks landing' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect { airport.land(plane) }.to raise_error 'bad weather stopped landing'
+      expect { airport.land(plane) }.to raise_error 'Bad weather stopped landing'
     end
   end
 
@@ -28,7 +35,7 @@ describe Airport do
       expect { airport.release_plane }.to raise_error 'bad weather stopped departure'
     end
 
-    it 'expects .release_plane to return released plane ID' do
+    it 'expects .release_plane to output released plane ID' do
       airport.land(plane)
       expect { airport.release_plane }.to output("#{plane} departed").to_stdout
     end
