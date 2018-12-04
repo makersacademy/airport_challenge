@@ -5,18 +5,18 @@ class Airport
 
   attr_reader :plane, :weather
 
-  def initialize(plane = Plane.new, weather = Weather.new)
+  def initialize(plane: Plane.new, weather: Weather.new)
     @plane = plane
     @weather = weather
   end
 
   def land(plane)
+    raise 'bad weather stopped landing' if @weather.stormy?
     @plane = plane
   end
 
   def release_plane
-    message = "departure prevented due to stormy weather"
-    fail message if @weather.weather_forecast == false
+    raise 'bad weather stopped departure' if @weather.stormy? true
     print "#{@plane} departed"
   end
 

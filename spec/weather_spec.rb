@@ -1,9 +1,15 @@
 describe Weather do
-  subject(:weather) { Weather.new }
 
   describe '#stormy?' do
-    it 'returns true or false' do
-      expect(weather.weather_forecast).to be(true).or be(false)
+    it 'can return stormy' do
+      weather = Weather.new
+      allow(Kernel).to receive(:rand).and_return(5)
+      expect(weather.stormy?).to be(true)
+    end
+    it 'can return sunny' do
+      weather = Weather.new
+      allow(Kernel).to receive(:rand).and_return(3)
+      expect(weather.stormy?).to be(false)
     end
   end
 end
