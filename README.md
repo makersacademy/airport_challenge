@@ -57,7 +57,7 @@ Used the Test Driven Development (TDD) process learnt during week 1 at Makers Ac
 
 We were required to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). I successfully test drove to this point.
 
-I was unable to get past the third user story. In the tests, the use of doubles and a stub to override random weather to ensure consistent test behaviour was required. I didn't manage to successfully implement these, and felt that in the spirit of TDD I couldn't move on as I hadn't technically satisfied the red-green process.
+I reached the third user story by the project deadline.
 
 ## Progress made since initial pull request:
 1. Discussed and now understand correct implementation of doubles/stubs with peers and coaches, as this was the block to progressing further with the task.
