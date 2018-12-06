@@ -1,15 +1,11 @@
 require 'weather'
 
-RSpec.describe do
+RSpec.describe Weather do
 
-  weather = Weather.new
+  let (:weather) { described_class.new }
 
-  it 'will output a random weather status' do
-    expect(weather).to respond_to(:weather_generator)
-  end
-
-  it 'will return true if weather is stormy' do
-    expect(weather).to respond_to(:stormy_weather?)
+  it 'will randomly generate weather' do
+    expect(weather.stormy?).to be(true).or be(false)
   end
 
 end

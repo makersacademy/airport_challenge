@@ -1,17 +1,13 @@
+
+
 class Weather
 
-  def weather_generator
-    weather = ["sunny", "mild", "warm", "light rain",
-    "heavy rain", "overcast", "mild", "stormy",
-      "cold and dry", "light snow", "mild"].sample
+  def initialize
+    @weather = rand(20)
   end
 
-  def stormy_weather?
-    if weather == "stormy"
-      true
-    else
-      false
-    end
+  def stormy?
+    @weather == 3 ? true : false
   end
 
 end

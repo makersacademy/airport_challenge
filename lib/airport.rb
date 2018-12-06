@@ -1,33 +1,29 @@
+require_relative 'weather'
+require_relative 'plane'
+
 class Airport
 
-  def initialize(capacity = 1000)
+  attr_reader :planes, :capacity
+
+  DEFAULT_CAPACITY = 200
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes = []
     @capacity = capacity
   end
 
-  def capacity
-    @capacity
+  def accept_landing_plane(plane, weather)
+    fail 'Airport is full' if @planes.length == @capacity
+    weather.stormy? ? @planes : @planes << plane
   end
 
-  def airport_space
-    parking_space = [0].sum
-  end
-
-  def airport_full?
-    if parking_space == 0
-      true
+  def takeoff(plane, weather)
+    @planes = [plane]
+    if weather.stormy?
+      @planes
     else
-      false
-    end
-  end
-
-  def confirm_takeoff
-    puts "Please confirm takeoff. Reply with 'yes' or 'no'"
-    input = gets.chomp
-    if input == "yes"
-      "Takeoff confirmed"
-      parking_space << 1
-    else
-      "Takeoff NOT confirmed"
+      @planes.pop
+      @planes
     end
   end
 
