@@ -1,7 +1,7 @@
 describe 'User Stories' do
-let(:airport) { Airport.new(weather, 20) }
-let(:plane) { Plane.new }
-let(:weather) { Weather.new }
+  let(:airport) { Airport.new(weather, 20) }
+  let(:plane) { Plane.new }
+  let(:weather) { Weather.new }
  # As an air traffic controller
  # So planes can safely land at my airport
  # I would like to instruct a plane to land
@@ -46,5 +46,4 @@ let(:weather) { Weather.new }
     Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
     expect { default_airport.land(plane) }.to raise_error "Airport Full"
   end
-
 end
