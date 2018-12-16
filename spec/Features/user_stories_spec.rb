@@ -13,6 +13,7 @@ let(:weather) { Weather.new }
 
   it 'allows a plane to take off' do
     allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
     expect { airport.take_off(plane) }.not_to raise_error
   end
 
@@ -32,5 +33,11 @@ let(:weather) { Weather.new }
   it 'does not allow planes to take off when it is stormy' do
     allow(weather).to receive(:stormy?).and_return true
     expect { airport.take_off(plane) }.to raise_error "Cannot take off: Weather stormy"
+  end
+
+  it 'allows a plane to only take off from the airport they are at' do
+    airport_2 = Airport.new(20, Weather.new)
+    airport_2.land(plane)
+    expect { airport.take_off(plane) }.to raise_error "Cannot take off: Plane not at this airport"
   end
 end
