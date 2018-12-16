@@ -1,12 +1,11 @@
 describe 'User Stories' do
-let(:airport) { Airport.new(20, weather) }
+let(:airport) { Airport.new(weather, 20) }
 let(:plane) { Plane.new }
 let(:weather) { Weather.new }
  # As an air traffic controller
  # So planes can safely land at my airport
  # I would like to instruct a plane to land
   it 'so an airplane can land safely' do
-
     allow(weather).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
@@ -36,8 +35,16 @@ let(:weather) { Weather.new }
   end
 
   it 'allows a plane to only take off from the airport they are at' do
-    airport_2 = Airport.new(20, Weather.new)
+    airport_2 = Airport.new(weather, 20)
     airport_2.land(plane)
     expect { airport.take_off(plane) }.to raise_error "Cannot take off: Plane not at this airport"
   end
+
+  it 'allows an airport\'s default capacity that can be overwritten' do
+    default_airport = Airport.new(weather)
+    allow(weather).to receive(:stormy?).and_return false
+    Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+    expect { default_airport.land(plane) }.to raise_error "Airport Full"
+  end
+
 end
