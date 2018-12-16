@@ -6,6 +6,7 @@ describe 'User Stories' do
   it 'so an airplane can land safely' do
     airport = Airport.new(20)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
 
@@ -18,9 +19,19 @@ describe 'User Stories' do
   it 'prevents a plane from landing if airport is full' do
     airport = Airport.new(20)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     20.times do
       airport.land(plane)
     end
     expect { airport.land(plane) }.to raise_error "Airport Full"
   end
+
+  it 'does not allow plane to land when it is stormy' do
+    airport = Airport.new(20)
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error "Cannot land plane: Weather stormy"
+  end
+  # it 'does not allow planes to take off when it is stormy' do
+  # end
 end
