@@ -1,9 +1,11 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :plane
-  def initialize(capacity)
+  def initialize(capacity, weather)
     @capacity = capacity
+    @weather = weather
     @planes = []
     # MAXIMUM CAPACITY = 20
   end
@@ -24,7 +26,7 @@ class Airport
 
 
   def stormy?
-    rand(1..6) > 4
+    @weather.stormy?
   end
 
   def full?
