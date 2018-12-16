@@ -30,23 +30,13 @@ describe Airport do
     end
   end
 
-  context '#take_off' do
+  describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
-
-    # it 'lets one plane take_off' do
-    #   plane = Plane.new
-    #   airport.land(plane)
-    #   expect(airport.take_off(:plane).to eq plane
-    # end
+    context 'when stormy' do
+      it 'raises an error' do
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.take_off(plane) }.to raise_error "Cannot take off: Weather stormy"
+      end
+    end
   end
-
-
 end
-
-# describe Airport do
-#   it 'lands one plane' do
-#     plane = Plane.new
-#     subject.land_plane(plane)
-#     expect(subject.land_plane(plane)).to eq plane
-#   end
-# end
