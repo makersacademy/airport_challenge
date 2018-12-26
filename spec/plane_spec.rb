@@ -12,7 +12,6 @@ describe Plane do
     end
   end
 
-
   describe '#land' do
     it 'stores the airport the plane landed at' do
       plane.land(airport)

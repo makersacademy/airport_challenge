@@ -48,7 +48,7 @@ describe 'User Stories' do
     Airport::DEFAULT_CAPACITY.times do
       the_plane = Plane.new
       default_airport.land(the_plane)
-     end
+    end
     expect { default_airport.land(plane) }.to raise_error "Airport Full"
   end
 
