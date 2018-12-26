@@ -60,4 +60,11 @@ describe 'User Stories' do
     airport.land(plane)
     expect(airport.take_off(plane)).to eq plane
   end
+
+  it 'flying planes cannot be in an airport' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    flying_plane = airport.take_off(plane)
+    expect { flying_plane.airport }.to raise_error "Plane not at airport: Plane already in air"
+  end
 end
