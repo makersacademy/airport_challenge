@@ -2,9 +2,7 @@ describe 'User Stories' do
   let(:airport) { Airport.new(weather, 20) }
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
- # As an air traffic controller
- # So planes can safely land at my airport
- # I would like to instruct a plane to land
+
   it 'so an airplane can land safely' do
     allow(weather).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
@@ -81,4 +79,10 @@ describe 'User Stories' do
     expect(plane.airport).to eq airport
   end
 
+  it 'take_off removes plane from an airport' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).not_to include plane
+  end
 end
