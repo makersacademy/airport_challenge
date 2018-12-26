@@ -19,7 +19,8 @@ describe 'User Stories' do
   it 'prevents a plane from landing if airport is full' do
     allow(weather).to receive(:stormy?).and_return false
     20.times do
-      airport.land(plane)
+      the_plane = Plane.new
+      airport.land(the_plane)
     end
     expect { airport.land(plane) }.to raise_error "Airport Full"
   end
@@ -44,15 +45,17 @@ describe 'User Stories' do
   it 'allows an airport\'s default capacity to be overwritten' do
     default_airport = Airport.new(weather)
     allow(weather).to receive(:stormy?).and_return false
-    Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+    Airport::DEFAULT_CAPACITY.times do
+      the_plane = Plane.new
+      default_airport.land(the_plane)
+     end
     expect { default_airport.land(plane) }.to raise_error "Airport Full"
   end
 
   it 'does not allow a flying plane to take off' do
     allow(weather).to receive(:stormy?).and_return false
-    airport.land(plane)
-    flying_plane = airport.take_off(plane)
-    expect { flying_plane.take_off }.to raise_error "Cannot take off: Plane already in air"
+
+    expect { plane.take_off }.to raise_error "Cannot take off: Plane already in air"
   end
 
   it 'returns the plane that took off' do
@@ -63,8 +66,19 @@ describe 'User Stories' do
 
   it 'flying planes cannot be in an airport' do
     allow(weather).to receive(:stormy?).and_return false
-    airport.land(plane)
-    flying_plane = airport.take_off(plane)
-    expect { flying_plane.airport }.to raise_error "Plane not at airport: Plane already in air"
+    expect { plane.airport }.to raise_error "Plane not at airport: Plane already in air"
   end
+
+  it 'planes not flying cannot land' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect { plane.land(airport) }.to raise_error "Plane cannot land: Plane already landed at airport"
+  end
+
+  it 'planes not flying must be in an airport' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect(plane.airport).to eq airport
+  end
+
 end
