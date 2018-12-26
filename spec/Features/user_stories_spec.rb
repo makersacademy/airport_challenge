@@ -35,15 +35,29 @@ describe 'User Stories' do
   end
 
   it 'allows a plane to only take off from the airport they are at' do
+    allow(weather).to receive(:stormy?).and_return false
     airport_2 = Airport.new(weather, 20)
     airport_2.land(plane)
     expect { airport.take_off(plane) }.to raise_error "Cannot take off: Plane not at this airport"
   end
 
-  it 'allows an airport\'s default capacity that can be overwritten' do
+  it 'allows an airport\'s default capacity to be overwritten' do
     default_airport = Airport.new(weather)
     allow(weather).to receive(:stormy?).and_return false
     Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
     expect { default_airport.land(plane) }.to raise_error "Airport Full"
+  end
+
+  it 'does not allow a flying plane to take off' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    flying_plane = airport.take_off(plane)
+    expect { flying_plane.take_off }.to raise_error "Cannot take off: Plane already in air"
+  end
+
+  it 'returns the plane that took off' do
+    allow(weather).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq plane
   end
 end

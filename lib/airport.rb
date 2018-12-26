@@ -20,6 +20,7 @@ class Airport
   def take_off(plane)
     raise "Cannot take off: Weather stormy" if stormy?
     raise "Cannot take off: Plane not at this airport" unless at_airport?(plane)
+    plane 
     # raise "Cannot take off: Plane not at this airport"
     # unless @planes.include?(plane)
     # @planes.pop
