@@ -7,5 +7,10 @@ RSpec.describe Airport do
       airport = Airport.new
       expect(airport).to respond_to(:land).with(1).argument
     end 
+
+    it 'looks for one argument' do 
+      airport = Airport.new
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end 
   end 
 end 
