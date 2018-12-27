@@ -6,7 +6,6 @@ class Airport
     @planes = []
   end
 
-
   def land(plane)
     raise 'cannot land plane airport full' if full?
     @planes << plane
