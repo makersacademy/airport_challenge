@@ -6,12 +6,12 @@ RSpec.describe Airport do
  
   describe 'Land' do 
     context 'when not stormy' do 
-      it 'Airport responds to land method' do 
-        airport = Airport.new(20)
+      it 'Instructs a plane to land' do 
         expect(airport).to respond_to(:land).with(1).argument
       end 
-  
-      it 'does not allow landing when full' do 
+    end 
+    context 'when full' do 
+      it 'raises an error' do 
         plane = double(:plane)
         allow(airport).to receive(:stormy?).and_return(false)
         20.times do 
@@ -20,6 +20,7 @@ RSpec.describe Airport do
         expect { airport.land(plane) }.to raise_error 'cannot land plane airport full'
       end 
     end 
+   
     context 'when stormy' do 
       it 'raises an error if weather is stormy' do 
         allow(subject).to receive(:stormy?).and_return(true)
@@ -30,7 +31,6 @@ RSpec.describe Airport do
 
   describe '#take off' do 
     it 'Airport responds to take_off method' do 
-      airport = Airport.new(20)
       expect(airport).to respond_to(:take_off).with(1).argument
     end 
   end 
