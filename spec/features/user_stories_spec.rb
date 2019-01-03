@@ -1,10 +1,11 @@
 describe 'User Stories' do
-  let(:airport) { Airport.new(20) }
+  let(:airport) { Airport.new(20, weather) }
   let(:plane) { Plane.new }
-  
+  let(:weather) { Weather.new }
+
   context 'when not stormy' do
     before do
-      allow(airport).to receive(:stormy?).and_return false
+      allow(weather).to receive(:stormy?).and_return false
     end
     # As an air traffic controller
     # So I can get passengers to a destination
@@ -41,7 +42,7 @@ describe 'User Stories' do
   # I want to prevent landing when weather is stormy
   context 'when weather is stormy' do
     before do
-      allow(airport).to receive(:stormy?).and_return true
+      allow(weather).to receive(:stormy?).and_return true
     end
 
     it 'does not allow planes to land' do
@@ -49,7 +50,6 @@ describe 'User Stories' do
     end
 
     it 'does not allow planes to takeoff' do
-      allow(airport).to receive(:stormy?).and_return true
       expect { airport.takeoff(plane) }.to raise_error 'Warning: Storm approaching, planes are unable to takeoff'
     end
   end

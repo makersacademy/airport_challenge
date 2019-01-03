@@ -1,6 +1,9 @@
+require_relative 'weather'
+
 class Airport
-  def initialize(capacity)
+  def initialize(capacity, weather)
     @capacity = capacity
+    @weather = weather
     @planes = []
   end
 
@@ -21,6 +24,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    @weather.stormy?
   end
 end
