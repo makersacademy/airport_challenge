@@ -11,6 +11,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise 'Warning: Storm approaching, planes are unable to takeoff' if stormy?
   end
 
   private
