@@ -41,6 +41,21 @@ describe 'User Stories' do
     end
 
     # As an air traffic controller
+    # So the system is consistent and correctly reports plane status and location
+    # I want to ensure a flying plane cannot takeoff and cannot be in an airport
+    it 'flying planes cannot take off' do
+      airport.land(plane)
+      flying_plane = airport.takeoff(plane)
+      expect { flying_plane.takeoff }.to raise_error 'Plane cannot takeoff: plane already flying'
+    end
+
+    it 'flying planes cannot be in an airport' do
+      airport.land(plane)
+      flying_plane = airport.takeoff(plane)
+      expect { flying_plane.airport }.to raise_error 'Plane cannot be at an airport: plane is already flying'
+    end
+
+    # As an air traffic controller
     # To ensure safety
     # I want to prevent landing when the airport is full
     context 'when airport is full' do

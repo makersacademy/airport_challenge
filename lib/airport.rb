@@ -18,6 +18,7 @@ class Airport
   def takeoff(plane)
     raise 'Warning: Storm approaching, planes are unable to takeoff' if stormy?
     raise 'Cannot takeoff plane: plane is not at this airport' unless at_airport?(plane)
+    return plane
   end
 
   private
