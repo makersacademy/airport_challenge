@@ -16,7 +16,7 @@ describe 'User Stories' do
 
     # As an air traffic controller
     # So I can get passengers on the way to their destination
-    # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+    # I want to instruct a plane to take off
     it 'instructs planes to takeoff at an airport' do
       airport.land(plane)
       expect { airport.takeoff(plane) }.not_to raise_error
@@ -66,6 +66,16 @@ describe 'User Stories' do
       airport.land(plane)
       expect(plane.airport).to eq airport
     end
+
+    # As an air traffic controller
+    # So I can get passengers on the way to their destination
+    # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+    it 'taking off a plane, removes it from that airport' do
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(airport.planes).not_to include plane
+    end
+
 
     # As an air traffic controller
     # To ensure safety
