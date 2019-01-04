@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
-  let(:airport) { double :airport}
+  let(:airport) { double :airport }
 
   describe '#takeoff' do
     it { is_expected.to respond_to :takeoff }
