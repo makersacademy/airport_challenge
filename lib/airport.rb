@@ -1,52 +1,50 @@
 require_relative 'plane'
+require_relative 'weather'
 
+# a class to create Airport instances
 class Airport
   DEFAULT_CAPACITY = 10
-  DEFAULT_WEATHER = "fine"
-  
-  attr_reader :hangar
-  attr_reader :capacity
-  attr_accessor :weather
-  
-  def initialize(capacity=DEFAULT_CAPACITY)
-    @hangar = []
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes = []
     @capacity = capacity
-    @weather = DEFAULT_WEATHER
   end
-  def land(plane)
-    fail "The hanger is full, planes cannot land." if full?
-    fail "The weather is stormy, planes cannot land." if stormy_weather?
-    fail "That plane has already landed." if check_hangar_for(plane)
-    hangar << plane
+
+  def land(plane, stormy = Weather.stormy?)
+    raise 'That is not a plane.' unless type?(plane)
+    raise 'The airport is full.' if full?
+    raise 'The weather is stormy, planes cannot land.' if stormy
+
+    add(plane)
   end
-  def takeoff(plane)
-    fail "The weather is stormy, planes cannot take off." if stormy_weather?
-    fail "That plane is not in this airport's hangar." unless check_hangar_for(plane)
-    hangar.delete(plane)
-    "The plane has taken off."
+
+  def takeoff(plane, stormy = Weather.stormy?)
+    raise 'That plane is not at this airport.' unless check?(plane)
+    raise 'The weather is stormy, planes cannot take off.' if stormy
+
+    remove(plane)
+    'The plane took off.'
   end
-  def change_capacity(number)
-    fail "More than #{number} already in hangar" if in_hanger_vs(number)
-    @capacity = number
+
+  def check?(plane)
+    @planes.include?(plane)
   end
-  
+
   private
-  
+
+  def type?(plane)
+    plane.is_a?(Plane)
+  end
+
   def full?
-    hangar.length >= capacity
+    @planes.length >= @capacity
   end
-  def stormy_weather?
-    weather == "stormy"
+
+  def add(plane)
+    @planes.push(plane)
   end
-  def check_hangar_for(plane)
-    hangar.include?(plane)
-  end
-  def in_hanger_vs(number)
-    hangar.length >= number
+
+  def remove(plane)
+    @planes.delete(plane)
   end
 end
-
-# Need to add random weather
-# Need to prevent push'ing and <<'ing to the hangar
-# Need to create a class variable on Plane of all planes in existence and their locations
-# Need to prevent land'ing and takeoff'ing an Airport from another Airport
