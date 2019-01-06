@@ -1,7 +1,6 @@
 require_relative 'plane'
 require_relative 'weather'
 
-# a class to create Airport instances
 class Airport
   DEFAULT_CAPACITY = 10
 
