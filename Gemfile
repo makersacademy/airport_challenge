@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+gem 'rake'
+gem 'rubocop', '0.60.0'
 
-gem 'rspec'
-gem 'rubocop'
-gem 'simplecov'
-gem 'simplecov-console'
+group :test do
+  gem 'rspec'
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+end
