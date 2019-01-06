@@ -3,50 +3,58 @@
 Airport Challenge
 =================
 
-This project is an application to control the landing and takeoff of planes from an airport
+This project is an application to control the landing and takeoff of planes from an airport.
 
 ## Getting started
 
-In terminal, in the directory you would like this project:
+In the location of your choice, in Terminal:
 
 `git clone git@github.com:alittlecross/airport_challenge.git`
 
+In that same location, in Terminal:
+
+`bundle`
+
 ## Usage
 
-In terminal, in the directory for this project:
+In that same location, in Terminal:
 
-`irb`
+`irb -r ./lib/airport.rb`
 
-`require './lib/airport.rb'`
+To create a new airport:
 
-Methods that can be called:
+`idlewild = Airport.new`
 
-* `Airport.new` creates a new airport.
+Airports are created with a default capacity of 10, this can be overridden on instantiation using an integer as an argument:
 
-e.g. `idlewild = Airport.new`
+`idlewild = Airport.new(20)`
 
-* `Plane.new` creates a new plane.
+To create a new plane:
 
-e.g. `enola_gay = Plane.new`
+`enola_gay = Plane.new`
 
-* `.land(plane)` allows a plane to land.
+To land a plane at an airport:
 
-e.g. `idlewild.land(enola_gay)`
+`idlewild.land(enola_gay)`
 
-* `.takeoff(plane)` allows a plane to take off.
+To takeoff a plane from an airport:
 
-e.g. `idlewild.takeoff(enola_gay)`
+`idlewild.takeoff(enola_gay)`
 
-* `.change_capacity` changes the airport's capacity.
+Weather is generated randomly and will be stormy 25% of the time, meaning planes cannot land or take off.
 
-e.g. `idlewild.change_capacity(8)`
+This can be overridden in an emergency or to check behaviour; use `true` (stormy) or `false` (clear) as an additional argument in the `.land` and `.takeoff` methods:
 
-* `.hangar` will show the planes currently in the airports hangar.
-
-e.g. `idlewild.hangar`
+`idlewild.land(enola_gay, true)`
 
 ## Running tests
 
-In terminal, in the directory for this project:
+In that same location, in Terminal:
 
 `rspec`
+
+## Linting
+
+In that same location, in Terminal:
+
+`rubocop`
