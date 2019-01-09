@@ -13,8 +13,8 @@ describe Airport do
     end
 
     it "can have its plane capacity overridden" do
-      airport = Airport.new(15)
-      expect(airport.capacity).to eq(15)
+      # airport = Airport.new(15)
+      expect(described_class.new(15).capacity).to eq(15)
     end
   end
 end
