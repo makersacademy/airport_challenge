@@ -1,0 +1,14 @@
+@startuml
+
+ATC -> Weather: stormy?
+ATC <-- Weather: true/false
+ATC -> Plane: land
+ATC -> Plane:  takeoff
+ATC <-- Plane: in_the_air
+ATC -> Airport: full?
+ATC <-- Airport: true/false
+User -> Airport: capacity(num)
+
+
+
+@enduml
