@@ -1,6 +1,13 @@
 class Airport
 
-  def full
+  attr_reader :capacity
+
+  def initialize(capacity=20)
+    @capacity = capacity
+  end
+
+  def full?
+    @capacity
   end
 
 end
