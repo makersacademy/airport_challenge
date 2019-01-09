@@ -7,7 +7,6 @@ class Airport
   end
 
   def full?
-    @capacity
   end
 
 end

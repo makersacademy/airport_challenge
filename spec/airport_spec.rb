@@ -1,4 +1,4 @@
-require 'airport.rb'
+require 'airport'
 
 describe Airport do
 
@@ -9,14 +9,12 @@ describe Airport do
   context "when initializing an airport" do
 
     it "is initialized with a default plane capacity" do
-      expect(subject.full?).to eq(20)
+      expect(subject.capacity).to eq(20)
     end
 
-    it "'s plane capacity can be overwridden" do
+    it "can have its plane capacity overridden" do
       airport = Airport.new(15)
-      expect(airport.full?).to eq(15)
+      expect(airport.capacity).to eq(15)
     end
-
   end
-
 end
