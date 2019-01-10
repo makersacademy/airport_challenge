@@ -1,10 +1,25 @@
 require 'airport'
+require 'rspec'
 
 describe Airport do
 
-  it "responds to the full? method" do
-    expect(subject).to respond_to(:full?)
+  describe '#full' do
+
+    it "responds to the full? method" do
+      expect(subject).to respond_to(:full?)
+    end
+
+    it "reports full if at capacity" do
+      airport = Airport.new(1)
+      airport.instance_variable_set(:@planes, 1)
+      expect(airport).to be_full
+    end
+
+    it "shouldn't have a capacity" do
+      expect(subject).not_to be_full
+    end
   end
+
 
   context "when initializing an airport" do
 
