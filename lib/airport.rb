@@ -43,7 +43,6 @@ private
 
   def in_airport?(plane)
     @planes_in_airport.include? plane
-    # ? (fail "This plane is already in the airport") : false
   end
 
 end
