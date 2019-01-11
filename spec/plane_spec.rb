@@ -34,4 +34,11 @@ describe Plane do
     stormport.instance_variable_set(:@planes, [subject])
     expect(stormport.planes.include?(subject)).to eq true
   end
+
+  it "can't land at airport if airport at or above capacity" do
+    fullport = Airport.new
+    fullport.instance_variable_set(:@planes, [1, 2, 3, 4, 5])
+    subject.land(fullport)
+    expect(fullport.planes.include?(subject)).to eq false
+  end
 end

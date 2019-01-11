@@ -36,4 +36,21 @@ describe Airport do
     stormy_airport.instance_variable_set(:@weather, :stormy)
     expect(stormy_airport.permission?).to eq false
   end
+
+  it "gives permission to land if below capacity" do
+    4.times { subject.planes << :plane }
+    subject.instance_variable_set(:@weather, :clear)
+    expect(subject.landing_permission?).to eq true
+  end
+
+  it "does not give permission to land if at or above capacity" do
+    5.times { subject.planes << :plane }
+    subject.instance_variable_set(:@weather, :clear)
+    expect(subject.landing_permission?).to eq false
+  end
+
+  it "allows a system designer to change the capacity of an airport" do
+    subject.capacity = 50
+    expect(subject.capacity).to eq 50
+  end
 end
