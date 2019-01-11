@@ -64,4 +64,22 @@ describe Airport do
 
   end
 
+  describe '#capacity' do
+
+    it 'should allow the airport capacity to be changed' do
+      airport = Airport.new(5)
+      allow(airport).to receive(:weather).and_return(false)
+      5.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error("Unable to land due airpot capacity being full")
+    end
+
+    it 'should allow the capacity to be changed at any time' do
+      allow(subject).to receive(:weather).and_return(false)
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      subject.capacity = 11
+      subject.land(plane)
+      expect(subject.planes.length).to eq 11
+    end
+  end
+
 end
