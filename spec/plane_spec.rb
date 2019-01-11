@@ -13,58 +13,58 @@ describe Plane do
   let(:plane_created_on_ground) { Plane.new('grounded', airport) }
   let(:plane_created_in_air) { Plane.new('airborne') }
 
-  it "can enter system in air or on ground" do
-    expect(Plane.new('grounded', airport).status).to eq 'grounded'
-    expect(Plane.new('airborne').status).to eq 'airborne'
-    expect(Plane.new('grounded', airport).current_airport).to eq airport
+  describe "landing or entering system on ground" do
+    it "can enter system in air or on ground" do
+      expect(Plane.new('grounded', airport).status).to eq 'grounded'
+      expect(Plane.new('airborne').status).to eq 'airborne'
+      expect(Plane.new('grounded', airport).current_airport).to eq airport
+    end
+    it "correctly tells airports when it is enterring on ground" do
+      expect(airport).to receive(:plane_entering_on_ground).with(kind_of(Plane))
+      plane_created_on_ground
+    end
+    it "can land" do
+      expect(plane_created_in_air.land(airport).status).to eq 'grounded'
+      expect(plane_created_in_air.current_airport).to eq airport
+      expect { plane_created_on_ground.land(airport) }.to raise_error "plane is already grounded"
+    end
+    it "asks airport if it can land" do
+      expect(airport).to receive(:can_land?)
+      plane_created_in_air.land(airport)
+    end
+    it "doesn't land if told not to" do
+      expect { plane_created_in_air.land(stormy_airport) }.to raise_error "can't land, stormy / full"
+    end
+    it "correctly tells the aiport it is landing" do
+      expect(airport).to receive(:plane_landing).with(kind_of(Plane))
+      plane_created_in_air.land(airport)
+    end
   end
 
-  it "can't have a current_airport if ariborne" do
-    expect { Plane.new('airborne', airport) }.to raise_error "can't be in airport if airborne"
+  describe "status current airport relationship" do
+    it "can't have a current_airport if ariborne" do
+      expect { Plane.new('airborne', airport) }.to raise_error "can't be in airport if airborne"
+      expect { Plane.new('grounded') }.to raise_error "must specifiy airport if creating grounded plane"
+      expect { Plane.new('aslaf', airport) }.to raise_error "must provide valid status"
+    end
   end
 
-  it "correctly tells the aiport it is landing" do
-    expect(airport).to receive(:plane_landing).with(kind_of(Plane))
-    plane_created_in_air.land(airport)
-  end
-
-  it "correctly tells airports when it is enterring on ground" do
-    expect(airport).to receive(:plane_entering_on_ground).with(kind_of(Plane))
-    plane_created_on_ground
-  end
-
-  it "tells airport when taking off" do
-    expect(airport).to receive(:plane_taking_off).with(kind_of(Plane))
-    plane_created_on_ground.take_off
-  end
-
-  it "can take off" do
-    expect(plane_created_on_ground.take_off.status).to eq "airborne"
-    expect(plane_created_on_ground.current_airport).to eq nil
-    expect { plane_created_on_ground.take_off }.to raise_error "plane is already airborne"
-  end
-
-  it "can land" do
-    expect(plane_created_in_air.land(airport).status).to eq 'grounded'
-    expect { plane_created_on_ground.land(airport) }.to raise_error "plane is already grounded"
-    expect(plane_created_in_air.current_airport).to eq airport
-  end
-
-  it "asks airport if it can take off" do
-    expect(airport).to receive(:can_take_off?)
-    plane_created_on_ground.take_off
-  end
-
-  it "doesn't take off it told it can't" do
-    expect { Plane.new("grounded", stormy_airport).take_off }.to raise_error "can't take off, stormy"
-  end
-
-  it "asks airport if it can land" do
-    expect(airport).to receive(:can_land?)
-    plane_created_in_air.land(airport)
-  end
-
-  it "doesn't land if told not to" do
-    expect { plane_created_in_air.land(stormy_airport) }.to raise_error "can't land, stormy / full"
+  describe "taking off" do
+    it "can take off" do
+      expect(plane_created_on_ground.take_off.status).to eq "airborne"
+      expect(plane_created_on_ground.current_airport).to eq nil
+      expect { plane_created_on_ground.take_off }.to raise_error "plane is already airborne"
+    end
+    it "asks airport if it can take off" do
+      expect(airport).to receive(:can_take_off?)
+      plane_created_on_ground.take_off
+    end
+    it "doesn't take off it told it can't" do
+      expect { Plane.new("grounded", stormy_airport).take_off }.to raise_error "can't take off, stormy"
+    end
+    it "tells airport when taking off" do
+      expect(airport).to receive(:plane_taking_off).with(kind_of(Plane))
+      plane_created_on_ground.take_off
+    end
   end
 end
