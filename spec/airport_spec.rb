@@ -1,14 +1,15 @@
 require "airport"
 
 describe Airport do
+  let(:plane) { double :plane }
+
   it "has a method to allow user to check plane has left airport" do
     expect(subject).to respond_to(:verify_takeoff).with(1).argument
   end
 
   it "is able to store landed planes" do
-    plane = Plane.new
     subject.instance_variable_set(:@weather, :clear)
-    plane.land(subject)
+    subject.planes << plane
     expect(subject.planes.include?(plane)).to eq true
   end
 
