@@ -5,9 +5,9 @@ describe Airport do
   before(:each) do
     @airport = Airport.new
     @plane = Plane.new
+    allow(@airport).to receive(:roll) { 1 }
+    @airport.change_weather
   end
-
-
 
   describe '#new' do
 
@@ -20,8 +20,6 @@ describe Airport do
   describe '#change_weather' do
 
     it "should set weather as Sunny when a 6 isn't rolled" do
-      allow(@airport).to receive(:roll) { 1 }
-      @airport.change_weather
       expect(@airport.weather).to eq "Sunny"
     end
 

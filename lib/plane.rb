@@ -12,14 +12,13 @@ class Plane
     @flying = !@flying
   end
 
-
   def land(airport)
     @flying == true ? airport.land(self)
     : (raise "Plane #{@flight_number} is already grounded at an airport")
   end
 
-  def take_off
-    @flying == false ? @location.take_off(self)
+  def take_off(airport)
+    @flying == false ? airport.take_off(self)
     : (raise "Plane #{@flight_number} is flying and so cannot take off!")
   end
 
