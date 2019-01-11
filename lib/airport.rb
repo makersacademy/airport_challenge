@@ -1,5 +1,3 @@
-# # to do
-# # change take_offandlandstatus to can_take_off_and_land?
 class Airport
 
   DEFAULT_CAPACITY = 20

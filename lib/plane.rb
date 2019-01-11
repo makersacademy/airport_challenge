@@ -1,5 +1,3 @@
-# could force initiating with valid airport object.
-
 class Plane
   attr_reader :status, :current_airport
 
