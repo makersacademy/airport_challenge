@@ -4,25 +4,39 @@ describe Airport do
 
 let(:plane) {double :plane}
 
+# Airport.expects(:stormy?).with(4).returns(2)
+
   it {is_expected.to respond_to :land, :take_off}
 
-#expect land to recieve the plane into the hanger
   it "should land a plane, storing it in the hangar" do
     subject.land(plane)
     expect(subject.hangar).to eq [plane]
   end
-#expect take-off to remove a plane from the hangar
+
   it "should allow a plane to take-off, removing it from the hangar" do
     subject.land(plane)
     subject.take_off
     expect(subject.hangar).to be_empty
   end
-#expect an error message when land is attempted and weather is stormy
 
-#expect an error message when take-off is attempted and weather is stormy
+  it "should only return true for stormy? if the number passed is 2" do
+    expect(subject.stormy?(2)).to eq true
+  end
 
-#expect land to fail if hanger.length = airport capacity
+  it "should fail to take-off if weather is stormy" do
+    
+  end
 
-#expect the airport capacity to have changed if the user changes it
+  it "should fail to land if hanger has reached capacity" do
+    subject.capacity = 1
+    subject.hangar << plane
+    expect{subject.land(plane)}.to raise_error("Hangar is at capacity")
+  end
+
+  it "should have a capacity that is mutable" do
+    gatwick = Airport.new
+    gatwick.capacity = 2
+    expect(gatwick.capacity).to eq 2
+  end
 
 end
