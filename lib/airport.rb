@@ -1,40 +1,38 @@
 require_relative 'plane'
 require_relative 'weather'
-require_relative 'sky'
 
 class Airport
 
-  attr_reader :planes, :capacity, :sky
+  attr_reader :planes, :capacity
 
   def initialize(capacity = 10)
-    @sky = Sky.new
     @planes = []
     @capacity = capacity
   end
 
   def land_plane(plane, weather = Weather.new)
-    in_sky?(plane)
+    grounded?(plane)
     airport_full?
     check_weather(weather)
     @planes << plane
-    @sky.flying_planes.delete_at(@sky.flying_planes.index(plane))
+    plane.is_grounded
     self
   end
 
   def take_off_plane(plane, weather = Weather.new)
     in_airport?(plane)
     check_weather(weather)
-    @sky.flying_planes << plane
     @planes.delete(plane)
+    plane.is_flying
     self
   end
 
-  def in_sky?(plane)
-    fail "this plane isn't in the sky" unless @sky.flying_planes.include?(plane)
+  def grounded?(plane)
+    fail "this plane is already grounded" if plane.state == "grounded"
   end
 
   def in_airport?(plane)
-    fail "this plane isn't in the airport" unless @planes.include?(plane)
+    fail "this plane isn't in this airport" unless @planes.include?(plane)
   end
 
   def airport_full?
