@@ -1,4 +1,12 @@
+require "plane"
+
 class Airport
-  def verify_liftoff(plane)
+  attr_accessor :planes
+
+  def initialize
+    @planes = []
+  end
+
+  def verify_takeoff(plane)
   end
 end
