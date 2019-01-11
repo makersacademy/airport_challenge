@@ -56,7 +56,7 @@ describe Airport do
     expect(@airport.confirm_landing(@plane)).to eq nil
   end
 
-  # capacity
+# capacity
 
   it 'should not allow planes to land when the airport is full' do
     100.times { @airport.land(Plane.new) }
@@ -69,7 +69,7 @@ describe Airport do
     expect { airport50.confirm_landing(@plane) }.to raise_error "No space available"
   end
 
-  # edge cases
+# edge cases
 
   it 'should not allow the same plane to land twice (without taking off between)' do
     @airport.land(@plane)
@@ -80,8 +80,3 @@ describe Airport do
     expect { @airport.confirm_take_off(@plane) } .to raise_error "This plane is not in the airport"
   end
 end
-
-# refactor
-# test doubles
-# clean up readme
-# check mark criteria
