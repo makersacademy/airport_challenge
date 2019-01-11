@@ -5,14 +5,19 @@ require_relative './weather'
 class Airport
   attr_accessor :plane
   attr_reader :planes_in_airport
-  def initialize
+  attr_accessor :capacity
+
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @plane = Plane.new
     @weather = Weather.new
     @planes_in_airport = []
+    @capacity = capacity
   end
 
   def land(plane) 
-    raise Exception.new("No landings permitted") if stormy
+    raise Exception.new("No landings permitted") if stormy || capacity_reached?
     @planes_in_airport << plane
   end
 
@@ -21,8 +26,8 @@ class Airport
     @planes_in_airport.delete(plane)
   end
 
-  def plane_left?
-    true
+  def capacity_reached?
+    @planes_in_airport.length >= @capacity
   end
 
   def stormy
