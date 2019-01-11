@@ -1,10 +1,12 @@
-require_relative './plane.rb'
+require_relative './plane'
+require_relative './weather'
+
 
 class Airport
   attr_accessor :plane
   def initialize
     @plane = Plane.new
-    @something = 20
+    @weather = Weather.new
   end
 
   def land  
@@ -12,6 +14,20 @@ class Airport
   end
 
   def take_off
-    @plane.take_off
+    @plane.take_off unless stormy?
+    if stormy?
+      false
+    else
+      @plane.take_off
+    end
+
+  end
+
+  def plane_left?
+    true
+  end
+
+  def stormy?
+    @weather.stormy?
   end
 end
