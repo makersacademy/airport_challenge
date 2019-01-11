@@ -2,14 +2,12 @@ require_relative 'plane'
 
 class Airport
   attr_reader :weather, :planes
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @weather = "Sunny"
     @planes = []
-  end
-
-  def add_plane
-    @planes << Plane.new
+    @capacity = capacity
   end
 
   def change_weather
@@ -25,8 +23,17 @@ class Airport
   end
 
   def land(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prohibits landing") : "#{@planes << plane} has landed at the airport"
+    weather_check(plane)
   end
+
+  def weather_check(plane)
+    @weather == "Stormy" ? (raise "Stormy weather prohibits landing") : capacity_check(plane)
+  end
+
+  def capacity_check(plane)
+    @planes.size >= @capacity ? (raise "Airport is at maximum capacity") : "#{@planes << plane} has landed at the airport"
+  end
+
 
 #Irb test method
   def story

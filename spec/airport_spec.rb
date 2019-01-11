@@ -29,7 +29,7 @@ describe Airport do
       expect(@airport.weather).to eq ("Stormy")
     end
 
-end
+  end
 
 describe '#Land' do
 
@@ -43,6 +43,12 @@ describe '#Land' do
     allow(@airport).to receive(:roll) { 6 }
     @airport.change_weather
     expect { @airport.land(@plane) }.to raise_error("Stormy weather prohibits landing")
+  end
+
+  it "should not allow planes to land when airport has reached max capacity" do
+    airport = Airport.new(1)
+    airport.land(@plane)
+    expect {airport.land(@plane)}.to raise_error("Airport is at maximum capacity")
   end
 
 end
