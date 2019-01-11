@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-<a name= "task">TASK</a>  |  <a name= "edge">EDGE CASES</a>  |  <a name= "approach">APPROACH </a>
+<a href= #task>TASK</a>  |  <a href= #edge>EDGE CASES</a>  |  <a href= #approach>APPROACH </a>
 
 ```
         ______
