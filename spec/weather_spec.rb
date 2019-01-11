@@ -8,6 +8,7 @@ describe Weather do
     it 'should tell if it is sunny or not' do
       rand = double(4)
       allow(subject).to receive(:sunny?) {false}
+      expect(subject.sunny?).to eq false
     end
   end
 

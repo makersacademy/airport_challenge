@@ -29,13 +29,6 @@ describe Airport do
         subject.land(plane)
         expect(subject.take_off(plane)).to eq("Plane #{plane} has left")
       end
-
-      # it 'should prevent a plane from taking off if the weather is stormy' do
-      #   plane = Plane.new
-      #   subject.land(plane)
-      #   subject.take_off(plane)
-      #   expect(subject.)
-      # end
     end
 
   end

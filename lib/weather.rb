@@ -5,9 +5,9 @@ class Weather
   def initialize
     @outlooks = ['sunny','sunny','sunny','sunny','stormy']
   end
-
+  
   def sunny?
-    if @weather[rand (0..4)] == 'sunny'
+    if @outlook[rand (0..4)] == 'sunny'
       true
     else
       false
