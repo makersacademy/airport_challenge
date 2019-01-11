@@ -6,6 +6,6 @@ class Plane
   end
 
   def take_off(airport)
-    airport.planes.delete(self)
+    airport.planes.include?(self) ? airport.planes.delete(self) : (raise 'This plane is not at this airport')
   end
 end
