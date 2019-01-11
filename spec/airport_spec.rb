@@ -14,10 +14,9 @@ describe Airport do
   end
 
   it "has a verify_takeoff which checks that a plane is not at airport" do
-    plane = Plane.new
     subject.instance_variable_set(:@weather, :clear)
     expect(subject.verify_takeoff(plane)).to eq true
-    plane.land(subject)
+    subject.planes << plane
     expect(subject.verify_takeoff(plane)).to eq false
   end
 
@@ -39,13 +38,13 @@ describe Airport do
   end
 
   it "gives permission to land if below capacity" do
-    4.times { subject.planes << :plane }
+    4.times { subject.planes << plane }
     subject.instance_variable_set(:@weather, :clear)
     expect(subject.permission_land?).to eq true
   end
 
   it "does not give permission to land if at or above capacity" do
-    5.times { subject.planes << :plane }
+    5.times { subject.planes << plane }
     subject.instance_variable_set(:@weather, :clear)
     expect(subject.permission_land?).to eq false
   end
