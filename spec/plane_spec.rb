@@ -25,6 +25,11 @@ describe Plane do
       expect(@airport.planes).not_to include(@plane)
     end
 
+    it 'should return a message to confirm the plane has left the airport' do
+      @plane.land(@airport)
+      expect(@plane.take_off(@airport)).to eq "#{@plane} has now left #{@airport}"
+    end
+
     it 'should raise error when trying to take off from an airport it is not in' do
       expect { @plane.take_off(@airport) }.to raise_error('This plane is not at this airport')
     end
