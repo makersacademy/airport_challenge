@@ -10,10 +10,11 @@ describe Airport do
     plane.land(subject)
     expect(subject.planes.first).to eq plane
   end
+
+  it "Has a verify_takeoff which checks that a plane is not at airport" do
+    plane = Plane.new
+    expect(subject.verify_takeoff(plane)).to eq true
+    plane.land(subject)
+    expect(subject.verify_takeoff(plane)).to eq false
+  end
 end
-=begin
-it "Is able to store landed planes" do
-  plane = Plane.new
-  plane.land(subject)
-  expect(subject.planes.first).to eq plane
-=end

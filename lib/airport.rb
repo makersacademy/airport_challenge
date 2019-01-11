@@ -8,5 +8,6 @@ class Airport
   end
 
   def verify_takeoff(plane)
+    !planes.include?(plane)
   end
 end
