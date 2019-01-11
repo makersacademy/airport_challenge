@@ -18,6 +18,12 @@ describe Plane do
 
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
+
+    it 'should not exist in the airport planes after take off' do
+      @plane.land(@airport)
+      @plane.take_off(@airport)
+      expect(@airport.planes).not_to include(@plane)
+    end
   end
 
 end
