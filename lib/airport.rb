@@ -11,7 +11,8 @@ class Airport
     @planes_in_airport = []
   end
 
-  def land(plane)  
+  def land(plane) 
+    raise Exception.new("No landings permitted") if stormy
     @planes_in_airport << plane
   end
 
