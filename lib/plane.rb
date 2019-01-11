@@ -18,7 +18,7 @@ class Plane
   end
 
   def land(airport)
-    can_land?
+    can_land?(airport)
     airport.plane_landing(self)
     @status, @current_airport = "grounded", airport
     self
@@ -26,11 +26,13 @@ class Plane
 
   private
 
-  def can_land?
+  def can_land?(airport)
     fail("plane is already grounded") if @status == 'grounded'
+    fail("can't land, stormy / full") if !airport.can_land?
   end
 
   def can_take_off?
     fail("plane is already airborne") if @status == 'airborne'
+    fail ("can't take off, stormy") if !@current_airport.can_take_off?
   end
 end

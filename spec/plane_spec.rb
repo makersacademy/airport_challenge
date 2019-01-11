@@ -9,7 +9,8 @@ require 'plane'
 
 
 describe Plane do
-  let (:airport) {double(:plane_landing => true, :is_a? => true, :plane_entering_on_ground => true, :plane_taking_off => true)}
+  let (:airport) {double(:plane_landing => true, :is_a? => true, :plane_entering_on_ground => true, :plane_taking_off => true, :can_take_off? => true, :can_land? => true)}
+  let (:stormy_airport) {double(:is_a? => true, :plane_entering_on_ground => true, :plane_taking_off => true, :can_take_off? => false, :can_land? => false)}
   let(:plane_created_on_ground) {Plane.new('grounded',airport)}
   let(:plane_created_in_air) {Plane.new('airborne')}
 
@@ -50,4 +51,21 @@ describe Plane do
     expect(plane_created_in_air.current_airport).to eq airport
   end
 
+  it "asks airport if it can take off" do
+    expect(airport).to receive(:can_take_off?)
+    plane_created_on_ground.take_off
+  end
+
+  it "doesn't take off it told it can't" do
+    expect{Plane.new("grounded", stormy_airport).take_off}.to raise_error "can't take off, stormy"
+  end
+
+  it "asks airport if it can land" do
+    expect(airport).to receive(:can_land?)
+    plane_created_in_air.land(airport)
+  end
+
+  it "doesn't land if told not to" do
+    expect{plane_created_in_air.land(stormy_airport)}.to raise_error "can't land, stormy / full"
+  end
 end
