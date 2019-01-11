@@ -55,7 +55,9 @@ describe Airport do
     expect(@airport.confirm_landing(@plane)).to eq nil
   end
 
-end
+  it 'should not accept planes when the airport is full' do
+    100.times{@airport.land(@plane)}
+    expect {@airport.confirm_landing(@plane)}.to raise_error "No space available"
+  end
 
-# take off if not stormy
-# check weather
+end

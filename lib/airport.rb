@@ -6,17 +6,17 @@ class Airport
 
   def initialize
     @planes_in_airport = []
+    @capacity = 100
   end
 
   def confirm_take_off(plane)
     weather = check_weather
-    puts weather
-    take_off(plane) if weather != "stormy"
+    take_off(plane) if (weather != "stormy")
   end
 
   def confirm_landing(plane)
     weather = check_weather
-    land(plane) if weather != "stormy"
+    land(plane) if (weather != "stormy" && space_available? == true )
   end
 
 private
@@ -32,6 +32,10 @@ private
 
   def check_weather
     Weather.new.random_weather
+  end
+
+  def space_available?
+    @planes_in_airport.count == @capacity ? (raise "No space available") : true
   end
 
 end
