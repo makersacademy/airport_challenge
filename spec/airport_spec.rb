@@ -12,14 +12,21 @@ describe Airport do
   describe '#land' do
 
     it 'Should see plane in airport' do
+      allow(subject).to receive(:weather).and_return(false)
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
 
     it 'should see multiple planes in airport' do
+      allow(subject).to receive(:weather).and_return(false)
       subject.land(plane)
       subject.land(plane2)
       expect(subject.planes).to include(plane, plane2)
+    end
+
+    it 'should not allow a plane to land if weather is stormy' do
+      allow(subject).to receive(:weather).and_return(true)
+      expect { subject.land(plane) }.to raise_error("Unable to land due to stormy weather")
     end
 
   end
@@ -43,8 +50,9 @@ describe Airport do
     end
 
     it 'should not allow a plane to take off if weather is stormy' do
-      allow(subject).to receive(:weather).and_return(true)
+      allow(subject).to receive(:weather).and_return(false)
       subject.land(plane)
+      allow(subject).to receive(:weather).and_return(true)
       expect { subject.take_off(plane) }.to raise_error("Unable to take off due to stormy weather")
     end
 
