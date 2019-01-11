@@ -17,4 +17,15 @@ describe Airport do
     plane.land(subject)
     expect(subject.verify_takeoff(plane)).to eq false
   end
+
+  it "Initializes with weather set either to :stormy or to :clear" do
+    expect(subject.instance_variable_get(:@weather)).to eq(:stormy) | eq(:clear)
+  end
+
+  it "Does not alter its weather state when accessed multiple times" do
+    airport = Airport.new
+    array_of_weather_states = []
+    1000.times { array_of_weather_states << airport.instance_variable_get(:@weather) }
+    expect(array_of_weather_states.uniq.length).to eq 1
+  end
 end
