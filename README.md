@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-<a href= #task>TASK</a>  |  <a href= #edge>EDGE CASES</a>  |  <a href= #approach>APPROACH </a>
+<a href= #task>TASK</a>  |  <a href= #edge>EDGE CASES</a>  |  <a href= #approach>APPROACH </a> | <a href= #tests> TESTS</a>
 
 ```
         ______
@@ -59,3 +59,33 @@ I would like a default airport capacity that can be overridden as appropriate
 - TDD for each method (some removed in later refactoring).
 - OOD - Planes and Weather are detached entities from the airport. However, the majority if methods on the Airport class, including those that land or take-off as it seemed that what's really happening is the airport controlling flights with results impacting the airport not the plane.
 - Refactoring & code cleanliness checks in process.
+
+[Feature Tests](#tests)
+-----
+
+###SetUp
+
+$ irb
+2.5.0 :001 > require './lib/weather'
+ => true
+2.5.0 :002 > require './lib/airport'
+ => true
+2.5.0 :003 > require './lib/plane'
+ => true
+2.5.0 :004 > airport = Airport.new
+ => #<Airport:0x00007f9bf3879060 @planes_in_airport=[], @capacity=100>
+2.5.0 :005 > plane = Plane.new
+ => #<Plane:0x00007f9bf3871310>
+
+
+### Multiple Planes
+
+_Possible in two actions:_
+2.5.0 :006 > airport.confirm_landing(plane)
+ => [#<Plane:0x00007f9bf3871310>]
+2.5.0 :007 > airport.confirm_landing(plane2)
+ => [#<Plane:0x00007f9bf3871310>, #<Plane:0x00007f9bf3869598>]
+
+ _Or as array in one:_
+ 2.5.0 :006 > airport.confirm_take_off([plane, plane2])
+ => "[#<Plane:0x00007f9bf3871310>, #<Plane:0x00007f9bf3869598>] has now left airport"
