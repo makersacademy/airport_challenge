@@ -41,8 +41,14 @@ describe Airport do
   end
 
   it "only allows planes that are already flying in the sky to land in the airport" do
-    sky = Sky.new.add_plane  (plane)
-    expect { subject.land_plane("plane_2", clear_weather) }.to raise_error "this plane isn't available to land"
+    subject.sky.add_plane(plane)
+    expect { subject.land_plane("plane_2", clear_weather) }.to raise_error "this plane isn't in the sky"
+  end
+
+  it "only allows planes that are in the airport to take off" do
+    subject.sky.add_plane(plane)
+    subject.land_plane(plane, clear_weather)
+    expect { subject.take_off_plane("plane_2", clear_weather) }.to raise_error "this plane isn't in the airport"
   end
 
 end

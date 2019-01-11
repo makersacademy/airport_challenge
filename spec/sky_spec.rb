@@ -9,5 +9,4 @@ describe Sky do
     expect(subject.flying_planes).to eq [plane]
   end
 
-
 end

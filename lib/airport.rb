@@ -22,13 +22,19 @@ class Airport
   end
 
   def take_off_plane(plane, weather = Weather.new)
+    in_airport?(plane)
     check_weather(weather)
+    @sky.flying_planes << plane
     @planes.delete(plane)
     self
   end
 
   def in_sky?(plane)
-    fail "this plane isn't available to land" unless @sky.flying_planes.include?(plane)
+    fail "this plane isn't in the sky" unless @sky.flying_planes.include?(plane)
+  end
+
+  def in_airport?(plane)
+    fail "this plane isn't in the airport" unless @planes.include?(plane)
   end
 
   def airport_full?
