@@ -12,16 +12,14 @@ class Airport
   end
 
   def verify_takeoff(plane)
-    # Returns true if plane not at airport and false if plane at airport
     !planes.include?(plane)
   end
 
-  def permission?
-    # Returns true if weather is good and false otherwise
+  def permission_depart?
     @weather == :clear
   end
 
-  def landing_permission?
+  def permission_land?
     planes.length < capacity && @weather == :clear
   end
 end

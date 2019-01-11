@@ -1,11 +1,9 @@
 class Plane
   def land(airport)
-    # Stores plane at airport given permission
-    airport.planes << self if airport.landing_permission?
+    airport.planes << self if airport.permission_land?
   end
 
   def depart(airport)
-    # Removes plane from airport given permission
-    airport.planes.delete(self) if airport.permission?
+    airport.planes.delete(self) if airport.permission_depart?
   end
 end
