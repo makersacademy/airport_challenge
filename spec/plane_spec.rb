@@ -24,7 +24,7 @@ describe Plane do
       expect { subject.land(@airport) }.to raise_error('Airport is full')
     end
 
-    it 'should raise error when trying to land where it already exists' do
+    it 'should raise error when trying to land when already in airport' do
       subject.land(@airport)
       expect { subject.land(@airport) }.to raise_error('Plane is not in flight')
     end
