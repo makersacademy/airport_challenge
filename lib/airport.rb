@@ -12,11 +12,11 @@ class Airport
   end
 
   def can_land?
-    is_stormy? || is_full? ? false : true
+    stormy? || full? ? false : true
   end
 
   def can_take_off?
-    is_stormy? ? false : true
+    stormy? ? false : true
   end
 
   def plane_landing(plane)
@@ -41,11 +41,11 @@ class Airport
 
   private
 
-  def is_full?
+  def full?
     @planes.length >= @capacity
   end
 
-  def is_stormy?
-    rand(1..100) < 5 ?  true : false
+  def stormy?
+    rand(1..100) < 5
   end
 end

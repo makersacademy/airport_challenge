@@ -3,7 +3,7 @@
 
 require 'airport'
 describe Airport do
-  let(:plane) {double :plane}
+  let(:plane) { double :plane }
   it "can accept planes landing" do
     expect(subject.plane_landing(plane).planes).to eq [plane]
   end
@@ -17,9 +17,9 @@ describe Airport do
   end
 
   it "stormy should be random" do
-    srand(12032)
+    srand(120_32)
     expect(subject.can_land?).to eq false
-    srand(12032)
+    srand(120_32)
     expect(subject.can_take_off?).to eq false
     srand(10)
 
@@ -34,7 +34,7 @@ describe Airport do
   end
 
   it "should not allow landing when airport is full" do
-    subject.capacity.times {subject.plane_landing(plane)}
+    subject.capacity.times { subject.plane_landing(plane) }
     expect(subject.can_land?).to eq false
   end
 
