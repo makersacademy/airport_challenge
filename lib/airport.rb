@@ -21,11 +21,15 @@ class Airport
   end
 
   def take_off(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prevents take_off") : "#{@planes.delete(plane)} has taken off from the airport"
+    @weather == "Stormy" ? (raise "Stormy weather prohibits take off") : "#{@planes.delete(plane)} has taken off from the airport"
   end
 
   def land(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prevents landing") : "#{@planes << plane} has landed at the airport"
+    @weather == "Stormy" ? (raise "Stormy weather prohibits landing") : "#{@planes << plane} has landed at the airport"
   end
 
+#Irb test method
+  def story
+    @weather = "Stormy"
+  end
 end

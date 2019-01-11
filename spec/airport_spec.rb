@@ -4,6 +4,7 @@ describe Airport do
 
   before(:each) do
     @airport = Airport.new
+    @plane = Plane.new
   end
 
   describe '#new' do
@@ -30,21 +31,35 @@ describe Airport do
 
 end
 
+describe '#Land' do
+
+  it "should allow planes to land when weather is sunny" do
+    allow(@airport).to receive(:roll) { 1 }
+    @airport.change_weather
+    expect(@airport.land(@plane)).to eq "#{[@plane]} has landed at the airport"
+  end
+
+  it "should prevents planes landing when weather is stormy by throwing error" do
+    allow(@airport).to receive(:roll) { 6 }
+    @airport.change_weather
+    expect { @airport.land(@plane) }.to raise_error("Stormy weather prohibits landing")
+  end
+
+end
 
   describe '#Take Off' do
 
-    # it "should allow a plane to take off when weather is sunny" do
-    #   airport = double(Airport.new, :weather => "Sunny")
-    #   (airport.planes).push(Plane.new)
-    #   expect(airport.take_off(plane)).to eq "#{plane} has taken off from the airport"
-    # end
+    it "should allow planes to take off when weather is sunny" do
+      allow(@airport).to receive(:roll) { 1 }
+      @airport.change_weather
+      expect(@airport.take_off(@plane)).to eq "#{@planes} has taken off from the airport"
+    end
 
-
-    # it "should prevent a plane from taking off when weather is stormy" do
-    #   airport = double(Airport.new, :weather => "Stormy")
-    #   airport.land(plane = Plane.new)
-    #   expect { airport.take_off(plane) }.to raise_error "Stormy weather prevents take_off"
-    # end
+    it "should prevents planes from taking off when weather is stormy by throwing error" do
+      allow(@airport).to receive(:roll) { 6 }
+      @airport.change_weather
+      expect { @airport.take_off(@plane) }.to raise_error("Stormy weather prohibits take off")
+    end
 
   end
 
