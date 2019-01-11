@@ -32,6 +32,22 @@ describe Airport do
     expect( @airport.take_off(@plane)).to eq "#{@plane} has now left airport"
   end
 
+  it 'should return weather when check weather is run' do
+    srand(5)
+    expect(@airport.check_weather).to eq("sunny")
+  end
 
+  it 'should only instruct a plane to take off if weather is not stormy' do
+    srand(5)
+    expect(@airport.confirm_take_off(@plane)).to eq "#{@plane} has now left airport"
+  end
+
+  it 'should not instruct a plane to take off if weather is stormy' do
+    srand(6)
+    expect(@airport.confirm_take_off(@plane)).to eq nil
+  end
 
 end
+
+# take off if not stormy
+# check weather
