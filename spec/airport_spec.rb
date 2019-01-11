@@ -7,9 +7,9 @@ describe Airport do
 
   it "is able to store landed planes" do
     plane = Plane.new
-    plane.land(subject)
     subject.instance_variable_set(:@weather, :clear)
-    expect(subject.planes.first).to eq plane
+    plane.land(subject)
+    expect(subject.planes.include?(plane)).to eq true
   end
 
   it "has a verify_takeoff which checks that a plane is not at airport" do
