@@ -19,7 +19,8 @@ class Airport
   end
 
   def take_off(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prohibits take off") : "#{@planes.delete(plane)} has taken off from the airport"
+    @weather == "Stormy" ? (raise "Stormy weather prohibits take off")
+    : @planes.delete(plane); "Plane #{plane.flight_number} has taken off from the airport"
   end
 
   def land(plane)
@@ -27,16 +28,13 @@ class Airport
   end
 
   def weather_check(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prohibits landing") : capacity_check(plane)
+    @weather == "Stormy" ? (raise "Stormy weather prohibits landing")
+    : capacity_check(plane)
   end
 
   def capacity_check(plane)
-    @planes.size >= @capacity ? (raise "Airport is at maximum capacity") : "#{@planes << plane} has landed at the airport"
+    @planes.size >= @capacity ? (raise "Airport is at maximum capacity")
+    : @planes << plane; "Plane #{plane.flight_number} has landed at the airport"
   end
 
-
-#Irb test method
-  def story
-    @weather = "Stormy"
-  end
 end
