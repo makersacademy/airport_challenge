@@ -9,7 +9,7 @@ describe Airport do
     @airport = Airport.new
   end
 
-#storing planes
+# storing planes
 
   it 'should add a plane to the array when it lands' do
     @airport.land(@plane)
@@ -23,10 +23,10 @@ describe Airport do
 
   it 'should remove a plane from array when instructed to take off and confirm this has been done' do
     @airport.land(@plane)
-    expect(@airport.take_off).to eq "#{@plane} has now left airport"
+    expect(@airport.take_off(@plane)).to eq "#{@plane} has now left airport"
   end
 
-#weather
+# weather
 
   it 'should return sunny weather' do
     srand(5)
@@ -41,12 +41,14 @@ describe Airport do
   it 'should only instruct a plane to take off if weather is not stormy' do
     srand(5)
     @airport.land(@plane)
-    expect(@airport.confirm_take_off).to eq "#{@plane} has now left airport"
+    expect(@airport.confirm_take_off(@plane)).to eq "#{@plane} has now left airport"
   end
 
   it 'should not instruct a plane to take off if weather is stormy' do
     srand(6)
-    expect(@airport.confirm_take_off).to eq nil
+    @airport.land(@plane)
+
+    expect(@airport.confirm_take_off(@plane)).to eq nil
   end
 
   it 'should only instruct a plane to land if weather is not stormy' do
@@ -77,28 +79,25 @@ describe Airport do
     expect { airport50.confirm_landing(@plane) }.to raise_error "No space available"
   end
 
-   # edge cases
+  # edge cases
 
-   it 'should return true if plane is already in the airport' do
-     @airport.land(@plane)
-     expect(@airport.in_airport?(@plane)).to eq true
-   end
+  it 'should return true if plane is already in the airport' do
+    @airport.land(@plane)
+    expect(@airport.in_airport?(@plane)).to eq true
+  end
 
-   it 'should not allow the same plane to land twice (without taking off between)' do
-     @airport.land(@plane)
-     expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is already in the airport"
-   end
+  it 'should not allow the same plane to land twice (without taking off between)' do
+    @airport.land(@plane)
+    expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is already in the airport"
+  end
 
-   # it 'should not allow the same plane to take off twice (without landing between)' do
-   #   @airport.land(@plane)
-   #   expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is already in the airport"
-   # end
+  it 'should not allow the same plane to take off twice (without landing between)' do
+    expect { @airport.confirm_take_off(@plane) } .to raise_error "This plane is not in the airport"
+  end
 end
-
-
 
 # refactor
 # edge cases
 # test doubles
-#clean up readme
+# clean up readme
 # check mark criteria

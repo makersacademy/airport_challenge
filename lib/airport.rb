@@ -10,13 +10,15 @@ class Airport
     @capacity = capacity
   end
 
-  def confirm_take_off
-#    fail "This plane is already in the airport" if in_airport? == false
-    take_off if weather_ok?
+  def confirm_take_off(plane)
+    fail "This plane is not in the airport" if in_airport?(plane) == false
+
+    take_off(plane) if weather_ok?
   end
 
   def confirm_landing(plane)
     fail "This plane is already in the airport" if in_airport?(plane)
+
     land(plane) if (space_available? && weather_ok?)
   end
 
@@ -26,8 +28,8 @@ private
     @planes_in_airport << plane
   end
 
-  def take_off
-    plane = @planes_in_airport.pop
+  def take_off(plane)
+    @planes_in_airport.select! { |pia| pia == plane }
     "#{plane} has now left airport"
   end
 
@@ -40,7 +42,8 @@ private
   end
 
   def in_airport?(plane)
-    @planes_in_airport.include? plane #? (fail "This plane is already in the airport") : false
+    @planes_in_airport.include? plane
+    # ? (fail "This plane is already in the airport") : false
   end
 
 end
