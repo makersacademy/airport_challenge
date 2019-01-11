@@ -2,21 +2,20 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes_in_airport
+  attr_reader :planes_in_airport, :capacity
+  CAPACITY = 100
 
-  def initialize
+  def initialize(capacity = CAPACITY)
     @planes_in_airport = []
-    @capacity = 100
+    @capacity = capacity
   end
 
   def confirm_take_off(plane)
-    weather = check_weather
-    take_off(plane) if (weather != "stormy")
+    take_off(plane) if weather_ok?
   end
 
   def confirm_landing(plane)
-    weather = check_weather
-    land(plane) if (weather != "stormy" && space_available? == true )
+    land(plane) if (space_available? && weather_ok?)
   end
 
 private
@@ -30,12 +29,12 @@ private
     "#{plane} has now left airport"
   end
 
-  def check_weather
-    Weather.new.random_weather
+  def weather_ok?
+    Weather.new.random_weather != "stormy"
   end
 
   def space_available?
-    @planes_in_airport.count == @capacity ? (raise "No space available") : true
+    @planes_in_airport.count == @capacity ? (fail "No space available") : true
   end
 
 end

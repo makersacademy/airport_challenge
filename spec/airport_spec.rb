@@ -27,12 +27,12 @@ describe Airport do
 
   it 'should return sunny weather' do
     srand(5)
-    expect(@airport.check_weather).to eq("sunny")
+    expect(@airport.weather_ok?).to eq(true)
   end
 
   it 'should return stormy weather' do
     srand(6)
-    expect(@airport.check_weather).to eq("stormy")
+    expect(@airport.weather_ok?).to eq(false)
   end
 
   it 'should only instruct a plane to take off if weather is not stormy' do
@@ -56,8 +56,19 @@ describe Airport do
   end
 
   it 'should not accept planes when the airport is full' do
-    100.times{@airport.land(@plane)}
-    expect {@airport.confirm_landing(@plane)}.to raise_error "No space available"
+    100.times { @airport.land(Plane.new) }
+    expect { @airport.confirm_landing(@plane) }.to raise_error "No space available"
+  end
+
+  it 'should allow inititalize with any capacity' do
+    airport50 = Airport.new(50)
+    expect(airport50.capacity).to eq 50
+  end
+
+  it 'should not accept planes when the airport of capacity 50 is full' do
+    airport50 = Airport.new(50)
+    50.times { airport50.land(Plane.new) }
+    expect { airport50.confirm_landing(@plane) }.to raise_error "No space available"
   end
 
 end
