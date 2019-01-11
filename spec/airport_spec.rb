@@ -21,7 +21,7 @@ describe Airport do
 
   describe '#safe?' do
     it 'should return false when calling safe? when weather is stormy' do
-      subject.weather('Stormy')
+      srand(4)
       expect(subject.safe?).to eq false
     end
   end

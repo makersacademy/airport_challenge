@@ -5,7 +5,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @weather = ['Stormy', 'Sunny', 'Cloudy', 'Rainy', 'Snowy'].sample
+    @weather = ['Cloudy', 'Sunny', 'Stormy', 'Rainy', 'Snowy'].sample
   end
 
   def safe?
@@ -15,9 +15,4 @@ class Airport
   def full?
     @planes.count >= @capacity
   end
-
-  def weather(set)
-    @weather = set
-  end
-
 end
