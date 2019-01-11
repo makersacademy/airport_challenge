@@ -16,6 +16,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise Exception.new("No take offs permitted") if stormy
     @planes_in_airport.delete(plane)
   end
 
@@ -23,7 +24,7 @@ class Airport
     true
   end
 
-  def stormy?
+  def stormy
     @weather.stormy?
   end
 end

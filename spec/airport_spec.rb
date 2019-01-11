@@ -22,23 +22,30 @@ RSpec.describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
   it "can instruct a plane to take off and confirm that the plane has left the airport" do
+    airport = Airport.new
+    allow(airport).to receive(:stormy).and_return(false)
     plane = Plane.new
-    subject.land(plane)
-    subject.take_off(plane)
-    expect(subject.planes_in_airport.include?(plane)).to eq(false)
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes_in_airport.include?(plane)).to eq(false)
   end
 
   # As an air traffic controller 
   # To ensure safety 
   # I want to prevent takeoff when weather is stormy 
-  
-  # it "checks if weather is stormy" do
-  #   expect(subject.stormy?).to eq(false)
-  # end
 
-  # it "prevents take off when weather is stormy" do
-  #   p subject.stormy?
-  #   expect(subject.take_off).to eq(true)
-  # end
+  it "checks if weather is stormy" do
+    airport = Airport.new
+    allow(airport).to receive(:stormy).and_return(true)
+    expect(airport.stormy).to eq(true)
+  end
+
+  it "prevents take off when weather is stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    allow(airport).to receive(:stormy).and_return(true)
+    expect{ airport.take_off(plane) }.to raise_error("No take offs permitted")
+  end
 
 end
