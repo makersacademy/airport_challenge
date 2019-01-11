@@ -1,17 +1,26 @@
+require_relative 'airport'
+
 class Plane
   attr_reader :location, :flight_number
 
   def initialize
-    @location = "Flying"
+    @flying = true
     @flight_number = rand(100..999)
   end
 
+  def swap_state
+    @flying = !@flying
+  end
+
+
   def land(airport)
-    @location = airport if airport.land(self)
+    @flying == true ? airport.land(self)
+    : (raise "Plane #{@flight_number} is already grounded at an airport")
   end
 
   def take_off
-    @location.take_off(self)
+    @flying == false ? @location.take_off(self)
+    : (raise "Plane #{@flight_number} is flying and so cannot take off!")
   end
 
 end
