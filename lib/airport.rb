@@ -8,6 +8,7 @@ class Airport
   def initialize
     @planes_at_airport = []
     @plane_that_left = 0
+    @weather = Weather.new
   end
 
   def land(plane)

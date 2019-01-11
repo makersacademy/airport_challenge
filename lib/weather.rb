@@ -2,16 +2,16 @@ class Weather
 
   attr_reader :outlooks
 
-  def initialize
-    @outlooks = ['sunny','sunny','sunny','sunny','stormy']
-  end
-  
   def sunny?
-    if @outlook[rand (0..4)] == 'sunny'
-      true
-    else
-      false
-    end
+    random_outlook == :sunny
+    #true (it is sunny) if it is equal to sunny
+  end
+
+  private
+  OUTLOOKS = [:sunny, :sunny, :sunny, :sunny, :stormy]
+
+  def random_outlook
+    OUTLOOKS.sample
   end
 
 end
