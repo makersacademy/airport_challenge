@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -15,11 +16,9 @@ class Airport
 
   def take_off(plane)
     @plane_that_left = @planes_at_airport.delete(plane)
-
     if @planes_at_airport.include?(@plane_that_left) == false
       return "Plane #{@plane_that_left} has left"
     end
   end
-
 
 end

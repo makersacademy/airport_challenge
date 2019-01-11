@@ -13,6 +13,7 @@ describe Airport do
       end
     end
 
+
     describe '#take_off' do
       it {is_expected.to respond_to :take_off}
 
@@ -28,18 +29,13 @@ describe Airport do
         subject.land(plane)
         expect(subject.take_off(plane)).to eq("Plane #{plane} has left")
       end
+
+      # it 'should prevent a plane from taking off if the weather is stormy' do
+      #   plane = Plane.new
+      #   subject.land(plane)
+      #   subject.take_off(plane)
+      #   expect(subject.)
+      # end
     end
 
   end
-
-    # describe '#confirm_plane_left' do
-    #   it {is_expected.to respond_to :confirm_plane_left}
-    #
-    #   it 'should confirm that the plane has left the airport' do
-    #   plane=Plane.new
-    #   subject.land(plane)
-    #   subject.take_off(plane)
-    #   subject.confirm_plane_left(plane)
-    #   expect(subject.planes_at_airport).not_to include(plane)
-    #   end
-    # end
