@@ -13,7 +13,7 @@ class Airport
     !planes.include?(plane)
   end
 
-  def permission_to_fly?
+  def permission?
     @weather == :clear
   end
 end

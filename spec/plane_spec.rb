@@ -6,15 +6,32 @@ describe Plane do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it "has a land method which stores the plane at the airport" do
-    airport = Airport.new
-    subject.land(airport)
-    expect(airport.planes.first).to eq subject
+  it "can land at airport if permission given" do
+    fairport = Airport.new
+    fairport.instance_variable_set(:@weather, :clear)
+    subject.land(fairport)
+    expect(fairport.planes.include?(subject)).to eq true
   end
 
-  it "can depart an airport" do
-    airport = Airport.new
-    subject.depart(airport)
-    expect(airport.planes.include?(subject)).to eq false
+  it "can depart airport if permission given" do
+    fairport = Airport.new
+    fairport.instance_variable_set(:@weather, :clear)
+    fairport.instance_variable_set(:@planes, [subject])
+    subject.depart(fairport)
+    expect(fairport.planes.include?(subject)).to eq false
+  end
+
+  it "can't land at airport if permission denied" do
+    stormport = Airport.new
+    stormport.instance_variable_set(:@weather, :stormy)
+    subject.land(stormport)
+    expect(stormport.planes.include?(subject)).to eq false
+  end
+
+  it "can't depart airport if permission denied" do
+    stormport = Airport.new
+    stormport.instance_variable_set(:@weather, :stormy)
+    stormport.instance_variable_set(:@planes, [subject])
+    expect(stormport.planes.include?(subject)).to eq true
   end
 end

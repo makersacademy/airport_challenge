@@ -8,11 +8,13 @@ describe Airport do
   it "is able to store landed planes" do
     plane = Plane.new
     plane.land(subject)
+    subject.instance_variable_set(:@weather, :clear)
     expect(subject.planes.first).to eq plane
   end
 
   it "has a verify_takeoff which checks that a plane is not at airport" do
     plane = Plane.new
+    subject.instance_variable_set(:@weather, :clear)
     expect(subject.verify_takeoff(plane)).to eq true
     plane.land(subject)
     expect(subject.verify_takeoff(plane)).to eq false
@@ -32,6 +34,6 @@ describe Airport do
   it "does not give permission to fly if weather is stormy" do
     stormy_airport = Airport.new
     stormy_airport.instance_variable_set(:@weather, :stormy)
-    expect(stormy_airport.permission_to_fly?).to eq false
+    expect(stormy_airport.permission?).to eq false
   end
 end
