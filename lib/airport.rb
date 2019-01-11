@@ -12,4 +12,8 @@ class Airport
     # Returns true if plane not at airport and false if plane at airport
     !planes.include?(plane)
   end
+
+  def permission_to_fly?
+    @weather == :clear
+  end
 end
