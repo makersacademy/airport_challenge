@@ -27,17 +27,25 @@ describe Airport do
   describe '#take_off' do
 
     it 'should remove plane from airport' do
+      allow(subject).to receive(:weather).and_return(false)
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).to be_empty
     end
 
     it 'should allow only remove plane that took off from airport' do
+      allow(subject).to receive(:weather).and_return(false)
       subject.land(plane)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.planes).to include(plane2)
       expect(subject.planes).not_to include(plane)
+    end
+
+    it 'should not allow a plane to take off if weather is stormy' do
+      allow(subject).to receive(:weather).and_return(true)
+      subject.land(plane)
+      expect { subject.take_off(plane) }.to raise_error("Unable to take off due to stormy weather")
     end
 
   end
