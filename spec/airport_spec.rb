@@ -9,8 +9,8 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  let(:plane) { double :plane }
-  let(:plane2) { double :plane }
+  let(:plane) { Plane.new }
+  let(:plane2) { Plane.new }
 
   describe '#land' do
 
@@ -48,19 +48,19 @@ describe Airport do
   describe '#capacity' do
 
     it 'should not allow a plane to land if the airport is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error("Unable to land due airpot capacity being full")
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect { subject.land(plane2) }.to raise_error("Unable to land due airport capacity being full")
     end
 
     it 'should allow the airport capacity to be changed' do
       airport = Airport.new(5)
       allow(airport).to receive(:weather).and_return(false)
-      5.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error("Unable to land due airpot capacity being full")
+      5.times { airport.land(Plane.new) }
+      expect { airport.land(plane) }.to raise_error("Unable to land due airport capacity being full")
     end
 
     it 'should allow the capacity to be changed at any time' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       subject.capacity = 11
       subject.land(plane)
       expect(subject.planes.length).to eq 11
