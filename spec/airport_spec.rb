@@ -19,7 +19,16 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(false)
       airport.land(plane, weather)
       expect(airport.planes).to include plane
-    end      
+    end
+
+    it 'Plane cannot land if it is already landed' do
+      plane = Plane.new
+      airport = Airport.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport.land(plane, weather)
+      expect { airport.land(plane, weather) }.to raise_error 'Plane has already landed'
+    end
   end
 
   describe 'Planes taking off' do
@@ -44,6 +53,22 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(false)
       airport.take_off(plane, weather)
       expect(airport.taken_off?(plane)).to eq true
+    end
+
+    it 'planes can only take off from airport they are in' do
+      airport = Airport.new
+      plane = Plane.new
+      weather = Plane.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { airport.take_off(plane, weather) }.to raise_error 'Plane is not in airport'
+    end
+    
+    it 'taken off plane can not be in airport' do
+      airport = Airport.new
+      plane = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(airport.planes).to_not include plane
     end
   end
          
