@@ -1,11 +1,11 @@
 require_relative 'airport'
 
 class Weather
-  def stormy?
+  def stormy
     @weather = false
   end
 
-  def not_stormy?
+  def not_stormy
     @weather = true
   end
 

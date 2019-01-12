@@ -5,23 +5,28 @@ class Airport
 
 attr_reader :planes, :weather
 
-def initialize #(weather = true)
+def initialize
   @planes = []
-  @weather #= weather
+  @weather
 end
 
 def land(plane, weather)
-  fail "Landing is forbidden!" if false
-  @weather # will work as long as either land or take_off has called @weather
+  @weather = weather
+  fail "Landing is forbidden!" if stormy?
   @planes << plane
   return plane
 end
 
 def take_off(plane, weather)
-  fail "Take off is forbidden!" if false
-  @weather
+  @weather = weather
+  fail "Take off is forbidden!" if stormy?
   @planes - [plane]
   return @planes.include?(plane)
+end
+
+private
+def stormy?
+  @weather == false
 end
 
 end

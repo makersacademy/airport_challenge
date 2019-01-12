@@ -10,15 +10,13 @@ describe '#land' do
 it "lands at an airprot" do
   plane = Plane.new
   weather = Weather.new
-  not_stormy = weather.not_stormy?
-  expect(subject.land(plane, not_stormy)).to eq plane
+  expect( subject.land(plane, weather.not_stormy) ).to eq plane
 end
 
 it "cannot land if stormy" do
   plane = Plane.new
   weather = Weather.new
-  stormy = weather.stormy?
-  expect{ subject.land(plane, stormy) }.to raise_error "Landing is forbidden!"
+  expect{ subject.land(plane, weather.stormy) }.to raise_error "Landing is forbidden!"
 end
 end
 
@@ -26,21 +24,25 @@ describe '#take_off' do
 it "plane no longer in the airport" do
   plane = Plane.new
   weather = Weather.new
-  not_stormy = weather.not_stormy?
-  expect(subject.take_off(plane, not_stormy)).to eq false
+  expect( subject.take_off(plane,weather.not_stormy) ).to eq false
 end
 
+it "cannot take off if stormy" do
+  plane = Plane.new
+  weather = Weather.new
+  expect{ subject.take_off(plane,weather.stormy) }.to raise_error "Take off is forbidden!" 
+end
 end
 end
 
  describe Weather do
    it "is stormy" do
      weather = Weather.new
-     expect( weather.stormy? ).to eq false
+     expect( weather.stormy ).to eq false
    end
 
    it "is not sotrmy" do
      weather = Weather.new
-     expect( weather.not_stormy? ).to eq true
+     expect( weather.not_stormy ).to eq true
    end
  end
