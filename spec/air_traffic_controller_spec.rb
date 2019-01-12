@@ -6,9 +6,12 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).arguments
     expect { subject.land(Plane.new) }.to_not raise_error
   end
-  it "stores LANDed planes" do
-    
+  it "stores LANDed planes in PLANES" do
+    pointer = Plane.new
+    subject.land(pointer)
+    expect(subject.planes.include?(pointer)).to eq(true)
   end
+
   it "can instruct a PLANE to TAKEOFF" do
     expect(subject).to respond_to(:takeoff).with(1).arguments
     expect { subject.takeoff(Plane.new) }.to_not raise_error
