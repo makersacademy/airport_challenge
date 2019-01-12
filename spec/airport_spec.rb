@@ -4,7 +4,6 @@ RSpec.describe Airport do
 
   it { is_expected.to respond_to(:capacity_reached?) }
   it { is_expected.to respond_to(:plane_in_airport?) }
-  it { is_expected.to respond_to(:stormy) }
   
   describe '#land' do
     it { is_expected.to respond_to(:land) }  
@@ -73,6 +72,8 @@ RSpec.describe Airport do
   end
 
   describe '#stormy' do
+    it { is_expected.to respond_to(:stormy) }
+    
     it "checks if weather is stormy" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(true)

@@ -16,14 +16,14 @@ class Airport
 
   def land(plane) 
     raise Exception.new(m_plane_already_landed) if plane_in_airport?(plane)
-    raise Exception.new("No landings permitted") if stormy || capacity_reached?
+    raise Exception.new(m_landing_denied) if stormy || capacity_reached?
 
     @planes_in_airport << plane
   end
 
   def take_off(plane)
     raise Exception.new(m_plane_not_in_airport) unless plane_in_airport?(plane)
-    raise Exception.new("No take offs permitted") if stormy
+    raise Exception.new(m_take_off_denied) if stormy
 
     @planes_in_airport.delete(plane)
   end
@@ -48,6 +48,14 @@ class Airport
 
   def m_plane_already_landed
     "This plane has already landed"
+  end
+
+  def m_landing_denied
+    "No landings permitted"
+  end
+
+  def m_take_off_denied
+    "No take offs permitted"
   end
 
 end
