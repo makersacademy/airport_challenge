@@ -28,13 +28,10 @@ describe Airport do
   it 'can instruct a plane to land i.e. responds to land method' do
     expect(subject).to respond_to(:land)
   end
-  it 'can take a mock double of a plane in the land method' do
-    plane = double('a mocked instance of plane')
-    expect(subject.land(plane)). to eq(plane)
-  end
-  it 'can take an instance of a plane in the land method' do
+  it 'can store the landed instance of a plane in the airport for counting' do
     instance_of_plane = Plane.new
-    expect(subject.land(instance_of_plane)).to eq(instance_of_plane)
+    subject.land(instance_of_plane)
+    expect(subject.instance_variable_get(:@planes_in_airport)).to include(instance_of_plane)
   end
 
   it 'can instruct a plane to take off, i.e. responds to takeoff method' do
