@@ -19,6 +19,8 @@ class Airport
   def land(plane)
     raise("Can't land during stormy weather") unless clear_skies?
 
+    raise("Airport at full capacity!") if at_capacity?
+
     @planes << plane
   end
 
@@ -28,6 +30,10 @@ class Airport
     return @planes.slice!(@planes.index(plane)) if clear_skies?
 
     raise("Can't take off during stormy weather")
+  end
+
+  def at_capacity?
+    @planes.length >= @max_capacity
   end
 end
 
