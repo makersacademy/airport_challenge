@@ -1,33 +1,28 @@
 require 'airport'
 
-describe Airport do
+RSpec.describe Airport do
     
   describe 'Landing a plane' do
-
+  before(:example) do
+    @plane = Plane.new
+    @airport = Airport.new
+    @weather = Weather.new
+  end
     it 'plane can land' do
-      plane = Plane.new
-      airport = Airport.new
-      weather = Weather.new
-      allow(weather).to receive(:stormy?).and_return(false)
-      expect(airport.land(plane, weather)).to eq [plane]
+      allow(@weather).to receive(:stormy?).and_return(false)
+      expect(@airport.land(@plane, @weather)).to eq [@plane]
     end
     
     it 'landed plane is in the airport' do
-      plane = Plane.new
-      airport = Airport.new
-      weather = Weather.new
-      allow(weather).to receive(:stormy?).and_return(false)
-      airport.land(plane, weather)
-      expect(airport.planes).to include plane
+      allow(@weather).to receive(:stormy?).and_return(false)
+      @airport.land(@plane, @weather)
+      expect(@airport.planes).to include @plane
     end
 
     it 'Plane cannot land if it is already landed' do
-      plane = Plane.new
-      airport = Airport.new
-      weather = Weather.new
-      allow(weather).to receive(:stormy?).and_return(false)
-      airport.land(plane, weather)
-      expect { airport.land(plane, weather) }.to raise_error 'Plane has already landed'
+      allow(@weather).to receive(:stormy?).and_return(false)
+      @airport.land(@plane, @weather)
+      expect { @airport.land(@plane, @weather) }.to raise_error 'Plane has already landed'
     end
   end
 
