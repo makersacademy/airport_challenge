@@ -1,5 +1,6 @@
 require 'airport'
 require 'rspec'
+require 'plane'
 
 describe Airport do
 
@@ -20,6 +21,23 @@ describe Airport do
   # As an air traffic controller
   # So I can get passengers on the way to their destination
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+  describe "takeoff process" do
+
+    it "should be able to instruct a plane to take off" do
+      plane = Plane.new
+      @airport.instance_variable_set(:@planes, [plane])
+      expect(@airport.takeoff(plane)).to eq(plane)
+    end
+
+    it "should check that planes that have taken off are no longer in the airport" do
+      plane = Plane.new
+      @airport.instance_variable_set(:@planes, [plane])
+      @airport.takeoff(plane)
+      expect(@airport.instance_variable_get(:@planes)).to eq([])
+    end
+
+  end
 
   # As an air traffic controller
   # To ensure safety

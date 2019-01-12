@@ -1,7 +1,5 @@
 class Airport
 
-
-
   def initialize(capacity=20)
     @capacity = capacity
     @planes = []
@@ -15,4 +13,11 @@ class Airport
     @planes.push(plane)
   end
 
+  def takeoff(plane)
+    return false unless @planes.include?(plane)
+
+    @planes.delete_at(@planes.index(plane))
+  end
 end
+
+
