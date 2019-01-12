@@ -54,7 +54,7 @@ end
  it 'raise error when airport is full' do
    airport = Airport.new
    weather = Weather.new
-   20.times do
+   Airport::DEFAULT_CAPACITY.times do
      expect(weather).to receive(:stormy?).and_return(false)
      airport.land(Plane.new, weather)
    end
