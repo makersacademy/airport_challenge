@@ -25,5 +25,14 @@ describe AirTrafficControl do
       plane1 = Plane.new("plane1")
       expect { airport.land(plane1.plane_sign, true) }.to raise_error("Stormy weather, can't land now!")
     end
+    it "Check if plane will land in a full airport after setting capacity to 10 planes only" do
+      airport.capacity = 10
+      10.times{
+        plane2 = Plane.new("plane2")
+        airport.land(plane2.plane_sign)
+      }
+      plane2 = Plane.new("plane2")
+      expect { airport.land(plane2.plane_sign) }.to raise_error("Airport full, can't land now!")
+    end
   end
 end
