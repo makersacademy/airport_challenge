@@ -33,7 +33,7 @@ RSpec.describe Airport do
       expect { airport.land(plane2) }.to raise_error("No landings permitted")
     end
 
-    it "prevents planes that have already landed from landing again" do
+    it "prevents planes that have already landed from landing again in the same airport" do
       airport = Airport.new(5)
       allow(airport).to receive(:stormy).and_return(false)
       plane = Plane.new
