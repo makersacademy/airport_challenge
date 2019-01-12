@@ -35,8 +35,10 @@ describe Airport do
    it 'raise error when stormy' do
       airport = Airport.new
       plane = Plane.new
-      airport.land(plane) 
       weather = Weather.new
-      weather.stormy?
+      airport.land(plane) 
+      expect(weather).to receive(:stormy?).and_return(true)
+      expect { airport.take_off(plane) }.to raise_error 'Turbulent weather cannot takeoff'
+  end
        
 end
