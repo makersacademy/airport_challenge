@@ -2,21 +2,23 @@ require 'airport'
 
 RSpec.describe Airport do
 
-  describe '#land' do
-  it 'allows planes to land' do
+
+  describe '#land and #takeoff' do
+  it 'allows planes to land and takeoff' do
   Heathrow = Airport.new
   plane1 = Plane.new
+  plane2 = Plane.new
   expect(Heathrow.land(plane1)).to eq [plane1]
-end
+  expect(Heathrow.land(plane2)).to eq [plane1, plane2]
+  expect(Heathrow.take_off(plane1)). to eq plane1
+  expect(Heathrow.take_off(plane2)). to eq plane2
+  expect(subject.planes). to eq []
+  end
 end
 
-  describe '#take_off' do
-    it 'allows planes to take off' do
-      Heathrow = Airport.new
-      plane1 = Plane.new
-      Heathrow.land(plane1)
-      expect(Heathrow.take_off(plane1)). to eq plane1
-    end
-  end
+
+
+
+
 
 end
