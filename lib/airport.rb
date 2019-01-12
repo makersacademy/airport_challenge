@@ -24,7 +24,3 @@ class Airport
     chance > 9 ? true : false
   end
 end
-
-class Plane
-
-end
