@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 RSpec.describe Airport do
 
@@ -15,8 +16,6 @@ RSpec.describe Airport do
   expect(subject.planes). to eq []
   end
 end
-
-
 
 
 
