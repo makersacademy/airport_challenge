@@ -9,10 +9,12 @@ class Airport
   end
 
   def land(plane)
+    fail 'Already landed' if @runway.include?(plane)
     @runway.push(plane)
   end
 
   def takeoff(plane)
+     @runway.delete(plane)
      plane
   end
 
