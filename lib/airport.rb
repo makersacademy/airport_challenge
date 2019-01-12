@@ -13,7 +13,7 @@ class Airport
   
   def land(plane, weather)
     fail 'Turbulent weather cannot land' if weather.stormy?
-    fail 'Airport is full' if @planes.count >= @capacity
+    fail 'Airport is full' if full?
 
     @planes << plane
   end
@@ -26,6 +26,10 @@ class Airport
 
   def taken_off?(plane)
     @planes.include?(plane) ? false : true
+  end
+
+  def full?
+    @planes.count >= @capacity
   end
 
 end
