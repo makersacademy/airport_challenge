@@ -5,7 +5,7 @@ RSpec.describe Airport do
   it 'Airport allows plane to land' do
     gatwick = Airport.new
     plane = Plane.new
-    expect(gatwick.land(plane)).to eq(plane)
+    expect(gatwick.land(plane)).to eq([plane])
   end
 
   it 'Airport allows plane to take off' do
