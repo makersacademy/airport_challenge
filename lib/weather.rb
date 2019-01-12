@@ -2,5 +2,6 @@
 
 class Weather
   def weather_forecast
+    "Fine"
   end
 end
