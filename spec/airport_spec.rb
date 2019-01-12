@@ -26,9 +26,15 @@ RSpec.describe Airport do
     weather = Weather.new
     gatwick = Airport.new
     plane = Plane.new
-    expect { gatwick.land(plane, weather) }.to raise_error('Landing not authorised')
+    expect{ gatwick.land(plane, weather) }.to raise_error('Landing not authorised')
   end
 
-
+  it 'Airport prevents landing when is full' do
+    weather = Weather.new
+    plane = Plane.new
+    gatwick = Airport.new
+    3.times { gatwick.land(plane,weather="sunny") }
+    expect{ gatwick.land(plane,weather="sunny") }.to raise_error('Airport full')
+  end
 
 end
