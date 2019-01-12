@@ -10,4 +10,8 @@ RSpec.describe Airport do
       expect(subject.land(plane)).to eq plane
     end
   end
+
+  describe '#takeoff' do
+    it { should respond_to :takeoff }
+  end
 end
