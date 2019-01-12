@@ -8,6 +8,10 @@ class Airport
     @max_capacity = max_capacity
   end
 
+  def change_capacity(new_cap)
+    @max_capacity = new_cap
+  end
+
   def weather_report
     return @weather
   end

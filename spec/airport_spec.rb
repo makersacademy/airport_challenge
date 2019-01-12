@@ -65,7 +65,12 @@ describe Airport do
   end
 
   it "can change maximum capacity at any time" do
+    new_cap = subject.max_capacity + 1
+    subject.change_capacity(new_cap)
+    expect(subject.max_capacity).to eq(new_cap)
   end
+  # 0 or negative capacities
+  # error if non- pos int input
 
   it "throws error if maximum capacity is changed to smaller than current amount
      of PLANES" do
