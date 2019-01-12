@@ -5,7 +5,7 @@ class Airport
   attr_reader :planes_in_airport
   attr_reader :capacity
 
-  DEFAULT_CAPACITY = 1
+  DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @plane = Plane.new
@@ -15,9 +15,10 @@ class Airport
   end
 
   def land(plane) 
-    raise Exception.new(m_plane_already_landed) if plane_in_airport?(plane)
+    throw_land_exception(plane)
     raise Exception.new(m_landing_denied) if stormy || capacity_reached?
 
+    plane.landed = true
     @planes_in_airport << plane
   end
 
@@ -42,12 +43,21 @@ class Airport
 
   private
 
+  def throw_land_exception(plane)
+    raise Exception.new(m_plane_already_landed) if plane_in_airport?(plane)
+    raise Exception.new(m_plane_in_another_airport) if plane.landed == true
+  end
+
   def m_plane_not_in_airport
     "This plane doesn't exist in the airport"
   end
 
   def m_plane_already_landed
     "This plane has already landed"
+  end
+
+  def m_plane_in_another_airport
+    "This plane is currently landed in another airport"
   end
 
   def m_landing_denied
