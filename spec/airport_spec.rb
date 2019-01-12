@@ -2,15 +2,15 @@ require 'airport'
 require 'plane'
 
 RSpec.describe Airport do
-  describe '#land' do
-    it { should respond_to :land }
+  it { should respond_to :land }
 
+  describe '#land' do
     it 'should land a plane' do
       plane = Plane.new
       allow(Weather).to receive(:current) { "safe" }
       expect(subject.land(plane)).to eq plane
     end
-    
+
     it 'should prevent landing when airport is full' do
       allow(Weather).to receive(:current) { "safe" }
       subject.land(Plane.new)
@@ -18,9 +18,9 @@ RSpec.describe Airport do
     end
   end
 
+  it { should respond_to :takeoff }
+  
   describe '#takeoff' do
-    it { should respond_to :takeoff }
-
     it 'should takeoff a plane and check it\'s no longer in the airport' do
       allow(Weather).to receive(:current) { "safe" } 
       subject.land(Plane.new)
