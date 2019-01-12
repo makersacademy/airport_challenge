@@ -32,9 +32,17 @@ describe Airport do
   end
 
   it "prevents take off when stormy" do
-    allow(subject).to receive(:stormy?) { true }
     subject.land(Plane.new)
+    allow(subject).to receive(:stormy?) { true }
     expect { subject.take_off } .to raise_error "stormy can't take off"
+  end
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when weather is stormy
+  it "prevents landing when stormy" do
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.land(Plane.new) } .to raise_error "stormy can't land"
   end
 
 

@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    fail "stormy can't land" if stormy? == true
     @planes.push(plane)
   end
 
