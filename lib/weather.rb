@@ -2,10 +2,6 @@ class Weather
 
   def stormy?
     weather = ['sunny','sunny', 'sunny', 'sunny', 'stormy']
-    if weather[rand(0..4)] == 'stormy'
-      true
-    else
-      false
-    end
+    weather[rand(0..4)] == 'stormy'
   end
 end
