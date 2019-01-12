@@ -1,9 +1,11 @@
 class Airport
   attr_reader :planes
+  attr_reader :max_capacity
 
   def initialize
     @planes = []
     @weather = rand(1..100) < 95 ? :sunny : :stormy
+    @max_capacity = 5
   end
 
   def weather_report

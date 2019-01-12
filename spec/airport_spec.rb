@@ -46,4 +46,7 @@ describe Airport do
     allow(subject).to receive(:weather_report) { :stormy }
     expect { subject.land(pointer) }.to raise_error
   end
+  it "has a maximum plane capacity" do
+    expect(subject.max_capacity).to be_a(Integer)
+  end
 end
