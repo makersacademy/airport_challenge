@@ -76,4 +76,18 @@ RSpec.describe Airport do
     expect { airport.land(plane2) }.to raise_error("No landings permitted")
   end
 
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+
+  it "adds a default airport capacity" do
+    airport = Airport.new
+    expect(airport.capacity).to eq(1)
+  end
+
+  it "lets the default capacity to be overridden" do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq(10)
+  end
+
 end
