@@ -6,24 +6,25 @@ class Airport
 
   DEFAULT_CAPACITY = 1
 
-  attr_reader :plane, :capacity
+  attr_reader :planes, :capacity
   attr_writer :capacity
 
   def initialize
     @capacity = DEFAULT_CAPACITY
+    @planes = []
   end
 
   def land(plane)
     raise LANDING_ERROR_MESSAGE if stormy?
-    raise LANDING_ERROR_MESSAGE if @plane
+    raise LANDING_ERROR_MESSAGE if @planes.length >= @capacity
 
-    @plane = plane
+    @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
     raise TAKEOFF_ERROR_MESSAGE if stormy?
 
-    @plane = nil
+    @planes.delete(plane)
   end
 
   private

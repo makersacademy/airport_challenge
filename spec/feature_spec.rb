@@ -7,20 +7,22 @@ RSpec.describe 'Feature Test' do
     allow(Weather).to receive(:current) { "safe" }
 
     airport = Airport.new
-    airport.land(Plane.new)
-    airport.takeoff
+    plane = Plane.new
+    airport.land(plane)
+    airport.takeoff(plane)
 
-    expect(airport.plane).to eq nil
+    expect(airport.planes).not_to include plane
   end
 
   it 'planes should not take off when the weather is stormy' do 
     airport = Airport.new
     
     allow(Weather).to receive(:current) { "safe" }
-    airport.land(Plane.new)
+    plane = Plane.new
+    airport.land(plane)
 
     allow(Weather).to receive(:current) { "stormy" }
-    expect { airport.takeoff }.to raise_error(Airport::TAKEOFF_ERROR_MESSAGE)
+    expect { airport.takeoff(plane) }.to raise_error(Airport::TAKEOFF_ERROR_MESSAGE)
   end
 
   it 'prevent landing when the weather is stormy' do 
@@ -32,9 +34,12 @@ RSpec.describe 'Feature Test' do
 
   it 'prevent landing when airport is full' do 
     airport = Airport.new
+    airport.capacity = 5
     
     allow(Weather).to receive(:current) { "safe" }
-    airport.land(Plane.new)
+
+    airport.capacity.times { airport.land(Plane.new)
+    }
     
     expect { airport.land(Plane.new) }.to raise_error(Airport::LANDING_ERROR_MESSAGE)
   end
@@ -42,7 +47,18 @@ RSpec.describe 'Feature Test' do
   it 'set variable airport capacity' do 
     airport = Airport.new
     airport.capacity = 3
-    
+
     expect(airport.capacity).to be 3
+  end
+
+  it 'allow landing multiple planes' do 
+    airport = Airport.new
+
+    allow(Weather).to receive(:current) { "safe" }
+    airport.capacity = 3
+
+    airport.capacity.times { airport.land(Plane.new) }
+    
+    expect(airport.planes.length).to be 3
   end
 end
