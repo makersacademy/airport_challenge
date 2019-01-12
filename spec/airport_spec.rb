@@ -5,9 +5,10 @@ RSpec.describe Airport do
   context 'when a default airport is initialised' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:take_off) }
+    it { expect(subject.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
   end
 
-  context 'when an airport has a plane landed in sunny weather'
+  context 'when an airport has a plane landed in sunny weather' do
   before(:each) do
     @airport = described_class.new
     allow(@airport).to receive(:bad_weather?) { nil }
@@ -16,6 +17,7 @@ RSpec.describe Airport do
   end
     it { expect(@airport.hanger[0]).to be_a(Plane) }
     it { expect(@airport.take_off).to be @plane }
+  end
 
   context 'confirm plane has left airport in sunny weather' do
   before(:each) do
@@ -37,11 +39,12 @@ RSpec.describe Airport do
     it { expect { @airport.land(Plane.new) }.to raise_error("Too stormy for landing") }
   end
 
-  # context 'when sunny weather' do
-  # before(:each) do
-  #   @airport = described_class.new
-  #   allow(@airport).to receive(:unsafe_to_fly?) { nil }
-  # end
-  #
-  # end
+  context 'when landing at full airport in sunny weather'
+  before(:each) do
+    @airport = described_class.new
+    allow(@airport).to receive(:bad_weather?) { nil }
+    @plane = Plane.new
+    @airport.land(@plane)
+    @airport.take_off
+  end
 end

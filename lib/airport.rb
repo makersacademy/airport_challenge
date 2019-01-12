@@ -1,10 +1,13 @@
 require './lib/weather'
 
 class Airport
-  attr_reader :hanger
+  attr_reader :hanger, :hanger_capacity
 
-  def initialize
+  DEFAULT_HANGER_CAPACITY = 100
+
+  def initialize(hanger_capacity = DEFAULT_HANGER_CAPACITY)
     @hanger = []
+    @hanger_capacity = hanger_capacity
   end
 
   def land(plane_to_land)
