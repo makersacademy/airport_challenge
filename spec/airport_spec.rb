@@ -1,5 +1,4 @@
 require 'airport'
-require 'weather'
 
 describe Airport do
 
@@ -30,19 +29,8 @@ end
 it "cannot take off if stormy" do
   plane = Plane.new
   weather = Weather.new
-  expect{ subject.take_off(plane,weather.stormy) }.to raise_error "Take off is forbidden!" 
-end
+  expect{ subject.take_off(plane,weather.stormy) }.to raise_error "Take off is forbidden!"
 end
 end
 
- describe Weather do
-   it "is stormy" do
-     weather = Weather.new
-     expect( weather.stormy ).to eq false
-   end
-
-   it "is not sotrmy" do
-     weather = Weather.new
-     expect( weather.not_stormy ).to eq true
-   end
- end
+end
