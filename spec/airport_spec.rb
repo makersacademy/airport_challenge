@@ -28,4 +28,8 @@ describe Airport do
   it 'can instruct a plane to land i.e. responds to land method' do
     expect(subject).to respond_to(:land)
   end
+  it 'can take an instance of a plane in the land method' do
+    plane = double('an instance of plane')
+    expect(subject.land(plane)). to eq(plane)
+  end
 end
