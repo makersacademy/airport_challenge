@@ -15,7 +15,7 @@ class Airport
   def land(plane)
     raise 'Unable to land: airport full' if full?
     raise 'Unable to land: stormy weather' unless weather_safe?
-
+    plane.land
     @planes.push(plane)
   end
 

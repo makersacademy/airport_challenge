@@ -8,4 +8,10 @@ class Plane
     @landed
   end
 
+  def land
+    raise 'Unable to land: plane is already on the ground' if landed?
+
+    @landed = false
+  end
+
 end

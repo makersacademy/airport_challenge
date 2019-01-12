@@ -1,11 +1,8 @@
 class Weather
 
-
-
   def weather
     generate_weather
   end
-
 
   private
   def generate_weather
