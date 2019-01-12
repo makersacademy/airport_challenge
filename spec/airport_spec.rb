@@ -52,16 +52,25 @@ describe Airport do
 
   #test implementation of random weather
   it "#stormy is false most of the time" do
-    10.times {expect(subject.stormy?).to eql(subject.stormy?)}
+    10.times {expect(subject.stormy?).to eq (subject.stormy?)}
   end
 
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when the airport is full
   it "prevents landing when airport is full" do
-    subject.land(Plane.new)
+    subject.capacity.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) } .to raise_error "airport full"
   end
+
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+  it "has default capacity of 10" do
+    expect(subject.capacity).to eq(10)
+  end
+
+
 
 
 end

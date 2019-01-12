@@ -1,14 +1,15 @@
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize(capacity = 1)
+  def initialize(capacity = 10)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     fail "stormy can't land" if stormy? == true
-    fail "airport full" unless @planes.length < 1
+    fail "airport full" unless @planes.length < @capacity
     @planes.push(plane)
   end
 
