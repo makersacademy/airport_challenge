@@ -2,13 +2,15 @@ require 'weather'
 
 class Airport
   LANDING_ERROR_MESSAGE = 'You cannot land' 
-  TAKEOFF_ERROR_MESSAGE = 'You cannot takeoff' 
+  TAKEOFF_ERROR_MESSAGE = 'You cannot takeoff'
+
+  DEFAULT_CAPACITY = 1
 
   attr_reader :plane, :capacity
   attr_writer :capacity
-  
+
   def initialize
-    @capacity = 1
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
