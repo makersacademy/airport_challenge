@@ -69,11 +69,21 @@ RSpec.describe Airport do
       allow(airport).to receive(:stormy).and_return(false)
       expect { airport.take_off(Plane.new) }.to raise_error("This plane doesn't exist in the airport")
     end
+
+    it "ensures planes can only take off from the airport they are in" do
+      heathrow = Airport.new
+      schipol = Airport.new
+      plane111 = Plane.new
+      allow(heathrow).to receive(:stormy).and_return(false)
+      allow(schipol).to receive(:stormy).and_return(false)
+      heathrow.land(plane111)
+      expect { schipol.take_off(plane111) }.to raise_error("This plane doesn't exist in the airport")      
+    end
   end
 
   describe '#stormy' do
     it { is_expected.to respond_to(:stormy) }
-    
+
     it "checks if weather is stormy" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(true)
