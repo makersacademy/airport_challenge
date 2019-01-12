@@ -69,7 +69,7 @@ describe Airport do
     expect { airport50.confirm_landing(@plane) }.to raise_error "No space available"
   end
 
-# edge cases
+  # edge cases
 
   it 'should not allow the same plane to land twice (without taking off between)' do
     @airport.land(@plane)
@@ -79,4 +79,11 @@ describe Airport do
   it 'plane must be in airport in order to take off' do
     expect { @airport.confirm_take_off(@plane) } .to raise_error "This plane is not in the airport"
   end
+
+  it 'should not allow a plane to land if it is in any airport' do
+    airport2 = Airport.new
+    airport2.land(@plane)
+    expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is in another airport"
+  end
+
 end
