@@ -16,5 +16,8 @@ attr_reader :planes
     @planes.pop
   end
 
+  def taken_off?(plane)
+    @planes.include?(plane) ? false : true
+  end
 
 end
