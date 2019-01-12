@@ -1,8 +1,2 @@
-
-
 class Plane
-
-   
-
-
 end
