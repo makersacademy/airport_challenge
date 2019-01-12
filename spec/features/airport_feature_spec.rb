@@ -94,4 +94,20 @@ describe Airport do
     end
   end
 
+  describe 'multiple planes can takeoff and land' do
+    it "can takeoff and land a number of planes" do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      allow(@airport).to receive(:weather_safe?).and_return(true)
+
+      expect(@airport.land(plane1)).to eq([plane1])
+      expect(@airport.land(plane2)).to eq([plane1, plane2])
+
+      expect(@airport.takeoff(plane1)).to eq(plane1)
+      expect(@airport.takeoff(plane2)).to eq(plane2)
+
+      expect(@airport.land(@plane)).to eq([@plane])
+    end
+  end
+
 end
