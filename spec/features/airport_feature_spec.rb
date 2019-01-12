@@ -50,13 +50,18 @@ describe Airport do
     end
   end
   
+  describe 'prevent landing in stormy weather' do
 
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when weather is stormy
 
+    it 'should stop aircraft landing in storms' do
+      allow(@airport).to receive(:stormy?).and_return(true)
+      expect { @airport.land(@plane) }.to raise_error('Unable to land: stormy weather')
+    end
 
-
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when weather is stormy
+  end
 
   describe 'planes should not be able to land when airport is full' do
 
@@ -71,9 +76,6 @@ describe Airport do
 
   end
 
-
-
-
   describe 'the ability to override default airport capacity' do
 
     # As the system designer
@@ -85,11 +87,5 @@ describe Airport do
       expect(airport.instance_variable_get(:@capacity)).to eq(15)
     end
   end
-
-
-
-
-
-
 
 end

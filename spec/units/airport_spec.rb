@@ -25,4 +25,11 @@ describe Airport do
       expect(airport).to be_full
     end
   end
+
+  describe '#stormy?' do
+    it 'should report true when weather is stormy' do
+
+    end
+
+  end
 end

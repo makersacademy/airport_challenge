@@ -1,6 +1,7 @@
+
 class Airport
 
-  def initialize(capacity=20)
+  def initialize(capacity=20, weather=Weather.new)
     @capacity = capacity
     @planes = []
   end
@@ -18,5 +19,14 @@ class Airport
     return false unless @planes.include?(plane)
     @planes.delete(plane)
   end
+
+  def stormy?
+
+  end
+
+  def get_weather
+  end
+
 end
+
 
