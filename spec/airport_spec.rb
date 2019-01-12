@@ -49,6 +49,13 @@ RSpec.describe Airport do
       allow(Weather).to receive(:current) { "safe" }
       expect { subject.takeoff(plane)}.to raise_error('Aircraft is not here')
     end
+
+    it 'should raise an error if plane has already landed' do 
+      plane = Plane.new
+      allow(Weather).to receive(:current) { "safe" }
+      subject.land(plane)
+      expect { subject.land(plane)}.to raise_error('Aircraft has already landed')
+    end
   end
 
   describe '#capacity' do

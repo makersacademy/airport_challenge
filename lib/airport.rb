@@ -4,6 +4,7 @@ class Airport
   LANDING_ERROR_MESSAGE = 'You cannot land' 
   TAKEOFF_ERROR_MESSAGE = 'You cannot takeoff'
   AIRCRAFT_NOT_HERE_ERROR_MESSAGE = 'Aircraft is not here'
+  ALREADY_LANDED_ERROR_MESSAGE = 'Aircraft has already landed'
 
   DEFAULT_CAPACITY = 1
 
@@ -16,6 +17,7 @@ class Airport
   end
 
   def land(plane)
+    raise ALREADY_LANDED_ERROR_MESSAGE if @planes.include? plane
     raise LANDING_ERROR_MESSAGE if stormy?
     raise LANDING_ERROR_MESSAGE if @planes.length >= @capacity
 
@@ -23,9 +25,8 @@ class Airport
   end
 
   def takeoff(plane)
-    raise TAKEOFF_ERROR_MESSAGE if stormy?
-    raise TAKEOFF_ERROR_MESSAGE if stormy?
     raise AIRCRAFT_NOT_HERE_ERROR_MESSAGE unless @planes.include? plane
+    raise TAKEOFF_ERROR_MESSAGE if stormy?
 
     @planes.delete(plane)
   end
