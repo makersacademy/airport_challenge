@@ -2,12 +2,14 @@ require 'airport'
 
 RSpec.describe Airport do
 
-  it { is_expected.to respond_to(:land) }  
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off) }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
-
+  it { is_expected.to respond_to(:capacity_reached?) }
+  it { is_expected.to respond_to(:plane_exists?) }
+  it { is_expected.to respond_to(:stormy) }
+  
   describe '#land' do
+    it { is_expected.to respond_to(:land) }  
+    it { is_expected.to respond_to(:land).with(1).argument }
+    
     it "can instruct a plane to land at an airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
@@ -15,14 +17,14 @@ RSpec.describe Airport do
       airport.land(plane)
       expect(airport.planes_in_airport.include?(plane)).to eq(true) 
     end
-
+    
     it "prevents landing when weather is stormy" do
       airport = Airport.new
       plane = Plane.new
       allow(airport).to receive(:stormy).and_return(true)
       expect { airport.land(plane) }.to raise_error("No landings permitted")
     end
-
+    
     it "prevents landing when airport is full" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
@@ -32,8 +34,11 @@ RSpec.describe Airport do
       expect { airport.land(plane2) }.to raise_error("No landings permitted")
     end
   end
-
+  
   describe '#take_off' do
+    it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+    
     it "can instruct a plane to take off and confirm that the plane has left the airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)

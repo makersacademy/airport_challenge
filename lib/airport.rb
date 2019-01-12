@@ -21,7 +21,7 @@ class Airport
   end
 
   def take_off(plane)
-    unless plane_exists?(plane) raise Exception.new("This plane doesn't exist in the airport") end
+    # unless plane_exists?(plane) raise Exception.new("This plane doesn't exist in the airport") end
     raise Exception.new("No take offs permitted") if stormy
     @planes_in_airport.delete(plane)
   end
