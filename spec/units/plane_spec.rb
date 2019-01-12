@@ -22,13 +22,20 @@ describe Plane do
       expect { @plane.land }.to raise_error('Unable to land: plane is already on the ground')
     end
 
-    xit 'should return landed if landed' do
-
+    it 'should return landed if landed' do
+      @plane.land
+      expect(@plane.landed?).to be(true)
     end
 
     it 'should not be able to takeoff if already in the air' do
       allow(@plane).to receive(:landed?).and_return(false)
       expect { @plane.takeoff }.to raise_error('Unable to takeoff: plane is already in the air')
+    end
+
+    it 'should not return landed after taking off' do
+      @plane.land
+      @plane.takeoff
+      expect(@plane.landed?).to_not be(true)
     end
   end
 

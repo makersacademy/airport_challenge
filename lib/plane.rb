@@ -1,6 +1,6 @@
 class Plane
 
-  def initialize(landed=false)
+  def initialize(landed = false)
     @landed = landed
   end
 
@@ -11,14 +11,13 @@ class Plane
   def land
     raise 'Unable to land: plane is already on the ground' if landed?
 
-    @landed = false
+    @landed = true
   end
 
   def takeoff
     raise 'Unable to takeoff: plane is already in the air' unless landed?
 
     @landed = false
-
   end
 
 end
