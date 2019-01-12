@@ -55,4 +55,17 @@ describe Airport do
       expect(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane, weather) }.to raise_error 'Turbulent weather cannot land'
   end
+
+
+  it 'raise error when airport is full' do
+      airport = Airport.new
+      weather = Weather.new
+      20.times do
+        expect(weather).to receive(:stormy?).and_return(false)
+        airport.land(Plane.new, weather)
+      end
+      expect(weather).to receive(:stormy?).and_return(false)
+      expect { airport.land(Plane.new, weather) }.to raise_error 'Airport is full'
+  end
+       
 end
