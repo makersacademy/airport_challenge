@@ -10,10 +10,7 @@ describe Airport do
       expect(subject.instance_variable_get(:@capacity)).to eq(20)
     end
 
-    it "can have its plane capacity overridden" do
-      airport = Airport.new(15)
-      expect(airport.instance_variable_get(:@capacity)).to eq(15)
-    end
+
 
     it "shouldn't be full when first created" do
       expect(subject).not_to be_full

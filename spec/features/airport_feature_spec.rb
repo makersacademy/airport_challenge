@@ -8,21 +8,23 @@ describe Airport do
     @airport = Airport.new
   end
 
-  # As an air traffic controller
-  # So I can get passengers to a destination
-  # I want to instruct a plane to land at an airport
+  describe "landing process" do
 
-  it "should be able to land planes" do
-    plane = Plane.new
-    expect(@airport.land(plane)).to eq([plane])
+    # As an air traffic controller
+    # So I can get passengers to a destination
+    # I want to instruct a plane to land at an airport
+
+    it "should be able to land planes" do
+      plane = Plane.new
+      expect(@airport.land(plane)).to eq([plane])
+    end
   end
 
-
-  # As an air traffic controller
-  # So I can get passengers on the way to their destination
-  # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
   describe "takeoff process" do
+
+    # As an air traffic controller
+    # So I can get passengers on the way to their destination
+    # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
     it "should be able to instruct a plane to take off" do
       plane = Plane.new
@@ -36,12 +38,15 @@ describe Airport do
       @airport.takeoff(plane)
       expect(@airport.instance_variable_get(:@planes)).to eq([])
     end
-
   end
+
+
 
   # As an air traffic controller
   # To ensure safety
   # I want to prevent takeoff when weather is stormy
+
+
 
   # As an air traffic controller
   # To ensure safety
@@ -51,9 +56,21 @@ describe Airport do
   # To ensure safety
   # I want to prevent landing when the airport is full
 
-  # As the system designer
-  # So that the software can be used for many different airports
-  # I would like a default airport capacity that can be overridden as appropriate
+
+  describe 'the ability to override default airport capacity' do
+
+    # As the system designer
+    # So that the software can be used for many different airports
+    # I would like a default airport capacity that can be overridden as appropriate
+
+    it "can have its plane capacity overridden" do
+      airport = Airport.new(15)
+      expect(airport.instance_variable_get(:@capacity)).to eq(15)
+    end
+  end
+
+
+
 
 
 
