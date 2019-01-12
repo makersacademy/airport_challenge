@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 RSpec.describe 'Feature Test' do
   it 'instruct a plane to takeoff check it\'s no longer in the airport' do
@@ -10,6 +11,5 @@ RSpec.describe 'Feature Test' do
     airport.takeoff
 
     expect(airport.plane).to eq nil
-
   end
 end
