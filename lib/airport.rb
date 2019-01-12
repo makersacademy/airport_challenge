@@ -13,7 +13,7 @@ class Airport
   def take_off(plane)
     raise "Cannot take off plane: weather is stormy" if stormy?
   end
-end
+
 
 private
 
@@ -21,6 +21,7 @@ private
     @planes.length >= @capacity
   end
 
-  def stormy?
-    rand(1..6) > 4
+  def stormy? #use low coupling with airport class and split to another class: weather reporter
+    WeatherReporter.new.stormy?
   end
+end
