@@ -11,8 +11,13 @@ class Airport
   end
 
   def take_off
+    fail "stormy can't take off" if stormy? == true
     @planes.pop
     @planes
+  end
+
+  def stormy?
+    false
   end
 end
 
