@@ -21,6 +21,15 @@ describe Plane do
       allow(@plane).to receive(:landed?).and_return(true)
       expect { @plane.land }.to raise_error('Unable to land: plane is already on the ground')
     end
+
+    xit 'should return landed if landed' do
+
+    end
+
+    it 'should not be able to takeoff if already in the air' do
+      allow(@plane).to receive(:landed?).and_return(false)
+      expect { @plane.takeoff }.to raise_error('Unable to takeoff: plane is already in the air')
+    end
   end
 
 end

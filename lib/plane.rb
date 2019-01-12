@@ -14,4 +14,11 @@ class Plane
     @landed = false
   end
 
+  def takeoff
+    raise 'Unable to takeoff: plane is already in the air' unless landed?
+
+    @landed = false
+
+  end
+
 end
