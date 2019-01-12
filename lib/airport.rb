@@ -3,14 +3,16 @@ require_relative 'weather.rb'
 
 class Airport
 
-  attr_reader :planes, :weather
+  attr_reader :planes, :weather, :capacity
 
-  def initialize
+  def initialize (capacity = 20)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane, weather)
     fail 'Turbulent weather cannot land' if weather.stormy? == true
+    fail 'Airport full cannot land' if @planes.count >= capacity
     @planes << plane
   end
 
