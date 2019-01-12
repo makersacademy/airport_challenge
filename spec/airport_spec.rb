@@ -70,6 +70,11 @@ describe Airport do
     expect(subject.capacity).to eq(10)
   end
 
+  it "allows capacity to be set" do
+    airport_test = Airport.new(20)
+    expect(airport_test.capacity).to eq(20)
+  end
+
 
 
 
