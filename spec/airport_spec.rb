@@ -18,8 +18,9 @@ describe Airport do
   
     it 'plane takes off' do
       airport = Airport.new
-      airport.land(Plane.new)
-      expect(airport.take_off).to be_a Plane
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.take_off(plane)).to be_a Plane
     end
    
   
@@ -27,7 +28,7 @@ describe Airport do
        airport = Airport.new
        plane = Plane.new
        airport.land(plane)
-       airport.take_off
+       airport.take_off(plane)
        expect(airport.taken_off?(plane)).to eq true
    end
        

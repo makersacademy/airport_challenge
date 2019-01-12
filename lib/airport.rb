@@ -12,8 +12,8 @@ attr_reader :planes
     @planes << plane
   end
   
-  def take_off
-    @planes.pop
+  def take_off(plane)
+    @planes.delete(plane)
   end
 
   def taken_off?(plane)
