@@ -1,5 +1,8 @@
 class Weather
+
   def current_weather?
-     [sunny, sunny, sunny, sunny, sunny, sunny, sunny, sunny, stormy, stormy].sample
-end
+    return "sunny" if rand.(1..10).between?(1, 8)
+    "stormy"
+  end
+
 end
