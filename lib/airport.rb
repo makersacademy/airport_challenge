@@ -1,10 +1,10 @@
-class AirTrafficControl
-  def land(plane, airport)
+class Airport
+  def land(plane)
+  end
+  
+  def takeoff(plane)
   end
 end
 
 class Plane
-end
-
-class Airport
 end
