@@ -20,10 +20,16 @@ class Airport
     return weather_report != :stormy
   end
 
+  def airport_contains?(plane)
+    return @planes.include?(plane)
+  end
+
   def land(plane)
     raise("Can't land during stormy weather") unless clear_skies?
 
     raise("Airport at full capacity!") if at_capacity?
+
+    raise("Plane has already landed!") if airport_contains?(plane)
 
     @planes << plane
   end
@@ -40,6 +46,7 @@ class Airport
     @planes.length >= @max_capacity
   end
 end
+
 
 class Plane
 end

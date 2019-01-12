@@ -9,6 +9,19 @@ describe Airport do
     expect { subject.land(Plane.new) }.to_not raise_error
   end
 
+# landed planes can't be re landed
+  it "reports if a PLANE object already exists in the airport" do
+    pointer = Plane.new
+    subject.land(pointer)
+    expect(subject.airport_contains?(pointer)).to be(true)
+  end
+
+  it "cannot LAND planes already in airport"do
+    pointer = Plane.new
+    subject.land(pointer)
+    expect { subject.land(pointer) }.to raise_error("Plane has already landed!")
+  end
+
   it "stores LANDed planes in PLANES" do
     allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
@@ -50,10 +63,12 @@ describe Airport do
     expect(subject.max_capacity).to be_a(Integer)
   end
   it "reports being at max capacity" do
+    allow(subject).to receive(:weather_report) { :sunny }
     (subject.max_capacity - subject.planes.length).times { subject.land(Plane.new) }
     expect(subject.at_capacity?).to eq(true)
   end
   it "throws error when attempting to land plane at maximum capacity" do
+    allow(subject).to receive(:weather_report) { :sunny }
     (subject.max_capacity - subject.planes.length).times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error("Airport at full capacity!")
   end
