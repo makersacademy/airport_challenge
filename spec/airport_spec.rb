@@ -23,7 +23,7 @@ RSpec.describe Airport do
     @airport.land(@plane)
   end
     it { expect(@airport.hanger[0]).to be_a(Plane) }
-    it { expect(@airport.take_off).to be @plane }
+    it { expect(@airport.take_off(@plane)).to be @plane }
   end
 
   context 'confirm plane has left airport in sunny weather' do
@@ -32,7 +32,7 @@ RSpec.describe Airport do
     allow(@airport).to receive(:bad_weather?) { nil }
     @plane = Plane.new
     @airport.land(@plane)
-    @airport.take_off
+    @airport.take_off(@plane)
   end
     it { expect(@airport.hanger).not_to include @plane }
   end
@@ -42,7 +42,7 @@ RSpec.describe Airport do
     @airport = described_class.new
     allow(@airport).to receive(:bad_weather?) { true }
   end
-    it { expect { @airport.take_off }.to raise_error("Too stormy for take off") }
+    it { expect { @airport.take_off(Plane.new) }.to raise_error("Too stormy for take off") }
     it { expect { @airport.land(Plane.new) }.to raise_error("Too stormy for landing") }
   end
 

@@ -16,9 +16,9 @@ class Airport
     @hanger << plane_to_land
   end
 
-  def take_off
+  def take_off(plane_to_leave)
     fail "Too stormy for take off" if bad_weather?
-    @hanger.pop
+    @hanger.delete(plane_to_leave)
   end
 
 private
