@@ -38,6 +38,11 @@ GOOD_WEATHER = 3
     expect{subject.land(plane, GOOD_WEATHER)}.to raise_error("Hangar is at capacity")
   end
 
+  it "should set a default capacity when a new airport is initialized" do
+    gatwick = Airport.new
+    expect(gatwick.capacity).to eq gatwick.default_capacity
+  end
+
   it "should have a capacity that is mutable" do
     gatwick = Airport.new
     gatwick.capacity = 2

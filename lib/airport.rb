@@ -3,11 +3,15 @@ require_relative 'plane'
 class Airport
 
   attr_accessor :hangar, :capacity
-  @DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = @DEFAULT_CAPACITY)
+
+  def initialize(capacity = default_capacity)
     @hangar = []
     @capacity = capacity
+  end
+
+  def default_capacity
+    10
   end
 
   def land(plane, n = rand(4))
