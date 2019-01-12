@@ -9,31 +9,31 @@ RSpec.describe Airport do
   end
 
   context 'when instantiating an airport with non-default capacity' do
-  before(:all) do
-    @small_airport = described_class.new(20)
-  end
-    it { expect(@small_airport.hanger_capacity).to eq 20}
+    before(:all) do
+      @small_airport = described_class.new(20)
+    end
+    it { expect(@small_airport.hanger_capacity).to eq 20 }
   end
 
   context 'when an airport has a plane landed in sunny weather' do
-  before(:each) do
-    @airport = described_class.new
-    allow(@airport).to receive(:bad_weather?) { nil }
-    @plane = Plane.new
-    @airport.land(@plane)
-  end
+    before(:each) do
+      @airport = described_class.new
+      allow(@airport).to receive(:bad_weather?) { nil }
+      @plane = Plane.new
+      @airport.land(@plane)
+    end
     it { expect(@airport.hanger[0]).to be_a(Plane) }
     it { expect(@airport.take_off(@plane)).to be @plane }
   end
 
   context 'confirm plane has left airport in sunny weather' do
-  before(:each) do
-    @airport = described_class.new
-    allow(@airport).to receive(:bad_weather?) { nil }
-    @plane = Plane.new
-    @airport.land(@plane)
-    @airport.take_off(@plane)
-  end
+    before(:each) do
+      @airport = described_class.new
+      allow(@airport).to receive(:bad_weather?) { nil }
+      @plane = Plane.new
+      @airport.land(@plane)
+      @airport.take_off(@plane)
+    end
     it { expect(@airport.hanger).not_to include @plane }
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Airport do
     before(:each) do
       @airport = described_class.new
       allow(@airport).to receive(:bad_weather?) { true }
-      end
+    end
     it { expect { @airport.take_off(Plane.new) }.to raise_error("Too stormy for take off") }
     it { expect { @airport.land(Plane.new) }.to raise_error("Too stormy for landing") }
   end
@@ -61,6 +61,6 @@ RSpec.describe Airport do
       allow(@airport).to receive(:bad_weather?) { nil }
       @airport.land(Plane.new)
     end
-      it { expect { @airport.take_off(Plane.new) }.to raise_error("Plane not in hanger") }
+    it { expect { @airport.take_off(Plane.new) }.to raise_error("Plane not in hanger") }
   end
 end
