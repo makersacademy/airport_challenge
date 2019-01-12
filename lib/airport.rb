@@ -9,7 +9,8 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather)
+    fail 'Turbulent weather cannot land' if weather.stormy? == true
     @planes << plane
   end
 

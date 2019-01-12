@@ -6,7 +6,9 @@ it {is_expected.to respond_to :land}
 
   it "lands a plane" do
     plane = Plane.new
-    expect(subject.land(plane)).to eq [plane]
+    weather = Weather.new
+    expect(weather).to receive(:stormy?).and_return(false)
+    expect(subject.land(plane, weather)).to eq [plane]
   end
 
 it {is_expected.to respond_to :take_off}
@@ -14,7 +16,8 @@ it {is_expected.to respond_to :take_off}
   it "Plane takes off" do
   plane = Plane.new
   weather = Weather.new
-  subject.land(plane)
+  expect(weather).to receive(:stormy?).and_return(false)
+  subject.land(plane, weather)
   expect(weather).to receive(:stormy?).and_return(false)
   expect(subject.take_off(plane, weather)).to be_a Plane
 end
@@ -23,19 +26,29 @@ end
    airport = Airport.new
    plane = Plane.new
    weather = Weather.new
-   airport.land(plane)
+   expect(weather).to receive(:stormy?).and_return(false)
+   airport.land(plane, weather)
    expect(weather).to receive(:stormy?).and_return(false)
    airport.take_off(plane, weather)
    expect(airport.taken_off?(plane)).to eq true
  end
 
- it 'raise error when stormy' do
+ it 'raise error when trying to take off due to storm' do
    airport = Airport.new
    plane = Plane.new
    weather = Weather.new
-   airport.land(plane)
+   expect(weather).to receive(:stormy?).and_return(false)
+   airport.land(plane, weather)
    expect(weather).to receive(:stormy?).and_return(true)
    expect { airport.take_off(plane, weather) }.to raise_error 'Turbulent weather cannot takeoff'
+ end
+
+ it 'raise error when trying to land due to storm' do
+   airport = Airport.new
+   plane = Plane.new
+   weather = Weather.new
+   expect(weather).to receive(:stormy?).and_return(true)
+   expect { airport.land(plane, weather) }.to raise_error 'Turbulent weather cannot land'
  end
 
 end
