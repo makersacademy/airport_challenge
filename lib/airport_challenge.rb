@@ -49,9 +49,13 @@ end
 
 
 class Plane
-  attr_reader :designation
-  
-  def initalize
-    @designation = ''
+  attr_accessor :desig
+  attr_reader :randumm
+
+  @@instance_number = 0
+
+  def initialize
+    @@instance_number += 1
+    @desig = "MA"+@@instance_number.to_s
   end
 end

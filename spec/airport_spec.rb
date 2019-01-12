@@ -16,6 +16,7 @@ describe Airport do
   end
 
   it "cannot LAND planes already in airport"do
+    allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
     subject.land(pointer)
     expect { subject.land(pointer) }.to raise_error("Plane has already landed!")
