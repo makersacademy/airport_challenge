@@ -51,6 +51,12 @@ RSpec.describe Airport do
       allow(airport).to receive(:stormy).and_return(true)
       expect { airport.take_off(plane) }.to raise_error("No take offs permitted")
     end
+
+    it "planes can only take off if they exist in the airport" do
+      airport = Airport.new
+      allow(airport).to receive(:stormy).and_return(false)
+      expect { airport.take_off(Plane.new) }.to raise_error("This plane doesn't exist in the airport")
+    end
   end
 
   describe '#stormy' do
@@ -79,5 +85,4 @@ RSpec.describe Airport do
     airport = Airport.new(10)
     expect(airport.capacity).to eq(10)
   end
-
 end
