@@ -3,7 +3,7 @@ require 'airport'
 RSpec.describe Airport do
 
   it { is_expected.to respond_to(:capacity_reached?) }
-  it { is_expected.to respond_to(:plane_exists?) }
+  it { is_expected.to respond_to(:plane_exists_in_airport?) }
   it { is_expected.to respond_to(:stormy) }
   
   describe '#land' do
@@ -26,12 +26,20 @@ RSpec.describe Airport do
     end
     
     it "prevents landing when airport is full" do
-      airport = Airport.new
+      airport = Airport.new(1)
       allow(airport).to receive(:stormy).and_return(false)
       plane = Plane.new
       plane2 = Plane.new
       airport.land(plane)
       expect { airport.land(plane2) }.to raise_error("No landings permitted")
+    end
+
+    it "prevents planes that have already landed from landing again" do
+      airport = Airport.new(5)
+      allow(airport).to receive(:stormy).and_return(false)
+      plane = Plane.new
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("This plane has already landed")
     end
   end
   
@@ -57,7 +65,7 @@ RSpec.describe Airport do
       expect { airport.take_off(plane) }.to raise_error("No take offs permitted")
     end
 
-    it "planes can only take off if they exist in the airport" do
+    it "ensures planes can only take off if they exist in the airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
       expect { airport.take_off(Plane.new) }.to raise_error("This plane doesn't exist in the airport")
