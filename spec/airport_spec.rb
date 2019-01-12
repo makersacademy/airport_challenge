@@ -1,14 +1,6 @@
 require 'airport'
 
 # As an air traffic controller
-# So I can get passengers to a destination
-# I want to instruct a plane to land at an airport
-#
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-#
-# As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
 #
@@ -43,5 +35,21 @@ describe Airport do
     subject.take_off(instance_of_plane)
     expect(subject.planes_in_airport).not_to include(instance_of_plane)
   end
+
+  it 'checks that a plane cannot land twice in the same airport if already landed' do
+    instance_of_plane = Plane.new
+    subject.land(instance_of_plane)
+    expect { subject.land(instance_of_plane) }.to raise_error('Plane already landed!')
+  end
+  it 'checks that a plane that has taken off cannot take off again from the same airport' do
+    instance_of_plane = Plane.new
+    expect { subject.take_off(instance_of_plane) }.to raise_error('Plane not in airport to take off!')
+  end
+  it 'responds to a method checking if an airport is full' do
+    expect(subject).to respond_to(:full?)
+  end
+  # it 'can check check whether a defined airport instance is full and can no longer accept planes' do
+  #
+  # end
 
 end
