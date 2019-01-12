@@ -13,5 +13,12 @@ RSpec.describe Airport do
 
   describe '#takeoff' do
     it { should respond_to :takeoff }
+
+    it 'should takeoff a plane and check it\'s no longer in the airport' do
+      subject.land(Plane.new)
+      subject.takeoff
+
+      expect(subject.plane).to eq nil
+    end
   end
 end
