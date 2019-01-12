@@ -11,7 +11,11 @@ class Airport
   end
 
   def land
-    @airport_arr.push(Plane.new)
+    if @airport_weather.stormy?
+      raise "You cannot land in a stormy weather!"
+    else
+      return @airport_arr.push(Plane.new)
+    end
   end
 
   def take_off
