@@ -13,6 +13,7 @@ class Airport
   def land(plane_to_land)
     fail "Too stormy for landing" if bad_weather?
     fail "Airport is full" if airport_full?
+    fail "Plane has already landed" if @hanger.include?(plane_to_land)
     
     @hanger << plane_to_land
   end
