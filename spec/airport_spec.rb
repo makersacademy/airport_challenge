@@ -31,7 +31,7 @@ describe Airport do
   it 'can store the landed instance of a plane in the airport for counting' do
     instance_of_plane = Plane.new
     subject.land(instance_of_plane)
-    expect(subject.instance_variable_get(:@planes_in_airport)).to include(instance_of_plane)
+    expect(subject.planes_in_airport).to include(instance_of_plane)
   end
 
   it 'can instruct a plane to take off, i.e. responds to takeoff method' do

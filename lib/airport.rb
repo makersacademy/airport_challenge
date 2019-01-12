@@ -1,7 +1,7 @@
 # lib/airport.rb
 require_relative 'plane'
 class Airport
-
+  attr_accessor :planes_in_airport
   def initialize
     @planes_in_airport = []
   end
