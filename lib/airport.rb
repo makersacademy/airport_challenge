@@ -10,6 +10,8 @@ class Airport
   def land(plane)
     fail "Plane already landed!" if @planes_in_airport.include? plane
 
+    fail "Airport is full!" if full?
+
     @planes_in_airport.push(plane)
   end
 
@@ -21,8 +23,7 @@ class Airport
   end
 
   def full?
-    if @planes_in_airport.count >= 1
-      true
-    end
+    true if @planes_in_airport.count >= 2
   end
+
 end

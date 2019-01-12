@@ -48,8 +48,11 @@ describe Airport do
   it 'responds to a method checking if an airport is full' do
     expect(subject).to respond_to(:full?)
   end
-  # it 'can check check whether a defined airport instance is full and can no longer accept planes' do
-  #
-  # end
+  it 'can check check whether a defined airport instance is full and can no longer accept planes' do
+    airport = described_class.new
+    airport.land(Plane.new)
+    airport.land(Plane.new)
+    expect { airport.land(Plane.new) }.to raise_error('Airport is full!')
+  end
 
 end
