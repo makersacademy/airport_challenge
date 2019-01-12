@@ -45,8 +45,10 @@ describe Airport do
     # To ensure safety
     # I want to prevent takeoff when weather is stormy
     
-    xit 'should stop aircraft from taking off in storms' do
-
+    it 'should stop aircraft from taking off in storms' do
+      @airport.instance_variable_set(:@planes, [@plane])
+      allow(@airport).to receive(:stormy?).and_return(true)
+      expect { @airport.takeoff(@plane) }.to raise_error('Unable to takeoff: stormy weather')
     end
   end
   
