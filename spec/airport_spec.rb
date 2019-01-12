@@ -16,4 +16,11 @@ it {is_expected.to respond_to :take_off}
   expect(subject.take_off).to be_a Plane
 end
 
+ it "checks plane has taken off" do
+   airport = Airport.new
+   plane = Plane.new
+   airport.land(plane)
+   airport.take_off
+   expect(airport.taken_off?(plane)).to eq true
+ end
 end
