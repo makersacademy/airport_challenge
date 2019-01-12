@@ -9,10 +9,15 @@ RSpec.describe Airport do
   end
 
   it 'Airport allows plane to take off' do
+    weather = Weather.new
     gatwick = Airport.new
     plane = Plane.new
-    expect(gatwick.take_off).to eq('Plane no longer in the airport')
+    expect(gatwick.take_off(weather='sunny')).to eq('Plane no longer in the airport')
   end
 
-
+  it 'Airport prevents take off when weather is stormy' do
+    weather = Weather.new
+    gatwick = Airport.new
+    expect{ gatwick.take_off(weather) }.to raise_error('Take off not authorised')
+  end
 end
