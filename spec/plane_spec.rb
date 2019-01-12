@@ -1,4 +1,4 @@
 require 'plane'
 
-describe Plane do
+RSpec.describe Plane do
 end
