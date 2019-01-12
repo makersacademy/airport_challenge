@@ -7,7 +7,7 @@ end
     context 'confirm randomness of weather' do
     before(:each) do
       @test_array = []
-      10000.times { @test_array << Weather.new.forecast }
+      100000.times { @test_array << Weather.new.forecast }
       @times_sunny = @test_array.count('sunny').to_f
       @times_stormy = @test_array.count('stormy').to_f
       @random_test_result = @times_sunny/@times_stormy
