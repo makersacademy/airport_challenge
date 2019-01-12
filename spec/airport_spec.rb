@@ -21,8 +21,10 @@ describe Airport do
       expect(airport.planes).to include plane
     end      
   end
+
+  describe 'Planes taking off' do
     
-    it 'plane takes off' do
+    it 'plane can take off' do
       airport = Airport.new
       plane = Plane.new
       weather = Weather.new
@@ -43,8 +45,9 @@ describe Airport do
       airport.take_off(plane, weather)
       expect(airport.taken_off?(plane)).to eq true
     end
-     
+  end
          
+  context 'Weather is stormy' do
     it 'raises error trying to takeoff in stormy weather' do
       airport = Airport.new
       plane = Plane.new
@@ -62,6 +65,29 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane, weather) }.to raise_error 'Turbulent weather cannot land'
     end
+  end
+
+  context 'Weather is not stormy' do
+    it 'no error raised when taking off in normal weather' do
+      airport = Airport.new
+      plane = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport.land(plane, weather) 
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { airport.take_off(plane, weather) }.to_not raise_error
+    end
+     
+    it 'no error raised when landing in normal weatherr' do
+      airport = Airport.new
+      plane = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { airport.land(plane, weather) }.to_not raise_error
+    end
+  end
+
+  context 'Airport is full' do
   
     it 'raises error when airport is full' do
       airport = Airport.new
@@ -73,5 +99,6 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(false)
       expect { airport.land(Plane.new, weather) }.to raise_error 'Airport is full'
     end
+  end
        
 end
