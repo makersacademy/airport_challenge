@@ -1,12 +1,10 @@
 require 'airport'
-require 'plane'
-require 'rspec'
 
 describe Airport do
 
   before(:each) do
     @airport = Airport.new
-    @plane = Plane.new
+    @plane = double('plane')
   end
 
   context "when initializing an airport" do
@@ -26,7 +24,7 @@ describe Airport do
 
     it "reports full if at capacity" do
       airport = Airport.new(1)
-      airport.instance_variable_set(:@planes, [Plane.new])
+      airport.instance_variable_set(:@planes, [@plane])
       expect(airport).to be_full
     end
   end
