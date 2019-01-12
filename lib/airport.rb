@@ -18,7 +18,8 @@ class Airport
   end
 
   def stormy?
-    false
+    chance = rand(1..10)
+    chance > 9 ? true : false
   end
 end
 
