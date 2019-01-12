@@ -31,5 +31,12 @@ describe Airport do
        airport.take_off(plane)
        expect(airport.taken_off?(plane)).to eq true
    end
+   
+   it 'raise error when stormy' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane) 
+      weather = Weather.new
+      weather.stormy?
        
 end
