@@ -10,14 +10,13 @@ class Airport
   end
 
   def land(plane)
+    raise 'Unable to land: airport full' if full?
     @planes.push(plane)
   end
 
   def takeoff(plane)
     return false unless @planes.include?(plane)
-
-    @planes.delete_at(@planes.index(plane))
+    @planes.delete(plane)
   end
 end
-
 

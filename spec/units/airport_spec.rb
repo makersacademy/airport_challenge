@@ -10,8 +10,6 @@ describe Airport do
       expect(subject.instance_variable_get(:@capacity)).to eq(20)
     end
 
-
-
     it "shouldn't be full when first created" do
       expect(subject).not_to be_full
     end
@@ -26,13 +24,5 @@ describe Airport do
       airport.instance_variable_set(:@planes, [Plane.new])
       expect(airport).to be_full
     end
-
   end
-
-
-
-
-
-
-
 end
