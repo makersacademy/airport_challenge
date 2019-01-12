@@ -7,6 +7,7 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 air traffic controller <-> land <-> plane
+air traffic controller <-> land <-> airport
 ```
 
 ```
@@ -52,6 +53,12 @@ I would like a default airport capacity that can be overridden as appropriate
 
 system designer <-> set default <-> airport
 ```
+# AirTrafficControl v Airport
+On my first commit, I attempted to use the SecretDiary example of cohesion to
+separate the responsibilities of air traffic controller from airport. However,
+on second thought that feels too pre-emptive for TDD, as i realise the first
+line of a user story only implicates the context under which you're looking to
+interact with the objects, not the objects to be implemented.
 
 # Cohesion
 ```
