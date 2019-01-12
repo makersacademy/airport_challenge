@@ -11,10 +11,11 @@ class Airport
     @airport << plane
   end
 
-  def take_off
+  def take_off(weather)
+    if weather != "sunny"
+      fail 'Take off not authorised'
+    end
     @airport.pop
     'Plane no longer in the airport'
   end
-
-
 end
