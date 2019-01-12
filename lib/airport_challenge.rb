@@ -49,4 +49,9 @@ end
 
 
 class Plane
+  attr_reader :designation
+  
+  def initalize
+    @designation = ''
+  end
 end

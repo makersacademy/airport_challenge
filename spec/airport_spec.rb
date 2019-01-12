@@ -1,16 +1,15 @@
-require 'airport'
+require 'airport_challenge'
 
 describe Airport do
   it { is_expected.to respond_to(:planes) }
   it "can instruct a PLANE to LAND" do
     allow(subject).to receive(:weather_report) { :sunny }
-    p subject.weather_report
     expect(subject).to respond_to(:land).with(1).arguments
     expect { subject.land(Plane.new) }.to_not raise_error
   end
 
-# landed planes can't be re landed
   it "reports if a PLANE object already exists in the airport" do
+    allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
     subject.land(pointer)
     expect(subject.airport_contains?(pointer)).to be(true)
@@ -41,7 +40,7 @@ describe Airport do
     expect { subject.takeoff(Plane.new) }.to raise_error("Plane not found!")
   end
 
-  it "no longer holds taken off PLANE in PLANES" do
+  it "planes in TAKEOFF no longer are in PLANES" do
     allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
     subject.land(pointer)
