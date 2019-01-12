@@ -7,9 +7,13 @@ class Airport
     @planes = []
   end
 
-  def lands(plane)
+  def land(plane)
     @planes << plane
     @planes
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)
   end
 
 end
