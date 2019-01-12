@@ -43,8 +43,7 @@ RSpec.describe Airport do
   before(:each) do
     @airport = described_class.new
     allow(@airport).to receive(:bad_weather?) { nil }
-    @plane = Plane.new
-    @airport.land(@plane)
-    @airport.take_off
+    100.times { @airport.land(Plane.new) }
   end
+    it { expect { @airport.land(Plane.new) }.to raise_error("Airport is full") }
 end

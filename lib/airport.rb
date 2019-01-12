@@ -12,6 +12,7 @@ class Airport
 
   def land(plane_to_land)
     fail "Too stormy for landing" if bad_weather?
+    fail "Airport is full" if airport_full?
     @hanger << plane_to_land
   end
 
@@ -24,6 +25,10 @@ private
 
   def bad_weather?
     return true if Weather.new.forecast == "stormy"
+  end
+
+  def airport_full?
+    return true if @hanger.length >= DEFAULT_HANGER_CAPACITY
   end
 
 end
