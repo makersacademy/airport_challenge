@@ -3,6 +3,7 @@ require 'weather'
 class Airport
   LANDING_ERROR_MESSAGE = 'You cannot land' 
   TAKEOFF_ERROR_MESSAGE = 'You cannot takeoff'
+  AIRCRAFT_NOT_HERE_ERROR_MESSAGE = 'Aircraft is not here'
 
   DEFAULT_CAPACITY = 1
 
@@ -23,6 +24,8 @@ class Airport
 
   def takeoff(plane)
     raise TAKEOFF_ERROR_MESSAGE if stormy?
+    raise TAKEOFF_ERROR_MESSAGE if stormy?
+    raise AIRCRAFT_NOT_HERE_ERROR_MESSAGE unless @planes.include? plane
 
     @planes.delete(plane)
   end

@@ -61,4 +61,12 @@ RSpec.describe 'Feature Test' do
     
     expect(airport.planes.length).to be 3
   end
+
+  it 'planes should only take of from airports they are in' do 
+    
+    airport = Airport.new
+    plane = Plane.new
+    allow(Weather).to receive(:current) { "safe" }
+    expect { airport.takeoff(plane)}.to raise_error('Aircraft is not here')
+  end
 end

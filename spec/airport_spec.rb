@@ -43,6 +43,12 @@ RSpec.describe Airport do
       allow(Weather).to receive(:current) { "stormy" }
       expect { subject.takeoff(plane) }.to raise_error(described_class::TAKEOFF_ERROR_MESSAGE)
     end
+
+    it 'planes should only take of from airports they are in' do 
+      plane = Plane.new
+      allow(Weather).to receive(:current) { "safe" }
+      expect { subject.takeoff(plane)}.to raise_error('Aircraft is not here')
+    end
   end
 
   describe '#capacity' do
