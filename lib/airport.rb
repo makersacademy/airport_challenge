@@ -1,10 +1,13 @@
 class Airport
   attr_reader :planes
-  attr_reader :weather
 
   def initialize
     @planes = []
-    @weather = :sunny
+    @weather = rand(1..100) < 95 ? :sunny : :stormy
+  end
+
+  def weather_report
+    return @weather
   end
 
   def land(plane)
@@ -12,8 +15,9 @@ class Airport
   end
 
   def takeoff(plane)
-    raise("Can't take off during stormy weather") if self.weather == :stormy
-    @planes.slice!(@planes.index(plane))
+    return @planes.slice!(@planes.index(plane)) unless weather_report == :stormy
+
+    raise("Can't take off during stormy weather")
   end
 end
 
