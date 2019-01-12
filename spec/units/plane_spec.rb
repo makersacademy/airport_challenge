@@ -1,5 +1,4 @@
 require 'plane'
-require 'rspec'
 
 describe Plane do
 
