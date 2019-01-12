@@ -4,6 +4,10 @@ require 'plane'
 RSpec.describe Airport do
   it { should respond_to :land }
 
+  it 'should have a default capacity of 1' do
+    expect(subject.capacity).to eq 1
+  end
+
   describe '#land' do
     it 'should land a plane' do
       plane = Plane.new
@@ -19,7 +23,7 @@ RSpec.describe Airport do
   end
 
   it { should respond_to :takeoff }
-  
+
   describe '#takeoff' do
     it 'should takeoff a plane and check it\'s no longer in the airport' do
       allow(Weather).to receive(:current) { "safe" } 
@@ -36,6 +40,13 @@ RSpec.describe Airport do
       
       allow(Weather).to receive(:current) { "stormy" }
       expect { subject.takeoff }.to raise_error(described_class::TAKEOFF_ERROR_MESSAGE)
+    end
+  end
+
+  describe '#capacity' do
+    it 'should change airport capacity as appropriate' do
+      subject.capacity = 10
+      expect(subject.capacity).to be 10
     end
   end
 end

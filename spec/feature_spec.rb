@@ -39,4 +39,10 @@ RSpec.describe 'Feature Test' do
     expect { airport.land(Plane.new) }.to raise_error(Airport::LANDING_ERROR_MESSAGE)
   end
 
+  it 'set variable airport capacity' do 
+    airport = Airport.new
+    airport.capacity = 3
+    
+    expect(airport.capacity).to be 3
+  end
 end
