@@ -25,11 +25,13 @@ end
    expect(airport.taken_off?(plane)).to eq true
  end
 
- # it 'raise error when stormy' do
- #   airport = Airport.new
- #   plane = Plane.new
- #   weather = Weather.new
- #   weather
- #   airport.land(plane)
+ it 'raise error when stormy' do
+   airport = Airport.new
+   plane = Plane.new
+   weather = Weather.new
+   airport.land(plane)
+   expect(weather).to receive(:stormy?).and_return(true)
+   expect { airport.take_off(plane) }.to raise_error 'Turblent weather cannot takeoff'
+ end
 
 end
