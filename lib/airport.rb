@@ -7,7 +7,10 @@ class Airport
     @airport = []
   end
 
-  def land(plane)
+  def land(plane, weather)
+    if weather != "sunny"
+      fail 'Landing not authorised'
+    end
     @airport << plane
   end
 
