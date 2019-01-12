@@ -3,8 +3,11 @@ require_relative 'weather'
 
 class Airport
 
-  def initialize
+  attr_reader :airport_weather
+
+  def initialize(airport_weather = Weather.new)
     @airport_arr = Array.new
+    @airport_weather = airport_weather
   end
 
   def land
@@ -12,8 +15,12 @@ class Airport
   end
 
   def take_off
-    @airport_arr.pop
-    return 'Plane took off!'
+    if @airport_weather.stormy?
+      raise "You cannot take off in a stormy weather!"
+    else
+      @airport_arr.pop
+      return "Plane took off!"
+    end
   end
 
 end

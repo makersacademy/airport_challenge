@@ -2,21 +2,22 @@ require 'weather'
 
 RSpec.describe Weather do
 
-  it "should respond to stormy weather" do
-    expect(subject).to respond_to(:stormy)
+  it 'should return either true or false' do
+    expect([true, false]).to include subject.stormy?
   end
 
-  it "should respond to random weather" do
-    expect(subject).to respond_to(:random_weather)
+  it "should return an integer" do
+    expect(subject.random).to be_kind_of(Integer)
   end
 
-  it "should generate a random weather stormy or sunny" do
-    allow(subject).to receive(:rand).and_return(3)
-    expect(subject.random_weather).to eq ('sunny')
+  it "should respond true to stormy weather" do
+    allow(subject).to receive(:random).and_return(81)
+    expect(subject.stormy?).to eq(true)
   end
 
-  it "should generate a random weather stormy or sunny" do
-    allow(subject).to receive(:rand).and_return(81)
-    expect(subject.random_weather).to eq ('stormy')
+  it "should respond false to stormy weather" do
+    allow(subject).to receive(:random).and_return(31)
+    expect(subject.stormy?).to eq(false)
   end
+
 end

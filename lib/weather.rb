@@ -1,12 +1,17 @@
 class Weather
 
-  def stormy
+  attr_reader :stormy
+
+  def initialize(stormy = false)
+    @stormy = stormy
   end
 
-  def random_weather
-    case rand(100) +1
-      when 1..80 then return 'sunny'
-      when 81..100 then return 'stormy'
-    end
+  def random
+    rand(100) +1
   end
+
+  def stormy?
+    @stormy = (81..100).include?(random)
+  end
+
 end
