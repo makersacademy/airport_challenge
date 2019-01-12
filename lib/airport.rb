@@ -1,10 +1,14 @@
 # lib/airport.rb
 require_relative 'plane'
 class Airport
-  attr_accessor :planes_in_airport
 
-  def initialize
+  DEFAULT_AIRPORT_CAPACITY = 10
+  attr_accessor :planes_in_airport
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_AIRPORT_CAPACITY)
     @planes_in_airport = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -16,14 +20,14 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Plane not in airport to take off!" unless @planes_in_airport.include? plane
+    fail "Plane not in airport!" unless @planes_in_airport.include? plane
 
     @planes_in_airport -= [plane]
     puts "Confirming #{plane} has taken off."
   end
 
   def full?
-    true if @planes_in_airport.count >= 2
+    true if @planes_in_airport.count >= @capacity
   end
 
 end
