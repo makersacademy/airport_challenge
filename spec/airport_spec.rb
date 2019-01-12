@@ -19,16 +19,20 @@ describe Airport do
     it 'plane takes off' do
       airport = Airport.new
       plane = Plane.new
+      weather = Weather.new
       airport.land(plane)
-      expect(airport.take_off(plane)).to be_a Plane
+      expect(weather).to receive(:stormy?).and_return(false)
+      expect(airport.take_off(plane, weather)).to be_a Plane
     end
    
   
     it 'plane has taken off' do
        airport = Airport.new
        plane = Plane.new
+       weather = Weather.new
        airport.land(plane)
-       airport.take_off(plane)
+       expect(weather).to receive(:stormy?).and_return(false)
+       airport.take_off(plane, weather)
        expect(airport.taken_off?(plane)).to eq true
    end
    
@@ -38,7 +42,7 @@ describe Airport do
       weather = Weather.new
       airport.land(plane) 
       expect(weather).to receive(:stormy?).and_return(true)
-      expect { airport.take_off(plane) }.to raise_error 'Turbulent weather cannot takeoff'
+      expect { airport.take_off(plane, weather) }.to raise_error 'Turbulent weather cannot takeoff'
   end
        
 end
