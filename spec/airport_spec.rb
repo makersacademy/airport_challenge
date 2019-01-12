@@ -15,6 +15,7 @@ it {is_expected.to respond_to :take_off}
   plane = Plane.new
   weather = Weather.new
   subject.land(plane)
+  expect(weather).to receive(:stormy?).and_return(false)
   expect(subject.take_off(plane, weather)).to be_a Plane
 end
 
@@ -23,6 +24,7 @@ end
    plane = Plane.new
    weather = Weather.new
    airport.land(plane)
+   expect(weather).to receive(:stormy?).and_return(false)
    airport.take_off(plane, weather)
    expect(airport.taken_off?(plane)).to eq true
  end
