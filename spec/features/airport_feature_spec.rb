@@ -49,7 +49,7 @@ describe Airport do
     it 'should stop aircraft from taking off in storms' do
       @airport.instance_variable_set(:@planes, [@plane])
       allow(@airport).to receive(:stormy?).and_return(true)
-      expect { @airport.takeoff(@plane) }.to raise_error('Unable to takeoff: stormy weather')
+      expect { @airport.takeoff(@plane) }.to raise_error(Airport::STORMY_WEATHER_ERROR)
     end
   end
   
@@ -61,7 +61,7 @@ describe Airport do
 
     it 'should stop aircraft landing in storms' do
       allow(@airport).to receive(:stormy?).and_return(true)
-      expect { @airport.land(@plane) }.to raise_error('Unable to land: stormy weather')
+      expect { @airport.land(@plane) }.to raise_error(Airport::STORMY_WEATHER_ERROR)
     end
 
   end
@@ -75,7 +75,7 @@ describe Airport do
     it 'should not land planes when full' do
       allow(@airport).to receive(:weather_safe?).and_return(true)
       allow(@airport).to receive(:full?).and_return(true)
-      expect { @airport.land(@plane) }.to raise_error('Unable to land: airport full')
+      expect { @airport.land(@plane) }.to raise_error(Airport::AIRPORT_FULL_ERROR)
     end
 
   end

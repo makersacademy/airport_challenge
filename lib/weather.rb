@@ -7,9 +7,9 @@ class Weather
   private
   def generate_weather
     if rand(11) >= 9
-      'stormy'
+      :stormy
     else
-      'sunny'
+      :sunny
     end
   end
 

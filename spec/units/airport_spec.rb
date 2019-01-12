@@ -32,7 +32,7 @@ describe Airport do
   describe '#takeoff' do
 
     it "shouldn't allow unavailable planes to takeoff" do
-      expect { @airport.takeoff(@plane) }.to raise_error('Unable to takeoff: plane unavailable')
+      expect { @airport.takeoff(@plane) }.to raise_error(Airport::PLANE_UNAVAILABLE_ERROR)
     end
   end
 end

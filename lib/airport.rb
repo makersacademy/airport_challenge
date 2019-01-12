@@ -2,6 +2,10 @@ require 'weather'
 
 class Airport
 
+  AIRPORT_FULL_ERROR = 'Unable to land: airport full'
+  STORMY_WEATHER_ERROR = 'Unable to land: stormy weather'
+  PLANE_UNAVAILABLE_ERROR = 'Unable to takeoff: plane unavailable'
+
   def initialize(capacity = 20, weather_generator = Weather.new)
     @capacity = capacity
     @planes = []
@@ -13,16 +17,16 @@ class Airport
   end
 
   def land(plane)
-    raise 'Unable to land: airport full' if full?
-    raise 'Unable to land: stormy weather' unless weather_safe?
+    raise AIRPORT_FULL_ERROR if full?
+    raise STORMY_WEATHER_ERROR unless weather_safe?
 
     plane.land
     @planes.push(plane)
   end
 
   def takeoff(plane)
-    raise 'Unable to takeoff: plane unavailable' unless @planes.include?(plane)
-    raise 'Unable to takeoff: stormy weather' unless weather_safe?
+    raise PLANE_UNAVAILABLE_ERROR unless @planes.include?(plane)
+    raise STORMY_WEATHER_ERROR unless weather_safe?
 
     @planes.delete(plane)
   end
@@ -34,7 +38,7 @@ class Airport
   private
 
   def stormy?
-    weather == 'stormy'
+    weather == :stormy
   end
 
   def weather
