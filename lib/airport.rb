@@ -8,6 +8,9 @@ class Airport
   end
 
   def land(plane, weather)
+    if @airport.length >= 3
+      fail 'Airport full'
+    end
     if weather != "sunny"
       fail 'Landing not authorised'
     end
