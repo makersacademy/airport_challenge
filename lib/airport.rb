@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   attr_reader :plane 
 
@@ -6,6 +8,8 @@ class Airport
   end
 
   def takeoff
+    fail 'You cannot take off' if Weather.current == 'stormy'
+
     @plane = nil
   end
 end
