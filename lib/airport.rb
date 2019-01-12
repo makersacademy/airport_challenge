@@ -11,17 +11,19 @@ class Airport
   end
 
   def clear_skies?
-    return weather_report==:stormy ? false : true
+    return weather_report != :stormy
   end
 
   def land(plane)
-    raise("Can't land during stormy weather") if !clear_skies?
+    raise("Can't land during stormy weather") unless clear_skies?
 
     @planes << plane
   end
 
   def takeoff(plane)
-    return @planes.slice!(@planes.index(plane)) unless !clear_skies?
+    raise("Plane not found!") unless @planes.include?(plane)
+
+    return @planes.slice!(@planes.index(plane)) if clear_skies?
 
     raise("Can't take off during stormy weather")
   end

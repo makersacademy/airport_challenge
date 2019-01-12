@@ -23,6 +23,11 @@ describe Airport do
     subject.land(pointer)
     expect { subject.takeoff(pointer) }.to_not raise_error
   end
+
+  it "only TAKEOFFs planes already in airport" do
+    expect { subject.takeoff(Plane.new) }.to raise_error("Plane not found!")
+  end
+
   it "no longer holds taken off PLANE in PLANES" do
     allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
