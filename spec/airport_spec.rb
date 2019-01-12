@@ -8,6 +8,13 @@ RSpec.describe Airport do
     it { expect(subject.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
   end
 
+  context 'when instantiating an airport with non-default capacity' do
+  before(:all) do
+    @small_airport = described_class.new(20)
+  end
+    it { expect(@small_airport.hanger_capacity).to eq 20}
+  end
+
   context 'when an airport has a plane landed in sunny weather' do
   before(:each) do
     @airport = described_class.new
