@@ -17,6 +17,7 @@ describe Airport do
     # I want to instruct a plane to land at an airport
 
     it "should be able to land planes" do
+      allow(@airport).to receive(:weather_safe?).and_return(true)
       expect(@airport.land(@plane)).to eq([@plane])
     end
   end
@@ -29,11 +30,13 @@ describe Airport do
 
     it "should be able to instruct a plane to take off" do
       @airport.instance_variable_set(:@planes, [@plane])
+      allow(@airport).to receive(:weather_safe?).and_return(true)
       expect(@airport.takeoff(@plane)).to eq(@plane)
     end
 
     it "should check that planes that have taken off are no longer in the airport" do
       @airport.instance_variable_set(:@planes, [@plane])
+      allow(@airport).to receive(:weather_safe?).and_return(true)
       @airport.takeoff(@plane)
       expect(@airport.instance_variable_get(:@planes)).to eq([])
     end
@@ -72,6 +75,7 @@ describe Airport do
     # I want to prevent landing when the airport is full
 
     it 'should not land planes when full' do
+      allow(@airport).to receive(:weather_safe?).and_return(true)
       allow(@airport).to receive(:full?).and_return(true)
       expect { @airport.land(@plane) }.to raise_error('Unable to land: airport full')
     end

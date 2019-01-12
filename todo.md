@@ -1,8 +1,8 @@
 
 Edge cases
-- Random number generator to set the weather
-- Stub to override random whether for tests
-- Planes should only take off from airports they're in
+- Random number generator to set the weather - Done
+- Stub to override random whether for tests - Done (I think!)
+- Planes should only take off from airports they're in - Done
 - Planes already flying cannot take off
 - Planes already flying cannot be in an airport
 - Planes that are landed cannot land again
