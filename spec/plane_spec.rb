@@ -3,7 +3,7 @@ require 'airport_challenge'
 
 describe Plane do
 
-  #describe '#designation' do
+  describe '#designation' do
     it { is_expected.to respond_to(:desig) }
     it 'starts with letters "MA"' do
       expect(subject.desig[0..1]).to eq("MA")
@@ -13,6 +13,6 @@ describe Plane do
       second = Plane.new
       expect(second.desig[2..-1].to_i - first.desig[2..-1].to_i).to eq(1)
     end
-  #end
+  end
 
 end

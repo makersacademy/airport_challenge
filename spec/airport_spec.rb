@@ -15,7 +15,7 @@ describe Airport do
     expect(subject.airport_contains?(pointer)).to be(true)
   end
 
-  it "cannot LAND planes already in airport"do
+  it "cannot LAND planes already in airport" do
     allow(subject).to receive(:weather_report) { :sunny }
     pointer = Plane.new
     subject.land(pointer)

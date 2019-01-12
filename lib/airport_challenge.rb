@@ -47,7 +47,6 @@ class Airport
   end
 end
 
-
 class Plane
   attr_accessor :desig
   attr_reader :randumm
@@ -56,6 +55,6 @@ class Plane
 
   def initialize
     @@instance_number += 1
-    @desig = "MA"+@@instance_number.to_s
+    @desig = "MA" + @@instance_number.to_s
   end
 end
