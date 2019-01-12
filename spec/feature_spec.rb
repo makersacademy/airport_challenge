@@ -12,4 +12,16 @@ RSpec.describe 'Feature Test' do
 
     expect(airport.plane).to eq nil
   end
+
+  it 'shouldnt take off when the weather is stormy' do 
+    airport = Airport.new
+    plane = Plane.new
+
+    airport.land(plane)
+    
+    allow(Weather).to receive(:current) { "stormy" }
+    error_message = 'You cannot take off' 
+
+    expect { airport.takeoff }.to raise_error(error_message)
+  end
 end
