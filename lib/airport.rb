@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     raise LANDING_ERROR_MESSAGE if stormy?
+    raise LANDING_ERROR_MESSAGE if @plane
 
     @plane = plane
   end

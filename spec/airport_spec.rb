@@ -10,6 +10,12 @@ RSpec.describe Airport do
       allow(Weather).to receive(:current) { "safe" }
       expect(subject.land(plane)).to eq plane
     end
+    
+    it 'should prevent landing when airport is full' do
+      allow(Weather).to receive(:current) { "safe" }
+      subject.land(Plane.new)
+      expect { subject.land(Plane.new) }.to raise_error(described_class::LANDING_ERROR_MESSAGE)
+    end
   end
 
   describe '#takeoff' do
