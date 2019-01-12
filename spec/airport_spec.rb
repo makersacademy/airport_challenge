@@ -55,4 +55,13 @@ describe Airport do
     10.times {expect(subject.stormy?).to eql(subject.stormy?)}
   end
 
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
+  it "prevents landing when airport is full" do
+    subject.land(Plane.new)
+    expect { subject.land(Plane.new) } .to raise_error "airport full"
+  end
+
+
 end
