@@ -1,9 +1,11 @@
+require 'weather'
 
 class Airport
 
-  def initialize(capacity=20, weather=Weather.new)
+  def initialize(capacity=20, weather_generator=Weather.new)
     @capacity = capacity
     @planes = []
+    @weather_generator = weather_generator
   end
 
   def full?
@@ -12,6 +14,8 @@ class Airport
 
   def land(plane)
     raise 'Unable to land: airport full' if full?
+    raise 'Unable to land: stormy weather' unless weather_safe?
+
     @planes.push(plane)
   end
 
@@ -20,11 +24,19 @@ class Airport
     @planes.delete(plane)
   end
 
-  def stormy?
+  def weather_safe?
+    true unless stormy?
+  end
 
+
+  private
+
+  def stormy?
+    get_weather == 'stormy'
   end
 
   def get_weather
+    @weather_generator.weather
   end
 
 end
