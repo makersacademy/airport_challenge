@@ -11,7 +11,8 @@ class Airport
   end
 
   def take_off(plane)
-
+    @planes_in_airport -= [plane]
+    puts "Confirming #{plane} has taken off."
   end
 
 end

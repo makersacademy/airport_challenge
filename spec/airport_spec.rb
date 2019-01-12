@@ -36,9 +36,10 @@ describe Airport do
 
   it 'can instruct a plane to take off, i.e. responds to takeoff method' do
     expect(subject).to respond_to(:take_off)
-end
+  end
   it 'can remove the taken-off instance of a plane from the airport after takeoff' do
     instance_of_plane = Plane.new
+    subject.land(instance_of_plane)
     subject.take_off(instance_of_plane)
     expect(subject.planes_in_airport).not_to include(instance_of_plane)
   end
