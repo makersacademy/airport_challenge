@@ -57,4 +57,17 @@ describe Airport do
     (subject.max_capacity - subject.planes.length).times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error("Airport at full capacity!")
   end
+
+  it "can change maximum plane capacity with argument at initialization" do
+    new_cap = subject.max_capacity + 1
+    example = Airport.new(new_cap)
+    expect(example.max_capacity).to eq(subject.max_capacity + 1)
+  end
+
+  it "can change maximum capacity at any time" do
+  end
+
+  it "throws error if maximum capacity is changed to smaller than current amount
+     of PLANES" do
+  end
 end
