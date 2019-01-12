@@ -8,29 +8,32 @@ RSpec.describe Airport do
       @weather = Weather.new
     end
 
-    describe 'Landing a plane' do
-      it 'plane can land' do
+    describe 'Landing a plane in good weather' do
+      before(:example) do
         allow(@weather).to receive(:stormy?).and_return(false)
+      end
+
+      it 'plane can land' do
         expect(@airport.land(@plane, @weather)).to eq [@plane]
       end
       
       it 'landed plane is in the airport' do
-        allow(@weather).to receive(:stormy?).and_return(false)
         @airport.land(@plane, @weather)
         expect(@airport.planes).to include @plane
       end
   
       it 'Plane cannot land if it is already landed' do
-        allow(@weather).to receive(:stormy?).and_return(false)
         @airport.land(@plane, @weather)
         expect { @airport.land(@plane, @weather) }.to raise_error 'Plane has already landed'
       end
     end
   
-    describe 'Planes taking off' do
-      
-      it 'plane can take off' do
+    describe 'Planes taking off in good weather' do
+      before(:example) do
         allow(@weather).to receive(:stormy?).and_return(false)
+      end
+
+      it 'plane can take off' do
         @airport.land(@plane, @weather)
         allow(@weather).to receive(:stormy?).and_return(false)
         expect(@airport.take_off(@plane, @weather)).to be_a Plane
@@ -38,7 +41,6 @@ RSpec.describe Airport do
        
       
       it 'checks plane has taken off' do
-        allow(@weather).to receive(:stormy?).and_return(false)
         @airport.land(@plane, @weather)
         allow(@weather).to receive(:stormy?).and_return(false)
         @airport.take_off(@plane, @weather)
@@ -46,12 +48,10 @@ RSpec.describe Airport do
       end
   
       it 'planes can only take off from airport they are in' do
-        allow(@weather).to receive(:stormy?).and_return(false)
         expect { @airport.take_off(@plane, @weather) }.to raise_error 'Plane is not in airport'
       end
       
       it 'taken off plane can not be in airport' do
-        allow(@weather).to receive(:stormy?).and_return(false)
         expect(@airport.planes).to_not include @plane
       end
     end
@@ -71,15 +71,16 @@ RSpec.describe Airport do
     end
   
     context 'Weather is not stormy' do
-      it 'no error raised when taking off in normal weather' do
+      before(:example) do
         allow(@weather).to receive(:stormy?).and_return(false)
+      end
+      it 'no error raised when taking off in normal weather' do
         @airport.land(@plane, @weather) 
         allow(@weather).to receive(:stormy?).and_return(false)
         expect { @airport.take_off(@plane, @weather) }.to_not raise_error
       end
        
-      it 'no error raised when landing in normal weatherr' do
-        allow(@weather).to receive(:stormy?).and_return(false)
+      it 'no error raised when landing in normal weather' do
         expect { @airport.land(@plane, @weather) }.to_not raise_error
       end
     end
