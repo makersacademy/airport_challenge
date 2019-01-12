@@ -1,7 +1,6 @@
 require_relative './plane'
 require_relative './weather'
 
-
 class Airport
   attr_reader :planes_in_airport
   attr_reader :capacity
@@ -16,14 +15,16 @@ class Airport
   end
 
   def land(plane) 
-    raise Exception.new("This plane has already landed") if plane_exists_in_airport?(plane)
+    raise Exception.new(m_plane_already_landed) if plane_in_airport?(plane)
     raise Exception.new("No landings permitted") if stormy || capacity_reached?
+
     @planes_in_airport << plane
   end
 
   def take_off(plane)
-    raise Exception.new("This plane doesn't exist in the airport") unless plane_exists_in_airport?(plane)
+    raise Exception.new(m_plane_not_in_airport) unless plane_in_airport?(plane)
     raise Exception.new("No take offs permitted") if stormy
+
     @planes_in_airport.delete(plane)
   end
 
@@ -31,11 +32,22 @@ class Airport
     @planes_in_airport.length >= @capacity
   end
 
-  def plane_exists_in_airport?(plane)
+  def plane_in_airport?(plane)
     planes_in_airport.include?(plane)
   end
 
   def stormy
     @weather.stormy?
   end
+
+  private
+
+  def m_plane_not_in_airport
+    "This plane doesn't exist in the airport"
+  end
+
+  def m_plane_already_landed
+    "This plane has already landed"
+  end
+
 end

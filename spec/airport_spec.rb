@@ -3,7 +3,7 @@ require 'airport'
 RSpec.describe Airport do
 
   it { is_expected.to respond_to(:capacity_reached?) }
-  it { is_expected.to respond_to(:plane_exists_in_airport?) }
+  it { is_expected.to respond_to(:plane_in_airport?) }
   it { is_expected.to respond_to(:stormy) }
   
   describe '#land' do
@@ -87,15 +87,24 @@ RSpec.describe Airport do
       airport.land(Plane.new)
       expect(airport.capacity_reached?).to eq(true)
     end
+
+    it "initiates with a default airport capacity" do
+      airport = Airport.new
+      expect(airport.capacity).to eq(1)
+    end
+
+    it "lets the default capacity to be overridden" do
+      airport = Airport.new(10)
+      expect(airport.capacity).to eq(10)
+    end
   end
 
-  it "initiates with a default airport capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to eq(1)
-  end
-
-  it "lets the default capacity to be overridden" do
-    airport = Airport.new(10)
-    expect(airport.capacity).to eq(10)
+  describe '#plane_exists_in_airport?' do
+    it "checks if a given plane is in the airport" do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.plane_in_airport?(plane)).to eq(true)
+    end
   end
 end
