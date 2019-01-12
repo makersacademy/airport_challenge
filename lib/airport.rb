@@ -18,6 +18,7 @@ class Airport
 
   def take_off(plane_to_leave)
     fail "Too stormy for take off" if bad_weather?
+    fail "Plane not in hanger" if @hanger.include?(plane_to_leave) == false
     @hanger.delete(plane_to_leave)
   end
 
