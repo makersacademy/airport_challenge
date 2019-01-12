@@ -13,7 +13,7 @@ class Airport
   end
 
   def show_planes
-    @landing_area.map { |plane| return "Plane #{plane.plane_number}" }
+    @landing_area.map { |plane| puts "Plane #{plane.plane_number}" }
   end
 
   def accept_landing(plane, weather = Weather.new)
@@ -28,8 +28,7 @@ class Airport
     fail "Could not check weather!" unless weather.instance_of?(Weather)
     fail "Weather is stormy!" unless weather.state == 1
     fail "Plane is not at this airport!" unless @landing_area.all? { |landed_plane| landed_plane.plane_number == plane.plane_number }
-    plane_position = @landing_area.find_index(plane)
-    @landing_area.delete_at(plane_position)
+    @landing_area.delete_at(plane_position = @landing_area.find_index(plane))
   end
 
 end

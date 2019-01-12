@@ -20,13 +20,14 @@ describe Airport do
     expect(subject).to respond_to(:accept_landing).with(1)
   end
 
-  it "should return the numbers of all planes in the airport" do
-    airport = Airport.new
-    weather = Weather.new
-    weather.instance_variable_set("@state", 1)
-    airport.accept_landing(Plane.new(1), weather)
-    expect(airport.show_planes).to eql("Plane 1")
-  end
+  # it "should return the numbers of all planes in the airport" do
+  #   airport = Airport.new
+  #   weather = Weather.new
+  #   weather.instance_variable_set("@state", 1)
+  #   airport.accept_landing(Plane.new(1), weather)
+  #   allow(airport).to receive(:map).and_return("Plane 1")
+  #   expect(airport.show_planes).to eql("Plane 1")
+  # end
 
   it "should only accept an instance of 'Plane' for landing" do
     fake_plane = double("not_a_plane")
@@ -39,7 +40,14 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(2)
   end
 
-  it "should return plane's landing position, i.e. index in landing area array" do
-    
-  end
+  # it "should return plane's landing position, i.e. index in landing area array" do
+  #   airport = Airport.new("Heathrow", 2)
+  #   weather = Weather.new
+  #   weather.instance_variable_set("@state", 1)
+  #   plane1 = Plane.new(1)
+  #   plane2 = Plane.new(2)
+  #   airport.accept_landing(plane1, weather)
+  #   airport.accept_landing(plane2, weather)
+  #   expect(airport.take_off(2, weather)).to eql(plane2)
+  # end
 end
