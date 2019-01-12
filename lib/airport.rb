@@ -20,7 +20,7 @@ class Airport
   end
 
   def takeoff(plane)
-    raise 'Plane unavailable' unless @planes.include?(plane)
+    raise 'Unable to takeoff: plane unavailable' unless @planes.include?(plane)
     raise 'Unable to takeoff: stormy weather' unless weather_safe?
 
     @planes.delete(plane)

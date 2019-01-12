@@ -4,14 +4,19 @@ require 'rspec'
 
 describe Airport do
 
+  before(:each) do
+    @airport = Airport.new
+    @plane = Plane.new
+  end
+
   context "when initializing an airport" do
 
     it "is initialized with a default plane capacity" do
-      expect(subject.instance_variable_get(:@capacity)).to eq(20)
+      expect(@airport.instance_variable_get(:@capacity)).to eq(20)
     end
 
     it "shouldn't be full when first created" do
-      expect(subject).not_to be_full
+      expect(@airport).not_to be_full
     end
   end
 
@@ -26,10 +31,10 @@ describe Airport do
     end
   end
 
-  describe '#stormy?' do
-    it 'should report true when weather is stormy' do
+  describe '#takeoff' do
 
+    it "shouldn't allow unavailable planes to takeoff" do
+      expect { @airport.takeoff(@plane) }.to raise_error('Unable to takeoff: plane unavailable')
     end
-
   end
 end
