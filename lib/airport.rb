@@ -1,7 +1,7 @@
 class Airport
-  def land
+  def land(plane_to_land)
   end
 
-  def takeoff
+  def takeoff(plane_to_fly)
   end
 end
