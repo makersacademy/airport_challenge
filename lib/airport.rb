@@ -8,7 +8,7 @@ class Airport
   end
 
   def full?
-    planes >= capacity
+    @planes >= capacity
   end
 
 end
