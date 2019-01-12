@@ -4,6 +4,7 @@ describe Airport do
   it { is_expected.to respond_to(:planes) }
   it "can instruct a PLANE to LAND" do
     allow(subject).to receive(:weather_report) { :sunny }
+    p subject.weather_report
     expect(subject).to respond_to(:land).with(1).arguments
     expect { subject.land(Plane.new) }.to_not raise_error
   end
@@ -34,5 +35,10 @@ describe Airport do
     subject.land(pointer)
     allow(subject).to receive(:weather_report) { :stormy }
     expect { subject.takeoff(pointer) }.to raise_error
+  end
+  it "prohibits landing when WEATHER is stormy" do
+    pointer = Plane.new
+    allow(subject).to receive(:weather_report) { :stormy }
+    expect { subject.land(pointer) }.to raise_error
   end
 end
