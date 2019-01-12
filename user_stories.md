@@ -9,6 +9,14 @@
 |Airport | Confirm takeoff|
 |---|---|
 |Person|     |
-|Weather | Prevent take off?|
+|Weather | Stormy|
+|Airport | Stop take off|
 |---|---|
-|Person
+|Person |  |
+|Weather | Stormy|
+|Airport | Stop landing|
+|---   |---  |
+|Person |   |
+|Airport | Is full|
+|Airport | Stop landing|
+
