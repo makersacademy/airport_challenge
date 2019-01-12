@@ -20,6 +20,16 @@ describe Weather do
     end
   end
 
+  describe 'weather should be generated randomly' do
+
+    it 'should use the :rand method to generate probabilities' do
+      allow(@weather).to receive(:rand).with(11).and_return(9)
+      @weather.weather
+      expect(@weather).to have_received(:rand)
+    end
+
+  end
+
 
 
 end
