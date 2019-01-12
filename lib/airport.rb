@@ -12,6 +12,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise("Can't take off during stormy weather") if self.weather == :stormy
     @planes.slice!(@planes.index(plane))
   end
 end

@@ -20,8 +20,6 @@ describe Airport do
     subject.land(pointer)
     expect { subject.takeoff(pointer) }.to_not raise_error
   end
-
-
   it "no longer holds taken off PLANEs in airport" do
     pointer = Plane.new
     subject.land(pointer)
@@ -31,7 +29,8 @@ describe Airport do
   it "prohibits takeoff when WEATHER is stormy" do
     pointer = Plane.new
     subject.land(pointer)
-    allow(pointer).to receive(:weather){:stormy}
+    allow(subject).to receive(:weather){:stormy}
+    print subject.weather
     expect{subject.takeoff(pointer)}.to raise_error
   end
 end
