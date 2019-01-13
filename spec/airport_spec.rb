@@ -15,6 +15,12 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).arguments
   end
 
+  it "can confirm if plane has taken off" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.depart(plane)
+    expect(subject.planes.include?(plane)).to eq(false)
+  end
   # expect(subject.departd.to eq
 
   # airplane  = Airplane.new
