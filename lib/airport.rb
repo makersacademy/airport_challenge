@@ -18,8 +18,10 @@ class Airport
 
   end
 
-  def airport_full? # create this method to take this function
-    @grounded_planes.length >= @capacity
+  private
+  
+  def airport_full? # create this method to take this function out of the plane_landing method
+    @grounded_planes.length >= @capacity # no need for an if statement as this evaluates to true
   end
 
   def airport_empty?
