@@ -14,7 +14,8 @@ class Airport
   end
 
   def takeoff(plane)
-     plane
+     @runway.delete(plane)
+     @runway
   end
 
 end

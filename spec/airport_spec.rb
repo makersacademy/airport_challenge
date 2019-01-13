@@ -12,7 +12,7 @@ RSpec.describe Airport do
     it 'should allow a plane to take-off' do
       airport = Airport.new
       plane1 = Plane.new
-      expect(airport.takeoff(plane1)).to eq plane1
+      expect(airport.takeoff(plane1)).to eq []
     end
 
     it 'and refuse plane if already landed' do
