@@ -25,6 +25,7 @@ describe Airport do
       expect(subject.confirm_take_off(plane)).to eq "#{plane} is no longer in the airport"
     end
   end
+  
   describe 'preventions' do
     it 'prevent landing when weather is stormy' do
       plane = Plane.new
