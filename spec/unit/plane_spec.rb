@@ -2,7 +2,16 @@ require 'plane'
 
 RSpec.describe Plane do
   let(:plane) { Plane.new }
-  it { is_expected.to respond_to :flying? }
-  it { is_expected.to respond_to :set_status }
-  it { expect(plane.flying?).to be true }
+
+  context 'on initialisation' do
+    it { expect(plane.landed?).to be nil}
+  end
+
+  context 'when plane object has been landed' do
+    before(:each) do
+      plane.set_landed(true)
+    end
+    it { expect(plane.landed?).to be(true) }
+  end
+
 end

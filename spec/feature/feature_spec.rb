@@ -18,6 +18,7 @@ RSpec.describe 'all objects and methods' do
   end
   it 'feature test' do
     expect(small_airport.in_hanger?(plane1)).to be true
+    expect { small_airport.land(plane3) }.to raise_error("Plane is not in air")
     expect { small_airport.land(plane1) }.to raise_error("Plane has already landed")
     expect { small_airport.land(plane2) }.to raise_error("Airport is full")
     expect(small_airport.take_off(plane1)).to be plane1

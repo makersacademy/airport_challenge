@@ -1,9 +1,15 @@
 class Plane
 
-  def flying?
-    true
+  def initialize
+    @landed_state = nil
   end
 
-  def set_status
+  def landed?
+    @landed_state
   end
+
+  def set_landed(landed_state)
+    @landed_state = landed_state
+  end
+
 end
