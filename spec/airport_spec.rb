@@ -74,4 +74,22 @@ RSpec.describe Airport do
     subject.capacity.times { subject.land(Plane.new) }
     expect(subject.planes.length).to eq 5
   end
+
+  it 'can take off multiple planes' do
+    subject.capacity = 3
+    allow(Weather).to receive(:current).and_return('clear')
+    plane_1 = double :plane
+    plane_2 = double :plane
+    plane_3 = double :plane
+
+    subject.land(plane_1)
+    subject.land(plane_2)
+    subject.land(plane_3)
+
+    subject.take_off(plane_1)
+    subject.take_off(plane_2)
+    subject.take_off(plane_3)
+
+    expect(subject.planes).to be_empty
+  end
 end

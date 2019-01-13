@@ -55,6 +55,18 @@ RSpec.describe 'Feature Tests' do
         subject.capacity.times { subject.land(Plane.new) }
       }.to_not raise_error
     end
+
+    it 'can take off multiple planes' do
+      subject.capacity = 5
+      allow(Weather).to receive(:current).and_return('clear')
+      subject.capacity.times { subject.land(Plane.new) }
+
+      expect {
+        subject.planes.each do |plane|
+          subject.take_off(plane)
+        end
+      }.to_not raise_error
+    end
   end
 
   describe Weather do
