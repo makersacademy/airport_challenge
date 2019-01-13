@@ -26,4 +26,4 @@ Next step was to create a `Plane` class and pass it an instance variable `landed
 At this point I noticed that creating a plane along with `Airport.new` brought further problems when trying to `take_off` as the plane was `landed = true` but not present in the `airport_arr`. I therefore first changed the default `landed` status of a new plane to `false`, but then also removed the instance variable from the `Airport` class, leaving only the `require_relative`.<br><br>
 Finally the airport capacity was set as `DEFAULT_CAPACITY` but also as an instance variable that can be overwritten.<br><br>
 Errors were raised when an airport is full and `land` is called on it.<br><br>
-Final refactor thanks also to `rubocop``.
+Final refactor thanks also to `rubocop`.
