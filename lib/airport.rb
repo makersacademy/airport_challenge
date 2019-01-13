@@ -1,25 +1,25 @@
 require_relative 'weather'
 
-class Airport
+class Airport < Weather
 
-  attr_accessor :planes, :message1, :message2
-
-  include WEATHER
+  attr_accessor :planes, :messages
 
   def initialize
     @planes = []
-    @message1 = "Warning: this plane is already in the airport."
-    @message2 = "That plane is not here"
+    @messages = ["Warning: this plane is already in the airport.", "That plane is not here", "Inclement weather"]
+    @weather = bad_weather?
   end
 
   def land(arrival)
-    fail message1 if planes.include? arrival
+    fail messages[2] if @weather
+    fail messages[0] if planes.include? arrival
 
     planes.push(arrival)
   end
 
   def take_off(departure)
-    fail message2 unless planes.include? departure
+    fail messages[2] if @weather
+    fail messages[1] unless planes.include? departure
 
     planes.delete(departure)
   end

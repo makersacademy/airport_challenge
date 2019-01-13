@@ -1,8 +1,8 @@
-module WEATHER
+class Weather
 
   def bad_weather?
-    decimal = rand
-    return decimal.round ? true : false
+    decimal = rand(0...10)
+    decimal < 5 ? true : false
   end
 
 end

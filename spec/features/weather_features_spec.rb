@@ -1,12 +1,28 @@
 require 'weather'
 
-describe WEATHER do
+describe Weather do
 
-  let(:dummy_class) { Class.new { include WEATHER } }
-  let(:obj) { dummy_class.new }
+  class DummyClass < Weather; end
+  let(:obj) { DummyClass.new }
 
   it 'tells whether there is .bad_weather?' do
-    expect(obj.bad_weather?).to be true || false
+    states = [true, false]
+    expect(states).to include obj.bad_weather?
+  end
+
+  it 'sometimes has bad weather and sometimes good' do
+    trues = []
+    falses = []
+    100.times do
+      weather = obj.bad_weather?
+      if weather
+        trues.push(weather)
+      else
+        falses.push(weather)
+      end
+    end
+    expect(trues.count).not_to eq 0
+    expect(falses.count).not_to eq 0
   end
 
 end

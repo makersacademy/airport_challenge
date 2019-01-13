@@ -1,62 +1,75 @@
 require 'airport'
 
 describe Airport do
+  let(:heathrow) { Airport.new }
+  let(:plane) { double('plane') }
 
   describe '#land' do
-    let(:plane) { double('plane') }
-
-    it 'can be instructed to accept a plane landing' do
-      expect(subject.land(plane)).to eq [plane]
+    before do
+      heathrow.instance_variable_set(:@weather, false)
+      heathrow.instance_variable_set(:@planes, [])
     end
 
-    it 'contains any landed planes' do
-      subject.land(plane)
-      expect(subject.planes.count).to eq 1
+    it 'can be instructed to accept a plane landing' do
+      expect(heathrow.land(plane)).to eq [plane]
+    end
+
+    it 'The airport contains any landed planes' do
+      heathrow.land(plane)
+      expect(heathrow.planes.count).to eq 1
+    end
+
+    it 'raises error if weather is bad' do
+      heathrow.instance_variable_set(:@planes, [])
+      heathrow.instance_variable_set(:@weather, true)
+      expect { heathrow.land(plane) }.to raise_error 'Inclement weather'
     end
 
     context 'if the plane has already been landed' do
-      let(:airport) { Airport.new }
-
       before do
-        airport.instance_variable_set(:@planes, [plane])
+        heathrow.instance_variable_set(:@planes, [plane])
+        heathrow.instance_variable_set(:@weather, false)
       end
 
       it 'throws error if plane is already landed' do
-        expect { airport.land(plane) }.to raise_error "Warning: this plane is already in the airport."
+        expect { heathrow.land(plane) }.to raise_error "Warning: this plane is already in the airport."
       end
 
       it 'does not add plane if it is already landed' do
-        expect { airport.land(plane) }.to raise_error "Warning: this plane is already in the airport."
+        expect { heathrow.land(plane) }.to raise_error "Warning: this plane is already in the airport."
         # I have to expect the error message in order not to fail out of the test Example and proceed to the next line.
-        expect(airport.planes.count).to eq 1
+        expect(heathrow.planes.count).to eq 1
       end
     end
   end
 
   describe '#takeoff' do
-    let(:plane) { double('plane') }
-    let(:airport) { Airport.new }
-
     before do
-      airport.instance_variable_set(:@planes, [plane])
+      heathrow.instance_variable_set(:@planes, [plane])
+      heathrow.instance_variable_set(:@weather, false)
     end
 
     it 'can instruct a plane to take off' do
-      airport.take_off(plane)
-      expect(airport.planes.count).to eq 0
+      heathrow.take_off(plane)
+      expect(heathrow.planes.count).to eq 0
     end
 
     let(:cheeseburger) { double('cheeseburger') }
 
     it 'returns the object which takes off' do
-      airport.instance_variable_set(:@planes, [cheeseburger])
-      expect(airport.take_off(cheeseburger)).to eq cheeseburger
-      p airport
+      heathrow.instance_variable_set(:@planes, [cheeseburger])
+      expect(heathrow.take_off(cheeseburger)).to eq cheeseburger
     end
 
     it 'raises an error if the plane is not there' do
-      airport.instance_variable_set(:@planes, [])
-      expect { airport.take_off(plane) }.to raise_error 'That plane is not here'
+      heathrow.instance_variable_set(:@planes, [])
+      expect { heathrow.take_off(plane) }.to raise_error 'That plane is not here'
+    end
+
+    it 'raises error if weather is bad' do
+      heathrow.instance_variable_set(:@planes, [plane, cheeseburger])
+      heathrow.instance_variable_set(:@weather, true)
+      expect { heathrow.take_off(cheeseburger) }.to raise_error 'Inclement weather'
     end
 
   end
