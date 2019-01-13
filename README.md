@@ -1,3 +1,13 @@
+Aiden's Notes.
+
+I managed to finish user story three and feel that I am happy in the way I implemented the testing up until this point. I think that I might understand how the stubbing to test ffor random outcomes works.
+
+When I tried to move on to the fourth user story, I couldn't find any way to get the error to be raised for the landing. I kept changing the way I tried to apply it to the tests for the land method and then when I tried to implement this I would hit the same error again.
+
+I'm still unsure about how to write an effective feature test, especially trying to move it from IRB to a spec file.
+
+
+
 Airport Challenge
 =================
 
