@@ -3,7 +3,7 @@ require_relative 'weather'
 class Airport
 
   AIRPORT_FULL_ERROR = 'Unable to land: airport full'
-  STORMY_WEATHER_ERROR = 'Unable to land: stormy weather'
+  STORMY_WEATHER_ERROR = 'Unable to takeoff or land: stormy weather'
   PLANE_UNAVAILABLE_ERROR = 'Unable to takeoff: plane unavailable'
   DEFAULT_CAPACITY = 20
 
