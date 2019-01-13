@@ -9,18 +9,22 @@ class Airport
   end
 
   def land(plane)
-    @planes << plane
-  end
-
-  def weather
-    @conditions
+    if weather == :stormy
+      fail "Sorry, you can't land due to the storm."
+    elsif weather == :sunny
+      @planes << plane
+    end
   end
 
   def takeoff(*)
     if weather == :stormy
-      fail "Sorry, it is too stormy to fly."
+      fail "Sorry, the storm is preventing takeoff."
     elsif weather == :sunny
       @planes.pop
     end
+  end
+
+  def weather
+    @conditions
   end
 end
