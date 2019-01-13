@@ -70,7 +70,6 @@ RSpec.describe Airport do
     it "can instruct a plane to take off and confirm that the plane has left the airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
-      # plane = Plane.new
       plane = double('a plane')
       allow(plane).to receive(:land)
       allow(plane).to receive(:landed)
@@ -81,8 +80,10 @@ RSpec.describe Airport do
 
     it "prevents take off when weather is stormy" do
       airport = Airport.new
-      plane = Plane.new
+      plane = double('a plane')
       allow(airport).to receive(:stormy).and_return(false)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed)
       airport.land(plane)
       allow(airport).to receive(:stormy).and_return(true)
       expect { airport.take_off(plane) }.to raise_error("No take offs permitted due to the storm")
