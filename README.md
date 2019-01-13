@@ -20,9 +20,17 @@ An early step for me was to edit this README.md and do a git push to verify my G
 - I have kept all the original content of this file below, after the heading "Original README Content"
 
 Now on to the good stuff
-------------------------
-tbd
 
+User Stories
+------------------------
+User story 1
+------------
+| Objects       | Messages       |
+|---------------|----------------| 
+| Plane | land |
+| tbd | tbd |
+
+Plane <-- land --> status_plane_landed 
 
 
 
