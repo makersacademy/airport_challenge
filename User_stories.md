@@ -26,7 +26,7 @@ I want to prevent landing when weather is stormy
 
 | Objects | Messages |
 | :-------: | :--------: |
-| Weather | is_stormy |
+| Weather | stormy? |
 
 >As an air traffic controller
 To ensure safety
@@ -35,3 +35,11 @@ I want to prevent landing when the airport is full
 | Objects | Messages |
 | :-------: | :--------: |
 | Airport | full? |
+
+>As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+| Objects | Messages |
+| :-------: | :--------: |
+| Airport | capacity |

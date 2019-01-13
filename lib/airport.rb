@@ -15,7 +15,7 @@ end
 
 def land(plane, weather)
   @weather = weather
-  fail "Landing is forbidden!" if stormy?
+  fail "Landing is forbidden!" if @weather == false
   fail "Airport is full!" if full?
   @planes << plane
   return plane
@@ -23,16 +23,12 @@ end
 
 def take_off(plane, weather)
   @weather = weather
-  fail "Take off is forbidden!" if stormy?
+  fail "Take off is forbidden!" if @weather == false
   @planes - [plane]
   return @planes.include?(plane)
 end
 
 private
-def stormy?
-  @weather == false
-end
-
 def full?
   @planes.count >= @capacity
 end

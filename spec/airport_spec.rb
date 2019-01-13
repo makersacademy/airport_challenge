@@ -43,4 +43,10 @@ describe '#full?' do
   end
 end
 
+#describe 'storm blocks landing' do
+  #allow(weather).to receive(:stormy?).and_return true
+  #message = "Unable to land due to stormy weather"
+  #expect { airport.land(plane, weather) }.to raise_error message
+#end
+
 end
