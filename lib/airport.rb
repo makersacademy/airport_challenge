@@ -4,7 +4,6 @@ require_relative 'weather'
 class Airport
 
   DEFAULT_CAPACITY = 3
-
   attr_accessor :capacity, :weather
 
   def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new)
@@ -14,20 +13,15 @@ class Airport
   end
 
   def land(plane)
-    if @airport.length >= DEFAULT_CAPACITY
-      fail 'Airport full'
-    end
-    if @weather != "sunny"  
-      fail 'Landing not authorised'
-    end
+    fail 'Airport full' if @airport.length >= DEFAULT_CAPACITY
+    fail 'Landing not authorised' if @weather != "sunny"
     @airport << plane
   end
 
   def take_off
-    if @weather != "sunny"
-      fail 'Take off not authorised'
-    end
+    fail 'Take off not authorised' if @weather != "sunny"
     @airport.pop
-     'Plane no longer in the airport'
+    'Plane no longer in the airport'
   end
+
 end
