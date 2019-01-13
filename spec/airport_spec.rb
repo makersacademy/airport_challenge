@@ -66,6 +66,7 @@ describe Airport do
       expect(subject.planes.include?(pointer)).to eq(false)
     end
     it "prohibits takeoff when WEATHER is stormy" do
+      allow(subject).to receive(:weather_report) { :sunny }
       pointer = Plane.new
       subject.land(pointer)
       allow(subject).to receive(:weather_report) { :stormy }
@@ -81,6 +82,10 @@ describe Airport do
       new_cap = subject.max_capacity + 1
       example = Airport.new(new_cap)
       expect(example.max_capacity).to eq(subject.max_capacity + 1)
+    end
+    it "throws errors if given less than 0 or non-integer" do
+      expect { Airport.new(-1) }.to raise_error("Invalid argument")
+      expect { Airport.new("hello!") }.to raise_error("Invalid argument")
     end
   end
 
@@ -98,11 +103,18 @@ describe Airport do
       subject.change_capacity(new_cap)
       expect(subject.max_capacity).to eq(new_cap)
     end
+    it "throws error if maximum capacity is changed to smaller than current amount
+       of PLANES" do
+       allow(subject).to receive(:weather_report) { :sunny }
+       3.times { subject.land(Plane.new) }
+       new_cap = subject.planes.length - 1
+       expect { subject.change_capacity(new_cap) }.to raise_error("Current number of planes (#{subject.planes.length}) will exceed new capacity (#{new_cap})")
+    end
+    it "only accepts 0 or positive integers" do
+    end
   end
   # 0 or negative capacities
   # error if non- pos int input
 
-  it "throws error if maximum capacity is changed to smaller than current amount
-     of PLANES" do
-  end
+
 end

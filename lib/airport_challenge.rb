@@ -3,12 +3,14 @@ class Airport
   attr_reader :max_capacity
 
   def initialize(max_capacity = 5)
+    raise("Invalid argument") if ( !max_capacity.is_a?(Integer) or max_capacity < 0 )
     @planes = []
     @weather = rand(1..100) < 95 ? :sunny : :stormy
     @max_capacity = max_capacity
   end
 
   def change_capacity(new_cap)
+    raise ("Current number of planes (#{planes.length}) will exceed new capacity (#{new_cap})") if new_cap < planes.length
     @max_capacity = new_cap
   end
 
