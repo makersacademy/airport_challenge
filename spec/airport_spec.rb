@@ -24,7 +24,7 @@ RSpec.describe Airport do
     it 'and prevent landing when the airport is full' do
     airport = Airport.new
     10.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error 'Reached Maximum Capacity'
+    expect { airport.land(Plane.new).to raise_error('Reached Maximum Capacity')}
     end
   end
 

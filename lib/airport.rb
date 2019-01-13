@@ -5,13 +5,14 @@ class Airport
 
   attr_accessor :runway
 
+  # DEFAULT_CAPACITY = 10
   def initialize
     @runway = []
     @weather = Weather.new
   end
 
   def land(plane)
-    fail 'Reached Maximum Capacity' if @runway.count >= 10
+    fail 'Reached Maximum Capacity' if full?
     fail 'Already landed' if @runway.include?(plane)
     @runway.push(plane)
   end
@@ -20,6 +21,10 @@ class Airport
     # fail 'Stormy, no take-off' if @weather.stormy?
      @runway.delete(plane)
      plane
+  end
+
+  def full?
+    @runway.count >= 10
   end
 #
 #   def stormy?
