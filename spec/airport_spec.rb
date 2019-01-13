@@ -23,6 +23,11 @@ describe Airport do
       expect { subject.land Plane.new }.to raise_error 'Airport is full'
     end
 
+    it 'blocks landing when weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land Plane.new }.to raise_error 'Storm prevented landing'
+    end
+
     it 'returns planes that landed' do
       plane = Plane.new
       subject.land(plane)

@@ -13,8 +13,13 @@ class Airport
     planes.count >= @capacity
   end
 
+  def stormy?
+    rand(1..5) == (1..5)
+  end
+
   def land(plane)
     fail 'Airport is full' if full?
+    fail 'Storm prevented landing' if stormy?
     @planes << plane
   end
 
