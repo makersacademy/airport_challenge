@@ -91,3 +91,4 @@ I would like a default airport capacity that can be overridden as appropriate
 ## Further improvements
 
 Investigate using instance doubles in spec tests for more accurate test coverage
+Work out whether use of it {} in tests is sacrificing readability
