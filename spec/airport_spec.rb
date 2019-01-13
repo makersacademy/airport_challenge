@@ -22,5 +22,11 @@ RSpec.describe Airport do
       expect { airport.land(plane1) }.to raise_error 'Already landed'
     end
 
+    it 'and prevent landing when the airport is full' do
+      airport = Airport.new
+      10.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error 'Reached Maximum Capacity'
+    end
+
   end
 end
