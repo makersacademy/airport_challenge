@@ -2,8 +2,8 @@ require 'airport'
 require 'weather_reporter'
 
 describe 'User Stories' do
-let(:airport) { Airport.new(20)}
-let(:plane) { Plane.new}
+  let(:airport) { Airport.new(20) }
+  let(:plane) { Plane.new }
 
   it "so planes land at airport" do
     allow(airport).to receive(:stormy?).and_return false
@@ -20,15 +20,15 @@ let(:plane) { Plane.new}
     allow(airport).to receive(:stormy?).and_return false
     20.times do
       airport.land(:plane)
-  end
+    end
     expect { airport.land(:plane) }.to raise_error "Cannot land plane: airport is full"
   end
 
   it "so planes only take off from the airport they are at" do
+    airport_2 = Airport.new(20)
+    airport_2.land(:plane)
     allow(airport).to receive(:stormy?).and_return false
-      airport_2 = Airport.new(20)
-      airport_2.land(:plane)
-    expect { airport.take_off(:plane) }.to raise_error "Cannot take off plane: it is not in this airport"
+    expect { airport.take_off(:plane) }.to raise_error "Cannot take off plane: not in this airport"
   end
 
   it "so planes do not land when stormy" do

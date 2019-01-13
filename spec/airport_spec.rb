@@ -20,7 +20,7 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return false
       20.times do
         airport.land(plane)
-    end
+      end
       expect { airport.land(plane) }.to raise_error "Cannot land plane: airport is full"
     end
   end
@@ -38,9 +38,9 @@ describe Airport do
 
     it 'does not allow a plane to take off from another airport' do
       allow(airport).to receive(:stormy?).and_return false
-        other_airport = Airport.new(20)
-        other_airport.land(plane)
-        expect { airport.take_off(plane) }.to raise_error "Cannot take off plane: it is not in this airport"
-      end
+      other_airport = Airport.new(20)
+      other_airport.land(plane)
+      expect { airport.take_off(plane) }.to raise_error "Cannot take off plane: not in this airport"
     end
+  end
 end
