@@ -47,7 +47,8 @@ describe Airport do
     # I want to prevent takeoff when weather is stormy
     
     it 'should stop aircraft from taking off in storms' do
-      @airport.instance_variable_set(:@planes, [@plane])
+      allow(@airport).to receive(:stormy?).and_return(false)
+      @airport.land(@plane)
       allow(@airport).to receive(:stormy?).and_return(true)
       expect { @airport.takeoff(@plane) }.to raise_error(Airport::STORMY_WEATHER_ERROR)
     end
@@ -74,8 +75,12 @@ describe Airport do
 
     it 'should not land planes when full' do
       allow(@airport).to receive(:weather_safe?).and_return(true)
-      allow(@airport).to receive(:full?).and_return(true)
-      expect { @airport.land(@plane) }.to raise_error(Airport::AIRPORT_FULL_ERROR)
+      airport = Airport.new(1)
+      plane1 = @plane
+      plane2 = Plane.new
+
+      airport.land(plane1)
+      expect { airport.land(plane2) }.to raise_error(Airport::AIRPORT_FULL_ERROR)
     end
 
   end
