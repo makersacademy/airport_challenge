@@ -1,5 +1,9 @@
 class Airport
-  attr_reader :plane
+  attr_reader :plane, :capacity
+
+  def initialize
+    @capacity = 1
+  end
 
   def land(plane)
     raise 'Cannot Land: Turbulent Weather' if stormy?

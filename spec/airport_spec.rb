@@ -51,4 +51,8 @@ RSpec.describe Airport do
     message = 'Cannot Land: Airport Full' 
     expect { subject.land(plane) }.to raise_error(message)
   end
+
+  it 'can update capacity ass appropriate' do
+
+  end
 end
