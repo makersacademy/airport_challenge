@@ -36,7 +36,7 @@ RSpec.describe Airport do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy).and_return(true)
-    expect { airport.land(plane) }.to raise_error "Too stormy to land"
+    expect { airport.land(plane) }.to raise_error "No landing allowed"
   end
 
   it "prevents landing when airport is full" do
@@ -45,7 +45,7 @@ RSpec.describe Airport do
     plane = Plane.new
     plane1 = Plane.new
     airport.land(plane)
-    expect { airport.land(plane1) }.to raise_error("Airport at capacity, no landings")
+    expect { airport.land(plane1) }.to raise_error("No landing allowed")
   end
 
 end
