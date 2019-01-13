@@ -16,7 +16,7 @@ RSpec.describe 'Feature Tests' do
       subject.land(plane)
       allow(Weather).to receive(:current).and_return('clear')
       subject.take_off(plane)
-      expect(subject.plane).to_not eq plane
+      expect(subject.planes).to_not include plane
     end
   
     it 'prevents take off when weather is stormy' do
@@ -46,6 +46,14 @@ RSpec.describe 'Feature Tests' do
     it 'can change capacity' do
       subject.capacity = 5
       expect(subject.capacity).to eq 5
+    end
+
+    it 'can land multiple planes' do
+      subject.capacity = 5
+      allow(Weather).to receive(:current).and_return('clear')
+      expect {
+        subject.capacity.times { subject.land(Plane.new) }
+      }.to_not raise_error
     end
   end
 

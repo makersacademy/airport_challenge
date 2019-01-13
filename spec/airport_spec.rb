@@ -10,14 +10,14 @@ RSpec.describe Airport do
   end
   
   it 'instructs to see planes' do
-    is_expected.to respond_to(:plane)
+    is_expected.to respond_to(:planes)
   end
 
   it 'confirms plane landed' do
     plane = double :plane
     allow(Weather).to receive(:current).and_return('clear') 
     subject.land(plane)
-    expect(subject.plane).to eq plane
+    expect(subject.planes).to include plane
   end
   
   it 'confirms plane took off' do
@@ -25,7 +25,7 @@ RSpec.describe Airport do
     allow(Weather).to receive(:current).and_return('clear')
     subject.land(plane)
     subject.take_off(plane)
-    expect(subject.plane).to_not eq plane
+    expect(subject.planes).to_not include plane
   end
 
   it 'prevents take off if stormy' do
@@ -66,5 +66,12 @@ RSpec.describe Airport do
     plane = double :plane
     message = "Cannot Take Off: Plane Not Found"
     expect { subject.take_off(plane) }.to raise_error(message)
+  end
+
+  it 'can land multiple planes' do
+    subject.capacity = 5
+    allow(Weather).to receive(:current).and_return('clear')
+    subject.capacity.times { subject.land(Plane.new) }
+    expect(subject.planes.length).to eq 5
   end
 end

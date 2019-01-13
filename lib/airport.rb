@@ -1,23 +1,24 @@
 class Airport
-  attr_reader :plane, :capacity
+  attr_reader :planes, :capacity
   attr_writer :capacity
 
   def initialize
     @capacity = 1
+    @planes = []
   end
 
   def land(plane)
     raise 'Cannot Land: Turbulent Weather' if stormy?
     raise 'Cannot Land: Airport Full' if full?
 
-    @plane = plane
+    @planes << plane
   end
 
   def take_off(plane)
     raise 'Cannot Take Off: Turbulent Weather' if stormy?
-    raise 'Cannot Take Off: Plane Not Found' if @plane.nil?
+    raise 'Cannot Take Off: Plane Not Found' unless @planes.include? plane
 
-    @plane = nil
+    @planes.delete(plane)
   end
 
   private
@@ -27,6 +28,6 @@ class Airport
   end
 
   def full?
-    @plane
+    @planes.length >= @capacity
   end
 end
