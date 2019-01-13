@@ -8,6 +8,17 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "can be given a different initial capacity" do
+    expect(Airport.new(15).capacity).to eq 15
+  end
+
+  describe '#capacity' do
+    it "can change capacity after initialization" do
+      heathrow.capacity = 45
+      expect(heathrow.capacity).to eq 45
+    end
+  end
+
   describe '#land' do
     before do
       heathrow.instance_variable_set(:@weather, false)
