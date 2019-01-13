@@ -13,13 +13,13 @@ RSpec.describe Airport do
     is_expected.to respond_to(:plane)
   end
 
-  it 'check plane landed after instructed to' do
+  it 'confirm plane landed' do
     plane = double :plane
     subject.land(plane)
     expect(subject.plane).to eq plane
   end
 
-  it 'check plane took off after instructed to' do
+  it 'confirm plane took off' do
     plane = double :plane
     subject.land(plane)
     subject.take_off(plane)

@@ -8,7 +8,7 @@ RSpec.describe 'Feature Tests' do
     expect { airport.land(plane) }.to_not raise_error
   end
 
-  it 'instruct a plane to take off and check it left' do
+  it 'instruct a plane to take off and confirm' do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
