@@ -11,7 +11,6 @@ class Airport
   end
 
   def takeoff
-    return @landed_planes.pop
-    'plane has taken off'
+    @landed_planes.pop
   end
 end
