@@ -96,6 +96,11 @@ And the airport is emptied again
  => #<Airport:0x000055e83dc27ab0 @capacity=20, @planes=[], @weather_generator=#<Weather:0x000055e83dc27a60>> 
 ```
 
+Acknowledgements
+----------------
+
+Many thanks to [Nikhil](https://github.com/nkhil) for being a great sounding board!
+
 Task
 -----
 
