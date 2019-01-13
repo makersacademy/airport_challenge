@@ -2,8 +2,9 @@ require 'weather'
 
 RSpec.describe Weather do
   
+  it { is_expected.to respond_to(:stormy?) }
+  
   describe '#stormy?' do
-    it { is_expected.to respond_to(:stormy?) }
 
     it "checks if the weather is stormy" do
       weather = Weather.new

@@ -2,19 +2,24 @@ require 'airport'
 
 RSpec.describe Airport do
 
-  # it { is_expected.to respond_to(:plane_in_airport?) }
-  
+  before(:each) do
+    @airport = Airport.new
+    @plane = double('plane')
+    allow(@plane).to receive(:land)
+  end
+
   describe '#land' do
+
     it { is_expected.to respond_to(:land) }  
     it { is_expected.to respond_to(:land).with(1).argument }
     
     it "can instruct a plane to land at an airport" do
-      airport = Airport.new
-      allow(airport).to receive(:stormy).and_return(false)
-      plane = double('a plane')
-      allow(plane).to receive(:land)
-      allow(airport).to receive(:landing_checker).and_return(false)
-      expect(airport.land(plane)).to eq [plane] 
+      # airport = Airport.new
+      allow(@airport).to receive(:stormy).and_return(false)
+      # plane = double('a plane')
+      # allow(@plane).to receive(:land)
+      allow(@airport).to receive(:landing_checker).and_return(false)
+      expect(@airport.land(@plane)).to eq [@plane] 
     end
     
     it "prevents landing when weather is stormy" do

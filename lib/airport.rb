@@ -17,13 +17,13 @@ class Airport
   def land(plane) 
     landing_checker(plane)
     plane.land
-    @planes_in_airport << plane
+    accept_plane(plane)
   end
 
   def take_off(plane)
     take_off_checker(plane)
     plane.take_off
-    @planes_in_airport.delete(plane)
+    release_plane(plane)
   end
 
   def stormy
@@ -38,6 +38,14 @@ class Airport
 
   def capacity_reached?
     @planes_in_airport.length >= @capacity
+  end
+
+  def accept_plane(plane)
+    @planes_in_airport << plane
+  end
+
+  def release_plane(plane)
+    @planes_in_airport.delete(plane)
   end
 
   def landing_checker(plane)
