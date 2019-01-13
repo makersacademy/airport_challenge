@@ -20,7 +20,7 @@ RSpec.describe Airport do
 
     end
   end
-
+end
   describe '#take_off' do
     it 'allows planes to take-off' do
     plane1 = Plane.new
@@ -40,13 +40,18 @@ RSpec.describe Airport do
     describe '#current_weather?' do
       it 'is either sunny or stormy' do
       allow(subject).to receive(:current_weather?) { "sunny" }
-      #expect(Heathrow.current_weather?).to eq "sunny"
+      expect(subject.current_weather?).to eq "sunny"
       allow(subject).to receive(:current_weather?) { "stormy" }
-      #expect(Heathrow.current_weather?).to eq "stormy"
+      expect(subject.current_weather?).to eq "stormy"
       end
 
-      
+      context 'when stormy' do
+      it 'raises an error' do
+            allow(subject).to receive(:current_weather?) { "stormy" }
+            expect { subject.current_weather? }.to raise_error ("This plane cannot take off due to stormy weather.")
 
+      end
     end
+
 end
 end

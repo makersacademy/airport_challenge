@@ -2,14 +2,19 @@ require_relative 'plane'
 
 module Weather
     def current_weather?
-    return "sunny" if rand.(1..10).between?(1, 8)
-    "stormy"
+    return "sunny" if rand(1..10).between?(1, 8)
+    stormy
   end
 
+def stormy?
+  true
+end
 end
 
-
 class Airport
+
+  include Weather
+
   attr_reader :planes
 
   def initialize
@@ -24,8 +29,9 @@ class Airport
 
 
   def take_off(plane)
-    #fail ''
-    @planes.delete(plane)
-  end
 
+  fail "This plane cannot take off due to stormy weather" unless self.current_weather? == "sunny"
+  @planes.delete(plane)
+
+end
 end
