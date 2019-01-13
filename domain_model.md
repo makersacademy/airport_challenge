@@ -25,13 +25,16 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
+**takeoff** **weather** **stormy**
 
 #### User Story Five
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+**airport** **land** **full?**
 
 #### User Story Six
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+**airport** **capacity** **DEFAULT_CAPACITY**
