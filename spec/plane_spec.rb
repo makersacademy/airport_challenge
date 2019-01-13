@@ -3,7 +3,7 @@ require 'plane'
 RSpec.describe Plane do
 
   it 'should respond to landed with true or false' do
-    expect([true, false]).to include plane_test.landed
+    expect([true, false]).to include subject.landed
   end
 
   it 'should return true for landed plane' do
@@ -13,6 +13,7 @@ RSpec.describe Plane do
   end
 
   it 'should return false for landed plane' do
+    subject.lands
     subject.takes_off
     expect(subject.landed).to be_falsey
   end
