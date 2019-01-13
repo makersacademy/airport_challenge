@@ -102,5 +102,20 @@ describe Airport do
     expect { subject.take_off(plane) } .to raise_error "already flying"
   end
 
+  #planes that are already flying cannot be in an airport
+  it "prevents flying planes from being in an airport" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes.delete(plane)).to eq nil
+  end
+
+  # planes that are landed cannot land again and must be in an airport
+  it "prevents landing of plane if already landed" do
+    plane = Plane.new
+    subject.land(plane)
+    expect { subject.land(plane) } .to raise_error "already landed"
+  end
+
 
 end

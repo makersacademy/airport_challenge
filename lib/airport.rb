@@ -8,8 +8,10 @@ class Airport
   end
 
   def land(plane)
+    fail "already landed" if plane.flying == false
     fail "stormy can't land" if stormy? == true
     fail "airport full" unless @planes.length < @capacity
+    plane.grounded
     @planes.push(plane)
   end
 
