@@ -1,9 +1,11 @@
 require 'weather'
 
 RSpec.describe Weather do
-  it { should respond_to :current }
+  it 'instructs to receive current weather' do
+    is_expected.to respond_to(:current)
+  end
 
-  it 'return weather as stormy or safe' do
-    expect(Weather.current).to eq('stormy').or eq 'safe'
+  it 'returns either stormy or clear' do
+    expect(Weather.current).to eq("stormy").or eq("clear")
   end
 end

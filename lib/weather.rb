@@ -1,7 +1,7 @@
 module Weather
-  WEATHER_TYPES = ['stormy', 'safe']
-
+  WEATHER = ['clear', 'stormy']
+  
   def self.current
-    WEATHER_TYPES.sample
+    WEATHER.sample
   end
 end
