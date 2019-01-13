@@ -1,8 +1,8 @@
 class Plane
-  attr_reader :plane_number
+  attr_accessor :flight_status
 
-  def initialize(plane_number)
-    fail "Plane number not given!" unless plane_number.is_a? Integer 
-    @plane_number = plane_number
+  def initialize
+    #fail "Plane number not given!" unless plane_number.is_a? Integer
+    @flight_status = false
   end
 end
