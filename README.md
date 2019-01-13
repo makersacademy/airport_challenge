@@ -33,7 +33,20 @@ irb
 require './lib/airport'
 ```
 
+Create new airports and planes like so
+
+```
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007fcfef106b18 @plane=#<Plane:0x00007fcfef106af0 @landed=false>, @weather=#<Weather:0x00007fcfef106ac8>, @planes_in_airport=[], @capacity=10>
+
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fcfef0fec88 @landed=false>
+2.5.0 :004 >
+
+```
+
 To land a plane, use `airport.land`
+(an airport begins with no airplanes, you you won't be able to take off)
 
 ```
 2.5.0 :004 > airport.land(plane)
@@ -41,7 +54,7 @@ To land a plane, use `airport.land`
 ```
 
 To instruct a plane to take off, use 'airport.take_off`
-
+(this only works because we landed this very plane in the previous step)
 ```
 2.5.0 :005 > airport.take_off(plane)
  => #<Plane:0x00007f8e2f9e2f68 @landed=false>
