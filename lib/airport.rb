@@ -11,7 +11,7 @@ class Airport
 
   def land(plane)
     return "cant land plane due to stormy weather" if weather == 'stormy'
-
+    
     full? ? (fail "Airport is full") : @airport.push(plane)
   end
 

@@ -5,7 +5,7 @@ Instruct a plane to land at an airport.
 Step 1: attempt to create a new airport (Airport.new) from the command line.
 Step 2: write corresponding Rspec test, which should also fail.
 Step 3: pass that test by creating an airport class
-Step 4: attempt to create a new plane (Plane.new) from commsand line.
+Step 4: attempt to create a new plane (Plane.new) from command line.
 Step 5: write corresponding Rspec text, which should also fail.
 Step 6: pass that test by creating a plane class
 Step 7: attempt to land the plane by calling .land on the airport plane I have created, passing the plane as the argument.
@@ -30,3 +30,8 @@ Step 1: Attempt to land a lot of planes from command line
 Step 2: write corresponding Rspec test, which should check if the airport is full
 Step 3: include a maximum limit to the airport array
 Step 4: notify the user that the airport is full when attempting to land a plane in a full airport
+
+STORY 6:
+Step 1: Attempt to create a new instance of an airport, passing a number as an argument
+Step 2: write a corresponding Rspec test which should fail
+Step 3: implement adding a changeable default value for airport capacity
