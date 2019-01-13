@@ -8,7 +8,7 @@ describe Airport do
   let(:stormy_weather) { double(:condition => "stormy") }
   let(:clear_weather) { double(:condition => "clear") }
 
-  describe "Landing" do
+  describe "#landing" do
 
     it "can land a plane and add it to an array of planes if the weather is clear" do
       expect(subject.land_plane(flying_plane, clear_weather).planes).to eq [flying_plane]
@@ -29,7 +29,7 @@ describe Airport do
 
   end
 
-  describe "Taking Off" do
+  describe "#take_off" do
 
     it "can remove a plane from the airport when a plane takes off when the weather is clear" do
       airport = subject.land_plane(test_plane, clear_weather)
@@ -43,7 +43,7 @@ describe Airport do
 
   end
 
-  describe "Capacity" do
+  describe "#capacity" do
 
     it "allows a user to amend the default airport capacity when initializing a new airport" do
       airport = Airport.new(20)
