@@ -41,12 +41,14 @@ Code walkthrough
 ----------------
 
 Object Airport
+
   public
   - new(hanger_capacity): initialises a new airport with a specified hanger
                           capacity (defaults to 100 if none specified)
   - land(landing_plane): lands the specified plane at airport if possible
   - take_off(taking off plane): cause the specified plane to take off if possible
   - in_hanger?(plane): returns true if a specified plane is in the airport hanger
+  
   private
   - airport_full?: return true if the airport hanger is airport
 
