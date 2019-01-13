@@ -35,4 +35,11 @@ RSpec.describe Airport do
     message = 'Cannot Take Off: Turbulent Weather'
     expect { subject.take_off(plane) }.to raise_error(message)
   end
+
+  it 'prevents landing if stormy' do
+    plane = Plane.new
+    allow(Weather).to receive(:current).and_return('stormy')
+    message = 'Cannot Land: Turbulent Weather'
+    expect { subject.land(plane) }.to raise_error(message)
+  end
 end
