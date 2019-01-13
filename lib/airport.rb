@@ -1,5 +1,6 @@
 class Airport
   attr_reader :plane, :capacity
+  attr_writer :capacity
 
   def initialize
     @capacity = 1
@@ -12,7 +13,7 @@ class Airport
     @plane = plane
   end
 
-  def take_off(_plane)
+  def take_off(plane)
     raise 'Cannot Take Off: Turbulent Weather' if stormy?
 
     @plane = nil

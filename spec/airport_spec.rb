@@ -52,7 +52,12 @@ RSpec.describe Airport do
     expect { subject.land(plane) }.to raise_error(message)
   end
 
-  it 'can update capacity ass appropriate' do
+  it 'has a default capacity of 1' do
+    expect(subject.capacity).to eq 1
+  end
 
+  it 'can change capacity' do
+    subject.capacity = 5
+    expect(subject.capacity).to eq 5
   end
 end
