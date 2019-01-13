@@ -4,7 +4,7 @@ RSpec.describe Airport do
 
   flying_plane = Plane.new
   parked_plane = Plane.new(true)
-  
+
   before do
     allow(subject.airport_weather).to receive(:rand).and_return(21)
   end
