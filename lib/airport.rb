@@ -11,6 +11,7 @@ class Airport
     fail "already landed" if plane.flying == false
     fail "stormy can't land" if stormy? == true
     fail "airport full" unless @planes.length < @capacity
+
     plane.grounded
     @planes.push(plane)
   end
@@ -18,13 +19,12 @@ class Airport
   def take_off(plane)
     fail "already flying" if plane.flying == true
     fail "stormy can't take off" if stormy? == true
+    
     plane.airborne
     @planes.delete(plane)
-    @planes
   end
 
   def stormy?
-    chance = rand(1..10)
-    chance > 9 ? true : false
+    rand(1..10) > 9
   end
 end

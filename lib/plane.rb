@@ -2,7 +2,7 @@ class Plane
 
   attr_reader :flying
 
-  def  initialize (flying = true)
+  def initialize(flying = true)
     @flying = flying
   end
 

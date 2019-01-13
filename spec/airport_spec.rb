@@ -28,7 +28,8 @@ describe Airport do
   it "can confirm plane has left" do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.take_off(plane)).to eq []
+    subject.take_off(plane)
+    expect(subject.planes).to eq []
   end
 
   # As an air traffic controller
@@ -53,11 +54,6 @@ describe Airport do
     expect { subject.land(Plane.new) } .to raise_error "stormy can't land"
   end
 
-  # #test implementation of random weather
-  # it "#stormy is false most of the time" do
-  #   10.times {expect(subject.stormy?).to eq (subject.stormy?)}
-  # end
-
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when the airport is full
@@ -78,7 +74,7 @@ describe Airport do
     expect(airport_test.capacity).to eq(20)
   end
 
-  #EDGE CASE #1 - planes can only take off from airport they're in
+  # EDGE CASE #1 - planes can only take off from airport they're in
   it "#take_off can take argument to define which plane" do
     expect(subject).to respond_to(:take_off).with(1)
   end
@@ -90,11 +86,10 @@ describe Airport do
     allow(airport_test).to receive(:stormy?) { false }
     airport_test.land(boeing)
     airport_test.land(airbus)
-
-    expect(airport_test.take_off(boeing)).to eq [airbus]
+    expect(airport_test.take_off(boeing)).to eq boeing
   end
 
-  #planes that are already flying cannot takes off
+  # planes that are already flying cannot takes off
   it "prevents take off if plane already flying" do
     plane = Plane.new
     subject.land(plane)
@@ -102,7 +97,7 @@ describe Airport do
     expect { subject.take_off(plane) } .to raise_error "already flying"
   end
 
-  #planes that are already flying cannot be in an airport
+  # planes that are already flying cannot be in an airport
   it "prevents flying planes from being in an airport" do
     plane = Plane.new
     subject.land(plane)
@@ -117,5 +112,14 @@ describe Airport do
     expect { subject.land(plane) } .to raise_error "already landed"
   end
 
+end
 
+describe '#stormy?' do
+  it "#stormy is false most of the time" do
+    a, b = [], []
+    airport = Airport.new
+    100.times { a << airport.stormy? }
+    100.times { b << airport.stormy? }
+    expect(a).not_to eq(b)
+  end
 end
