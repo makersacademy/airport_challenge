@@ -25,11 +25,8 @@ class Airport
 
   def plane_at_airport?(plane)
     fail "Not a plane!" unless plane.instance_of?(Plane)
-    if @landing_area.include?(plane)
-       "Plane is at Gate #{@landing_area.find_index(plane) + 1}"
-    else
-      "Plane is not at this airport"
-    end
+    fail "Plane is not at this airport" unless @landing_area.include?(plane)
+    "Plane is at Gate #{@landing_area.find_index(plane) + 1}"
   end
 
   def accept_landing(plane, weather = Weather.new)

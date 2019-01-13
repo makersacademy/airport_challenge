@@ -16,9 +16,8 @@ describe Airport do
     expect(subject.plane_at_airport?(plane)).to eql("Plane is at Gate 1")
   end
 
-  it "should return a statement saying that the specified plane is not at the airport" do
-    plane = Plane.new
-    expect(subject.plane_at_airport?(plane)).to eql("Plane is not at this airport")
+  it "should raise error for the specified plane not being at the airport" do
+    expect { subject.plane_at_airport?(Plane.new) }.to raise_error("Plane is not at this airport")
   end
 
   it "should raise an error specifying that weather could not be read" do
