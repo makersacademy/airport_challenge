@@ -1,12 +1,21 @@
 require "airport"
 
 describe Airport do
-  it "will respond to full method" do
-    expect(subject).to respond_to(:full?)
+  it "will respond to confirmation method" do
+    expect(subject).to respond_to(:confirmation?)
   end
-  it "initialise airport with 1 plane " do
-    expect(subject.capacity).to eq(1)
+
+  it "checks  if a plane can land" do
+    plane = Airport.new
+    subject.land(plane)
+    expect(subject.planes.include?(plane)).to eq(true)
   end
+
+  it "can instruct a PLANE to LAND" do
+    expect(subject).to respond_to(:land).with(1).arguments
+  end
+
+  # expect(subject.departd.to eq
 
   # airplane  = Airplane.new
   # airlane.depart?

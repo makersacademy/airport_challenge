@@ -1,17 +1,23 @@
-require_relative "plane"
+
+require_relative "plane.rb"
 
 class Airport
-  attr_reader :capacity
+  attr_reader :planes
 
-  def initialize(capacity = 1)
-    @capacity = capacity
-    # @planes = 0
+  # simplifying to just plane taking off and landing
+  def initialize
+    @planes = []
   end
 
-  def full?
-    true
-    # planes >= capacity
+  def land(plane)
+    @planes << plane
+  end
+
+  def depart(plane)
+    @planes.pop
+  end
+
+  def confirmation?
+    @planes.include?(plane) ? false : true
   end
 end
-
-# binding.pry
