@@ -54,8 +54,11 @@ RSpec.describe Airport do
       schipol = Airport.new(5)
       allow(heathrow).to receive(:stormy).and_return(false)
       allow(schipol).to receive(:stormy).and_return(false)
-      plane = Plane.new
+      plane = double('a plane')
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed)
       heathrow.land(plane)
+      allow(plane).to receive(:landed).and_return(true)
       expect { schipol.land(plane) }.to raise_error("This plane has already landed")
     end
   end
