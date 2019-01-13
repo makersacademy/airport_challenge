@@ -3,34 +3,34 @@ require 'airport_challenge'
 describe Airport do
   it { is_expected.to respond_to(:planes) }
   describe "#land" do
-    it "can instruct a PLANE to LAND" do
+    before(:each) do
       allow(subject).to receive(:weather_report) { :sunny }
+    end
+
+    it "can instruct a PLANE to LAND" do
+
       expect(subject).to respond_to(:land).with(1).arguments
       expect { subject.land(Plane.new) }.to_not raise_error
     end
 
     it "cannot LAND planes already in airport" do
-      allow(subject).to receive(:weather_report) { :sunny }
       pointer = Plane.new
       subject.land(pointer)
       expect { subject.land(pointer) }.to raise_error("Plane has already landed!")
     end
 
     it "prohibits landing when WEATHER is stormy" do
-      allow(subject).to receive(:weather_report) { :sunny }
       pointer = Plane.new
       allow(subject).to receive(:weather_report) { :stormy }
       expect { subject.land(pointer) }.to raise_error("Can't land during stormy weather")
     end
 
     it "stores LANDed planes in PLANES" do
-      allow(subject).to receive(:weather_report) { :sunny }
       pointer = Plane.new
       subject.land(pointer)
       expect(subject.planes.include?(pointer)).to eq(true)
     end
     it "throws error when attempting to land plane at maximum capacity" do
-      allow(subject).to receive(:weather_report) { :sunny }
       (subject.max_capacity - subject.planes.length).times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport at full capacity!")
     end
@@ -115,7 +115,5 @@ describe Airport do
       expect { subject.change_capacity("hi!") }.to raise_error("Invalid Argument")
     end
   end
-  # 0 or negative capacities
-  # error if non- pos int input
 
 end
