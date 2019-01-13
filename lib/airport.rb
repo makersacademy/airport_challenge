@@ -14,16 +14,18 @@ class Airport
   def land(landing_plane)
     fail "Too stormy for landing" if stormy_weather?
     fail "Plane has already landed" if in_hanger?(landing_plane)
-    fail "Plane is not in air" if landing_plane.landed?
+    fail "Plane is not in air" if landing_plane.landed
     fail "Airport is full" if airport_full?
-    landing_plane.set_landed(true)
+    
+    landing_plane.make_land(true)
     @hanger << landing_plane
   end
 
   def take_off(taking_off_plane)
     fail "Too stormy for take off" if stormy_weather?
     fail "Plane not in hanger" if in_hanger?(taking_off_plane) == false
-    taking_off_plane.set_landed(nil)
+
+    taking_off_plane.make_land(nil)
     @hanger.delete(taking_off_plane)
   end
 

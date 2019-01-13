@@ -1,15 +1,12 @@
 class Plane
+  attr_reader :landed
 
   def initialize
-    @landed_state = nil
+    @landed = nil
   end
 
-  def landed?
-    @landed_state
-  end
-
-  def set_landed(landed_state)
-    @landed_state = landed_state
+  def make_land(state)
+    @landed = state
   end
 
 end
