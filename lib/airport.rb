@@ -18,18 +18,20 @@ def land(plane, weather)
   fail "Landing is forbidden!" if stormy?
   fail "Airport is full!" if full?
   @planes << plane
-  return plane
 end
 
 def take_off(plane, weather)
   @weather = weather
   fail "Take off is forbidden!" if stormy?
-  @planes - [plane]
-  return @planes.include?(plane)
+  fail "Not in this airport!" unless in_airport?(plane)
+  @planes -= [plane]
+end
+
+def in_airport?(plane)
+  @planes.include?(plane)
 end
 
 private
-
 def stormy?
   @weather == true
 end
