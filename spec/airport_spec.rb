@@ -92,7 +92,8 @@ RSpec.describe Airport do
     it "ensures planes can only take off if they exist in the airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
-      expect { airport.take_off(Plane.new) }.to raise_error("This plane doesn't exist in the airport")
+      plane = double('a plane')
+      expect { airport.take_off(plane) }.to raise_error("This plane doesn't exist in the airport")
     end
 
     it "ensures planes can only take off from the airport they are in" do
