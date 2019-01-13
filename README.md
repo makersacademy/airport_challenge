@@ -114,6 +114,16 @@ Context and Design Considerations
 * Similarly, a plane has to be in the air to land at any given instance of an airport.
 * To satisfy the requirement of 'confirming the plane is no longer in the airport', the take_off method reports the ID of the now-airborne plane in a printed message.
 
+Key learnings
+---------
+* I tried to stick to strict Test Driven Development process during this project.
+ - This meant working strictly in a Red - Green - Refactor cycle, writing out a feature test based on a design spec, followed by a unit test, then creating code that strictly satisfied said test. After the features were (more) fully implemented, the tests were refactored and occasionally removed entirely as they had been superseded by more complex and relevant tests.
+ - RSpec syntax is becoming more approachable, where through this process I found my tests failing less due to poor syntax but rather the test contents not having corresponding production code.
+ * Working toward single responsibility for each method and class.
+ * To comply with the above, Module/class linking and injection into other classes.
+ * Documenting an approach in advance before even thinking about tests is definitely useful to map out a general sense of what I want the program to do.
+ * Rubocop is a harsh master.
+
 Instructions
 ---------
 
