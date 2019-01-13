@@ -18,7 +18,7 @@ class Airport
     throw_land_error(plane)
     throw_land_exception
 
-    plane.landed = true
+    plane.land
     @planes_in_airport << plane
   end
 
@@ -27,10 +27,6 @@ class Airport
     raise Exception.new(m_take_off_denied) if stormy
 
     @planes_in_airport.delete(plane)
-  end
-
-  def capacity_reached?
-    @planes_in_airport.length >= @capacity
   end
 
   def plane_in_airport?(plane)
@@ -43,9 +39,12 @@ class Airport
 
   private
 
+  def capacity_reached?
+    @planes_in_airport.length >= @capacity
+  end
+
   def throw_land_error(plane)
-    raise Exception.new(m_already_landed) if plane_in_airport?(plane)
-    raise Exception.new(m_plane_in_another_airport) if plane.landed == true
+    raise Exception.new(m_already_landed) if plane.landed == true
   end
   
   def throw_land_exception

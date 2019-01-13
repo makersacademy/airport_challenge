@@ -2,7 +2,6 @@ require 'airport'
 
 RSpec.describe Airport do
 
-  it { is_expected.to respond_to(:capacity_reached?) }
   it { is_expected.to respond_to(:plane_in_airport?) }
   
   describe '#land' do
@@ -12,14 +11,16 @@ RSpec.describe Airport do
     it "can instruct a plane to land at an airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
-      plane = Plane.new
-      airport.land(plane)
-      expect(airport.planes_in_airport.include?(plane)).to eq(true) 
+      plane = double('a plane')
+      allow(plane).to receive(:land)
+      allow(airport).to receive(:throw_land_error).and_return(false)
+      expect(airport.land(plane)).to eq [plane] 
     end
     
     it "prevents landing when weather is stormy" do
       airport = Airport.new
-      plane = Plane.new
+      plane = double('a plane')
+      allow(plane).to receive(:landed)
       allow(airport).to receive(:stormy).and_return(true)
       expect { airport.land(plane) }.to raise_error("No landings permitted due to the storm")
     end
@@ -48,7 +49,7 @@ RSpec.describe Airport do
       allow(schipol).to receive(:stormy).and_return(false)
       plane = Plane.new
       heathrow.land(plane)
-      expect { schipol.land(plane) }.to raise_error("This plane is currently landed in another airport")
+      expect { schipol.land(plane) }.to raise_error("This plane has already landed")
     end
   end
   
@@ -101,24 +102,24 @@ RSpec.describe Airport do
     end
   end  
 
-  describe '#capacity_reached?' do
-    it "checks if capacity is reached" do
-      airport = Airport.new(1) 
-      allow(airport).to receive(:stormy).and_return(false)
-      airport.land(Plane.new)
-      expect(airport.capacity_reached?).to eq(true)
-    end
+  # describe '#capacity_reached?' do
+  #   it "checks if capacity is reached" do
+  #     airport = Airport.new(1) 
+  #     allow(airport).to receive(:stormy).and_return(false)
+  #     airport.land(Plane.new)
+  #     expect(airport.capacity_reached?).to eq(true)
+  #   end
 
-    it "initiates with a default airport capacity" do
-      airport = Airport.new
-      expect(airport.capacity).to eq(10)
-    end
+  #   it "initiates with a default airport capacity" do
+  #     airport = Airport.new
+  #     expect(airport.capacity).to eq(10)
+  #   end
 
-    it "lets the default capacity to be overridden" do
-      airport = Airport.new(20)
-      expect(airport.capacity).to eq(20)
-    end
-  end
+  #   it "lets the default capacity to be overridden" do
+  #     airport = Airport.new(20)
+  #     expect(airport.capacity).to eq(20)
+  #   end
+  # end
 
   describe '#plane_exists_in_airport?' do
     it "checks if a given plane is in the airport" do

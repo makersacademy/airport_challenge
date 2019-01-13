@@ -46,7 +46,7 @@ RSpec.describe Airport do
       allow(airport2).to receive(:stormy).and_return(false)
       plane1 = Plane.new
       airport.land(plane1)
-      expect { airport2.land(plane1) }.to raise_error("This plane is currently landed in another airport")
+      expect { airport2.land(plane1) }.to raise_error("This plane has already landed")
     end
 
     it "is able to verify that a plane that isn't in the airport cannot take off" do
