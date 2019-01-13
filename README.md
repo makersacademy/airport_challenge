@@ -1,9 +1,9 @@
 Brooke's notes
 ==============
 
+Partial solution.
 
-
-Haven't been able to work out how to test for Plane status.
+I haven't yet satisfied my approach to testing for stormy weather.  I have a draft test which doesn't seem to flag up any syntax problems when running rspec but I think it could be wrong (currently commented out along with the code to match).
 
 
 Airport Challenge
