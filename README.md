@@ -26,6 +26,12 @@ Installation
 
 Usage
 -------
+In order to run this application, require it in irb by using 
+
+```
+irb
+require './lib/airport'
+```
 
 To land a plane, use `airport.land`
 
@@ -41,6 +47,16 @@ To instruct a plane to take off, use 'airport.take_off`
  => #<Plane:0x00007f8e2f9e2f68 @landed=false>
 ```
 
+Define new airports like so
+
+```
+2.5.0 :006 > heathrow = Airport.new
+ => #<Airport:0x00007f9a1e07a6b0 @plane=#<Plane:0x00007f9a1e07a688 @landed=false>, @weather=#<Weather:0x00007f9a1e07a660>, @planes_in_airport=[], @capacity=10>
+
+2.5.0 :007 > gatwick = Airport.new
+ => #<Airport:0x00007f9a1e091928 @plane=#<Plane:0x00007f9a1e091900 @landed=false>, @weather=#<Weather:0x00007f9a1e0918d8>, @planes_in_airport=[], @capacity=10>
+2.5.0 :008 >
+```
 
 
 Running automated tests
@@ -77,7 +93,22 @@ The reason I decided to create a separate weather class is that weather has noth
 
 An airport begins its life empty, a plane begins its life in a 'not-landed' state (I originally used nil, but then realised initialising something as nil is probably not best practice). 
 
-When an airport 
+When an airport instructs a plane to land, it check whether:
+
+- the plane already exists in the airport (or any other airport)
+- If there is a storm
+- If the capacity of the airport can take another plane.
+
+If all these checks pass, then the plane is asked to land (by passing a `land` method onto the plane) and that particular plane is also put into a `@planes_in_airport` array. Landing a plane sets the `landed` variable on that instance of Plane to `true` i.e. the plane now knows its own state. We can use this to ensure that a plane that is already landed isn't requesting to land at another airport (or the same one).
+
+When a plane is instructed to take-off, it checks whether:
+
+- The plane is in the airport (by looking in the `@planes_in_airport` array)
+- If there is a storm
+
+If those checks pass, then it calls the `take_off` method on plane, which in turn sets the `@landed` flag to false, implying that it is now airbourne. We can then go ahead and take this particular plane out of out `@planes_in_airport` array. 
+
+To keep the code readable, I moved the error message text into their own variables, so they can all be changed in one place without difficulty.
 
 Acknowledgments
 -------
