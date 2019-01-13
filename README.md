@@ -47,7 +47,7 @@ Initially my thinking was for there to be a Plane class which would have an inte
 
 Airport --> instruct_land --> Plane
 
-Unit tests are : airport responds to #instruct_land, to #instruct_land(with_one_argument)
+Unit tests are : airport responds to #instruct_land / to #instruct_land(with_1_argument)
 
 User story 2
 ------------
@@ -58,9 +58,10 @@ User story 2
 
 
 Airport --> instruct_takeoff --> Plane
+
 Airport --> confirm_gone --> Plane
 
-Unit tests are : airport responds to #instruct_takeoff, to #instruct_takeoff(with_one_argument), to #confirm_gone, to #confirm_gone(with_one_argument), #confirm_gone results in plane gone from airport
+Unit tests are : airport responds to #instruct_takeoff / to #instruct_takeoff(with_1_argument) / to #confirm_gone / to #confirm_gone(with_1_argument) / #confirm_gone results in plane gone from airport
 
 Original README Content
 =======================
