@@ -105,16 +105,17 @@ describe Airport do
     end
     it "throws error if maximum capacity is changed to smaller than current amount
        of PLANES" do
-       allow(subject).to receive(:weather_report) { :sunny }
-       3.times { subject.land(Plane.new) }
-       new_cap = subject.planes.length - 1
-       expect { subject.change_capacity(new_cap) }.to raise_error("Current number of planes (#{subject.planes.length}) will exceed new capacity (#{new_cap})")
+      allow(subject).to receive(:weather_report) { :sunny }
+      3.times { subject.land(Plane.new) }
+      new_cap = subject.planes.length - 1
+      expect { subject.change_capacity(new_cap) }.to raise_error("Current number of planes (#{subject.planes.length}) will exceed new capacity (#{new_cap})")
     end
     it "only accepts 0 or positive integers" do
+      expect { subject.change_capacity(-1) }.to raise_error("Invalid Argument")
+      expect { subject.change_capacity("hi!") }.to raise_error("Invalid Argument")
     end
   end
   # 0 or negative capacities
   # error if non- pos int input
-
 
 end
