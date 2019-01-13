@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -18,6 +19,21 @@ it "cannot land if stormy" do
   weather = Weather.new
   expect{ subject.land(plane, weather.stormy) }.to raise_error "Landing is forbidden!"
 end
+
+it "is full" do
+  plane = Plane.new
+  weather = Weather.new
+  subject.capacity.times { subject.land(plane,weather.not_stormy) }
+  expect{ subject.land(plane,weather) }.to raise_error "Airport is full!"
+end
+
+it 'storm blocks landing' do
+  plane = Plane.new
+  weather = Weather.new
+  allow(weather).to receive(:stormy?).and_return true #stub
+  message = "Unable to land due to stormy weather"
+  expect { subject.land(plane,weather.stormy?) }.to raise_error "Landing is forbidden!"
+end
 end
 
 describe '#take_off' do
@@ -33,20 +49,5 @@ it "cannot take off if stormy" do
   expect{ subject.take_off(plane,weather.stormy) }.to raise_error "Take off is forbidden!"
 end
 end
-
-describe '#full?' do
-  it "is full" do
-    plane = Plane.new
-    weather = Weather.new
-    subject.capacity.times { subject.land(plane,weather.not_stormy) }
-    expect{ subject.land(plane,weather) }.to raise_error "Airport is full!"
-  end
-end
-
-#describe 'storm blocks landing' do
-  #allow(weather).to receive(:stormy?).and_return true
-  #message = "Unable to land due to stormy weather"
-  #expect { airport.land(plane, weather) }.to raise_error message
-#end
 
 end

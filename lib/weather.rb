@@ -3,20 +3,21 @@ require_relative 'airport'
 class Weather
 
   def stormy?
-    condition = [1,2,3,4,5,6,7,8,9,10].sample
+    #@weather = [true,false].sample
+    condition = rand(11)
     if condition == 1
-      @weather = false
-    else
       @weather = true
+    else
+      @weather = false
     end
   end
 
   def stormy
-    @weather = false
+    @weather = true
   end
 
   def not_stormy
-    @weather = true
+    @weather = false
   end
 
 end

@@ -10,12 +10,12 @@ attr_reader :planes, :weather, :capacity
 def initialize(capacity=DEFAULT_CAPACITY)
   @capacity = capacity
   @planes = []
-  @weather
+  #@weather
 end
 
 def land(plane, weather)
   @weather = weather
-  fail "Landing is forbidden!" if @weather == false
+  fail "Landing is forbidden!" if @weather == true
   fail "Airport is full!" if full?
   @planes << plane
   return plane
@@ -23,7 +23,7 @@ end
 
 def take_off(plane, weather)
   @weather = weather
-  fail "Take off is forbidden!" if @weather == false
+  fail "Take off is forbidden!" if @weather == true
   @planes - [plane]
   return @planes.include?(plane)
 end
