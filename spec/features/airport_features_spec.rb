@@ -20,9 +20,15 @@ describe Airport do
     end
 
     it 'raises error if weather is bad' do
-      heathrow.instance_variable_set(:@planes, [])
       heathrow.instance_variable_set(:@weather, true)
       expect { heathrow.land(plane) }.to raise_error 'Inclement weather'
+    end
+
+    it 'raises error if airport is full' do
+      heathrow.instance_variable_set(:@capacity, 1)
+      heathrow.land(Object.new)
+      expect { heathrow.land(Object.new)
+      }.to raise_error 'Airport full'
     end
 
     context 'if the plane has already been landed' do
