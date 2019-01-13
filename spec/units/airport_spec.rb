@@ -10,7 +10,7 @@ describe Airport do
   context "when initializing an airport" do
 
     it "is initialized with a default plane capacity" do
-      expect(@airport.instance_variable_get(:@capacity)).to eq(20)
+      expect(@airport.instance_variable_get(:@capacity)).to eq(Airport::DEFAULT_CAPACITY)
     end
 
     it "shouldn't be full when first created" do
@@ -33,6 +33,25 @@ describe Airport do
 
     it "shouldn't allow unavailable planes to takeoff" do
       expect { @airport.takeoff(@plane) }.to raise_error(Airport::PLANE_UNAVAILABLE_ERROR)
+    end
+
+    it 'should instruct planes to takeoff' do
+      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@plane).to receive(:land)
+      @airport.land(@plane)
+
+      expect(@plane).to receive(:takeoff)
+      @airport.takeoff(@plane)
+    end
+
+  end
+
+  describe '#land' do
+
+    it 'should instruct planes to land' do
+      allow(@airport).to receive(:weather_safe?).and_return(true)
+      expect(@plane).to receive(:land)
+      @airport.land(@plane)
     end
   end
 end

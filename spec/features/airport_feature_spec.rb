@@ -27,14 +27,14 @@ describe Airport do
     # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
     it "should be able to instruct a plane to take off" do
-      @airport.instance_variable_set(:@planes, [@plane])
       allow(@airport).to receive(:weather_safe?).and_return(true)
+      @airport.land(@plane)
       expect(@airport.takeoff(@plane)).to eq(@plane)
     end
 
     it "should check that planes that have taken off are no longer in the airport" do
-      @airport.instance_variable_set(:@planes, [@plane])
       allow(@airport).to receive(:weather_safe?).and_return(true)
+      @airport.land(@plane)
       @airport.takeoff(@plane)
       expect(@airport.instance_variable_get(:@planes)).to eq([])
     end
