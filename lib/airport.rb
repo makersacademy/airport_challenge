@@ -2,7 +2,7 @@ require_relative 'weather'
 
 class Airport
 
-attr_accessor :planes, :message
+  attr_accessor :planes, :message
 
   include WEATHER
 
@@ -13,6 +13,7 @@ attr_accessor :planes, :message
 
   def land(arrival)
     fail message if planes.include? arrival
+    
     planes.push(arrival)
   end
 

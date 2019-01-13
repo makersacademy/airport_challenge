@@ -23,11 +23,11 @@ describe Airport do
       end
 
       it 'throws error if plane is already landed' do
-        expect { airport.land(plane) }.to raise_error ("Warning: this plane is already in the airport.")
+        expect { airport.land(plane) }.to raise_error "Warning: this plane is already in the airport."
       end
 
       it 'does not add plane if it is already landed' do
-        expect { airport.land(plane) }.to raise_error ("Warning: this plane is already in the airport.")
+        expect { airport.land(plane) }.to raise_error "Warning: this plane is already in the airport."
         # I have to expect the error message in order not to fail out of the test Example and proceed to the next line.
         expect(airport.planes.count).to eq 1
       end
