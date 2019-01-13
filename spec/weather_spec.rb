@@ -1,18 +1,20 @@
 require 'weather'
 
 RSpec.describe Weather do
-  include Weather
-  it { is_expected.to respond_to(:stormy_weather?) }
-  it { expect(subject.stormy_weather?).to be_truthy.or be nil }
+  context 'initial tests' do
+    let(:weather_class) { Class.new { extend Weather } }
+    subject { weather_class }
+    it { is_expected.to respond_to(:stormy_weather?) }
+    it { expect(subject.stormy_weather?).to be_truthy.or be nil }
+  end
 
   context 'confirm randomness of weather' do
+    let(:weather_class) { Class.new { extend Weather } }
+    let(:test_array) { Array.new }
+    let(:result) { test_array.count(nil).to_f / test_array.count(true).to_f }
     before(:each) do
-      @test_array = []
-      100_000.times { @test_array << Weather.stormy_weather? }
-      @times_sunny = @test_array.count(nil).to_f
-      @times_stormy = @test_array.count(true).to_f
-      @random_test_result = @times_sunny / @times_stormy
+      100_000.times { test_array << weather_class.stormy_weather? }
     end
-    it { expect(@random_test_result).to be_within(0.5).of(9) }
+    it { expect(result).to be_within(0.5).of(9) }
   end
 end

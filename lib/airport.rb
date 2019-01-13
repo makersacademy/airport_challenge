@@ -11,19 +11,19 @@ class Airport
     @hanger_capacity = hanger_capacity
   end
 
-  def land(plane_to_land)
+  def land(landing_plane)
     fail "Too stormy for landing" if stormy_weather?
     fail "Airport is full" if airport_full?
-    fail "Plane has already landed" if in_hanger?(plane_to_land)
+    fail "Plane has already landed" if in_hanger?(landing_plane)
 
-    @hanger << plane_to_land
+    @hanger << landing_plane
   end
 
-  def take_off(plane_to_leave)
+  def take_off(taking_off_plane)
     fail "Too stormy for take off" if stormy_weather?
-    fail "Plane not in hanger" if in_hanger?(plane_to_leave) == false
+    fail "Plane not in hanger" if in_hanger?(taking_off_plane) == false
 
-    @hanger.delete(plane_to_leave)
+    @hanger.delete(taking_off_plane)
   end
 
   def in_hanger?(plane)
