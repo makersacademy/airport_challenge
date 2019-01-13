@@ -3,8 +3,8 @@ require 'airport'
 RSpec.describe Airport do
   let(:airport) { Airport.new }
   let(:small_airport) { Airport.new(1) }
-  let(:plane) { double(:plane, landed: nil, make_land: true) }
-  let(:plane2) { double(:plane, landed: nil, make_land: true) }
+  let(:plane) { instance_double('plane', landed: nil, make_land: true) }
+  let(:plane2) { instance_double('plane', landed: nil, make_land: true) }
 
   it { expect(airport.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
   it { expect(small_airport.hanger_capacity).to eq 1 }
