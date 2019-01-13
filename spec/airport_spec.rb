@@ -99,7 +99,10 @@ RSpec.describe Airport do
     it "ensures planes can only take off from the airport they are in" do
       heathrow = Airport.new
       schipol = Airport.new
-      plane111 = Plane.new
+      # plane111 = Plane.new
+      plane111 = double('a plane')
+      allow(plane111).to receive(:land)
+      allow(plane111).to receive(:landed)
       allow(heathrow).to receive(:stormy).and_return(false)
       allow(schipol).to receive(:stormy).and_return(false)
       heathrow.land(plane111)
