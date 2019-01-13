@@ -33,8 +33,14 @@ RSpec.describe Airport do
     weather = Weather.new
     plane = Plane.new
     gatwick = Airport.new
-    3.times { gatwick.land(plane,weather="sunny") }
+    Airport::DEFAULT_CAPACITY.times { gatwick.land(plane,weather="sunny") }
     expect{ gatwick.land(plane,weather="sunny") }.to raise_error('Airport full')
   end
+
+  it 'Has a default airport capacity that can be overridden' do
+    gatwick = Airport.new
+    expect(gatwick.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 
 end
