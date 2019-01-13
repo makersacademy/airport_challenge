@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   attr_reader :planes, :capacity
   attr_writer :capacity
