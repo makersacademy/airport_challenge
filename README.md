@@ -1,34 +1,100 @@
-aAirport Challenge
+Airport Challenge
 =================
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+         .----.                                                  .'.
+        |  /   '                                                 |  '
+        |  |    '                                                '  :
+        |334916  '             .-~~~-.               .-~-.        \ |
+        |  |      '          .\\   .//'._+_________.'.'  /_________\|
+        |  |___ ...'.__..--~~ .\\__//_.-     . . .' .'  /      :  |  `.
+        |.-"  .'  /                          . .' .'   /.      :_.|__.'
+       <    .'___/                           .' .'    /|.      : .'|\
+        ~~--..                             .' .'     /_|.      : | | \
+  JRO     /_.' ~~--..__             .----.'_.'      /. . . . . . | |  |
+                      ~~--.._______'.__.'  .'      /____________.' :  /
+                               .'   .''.._'______.'                '-'
+                               '---'
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
+Approach
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+The task is described below. In designing the airport system, I've used strict TDD - writing code only in order to
+satisfy failing tests using the 'red - green - refactor' approach for each test. 
+
+The overall approach was as follows:
+1. Map out a basic sequence diagram showing the messages flowing from the feature request
+1. Design a basic airport that could land and takeoff planes
+1. Add awareness to the Plane class about its status to prevent edge cases
+1. Add instructions between airport and plane
+1. Add a Weather class to generate different weather states
+1. Inject the Weather class into the Airport class
+1. Make the airport aware of the weather state
+1. Replace uses of Strings with references to a defined constant re DRY principle
+1. Replace static strings that are passed between objects, such as weather states, with symbols
+1. Refactor to remove most weather methods from Airport's public interface
+    1. Replace a specific check for 'stormy' with a general 'safe_weather?' method that's publicly available
+    1. This allows the implementation of what constitutes safe weather to change without breaking any external dependencies
+    1. e.g. it allows for an 'icy' condition to also constititute adverse weather
+1. Refactor to substitute doubles for hard dependencies in the unit tests
+1. Use stubs to add functionality to doubles and control for the random weather where needed
+1. Refactor to remove any doubles present in feature tests
+1. Add extra edge case tests where relevant
+1. Final check to ensure each method has a single responsibillity
+1. Refactor some public methods to move implementation detail into private methods
+
+Key learning points
+-------------------
+
+- More experience with string TDD development and RSpec syntax
+- Extensive use of doubles and stubs in unit tests to reduce dependencies
+- Automated feature tests to ensure customer requirements are met
+- Stubbing the random method to generate consistent weather for tests
+
+Instructions
+------------
+Load the files into irb
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true 
+2.5.0 :002 > require './lib/plane.rb'
+ => true 
+```
+Create an airport and plane objects
+```
+2.5.0 :004 > heathrow = Airport.new
+ => #<Airport:0x000055e83dc27ab0 @capacity=20, @planes=[], @weather_generator=#<Weather:0x000055e83dc27a60>> 
+2.5.0 :005 > plane1 = Plane.new
+ => #<Plane:0x000055e83dc1e7f8 @landed=false> 
+2.5.0 :006 > plane2 = Plane.new
+ => #<Plane:0x000055e83dc1a388 @landed=false> 
+```
+Planes can land singly
+```
+2.5.0 :007 > heathrow.land(plane1)
+ => [#<Plane:0x000055e83dc1e7f8 @landed=true>] 
+```
+ATC will prevent takeoffs or landings in stormy weather
+```
+2.5.0 :009 > heathrow.land(plane2)
+Traceback (most recent call last):
+        3: from /usr/share/rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):9
+        1: from /home/colin/Documents/Ruby/airport_challenge/lib/airport.rb:22:in `land'
+RuntimeError (Unable to land: stormy weather)
+```
+And planes can take off again when the weather is clear
+```
+2.5.0 :010 > heathrow.takeoff(plane1)
+ => #<Plane:0x000055e83dc1e7f8 @landed=false> 
+```
+And the airport is emptied again
+```
+2.5.0 :012 > heathrow
+ => #<Airport:0x000055e83dc27ab0 @capacity=20, @planes=[], @weather_generator=#<Weather:0x000055e83dc27a60>> 
+```
 
 Task
 -----
