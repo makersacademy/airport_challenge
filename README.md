@@ -30,10 +30,10 @@ Method of working
    * I wrote the code in order to make it pass
    * Then I saw it pass. (GREEN)
    * Then I REFACTORED it.
-- Then I updated this README with the details of ther test that passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
+- Then I updated this README with the detail on the test that passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
 - I ran rubocop to check adherence to coding style and format before every commit and sometimes while doing rspec.
 - At certain times I did a git push to see all the changes in Github. This was useful to make sure my Git/Github was working fine and also it was a good to see the README updated in my Github homepage.
-- Where possible I set a 15min timer to read & refine in the context of the TDD process. It was often unfeasible to keep to this timing regime.
+- Where possible I set a 15min timer for the read & refine cycle in the context of the TDD process. It was often unfeasible to keep to this timing regime.
 
 User Stories
 ------------------------
@@ -45,9 +45,22 @@ Initially my thinking was for there to be a Plane class which would have an inte
 |---------------|----------------| 
 | Airport | instruct_land |
 
-Airport --> instruct_land --> Plane 
-> test 1 is airport responds to #instruct_land
-> test 2 is airport responds to #instruct_land(with_one_argument)  initially this argument is any object 
+Airport --> instruct_land --> Plane
+
+Unit tests are : airport responds to #instruct_land, to #instruct_land(with_one_argument)
+
+User story 2
+------------
+| Object       | Message       |
+|---------------|----------------| 
+| Airport | instruct_takeoff |
+| Airport | confirm_gone |
+
+
+Airport --> instruct_takeoff --> Plane
+Airport --> confirm_gone --> Plane
+
+Unit tests are : airport responds to #instruct_takeoff, to #instruct_takeoff(with_one_argument), to #confirm_gone, to #confirm_gone(with_one_argument), #confirm_gone results in plane gone from airport
 
 Original README Content
 =======================
