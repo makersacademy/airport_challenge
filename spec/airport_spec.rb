@@ -23,6 +23,7 @@ describe Airport do
 
   it 'can store the landed instance of a plane in the airport for counting' do
     instance_of_plane = Plane.new
+    subject.stormy = false
     subject.land(instance_of_plane)
     expect(subject.planes_in_airport).to include(instance_of_plane)
   end
@@ -33,6 +34,8 @@ describe Airport do
 
   it 'can remove the taken-off instance of a plane from the airport after takeoff' do
     instance_of_plane = Plane.new
+    # allow(subject.stormy).to receive(true).and_return(false)
+    subject.stormy = false
     subject.land(instance_of_plane)
     subject.take_off(instance_of_plane)
     expect(subject.planes_in_airport).not_to include(instance_of_plane)
@@ -40,6 +43,7 @@ describe Airport do
 
   it 'checks that a plane cannot land twice in the same airport if already landed' do
     instance_of_plane = Plane.new
+    subject.stormy = false
     subject.land(instance_of_plane)
     expect { subject.land(instance_of_plane) }.to raise_error('Plane already landed!')
   end
@@ -53,10 +57,17 @@ describe Airport do
     expect(subject).to respond_to(:full?)
   end
 
-  it 'can check check whether a defined airport instance is full and can no longer accept planes' do
+  it 'can check whether a defined airport instance is full and can no longer accept planes' do
     airport = described_class.new
+    subject.stormy = false
     airport.capacity.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error('Airport is full!')
+  end
+
+  it 'checks that a plane in the air cannot land if the weather is stormy' do
+    instance_of_plane = Plane.new
+    subject.stormy = true
+    expect { subject.land(instance_of_plane) }.to raise_error('Stormy weather, plane cannot land')
   end
 
 end
