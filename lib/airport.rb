@@ -14,7 +14,9 @@ class Airport
   end
 
   def take_off(plane)
+    fail "already flying" if plane.flying == true
     fail "stormy can't take off" if stormy? == true
+    plane.airborne
     @planes.delete(plane)
     @planes
   end

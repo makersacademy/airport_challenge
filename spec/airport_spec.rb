@@ -53,10 +53,10 @@ describe Airport do
     expect { subject.land(Plane.new) } .to raise_error "stormy can't land"
   end
 
-  #test implementation of random weather
-  it "#stormy is false most of the time" do
-    10.times {expect(subject.stormy?).to eq (subject.stormy?)}
-  end
+  # #test implementation of random weather
+  # it "#stormy is false most of the time" do
+  #   10.times {expect(subject.stormy?).to eq (subject.stormy?)}
+  # end
 
   # As an air traffic controller
   # To ensure safety
@@ -87,10 +87,19 @@ describe Airport do
     airport_test = Airport.new
     boeing = Plane.new
     airbus = Plane.new
+    allow(airport_test).to receive(:stormy?) { false }
     airport_test.land(boeing)
     airport_test.land(airbus)
-    allow(airport_test).to receive(:stormy?) { false }
+
     expect(airport_test.take_off(boeing)).to eq [airbus]
+  end
+
+  #planes that are already flying cannot takes off
+  it "prevents take off if plane already flying" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect { subject.take_off(plane) } .to raise_error "already flying"
   end
 
 
