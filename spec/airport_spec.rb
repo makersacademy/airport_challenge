@@ -70,7 +70,10 @@ RSpec.describe Airport do
     it "can instruct a plane to take off and confirm that the plane has left the airport" do
       airport = Airport.new
       allow(airport).to receive(:stormy).and_return(false)
-      plane = Plane.new
+      # plane = Plane.new
+      plane = double('a plane')
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed)
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes_in_airport.include?(plane)).to eq(false)
