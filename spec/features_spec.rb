@@ -22,4 +22,8 @@ RSpec.describe 'Weather: Feature Tests' do
   it 'instruct to receive current weather' do
     expect { Weather.current }.to_not raise_error
   end
+
+  it 'instruct returns either stormy or clear' do
+    expect(Weather.current).to eq("stormy").or eq("clear")
+  end
 end
