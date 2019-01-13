@@ -40,7 +40,6 @@ RSpec.describe Airport do
     it "prevents planes that have already landed from landing anywhere again" do
       airport = Airport.new(5)
       allow(airport).to receive(:stormy).and_return(false)
-      # plane = Plane.new
       plane = double('a plane')
       allow(plane).to receive(:land)
       allow(plane).to receive(:landed)
@@ -99,7 +98,6 @@ RSpec.describe Airport do
     it "ensures planes can only take off from the airport they are in" do
       heathrow = Airport.new
       schipol = Airport.new
-      # plane111 = Plane.new
       plane111 = double('a plane')
       allow(plane111).to receive(:land)
       allow(plane111).to receive(:landed)
@@ -119,25 +117,6 @@ RSpec.describe Airport do
       expect(airport.stormy).to eq(true)
     end
   end  
-
-  # describe '#capacity_reached?' do
-  #   it "checks if capacity is reached" do
-  #     airport = Airport.new(1) 
-  #     allow(airport).to receive(:stormy).and_return(false)
-  #     airport.land(Plane.new)
-  #     expect(airport.capacity_reached?).to eq(true)
-  #   end
-
-  #   it "initiates with a default airport capacity" do
-  #     airport = Airport.new
-  #     expect(airport.capacity).to eq(10)
-  #   end
-
-  #   it "lets the default capacity to be overridden" do
-  #     airport = Airport.new(20)
-  #     expect(airport.capacity).to eq(20)
-  #   end
-  # end
 
   describe '#plane_exists_in_airport?' do
     it "checks if a given plane is in the airport" do
