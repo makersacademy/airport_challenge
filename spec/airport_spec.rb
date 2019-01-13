@@ -1,21 +1,5 @@
 require 'airport'
 
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
-#
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when weather is stormy
-#
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when the airport is full
-#
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
-
 describe Airport do
 
   it 'can store the landed instance of a plane in the airport for counting' do
@@ -46,10 +30,10 @@ describe Airport do
   end
 
   it 'can check whether a defined airport instance is full and can no longer accept planes' do
-    airport = described_class.new
-    subject.stormy = false
-    airport.capacity.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error('Airport is full!')
+    fullairport = described_class.new
+    fullairport.stormy = false
+    fullairport.capacity.times { fullairport.land(Plane.new) }
+    expect { fullairport.land(Plane.new) }.to raise_error('Airport is full!')
   end
 
   it 'checks that a plane in the air cannot land if the weather is stormy' do
