@@ -19,7 +19,7 @@ RSpec.describe Airport do
   it 'prevents landing when airport full' do
     airport = Airport.new
     plane = double('it is a plane')
-    airport.land(plane)
+    Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
     expect { airport.land(plane) }.to raise_error('Airport Full!')
   end
 end
