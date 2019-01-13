@@ -21,17 +21,33 @@ An early step for me was to edit this README.md and do a git push to verify my G
 
 Now on to the good stuff
 
+Method of working
+-----------------
+- I analysed the user stories and wrote the object/message table for each.
+- I drew a diagram to show the relationship between objects and the messages they take i.e their interface methods.
+- I then created the simplest test for the interface method. Using rspec: 
+  * I saw my test fail (RED)
+   * I wrote the code in order to make it pass
+   * Then I saw it pass. (GREEN)
+   * Then I REFACTORED it.
+- Then I updated this README with the details of ther test that passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
+- I ran rubocop to check adherence to coding style and format before every commit and sometimes while doing rspec.
+- At certain times I did a git push to see all the changes in Github. This was useful to make sure my Git/Github was working fine and also it was a good to see the README updated in my Github homepage.
+- Where possible I set a 15min timer to read & refine in the context of the TDD process. It was often unfeasible to keep to this timing regime.
+
 User Stories
 ------------------------
 User story 1
 ------------
-Initially my thinking was for there to be a Plane class which would have an interface method #land. But after following Domain model web resources which were being shared by the cohort and comparing to the Boris Bikes project, it became clear to me that the Airport was the controlling class and it had an #instruct_land interface method that would take a Plane object as an argument. I stuck to the terms used in the user stories, hence:
+Initially my thinking was for there to be a Plane class which would have an interface method #land. But after following Domain model web resources which were being shared by the cohort, and comparing to the Boris Bikes project, it became clear to me that the Airport was the controlling class and it had an #instruct_land interface method that would take a Plane object as an argument. I stuck to the terms used in the user stories, hence:
+
 | Object       | Message       |
 |---------------|----------------| 
 | Airport | instruct_land |
 
 Airport --> instruct_land --> Plane 
-
+> test 1 is airport responds to #instruct_land
+> test 2 is airport responds to #instruct_land(with_one_argument)  initially this argument is any object 
 
 Original README Content
 =======================
