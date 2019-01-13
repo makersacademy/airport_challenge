@@ -5,4 +5,5 @@ describe Airport do
   it { expect(subject).to respond_to(:instruct_land).with(1).argument }
   it { is_expected.to respond_to :instruct_takeoff }
   it { expect(subject).to respond_to(:instruct_takeoff).with(1).argument }
+  it { is_expected.to respond_to :confirm_gone }
 end

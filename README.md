@@ -15,8 +15,8 @@ Airport Challenge
 Before we begin
 ---------------
 
-An early step for me was to edit this README.md and do a git push to verify my Git/Github is working as expected, since I've had fatal Git issues recently. Please note the following : 
-- I copied the original README.md locally to Makers_README.md and put that in gitignore as I don't want that added to the Github repo.
+An early step for me was to edit this README and do a git push to verify my Git/Github is working as expected, since I've had fatal Git issues recently. Please note the following : 
+- I copied the original README locally to Makers_README.md and put that in gitignore as I don't want that added to the Github repo.
 - I have kept all the original content of this file below, after the heading "Original README Content"
 
 Now on to the good stuff
@@ -25,15 +25,16 @@ Method of working
 -----------------
 - I analysed the user stories and wrote the object/message table for each.
 - I drew a diagram to show the relationship between objects and the messages they take i.e their interface methods.
+- In irb I performed the feature test for the behaviour that I was currently testing e.g. when a plane takes off, verify that it has actually gone from the airport.  
 - I then created the simplest test for the interface method. Using rspec: 
   * I saw my test fail (RED)
    * I wrote the code in order to make it pass
    * Then I saw it pass. (GREEN)
    * Then I REFACTORED it.
-- Then I updated this README with the detail on the test that passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
+- I updated this README when a unit test was passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
 - I ran rubocop to check adherence to coding style and format before every commit and sometimes while doing rspec.
 - At certain times I did a git push to see all the changes in Github. This was useful to make sure my Git/Github was working fine and also it was a good to see the README updated in my Github homepage.
-- Where possible I set a 15min timer for the read & refine cycle in the context of the TDD process. It was often unfeasible to keep to this timing regime.
+- I tried to follow a 15min period for the read & refine cycle in the context of the TDD process but I found it difficult to do this and will hope to improve with practise.
 
 User Stories
 ------------------------
