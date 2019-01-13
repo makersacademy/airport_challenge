@@ -3,19 +3,17 @@ require 'plane'
 
 RSpec.describe Airport do
   
-  let(:plane_1) { Plane.new}
-  let(:plane_2) { Plane.new}
-
-  it 'has a default capacity of 1' do
-    expect(subject.capacity).to eq 1
-  end
+  let(:plane_1) { Plane.new(subject) }
+  let(:plane_2) { Plane.new(subject) }
 
   describe '#land' do
+    before do
+      plane_1.status = "in flight"
+      plane_2.status = "in flight"
+    end
 
     context 'when stormy' do
-      before :each do
-        allow(Weather).to receive(:current).and_return("stormy")
-      end 
+      before { allow(Weather).to receive(:current).and_return("stormy") }
 
       it 'prevent landing' do
         expect { subject.land(plane_1) }.to raise_error(described_class::LANDING_ERROR_MESSAGE)
@@ -23,22 +21,21 @@ RSpec.describe Airport do
     end
 
     context 'when not stormy' do
-      before :each do
-        allow(Weather).to receive(:current).and_return("safe")
-      end
+      before { allow(Weather).to receive(:current).and_return("safe") }
 
       it 'allow landing' do
         expect(subject.land(plane_1)).to eq [plane_1] 
       end
 
-      it 'allow landing if not already landed' do
+      it 'prevent landing if already landed' do
         subject.land(plane_1)
         expect { subject.land(plane_1) }.to raise_error(described_class::ALREADY_LANDED_ERROR_MESSAGE)
       end
-
-      it 'check if plane landed' do
+      
+      it 'prevent landing if at another airport' do
         subject.land(plane_1)
-        expect(subject.planes).to include plane_1
+        airport = Airport.new
+        expect { airport.land(plane_1) }.to raise_error(Airport::AIRCRAFT_ELSEWHERE_ERROR_MESSAGE)
       end
 
       it 'prevent landing if full' do
@@ -46,19 +43,25 @@ RSpec.describe Airport do
         expect { subject.land(plane_2) }.to raise_error(described_class::LANDING_ERROR_MESSAGE)
       end
 
-    end
+      it 'have plane after landing' do
+        subject.land(plane_1)
+        expect(subject.planes).to include plane_1
+      end
 
+    end
   end
 
-
   describe '#takeoff' do
-    before :each do
+    before do
+      plane_1.status = "in flight"
+      plane_2.status = "in flight"
+
       allow(Weather).to receive(:current).and_return("safe")
       subject.land(plane_1)
     end
 
     context 'when stormy' do
-      before :each do
+      before do
         allow(Weather).to receive(:current).and_return("stormy")
       end
       
@@ -69,17 +72,17 @@ RSpec.describe Airport do
 
     context 'when not stormy' do
       it 'allow takeoff' do
-        expect { subject.takeoff(plane_1)}.not_to raise_error
+        expect { subject.takeoff(plane_1) }.not_to raise_error
       end
       
-      it 'check plane left' do
+      it 'does not have plane after takeoff' do
         subject.takeoff(plane_1)
         expect(subject.planes).not_to include plane_1
       end
 
       context 'when plane not at airport' do
         it 'prevent takeoff' do 
-          expect { subject.takeoff(plane_2) }.to raise_error(described_class::AIRCRAFT_NOT_HERE_ERROR_MESSAGE )
+          expect { subject.takeoff(plane_2) }.to raise_error(described_class::AIRCRAFT_NOT_HERE_ERROR_MESSAGE)
         end
       end
     end
