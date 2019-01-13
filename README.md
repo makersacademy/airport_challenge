@@ -17,6 +17,14 @@ Our first week at Makers made us focus on TDD, as in starting from feature test,
 In this challenge, I have noticed how it still comes automated to me, to think about the code straight away, however I made the effort to work on testing first, making myself more familiar with rspec.
 
 ### Approach on the challenge
+
+#### Plan:
+Noun | Verb
+---|---
+Airport | full?
+Plane | land, take_off
+Weather | stormy?
+
 Following the RED, GREEN, REFACTOR cycle, I have first implemented the `Airport` class with its related `spec file`, including methods `land` and `take_off`, without arguments yet.<br><br>
 The `Weather` class and related spec followed, implementing stubs to test the randomness of the weather.<br><br>
 The `random weather` has then been injected into the `Airport` class with an instance variable `airport_weather` and errors were raised when `land` or `take_off` are called during a storm.<br><br>
