@@ -38,9 +38,17 @@ RSpec.describe Airport do
   end
 
   it 'prevents landing if stormy' do
-    plane = Plane.new
+    plane = double :plane
     allow(Weather).to receive(:current).and_return('stormy')
     message = 'Cannot Land: Turbulent Weather'
+    expect { subject.land(plane) }.to raise_error(message)
+  end
+
+  it 'prevents landing when the airport is full' do
+    plane = double :plane
+    allow(Weather).to receive(:current).and_return('clear')
+    subject.land(plane)
+    message = 'Cannot Land: Airport Full' 
     expect { subject.land(plane) }.to raise_error(message)
   end
 end

@@ -34,6 +34,14 @@ RSpec.describe 'Feature Tests' do
       message = 'Cannot Land: Turbulent Weather'
       expect { subject.land(plane) }.to raise_error(message)
     end
+
+    it 'prevents landing when the airport is full' do
+      plane = Plane.new
+      allow(Weather).to receive(:current).and_return('clear')
+      subject.land(plane)
+      message = 'Cannot Land: Airport Full' 
+      expect { subject.land(plane) }.to raise_error(message)
+    end
   end
 
   describe Weather do
