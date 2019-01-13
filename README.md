@@ -41,16 +41,16 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 ```
-Step 1: attempt to create a new airport (Airport.new) from the command line.
-Step 2: write corresponding Rspec test, which should also fail.
-Step 3: pass that test by creating an airport class
-Step 4: attempt to create a new plane (Plane.new) from command line.
-Step 5: write corresponding Rspec text, which should also fail.
-Step 6: pass that test by creating a plane class
-Step 7: attempt to land the plane by calling .land on the airport plane I have created, passing the plane as the argument.
-Step 8: write corresponding Rspec test, which should also fail.
-Step 9: pass that test by creating a land method in the airport class.
-Step 10: realised quite early into the project that it would be best to hold the planes in an array so refactored to allow the planes to sit inside the airport array.
+Step 1: attempt to create a new airport (Airport.new) from the command line.\n
+Step 2: write corresponding Rspec test, which should also fail.\n
+Step 3: pass that test by creating an airport class\n
+Step 4: attempt to create a new plane (Plane.new) from command line.\n
+Step 5: write corresponding Rspec text, which should also fail.\n
+Step 6: pass that test by creating a plane class\n
+Step 7: attempt to land the plane by calling .land on the airport plane I have created, passing the plane as the argument.\n
+Step 8: write corresponding Rspec test, which should also fail.\n
+Step 9: pass that test by creating a land method in the airport class.\n
+Step 10: realised quite early into the project that it would be best to hold the planes in an array so refactored to allow the planes to sit inside the airport array.\n
 
 ```
 As an air traffic controller
