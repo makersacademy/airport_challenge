@@ -2,11 +2,8 @@ require 'weather'
 
 RSpec.describe Weather do
   let(:weather_class) { Class.new { extend Weather } }
-
-  context 'initial tests' do
-    subject { weather_class }
-    it { expect(subject.stormy_weather?).to be_truthy.or be nil }
-  end
+  subject { weather_class }
+  it { expect(subject.stormy_weather?).to be_truthy.or be nil }
 
   context 'confirm randomness of weather' do
     let(:test_array) { Array.new }

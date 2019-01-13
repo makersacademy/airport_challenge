@@ -17,26 +17,31 @@ require 'airport'
 RSpec.describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:small_airport) { Airport.new(20) }
+  it { expect(subject.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
+  it { expect(small_airport.hanger_capacity).to eq 20 }
 
-  context 'when a default airport is initialised' do
-    it { expect(subject.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
+  context 'when weather is stormy' do
+    before(:each) do
+      airport.land(plane)
+      allow(airport).to receive(:stormy_weather?) { true }
+    end
+    it { expect { airport.take_off(plane) }.to raise_error("Too stormy for take off") }
+    it { expect { airport.land(plane) }.to raise_error("Too stormy for landing") }
   end
 
-  context 'when instantiating an airport with non-default capacity' do
-    let(:small_airport) { Airport.new(20) }
-    it { expect(small_airport.hanger_capacity).to eq 20 }
-  end
-
-  context 'when an airport has a plane landed in sunny weather' do
+  context 'when weather is sunny and specific plane has landed' do
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(plane)
     end
     it { expect(airport.in_hanger?(plane)).to be true }
+    it { expect { airport.land(plane) }.to raise_error("Plane has already landed") }
     it { expect(airport.take_off(plane)).to be plane }
+    it { expect { airport.take_off(Plane.new) }.to raise_error("Plane not in hanger") }
   end
 
-  context 'confirm plane has left airport in sunny weather' do
+  context 'when weather is sunny and specific plane has landed and taken off' do
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(plane)
@@ -45,35 +50,11 @@ RSpec.describe Airport do
     it { expect(airport.in_hanger?(plane)).to be false }
   end
 
-  context 'when stormy weather' do
-    before(:each) do
-      allow(airport).to receive(:stormy_weather?) { true }
-    end
-    it { expect { airport.take_off(Plane.new) }.to raise_error("Too stormy for take off") }
-    it { expect { airport.land(Plane.new) }.to raise_error("Too stormy for landing") }
-  end
-
-  context 'when landing at full airport in sunny weather' do
+  context 'when weather is sunny and airport is full' do
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       100.times { airport.land(Plane.new) }
     end
     it { expect { airport.land(Plane.new) }.to raise_error("Airport is full") }
-  end
-
-  context 'when non existent plane is told to take off' do
-    before(:each) do
-      allow(airport).to receive(:stormy_weather?) { nil }
-      airport.land(Plane.new)
-    end
-    it { expect { airport.take_off(Plane.new) }.to raise_error("Plane not in hanger") }
-  end
-
-  context 'when we try to land the same plane twice' do
-    before(:each) do
-      allow(airport).to receive(:stormy_weather?) { nil }
-      airport.land(plane)
-    end
-    it { expect { airport.land(plane) }.to raise_error("Plane has already landed") }
   end
 end
