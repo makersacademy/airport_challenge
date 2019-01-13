@@ -9,7 +9,7 @@ RSpec.describe Airport do
 
   context 'when weather is stormy' do
     before(:each) do
-      allow(airport).to receive(:stormy_weather?) { true }
+      allow(airport).to receive(:stormy?) { true }
     end
     it { expect { airport.take_off(plane) }.to raise_error("Too stormy for take off") }
     it { expect { airport.land(plane) }.to raise_error("Too stormy for landing") }
@@ -17,7 +17,7 @@ RSpec.describe Airport do
 
   context 'when weather is sunny' do
     before(:each) do
-      allow(airport).to receive(:stormy_weather?) { nil }
+      allow(airport).to receive(:stormy?) { nil }
     end
 
     context 'when specific plane has landed' do

@@ -1,5 +1,5 @@
 module Weather
-  def stormy_weather?
+  def stormy?
     return true if rand(10).zero?
   end
 end

@@ -9,12 +9,12 @@ RSpec.describe 'all objects and methods' do
   let(:plane3) { Plane.new }
   before(:each) do
     # Allow sunny weather and land plane for take off test
-    allow(small_airport).to receive(:stormy_weather?) { nil }
+    allow(small_airport).to receive(:stormy?) { nil }
     small_airport.land(plane1)
     # Allow sunny weather, land plane for take off test then make this airport stormy
-    allow(stormy_airport).to receive(:stormy_weather?) { nil }
+    allow(stormy_airport).to receive(:stormy?) { nil }
     stormy_airport.land(plane3)
-    allow(stormy_airport).to receive(:stormy_weather?) { true }
+    allow(stormy_airport).to receive(:stormy?) { true }
   end
   it 'feature test' do
     expect(small_airport.in_hanger?(plane1)).to be true
