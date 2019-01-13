@@ -1,7 +1,7 @@
 require 'weather'
-include Weather
 
 RSpec.describe Weather do
+  include Weather
   it { is_expected.to respond_to(:stormy_weather?) }
   it { expect(subject.stormy_weather?).to be_truthy.or be nil }
 

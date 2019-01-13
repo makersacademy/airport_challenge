@@ -36,7 +36,7 @@ RSpec.describe Airport do
       @plane = Plane.new
       @airport.land(@plane)
     end
-    it { expect(@airport.hanger[0]).to be_a(Plane) }
+    it { expect(@airport.in_hanger?(@plane)).to be true }
     it { expect(@airport.take_off(@plane)).to be @plane }
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Airport do
       @airport.land(@plane)
       @airport.take_off(@plane)
     end
-    it { expect(@airport.hanger).not_to include @plane }
+    it { expect(@airport.in_hanger?(@plane)).to be false }
   end
 
   context 'when stormy weather' do

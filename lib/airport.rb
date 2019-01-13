@@ -2,7 +2,7 @@ require './lib/weather'
 
 class Airport
   include Weather
-  attr_reader :hanger, :hanger_capacity
+  attr_reader :hanger_capacity
 
   DEFAULT_HANGER_CAPACITY = 100
 
@@ -26,13 +26,14 @@ class Airport
     @hanger.delete(plane_to_leave)
   end
 
+  def in_hanger?(plane)
+    @hanger.include?(plane)
+  end
+
 private
 
   def airport_full?
     return true if @hanger.length >= DEFAULT_HANGER_CAPACITY
   end
 
-  def in_hanger?(plane)
-    @hanger.include?(plane)
-  end
 end
