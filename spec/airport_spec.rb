@@ -22,14 +22,15 @@ RSpec.describe Airport do
   
   it 'confirms plane took off' do
     plane = double :plane
-    subject.land(plane)
     allow(Weather).to receive(:current).and_return('clear')
+    subject.land(plane)
     subject.take_off(plane)
     expect(subject.plane).to_not eq plane
   end
 
   it 'prevents take off if stormy' do
     plane = double :plane
+    allow(Weather).to receive(:current).and_return('clear')
     subject.land(plane)
     allow(Weather).to receive(:current).and_return('stormy')
     message = 'Cannot Take Off: Turbulent Weather'
