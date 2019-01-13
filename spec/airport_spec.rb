@@ -10,6 +10,12 @@ RSpec.describe Airport do
     expect(gatwick.land(plane)).to eq([plane])
   end
 
+  it 'Landing the same plane twice not allowed' do
+    gatwick.weather=('sunny')
+    gatwick.land(plane)
+    expect{ gatwick.land(plane) }.to raise_error 'Already landed'
+  end
+
   it 'Airport allows plane to take off' do
     gatwick.weather=('sunny')
     expect(gatwick.take_off).to eq('Plane no longer in the airport')
@@ -27,7 +33,10 @@ RSpec.describe Airport do
 
   it 'Airport prevents landing when is full' do
     gatwick.weather=('sunny')
-    Airport::DEFAULT_CAPACITY.times { gatwick.land(plane) }
+    Airport::DEFAULT_CAPACITY.times do
+       plane = Plane.new
+       gatwick.land(plane)
+     end
     expect{ gatwick.land(plane) }.to raise_error('Airport full')
   end
 
