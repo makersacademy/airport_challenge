@@ -1,10 +1,11 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
   before(:each) do
     @airport = Airport.new
-    @plane = double('plane')
+    @plane = Plane.new
   end
 
   describe "landing process" do
@@ -15,7 +16,6 @@ describe Airport do
 
     it "should be able to land planes" do
       allow(@airport).to receive(:weather_safe?).and_return(true)
-      allow(@plane).to receive(:land)
       expect(@airport.land(@plane)).to eq([@plane])
     end
   end
@@ -94,12 +94,9 @@ describe Airport do
 
   describe 'multiple planes can takeoff and land' do
     it "can takeoff and land a number of planes" do
-      plane1 = double('plane1')
-      plane2 = double('plane2')
+      plane1 = Plane.new
+      plane2 = Plane.new
       allow(@airport).to receive(:weather_safe?).and_return(true)
-      allow(@plane).to receive(:land)
-      allow(plane1).to receive(:land)
-      allow(plane2).to receive(:land)
 
       expect(@airport.land(plane1)).to eq([plane1])
       expect(@airport.land(plane2)).to eq([plane1, plane2])
