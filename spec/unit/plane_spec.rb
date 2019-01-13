@@ -11,7 +11,7 @@ RSpec.describe Plane do
     before(:each) do
       plane.make_land(true)
     end
-    it { expect(plane.landed).to be(true) }
+    it { expect(plane.landed).to be true }
   end
 
 end
