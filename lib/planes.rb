@@ -1,4 +1,4 @@
-class Plane
+class Planes
   attr_accessor :plane_sign
 
   def initialize(plane_sign)
