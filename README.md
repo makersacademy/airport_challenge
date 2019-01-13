@@ -25,13 +25,12 @@ User Stories
 ------------------------
 User story 1
 ------------
-| Objects       | Messages       |
+Initially my thinking was for there to be a Plane class which would have an interface method #land. But after following Domain model web resources which were being shared by the cohort and comparing to the Boris Bikes project, it became clear to me that the Airport was the controlling class and it had an #instruct_land interface method that would take a Plane object as an argument. I stuck to the terms used in the user stories, hence:
+| Object       | Message       |
 |---------------|----------------| 
-| Plane | land |
-| tbd | tbd |
+| Airport | instruct_land |
 
-Plane <-- land --> status_plane_landed 
-
+Airport --> instruct_land --> Plane 
 
 
 Original README Content
