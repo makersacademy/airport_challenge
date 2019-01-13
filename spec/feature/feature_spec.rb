@@ -1,15 +1,19 @@
 require 'airport'
+require 'plane'
 
-RSpec.describe 'full feature test for all user stories' do
+RSpec.describe 'all objects and methods' do
   let(:small_airport) { Airport.new(1) }
   let(:stormy_airport) { Airport.new }
   let(:plane1) { Plane.new }
   let(:plane2) { Plane.new }
   let(:plane3) { Plane.new }
   before(:each) do
-    stormy_airport.land(plane3)
-    small_airport.land(plane1)
+    # Allow sunny weather and land plane for take off test
     allow(small_airport).to receive(:stormy_weather?) { nil }
+    small_airport.land(plane1)
+    # Allow sunny weather, land plane for take off test then make this airport stormy
+    allow(stormy_airport).to receive(:stormy_weather?) { nil }
+    stormy_airport.land(plane3)
     allow(stormy_airport).to receive(:stormy_weather?) { true }
   end
   it 'feature test' do
