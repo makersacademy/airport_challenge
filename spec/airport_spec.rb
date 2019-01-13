@@ -17,9 +17,6 @@ require 'airport'
 # I would like a default airport capacity that can be overridden as appropriate
 
 describe Airport do
-  it 'can instruct a plane to land i.e. responds to land method' do
-    expect(subject).to respond_to(:land)
-  end
 
   it 'can store the landed instance of a plane in the airport for counting' do
     instance_of_plane = Plane.new
@@ -28,13 +25,8 @@ describe Airport do
     expect(subject.planes_in_airport).to include(instance_of_plane)
   end
 
-  it 'can instruct a plane to take off, i.e. responds to takeoff method' do
-    expect(subject).to respond_to(:take_off)
-  end
-
   it 'can remove the taken-off instance of a plane from the airport after takeoff' do
     instance_of_plane = Plane.new
-    # allow(subject.stormy).to receive(true).and_return(false)
     subject.stormy = false
     subject.land(instance_of_plane)
     subject.take_off(instance_of_plane)
@@ -53,10 +45,6 @@ describe Airport do
     expect { subject.take_off(instance_of_plane) }.to raise_error('Plane not in airport!')
   end
 
-  it 'responds to a method checking if an airport is full' do
-    expect(subject).to respond_to(:full?)
-  end
-
   it 'can check whether a defined airport instance is full and can no longer accept planes' do
     airport = described_class.new
     subject.stormy = false
@@ -68,6 +56,14 @@ describe Airport do
     instance_of_plane = Plane.new
     subject.stormy = true
     expect { subject.land(instance_of_plane) }.to raise_error('Stormy weather, plane cannot land')
+  end
+
+  it 'checks that a plane on the ground cannot take off if the weather is stormy' do
+    instance_of_plane = Plane.new
+    subject.stormy = false
+    subject.land(instance_of_plane)
+    subject.stormy = true
+    expect { subject.take_off(instance_of_plane) }.to raise_error('Stormy weather, plane cannot take off')
   end
 
 end
