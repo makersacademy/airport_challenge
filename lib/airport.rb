@@ -15,15 +15,15 @@ class Airport
   end
 
   def land(plane) 
-    throw_land_exception(plane)
-    raise Exception.new(m_landing_denied) if stormy || capacity_reached?
+    throw_land_error(plane)
+    throw_land_exception
 
     plane.landed = true
     @planes_in_airport << plane
   end
 
   def take_off(plane)
-    raise Exception.new(m_plane_not_in_airport) unless plane_in_airport?(plane)
+    raise Exception.new(m_not_in_airport) unless plane_in_airport?(plane)
     raise Exception.new(m_take_off_denied) if stormy
 
     @planes_in_airport.delete(plane)
@@ -43,16 +43,21 @@ class Airport
 
   private
 
-  def throw_land_exception(plane)
-    raise Exception.new(m_plane_already_landed) if plane_in_airport?(plane)
+  def throw_land_error(plane)
+    raise Exception.new(m_already_landed) if plane_in_airport?(plane)
     raise Exception.new(m_plane_in_another_airport) if plane.landed == true
   end
+  
+  def throw_land_exception
+    raise Exception.new(m_storm_warning) if stormy 
+    raise Exception.new(m_capacity_warning) if capacity_reached?
+  end
 
-  def m_plane_not_in_airport
+  def m_not_in_airport
     "This plane doesn't exist in the airport"
   end
 
-  def m_plane_already_landed
+  def m_already_landed
     "This plane has already landed"
   end
 
@@ -60,12 +65,15 @@ class Airport
     "This plane is currently landed in another airport"
   end
 
-  def m_landing_denied
-    "No landings permitted"
+  def m_storm_warning
+    "No landings permitted due to the storm"
+  end
+
+  def m_capacity_warning
+    "No landings permitted due to the airport being full"
   end
 
   def m_take_off_denied
-    "No take offs permitted"
+    "No take offs permitted due to the storm"
   end
-
 end
