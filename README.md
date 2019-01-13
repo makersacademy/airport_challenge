@@ -12,6 +12,22 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Before we begin
+---------------
+
+An early step for me was to edit this README.md and do a git push to verify my Git/Github is working as expected, since I've had fatal Git issues recently. Please note the following : 
+- I copied the original README.md locally to Makers_README.md and put that in gitignore as I don't want that added to the Github repo.
+- I have kept all the original content of this file below, after the heading "Original README Content"
+
+Now on to the good stuff
+------------------------
+tbd
+
+
+
+
+Original README Content
+=======================
 
 Instructions
 ---------
