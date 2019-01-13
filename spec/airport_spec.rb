@@ -60,4 +60,11 @@ RSpec.describe Airport do
     subject.capacity = 5
     expect(subject.capacity).to eq 5
   end
+
+  it 'prevents take off if not at airport' do
+    allow(Weather).to receive(:current).and_return('clear') 
+    plane = double :plane
+    message = "Cannot Take Off: Plane Not Found"
+    expect { subject.take_off(plane) }.to raise_error(message)
+  end
 end

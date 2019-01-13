@@ -15,6 +15,7 @@ class Airport
 
   def take_off(plane)
     raise 'Cannot Take Off: Turbulent Weather' if stormy?
+    raise 'Cannot Take Off: Plane Not Found' if @plane.nil?
 
     @plane = nil
   end
