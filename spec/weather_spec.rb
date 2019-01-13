@@ -3,7 +3,7 @@ include Weather
 
 RSpec.describe Weather do
   it { is_expected.to respond_to(:stormy_weather?) }
-  it { expect(subject.stormy_weather?).to be_true.or be nil }
+  it { expect(subject.stormy_weather?).to be_truthy.or be nil }
 
   context 'confirm randomness of weather' do
     before(:each) do
