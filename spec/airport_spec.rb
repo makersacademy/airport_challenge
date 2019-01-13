@@ -4,24 +4,21 @@ RSpec.describe Airport do
 
   flying_plane = Plane.new
   parked_plane = Plane.new(true)
+  
+  before do
+    allow(subject.airport_weather).to receive(:rand).and_return(21)
+  end
 
   it 'should respond to land with one argument' do
     expect(subject).to respond_to(:land).with(1).arguments
   end
 
   it 'should return an array with the Plane' do
-    allow(subject.airport_weather).to receive(:rand).and_return(21)
     expect(subject.land(flying_plane)).to be_kind_of(Array)
   end
 
   it 'should not be an empty Array' do
-    allow(subject.airport_weather).to receive(:rand).and_return(1)
     expect(subject.land(flying_plane)).not_to be_empty
-  end
-
-  it 'should not be nil' do
-    allow(subject.airport_weather).to receive(:rand).and_return(1)
-    expect(subject.land(flying_plane)).not_to be_nil
   end
 
   it 'should raise an error if plane wants to land in a storm' do
@@ -30,7 +27,6 @@ RSpec.describe Airport do
   end
 
   it 'should return a plane instance variable in the airport array' do
-    allow(subject.airport_weather).to receive(:rand).and_return(11)
     expect(subject.land(flying_plane).last).to be_kind_of(Plane)
   end
 
@@ -39,7 +35,6 @@ RSpec.describe Airport do
   end
 
   it 'should return a confirmation that the plane took off' do
-    allow(subject.airport_weather).to receive(:rand).and_return(30)
     allow(subject).to receive(:in_hangar?).with(parked_plane).and_return(true)
     expect(subject.take_off(parked_plane)).to eq('Plane took off!')
   end
@@ -50,18 +45,15 @@ RSpec.describe Airport do
   end
 
   it 'should raise an error if a landed plane wants to land' do
-    allow(subject.airport_weather).to receive(:rand).and_return(1)
     allow(subject).to receive(:in_hangar?).with(parked_plane).and_return(true)
     expect { subject.land(parked_plane) }.to raise_error('This plane is not flying.')
   end
 
   it 'should raise an error if a flying plane wants to take off' do
-    allow(subject.airport_weather).to receive(:rand).and_return(2)
     expect { subject.take_off(parked_plane) }.to raise_error('This plane is already flying.')
   end
 
   it "should raise an error for landing when the hangar is full" do
-    allow(subject.airport_weather).to receive(:rand).and_return(30)
     allow(subject.airport_arr).to receive(:count).and_return(subject.capacity)
     expect { subject.land(flying_plane) }.to raise_error('Hangar is full.')
   end
