@@ -30,8 +30,8 @@ end
 it 'storm blocks landing' do
   plane = Plane.new
   weather = Weather.new
-  allow(weather).to receive(:stormy?).and_return true #stub
-  expect { subject.land(plane,weather.stormy?) }.to raise_error "Landing is forbidden!"
+  allow(weather).to receive(:outlooks).and_return true #stub
+  expect { subject.land(plane,weather.outlooks) }.to raise_error "Landing is forbidden!"
 end
 
 end

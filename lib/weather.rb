@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Weather
 
-  def stormy?
+  def outlooks
     condition = rand(11)
     if condition == 1
       @weather = true
