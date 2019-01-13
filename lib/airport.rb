@@ -3,7 +3,7 @@ class Airport
 
   def land(plane)
     raise 'Cannot Land: Turbulent Weather' if stormy?
-    raise 'Cannot Land: Airport Full' if @plane
+    raise 'Cannot Land: Airport Full' if full?
 
     @plane = plane
   end
@@ -18,5 +18,9 @@ class Airport
 
   def stormy?
     Weather.current == "stormy"
+  end
+
+  def full?
+    @plane
   end
 end
