@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thielsen/airport_challenge.svg?branch=master)](https://travis-ci.org/thielsen/airport_challenge)
+
 # Airport Challenge
 
 ```
