@@ -7,11 +7,11 @@ class Weather
   end
 
   def random
-    rand(100) +1
+    rand(1..100)
   end
 
   def stormy?
-    @stormy = (81..100).include?(random)
+    @stormy = (81..100).cover?(random)
   end
 
 end

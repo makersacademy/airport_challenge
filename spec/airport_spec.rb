@@ -42,7 +42,6 @@ RSpec.describe Airport do
     allow(subject.airport_weather).to receive(:rand).and_return(30)
     allow(subject).to receive(:in_hangar?).with(parked_plane).and_return(true)
     expect(subject.take_off(parked_plane)).to eq('Plane took off!')
-
   end
 
   it 'should raise an error if plane wants to take off in a storm' do
@@ -61,4 +60,9 @@ RSpec.describe Airport do
     expect { subject.take_off(parked_plane) }.to raise_error('This plane is already flying.')
   end
 
+  it "should raise an error for landing when the hangar is full" do
+    allow(subject.airport_weather).to receive(:rand).and_return(30)
+    allow(subject.airport_arr).to receive(:count).and_return(subject.capacity)
+    expect { subject.land(flying_plane) }.to raise_error('Hangar is full.')
+  end
 end
