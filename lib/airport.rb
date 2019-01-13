@@ -5,28 +5,29 @@ class Airport
 
   DEFAULT_CAPACITY = 3
 
-  attr_accessor :capacity
+  attr_accessor :capacity, :weather
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new)
     @airport = []
     @capacity = capacity
+    @weather = weather.forecast
   end
 
-  def land(plane, weather)
-    if @airport.length >= 3
+  def land(plane)
+    if @airport.length >= DEFAULT_CAPACITY
       fail 'Airport full'
     end
-    if weather != "sunny"
+    if @weather != "sunny"  
       fail 'Landing not authorised'
     end
     @airport << plane
   end
 
-  def take_off(weather)
-    if weather != "sunny"
+  def take_off
+    if @weather != "sunny"
       fail 'Take off not authorised'
     end
     @airport.pop
-    'Plane no longer in the airport'
+     'Plane no longer in the airport'
   end
 end
