@@ -1,34 +1,41 @@
 Airport Challenge
 =================
+```
+                   |
+                       --====|====--
+                             |  
+
+                         .-"""""-. 
+                       .'_________'. 
+                      /_/_|__|__|_\_\
+                     ;'-._       _.-';
+,--------------------|    `-. .-'    |--------------------,
+ ``""--..__    ___   ;       '       ;   ___    __..--""``
+           `"-// \\.._\             /_..// \\-"`
+              \\_//    '._       _.'    \\_//
+               `"`        ``---``        `"`
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
 
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
+Installation
 -------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
+
+Approach
+-------
+Please refer to Task below for context.
+
+**TDD**
+I've used strict TDD (red - green - refactor) throughout the process of solving this. Originally, all the unit tests were written while instantiating new objects (for eg: `plane = Plane.new`), but I recognised the downside here would be that my unit tests (for eg: land method on the Airport class) need to be tested in isolation, and should not depend on the `Plane` object as the purpose of unit tests is to be able to verify that particular method works (irrespective of dependencies). I have refactored all my unit tests to include doubles when dealing with external objects and methods. This required additional stubs however, but I feel more confident that my unit tests are robust (albeit slightly less readable). 
+
+**Feature Tests**
+Feature tests use newly instantiated objects to test the application as a whole, and is designed to test the system as a user would.
+
+**Random Weather**
+In the user stories, the weather class was required to 
 
 Task
 -----
