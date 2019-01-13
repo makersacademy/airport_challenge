@@ -28,8 +28,11 @@ RSpec.describe Airport do
     it "prevents landing when airport is full" do
       airport = Airport.new(1)
       allow(airport).to receive(:stormy).and_return(false)
-      plane = Plane.new
-      plane2 = Plane.new
+      plane = double('a plane')
+      plane2 = double('a plane')
+      allow(plane).to receive(:land)
+      allow(plane2).to receive(:land)
+      allow(airport).to receive(:throw_land_error).and_return(false)
       airport.land(plane)
       expect { airport.land(plane2) }.to raise_error("No landings permitted due to the airport being full")
     end
