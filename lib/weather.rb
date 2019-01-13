@@ -1,7 +1,5 @@
-class Weather
-  def forecast
-    return 'stormy' if rand(10).zero?
-    
-    'sunny'
+module Weather
+  def stormy_weather?
+    return true if rand(10).zero?
   end
 end

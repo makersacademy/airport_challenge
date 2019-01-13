@@ -1,6 +1,7 @@
 require './lib/weather'
 
 class Airport
+  include Weather
   attr_reader :hanger, :hanger_capacity
 
   DEFAULT_HANGER_CAPACITY = 100
@@ -11,25 +12,21 @@ class Airport
   end
 
   def land(plane_to_land)
-    fail "Too stormy for landing" if bad_weather?
+    fail "Too stormy for landing" if stormy_weather?
     fail "Airport is full" if airport_full?
     fail "Plane has already landed" if @hanger.include?(plane_to_land)
-    
+
     @hanger << plane_to_land
   end
 
   def take_off(plane_to_leave)
-    fail "Too stormy for take off" if bad_weather?
+    fail "Too stormy for take off" if stormy_weather?
     fail "Plane not in hanger" if @hanger.include?(plane_to_leave) == false
 
     @hanger.delete(plane_to_leave)
   end
 
 private
-
-  def bad_weather?
-    return true if Weather.new.forecast == "stormy"
-  end
 
   def airport_full?
     return true if @hanger.length >= DEFAULT_HANGER_CAPACITY
