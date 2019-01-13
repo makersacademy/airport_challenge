@@ -1,13 +1,15 @@
 require 'airport'
+require 'weather'
 
 RSpec.describe Airport do
 
    let(:gatwick) { gatwick = Airport.new }
    let(:plane) { plane = Plane.new }
+   let(:weather) { weather = Weather.new }
 
   it 'Airport allows plane to land' do
-    gatwick.weather=('sunny')
-    expect(gatwick.land(plane)).to eq([plane])
+    @weather = weather.forecast
+    allow(@weather).to receive(weather='stormy').and_return([plane])
   end
 
   it 'Landing the same plane twice not allowed' do
