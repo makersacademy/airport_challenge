@@ -67,7 +67,7 @@ RSpec.describe 'Feature Test' do
     airport = Airport.new
     plane = Plane.new
     allow(Weather).to receive(:current) { "safe" }
-    expect { airport.takeoff(plane)}.to raise_error('Aircraft is not here')
+    expect { airport.takeoff(plane) }.to raise_error(Airport::AIRCRAFT_NOT_HERE_ERROR_MESSAGE )
   end
 
   it 'planes cannot land if already landed' do 
@@ -76,6 +76,6 @@ RSpec.describe 'Feature Test' do
     plane = Plane.new
     allow(Weather).to receive(:current) { "safe" }
     airport.land(plane)
-    expect { airport.land(plane)}.to raise_error('Aircraft has already landed')
+    expect { airport.land(plane) }.to raise_error(Airport::ALREADY_LANDED_ERROR_MESSAGE )
   end
 end

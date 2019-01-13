@@ -1,10 +1,10 @@
 require 'weather'
 
 class Airport
-  LANDING_ERROR_MESSAGE = 'You cannot land' 
-  TAKEOFF_ERROR_MESSAGE = 'You cannot takeoff'
-  AIRCRAFT_NOT_HERE_ERROR_MESSAGE = 'Aircraft is not here'
-  ALREADY_LANDED_ERROR_MESSAGE = 'Aircraft has already landed'
+  LANDING_ERROR_MESSAGE = 'Aircraft Cannot Land' 
+  TAKEOFF_ERROR_MESSAGE = 'Aircraft Cannot Takeoff'
+  AIRCRAFT_NOT_HERE_ERROR_MESSAGE = 'Aircraft Not Here'
+  ALREADY_LANDED_ERROR_MESSAGE = 'Aircraft Already Landed'
 
   DEFAULT_CAPACITY = 1
 
