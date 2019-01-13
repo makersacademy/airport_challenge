@@ -4,6 +4,10 @@ describe Airport do
   let(:heathrow) { Airport.new }
   let(:plane) { double('plane') }
 
+  it "has a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#land' do
     before do
       heathrow.instance_variable_set(:@weather, false)
