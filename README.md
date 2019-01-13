@@ -39,14 +39,19 @@ stories below.
 ####  public
   - new(hanger_capacity): initialises a new airport with a specified hanger
                           capacity (defaults to 100 if none specified)
-  - land(landing_plane): lands the specified plane at airport if possible
-  - take_off(taking off plane): cause the specified plane to take off if possible
+  - land(plane): lands the specified plane at airport if possible
+  - take_off(plane): cause the specified plane to take off if possible
   - in_hanger?(plane): returns true if a specified plane is in the airport hanger
 
 ####  private
   - airport_full?: return true if the airport hanger is airport
 
 ### Object Plane
+
+####  public
+  - new: instantiates a plane in the air (magic!)
+  - landed: returns true if plane is in an airport
+  - make_land: set to true to confirm landing, nil to confirm take off
 
 ### Module Weather
   -  stormy_weather?: returns true if it is stormy (10% chance)

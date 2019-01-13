@@ -6,27 +6,27 @@ class Airport
 
   DEFAULT_HANGER_CAPACITY = 100
 
-  def initialize(hanger_capacity = DEFAULT_HANGER_CAPACITY)
+  def initialize(capacity = DEFAULT_HANGER_CAPACITY)
     @hanger = []
-    @hanger_capacity = hanger_capacity
+    @hanger_capacity = capacity
   end
 
-  def land(landing_plane)
+  def land(plane)
     fail "Too stormy for landing" if stormy?
-    fail "Plane has already landed" if in_hanger?(landing_plane)
-    fail "Plane is not in air" if landing_plane.landed
+    fail "Plane has already landed" if in_hanger?(plane)
+    fail "Plane is not in air" if plane.landed
     fail "Airport is full" if airport_full?
 
-    landing_plane.make_land(true)
-    @hanger << landing_plane
+    plane.make_land(true)
+    @hanger << plane
   end
 
-  def take_off(taking_off_plane)
+  def take_off(plane)
     fail "Too stormy for take off" if stormy?
-    fail "Plane not in hanger" if in_hanger?(taking_off_plane) == false
+    fail "Plane not in hanger" unless in_hanger?(plane)
 
-    taking_off_plane.make_land(nil)
-    @hanger.delete(taking_off_plane)
+    plane.make_land(nil)
+    @hanger.delete(plane)
   end
 
   def in_hanger?(plane)
@@ -36,7 +36,7 @@ class Airport
 private
 
   def airport_full?
-    return true if @hanger.length >= @hanger_capacity
+    @hanger.length >= @hanger_capacity
   end
 
 end

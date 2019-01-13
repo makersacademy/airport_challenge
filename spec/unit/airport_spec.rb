@@ -4,6 +4,7 @@ RSpec.describe Airport do
   let(:airport) { Airport.new }
   let(:small_airport) { Airport.new(20) }
   let(:plane) { double(:plane, landed: nil, make_land: true) }
+
   it { expect(airport.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
   it { expect(small_airport.hanger_capacity).to eq 20 }
 
