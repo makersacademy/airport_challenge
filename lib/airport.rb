@@ -5,10 +5,9 @@ class Airport
 
   attr_reader :airport_arr, :airport_weather, :plane
 
-  def initialize(airport_weather = Weather.new, plane = Plane.new)
+  def initialize(airport_weather = Weather.new)
     @airport_arr = Array.new
     @airport_weather = airport_weather
-    @plane = plane
   end
 
   def in_hangar?(plane)
@@ -25,7 +24,7 @@ class Airport
     elsif in_hangar?(plane)
       raise 'This plane is not flying.'
     else
-      @plane.lands
+      plane.lands
       return @airport_arr.push(plane)
     end
   end
@@ -37,7 +36,7 @@ class Airport
       raise 'This plane is already flying.'
     else
       @airport_arr.delete(plane)
-      @plane.takes_off
+      plane.takes_off
       return "Plane took off!"
     end
   end

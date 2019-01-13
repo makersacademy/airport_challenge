@@ -14,9 +14,14 @@ RSpec.describe Airport do
     expect(subject.land(flying_plane)).to be_kind_of(Array)
   end
 
-  it 'should return to not be an empty Array' do
+  it 'should not be an empty Array' do
     allow(subject.airport_weather).to receive(:rand).and_return(1)
     expect(subject.land(flying_plane)).not_to be_empty
+  end
+
+  it 'should not be nil' do
+    allow(subject.airport_weather).to receive(:rand).and_return(1)
+    expect(subject.land(flying_plane)).not_to be_nil
   end
 
   it 'should raise an error if plane wants to land in a storm' do
@@ -47,8 +52,8 @@ RSpec.describe Airport do
 
   it 'should raise an error if a landed plane wants to land' do
     allow(subject.airport_weather).to receive(:rand).and_return(1)
-    allow(subject).to receive(:in_hangar?).with(flying_plane).and_return(true)
-    expect { subject.land(flying_plane) }.to raise_error('This plane is not flying.')
+    allow(subject).to receive(:in_hangar?).with(parked_plane).and_return(true)
+    expect { subject.land(parked_plane) }.to raise_error('This plane is not flying.')
   end
 
   it 'should raise an error if a flying plane wants to take off' do

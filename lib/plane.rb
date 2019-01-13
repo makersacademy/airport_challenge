@@ -5,7 +5,8 @@ class Plane
   def initialize(landed = false)
     @landed = landed
   end
-
+  
+#private
   def lands
     @landed = true
   end
