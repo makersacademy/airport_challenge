@@ -16,5 +16,10 @@ RSpec.describe Airport do
     airport.land(plane)
     expect(subject.take_off).to eq nil
   end
-
+  it 'prevents landing when airport full' do
+    airport = Airport.new
+    plane = double('it is a plane')
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error('Airport Full!')
+  end
 end

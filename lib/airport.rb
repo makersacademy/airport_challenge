@@ -7,6 +7,7 @@ class Airport
 
   def land(plane)
     raise 'Stormy weather!' if stormy?
+    raise 'Airport Full!' if @planes.count >= 1
     @planes << plane
   end
 
