@@ -1,29 +1,48 @@
 require 'airport'
 require 'plane'
+require 'Weather'
 
-RSpec.describe 'Airport: Feature Tests' do
-  it 'instruct a plane to land' do
-    airport = Airport.new
-    plane = Plane.new
-    expect { airport.land(plane) }.to_not raise_error
+RSpec.describe 'Feature Tests' do
+  describe Airport do
+    it 'instructs a plane to land' do
+      plane = Plane.new
+      allow(Weather).to receive(:current).and_return('clear')
+      expect { subject.land(plane) }.to_not raise_error
+    end
+  
+    it 'instructs a plane to take off and confirm' do
+      plane = Plane.new
+      allow(Weather).to receive(:current).and_return('clear')
+      subject.land(plane)
+      allow(Weather).to receive(:current).and_return('clear')
+      subject.take_off(plane)
+      expect(subject.plane).to_not eq plane
+    end
+  
+    it 'prevents take off when weather is stormy' do
+      plane = Plane.new
+      allow(Weather).to receive(:current).and_return('clear')
+      subject.land(plane)
+      allow(Weather).to receive(:current).and_return('stormy')
+      message = 'Cannot Take Off: Turbulent Weather'
+      expect { subject.take_off(plane) }.to raise_error(message)
+    end
+
+    it 'prevents landing when weather is stormy' do
+      plane = Plane.new
+      allow(Weather).to receive(:current).and_return('stormy')
+      message = 'Cannot Land: Turbulent Weather'
+      expect { subject.land(plane) }.to raise_error(message)
+    end
   end
 
-  it 'instruct a plane to take off and confirm' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    airport.take_off(plane)
-
-    expect(airport.plane).to_not eq plane
-  end
-end
-
-RSpec.describe 'Weather: Feature Tests' do
-  it 'instruct to receive current weather' do
-    expect { Weather.current }.to_not raise_error
-  end
-
-  it 'instruct returns either stormy or clear' do
-    expect(Weather.current).to eq("stormy").or eq("clear")
+  describe Weather do
+    it 'instructs to receive current weather' do
+      expect { Weather.current }.to_not raise_error
+    end
+  
+    it 'returns either stormy or clear' do
+      expect(Weather.current).to eq("stormy").or eq("clear")
+    end
   end
 end
