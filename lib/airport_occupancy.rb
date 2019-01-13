@@ -1,4 +1,4 @@
-class AirportOccupancy
+class AirportOccupancy # Responsible for reporting the occupancy condition of an airport
   attr_accessor :capacity, :available
 
   def initialize(capacity = 0, available = 0)

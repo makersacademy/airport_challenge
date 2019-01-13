@@ -2,7 +2,7 @@ require 'planes'
 require 'weather'
 require 'airport_occupancy.rb'
 
-class AirTrafficControl
+class AirTrafficControl # Resposible of issuing landing and takeoff instructions
   attr_accessor :planes_list, :capacity, :stormy
 
   @stormy = Weather.new
