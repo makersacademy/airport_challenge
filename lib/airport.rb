@@ -11,7 +11,7 @@ class Airport
 
   def land(plane)
     return "cant land plane due to stormy weather" if weather == 'stormy'
-    
+
     full? ? (fail "Airport is full") : @airport.push(plane)
   end
 
@@ -25,7 +25,7 @@ class Airport
   def weather
     possible_weather = ['fine', 'fine', 'fine', 'fine', 'stormy']
     fine_or_stormy = possible_weather[rand(5)]
-    puts "weather is #{fine_or_stormy} "
+    # puts "weather is #{fine_or_stormy} "
     return fine_or_stormy
   end
 
