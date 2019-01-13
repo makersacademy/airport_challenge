@@ -30,8 +30,15 @@ kai@~/Makers/week1/airport_challenge$ irb -r './lib/airport'
 [plane_name] = Plane.new
 e.g.:
 ```
-2.5.0 :003 > plane = Plane.new
- => #<Plane:0x00007ffed88863a8>
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007f996d8f4ae0>
+2.5.0 :003 > airport = Airport.new
+ => #<Airport:0x00007f996d8e78e0 @planes_in_airport=[], @capacity=10, @stormy=false>
+2.5.0 :004 > airport.land(plane)
+ => [#<Plane:0x00007f996d8f4ae0>]
+2.5.0 :005 > airport
+ => #<Airport:0x00007f996d8e78e0 @planes_in_airport=[#<Plane:0x00007f996d8f4ae0>], @capacity=10, @stormy=false>
+2.5.0 :006 >
  ```
 airport_name.land(plane_name)
 e.g.:
@@ -97,7 +104,15 @@ Traceback (most recent call last):
 RuntimeError (Stormy weather, plane cannot land)
 2.5.0 :033 >
 ```
-
+Context and Design Considerations
+---------
+* Airports start out empty and weather is generated per airport instance created.
+* Planes start out not landed at any given airport. I recognise this is not the most realistic scenario, but it
+* Airport capacity is editable both at airport creation and by re-assigning the capacity variable.
+* Weather is described as "mostly sunny". I made the decision to make the probability of stormy weather 2/5 in lib/weather.rb .
+* The program checks the plane called to take off is currently held in the airport that is calling for the take_off method. This satisfies an edge case of a plane taking off from a different airport.
+* Similarly, a plane has to be in the air to land at any given instance of an airport.
+* To satisfy the requirement of 'confirming the plane is no longer in the airport', the take_off method reports the ID of the now-airborne plane in a printed message.
 
 Instructions
 ---------
