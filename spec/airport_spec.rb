@@ -26,8 +26,9 @@ describe Airport do
   end
 
   it "can confirm plane has left" do
-    subject.land(Plane.new)
-    expect(subject.take_off).to eq []
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.take_off(plane)).to eq []
   end
 
   # As an air traffic controller
@@ -38,9 +39,10 @@ describe Airport do
   end
 
   it "prevents take off when stormy" do
-    subject.land(Plane.new)
+    plane = Plane.new
+    subject.land(plane)
     allow(subject).to receive(:stormy?) { true }
-    expect { subject.take_off } .to raise_error "stormy can't take off"
+    expect { subject.take_off(plane) } .to raise_error "stormy can't take off"
   end
 
   # As an air traffic controller
@@ -76,7 +78,20 @@ describe Airport do
     expect(airport_test.capacity).to eq(20)
   end
 
+  #EDGE CASE #1 - planes can only take off from airport they're in
+  it "#take_off can take argument to define which plane" do
+    expect(subject).to respond_to(:take_off).with(1)
+  end
 
+  it "can specify which plane takes off" do
+    airport_test = Airport.new
+    boeing = Plane.new
+    airbus = Plane.new
+    airport_test.land(boeing)
+    airport_test.land(airbus)
+    allow(airport_test).to receive(:stormy?) { false }
+    expect(airport_test.take_off(boeing)).to eq [airbus]
+  end
 
 
 end

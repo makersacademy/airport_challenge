@@ -13,9 +13,9 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off
+  def take_off(plane)
     fail "stormy can't take off" if stormy? == true
-    @planes.pop
+    @planes.delete(plane)
     @planes
   end
 
