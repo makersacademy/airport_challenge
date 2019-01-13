@@ -3,7 +3,6 @@ require_relative 'airport'
 class Weather
 
   def stormy?
-    #@weather = [true,false].sample
     condition = rand(11)
     if condition == 1
       @weather = true

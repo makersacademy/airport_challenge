@@ -31,9 +31,9 @@ it 'storm blocks landing' do
   plane = Plane.new
   weather = Weather.new
   allow(weather).to receive(:stormy?).and_return true #stub
-  message = "Unable to land due to stormy weather"
   expect { subject.land(plane,weather.stormy?) }.to raise_error "Landing is forbidden!"
 end
+
 end
 
 describe '#take_off' do
