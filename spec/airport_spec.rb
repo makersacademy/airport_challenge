@@ -25,7 +25,7 @@ describe Airport do
   	end
   	it "reject plane if airport is at capacity" do 
     	# expect(@full_hangar.instance_variable_get(:@hangar)).to eq [@plane]
-    	p @full_hangar
+    	p @full_hangar.instance_variable_get(:@capacity)
     end
   end
  
