@@ -15,10 +15,10 @@
 require 'airport'
 
 RSpec.describe Airport do
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   context 'when a default airport is initialised' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-    it { is_expected.to respond_to(:take_off).with(1).argument }
     it { expect(subject.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
   end
 
@@ -28,8 +28,6 @@ RSpec.describe Airport do
   end
 
   context 'when an airport has a plane landed in sunny weather' do
-    let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(plane)
@@ -39,8 +37,6 @@ RSpec.describe Airport do
   end
 
   context 'confirm plane has left airport in sunny weather' do
-    let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(plane)
@@ -50,7 +46,6 @@ RSpec.describe Airport do
   end
 
   context 'when stormy weather' do
-    let(:airport) { Airport.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { true }
     end
@@ -59,7 +54,6 @@ RSpec.describe Airport do
   end
 
   context 'when landing at full airport in sunny weather' do
-    let(:airport) { Airport.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       100.times { airport.land(Plane.new) }
@@ -68,7 +62,6 @@ RSpec.describe Airport do
   end
 
   context 'when non existent plane is told to take off' do
-    let(:airport) { Airport.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(Plane.new)
@@ -77,8 +70,6 @@ RSpec.describe Airport do
   end
 
   context 'when we try to land the same plane twice' do
-    let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
     before(:each) do
       allow(airport).to receive(:stormy_weather?) { nil }
       airport.land(plane)
