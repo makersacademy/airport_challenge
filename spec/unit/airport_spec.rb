@@ -20,6 +20,7 @@ RSpec.describe Airport do
   context 'when weather is sunny' do
     before(:each) do
       allow(airport).to receive(:stormy?) { nil }
+      allow(small_airport).to receive(:stormy?) { nil }
     end
 
     context 'when specific plane has landed' do
