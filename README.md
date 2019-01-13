@@ -1,5 +1,4 @@
 # Airport Challenge
-=================
 
 ```
         ______
@@ -14,31 +13,26 @@
 ```
 
 ## Summary
--------
 
 The airport challenge is a test to simulate an air traffic control system as the
 first weekend project at Makers.
 
 ## Tech used
----------
 
 Development was in Ruby using RSpec in a strict TDD process based on the user
 stories below.
 
 ## Installation Steps
--------------------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 
 ## Test coverage/code format
--------------------------
 
 100% test coverage, no rubocop offenses detected
 
 ## Code walkthrough
-----------------
 
 ### Object Airport
 
@@ -58,7 +52,6 @@ stories below.
   -  stormy_weather?: returns true if it is stormy (10% chance)
 
 ## User Stories
-------------
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
