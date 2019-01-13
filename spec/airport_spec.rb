@@ -2,7 +2,7 @@ require "airport"
 
 describe Airport do
 
-  let(:airborn_plane) { double(:flying => true, :grounded => false )}
+  let(:airborn_plane) { double(:flying => true, :grounded => false) }
   let(:grounded_plane) { double(:flying => false, :airborn => true) }
   let(:test_plane) { double(:flying => nil, :airborn => nil, :grounded => nil) }
 
@@ -62,13 +62,9 @@ describe Airport do
   end
 
   describe "#weather" do
-    it "has default weather sunny" do
-      expect(subject.weather) == Airport::DEFAULT_WEATHER
-    end
-
     it "changes the weather to stormy when a the number 2 is generated" do
       allow(subject).to receive(:random_generator) { 2 }
-      expect(subject.weather_check).to eq("stormy")
+      expect { subject.airport_weather_check }.to raise_error "BadWeatherError"
     end
   end
 
