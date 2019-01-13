@@ -2,16 +2,23 @@ require 'airport'
 require 'weather'
 RSpec.describe Airport do
 
-  describe '#land' do
+  context '#land' do
     it { should respond_to :land }
-    plane = Plane.new
+    
     it 'lands the plane' do
+      plane = Plane.new
       subject.land(plane)
+      allow(Weather).to receive(:now) { 'sunny'}
       expect(subject.landed_planes).to include(plane)
+    end
+    it 'no landing in stormy weather' do
+      plane = Plane.new
+      allow(subject).to receive(:now) {'stormy'}
+      expect {subject.land(plane)}.to raise_error('Cannot land due to stormy weather')
     end
   end
 
-  describe '#takeoff' do
+  context '#takeoff' do
     it { should respond_to :takeoff }
     plane = Plane.new
     it 'instructs the plane to takeoff' do

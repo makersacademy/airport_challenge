@@ -4,7 +4,7 @@ require_relative 'weather'
 class Airport
   attr_reader :landed_planes
 
-  def initialize(weather: Weather.new)
+  def initialize
     @landed_planes = []
   end
 
@@ -14,6 +14,7 @@ class Airport
 
   def takeoff
     raise 'Takeoff postponed due to stormy weather' if Weather.now == 'stormy'
+
     @landed_planes.pop
   end
 end
