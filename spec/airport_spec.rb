@@ -6,6 +6,6 @@ RSpec.describe Airport do
   end
 
   it 'instructs a plane to take off' do
-    is_expected.to respond_to(:take_off)
+    is_expected.to respond_to(:take_off).with(1).argument
   end
 end
