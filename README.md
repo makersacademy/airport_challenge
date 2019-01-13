@@ -13,6 +13,92 @@ Airport Challenge
 
 ```
 
+Implementation
+---------
+The Airport Challenge, as implemented here, will accept:
+
+[your_airport_name] = Airport.new(optional_integer_for_capacity)
+e.g.:
+```
+kai@~/Makers/week1/airport_challenge$ irb -r './lib/airport'
+2.5.0 :001 > airport = Airport.new
+ => #<Airport:0x00007ffed8890a10 @planes_in_airport=[], @capacity=10, @stormy=true>
+2.5.0 :002 > larger_airport = Airport.new(100)
+ => #<Airport:0x00007ffed888df18 @planes_in_airport=[], @capacity=100, @stormy=false>
+2.5.0 :003 >
+```
+[plane_name] = Plane.new
+e.g.:
+```
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007ffed88863a8>
+ ```
+airport_name.land(plane_name)
+e.g.:
+```2.5.0 :008 > airport_to_land_to.land(plane)
+ => [#<Plane:0x00007ffed88863a8>]
+ ```
+
+airport_name.take_off(plane_name)
+e.g.:
+```2.5.0 :012 > stansted.land(makers_airways_123)
+ => [#<Plane:0x00007ffeda018020>]
+2.5.0 :013 > stansted.take_off(makers_airways_123)
+Confirming #<Plane:0x00007ffeda018020> has taken off.
+ => nil
+2.5.0 :014 >
+```
+If the plane you are trying to land is not in the air, it will give an error:
+```
+2.5.0 :017 > stansted.land(makers_airways_123)
+Traceback (most recent call last):
+        3: from /Users/kai/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):17
+        1: from /Users/kai/Makers/week1/airport_challenge/lib/airport.rb:20:in `land'
+RuntimeError (Plane already landed!)
+2.5.0 :018 >
+```
+
+If the plane you are trying to take off is either not in the airport you have specified or already in the air, it will give an error:
+```2.5.0 :015 > stansted.take_off(plane)
+Traceback (most recent call last):
+        3: from /Users/kai/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):15
+        1: from /Users/kai/Makers/week1/airport_challenge/lib/airport.rb:30:in `take_off'
+RuntimeError (Plane not in airport!)
+2.5.0 :016 >
+```
+If the airport is full to capacity, the program will not allow an additional plane to land:
+```
+2.5.0 :027 > small_airport = Airport.new(1)
+ => #<Airport:0x00007ffed8193aa0 @planes_in_airport=[], @capacity=1, @stormy=false>
+2.5.0 :028 > small_airport.land(plane1)
+ => [#<Plane:0x00007ffed888d270>]
+2.5.0 :029 > small_airport.land(plane2)
+Traceback (most recent call last):
+        3: from /Users/kai/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):29
+        1: from /Users/kai/Makers/week1/airport_challenge/lib/airport.rb:22:in `land'
+RuntimeError (Airport is full!)
+2.5.0 :030 >
+```
+
+Weather is implemented so that 3 out of 5 instances the weather is sunny, allowing planes to land and take off. If the weather is stormy (2/5 probability) the program will throw a weather-related error if you try to do one of the available operations:
+```
+2.5.0 :030 > airport
+ => #<Airport:0x00007ffed8890a10 @planes_in_airport=[], @capacity=10, @stormy=true>
+2.5.0 :031 > plane
+ => #<Plane:0x00007ffed88863a8>
+2.5.0 :032 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/kai/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):32
+        1: from /Users/kai/Makers/week1/airport_challenge/lib/airport.rb:24:in `land'
+RuntimeError (Stormy weather, plane cannot land)
+2.5.0 :033 >
+```
+
+
 Instructions
 ---------
 
@@ -36,25 +122,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +159,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
