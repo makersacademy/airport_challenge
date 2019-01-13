@@ -4,7 +4,7 @@ class Weather
 
   def stormy?
     random_outlook == :stormy
-    #true (it is sunny) if it is equal to sunny
+    #true (it is stormy) if it is equal to stormy
   end
 
   # private
