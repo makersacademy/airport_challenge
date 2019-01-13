@@ -2,11 +2,12 @@ require 'airport'
 
 RSpec.describe Airport do
   let(:airport) { Airport.new }
-  let(:small_airport) { Airport.new(20) }
+  let(:small_airport) { Airport.new(1) }
   let(:plane) { double(:plane, landed: nil, make_land: true) }
+  let(:plane2) { double(:plane, landed: nil, make_land: true) }
 
   it { expect(airport.hanger_capacity).to eq Airport::DEFAULT_HANGER_CAPACITY }
-  it { expect(small_airport.hanger_capacity).to eq 20 }
+  it { expect(small_airport.hanger_capacity).to eq 1 }
 
   context 'when weather is stormy' do
     before(:each) do
@@ -28,7 +29,7 @@ RSpec.describe Airport do
       it { expect(airport.in_hanger?(plane)).to be true }
       it { expect { airport.land(plane) }.to raise_error("Plane has already landed") }
       it { expect(airport.take_off(plane)).to be plane }
-      it { expect { airport.take_off(double(:plane, landed: nil, make_land: true)) }.to raise_error("Plane not in hanger") }
+      it { expect { airport.take_off(plane2) }.to raise_error("Plane not in hanger") }
     end
 
     context 'when specific plane has landed and taken off' do
@@ -41,9 +42,9 @@ RSpec.describe Airport do
 
     context 'when airport is full' do
       before(:each) do
-        100.times { airport.land(double(:plane, landed: nil, make_land: true)) }
+        small_airport.land(plane)
       end
-      it { expect { airport.land(plane) }.to raise_error("Airport is full") }
+      it { expect { small_airport.land(plane2) }.to raise_error("Airport is full") }
     end
 
     context 'when plane is not in the air' do
