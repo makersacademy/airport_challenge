@@ -1,7 +1,7 @@
 require 'airport'
 require 'plane'
 
-RSpec.describe 'Feature Tests' do
+RSpec.describe 'Airport: Feature Tests' do
   it 'instruct a plane to land' do
     airport = Airport.new
     plane = Plane.new
@@ -15,5 +15,11 @@ RSpec.describe 'Feature Tests' do
     airport.take_off(plane)
 
     expect(airport.plane).to_not eq plane
+  end
+end
+
+RSpec.describe 'Weather: Feature Tests' do
+  it 'instruct to receive current weather' do
+    expect { Weather.current }.to_not raise_error
   end
 end
