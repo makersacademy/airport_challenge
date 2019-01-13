@@ -1,4 +1,4 @@
 class AirtrafficController
-  def land
+  def land(plane)
   end
 end
