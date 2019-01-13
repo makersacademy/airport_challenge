@@ -1,10 +1,10 @@
 require 'airport'
 
 describe WeatherReporter do
-  subject(:weather_reporter) {described_class.new}
+  subject(:weather_reporter) { described_class.new }
 
   describe '#stormy' do
-    it 'can be no-stormy' do
+    it "can be no-stormy" do
       allow(Kernel).to receive(:rand).and_return 1
       expect(weather_reporter.stormy?).to be false
     end

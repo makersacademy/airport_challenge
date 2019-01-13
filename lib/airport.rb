@@ -24,7 +24,7 @@ private
     @planes.length >= @capacity
   end
 
-  def stormy? #use low coupling with airport class and split to another class: weather reporter
+  def stormy? 
     WeatherReporter.new.stormy?
   end
 
