@@ -2,7 +2,7 @@ require 'airport'
 
 RSpec.describe Airport do
 
-  it { is_expected.to respond_to(:plane_in_airport?) }
+  # it { is_expected.to respond_to(:plane_in_airport?) }
   
   describe '#land' do
     it { is_expected.to respond_to(:land) }  
@@ -13,7 +13,7 @@ RSpec.describe Airport do
       allow(airport).to receive(:stormy).and_return(false)
       plane = double('a plane')
       allow(plane).to receive(:land)
-      allow(airport).to receive(:throw_land_error).and_return(false)
+      allow(airport).to receive(:landing_checker).and_return(false)
       expect(airport.land(plane)).to eq [plane] 
     end
     
@@ -32,7 +32,8 @@ RSpec.describe Airport do
       plane2 = double('a plane')
       allow(plane).to receive(:land)
       allow(plane2).to receive(:land)
-      allow(airport).to receive(:throw_land_error).and_return(false)
+      allow(plane).to receive(:landed)
+      allow(plane2).to receive(:landed)
       airport.land(plane)
       expect { airport.land(plane2) }.to raise_error("No landings permitted due to the airport being full")
     end
@@ -71,6 +72,7 @@ RSpec.describe Airport do
       allow(airport).to receive(:stormy).and_return(false)
       plane = double('a plane')
       allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
       allow(plane).to receive(:landed)
       airport.land(plane)
       airport.take_off(plane)
@@ -117,14 +119,4 @@ RSpec.describe Airport do
       expect(airport.stormy).to eq(true)
     end
   end  
-
-  describe '#plane_exists_in_airport?' do
-    it "checks if a given plane is in the airport" do
-      airport = Airport.new
-      allow(airport).to receive(:stormy).and_return(false)
-      plane = Plane.new
-      airport.land(plane)
-      expect(airport.plane_in_airport?(plane)).to eq(true)
-    end
-  end
 end

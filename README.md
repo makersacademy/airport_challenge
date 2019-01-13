@@ -24,18 +24,31 @@ Installation
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 
+Running automated tests
+-------
+This project uses `RSpec` to run automated tests. 
+
+To run the automated tests, open the project root directory in your terminal and run `rspec`
+
 Approach
 -------
 Please refer to Task below for context.
 
 **TDD**
+
 I've used strict TDD (red - green - refactor) throughout the process of solving this. Originally, all the unit tests were written while instantiating new objects (for eg: `plane = Plane.new`), but I recognised the downside here would be that my unit tests (for eg: land method on the Airport class) need to be tested in isolation, and should not depend on the `Plane` object as the purpose of unit tests is to be able to verify that particular method works (irrespective of dependencies). I have refactored all my unit tests to include doubles when dealing with external objects and methods. This required additional stubs however, but I feel more confident that my unit tests are robust (albeit slightly less readable). 
 
 **Feature Tests**
+
 Feature tests use newly instantiated objects to test the application as a whole, and is designed to test the system as a user would.
 
 **Random Weather**
-In the user stories, the weather class was required to 
+
+In the user stories, it seems like the weather is sunny most of the time, but sometimes there is a storm. I decided to create a new `Weather` class, and add a `stormy?` method to it which returns `true` or `false` randomly with 1:9 odds (i.e. it returns `true` 10% of the time).
+
+Acknowledgments
+-------
+Many thanks to [Colin Hulme](https://github.com/ch359) for patiently explaining subbing, doubling and the importance of stubbing in unit tests.
 
 Task
 -----

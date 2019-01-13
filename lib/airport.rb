@@ -15,22 +15,15 @@ class Airport
   end
 
   def land(plane) 
-    throw_land_error(plane)
-    throw_land_exception
-
+    landing_checker(plane)
     plane.land
     @planes_in_airport << plane
   end
 
   def take_off(plane)
-    raise Exception.new(m_not_in_airport) unless plane_in_airport?(plane)
-    raise Exception.new(m_take_off_denied) if stormy
-
+    take_off_checker(plane)
+    plane.take_off
     @planes_in_airport.delete(plane)
-  end
-
-  def plane_in_airport?(plane)
-    planes_in_airport.include?(plane)
   end
 
   def stormy
@@ -39,17 +32,23 @@ class Airport
 
   private
 
+  def plane_in_airport?(plane)
+    planes_in_airport.include?(plane)
+  end
+
   def capacity_reached?
     @planes_in_airport.length >= @capacity
   end
 
-  def throw_land_error(plane)
+  def landing_checker(plane)
     raise Exception.new(m_already_landed) if plane.landed == true
-  end
-  
-  def throw_land_exception
     raise Exception.new(m_storm_warning) if stormy 
     raise Exception.new(m_capacity_warning) if capacity_reached?
+  end
+
+  def take_off_checker(plane)
+    raise Exception.new(m_not_in_airport) unless plane_in_airport?(plane)
+    raise Exception.new(m_take_off_denied) if stormy
   end
 
   def m_not_in_airport
@@ -58,10 +57,6 @@ class Airport
 
   def m_already_landed
     "This plane has already landed"
-  end
-
-  def m_plane_in_another_airport
-    "This plane is currently landed in another airport"
   end
 
   def m_storm_warning
