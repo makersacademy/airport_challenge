@@ -1,4 +1,4 @@
-require 'weather_reporter'
+require 'airport'
 
 describe WeatherReporter do
   subject(:weather_reporter) {described_class.new}

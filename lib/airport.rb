@@ -1,3 +1,5 @@
+require_relative 'weather_reporter'
+
 class Airport
   def initialize(capacity)
     @capacity = capacity
@@ -12,6 +14,7 @@ class Airport
 
   def take_off(plane)
     raise "Cannot take off plane: weather is stormy" if stormy?
+    raise "Cannot take off plane: it is not in this airport" unless at_airport?(plane)
   end
 
 
@@ -23,5 +26,9 @@ private
 
   def stormy? #use low coupling with airport class and split to another class: weather reporter
     WeatherReporter.new.stormy?
+  end
+
+  def at_airport?(plane)
+    @planes.include?(plane)
   end
 end
