@@ -1,21 +1,36 @@
 require 'airport'
-require 'weather'
+
 
 RSpec.describe Airport do
 
 
-  describe '#land and #takeoff' do
-    it 'allows planes to land and takeoff' do
-      Heathrow = Airport.new
+  describe '#land' do
+    it 'allows planes to land' do
       plane1 = Plane.new
       plane2 = Plane.new
-      expect(Heathrow.land(plane1)).to eq [plane1]
-      expect {Heathrow.land(plane1).to raise_error('This plane has already landed')}
-      expect(Heathrow.land(plane2)).to eq [plane1, plane2]
-      expect(Heathrow.take_off(plane1)). to eq plane1
-      expect(Heathrow.take_off(plane2)). to eq plane2
-      expect(subject.planes). to eq []
+      expect(subject.land(plane1)).to eq [plane1]
+      expect(subject.land(plane2)).to eq [plane1, plane2]
     end
+
+    context 'when plane has already landed' do
+    it 'raises an error' do
+      plane1 = Plane.new
+      subject.land(plane1)
+      expect { subject.land(plane1)}.to raise_error ('This plane has already landed')
+
+    end
+  end
+
+  describe '#take_off' do
+    it 'allows planes to take-off' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    subject.land(plane1)
+    subject.land(plane2)
+    expect(subject.take_off(plane1)). to eq plane1
+    expect(subject.take_off(plane2)). to eq plane2
+    expect(subject.planes). to eq []
+  end
   end
 
 
@@ -24,16 +39,14 @@ RSpec.describe Airport do
 
     describe '#current_weather?' do
       it 'is either sunny or stormy' do
-      Heathrow = Airport.new
-      allow(Heathrow).to receive(:current_weather?) { "sunny" }
-      expect(Heathrow.current_weather?).to eq "sunny"
-      allow(Heathrow).to receive(:current_weather?) { "stormy" }
-      expect(Heathrow.current_weather?).to eq "stormy"
+      allow(subject).to receive(:current_weather?) { "sunny" }
+      #expect(Heathrow.current_weather?).to eq "sunny"
+      allow(subject).to receive(:current_weather?) { "stormy" }
+      #expect(Heathrow.current_weather?).to eq "stormy"
       end
 
-      it 'prevents #take_off when stormy' do
-      end
+      
 
     end
-
-  end
+end
+end
