@@ -43,7 +43,7 @@ private
   end
 
   def space_available?
-    @planes_in_airport.count == @capacity ? (fail "No space available") : true
+    planes_in_airport.count == capacity ? (fail "No space available") : true
   end
 
 end

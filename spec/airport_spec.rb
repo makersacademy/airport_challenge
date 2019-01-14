@@ -59,31 +59,36 @@ describe Airport do
 # capacity
 
   it 'should not allow planes to land when the airport is full' do
+    error_message = "No space available"
     100.times { @airport.land(Plane.new) }
-    expect { @airport.confirm_landing(@plane) }.to raise_error "No space available"
+    expect { @airport.confirm_landing(@plane) }.to raise_error error_message
   end
 
   it 'should not accept planes when the airport of capacity 50 is full' do
+    error_message = "No space available"
     airport50 = Airport.new(50)
     50.times { airport50.land(Plane.new) }
-    expect { airport50.confirm_landing(@plane) }.to raise_error "No space available"
+    expect { airport50.confirm_landing(@plane) }.to raise_error error_message
   end
 
   # edge cases
 
   it 'should not allow the same plane to land twice (without taking off between)' do
     @airport.land(@plane)
-    expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is already in the airport"
+    error_message = "This plane is already in the airport"
+    expect { @airport.confirm_landing(@plane) } .to raise_error error_message
   end
 
   it 'plane must be in airport in order to take off' do
-    expect { @airport.confirm_take_off(@plane) } .to raise_error "This plane is not in the airport"
+    error_message = "This plane is not in the airport"
+    expect { @airport.confirm_take_off(@plane) } .to raise_error error_message
   end
 
   it 'should not allow a plane to land if it is in any airport' do
+    error_message = "This plane is in another airport"
     airport2 = Airport.new
     airport2.land(@plane)
-    expect { @airport.confirm_landing(@plane) } .to raise_error "This plane is in another airport"
+    expect { @airport.confirm_landing(@plane) } .to raise_error error_message
   end
 
 end
