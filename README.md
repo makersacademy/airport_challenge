@@ -13,13 +13,19 @@ Airport Challenge - WPDUNK Submission
 
 ```
 
+Goals
+---------
+
+1. I can TDD anything
+
+
 Approach
 ---------
 
 1. Two object classes Airport and Plane
 2. Most of the methods fall within the Airport class (will only be applied with consideration of particular to airport)
 3. Weather variability applied as method to airport (influences other methods applied to Airport)
-*In hindsight Weather might sit better in its own class, would better follow SRP* 
+*In hindsight Weather might sit better in its own class, would better follow SRP*
 
 
 Summary

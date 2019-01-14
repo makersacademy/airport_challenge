@@ -113,13 +113,3 @@ describe Airport do
   end
 
 end
-
-describe '#stormy?' do
-  it "#stormy is false most of the time" do
-    a, b = [], []
-    airport = Airport.new
-    100.times { a << airport.stormy? }
-    100.times { b << airport.stormy? }
-    expect(a).not_to eq(b)
-  end
-end

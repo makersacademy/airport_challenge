@@ -19,12 +19,9 @@ class Airport
   def take_off(plane)
     fail "already flying" if plane.flying == true
     fail "stormy can't take off" if stormy? == true
-    
+
     plane.airborne
     @planes.delete(plane)
   end
 
-  def stormy?
-    rand(1..10) > 9
-  end
 end
