@@ -26,7 +26,7 @@ Method of working
 - I analysed the user stories and wrote the object/message table for each.
 - I drew a diagram to show the relationship between objects and the messages they take i.e their interface methods.
 - In irb I performed the feature test for the behaviour that I was currently testing e.g. when a plane takes off, verify that it has actually gone from the airport.  
-- I then created the simplest test for the interface method. Using rspec: 
+- I then created the simplest test for the interface method. Using RSpec: 
   * I saw my test fail (RED)
    * I wrote the code in order to make it pass
    * Then I saw it pass. (GREEN)
@@ -34,13 +34,16 @@ Method of working
 - I updated this README when a unit test was passed and staged all the files in Git (git add .) and did a git commit with a descriptive message.
 - I ran rubocop to check adherence to coding style and format before every commit and sometimes while doing rspec.
 - At certain times I did a git push to see all the changes in Github. This was useful to make sure my Git/Github was working fine and also it was a good to see the README updated in my Github homepage.
-- I tried to follow a 15min period for the read & refine cycle in the context of the TDD process but I found it difficult to do this and will hope to improve with practise.
+- I tried to follow a 20min period for the read & refine cycle in the context of the TDD process but I found it very difficult to do this. I hope to improve with practise.
+
+### Acknowledgement
+Many thanks to [Nikhil Vijayan](https://github.com/nkhil) who helped me enormously by walking me through some of the OOP concepts I was unsure about and also with writing some tests in RSpec.
 
 User Stories
 ------------------------
 User story 1
 ------------
-Initially my thinking was for there to be a Plane class which would have an interface method #land. But after following Domain model web resources which were being shared by the cohort, and comparing to the Boris Bikes project, it became clear to me that the Airport was the controlling class and it had an #instruct_land interface method that would take a Plane object as an argument. I stuck to the terms used in the user stories, hence:
+Initially my thinking was for there to be a Plane class which would have an interface method #land. But after following Domain model web resources which were being shared by the cohort, and comparing to the Boris Bikes project, it became clear to me that the Airport was the controlling class and, sticking to the terms used in the user stories, it needed an #instruct_land interface method that would take a Plane object as an argument, hence:
 
 | Object       | Message       |
 |---------------|----------------| 
@@ -48,27 +51,47 @@ Initially my thinking was for there to be a Plane class which would have an inte
 
 Airport --> instruct_land --> Plane
 
-Unit tests are : airport responds to #instruct_land / to #instruct_land(with_1_argument)
+### Unit tests on Airport class
+1. responds to #instruct_land
+2. responds to #instruct_land(with_1_argument)
+3. #instruct_land returns a Plane
 
 User story 2
 ------------
+It became clear in this user story that an object in which a plane can be added or removed was needed. So I created an instance variable @hangar which was an array, which all the interface methods could access.
 | Object       | Message       |
 |---------------|----------------| 
 | Airport | instruct_takeoff |
-| Airport | confirm_gone |
-
+| Airport | confirm_gone? |
 
 Airport --> instruct_takeoff --> Plane
 
-Airport --> confirm_gone --> Plane
+Airport --> confirm_gone? --> Plane >> True/False
 
-Unit tests are : airport responds to #instruct_takeoff / to #instruct_takeoff(with_1_argument) / to #confirm_gone / to #confirm_gone(with_1_argument) / #confirm_gone results in plane gone from airport
+### Unit tests on Airport class
+1. responds to #instruct_takeoff
+2. responds to #instruct_takeoff(with_1_argument)
+3. #instruct_takeoff returns a Plane
+4. responds to #confirm_gone?
+5. responds to #confirm_gone(with_1_argument)
+6. #confirm_gone? returns boolean
+
+Plan for User Stories 3 & 4
+---------------------------
+These user stories would require a Weather class that would generate a weighted random weather condition, either sunny or stormy.
+If sunny then #instruct_land and #instruct_takeoff would function as normal.
+If stormy then those interface methods would do nothing.
+
+Plan for User Stories 5 & 6
+---------------------------
+These user stories would require a maximum size to be applied on the @hangar array. If this max value were reached, meaning the hangar were full, then #instruct_land would do nothing. A default max value would be applied and this could changed to fit any airport. 
+
 
 Original README Content
 =======================
 
 Instructions
----------
+------------
 
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use google, your notes, books, etc. but work on your own
