@@ -19,26 +19,26 @@ class Airport
   end
 
   def take_off(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prohibits take off")
-    : @planes.delete(plane)
-    ; plane.swap_state
-    ; "Plane #{plane.flight_number} has taken off from the airport"
+    weather_check
+    @planes.delete(plane)
+    plane.swap_state
+    "Plane #{plane.flight_number} has taken off from the airport"
   end
 
   def land(plane)
-    weather_check(plane)
+    weather_check
+    capacity_check
+    @planes << plane
+    plane.swap_state
+    "Plane #{plane.flight_number} has landed at the airport"
   end
 
-  def weather_check(plane)
-    @weather == "Stormy" ? (raise "Stormy weather prohibits landing")
-    : capacity_check(plane)
+  def weather_check
+    raise "Stormy weather prohibits actions" if @weather == "Stormy"
   end
 
-  def capacity_check(plane)
-    @planes.size >= @capacity ? (raise "Airport is at maximum capacity")
-    : @planes << plane
-    ; plane.swap_state
-    ; "Plane #{plane.flight_number} has landed at the airport"
+  def capacity_check
+    raise "Airport is at maximum capacity" if @planes.size >= @capacity
   end
 
 end
