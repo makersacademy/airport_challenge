@@ -1,6 +1,7 @@
 class Airport
 
-  def instruct_land(arg1)
+  def instruct_land(plane)
+    plane
   end
 
   def instruct_takeoff(arg1)
