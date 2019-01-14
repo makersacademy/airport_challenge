@@ -47,9 +47,15 @@ I would like a default airport capacity that can be overridden as appropriate
 
  From the user stories there should be two classes of objects; Airports and Planes.
 
- They have the following responsibilities and attributes
+ The classes have attributes which can be read by objects from other classes but can only be updated by itself.
+
 
  Airports
+
+ Airports have the following attributes;
+ - planes (array of planes on it's ground)
+ - capacity (maximum number of planes it can have at one time on the ground)
+ - a default capacity
 
  Airports are responsible for;
  - knowing what planes it currently has on the ground.  
@@ -57,11 +63,18 @@ I would like a default airport capacity that can be overridden as appropriate
  - checking if it's current weather is stormy or not (and randomly assigning storms)
  - knowing it's capacity, knowing if it's full and allowing it's capacity to be changed by a system operator
 
- Airports have the following attributes;
- - planes (array of planes on it's ground)
- - capacity (maximum number of planes it can have at one time on the ground)
- - a deafult capacity
-
 Planes
 
+Planes have the following attributes;
+ - status (ariborne or grounded)
+ - a current airport (nil if airborne)
+
 Planes are responsible for;
+ - not taking off if already grounded and not landing if not already airborne
+ - asking airpots whether they can take off or land
+ - not landing or taking off if told not to
+ - telling airports once they are taking off or landing
+
+ ***Note***
+
+ It wasn't specified wether planes always enter the system (are created) in the air or on the ground in an airport. I therefore made it possible for planes to enter the system on ground or in air. If entering on ground they must tell the airport they are entering. 
