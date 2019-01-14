@@ -53,6 +53,8 @@ RSpec.describe Airport do
       airport.land(plane)
       expect { airport.land(plane) }.to raise_error("plane landed")
     end
+
+    
   end
 
   describe '#take_off' do
@@ -91,13 +93,13 @@ RSpec.describe Airport do
       allow(airport2).to receive(:stormy).and_return(false)
       airport1.land(plane1)
       expect { airport2.take_off(plane1) }.to raise_error("plane is not here")
-
     end
   end
 
   describe "#plane_exsist?" do
     it "is that specific plane in airport" do
       airport = Airport.new
+      allow(airport).to receive(:stormy).and_return(false)
       plane = Plane.new
       airport.land(plane)
       expect(airport.plane_exsist?(plane)).to eq(true)
