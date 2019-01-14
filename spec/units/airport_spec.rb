@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   before(:each) do
-    @airport = Airport.new
+    @airport = Airport.new(Airport::DEFAULT_CAPACITY, @weather = double('weather'))
     @plane = double('plane')
   end
 
@@ -32,11 +32,12 @@ describe Airport do
   describe '#takeoff' do
 
     it "shouldn't allow unavailable planes to takeoff" do
+      allow(@weather).to receive(:weather).and_return(:sunny)
       expect { @airport.takeoff(@plane) }.to raise_error(Airport::PLANE_UNAVAILABLE_ERROR)
     end
 
     it 'should instruct planes to takeoff' do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       allow(@plane).to receive(:land)
       @airport.land(@plane)
 
@@ -49,7 +50,7 @@ describe Airport do
   describe '#land' do
 
     it 'should instruct planes to land' do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       expect(@plane).to receive(:land)
       @airport.land(@plane)
     end
