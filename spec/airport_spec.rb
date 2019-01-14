@@ -3,17 +3,13 @@ require "airport"
 describe Airport do
   let(:plane) { double :plane }
 
-  it "has a method to allow user to check plane has left airport" do
-    expect(subject).to respond_to(:verify_takeoff).with(1).argument
-  end
-
   it "is able to store landed planes" do
     subject.instance_variable_set(:@weather, :clear)
     subject.planes << plane
     expect(subject.planes.include?(plane)).to eq true
   end
 
-  it "has a verify_takeoff which checks that a plane is not at airport" do
+  it "has a verify_takeoff method which checks that a plane is not at airport" do
     subject.instance_variable_set(:@weather, :clear)
     expect(subject.verify_takeoff(plane)).to eq true
     subject.planes << plane
@@ -27,7 +23,7 @@ describe Airport do
   it "does not alter its weather state when accessed multiple times" do
     airport = Airport.new
     array_of_weather_states = []
-    1000.times { array_of_weather_states << airport.instance_variable_get(:@weather) }
+    9999.times { array_of_weather_states << airport.instance_variable_get(:@weather) }
     expect(array_of_weather_states.uniq.length).to eq 1
   end
 

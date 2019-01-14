@@ -12,6 +12,7 @@ class Airport
   end
 
   def verify_takeoff(plane)
+    # Does stuff
     !planes.include?(plane)
   end
 
