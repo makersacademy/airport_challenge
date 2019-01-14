@@ -24,13 +24,7 @@ describe Airport do
     subject.depart(plane)
     expect(subject.planes.include?(plane)).to eq(false)
   end
-  # expect(subject.departd.to eq
 
-  # airplane  = Airplane.new
-  # airlane.depart?
-  # it "will initialize airport with capacity of 1"
-  # airport = Airport.new(1)
-  # airport.instance_variable_set(:@planes, 1)
 end
 #
 #
