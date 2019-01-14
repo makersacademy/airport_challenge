@@ -7,7 +7,7 @@ class Weather
     #true (it is stormy) if it is equal to stormy
   end
 
-  # private
+  private
   OUTLOOKS = [:sunny, :sunny, :sunny, :sunny, :stormy]
 
   def random_outlook

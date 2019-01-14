@@ -18,8 +18,8 @@ let(:weather) { double :weather, stormy?: false }
 
       it 'should prevent landing when it is stormy' do
         plane = Plane.new
-        allow(weather).to receive(:random_outlook) {:stormy}
-        allow(weather).to receive(:stormy?).and_return(true)
+        # allow(weather).to receive(:random_outlook) {:stormy}
+        # allow(weather).to receive(:stormy?).and_return(true)
         allow(subject).to receive(:no_go?).and_return (true)
         expect {subject.land(plane)}.to raise_error "Unable to land, it's stormy"
       end
