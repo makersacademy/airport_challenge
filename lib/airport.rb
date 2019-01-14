@@ -4,7 +4,8 @@ class Airport
     plane
   end
 
-  def instruct_takeoff(arg1)
+  def instruct_takeoff(plane)
+    plane
   end
 
   def confirm_gone(arg1)

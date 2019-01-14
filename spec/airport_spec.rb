@@ -14,4 +14,10 @@ describe Airport do
     expect(heathrow.instruct_land(airbus)).to eq(airbus) 
   end
 
+  it 'instructs a plane to take-off' do
+    heathrow = Airport.new
+    airbus = Plane.new
+    expect(heathrow.instruct_takeoff(airbus)).to eq(airbus) 
+  end
+
 end
