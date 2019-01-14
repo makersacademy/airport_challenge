@@ -18,10 +18,11 @@ describe Airport do
 
   describe '#plane_takeoff' do
     it { is_expected.to respond_to(:plane_takeoff).with(1).arguments }
+
+    context 'when airport is empty' do
+      it 'raises error when the airport is empty and a plane is instructed to take off' do
+        expect { subject.plane_takeoff(:plane) }.to raise_error 'Cannot takeoff: Airport is empty'
+      end
+    end
   end
-
-
-
-
-
 end
