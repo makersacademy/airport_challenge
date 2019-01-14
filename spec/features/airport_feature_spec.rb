@@ -4,7 +4,8 @@ require 'plane'
 describe Airport do
 
   before(:each) do
-    @airport = Airport.new
+    @weather = Weather.new
+    @airport = Airport.new(Airport::DEFAULT_CAPACITY, @weather)
     @plane = Plane.new
   end
 
@@ -15,7 +16,7 @@ describe Airport do
     # I want to instruct a plane to land at an airport
 
     it "should be able to land planes" do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       expect(@airport.land(@plane)).to eq([@plane])
     end
   end
@@ -27,13 +28,13 @@ describe Airport do
     # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
     it "should be able to instruct a plane to take off" do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       @airport.land(@plane)
       expect(@airport.takeoff(@plane)).to eq(@plane)
     end
 
     it "should check that planes that have taken off are no longer in the airport" do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       @airport.land(@plane)
       @airport.takeoff(@plane)
       expect(@airport.instance_variable_get(:@planes)).to eq([])
@@ -47,9 +48,9 @@ describe Airport do
     # I want to prevent takeoff when weather is stormy
     
     it 'should stop aircraft from taking off in storms' do
-      allow(@airport).to receive(:stormy?).and_return(false)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       @airport.land(@plane)
-      allow(@airport).to receive(:stormy?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:stormy)
       expect { @airport.takeoff(@plane) }.to raise_error(Airport::STORMY_WEATHER_ERROR)
     end
   end
@@ -61,7 +62,7 @@ describe Airport do
     # I want to prevent landing when weather is stormy
 
     it 'should stop aircraft landing in storms' do
-      allow(@airport).to receive(:stormy?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:stormy)
       expect { @airport.land(@plane) }.to raise_error(Airport::STORMY_WEATHER_ERROR)
     end
 
@@ -74,7 +75,7 @@ describe Airport do
     # I want to prevent landing when the airport is full
 
     it 'should not land planes when full' do
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
       airport = Airport.new(1)
       plane1 = @plane
       plane2 = Plane.new
@@ -101,7 +102,7 @@ describe Airport do
     it "can takeoff and land a number of planes" do
       plane1 = Plane.new
       plane2 = Plane.new
-      allow(@airport).to receive(:weather_safe?).and_return(true)
+      allow(@weather).to receive(:weather).and_return(:sunny)
 
       expect(@airport.land(plane1)).to eq([plane1])
       expect(@airport.land(plane2)).to eq([plane1, plane2])
