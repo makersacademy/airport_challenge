@@ -3,12 +3,13 @@ require 'airport'
 RSpec.describe Airport do
   
   before(:each) do
-    @airport = Airport.new
+    @weather = double('weather')
+    allow(@weather).to receive(:stormy?).and_return(false)
+    @airport = Airport.new(10, @weather)
     @plane = double('plane')
     allow(@plane).to receive(:land)
     allow(@plane).to receive(:landed)
     allow(@plane).to receive(:take_off)
-    allow(@airport).to receive(:stormy).and_return(false)
   end
 
   it { is_expected.to respond_to(:land) }  
@@ -24,13 +25,12 @@ RSpec.describe Airport do
     end
     
     it "prevents landing when weather is stormy" do
-      allow(@airport).to receive(:stormy).and_return(true)
+      allow(@weather).to receive(:stormy?).and_return(true)
       expect { @airport.land(@plane) }.to raise_error("No landings permitted due to the storm")
     end
     
     it "prevents landing when airport is full" do
-      airport = Airport.new(1)
-      allow(airport).to receive(:stormy).and_return(false)
+      airport = Airport.new(1, @weather)
       plane2 = double('a plane')
       allow(plane2).to receive(:land)
       allow(plane2).to receive(:landed)
@@ -45,10 +45,8 @@ RSpec.describe Airport do
     end
 
     it "prevents planes that have landed in an airport from landing again a different airport" do
-      heathrow = Airport.new(5)
-      schipol = Airport.new(5)
-      allow(heathrow).to receive(:stormy).and_return(false)
-      allow(schipol).to receive(:stormy).and_return(false)
+      heathrow = Airport.new(5, @weather)
+      schipol = Airport.new(5, @weather)
       heathrow.land(@plane)
       allow(@plane).to receive(:landed).and_return(true)
       expect { schipol.land(@plane) }.to raise_error("This plane has already landed")
@@ -74,10 +72,8 @@ RSpec.describe Airport do
     end
 
     it "ensures planes can only take off from the airport they are in" do
-      heathrow = Airport.new
-      schipol = Airport.new
-      allow(heathrow).to receive(:stormy).and_return(false)
-      allow(schipol).to receive(:stormy).and_return(false)
+      heathrow = Airport.new(10, @weather)
+      schipol = Airport.new(10, @weather)
       heathrow.land(@plane)
       expect { schipol.take_off(@plane) }.to raise_error("This plane doesn't exist in the airport")      
     end
@@ -87,7 +83,7 @@ RSpec.describe Airport do
     it { is_expected.to respond_to(:stormy) }
 
     it "checks if weather is stormy" do
-      allow(@airport).to receive(:stormy).and_return(true)
+      allow(@weather).to receive(:stormy?).and_return(true)
       expect(@airport.stormy).to eq(true)
     end
   end  
