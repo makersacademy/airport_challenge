@@ -7,7 +7,7 @@ RSpec.describe Weather do
 
     it "is stormy?" do
       weather = Weather.new
-      allow(weather).to receive(:stormy).and_return(false)
+      allow(weather).to receive(:stormy?).and_return(false)
       expect(weather.stormy?).to eq(false)
     end
   end

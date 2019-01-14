@@ -1,5 +1,5 @@
 class Weather
   def stormy?
-    rand < 0.00000001
+    rand < 0.5
   end
 end

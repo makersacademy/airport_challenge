@@ -54,7 +54,7 @@ RSpec.describe Airport do
       expect { airport.land(plane) }.to raise_error("plane landed")
     end
 
-    
+
   end
 
   describe '#take_off' do
@@ -73,6 +73,7 @@ RSpec.describe Airport do
     it "prevents take off when stormy" do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:stormy).and_return(false)
       airport.land(plane)
       allow(airport).to receive(:stormy).and_return(true)
       expect { airport.take_off(plane) }.to raise_error "Too stormy to take off"
