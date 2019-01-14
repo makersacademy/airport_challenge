@@ -1,3 +1,6 @@
+![](https://api.travis-ci.org/AdrienFabre/airport_challenge.svg?branch=master)
+
+
 Airport Challenge
 =================
 
