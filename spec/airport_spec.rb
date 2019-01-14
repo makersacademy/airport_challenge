@@ -1,8 +1,8 @@
 require "airport"
 
 describe Airport do
-  it { is_expected.to respond_to(:weather) }
-  it { is_expected.to respond_to(:planes) }
+  # it { is_expected.to respond_to(:weather) }
+  # it { is_expected.to respond_to(:planes) }
 
   it "will respond to confirmation method" do
     expect(subject).to respond_to(:confirmation?)
@@ -24,7 +24,6 @@ describe Airport do
     subject.depart(plane)
     expect(subject.planes.include?(plane)).to eq(false)
   end
-
 end
 #
 #

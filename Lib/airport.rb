@@ -1,5 +1,6 @@
 
 require_relative "plane.rb"
+require_relative "weather.rb"
 
 class Airport
   attr_reader :planes
@@ -23,4 +24,3 @@ class Airport
     @planes.include?(plane) ? false : true
   end
 end
-

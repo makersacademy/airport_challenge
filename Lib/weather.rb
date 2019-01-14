@@ -1,2 +1,7 @@
 class Weather
-end 
+  def stormy
+  end
+
+  def sunny
+  end
+end
