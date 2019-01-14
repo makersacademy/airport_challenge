@@ -34,4 +34,31 @@ describe Plane do
     subject.depart(airport)
     expect(airport.planes.include?(subject)).to eq true
   end
+
+  it "cannot be located at two airports at the same time" do
+    airport = instance_double("Airport")
+    subject.instance_variable_set(:@location, airport)
+    airport_2_planes = []
+    airport_2 = instance_double("Airport", :permission_land? => true, :planes => airport_2_planes)
+    subject.land(airport_2)
+    expect(airport_2.planes.include?(subject)).to eq false
+  end
+
+  it "is located in the air after departing an airport" do
+    airport_planes = [subject]
+    airport = instance_double("Airport", :permission_depart? => true, :planes => airport_planes)
+    subject.depart(airport)
+    expect(subject.instance_variable_get(:@location)).to eq(:air)
+  end
+
+  it "successfully departs an airport and lands at another" do
+    airport_planes = [subject]
+    airport_2_planes = []
+    airport = instance_double("Airport", :permission_depart? => true, :planes => airport_planes)
+    airport_2 = instance_double("Airport", :permission_land? => true, :planes => airport_2_planes)
+    subject.depart(airport)
+    subject.land(airport_2)
+    expect(airport_2.planes.include?(subject)).to eq true
+  end
+
 end
