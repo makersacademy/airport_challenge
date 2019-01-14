@@ -59,6 +59,7 @@ Airport --> instruct_land --> Plane
 User story 2
 ------------
 It became clear in this user story that an object in which a plane can be added or removed was needed. So I created an instance variable @hangar which was an array, which all the interface methods could access.
+
 | Object       | Message       |
 |---------------|----------------| 
 | Airport | instruct_takeoff |
