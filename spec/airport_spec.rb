@@ -20,6 +20,7 @@ RSpec.describe Airport do
     context 'when stormy' do
       before do
         allow(Weather).to receive(:current).and_return('stormy')
+        allow(plane).to receive(:status).and_return('flying')
       end
   
       it 'prevents landing' do
@@ -31,6 +32,7 @@ RSpec.describe Airport do
     context 'when not stormy' do
       before do
         allow(Weather).to receive(:current).and_return('clear')
+        allow(plane).to receive(:status).and_return('flying')
       end
   
       it 'confirms plane landed' do
@@ -49,6 +51,15 @@ RSpec.describe Airport do
         subject.capacity.times { subject.land(Plane.new) }
         expect(subject.planes.length).to eq 5
       end
+
+      it 'prevents planes at other airports to land' do
+        plane = Plane.new
+        subject.land(plane)
+        allow(plane).to receive(:status).and_return('landed')
+        airport = described_class.new
+        message = 'else' 
+        expect { airport.land(plane) }.to raise_error(message) 
+      end
     end
 
   end
@@ -57,6 +68,7 @@ RSpec.describe Airport do
     context 'when stormy' do
       before do
         allow(Weather).to receive(:current).and_return('clear')
+        allow(plane).to receive(:status).and_return('flying')
         subject.land(plane)
         allow(Weather).to receive(:current).and_return('stormy')
       end
@@ -74,6 +86,7 @@ RSpec.describe Airport do
 
       before do
         allow(Weather).to receive(:current).and_return('clear')
+        allow(plane).to receive(:status).and_return('flying')
         subject.land(plane)
       end
       
@@ -89,10 +102,19 @@ RSpec.describe Airport do
 
       it 'can take off multiple planes' do
         subject.capacity = 4
-        
+
+        allow(plane_1).to receive(:status).and_return('flying') 
+        allow(plane_2).to receive(:status).and_return('flying') 
+        allow(plane_3).to receive(:status).and_return('flying') 
+
         subject.land(plane_1)
         subject.land(plane_2)
         subject.land(plane_3)
+
+        allow(plane).to receive(:status).and_return('landed') 
+        allow(plane_1).to receive(:status).and_return('landed') 
+        allow(plane_2).to receive(:status).and_return('landed') 
+        allow(plane_3).to receive(:status).and_return('landed') 
         
         subject.take_off(plane)
         subject.take_off(plane_1)
