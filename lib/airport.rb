@@ -18,7 +18,7 @@ class Airport
 
   def take_off(plane)
     raise 'Cannot Take Off: Turbulent Weather' if stormy?
-    raise 'Cannot Take Off: Plane Not Found' unless @planes.include? plane
+    raise 'Cannot Take Off: Plane Not Found' unless plane_here? plane
 
     @planes.delete(plane)
   end
@@ -31,5 +31,9 @@ class Airport
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def plane_here?(plane)
+    @planes.include? plane
   end
 end
