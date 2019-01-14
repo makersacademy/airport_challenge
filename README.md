@@ -53,7 +53,7 @@ To land a plane, use `airport.land`
  => [#<Plane:0x00007f8e2f9e2f68 @landed=true>]
 ```
 
-To instruct a plane to take off, use 'airport.take_off`
+To instruct a plane to take off, use `airport.take_off`
 (this only works because we landed this very plane in the previous step)
 ```
 2.5.0 :005 > airport.take_off(plane)
