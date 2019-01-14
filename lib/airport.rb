@@ -2,7 +2,7 @@ require_relative 'weather'
 
 class Airport < Weather
 
-  attr_accessor :planes, :messages, :weather, :capacity
+  attr_accessor :planes, :messages, :capacity
   DEFAULT_CAPACITY = 100
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -11,7 +11,6 @@ class Airport < Weather
       "That plane is not here",
       "Inclement weather",
       "Airport full"]
-    @weather = bad_weather?
     @capacity = capacity
   end
 
@@ -28,6 +27,10 @@ class Airport < Weather
     fail messages[1] unless planes.include? departure
 
     planes.delete(departure)
+  end
+
+  def weather
+    bad_weather?
   end
 
 end

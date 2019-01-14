@@ -21,7 +21,7 @@ describe Airport do
 
   describe '#land' do
     before do
-      heathrow.instance_variable_set(:@weather, false)
+      allow(heathrow).to receive(:weather).and_return(false)
       heathrow.instance_variable_set(:@planes, [])
     end
 
@@ -35,13 +35,14 @@ describe Airport do
     end
 
     it 'raises error if weather is bad' do
-      heathrow.instance_variable_set(:@weather, true)
+      allow(heathrow).to receive(:weather).and_return(true)
       expect { heathrow.land(plane) }.to raise_error 'Inclement weather'
     end
 
     it 'raises error if airport is full' do
+      allow(heathrow).to receive(:weather).and_return(false)
       heathrow.instance_variable_set(:@capacity, 1)
-      heathrow.land(Object.new)
+      heathrow.instance_variable_set(:@planes, [Object.new])
       expect { heathrow.land(Object.new)
       }.to raise_error 'Airport full'
     end
@@ -49,7 +50,7 @@ describe Airport do
     context 'if the plane has already been landed' do
       before do
         heathrow.instance_variable_set(:@planes, [plane])
-        heathrow.instance_variable_set(:@weather, false)
+        allow(heathrow).to receive(:weather).and_return(false)
       end
 
       it 'throws error if plane is already landed' do
@@ -67,7 +68,7 @@ describe Airport do
   describe '#takeoff' do
     before do
       heathrow.instance_variable_set(:@planes, [plane])
-      heathrow.instance_variable_set(:@weather, false)
+      allow(heathrow).to receive(:weather).and_return(false)
     end
 
     it 'can instruct a plane to take off' do
@@ -89,7 +90,7 @@ describe Airport do
 
     it 'raises error if weather is bad' do
       heathrow.instance_variable_set(:@planes, [plane, cheeseburger])
-      heathrow.instance_variable_set(:@weather, true)
+      allow(heathrow).to receive(:weather).and_return(true)
       expect { heathrow.take_off(cheeseburger) }.to raise_error 'Inclement weather'
     end
 
