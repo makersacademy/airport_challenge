@@ -81,16 +81,33 @@ RSpec.describe Airport do
       plane = Plane.new
       allow(airport).to receive(:stormy).and_return(false)
       expect { airport.take_off(plane) }.to raise_error "plane is not here"
+    end
+
+    it "can only take off from airport its stored in" do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      plane1 = Plane.new
+      allow(airport1).to receive(:stormy).and_return(false)
+      allow(airport2).to receive(:stormy).and_return(false)
+      airport1.land(plane1)
+      expect { airport2.take_off(plane1) }.to raise_error("plane is not here")
 
     end
   end
 
-  describe "#plane_exsist?"do
-    it "is that specific plane in airport"do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    expect(airport.plane_exsist?(plane)).to eq(true)
+  describe "#plane_exsist?" do
+    it "is that specific plane in airport" do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.plane_exsist?(plane)).to eq(true)
+    end
   end
-end
+
+  describe "#stormy" do
+    it "checks if stormy" do
+      airport = Airport.new
+      allow(airport).to receive(:stormy).and_return(true)
+    end
+  end
 end
