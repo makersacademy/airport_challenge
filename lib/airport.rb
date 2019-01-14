@@ -11,8 +11,8 @@ class Airport
 	end
 
   def land(plane)
-  	fail "Wait for better weather." if self.stormy?
   	fail "This airport is at capacity." if @hangar.length == @capacity
+  	fail "Wait for better weather." if self.stormy?
   	@hangar.push(plane)
   end
 
@@ -32,15 +32,3 @@ class Airport
   end
 
 end
-
-# plane1 = Plane.new
-# plane2 = Plane.new
-
-# # munich = Airport.new
-# # berlin = Airport.new
-
-# # munich.land(plane1)
-# # berlin.land(plane2)
-
-# # munich.takeoff(plane1)
-# # berlin.takeoff(plane2)
