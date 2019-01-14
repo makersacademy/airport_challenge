@@ -3,7 +3,7 @@ require_relative "plane.rb"
 
 class Airport
   attr_reader :planes
-  attr_reader :weather
+  # attr_reader :weather
 
   # simplifying to just plane taking off and landing
   def initialize
@@ -23,3 +23,4 @@ class Airport
     @planes.include?(plane) ? false : true
   end
 end
+
