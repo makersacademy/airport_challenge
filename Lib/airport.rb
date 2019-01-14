@@ -4,19 +4,18 @@ require_relative "weather.rb"
 
 class Airport
   attr_reader :planes
-  # attr_reader :weather
+  attr_reader :weather
 
   # simplifying to just plane taking off and landing
   def initialize
     @planes = []
-    @weather = :sunny
   end
 
   def land(plane)
     @planes << plane
   end
 
-  def depart(plane)
+  def depart(plane, weather)
     @planes.pop
   end
 
