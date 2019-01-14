@@ -57,7 +57,7 @@ RSpec.describe Airport do
         subject.land(plane)
         allow(plane).to receive(:status).and_return('landed')
         airport = described_class.new
-        message = 'else' 
+        message = 'Cannot Land: Aircraft Elsewhere'
         expect { airport.land(plane) }.to raise_error(message) 
       end
     end
@@ -115,7 +115,7 @@ RSpec.describe Airport do
         allow(plane_1).to receive(:status).and_return('landed') 
         allow(plane_2).to receive(:status).and_return('landed') 
         allow(plane_3).to receive(:status).and_return('landed') 
-        
+
         subject.take_off(plane)
         subject.take_off(plane_1)
         subject.take_off(plane_2)

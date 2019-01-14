@@ -10,8 +10,8 @@ class Airport
   end
 
   def land(plane)
-    raise 'else' if plane.status == 'landed'
     raise 'Cannot Land: Turbulent Weather' if stormy?
+    raise 'Cannot Land: Aircraft Elsewhere' if plane_elsewhere? plane
     raise 'Cannot Land: Airport Full' if full?
 
     @planes << plane
@@ -36,5 +36,9 @@ class Airport
 
   def plane_here?(plane)
     @planes.include? plane
+  end
+
+  def plane_elsewhere?(plane)
+    plane.status == 'landed'
   end
 end
