@@ -89,6 +89,8 @@ As an air traffic controller
 To ensure safety 
 I want to prevent takeoff when weather is stormy
 ```
+In order for my program to check if it is stormy, I needed my airport to have a weather. To solve this, I had 5 different weather options in an array and used the `.sample` method to randomly select one when the airport is created (it's a British airport). I then created a `.safe?` method to return `false` if the weather is stormy. I named it `.safe?` instead of `.stormy?` so that I can re-use this method later (say for example, if there are drones at the airport). Finally, this was added to the `take_off` method to be checked and raise an error if it is not safe.
+On reflection, I could have tackled this user story better by having a `Weather` class, which I have included in the improvements log at the end.
 
 ### User Story No.4:
 ```
@@ -96,6 +98,7 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+Same as the above story, but for landing.
 
 ### User Story No.5:
 ```
@@ -103,6 +106,7 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 ```
+At this point, we needed to start checking how many planes were in the `planes` array. So I added a `.full?` private method to check the length of `planes` and return `true` if greater than 20. The `land` method then checks `.full?` and raises an error if true.
 
 ### User Story No.6:
 ```
@@ -110,12 +114,14 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+In the previous user story, I hard-coded 20 as the default capacity without specifying it anywhere else, so the first task was to define a `DEFAULT_CAPACITY` constant. I then updated initialize to allow a capacity to be passed in and store as `@capacity`, and set it to `DEFAULT_CAPACITY` if nothing was passed in. Finally, I updated the `.full?` method to check `@capacity`.
 
 ### Edge Cases:
 ```
 Your code should defend against edge cases, such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 ```
-
+The first edge case was handled by having `take_off` raise an error if the `planes` array doesn't contain the plane that is trying to take off.
+The other edge cases were handled by having a `@state` instance variable that starts as 'Newly constructed' and is updated each time the plane lands/takes off. I then added errors to be raised on each method if the `@state` is not what is expected (i.e. a plane 'In flight' cannot take off, and a plane 'At airport' cannot land).
 
 Future improvements to the code
 -----
