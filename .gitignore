@@ -7,3 +7,5 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+.vscode/settings.json
+spec/features/theme.code-workspace
