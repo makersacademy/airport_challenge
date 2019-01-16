@@ -8,7 +8,7 @@ class Plane
   end
 
   def land(airport)
-    raise 'Plane is not in flight' if @state == 'At airport'
+    raise 'Plane is not in flight' if state == 'At airport'
     raise 'Airport is full' if airport.full?
     raise 'Weather is not safe to land' unless airport.safe?
 

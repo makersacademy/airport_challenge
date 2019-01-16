@@ -9,10 +9,10 @@ class Airport
   end
 
   def safe?
-    @weather != 'Stormy'
+    weather != 'Stormy'
   end
 
   def full?
-    @planes.count >= @capacity
+    planes.count >= capacity
   end
 end
