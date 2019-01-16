@@ -15,20 +15,14 @@ describe Airport do
 
   it "can be given a different initial capacity" do
     # expect(Airport.new(15).capacity).to eq 15
-    different_capacity = 10 + Airport::DEFAULT_CAPACITY
-    gatwick = Airport.new(different_capacity)
+    gatwick = Airport.new(0)
     allow(gatwick).to receive(:weather).and_return(false)
-    different_capacity.times { gatwick.land(Object.new) }
     expect{ gatwick.land(plane) }.to raise_error "Airport full"
   end
 
   describe '#capacity' do
     it "can change capacity after initialization" do
-      # heathrow.capacity = 45
-      # expect{ heathrow.capacity }.to eq 45
-      different_capacity = 10 + Airport::DEFAULT_CAPACITY
-      heathrow.capacity = different_capacity
-      different_capacity.times { heathrow.land(Object.new) }
+      heathrow.capacity = 0
       expect{ heathrow.land(plane) }.to raise_error "Airport full"
     end
   end
