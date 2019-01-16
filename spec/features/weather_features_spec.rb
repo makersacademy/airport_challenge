@@ -6,8 +6,9 @@ describe Weather do
   let(:obj) { DummyClass.new }
 
   it 'tells whether there is .bad_weather?' do
-    states = [true, false]
-    expect(states).to include obj.bad_weather?
+    # states = [true, false]
+    # expect(states).to include obj.bad_weather?
+    expect(obj.bad_weather?).to eq(false).or eq(true)
   end
 
   it 'sometimes has bad weather and sometimes good' do
