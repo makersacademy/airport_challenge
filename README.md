@@ -1,75 +1,9 @@
 # Airport Challenge
-A week end task, set by Makers Academy, to gage our understanding of test driven development. The instructions for the challenge can be found in the instruction section at the bottom of this document.
+A weekend challenge set by Makers Academy to gage our understanding of test driven development. 
+
+The instructions for the challenge can be found in the instructiona section at the bottom of this page.
 
 The approach taken was that for each user story, I would write a feature tests for a single aspect of that story. For example:
-
-```
-I want to prevent takeoff when weather is stormy
-```
-I first would have tested that weather can be returned.
-
-Once I had a feature tests I would create a unit tests that replicates any errors or unexpected behaviour seen in the feature test.
-
-I would then work to pass these tests.
-
-Once passed, I would repeat this process until the entire until there are feature and unit tests of the user story and all tests pass.
-
-I would then refactor my code.
-
-Once tests were written and passed for all user stories, I would repeat the process for edge cases and any considerations not picked up while completing the user stories.
-
-With the exception of the bonus task, I believe that the challenge has been completed.
-
-# Progress
-## User Stories
-- [x] User Story 1
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-- [x] User Story 2
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-- [x] User Story 3
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-- [x] User Story 4
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-- [x] User Story 5
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-- [x] User Story 6
-  - [x] Feature tests written
-  - [x] Unit tests written
-  - [x] All tests pass
-
-
-## Consideration
-A list of things to consider throughout the challenge:
-
-- [x] Planes can land and take off provided that the weather is sunny
-- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
-- [x] Your code should defend against edge cases such as inconsistent states of the system
-  - [x] Planes can only take off from airports they are in
-  - [x] Planes that are already flying cannot takes off and/or be in an airport
-  - [x] Planes that are landed cannot land again and must be in an airport
-- [x] Override weather conditions using use test doubles
-- [x] create a separate file for each:
-  - [x] class
-  - [x] test suite
-- [x] In code review we'll be hoping to see:
-  - [x] All tests passing
-  - [x] High Test coverage (>95% is good)
-  - [x] The code is elegant:
-    - [x] Every class has a clear responsibility
-    - [x] Methods are short
-- [x] Refactor
-- [x] README file
-
 
 ## Getting Started
 
@@ -81,7 +15,7 @@ The following are required in order to run and test this solution to the challen
 * Bundle gem
 
 ### Installation
-
+Run the following commands to install the require prerequisist. 
 
 Ruby 2.5.0:
 
@@ -133,6 +67,56 @@ Test coverage is at 100% as checked by `SimpleCov`.
 
 Test cover all user stories and edge cases such planes taking off from airports that they are not in.
 
+
+# Progress
+## User Stories
+- [x] User Story 1
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 2
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 3
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 4
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 5
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+- [x] User Story 6
+  - [x] Feature tests written
+  - [x] Unit tests written
+  - [x] All tests pass
+
+
+## Consideration
+A list of things to consider throughout the challenge:
+
+- [x] Planes can land and take off provided that the weather is sunny
+- [x] You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)
+- [x] Your code should defend against edge cases such as inconsistent states of the system
+  - [x] Planes can only take off from airports they are in
+  - [x] Planes that are already flying cannot takes off and/or be in an airport
+  - [x] Planes that are landed cannot land again and must be in an airport
+- [x] Override weather conditions using use test doubles
+- [x] create a separate file for each:
+  - [x] class
+  - [x] test suite
+- [x] In code review we'll be hoping to see:
+  - [x] All tests passing
+  - [x] High Test coverage (>95% is good)
+  - [x] The code is elegant:
+    - [x] Every class has a clear responsibility
+    - [x] Methods are short
+- [x] Refactor
+- [x] README file
 
 ## contributors
 * [makersacademy](https://github.com/makersacademy) - author of the challenge
