@@ -3,7 +3,7 @@ A weekend challenge set by Makers Academy to gage our understanding of test driv
 
 The instructions for the challenge can be found in the instructiona section at the bottom of this page.
 
-The approach taken was that for each user story, I would write a feature tests for a single aspect of that story. For example:
+All user stories have been completed. The bonus task was not attempted. 
 
 ## Getting Started
 
