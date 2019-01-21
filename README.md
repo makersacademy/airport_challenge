@@ -42,10 +42,10 @@ $ gem install bundle
 All feature tests can be run using:
 
 ```
-$ ruby 4_take_off_plane.rb
+$ ruby feature_tests.rb
 ```
 
-Individual feature tests can be run by running the individual contained within the `feature_test` directory. For example:
+Individual feature tests can be run by running the individual test contained within the `feature_test` directory. For example:
 
 ```
 $ ruby ./feature_tests/13_check_if_airport_full.rb
@@ -53,7 +53,7 @@ $ ruby ./feature_tests/13_check_if_airport_full.rb
 
 ### Unit tests
 
-Unit tests can be runusing:
+Unit tests can be run using:
 
 ```
 $ rspec
@@ -65,8 +65,7 @@ All code has been written test-first.
 
 Test coverage is at 100% as checked by `SimpleCov`.
 
-Test cover all user stories and edge cases such planes taking off from airports that they are not in.
-
+Tests cover all user stories and edge cases such as planes taking off from airports that they are not in.
 
 # Progress
 ## User Stories
