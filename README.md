@@ -1,7 +1,7 @@
 # Airport Challenge
 A weekend challenge set by Makers Academy to gage our understanding of test driven development. 
 
-The instructions for the challenge can be found in the instructiona section at the bottom of this page.
+The instructions for the challenge can be found in the instructions section at the bottom of this page.
 
 All user stories have been completed. The bonus task was not attempted. 
 
