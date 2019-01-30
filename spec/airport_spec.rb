@@ -40,7 +40,8 @@ describe Airport do
       it 'should prevent take off' do
         allow(weather).to receive(:stormy?).and_return true
         airport = Airport.new(weather)
-        expect{ airport.takeoff(plane) }.to raise_error 'it is too stormy to take off'
+        message = 'it is too stormy to take off'
+        expect{ airport.takeoff(plane) }.to raise_error message
       end
     end
   end
