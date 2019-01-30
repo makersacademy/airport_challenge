@@ -5,7 +5,7 @@ The instructions for the challenge can be found in the instructions section at t
 
 All user stories have been completed. The bonus task was not attempted. 
 
-## Getting Started
+## Running the App
 
 ### Prerequisites
 
