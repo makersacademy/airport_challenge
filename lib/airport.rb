@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'plane'
 require_relative 'weather'
 
+# to create new airport instances with all associated functionality
 class Airport
   DEFAULT_CAPACITY = 10
 

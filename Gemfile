@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'rubocop', '0.60.0'
+ruby '2.6.0'
 
-group :test do
-  gem 'rspec'
-  gem 'simplecov', require: false
-  gem 'simplecov-console', require: false
-end
+gem 'rspec'
+gem 'rubocop'
+gem 'simplecov'
+gem 'simplecov-console'
