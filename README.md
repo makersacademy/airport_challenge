@@ -1,9 +1,6 @@
+# Airport Challenge
 
-
-Airport Challenge
-=================
-
-This project is an application to control the landing and takeoff of planes from an airport.
+Makers Week 1 (Friday) - This project is an application to control the landing and takeoff of planes from an airport.
 
 ## Getting started
 
