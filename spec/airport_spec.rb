@@ -18,6 +18,12 @@ describe Airport do
       expect(subject.land_plane(plane)).to eq [plane]
     end
 
+    it "prevents a plane from landing if its hangar is full" do
+      airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times { airport.land_plane(Plane.new) }
+      expect { airport.land_plane(Plane.new) }.to raise_error "Airport full"
+    end
+
   end
 
   context "getting a plane to take-off" do

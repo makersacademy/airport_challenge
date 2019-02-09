@@ -9,12 +9,18 @@ class Airport
     @capacity = capacity
   end
 
-  def land_plane(plane)
+  def land_plane(plane)   
+    raise "Airport full" if full?
+
     @hangar.push(plane)
   end
 
   def takeoff_plane
     @hangar.pop
+  end
+
+  def full?
+    @hangar.count >= capacity
   end
 
 end
