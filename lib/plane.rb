@@ -7,23 +7,18 @@ class Plane
   end
 
   def land(airport)
-    raise "already landed" unless flying?
+    raise "already landed" unless @flying
 
     @airport = airport
     @flying = false
   end
 
   def take_off(airport)
-    raise "already flying" if flying?
+    raise "already flying" if @flying
     raise "plane not at airport" if @airport != airport
 
     @airport = nil
     @flying = true
   end
 
-private
-
-  def flying?
-    @flying
-  end
 end

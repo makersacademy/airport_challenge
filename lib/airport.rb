@@ -11,12 +11,17 @@ class Airport
   def land(plane)
     raise "airport full" if full?
 
+    plane.land(self)
     @planes.push(plane) if check_weather != BAD_WEATHER
   end
 
   def take_off(plane)
     return "bad weather: plane has not left" if check_weather == BAD_WEATHER
 
+    plane.take_off(self)
+
+    raise "plane has not left" if plane.airport == self
+    
     @planes.delete(plane)
     return "plane has left"
   end

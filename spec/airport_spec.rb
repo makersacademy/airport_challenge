@@ -30,8 +30,8 @@ describe Airport do
   it "can instruct a plane to take off in good weather" do
     airport = Airport.new
     plane = Plane.new
-    airport.land(plane)
     allow(airport).to receive(:check_weather) { 2 }
+    airport.land(plane)
     expect(airport.take_off(plane)).to eq("plane has left")
     expect(airport.planes).not_to include(plane)
   end
@@ -39,10 +39,21 @@ describe Airport do
   it "prevents take off if weather is stormy" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:check_weather) { 2 }
     airport.land(plane)
 
     allow(airport).to receive(:check_weather) { 1 }
     expect(airport.take_off(plane)).to eq("bad weather: plane has not left")
+    expect(airport.planes).to include(plane)
+  end
+
+  it "can check that a plane has left the airport after instructing to take off" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:check_weather) { 2 }
+    airport.land(plane)
+    allow(plane).to receive(:take_off) {}
+    expect { airport.take_off(plane) }.to raise_error "plane has not left"
     expect(airport.planes).to include(plane)
   end
 
