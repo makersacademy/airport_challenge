@@ -52,4 +52,15 @@ describe Plane do
     expect {plane.land(airport)}.to raise_error("The weather is stormy")
   end
 
+  it "when the airport is full(with 1 capacity), no airplane is allowed to land" do
+    plane = Plane.new()
+    airport = Airport.new()
+    plane2 = Plane.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
+    plane.land(airport)
+    expect {plane2.land(airport)}.to raise_error("The airport is full.")
+
+
+  end
+
 end

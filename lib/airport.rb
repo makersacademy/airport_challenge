@@ -23,4 +23,8 @@ class Airport
     end
   end
 
+  def is_full?
+    @planes.size ==1? true:false
+  end
+
 end
