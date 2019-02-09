@@ -4,13 +4,14 @@ describe Plane do
     plane = Plane.new()
   end
 
-  it "A plane is able to land in an airport." do
+  it "A plane is able to land in an airport,when the weather is sunny." do
     plane = Plane.new()
     airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
     plane.land(airport)
   end
 
-  it "A plane is able to take off from an airport." do
+  it "A plane is able to take off from an airport when the weather is good." do
     plane = Plane.new()
     airport = Airport.new()
     allow(airport).to receive(:weather_conditions){"sunny"}
@@ -20,6 +21,7 @@ describe Plane do
   it " When a plane has landed in the airport, it is  in airport." do
     plane = Plane.new()
     airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
     plane.land(airport)
     expect(plane.is_in?(airport)).to eq true
 
@@ -28,6 +30,7 @@ describe Plane do
   it "when a plane has taken off the airport, it is not in airport anymore." do
     plane = Plane.new()
     airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
     plane.land(airport)
     allow(airport).to receive(:weather_conditions){"sunny"}
     plane.take_off(airport)
@@ -40,6 +43,13 @@ describe Plane do
     allow(airport).to receive(:weather_conditions){"stormy"}
     expect {plane.take_off(airport)}.to raise_error("The weather is stormy")
 
+  end
+
+  it "When the weather is stormy, the plane is not allowed to land." do
+    plane = Plane.new()
+    airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"stormy"}
+    expect {plane.land(airport)}.to raise_error("The weather is stormy")
   end
 
 end
