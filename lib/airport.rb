@@ -1,8 +1,8 @@
 class Airport
 
-  def initialize(capacity, weather)
-    # capacity = capacity
-    # weather = weather
+  def initialize
+    @planes = []
   end
+
 
 end
