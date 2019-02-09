@@ -14,6 +14,7 @@ end
 
 it 'reports that a plane has taken off' do
   plane = Plane.new
+  subject.land(plane)
   expect(subject.report(plane)).to eq true
 end
 
