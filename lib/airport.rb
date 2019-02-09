@@ -1,2 +1,7 @@
 class Airport
-end 
+
+def land
+  true
+end
+
+end
