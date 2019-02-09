@@ -9,11 +9,11 @@ describe Airport do
   expect(subject).to respond_to :land
   end
 
-  it 'lets a plane land and returns that plane' do
-    p = Plane.new
+  it 'lets a plane land, adds that plane to the array and returns it' do
     a = Airport.new
+    p = Plane.new
     a.land(p)
-    expect(subject.land(p)).to eq p
+    expect(subject.land(p)).to eq subject.planes
   end
 
 end
