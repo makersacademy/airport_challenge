@@ -1,4 +1,8 @@
 class Plane
-  def land
+  attr_reader :airport
+
+  def land(airport)
+    @airport = airport
   end
+  
 end

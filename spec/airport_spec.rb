@@ -20,6 +20,7 @@ describe Airport do
 
   it "prevents landing if airport is full" do
     airport = Airport.new
+    allow(airport).to receive(:check_weather) { 2 }
     airport.capacity.times { airport.land(Plane.new) }
     plane = Plane.new
     expect { airport.land(plane) }.to raise_error("airport full")
