@@ -3,4 +3,10 @@ describe Plane do
   it "Making a plane in possible" do
     plane = Plane.new()
   end
+
+  it "A plane is able to land in an airport." do
+    plane = Plane.new()
+    airport = Airport.new()
+    plane.land(airport)
+  end
 end
