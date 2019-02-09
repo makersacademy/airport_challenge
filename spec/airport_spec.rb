@@ -2,6 +2,11 @@ require "./lib/airport"
 
 describe Airport do
 
+  it "is created with a default plane capacity that can be overriden upon creation" do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
+  end
+
   context "landing a plane" do
 
     it "responds to #land_plane" do
@@ -27,6 +32,9 @@ describe Airport do
       plane = subject.takeoff_plane
       expect(subject.hangar).not_to include plane
     end
+
+    # it "it prevents a plane from taking-off when the weather is stormy" do
+    # end
 
   end
 
