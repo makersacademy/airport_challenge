@@ -13,8 +13,6 @@ describe Airport do
     expect(subject.hangared?(plane)).to be true
   end
 
-  
-
   context "landing a plane" do
 
     it "responds to #land_plane" do
@@ -43,7 +41,7 @@ describe Airport do
   context "getting a plane to take-off" do
 
     it "responds to #takeoff" do
-      expect(subject).to respond_to :takeoff
+      expect(subject).to respond_to(:takeoff).with(1).argument
     end
 
     it "allows a plane to take-off from its hangar and confirm it is no longer in the airport" do
@@ -51,7 +49,7 @@ describe Airport do
       subject.land(plane)
       allow(subject).to receive(:stormy?).and_return(false) # force stormy weather to be false
       subject.takeoff(plane)
-      expect(subject.hangar).not_to include plane # refactor to use eql []
+      expect(subject.hangar).not_to include plane
     end
 
     it "it prevents a plane from taking-off when the weather is stormy" do
