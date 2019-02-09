@@ -13,6 +13,23 @@ describe Airport do
     expect(subject.hangared?(plane)).to be true
   end
 
+  it "responds to #stormy" do
+    expect(subject).to respond_to :stormy?
+  end
+
+  it "responds to #full?" do
+    expect(subject).to respond_to :full?
+  end
+
+  it "responds to #hangared? with one argument" do
+    expect(subject).to respond_to(:hangared?).with(1).argument
+  end
+
+  it "#stormy? returns true when stormy" do
+    allow(subject).to receive(:stormy?).and_return(true) # force stormy weather to be true
+    expect(subject.stormy?).to eq true
+  end
+
   context "landing a plane" do
 
     it "responds to #land_plane" do
