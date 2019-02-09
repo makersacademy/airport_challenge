@@ -9,16 +9,16 @@ class Airport
     @capacity = capacity
   end
 
-  def land_plane(plane)   
+  def land(plane)   
     raise "Airport full" if full?
 
     @hangar.push(plane)
   end
 
-  def takeoff_plane
+  def takeoff(plane)
     raise "Cannot take-off; weather is stormy" if stormy?
 
-    @hangar.pop
+    @hangar.delete(plane)
   end
 
   def full?
