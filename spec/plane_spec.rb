@@ -13,6 +13,7 @@ describe Plane do
   it "A plane is able to take off from an airport." do
     plane = Plane.new()
     airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
     plane.take_off(airport)
   end
 
@@ -28,8 +29,17 @@ describe Plane do
     plane = Plane.new()
     airport = Airport.new()
     plane.land(airport)
+    allow(airport).to receive(:weather_conditions){"sunny"}
     plane.take_off(airport)
     expect(plane.is_in?(airport)).to eq false
+  end
+
+  it "When the weather is stormy, the planes are not allowed to take_off." do
+    plane = Plane.new()
+    airport = Airport.new()
+    allow(airport).to receive(:weather_conditions){"stormy"}
+    expect {plane.take_off(airport)}.to raise_error("The weather is stormy")
+
   end
 
 end

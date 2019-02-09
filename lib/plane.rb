@@ -4,10 +4,16 @@ class Plane
   end
 
   def take_off(airport)
-    airport.delete_plane(self)
+    if airport.weather_conditions == "stormy"
+      raise "The weather is stormy"
+    else
+      airport.planes.delete(self)
+    end
+
   end
 
   def is_in?(airport)
     airport.planes.include?(self)?true:false
   end
+
 end

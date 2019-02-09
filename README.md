@@ -138,6 +138,8 @@ irb:
 
     plane = Plane.new()
 
+    plane.land(airport)
+
     plane.take_off(airport)
 
     plane.is_in?(airport) """" we suppose to take a false after the plane is taken off the airport.""""

@@ -13,4 +13,8 @@ class Airport
     planes.delete(plane)
   end
 
+  def weather_conditions()
+    rand(2)==0?"stormy":"sunny"
+  end
+
 end
