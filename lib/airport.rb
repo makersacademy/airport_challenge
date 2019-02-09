@@ -17,4 +17,10 @@ class Airport
     rand(2)==0?"stormy":"sunny"
   end
 
+  def bad_weather_error
+    if weather_conditions == "stormy"
+      raise "The weather is stormy"
+    end
+  end
+
 end
