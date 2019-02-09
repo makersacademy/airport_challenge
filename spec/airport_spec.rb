@@ -16,7 +16,7 @@ describe Airport do
   context "landing a plane" do
 
     it "responds to #land_plane" do
-      expect(subject).to respond_to :land
+      expect(subject).to respond_to(:land).with(1).argument
     end
 
     it "lands a plane and stores it in its hangar" do
