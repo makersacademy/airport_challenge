@@ -9,12 +9,11 @@ describe Airport do
     expect(subject).to respond_to :land
   end
 
-# describe '#land' do
   it 'lets a plane land, adds that plane to the array and returns it' do
-    p a = Airport.new
-    p p = Plane.new
-    p a.land(p)
-    p expect(subject.land(p)).to eq subject.planes
+    a = Airport.new
+    p = Plane.new
+    a.land(p)
+    expect(subject.land(p)).to eq subject.planes
   end
 
   it 'raises an error if the airport is full' do
@@ -23,15 +22,14 @@ describe Airport do
     5.times{a.land(p)}
     expect { a.land(p)}.to raise_error(ArgumentError, "Airport is full")
   end
-# end
 
   it { is_expected.to respond_to :takeoff }
 
   describe '#takeoff' do
     it 'lets a plane takeoff, removes that plane from the array and returns that plane' do
-    p a = Airport.new
-    p p = Plane.new
-    p subject.land(p)
+    a = Airport.new
+    p = Plane.new
+    subject.land(p)
     expect(subject.takeoff(p)).to eq p
     # and to output("Plane has left the airport").to_stdout
    end

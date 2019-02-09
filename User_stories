@@ -30,9 +30,7 @@ if stormy, then end
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
-
-5) if @planes.size == DEFAULT_CAPACITY
-raise ArguementError = airport is full
+COMPLETED
 
 
 As the system designer
