@@ -9,4 +9,11 @@ describe Airport do
   expect(subject).to respond_to :land
   end
 
+  it 'lets a plane land and returns that plane' do
+    p = Plane.new
+    a = Airport.new
+    a.land(p)
+    expect(subject.land(p)).to eq p
+  end
+
 end
