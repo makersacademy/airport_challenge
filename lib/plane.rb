@@ -7,6 +7,8 @@ class Plane
   end
 
   def land(airport)
+    raise "already landed" unless flying?
+
     @airport = airport
     @flying = false
   end

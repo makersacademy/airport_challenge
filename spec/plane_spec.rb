@@ -14,6 +14,13 @@ describe Plane do
     expect(plane.airport).to eq(airport)
   end
 
+  it "cannot land if it is already landed" do
+    plane = Plane.new
+    airport = Airport.new
+    plane.land(airport)
+    expect { plane.land(airport) }.to raise_error("already landed")
+  end
+
   it "can take off from an airport it is in" do
     plane = Plane.new
     airport = Airport.new
