@@ -11,9 +11,13 @@ class Airport
   end
 
   def takeoff
-    if @at_airport.length>0
-       @at_airport.shift[-1]
-       @at_airport.length
+    if @at_airport.length.positive?
+      @at_airport.shift[-1]
+      @at_airport.length
     end
   end
+
+  def stormy
+  end
+
 end

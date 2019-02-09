@@ -9,15 +9,18 @@ describe Airport do
   it 'takes off from airport' do
     puts "-----"
     airport = Airport.new
-    airport.landing("plane1")
+    airport.landing("plane")
     x = airport.at_airport.length
     puts x
-    if x>0
-    expect(airport.takeoff).to eq(x-1)
+    if x > 0
+      expect(airport.takeoff).to eq(x - 1)
     else
       fail "No planes at airport"
     end
-
-
   end
+
+  it 'ground planes when stormy' do
+    puts "-----"
+  end
+
 end
