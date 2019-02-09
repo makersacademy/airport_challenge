@@ -14,7 +14,7 @@ class Airport
   end
 
   def full?
-    @planes.length == @capacity ? true : false
+    @planes.length == @capacity
   end
 
   def land_plane(plane)
@@ -25,7 +25,9 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.pop
+    raise "This plane did not land at this airport" unless @planes.index(plane)
+    
+    @planes.delete(plane)
   end
 
 end
