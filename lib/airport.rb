@@ -8,12 +8,11 @@ attr_reader :planes
     @planes = []
   end
 
-def land(plane)
-  @planes << plane
-end
+  def land(plane)
+     @planes << plane
+  end
 
-def takeoff(plane)
-end
-
-
+  def takeoff(*)
+     @planes.pop()
+  end
 end
