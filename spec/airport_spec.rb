@@ -7,6 +7,14 @@ describe Airport do
     expect(airport.capacity).to eq 10
   end
 
+  it "returns true if a given plane is hanagred" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.hangared?(plane)).to be true
+  end
+
+  
+
   context "landing a plane" do
 
     it "responds to #land_plane" do
@@ -58,8 +66,6 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false) # force stormy weather to be false
       expect { subject.takeoff(plane) }.to raise_error "Plane is not hanagared at this airport"
     end
-
-    pending "does not allow an in-flight plane to take-off"
 
   end
 
