@@ -46,13 +46,26 @@ describe Airport do
     expect { airport.land_plane(plane) }.to raise_error "Weather does not allow landing"
   end
 
-  it 'ensures that a plane can take off from the airport if had landed there in the first place' do
+  it 'ensures that a plane can take off from the airport if it had landed there in the first place' do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:weathergood?) { true }
     airport.land_plane(plane)
     another_plane = Plane.new
     expect { airport.take_off(another_plane) }.to raise_error "This plane did not land at this airport"
-    
+
   end
+
+  it 'ensures that a plane can take off from the airport if it had landed there in the first place' do
+    airport = Airport.new
+    plane = Plane.new
+    another_plane = Plane.new
+    allow(airport).to receive(:weathergood?) { true }
+    airport.land_plane(plane)
+    airport.land_plane(another_plane)
+    expect(airport.take_off(plane)).to equal plane
+    expect(airport.planes).not_to include(plane)
+
+  end
+
 end
