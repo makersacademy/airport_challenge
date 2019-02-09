@@ -5,4 +5,8 @@ describe Airport do
     Airport.new
   end
 
+  it 'responds to land command to let a plane land' do
+  expect(subject).to respond_to :land
+  end
+
 end

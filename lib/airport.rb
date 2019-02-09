@@ -4,5 +4,8 @@ class Airport
     @planes = []
   end
 
+def land
+end
+
 
 end
