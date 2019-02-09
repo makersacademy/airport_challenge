@@ -34,6 +34,10 @@ describe Airport do
     expect(subject.hangar).to be_a Array
   end
 
+  it "should have a default capacity set" do
+    expect(Airport::DEFAULT_CAPACITY).to be_a Integer
+  end
+
   context "landing a plane" do
 
     it "responds to #land_plane" do
