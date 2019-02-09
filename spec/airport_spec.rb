@@ -24,6 +24,12 @@ describe Airport do
       expect { airport.land(Plane.new) }.to raise_error "Airport full"
     end
 
+    it "does not allow a plane to be landed twice" do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane alredy landed here"
+    end
+
   end
 
   context "getting a plane to take-off" do
@@ -41,10 +47,19 @@ describe Airport do
     end
 
     it "it prevents a plane from taking-off when the weather is stormy" do
-      subject.land(Plane.new)
+      plane = Plane.new
+      subject.land(plane)
       allow(subject).to receive(:stormy?).and_return(true) # force stormy weather to be true
-      expect { subject.takeoff(Plane.new) }.to raise_error "Cannot take-off; weather is stormy"
+      expect { subject.takeoff(plane) }.to raise_error "Cannot take-off; weather is stormy"
     end
+
+    it "allows take-off only for planes in its hangar" do
+      plane = Plane.new
+      allow(subject).to receive(:stormy?).and_return(false) # force stormy weather to be false
+      expect { subject.takeoff(plane) }.to raise_error "Plane is not hanagared at this airport"
+    end
+
+    pending "does not allow an in-flight plane to take-off"
 
   end
 

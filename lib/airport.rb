@@ -9,13 +9,15 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)   
+  def land(plane)
+    raise "Plane alredy landed here" if hangared?(plane)
     raise "Airport full" if full?
 
     @hangar.push(plane)
   end
 
   def takeoff(plane)
+    raise "Plane is not hanagared at this airport" unless hangared?(plane)
     raise "Cannot take-off; weather is stormy" if stormy?
 
     @hangar.delete(plane)
@@ -23,6 +25,10 @@ class Airport
 
   def full?
     @hangar.count >= capacity
+  end
+
+  def hangared?(plane)
+    @hangar.include?(plane)
   end
 
   def stormy?
