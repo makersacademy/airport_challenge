@@ -33,6 +33,13 @@ it 'prevents takeoff in stormy weather' do
   airport.weather = "stormy"
   airport.take_off(plane)
   expect(airport.report(plane)).to eq false
-
 end
+
+it 'prevents landing in stormy weather' do
+  plane = Plane.new
+  airport = Airport.new("stormy")
+  airport.land(plane)
+  expect(airport.report(plane)).to eq true 
+end
+
 end

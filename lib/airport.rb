@@ -9,7 +9,9 @@ attr_reader :planes_in_airport
  end
 
 def land(plane)
-  @planes_in_airport.push(plane)
+  if @weather == "clear"
+     @planes_in_airport.push(plane)
+  end
 end
 
 def take_off(plane)
