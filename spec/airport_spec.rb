@@ -18,6 +18,14 @@ describe Airport do
       expect(airport.planes).not_to include(plane)
     end
 
+    it "prevents landing if airport is full" do
+      airport = Airport.new
+      airport.capacity.times {airport.land(Plane.new)}
+      plane = Plane.new
+      expect{airport.land(plane)}.to raise_error("airport full")
+      expect(airport.planes).not_to include(plane)
+    end
+
   it "can instruct a plane to take off in good weather" do
     airport = Airport.new
     plane = Plane.new
@@ -36,7 +44,6 @@ describe Airport do
       expect(airport.take_off(plane)).to eq("bad weather: plane has not left")
       expect(airport.planes).to include(plane)
     end
-
 
 
 end

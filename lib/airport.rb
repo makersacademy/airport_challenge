@@ -1,15 +1,18 @@
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
   BAD_WEATHER = 1
+  DEFAULT_CAPACITY = 100
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
+    raise "airport full" if full?
     if check_weather != BAD_WEATHER
       @planes.push(plane)
-    end 
+    end
   end
 
   def take_off(plane)
@@ -25,4 +28,9 @@ class Airport
     rand(100)
   end
 
+private
+
+  def full?
+    @planes.count >= @capacity
+  end
 end
