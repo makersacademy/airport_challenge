@@ -5,9 +5,10 @@ class Airport
   attr_reader :hangar
   attr_writer :size
 
-  def initialize(size = 5)
+  def initialize
+    default_size = 5
     @hangar = []
-    @size = size
+    @size = default_size
   end
 
   def land(plane = Airplane.new)
