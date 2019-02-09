@@ -2,7 +2,6 @@ class Plane
   attr_reader :airport
 
   def initialize
-    @airport = nil
     @flying = true
   end
 
