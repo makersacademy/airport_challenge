@@ -129,3 +129,15 @@ irb:
     plane.take_off(airport)
 
 '''    
+
+    require "./lib/airport.rb"
+
+    require "./lib/plane.rb"
+
+    airport = Airport.new()
+
+    plane = Plane.new()
+
+    plane.take_off(airport)
+
+    plane.is_in?(airport) """" we suppose to take a false after the plane is taken off the airport.""""
