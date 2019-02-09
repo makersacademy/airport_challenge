@@ -26,7 +26,8 @@ class Airport
 
   def take_off(plane)
     raise "This plane did not land at this airport" unless @planes.index(plane)
-    
+
+    plane.fly
     @planes.delete(plane)
   end
 
