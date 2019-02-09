@@ -1,4 +1,5 @@
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 class Airport
   attr_reader :planes
   DEFAULT_CAPACITY = 20
@@ -7,8 +8,14 @@ class Airport
     @capacity = capacity
   end
 
+  def weathergood?
+    weather = Weather.new
+    weather.state
+  end
+
   def land_plane(plane)
     raise "The airport is full" if @planes.length == @capacity
+    raise "Weather does not allow landing" unless weathergood?
 
     @planes << plane
   end
