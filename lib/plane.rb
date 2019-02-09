@@ -1,11 +1,8 @@
 class Plane
   def land(airport)
     airport.bad_weather_error
-    if airport.is_full?
-      raise "The airport is full."
-    else
-      airport.add_plane(self)
-    end
+    airport.airport_full
+    airport.add_plane(self)
   end
 
   def take_off(airport)

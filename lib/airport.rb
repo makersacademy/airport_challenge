@@ -27,4 +27,10 @@ class Airport
     @planes.size ==1? true:false
   end
 
+  def airport_full
+    if is_full?
+      raise "The airport is full."
+    end
+  end
+
 end
