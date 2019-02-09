@@ -13,8 +13,12 @@ class Airport
     weather.state
   end
 
+  def full?
+    @planes.length == @capacity ? true : false
+  end
+
   def land_plane(plane)
-    raise "The airport is full" if @planes.length == @capacity
+    raise "The airport is full" if full?
     raise "Weather does not allow landing" unless weathergood?
 
     @planes << plane
