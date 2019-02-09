@@ -1,6 +1,15 @@
 class Airport
 
-def land
+
+def land(plane)
+  true
+end
+
+def take_off(plane)
+  true
+end
+
+def report(plane)
   true
 end
 

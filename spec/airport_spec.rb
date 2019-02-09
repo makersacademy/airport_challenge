@@ -2,12 +2,19 @@ require 'airport'
 
 describe Airport do
 
-it 'responds to land' do
-  expect(subject).to respond_to :land
+it 'instructs a plane to land' do
+  plane = Plane.new
+  expect(subject.land(plane)).to eq true
 end
 
-it 'instructs a plane to land' do
-  expect(subject.land).to eq true 
+it 'instructs plane to take off' do
+  plane = Plane.new
+  expect(subject.take_off(plane)).to eq true
+end
+
+it 'reports that a plane has taken off' do
+  plane = Plane.new
+  expect(subject.report(plane)).to eq true
 end
 
 end
