@@ -26,7 +26,13 @@ it 'reports that a plane has taken off' do
 end
 
 it 'prevents takeoff in stormy weather' do
-plane = Plane.new
+
+  plane = Plane.new
+  airport = Airport.new("clear")
+  airport.land(plane)
+  airport.weather = "stormy"
+  airport.take_off(plane)
+  expect(airport.report(plane)).to eq false
 
 end
 end
