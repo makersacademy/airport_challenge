@@ -14,5 +14,6 @@ attr_reader :planes
 
   def takeoff(*)
      @planes.pop()
+    # print "Plane has left the airport"
   end
 end

@@ -18,11 +18,14 @@ describe Airport do
 
   it { is_expected.to respond_to :takeoff }
 
-  it 'lets a plane takeoff, removes that plane from the array and returns that plane' do
+  describe '#takeoff' do
+    it 'lets a plane takeoff, removes that plane from the array and returns that plane' do
     p a = Airport.new
     p p = Plane.new
     p subject.land(p)
     expect(subject.takeoff(p)).to eq p
-  end
+    # and to output("Plane has left the airport").to_stdout
+   end
+end
 
 end
