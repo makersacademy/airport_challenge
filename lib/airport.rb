@@ -16,11 +16,17 @@ class Airport
   end
 
   def takeoff_plane
+    raise "Cannot take-off; weather is stormy" if stormy?
+
     @hangar.pop
   end
 
   def full?
     @hangar.count >= capacity
+  end
+
+  def stormy?
+    [true, false, false, false, false].sample
   end
 
 end

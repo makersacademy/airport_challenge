@@ -35,12 +35,16 @@ describe Airport do
     it "allows a plane to take-off from its hangar and confirm it is no longer in the airport" do
       plane = Plane.new
       subject.land_plane(plane)
+      allow(subject).to receive(:stormy?).and_return(false) # force stormy weather to be false
       plane = subject.takeoff_plane
       expect(subject.hangar).not_to include plane
     end
 
-    # it "it prevents a plane from taking-off when the weather is stormy" do
-    # end
+    it "it prevents a plane from taking-off when the weather is stormy" do
+      subject.land_plane(Plane.new)
+      allow(subject).to receive(:stormy?).and_return(true) # force stormy weather to be true
+      expect { subject.takeoff_plane }.to raise_error "Cannot take-off; weather is stormy"
+    end
 
   end
 
