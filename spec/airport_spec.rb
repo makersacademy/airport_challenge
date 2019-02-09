@@ -30,6 +30,10 @@ describe Airport do
     expect(subject.stormy?).to eq true
   end
 
+  it "returns an array when asked for the hangar's contents" do
+    expect(subject.hangar).to be_a Array
+  end
+
   context "landing a plane" do
 
     it "responds to #land_plane" do
