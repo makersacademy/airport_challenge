@@ -43,3 +43,10 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+Approach
+--------
+- Used the user stories to create a class diagram.
+- Used a TDD approach to write unit tests for the code.
+- Try to pass the tests.
+- Refactored my code.
