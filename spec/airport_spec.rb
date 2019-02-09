@@ -13,14 +13,32 @@ describe Airport do
     x = airport.at_airport.length
     puts x
     if x > 0
-      expect(airport.takeoff).to eq(x - 1)
+      expect(airport.takeoff("plane")).to eq(x - 1)
     else
       fail "No planes at airport"
     end
   end
 
-  it 'ground planes when stormy' do
+  it 'cannot takeoff when stormy' do
     puts "-----"
+    airport = Airport.new
+    airport.landing("plane333")
+    airport.stormy
+    if airport.stormy == true
+      expect(airport.takeoff("plane333")).to eq("Too stormy!")
+    end
+    puts airport.takeoff("plane333")
+
+  end
+
+  it "cannot land when stormy" do
+    puts "-----"
+    airport = Airport.new
+    airport.stormy
+    if airport.stormy == true
+      expect(airport.landing("plane123")).to eq("Too stormy!")
+    end
+    puts airport.landing("plane123")
   end
 
 end

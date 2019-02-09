@@ -4,20 +4,29 @@ class Airport
     @at_airport = []
   end
 
-  def landing(plane)
-    @at_airport.push(plane)
-    puts @at_airport
-    plane
+  def stormy
+    @stormy = true
   end
 
-  def takeoff
-    if @at_airport.length.positive?
-      @at_airport.shift[-1]
-      @at_airport.length
+  def landing(plane)
+    if @stormy == true
+      "Too stormy!"
+    else
+      @at_airport.push(plane)
+      print @at_airport
+      plane
     end
   end
 
-  def stormy
+  def takeoff(plane)
+    if @stormy == true
+      "Too stormy!"
+    else
+      @at_airport.length.positive?
+      @at_airport.shift[plane]
+      @at_airport.length
+    end
+
   end
 
 end
