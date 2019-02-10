@@ -17,4 +17,10 @@ describe Airport do
     airport = Airport.new
     expect(airport).to respond_to(:weather)
   end
+
+  it "doesn't takeoff if weather is stormy" do
+    airport = Airport.new
+    allow(airport).to receive(:weather) {"stormy"}
+    expect{airport.takeoff}.to raise_error
+  end
 end

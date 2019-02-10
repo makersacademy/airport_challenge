@@ -10,6 +10,10 @@ class Airport
   end
 
   def takeoff
+    weather
+    if weather == "stormy"
+      fail "Cannot takeoff during storms"
+    end
     @planes.pop
   end
 
