@@ -4,6 +4,7 @@ describe Plane do
   it 'can land at a stated airport' do
     plane = Plane.new
     airport = Airport.new
+    allow(airport).to receive(:stormy?) { false }
     plane.land(airport)
     expect(airport.planes).to include(plane)
   end

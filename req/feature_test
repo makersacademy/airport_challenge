@@ -36,3 +36,15 @@ airport.land_plane(plane)
 airport.takeoff_plane(plane)
 
 => Expect error if weather is stormy
+
+#As an air traffic controller
+#To ensure safety
+#I want to prevent landing when weather is stormy
+
+irb
+require './lib/airport.rb'
+plane = Plane.new
+airport = Airport.new
+airport.land_plane(plane)
+
+=> Expect error if weather is stormy
