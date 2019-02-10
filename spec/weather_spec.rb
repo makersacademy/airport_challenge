@@ -8,12 +8,12 @@ describe Weather do
   end
 
   it "must return false if weather status is not stormy " do
-    weather = Weather.new 
+    weather = Weather.new
     expect(weather.stormy?).to eq false
   end
 
   it "must return true if weather status is stormy " do
-    weather = Weather.new(true)
+    weather = Weather.new("Stormy")
     expect(weather.stormy?).to eq true
   end
 

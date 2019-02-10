@@ -9,8 +9,8 @@ class Plane
   end
 
  # Note that condiion can be any condition that prevents landing
-  def land(condition)
-    if condition
+  def land(bad_condition)
+    if bad_condition
       p "Landing aborted"
       @airbourne = true
       false
@@ -21,8 +21,8 @@ class Plane
     end
   end
 
-  def takeoff(condition)
-    if condition
+  def takeoff(bad_condition)
+    if bad_condition
       @airbourne = false
       p "Take off aborted"
     else

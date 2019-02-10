@@ -11,36 +11,31 @@ describe Plane do
 
   it "the plane must be able to receive the message to land" do
     plane = Plane.new
-    stormy = false
-    weather = Weather.new(stormy)
+    weather = Weather.new
     expect(plane.land(weather.stormy?)).to eq true
   end
 
   it "the plane must be able to receive the message to takeoff" do
     plane = Plane.new
-    stormy = false
-    weather = Weather.new(stormy)
+    weather = Weather.new
     expect(plane.takeoff(weather.stormy?)).to eq true
   end
 
   it "the plane must confirm it is in the air after takeoff" do
     plane = Plane.new
-    stormy = false
-    weather = Weather.new(stormy)
+    weather = Weather.new
     expect(plane.takeoff(weather.stormy?)).to eq true
   end
 
   it "must not take off if weather status is stormy " do
     plane = Plane.new
-    stormy = true
-    weather = Weather.new(stormy)
+    weather = Weather.new("Stormy")
     expect(plane.takeoff(weather.stormy?)).to eq false 
   end
 
   it "must not land if weather status is stormy " do
     plane = Plane.new
-    stormy = true
-    weather = Weather.new(stormy)
+    weather = Weather.new("Stormy")
     expect(plane.land(weather.stormy?)).to eq false 
   end
 

@@ -2,14 +2,14 @@
 
 class Weather
  
-  attr_writer :stormy
+  attr_writer :condition
+  # weather_conditions = ["Sunny", "Cloudy", "Stormy", "Raining", "Snowing"]
 
-  def initialize(stormy = false)
-    @stormy = stormy
+  def initialize(condition = "Sunny")
+    @condition = condition
   end
 
   def stormy?
-    @stormy
+    @condition.eql?("Stormy") ? true : false
   end
-
 end
