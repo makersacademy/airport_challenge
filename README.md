@@ -1,3 +1,37 @@
+
+This project is the Makers week 1 weekend challenge.  (Details, including user stories, below.)
+It implements an airport which can instruct planes to land and take-off, as long as the weather is not stormy.
+
+Example:
+========
+
+```
+$ irb
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > a747 = Plane.new
+ => #<Plane:0x00007ff598023790 @flying=true>
+2.5.0 :003 > gatwick = Airport.new
+ => #<Airport:0x00007ff59801a898 @planes=[], @capacity=100>
+2.5.0 :004 > gatwick.land(a747)
+ => [#<Plane:0x00007ff598023790 @flying=false, @airport=#<Airport:0x00007ff59801a898 @planes=[...], @capacity=100>>]
+2.5.0 :005 > gatwick.take_off(a747)
+ => "plane has left"
+2.5.0 :006 >
+```
+
+Approach
+========
+
+The project was developed using TDD, building up a user story at a time, writing a feature test and then repeatedly writing a unit test (followed by code to make it pass) until there was enough code to pass the feature test.  
+It is written in Ruby with Rspec for testing.
+
+Given more time I would...
+==========================
+1. Change the implementation of an airport's weather.  At the moment it gets given weather when created and it never changes (because I was playing with dependency injection).
+2. Write a feature spec using Rspec.
+
+
 Airport Challenge
 =================
 
@@ -36,25 +70,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +107,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
