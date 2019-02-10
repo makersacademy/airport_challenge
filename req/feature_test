@@ -48,3 +48,17 @@ airport = Airport.new('Heathrow')
 airport.land_plane(plane)
 
 => Expect error if weather is stormy
+
+#As an air traffic controller
+#To ensure safety
+#I want to prevent landing when the airport is full
+
+irb
+require './lib/airport.rb'
+plane = Plane.new
+plane2 = Plane.new
+airport = Airport.new('Heathrow')
+airport.land_plane(plane)
+airport.land_plane(plane2)
+
+=> Expect to see an error that airport is full.

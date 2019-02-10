@@ -1,6 +1,7 @@
 require_relative 'plane.rb'
 
 class Airport
+  CAPACITY = 1
   attr_reader :planes, :airport_name
   def initialize(airport)
     @planes = []
@@ -9,6 +10,8 @@ class Airport
 
   def land_plane(plane)
     fail "We can't land as it is stormy" if stormy?
+
+    fail "We can't land as the airport is full" if full?
 
     plane.location = @airport_name
     @planes << plane
@@ -25,8 +28,19 @@ class Airport
 
 private
   def stormy?
-    weather = rand(0..1)
-    true if weather.zero?
-    false
+    weather = rand(1..2)
+    if weather == 1
+      true
+    else
+      false
+    end
+  end
+
+  def full?
+    if @planes.count >= CAPACITY
+      true
+    else
+      false
+    end
   end
 end

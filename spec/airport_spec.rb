@@ -5,6 +5,7 @@ describe Airport do
   it 'can land a plane' do
     plane = Plane.new
     airport = Airport.new('Heathrow')
+    allow(airport).to receive(:stormy?) { false }
     airport.land_plane(plane)
     expect(airport.planes).to include(plane)
   end
@@ -12,6 +13,7 @@ describe Airport do
   it 'can allow a plane to takeoff' do
     plane = Plane.new
     airport = Airport.new('Heathrow')
+    allow(airport).to receive(:stormy?) { false }
     airport.land_plane(plane)
     allow(airport).to receive(:stormy?) { false }
     airport.takeoff_plane(plane)
@@ -31,5 +33,15 @@ describe Airport do
     airport = Airport.new('Heathrow')
     allow(airport).to receive(:stormy?) { true }
     expect { airport.land_plane(plane) }.to raise_error("We can't land as it is stormy")
+  end
+
+  it 'It will not allow a plane to land if the airport is full' do
+    plane = Plane.new
+    plane2 = Plane.new
+    airport = Airport.new('Heathrow')
+    allow(airport).to receive(:stormy?) { false }
+    airport.land_plane(plane)
+    expect { airport.land_plane(plane2) }.to raise_error("We can't land as the airport is full")
+
   end
 end
