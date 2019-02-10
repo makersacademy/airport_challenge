@@ -19,13 +19,20 @@ describe Plane do
     end
 
     it 'should raise exception if attempting to land plane whilst it is on the ground' do
-      @plane = Plane.new(@weather_double)
+      plane = Plane.new(@weather_double)
 
-      expect { @plane.land(@airport_double) }.to raise_error('Plane is already on the ground')
+      expect { plane.land(@airport_double) }.to raise_error('Plane is already on the ground')
     end
 
     it 'should instruct plane to take off and get back confirmation that plane is airborne' do
-      expect(@plane.take_off).to eq(true)
+      is_airborne = false
+      plane = Plane.new(@weather_double, is_airborne)
+
+      expect(plane.take_off).to eq(true)
+    end
+
+    it 'should raise exception if attempting to take off whilst it is airborne' do
+      expect { @plane.take_off }.to raise_error('Plane is already airborne')
     end
   end
 
@@ -36,7 +43,10 @@ describe Plane do
     end
 
     it 'should prevent takeoff when weather is stormy' do
-      expect(@plane.take_off).to eq(false)
+      is_airborne = false
+      plane = Plane.new(@weather_double, is_airborne)
+
+      expect { plane.take_off }.to raise_error('Cannot take off due to stormy weather')
     end
 
     it 'should prevent landing when weather is stormy' do

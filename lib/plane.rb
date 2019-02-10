@@ -12,6 +12,9 @@ class Plane
   end
 
   def take_off
-    !@weather.is_stormy
+    raise 'Plane is already airborne' if @is_airborne
+    raise 'Cannot take off due to stormy weather' if @weather.is_stormy
+
+    @is_airborne = true
   end
 end
