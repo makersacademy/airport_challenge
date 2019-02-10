@@ -36,6 +36,10 @@
 # reason to make things so abbreviated as to be unreadable. These messages are
 # designed to make you write more readable code - not less.
 
+AllCops:
+  Excludes:
+    - 'bin/**'
+
 Metrics/LineLength:
   Max: 100
 
@@ -171,6 +175,8 @@ TrivialAccessors:
 
 # Rubocop doesn't make disabling all cops in a given group easy, so we list...
 AccessModifierIndentation:
+  Enabled: false
+AccessModifierDeclarations:
   Enabled: false
 Alias:
   Enabled: false
