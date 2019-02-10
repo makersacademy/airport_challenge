@@ -62,3 +62,17 @@ airport.land_plane(plane)
 airport.land_plane(plane2)
 
 => Expect to see an error that airport is full.
+
+#As the system designer
+#So that the software can be used for many different airports
+#I would like a default airport capacity that
+#can be overridden as appropriate
+
+irb
+require './lib/airport.rb'
+airport = Airport.new('Heathrow',15)
+airport2 = Airport.new('Gatwick')
+airport.capacity
+airport2.capacity
+
+=> expect 15 and 20

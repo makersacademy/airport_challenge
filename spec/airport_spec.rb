@@ -38,10 +38,16 @@ describe Airport do
   it 'It will not allow a plane to land if the airport is full' do
     plane = Plane.new
     plane2 = Plane.new
-    airport = Airport.new('Heathrow')
+    airport = Airport.new('Heathrow', 1)
     allow(airport).to receive(:stormy?) { false }
     airport.land_plane(plane)
     expect { airport.land_plane(plane2) }.to raise_error("We can't land as the airport is full")
+  end
 
+  it 'Allows the user to set airport capacity at creation' do
+    airport = Airport.new('Heathrow', 15)
+    airport2 = Airport.new('Gatwick')
+    expect(airport.capacity).to eq 15
+    expect(airport2.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 end
