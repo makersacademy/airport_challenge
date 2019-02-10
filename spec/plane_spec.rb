@@ -17,9 +17,15 @@ describe Plane do
 
   it { is_expected.to respond_to :take_off }
 
-  it "knows it's landed after method call" do
+  it "knows it's landed after method call land" do
     lear.land(gatwick)
     expect(lear.status).to eq("Landed.")
+  end
+
+  it "knows it's back in the air after method call take_off" do
+    lear.land(gatwick)
+    lear.take_off
+    expect(lear.status).to eq("Airbourne.")
   end
 
 end
