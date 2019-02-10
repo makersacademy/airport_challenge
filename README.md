@@ -1,14 +1,9 @@
-To do:
-1. Update README
-2. Rspec for feature test
-3. Diode
-4. Refactor weather
 
 This project is the Makers week 1 weekend challenge.  (Details, including user stories, below.)
 It implements an airport which can instruct planes to land and take-off, as long as the weather is not stormy.
 
-Example of how code can be called:
-==================================
+Example:
+========
 
 ```
 $ irb
@@ -31,7 +26,10 @@ Approach
 The project was developed using TDD, building up a user story at a time, writing a feature test and then repeatedly writing a unit test (followed by code to make it pass) until there was enough code to pass the feature test.  
 It is written in Ruby with Rspec for testing.
 
-
+Given more time I would...
+==========================
+1. Change the implementation of an airport's weather.  At the moment it gets given weather when created and it never changes (because I was playing with dependency injection).
+2. Write a feature spec using Rspec.
 
 
 Airport Challenge
