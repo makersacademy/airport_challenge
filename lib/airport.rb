@@ -5,4 +5,9 @@ class Airport
     plane = Plane.new
     plane.plane_landed
   end
+
+  def take_off(plane)
+    plane = Plane.new
+    plane.plane_flying?
+  end
 end
