@@ -1,11 +1,11 @@
 require_relative 'airport'
 
 class Weather
+  SUNNY = 1
+  STORMY = 2
 
   def forecast
-    sunny = 1
-    stormy = 2
-    rand(1..2)
+    rand(SUNNY, STORMY)
   end
 
   # def stormy?
