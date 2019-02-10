@@ -2,7 +2,34 @@ To do:
 1. Update README
 2. Rspec for feature test
 3. Diode
-4. Refactor weather 
+4. Refactor weather
+
+This project is the Makers week 1 weekend challenge.  (Details, including user stories, below.)
+It implements an airport which can instruct planes to land and take-off, as long as the weather is not stormy.
+
+Example of how code can be called:
+==================================
+
+```
+$ irb
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > a747 = Plane.new
+ => #<Plane:0x00007ff598023790 @flying=true>
+2.5.0 :003 > gatwick = Airport.new
+ => #<Airport:0x00007ff59801a898 @planes=[], @capacity=100>
+2.5.0 :004 > gatwick.land(a747)
+ => [#<Plane:0x00007ff598023790 @flying=false, @airport=#<Airport:0x00007ff59801a898 @planes=[...], @capacity=100>>]
+2.5.0 :005 > gatwick.take_off(a747)
+ => "plane has left"
+2.5.0 :006 >
+```
+
+Approach
+========
+
+The project was developed using TDD, building up a user story at a time, writing a feature test and then repeatedly writing a unit test (followed by code to make it pass) until there was enough code to pass the feature test.  
+It is written in Ruby with Rspec for testing.
 
 
 
