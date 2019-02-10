@@ -16,6 +16,10 @@ class Airport
     @planes.pop
     puts "#{plane} has taken off from airport"
   end
-  
+
+  def flying
+    take_off == true
+  end
+
 
 end
