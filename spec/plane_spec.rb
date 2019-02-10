@@ -64,4 +64,13 @@ describe Plane do
     expect(plane.plane_at_another_airport(airport)).to equal true
   end
 
+  it 'does not have an associated landing airport after take off' do
+    plane = Plane.new
+    airport = Airport.new
+    allow(airport).to receive(:weathergood?) { true }
+    plane.land(airport)
+    plane.fly
+    expect(plane.landing_airport).to equal nil
+  end
+
 end

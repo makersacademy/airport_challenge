@@ -16,6 +16,7 @@ describe Airport do
     airport.land_plane(plane)
     expect(airport.take_off(plane)).to be plane
     expect(airport.planes).to be_empty
+    expect(plane.landing_airport).to equal nil
   end
 
   it 'should have a default capacity and raise error if asked to land more planes' do
