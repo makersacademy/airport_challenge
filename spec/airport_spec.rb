@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   it 'is created and stores planes' do
@@ -31,8 +32,11 @@ describe Airport do
     p = Plane.new
     subject.land(p)
     expect(subject.takeoff(p)).to eq p
-    # and to output("Plane has left the airport").to_stdout
    end
 end
+
+  it { is_expected.to respond_to :weather?}
+
+
 
 end
