@@ -1,3 +1,30 @@
+
+
+The current status of this challenge is the following:
+
+------------------------------------------------------------------------
+The results of rspec
+Finished in 0.00388 seconds (files took 0.19891 seconds to load)
+12 examples, 0 failures
+COVERAGE: 100.00% -- 83/83 lines in 6 files
+
+------------------------------------------------------------------------
+The results of rubocop
+Inspecting 9 files
+.........
+9 files inspected, no offenses detected
+
+------------------------------------------------------------------------
+I got to the stage where I needed to write a stub to override random weather conditions.
+I ran out of time looking up stubs.
+
+To Do:
+Test stub
+Edge Cases
+Doubles
+------------------------------------------------------------------------
+Below is the method that I used to get to this point...
+
 My challege is to 
 
 1. Write the unit tests for the following
