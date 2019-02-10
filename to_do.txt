@@ -1,6 +1,13 @@
 add tests to test edge cases:
-- change how planes check status (do through airport, not plane) (method to check if plane still in airport and explicitly search for it in the private array)
-- cannot take off planes if none there
 - test weather output to improve test coverage in file
+
+
+done:
+- cannot take off planes if none there
+- cannot land if plane already there
 - only allow integer to be passed as argument for capacity. If not integer default to 10.
 - can't lower capacity beyond current number of planes
+- remove methods and tests on plane
+
+harder to do:
+- make airport attributes private

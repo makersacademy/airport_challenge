@@ -14,6 +14,13 @@ describe Airport do
       subject.land(new_plane)
       expect(subject.planes_landed).to include(new_plane)
     end
+    it 'returns an error if landed plane is instructed to land (again)' do
+      subject = Airport.new(20)
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
+      new_plane = double('plane')
+      subject.land(new_plane)
+      expect { subject.land(new_plane) }.to raise_error 'plane already landed in airport!'
+    end
   end
 
   describe 'taking off planes' do
@@ -39,6 +46,13 @@ describe Airport do
     subject.land(new_plane)
     subject.take_off(new_plane)
     expect(subject.in_airport?(new_plane)).to eq(false)
+  end
+
+  it 'cannot take off a plane if there are none in the airport' do
+    subject = Airport.new
+    allow(subject.weather).to receive(:stormy_currently?).and_return false
+    new_plane = double('plane')
+    expect { subject.take_off(new_plane) }.to raise_error 'cannot take off, plane not in airport!'
   end
 
   context 'when stormy' do
@@ -88,6 +102,16 @@ describe Airport do
       subject = Airport.new
       subject.edit_capacity = 5
       expect(subject.capacity).to eq(5)
+    end
+
+    it 'stops capacity being reduced to less than current number of planes' do
+      subject = Airport.new(2)
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
+      plane1 = double('plane')
+      subject.land(plane1)
+      plane2 = double('plane')
+      subject.land(plane2)
+      expect { subject.edit_capacity = 1 }.to raise_error 'capacity cannot be lower than current number of planes'
     end
   end
 end
