@@ -10,8 +10,8 @@ class Airport
     @planes << plane
   end
 
-  def takeoff(plane)
-    planes_for_takeoff = @planes.select { |num| num = plane }
+  def takeoff_plane(plane)
+    planes_for_takeoff = @planes.select { plane }
     plane_for_takeoff = planes_for_takeoff.pop
     @planes.delete(plane_for_takeoff)
     return plane_for_takeoff

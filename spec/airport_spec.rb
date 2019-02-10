@@ -13,7 +13,7 @@ describe Airport do
     plane = Plane.new
     airport = Airport.new
     airport.land_plane(plane)
-    airport.takeoff(plane)
+    airport.takeoff_plane(plane)
     expect(airport.planes).to_not include(plane)
   end
 end
