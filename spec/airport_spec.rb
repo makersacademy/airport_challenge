@@ -12,6 +12,25 @@ describe Airport do
     plane = Plane.new
     @airport.land(plane)
     expect(@airport.take_off(plane)).to eq plane
-  end 
+  end
 
+  it "Lets a plane land and takeoff then checks that the plane has left" do
+    plane = Plane.new
+    @airport.land(plane)
+    @airport.take_off(plane)
+    expect(@airport.is_here?(plane)).to eq false
+  end
+
+  it "Dosen't allow planes to takeoff when its stormy" do
+    plane = Plane.new
+    @airport.land(plane)
+    @airport.weather("stormy")
+    expect { raise @airport.take_off(plane) }.to raise_error("The weather is too stormy to take off")
+  end
+
+  it "Dosen't allow planes to land when its stormy" do
+    plane = Plane.new
+    @airport.weather("stormy")
+    expect { @airport.land(plane) }.to raise_error("The weather is too stormy to land")
+  end
 end
