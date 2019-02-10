@@ -35,5 +35,16 @@ describe Airport do
     expect(gatwick.weather).to eq("clear").or eq("stormy")
   end
 
+  it { is_expected.to respond_to :full? }
+
+  it "has a maximum capacity of 20 planes" do
+    expect(gatwick.capacity).to eq(20)
+  end
+
+  it "won't take more than 20 planes" do
+    20.times { Plane.new.land(gatwick) }
+    expect { lear.land(gatwick) }.to raise_error("Airport full.")
+  end
+
 
 end

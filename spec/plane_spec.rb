@@ -44,5 +44,5 @@ describe Plane do
     expect { lear.take_off }.to raise_error("Plane has left the hangar and is in the air.")
   end
 
-  
+
 end

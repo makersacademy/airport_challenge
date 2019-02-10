@@ -2,11 +2,13 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :hangar, :weather
+  attr_accessor :hangar, :weather, :capacity
+  CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = CAPACITY)
     @hangar = []
     @weather = self.rain_or_shine
+    @capacity = capacity
   end
 
   def rain_or_shine
@@ -14,12 +16,8 @@ class Airport
     roll == 9 || roll == 10 ? "stormy" : "clear"
   end
 
-end
+  def full?
+    @hangar.length == @capacity
+  end
 
-# lear = Plane.new
-# airbus = Plane.new
-# gatwick = Airport.new
-# lear.land(gatwick)
-# airbus.land(gatwick)
-# p gatwick.landed_planes
-# lear.take_off
+end

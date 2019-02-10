@@ -8,6 +8,7 @@ class Plane
 
   def land(where_to_land)
     @location = where_to_land
+    raise("Airport full.") if @location.full?
     raise("Plane has already landed.") if @status != "Airbourne."
     # raise("Landing prohibited due to weather conditions.") if @location.weather == "stormy"
     @location.hangar.push(self)
