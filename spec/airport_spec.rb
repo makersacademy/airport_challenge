@@ -13,7 +13,16 @@ describe Airport do
     plane = Plane.new
     airport = Airport.new
     airport.land_plane(plane)
+    allow(airport).to receive(:stormy?) { false }
     airport.takeoff_plane(plane)
     expect(airport.planes).to_not include(plane)
+  end
+
+  it 'Will not allow a plane to takeoff if it is stormy' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land_plane(plane)
+    allow(airport).to receive(:stormy?) { true }
+    expect { airport.takeoff_plane(plane) }.to raise_error("We can't take off as it is stormy")
   end
 end

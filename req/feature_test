@@ -18,11 +18,21 @@ require './lib/airport.rb'
 plane = Plane.new
 airport = Airport.new
 airport.land_plane(plane)
-airport.takeoff(plane)
+airport.takeoff_plane(plane)
 airport.planes
+plane.location
 
 => plane shouldn't be in the airport
 
 #As an air traffic controller
 #To ensure safety
 #I want to prevent takeoff when weather is stormy
+
+irb
+require './lib/airport.rb'
+plane = Plane.new
+airport = Airport.new
+airport.land_plane(plane)
+airport.takeoff_plane(plane)
+
+=> Expect error if weather is stormy
