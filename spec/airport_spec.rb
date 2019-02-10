@@ -7,6 +7,12 @@ describe Airport do
     expect(airport.land(plane)).to eq plane.plane_landed
   end
 
+  it 'confirm plane landed' do
+    plane = Plane.new
+    airport = Airport.new
+    expect(plane.plane_flying?).to eq true
+  end
+
   it 'can take off a plane' do
     plane = Plane.new
     airport = Airport.new
