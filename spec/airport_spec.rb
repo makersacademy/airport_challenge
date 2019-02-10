@@ -24,12 +24,21 @@ describe Airport do
 
     it 'removes plane from airport once instructed to take off (assuming good weather)' do
       subject = Airport.new(20)
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
       new_plane = double('plane')
       subject.land(new_plane)
-      allow(subject.weather).to receive(:stormy_currently?).and_return false
       subject.take_off(new_plane)
       expect(subject.planes_landed).not_to include(new_plane)
     end
+  end
+
+  it 'checks plane is no longer in the airport' do
+    subject = Airport.new
+    allow(subject.weather).to receive(:stormy_currently?).and_return false
+    new_plane = double('plane')
+    subject.land(new_plane)
+    subject.take_off(new_plane)
+    expect(subject.in_airport?(new_plane)).to eq(false)
   end
 
   context 'when stormy' do
@@ -54,7 +63,7 @@ describe Airport do
   describe 'testing capacity of airport' do
     it 'accepts capacity passed as argument when initializing new airport' do
       subject = Airport.new(20)
-      expect(subject.airport_capacity).to eq(20)
+      expect(subject.capacity).to eq(20)
     end
 
     it 'prevents a plane landing if airport is at capacity (and good weather)' do
@@ -67,7 +76,18 @@ describe Airport do
       plane3 = double('plane')
       subject.land(plane3)
       plane4 = double('plane')
-      expect { subject.land(plane4) }.to raise_error 'cannot land when airport full'
+      expect { subject.land(plane4) }.to raise_error 'cannot land - airport full'
+    end
+
+    it 'reverts to a default capacity if no capacity given' do
+      subject = Airport.new
+      expect(subject.capacity).to eq(10)
+    end
+
+    it 'allows capacity to be overridden at any time' do
+      subject = Airport.new
+      subject.edit_capacity = 5
+      expect(subject.capacity).to eq(5)
     end
   end
 end
