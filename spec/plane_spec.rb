@@ -4,7 +4,7 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(2).argument }
   it { is_expected.to respond_to(:take_off).with(2).argument }
 
-  describe "land(airport, stormy)"
+  describe "land(airport, stormy)" do
     it "aborts landing because destination airport is full" do
     end
 
@@ -15,5 +15,6 @@ describe Plane do
       plane.land(airport, stormy)
       expect(airport.landed_planes).to include(plane)
     end
+
   end
 end
