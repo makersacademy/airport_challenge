@@ -3,6 +3,7 @@ class Airport
 
   def land(plane)
     plane = Plane.new
+    fail "plane landed" if plane.plane_flying? == false
     plane.plane_landed
   end
 
