@@ -1,15 +1,15 @@
 # TDD Process
 
-## 0. Contents
+## Contents
 
-[1. Domain Model](#1-domain-model)    
-[2. Feature Tests](#2-feature-testing-with-pry)  
-  1. instruct a plane to land at an airport  
-  2. instruct a plane to take off from an airport and confirm that it is no longer in the airport
-  3. prevent takeoff when weather is stormy
-  4. prevent landing when weather is stormy
-  5. prevent landing when the airport is full 
-  6. default airport capacity that can be overridden
+1. [Domain Model](#1-domain-model)    
+2. [Feature Tests](#2-feature-testing-with-pry)  
+    * [instruct a plane to land at an airport](#instruct-a-plane-to-land-at-an-airport)  
+    * [instruct a plane to take off from an airport and confirm that it is no longer in the airport](#instruct-a-plane-to-take-off-from-an-airport-and-confirm-that-it-is-no-longer-in-the-airport)
+    * [prevent takeoff when weather is stormy](#prevent-takeoff-when-weather-is-stormy)
+    * [prevent landing when weather is stormy](#prevent-landing-when-weather-is-stormy)
+    * [prevent landing when the airport is full]()
+    * [default airport capacity that can be overridden]()
 
 ## 1. Domain Model
 
