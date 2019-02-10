@@ -1,6 +1,6 @@
 require "airport"
 
-describe do
+describe Airport do
   it "Making an airport in the airport class." do
     airport = Airport.new()
   end
@@ -10,4 +10,5 @@ describe do
     allow(airport).to receive(:rand){1}
     expect(airport.weather_conditions).to eq "sunny"
   end
+
 end
