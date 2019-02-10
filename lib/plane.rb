@@ -8,6 +8,7 @@ class Plane
 
   def take_off(airport)
     airport.bad_weather_error
+    airport.exists?(self)
     airport.delete_plane(self)
   end
 

@@ -40,6 +40,10 @@ class Airport
     end
   end
 
-
+  def exists?(plane)
+    unless plane.is_in?(self)
+      raise "The plane does not exist in the airport."
+    end
+  end
 
 end

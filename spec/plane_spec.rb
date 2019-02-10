@@ -15,6 +15,7 @@ describe Plane do
     plane = Plane.new()
     airport = Airport.new()
     allow(airport).to receive(:weather_conditions){"sunny"}
+    plane.land(airport)
     plane.take_off(airport)
   end
 
@@ -63,7 +64,7 @@ describe Plane do
 
   it "When the airport is full(with a defined capacity), we are not allowed to land" do
     airport = Airport.new(11)
-    allow(airport).to receive(:bad_weather_error){"sunny"}
+    allow(airport).to receive(:weather_conditions){"sunny"}
     expect {12.times{Plane.new().land(airport)}}.to raise_error "The airport is full."
 
   end
@@ -74,6 +75,13 @@ describe Plane do
     allow(airport).to receive(:weather_conditions){"sunny"}
     plane.land(airport)
     expect {plane.land(airport)}.to raise_error("The plane has already landed in the airport.")
+  end
+
+  it "Prevents a plane that does not exis in an airport from taking off." do
+    airport = Airport.new()
+    plane = Plane.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
+    expect {plane.take_off(airport)}.to raise_error("The plane does not exist in the airport.")
   end
 
 
