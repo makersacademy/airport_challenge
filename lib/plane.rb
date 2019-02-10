@@ -16,6 +16,7 @@ class Plane
   def take_off
     @status = "Airbourne."
     @location.hangar.delete(self)
+    puts "#{self} has left the hangar and is airbourne."
   end
 
 
