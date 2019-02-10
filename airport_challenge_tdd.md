@@ -1,5 +1,16 @@
 # TDD Process
 
+## 0. Contents
+
+1. Domain Model
+2. Feature Tests
+    1. instruct a plane to land at an airport
+    2. instruct a plane to take off from an airport and confirm that it is no longer in the airport
+    3. prevent takeoff when weather is stormy
+    4. prevent landing when weather is stormy
+    5. prevent landing when the airport is full 
+    6. default airport capacity that can be overridden
+
 ## 1. Domain Model
 
 |Object    |Message
@@ -165,6 +176,7 @@ In `pry`:
 [6] pry(main)> airport.has?(plane) == false
 NoMethodError: undefined method `has?' for #<Airport:0x00007f88e94fea38>
 
+
 ```
 
 In **airport.rb**, define method `has`:
@@ -241,11 +253,13 @@ ___prevent takeoff when weather is stormy___
 NameError: undefined local variable or method `weather' for main:Object
 from (pry):1:in `__pry__'
 
+
 ```
 
 Create **weather.rb**: `touch lib/weather.rb`
 
 In **weather.rb**, define `Weather` class so that the variable `weather` can be assigned a `Weather` object (an instance of the `Weather` class):
+
 
 ```ruby
 
@@ -289,6 +303,7 @@ DEBUG-TEXT: stormy if random_number == 0
 DEBUG-TEXT: random_number is 0
 => nil
 
+
 ```
 
 In **plane.rb**, `take_off` needs to respond to the result of `stormy?`:
@@ -308,6 +323,7 @@ class Plane
     end
   end
 end
+
 
 ```
 
@@ -341,6 +357,7 @@ DEBUG-TEXT: random_number is 0
 Take-off aborted.
 => nil
 
+
 ```
 
 ___prevent landing when weather is stormy___
@@ -365,6 +382,7 @@ DEBUG-TEXT: random_number is 1
 ArgumentError: wrong number of arguments (given 2, expected 1)
 from /Users/student/weekend_challenges/wk1/airport_challenge/lib/plane.rb:2:in `land'
 
+
 ```
 
 In **plane.rb**: with respect to `stormy?`, the methods `land` and `take_off` work the same way. So change it to accept weather and copy over the if-statement.
@@ -388,6 +406,7 @@ class Plane
     end
   end
 end
+
 
 ```
 
