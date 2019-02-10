@@ -14,36 +14,28 @@ class Airport
     planes.delete(plane)
   end
 
-  def weather_conditions()
-    rand(2)==0?"stormy":"sunny"
+  def weather_conditions
+    rand(2).zero? ? "stormy" : "sunny"
   end
 
   def bad_weather_error
-    if weather_conditions == "stormy"
-      raise "The weather is stormy"
-    end
+    raise "The weather is stormy" if weather_conditions == "stormy"
   end
 
-  def is_full?
-    @planes.size ==@capacity? true:false
+  def full?
+    @planes.size == @capacity
   end
 
   def airport_full
-    if is_full?
-      raise "The airport is full."
-    end
+    raise "The airport is full." if full?
   end
 
-  def has_landed_before?(plane)
-    if plane.is_in?(self)
-      raise "The plane has already landed in the airport."
-    end
+  def landed_before?(plane)
+    raise "The plane has already landed in the airport." if plane.in?(self)
   end
 
   def exists?(plane)
-    unless plane.is_in?(self)
-      raise "The plane does not exist in the airport."
-    end
+    raise "The plane does not exist in the airport." unless plane.in?(self)
   end
 
 end
