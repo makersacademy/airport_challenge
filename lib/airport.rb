@@ -1,7 +1,8 @@
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize()
+  def initialize(capacity = 1)
+    @capacity = capacity
     @planes = []
   end
 
@@ -24,7 +25,7 @@ class Airport
   end
 
   def is_full?
-    @planes.size ==1? true:false
+    @planes.size ==@capacity? true:false
   end
 
   def airport_full
