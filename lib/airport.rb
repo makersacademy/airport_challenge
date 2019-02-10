@@ -1,25 +1,26 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
   attr_reader :planes, :capacity
-  BAD_WEATHER = 99
   DEFAULT_CAPACITY = 100
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = weather
   end
 
   def land(plane)
     raise "airport full" if full?
-    raise "bad weather: planes cannot land" if bad_weather?
+    raise "bad weather: planes cannot land" if @weather.stormy?
 
     plane.land(self)
     @planes.push(plane)
   end
 
   def take_off(plane)
-    return "bad weather: plane has not left" if bad_weather?
+    return "bad weather: plane has not left" if @weather.stormy?
 
     plane.take_off(self)
 
@@ -27,14 +28,6 @@ class Airport
 
     @planes.delete(plane)
     return "plane has left"
-  end
-
-  def weather
-    rand(100)
-  end
-
-  def bad_weather?
-    weather == BAD_WEATHER
   end
 
 private
