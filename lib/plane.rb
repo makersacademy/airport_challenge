@@ -7,7 +7,7 @@ class Plane
     elsif airport.full?
       puts "Landing aborted: Airport full."
     else
-      # TODO: Plane allowed to land
+      airport.landed_planes << self
     end  
   end
 
