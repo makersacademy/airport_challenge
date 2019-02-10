@@ -3,7 +3,7 @@ require_relative 'airport'
 class Weather
 
   def stormy_currently?
-    weather_selection == 'stormy'
+    true if weather_selection == 'stormy'
   end
 
   private

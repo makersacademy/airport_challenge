@@ -111,7 +111,7 @@ describe Airport do
       subject.land(plane1)
       plane2 = double('plane')
       subject.land(plane2)
-      expect { subject.edit_capacity = 1 }.to raise_error 'capacity cannot be lower than current number of planes'
+      expect { subject.edit_capacity = 1 }.to raise_error 'less than current planes'
     end
   end
 end
