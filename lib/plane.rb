@@ -4,6 +4,8 @@ class Plane
   end
 
   def land(airport)
+    raise 'Cannot land due to stormy weather' if @weather.get == 'stormy'
+
     airport.land_plane(self)
   end
 
