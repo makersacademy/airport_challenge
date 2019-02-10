@@ -1,12 +1,9 @@
-require 'airport'
-
 class Plane
 
   attr_accessor :status, :location
 
   def initialize
     @status = "Airbourne."
-    #@location = ""
   end
 
   def land(where_to_land)
@@ -18,11 +15,8 @@ class Plane
 
   def take_off
     @status = "Airbourne."
-    (@location.hangar).pop
+    @location.hangar.delete(self)
   end
-
-
-
 
 
 

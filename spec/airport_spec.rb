@@ -12,12 +12,21 @@ describe Airport do
 
   it "registers a landed plane" do
     lear.land(gatwick)
-    expect(gatwick.landed_planes).to eq([lear])
+    expect(gatwick.hangar).to eq([lear])
   end
 
   it "knows when a plane has left the airport" do
     lear.land(gatwick)
-    expect(gatwick.landed_planes).to eq([])
+    lear.take_off
+    expect(gatwick.hangar).to eq([])
+  end
+
+  it "only removes the take_off plane from the hangar" do
+    lear.land(gatwick)
+    airbus = Plane.new
+    airbus.land(gatwick)
+    lear.take_off
+    expect(gatwick.hangar).to eq([airbus])
   end
 
 end

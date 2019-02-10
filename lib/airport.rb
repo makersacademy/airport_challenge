@@ -8,9 +8,13 @@ class Airport
     @hangar = []
   end
 
-  def landed_planes
-    @hangar
-  end
-
-
+  
 end
+
+# lear = Plane.new
+# airbus = Plane.new
+# gatwick = Airport.new
+# lear.land(gatwick)
+# airbus.land(gatwick)
+# p gatwick.landed_planes
+# lear.take_off
