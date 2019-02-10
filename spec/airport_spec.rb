@@ -23,6 +23,7 @@ describe Airport do
   it 'Will not allow a plane to takeoff if it is stormy' do
     plane = Plane.new
     airport = Airport.new('Heathrow')
+    allow(airport).to receive(:stormy?) { false }
     airport.land_plane(plane)
     allow(airport).to receive(:stormy?) { true }
     expect { airport.takeoff_plane(plane) }.to raise_error("We can't take off as it is stormy")
@@ -49,5 +50,12 @@ describe Airport do
     airport2 = Airport.new('Gatwick')
     expect(airport.capacity).to eq 15
     expect(airport2.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "Raises an error if a plane that isn't at the airport is requested to take off" do
+    plane = Plane.new
+    airport = Airport.new('Heathrow')
+    allow(airport).to receive(:stormy?) { false }
+    expect { airport.takeoff_plane(plane) }.to raise_error("That plane is not at this airport")
   end
 end
