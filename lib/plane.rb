@@ -1,9 +1,24 @@
 class Plane
 
-  def land(where_to_land)
+  attr_accessor :status
 
+  def initialize
+    @status = "Airbourne."
+  end
+
+  def land(where_to_land)
     where_to_land.hangar << self
+    @status = "Landed."
+    
+  end
+
+  def take_off
 
   end
+
+
+
+
+
 
 end
