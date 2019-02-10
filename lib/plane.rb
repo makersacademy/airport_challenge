@@ -1,13 +1,19 @@
 class Plane
+
+  def initialize
+    @airport = Airport.new
+  end
+
   def land(airport, stormy)
     if stormy && airport.full?
-      puts "Landing aborted: Stormy and Airport full"
+      raise "Landing aborted: Stormy and Airport full"
     elsif stormy
-      puts "Landing aborted: Stormy."
+      raise "Landing aborted: Stormy."
     elsif airport.full?
-      puts "Landing aborted: Airport full."
+      raise "Landing aborted: Airport full."
     else
       airport.landed_planes << self
+      @airport = airport
     end  
   end
 
@@ -15,7 +21,8 @@ class Plane
     if stormy
       puts "Take-off aborted."
     else
-      
+      airport.landed_planes.delete(self)
+      @airport = nil
     end
   end
 end
