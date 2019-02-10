@@ -1,14 +1,16 @@
 require_relative 'plane.rb'
 
 class Airport
-  attr_reader :planes
-  def initialize
+  attr_reader :planes, :airport_name
+  def initialize(airport)
     @planes = []
+    @airport_name = airport
   end
 
   def land_plane(plane)
     fail "We can't land as it is stormy" if stormy?
-    
+
+    plane.location = @airport_name
     @planes << plane
   end
 

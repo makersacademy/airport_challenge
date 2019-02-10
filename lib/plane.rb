@@ -1,13 +1,13 @@
 require_relative 'airport.rb'
 class Plane
   attr_reader :location
+  attr_writer :location
   def initialize
     @location = 'flying'
   end
 
   def land(airport)
-    @location = airport
-    airport.land_plane(self)    
+    airport.land_plane(self)
   end
 
   def takeoff(airport)

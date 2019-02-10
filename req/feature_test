@@ -5,7 +5,7 @@
 irb
 require './lib/airport.rb'
 plane = Plane.new
-airport = Airport.new
+airport = Airport.new('Heathrow')
 airport.land_plane(plane)
 
 #As an air traffic controller
@@ -16,7 +16,7 @@ airport.land_plane(plane)
 irb
 require './lib/airport.rb'
 plane = Plane.new
-airport = Airport.new
+airport = Airport.new('Heathrow')
 airport.land_plane(plane)
 airport.takeoff_plane(plane)
 airport.planes
@@ -31,7 +31,7 @@ plane.location
 irb
 require './lib/airport.rb'
 plane = Plane.new
-airport = Airport.new
+airport = Airport.new('Heathrow')
 airport.land_plane(plane)
 airport.takeoff_plane(plane)
 
@@ -44,7 +44,7 @@ airport.takeoff_plane(plane)
 irb
 require './lib/airport.rb'
 plane = Plane.new
-airport = Airport.new
+airport = Airport.new('Heathrow')
 airport.land_plane(plane)
 
 => Expect error if weather is stormy
