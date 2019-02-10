@@ -11,14 +11,14 @@ describe Plane do
       @plane = Plane.new(is_airborne)
     end
 
-    it 'should land at the specified airport' do
-      @plane.land(@airport_double)
+    it 'should, when instructed to land, update airborne status to false' do
+      @plane.land
   
-      expect(@airport_double).to have_received(:land_plane).with(@plane)
+      expect(@plane.is_airborne).to eq(false)
     end
 
     it 'should raise exception if attempting to take off (as already airborne)' do
-      expect { @plane.take_off(@airport_double) }.to raise_error('Plane is already airborne')
+      expect { @plane.take_off }.to raise_error('Plane is already airborne')
     end
   end
 
@@ -28,18 +28,17 @@ describe Plane do
       @plane = Plane.new(is_airborne)
     end
 
-    it 'should, when instructed to take off, instruct airport to remove it from the airport' do
-      @plane.take_off(@airport_double)
-
-      expect(@airport_double).to have_received(:take_off_plane).with(@plane)
+    it 'should, on take off, update airborne status to true' do
+      @plane.take_off
+      expect(@plane.is_airborne).to eq(true)
     end
 
     it 'should, on take off, return confirmation that plane is airborne' do
-      expect(@plane.take_off(@airport_double)).to eq(true)
+      expect(@plane.take_off).to eq(true)
     end
 
     it 'should raise exception if attempting to land plane (as it is on the ground)' do
-      expect { @plane.land(@airport_double) }.to raise_error('Plane is already on the ground')
+      expect { @plane.land }.to raise_error('Plane is already on the ground')
     end
   end
 end

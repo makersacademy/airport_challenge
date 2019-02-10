@@ -5,7 +5,7 @@ describe Airport do
     before(:each) do
       @weather_double = double(:weather, stormy?: false)
       @airport = Airport.new(weather: @weather_double)
-      @plane_double = double(:plane, land: "")
+      @plane_double = double(:plane, land: "", take_off: "")
     end
 
     it 'should instruct planes to land' do
@@ -32,6 +32,13 @@ describe Airport do
       capacity.times { airport.land(@plane_double) }
   
       expect { airport.land(@plane_double) }.to raise_error('Plane cannot land as airport is full')
+    end
+
+    it 'should instruct planes to take off' do
+      @airport.land(@plane_double)
+      @airport.take_off_plane(@plane_double)
+  
+      expect(@plane_double).to have_received(:take_off)
     end
 
     it 'should remove planes when they take off' do

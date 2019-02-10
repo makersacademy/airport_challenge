@@ -24,6 +24,7 @@ class Airport
     raise 'Plane is not in this airport' unless in_airport?(plane)
     raise 'Cannot take off due to stormy weather' if @weather.stormy?
 
+    plane.take_off
     @planes.delete(plane)
   end
 
