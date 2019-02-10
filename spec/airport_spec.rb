@@ -46,4 +46,11 @@ describe Airport do
     expect(@airport.capacity).to eq 10
   end
 
+  it "Dosen't let a plane that has already landed land again" do
+    plane = Plane.new
+    @airport = Airport.new(20)
+    @airport.land(plane)
+    expect { @airport.land(plane)}.to raise_error ("This plane has already landed")
+  end
+
 end

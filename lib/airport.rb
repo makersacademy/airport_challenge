@@ -7,6 +7,7 @@ class Airport
   def land(plane)
     stormy?
     full?
+    fail "This plane has already landed" if is_here?(plane)
     @planes << plane
   end
   def take_off(plane)
