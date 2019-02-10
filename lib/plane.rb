@@ -7,14 +7,12 @@ def initialize(state="landed")
   @requested = "none"
 end
 
-def set_request(requested)
-
-  if @state == "landed" && requested == "take off"
-    @requested = requested
-  elsif @state = "flying" &&  requested == "land"
-    @requested = requested
-  else
-    @requested = "none"
+def set_request(request)
+  @requested = "none"
+  if @state == "landed" && request == "take off"
+    @requested = request
+  elsif @state == "flying" && request == "land"
+    @requested = request
   end
 end
 
