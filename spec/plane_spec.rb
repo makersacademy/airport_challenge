@@ -6,7 +6,7 @@ describe Plane do
 
 # Arrange
   it "must create a plane" do
-    plane = Plane.new
+    Plane.new
   end
 
   it "the plane must be able to receive the message to land" do
@@ -52,4 +52,3 @@ describe Plane do
   end
 
 end
-

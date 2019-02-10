@@ -1,45 +1,19 @@
+Inspecting 9 files
+........C
 
-Plane
-  must create a plane
-A nice sunny dayStormy is false
-"Message to land received"
-  the plane must be able to receive the message to land (FAILED - 1)
+Offenses:
 
-Weather
-A nice sunny day  must create a weather object, default is not stormy
-A nice sunny day"Weather is stormy"
-  must be able to change the weather from story to not
-A nice sunny day  must return false if weather status is not stormy
-A nice sunny day"Weather is stormy"
-  must return true if weather status is stormy
+lib/airport.rb:7:17: C: Layout/SpaceAfterMethodName: Do not put a space between a method name and the opening parenthesis.
+  def initialize ( full = false )
+                ^
+lib/airport.rb:7:19: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+  def initialize ( full = false )
+                  ^
+lib/airport.rb:7:32: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+  def initialize ( full = false )
+                               ^
+lib/airport.rb:12:7: C: Naming/AccessorMethodName: Do not prefix writer method names with set_.
+  def set_capacity(capacity)
+      ^^^^^^^^^^^^
 
-[33mHave you considered running rubocop? It will help you improve your code![0m
-[33mTry it now! Just run: rubocop[0m
-
-Failures:
-
-  1) Plane the plane must be able to receive the message to land
-     Failure/Error: expect(plane.land(weather.stormy?)).to eq true
-
-       expected: true
-            got: false
-
-       (compared using ==)
-     # ./spec/plane_spec.rb:15:in `block (2 levels) in <top (required)>'
-
-Finished in 0.02596 seconds (files took 0.21755 seconds to load)
-6 examples, 1 failure
-
-Failed examples:
-
-rspec ./spec/plane_spec.rb:11 # Plane the plane must be able to receive the message to land
-
-
-COVERAGE: [33m 85.19%[0m -- 46/54 lines in 4 files
-
-+----------+--------------+-------+--------+-------------------------+
-| coverage | file         | lines | missed | missing                 |
-+----------+--------------+-------+--------+-------------------------+
-|  [31m57.89%[0m  | lib/plane.rb | 19    | 8      | 15-16, 25-27, 29-30, 32 |
-+----------+--------------+-------+--------+-------------------------+
-3 file(s) with 100% coverage not shown
+9 files inspected, 4 offenses detected

@@ -4,7 +4,6 @@ class Plane
  
   attr_writer :airbourne
 
-
   def initialize 
     @airbourne = false
   end
@@ -32,9 +31,5 @@ class Plane
     end
     @airbourne
   end
-
-  #def airbourne
-  #  @airbourne 
-  #end
 
 end

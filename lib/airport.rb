@@ -2,16 +2,17 @@
 
 class Airport
  
-  attr_writer :full
+  attr_writer :full, :capacity
 
-  def initialize ( full = false)
+  def initialize(full = false)
+    @capacity = 50
     @full = full
   end
 
-#  def set_full
-#    @full = true
-#    p "Airport is full"
-#  end
+  def capacity(capacity)
+    @capacity = capacity
+    p "Airport capacity is now #{@capacity}" 
+  end
 
   def full?
     @full

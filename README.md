@@ -42,4 +42,11 @@ full = true
 airport = Airport.new(full)
 plane.land(airport.full?) == false
 
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+airport = Airport.new
+airport.capacity = 50
+airport.set_capacity(1000) == "Airport capacity is now 1000"
+
 
