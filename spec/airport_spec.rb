@@ -31,8 +31,9 @@ describe Airport do
 
   it { is_expected.to respond_to :weather }
 
-  it "randomly generates weather 'clear' or 'stormy' " do
+  it "randomly generates 'clear' or 'stormy' weather" do
     expect(gatwick.weather).to eq("clear").or eq("stormy")
   end
 
-  end
+
+end
