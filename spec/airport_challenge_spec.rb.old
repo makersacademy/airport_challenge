@@ -1,11 +1,20 @@
 require 'weather'
+require 'plane'
 
-describe Weather do
+describe controller do
 
 # Arrange
   it "must create a weather status" do
-    weather = Weather.new
+    controller = Controller.new
   end
+
+  it "must stop take off if weather status is stormy " do
+    weather = Weather.new
+    weather.set_stormy
+    expect(weather.stormy?).to eq true
+    
+  end
+
 
 end
 

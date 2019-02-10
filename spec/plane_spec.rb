@@ -1,4 +1,4 @@
-require 'plane'
+require './lib/plane'
 
 describe Plane do
 
@@ -14,13 +14,19 @@ describe Plane do
 
   it "the plane must be able to receive the message to takeoff" do
     plane = Plane.new
-    expect(plane.takeoff).to eq "Message to takeoff received"
+    expect(plane.takeoff).to eq true
   end
 
   it "the plane must confirm it is in the air after takeoff" do
     plane = Plane.new
-    expect(plane.takeoff).to eq "Message to takeoff received"
-    expect(plane.airbourne).to eq true
+    expect(plane.takeoff).to eq true
+  end
+
+  it "must not take off if weather status is stormy " do
+    plane = Plane.new
+    stormy = true
+    weather = Weather.new(stormy)
+    expect(plane.takeoff(stormy)).to eq false 
   end
 
 end

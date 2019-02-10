@@ -23,5 +23,5 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 plane = Plane.new
 weather = Weather.new
-weather.status = "Stormy"
+weather.set_stormy
 plane.takeoff(weather) == false

@@ -14,13 +14,19 @@ class Plane
     p "Message to land received"
   end
 
-  def takeoff
-    @airbourne = true
-    p "Message to takeoff received"
+  def takeoff(stormy = false)
+    if !stormy
+      @airbourne = true
+      p "Message to takeoff received"
+    else
+      @airbourne = false
+      p "Take off aborted due to stormy conditions"
+    end
+    @airbourne
   end
 
-  def airbourne
-    @airbourne 
-  end
+  #def airbourne
+  #  @airbourne 
+  #end
 
 end
