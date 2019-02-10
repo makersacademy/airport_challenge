@@ -1,32 +1,31 @@
-# Need the airport class to take in a plane
-require_relative 'weather'
 
 class Airport
+  DEFAULT_CAPACITY = 20
   attr_reader :airport
   attr_reader :stormy
+  attr_accessor :capacity
 
-  def initialize
-    @airport = []
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
+    @planes = []
   end
 
-  def land_plane(plane)
-    weather = Weather.new
-    @stormy = weather.stormy?
-    if @stormy
-      fail "Not safe to land when there is a storm!"
-    else
-      @airport << plane.plane_name
-    end
+  def accept(plane)
+    plane.land(self)
+    @planes << plane
   end
 
-  def takeoff_plane(plane)
-    weather = Weather.new
-    @stormy = weather.stormy?
-    if @stormy
-      fail "Not safe to take off when there is a storm!"
-    else
-      @airport.delete(plane)
-      plane
-    end
+  def release(plane)
+    plane.takeoff(self)
+    @planes.delete(plane)
   end
+
+  def full
+    @planes.count >= @capacity
+  end
+
+  def contains(plane)
+    @planes.include?(plane)
+  end
+
 end

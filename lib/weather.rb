@@ -1,10 +1,8 @@
 
 class Weather
-  attr_reader :current_weather
+  attr_reader :stormy
 
   def stormy?
-    @current_weather = ["sunny", "sunny", "sunny", "sunny", "stormy"].sample
-    (@current_weather == "stormy") ? true : false
+    @stormy = [false, false, false, false, true].sample
   end
-
 end
