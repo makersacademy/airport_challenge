@@ -20,4 +20,9 @@ class Airport
     @hangar.length == @capacity
   end
 
+  def stormy?
+    @weather == "stormy"
+  end
+
+
 end
