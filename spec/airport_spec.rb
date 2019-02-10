@@ -4,9 +4,12 @@ describe Airport do
 
   describe 'landing planes' do
     it 'instructs a plane to land at the airport' do
+      subject = Airport.new(20)
       expect(subject).to respond_to(:land).with(1).argument
     end
-    it 'holds a plane in the airport when it lands' do
+    it 'holds a plane in the airport when it lands (assuming good weather)' do
+      subject = Airport.new(20)
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
       new_plane = double('plane')
       subject.land(new_plane)
       expect(subject.planes_landed).to include(new_plane)
@@ -15,9 +18,12 @@ describe Airport do
 
   describe 'taking off planes' do
     it 'instructs a plane to take off from the airport' do
+      subject = Airport.new(20)
       expect(subject).to respond_to(:take_off).with(1).argument
     end
+
     it 'removes plane from airport once instructed to take off (assuming good weather)' do
+      subject = Airport.new(20)
       new_plane = double('plane')
       subject.land(new_plane)
       allow(subject.weather).to receive(:stormy_currently?).and_return false
@@ -26,20 +32,42 @@ describe Airport do
     end
   end
 
-  describe 'safe take off and landing during bad weather' do
+  context 'when stormy' do
 
-    it 'prevents planes taking off when weather is stormy' do
+    it 'prevents planes taking off' do
+      subject = Airport.new(20)
       new_plane = double('plane')
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
       subject.land(new_plane)
       allow(subject.weather).to receive(:stormy_currently?).and_return true
       expect { subject.take_off(new_plane) }.to raise_error 'cannot take off when stormy'
     end
 
-    it 'prevents planes landing when weather is stormy' do
+    it 'prevents planes landing' do
+      subject = Airport.new(20)
       new_plane = double('plane')
       allow(subject.weather).to receive(:stormy_currently?).and_return true
       expect { subject.land(new_plane) }.to raise_error 'cannot land when stormy'
     end
+  end
 
+  describe 'testing capacity of airport' do
+    it 'accepts capacity passed as argument when initializing new airport' do
+      subject = Airport.new(20)
+      expect(subject.airport_capacity).to eq(20)
+    end
+
+    it 'prevents a plane landing if airport is at capacity (and good weather)' do
+      subject = Airport.new(3)
+      allow(subject.weather).to receive(:stormy_currently?).and_return false
+      plane1 = double('plane')
+      subject.land(plane1)
+      plane2 = double('plane')
+      subject.land(plane2)
+      plane3 = double('plane')
+      subject.land(plane3)
+      plane4 = double('plane')
+      expect { subject.land(plane4) }.to raise_error 'cannot land when airport full'
+    end
   end
 end
