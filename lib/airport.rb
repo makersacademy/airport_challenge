@@ -34,4 +34,12 @@ class Airport
     end
   end
 
+  def has_landed_before?(plane)
+    if plane.is_in?(self)
+      raise "The plane has already landed in the airport."
+    end
+  end
+
+
+
 end

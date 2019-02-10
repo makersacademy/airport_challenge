@@ -2,6 +2,7 @@ class Plane
   def land(airport)
     airport.bad_weather_error
     airport.airport_full
+    airport.has_landed_before?(self)
     airport.add_plane(self)
   end
 

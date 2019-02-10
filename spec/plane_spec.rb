@@ -68,5 +68,13 @@ describe Plane do
 
   end
 
+  it "A plane which has landed previously, can not land again." do
+    airport = Airport.new(3)
+    plane = Plane.new()
+    allow(airport).to receive(:weather_conditions){"sunny"}
+    plane.land(airport)
+    expect {plane.land(airport)}.to raise_error("The plane has already landed in the airport.")
+  end
+
 
 end
