@@ -12,7 +12,7 @@ describe Airport do
 
   it "registers a landed plane" do
     lear.land(gatwick)
-    expect(gatwick.hangar).to eq(lear)
+    expect(gatwick.landed_planes).to eq(lear)
   end
 
 

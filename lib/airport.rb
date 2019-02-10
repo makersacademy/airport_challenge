@@ -2,8 +2,15 @@ require 'plane'
 
 class Airport
 
-  def hangar
+  attr_accessor :hangar
 
+  def initialize
+    @hangar = []
   end
+
+  def landed_planes
+    @hangar.first
+  end
+
 
 end
