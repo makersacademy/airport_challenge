@@ -8,11 +8,14 @@ class Airport
   def land(planes)
   end
 
-  def full?
-    fail "Airport is full" if @planes.count >= @capacity
+  def take_off(planes)
   end
-  def stormy?
-    fail "The weather is stormy!No landing or takeoff!" if @weather_conditions == "stormy"
 
-  end
+  # def full?
+  #   fail "Airport is full" if @planes.count >= @capacity
+  # end
+  # def stormy?
+  #   fail "The weather is stormy!No landing or takeoff!" if @weather_conditions == "stormy"
+
+  # end
 end
