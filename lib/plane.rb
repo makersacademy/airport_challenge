@@ -10,6 +10,7 @@ class Plane
   end
 
   def land
+    @airbourne = false
     p "Message to land received"
   end
 
