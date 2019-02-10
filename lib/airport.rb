@@ -1,38 +1,48 @@
 class Airport
-  def initialize( capacity = 1)
+
+  attr_reader :capacity
+
+  def initialize(capacity = 1)
     @planes = []
     @conditions = "clear"
     @capacity = capacity
   end
+
   def land(plane)
     stormy?
     full?
-    fail "This plane has already landed" if is_here?(plane)
+    fail "This plane has already landed" if here?(plane)
+
     @planes << plane
   end
+
   def take_off(plane)
     stormy?
-    fail "This plane is not in the airport" if !is_here?(plane)
+    fail "This plane is not in the airport" unless here?(plane)
+
     out_going_plane = @planes.select { |x| x == plane }.pop
-    @planes = @planes.select { |x| x != plane }
+    @planes = @planes.reject { |x| x == plane }
     out_going_plane
   end
-  def is_here?(plane)
+
+  def here?(plane)
     here = false
     @planes.each do |x|
-      if x == plane then here = true else here = false end
+      x == plane ? here = true : here = false
     end
     here
   end
+
   def weather(conditions)
     @conditions = conditions
   end
-  private def stormy?
+
+  private
+  def stormy?
     fail "It is too stormy to land or takeoff" if @conditions == "stormy"
   end
-  private def full?
+
+  def full?
     fail "The airport is full" if @planes.count >= @capacity
   end
-
-  attr_reader :capacity
 end
