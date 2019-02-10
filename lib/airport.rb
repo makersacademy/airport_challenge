@@ -22,18 +22,14 @@ attr_reader :planes, :capacity
      if full?
        raise ArgumentError, "Airport is full"
      else
-      @planes << plane
-    end
+       @planes << plane
+     end
   end
 
-  @randomizer = rand(1..2)
-
-  def weather?
-  end
-
-
-  def takeoff(p)
+  def takeoff(*)
     print "Plane #{p} has left the airport"
     @planes.pop()
+    # p @planes
   end
+
 end

@@ -20,23 +20,21 @@ describe Airport do
   it 'raises an error if the airport is full' do
     a = Airport.new(5)
     p = Plane.new
-    5.times{a.land(p)}
-    expect { a.land(p)}.to raise_error(ArgumentError, "Airport is full")
+    5.times{ a.land(p) }
+    expect { a.land(p) }.to raise_error(ArgumentError, "Airport is full")
   end
 
   it { is_expected.to respond_to :takeoff }
 
   describe '#takeoff' do
     it 'lets a plane takeoff, removes that plane from the array and returns that plane' do
-    a = Airport.new
-    p = Plane.new
-    subject.land(p)
-    expect(subject.takeoff(p)).to eq p
+     a = Airport.new
+     p = Plane.new
+     subject.land(p)
+     expect(subject.takeoff(p)).to eq p
+     # expect(subject.takeoff(p)).to eq p. and eq subject.planes
+     # how can I spec out the message???
    end
 end
-
-  it { is_expected.to respond_to :weather?}
-
-
 
 end
