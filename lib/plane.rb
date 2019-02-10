@@ -1,7 +1,9 @@
 class Plane
+  attr_accessor :airport
 
   def initialize
     @airport = Airport.new
+    @airport.landed_planes << self
   end
 
   def land(airport, stormy)
@@ -18,8 +20,10 @@ class Plane
   end
 
   def take_off(airport, stormy)
-    if stormy
-      puts "Take-off aborted."
+    if self.airport.nil?
+      raise "Error: plane already in the air. Must land before taking off again!"
+    elsif stormy
+      raise "Take-off aborted. Weather is stormy"
     else
       airport.landed_planes.delete(self)
       @airport = nil
