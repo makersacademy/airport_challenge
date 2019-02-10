@@ -469,6 +469,7 @@ end
 ```
 
 Now returns `true` instead of `NoMethodError`:
+
 ```pry
 
 pry(main)> airport.full?
