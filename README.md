@@ -22,6 +22,24 @@ As an air traffic controller
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 plane = Plane.new
-weather = Weather.new
-weather.set_stormy
-plane.takeoff(weather) == false
+stormy = true
+weather = Weather.new(stormy)
+plane.takeoff(weather.stormy?) == false
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+plane = Plane.new
+stormy = true
+weather = Weather.new(stormy)
+plane.land(weather.stormy?) == false
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+plane = Plane.new
+full = true
+airport = Airport.new(full)
+plane.land(airport.full?) == false
+
+

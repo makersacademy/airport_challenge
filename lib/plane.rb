@@ -9,18 +9,26 @@ class Plane
     @airbourne = false
   end
 
-  def land
-    @airbourne = false
-    p "Message to land received"
+ # Note that condiion can be any condition that prevents landing
+  def land(condition)
+    if condition
+      p "Landing aborted"
+      @airbourne = true
+      false
+    else
+      p "Message to land received"
+      @airbourne = false
+      true
+    end
   end
 
-  def takeoff(stormy = false)
-    if !stormy
+  def takeoff(condition)
+    if condition
+      @airbourne = false
+      p "Take off aborted"
+    else
       @airbourne = true
       p "Message to takeoff received"
-    else
-      @airbourne = false
-      p "Take off aborted due to stormy conditions"
     end
     @airbourne
   end
