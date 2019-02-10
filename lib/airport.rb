@@ -20,12 +20,13 @@ class Airport
   def land_plane(plane)
     raise "The airport is full" if full?
     raise "Weather does not allow landing" unless weathergood?
+    raise "Plane already landed at this airport" if @planes.index(plane)
 
     @planes << plane
   end
 
   def take_off(plane)
-    raise "This plane did not land at this airport" unless @planes.index(plane)
+    raise "Plane not at this airport" unless @planes.index(plane)
 
     plane.fly
     @planes.delete(plane)
