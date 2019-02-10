@@ -9,6 +9,7 @@ class Plane
     raise 'Cannot land due to stormy weather' if @weather.is_stormy
 
     airport.land_plane(self)
+    @is_airborne = false
   end
 
   def take_off
