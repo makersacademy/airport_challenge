@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 describe Plane do
   before(:each) do
-    @airport_double = double(:airport, land_plane: "", remove_plane: "")
+    @airport_double = double(:airport, land_plane: "", take_off_plane: "")
   end
 
   describe 'Given plane is in sunny conditions' do
@@ -36,7 +36,7 @@ describe Plane do
       it 'should, when instructed to take off, instruct airport to remove it from the airport' do
         @plane.take_off(@airport_double)
   
-        expect(@airport_double).to have_received(:remove_plane).with(@plane)
+        expect(@airport_double).to have_received(:take_off_plane).with(@plane)
       end
 
       it 'should, on take off, return confirmation that plane is airborne' do

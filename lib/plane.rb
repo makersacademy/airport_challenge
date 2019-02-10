@@ -16,7 +16,7 @@ class Plane
     raise 'Plane is already airborne' if @is_airborne
     raise 'Cannot take off due to stormy weather' if @weather.is_stormy
 
-    airport.remove_plane(self)
+    airport.take_off_plane(self)
     @is_airborne = true
   end
 end
