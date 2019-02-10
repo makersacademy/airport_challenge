@@ -6,4 +6,8 @@ class Plane
     p "Message to land received"
   end
 
+  def takeoff
+    p "Message to takeoff received"
+  end
+
 end
