@@ -40,4 +40,10 @@ describe Airport do
     @airport.land(plane)
     expect { @airport.land(plane2) }.to raise_error("The airport is full")
   end
+
+  it "Can set the capacity of the airprot to other then the defualt 1" do
+    @airport = Airport.new(10)
+    expect(@airport.capacity).to eq 10
+  end
+
 end

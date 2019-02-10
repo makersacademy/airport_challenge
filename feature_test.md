@@ -16,3 +16,6 @@ airport2.land(plane2)
 plane3 = Plane.new
 airport.weather("clear")
 airport.land(plane3)
+
+airport3 = Airport.new(10)
+airport3.capacity

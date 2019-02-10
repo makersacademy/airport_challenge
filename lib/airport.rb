@@ -1,8 +1,8 @@
 class Airport
-  def initialize
+  def initialize( capacity = 1)
     @planes = []
     @conditions = "clear"
-    @capacity = 1
+    @capacity = capacity
   end
   def land(plane)
     stormy?
@@ -31,4 +31,6 @@ class Airport
   private def full?
     fail "The airport is full" if @planes.count >= @capacity
   end
+
+  attr_reader :capacity
 end
