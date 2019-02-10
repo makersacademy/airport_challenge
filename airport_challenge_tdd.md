@@ -488,24 +488,52 @@ end
 
 ```
 
+Now returns `true` instead of `NoMethodError`:
+```pry
+
+pry(main)> airport.full?
+=> true
+
+```
+
+`land` method in `plane.rb` amended to behave appropriately to `airport.full?`
+
+```ruby
+
+def land(airport, stormy)
+  if stormy && airport.full?
+    puts "Landing aborted: Stormy and Airport full"
+  elsif stormy
+    puts "Landing aborted: Stormy."
+  elsif airport.full?
+    puts "Landing aborted: Airport full."
+  else
+    # TODO: Plane allowed to land
+  end  
+end
+
+```
+
 And done:
 
 ```pry
 
-[1] pry(main)> require_relative "lib/airport"
-=> true
-[2] pry(main)> require_relative "lib/plane"
-=> true
-[3] pry(main)> require_relative "lib/weather"
-=> true
-[4] pry(main)> weather = Weather.new
-=> #<Weather:0x00007ff4868a1b78>
-[5] pry(main)> plane = Plane.new
-=> #<Plane:0x00007ff4868b37b0>
-[6] pry(main)> airport = Airport.new
-=> #<Airport:0x00007ff4868b9138>
+# omitted for brevity: requires and instantiations, test setup
+
 [7] pry(main)> airport.full?
 => true
+
+[8] pry(main)> plane.land(airport, weather.stormy?)
+DEBUG-TEXT: stormy if random_number == 0
+DEBUG-TEXT: random_number is 2
+Landing aborted: Airport full.
+=> nil
+
+[9] pry(main)> plane.land(airport, weather.stormy?)
+DEBUG-TEXT: stormy if random_number == 0
+DEBUG-TEXT: random_number is 0
+Landing aborted: Stormy and Airport full
+=> nil
 
 ```
 

@@ -1,15 +1,19 @@
 class Plane
   def land(airport, stormy)
-    if stormy
-      puts "Landing aborted. "
+    if stormy && airport.full?
+      puts "Landing aborted: Stormy and Airport full"
+    elsif stormy
+      puts "Landing aborted: Stormy."
+    elsif airport.full?
+      puts "Landing aborted: Airport full."
     else
-      
-    end
+      # TODO: Plane allowed to land
+    end  
   end
 
   def take_off(airport, stormy)
     if stormy
-      puts "Take-off aborted. "
+      puts "Take-off aborted."
     else
       
     end
