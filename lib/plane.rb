@@ -18,7 +18,7 @@ class Plane
 
   def take_off
     raise("Plane has left the hangar and is in the air.") if airbourne?
-    # raise("Takeoff prohibited due to weather conditions.") if @location.weather == "stormy"
+    raise("Takeoff prohibited due to weather conditions.") if @location.stormy?
     @status = "Airbourne."
     @location.hangar.delete(self)
     puts "#{self} has left the hangar and is airbourne."

@@ -46,6 +46,14 @@ describe Airport do
     expect{lear.land(gatwick)}.to raise_error("Landing prohibited due to weather conditions.")
   end
 
+  it "won't let a plane take off in stormy conditions" do
+    allow(gatwick).to receive(:stormy?) { true }
+    lear.location = gatwick
+    lear.status = "Landed."
+    gatwick.hangar << lear
+    expect{lear.take_off}.to raise_error("Takeoff prohibited due to weather conditions.")
+  end
+
   it { is_expected.to respond_to :full? }
 
   it "has a maximum capacity of 20 planes" do
