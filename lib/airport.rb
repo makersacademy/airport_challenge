@@ -1,5 +1,4 @@
 require_relative 'plane.rb'
-require_relative 'weather.rb'
 class Airport
   attr_reader :planes
   DEFAULT_CAPACITY = 20
@@ -9,8 +8,14 @@ class Airport
   end
 
   def weathergood?
-    weather = Weather.new
-    weather.state
+    goodweather = ["sunny"]
+    goodweather.include?(weather) ? true : false
+  end
+
+  def weather
+    all_weathers = ["sunny", "stormy"]
+    all_weathers[rand(2)]
+
   end
 
   def full?
