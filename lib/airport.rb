@@ -14,7 +14,13 @@ class Airport
   end
 
   def take_off_plane(plane)
+    raise 'Plane is not in this airport' unless in_airport?(plane)
+
     @planes.delete(plane)
+  end
+
+  def in_airport?(plane)
+    @planes.include?(plane)
   end
 
   def full?

@@ -26,10 +26,14 @@ describe Airport do
     expect { airport.land_plane(@plane_double) }.to raise_error('Plane cannot land as airport is full')
   end
 
-  it 'should remove planes (IE when they take off)' do
+  it 'should remove planes when they take off' do
     @airport.land_plane(@plane_double)
     @airport.take_off_plane(@plane_double)
 
     expect(@airport.planes).to eq([])
+  end
+
+  it 'should raise exception if attempts to take off plane that is not in the airport' do
+    expect { @airport.take_off_plane(@plane_double) }.to raise_error('Plane is not in this airport')
   end
 end
