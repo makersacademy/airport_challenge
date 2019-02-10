@@ -12,3 +12,7 @@ plane2 = Plane.new
 airport2 = Airport.new
 airport2.weather("stormy")
 airport2.land(plane2)
+
+plane3 = Plane.new
+airport.weather("clear")
+airport.land(plane3)

@@ -2,9 +2,11 @@ class Airport
   def initialize
     @planes = []
     @conditions = "clear"
+    @capacity = 1
   end
   def land(plane)
     stormy?
+    full?
     @planes << plane
   end
   def take_off(plane)
@@ -25,5 +27,8 @@ class Airport
   end
   private def stormy?
     fail "It is too stormy to land or takeoff" if @conditions == "stormy"
+  end
+  private def full?
+    fail "The airport is full" if @planes.count >= @capacity
   end
 end

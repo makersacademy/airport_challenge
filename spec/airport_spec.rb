@@ -33,4 +33,11 @@ describe Airport do
     @airport.weather("stormy")
     expect { @airport.land(plane) }.to raise_error("It is too stormy to land or takeoff")
   end
+
+  it "Dosen't allow planes to land when airport is full" do
+    plane = Plane.new
+    plane2 = Plane.new
+    @airport.land(plane)
+    expect { @airport.land(plane2) }.to raise_error("The airport is full")
+  end
 end
