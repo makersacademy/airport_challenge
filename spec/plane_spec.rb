@@ -2,6 +2,11 @@ require 'plane'
 require 'airport'
 
 describe Plane do
+  it "starts off flying" do
+    plane = Plane.new
+    expect(plane.flying?).to eq(true)
+  end
+
   it "can land" do
     plane = Plane.new
     expect(plane).to respond_to(:land)
@@ -12,6 +17,12 @@ describe Plane do
     airport = Airport.new
     plane.land(airport)
     expect(plane.airport).to eq(airport)
+  end
+
+  it "is no longer flying after it has landed" do
+    plane = Plane.new
+    plane.land(Airport.new)
+    expect(plane.flying?).to eq(false)
   end
 
   it "cannot land if it is already landed" do
