@@ -7,7 +7,7 @@ describe Plane do
 
   describe 'plane in sunny conditions' do
     before(:each) do
-      @weather_double = double(:weather, get: "sunny")
+      @weather_double = double(:weather, is_stormy: false)
       @plane = Plane.new(@weather_double)
     end
 
@@ -24,7 +24,7 @@ describe Plane do
 
   describe 'plane in stormy conditions' do
     before(:each) do
-      @weather_double = double(:weather, get: "stormy")
+      @weather_double = double(:weather, is_stormy: true)
       @plane = Plane.new(@weather_double)
     end
 
