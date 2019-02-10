@@ -2,14 +2,14 @@
 
 ## Contents
 
-1. [Domain Model](#1-domain-model)    
+1. [Domain Model](#1-domain-model)
 2. [Feature Tests](#2-feature-testing-with-pry)  
     * [instruct a plane to land at an airport](#instruct-a-plane-to-land-at-an-airport)  
     * [instruct a plane to take off from an airport and confirm that it is no longer in the airport](#instruct-a-plane-to-take-off-from-an-airport-and-confirm-that-it-is-no-longer-in-the-airport)
     * [prevent takeoff when weather is stormy](#prevent-takeoff-when-weather-is-stormy)
     * [prevent landing when weather is stormy](#prevent-landing-when-weather-is-stormy)
-    * [prevent landing when the airport is full]()
-    * [default airport capacity that can be overridden]()
+    * [prevent landing when the airport is full](#prevent-landing-when-the-airport-is-full)
+    * [default airport capacity can be overridden](#default-airport-capacity-can-be-overridden)
 
 ## 1. Domain Model
 
@@ -22,7 +22,7 @@
 
 ## 2. Feature testing with `pry`
 
-#### _instruct a plane to land at an airport:_ 
+#### _instruct a plane to land at an airport:_
 
 In terminal, launch `pry`
 
@@ -179,7 +179,7 @@ NoMethodError: undefined method `has?' for #<Airport:0x00007f88e94fea38>
 
 ```
 
-In **airport.rb**, define method `has`:
+In **airport.rb**, define method `has?`:
 
 ```ruby
 
@@ -212,7 +212,7 @@ Back to `pry`:
 
 ```
 
-It should be `airport.has?(plane)` should return `false` in this case. Hard-code it for now in `airport.rb`:
+User story expects `airport.has?(plane)` to return `false`. For now, hard-code it in `airport.rb`:
 
 ```ruby
 
@@ -260,7 +260,6 @@ from (pry):1:in `__pry__'
 Create **weather.rb**: `touch lib/weather.rb`
 
 In **weather.rb**, define `Weather` class so that the variable `weather` can be assigned a `Weather` object (an instance of the `Weather` class):
-
 
 ```ruby
 
@@ -445,5 +444,154 @@ DEBUG-TEXT: random_number is 0
 Landing aborted.
 => nil
 
+
+```
+
+#### _prevent landing when airport is full_
+
+Already know how to prevent landing. The new part is knowing when the airport is full. Start from there:
+
+```pry
+
+[1] pry(main)> require_relative "lib/airport"
+=> true
+[2] pry(main)> require_relative "lib/plane"
+=> true
+[3] pry(main)> require_relative "lib/weather"
+=> true
+[4] pry(main)> weather = Weather.new
+=> #<Weather:0x00007fb2af04a470>
+[5] pry(main)> plane = Plane.new
+=> #<Plane:0x00007fb2ad150df8>
+[6] pry(main)> airport = Airport.new
+=> #<Airport:0x00007fb2ad1899f0>
+[7] pry(main)> airport.full?
+NoMethodError: undefined method `full?' for #<Airport:0x00007fb2ad1899f0>
+from (pry):7:in `__pry__'
+
+
+```
+
+In **airport.rb**, begin defining the method `full?` - user story expects this to return `true` so for now we hard-code that:
+
+```ruby
+
+class Airport
+  def has?(plane)
+    false
+  end
+
+  def full?
+    true
+  end
+end
+
+```
+
+And done:
+
+```pry
+
+[1] pry(main)> require_relative "lib/airport"
+=> true
+[2] pry(main)> require_relative "lib/plane"
+=> true
+[3] pry(main)> require_relative "lib/weather"
+=> true
+[4] pry(main)> weather = Weather.new
+=> #<Weather:0x00007ff4868a1b78>
+[5] pry(main)> plane = Plane.new
+=> #<Plane:0x00007ff4868b37b0>
+[6] pry(main)> airport = Airport.new
+=> #<Airport:0x00007ff4868b9138>
+[7] pry(main)> airport.full?
+=> true
+
+```
+
+#### *default airport capacity can be overridden*
+
+```pry
+
+[1] pry(main)> require_relative "lib/airport"
+=> true
+[2] pry(main)> require_relative "lib/plane"
+=> true
+[3] pry(main)> require_relative "lib/weather"
+=> true
+[4] pry(main)> weather = Weather.new
+=> #<Weather:0x00007fd372374c48>
+[5] pry(main)> plane = Plane.new
+=> #<Plane:0x00007fd372392810>
+[6] pry(main)> airport = Airport.new
+=> #<Airport:0x00007fd36f8101b0>
+[7] pry(main)> airport.capacity
+NoMethodError: undefined method `capacity' for #<Airport:0x00007fd36f8101b0>
+from (pry):7:in `__pry__'
+
+
+```
+
+In **airport.rb**: define `capacity` variable for the `Airport` objects, and give it a default value. Define `attr_accessor` to allow access to this variable
+
+```ruby
+
+class Airport
+
+  attr_accessor :capacity
+
+  def initialize(capacity = 10)
+    @capacity = capacity
+  end
+
+  def has?(plane)
+    false
+  end
+
+  def full?
+    true
+  end
+end
+
+
+```
+
+```pry
+
+[1] pry(main)> require_relative "lib/airport"
+=> true
+[2] pry(main)> require_relative "lib/plane"
+=> true
+[3] pry(main)> require_relative "lib/weather"
+=> true
+[4] pry(main)> weather = Weather.new
+=> #<Weather:0x00007fd4b46f4858>
+[5] pry(main)> plane = Plane.new
+=> #<Plane:0x00007fd4b52e2458>
+[6] pry(main)> airport = Airport.new
+=> #<Airport:0x00007fd4b5221bb8 @capacity=10>
+
+
+```
+
+Unless specified when calling `Airport.new`, the new `Airport` object has a default capacity of 10. This can be changed after object creation:
+
+```pry
+
+[7] pry(main)> airport.capacity = 15
+=> 15
+[8] pry(main)> airport.capacity
+=> 15
+
+```
+
+Alternatively, if capacity is specified when calling `Airport.new`, the new `Airport` created with the specified capacity:
+
+```pry
+
+[9] pry(main)> big_airport = Airport.new(30)
+=> #<Airport:0x00007fd533ebcac0 @capacity=30>
+[10] pry(main)> big_airport.capacity
+=> 30
 
 ```
