@@ -13,8 +13,16 @@ describe Airport do
   end
 
   it 'should prevent planes from landing when airport is full' do
-    10.times { @airport.land_plane(@plane_double) }
+    Airport::DEFAULT_CAPACITY.times { @airport.land_plane(@plane_double) }
 
     expect { @airport.land_plane(@plane_double) }.to raise_error('Plane cannot land as airport is full')
+  end
+
+  it 'should optionally set airport capacity when airport created' do
+    capacity = 15
+    airport = Airport.new(capacity)
+    capacity.times { airport.land_plane(@plane_double) }
+
+    expect { airport.land_plane(@plane_double) }.to raise_error('Plane cannot land as airport is full')
   end
 end
