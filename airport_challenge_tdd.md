@@ -331,18 +331,8 @@ Done:
 
 ```pry
 
-[1] pry(main)> require_relative "lib/airport"
-=> true
-[2] pry(main)> require_relative "lib/plane"
-=> true
-[3] pry(main)> require_relative "lib/weather"
-=> true
-[4] pry(main)> weather = Weather.new
-=> #<Weather:0x00007fe0b81da8a8>
-[5] pry(main)> plane = Plane.new
-=> #<Plane:0x00007fe0b67e0268>
-[6] pry(main)> airport = Airport.new
-=> #<Airport:0x00007fe0b67c8cd0>
+# pry lines 1-6, test setup (requires and object instantiations), omitted for brevity
+
 [7] pry(main)> plane.take_off(airport, weather.stormy?)
 DEBUG-TEXT: stormy if random_number == 0
 DEBUG-TEXT: random_number is 2
