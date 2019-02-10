@@ -1,7 +1,10 @@
 class Airport
   attr_reader :at_airport
+  attr_reader :capacity
   def initialize
     @at_airport = []
+    puts "Enter capacity number:"
+    @capacity = gets.chomp.to_i
   end
 
   def stormy
@@ -11,8 +14,9 @@ class Airport
   def landing(plane)
     if @stormy == true
       "Too stormy!"
-    elsif @at_airport.length == 20
+    elsif @at_airport.length == @capacity
       "Airport is full"
+
     else
       @at_airport.push(plane)
       print @at_airport
