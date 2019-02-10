@@ -18,4 +18,10 @@ describe Airport do
     airport = Airport.new
     expect(airport.take_off(plane)).to eq plane.plane_flying?
   end
+
+  it 'confirm plane takeoff' do
+    plane = Plane.new
+    airport = Airport.new
+    expect(plane.plane_takeoff).to eq true
+  end
 end
