@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :capacity
+  attr_reader :capacity, :planes
 
   def initialize(capacity = 1)
     @planes = []
@@ -27,8 +27,11 @@ class Airport
 
   def here?(plane)
     here = false
+    p plane
     @planes.each do |x|
-      x == plane ? here = true : here = false
+      p x
+      return true if x == plane
+
     end
     here
   end

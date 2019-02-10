@@ -48,7 +48,7 @@ describe Airport do
 
   it "Has a defualt capacity of 1" do
     expect(@airport.capacity).to eq 1
-  end 
+  end
 
   it "Dosen't let a plane that has already landed land again" do
     plane = Plane.new
@@ -60,5 +60,14 @@ describe Airport do
   it "Dosen't let a plane take off that isan't in the airport" do
     plane = Plane.new
     expect { @airport.take_off(plane) }.to raise_error("This plane is not in the airport")
+  end
+
+  it "Lands 5 planes and has them fly out in a differnet order" do
+    planes = []
+    5.times { planes << Plane.new }
+    airport = Airport.new(5)
+    planes.each { |plane| airport.land(plane) }
+    planes.shuffle!
+    planes.each { |plane| airport.take_off(plane) }
   end
 end
