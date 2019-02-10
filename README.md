@@ -21,6 +21,7 @@ Go into repo using `cd airport_challenge`.
 Ensure version of ruby is installed and set using RVM that matches version in .ruby-version file
 Run `bundle install` to install all dependencies.
 Run `rspec` to run tests.
+Rub `irb` to run program, requiring the airport, plane, and weather files to get access to their classes.
 
 
 ## Approach and technologies
