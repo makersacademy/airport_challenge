@@ -2,7 +2,6 @@
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :airport
-  attr_reader :stormy
   attr_accessor :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
