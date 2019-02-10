@@ -11,7 +11,7 @@ class Weather
   #private
 
   def weather_selection
-    #['sunny','sunny','foggy','foggy','breezy','breezy','stormy'].sample
-    ['stormy'].sample
+    ['sunny','sunny','foggy','foggy','breezy','breezy','stormy'].sample
+    #['stormy'].sample
   end
 end
