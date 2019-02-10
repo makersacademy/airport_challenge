@@ -3,20 +3,20 @@ require './lib/airport.rb'
 
 describe 'land plane' do
   before(:each) do
-    @weather_double = double(:weather, is_stormy: false)
+    @weather_double = double(:weather, stormy?: false)
     @is_airborne = true
     @landed_planes = []
-    @airport = Airport.new
+    @airport = Airport.new(weather: @weather_double)
   end
 
   def land_plane(plane)
-    plane.land(@airport) 
+    @airport.land(plane) 
     @landed_planes << plane
   end
 
   it 'should land and take off planes' do
     2.times { 
-      plane = Plane.new(@weather_double, @is_airborne)
+      plane = Plane.new(@is_airborne)
       land_plane(plane) 
       
       expect(plane.is_airborne).to eq(false)
@@ -25,7 +25,7 @@ describe 'land plane' do
     expect(@airport.planes).to eq(@landed_planes)
 
     @landed_planes.each do |plane|
-      plane.take_off(@airport)
+      @airport.take_off(plane)
       expect(plane.is_airborne).to eq(true)
     end
 

@@ -20,7 +20,7 @@ class Airport
     @planes.count == @capacity
   end
 
-  def take_off_plane(plane)
+  def take_off(plane)
     raise 'Plane is not in this airport' unless in_airport?(plane)
     raise 'Cannot take off due to stormy weather' if @weather.stormy?
 

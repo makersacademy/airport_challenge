@@ -36,20 +36,20 @@ describe Airport do
 
     it 'should instruct planes to take off' do
       @airport.land(@plane_double)
-      @airport.take_off_plane(@plane_double)
+      @airport.take_off(@plane_double)
   
       expect(@plane_double).to have_received(:take_off)
     end
 
     it 'should remove planes when they take off' do
       @airport.land(@plane_double)
-      @airport.take_off_plane(@plane_double)
+      @airport.take_off(@plane_double)
   
       expect(@airport.planes).to eq([])
     end
 
     it 'should raise exception if attempts to take off plane that is not in the airport' do
-      expect { @airport.take_off_plane(@plane_double) }.to raise_error('Plane is not in this airport')
+      expect { @airport.take_off(@plane_double) }.to raise_error('Plane is not in this airport')
     end
   end
 
@@ -66,7 +66,7 @@ describe Airport do
       @airport.land(@plane_double)
 
       allow(@weather_double).to receive(:stormy?).and_return(true)
-      expect { @airport.take_off_plane(@plane_double) }.to raise_error('Cannot take off due to stormy weather')
+      expect { @airport.take_off(@plane_double) }.to raise_error('Cannot take off due to stormy weather')
     end
 
     it 'should prevent landing' do

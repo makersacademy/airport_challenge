@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 describe Plane do
   before(:each) do
-    @airport_double = double(:airport, land_plane: "", take_off_plane: "")
+    @airport_double = double(:airport, land_plane: "", take_off: "")
   end
 
   describe 'Given plane is airborne, ' do
