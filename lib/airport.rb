@@ -9,7 +9,7 @@ class Airport
   end
 
   def landed_planes
-    @hangar.first
+    @hangar
   end
 
 

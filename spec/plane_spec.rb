@@ -28,4 +28,9 @@ describe Plane do
     expect(lear.status).to eq("Airbourne.")
   end
 
+  it "knows where it's landed" do
+    lear.land(gatwick)
+    expect(lear.location).to eq(gatwick)
+  end
+
 end
