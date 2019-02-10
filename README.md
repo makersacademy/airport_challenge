@@ -17,10 +17,15 @@ The first weekend challenge from the Maker's Academy was to create an app for ma
 ## How to download and run
 
 Run `git clone git@github.com:simon-norman/airport_challenge.git` to clone repo. 
+
 Go into repo using `cd airport_challenge`.
+
 Ensure version of ruby is installed and set using RVM that matches version in .ruby-version file
+
 Run `bundle install` to install all dependencies.
+
 Run `rspec` to run tests.
+
 Rub `irb` to run program, requiring the airport, plane, and weather files to get access to their classes.
 
 
@@ -36,9 +41,9 @@ I used the following incremental approach:
 
 3. Wrote a failing feature test for that feature
 
-4. From there, I selected the most appropriate class to start writing unit tests for, which in this case was Plane (as the user stories clearly stated the user would be instructing the plane to land)
+4. From there, I selected the most appropriate class to start writing unit tests for, which in this case was Airport (as the user stories implied that, as the user was the air traffic controller, the airport would be the input for the program). 
 
-5. Wrote a first failing test to land the plane, which tested that the land method would result in the plane calling land_plane on the airport class (which I mocked out for the plane unit tests), passing itself as an argument
+5. Wrote a first failing test to land the plane
 
 6. Created the Plane class with a land method to make this first test 
 
