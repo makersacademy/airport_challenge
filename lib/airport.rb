@@ -4,11 +4,11 @@ class Airport
     @conditions = "clear"
   end
   def land(plane)
-    fail "The weather is too stormy to land" if @conditions == "stormy"
+    stormy?
     @planes << plane
   end
   def take_off(plane)
-    fail "The weather is too stormy to take off" if @conditions == "stormy"
+    stormy?
     out_going_plane = @planes.select { |x| x == plane }.pop
     @planes = @planes.select { |x| x != plane }
     out_going_plane
@@ -23,5 +23,7 @@ class Airport
   def weather(conditions)
     @conditions = conditions
   end
-
+  private def stormy?
+    fail "It is too stormy to land or takeoff" if @conditions == "stormy"
+  end
 end
