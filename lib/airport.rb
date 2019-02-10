@@ -1,37 +1,26 @@
-#require './lib/plane.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
-attr_accessor :weather
+attr_reader :weather
 attr_reader :planes_in_airport
 attr_reader :capacity
 
- def initialize(capacity=20)
+ def initialize(weather=Weather.new, capacity=20)
    @capacity = capacity
    @planes_in_airport = []
-   weather_man
+   @weather = weather
  end
 
-def weather_man
-  weather_num = rand(0..100)
-  if weather_num <=80
-      @weather = "sunny"
-  else
-      @weather = "stormy"
-  end
-  @weather
-end
-
 def land(plane)
-  weather_man
-  if @weather == "sunny" && @planes_in_airport.count < capacity && report(plane) == true
+  if @weather.forecast == "sunny" && @planes_in_airport.count < capacity && report(plane) == true
      @planes_in_airport.push(plane)
      plane.allow
   end
 end
 
 def take_off(plane)
-  weather_man
-  if @weather == "sunny" && report(plane) == false
+  if @weather.forecast == "sunny" && report(plane) == false
     index = @planes_in_airport.index{|item| item == plane}
     take_off_plane = @planes_in_airport.delete_at(index)
     plane.allow
