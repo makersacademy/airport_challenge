@@ -22,6 +22,8 @@ class Airport
     raise "Weather does not allow landing" unless weathergood?
     raise "Plane already landed at this airport" if @planes.index(plane)
 
+    plane.land(self)
+
     @planes << plane
   end
 

@@ -75,4 +75,15 @@ describe Airport do
 
   end
 
+  it 'ensures that a plane that has already landed at an airport cannot be landed again at another airport' do
+    airport = Airport.new
+    another_airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:weathergood?) { true }
+    allow(another_airport).to receive(:weathergood?) { true }
+    airport.land_plane(plane)
+    expect { another_airport.land_plane(plane) }.to raise_error "Plane at another airport"
+
+  end
+
 end
