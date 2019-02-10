@@ -5,7 +5,11 @@ class Weather
   attr_writer :stormy
 
   def initialize 
-    stormy = false
+    @stormy = false
+  end
+
+  def stormy?
+    @stormy
   end
 
 end
