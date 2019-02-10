@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 describe Plane do
   before(:each) do
-    @airport_double = double(:airport, land_plane: "")
+    @airport_double = double(:airport, land_plane: "", remove_plane: "")
     @is_airborne = true
   end
 
@@ -24,15 +24,24 @@ describe Plane do
       expect { plane.land(@airport_double) }.to raise_error('Plane is already on the ground')
     end
 
-    it 'should instruct plane to take off and get back confirmation that plane is airborne' do
+    it 'should, when instructed to take off, instruct airport to remove it from the airport' do
       is_airborne = false
       plane = Plane.new(@weather_double, is_airborne)
 
-      expect(plane.take_off).to eq(true)
+      plane.take_off(@airport_double)
+
+      expect(@airport_double).to have_received(:remove_plane).with(plane)
+    end
+
+    it 'should, on take off, return confirmation that plane is airborne' do
+      is_airborne = false
+      plane = Plane.new(@weather_double, is_airborne)
+
+      expect(plane.take_off(@airport_double)).to eq(true)
     end
 
     it 'should raise exception if attempting to take off whilst it is airborne' do
-      expect { @plane.take_off }.to raise_error('Plane is already airborne')
+      expect { @plane.take_off(@airport_double) }.to raise_error('Plane is already airborne')
     end
   end
 
@@ -46,7 +55,7 @@ describe Plane do
       is_airborne = false
       plane = Plane.new(@weather_double, is_airborne)
 
-      expect { plane.take_off }.to raise_error('Cannot take off due to stormy weather')
+      expect { plane.take_off(@airport_double) }.to raise_error('Cannot take off due to stormy weather')
     end
 
     it 'should prevent landing when weather is stormy' do
