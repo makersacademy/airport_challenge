@@ -27,5 +27,5 @@ class Airport
     @planes.include?(plane)
   end
 
-  private :full?, :in_airport?
+  private :full?
 end
