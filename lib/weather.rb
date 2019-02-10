@@ -8,6 +8,11 @@ class Weather
     @stormy = false
   end
 
+  def set_stormy
+    @stormy = true
+    p "Weather is stormy"
+  end
+
   def stormy?
     @stormy
   end
