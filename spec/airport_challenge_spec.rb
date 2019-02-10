@@ -17,5 +17,11 @@ describe Plane do
     expect(plane.takeoff).to eq "Message to takeoff received"
   end
 
+  it "the plane must confirm it is in the air after takeoff" do
+    plane = Plane.new
+    expect(plane.takeoff).to eq "Message to takeoff received"
+    expect(plane.airbourne).to eq true
+  end
+
 end
 
