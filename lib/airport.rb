@@ -11,6 +11,8 @@ class Airport
   def landing(plane)
     if @stormy == true
       "Too stormy!"
+    elsif @at_airport.length == 20
+      "Airport is full"
     else
       @at_airport.push(plane)
       print @at_airport

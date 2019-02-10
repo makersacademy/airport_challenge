@@ -41,4 +41,13 @@ describe Airport do
     puts airport.landing("plane123")
   end
 
+  it 'cannot land when full' do
+    puts "-----"
+    airport = Airport.new
+    if airport.at_airport.length == 20
+      expect(airport.landing("plane345")).to eq("Airport is full")
+    end
+    puts airport.landing("plane345")
+  end
+
 end
