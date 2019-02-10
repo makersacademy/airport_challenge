@@ -13,6 +13,10 @@ class Airport
     @planes << plane
   end
 
+  def full?
+    @planes.count == @capacity
+  end
+
   def take_off_plane(plane)
     raise 'Plane is not in this airport' unless in_airport?(plane)
 
@@ -23,7 +27,5 @@ class Airport
     @planes.include?(plane)
   end
 
-  def full?
-    @planes.count == @capacity
-  end
+  private :full?, :in_airport?
 end

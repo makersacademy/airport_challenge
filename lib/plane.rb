@@ -1,4 +1,6 @@
 class Plane
+  attr_reader :is_airborne
+  
   def initialize(weather, is_airborne = false)
     @weather = weather
     @is_airborne = is_airborne
