@@ -1,5 +1,5 @@
 require 'plane'
 
+describe Plane do
 
-  describe Plane do
-  end
+end
