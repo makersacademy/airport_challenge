@@ -12,6 +12,7 @@ class Airport
   end
   def take_off(plane)
     stormy?
+    fail "This plane is not in the airport" if !is_here?(plane)
     out_going_plane = @planes.select { |x| x == plane }.pop
     @planes = @planes.select { |x| x != plane }
     out_going_plane

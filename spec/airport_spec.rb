@@ -53,4 +53,8 @@ describe Airport do
     expect { @airport.land(plane)}.to raise_error ("This plane has already landed")
   end
 
+  it "Dosen't let a plane take off that isan't in the airport" do
+    plane = Plane.new
+    expect { @airport.take_off(plane) }.to raise_error("This plane is not in the airport")
+  end
 end
