@@ -4,11 +4,11 @@ class Airport
 
   attr_reader :hangar
   attr_writer :size
+  DEFAULT_SIZE = 5
 
-  def initialize
-    default_size = 5
+  def initialize(capacity=DEFAULT_SIZE)
     @hangar = []
-    @size = default_size
+    @size = capacity
   end
 
   def land(plane = Airplane.new)
@@ -29,7 +29,7 @@ class Airport
   end
 
   def isfull?
-    fail "The airport is full!" unless @hangar.size < @size
+    fail "The airport is full!" unless @hangar.size < DEFAULT_SIZE
   end
 
 end
