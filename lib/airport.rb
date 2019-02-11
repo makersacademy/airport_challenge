@@ -16,7 +16,7 @@ class Airport
   end
 
   def stormy?
-    weather_array = ["clear", "stormy"]
+    weather_array = ["clear", "stormy", "sunny", "raining"]
     weather = weather_array.sample
     if weather == "stormy"
       true
