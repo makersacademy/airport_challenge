@@ -9,11 +9,15 @@ class Airport
   end
 
   def land(plane)
-    raise 'Plane cannot land as airport is full' if full?
-    raise 'Cannot land due to stormy weather' if @weather.stormy?
-
+    check_can_land(plane)
+    
     plane.land
     @planes << plane
+  end
+
+  def check_can_land(plane)
+    raise 'Plane cannot land as airport is full' if full?
+    raise 'Cannot land due to stormy weather' if @weather.stormy?
   end
 
   def full?
@@ -21,16 +25,20 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'Plane is not in this airport' unless in_airport?(plane)
-    raise 'Cannot take off due to stormy weather' if @weather.stormy?
+    check_can_take_off(plane)
 
     plane.take_off
     @planes.delete(plane)
+  end
+
+  def check_can_take_off(plane)
+    raise 'Plane is not in this airport' unless in_airport?(plane)
+    raise 'Cannot take off due to stormy weather' if @weather.stormy?
   end
 
   def in_airport?(plane)
     @planes.include?(plane)
   end
 
-  private :full?
+  private :full?, :check_can_take_off, :check_can_land 
 end
