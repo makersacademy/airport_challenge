@@ -12,14 +12,14 @@ describe Airport do
   it 'instructs a plane to take off and confirm that it is no longer in the airport' do
     plane = Plane.new
     expect { airport.instruct_to_takeoff(plane) }.equal? true
-    expect { airport.instruct_to_takeoff(plane).to raise_error('Plane already took off')}
+    expect { airport.instruct_to_takeoff(plane) }.to raise_error('Plane already took off')
   end
 
   it "puts a default capacity on airport" do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-   it "raises an error when airport is full" do
+   it "does not allow planeto land when airport is full" do
      airport.capacity.times { subject.instruct_to_land Plane.new }
      expect { airport.instruct_to_land(Plane.new) }.to raise_error("Airport is full")
    end
