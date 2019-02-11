@@ -5,23 +5,19 @@ class Airport
   attr_reader :planes
 
   def initialize
-    @planes = []
-    @planes << Plane.new
+    @planes = [Plane.new]
   end
 
   def takeoff
-    stormy?
     fail "Cannot takeoff during storms" if stormy? == true
     @planes.pop
   end
 
+  def land
+    fail "Cannot land when airport is full"
+  end
+
   def stormy?
-    weather_array = ["clear", "stormy", "sunny", "raining"]
-    weather = weather_array.sample
-    if weather == "stormy"
-      true
-    else
-      false
-    end
+    [true, false, false, false].sample
   end
 end

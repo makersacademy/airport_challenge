@@ -23,4 +23,14 @@ describe Airport do
     allow(airport).to receive(:stormy?) {true}
     expect{airport.takeoff}.to raise_error(RuntimeError)
   end
+
+  it "responds to #land" do
+    airport = Airport.new
+    expect(airport).to respond_to(:land)
+  end
+
+  it "doesn't allow landings when full" do
+    airport = Airport.new
+    expect{airport.land}.to raise_error("Cannot land when airport is full")
+  end
 end
