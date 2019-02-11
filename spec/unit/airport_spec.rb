@@ -26,7 +26,8 @@ describe Airport do
       it 'should prevent planes from landing' do
         Airport::DEFAULT_CAPACITY.times { @airport.land(@plane_double) }
     
-        expect { @airport.land(@plane_double) }.to raise_error('Plane cannot land as airport is full')
+        expect { @airport.land(@plane_double) }
+          .to raise_error('Plane cannot land as airport is full')
       end
     end
 
@@ -36,7 +37,8 @@ describe Airport do
         airport = Airport.new(capacity: capacity, weather: @weather_double)
         capacity.times { airport.land(@plane_double) }
     
-        expect { airport.land(@plane_double) }.to raise_error('Plane cannot land as airport is full')
+        expect { airport.land(@plane_double) }
+          .to raise_error('Plane cannot land as airport is full')
       end
     end
 
@@ -57,7 +59,8 @@ describe Airport do
 
     describe 'When airport is instructed to take off plane that is NOT in airpot' do
       it 'should raise exception' do
-        expect { @airport.take_off(@plane_double) }.to raise_error('Plane is not in this airport')
+        expect { @airport.take_off(@plane_double) }
+          .to raise_error('Plane is not in this airport')
       end
     end
   end
@@ -75,11 +78,13 @@ describe Airport do
       @airport.land(@plane_double)
 
       allow(@weather_double).to receive(:stormy?).and_return(true)
-      expect { @airport.take_off(@plane_double) }.to raise_error('Cannot take off due to stormy weather')
+      expect { @airport.take_off(@plane_double) }
+        .to raise_error('Cannot take off due to stormy weather')
     end
 
     it 'should prevent landing' do
-      expect { @airport.land(@plane_double) }.to raise_error('Cannot land due to stormy weather')
+      expect { @airport.land(@plane_double) }
+        .to raise_error('Cannot land due to stormy weather')
     end
   end
 end

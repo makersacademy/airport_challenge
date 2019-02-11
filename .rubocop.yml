@@ -37,7 +37,7 @@
 # designed to make you write more readable code - not less.
 
 AllCops:
-  Excludes:
+  Exclude:
     - 'bin/**'
 
 Metrics/LineLength:
