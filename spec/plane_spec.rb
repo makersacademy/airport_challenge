@@ -138,7 +138,6 @@ describe Plane do
   #   expect(cdg.full?).to eq false
   #   expect(cdg.landed_planes).to include(fr_plane)
 
-
   # end
 
 end
