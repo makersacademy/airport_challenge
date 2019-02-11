@@ -120,9 +120,24 @@ describe Plane do
   end
 
   describe "Bonus: lands and takes off a number of planes" do
-    heathrow = Airport.new
-    frankfurt = Airport.new
-    cdg = Airport.new
+    heathrow = Airport.new(3)
+    frankfurt = Airport.new(1)
+    cdg = Airport.new(2)
+
+    gb_plane = Plane.new(heathrow)
+    de_plane = Plane.new(frankfurt)
+    fr_plane = Plane.new(cdg)
+
+    it "" do
+      expect(heathrow.full?).to eq false
+      expect(heathrow.landed_planes).to include(gb_plane)
+    end
+    expect(frankfurt.full?).to eq true
+    expect(frankfurt.landed_planes).to include(de_plane)
+
+    expect(cdg.full?).to eq false
+    expect(cdg.landed_planes).to include(fr_plane)
+
 
   end
 
