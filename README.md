@@ -42,6 +42,9 @@ airport.land(plane)
 
 airport.take_off(plane)
 
+This should look like:
+
+![Image of Yaktocat](/screenshot how to run airport in irb.png)
 
 ## Approach and technologies
 
