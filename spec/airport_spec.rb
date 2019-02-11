@@ -1,31 +1,50 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(Airport::DEFAULT_CAPACITY) }
+  let(:plane) { double :plane}
 
-  it ' instructs a plane to land' do
-    plane = Plane.new
-    expect(airport.instruct_to_land(plane)).to eq [plane]
-    expect{ airport.instruct_to_land(plane).to raise_error('Plane already landed')}
+
+ describe 'instruct_to_land' do
+   it ' instructs a plane to land' do
+     plane = Plane.new
+     expect(airport).to respond_to(:instruct_to_land).with(1).argument
+     expect(airport.instruct_to_land(plane)).to eq [plane]
   end
 
-  it 'instructs a plane to take off and confirm that it is no longer in the airport' do
+  context 'airport full' do
+    it 'raises an error' do
+      airport.capacity.times { airport.instruct_to_land(Plane.new)}
+      expect { airport.instruct_to_land(plane) }.to raise_error("Airport is full")
+    end
+  end
+
+  context 'plane already landed' do
+    it 'raises an error when plane already landed' do
+      airport.instruct_to_land(plane)
+      expect { airport.instruct_to_land(plane) }.to raise_error('Plane already landed')
+    end
+  end
+end
+
+
+
+describe 'instruct_to_takeoff' do
+  it 'instructs a plane to take off' do
     plane = Plane.new
     expect { airport.instruct_to_takeoff(plane) }.equal? true
-    expect { airport.instruct_to_takeoff(plane) }.to raise_error('Plane already took off')
   end
 
-  it "puts a default capacity on airport" do
+  context 'plane already took off' do
+    it 'raise an error' do
+      expect { airport.instruct_to_takeoff(plane) }.to raise_error('Plane already took off')
+    end
+  end
+end
+
+
+  it 'allows settings capacity of airport' do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-   it "does not allow planeto land when airport is full" do
-     airport.capacity.times { subject.instruct_to_land Plane.new }
-     expect { airport.instruct_to_land(Plane.new) }.to raise_error("Airport is full")
-   end
-
-
-   it "raises an error when weather is stormy" do
-   end
-
-end
+  end
