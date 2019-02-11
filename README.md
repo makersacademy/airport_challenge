@@ -44,7 +44,7 @@ airport.take_off(plane)
 
 This should look like:
 
-![Image of Yaktocat](/screenshot how to run airport in irb.png)
+![Image of how to run in irb](/screenshotirb.png)
 
 ## Approach and technologies
 
