@@ -26,7 +26,21 @@ Run `bundle install` to install all dependencies.
 
 Run `rspec` to run tests.
 
-Rub `irb` to run program, requiring the airport, plane, and weather files to get access to their classes.
+To run program, run `irb`, and then:
+
+require './lib/airport.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
+
+weather = Weather.new
+airport = Airport.new(weather: weather)
+
+is_plane_airborne = true
+plane = Plane.new(is_plane_airborne)
+
+airport.land(plane)
+
+airport.take_off(plane)
 
 
 ## Approach and technologies
