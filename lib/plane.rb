@@ -1,8 +1,8 @@
 class Plane
   attr_accessor :airport
 
-  def initialize
-    @airport = Airport.new
+  def initialize(airport = Airport.new)
+    @airport = airport
     @airport.landed_planes << self
   end
 

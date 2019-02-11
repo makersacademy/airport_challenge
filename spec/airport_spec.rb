@@ -8,7 +8,7 @@ describe Airport do
   it '#full? returns true if number of landed planes equals airport capacity' do
     airport = Airport.new
     airport.capacity.times { airport.landed_planes << Plane.new }
-    expect { airport.full? }
+    expect(airport.full?).to be true
   end
 
   it 'before take off of a landed plane, the plane should be in the collection of landed_planes' do
@@ -23,5 +23,14 @@ describe Airport do
     airport.landed_planes << plane
 
     expect(airport.landed_planes).to include(plane)
+  end
+
+  it "has? should be able to confirm if a plane is at this airport" do
+    plane_1 = Plane.new
+    airport = Airport.new
+    plane_2 = Plane.new(airport)
+    
+    expect(airport.has?(plane_1)).to be false
+    expect(airport.has?(plane_2)).to be true
   end
 end

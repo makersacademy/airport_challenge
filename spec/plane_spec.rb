@@ -4,6 +4,14 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(2).argument }
   it { is_expected.to respond_to(:take_off).with(2).argument }
 
+  it "should be possible to initialize a plane to a specified airport" do
+    airport = Airport.new
+    plane_1 = Plane.new(airport)
+
+    expect(plane_1.airport).to eq(airport)
+    expect(airport.landed_planes).to include(plane_1)
+  end
+
   describe "take_off(airport, stormy)" do
     it "plane is at an airport, it is not stormy, plane takes off" do
       plane = Plane.new
@@ -54,7 +62,7 @@ describe Plane do
 
       plane.take_off(plane.airport, stormy)
       
-      expect(!airport.full?)
+      expect(airport.full?).to be false
       
       plane.land(airport, stormy)
       
@@ -86,7 +94,7 @@ describe Plane do
 
       airport.capacity.times { airport.landed_planes.push(Plane.new) }
 
-      expect(airport.full?)
+      expect(airport.full?).to be true
 
       expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Airport full.") 
 
@@ -102,7 +110,7 @@ describe Plane do
 
       airport.capacity.times { airport.landed_planes.push(Plane.new) }
 
-      expect(airport.full?)
+      expect(airport.full?).to be true
 
       expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Stormy and Airport full") 
 
