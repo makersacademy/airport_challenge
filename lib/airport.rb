@@ -16,6 +16,12 @@ class Airport
   end
 
   def stormy?
-
+    weather_array = ["clear", "stormy"]
+    weather = weather_array.sample
+    if weather == "stormy"
+      true
+    else
+      false
+    end
   end
 end
