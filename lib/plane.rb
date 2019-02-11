@@ -7,26 +7,24 @@ class Plane
   end
 
   def land(airport, stormy)
-    if stormy && airport.full?
-      raise "Landing aborted: Stormy and Airport full"
-    elsif stormy
-      raise "Landing aborted: Stormy."
-    elsif airport.full?
-      raise "Landing aborted: Airport full."
-    else
-      airport.landed_planes << self
-      @airport = airport
-    end  
+    raise "Error. Already landed. Take off first" unless @airport.nil?
+
+    raise "Landing aborted: Stormy and Airport full" if stormy && airport.full?
+      
+    raise "Landing aborted: Stormy." if stormy
+      
+    raise "Landing aborted: Airport full." if airport.full?
+
+    airport.landed_planes << self
+    @airport = airport
   end
 
   def take_off(airport, stormy)
-    if self.airport.nil?
-      raise "Error: plane already in the air. Must land before taking off again!"
-    elsif stormy
-      raise "Take-off aborted. Weather is stormy"
-    else
-      airport.landed_planes.delete(self)
-      @airport = nil
-    end
+    raise "Error: already airborne." if self.airport.nil?
+      
+    raise "Take-off aborted. Weather is stormy" if stormy
+    
+    airport.landed_planes.delete(self)
+    @airport = nil
   end
 end

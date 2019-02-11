@@ -4,57 +4,6 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(2).argument }
   it { is_expected.to respond_to(:take_off).with(2).argument }
 
-  describe "land(airport, stormy)" do
-    it "land at airport because airport is not full, and it is not stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      stormy = false
-      plane.land(airport, stormy)
-      expect(airport.landed_planes).to include(plane)
-    end
-
-    it "aborts landing because destination is stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      stormy = true
-
-      expect(!airport.full?)
-
-      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Stormy.") 
-
-      expect(airport.landed_planes).not_to include(plane)
-    end
-
-    it "aborts landing because destination airport is full" do
-      plane = Plane.new
-      airport = Airport.new
-      stormy = false
-
-      airport.capacity.times { airport.landed_planes.push(Plane.new) }
-
-      expect(airport.full?)
-
-      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Airport full.") 
-
-      expect(airport.landed_planes).not_to include(plane)
-    end
-
-    it "aborts landing because destination airport is full and it is stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      stormy = true
-
-      airport.capacity.times { airport.landed_planes.push(Plane.new) }
-
-      expect(airport.full?)
-
-      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Stormy and Airport full") 
-
-      expect(airport.landed_planes).not_to include(plane)
-    end
-
-  end
-
   describe "take_off(airport, stormy)" do
     it "plane is at an airport, it is not stormy, plane takes off" do
       plane = Plane.new
@@ -84,7 +33,82 @@ describe Plane do
       stormy = true 
 
       expect(plane.airport).to eq nil
-      expect { plane.take_off(plane.airport, stormy) }.to raise_error("Error: plane already in the air. Must land before taking off again!") 
+      expect { plane.take_off(plane.airport, stormy) }.to raise_error("Error: already airborne.") 
     end
   end
+
+  describe "land(airport, stormy)" do
+    it "already landed, must take off before it can land" do
+      plane = Plane.new
+      airport = Airport.new
+      stormy = false
+      
+      expect(plane.airport).not_to eq nil
+      expect { plane.land(airport, stormy) }.to raise_error("Error. Already landed. Take off first")  
+    end
+
+    it "land at airport because airport is not full, and it is not stormy" do
+      plane = Plane.new
+      stormy = false
+      airport = Airport.new
+
+      plane.take_off(plane.airport, stormy)
+      
+      expect(!airport.full?)
+      
+      plane.land(airport, stormy)
+      
+      expect(airport.landed_planes).to include(plane)
+    end
+
+    it "aborts landing because destination is stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      stormy = true
+
+      # plane must be in the air before it can land
+      plane.take_off(plane.airport, false)
+      
+      # unnecessary:
+      # expect(!airport.full?)
+
+      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Stormy.") 
+
+      expect(airport.landed_planes).not_to include(plane)
+    end
+
+    it "aborts landing because destination airport is full" do
+      plane = Plane.new
+      airport = Airport.new
+      stormy = false
+      
+      plane.take_off(plane.airport, stormy)
+
+      airport.capacity.times { airport.landed_planes.push(Plane.new) }
+
+      expect(airport.full?)
+
+      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Airport full.") 
+
+      expect(airport.landed_planes).not_to include(plane)
+    end
+
+    it "aborts landing because destination airport is full and it is stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      stormy = true
+
+      plane.take_off(plane.airport, false)
+
+      airport.capacity.times { airport.landed_planes.push(Plane.new) }
+
+      expect(airport.full?)
+
+      expect { plane.land(airport, stormy) }.to raise_error("Landing aborted: Stormy and Airport full") 
+
+      expect(airport.landed_planes).not_to include(plane)
+    end
+
+  end
+
 end
