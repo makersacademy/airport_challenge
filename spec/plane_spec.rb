@@ -119,4 +119,11 @@ describe Plane do
 
   end
 
+  describe "Bonus: lands and takes off a number of planes" do
+    heathrow = Airport.new
+    frankfurt = Airport.new
+    cdg = Airport.new
+
+  end
+
 end

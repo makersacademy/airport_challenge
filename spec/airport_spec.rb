@@ -33,4 +33,14 @@ describe Airport do
     expect(airport.has?(plane_1)).to be false
     expect(airport.has?(plane_2)).to be true
   end
+
+  it "default capacity can be overridden" do    
+    expect(Airport.new(12).capacity).to eq 12
+    expect(Airport.new(21).capacity).to eq 21
+
+    airport = Airport.new
+
+    airport.capacity = 15
+    expect(airport.capacity).to eq 15
+  end
 end
