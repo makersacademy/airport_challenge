@@ -13,14 +13,14 @@ describe Airport do
     expect(airport.planes.count).to eq(0)
   end
 
-  it "responds to #weather" do
+  it "responds to #stormy?" do
     airport = Airport.new
-    expect(airport).to respond_to(:weather)
+    expect(airport).to respond_to(:stormy?)
   end
 
   it "doesn't takeoff if weather is stormy" do
     airport = Airport.new
-    allow(airport).to receive(:weather) {"stormy"}
-    expect{airport.takeoff}.to raise_error
+    allow(airport).to receive(:stormy?) {true}
+    expect{airport.takeoff}.to raise_error(RuntimeError)
   end
 end
