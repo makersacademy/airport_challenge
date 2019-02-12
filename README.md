@@ -1,5 +1,6 @@
-Airport Challenge
-=================
+# Airport challenge
+
+The first weekend challenge from the Maker's Academy was to create an app for managing planes taking off and landing at an airport. 
 
 ```
         ______
@@ -13,78 +14,68 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+## How to download and run
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Run `git clone git@github.com:simon-norman/airport_challenge.git` to clone repo. 
 
-Steps
--------
+Go into repo using `cd airport_challenge`.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Ensure version of ruby is installed and set using RVM that matches version in .ruby-version file
 
-Task
------
+Run `bundle install` to install all dependencies.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Run `rspec` to run tests.
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+To run program, run `irb`, and then:
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+require './lib/airport.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+weather = Weather.new
+airport = Airport.new(weather: weather)
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+is_plane_airborne = true
+plane = Plane.new(is_plane_airborne)
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+airport.land(plane)
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+airport.take_off(plane)
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+This should look like:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+![Image of how to run in irb](/screenshotirb.png)
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## Approach and technologies
 
-Please create separate files for every class, module and test suite.
+Technologies used included Ruby, rspec (for testing), and Rubocop (for code quality).
 
-In code review we'll be hoping to see:
+I used the following incremental approach:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+1. Examined the first requested feature (landing a plane) from the user stories
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+2. Created a domain model for that first feature to identify the classes and methods I would likely need
 
-**BONUS**
+3. Wrote a failing feature test for that feature
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+4. From there, I selected the most appropriate class to start writing unit tests for, which in this case was Airport (as the user stories implied that, as the user was the air traffic controller, the airport would be the input for the program). 
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+5. Wrote a first failing test to land the plane
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+6. Created the Plane class with a land method to make this first test 
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+7. Refactored my code and test code
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+8. Committed my changes to the repo
+
+9. Identified the next test, using the instructions from the exercise as a guide for what key criteria(e.g. could not land plane that was already on the ground) it should fulfil, and repeated the Red -> Green -> Refactor process
+
+10. Continued this until all key criteria were met and the feature test was passing
+
+11. Examined the next requested feature, and updated my domain model, wrote a failing feature test etc.
+
+By using this incremental approach, I kept my design simple. As I did not try to anticipate the code that would be needed for features I had not started yet, I not only avoided redundant code at each stage, but also found it easier to adapt my design when I then started those new features. Had I tried to anticipate later features, I would have only made questionable early design decisions that I would have later had to adapt or undo anyway, due to the challenge of forecasting a good future design. 
+
+Moreover, by using TDD, it was straightforward to adapt the design, as the tests enabled me to quickly fix any breaking changes I made. 
+
+I used Rubocop to help ensure good code quality, and made this process fast by using auto-highlight and auto-fix options in VS Code. Moreover, using the VS Code debugger also facilitated debugging. 
