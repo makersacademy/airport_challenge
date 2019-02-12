@@ -1,11 +1,5 @@
 class Airport
-  def initialize
-    @hangar = []
+  def land(plane)
   end
-  def land_plane(plane)
-    @hangar << plane
-  end
-  def takeoff_plane(plane)
-    @hangar.delete(plane)
-  end
+
 end
