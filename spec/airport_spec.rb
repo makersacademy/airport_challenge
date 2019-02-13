@@ -11,10 +11,11 @@ describe Airport do
   end
 
   it 'does not allow landing at capacity' do
+    plane = double :plane
     20.times do
-      airport.land(:plane)
+      airport.land(plane)
     end
-    expect { airport.land(:plane) }.to raise_error 'Cannot land plane: airport full'
+    expect { airport.land(plane) }.to raise_error 'Cannot land plane: airport full'
   end
 
 end
