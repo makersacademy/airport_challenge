@@ -8,7 +8,6 @@ RSpec.describe Weather do
 
     it "checks if the weather is stormy" do
       weather = Weather.new
-      # allow(weather).to receive(:stormy?).and_return(true)
       expect(weather).to receive(:rand).and_return(0.09)
       expect(weather.stormy?).to eq(true)
     end
