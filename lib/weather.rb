@@ -1,8 +1,8 @@
 class Weather
   STORMY_NUMBERS = [0]
 
-  def initialize(rng = rand(3))
-    @random_number = rng  
+  def initialize(random_number = rand(3))
+    @random_number = random_number
   end
 
   def stormy?
