@@ -4,7 +4,7 @@ Makers Week 1 (Friday) - This project is an application to control the landing a
 
 ## Getting started
 
-Assuming you have 'git' installed, in the location of your choice, in Terminal:
+Assuming you have `git` installed, in the location of your choice, in Terminal:
 
 `git clone git@github.com:alittlecross/airport-challenge.git`
 
