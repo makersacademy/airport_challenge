@@ -4,11 +4,13 @@ Makers Week 1 (Friday) - This project is an application to control the landing a
 
 ## Getting started
 
-In the location of your choice, in Terminal:
+Assuming you have 'git' installed, in the location of your choice, in Terminal:
 
-`git clone git@github.com:alittlecross/airport_challenge.git`
+`git clone git@github.com:alittlecross/airport-challenge.git`
 
-In that same location, in Terminal:
+`cd` into the `airport-challenge` folder.
+
+Assuming you have `Ruby` and `Bundler` installed, in that same location, in Terminal:
 
 `bundle`
 
