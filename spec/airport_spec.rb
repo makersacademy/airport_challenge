@@ -3,10 +3,10 @@ require './lib/plane.rb'
 require './lib/weather.rb'
 
 describe Airport do
-  let(:airport) {
+  let(:airport) do
     weather = double(:weather, weather_condition: 'clear')
     Airport.new(1, weather)
-  }
+  end
   let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:land).with(1).arguments }
@@ -17,19 +17,16 @@ describe Airport do
   end
 
   it 'Lets a plane take off' do
-     # Arrange
     airport.land(plane)
-     # Act
     hangar = airport.take_off
-     # Assert
     expect(hangar.count).to eq 0
   end
 
   it "doesn't let you land in stormy weather" do
     weather = double(:weather, weather_condition: 'stormy')
     stormy_airport = Airport.new(1, weather)
-    expect { stormy_airport.land(plane) }.to raise_error 'Bad Warp storm, Landing Denied'
-
+    error = 'Bad Warp storm, Landing Denied'
+    expect { stormy_airport.land(plane) }.to raise_error error
   end
 
   it "doesn't let you take off in stormy weather" do
@@ -42,7 +39,6 @@ describe Airport do
   end
 
   describe 'land' do
-
     it 'raises an error when hangar is full' do
       1.times { airport.land Plane.new }
       expect { airport.land(plane) }.to raise_error 'Hangar full'

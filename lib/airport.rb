@@ -1,8 +1,7 @@
 require_relative 'plane'
 require_relative 'weather'
-
+# Airport controls takeoff and landing depending on weather
 class Airport
-
   DEFAULT_CAPACITY = 1
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
@@ -17,23 +16,19 @@ class Airport
   end
 
   def take_off
-    if @weather.weather_condition == 'clear'
-      @hangar.pop
-    end
+    @hangar.pop if @weather.weather_condition == 'clear'
     @hangar
-
   end
 
-private
+  private
 
   def full?
     @hangar.size >= @capacity
   end
 
   def can_land?
-    weather = 'stormy' # @weather.weather_condition
+    weather = @weather.weather_condition
     raise 'Bad Warp storm, Landing Denied' if weather == 'stormy'
     raise 'Hangar full' if full?
   end
-
 end

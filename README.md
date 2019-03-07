@@ -4,14 +4,26 @@ Program for control of flow of planes through an airport, depending on whether w
 
 ## Getting Started
 
+Clone or download this Repo.
+
+then load into IRB
+
 ```
-airport.rb in terminal
+irb
 ```
+in the terminal.
+
+Once in the irb repl
+use as per image:
+
+![Pic of app](./pics/pic1.png)
 
 ### Prerequisites
 
 ```
-Terminal, ruby, git
+Terminal, ruby, §
+
+,  git
 ```
 
 ### Approach
