@@ -21,8 +21,10 @@ describe Airport do
     hangar = airport.take_off
     expect(hangar.count).to eq 0
   end
+end
 
-  it "doesn't let you land in stormy weather" do
+describe 'airport in stormy weather' do
+  it "doesn't let you land" do
     weather = double(:weather, weather_condition: 'stormy')
     stormy_airport = Airport.new(1, weather)
     error = 'Bad Warp storm, Landing Denied'
@@ -37,11 +39,10 @@ describe Airport do
     hangar = stormy_airport.take_off
     expect(hangar.count).to eq 1
   end
-
-  describe 'land' do
-    it 'raises an error when hangar is full' do
-      1.times { airport.land Plane.new }
-      expect { airport.land(plane) }.to raise_error 'Hangar full'
-    end
+end
+describe 'land' do
+  it 'raises an error when hangar is full' do
+    1.times { airport.land Plane.new }
+    expect { airport.land(plane) }.to raise_error 'Hangar full'
   end
 end
