@@ -18,17 +18,17 @@ use as per image:
 
 ![Pic of app](./pics/pic1.png)
 
-### Prerequisites
+### Dependancies
 
 ```
-Terminal, ruby, §
-
-,  git
+- Ruby - 2.5.3
+- RSpec - 3.8.0
+- Rubocop - 0.56.0
 ```
 
 ### Approach
 
-I approached this in the same manner as the boris bikes challenge earlier this week due to their similarity in the need to both store, intake and outtake objects. I dove into testing first, starting simply and working my way up until the code presented here grew from the testing methods. The major logic is in testing the result of the return of each test to see if it it matches the change in data we expected and asserted in our tests. Via research and advice from peers I began to follow an Arrange - Act - Assert methodology to my tests and found it decidedly increased my test understanding and output.
+I approached this in the same manner as the Boris bikes challenge earlier this week due to their similarity in the need to both store, intake and outtake objects. I dove into testing first, starting simply and working my way up until the code presented here grew from the testing methods. The major logic is in testing the result of the return of each test to see if it it matches the change in data we expected and asserted in our tests. Via research and advice from peers I began to follow an Arrange - Act - Assert methodology to my tests and found it decidedly increased my test understanding and output.
 
 ### Work still to be done
 
