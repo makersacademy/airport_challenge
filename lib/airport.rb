@@ -12,10 +12,8 @@ class Airport
   end
 
   def land(plane)
-    weather = @weather.weather_condition
-    raise 'Bad Warp storm, Landing Denied' if weather == 'stormy'
-    raise 'Hangar full' if full?
-      @hangar << plane
+    can_land?
+    @hangar << plane
   end
 
   def take_off
@@ -31,4 +29,11 @@ private
   def full?
     @hangar.size >= @capacity
   end
+
+  def can_land?
+    weather = 'stormy' # @weather.weather_condition
+    raise 'Bad Warp storm, Landing Denied' if weather == 'stormy'
+    raise 'Hangar full' if full?
+  end
+
 end
