@@ -13,13 +13,9 @@ class Airport
 
   def land(plane)
     weather = @weather.weather_condition
-    if weather == 'stormy'
-      fail 'Bad Warp storm, Landing Denied'
-    elsif full?
-      fail 'Hangar full'
-    else
+    raise 'Bad Warp storm, Landing Denied' if weather == 'stormy'
+    raise 'Hangar full' if full?
       @hangar << plane
-    end
   end
 
   def take_off
