@@ -1,6 +1,6 @@
 # Airport Challenge
 
-Program for control of flow of planes through an airport, depending on whether weather is stormy or clear as gnenerated by random
+Program for control of planes through an airport, depending on whether weather is stormy or clear as gnenerated by random.
 
 ## Getting Started
 
