@@ -1,90 +1,45 @@
-Airport Challenge
-=================
+# Airport Challenge
+
+Program for control of flow of planes through an airport, depending on whether weather is stormy or clear as gnenerated by random
+
+## Getting Started
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
+airport.rb in terminal
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+### Prerequisites
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+Terminal, ruby, git
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+### Approach
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+I approached this in the same manner as the boris bikes challenge earlier this week due to their similarity in the need to both store, intake and outtake objects. I dove into testing first, starting simply and working my way up until the code presented here grew from the testing methods. The major logic is in testing the result of the return of each test to see if it it matches the change in data we expected and asserted in our tests. Via research and advice from peers I began to follow an Arrange - Act - Assert methodology to my tests and found it decidedly increased my test understanding and output.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+### Work still to be done
 
-Please create separate files for every class, module and test suite.
+Ideally I would test this code on its ability to store individual instances of planes so that the take_off method would take an individual plane as an argument and have that precise plane leave the hangar. Further I would like to test the code at dealing with multiple requests at once and how far the hangar control methods can work. It would also be interesting to me to test other weather conditions to see how they would affect the codes growth over time.
 
-In code review we'll be hoping to see:
+#### Refactoring to be done Code
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+- Moving the land method from the airport to the plane, allowing for the growth of the planes as individual    objects.
+- The land method could be reduced to two methods, one for deciding if the weather is clear or not, and one to control the flow of the plane as directed by the output of that method.
+-  The take_off method could also be reduced in the same way allowing it to simply control flow of planes.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+#### Refactoring to be done tests
+- The tests using doubles and mocks I feel could be made more eloquent. For now I feel they are easily readable but could be maintain that readability to be made simpler through more research.
+- I consider removing all let variables, as sometimes I feel like they do not make things easier to read, as discovered when my tests were peer reviewed and the AAA method above was introduced.
+- Further research is required to see if the second/sub describe block is necessary? It was based off of a similar test conducted previously by myself and while works for this scenario it could be made better.
 
-**BONUS**
+## Authors
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+* **Georges Le Vaillant** - [GLV](https://github.com/stonefarmer9)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+## Acknowledgments
+
+* Makers Academy

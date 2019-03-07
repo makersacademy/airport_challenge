@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'rubocop', '0.56.0'
+gem 'capybara'
+gem 'sinatra'
 
 group :test do
   gem 'rspec'
