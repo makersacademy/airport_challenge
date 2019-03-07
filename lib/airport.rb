@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  
+
   DEFAULT_CAPACITY = 1
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
@@ -14,7 +14,7 @@ class Airport
   def land(plane)
     weather = @weather.weather_condition
     if weather == 'stormy'
-      @hangar
+      fail 'Bad Warp storm, Landing Denied'
     elsif full?
       fail 'Hangar full'
     else

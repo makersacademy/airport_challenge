@@ -28,8 +28,8 @@ describe Airport do
   it "doesn't let you land in stormy weather" do
     weather = double(:weather, weather_condition: 'stormy')
     stormy_airport = Airport.new(1, weather)
-    hangar = stormy_airport.land(plane)
-    expect(hangar.count).to eq 0
+    expect { stormy_airport.land(plane) }.to raise_error 'Bad Warp storm, Landing Denied'
+
   end
 
   it "doesn't let you take off in stormy weather" do
