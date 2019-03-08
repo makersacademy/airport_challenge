@@ -11,9 +11,12 @@ describe Control do
     expect(Control.new)
   end
 
-  it {is_expected.to respond_to(:land)}
+  it {is_expected.to respond_to(:land).with(1).argument}
 
   # it 'lands aircraft' do
+  #   traffic_control = Control.new
+  #   plane1 = Plane.new
+  #   expect(traffic_control.land)
   # 
   # end
 
