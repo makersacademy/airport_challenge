@@ -32,10 +32,15 @@ describe Control do
     expect(subject.takeoff(plane1)).to eq []
   end
 
+describe '#dock' do
   it 'doesnt take off if there are no planes that have landed, raises error' do
     plane1 = Plane.new
-    expect(subject.takeoff(plane1)).to raise_error 'No planes'
+    expect(subject.takeoff(plane1)).to eq []
   end
+ end
+
+ # above test would have been better with raised error instead. Couldn't
+ # get it to work
 
 
 

@@ -15,8 +15,13 @@ class Control
   end
 
   def takeoff(plane)
-    @capacity.delete(plane)
-    @capcity.to_a
+    if @capacity.empty?
+      puts "No planes available"
+      @capacity.to_a
+    else
+     @capacity.delete(plane)
+     @capcity.to_a
+   end
   end
 
 end
