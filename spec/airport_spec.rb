@@ -30,13 +30,13 @@ describe Airport do
     it 'returns a confirmation that the plane has taken off' do
       my_plane = Plane.new
       subject.land(my_plane)
-      expect(subject.take_off(my_plane)).to eq ("Successful take off")
+      expect(subject.take_off(my_plane)).to eq "Successful take off"
     end
 
     it 'raises an error if I try to make a non-existent plane take off' do
       my_plane = Plane.new
       subject.land(my_plane)
-      expect{ subject.take_off(Plane.new) }.to raise_error "That plane isn't at the airport"
+      expect { subject.take_off(Plane.new) }.to raise_error "That plane isn't at the airport"
     end
 
     it 'should confirm that the plane that has just taken off is no longer at the airport' do
