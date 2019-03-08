@@ -25,6 +25,18 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+
+    it 'returns a confirmation that the plane has taken off' do
+      my_plane = Plane.new
+      subject.land(my_plane)
+      expect(subject.take_off(my_plane)).to eq ("Successful take off")
+    end
+
+    it 'raises an error if I try to make a non-existent plane take off' do
+      my_plane = Plane.new
+      subject.land(my_plane)
+      expect{ subject.take_off(Plane.new) }.to raise_error "That plane isn't at the airport"
+    end
   end
 end

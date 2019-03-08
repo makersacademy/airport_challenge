@@ -9,6 +9,11 @@ class Airport
     return @planes
   end
 
-  def take_off
+  def take_off(plane)
+    if @planes == plane
+      @planes = nil
+      return "Successful take off"
+    end
+    raise "That plane isn't at the airport"
   end
 end
