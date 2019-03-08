@@ -19,10 +19,10 @@ describe Control do
 
   end
 
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport
-# and confirm that it is no longer in the airport
+ # As an air traffic controller
+ # So I can get passengers on the way to their destination
+ # I want to instruct a plane to take off from an airport
+ # and confirm that it is no longer in the airport
 
   it {is_expected.to respond_to(:takeoff).with(1).argument}
 
@@ -42,11 +42,17 @@ describe Control do
  # above test would have been better with raised error instead. Couldn't
  # get it to work
 
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
+ # As an air traffic controller
+ # To ensure safety
+ # I want to prevent takeoff when weather is stormy
 
-  it {is_expected.to respond_to(:stormy?)}
+  it {is_expected.to respond_to(:stormy?).with(1).argument}
+
+  # it 'doesnt allow take off if stormy'
+  #   control = Control.new
+  #   plane1 = Plane.new
+  #   control.land(plane1)
+  #   control.stormy(plane1)
 
 
 

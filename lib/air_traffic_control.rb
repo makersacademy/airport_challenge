@@ -18,13 +18,13 @@ class Control
     if @capacity.empty?
       puts "No planes available"
       @capacity.to_a
-    else
-     @capacity.delete(plane)
-     @capcity.to_a
+     else
+      @capacity.delete(plane)
+      @capcity.to_a
    end
   end
 
-  def stormy?
+  def stormy?(plane)
   end
 
 end
