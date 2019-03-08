@@ -32,5 +32,11 @@ describe Control do
     expect(subject.takeoff(plane1)).to eq []
   end
 
+  it 'doesnt take off if there are no planes that have landed, raises error' do
+    plane1 = Plane.new
+    expect(subject.takeoff(plane1)).to raise_error 'No planes'
+  end
+
+
 
 end

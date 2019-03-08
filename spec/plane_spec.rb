@@ -1,4 +1,4 @@
-# plane test
+# plane test 
 require 'plane'
 
 describe Plane do
