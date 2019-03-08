@@ -26,5 +26,11 @@ describe Control do
 
   it {is_expected.to respond_to(:takeoff)}
 
+  it 'takes off and confirms planes departure' do
+    plane1 = Plane.new
+    subject.land(plane1) # so capacity isn't empty
+    expect(subject.takeoff(plane1)).to eq []
+  end
+
 
 end
