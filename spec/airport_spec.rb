@@ -38,5 +38,12 @@ describe Airport do
       subject.land(my_plane)
       expect{ subject.take_off(Plane.new) }.to raise_error "That plane isn't at the airport"
     end
+
+    it 'should confirm that the plane that has just taken off is no longer at the airport' do
+      my_plane = Plane.new
+      subject.land(my_plane)
+      subject.take_off(my_plane)
+      expect(subject.airport_planes).not_to eq my_plane
+    end
   end
 end

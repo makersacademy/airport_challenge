@@ -1,17 +1,19 @@
 class Airport
 
+  attr_reader :airport_planes
+
   def land(plane)
-    @planes = plane
+    @airport_planes = plane
     return "Plane landed"
   end
 
   def planes
-    return @planes
+    return @airport_planes
   end
 
   def take_off(plane)
-    if @planes == plane
-      @planes = nil
+    if @airport_planes == plane
+      @airport_planes = nil
       return "Successful take off"
     end
     raise "That plane isn't at the airport"
