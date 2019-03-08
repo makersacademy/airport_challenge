@@ -24,7 +24,7 @@ describe Control do
 # I want to instruct a plane to take off from an airport
 # and confirm that it is no longer in the airport
 
-  it {is_expected.to respond_to(:takeoff)}
+  it {is_expected.to respond_to(:takeoff).with(1).argument}
 
   it 'takes off and confirms planes departure' do
     plane1 = Plane.new

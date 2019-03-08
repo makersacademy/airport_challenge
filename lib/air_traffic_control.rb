@@ -14,7 +14,7 @@ class Control
     @capacity.push(plane)
   end
 
-  def takeoff
+  def takeoff(plane)
   end
 
 end
