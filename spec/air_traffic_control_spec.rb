@@ -48,11 +48,13 @@ describe Control do
 
   it {is_expected.to respond_to(:stormy?).with(1).argument}
 
-  # it 'doesnt allow take off if stormy'
-  #   control = Control.new
-  #   plane1 = Plane.new
-  #   control.land(plane1)
-  #   control.stormy(plane1)
+  it 'doesnt allow take off if stormy' do
+    control = Control.new
+    plane1 = Plane.new
+    control.land(plane1)
+    control.stormy?(plane1)
+    expect(subject.takeoff(plane1)).to eq [plane1]
+  end
 
 
 
