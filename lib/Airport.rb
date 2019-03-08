@@ -8,4 +8,7 @@ class Airport
   def planes
     return @planes
   end
+
+  def take_off
+  end
 end
