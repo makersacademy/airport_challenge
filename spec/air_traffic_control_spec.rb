@@ -13,11 +13,10 @@ describe Control do
 
   it {is_expected.to respond_to(:land).with(1).argument}
 
-  # it 'lands aircraft' do
-  #   traffic_control = Control.new
-  #   plane1 = Plane.new
-  #   expect(traffic_control.land)
-  # 
-  # end
+  it 'lands aircraft' do
+    plane1 = Plane.new
+    expect(subject.land(plane1)).to eq [plane1]
+
+  end
 
 end
