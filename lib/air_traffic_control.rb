@@ -24,4 +24,7 @@ class Control
    end
   end
 
+  def stormy?
+  end
+
 end

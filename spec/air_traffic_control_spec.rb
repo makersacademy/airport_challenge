@@ -32,7 +32,7 @@ describe Control do
     expect(subject.takeoff(plane1)).to eq []
   end
 
-describe '#dock' do
+ describe '#dock' do
   it 'doesnt take off if there are no planes that have landed, raises error' do
     plane1 = Plane.new
     expect(subject.takeoff(plane1)).to eq []
@@ -41,6 +41,12 @@ describe '#dock' do
 
  # above test would have been better with raised error instead. Couldn't
  # get it to work
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
+
+  it {is_expected.to respond_to(:stormy?)}
 
 
 
