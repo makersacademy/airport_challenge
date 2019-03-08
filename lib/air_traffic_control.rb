@@ -15,6 +15,8 @@ class Control
   end
 
   def takeoff(plane)
+    @capacity.delete(plane)
+    @capcity.to_a
   end
 
 end
