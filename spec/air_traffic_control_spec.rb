@@ -10,4 +10,7 @@ describe Control do
   it 'creates new Control' do
     expect(Control.new)
   end
+
+  it {is_expected.to respond_to(:land)}
+
 end
