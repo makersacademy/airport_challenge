@@ -24,7 +24,7 @@ describe Control do
  # I want to instruct a plane to take off from an airport
  # and confirm that it is no longer in the airport
 
-  it {is_expected.to respond_to(:takeoff).with(1).argument}
+  it  {is_expected.to respond_to(:takeoff).with(1).argument}
 
   it 'takes off and confirms planes departure' do
     plane1 = Plane.new
@@ -53,7 +53,7 @@ describe Control do
     plane1 = Plane.new
     control.land(plane1)
     control.stormy?(plane1)
-    expect(subject.takeoff(plane1)).to eq [plane1]
+    expect(control.takeoff(plane1)).to eq [plane1]
   end
 
 
