@@ -13,4 +13,8 @@ describe Control do
 
   it {is_expected.to respond_to(:land)}
 
+  # it 'lands aircraft' do
+  # 
+  # end
+
 end
