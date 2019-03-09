@@ -6,7 +6,7 @@ describe Airport do
     @airport = Airport.new
     @plane = double(:plane)
   end
-  
+
   describe '.land' do
     it 'prints a confirmation message when a plane lands' do
       expect { @airport.land @plane }.to output("Plane landed!\n").to_stdout
@@ -35,7 +35,9 @@ describe Airport do
       expect(@airport.planes).not_to include @plane
     end
     it 'prints an error message if the weather is bad' do
-
+      weather = double(:weather, forecast: "⛈")
+      airport = Airport.new(weather)
+      expect { airport.clear_for_takeoff }.to output("⛈ Sorry, all aircraft grounded until further notice. ⛈").to_stdout
     end
   end
 end
