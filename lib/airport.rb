@@ -2,10 +2,11 @@ require_relative 'weather.rb'
 
 class Airport
 
-  attr_reader :hangar
+  attr_reader :hangar, :capacity
 
   def initialize
     @hangar = []
+    @capacity = 100
   end
 
   def land(plane)
@@ -22,6 +23,10 @@ class Airport
 
   def stormy?
     Weather.new.forecast == 'Stormy'
+  end
+
+  def full?
+    @hangar.count >= @capacity
   end
 
 end

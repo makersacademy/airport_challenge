@@ -58,10 +58,27 @@ describe Airport do
 
     it { is_expected.to respond_to :stormy? }
 
-    it "can return true or false" do
+    it 'can return true or false' do
       expect(subject.stormy?).to eq(true).or eq(false)
     end
 
+  end
+
+  describe '#full?' do
+
+    it { is_expected.to respond_to :full? }
+
+    it 'returns true if more planes than capacity' do
+      101.times { expect(subject).to receive(:stormy?).and_return(false) }
+      101.times { subject.land(Plane.new) }
+      expect(subject.full?).to eq true
+    end
+
+    it 'returns false if fewer planes than capacity' do
+      64.times { expect(subject).to receive(:stormy?).and_return(false) }
+      64.times { subject.land(Plane.new) }
+      expect(subject.full?).to eq false
+    end
   end
 
 end
