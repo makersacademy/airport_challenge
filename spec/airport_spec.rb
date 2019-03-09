@@ -37,7 +37,7 @@ describe Airport do
     it 'prints an error message if the weather is bad' do
       weather = double(:weather, forecast: "⛈")
       airport = Airport.new(weather)
-      expect { airport.clear_for_takeoff }.to output("⛈ Sorry, all aircraft grounded until further notice. ⛈").to_stdout
+      expect { airport.clear_for_takeoff(@plane) }.to output("⛈ Sorry, all aircraft grounded until further notice. ⛈").to_stdout
     end
   end
 end
