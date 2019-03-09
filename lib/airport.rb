@@ -12,11 +12,13 @@ class Airport
   end
 
   def take_off
-    @plane_list.pop
+    if empty? == false
+      @plane_list.pop 
+    end
   end
 
   def empty?
-    
+    @plane_list.empty?
   end
   
 end
