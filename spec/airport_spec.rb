@@ -30,18 +30,18 @@ describe Airport do
 
   end
 
-  describe '#airport_planes' do
-    it { is_expected.to respond_to :airport_planes }
+  describe '#plane_list' do
+    it { is_expected.to respond_to :plane_list }
 
     it 'returns no planes when airport is empty' do
-      expect(subject.airport_planes).to eq []
+      expect(subject.plane_list).to eq []
     end
 
     it 'returns a plane when I check what has landed' do
       allow(subject).to receive(:check_weather) { "Sunny" }
       my_plane = Plane.new
       subject.land(my_plane)
-      expect(subject.airport_planes).to include my_plane
+      expect(subject.plane_list).to include my_plane
     end
 
   end
@@ -68,7 +68,7 @@ describe Airport do
       my_plane = Plane.new
       subject.land(my_plane)
       subject.take_off(my_plane)
-      expect(subject.airport_planes).not_to eq my_plane
+      expect(subject.plane_list).not_to include my_plane
     end
 
     it 'should stop a plane from taking off when the weather is Stormy' do

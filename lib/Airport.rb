@@ -1,27 +1,27 @@
 class Airport
 
-  attr_reader :airport_planes
+  attr_reader :plane_list
   attr_reader :max_capacity
 
   def initialize(max_capacity = 20)
     @max_capacity = max_capacity
-    @airport_planes = []
+    @plane_list = []
   end
 
   def land(plane)
-    raise "That plane is already in the airport" if @airport_planes.include?(plane)
+    raise "That plane is already in the airport" if @plane_list.include?(plane)
     raise "The airport is full - no landing allowed" if capacity == 0
     raise "The weather is stormy - no landing allowed" if check_weather == "Stormy"
 
-    @airport_planes << plane
+    @plane_list << plane
     return "Plane landed"
   end
 
   def take_off(plane)
     raise "The weather is stormy - no take off allowed" if check_weather == "Stormy"
 
-    if @airport_planes.include?(plane)
-      @airport_planes.delete(plane)
+    if @plane_list.include?(plane)
+      @plane_list.delete(plane)
       return "Successful take off"
     end
 
@@ -35,6 +35,6 @@ class Airport
   end
 
   def capacity
-    return @max_capacity - @airport_planes.length
+    return @max_capacity - @plane_list.length
   end
 end
