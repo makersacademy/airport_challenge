@@ -31,7 +31,7 @@ controller |
 passenger | 
 plane | 
 airport | land_plane
-airport | release_plane
+airport | launch_plane
 
 
 #### Prevent take-off
@@ -48,9 +48,14 @@ controller |
 passenger | 
 plane | 
 airport | land_plane
-airport | release_plane
-airport | prevent_take_off
-weather | is_stormy?
+airport | launch_plane
+airport | is_stormy?
+
+1. is_stormy? should be a method
+2. is_stormy? method returns false
+3. Prevents launch_plane if is_stormy? is true (guard condition)
+4. Allows launch_plane if is_stormy? is false
+5. Provide an input for is_stormy? to be able to return true
 
 
 #### Prevent landing in stormy weather
@@ -67,10 +72,8 @@ controller |
 passenger | 
 plane | 
 airport | land_plane
-airport | release_plane
-airport | prevent_take_off
-airport | prevent_landing
-weather | is_stormy?
+airport | launch_plane
+airport | is_stormy?
 
 
 #### Prevent landing when airport is full
@@ -87,7 +90,7 @@ controller |
 passenger | 
 plane | 
 airport | land_plane
-airport | release_plane
+airport | launch_plane
 airport | prevent_take_off
 airport | prevent_landing
 airport | is_full?
@@ -108,7 +111,7 @@ controller |
 passenger | 
 plane | 
 airport | land_plane
-airport | release_plane
+airport | launch_plane
 airport | prevent_take_off
 airport | prevent_landing
 airport | is_full?

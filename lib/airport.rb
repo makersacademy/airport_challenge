@@ -1,8 +1,9 @@
 class Airport
-  attr_reader :planes
+  attr_accessor :planes, :storm
   
   def initialize
     @planes = []
+    @storm = false
   end
 
   def land_plane(plane)
@@ -10,8 +11,15 @@ class Airport
   end
 
   def launch_plane(plane)
-    @planes.reject do |item|
-      item == plane
-    end
+    return "Cannot take-off, weather is stormy." if is_stormy?
+    @planes.reject { |item| item == plane }
+  end
+
+  private
+
+  def is_stormy?
+    storm_generator = rand(5) + 1
+    @storm = true if storm_generator == 5
+    @storm
   end
 end

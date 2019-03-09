@@ -10,6 +10,8 @@ Airport Challenge
 - Write out [user stories](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md)
 - Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple [object model table](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md)
 - Draw a diagram to outline how objects interact
+- Break this down further into the [simplest things](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md#prevent-take-off) the program can do
+
 
 #### Write minimum first test
 
