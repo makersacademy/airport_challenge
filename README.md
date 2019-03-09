@@ -24,6 +24,11 @@ Task
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
+Objects | Methods
+airplane | land_plane, take_off
+airport |
+
+
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -54,3 +59,5 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+Use a capacity attribute and pass as argument when a new Aiport object is created/initialized.
+A default capacity will be assigned as a CONSTANT and defaulted in the argument.
