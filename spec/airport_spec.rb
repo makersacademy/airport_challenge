@@ -1,10 +1,12 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do
   before(:each) do
     @airport = Airport.new
     @plane = Plane.new
+    @airport.extend(Weather)
   end
 
   it "responds to 'land_plane' method" do
@@ -16,10 +18,12 @@ describe Airport do
   end
 
   it "adds plane to airport on landing" do
+    allow(@airport).to receive(:is_stormy?) { false }
     expect(@airport.land_plane(@plane)).to eq [@plane]
   end
 
   it "adds second plane to airport on landing" do
+    allow(@airport).to receive(:is_stormy?) { false }
     @airport.land_plane(@plane)
     plane2 = Plane.new
     expect(@airport.land_plane(plane2)).to eq [@plane, plane2]
@@ -39,9 +43,18 @@ describe Airport do
     expect(@airport.launch_plane(@plane)).to eq [plane2]
   end
 
-  it "prevents 'launch_plane' if weather is_stormy" do
+  it "responds to 'is_stormy' method" do
+    expect(@airport).to respond_to(:is_stormy?)
+  end
+
+  it "prevents 'launch_plane' if weather is stormy" do
+    allow(@airport).to receive(:is_stormy?) { true }
     @airport.land_plane(@plane)
-    @airport.storm = true
     expect(@airport.launch_plane(@plane)).to eq "Cannot take-off, weather is stormy."
+  end
+
+  it "prevents 'land_plane' if weather is stormy" do
+    allow(@airport).to receive(:is_stormy?) { true }
+    expect(@airport.land_plane(@plane)).to eq "Cannot land, weather is stormy."
   end
 end
