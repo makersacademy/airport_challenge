@@ -35,4 +35,15 @@ describe Airport do
     expect(airport.plane_list).not_to include plane
   end
 
+  it { is_expected.to respond_to(:empty?) }
+
+  it 'cannot take off a plane when airport has no planes' do
+    allow(airport).to receive(:empty?).and_return(true)
+    expect(airport.take_off).not_to eq plane
+  end
+
+  # it 'cannot take off a plane if the airport has no planes' do
+  #   expect(airport.take_off).to
+  # end
+
 end

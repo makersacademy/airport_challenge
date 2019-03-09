@@ -14,5 +14,9 @@ class Airport
   def take_off
     @plane_list.pop
   end
+
+  def empty?
+    
+  end
   
 end
