@@ -12,12 +12,14 @@ class Airport
   end
 
   def land_plane(plane)
-    return "Cannot land, weather is stormy." if is_stormy?
+    return "Cannot land, weather is stormy." if stormy?
+
     @planes << plane
   end
 
   def launch_plane(plane)
-    return "Cannot take-off, weather is stormy." if is_stormy?
+    return "Cannot take-off, weather is stormy." if stormy?
+
     @planes.reject { |item| item == plane }
   end
 

@@ -1,5 +1,3 @@
-Make sure you have written your own README that briefly explains your approach to solving the challenge.
-
 Airport Challenge
 =================
 
@@ -28,10 +26,9 @@ Airport Challenge
 - Follow the next error and keep repeating until the test passes
 
 
-Airport Challenge
+Airport Challenge - original README
 =================
 
-## Original README
 
 ```
         ______

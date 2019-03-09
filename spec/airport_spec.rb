@@ -18,48 +18,48 @@ describe Airport do
   end
 
   it "adds plane to airport on landing" do
-    allow(@airport).to receive(:is_stormy?) { false }
+    allow(@airport).to receive(:stormy?) { false }
     expect(@airport.land_plane(@plane)).to eq [@plane]
   end
 
   it "adds second plane to airport on landing" do
-    allow(@airport).to receive(:is_stormy?) { false }
+    allow(@airport).to receive(:stormy?) { false }
     @airport.land_plane(@plane)
     plane2 = Plane.new
     expect(@airport.land_plane(plane2)).to eq [@plane, plane2]
   end
   
   it "returns an empty airport on launching its only plane" do
-    allow(@airport).to receive(:is_stormy?) { false }
+    allow(@airport).to receive(:stormy?) { false }
     @airport.land_plane(@plane)
     expect(@airport.launch_plane(@plane)).to eq []
   end
 
   it "removes specific plane from airport on launching plane" do
-    allow(@airport).to receive(:is_stormy?) { false }
+    allow(@airport).to receive(:stormy?) { false }
     plane2 = Plane.new
     @airport.land_plane(@plane)
     @airport.land_plane(plane2)
     expect(@airport.launch_plane(@plane)).to eq [plane2]
   end
 
-  it "responds to 'is_stormy' method" do
-    expect(@airport).to respond_to(:is_stormy?)
+  it "responds to 'stormy' method" do
+    expect(@airport).to respond_to(:stormy?)
   end
 
   it "prevents 'launch_plane' if weather is stormy" do
-    allow(@airport).to receive(:is_stormy?) { true }
+    allow(@airport).to receive(:stormy?) { true }
     @airport.land_plane(@plane)
     expect(@airport.launch_plane(@plane)).to eq "Cannot take-off, weather is stormy."
   end
 
   it "prevents 'land_plane' if weather is stormy" do
-    allow(@airport).to receive(:is_stormy?) { true }
+    allow(@airport).to receive(:stormy?) { true }
     expect(@airport.land_plane(@plane)).to eq "Cannot land, weather is stormy."
   end
 
   it "prevents 'land_plane' when capacity of planes are in the airport" do
-    allow(@airport).to receive(:is_stormy?) { false }
+    allow(@airport).to receive(:stormy?) { false }
     capacity = @airport.capacity
     capacity.times { @airport.land_plane(Plane.new) }
     expect(@airport.full?).to eq "Cannot land, airport full."
