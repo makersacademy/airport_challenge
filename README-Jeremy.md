@@ -39,6 +39,7 @@ The initial consiseration of the objects and methods, after reviewing the user s
 | Ariport Cont  | Instruct Landing         |
 |               | Instruct takeoff         |
 | Ariport Cont  | Confirm plane not landed |
+|               | Confirm plane landed     |
 | Weather (rand)| Allow landing            |
 |               | Prevent landing          |
 |               | Prevent takeoff          |
