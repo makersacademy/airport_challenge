@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   
@@ -27,5 +28,10 @@ describe Airport do
     subject.instructions("land",plane2)
     expect(subject.instructions("takeoff",plane2)).to eq [plane1]
   end
-  
+
+  it "Checks if the weather is stormy or sunny" do
+    weather = Weather.new
+    expect(weather.weather_check).to eq("Sunny") | eq("Stormy")
+  end
+
 end

@@ -1,4 +1,4 @@
-# require "plane"
+require 'weather'
 
 class Airport
   attr_accessor :runway
