@@ -132,7 +132,7 @@ I want to instruct a plane to land at an airport
 ##### TEST CASE(S)
 
 1. [X] Airport object is instantiated? Y/N
-2. Plane object is instantiated? Y/N
+2. [X] Plane object is instantiated? Y/N
 3. Airport has a `land` method 
 4. Airport sends message to plane to `land`; plane responds to `land`
 5. Airport list of planes has plane
