@@ -14,9 +14,18 @@ describe Airport do
     expect(subject.instructions("land",plane2)).to eq [plane1, plane2]
   end
   
-  it "Checks if plane takes off from the airport when instructed to takeoff and shows an empty runway" do
+  it "Checks that no plane will takeoff when runway is empty" do
     plane = Plane.new
-    expect(subject.instructions("takeoff",plane)).to eq []
+    expect(subject.instructions("takeoff",plane)).to eq nil
+  end
+
+  it "Checks that a plane takes off from the airport when instructed to take off and shows that it's no longer on the runway" do
+    runway = Airport.new
+    plane1 = Plane.new
+    subject.instructions("land",plane1)
+    plane2 = Plane.new
+    subject.instructions("land",plane2)
+    expect(subject.instructions("takeoff",plane2)).to eq [plane1]
   end
 
 end

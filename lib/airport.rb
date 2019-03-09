@@ -8,10 +8,15 @@ class Airport
   end
 
   def instructions(instruction,plane)
-    if instruction == 'land'
-      @runway << plane
+    # plane = Plane.new
+     @plane = plane
+    if instruction == 'land' 
+      @runway << @plane
     elsif instruction == 'takeoff'
-      @runway
+      #l = @runway.length
+      if @runway != []
+        @runway.take(@runway.length - 1)
+      end
     end
   end 
 
