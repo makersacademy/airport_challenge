@@ -18,4 +18,8 @@ class Airport
     end
     raise "That plane isn't at the airport"
   end
+
+  def check_weather
+    return "Sunny"
+  end
 end

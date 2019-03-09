@@ -46,4 +46,12 @@ describe Airport do
       expect(subject.airport_planes).not_to eq my_plane
     end
   end
+
+  describe '#check_weather' do
+    it { is_expected.to respond_to(:check_weather)}
+
+    it 'should return sunny' do
+      expect(subject.check_weather).to eq "Sunny"
+    end
+  end
 end
