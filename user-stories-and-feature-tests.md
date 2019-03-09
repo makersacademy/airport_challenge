@@ -16,6 +16,15 @@ Plane landed!
  => true
 ```
 
+Another feature test for an edge case:
+
+```
+> airport = Airport.new
+ => #<Airport:0x000....>
+> airport.land anything_that_isnt_a_Plane
+RuntimeError ("That's not a plane")
+```
+
 ---
 
 > As an air traffic controller  
