@@ -4,7 +4,7 @@ describe Airport do
   
   before :each do
     @airport = Airport.new
-    @plane = Plane.new
+    @plane = double(:plane)
   end
   
   describe '.land' do
@@ -33,6 +33,9 @@ describe Airport do
       @airport.land @plane
       @airport.clear_for_takeoff @plane
       expect(@airport.planes).not_to include @plane
+    end
+    it 'prints an error message if the weather is bad' do
+
     end
   end
 end
