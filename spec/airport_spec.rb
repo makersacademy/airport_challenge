@@ -15,20 +15,21 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "The weather is stormy - no landing allowed"
     end
 
+
   end
 
-  describe '#planes' do
-    it { is_expected.to respond_to :planes }
+  describe '#airport_planes' do
+    it { is_expected.to respond_to :airport_planes }
 
     it 'returns no planes when airport is empty' do
-      expect(subject.planes).to eq []
+      expect(subject.airport_planes).to eq []
     end
 
     it 'returns a plane when I check what has landed' do
       allow(subject).to receive(:check_weather) { "Sunny" }
       my_plane = Plane.new
       subject.land(my_plane)
-      expect(subject.planes).to include my_plane
+      expect(subject.airport_planes).to include my_plane
     end
 
   end
@@ -101,6 +102,13 @@ describe Airport do
       allow(airport).to receive(:check_weather) { "Sunny" }
       15.times { airport.land(Plane.new) }
       expect(airport.capacity).to eq 20-15
+    end
+
+    it 'should return 0 when the airport is at max capacity' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { "Sunny" }
+      20.times { airport.land(Plane.new) }
+      expect(airport.capacity).to eq 0
     end
   end
 end

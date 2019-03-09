@@ -16,10 +16,6 @@ class Airport
     return "Plane landed"
   end
 
-  def planes
-    return @airport_planes
-  end
-
   def take_off(plane)
     weather = check_weather
     raise "The weather is stormy - no take off allowed" if weather == "Stormy"
