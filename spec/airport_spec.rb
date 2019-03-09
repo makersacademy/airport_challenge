@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -33,6 +34,17 @@ describe Airport do
       subject.take_off
       expect(subject.hangar).not_to include plane
     end
+
+  end
+
+  describe '#weather' do
+
+    it { is_expected.to respond_to :weather }
+
+    it "can return 'Clear' or 'Stormy'" do
+      expect(subject.weather).to eq('Clear').or eq('Stormy')
+    end
+
   end
 
 end

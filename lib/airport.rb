@@ -1,3 +1,5 @@
+require_relative 'weather.rb'
+
 class Airport
 
   attr_reader :hangar
@@ -12,6 +14,10 @@ class Airport
 
   def take_off
     @hangar.pop
+  end
+
+  def weather
+    Weather.new.forecast
   end
 
 end
