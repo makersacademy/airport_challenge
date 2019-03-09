@@ -16,7 +16,7 @@ class Airport
     if @weather.status == "⛈"
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
     elsif @weather.status == "☀️"
-      puts 'Up, up and away!'
+      puts "Up, up and away!"
       @planes -= [plane]
     end
     self
