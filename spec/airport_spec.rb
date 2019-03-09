@@ -21,6 +21,13 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
     end
 
+    it 'should prevent a plane that has already landed from landing again' do
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      my_plane = Plane.new
+      subject.land(my_plane)
+      expect { subject.land(my_plane) }.to raise_error "That plane is already in the airport"
+    end
+
   end
 
   describe '#airport_planes' do

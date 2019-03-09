@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "That plane is already in the airport" if @airport_planes.include?(plane)
     raise "The airport is full - no landing allowed" if capacity == 0
     raise "The weather is stormy - no landing allowed" if check_weather == "Stormy"
 
