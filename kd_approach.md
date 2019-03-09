@@ -33,13 +33,13 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Program usage:
+PROGRAM USAGE:
 
-- For the first iteration of the product, this software will be run in Interactive Ruby via the terminal using `irb`
+- For the first iteration of the product, this software will be usable in Interactive Ruby via the terminal using `irb`
 
 #### STEP 1 - SKETCHING OUT THE DOMAIN MODEL
 
-Translate user stories into a domain model.
+I translated the user stories into a domain model.
 
 ##### CLASSES/OBJECTS
 - Airport
@@ -49,36 +49,150 @@ Translate user stories into a domain model.
 ##### OBJECT CHARACTERISTCS
 
 ##### AIRPORT
+
 Has a:
+
 - Capacity
 - List of planes
-- Weather Status
+- Receives a weather status
+
+Methods:
+
+- take off
+- land
 
 ##### WEATHER
+
 Has a:
-- Attribute for weather status
+
+- Weather status
+
+Methods:
+
+- Stormy?
 
 ##### PLANE
 
+Has a:
 
-#### MESSAGES/INTERACTIONS
+- Ability to receive message from airport to land
+
+Methods:
+
+- land
+
+
+#### DOMAIN MODEL: MESSAGES/INTERACTIONS
 
 Here is a screenshot of my domain model.
 
 
-#### METHODS
-
-
 #### STORIES
 
-> As an air traffic controller 
-> So I can get passengers to a destination 
-> I want to instruct a plane to land at an airport
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
 
+##### OBJECTS
 
-- GIVEN: 
-- WHEN: 
-- THEN: 
+- Airport
+- Plane
+
+##### MESSAGES
+
+- Airport sends message to plane to land
+- Plane receives message to land from airport
+
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+##### OBJECTS
+
+- Airport
+- Plane
+
+##### MESSAGES
+
+- Airport takes a plane from the list of planes at the airport and provides instruction for it to take off
+- Airport checks that plane is no longer in the list of planes
+- Airport provides a confirmation message that plane is no longer in airport list
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+```
+
+##### OBJECTS
+
+- Airport
+- Plane
+- Weather
+
+##### MESSAGES
+
+- Weather object has the responsibility to decide whether it is sunny or stormy whenever it is instantiated
+
+- Weather objects (sunny or stormy) are given to the airport for the status of the weather
+
+- Airport receives message from weather object
+
+- Airport instructs plane in the plane list to 'take off', but this is prevented when weather is stormy
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
+
+##### OBJECTS
+
+- Airport
+- Plane
+- Weather
+
+##### MESSAGES
+
+- Weather object has the responsibility to decide whether it is sunny or stormy whenever it is instantiated
+
+- Weather objects (sunny or stormy) are given to the airport for the status of the weather
+
+- Airport receives message from weather object
+
+- Airport sends a message to plane to 'land', but this is prevented when weather is stormy
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+```
+
+##### OBJECTS
+
+- Airport
+- Plane
+
+##### MESSAGES
+
+- Airport has a set capacity
+- Airport sends a message to a plane to land, but this is prevented because the capacity is full
+
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+##### OBJECTS
+
+- Airport
+
+##### MESSAGES
+
+- Airport has capacity which can be set when an airport object is instantiated
 
 
 #### TEST CASE(S)
