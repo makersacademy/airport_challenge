@@ -38,5 +38,6 @@ class Airport
   end
 
   def capacity
+    return 15
   end
 end

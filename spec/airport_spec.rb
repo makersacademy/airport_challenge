@@ -88,5 +88,11 @@ describe Airport do
       airport = Airport.new
       expect(airport.max_capacity).to eq 20
     end
+
+    it 'should return the remaining capacity when the airport is not full' do
+      airport = Airport.new
+      5.times { airport.land(Plane.new) }
+      expect(airport.capacity).to eq 20-5
+    end
   end
 end
