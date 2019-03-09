@@ -12,6 +12,6 @@ describe Airport do
     end
 
     it 'prints a confirmation message when a plane lands' do
-        expect { @airport.land @plane }.to output('Plane landed!').to_stdout
+        expect { @airport.land @plane }.to output("Plane landed!\n").to_stdout
     end
 end
