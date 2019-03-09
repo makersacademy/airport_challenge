@@ -5,22 +5,41 @@ class Plane
 attr_reader :status
 
   def land(airport)
-    @status = "landed"
     airport.store(self)
+    confirm(airport)
   end
 
   def takeoff(airport)
-    @status = "flying"
     airport.release(self)
     confirm(airport)
   end
 
   def confirm(airport)
-    if airport.hangar.include? self
-      "Take-off not successful"
+    if in?(airport)
+      grounded
+      confirmation
     else
-      "Take-off successful" 
+      flying
+      confirmation
     end
+  end
+
+  private
+
+  def in?(airport)
+    airport.hangar.include?(self)
+  end
+
+  def flying
+    @status = "flying"
+  end
+
+  def grounded
+    @status = "grounded"
+  end
+
+  def confirmation
+    "Plane is #{@status}."
   end
 
 end

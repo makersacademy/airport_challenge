@@ -8,10 +8,9 @@ describe Plane do
     # plane is stored at the airport and I do not know how to do that
     it "changes status to landed and stores itself" do
       plane = Plane.new
-      airport = double(:airport)
-      allow(airport).to receive(:store) {[plane]}
+      airport = double(:airport, store: [], hangar: [plane])
       plane.land(airport)
-      expect(plane.status).to eq "landed"
+      expect(plane.status).to eq "grounded"
     end
 
   end
@@ -31,7 +30,7 @@ describe Plane do
       plane = Plane.new
       airport = double(:airport, release: [], hangar: [])
       plane.takeoff(airport)
-      expect(plane.takeoff(airport)).to eq "Take-off successful"
+      expect(plane.takeoff(airport)).to eq "Plane is flying."
     end
 
     # test described in Step 17 in the README
@@ -39,7 +38,7 @@ describe Plane do
       plane = Plane.new
       airport = double(:airport, release: [], hangar: [plane])
       plane.takeoff(airport)
-      expect(plane.takeoff(airport)).to eq "Take-off not successful"
+      expect(plane.takeoff(airport)).to eq "Plane is grounded."
     end
 
   end
