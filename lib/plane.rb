@@ -1,22 +1,19 @@
 class Plane
   attr_accessor :location
 
-  def initialize(location = "Flying")
-    @location = location
-    @destinations = [location]
+  def initialize
+    @location = "Factory runway"
   end
 
   def land(airport)
-    if @destinations.include?(airport.name)
-      @location = airport.name
-    end
+    fail "You must be airborne to land" unless @location == "Flying"
+
+    @location = airport.name
+    airport.log_plane(self)
+
   end
 
-  def update_satnav(airport)
-    if @destinations.include?(airport.name)
-      puts "Satnav is up to date"
-    else
-      @destinations << airport.name
-    end
+  def take_off
+    @location = "Flying"
   end
 end
