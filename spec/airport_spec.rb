@@ -74,6 +74,9 @@ describe Airport do
     it 'should return either Sunny or Stormy' do
       expect(subject.check_weather).to eq("Sunny").or eq("Stormy")
     end
+  end
 
+  describe '#capacity' do
+    it { is_expected.to respond_to(:capacity) }
   end
 end

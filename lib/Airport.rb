@@ -31,4 +31,7 @@ class Airport
     return "Sunny" if random != 25
     return "Stormy"
   end
+
+  def capacity
+  end
 end
