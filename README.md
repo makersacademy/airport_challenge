@@ -166,3 +166,8 @@ Tests:
 -- Would prefer to use if/else statement
 - `Airport` class, `stormy?` method - not testing the randomness of the generator (only that it produces 'true' or 'false')     
 -- Possible to use a mock?
+- Unsure how to use mocks in `before(:each)` statements (ie, in the context setups)     
+-- Is it possible?     
+- Haven't used doubles for `stormy?` so that other tests aren't disrupted by changes
+- Haven't completed one of the requirements:
+_Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc._
