@@ -19,7 +19,7 @@ class Airport
     elsif @weather.forecast == "☀️"
       puts 'Up, up and away!'
       @planes -= [plane]
-      self
+      return self
     end
   end
 
