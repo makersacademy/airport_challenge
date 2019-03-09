@@ -21,9 +21,10 @@ describe Airport do
   end
   
   describe '.clear_for_takeoff' do
-    it 'prints a confirmation message when a plane takes off' do
-      @airport.land @plane
-      expect { @airport.clear_for_takeoff @plane }.to output("Up, up and away!\n").to_stdout
+    it 'prints a confirmation message if the weather is good' do
+      weather = double(:weather, forecast: "☀️")
+      airport = Airport.new(weather)
+      expect { airport.clear_for_takeoff @plane }.to output("Up, up and away!\n").to_stdout
     end
     it 'returns the airport object when a plane takes off' do
       @airport.land @plane
@@ -37,7 +38,7 @@ describe Airport do
     it 'prints an error message if the weather is bad' do
       weather = double(:weather, forecast: "⛈")
       airport = Airport.new(weather)
-      expect { airport.clear_for_takeoff(@plane) }.to output("⛈ Sorry, all aircraft grounded until further notice. ⛈").to_stdout
+      expect { airport.clear_for_takeoff(@plane) }.to output("⛈ Sorry, all aircraft grounded until further notice. ⛈\n").to_stdout
     end
   end
 end

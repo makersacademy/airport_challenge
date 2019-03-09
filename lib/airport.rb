@@ -2,6 +2,7 @@ class Airport
   attr_reader :planes
   
   def initialize(weather)
+    @weather = weather
     @planes = []
   end
   
@@ -12,9 +13,14 @@ class Airport
   end
 
   def clear_for_takeoff(plane)
-    puts 'Up, up and away!'
-    @planes -= [plane]
-    self
+    if @weather.forecast == "⛈"
+      puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
+      return
+    elsif @weather.forecast == "☀️"
+      puts 'Up, up and away!'
+      @planes -= [plane]
+      self
+    end
   end
 
 end
