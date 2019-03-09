@@ -31,7 +31,7 @@ describe Airport do
     it 'confirms a plane is no longer in the airport' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject).to receive(:weather).and_return('Clear')
+      expect(subject).to receive(:stormy?).and_return(false)
       subject.take_off
       expect(subject.hangar).not_to include plane
     end
@@ -39,18 +39,18 @@ describe Airport do
     it 'does not take off if weather is stormy' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject).to receive(:weather).and_return('Stormy')
+      expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off }.to raise_error('Cannot depart due to stormy weather')
     end
 
   end
 
-  describe '#weather' do
+  describe '#stormy?' do
 
-    it { is_expected.to respond_to :weather }
+    it { is_expected.to respond_to :stormy? }
 
-    it "can return 'Clear' or 'Stormy'" do
-      expect(subject.weather).to eq('Clear').or eq('Stormy')
+    it "can return true or false" do
+      expect(subject.stormy?).to eq(true).or eq(false)
     end
 
   end
