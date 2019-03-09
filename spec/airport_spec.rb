@@ -58,8 +58,19 @@ describe Airport do
     expect(@airport.land_plane(@plane)).to eq "Cannot land, weather is stormy."
   end
 
-  it "prevents 'land_plane' if airport is full" do
+  it "prevents 'land_plane' when capacity of planes are in the airport" do
     allow(@airport).to receive(:is_stormy?) { false }
+    capacity = @airport.capacity
+    capacity.times { @airport.land_plane(Plane.new) }
     expect(@airport.full?).to eq "Cannot land, airport full."
+  end
+
+  it "creates airport with default capacity of 5 planes" do
+    expect(@airport.capacity).to eq 5
+  end
+
+  it "creates airport with overridden capacity of 20" do
+    big_airport = Airport.new(20)
+    expect(big_airport.capacity).to eq 20
   end
 end
