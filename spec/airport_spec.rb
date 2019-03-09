@@ -25,4 +25,10 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
+  it 'tells a plane from plane list to take off' do
+    expect(plane).to receive(:land)
+    airport.land(plane)
+    expect(airport.take_off).to eq plane
+  end
+
 end
