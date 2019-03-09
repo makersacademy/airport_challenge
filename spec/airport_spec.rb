@@ -21,5 +21,9 @@ describe Airport do
   end
   
   describe '.clear_for_takeoff' do
+    it 'prints a confirmation message when a plane takes off' do
+      @airport.land @plane
+      expect { @airport.clear_for_takeoff @plane }.to output("Up, up and away!\n").to_stdout
+    end
   end
 end
