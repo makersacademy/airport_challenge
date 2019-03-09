@@ -135,7 +135,7 @@ I want to instruct a plane to land at an airport
 2. [X] Plane object is instantiated? Y/N
 3. [X] Airport has a `land` method 
 4. [X] Airport sends message to plane to `land`; plane receives `land`
-5. Airport list of planes has plane
+5. [X] Airport list of planes has plane
 
 ```
 As an air traffic controller 

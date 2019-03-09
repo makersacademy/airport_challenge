@@ -23,4 +23,6 @@ describe Airport do
     expect(airport.plane_list).to include plane
   end
 
+  it { is_expected.to respond_to(:take_off) }
+
 end
