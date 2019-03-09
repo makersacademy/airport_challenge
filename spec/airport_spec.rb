@@ -20,8 +20,18 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
-  # describe "#take_off" do
-  # end
+  describe "#take_off" do
+    it "notifes that the plane has taken off" do
+      plane = Plane.new
+      expect(subject.take_off(plane)).to eq "Plane has taken off"
+    end
 
+    it "removes plane from the hangar" do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.hangar).to be_empty
+    end
+  end
 
 end
