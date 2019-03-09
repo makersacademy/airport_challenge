@@ -8,7 +8,17 @@ describe Airport do
 
     it 'logs one plane has landed' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      subject.land(plane)
+      expect(subject.hangar).to include plane
+    end
+
+    it 'logs a second plane has landed' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land(plane1)
+      subject.land(plane2)
+      expect(subject.hangar).to include plane2
+
     end
 
   end
