@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 
-  describe 'forecast' do
+  describe '#forecast' do
     it { is_expected.to respond_to :forecast }
 
 # not sure how to check the random generator to make sure that
