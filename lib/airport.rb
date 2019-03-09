@@ -10,5 +10,8 @@ class Airport
     puts 'Plane landed!'
     self
   end
-  
+
+  def clear_for_takeoff
+  end
+
 end
