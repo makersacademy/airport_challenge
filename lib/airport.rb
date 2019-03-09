@@ -7,11 +7,10 @@ class Airport
   end
 
   def land(plane)
-    plane.land
     @plane_list << plane
   end
 
-  def take_off
+  def take_off(plane)
     if empty? == false
       @plane_list.pop 
     end

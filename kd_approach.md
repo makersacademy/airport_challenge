@@ -156,10 +156,15 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 ##### TEST CASE(S)
 
 1. [X] Airport has a `take_off` method 
-2. [X] Airport sends message to a plane from list of planes to `take_off`
-3. [X] Checks that plane object is no longer in list of planes
+2. [X] Airport sends message to a plane from list of planes to `take_off` (basic test of one plane)
+3. [X] Checks that plane object is no longer in list of planes (basic test of one plane)
 4. Test that message is given when plane no longer in airport list
 5. [X] Airport cannot instruct plane to `take_off` in scenario that list of planes is empty because there are no planes
+
+Advanced tests:
+
+6. Airport sends message to any plane from list of planes to `take_off`
+7. Checks that specific plane object is no longer at the airport
 
 ```
 As an air traffic controller 
