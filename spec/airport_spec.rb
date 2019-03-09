@@ -31,8 +31,16 @@ describe Airport do
     it 'confirms a plane is no longer in the airport' do
       plane = Plane.new
       subject.land(plane)
+      expect(subject).to receive(:weather).and_return('Clear')
       subject.take_off
       expect(subject.hangar).not_to include plane
+    end
+
+    it 'does not take off if weather is stormy' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject).to receive(:weather).and_return('Stormy')
+      expect { subject.take_off }.to raise_error('Cannot depart due to stormy weather')
     end
 
   end

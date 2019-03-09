@@ -13,6 +13,8 @@ class Airport
   end
 
   def take_off
+    raise "Cannot depart due to stormy weather" if weather == "Stormy"
+    
     @hangar.pop
   end
 
