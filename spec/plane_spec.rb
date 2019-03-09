@@ -13,6 +13,13 @@ describe Plane do
       expect(plane.status).to eq "grounded"
     end
 
+    # test described in Step 25 in the README
+    it "confirms that plane has not landed at the airport in stormy weather" do
+      plane = Plane.new
+      airport = double(:airport, hangar: [], check_weather: "stormy")
+      expect(plane.land(airport)).to eq "Plane is flying."
+    end
+
   end
 
   describe '#takeoff' do

@@ -5,7 +5,7 @@ class Plane
 attr_reader :status
 
   def land(airport)
-    airport.store(self)
+    airport.store(self) if cleared(airport)
     confirm(airport)
   end
 
