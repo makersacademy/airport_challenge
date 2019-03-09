@@ -11,9 +11,20 @@ Airport Challenge
 - Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple [object model table](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md)
 - Draw a diagram to outline how objects interact
 
+#### Write minimum first test
+
+- Set up first spec file
+- Require 'plane.rb' in spec file -> fail
+- Create 'plan.rb' file
+- Write minimum first test and watch it fail
+- Write mimimum code to pass test and follow red-green-refactor [process]() <- add screen recording of first test
 
 
-=================
+#### Follow error messages when running rspec
+
+- Fix only what the failing test is suggesting (i.e. ArgumentError)
+- Follow the next error and keep repeating until the test passes
+
 
 Airport Challenge
 =================
