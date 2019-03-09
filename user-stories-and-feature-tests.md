@@ -37,6 +37,18 @@ Up, up and away!
 > To ensure safety  
 > I want to prevent takeoff when weather is stormy  
 
+```
+# follow above steps to initialise an airport and a plane, and land the plane at the airport
+# then, if the weather is bad...
+> airport.clear_for_takeoff plane
+⛈ Sorry, all aircraft grounded until further notice. ⛈
+ => #<Airport:0x000...>
+> airport.planes.include? plane
+ => true
+```
+
+---
+
 > As an air traffic controller  
 > To ensure safety  
 > I want to prevent landing when weather is stormy  
