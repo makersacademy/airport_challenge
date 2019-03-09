@@ -13,6 +13,7 @@ class Airport
 
   def clear_for_takeoff(plane)
     puts 'Up, up and away!'
+    self
   end
 
 end

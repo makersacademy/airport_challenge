@@ -25,5 +25,9 @@ describe Airport do
       @airport.land @plane
       expect { @airport.clear_for_takeoff @plane }.to output("Up, up and away!\n").to_stdout
     end
+    it 'returns the airport object when a plane takes off' do
+      @airport.land @plane
+      expect(@airport.clear_for_takeoff @plane).to eq @airport
+    end
   end
 end
