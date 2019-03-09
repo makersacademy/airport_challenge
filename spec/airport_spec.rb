@@ -57,4 +57,9 @@ describe Airport do
     allow(@airport).to receive(:is_stormy?) { true }
     expect(@airport.land_plane(@plane)).to eq "Cannot land, weather is stormy."
   end
+
+  it "prevents 'land_plane' if airport is full" do
+    allow(@airport).to receive(:is_stormy?) { false }
+    expect(@airport.full?).to eq "Cannot land, airport full."
+  end
 end

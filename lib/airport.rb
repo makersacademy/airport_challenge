@@ -17,4 +17,8 @@ class Airport
     return "Cannot take-off, weather is stormy." if is_stormy?
     @planes.reject { |item| item == plane }
   end
+
+  def full?
+    "Cannot land, airport full." if true
+  end
 end
