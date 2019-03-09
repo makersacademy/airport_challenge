@@ -51,10 +51,21 @@ describe Airport do
       expect { subject.land(@plane) }.to raise_error('Cannot land due to stormy weather')
     end
 
-    it 'does not take off if weather is stormy' do
+    it 'does not take off' do
       subject.land(@plane)
       expect(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off }.to raise_error('Cannot depart due to stormy weather')
+    end
+  end
+
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'can take a capacity from the user' do
+      airport = Airport.new(5000)
+      expect(airport.capacity).to eq 5000
     end
   end
 
