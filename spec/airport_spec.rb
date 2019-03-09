@@ -1,12 +1,18 @@
 require 'airport'
 
 describe Airport do
-  
+
   # Test that airport responds to land plane method
   it { is_expected.to respond_to :land_plane }
 
   # Test land plane method takes in argument
   it { is_expected.to respond_to(:land_plane).with(1).argument }
+
+  # Test adding landed plane to hangar array
+  it 'Adds 1 plane to hangar' do
+    plane = Plane.new
+    expect(subject.land_plane(plane)).to eq [plane]
+  end
 
   # Test new airport object has default capacity
   it 'New airport object has default capacity' do

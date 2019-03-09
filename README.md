@@ -23,15 +23,15 @@ Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-Note to self/reader: SLOW THE DOWN. The answer is usually dead simple once you break down the problem. Your brain can't handle the whole problem at once, small steps for the win!
+-----
+Note to self/reader: SLOW THE HECK DOWN. The answer is usually dead simple once you break down the problem. Your brain can't handle the whole problem at once, small steps for the win!
 
 Object  | Messages/Methods
 ------------- | -------------
 airport | instruct plane to take off, instruct a plane to land
 airplane | confirm landed, confirm take off
 weather | stormy, sunny etc, don't take off if stormy, don't land if stormy
-
+-----
 
 ```
 As an air traffic controller 
