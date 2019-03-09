@@ -32,21 +32,12 @@ describe Airport do
 
   # test described in step 20 in the README
   it "can tell us if there is weather at an airport" do
-    expect(subject.send(:weather)).to be_an_instance_of(String)
+    expect(["clear", "stormy"]).to include(subject.send(:weather))
   end
 
   # test described in step 20 in the README
   it "can tell us what the weather is like" do
-    expect(subject.check_weather).to be_an_instance_of(String)
-  end
-
-  # test described in step 21 in the README
-  it "prevent does not alter @hangar" do
-    airport = Airport.new
-    plane = double(:plane)
-    airport.store(plane)
-    airport.prevent
-    expect(airport.hangar).to eq [plane]
+    expect(["clear", "stormy"]).to include(subject.check_weather)
   end
 
 end
