@@ -6,7 +6,14 @@ class Airport
     @runway = []
   end
 
-  def land(plane)
-    @runway << plane
-  end
+  # def land(plane)
+  #   @runway << plane
+  # end
+
+  def instruction(instruction,plane)
+    if instruction == 'land'
+      @runway << plane
+    end
+  end 
+
 end

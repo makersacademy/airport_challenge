@@ -13,4 +13,8 @@ describe Airport do
     expect(subject.land(plane2)).to eq [plane1, plane2]
   end
   
+  it "Checks if the plane lands at the airport when instructed" do
+    plane = Plane.new
+    expect(subject.instruction("land",plane)).to eq [plane]
+  end
 end
