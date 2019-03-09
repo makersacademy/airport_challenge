@@ -30,7 +30,7 @@ Note to self/reader: SLOW THE HECK DOWN. The answer is usually dead simple once 
 Object  | Messages/Methods
 ------------- | -------------
 airport | instruct plane to take off, instruct a plane to land
-airplane | confirm landed, confirm take off
+plane | confirm landed, confirm take off
 weather | stormy, sunny etc, don't take off if stormy, don't land if stormy
 -----
 
@@ -54,14 +54,14 @@ As an air traffic controller
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 ```
-Keeping the program cohesive, make another class for Weather. Another ruby file to create weather object. Randomize the weather somehow. Give class a method that Airport can use to get weather status.
+Keeping the program cohesive, make private method that generates weather which you call in the Airport initialize. The result of the generate_weather method will be stored as an attribute
 
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
-Create predicate method in weather class that landing method can call to see if weather is OK to land. use fail statement and print message if weather stormy
+Use fail statement and print message if @conditions attribute is stormy.
 ```
 As an air traffic controller 
 To ensure safety 

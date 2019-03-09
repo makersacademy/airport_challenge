@@ -20,6 +20,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Weather is too dangerous' if conditions == "stormy"
   end
 
   private
