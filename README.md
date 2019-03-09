@@ -1,17 +1,19 @@
 Make sure you have written your own README that briefly explains your approach to solving the challenge.
 
-Airport Challenge Approach - Matt Thompson
-==================================
+Airport Challenge
+=================
+
+## Approach - Matt Thompson
 
 #### Break down the problem
 
-- Write out [user stories]()
-- Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple [object model table]()
+- Write out [user stories](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md)
+- Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple [object model table](https://github.com/mattTea/airport_challenge/blob/master/problem/user_stories.md)
 - Draw a diagram to outline how objects interact
 
 
 
-
+=================
 
 Airport Challenge
 =================
