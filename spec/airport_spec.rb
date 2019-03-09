@@ -17,4 +17,10 @@ describe Airport do
     airport.land(plane)
   end
 
+  it 'check same plane object is in the plane list after landing' do
+    expect(plane).to receive(:land)
+    airport.land(plane)
+    expect(airport.plane_list).to include plane
+  end
+
 end
