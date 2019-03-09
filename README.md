@@ -1,8 +1,8 @@
 # Airport Challenge
 
-[Getting started](#Getting started) | [Usage](#Usage) | [Running tests](#Running tests)
+[Getting started](#getting-started) | [Usage](#Usage) | [Running tests](#running-tests)
 
-[Brief](#Brief) | [Approach](#Approach) | [Areas for improvement](#Areas for improvement)
+[Brief](#Brief) | [Approach](#Approach) | [Areas for improvement](#Areas-for-improvement)
 
 This is one of the weekend challenges from the Makers Academy course.
 
