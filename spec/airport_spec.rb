@@ -48,10 +48,18 @@ describe Airport do
   end
 
   describe '#check_weather' do
-    it { is_expected.to respond_to(:check_weather)}
+    it { is_expected.to respond_to(:check_weather) }
 
-    it 'should return sunny' do
-      expect(subject.check_weather).to eq "Sunny"
+    it 'should return either Sunny or Stormy' do
+      expect(subject.check_weather).to satisfy { |result| result = "Sunny" || result = "Stormy" }
     end
+
+    it 'should stop a plane from taking off when the weather is Stormy' do
+      allow(subject).to receive(:check_weather) { "Stormy" }
+      my_plane = Plane.new
+      subject.land(my_plane)
+      expect { subject.take_off(my_plane) }.to raise_error "The weather is stormy - no take off allowed"
+    end
+
   end
 end

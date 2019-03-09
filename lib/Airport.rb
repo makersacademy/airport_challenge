@@ -12,14 +12,21 @@ class Airport
   end
 
   def take_off(plane)
+    weather = check_weather
+    raise "The weather is stormy - no take off allowed" if weather == "Stormy"
+
     if @airport_planes == plane
       @airport_planes = nil
       return "Successful take off"
     end
+
     raise "That plane isn't at the airport"
   end
 
   def check_weather
-    return "Sunny"
+    random = Random.rand(1..50)
+    return "Sunny" if random != 25
+
+    return "Stormy"
   end
 end
