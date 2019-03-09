@@ -13,4 +13,12 @@ describe Airport do
     expect(airport.capacity).to eq 55
   end
 
+  # test described in Step 11 in the README
+  it "can store a plane" do
+    airport = Airport.new
+    plane = double(:plane)
+    airport.store(plane)
+    expect(airport.hangar).to eq [plane]
+  end
+
 end
