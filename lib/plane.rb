@@ -10,7 +10,7 @@ attr_reader :status
   end
 
   def takeoff(airport)
-    airport.release(self)
+    airport.release(self) if airport.check_weather == "clear"
     confirm(airport)
   end
 

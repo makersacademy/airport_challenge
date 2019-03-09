@@ -15,4 +15,18 @@ class Airport
     @hangar.delete(plane)
   end
 
+  def check_weather
+    weather
+  end
+
+  private
+
+  def weather
+    if rand(1..10) == 10
+      "stormy"
+    else
+      "clear"
+    end
+  end
+
 end
