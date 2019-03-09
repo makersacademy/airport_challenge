@@ -15,12 +15,11 @@ class Airport
   def clear_for_takeoff(plane)
     if @weather.forecast == "⛈"
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
-      return
     elsif @weather.forecast == "☀️"
       puts 'Up, up and away!'
       @planes -= [plane]
-      return self
     end
+    self
   end
 
 end
