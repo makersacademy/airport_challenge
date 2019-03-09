@@ -2,26 +2,11 @@ require 'weather'
 
 describe Weather do
 
-  describe '#random' do
+  describe 'forecast' do
+    it { is_expected.to respond_to :forecast }
 
-    it { is_expected.to respond_to :random }
-
-    it 'can return a random number for use in the stormy method' do
-      expect(subject.random).to be_between(1, 100).inclusive
-    end
-  end
-
-  describe '#stormy?' do
-    it { is_expected.to respond_to :stormy? }
-
-    it 'returns true most of the time' do
-      expect(subject).to receive(:random).and_return 96
-      expect(subject.stormy?).to eq true
-    end
-
-    it 'returns false on rare occasions' do
-      expect(subject).to receive(:random).and_return 7
-      expect(subject.stormy?).to eq false
+    it "should randomly return 'Clear' or 'Stormy'" do
+      expect(subject.forecast).to eq('Clear').or eq('Stormy')
     end
   end
 end
