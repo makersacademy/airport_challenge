@@ -15,6 +15,11 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "The weather is stormy - no landing allowed"
     end
 
+    it 'should stop a plan from landing when the airport is full' do
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      20.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
+    end
 
   end
 
@@ -91,24 +96,21 @@ describe Airport do
     end
 
     it 'should return 15 when there are 5 planes landed' do
-      airport = Airport.new
-      allow(airport).to receive(:check_weather) { "Sunny" }
-      5.times { airport.land(Plane.new) }
-      expect(airport.capacity).to eq 20-5
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      5.times { subject.land(Plane.new) }
+      expect(subject.capacity).to eq 20-5
     end
 
     it 'should return 5 when there are 15 planes landed' do
-      airport = Airport.new
-      allow(airport).to receive(:check_weather) { "Sunny" }
-      15.times { airport.land(Plane.new) }
-      expect(airport.capacity).to eq 20-15
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      15.times { subject.land(Plane.new) }
+      expect(subject.capacity).to eq 20-15
     end
 
     it 'should return 0 when the airport is at max capacity' do
-      airport = Airport.new
-      allow(airport).to receive(:check_weather) { "Sunny" }
-      20.times { airport.land(Plane.new) }
-      expect(airport.capacity).to eq 0
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      20.times { subject.land(Plane.new) }
+      expect(subject.capacity).to eq 0
     end
   end
 end
