@@ -9,6 +9,8 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land due to stormy weather" if stormy?
+
     @hangar << plane
   end
 
