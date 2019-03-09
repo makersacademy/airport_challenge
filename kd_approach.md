@@ -42,6 +42,7 @@ PROGRAM USAGE:
 I translated the user stories into a domain model.
 
 ##### CLASSES/OBJECTS
+
 - Airport
 - Weather
 - Plane
@@ -58,8 +59,8 @@ Has a:
 
 Methods:
 
-- take off
-- land
+- `take_off`
+- `land`
 
 ##### WEATHER
 
@@ -69,7 +70,8 @@ Has a:
 
 Methods:
 
-- Stormy?
+- `stormy?`
+- `weather_status`
 
 ##### PLANE
 
@@ -79,7 +81,7 @@ Has a:
 
 Methods:
 
-- land
+- `land`
 
 
 #### DOMAIN MODEL: MESSAGES/INTERACTIONS
@@ -105,6 +107,14 @@ I want to instruct a plane to land at an airport
 - Airport sends message to plane to land
 - Plane receives message to land from airport
 
+##### TEST CASE(S)
+
+1. Airport object is instantiated? Y/N
+2. Plane object is instantiated? Y/N
+3. Airport has a `land` method 
+4. Airport sends message to plane to `land`; plane responds to `land`
+5. Airport list of planes has plane
+
 ```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
@@ -120,6 +130,14 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 - Airport takes a plane from the list of planes at the airport and provides instruction for it to take off
 - Airport checks that plane is no longer in the list of planes
 - Airport provides a confirmation message that plane is no longer in airport list
+
+##### TEST CASE(S)
+
+1. Airport has a `take_off` method 
+2. Airport sends message to a plane from list of planes to `take_off`
+3. Checks that plane object is no longer in list of planes
+4. Test that message is given when plane no longer in airport list
+5. Airport cannot instruct plane to `take_off` in scenario that list of planes is empty because there are no planes
 
 ```
 As an air traffic controller 
@@ -137,11 +155,23 @@ I want to prevent takeoff when weather is stormy
 
 - Weather object has the responsibility to decide whether it is sunny or stormy whenever it is instantiated
 
-- Weather objects (sunny or stormy) are given to the airport for the status of the weather
+- Weather object (sunny or stormy) given to the airport for the status of the weather
+
+- Weather object has random weather generator to decide on `sunny` or `stormy`
 
 - Airport receives message from weather object
 
 - Airport instructs plane in the plane list to 'take off', but this is prevented when weather is stormy
+
+##### TEST CASE(S)
+
+1. Weather object is instantiated? Y/N?
+2. Weather object has a `stormy?` method
+3. Weather object has a `weather_status` method
+4. `weather_status` returns `"stormy" or "sunny"`
+5. `stormy?` method returns `true` if `weather_status` is equal to `stormy`
+6. `stormy?` method returns `false` if `weather_status` is equal to `sunny`
+7. An error is raised when airport instructs plane in the plane list to `take_off` if weather `stormy?` is `true`
 
 ```
 As an air traffic controller 
@@ -165,6 +195,10 @@ I want to prevent landing when weather is stormy
 
 - Airport sends a message to plane to 'land', but this is prevented when weather is stormy
 
+##### TEST CASE(S)
+
+1. An error is raised when airport instructs plane to `land` if weather `stormy?` is `true`
+
 ```
 As an air traffic controller 
 To ensure safety 
@@ -181,6 +215,10 @@ I want to prevent landing when the airport is full
 - Airport has a set capacity
 - Airport sends a message to a plane to land, but this is prevented because the capacity is full
 
+##### TEST CASE(S)
+
+1. An error is raised when airport instructs plane to `land` if capacity is reached
+
 ```
 As the system designer
 So that the software can be used for many different airports
@@ -193,6 +231,12 @@ I would like a default airport capacity that can be overridden as appropriate
 ##### MESSAGES
 
 - Airport has capacity which can be set when an airport object is instantiated
+
+##### TEST CASE(S)
+
+1. If capacity not given when airport is instantiated, use the default capacity
+2. If capacity is given when airport is instantiated, use the capacity set
+3. Check airport capacity can be changed on the same airport object
 
 
 #### TEST CASE(S)
