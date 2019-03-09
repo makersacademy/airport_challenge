@@ -5,7 +5,7 @@
 > I want to instruct a plane to land at an airport 
 
 ```
-> airport = Airport.new
+> airport = Airport.new(WeatherForecaster.new)
  => #<Airport:0x000....>
 > plane = Plane.new
  => #<Plane:0x000...>
