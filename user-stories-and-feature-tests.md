@@ -22,6 +22,17 @@ Plane landed!
 > So I can get passengers on the way to their destination  
 > I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
+```
+# follow above steps to initialise an airport and a plane, and land the plane at the airport
+> airport.clear_for_takeoff plane
+Up, up and away!
+ => #<Airport:0x000...>
+> airport.planes.include? plane
+ => false
+```
+
+---
+
 > As an air traffic controller  
 > To ensure safety  
 > I want to prevent takeoff when weather is stormy  
