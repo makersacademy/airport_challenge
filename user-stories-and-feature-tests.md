@@ -6,12 +6,14 @@
 
 ```
 > airport = Airport.new
-=> #<Airport:0x000....>
+ => #<Airport:0x000....>
 > plane = Plane.new
-=> #<Plane:0x000...>
-> plane.land_at airport
+ => #<Plane:0x000...>
+> airport.land plane
 Plane landed!
-=> #<Plane:0x000...>
+ => #<Airport:0x000...>
+> airport.planes.include? plane
+ => true
 ```
 
 ---
