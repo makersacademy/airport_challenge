@@ -14,5 +14,9 @@ describe Airport do
         it 'returns the airport object when a plane lands' do
             expect( @airport.land @plane ).to eq @airport
         end
+        it 'stores the landed plan in an instance variable' do
+            @airport.land @plane
+            expect( @airport.planes ).to include @plane
+        end
     end
 end
