@@ -21,4 +21,13 @@ describe Airport do
     expect(airport.hangar).to eq [plane]
   end
 
+  # test described in Step 16 in the README
+  it "can release a plane" do
+    airport = Airport.new
+    plane = double(:plane)
+    airport.store(plane)
+    airport.release(plane)
+    expect(airport.hangar).to eq []
+  end
+
 end

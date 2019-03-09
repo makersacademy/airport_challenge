@@ -11,4 +11,8 @@ class Airport
     @hangar << plane
   end
 
+  def release(plane)
+    @hangar.delete(plane)
+  end
+
 end
