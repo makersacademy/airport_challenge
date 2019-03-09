@@ -1,6 +1,11 @@
 class Airport
 
   attr_reader :airport_planes
+  attr_reader :max_capacity
+
+  def initialize(max_capacity = 20)
+    @max_capacity = max_capacity
+  end
 
   def land(plane)
     weather = check_weather

@@ -78,5 +78,15 @@ describe Airport do
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
+
+    it 'should set the capacity when an airport is created' do
+      airport = Airport.new(30)
+      expect(airport.max_capacity).to eq 30
+    end
+
+    it 'should set a default capacity when a new airport is created' do
+      airport = Airport.new
+      expect(airport.max_capacity).to eq 20
+    end
   end
 end
