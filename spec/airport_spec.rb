@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do 
   
   before :each do
-    @airport = Airport.new
+    @airport = Airport.new(double(:weather))
     @plane = double(:plane)
   end
 
