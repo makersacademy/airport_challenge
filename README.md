@@ -19,7 +19,7 @@ Airport Challenge
 - Require 'airport.rb' in spec file -> fail
 - Create 'airport.rb' file
 - Write minimum first test and watch it fail
-- Write mimimum code to pass test and follow red-green-refactor [process]()
+- Write mimimum code to pass test and follow red-green-refactor [process](https://github.com/mattTea/airport_challenge/blob/master/problem/TDD-screen-recording-airport.mp4)
 
 
 #### Follow error messages when running rspec
