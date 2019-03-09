@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   
-  it "Checks if the plane or planes land at the airport when instructed" do
+  it "Checks if the plane lands at the airport when instructed" do
     plane = Plane.new
     expect(subject.instructions("land",plane)).to eq [plane]
   end
@@ -13,4 +13,10 @@ describe Airport do
     plane2 = Plane.new
     expect(subject.instructions("land",plane2)).to eq [plane1, plane2]
   end
+  
+  it "Checks if plane takes off from the airport when instructed to takeoff and shows an empty runway" do
+    plane = Plane.new
+    expect(subject.instructions("takeoff",plane)).to eq []
+  end
+
 end

@@ -10,6 +10,8 @@ class Airport
   def instructions(instruction,plane)
     if instruction == 'land'
       @runway << plane
+    elsif instruction == 'takeoff'
+      @runway
     end
   end 
 
