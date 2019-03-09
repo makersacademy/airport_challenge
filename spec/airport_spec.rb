@@ -23,9 +23,21 @@ describe Airport do
     end
 
     it 'allows plane to take off and logs the departure' do
+      2.times { expect(subject).to receive(:stormy?).and_return(false) }
       subject.land(@plane)
       subject.take_off
       expect(subject.hangar).not_to include @plane
+    end
+  end
+
+  context 'weather is clear but hangar is full' do
+
+    it 'raises an error when trying to land_plane' do
+      # ok that this is allow rather than expect?
+      100.times { allow(subject).to receive(:stormy?).and_return(false) }
+      100.times { subject.land(Plane.new) }
+      plane = Plane.new
+      expect { subject.land(plane) }.to raise_error('Cannot land - airport full')
     end
   end
 
@@ -68,9 +80,9 @@ describe Airport do
 
     it { is_expected.to respond_to :full? }
 
-    it 'returns true if more planes than capacity' do
-      101.times { expect(subject).to receive(:stormy?).and_return(false) }
-      101.times { subject.land(Plane.new) }
+    it 'returns true if at capacity' do
+      100.times { expect(subject).to receive(:stormy?).and_return(false) }
+      100.times { subject.land(Plane.new) }
       expect(subject.full?).to eq true
     end
 
