@@ -1,3 +1,8 @@
+My approach:
+
+1.- Read the user stories to understand the challenge.
+
+
 Airport Challenge
 =================
 
