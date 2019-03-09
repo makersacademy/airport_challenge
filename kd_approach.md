@@ -41,6 +41,28 @@ PROGRAM USAGE:
 
 I translated the user stories into a domain model.
 
+#### STEP 2 - SET OUT THE OBJECTS / CHARACTERISTICS / INTERACTIONS
+
+From the user stories, I set out the objects I will model and their interactions (messages).
+
+#### STEP 3 - DEFINE METHODS AND WHAT THEY DO
+
+Now that I set out my domain model, objects and their interactions (messages), next, I set out the methods.
+
+#### STEP 4 - DEFINE TEST CASES
+
+Now that I set out my domain model, objects and their interactions (messages), next, I set out the test cases.
+
+#### STEP 5 - TDD PROCCESS
+
+With my notes, I will go through the TDD process.
+
+- USER STORY
+- FEATURE TEST
+- UNIT TEST
+- CODE IMPLEMENTATION
+- FEATURE TEST
+
 ##### CLASSES/OBJECTS
 
 - Airport
