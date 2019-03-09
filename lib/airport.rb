@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 class Airport
   attr_accessor :hangar
@@ -13,8 +14,15 @@ class Airport
   end
 
   def take_off(plane)
-    hangar.delete(plane)
-    return "Plane has taken off"
+
+    if hangar.include?(plane) == false
+      return "Error: Plane is not in hangar"
+    elsif Weather.new.stormy? == true
+      return "There is a storm, can't take off"
+    else hangar.delete(plane)
+      return "Plane has taken off"
+    end
+
   end
 
 end
