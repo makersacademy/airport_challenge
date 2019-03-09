@@ -11,9 +11,7 @@ class Airport
   end
 
   def take_off(plane)
-    if empty? == false
-      @plane_list.pop 
-    end
+    @plane_list.pop unless empty?
   end
 
   def empty?

@@ -25,13 +25,13 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
-  it 'tells a plane from plane list of one plane to take off' do
+  it 'tells a plane from plane list of consisting of one plane to take off' do
     allow(plane).to receive(:land)
     airport.land(plane)
     expect(airport.take_off(plane)).to eq plane
   end
 
-  it 'checks that plane that has taken off is no longer in plane list' do
+  it 'checks that the plane that has taken off is no longer in plane list' do
     allow(plane).to receive(:land)
     airport.land(plane)
     airport.take_off(plane)
@@ -45,7 +45,7 @@ describe Airport do
     expect(airport.take_off(plane)).not_to eq plane
   end
 
-  it 'enables a plane to be selected from the plane list of two planes to take off' do
+  it 'enables user to select plane from the plane list consisting of more than one plane to take off' do
     allow(plane).to receive(:land)
     plane_1 = airport.land(plane)
     plane_2 = airport.land(plane)
@@ -59,5 +59,13 @@ describe Airport do
     airport.take_off(plane_1)
     expect(airport.plane_list).not_to include plane_1
   end
+
+  # it 'displays a message that plane has taken off and is no longer at the airport' do
+  #   allow(plane).to receive(:land)
+  #   plane_1 = airport.land(plane)
+  #   plane_2 = airport.land(plane)
+  #   airport.take_off(plane_1)
+  #   expect(airport.plane_list).to output("my message\n").to_stdout
+  # end
 
 end

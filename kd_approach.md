@@ -158,13 +158,13 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 1. [X] Airport has a `take_off` method 
 2. [X] Airport sends message to a plane from list of planes to `take_off` (basic test of one plane)
 3. [X] Checks that plane object is no longer in list of planes (basic test of one plane)
-4. Test that message is given when plane no longer in airport list
-5. [X] Airport cannot instruct plane to `take_off` in scenario that list of planes is empty because there are no planes
+4. [X] Airport cannot instruct plane to `take_off` in scenario that list of planes is empty because there are no planes
 
 Advanced tests:
 
-6. Airport sends message to any plane from list of planes to `take_off`
-7. Checks that specific plane object is no longer at the airport
+5. [X]Airport sends message to any plane from list of planes to `take_off`
+6. [X] Checks that specific plane object is no longer at the airport
+7. Test that message is given when plane no longer in airport list
 
 ```
 As an air traffic controller 
@@ -192,7 +192,7 @@ I want to prevent takeoff when weather is stormy
 
 ##### TEST CASE(S)
 
-1. Weather object is instantiated? Y/N?
+1. [X] Weather object is instantiated? Y/N?
 2. Weather object has a `stormy?` method
 3. Weather object has a `weather_status` method
 4. `weather_status` returns `"stormy" or "sunny"`
