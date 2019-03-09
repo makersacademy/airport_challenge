@@ -16,10 +16,10 @@ Airport Challenge
 #### Write minimum first test
 
 - Set up first spec file
-- Require 'plane.rb' in spec file -> fail
-- Create 'plan.rb' file
+- Require 'airport.rb' in spec file -> fail
+- Create 'airport.rb' file
 - Write minimum first test and watch it fail
-- Write mimimum code to pass test and follow red-green-refactor [process]() <- add screen recording of first test
+- Write mimimum code to pass test and follow red-green-refactor [process]()
 
 
 #### Follow error messages when running rspec
@@ -30,6 +30,8 @@ Airport Challenge
 
 Airport Challenge
 =================
+
+## Original README
 
 ```
         ______
