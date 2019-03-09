@@ -13,9 +13,9 @@ describe Airport do
     end
 
     it 'logs a second plane has landed' do
-      plane1 = Plane.new
+      plane = Plane.new
       plane2 = Plane.new
-      subject.land(plane1)
+      subject.land(plane)
       subject.land(plane2)
       expect(subject.hangar).to include plane2
 
@@ -24,7 +24,15 @@ describe Airport do
   end
 
   describe '#take_off' do
+
     it { is_expected.to respond_to :take_off }
+
+    it 'confirms a plane is no longer in the airport' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off
+      expect(subject.hangar).not_to include plane
+    end
   end
 
 end
