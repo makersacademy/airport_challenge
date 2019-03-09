@@ -5,13 +5,14 @@ class Airport
 
   def initialize(max_capacity = 20)
     @max_capacity = max_capacity
+    @airport_planes = []
   end
 
   def land(plane)
     weather = check_weather
     raise "The weather is stormy - no landing allowed" if weather == "Stormy"
 
-    @airport_planes = plane
+    @airport_planes << plane
     return "Plane landed"
   end
 
@@ -23,8 +24,8 @@ class Airport
     weather = check_weather
     raise "The weather is stormy - no take off allowed" if weather == "Stormy"
 
-    if @airport_planes == plane
-      @airport_planes = nil
+    if @airport_planes.include?(plane)
+      @airport_planes.delete(plane)
       return "Successful take off"
     end
 
@@ -38,6 +39,6 @@ class Airport
   end
 
   def capacity
-    return 15
+    return @max_capacity - @airport_planes.length
   end
 end
