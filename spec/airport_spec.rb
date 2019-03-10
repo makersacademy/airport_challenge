@@ -21,6 +21,13 @@ describe Airport do
       @airport_good_weather.land @plane
       expect(@airport_good_weather.planes).to include @plane
     end
+
+    # bad weather behaviour
+    it 'prints a confirmation message if the weather is bad' do
+      expect { @airport_bad_weather.land @plane }
+        .to output("⛈ Sorry, too dangerous to land. ⛈\n").to_stdout
+    end
+
   end
   
   describe '.clear_for_takeoff' do
