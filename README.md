@@ -32,14 +32,14 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Domain Model
 
-| Subject            | Behaviour     |
-| ------------------ | ------------- |
-| Traffic Controller |               |
-| Airport            | land          |
-|                    | take_off      |
-| Plane              | landed        |
-| Plane              | airport       |
-| Weather            | random_status |
+| Subject            | Behaviour        |
+| ------------------ | ---------------- |
+| Traffic Controller |                  |
+| Airport            | land             |
+|                    | take_off         |
+| Plane              | land_at(airport) |
+|                    |                  |
+| Weather            | random_status    |
 
 ## Airpot class
 
@@ -73,11 +73,17 @@ Domain Model
 
 ## Plane class
 
-- initialize plane object to use with aiport
-- has a state: flying/not_flying - to prevent message ot taking off is flying or landing if it is not flying
-- has an airport attribute - assigns the airport it is in to prevent response to a land message while in airport
-- has a method that changes state: landed = returns false/true
-- has a method that assigns airport in the airport attribute
+- initialize plane object
+- plane gets assigned an airport when it lands
+
+  - assigns the airport it is in to prevent response to a land message while in airport
+
+- landing changes its status: flying/landed
+- plane removes airport value from it's attributes when it takes off
+- plane changes state to flying after it takes off
+- plane changes state to not_flyind after it lands
+
+  - to prevent message ot taking off is flying or landing if it is not flying
 
 ## Weather class
 
