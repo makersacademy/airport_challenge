@@ -1,6 +1,15 @@
 ## Project Overview
 ## Processes & Approach
 
+**To improve my project, next time I would like to:**
+
+- Put my spec test files and structure them better into 'before 'do' and use 'contexts' to group 
+test cases together for clarity
+- Refactor some code to use predicate methods
+- Consider removing duplicate functionality of 'stormy?' method on both the airport and 
+weather objects and delegate that responsibility to the weather object and amend the test
+case to account for this change
+
 #### CLIENT REQUIREMENTS
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:

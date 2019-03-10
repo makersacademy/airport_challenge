@@ -15,6 +15,17 @@ Airport Challenge
 ## I documented my approach in 'kd_approach.md' <---- Please read me! :)
 - I documented and explained the processes and approaches I used
 
+**To improve my project, next time I would like to:**
+
+- Implement tests for edge cases outlined
+- Get test coverage metric from 99.28% to 100%
+- Put my spec test files and structure them better into 'before 'do' and use 'contexts' to group 
+test cases together for clarity
+- Refactor some code to use predicate methods
+- Consider removing duplicate functionality of 'stormy?' method on both the airport and 
+weather objects and delegate that responsibility to the weather object and amend the test
+case to account for this change
+
 
 ## Introduction to the project
 
