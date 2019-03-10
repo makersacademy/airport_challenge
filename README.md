@@ -10,7 +10,7 @@ My approach
 * Every now and again I ran rubocop to lint my code
 * Once I had done enough tests to complete a particular thing the code should do, I check the user stories to make sure I was still following the brief
 
-** line 6 of the weather class is not covered by a test. I cannot work out how to cover it. 
+** line 7 of the weather class is not covered by a test. I cannot work out how to cover it.
 
 Reflection
 -------
@@ -25,6 +25,17 @@ How to run my code
 1. Run any of the test files to test the classes. ```airport_spec``` or ```weather_spec``` or ```plane_spec```
 2. Run any of the commands in ```irb``` or a ruby file ```Airport.new``` ```Plane.new``` ```Weather.new```
 
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
 
 ```
 As an air traffic controller
