@@ -28,12 +28,19 @@ While ensuring that planes can only take off from airports they are in; planes t
 
 ## Instructions
 clone this repo
+
 cd airport_challenge
+
 irb
+
 require '../lib/airport.rb'
+
 airport = Airport.new
+
 plane = Plane.new
+
 airport.land(plane) # if the weather is good plane will be stored in airport
+
 airport.takeoff(plane) # if there is a plane stored in airport plane will fly (if the weather is good)
 
 ## About
