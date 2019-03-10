@@ -55,10 +55,10 @@ describe Airport do
       (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
       expect { @airport_good_weather.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
     end
-    # it 'returns the airport object if the airport is full when using default capacity' do
-    #   Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
-    #   expect(@airport_good_weather.land @plane).to eq @airport_good_weather
-    # end
+    it 'returns the airport object if the airport is one less than full when using default capacity' do
+      (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
+      expect(@airport_good_weather.land @plane).to eq @airport_good_weather
+    end
     # it 'does not store the plane if the airport is full when using default capacity' do
     #   Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
     #   @airport_good_weather.land @plane
