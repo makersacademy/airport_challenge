@@ -18,6 +18,22 @@ private
     end
   end
 
+  def plane_already_landed_message
+    "Not possibile -> Plane already landed"
+  end
+
+  def plane_landed_message
+    "Landed"
+  end
+
+  def denied_landing_no_space_message
+    "Landing not possible"
+  end
+
+  def denied_landing_bad_weather_message
+    "Stormy weather: landing denied"
+  end
+
   # Takeoff methods
 
   def plane_take_off(plane)
@@ -31,7 +47,7 @@ private
 
   def confirm_take_off(plane)
     return plane_has_not_left if @hangar.include?(plane)
-    
+
     change_plane_status(plane) if plane.airport.name == name
   end
 
@@ -41,6 +57,18 @@ private
 
   def takeoff_message(weather_type)
     weather_type == :sunny ? plane_flying_message : plane_grounded_message
+  end
+
+  def plane_flying_message
+    "Plane has taken off" 
+  end
+
+  def plane_grounded_message
+    "Stormy weather: Take off denied" 
+  end
+
+  def plane_has_not_left_message
+    "Plane has not taken off yet"
   end
 
   # Weather methods
@@ -70,36 +98,6 @@ private
     plane.status = :flying
     plane.airport = nil
     takeoff_message(:sunny)
-  end
-  
-  # RETURN MESSAGES
-
-  def plane_already_landed_message
-    "Not possibile -> Plane already landed"
-  end
-
-  def plane_flying_message
-    "Plane has taken off" 
-  end
-
-  def plane_grounded_message
-    "Stormy weather: Take off denied" 
-  end
-
-  def plane_has_not_left_message
-    "Plane has not taken off yet"
-  end
-
-  def plane_landed_message
-    "Landed"
-  end
-  
-  def denied_landing_no_space_message
-    "Landing not possible"
-  end
-
-  def denied_landing_bad_weather_message
-    "Stormy weather: landing denied"
   end
 
 end

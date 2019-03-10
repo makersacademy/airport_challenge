@@ -78,9 +78,6 @@ RSpec.describe Airport do
       expect(subject.hangar).not_to include plane
     end
 
-    it "raises an error if a plane if flying but still figuring as being in the hangar"
-
-    
   end
 
   context "TEST: landing and takeoff of multiple planes" do
