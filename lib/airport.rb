@@ -23,7 +23,6 @@ class Airport
 		raise 'cannot land' if stormy?
 		raise 'Airport full' if full? 
 		@planes << plane 
-
 	end 
 
 	def check 
@@ -32,10 +31,9 @@ class Airport
 
 	def takeoff
 		# p @planes
-		raise 'cannot takeoff' if stormy
+		raise 'cannot takeoff' if stormy?
 		@planes.pop
 		puts 'Plane has taken off'
-	
 	end 
 
 	def stormy?
@@ -49,13 +47,11 @@ class Airport
 		if @planes.count >= @capacity
 			return true
 		end 
-
 	end 
 
 	def random_weather
 		#generates random value for stormy
 		@stormy = rand < 0.2
-
 	end 
 
 end 
