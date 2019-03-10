@@ -76,6 +76,11 @@ describe Airport do
       allow(subject).to receive(:current_weather) { "Stormy" }
       expect { subject.take_off(my_plane) }.to raise_error "No take-off allowed - Stormy weather"
     end
+
+    it 'should raise an error if I try to take off from an empty airport' do
+      allow(subject).to receive(:current_weather) { "Sunny" }
+      expect { subject.take_off(Plane.new) }.to raise_error "There are no planes at the airport"
+    end
   end
 
   describe '#capacity' do
