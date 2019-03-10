@@ -7,5 +7,7 @@ describe Weather do
   end
 
   it { is_expected.to respond_to(:stormy?) }
+
+  it { is_expected.to respond_to(:weather_status) }
   
 end
