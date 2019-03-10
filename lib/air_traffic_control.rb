@@ -5,6 +5,7 @@ class AirTrafficControl
   end
 
   def take_off(plane)
+    plane.location = "N/A"
   end
 
   def confirm_plane_absence(plane, airport)
