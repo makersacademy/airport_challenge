@@ -14,10 +14,9 @@ class Airport
     if @planes.size >= @capacity
       puts "Sorry, no more room!"
     else
-      case @weather.status
-      when "⛈"
+      if bad_weather?
         puts "⛈ Sorry, too dangerous to land. ⛈"
-      when "☀️"
+      else
         @planes << plane
         puts '☀️ Plane landed! ☀️'
       end
@@ -27,14 +26,19 @@ class Airport
   end
 
   def clear_for_takeoff(plane)
-    case @weather.status
-    when "⛈"
+    if bad_weather?
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
-    when "☀️"
+    else
       @planes -= [plane]
       puts "☀️ Up, up and away! ☀️"
     end
     self
+  end
+
+  private
+
+  def bad_weather?
+    @weather.status == "⛈"
   end
 
 end

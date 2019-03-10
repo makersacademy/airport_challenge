@@ -116,12 +116,10 @@ ___
   - `airport.lane` will only accept a `Plane` object somehow?
   - Anything else?
 
-### Refactor
+### Refactor / code qualiy
 
 - Rubocop says `airport.land` is too long. Can we refactor/shorten? (Can do if we remove some of the confirmation messages, but that seems like a hack)
-
-### Code quality
-
+- Can probably refactor tests using context...
 - Read <https://github.com/Hives/airport_challenge/blob/master/docs/review.md> and compare against code
 - In particular, need to write a README.md
 - Avoid vacuous tests - are any of the tests duplicates/redundant?
