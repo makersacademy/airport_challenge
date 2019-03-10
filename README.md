@@ -10,6 +10,8 @@ My approach
 * Every now and again I ran rubocop to lint my code
 * Once I had done enough tests to complete a particular thing the code should do, I check the user stories to make sure I was still following the brief
 
+** line 6 of the weather class is not covered by a test. I cannot work out how to cover it. 
+
 Reflection
 -------
 

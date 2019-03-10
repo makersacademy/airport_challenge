@@ -12,7 +12,7 @@ describe Airport do
 
     it 'should stop a plane from landing when the weather is Stormy' do
       allow(subject).to receive(:current_weather) { "Stormy" }
-      expect { subject.land(Plane.new) }.to raise_error "No landing allowed due to the weather"
+      expect { subject.land(Plane.new) }.to raise_error "No landing allowed - Stormy weather"
     end
 
     it 'should stop a plan from landing when the airport is full' do
@@ -74,7 +74,7 @@ describe Airport do
       my_plane = Plane.new
       subject.land(my_plane)
       allow(subject).to receive(:current_weather) { "Stormy" }
-      expect { subject.take_off(my_plane) }.to raise_error "No take-off allowed due to the weather"
+      expect { subject.take_off(my_plane) }.to raise_error "No take-off allowed - Stormy weather"
     end
   end
 
