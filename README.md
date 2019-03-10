@@ -41,7 +41,7 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-a
+
 Instructions
 ---------
 
