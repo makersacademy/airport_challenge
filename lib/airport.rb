@@ -29,9 +29,13 @@ class Airport
 		@planes
 	end 
 
-	def takeoff
+	def takeoff(plane)
 		# p @planes
+		
 		raise 'cannot takeoff' if stormy?
+		
+		raise 'Plane is currently flying or in queue' unless @planes[0] == plane
+
 		@planes.pop
 		puts 'Plane has taken off'
 	end 

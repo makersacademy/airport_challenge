@@ -44,7 +44,7 @@ describe Airport do
 		it 'takes off a plane and message or confirm plane is no longer in airport' do
 			plane = Plane.new
 			subject.land(plane)
-			expect{subject.takeoff}.to output("Plane has taken off\n").to_stdout
+			expect{subject.takeoff(plane)}.to output("Plane has taken off\n").to_stdout
 			expect(subject.planes).to eq []
 		#checks 
 		end 
@@ -53,8 +53,14 @@ describe Airport do
 			plane = Plane.new
 			subject.land(plane)
 			subject.stormy = true
-			expect{subject.takeoff}.to raise_error 'cannot takeoff'
+			expect{subject.takeoff(plane)}.to raise_error 'cannot takeoff'
 		end 
+
+		it 'plane flying or in queue cannot take off' do
+			plane = Plane.new
+			expect{subject.takeoff(plane)}.to raise_error "Plane is currently flying or in queue"
+		end
+
 	end 
 
 	describe '#stormy?' do 
@@ -75,4 +81,6 @@ describe Airport do
 			expect(airport1.planes.count).to eq 29
 		end 
 	end 
+
+
 end 
