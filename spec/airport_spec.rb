@@ -44,9 +44,9 @@ describe Airport do
     expect(subject.takeoff(plane, "Stormy")).to eq 'No take off allowed in stormy weather'
   end
 
-  it "checks if more than one plane can land on an airport when instructed" do
+  it "Prevents plane from landing on an airport when weather is stormy" do
     plane = Plane.new
     expect(subject.land(plane, "Stormy")).to eq 'No landing allowed in stormy weather'
   end
-  
+
 end
