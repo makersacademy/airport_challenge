@@ -7,6 +7,11 @@ RSpec.describe Airport do
 
   let(:plane) { Plane.new }
 
+  context "responds to methods" do
+    it { is_expected.to respond_to(:land).with(1) }
+    it { is_expected.to respond_to(:takeoff).with(1) }
+  end
+
   context "LAND: instructs plane to" do
 
     it "land at an airport" do

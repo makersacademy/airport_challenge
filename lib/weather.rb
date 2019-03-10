@@ -1,6 +1,6 @@
 class Weather
 
-  attr_accessor :status
+  attr_reader :status
 
   def initialize
     @status = random_weather

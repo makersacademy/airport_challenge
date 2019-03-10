@@ -5,6 +5,11 @@ RSpec.describe Plane do
 
   let(:airport) { Airport.new }
 
+  context "responds to methods" do
+    it { is_expected.to respond_to(:land_at).with(1) }
+    it { is_expected.to respond_to(:takeoff) }
+  end
+
   it "gets assigned an airport when created" do
     expect(subject.land_at(airport)).to eq "Landed at airport #{airport.name}"
   end
