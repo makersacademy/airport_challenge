@@ -1,10 +1,10 @@
 require 'weather_station'
 
 describe WeatherStation do
-  describe '.status' do
-    it 'returns either ⛈ or ☀️' do
+  describe '#stormy?' do
+    it 'returns either true or false' do
       weather = WeatherStation.new
-      expect(["☀️", "⛈"]).to include weather.status
+      expect([true, false]).to include weather.stormy?
     end
   end
 end

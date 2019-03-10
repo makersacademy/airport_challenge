@@ -5,7 +5,7 @@ describe Airport do
   describe '#land' do
     context 'when the weather is good' do
       before :each do
-        @airport = Airport.new(double(:weather, status: "☀️"))
+        @airport = Airport.new(double(:weather, stormy?: false))
         @plane = double(:plane)
       end
 
@@ -67,7 +67,7 @@ describe Airport do
       context 'when the airport is initialised with less than default capacity' do
         before :each do
           @capacity = Airport::DEFAULT_CAPACITY - 1 # maybe should add a test that DEFAULT_CAPACITY >= 1
-          @airport = Airport.new(double(:weather, status: "☀️"), @capacity)       
+          @airport = Airport.new(double(:weather, stormy?: false), @capacity)       
         end
 
         context 'when (custom capacity - 1) planes are stored' do
@@ -98,7 +98,7 @@ describe Airport do
       context 'when the airport is initialised with more than default capacity' do
         before :each do
           @capacity = Airport::DEFAULT_CAPACITY + 1
-          @airport = Airport.new(double(:weather, status: "☀️"), @capacity)       
+          @airport = Airport.new(double(:weather, stormy?: false), @capacity)       
         end
 
         context 'when (custom capacity - 1) planes are stored' do
@@ -129,7 +129,7 @@ describe Airport do
 
     context 'when the weather is bad' do
       before :each do
-        @airport = Airport.new(double(:weather, status: "⛈"))
+        @airport = Airport.new(double(:weather, stormy?: true))
       end
 
       context 'when the plane is already at the airport' do
@@ -153,7 +153,7 @@ describe Airport do
   describe '#clear_for_takeoff' do
     context 'when the weather is good' do
       before :each do
-        @airport = Airport.new(double(:weather, status: "☀️"))
+        @airport = Airport.new(double(:weather, stormy?: false))
         @plane = double(:plane)
       end
 
@@ -187,7 +187,7 @@ describe Airport do
     context 'when the weather is bad' do
       before :each do
         weather = double(:weather)
-        allow(weather).to receive(:status).and_return("☀️", "⛈")        
+        allow(weather).to receive(:stormy?).and_return(false, true)        
         @airport = Airport.new(weather)
         @plane = Plane.new
       end

@@ -34,7 +34,7 @@ class Airport
   private
 
   def bad_weather?
-    @weather.status == "⛈"
+    @weather.stormy?
   end
 
 end
