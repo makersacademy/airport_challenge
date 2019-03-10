@@ -56,6 +56,19 @@ describe Control do
     expect(control.takeoff(plane1)).to eq [plane1]
   end
 
+  # need a test for when storm has passed
+
+  it {is_expected.to respond_to(:storm_passed).with(1).argument}
+
+  # it 'allows take off if storm passed' do
+  #   control = Control.new
+  #   plane1 = Plane.new
+  #   control.land(plane1)
+  #   control.stormy(plane1)
+  #   control.storm_passed(plane1)
+  #   expect(control.takeoff(plane1)).to eq []
+  # end
+
 
 
 end
