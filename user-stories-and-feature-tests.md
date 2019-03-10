@@ -104,7 +104,7 @@ ___
 ## Edge cases
 
 > As the system designer  
-> To, uh... prevent impossible things happening  
+> To prevent weirdness  
 > I would like the system to raise an error if take off is requested for a plane which is not at the airport
 
 ```
@@ -112,18 +112,27 @@ ___
  => #<Airport...>
 > plane = Plane.new
  => #<Plane...>
-> aiport.clear_for_takeoff plane
+# whether the weather is good or bad...
+> airport.clear_for_takeoff plane
 RuntimeError ("That plane is not at that airport!")
 ```
 
 ---
 
-> As the system designer 
-> To prevent... weirdness...
-> I would like the system to raise an error if take off is requested for a plane which is flying
+> As the system designer  
+> To prevent weirdness  
+> I would like the system to raise an error if landing is requested for a plane which is already at an airport
 
 ```
-> 
+> airport = Airport.new(WeatherStation.new)
+ => #<Airport...>
+> plane = Plane.new
+ => #<Plane...>
+# with good weather...
+> airport.land plane
+ => #<Airport...>
+> airport.land plane
+RuntimeError ("That plane is already on the ground!")
 ```
 
 ## Still to do
