@@ -44,7 +44,6 @@ describe Airport do
 
   # Tests generate weather method
   it 'Test generate weather method' do
-    plane = Plane.new
     expect(subject.conditions).to eq("stormy").or eq("sunny")
   end
 
@@ -60,6 +59,24 @@ describe Airport do
     airport = Airport.new
     airport.conditions = "stormy"
     expect { airport.take_off(plane) }.to raise_error('Weather is too dangerous')
+  end
+
+  # Test error msg if airport tries to take off a plane that does not exist in hangar
+  it 'Error msg when take off plane that is not in hangar' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.conditions = "sunny"
+    expect { airport.take_off(plane) }.to raise_error('That plane is not in the hangar')
+  end
+
+  # Test the take_off plane removes plane from hangar
+  it 'Deletes plane from hangar successfully' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.conditions = "sunny"
+    airport.land_plane(plane)
+    airport.take_off(plane)
+    expect(airport.hangar).to eq []
   end
 
 end

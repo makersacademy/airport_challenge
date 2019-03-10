@@ -8,6 +8,10 @@ describe Plane do
   # Responds to attribute
   it { is_expected.to respond_to :landed }
 
+  it 'Equals landed attribute default value, when predicate method called' do
+    expect(subject.landed?).to eq false
+  end
+
   # Returns landed is false when created, as it is in the air currently
   it 'Landed is set to default false when landed method called' do
     expect(subject.landed).to eq false

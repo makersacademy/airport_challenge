@@ -22,7 +22,7 @@ class Airport
 
   def take_off(plane)
     fail 'Weather is too dangerous' if conditions == "stormy"
-    fail 'That plane is not in the hangar' unless hangar.include?(plane)
+    fail 'That plane is not in the hangar' if plane.landed == false
     
     hangar.delete(plane) if plane.landed == true
     plane.landed = false
