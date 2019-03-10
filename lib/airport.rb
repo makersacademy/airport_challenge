@@ -10,6 +10,8 @@ class Airport
 
   def land(plane)
     fail "The plane can't be landed - it is stormy" if @stormy == true
+    fail "The plane can't land - the airport is full" if @plane
+    @plane = plane
   end
 
   def take_off(plane)
