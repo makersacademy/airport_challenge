@@ -111,13 +111,14 @@ ___
   - `Plane` will need a `.flying?` predicate method
 - Planes that are flying cannot be in an airport/ planes that are not flying must be in an airport
   - Huh??
+  - Maybe... `Plane` has `takeoff` and `land` methods which check whether it's in an airport before modifying the `flying` status, and throws an error if in an inconsistent state? Or that could be in `airport.land` / `airport.clear_for_takeoff`?
 - etc.?
-  - Only a `Plane` object can land?
+  - `airport.lane` will only accept a `Plane` object somehow?
   - Anything else?
 
 ### Refactor
 
-- Rubocop says `airport.land` is too long. Can we refactor? (Can do if we remove some of the confirmation messages)
+- Rubocop says `airport.land` is too long. Can we refactor/shorten? (Can do if we remove some of the confirmation messages, but that seems like a hack)
 
 ### Code quality
 
@@ -127,4 +128,4 @@ ___
 
 ### $BONUS
 
-- Write an RSpec feature test that lands and takes off a number of planes
+- Write an RSpec [feature test](https://relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec) that lands and takes off a number of planes
