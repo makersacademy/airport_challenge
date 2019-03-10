@@ -2,7 +2,7 @@ class Airport
   attr_accessor :stormy, :capacity, :planes
   DEFAULT_CAPACITY = 100
   def initialize
-    @stormy = false
+    @stormy = random_weather
     @capacity = DEFAULT_CAPACITY
     @planes = []
   end
@@ -29,4 +29,8 @@ class Airport
     @planes.delete(plane)
   end
 
+  def random_weather
+    #let the prob of storm is 1/7
+    rand(7) == 1? true : false
+  end
 end
