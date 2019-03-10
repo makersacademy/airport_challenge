@@ -2,114 +2,159 @@ require 'airport'
 
 describe Airport do 
   
-  before :each do
-    @airport_good_weather = Airport.new(double(:weather, status: "☀️"))
-    @airport_bad_weather = Airport.new(double(:weather, status: "⛈"))
-    @plane = double(:plane)
-  end
-
-  # describe '.land' do
-
-  #   # good weather behaviour
-  #   it 'prints a confirmation message if the weather is good' do
-  #     expect { @airport_good_weather.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
-  #   end
-  #   it 'returns the airport object if the weather is good' do
-  #     expect(@airport_good_weather.land @plane).to eq @airport_good_weather
-  #   end
-  #   it 'stores the landed plane if the weather is good' do
-  #     @airport_good_weather.land @plane
-  #     expect(@airport_good_weather.planes).to include @plane
-  #   end
-
-  #   # bad weather behaviour
-  #   it 'prints a confirmation message if the weather is bad' do
-  #     expect { @airport_bad_weather.land @plane }
-  #       .to output("⛈ Sorry, too dangerous to land. ⛈\n").to_stdout
-  #   end
-  #   it 'returns the airport object if the weather is bad' do
-  #     expect(@airport_bad_weather.land @plane).to eq @airport_bad_weather
-  #   end
-  #   it 'does not store the landed plane if the weather is bad' do
-  #     @airport_bad_weather.land @plane
-  #     expect(@airport_bad_weather.planes).not_to include @plane
-  #   end
-
-  #   # default capacity behaviour
-  #   it 'prints a message if the airport is full when using default capacity' do
-  #     Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
-  #     expect { @airport_good_weather.land @plane }.to output("Sorry, no more room!\n").to_stdout
-  #   end
-  #   it 'returns the airport object if the airport is full when using default capacity' do
-  #     Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
-  #     expect(@airport_good_weather.land @plane).to eq @airport_good_weather
-  #   end
-  #   it 'does not store the plane if the airport is full when using default capacity' do
-  #     Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
-  #     @airport_good_weather.land @plane
-  #     expect(@airport_good_weather.planes).not_to include @plane
-  #   end
-
-  #   # default capacity - 1 behaviour
-  #   it 'prints a message if the airport is one less than full when using default capacity' do
-  #     (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
-  #     expect { @airport_good_weather.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
-  #   end
-  #   it 'returns the airport object if the airport is one less than full when using default capacity' do
-  #     (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
-  #     expect(@airport_good_weather.land @plane).to eq @airport_good_weather
-  #   end
-  #   it 'does store the plane if the airport is one less than full when using default capacity' do
-  #     (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
-  #     @airport_good_weather.land @plane
-  #     expect(@airport_good_weather.planes).to include @plane
-  #   end
-    
-  #   # custom capacity behaviour
-  #   it 'prints a message if the airport is full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     3.times { airport.land Plane.new }
-  #     expect { airport.land @plane }.to output("Sorry, no more room!\n").to_stdout
-  #   end
-  #   it 'returns the aiport object if the airport is full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     3.times { airport.land Plane.new }
-  #     expect(airport.land @plane).to eq airport
-  #   end
-  #   it 'does not store the plane if the airport is full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     3.times { airport.land Plane.new }
-  #     airport.land @plane
-  #     expect(airport.planes).to_not include @plane
-  #   end
-
-  #   # custom capacity - 1 behaviour
-  #   it 'prints a message if the airport is one less than full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     2.times { airport.land Plane.new }
-  #     expect { airport.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
-  #   end
-  #   it 'returns the aiport object if the airport is one less than full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     2.times { airport.land Plane.new }
-  #     expect(airport.land @plane).to eq airport
-  #   end
-  #   it 'does store the plane if the airport is one less than full when using custom capacity' do
-  #     airport = Airport.new(double(:weather, status: "☀️"), 3)
-  #     2.times { airport.land Plane.new }
-  #     airport.land @plane
-  #     expect(airport.planes).to include @plane
-  #   end
-    
-
-  # end
-  
-  describe '#clear_for_takeoff' do
-
+  describe '#land' do
     context 'when the weather is good' do
       before :each do
         @airport = Airport.new(double(:weather, status: "☀️"))
-        @plane = Plane.new
+        @plane = double(:plane)
+      end
+
+      context 'when the plane is already at the airport' do
+        before :each do
+          @airport.land @plane
+        end
+
+        it 'raises an error' do
+          expect { @airport.land @plane }.to raise_error "That plane is already on the ground!"
+        end
+      end
+
+      context 'when the plane is not at the airport and the airport has spare space' do
+        it 'prints a confirmation message' do
+          expect { @airport.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
+        end
+
+        it 'returns the airport object' do
+          expect(@airport.land @plane).to eq @airport
+        end
+
+        it 'stores the plane in the airport' do
+          @airport.land @plane
+          expect(@airport.planes).to include @plane
+        end
+      end
+
+      context 'when the airport is initialised with default capacity' do
+        before :each do
+          @capacity = Airport::DEFAULT_CAPACITY
+        end
+
+        context 'when (default capacity - 1) planes are stored' do
+          before :each do
+            (@capacity - 1).times { @airport.land double(:plane) }
+          end
+
+          it 'allows a plane to land' do
+            @airport.land @plane
+            expect(@airport.planes).to include @plane  
+          end
+        end
+
+        context 'when (default capacity) planes are stored' do
+          before :each do
+            @capacity.times { @airport.land double(:plane) }
+          end
+
+          it 'raises an error' do
+            expect { @airport.land @plane }.to raise_error "Airport full"
+          end
+
+          # would like to also check that the airport hasn't stored the plane, but don't know how to
+          # run @airport.land @plane without causing the test to fail, since it errors....
+        end
+      end
+
+      context 'when the airport is initialised with less than default capacity' do
+        before :each do
+          @capacity = Airport::DEFAULT_CAPACITY - 1 # maybe should add a test that DEFAULT_CAPACITY >= 1
+          @airport = Airport.new(double(:weather, status: "☀️"), @capacity)       
+        end
+
+        context 'when (custom capacity - 1) planes are stored' do
+          before :each do
+            (@capacity - 1).times { @airport.land double(:plane) }
+          end
+
+          it 'allows a plane to land' do
+            @airport.land @plane
+            expect(@airport.planes).to include @plane  
+          end
+        end
+
+        context 'when (custom capacity) planes are stored' do
+          before :each do
+            @capacity.times { @airport.land double(:plane) }
+          end
+
+          it 'raises an error' do
+            expect { @airport.land @plane }.to raise_error "Airport full"
+          end
+
+          # would like to also check that the airport hasn't stored the plane, but don't know how to
+          # run @airport.land @plane without causing the test to fail, since it errors....
+        end
+      end
+
+      context 'when the airport is initialised with more than default capacity' do
+        before :each do
+          @capacity = Airport::DEFAULT_CAPACITY + 1
+          @airport = Airport.new(double(:weather, status: "☀️"), @capacity)       
+        end
+
+        context 'when (custom capacity - 1) planes are stored' do
+          before :each do
+            (@capacity - 1).times { @airport.land double(:plane) }
+          end
+
+          it 'allows a plane to land' do
+            @airport.land @plane
+            expect(@airport.planes).to include @plane  
+          end
+        end
+
+        context 'when (custom capacity) planes are stored' do
+          before :each do
+            @capacity.times { @airport.land double(:plane) }
+          end
+
+          it 'raises an error' do
+            expect { @airport.land @plane }.to raise_error "Airport full"
+          end
+
+          # would like to also check that the airport hasn't stored the plane, but don't know how to
+          # run @airport.land @plane without causing the test to fail, since it errors....
+        end
+      end
+    end
+
+    context 'when the weather is bad' do
+      before :each do
+        @airport = Airport.new(double(:weather, status: "⛈"))
+      end
+
+      context 'when the plane is already at the airport' do
+        before :each do
+          @airport.planes << @plane
+        end
+
+        it 'raises an error' do
+          expect { @airport.land @plane }.to raise_error "That plane is already on the ground!"
+        end
+      end
+
+      context 'when the plane is not already at the airport' do
+        it 'raises an error' do
+          expect { @airport.land @plane }.to raise_error "⛈ Too dangerous to land. ⛈"
+        end
+      end
+    end
+  end
+    
+  describe '#clear_for_takeoff' do
+    context 'when the weather is good' do
+      before :each do
+        @airport = Airport.new(double(:weather, status: "☀️"))
+        @plane = double(:plane)
       end
 
       context 'when the plane is not at the airport' do

@@ -1,7 +1,7 @@
 class Airport
   attr_reader :planes
   
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 3
 
   def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
@@ -10,18 +10,12 @@ class Airport
   end
   
   def land(plane)
-    
-    if @planes.size >= @capacity
-      puts "Sorry, no more room!"
-    else
-      if bad_weather?
-        puts "⛈ Sorry, too dangerous to land. ⛈"
-      else
-        @planes << plane
-        puts '☀️ Plane landed! ☀️'
-      end
-    end
-    
+    raise "That plane is already on the ground!" if @planes.include? plane
+    raise "⛈ Too dangerous to land. ⛈" if bad_weather?
+    raise "Airport full" if @planes.size >= @capacity
+
+    @planes << plane
+    puts '☀️ Plane landed! ☀️'   
     self
   end
 

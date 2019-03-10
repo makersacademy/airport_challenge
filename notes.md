@@ -1,4 +1,4 @@
-# User stories and feature tests
+# User stories, feature tests, general notes
 
 > As an air traffic controller  
 > So I can get passengers to a destination  
@@ -57,8 +57,7 @@
 # follow above steps to initialise an airport and a plane
 # then, if the weather is bad...
 > airport.land plane
-⛈ Sorry, too dangerous to land. ⛈
- => #<Airport:0x000...>
+RuntimeError ("⛈ Too dangerous to land. ⛈")
 > airport.planes.include? plane
  => false
 ```
@@ -76,8 +75,7 @@
 (10 x) "☀️ Plane landed! ☀️"
 > plane = Plane.new
 > airport.land plane
-"Sorry, no more room!"
- => #<Airport: 0x000...>
+RuntimeError ("Airport full")
 > airport.planes.include? plane
  => false
 ```
@@ -95,8 +93,7 @@ ___
 (2 x) "☀️ Plane landed! ☀️"
 > plane = Plane.new
 > airport.land plane
-"Sorry, no more room!"
- => #<Airport: 0x000...>
+RuntimeError ("Airport full")
 > airport.planes.include? plane
  => false
 ```
@@ -139,9 +136,9 @@ RuntimeError ("That plane is already on the ground!")
 
 ### Edge cases
 
-- Planes can only take off form the airport they're in
+- **DONE** Planes can only take off form the airport they're in
   - easy to check that @planes.include? plane inside Airport
-- Planes that are landed cannot land again
+- **DONE** Planes that are landed cannot land again
 - Planes that are flying cannot take off/ planes that are not flying cannot land
   - `Plane` will need a `.flying?` predicate method or something?
 - Planes that are flying cannot be in an airport/ planes that are not flying must be in an airport
@@ -150,10 +147,14 @@ RuntimeError ("That plane is already on the ground!")
 - etc.?
   - `airport.land` will only accept a `Plane` object somehow?
   - Anything else?
+  - airport with zero capacity? negative capacity?
+
+- the tests for `.clear_for_takeoff` depend on `.land`! should make these independent by... stubbing `airport.planes` or something?
+- would it be better to directly add loads of planes to an airport somehow, rather than running `airport.land` over and over again? can do `airport.planes << plane`, but that doesn't seem a good idea in case `.plane` is made read-only in the future???
+- we've got three possible errors at the start of the land method. should we write tests to make sure they come in the correct priority? e.g. at the moment if the weather is bad and the airport is also at capacity, the 'bad weather' error will fire. do we need to test that the 'airport full' error doesn't fire in that situation? 
 
 ### Refactor / code qualiy
 
-- Rubocop says `airport.land` is too long. Can we refactor/shorten? (Can do if we remove some of the confirmation messages, but that seems like a hack)
 - Can probably refactor tests using context...
 - Read <https://github.com/Hives/airport_challenge/blob/master/docs/review.md> and compare against code
 - In particular, need to write a README.md
