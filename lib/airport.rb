@@ -30,13 +30,29 @@
 
 # 7. Beware the dreaded 'edge case'
 # => Safeguard this by having grounded and flying states
-# => Assign planes airport statuses
+# => Assign planes airport statuses (stati? statusseseses?)
 # =>
 
 # 8. Make use of test doubles... they are your friend
 # =>
 
 # 9. Bonus brownie points
-# => Able to handle multiple planes at once... like an airport
+# => Able to handle multiple planes at once... like a proper airport
 # => Keep it simple stupid!
-# =>
+# => Be awesome
+
+class Airport
+# initialize area
+
+
+
+# build area
+
+def land
+  
+end
+
+
+
+
+end
