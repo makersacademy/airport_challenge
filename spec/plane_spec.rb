@@ -12,7 +12,7 @@ describe Plane do
 
   it "is no longer in the airport after take off" do
     plane = Plane.new
-    plane.take_off("BA555", "Heathrow", "Kinshasa")
+    plane.take_off
     expect(plane.location).to eq("In the air")
   end
 end

@@ -1,0 +1,1 @@
+I followed the user stories as provided in the description and set about adjusting the instance variables to indicate the statuses of the individal planes following the receipt of the take_off method.  I got a bit lost and confused when trying to adjust the weather and the edge cases.  
