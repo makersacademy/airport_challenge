@@ -156,9 +156,7 @@ RuntimeError ("That plane is already on the ground!")
 
 ### Refactor / code qualiy
 
-- Can probably refactor tests using context...
 - Read <https://github.com/Hives/airport_challenge/blob/master/docs/review.md> and compare against code
-- In particular, need to write a README.md
 - Avoid vacuous tests - are any of the tests duplicates/redundant?
 
 ### $BONUS
