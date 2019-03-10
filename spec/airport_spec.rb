@@ -94,4 +94,26 @@ describe Airport do
     expect{ airport.land(plane) }.to raise_error("Airport capacity is reached! Plane cannot land.")
   end
 
+  it "had a default capacity (constant) of 2" do
+    expect(Airport::DEFAULT_CAPACITY).to eq 2
+  end
+
+  it 'uses the default capacity if no capacity is provided' do
+    no_capacity = Airport.new
+    expect(no_capacity.instance_variable_get(:@capacity)).to eq 2
+  end
+
+  it 'uses the user set capacity if capacity is provided' do
+    set_capacity = Airport.new(5)
+    expect(set_capacity.instance_variable_get(:@capacity)).to eq 5
+  end
+
+  it { is_expected.to respond_to(:change_capacity) }
+
+  it 'enables the airport capacity to be changed on the same airport object' do
+    heathrow = Airport.new(5)
+    heathrow.change_capacity(10)
+    expect(heathrow.instance_variable_get(:@capacity)).to eq 10
+  end
+
 end

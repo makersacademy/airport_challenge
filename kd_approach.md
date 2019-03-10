@@ -265,9 +265,13 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ##### TEST CASE(S)
 
-1. If capacity not given when airport is instantiated, use the default capacity
-2. If capacity is given when airport is instantiated, use the capacity set
-3. Check airport capacity can be changed on the same airport object
+1. [X] If capacity not given when airport is instantiated, use the default capacity
+2. [X] If capacity is given when airport is instantiated, use the capacity set
+
+Enhancement: Change capacity
+3. [X] Check airport capacity can be changed on the same airport object
+
+`airport.instance_variable_set(:@capacity, 4)`
 
 
 #### TEST CASE(S)

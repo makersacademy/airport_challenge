@@ -3,7 +3,9 @@ class Airport
   attr_reader :plane_list
   attr_reader :weather
 
-  def initialize(weather = Weather.new, capacity = 1)
+  DEFAULT_CAPACITY = 2
+
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @plane_list = []
     @weather = weather
@@ -30,7 +32,11 @@ class Airport
   end
 
   def capacity_reached?
-    @plane_list == @capacity
+    @plane_list.length == @capacity
+  end
+
+  def change_capacity(num)
+    @capacity = num
   end
   
 end
