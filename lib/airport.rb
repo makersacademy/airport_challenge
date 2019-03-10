@@ -25,7 +25,7 @@ class Airport
 
     raise "Plane cannot take-off, not in airport." unless @planes.include? plane
 
-    @planes.reject { |item| item == plane }
+    @planes.reject! { |item| item == plane }
   end
 
   def full?

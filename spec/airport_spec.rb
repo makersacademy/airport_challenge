@@ -40,7 +40,8 @@ describe Airport do
     plane2 = Plane.new
     @airport.land_plane(@plane)
     @airport.land_plane(plane2)
-    expect(@airport.launch_plane(@plane)).to eq [plane2]
+    @airport.launch_plane(@plane)
+    expect(@airport.planes).to eq [plane2]
   end
 
   it "responds to 'stormy' method" do
@@ -90,7 +91,6 @@ describe Airport do
   it "prevents landing a plane that is already in airport and raises error" do
     allow(@airport).to receive(:stormy?) { false }
     @airport.land_plane(@plane)
-    # expect(@airport.land_plane(@plane)).to eq "Plane is already at the airport"
     expect { @airport.land_plane(@plane) }.to raise_error "Plane is already at the airport"
   end
 end

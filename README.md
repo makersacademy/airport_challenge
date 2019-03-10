@@ -31,10 +31,40 @@ Airport Challenge
 - Example - checking edge cases such as preventing planes taking off that are not already in the airport
 
 
+#### Example running of program
+
+```
+airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
+2.5.0 :001 > airport = Airport.new(10)
+ => #<Airport:0x00007fd90a8cab00 @planes=[], @capacity=10> 
+2.5.0 :002 > plane1 = Plane.new
+ => #<Plane:0x00007fd90a8e2138> 
+2.5.0 :003 > airport.land_plane(plane1)
+ => [#<Plane:0x00007fd90a8e2138>] 
+2.5.0 :004 > plane2 = Plane.new
+ => #<Plane:0x00007fd90b132fb8> 
+2.5.0 :005 > airport.launch_plane(plane2)
+Traceback (most recent call last):
+        3: from /Users/mattthompson/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):5
+        1: from /Users/mattthompson/Documents/dev-projects/Makers/Projects/Week_1/airport_challenge/lib/airport.rb:26:in `launch_plane'
+RuntimeError (Plane cannot take-off, not in airport.)
+2.5.0 :006 > airport.land_plane(plane2)
+ => [#<Plane:0x00007fd90a8e2138>, #<Plane:0x00007fd90b132fb8>] 
+2.5.0 :007 > airport
+ => #<Airport:0x00007fd90a8cab00 @planes=[#<Plane:0x00007fd90a8e2138>, #<Plane:0x00007fd90b132fb8>], @capacity=10> 
+2.5.0 :008 > airport.launch_plane(plane2)
+ => [#<Plane:0x00007fd90a8e2138>] 
+2.5.0 :009 > airport
+ => #<Airport:0x00007fd90a8cab00 @planes=[#<Plane:0x00007fd90a8e2138>], @capacity=10> 
+
+```
+
+
 #### Thoughts and follow-up research
 
 - Getting the methods on right class, and ensuring the tests were testing the right things was an iterative process
-  - Initially places `land` and `take_off` methods on the `Plane` class based on the structure of the user stories, but soon moved across to the `Airport` class when I found that the methods would need to manipulate the airport rather than the planes
+  - Initially placed `land` and `take_off` methods on the `Plane` class based on the structure of the user stories, but soon moved across to the `Airport` class when I found that the methods would need to manipulate the airport rather than the planes
   - Similarly iterative were the tests around setting capacity
 
 - Creating `Weather` as a module, its only method (`stormy?`) is tested as an extended instance method on the `Airport` class. However, this is not shown in the test coverage stats, and shows this module as almost entirely untested
