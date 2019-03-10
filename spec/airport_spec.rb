@@ -19,6 +19,12 @@ describe Airport do
       100.times { subject.land(Plane.new) }
       expect { subject.land(Plane) }.to raise_error("The plane can't land - the airport is full")
     end
+
+    it "can't land twice" do
+      plane = Plane.new
+      subject.land(plane)
+      expect {subject.land(plane)}.to raise_error("The plane has already landed!")
+    end
   end
 
   describe '#take_off' do

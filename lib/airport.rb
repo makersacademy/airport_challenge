@@ -12,6 +12,8 @@ class Airport
   end
 
   def land(plane)
+    fail "The plane has already landed!" if @planes.include?(plane)
+    
     fail "The plane can't be landed - it is stormy" if @stormy == true
 
     fail "The plane can't land - the airport is full" if @planes.count >= 100
