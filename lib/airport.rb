@@ -8,4 +8,8 @@ class Airport
 	def land(airplane)
 		hangar << airplane
 	end
+
+	def take_off(airplane) 
+		hangar.delete(airplane)
+	end
 end
