@@ -5,22 +5,22 @@
 # => Create an airport class **Done
 # => Create a plane class. **Done
 # => Get them to play nicely together
-# => Make use of an array to keep track of whats going on
+# => Make use of an array to keep track of whats going on **Done
 
 # 2. Have planes depart the Airport
 # => Have plane remove an instance from the airport array
 # => Add confirmation
 
 # 3. Prevent bad weather takeoff
-# => Make a weather method
-# => Use the method as a argument
+# => Make a weather method**Done
+# => Use the method as a argument**Done
 # =>
 
 # 4. Prevent bad weather landing
-# => A reflection of th last condition
+# => A reflection of the last condition
 
 # 5. Prevent landing when airport is full
-# => How full is "full"?
+# => How full is "full"?**Done
 # => Maybe add a randomiser
 # =>
 
@@ -34,7 +34,7 @@
 # =>
 
 # 8. Make use of test doubles... they are your friend
-# =>
+# =>**Sort of done
 
 # 9. Bonus brownie points
 # => Able to handle multiple planes at once... like a proper airport
@@ -51,7 +51,7 @@ class Airport
 # build area
   def land(plane)
     raise 'Cannot land plane; Airport full' if full?
-    
+    raise 'Cannot land plane; Weather is stormy!' if stormy?
     @planes << plane
   end
 
@@ -62,5 +62,9 @@ class Airport
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 end
