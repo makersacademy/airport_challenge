@@ -38,10 +38,10 @@ Domain Model
 | Airport            | land             |
 |                    | take_off         |
 | Plane              | land_at(airport) |
-|                    |                  |
-| Weather            | random_status    |
+|                    | takeoff          |
+| Weather            | random_weather   |
 
-## Airpot class
+## Airport class
 
 ### attributes
 

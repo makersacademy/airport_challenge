@@ -1,5 +1,20 @@
 module HelperMethodsModule
 
+  def land
+    weather(:sunny)
+    subject.land(plane)
+  end
+
+  def land_and_takeoff 
+    land
+    subject.takeoff(plane)
+  end
+
+  def attempt_landing(airport)
+    airport.weather = :sunny
+    2.times { airport.land(plane) }
+  end
+
   def weather(type)
     weather_test = double
     case type
@@ -29,5 +44,4 @@ module HelperMethodsModule
     end
     count
   end
-
 end

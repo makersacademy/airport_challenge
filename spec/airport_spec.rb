@@ -7,12 +7,6 @@ RSpec.describe Airport do
 
   let(:plane) { Plane.new }
 
-  def land_and_takeoff 
-    weather(:sunny)
-    subject.land(plane)
-    subject.takeoff(plane)
-  end
-
   context "LAND: instructs plane to" do
 
     it "land at an airport" do
@@ -23,8 +17,7 @@ RSpec.describe Airport do
 
     it "land at an airport only if there is available space" do
       airport = Airport.new("LHR", 0)
-      airport.weather = :sunny
-      2.times { airport.land(plane) }
+      attempt_landing(airport)
       
       expect(airport.land(plane)).to eq("Landing not possible")
     end 
@@ -36,8 +29,7 @@ RSpec.describe Airport do
 
     it "not land if it has already landed at the airport" do
       airport = Airport.new("LHR", 2)
-      airport.weather = :sunny
-      airport.land(plane)
+      attempt_landing(airport)
 
       expect(airport.land(plane)).to eq("Not possibile -> Plane already landed")
     end
@@ -54,8 +46,8 @@ RSpec.describe Airport do
   context "TAKEOFF: instructs plane" do
 
     it "to take_off and confirm it has taken off" do 
-      weather(:sunny)
-      subject.land(plane)
+      land
+
       expect(subject.takeoff(plane)).to eq("Plane has taken off")
     end
 
@@ -86,9 +78,12 @@ RSpec.describe Airport do
       expect(subject.hangar).not_to include plane
     end
 
+    it "raises an error if a plane if flying but still figuring as being in the hangar"
+
+    
   end
 
-  context "test landing and takingoff of multiple planes" do
+  context "TEST: landing and takeoff of multiple planes" do
     it "allows landing of multiple planes " do
       count = land_multiple_planes(10)
       expect(subject.hangar.count).to be >= count
