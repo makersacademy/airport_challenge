@@ -44,6 +44,11 @@ describe Airport do
       10.times { @airport_good_weather.land Plane.new }
       expect(@airport_good_weather.land @plane).to eq @airport_good_weather
     end
+    it 'does not store the plane if the airport is full' do
+      10.times { @airport_good_weather.land Plane.new }
+      @airport_good_weather.land @plane
+      expect(@airport_good_weather.planes).not_to include @plane
+    end
 
   end
   
