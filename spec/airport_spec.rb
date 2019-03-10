@@ -25,7 +25,7 @@ describe Airport do
     # good weather behaviour
     it 'prints a confirmation message if the weather is good' do
       airport = Airport.new(double(:weather, status: "☀️"))
-      expect { airport.clear_for_takeoff @plane }.to output("Up, up and away!\n").to_stdout
+      expect { airport.clear_for_takeoff @plane }.to output("☀️ Up, up and away! ☀️\n").to_stdout
     end
     it 'returns the airport object if the weather is good' do
       airport = Airport.new(double(:weather, status: "☀️"))
