@@ -100,3 +100,31 @@ ___
 > airport.planes.include? plane
  => false
 ```
+
+## Still to do
+
+### Edge cases
+
+- Planes can only take off form the airport they're in
+  - easy to check that `@planes.include? plane` inside `Airport`
+- Planes that are flying cannot take off/ planes that are not flying cannot land
+  - `Plane` will need a `.flying?` predicate method
+- Planes that are flying cannot be in an airport/ planes that are not flying must be in an airport
+  - Huh??
+- etc.?
+  - Only a `Plane` object can land?
+  - Anything else?
+
+### Refactor
+
+- Rubocop says `airport.land` is too long. Can we refactor? (Can do if we remove some of the confirmation messages)
+
+### Code quality
+
+- Read <https://github.com/Hives/airport_challenge/blob/master/docs/review.md> and compare against code
+- In particular, need to write a README.md
+- Avoid vacuous tests - are any of the tests duplicates/redundant?
+
+### $BONUS
+
+- Write an RSpec feature test that lands and takes off a number of planes
