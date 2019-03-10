@@ -70,7 +70,8 @@
 > I want to prevent landing when the airport is full  
 
 ```
-> airport = Airport.new(double(:weather, :status, "️️️☀️"))
+> airport = Airport.new(WeatherStation.new)
+# with weather.status always being "☀️"...
 > 10.times { airport.land Plane.new }
 (10 x) "☀️ Plane landed! ☀️"
 > plane = Plane.new
@@ -86,3 +87,16 @@ ___
 > As the system designer  
 > So that the software can be used for many different airports  
 > I would like a default airport capacity that can be overridden as appropriate  
+
+```
+> airport = Airport.new(WeatherStation.new, 2)
+# with weather.status always being "☀️"...
+> 2.times { airport.land Plane.new }
+(2 x) "☀️ Plane landed! ☀️"
+> plane = Plane.new
+> airport.land plane
+"Sorry, no more room!"
+ => #<Airport: 0x000...>
+> airport.planes.include? plane
+ => false
+```
