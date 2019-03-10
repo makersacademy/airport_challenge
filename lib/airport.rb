@@ -1,5 +1,6 @@
 class Airport
   attr_accessor :stormy
+  DEFAULT_CAPACITY = 100
   def initialize
     @stormy = false
   end

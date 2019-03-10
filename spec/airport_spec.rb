@@ -50,4 +50,10 @@ describe Airport do
       expect(subject.stormy?).to eq true
     end
   end
+
+  describe 'Capacity' do
+    it 'has a default capacity of 100' do
+      expect(Airport::DEFAULT_CAPACITY).to eq 100
+    end
+  end
 end
