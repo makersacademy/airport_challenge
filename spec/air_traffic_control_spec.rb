@@ -69,6 +69,17 @@ describe Control do
     expect(control.takeoff(plane1)).to eq []
   end
 
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
 
+  describe '#land' do
+    it 'raises an error when tries to land when full capacity' do
+      control = Control.new
+      Control::DEFAULT_CAPACITY.times{(control.land(Plane.new))}
+      plane = Plane.new
+      expect{control.land(plane)}.to raise_error 'Capacity full'
+    end
+  end
 
 end

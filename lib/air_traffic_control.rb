@@ -4,28 +4,32 @@ require_relative 'plane'
 
 class Control
 
-  attr_reader :capcity, :stormy_weather
+  attr_reader :capacity, :stormy_weather, :planes
 
-  def initialize
-    @capacity = []
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    @planes = []
     @stormy_weather = false
   end
 
   def land(plane)
-    @capacity.push(plane)
+    fail 'Capacity full' if full?
+    @planes.push(plane)
   end
 
   def takeoff(plane)
 
-    if @capacity.empty? && @stormy_weather == false
+    if @planes.empty? && @stormy_weather == false
       puts "No planes available"
-      @capacity.to_a
-    elsif !@capacity.empty? && @stormy_weather == false
-      @capacity.delete(plane)
-      @capcity.to_a
+      @planes.to_a
+    elsif !@planes.empty? && @stormy_weather == false
+      @planes.delete(plane)
+      @planes.to_a
     else
       puts "No take off while weather stormy"
-      @capacity.to_a
+      @planes.to_a
    end
   end
 
@@ -37,4 +41,7 @@ class Control
     @stormy_weather = false
   end
 
+  def full?
+    @planes.length == @capacity
+  end
 end
