@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :location
+  attr_reader :location
 
   def initialize(airport)
     @location = airport
