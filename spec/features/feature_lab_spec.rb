@@ -7,16 +7,23 @@ describe "Features lab:" do
   let(:plane) { Plane.new }
   let(:weather_reporter) { WeatherReporter.new }
 
-  context "When not stormy" do
+  context "When not stormy: " do
     before do
       allow(weather_reporter).to receive(:stormy?).and_return false
     end
-    it 'Plane landing' do
+    it 'Plane lands' do
       expect { airport.land(plane) }.not_to raise_error
     end
 
-    it 'Plane leaving' do
+    it 'Plane leaves' do
+      airport.land(plane)
       expect { airport.take_off(plane) }.not_to raise_error
+    end
+
+    it 'Plane leaves current airport' do
+      airport_2 = Airport.new(20, WeatherReporter.new)
+      airport_2.land(plane)
+      expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Plane not at this airport.'
     end
 
     context 'When full' do
