@@ -1,12 +1,11 @@
 class Airport
+  require "weather"
+
   DEFAULT_CAPACITY = 10
   attr_reader :capacity
-  attr_reader :weather
   attr_reader :fleet
 
   def initialize
-    weather_options = ["sunny", "stormy"]
-    @weather = weather_options[rand(2)]
     @fleet = []
     @capacity = DEFAULT_CAPACITY
   end
@@ -20,8 +19,8 @@ class Airport
   end
 
   def add_plane(plane)
-    capacity_err_msg = "Sorry, this airport is already full"
-    full? ? raise(StandardError.new(capacity_err_msg)) : @fleet << plane
+    capacity_err = StandardError.new("Sorry, this airport is already full")
+    full? ? raise(capacity_err) : @fleet << plane
   end
 
   def remove_plane(plane)
@@ -31,5 +30,9 @@ class Airport
   def update_capacity(new_capacity)
     @capacity = new_capacity
     puts "Capacity Updated"
+  end
+
+  def local_weather
+    Weather.new.current_weather
   end
 end
