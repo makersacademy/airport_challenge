@@ -1,7 +1,6 @@
 # Airport Challenge
 
-[Getting started](#getting-started) | [Usage](#Usage) |
-[Running tests](#running-tests) | [Brief](#Brief) | [Approach](#Approach) |
+[Getting started](#getting-started) | [To Use](#To-Use) | [Task](#Task) | [Approach](#Approach) |
 [Code Status](#Code-Status)
 
 This weekend challenge is for submission to Makers Academy. The code creates a
@@ -14,7 +13,7 @@ dependent on airport capacity and flying conditions.
 2. Run `gem install bundle`
 3. Run `bundle`
 
-### To use
+### To Use
 run irb in the terminal and require 'airport.rb'. To test this code, use rspec
 or rubocop.
 
