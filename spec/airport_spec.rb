@@ -3,7 +3,7 @@ require './lib/plane'
 
 describe Airport do
 	 # let(:default_capacity) { 20 }
-	describe '#landing' do 
+	describe '#land' do 
 		
 
 		it 'lands a plane' do 
@@ -67,11 +67,11 @@ describe Airport do
 		it 'it can change default capacity' do 
 			# p Airport::DEFAULT_CAPACITY
 			# Airport::DEFAULT_CAPACITY = 30 
-
-			# airport = Airport.new()			
-			# 29.times do subject.land(Plane.new)
-			# end 
-			# expect(subject.planes.count).to eq 29
+			airport = Airport.new(30)
+			#sets a new airport	with default 30 capacity		
+			29.times do airport.land(Plane.new)
+			end 
+			expect(airport.planes.count).to eq 29
 		end 
 	end 
 end 

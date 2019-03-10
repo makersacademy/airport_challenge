@@ -1,8 +1,9 @@
+require_relative './plane.rb'
 class Airport
-attr_reader :planes
-attr_accessor :stormy
-attr_accessor :capacity
-attr_accessor :default_capacity
+	attr_reader :planes
+	attr_accessor :stormy
+	attr_accessor :capacity
+	attr_accessor :default_capacity
 
 	def initialize( default_capacity = 20, capacity= default_capacity, stormy = false)
 		@planes = []
