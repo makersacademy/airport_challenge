@@ -8,10 +8,10 @@ class Weather
 
   def random_weather
     types = [:sunny, :stormy]
-    random_number = rand(1..5)
+    random_number = rand(1..10)
     case random_number
-    when (1..3) then types.first
-    when (4..5) then types.last
+    when (1..6) then types.first
+    when (7..10) then types.last
     end
   end
 

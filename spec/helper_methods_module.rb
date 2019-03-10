@@ -6,7 +6,7 @@ module Helper_Methods_Module
       when :good then allow(weather_test).to receive(:status).and_return("sunny")
       when :bad then allow(weather_test).to receive(:status).and_return("stormy")
     end
-    subject.set_weather(weather_test.status)
+    subject.weather = weather_test.status
   end
 
 end

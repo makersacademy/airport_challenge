@@ -1,7 +1,9 @@
 require 'plane'
+require 'weather'
 
 class Airport
   attr_reader :hangar, :weather
+  attr_writer :weather
 
   def initialize
     @hangar = []
@@ -12,8 +14,10 @@ class Airport
     "Landed"
   end
 
-  def take_off(plane)
+  def takeoff(plane)
     @hangar.delete(plane)
+    @weather ||= Weather.new
+
     case @weather
     when "stormy" then "Stormy weather: Take off denied" 
     when "sunny"
@@ -25,13 +29,7 @@ class Airport
     end
   end
 
-  def set_weather(type)
-    @weather = type
-  end
-
   private
-
-  attr_writer :weather
 
   def confirm_take_off(plane)
     @hangar.include?(plane)
