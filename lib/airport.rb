@@ -1,4 +1,5 @@
 require_relative './plane.rb'
+
 class Airport
 	attr_reader :planes
 	attr_accessor :stormy
@@ -16,7 +17,6 @@ class Airport
 		# @capacity = default_capacity
 		# end 
 	end 
-
 
 	def land(plane)
 		# p @planes.count	
@@ -52,6 +52,10 @@ class Airport
 
 	end 
 
+	def random_weather
+		#generates random value for stormy
+		@stormy = rand < 0.2
 
+	end 
 
 end 
