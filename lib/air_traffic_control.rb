@@ -33,11 +33,11 @@ class Control
     @planes.to_a
   end
 
-  def stormy?(_plane)
+  def stormy?(plane)
     @stormy_weather = true
   end
 
-  def storm_passed(_plane)
+  def storm_passed(plane)
     @stormy_weather = false
   end
 
