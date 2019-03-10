@@ -78,14 +78,6 @@ describe Airport do
     end
   end
 
-  # describe '#current_weather' do
-  #   it { is_expected.to respond_to(:current_weather) }
-  #
-  #   it 'should return either Sunny or Stormy' do
-  #     expect(subject.current_weather).to eq("Sunny").or eq("Stormy")
-  #   end
-  # end
-
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
 
