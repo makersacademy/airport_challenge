@@ -34,6 +34,7 @@ class Control
   end
 
   def storm_passed(plane)
+    @stormy_weather = false
   end
 
 end
