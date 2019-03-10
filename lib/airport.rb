@@ -16,6 +16,7 @@ class Airport
   def land(plane)   
     plane.land_at(self) 
     return "Not possibile -> Plane already landed" if @hangar.include?plane
+
     case assign_random_weather
     when :stormy then denied_landing_bad_weather
     when :sunny then add_plane_to_hangar(plane)

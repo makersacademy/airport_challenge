@@ -32,7 +32,7 @@ RSpec.describe Airport do
       expect(subject.land(plane)).to eq "Stormy weather: landing denied"
     end
 
-    it "prevent the plane from landing if already landed at the airport" do
+    it "not land if it has already landed at the airport" do
       airport = Airport.new("LHR", 2)
       airport.weather = :sunny
       plane_test = Plane.new
@@ -40,6 +40,14 @@ RSpec.describe Airport do
       airport.land(plane_test)
 
       expect(airport.land(plane_test)).to eq("Not possibile -> Plane already landed")
+    end
+
+    it "confirms plane is in the right airport" do
+      airport = Airport.new("LHR", 2)
+      airport.weather = :sunny
+      airport.land(plane)
+
+      expect(airport.hangar.first.airport.name).to eq airport.name
     end
 
   end
