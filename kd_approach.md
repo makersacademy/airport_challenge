@@ -190,6 +190,8 @@ I want to prevent takeoff when weather is stormy
 
 - Airport instructs plane in the plane list to 'take off', but this is prevented when weather is stormy
 
+- Airport has stormy? method which gets the value of `weather.stormy?`
+
 ##### TEST CASE(S)
 
 1. [X] Weather object is instantiated? Y/N?
@@ -198,7 +200,8 @@ I want to prevent takeoff when weather is stormy
 4. [X] `weather_status` returns `"stormy" or "sunny"` at random
 5. [X] `stormy?` method returns `true` if `weather_status` is equal to `stormy`
 6. [X] `stormy?` method returns `false` if `weather_status` is equal to `sunny`
-7. An error is raised when airport instructs plane in the plane list to `take_off` if weather `stormy?` is `true`
+7. [X] An error is raised when airport instructs plane in the plane list to `take_off` if weather `stormy?` is `true`
+8. [X] Airport has stormy? method which gets the value of `weather.stormy?`
 
 ```
 As an air traffic controller 
