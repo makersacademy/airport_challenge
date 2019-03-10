@@ -8,8 +8,8 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
-    weather = generate_weather
-    @conditions = weather
+    weather = generate_weather # Generate weather with new aiport
+    @conditions = weather # Assign weather result to attr
   end
 
   def land_plane(plane)
@@ -31,11 +31,13 @@ class Airport
 
   private
 
+  # Private method for generating random weather
   def generate_weather
     num = rand(11)
     num == 10 ? "stormy" : "sunny"
   end
 
+  # Predicate method for checking hangar is full
   def full?
     hangar.length == capacity
   end    
