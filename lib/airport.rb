@@ -6,11 +6,12 @@ class Airport
   def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @planes = []
+    @capacity = capacity
   end
   
   def land(plane)
     
-    if @planes.size >= DEFAULT_CAPACITY
+    if @planes.size >= @capacity
       puts "Sorry, no more room!"
       return self
     end
