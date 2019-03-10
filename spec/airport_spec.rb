@@ -50,6 +50,14 @@ describe Airport do
       expect(@airport_good_weather.planes).not_to include @plane
     end
 
+    # airport is full behaviour with custom capacity
+    it 'prints a message if the airport is full when using custom capacity' do
+      airport = Airport.new(double(:weather, status: "☀️"), 108)
+      108.times { airport.land Plane.new }
+      expect { airport.land @plane }.to output("Sorry, no more room!\n").to_stdout
+    end
+    
+
   end
   
   describe '.clear_for_takeoff' do
