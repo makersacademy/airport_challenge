@@ -53,6 +53,18 @@ Up, up and away!
 > To ensure safety  
 > I want to prevent landing when weather is stormy  
 
+```
+# follow above steps to initialise an airport and a plane
+# then, if the weather is bad...
+> airport.land plane
+⛈ Sorry, too dangerous to land. ⛈
+ => #<Airport:0x000...>
+> airport.planes.include? plane
+ => false
+```
+
+---
+
 > As an air traffic controller  
 > To ensure safety  
 > I want to prevent landing when the airport is full  
