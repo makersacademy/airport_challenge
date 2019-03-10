@@ -105,7 +105,7 @@ ___
 
 > As the system designer  
 > To, uh... prevent impossible things happening  
-> I would like the system to throw an error if take off is requested for a plane which is not at the airport
+> I would like the system to raise an error if take off is requested for a plane which is not at the airport
 
 ```
 > airport = Airport.new(WeatherStation.new)
@@ -116,19 +116,30 @@ ___
 RuntimeError ("That plane is not at that airport!")
 ```
 
+---
+
+> As the system designer 
+> To prevent... weirdness...
+> I would like the system to raise an error if take off is requested for a plane which is flying
+
+```
+> 
+```
+
 ## Still to do
 
 ### Edge cases
 
 - Planes can only take off form the airport they're in
-  - easy to check that `@planes.include? plane` inside `Airport`
+  - easy to check that @planes.include? plane inside Airport
+- Planes that are landed cannot land again
 - Planes that are flying cannot take off/ planes that are not flying cannot land
-  - `Plane` will need a `.flying?` predicate method
+  - `Plane` will need a `.flying?` predicate method or something?
 - Planes that are flying cannot be in an airport/ planes that are not flying must be in an airport
   - Huh??
   - Maybe... `Plane` has `takeoff` and `land` methods which check whether it's in an airport before modifying the `flying` status, and throws an error if in an inconsistent state? Or that could be in `airport.land` / `airport.clear_for_takeoff`?
 - etc.?
-  - `airport.lane` will only accept a `Plane` object somehow?
+  - `airport.land` will only accept a `Plane` object somehow?
   - Anything else?
 
 ### Refactor / code qualiy
