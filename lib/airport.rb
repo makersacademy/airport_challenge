@@ -5,29 +5,19 @@ class Airport
     @runway = []
   end
 
-  def land(plane)
+  def land(plane,weather)
     @plane = plane
-    @runway << @plane
+    weather == "Stormy" ? 'No landing allowed in stormy weather' : @runway << @plane
   end
 
   def takeoff(plane, weather)
     @plane = plane
     if weather == "Stormy"
       return 'No take off allowed in stormy weather'
-    end
-
-    if @runway != []
-      @runway.take(@runway.length - 1)
+    elsif weather == "Sunny"
+      @runway != [] ? @runway.take(@runway.length - 1) : nil
     end
   end
-
+  
 end
-  # def instructions(instruction,plane,weather)
-  #   @plane = plane
-  #   if instruction == 'land' 
-  #     @runway << @plane
-  #   elsif instruction == 'takeoff'
-  #     if @runway != []
-  #       @runway.take(@runway.length - 1)
-  #     end
-  #   end
+
