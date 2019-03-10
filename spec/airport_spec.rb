@@ -67,16 +67,26 @@ describe Airport do
     
     # custom capacity behaviour
     it 'prints a message if the airport is full when using custom capacity' do
-      airport = Airport.new(double(:weather, status: "☀️"), 108)
-      108.times { airport.land Plane.new }
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      3.times { airport.land Plane.new }
       expect { airport.land @plane }.to output("Sorry, no more room!\n").to_stdout
+    end
+    it 'returns the aiport object if the airport is full when using custom capacity' do
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      3.times { airport.land Plane.new }
+      expect(airport.land @plane).to eq airport
     end
 
     # custom capacity - 1 behaviour
     it 'prints a message if the airport is one less than full when using custom capacity' do
-      airport = Airport.new(double(:weather, status: "☀️"), 108)
-      107.times { airport.land Plane.new }
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      2.times { airport.land Plane.new }
       expect { airport.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
+    end
+    it 'returns the aiport object if the airport is one less than full when using custom capacity' do
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      2.times { airport.land Plane.new }
+      expect(airport.land @plane).to eq airport
     end
     
 

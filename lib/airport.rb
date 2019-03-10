@@ -13,15 +13,14 @@ class Airport
     
     if @planes.size >= @capacity
       puts "Sorry, no more room!"
-      return self
-    end
-
-    case @weather.status
-    when "⛈"
-      puts "⛈ Sorry, too dangerous to land. ⛈"
-    when "☀️"
-      @planes << plane
-      puts '☀️ Plane landed! ☀️'
+    else
+      case @weather.status
+      when "⛈"
+        puts "⛈ Sorry, too dangerous to land. ⛈"
+      when "☀️"
+        @planes << plane
+        puts '☀️ Plane landed! ☀️'
+      end
     end
     
     self
