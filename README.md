@@ -26,8 +26,26 @@ Airport Challenge
 - Follow the next error and keep repeating until the test passes
 
 
-Airport Challenge - original README
-=================
+#### Regularly run irb features tests to check expected behaviour
+
+- Example - checking edge cases such as preventing planes taking off that are not already in the airport
+
+
+#### Thoughts and follow-up research
+
+- Getting the methods on right class, and ensuring the tests were testing the right things was an iterative process
+  - Initially places `land` and `take_off` methods on the `Plane` class based on the structure of the user stories, but soon moved across to the `Airport` class when I found that the methods would need to manipulate the airport rather than the planes
+  - Similarly iterative were the tests around setting capacity
+
+- Creating `Weather` as a module, its only method (`stormy?`) is tested as an extended instance method on the `Airport` class. However, this is not shown in the test coverage stats, and shows this module as almost entirely untested
+  - So far have been unable to rectify this, more research required!
+
+---
+
+
+
+Challenge README
+================
 
 
 ```
