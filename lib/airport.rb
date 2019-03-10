@@ -2,8 +2,8 @@ require 'plane'
 require 'weather'
 
 class Airport
-  attr_reader :hangar, :capacity, :name
-  attr_accessor :weather
+  attr_reader :hangar, :capacity
+  attr_accessor :weather, :name 
 
   DEFAULT_CAPACITY = 10
 
@@ -24,13 +24,14 @@ class Airport
   end
 
   def takeoff(plane)
+    return "Plane already flying" if plane.status == :flying
+     
     case assign_random_weather
     when :stormy then takeoff_message(:stormy)
     when :sunny
       remove_plane(plane)
       confirm_take_off(plane)
     end
-
   end
 
   private

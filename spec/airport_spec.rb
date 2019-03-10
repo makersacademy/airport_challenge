@@ -80,7 +80,9 @@ RSpec.describe Airport do
     end
 
     it "cannot receive takeoff command if already flying" do
-
+      subject.land(plane)
+      plane.status = :flying
+      expect(subject.takeoff(plane)).to eq "Plane already flying"
     end
 
   end
