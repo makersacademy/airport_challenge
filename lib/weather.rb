@@ -5,7 +5,9 @@ class Weather
   end
 
   def weather_status
-    return 'stormy'
+    status = ["sunny", "sunny", "sunny", "stormy"]
+    status_index = Random.rand(4)
+    status[status_index]
   end
   
 end
