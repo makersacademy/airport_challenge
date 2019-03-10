@@ -32,12 +32,13 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Domain Model
 
-| Subject            | Behaviour |
-| ------------------ | --------- |
-| Traffic Controller |           |
-| Airport            | land      |
-|                    | take_off  |
-| Plane              |           |
+| Subject            | Behaviour     |
+| ------------------ | ------------- |
+| Traffic Controller |               |
+| Airport            | land          |
+|                    | take_off      |
+| Plane              |               |
+| Weather            | random_status |
 
 ## Airpot class
 
@@ -83,6 +84,10 @@ Domain Model
 - has an airport attribute - assigns the airport it is in
 - has a method that changes state: landed? = returns false/true
 - has a method that assigns airport in the airport attribute
+
+## Weather class
+
+- weather object created with random status whenever a plane attempts to land or take off
 
 ## REQUIEREMENTS
 
