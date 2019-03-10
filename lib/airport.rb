@@ -15,7 +15,7 @@ class Airport
 
   def land(plane)   
     plane.land_at(self) 
-    return "Not possibile -> Plane already landed" if @hangar.include?plane
+    return "Not possibile -> Plane already landed" if @hangar.include? plane
 
     case assign_random_weather
     when :stormy then denied_landing_bad_weather
@@ -40,8 +40,9 @@ class Airport
     if @hangar.include?(plane) 
       plane_has_not_left
     else
-      if plane.airport.name == self.name
+      if plane.airport.name == name
         plane.status = :flying
+        plane.airport = nil
         takeoff_message(:sunny)
       end
     end

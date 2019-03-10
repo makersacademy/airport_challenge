@@ -7,13 +7,16 @@ RSpec.describe Airport do
 
   let(:plane) { Plane.new }
 
+  def land_and_takeoff 
+    weather(:sunny)
+    subject.land(plane)
+    subject.takeoff(plane)
+  end
+
   context "LAND: instructs plane to" do
 
     it "land at an airport" do
-      subject.land(plane)
-      subject.land(plane)
-      subject.land(plane)
-      weather(:sunny)
+      weather(:sunny) 
       expect(subject.land(plane)).to eq("Landed")
       expect(subject.hangar).to include(plane)
     end
@@ -21,8 +24,7 @@ RSpec.describe Airport do
     it "land at an airport only if there is available space" do
       airport = Airport.new("LHR", 0)
       airport.weather = :sunny
-      airport.land(plane)
-      airport.land(plane)
+      2.times { airport.land(plane) }
       
       expect(airport.land(plane)).to eq("Landing not possible")
     end 
@@ -35,19 +37,16 @@ RSpec.describe Airport do
     it "not land if it has already landed at the airport" do
       airport = Airport.new("LHR", 2)
       airport.weather = :sunny
-      plane_test = Plane.new
-    
-      airport.land(plane_test)
+      airport.land(plane)
 
-      expect(airport.land(plane_test)).to eq("Not possibile -> Plane already landed")
+      expect(airport.land(plane)).to eq("Not possibile -> Plane already landed")
     end
 
     it "confirms plane is in the right airport" do
-      airport = Airport.new("LHR", 2)
-      airport.weather = :sunny
-      airport.land(plane)
+      weather(:sunny)
+      subject.land(plane)
 
-      expect(airport.hangar.first.airport.name).to eq airport.name
+      expect(subject.hangar.first.airport.name).to eq subject.name
     end
 
   end
@@ -66,23 +65,25 @@ RSpec.describe Airport do
     end
 
     it "takes off from the airport it is in" do
-      plane_test = Plane.new
-      subject.land(plane_test)
-      
-      expect(subject.name).to eq plane_test.airport.name
-      expect(plane_test.status).to eq :landed
+      subject.land(plane)
+      expect(subject.name).to eq plane.airport.name
+      expect(plane.status).to eq :landed
 
       weather(:sunny)
-      subject.takeoff(plane_test)
-
-      expect(subject.hangar).not_to include plane_test
-      expect(plane_test.status).to eq :flying
+      subject.takeoff(plane)
+      expect(subject.hangar).not_to include plane
+      expect(plane.status).to eq :flying
+      expect(plane.airport).to eq nil
     end
 
     it "cannot receive takeoff command if already flying" do
-      subject.land(plane)
-      plane.status = :flying
+      land_and_takeoff
       expect(subject.takeoff(plane)).to eq "Plane already flying"
+    end
+
+    it "cannot be in the airport if already flying" do
+      land_and_takeoff
+      expect(subject.hangar).not_to include plane
     end
 
   end
