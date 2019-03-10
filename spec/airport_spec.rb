@@ -23,7 +23,7 @@ describe Airport do
     it "can't land twice" do
       plane = Plane.new
       subject.land(plane)
-      expect {subject.land(plane)}.to raise_error("The plane has already landed!")
+      expect { subject.land(plane) }.to raise_error("The plane has already landed!")
     end
 
     it 'is in the aiport after landing' do
@@ -73,7 +73,7 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       rogue_plane = "I'm not in the airport!"
-      expect{ subject.take_off(rogue_plane) }.to raise_error("This plane is not at the airport!")
+      expect { subject.take_off(rogue_plane) }.to raise_error("This plane is not at the airport!")
     end
   end
 
