@@ -6,6 +6,9 @@ RSpec.describe 'Airport' do
     
     Heathrow = Airport.new
     a380 = Plane.new
+    a111 = Plane.new
+    a222 = Plane.new
+    a333 = Plane.new
     
     it 'Should be an Airport object' do
       expect(Heathrow.class).to eq Airport
@@ -16,7 +19,7 @@ RSpec.describe 'Airport' do
     end
   
     it "Should have a default capacity" do
-      expect(Airport.new.capacity).to eq 5
+      expect(Airport.new.capacity).to eq 3
     end
 
     it "Should be able to access to plane class, which is on another file" do
@@ -35,6 +38,17 @@ RSpec.describe 'Airport' do
     it "Should remove a plane from the runway when taking off from airport" do
       Heathrow.takeoff_plane(a380)
       expect(Heathrow.runway).to eq []
+    end
+
+    it "Should prevent a plane from landing if the runway is full" do
+      Heathrow.land_plane(a111)
+      Heathrow.land_plane(a222)
+      Heathrow.land_plane(a333)
+      expect(Heathrow.at_capacity).to eq true  
+    end
+
+    it "Should prevent a plane from landing if the runway is full" do
+      expect(Heathrow.land_plane(a380)).to raise "Airport at capacity, cant land any more planes here!"
     end
   end
 end
