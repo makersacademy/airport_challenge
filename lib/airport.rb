@@ -6,7 +6,7 @@ class Airport
     @capacity = default_capacity
   end
 
-  def land(plane, weather, capacity)
+  def land(plane, weather)
     @plane = plane
     if @runway.length >= @capacity
       return "Airport is full"
