@@ -4,8 +4,8 @@ require 'airport_module.rb'
 
 class Airport
   include AirportActions
-  attr_reader :hangar, :capacity
-  attr_accessor :weather, :name 
+  attr_reader :hangar, :capacity, :name 
+  attr_accessor :weather
 
   DEFAULT_CAPACITY = 10
 
