@@ -76,6 +76,12 @@ describe Airport do
       3.times { airport.land Plane.new }
       expect(airport.land @plane).to eq airport
     end
+    it 'does not store the plane if the airport is full when using custom capacity' do
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      3.times { airport.land Plane.new }
+      airport.land @plane
+      expect(airport.planes).to_not include @plane
+    end
 
     # custom capacity - 1 behaviour
     it 'prints a message if the airport is one less than full when using custom capacity' do
@@ -87,6 +93,12 @@ describe Airport do
       airport = Airport.new(double(:weather, status: "☀️"), 3)
       2.times { airport.land Plane.new }
       expect(airport.land @plane).to eq airport
+    end
+    it 'does store the plane if the airport is one less than full when using custom capacity' do
+      airport = Airport.new(double(:weather, status: "☀️"), 3)
+      2.times { airport.land Plane.new }
+      airport.land @plane
+      expect(airport.planes).to include @plane
     end
     
 
