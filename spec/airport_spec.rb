@@ -2,7 +2,7 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 
 RSpec.describe 'Airport' do
-  context 'When describing an Airport' do
+  context 'When describing an Airport in good weather' do
     
     Heathrow = Airport.new
     a380 = Plane.new
@@ -24,6 +24,16 @@ RSpec.describe 'Airport' do
     end
 
     it "Should be able to track the number of planes there" do
+      expect(Heathrow.runway).to eq []
+    end
+
+    it "Should add a plane to the runway when landing at airport" do
+      Heathrow.land_plane(a380)
+      expect(Heathrow.runway).to eq [a380]
+    end
+
+    it "Should remove a plane from the runway when taking off from airport" do
+      Heathrow.takeoff_plane(a380)
       expect(Heathrow.runway).to eq []
     end
   end

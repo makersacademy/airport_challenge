@@ -11,7 +11,7 @@ RSpec.describe 'Plane' do
     end
 
     it 'should have an on_tarmac status so it cant land while on the ground' do
-      expect(a380.on_tarmac).to eq true
+      expect(a380.on_tarmac).to eq false
     end
   end
 end

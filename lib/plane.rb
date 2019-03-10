@@ -1,13 +1,15 @@
-require './lib/air_traffic_controller.rb'
-
 class Plane
-  attr_reader :in_flight, :on_tarmac, :please_takeoff, :please_land
+  attr_reader :flying
+
+  def initialize
+    @flying = true
+  end
 
   def in_flight
-    true
+    @flying = true
   end
 
   def on_tarmac
-    true
+    @flying = false
   end
 end
