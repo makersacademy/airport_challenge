@@ -28,12 +28,12 @@ class Airport
     raise "That plane isn't at the airport"
   end
 
-  def current_weather
-    random = Random.rand(1..50)
-    return "Sunny" if random != 25
-
-    return "Stormy"
-  end
+  # def current_weather
+  #   random = Random.rand(1..50)
+  #   return "Sunny" if random != 25
+  #
+  #   return "Stormy"
+  # end
 
   def capacity
     return @max_capacity - @plane_list.length
