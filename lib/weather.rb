@@ -1,7 +1,6 @@
 class Weather
 
   def stormy?
-
     if weather_status == "stormy"
       true
     elsif weather_status == "sunny"
