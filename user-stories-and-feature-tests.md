@@ -10,7 +10,7 @@
 > plane = Plane.new
  => #<Plane:0x000...>
 > airport.land plane
-Plane landed!
+☀️ Plane landed! ☀️
  => #<Airport:0x000...>
 > airport.planes.include? plane
  => true
@@ -25,7 +25,7 @@ Plane landed!
 ```
 # follow above steps to initialise an airport and a plane, and land the plane at the airport
 > airport.clear_for_takeoff plane
-Up, up and away!
+☀️ Up, up and away! ☀️
  => #<Airport:0x000...>
 > airport.planes.include? plane
  => false
@@ -68,6 +68,20 @@ Up, up and away!
 > As an air traffic controller  
 > To ensure safety  
 > I want to prevent landing when the airport is full  
+
+```
+> airport = Airport.new(double(:weather, :status, "️️️☀️"))
+> 10.times { airport.land Plane.new }
+(10 x) "☀️ Plane landed! ☀️"
+> plane = Plane.new
+> airport.land plane
+"Sorry, no more room!"
+ => #<Airport: 0x000...>
+> airport.planes.include? plane
+ => false
+```
+
+___
 
 > As the system designer  
 > So that the software can be used for many different airports  
