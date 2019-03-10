@@ -15,11 +15,13 @@ describe Airport do
   it { is_expected.to respond_to(:land) }
 
   it 'tells the plane to land' do
+    allow(airport).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:land)
     airport.land(plane)
   end
 
   it 'checks same plane object is in the plane list after landing' do
+    allow(airport).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:land)
     airport.land(plane)
     expect(airport.plane_list).to include plane
@@ -70,10 +72,17 @@ describe Airport do
   it { is_expected.to respond_to(:stormy?) }
 
   it 'raises an error when airport instructs plane in the plane list to `take_off` if weather is `stormy?' do
-    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:land)
     airport.land(plane)
+    allow(airport).to receive(:stormy?).and_return(true)
     expect{ airport.take_off(plane) }.to raise_error("It is stormy. For safety reasons, the plane cannot take off!")
+  end
+
+  it 'raises an error when airport instructs plane to `land` if weather is `stormy?' do
+    allow(airport).to receive(:stormy?).and_return(true)
+    allow(plane).to receive(:land)
+    expect{ airport.land(plane) }.to raise_error("It is stormy. For safety reasons, the plane cannot land!")
   end
 
 end

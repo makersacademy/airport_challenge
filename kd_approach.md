@@ -227,7 +227,7 @@ I want to prevent landing when weather is stormy
 
 ##### TEST CASE(S)
 
-1. An error is raised when airport instructs plane to `land` if weather `stormy?` is `true`
+1. [X] An error is raised when airport instructs plane to `land` if weather `stormy?` is `true`
 
 ```
 As an air traffic controller 

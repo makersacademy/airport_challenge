@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "It is stormy. For safety reasons, the plane cannot land!" if stormy?
     @plane_list << plane
   end
 
