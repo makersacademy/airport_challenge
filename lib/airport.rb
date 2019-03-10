@@ -1,5 +1,6 @@
 class Airport
   attr_accessor :runway
+  attr_accessor :default_capacity
 
   def initialize(default_capacity = 10)
     @runway = []
@@ -13,6 +14,10 @@ class Airport
     else
       weather == "Stormy" ? 'No landing allowed in stormy weather' : @runway << @plane
     end
+  end
+
+  def change_capacity(new_capacity)
+    @capacity = new_capacity
   end
 
   def takeoff(plane, weather)

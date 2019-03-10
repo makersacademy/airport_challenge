@@ -49,9 +49,9 @@ describe Airport do
     expect(subject.land(plane, "Stormy")).to eq 'No landing allowed in stormy weather'
   end
 
-  it "Prevents plane from landing when an airport when capacity is full" do
-    10.times { subject.land(Plane.new, "Sunny" )}
-    expect(subject.land(Plane.new, "Sunny")). to eq "Airport is full"
+  it "Changes the default capacity of an airport" do
+    10.times { subject.land(Plane.new, "Sunny") }
+    expect(subject.change_capacity(15)).to_not eq "Airport is full"
   end
   
 end
