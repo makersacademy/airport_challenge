@@ -1,4 +1,5 @@
 require_relative 'weather.rb'
+require_relative 'plane'
 
 class Airport
 
@@ -18,10 +19,12 @@ class Airport
     @hangar << plane
   end
 
-  def take_off
+  def take_off(plane)
+    puts @hangar
+    raise "Plane not in airport" unless @hangar.include?(plane)
     raise "Cannot depart due to stormy weather" if stormy?
 
-    @hangar.pop
+    @hangar.delete(plane)
   end
 
   def stormy?

@@ -25,7 +25,7 @@ describe Airport do
     it 'allows plane to take off and logs the departure' do
       2.times { expect(subject).to receive(:stormy?).and_return(false) }
       subject.land(@plane)
-      subject.take_off
+      subject.take_off(@plane)
       expect(subject.hangar).not_to include @plane
     end
 
@@ -33,6 +33,12 @@ describe Airport do
       2.times { allow(subject).to receive(:stormy?).and_return(false) }
       subject.land(@plane)
       expect { subject.land(@plane) }.to raise_error('Plane already landed!')
+    end
+
+    it 'does not allow planes to take off unless in the airport' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect { subject.take_off(@plane) }.to raise_error('Plane not in airport')
+
     end
   end
 
@@ -60,7 +66,7 @@ describe Airport do
     it 'does not take off' do
       subject.land(@plane)
       expect(subject).to receive(:stormy?).and_return(true)
-      expect { subject.take_off }.to raise_error('Cannot depart due to stormy weather')
+      expect { subject.take_off(@plane) }.to raise_error('Cannot depart due to stormy weather')
     end
   end
 
@@ -80,7 +86,7 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to :take_off }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
   end
 
   describe '#stormy?' do
