@@ -1,6 +1,8 @@
 class Airport
   attr_reader :planes
   
+  DEFAULT_CAPACITY = 10
+
   def initialize(weather)
     @weather = weather
     @planes = []
@@ -8,7 +10,7 @@ class Airport
   
   def land(plane)
     
-    if @planes.size == 10
+    if @planes.size == DEFAULT_CAPACITY
       puts "Sorry, no more room!"
       return self
     end
