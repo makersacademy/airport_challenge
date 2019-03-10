@@ -151,7 +151,8 @@ RuntimeError ("That plane is already on the ground!")
 
 - the tests for `.clear_for_takeoff` depend on `.land`! should make these independent by... stubbing `airport.planes` or something?
 - would it be better to directly add loads of planes to an airport somehow, rather than running `airport.land` over and over again? can do `airport.planes << plane`, but that doesn't seem a good idea in case `.plane` is made read-only in the future???
-- we've got three possible errors at the start of the land method. should we write tests to make sure they come in the correct priority? e.g. at the moment if the weather is bad and the airport is also at capacity, the 'bad weather' error will fire. do we need to test that the 'airport full' error doesn't fire in that situation? 
+- we've got three possible errors at the start of the land method. should we write tests to make sure they come in the correct priority? e.g. at the moment if the weather is bad and the airport is also at capacity, the 'bad weather' error will fire. do we need to test that the 'airport full' error doesn't fire in that situation?
+- `@airport.planes` should br private! 
 
 ### Refactor / code qualiy
 
