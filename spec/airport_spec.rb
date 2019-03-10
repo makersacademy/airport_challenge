@@ -85,4 +85,13 @@ describe Airport do
     expect{ airport.land(plane) }.to raise_error("It is stormy. For safety reasons, the plane cannot land!")
   end
 
+  it { is_expected.to respond_to(:capacity_reached?) }
+
+  it 'raises an error when airport instructs plane to `land` if airport capacity reached' do
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:capacity_reached?).and_return(true)
+    allow(plane).to receive(:land)
+    expect{ airport.land(plane) }.to raise_error("Airport capacity is reached! Plane cannot land.")
+  end
+
 end

@@ -247,7 +247,8 @@ I want to prevent landing when the airport is full
 
 ##### TEST CASE(S)
 
-1. An error is raised when airport instructs plane to `land` if capacity is reached
+1. [X] An error is raised when airport instructs plane to `land` if capacity is reached
+2. [X] Airport responds to `capacity_reached?` method?
 
 ```
 As the system designer
