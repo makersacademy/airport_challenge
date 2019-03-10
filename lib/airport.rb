@@ -82,7 +82,7 @@ class Airport
   end
 
   def plane_has_not_left
-    "Plane has not take off yet"
+    "Plane has not taken off yet"
   end
 
   def plane_landed

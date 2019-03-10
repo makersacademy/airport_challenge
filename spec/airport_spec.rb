@@ -89,3 +89,25 @@ RSpec.describe Airport do
   end
 
 end
+
+RSpec.describe "Airport management" do
+  include HelperMethodsModule
+
+  let(:airport) { Airport.new }
+
+  it "allows landing of multiple planes " do
+    count = land_multiple_planes(airport,10)
+    expect(airport.hangar.count).to be >= count
+  end
+
+  it "allows multiple plane takeoff" do
+    land_multiple_planes(airport,10)
+    count = takeoff_multiple_planes(airport)
+    expect(airport.hangar.size).to be >= count
+  end
+
+  it "prevents landing if no space" do
+    count = land_multiple_planes(airport,100)
+    expect(airport.hangar.count).to be < count 
+  end
+end
