@@ -1,10 +1,6 @@
 class Weather
   def stormy?
     weather = [1, 2].sample
-    if weather = 1
-      return true
-    else
-      return false
-    end
+    weather = 1 ? true : false
   end
 end

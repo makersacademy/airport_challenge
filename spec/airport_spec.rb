@@ -4,6 +4,14 @@ describe Airport do
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:take_off) }
 
+  it "allows user to set a capacity" do
+    expect(Airport.new(20).capacity).to eq 20
+  end
+
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe "#land" do
   # scenario 1: the plane can only land if there is no storm :
     it "cannot land the plane if it is stormy" do
@@ -23,14 +31,14 @@ describe Airport do
   end
 
   describe "#take_off" do
-  #scenario 1: there is no plane in hangar to take off:
+  # scenario 1: there is no plane in hangar to take off:
     it "returns and error that there is no plane in hangar" do
       plane = Plane.new
       subject.take_off(plane)
       expect(subject.take_off(plane)).to eq "Error: Plane is not in hangar"
     end
 
-  #scenario 2: the plane will take off if it is not stormy:
+  # scenario 2: the plane will take off if it is not stormy:
     it "if there is no storm, the plane can take off" do
       plane = Plane.new
       subject.land(plane)
