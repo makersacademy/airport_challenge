@@ -23,5 +23,10 @@ describe Weather do
     allow(model_weather).to receive(:weather_status).and_return("stormy")
     expect(weather.stormy?).to eq true
   end
+
+  it 'expects stormy? to return `false` if `weather_status` is equal to `sunny`' do
+    allow(model_weather).to receive(:weather_status).and_return("sunny")
+    expect(weather.stormy?).to eq false
+  end
   
 end
