@@ -40,22 +40,27 @@
 # => Able to handle multiple planes at once... like a proper airport
 # => Keep it simple stupid!
 # => Be awesome
-
-
 # !!!!!!!!!!IMPORTANT!!!!!!! REMEMBER TO UN-COMMENT SPEC_HELPER!!!!!!!!
 class Airport
 # initialize area
-def initialize(capacity)
-  @capacity = capacity
-  @planes = []
-end
+  def initialize(capacity)
+    @capacity = capacity
+    @planes = []
+  end
 
 # build area
   def land(plane)
-    raise 'Cannot land plane; Airport full' if @planes.length >= @capacity
+    raise 'Cannot land plane; Airport full' if full?
+    
     @planes << plane
   end
 
   def take_off(plane)
+  end
+
+  private
+
+  def full?
+    @planes.length >= @capacity
   end
 end

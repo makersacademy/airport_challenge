@@ -7,8 +7,6 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   # SimpleCov::Formatter::HTMLFormatter
 ])
 SimpleCov.start
-
-
 # Uncomment below
 # RSpec.configure do |config|
 #   config.after(:suite) do
