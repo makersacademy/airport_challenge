@@ -5,11 +5,11 @@ describe Airport do
   it { is_expected.to respond_to(:weather) }
   it { is_expected.to respond_to(:fleet) }
   it "is expected to respond with false when confirm_plane_absence is called with a plane that is at the airport" do
-    plane = Plane.new(subject)
+    plane = instance_double("Plane", :location => subject)
     expect(subject.confirm_plane_absence(plane)).to eq false
   end
   it "is expected to respond with true when confirm_plane_absence is called with a plane that is not at the airport" do
-    plane = Plane.new(Airport.new)
+    plane = instance_double("Plane", :location => "not subject")
     expect(subject.confirm_plane_absence(plane)).to eq true
   end
   it "is expected to have a value for @weather when an airport object is instantiated" do
@@ -22,11 +22,22 @@ describe Airport do
     expect(subject.fleet).to eq []
   end
   it "is expected to return true when full? method is called on airport that is at max capacity (@fleet.count >= CAPACITY)" do
-    subject.fleet = Array(1..Airport::CAPACITY)
+    Airport::CAPACITY.times { subject.add_plane(1) }
     expect(subject.full?).to eq true
   end
   it "is expected to return false when full? method is called on airport that is at under max capacity (@fleet.count < CAPACITY)" do
-    subject.fleet = Array(2..Airport::CAPACITY)
+    (Airport::CAPACITY - 1).times { subject.add_plane(1) }
     expect(subject.full?).to eq false
+  end
+  it "is expected to add plane to @fleet when add_plane method is called with Plane argument" do
+    plane = instance_double("Plane", :location => subject)
+    subject.add_plane(plane)
+    expect(subject.fleet).to eq [plane]
+  end
+  it "is expected to remove a plane from @fleet when add_plane method is called with Plane argument" do
+    plane = instance_double("Plane", :location => subject)
+    subject.add_plane(plane)
+    subject.remove_plane(plane)
+    expect(subject.fleet).to eq []
   end
 end

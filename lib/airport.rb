@@ -2,7 +2,7 @@ class Airport
 
   CAPACITY = 10
   attr_reader :weather
-  attr_accessor :fleet
+  attr_reader :fleet
 
   def initialize
     weather_options = ["sunny", "stormy"]
@@ -16,6 +16,14 @@ class Airport
 
   def full?
     @fleet.count >= CAPACITY
+  end
+
+  def add_plane(plane)
+    @fleet << plane
+  end
+
+  def remove_plane(plane)
+    @fleet.delete(plane)
   end
 
 end
