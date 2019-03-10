@@ -10,15 +10,23 @@ class Airport
   end
 
   def fly_plane
-    raise("No Planes!") if empty? # throws an error if there isn't any planes.
-
+    raise "Stop, no departures or arrivals due to stormy weather!" if weather == "stormy"
+    raise("No Planes!") if empty? # throws an error if there isn't any planes.(potentially not needed)
     puts "Skeet Skeet!" # confirms the plane has left.
     @hangar.pop # removes a plane from the hangar once it's gone.
   end
 
   def land_plane(plane)
+    raise "Stop, no departures or arrivals due to stormy weather!" if weather == "stormy"
     raise("Too Full!") if full? # throws an error if there are too many planes. This is specified by either a given or default capacity.
+
     @hangar << plane # shoves the landed plane in the hangar.
+  end
+
+  def weather
+    
+    condition = "stormy"
+    return condition
   end
 
   private # fun key word that prevents programmes from editing this info. These values only apply to their raise functions.
@@ -27,7 +35,7 @@ class Airport
   end
 
   def full?
-    @hangar.length >= @capacity # makes sure that the hangar isn't at capacity. 
+    @hangar.length >= @capacity # makes sure that the hangar isn't at capacity.
   end
 
 end
