@@ -16,6 +16,7 @@ class Control
 
   def land(plane)
     fail 'Capacity full' if full?
+
     @planes.push(plane)
   end
 
@@ -23,21 +24,20 @@ class Control
 
     if @planes.empty? && @stormy_weather == false
       puts "No planes available"
-      @planes.to_a
     elsif !@planes.empty? && @stormy_weather == false
       @planes.delete(plane)
-      @planes.to_a
     else
       puts "No take off while weather stormy"
-      @planes.to_a
-   end
+    end
+
+    @planes.to_a
   end
 
-  def stormy?(plane)
+  def stormy?(_plane)
     @stormy_weather = true
   end
 
-  def storm_passed(plane)
+  def storm_passed(_plane)
     @stormy_weather = false
   end
 
