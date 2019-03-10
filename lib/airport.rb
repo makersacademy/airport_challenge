@@ -1,5 +1,5 @@
 class Airport
-  def capacity(capacityarg)
+  def capacity(capacityarg = 5) 
     return capacityarg
   end
 end

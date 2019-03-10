@@ -1,17 +1,30 @@
 require 'airport'
+require 'plane'
 
 RSpec.describe 'Airport' do
-  context 'It be an instance of Airport class' do
+  context 'When describing an Airport' do
+    
+    Heathrow = Airport.new
+    a380 = Plane.new
+    
     it 'Should be an Airport object' do
-      Heathrow = Airport.new
       expect(Heathrow.class).to eq Airport
     end
-  end
-
-  context 'It should have a capacity method' do
+    
     it "Should have a capacity method" do
-      Heathrow = Airport.new
       expect(Heathrow.capacity(5)).to eq 5
+    end
+  
+    it "Should have a default capacity" do
+      expect(Heathrow.capacity).to eq 5
+    end
+
+    it "Should be able to access to plane class, which is on another file" do
+      expect(a380.class).to eq Plane
+    end
+
+    it "Should be able to track the number of planes there" do
+      expect(a380.class).to eq Plane
     end
   end
 end
