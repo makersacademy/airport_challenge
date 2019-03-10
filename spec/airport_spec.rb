@@ -22,11 +22,11 @@ describe Airport do
     expect(subject.fleet).to eq []
   end
   it "is expected to return true when full? method is called on airport that is at max capacity (@fleet.count >= CAPACITY)" do
-    Airport::CAPACITY.times { subject.add_plane(1) }
+    subject.capacity.times { subject.add_plane(1) }
     expect(subject.full?).to eq true
   end
   it "is expected to return false when full? method is called on airport that is at under max capacity (@fleet.count < CAPACITY)" do
-    (Airport::CAPACITY - 1).times { subject.add_plane(1) }
+    (subject.capacity - 1).times { subject.add_plane(1) }
     expect(subject.full?).to eq false
   end
   it "is expected to add plane to @fleet when add_plane method is called with Plane argument" do
@@ -39,5 +39,12 @@ describe Airport do
     subject.add_plane(plane)
     subject.remove_plane(plane)
     expect(subject.fleet).to eq []
+  end
+  it "sets a default @capacity value equal to DEFAULT_CAPACITY constant in Airpot class when an airport object is instantiated" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  it "can update @capacity using the update_capacity method and passing in a number" do
+    subject.update_capacity(15)
+    expect(subject.capacity).to eq 15
   end
 end
