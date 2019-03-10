@@ -3,33 +3,37 @@ require 'airport'
 require 'plane'
 
 describe "Features lab:" do
-  it 'Plane landing' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return false
-    expect { airport.land(plane) }.not_to raise_error
-  end
+  let(:airport) { Airport.new(20) }
+  let(:plane) { Plane.new }
 
-  it 'Plane leaving' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    expect { airport.take_off(plane) }.not_to raise_error
-  end
-
-  it 'No activity when full' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return false
-    20.times do
-      airport.land(plane)
+  context "When not stormy" do
+    before do
+      allow(airport).to receive(:stormy?).and_return false
     end
-    expect { airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
+    it 'Plane landing' do
+      expect { airport.land(plane) }.not_to raise_error
+    end
+
+    it 'Plane leaving' do
+      expect { airport.take_off(plane) }.not_to raise_error
+    end
+
+    context 'When full' do
+      it 'No activity' do
+        20.times do
+          airport.land(plane)
+        end
+        expect { airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
+      end
+    end
   end
 
-  it 'No activity when stormy' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return true
-    expect { airport.land(plane) }.to raise_error 'Cannot land plane; Weather is stormy!'
+  context "When stormy" do
+    before do
+      allow(airport).to receive(:stormy?).and_return true
+    end
+    it 'No activity' do
+      expect { airport.land(plane) }.to raise_error 'Cannot land plane; Weather is stormy!'
+    end
   end
 end
