@@ -30,6 +30,10 @@ describe Airport do
     it 'returns the airport object if the weather is bad' do
       expect(@airport_bad_weather.land @plane).to eq @airport_bad_weather
     end
+    it 'does not store the landed plane if the weather is bad' do
+      @airport_bad_weather.land @plane
+      expect(@airport_bad_weather.planes).not_to include @plane
+    end
 
   end
   
