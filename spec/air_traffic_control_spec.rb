@@ -82,10 +82,27 @@ describe Control do
     end
   end
 
+
+ # As the system designer
+ # So that the software can be used for many different airports
+ # I would like a default airport capacity that can be overridden as appropriate
+
+ # Did this implicitly
+
+  # test for multiple planes landing, taking off, testing features
+  it 'feature test' do
+    control = Control.new(3)
+    plane1 = Plane.new
+    control.land(plane1)
+    control.takeoff(plane1)
+    control.land(plane1)
+    plane2 = Plane.new
+    control.land(plane2)
+    control.stormy?(plane2)
+    control.takeoff(plane2)
+    control.storm_passed(plane2)
+    expect(control.takeoff(plane2)).to eq [plane1]
+
+  end
+
 end
-
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
-
-#  Did this implicitly
