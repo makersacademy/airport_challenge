@@ -13,24 +13,31 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'Hangar is full' if hangar.length == capacity
+    fail 'Hangar is full' if full?
     fail 'Weather is too dangerous' if conditions == "stormy"
+
     plane.landed = true
     hangar << plane
   end
 
   def take_off(plane)
     fail 'Weather is too dangerous' if conditions == "stormy"
+    fail 'That plane is not in the hangar' unless hangar.include?(plane)
+    
+    hangar.delete(plane) if plane.landed == true
+    plane.landed = false
+    return plane
   end
 
   private
+
   def generate_weather
     num = rand(11)
-    if num == 10
-      return "stormy"
-    else
-      return "sunny"
-    end
+    num == 10 ? "stormy" : "sunny"
   end
-    
+
+  def full?
+    hangar.length == capacity
+  end    
+      
 end

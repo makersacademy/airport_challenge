@@ -24,7 +24,6 @@ describe Airport do
     expect { airport.land_plane(plane) }.to raise_error('Weather is too dangerous')
   end
 
-
   # Test new airport object has default capacity
   it 'New airport object has default capacity' do
     airport = Airport.new
@@ -43,6 +42,11 @@ describe Airport do
     expect { subject.land_plane(Plane.new) }.to raise_error('Hangar is full')
   end
 
+  # Tests generate weather method
+  it 'Test generate weather method' do
+    plane = Plane.new
+    expect(subject.conditions).to eq("stormy").or eq("sunny")
+  end
 
   # Test airport responds to take_off method
   it { is_expected.to respond_to :take_off }

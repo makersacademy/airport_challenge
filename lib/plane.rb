@@ -1,7 +1,7 @@
 class Plane
   attr_accessor :landed
 
-  def initialize(landed = true)
+  def initialize(landed = false)
     @landed = landed
   end
 
