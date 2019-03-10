@@ -64,6 +64,24 @@ RSpec.describe Airport do
       expect(subject.takeoff(plane)).to eq "Stormy weather: Take off denied"
     end
 
+    it "takes off from the airport it is in" do
+      plane_test = Plane.new
+      subject.land(plane_test)
+      
+      expect(subject.name).to eq plane_test.airport.name
+      expect(plane_test.status).to eq :landed
+
+      weather(:sunny)
+      subject.takeoff(plane_test)
+   
+      expect(subject.hangar).not_to include plane_test
+      expect(plane_test.status).to eq :flying
+    end
+
+    it "cannot receive takeoff command if already flying" do
+
+    end
+
   end
 
 end

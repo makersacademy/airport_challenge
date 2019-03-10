@@ -84,6 +84,7 @@ Domain Model
 - plane changes state to :landed after it lands
 
   - to prevent message ot taking off is flying or landing if it is not flying
+  - check that the airport gives command to planes in its hangar only
 
 ## Weather class
 
