@@ -9,5 +9,10 @@ describe Weather do
   it { is_expected.to respond_to(:stormy?) }
 
   it { is_expected.to respond_to(:weather_status) }
+
+  it 'expects weather_status to return "stormy"' do
+    weather = Weather.new
+    expect(weather.weather_status).to eq "stormy"
+  end
   
 end

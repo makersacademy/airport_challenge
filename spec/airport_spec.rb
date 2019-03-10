@@ -60,12 +60,4 @@ describe Airport do
     expect(airport.plane_list).not_to include plane_1
   end
 
-  # it 'displays a message that plane has taken off and is no longer at the airport' do
-  #   allow(plane).to receive(:land)
-  #   plane_1 = airport.land(plane)
-  #   plane_2 = airport.land(plane)
-  #   airport.take_off(plane_1)
-  #   expect(airport.plane_list).to output("my message\n").to_stdout
-  # end
-
 end

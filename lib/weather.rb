@@ -5,7 +5,7 @@ class Weather
   end
 
   def weather_status
-
+    return 'stormy'
   end
   
 end
