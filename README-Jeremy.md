@@ -26,23 +26,23 @@ This project will have multiple interrelated Classes, Methods and Objects requir
 
 The initial consiseration of the objects and methods, after reviewing the user story include: 
 
-| Objects       | Methods                  |
-|---------------|------------------------- |
-| Plane         | Land                     |
-|               | Takeoff                  |
-| In Flight     | Allow landing            |
-|               | Prevent flight           |
-| Landed        | Allow takeoff            |
-|               | Prevent landing          |
-| Airport Cap   | Prevent landing          |
-|               | Allow landing            |
-| Ariport Cont  | Instruct Landing         |
-|               | Instruct takeoff         |
-| Ariport Cont  | Confirm plane not landed |
-|               | Confirm plane landed     |
-| Weather (rand)| Allow landing            |
-|               | Prevent landing          |
-|               | Prevent takeoff          |
+| Objects             | Methods                  |
+|---------------------|------------------------- |
+| Plane               | Land                     |
+|                     | Takeoff                  |
+| In Flight           | Allow landing            |
+|                     | Prevent flight           |
+| Landed Status       | Allow takeoff            |
+|                     | Prevent landing          |
+| Airport Capacity    | Prevent landing          |
+|                     | Allow landing            |
+| Airport Controller  | Instruct Landing         |
+|                     | Instruct takeoff         |
+|                     | Confirm plane not landed |
+|                     | Confirm plane landed     |
+| Weather Sunny       | Allow landing            |
+| Weather Stormy      | Prevent landing          |
+|                     | Prevent takeoff          |
 
 
 
