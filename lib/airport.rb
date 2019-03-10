@@ -26,6 +26,8 @@ class Airport
   end
 
   def clear_for_takeoff(plane)
+    raise "That plane is not at that airport!" unless @planes.include? plane
+
     if bad_weather?
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
     else
