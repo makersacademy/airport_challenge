@@ -11,14 +11,14 @@ class Airport
   def land(plane)
     raise "That plane is already in the airport" if @plane_list.include?(plane)
     raise "The airport is full - no landing allowed" if capacity.zero?
-    raise "No landing allowed due to the weather" if current_weather == "Stormy"
+    raise "No landing allowed - Stormy weather" if current_weather == "Stormy"
 
     @plane_list << plane
     return "Plane landed"
   end
 
   def take_off(plane)
-    raise "No take-off allowed due to the weather" if current_weather == "Stormy"
+    raise "No take-off allowed - Stormy weather" if current_weather == "Stormy"
 
     if @plane_list.include?(plane)
       @plane_list.delete(plane)

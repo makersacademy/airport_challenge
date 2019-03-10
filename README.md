@@ -8,6 +8,7 @@ My approach
 * For each line of "I want to be able to do this", I wrote the simplest test, fixed it, and repeated. I refactored my code every time the test passed.
 * Every now and again I refactored tests to make them easier to read/find and to ensure they didn't do unnecessary steps
 * Every now and again I ran rubocop to lint my code
+* Once I had done enough tests to complete a particular thing the code should do, I check the user stories to make sure I was still following the brief
 
 Reflection
 -------
