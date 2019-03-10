@@ -78,8 +78,8 @@ Domain Model
 
   - assigns the airport it is in to prevent response to a land message while in airport
 
-- landing changes its status: flying/landed
-- plane removes airport value from it's attributes when it takes off
+- landing changes plane's status: flying/landed
+- plane removes airport value from its attributes when it takes off
 - plane changes state to flying after it takes off
 - plane changes state to not_flyind after it lands
 
