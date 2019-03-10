@@ -13,11 +13,9 @@ class Airport
   end
 
   def land(plane)
-    if @hangar.length < capacity
-      @hangar << plane
-      plane_landed
-    else 
-      denied_landing
+    case assign_random_weather
+    when :stormy then denied_landing_bad_weather
+    when :sunny then add_plane_to_hangar(plane)
     end
   end
 
@@ -49,6 +47,19 @@ class Airport
     weather_type == :sunny ? plane_flying : plane_grounded
   end
 
+  def add_plane_to_hangar(plane)
+    check_if_space_in_hangar ? add_plane(plane) : denied_landing_no_space
+  end
+
+  def check_if_space_in_hangar
+    @hangar.length < capacity
+  end
+
+  def add_plane(plane)
+    @hangar << plane
+    plane_landed
+  end
+
   def plane_flying
     "Plane has taken off" 
   end
@@ -65,7 +76,11 @@ class Airport
     "Landed"
   end
   
-  def denied_landing
+  def denied_landing_no_space
     "Landing not possible"
+  end
+
+  def denied_landing_bad_weather
+    "Stormy weather: landing denied"
   end
 end
