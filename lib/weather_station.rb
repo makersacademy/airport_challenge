@@ -1,6 +1,6 @@
 class WeatherStation
+  CHANCE_OF_STORM = 0.1
   def status
-    the_weather_is_good = [true, true, true, false].sample
-    return the_weather_is_good ? "☀️" : "⛈"
+    rand < CHANCE_OF_STORM ? "⛈" : "☀️"
   end
 end

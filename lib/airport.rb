@@ -13,7 +13,6 @@ class Airport
   end
 
   def clear_for_takeoff(plane)
-    # REFACTOR - use a case statement here
     case @weather.status
     when "⛈"
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
