@@ -5,7 +5,9 @@ My approach
 ---------
 
 * I read the user stories and broke them down into things I need the programme to do
-* For each line of "I want to be able to do this", I wrote the simplest test, fixed it, and repeated
+* For each line of "I want to be able to do this", I wrote the simplest test, fixed it, and repeated. I refactored my code every time the test passed.
+* Every now and again I refactored tests to make them easier to read/find and to ensure they didn't do unnecessary steps
+* Every now and again I ran rubocop to lint my code
 
 Reflection
 -------
@@ -13,6 +15,12 @@ Reflection
 1. I didn't feature test anything in ```irb``` as I went. Would this have changed my design/approach at all?
 2. I have written what I think is the cleanest, simplest code for the task that I have ever written. My concern - have I actually answered all of the brief?
 3. My head just doesn't want to think up new edge cases!
+
+How to run my code
+-------
+
+1. Run any of the test files to test the classes. ```airport_spec``` or ```weather_spec``` or ```plane_spec```
+2. Run any of the commands in ```irb``` or a ruby file ```Airport.new``` ```Plane.new``` ```Weather.new```
 
 
 ```
