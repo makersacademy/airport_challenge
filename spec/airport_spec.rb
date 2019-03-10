@@ -40,6 +40,10 @@ describe Airport do
       10.times { @airport_good_weather.land Plane.new }
       expect { @airport_good_weather.land @plane }.to output("Sorry, no more room!\n").to_stdout
     end
+    it 'returns the airport object if the airport is full' do
+      10.times { @airport_good_weather.land Plane.new }
+      expect(@airport_good_weather.land @plane).to eq @airport_good_weather
+    end
 
   end
   
