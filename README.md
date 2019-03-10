@@ -1,3 +1,10 @@
+My approach:
+
+1.- Read the user stories to understand the challenge.
+2.- Draw the domain modelling to map objects and actions of user story 1.
+3.- TDD and development of user story 1
+
+
 Airport Challenge
 =================
 
