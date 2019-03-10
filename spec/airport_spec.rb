@@ -1,6 +1,6 @@
 require 'airport'
 require 'plane'
-require 'helper_methods_module'
+require 'airport_spec_module'
 
 RSpec.describe Airport do
   include HelperMethodsModule

@@ -1,6 +1,6 @@
 require 'plane'
 require 'weather'
-require 'airport_actions_module.rb'
+require 'airport_module.rb'
 
 class Airport
   include AirportActions
