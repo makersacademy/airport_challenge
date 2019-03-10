@@ -41,21 +41,24 @@
 # => Keep it simple stupid!
 # => Be awesome
 # !!!!!!!!!!IMPORTANT!!!!!!! REMEMBER TO UN-COMMENT SPEC_HELPER!!!!!!!!
+require 'weather_reporter'
+
 class Airport
-# initialize area
-  def initialize(capacity)
+  def initialize(capacity, weather_reporter)
     @capacity = capacity
+    @weather_reporter = weather_reporter
     @planes = []
   end
 
-# build area
   def land(plane)
     raise 'Cannot land plane; Airport full' if full?
     raise 'Cannot land plane; Weather is stormy!' if stormy?
+
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(_plane)
+    raise 'Cannot take off plane; Weather is stormy!' if stormy?
   end
 
   private
@@ -65,6 +68,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    @weather_reporter.stormy?
   end
 end
