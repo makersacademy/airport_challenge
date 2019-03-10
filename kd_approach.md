@@ -33,7 +33,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-PROGRAM USAGE:
+PROGRAM USAGE
 
 - For the first iteration of the product, this software will be usable in Interactive Ruby via the terminal using `irb`
 
@@ -272,6 +272,24 @@ Enhancement: Change capacity
 3. [X] Check airport capacity can be changed on the same airport object
 
 `airport.instance_variable_set(:@capacity, 4)`
+
+
+### I haven't implemented the edge cases, but here is the approach I would have used if I had more time.
+
+##### TEST CASE(S) - EDGE CASES
+
+1. Planes can only take off from airports they are in
+  - Checks that plane is already in airport list and if it is in airport list, then take_off, raise an exception "Plane is not at airport" if plane is not in airport list
+
+2. Planes that are already flying cannot take off and/or be in an airport
+  - If plane is already out of airport list after take_off, then cannot take_off, raise an exception for this
+
+3. Planes that are landed cannot land again and must be in an airport, etc.
+  - If plane is already in airport list after landing, then cannot land, raise an exception for this
+
+**Enhancements:**
+
+- Ability for plane to land at specific airport?
 
 
 #### TEST CASE(S)
