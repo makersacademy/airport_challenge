@@ -39,7 +39,7 @@ airport.takeoff(plane) # if there is a plane stored in airport plane will fly (i
 ## About
 When submitted this program had:
 *   11 tests, all passing
-*   97.06% test coverage -- 99/102 lines in 4 files
+*   100.00% test coverage -- 122/122 lines in 4 files
 *   0 linter warnings
 
 ## Steps taken to complete this task
@@ -69,11 +69,10 @@ When submitted this program had:
 24. Refactoring: removed redundant test in for airport class, rewrote tests for weather, used private method to check if plane is able to proceed.
 25. Planes should not land in stormy weather so the test should show that a plane is flying after it tries to land in stormy weather.
 26. Time for a commit: "Planes can now only land in good weather."
-27. Refactoring: none required.
-28. All user stories have been satisfied. The next step is to solve edge cases, currently planes can take-off while flying and land while grounded.
-
-**BONUS**
-
-*   Write an RSpec **feature** test that lands and takes off a number of planes
+27. Refactoring: dealt with edge cases.
+28. Planes should not land when the airport is full so the test should show that the plane is flying after it tries to land at an airport that is at capacity and airports can tell us when they are full.
+29. Time for a commit: "Planes can now only land at airports with space."
+30. BONUS: Write an RSpec feature test that lands and takes off a number of planes.
+31. Time for a commit: "Final commit: Added bonus test landing and taking off multiple planes, refactored, and updated readme."
 
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)

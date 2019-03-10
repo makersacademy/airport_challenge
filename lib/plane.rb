@@ -51,7 +51,7 @@ attr_reader :status
   end
 
   def cleared_for_landing(airport)
-    airport.check_weather == "clear" && flying? && airport.has_space
+    airport.check_weather == "clear" && flying? && airport.not_full
   end
 
   def cleared_for_takeoff(airport)
