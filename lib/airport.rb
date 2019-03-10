@@ -19,6 +19,10 @@ class Airport
     weather
   end
 
+  def not_full
+    @hangar.size < @capacity
+  end
+
   private
 
   def weather

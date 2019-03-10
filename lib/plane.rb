@@ -4,27 +4,31 @@ class Plane
 
 attr_reader :status
 
+  def initialize(status = "flying")
+    @status = status
+  end
+
   def land(airport)
-    airport.store(self) if cleared(airport)
-    confirm(airport)
+    airport.store(self) if cleared_for_landing(airport)
+    confirm(airport) if cleared_for_landing(airport)
+    confirmation
   end
 
   def takeoff(airport)
-    airport.release(self) if cleared(airport)
-    confirm(airport)
+    airport.release(self) if cleared_for_takeoff(airport)
+    confirm(airport) if cleared_for_takeoff(airport)
+    confirmation
   end
+
+  private
 
   def confirm(airport)
     if in?(airport)
       grounded
-      confirmation
     else
       flying
-      confirmation
     end
   end
-
-  private
 
   def in?(airport)
     airport.hangar.include?(self)
@@ -32,6 +36,10 @@ attr_reader :status
 
   def flying
     @status = "flying"
+  end
+
+  def flying?
+    @status == "flying"
   end
 
   def grounded
@@ -42,8 +50,12 @@ attr_reader :status
     "Plane is #{@status}."
   end
 
-  def cleared(airport)
-    airport.check_weather == "clear"
+  def cleared_for_landing(airport)
+    airport.check_weather == "clear" && flying? && airport.has_space
+  end
+
+  def cleared_for_takeoff(airport)
+    airport.check_weather == "clear" && in?(airport)
   end
 
 end

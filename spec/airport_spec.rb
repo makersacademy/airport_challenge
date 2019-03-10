@@ -40,4 +40,12 @@ describe Airport do
     expect(["clear", "stormy"]).to include(subject.check_weather)
   end
 
+  # test described in step 28 in the README
+  it "can tell us when they are full" do
+    airport = Airport.new(1)
+    plane = double(:plane)
+    airport.store(plane)
+    expect(airport.not_full).to eq false
+  end
+
 end
