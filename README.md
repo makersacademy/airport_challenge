@@ -80,8 +80,8 @@ Domain Model
 
 - landing changes plane's status: flying/landed
 - plane removes airport value from its attributes when it takes off
-- plane changes state to flying after it takes off
-- plane changes state to not_flyind after it lands
+- plane changes state to :flying after it takes off
+- plane changes state to :landed after it lands
 
   - to prevent message ot taking off is flying or landing if it is not flying
 
