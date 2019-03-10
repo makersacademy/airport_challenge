@@ -10,6 +10,7 @@ class Plane
   end
 
   def take_off
+    raise(StandardError("Can't take off, weather is stormy")) unless @location.weather == "sunny"
     @location = "flying"
   end
 

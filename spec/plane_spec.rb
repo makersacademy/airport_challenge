@@ -17,13 +17,15 @@ describe Plane do
     subject.land(airport)
     expect(subject.location).to eq airport
   end
-  it "Sets location to 'flying' when take_off method is called" do
-    subject.take_off
-    expect(subject.location).to eq "flying"
+  it "Sets location to 'flying' when take_off method is called and weather is sunny" do
+    airport = instance_double("Airport", :weather => "sunny")
+    plane = Plane.new(airport)
+    plane.take_off
+    expect(plane.location).to eq "flying"
   end
-  # it "Throws error when take_off method is called and @weather attribute for aiport is stormy" do
-  #   airport = Airport.new
-  #   plane = Plane.new(airport)
-  #   expect{plane.location}.to raise_error
-  # end
+  it "Throws error when take_off method is called and @weather attribute for aiport is stormy" do
+    airport = instance_double("Airport", :weather => "stormy")
+    plane = Plane.new(airport)
+    expect{plane.take_off}.to raise_error(StandardError)
+  end
 end

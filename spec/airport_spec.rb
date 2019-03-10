@@ -11,10 +11,10 @@ describe Airport do
     plane = Plane.new(Airport.new)
     expect(subject.confirm_plane_absence(plane)).to eq true
   end
-  it "is expected to have a value for weather when an airport object is instantiated" do
+  it "is expected to have a value for @weather when an airport object is instantiated" do
     expect(subject.weather).to_not eq nil
   end
-  it "is expected to have a value for weather when an airport object is instantiated" do
+  it "is expected to have a value of either stormy or sunny for @weather when an airport object is instantiated" do
     expect(subject.weather).to eq("stormy").or(eq("sunny"))
   end
 end
