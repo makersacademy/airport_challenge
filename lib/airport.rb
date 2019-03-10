@@ -1,6 +1,5 @@
 class Airport
   attr_accessor :runway
-  attr_accessor :default_capacity
 
   def initialize(default_capacity = 10)
     @runway = []
