@@ -70,4 +70,18 @@ describe Plane do
     plane2 = Plane.new(airport1)
     expect(airport1.fleet).to eq [plane1, plane2]
   end
+  it "Pushes a plane to the @fleet array of airport passed in as argument of land method once landed" do
+    airport1 = instance_double("Airport", :weather => "sunny", :fleet => [])
+    airport2 = instance_double("Airport", :weather => "sunny", :full? => false, :fleet => [])
+    plane = Plane.new(airport1)
+    plane.take_off
+    plane.land(airport2)
+    expect(airport2.fleet).to eq [plane]
+  end
+  it "Removes a plane from the @fleet array of the airport set as @location when take_off method completes without error" do
+    airport1 = instance_double("Airport", :weather => "sunny", :full? => false, :fleet => [])
+    plane = Plane.new(airport1)
+    plane.take_off
+    expect(airport1.fleet).to eq []
+  end
 end

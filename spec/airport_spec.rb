@@ -22,11 +22,11 @@ describe Airport do
     expect(subject.fleet).to eq []
   end
   it "is expected to return true when full? method is called on airport that is at max capacity (@fleet.count >= CAPACITY)" do
-    subject.fleet = Array(1 .. Airport::CAPACITY)
+    subject.fleet = Array(1..Airport::CAPACITY)
     expect(subject.full?).to eq true
   end
   it "is expected to return false when full? method is called on airport that is at under max capacity (@fleet.count < CAPACITY)" do
-    subject.fleet = Array(2 .. Airport::CAPACITY)
+    subject.fleet = Array(2..Airport::CAPACITY)
     expect(subject.full?).to eq false
   end
 end
