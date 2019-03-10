@@ -3,7 +3,7 @@ require 'plane'
 require 'helper_methods_module'
 
 RSpec.describe Airport do
-  include Helper_Methods_Module
+  include HelperMethodsModule
 
   let(:plane) { Plane.new }
 
@@ -33,6 +33,5 @@ RSpec.describe Airport do
     end
 
   end
-
 
 end
