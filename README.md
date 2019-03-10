@@ -70,13 +70,6 @@ Domain Model
 - plane can take off from the airport it is in
 - plane already flying cannot take off or being in an airport
 
-#### helper_methods
-
-- weather generator (sunny/stormy) - more sunny than stormy
-- check_weather
-- confirm_take_off
-- remove_plane_hangar
-
 ## Plane class
 
 - initialize plane object to use with aiport

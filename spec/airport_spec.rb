@@ -7,7 +7,7 @@ RSpec.describe Airport do
 
   let(:plane) { Plane.new }
 
-  context "instructs plane to" do
+  context "LAND: instructs plane to" do
 
     it "land at an airport" do
       subject.land(plane)
@@ -34,7 +34,7 @@ RSpec.describe Airport do
 
   end
 
-  context "instructs plane" do
+  context "TAKEOFF: instructs plane" do
 
     it "to take_off and confirm it has taken off" do 
       weather(:sunny)
