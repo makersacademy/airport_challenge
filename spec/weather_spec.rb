@@ -10,9 +10,9 @@ describe Weather do
 
   it { is_expected.to respond_to(:weather_status) }
 
-  it 'expects weather_status to return "stormy"' do
+  it 'expects weather_status to return either "stormy" or "sunny" at random' do
     weather = Weather.new
-    expect(weather.weather_status).to eq "stormy"
+    expect(["stormy","sunny"]).to include(weather.weather_status)
   end
   
 end
