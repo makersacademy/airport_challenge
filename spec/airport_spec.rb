@@ -51,9 +51,18 @@ describe Airport do
     end
   end
 
-  describe 'Capacity' do
+  describe 'capacity' do
     it 'has a default capacity of 100' do
       expect(Airport::DEFAULT_CAPACITY).to eq 100
+    end
+
+    it 'has a method for capacity' do
+      expect(subject).to respond_to(:capacity)
+    end
+
+    it 'the capacity can be updated' do
+      subject.capacity = 300
+      expect(subject.capacity).to eq 300
     end
   end
 end

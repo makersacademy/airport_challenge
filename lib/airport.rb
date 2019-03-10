@@ -1,8 +1,9 @@
 class Airport
-  attr_accessor :stormy
+  attr_accessor :stormy, :capacity
   DEFAULT_CAPACITY = 100
   def initialize
     @stormy = false
+    @capacity = DEFAULT_CAPACITY
   end
 
   def stormy?
@@ -18,5 +19,4 @@ class Airport
   def take_off(plane)
     fail "The plane can't take off - it is stormy" if @stormy == true
   end
-
 end
