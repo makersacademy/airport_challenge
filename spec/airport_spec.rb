@@ -15,17 +15,9 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error("The plane can't be landed - it is stormy")
     end
 
-    it 'stores the information that the plane has landed' do
-      subject.stormy = false
-      plane = Plane.new
-      expect(subject.land(plane)).to eq plane
-    end
-
-    it 'only lands if the airport is empty' do
-      plane1 = Plane.new
-      subject.land(plane1)
-      plane2 = Plane.new
-      expect { subject.land(plane2) }.to raise_error("The plane can't land - the airport is full")
+    it 'only lands if the airport is not full' do
+      100.times {subject.land(Plane.new)}
+      expect { subject.land(Plane) }.to raise_error("The plane can't land - the airport is full")
     end
   end
 
@@ -41,6 +33,15 @@ describe Airport do
       subject.stormy = true
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error("The plane can't take off - it is stormy")
+    end
+
+    it 'the plane leaves the airport' do
+      plane = Plane.new
+      subject.land(plane)
+      before = subject.planes.length
+      subject.take_off(plane)
+      after = subject.planes.length
+      expect(before - after).to eq 1
     end
   end
 
