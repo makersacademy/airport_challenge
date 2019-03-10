@@ -56,6 +56,7 @@ RSpec.describe Airport do
 
     it "to take_off and confirm it has taken off" do 
       weather(:sunny)
+      subject.land(plane)
       expect(subject.takeoff(plane)).to eq("Plane has taken off")
     end
 
@@ -73,7 +74,7 @@ RSpec.describe Airport do
 
       weather(:sunny)
       subject.takeoff(plane_test)
-   
+
       expect(subject.hangar).not_to include plane_test
       expect(plane_test.status).to eq :flying
     end

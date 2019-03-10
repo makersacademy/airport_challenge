@@ -27,6 +27,7 @@ class Airport
     case assign_random_weather
     when :stormy then takeoff_message(:stormy)
     when :sunny
+      remove_plane(plane)
       confirm_take_off(plane)
     end
 
@@ -38,9 +39,10 @@ class Airport
     if @hangar.include?(plane) 
       plane_has_not_left
     else
-      remove_plane(plane)
-      plane.status = :flying
-      takeoff_message(:sunny)
+      if plane.airport.name == self.name
+        plane.status = :flying
+        takeoff_message(:sunny)
+      end
     end
   end
 
