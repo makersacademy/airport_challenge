@@ -37,7 +37,8 @@ Domain Model
 | Traffic Controller |               |
 | Airport            | land          |
 |                    | take_off      |
-| Plane              |               |
+| Plane              | landed        |
+| Plane              | airport       |
 | Weather            | random_status |
 
 ## Airpot class

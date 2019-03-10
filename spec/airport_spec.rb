@@ -19,7 +19,7 @@ RSpec.describe Airport do
     end
 
     it "land at an airport only if there is available space" do
-      airport = Airport.new(0)
+      airport = Airport.new("LHR",0)
       airport.weather = :sunny
       airport.land(plane)
       airport.land(plane)
