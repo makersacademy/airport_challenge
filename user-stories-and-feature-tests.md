@@ -101,6 +101,21 @@ ___
  => false
 ```
 
+## Edge cases
+
+> As the system designer  
+> To, uh... prevent impossible things happening  
+> I would like the system to throw an error if take off is requested for a plane which is not at the airport
+
+```
+> airport = Airport.new(WeatherStation.new)
+ => #<Airport...>
+> plane = Plane.new
+ => #<Plane...>
+> aiport.clear_for_takeoff plane
+RuntimeError ("That plane is not at that airport!")
+```
+
 ## Still to do
 
 ### Edge cases
