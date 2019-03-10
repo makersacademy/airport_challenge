@@ -3,13 +3,10 @@ class Plane
 
   def initialize
   		@flying = true
-  	end 
+  end 
 
   def flying?
   		@flying
   		# only flying or landed here
-  	end 
-
-	
-
+  end 
 end

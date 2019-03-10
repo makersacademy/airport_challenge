@@ -54,7 +54,7 @@ describe Airport do
   			 expect(subject.planes).to eq []
   		# checks 
   		end 
-  		
+
  		 it 'prevents takeoff when stormy' do  				
   			 plane = Plane.new
   			 subject.land(plane)

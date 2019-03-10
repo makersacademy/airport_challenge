@@ -6,7 +6,8 @@ class Airport
 	 attr_accessor :capacity
 	 attr_accessor :default_capacity
 
-	 def initialize(default_capacity = 20, capacity = default_capacity, stormy = false)
+	 def initialize(default_capacity = 20, capacity = default_capacity, 
+    stormy = false)
  		 @planes = []
  		 @stormy = stormy
  		 @default_capacity = default_capacity
@@ -48,9 +49,7 @@ class Airport
 	 def full?
  		# p @planes
  		# p @planes.count
- 		 if @planes.count >= @capacity
-  			 return true
-  		end 
+ 		 true if @planes.count >= @capacity
  	end 
 
 	 def random_weather
