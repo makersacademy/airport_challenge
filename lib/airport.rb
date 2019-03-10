@@ -41,18 +41,13 @@
 # => Keep it simple stupid!
 # => Be awesome
 
+
+# !!!!!!!!!!IMPORTANT!!!!!!! REMEMBER TO UN-COMMENT SEPC_HELPER!!!!!!!!
 class Airport
 # initialize area
 
-
-
 # build area
+  def land(plane)
 
-def land
-  
-end
-
-
-
-
+  end
 end
