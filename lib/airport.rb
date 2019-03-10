@@ -1,13 +1,18 @@
 class Airport
   attr_accessor :runway
 
-  def initialize 
+  def initialize(default_capacity = 10)
     @runway = []
+    @capacity = default_capacity
   end
 
-  def land(plane,weather)
+  def land(plane, weather, capacity)
     @plane = plane
-    weather == "Stormy" ? 'No landing allowed in stormy weather' : @runway << @plane
+    if @runway.length >= @capacity
+      return "Airport is full"
+    else
+      weather == "Stormy" ? 'No landing allowed in stormy weather' : @runway << @plane
+    end
   end
 
   def takeoff(plane, weather)
@@ -18,6 +23,5 @@ class Airport
       @runway != [] ? @runway.take(@runway.length - 1) : nil
     end
   end
-  
-end
 
+end

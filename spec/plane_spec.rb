@@ -1,4 +1,5 @@
 require "plane"
+require 'airport'
 
 describe Plane do
   it "responds to a plane" do
