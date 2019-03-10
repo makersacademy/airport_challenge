@@ -6,7 +6,8 @@ private
 
   def plane_landing_confirmation(plane)
     plane.land_at(self) 
-    return plane_already_landed_message if @hangar.include? plane
+    
+    plane_already_landed_message if @hangar.include? plane
 
     assign_landing_confirmation(plane)
   end
@@ -18,25 +19,35 @@ private
     end
   end
 
-  def plane_already_landed_message
-    "Not possibile -> Plane already landed"
+  def check_if_hangar_space
+    @hangar.length < capacity
+  end
+  
+  def add_plane_to_hangar(plane)
+    denied_landing_no_space_message unless check_if_hangar_space
+    add_plane(plane)
   end
 
   def plane_landed_message
     "Landed"
   end
 
+  def plane_already_landed_message
+    raise "Not possibile -> Plane already landed"
+  end
+
   def denied_landing_no_space_message
-    "Landing not possible"
+    raise "Landing not possible"
   end
 
   def denied_landing_bad_weather_message
-    "Stormy weather: landing denied"
+    raise "Stormy weather: landing denied"
   end
 
   # Takeoff methods
 
   def plane_take_off(plane)
+    plane_already_flying if plane.status == :flying 
     case assign_random_weather
     when :stormy then takeoff_message(:stormy)
     when :sunny
@@ -64,11 +75,15 @@ private
   end
 
   def plane_grounded_message
-    "Stormy weather: Take off denied" 
+    raise "Stormy weather: Take off denied" 
   end
 
   def plane_has_not_left_message
-    "Plane has not taken off yet"
+    raise "Plane has not taken off yet"
+  end
+
+  def plane_already_flying
+    raise "Plane already flying"
   end
 
   # Weather methods
@@ -79,17 +94,9 @@ private
 
   # Add plane to hangar methods - checking for space
 
-  def add_plane_to_hangar(plane)
-    check_if_hangar_space ? add_plane(plane) : denied_landing_no_space_message
-  end
-
   def add_plane(plane)
     @hangar << plane
     plane_landed_message
-  end
-
-  def check_if_hangar_space
-    @hangar.length < capacity
   end
 
   # Change plane status when taking off

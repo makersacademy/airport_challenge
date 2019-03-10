@@ -25,23 +25,17 @@ module HelperMethodsModule
   end
 
   def land_multiple_planes(planes)
-    count = 0
     planes.times do
       plane = Plane.new
       subject.weather = Weather.new.status
-      count += 1 if subject.weather == :sunny
-      subject.land(plane)
+      subject.land(plane) if subject.weather == :sunny
     end
-    count
   end
 
-  def takeoff_multiple_planes
-    count = 0
-    subject.hangar.each do |plane|
+  def takeoff_multiple_planes(planes)
+    planes.times do
       weather = Weather.new
-      count += 1 if weather == :sunny
-      subject.takeoff(plane)
+      subject.takeoff(plane) if weather == :sunny
     end
-    count
   end
 end

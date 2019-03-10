@@ -17,21 +17,23 @@ RSpec.describe Airport do
 
     it "land at an airport only if there is available space" do
       airport = Airport.new("LHR", 0)
-      attempt_landing(airport)
-      
-      expect(airport.land(plane)).to eq("Landing not possible")
+      airport.weather = :sunny
+    
+      expect { airport.land(plane) }.to raise_error("Landing not possible")
     end 
 
     it "not land if weather is stormy" do
       weather(:stormy)
-      expect(subject.land(plane)).to eq "Stormy weather: landing denied"
+      
+      expect { subject.land(plane) }.to raise_error("Stormy weather: landing denied")
     end
 
     it "not land if it has already landed at the airport" do
-      airport = Airport.new("LHR", 2)
-      attempt_landing(airport)
+      plane = Plane.new
+      subject.weather = :sunny
+      subject.land(plane)
 
-      expect(airport.land(plane)).to eq("Not possibile -> Plane already landed")
+      expect { subject.land(plane) } .to raise_error("Not possibile -> Plane already landed")
     end
 
     it "confirms plane is in the right airport" do
@@ -53,7 +55,8 @@ RSpec.describe Airport do
 
     it "to not take off if weather is stormy" do
       weather(:stormy)
-      expect(subject.takeoff(plane)).to eq "Stormy weather: Take off denied"
+
+      expect { subject.takeoff(plane) }.to raise_error("Stormy weather: Take off denied")
     end
 
     it "takes off from the airport it is in" do
@@ -70,7 +73,8 @@ RSpec.describe Airport do
 
     it "cannot receive takeoff command if already flying" do
       land_and_takeoff
-      expect(subject.takeoff(plane)).to eq "Plane already flying"
+
+      expect { subject.takeoff(plane) }.to raise_error("Plane already flying")
     end
 
     it "cannot be in the airport if already flying" do
@@ -82,20 +86,18 @@ RSpec.describe Airport do
 
   context "TEST: landing and takeoff of multiple planes" do
     it "allows landing of multiple planes " do
-      count = land_multiple_planes(10)
-      expect(subject.hangar.count).to be >= count
+      land_multiple_planes(10)
+      expect(subject.hangar).not_to be_empty
     end
 
     it "allows multiple plane takeoff" do
       land_multiple_planes(10)
-      count = takeoff_multiple_planes
-      expect(subject.hangar.size).to be >= count
+      takeoff_multiple_planes(100)
+      expect(subject.hangar.size).to be > 0
     end
 
     it "prevents landing if no space" do
-      count = land_multiple_planes(100)
-      weather(:sunny)
-      expect(subject.land(plane)).to eq "Landing not possible"
+      expect { land_multiple_planes(100) }.to raise_error "Landing not possible"
     end
   end
 

@@ -20,9 +20,6 @@ class Airport
   end
 
   def takeoff(plane)
-    return "Plane already flying" if plane.status == :flying 
-    
     plane_take_off(plane)
   end
-
 end
