@@ -35,6 +35,12 @@ describe Airport do
       expect(@airport_bad_weather.planes).not_to include @plane
     end
 
+    # airport is full behaviour
+    it 'prints a message if the airport is full' do
+      10.times { @airport_good_weather.land Plane.new }
+      expect { @airport_good_weather.land @plane }.to output("Sorry, no more room!\n").to_stdout
+    end
+
   end
   
   describe '.clear_for_takeoff' do
