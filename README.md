@@ -38,7 +38,7 @@ airport.takeoff(plane) # if there is a plane stored in airport plane will fly (i
 
 ## About
 When submitted this program had:
-*   11 tests, all passing
+*   14 tests, all passing
 *   100.00% test coverage -- 122/122 lines in 4 files
 *   0 linter warnings
 
