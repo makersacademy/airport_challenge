@@ -3,20 +3,22 @@ require 'airport'
 describe Airport do 
   
   before :each do
-    @airport = Airport.new(double(:weather))
     @plane = double(:plane)
   end
 
   describe '.land' do
-    it 'prints a confirmation message when a plane lands' do
-      expect { @airport.land @plane }.to output("Plane landed!\n").to_stdout
+    it 'prints a confirmation message if the weather is good' do
+      airport = Airport.new(double(:weather, status: "☀️"))
+      expect { airport.land @plane }.to output("Plane landed!\n").to_stdout
     end
-    it 'returns the airport object when a plane lands' do
-      expect(@airport.land @plane).to eq @airport
+    it 'returns the airport object if the weather is good' do
+      airport = Airport.new(double(:weather, status: "☀️"))
+      expect(airport.land @plane).to eq airport
     end
-    it 'stores the landed plane' do
-      @airport.land @plane
-      expect(@airport.planes).to include @plane
+    it 'stores the landed plane if the weather is good' do
+      airport = Airport.new(double(:weather, status: "☀️"))
+      airport.land @plane
+      expect(airport.planes).to include @plane
     end
   end
   
