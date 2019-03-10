@@ -20,7 +20,8 @@ class Airport
   end
 
   def add_plane(plane)
-    @fleet << plane
+    capacity_err_msg = "Sorry, this airport is already full"
+    full? ? raise(StandardError.new(capacity_err_msg)) : @fleet << plane
   end
 
   def remove_plane(plane)

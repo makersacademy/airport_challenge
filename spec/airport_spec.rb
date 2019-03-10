@@ -40,11 +40,15 @@ describe Airport do
     subject.remove_plane(plane)
     expect(subject.fleet).to eq []
   end
-  it "sets a default @capacity value equal to DEFAULT_CAPACITY constant in Airpot class when an airport object is instantiated" do
+  it "sets a default @capacity value equal to DEFAULT_CAPACITY constant in Airport class when an airport object is instantiated" do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
   it "can update @capacity using the update_capacity method and passing in a number" do
     subject.update_capacity(15)
     expect(subject.capacity).to eq 15
+  end
+  it "is expected to raise error if add_plane is called on a full airport" do
+    subject.capacity.times { subject.add_plane(1) }
+    expect { subject.add_plane(1) }.to raise_error(StandardError, "Sorry, this airport is already full")
   end
 end
