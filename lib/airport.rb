@@ -7,8 +7,13 @@ class Airport
   end
   
   def land(plane)
-    @planes << plane
-    puts 'Plane landed!'
+    case @weather.status
+    when "⛈"
+      puts "⛈ Sorry, too dangerous to land. ⛈"
+    when "☀️"
+      @planes << plane
+      puts 'Plane landed!'
+    end
     self
   end
 
@@ -17,8 +22,8 @@ class Airport
     when "⛈"
       puts "⛈ Sorry, all aircraft grounded until further notice. ⛈"
     when "☀️"
-      puts "☀️ Up, up and away! ☀️"
       @planes -= [plane]
+      puts "☀️ Up, up and away! ☀️"
     end
     self
   end

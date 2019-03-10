@@ -57,9 +57,12 @@ describe Airport do
       expect(@airport_bad_weather.clear_for_takeoff @plane).to eq @airport_bad_weather
     end
     it 'leaves the plane in the airport if the weather is bad' do
-      @airport_bad_weather.land @plane
-      @airport_bad_weather.clear_for_takeoff @plane
-      expect(@airport_bad_weather.planes).to include @plane
+      weather = double(:weather)
+      allow(weather).to receive(:status).and_return("☀️", "⛈")
+      airport = Airport.new(weather)
+      airport.land @plane
+      airport.clear_for_takeoff @plane
+      expect(airport.planes).to include @plane
     end
 
   end
