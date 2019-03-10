@@ -1,6 +1,7 @@
 require 'weather'
 describe Weather do
-  it 'is normally not stormy' do
-    expect(subject.stormy?).to eq false
+  it 'the weather can be changed to stormy' do
+    subject.stormy = true
+    expect(subject.stormy?).to eq true
   end
 end
