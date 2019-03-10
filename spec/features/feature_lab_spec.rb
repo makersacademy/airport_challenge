@@ -29,7 +29,7 @@ describe "Features lab:" do
     it 'Plane leaves current airport' do
       airport_2 = Airport.new(weather_reporter, 20)
       airport_2.land(plane)
-      expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Plane not at this airport.'
+      expect { airport.take_off(plane) }.to raise_error "Plane can't take off; Not at airport."
     end
 
     context 'When full' do
@@ -50,7 +50,7 @@ describe "Features lab:" do
       expect { airport.land(plane) }.to raise_error 'Cannot land plane; Weather is stormy!'
     end
     it 'No taking off' do
-      expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Weather is stormy!'
+      expect { airport.take_off(plane) }.to raise_error 'Plane cannot take off; Weather is stormy!'
     end
   end
 end

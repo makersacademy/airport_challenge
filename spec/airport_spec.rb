@@ -44,14 +44,14 @@ describe Airport do
       it 'raises an error if plane is not at this airport' do
         other_airport = described_class.new(weather_reporter, 20)
         other_airport.land(plane)
-        expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Plane not at this airport.'
+        expect { airport.take_off(plane) }.to raise_error "Plane can't take off; Not at airport."
       end
     end
 
     context 'When Stormy' do
       it 'raises an error' do
         allow(weather_reporter).to receive(:stormy?).and_return true
-        expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Weather is stormy!'
+        expect { airport.take_off(plane) }.to raise_error 'Plane cannot take off; Weather is stormy!'
       end
     end
   end
