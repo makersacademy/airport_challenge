@@ -1,6 +1,6 @@
 class Weather
   def weather_check
-    if (rand(100)) < 20
+    if rand(100) < 20
       return "Stormy"
     else
       return "Sunny"

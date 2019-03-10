@@ -1,5 +1,3 @@
-require 'weather'
-
 class Airport
   attr_accessor :runway
 
@@ -7,15 +5,29 @@ class Airport
     @runway = []
   end
 
-  def instructions(instruction,plane)
-     @plane = plane
-    if instruction == 'land' 
-      @runway << @plane
-    elsif instruction == 'takeoff'
-      if @runway != []
-        @runway.take(@runway.length - 1)
-      end
+  def land(plane)
+    @plane = plane
+    @runway << @plane
+  end
+
+  def takeoff(plane, weather)
+    @plane = plane
+    if weather == "Stormy"
+      return 'No take off allowed in stormy weather'
     end
-  end 
+
+    if @runway != []
+      @runway.take(@runway.length - 1)
+    end
+  end
 
 end
+  # def instructions(instruction,plane,weather)
+  #   @plane = plane
+  #   if instruction == 'land' 
+  #     @runway << @plane
+  #   elsif instruction == 'takeoff'
+  #     if @runway != []
+  #       @runway.take(@runway.length - 1)
+  #     end
+  #   end
