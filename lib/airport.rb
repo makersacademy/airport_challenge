@@ -12,7 +12,7 @@ class Airport
       puts "⛈ Sorry, too dangerous to land. ⛈"
     when "☀️"
       @planes << plane
-      puts 'Plane landed!'
+      puts '☀️ Plane landed! ☀️'
     end
     self
   end

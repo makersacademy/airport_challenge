@@ -12,7 +12,7 @@ describe Airport do
 
     # good weather behaviour
     it 'prints a confirmation message if the weather is good' do
-      expect { @airport_good_weather.land @plane }.to output("Plane landed!\n").to_stdout
+      expect { @airport_good_weather.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
     end
     it 'returns the airport object if the weather is good' do
       expect(@airport_good_weather.land @plane).to eq @airport_good_weather
