@@ -24,8 +24,9 @@ describe Airport do
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
     it 'the plane can take off when the weather is sunny' do
-      subject.stormy = false
       plane = Plane.new
+      subject.land(plane)
+      subject.stormy = false
       expect { subject.take_off(plane) }.not_to raise_error
     end
 
@@ -42,6 +43,13 @@ describe Airport do
       subject.take_off(plane)
       after = subject.planes.length
       expect(before - after).to eq 1
+    end
+
+    it 'only can take off if it is in the arport' do
+      plane = Plane.new
+      subject.land(plane)
+      rogue_plane = "I'm not in the airport!"
+      expect{ subject.take_off(rogue_plane) }.to raise_error("This plane is not at the airport!")
     end
   end
 
