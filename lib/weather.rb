@@ -2,6 +2,10 @@ class Weather
 
   def stormy?
 
+    if weather_status == "stormy"
+      true
+    end
+
   end
 
   def weather_status

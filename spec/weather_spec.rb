@@ -19,9 +19,9 @@ describe Weather do
     expect(["stormy","sunny"]).to include (weather.weather_status)
   end
 
-  # it 'expects stormy? to return `true` if `weather_status` is equal to `stormy`' do
-  #   allow(weather).to receive(:weather_status).and_return("stormy")
-  #   expect(weather.stormy?).to eq true
-  # end
+  it 'expects stormy? to return `true` if `weather_status` is equal to `stormy`' do
+    allow(model_weather).to receive(:weather_status).and_return("stormy")
+    expect(weather.stormy?).to eq true
+  end
   
 end
