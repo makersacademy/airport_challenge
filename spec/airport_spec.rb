@@ -14,9 +14,16 @@ RSpec.describe Airport do
       expect(subject.hangar).to include(plane)
     end
 
-    it "land at an airport only if there is space" do
-
+    it "land at an airport only if there is available space" do
+      airport = Airport.new(0)
+      airport.land(plane)
+      
+      expect(airport.land(plane)).to eq("Landing not possible")
     end 
+
+    it "not land if weather is stormy" do
+    
+    end
 
   end
 
@@ -27,7 +34,7 @@ RSpec.describe Airport do
       expect(subject.takeoff(plane)).to eq("Plane has taken off")
     end
 
-    it "prevents plane from taking off if weather is stormy" do
+    it "to not take off if weather is stormy" do
       weather(:bad)
       expect(subject.takeoff(plane)).to eq "Stormy weather: Take off denied"
     end

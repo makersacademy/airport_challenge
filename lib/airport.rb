@@ -2,16 +2,23 @@ require 'plane'
 require 'weather'
 
 class Airport
-  attr_reader :hangar
+  attr_reader :hangar, :capacity
   attr_accessor :weather
 
-  def initialize
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
-    @hangar << plane
-    "Landed"
+    if @hangar.length < capacity
+      @hangar << plane
+      plane_landed
+    else 
+      denied_landing
+    end
   end
 
   def takeoff(plane)
@@ -52,5 +59,13 @@ class Airport
 
   def plane_has_not_left
     "Plane has not take off yet"
+  end
+
+  def plane_landed
+    "Landed"
+  end
+  
+  def denied_landing
+    "Landing not possible"
   end
 end
