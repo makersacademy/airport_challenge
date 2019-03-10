@@ -1,4 +1,4 @@
-Airport Challenge
+# Airport Challenge
 
 [Getting started](#getting-started) | [Usage](#Usage) |
 [Running tests](#running-tests) | [Brief](#Brief) | [Approach](#Approach) |
@@ -10,7 +10,7 @@ dependent on airport capacity and flying conditions.
 
 ### Getting Started
 1. Clone to your local machine using
-  git@github.com:LaurenQurashi/airport_challenge.git
+  `git@github.com:LaurenQurashi/airport_challenge.git`
 2. Run `gem install bundle`
 3. Run `bundle`
 
