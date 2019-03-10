@@ -31,6 +31,18 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes.include?(plane)).to eq true
     end
+
+    it 'it is not in the airport before landing' do
+      plane = Plane.new
+      expect(subject.planes.include?(plane)).to eq false
+    end
+
+    it 'it is not in the airport after taking off' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes.include?(plane)).to eq false
+    end
   end
 
   describe '#take_off' do
