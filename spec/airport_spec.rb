@@ -28,6 +28,12 @@ describe Airport do
       subject.take_off
       expect(subject.hangar).not_to include @plane
     end
+
+    it 'does not allow the same plane to land twice' do
+      2.times { allow(subject).to receive(:stormy?).and_return(false) }
+      subject.land(@plane)
+      expect { subject.land(@plane) }.to raise_error('Plane already landed!')
+    end
   end
 
   context 'weather is clear but hangar is full' do
