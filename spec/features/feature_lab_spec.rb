@@ -3,7 +3,7 @@ require 'airport'
 require 'plane'
 
 describe "Features lab:" do
-  let(:airport) { Airport.new(20, weather_reporter) }
+  let(:airport) { Airport.new(weather_reporter, 20) }
   let(:plane) { Plane.new }
   let(:weather_reporter) { WeatherReporter.new }
 
@@ -20,8 +20,14 @@ describe "Features lab:" do
       expect { airport.take_off(plane) }.not_to raise_error
     end
 
+    it 'Has a default capacity' do
+      default_airport = Airport.new(weather_reporter)
+      Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+      expect { default_airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
+    end
+
     it 'Plane leaves current airport' do
-      airport_2 = Airport.new(20, WeatherReporter.new)
+      airport_2 = Airport.new(weather_reporter, 20)
       airport_2.land(plane)
       expect { airport.take_off(plane) }.to raise_error 'Cannot take off plane; Plane not at this airport.'
     end
