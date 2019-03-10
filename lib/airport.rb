@@ -25,6 +25,7 @@ class Airport
     raise "Cannot depart due to stormy weather" if stormy?
 
     @hangar.delete(plane)
+    puts "#{plane} has taken off"
   end
 
   def stormy?
