@@ -41,6 +41,8 @@ class Control
     @stormy_weather = false
   end
 
+  private
+
   def full?
     @planes.length == @capacity
   end
