@@ -1,9 +1,13 @@
+require './lib/air_traffic_controller.rb'
+
 class Plane
-  def land
-    return "I am landing"
+  attr_reader :in_flight, :on_tarmac, :please_takeoff, :please_land
+
+  def in_flight
+    true
   end
-  
-  def takeoff
-    return "I am taking off"
+
+  def on_tarmac
+    true
   end
 end

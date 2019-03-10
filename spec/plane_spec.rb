@@ -1,14 +1,17 @@
 require 'plane'
 
 RSpec.describe 'Plane' do
+
+  a380 = Plane.new 
+
   context 'When describing a plane' do
-    it 'Should be able to land' do
-      a380 = Plane.new 
-      expect(a380.land).to eq "I am landing"  
+
+    it 'should have an inflight status so it cant takeoff while flying' do
+      expect(a380.in_flight).to eq true
     end
-    it 'Should be able to take off' do
-      a380 = Plane.new
-      expect(a380.takeoff).to eq "I am taking off"
+
+    it 'should have an on_tarmac status so it cant land while on the ground' do
+      expect(a380.on_tarmac).to eq true
     end
   end
 end

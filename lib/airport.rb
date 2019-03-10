@@ -1,5 +1,12 @@
 class Airport
-  def capacity(capacityarg = 5) 
-    return capacityarg
-  end
+  attr_reader :capacity
+  attr_reader :runway
+
+  def initialize(capacity = 5) 
+    @runway = []
+    @capacity = capacity
+  end 
+
+  
+
 end

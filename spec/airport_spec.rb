@@ -1,5 +1,5 @@
-require 'airport'
-require 'plane'
+require './lib/airport.rb'
+require './lib/plane.rb'
 
 RSpec.describe 'Airport' do
   context 'When describing an Airport' do
@@ -12,11 +12,11 @@ RSpec.describe 'Airport' do
     end
     
     it "Should have a capacity method" do
-      expect(Heathrow.capacity(5)).to eq 5
+      expect(Airport.new(9).capacity).to eq 9
     end
   
     it "Should have a default capacity" do
-      expect(Heathrow.capacity).to eq 5
+      expect(Airport.new.capacity).to eq 5
     end
 
     it "Should be able to access to plane class, which is on another file" do
@@ -24,7 +24,7 @@ RSpec.describe 'Airport' do
     end
 
     it "Should be able to track the number of planes there" do
-      expect(a380.class).to eq Plane
+      expect(Heathrow.runway).to eq []
     end
   end
 end
