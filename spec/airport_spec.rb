@@ -25,6 +25,12 @@ describe Airport do
       subject.land(plane)
       expect {subject.land(plane)}.to raise_error("The plane has already landed!")
     end
+
+    it 'is in the aiport after landing' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes.include?(plane)).to eq true
+    end
   end
 
   describe '#take_off' do
