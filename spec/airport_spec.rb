@@ -35,7 +35,7 @@ describe Airport do
       expect(@airport_bad_weather.planes).not_to include @plane
     end
 
-    # airport is full default behaviour
+    # default capacity behaviour
     it 'prints a message if the airport is full when using default capacity' do
       Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
       expect { @airport_good_weather.land @plane }.to output("Sorry, no more room!\n").to_stdout
@@ -50,6 +50,21 @@ describe Airport do
       expect(@airport_good_weather.planes).not_to include @plane
     end
 
+    # default capacity - 1 behaviour
+    it 'prints a message if the airport is one less than full when using default capacity' do
+      (Airport::DEFAULT_CAPACITY - 1).times { @airport_good_weather.land Plane.new }
+      expect { @airport_good_weather.land @plane }.to output("☀️ Plane landed! ☀️\n").to_stdout
+    end
+    # it 'returns the airport object if the airport is full when using default capacity' do
+    #   Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
+    #   expect(@airport_good_weather.land @plane).to eq @airport_good_weather
+    # end
+    # it 'does not store the plane if the airport is full when using default capacity' do
+    #   Airport::DEFAULT_CAPACITY.times { @airport_good_weather.land Plane.new }
+    #   @airport_good_weather.land @plane
+    #   expect(@airport_good_weather.planes).not_to include @plane
+    # end
+    
     # airport is full behaviour with custom capacity
     it 'prints a message if the airport is full when using custom capacity' do
       airport = Airport.new(double(:weather, status: "☀️"), 108)

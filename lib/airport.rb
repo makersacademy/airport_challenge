@@ -3,7 +3,7 @@ class Airport
   
   DEFAULT_CAPACITY = 10
 
-  def initialize(weather)
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @planes = []
   end
