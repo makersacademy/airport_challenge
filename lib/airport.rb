@@ -2,8 +2,8 @@
 
 # Goals
 # 1. Have planes land at the Airport
-# => Create an airport class.
-# => Create a plane class.
+# => Create an airport class **Done
+# => Create a plane class. **Done
 # => Get them to play nicely together
 # => Make use of an array to keep track of whats going on
 
@@ -42,12 +42,18 @@
 # => Be awesome
 
 
-# !!!!!!!!!!IMPORTANT!!!!!!! REMEMBER TO UN-COMMENT SEPC_HELPER!!!!!!!!
+# !!!!!!!!!!IMPORTANT!!!!!!! REMEMBER TO UN-COMMENT SPEC_HELPER!!!!!!!!
 class Airport
 # initialize area
+def initialize(capacity)
+  @capacity = capacity
+  @planes = []
+end
 
 # build area
   def land(plane)
+    raise 'Cannot land plane; Airport full' if @planes.length >= @capacity
+    @planes << plane
   end
 
   def take_off(plane)
