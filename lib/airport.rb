@@ -10,7 +10,7 @@ class Airport
   
   def land(plane)
     
-    if @planes.size == DEFAULT_CAPACITY
+    if @planes.size >= DEFAULT_CAPACITY
       puts "Sorry, no more room!"
       return self
     end
