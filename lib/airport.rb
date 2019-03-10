@@ -13,12 +13,15 @@ class Airport
 
   def land(plane)
     fail "The plane can't be landed - it is stormy" if @stormy == true
+
     fail "The plane can't land - the airport is full" if @planes.count >= 100
+
     @planes << plane
   end
 
   def take_off(plane)
     fail "The plane can't take off - it is stormy" if @stormy == true
-    @planes.pop
+    
+    @planes.delete(plane)
   end
 end
