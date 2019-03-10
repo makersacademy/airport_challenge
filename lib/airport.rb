@@ -7,6 +7,12 @@ class Airport
   end
   
   def land(plane)
+    
+    if @planes.size == 10
+      puts "Sorry, no more room!"
+      return self
+    end
+
     case @weather.status
     when "⛈"
       puts "⛈ Sorry, too dangerous to land. ⛈"
@@ -14,6 +20,7 @@ class Airport
       @planes << plane
       puts '☀️ Plane landed! ☀️'
     end
+    
     self
   end
 
