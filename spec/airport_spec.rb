@@ -27,6 +27,9 @@ describe Airport do
       expect { @airport_bad_weather.land @plane }
         .to output("⛈ Sorry, too dangerous to land. ⛈\n").to_stdout
     end
+    it 'returns the airport object if the weather is bad' do
+      expect(@airport_bad_weather.land @plane).to eq @airport_bad_weather
+    end
 
   end
   
