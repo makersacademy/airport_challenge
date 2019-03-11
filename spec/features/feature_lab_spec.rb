@@ -22,7 +22,10 @@ describe "Features lab:" do
 
     it 'Has a default capacity' do
       default_airport = Airport.new(weather_reporter)
-      Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+      Airport::DEFAULT_CAPACITY.times do
+        the_plane = Plane.new
+        default_airport.land(the_plane)
+      end
       expect { default_airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
     end
 
@@ -38,6 +41,16 @@ describe "Features lab:" do
       expect { flying_plane.airport}.to raise_error 'Plane cannot be at airport; Plane flying already!'
     end
 
+    it 'Error check; Grounded planes cannot fly' do
+      airport.land(plane)
+      expect { plane.land(airport) }.to raise_error 'Plane cannot fly; Grounded'
+    end
+
+    it 'Error check; Planes must be at airport' do
+      airport.land(plane)
+      expect(plane.airport).to eq airport
+    end
+
     it 'Plane leaves current airport' do
       airport_2 = Airport.new(weather_reporter, 20)
       airport_2.land(plane)
@@ -47,7 +60,8 @@ describe "Features lab:" do
     context 'When full' do
       it 'No activity' do
         20.times do
-          airport.land(plane)
+          the_plane = Plane.new
+          airport.land(the_plane)
         end
         expect { airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
       end
