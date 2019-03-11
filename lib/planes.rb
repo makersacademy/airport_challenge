@@ -1,4 +1,4 @@
-class Planes
+class Plane
   def passengers?
     true
   end
