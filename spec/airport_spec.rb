@@ -30,7 +30,7 @@ describe Airport do
 
         it 'stores the plane in the airport' do
           @airport.land @plane
-          expect(@airport.planes).to include @plane
+          expect(@airport.include? @plane).to eq true
         end
       end
 
@@ -46,7 +46,7 @@ describe Airport do
 
           it 'allows a plane to land' do
             @airport.land @plane
-            expect(@airport.planes).to include @plane  
+            expect(@airport.include? @plane).to eq true
           end
         end
 
@@ -77,7 +77,7 @@ describe Airport do
 
           it 'allows a plane to land' do
             @airport.land @plane
-            expect(@airport.planes).to include @plane  
+            expect(@airport.include? @plane).to eq true
           end
         end
 
@@ -108,7 +108,7 @@ describe Airport do
 
           it 'allows a plane to land' do
             @airport.land @plane
-            expect(@airport.planes).to include @plane  
+            expect(@airport.include? @plane).to eq true
           end
         end
 
@@ -129,12 +129,16 @@ describe Airport do
 
     context 'when the weather is bad' do
       before :each do
-        @airport = Airport.new(double(:weather, stormy?: true))
+        @weather = double(:weather)
+        allow(@weather).to receive(:stormy?).and_return true 
+        @airport = Airport.new(@weather)
       end
 
       context 'when the plane is already at the airport' do
         before :each do
-          @airport.planes << @plane
+          allow(@weather).to receive(:stormy?).and_return false 
+          @airport.land @plane
+          allow(@weather).to receive(:stormy?).and_return true
         end
 
         it 'raises an error' do
@@ -178,7 +182,7 @@ describe Airport do
 
         it 'removes the plane from the airport' do
           @airport.clear_for_takeoff @plane
-          expect(@airport.planes).not_to include @plane
+          expect(@airport.include? @plane).to equal false
         end
       end
 
@@ -186,9 +190,9 @@ describe Airport do
 
     context 'when the weather is bad' do
       before :each do
-        weather = double(:weather)
-        allow(weather).to receive(:stormy?).and_return(false, true)        
-        @airport = Airport.new(weather)
+        @weather = double(:weather)
+        allow(@weather).to receive(:stormy?).and_return(true)        
+        @airport = Airport.new(@weather)
         @plane = Plane.new
       end
 
@@ -200,7 +204,9 @@ describe Airport do
 
       context 'when the plane is at the airport' do
         before :each do
+          allow(@weather).to receive(:stormy?).and_return(false) # rewrite this without .receive, since we've already done that above?        
           @airport.land @plane
+          allow(@weather).to receive(:stormy?).and_return(true) # rewrite this without .receive, since we've already done that above?
         end
 
         it 'prints an unconfirmation message' do
@@ -214,7 +220,7 @@ describe Airport do
 
         it 'leaves the plane in the airport' do
           @airport.clear_for_takeoff @plane
-          expect(@airport.planes).to include @plane
+          expect(@airport.include? @plane).to eq true
         end
       end
 

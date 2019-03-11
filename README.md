@@ -51,6 +51,5 @@ After that I started writing user stories for the edge cases, and using the same
 Having had a look through the code review rubric, there are many places where my code is deficient! But here are some areas I was aware of before reading the rubric, and might have done differently if I was starting again now:
 
 - The tests for `.clear_for_takeoff` depend on `.land`. Would probably be better to  make these independent by... stubbing `airport.planes` or something?
-- `@airport.planes` should be private! 
-- When testing capacity, would it be better for the tests to simulate adding loads of planes to an airport somehow, rather than running `airport.land` over and over again? By stubbing or something? At the moment you could do `10.times { airport.planes << plane }`, but that's not good beacuse `airport.planes` should be private...
+- When testing capacity, would it be better for the tests to simulate adding loads of planes to an airport somehow, rather than running `airport.land` over and over again? By stubbing or something? Maybe this is OK though...
 - We've got three possible errors at the start of the `.land` method. Should we write tests to make sure they come in the correct priority? e.g. at the moment if the weather is bad and the airport is also at capacity, the 'bad weather' error will fire. do we need to test that the 'airport full' error doesn't fire in that situation?

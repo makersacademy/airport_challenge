@@ -1,6 +1,4 @@
 class Airport
-  attr_reader :planes
-  
   DEFAULT_CAPACITY = 3
 
   def initialize(weather, capacity = DEFAULT_CAPACITY)
@@ -29,6 +27,10 @@ class Airport
       puts "☀️ Up, up and away! ☀️"
     end
     self
+  end
+
+  def include?(plane)
+    @planes.include? plane
   end
 
   private
