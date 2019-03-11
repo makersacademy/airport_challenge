@@ -3,7 +3,7 @@ require 'weather'
 
 class Airport
   attr_accessor :hangar, :weather, :capacity
-  DEFAULT_CAPACITY = 25
+  DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
@@ -12,26 +12,18 @@ class Airport
   end
 
   def land(plane)
-    if weather.stormy? == true
-      return "There is a storm, cannot land"
-    end
-    if hangar.length > capacity
-      return "Hangar is full, cannot land"
-    end
+    "Plane already in hangar" if hangar.include?(plane) == true
+    "There is a storm, cannot land" if weather.stormy? == true
+    "Hangar is full, cannot land" if hangar.length > capacity
     hangar << plane
-    return "Plane has landed"
+    "Plane has landed"
   end
 
   def take_off(plane)
-
-    if hangar.include?(plane) == false
-      return "Error: Plane is not in hangar"
-    elsif weather.stormy? == true
-      return "There is a storm, can't take off"
-    else hangar.delete(plane)
-      return "Plane has taken off"
-    end
-
+    "Error: Plane is not in hangar" if hangar.include?(plane) == false
+    "There is a storm, can't take off" if weather.stormy? == true
+    hangar.delete(plane)
+    "Plane has taken off"
   end
 
 end
