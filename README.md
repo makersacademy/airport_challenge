@@ -34,22 +34,19 @@ After that I started writing user stories for the edge cases, and using the same
 ### Outstanding edge cases
 
 - Planes that are flying cannot take off / planes that are not flying cannot land
-  - Implement a `flying?` predicate method on the `Plane` class
-  - `airport.lane plane` will raise an error if `plane.flying? == false`
-  - & vice versa for taking off
-  - Implement a `take_off` and `land` method on the `Plane` class which alter the `flying` status of the plane as appropriate
-  - Have the `Airport` class call `plane.take_off` or `plane.land` when a plane takes off or lands to update the plane's `flying` status
-  - Test this by stubbing the `flying?` method
-  - Obviously write the test first though...
+  - I've implemented `land`, `take_off` and `.flying?` methods on the `Plane` object, including errors if you try and land a plane that's not flying or take_off a plane that it flying
+  - But need to make the airport's `land` and `clear_for_takeoff` methods to use these methods
 - Planes that are flying must not be in an airport
   - Um... similar to the above but the method on `Plane` which changes a plane's `flying` status to `true` should raise an error if the plane is in an airport? Or something?
 - Planes that are not flying must be in an airport
   - As above but... vice versa
 
-## Code quality or lack of
+## Code quality
 
-Having had a look through the code review rubric, there are many places where my code is deficient! But here are some areas I was aware of before reading the rubric, and might have done differently if I was starting again now:
+Here are some areas I was aware of before reading the code quality rubric, and might have done differently if I was starting again now:
 
 - The tests for `.clear_for_takeoff` depend on `.land`. Would probably be better to  make these independent by... stubbing `airport.planes` or something?
 - When testing capacity, would it be better for the tests to simulate adding loads of planes to an airport somehow, rather than running `airport.land` over and over again? By stubbing or something? Maybe this is OK though...
 - We've got three possible errors at the start of the `.land` method. Should we write tests to make sure they come in the correct priority? e.g. at the moment if the weather is bad and the airport is also at capacity, the 'bad weather' error will fire. do we need to test that the 'airport full' error doesn't fire in that situation?
+
+Having read the rubric now though, there are several more things I'm aware of!
