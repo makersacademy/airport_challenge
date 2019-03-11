@@ -4,7 +4,7 @@ require 'weather'
 
 describe Airport do
 
-  subject(:airport) { Airport.new }
+  subject(:airport) { Airport.new(2, weather) }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
 
@@ -15,9 +15,9 @@ describe Airport do
   it { is_expected.to respond_to(:land) }
 
   it 'tells the plane to land' do
-    allow(airport).to receive(:stormy?).and_return(false)
+    allow(weather).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:land)
-    airport.land(plane)
+    expect(airport.land(plane)).to eq [plane]
   end
 
   it 'checks same plane object is in the plane list after landing' do

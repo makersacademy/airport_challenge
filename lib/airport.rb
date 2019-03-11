@@ -12,6 +12,8 @@ class Airport
   end
 
   def land(plane)
+    p @capacity
+    p @weather
     raise "It is stormy. For safety reasons, the plane cannot land!" if stormy?
     raise "Airport capacity is reached! Plane cannot land." if capacity_reached?
     @plane_list << plane
