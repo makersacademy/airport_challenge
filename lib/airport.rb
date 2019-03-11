@@ -1,5 +1,9 @@
 require "./lib/plane.rb"
 
-class Airport 
+class Airport
 
+attr_accessor :hangar
+
+  def initialize
+  end
 end

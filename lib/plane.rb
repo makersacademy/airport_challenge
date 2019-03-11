@@ -1,8 +1,13 @@
 require "./lib/airport.rb"
 class Plane
 
-  def land
-    @location = airport
+attr_accessor :location, :hangar 
+
+  def initialize
+
+  end
+
+  def land(airport)
   end
 
   def take_off
