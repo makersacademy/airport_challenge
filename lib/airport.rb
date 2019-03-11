@@ -19,7 +19,6 @@ DEFAULT_CAPACITY = 20
     @planes.push(our_plane)
     end
 
-    private
 
     def full?
       @planes.count >= DEFAULT_CAPACITY
