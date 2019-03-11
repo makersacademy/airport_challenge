@@ -1,4 +1,4 @@
-
+<!-- 
                       __  __       _
                      |  \/  |     | |
           /L|0\      | \  / | __ _| | _____ _ __ ___
@@ -21,9 +21,9 @@ ___________**[o0o]**___________              |_|
        | |____| | | | (_| | | |  __/ | | | (_| |  __/
         \_____|_| |_|\__,_|_|_|\___|_| |_|\__, |\___|
                                            __/ |
-                                          |___/
+                                          |___/ -->
 
-Logo made using [https://www.kammerl.de/ascii/AsciiSignature.php](ASCII Text Signature Generator)
+Logo made using [ASCII Text Signature Generator](https://www.kammerl.de/ascii/AsciiSignature.php)
 
 ### The Task
 
