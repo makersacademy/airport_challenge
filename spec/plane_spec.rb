@@ -8,7 +8,7 @@ describe Plane do
   describe '#flying' do
     context "when it's initialized" do
       it "is true" do
-        expect(@plane.flying?).to eq true
+        expect(@plane.flying).to eq true
       end
     end
   end
@@ -17,7 +17,7 @@ describe Plane do
     context "plane is flying" do
       it "sets flying status to false" do
         @plane.land
-        expect(@plane.flying?).to eq false
+        expect(@plane.flying).to eq false
       end
     end
 
@@ -41,7 +41,7 @@ describe Plane do
       
       it "sets flying status to true" do
         @plane.take_off
-        expect(@plane.flying?).to eq true
+        expect(@plane.flying).to eq true
       end
     end
 
