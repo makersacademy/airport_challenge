@@ -116,4 +116,13 @@ describe Airport do
     end
   end
 
+  describe 'change capacity' do
+
+    it 'changes capacity to 400' do
+      airport = Airport.new(50)
+      airport.capacity = 400
+      expect(airport.capacity).to eq 400
+    end
+  end
+
 end

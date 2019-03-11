@@ -4,7 +4,8 @@ require_relative 'plane'
 class Airport
 
   DEFAULT_CAPACITY = 100
-  attr_reader :hangar, :capacity
+  attr_reader :hangar
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -26,6 +27,9 @@ class Airport
 
     @hangar.delete(plane)
     puts "#{plane} has taken off"
+  end
+
+  def update_capacity
   end
 
   def stormy?
