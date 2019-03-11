@@ -8,7 +8,7 @@ class Airport
   end 
 
   def land_plane(flying_plane)
-    if capacity = false 
+    if capacity == false 
       raise "Airport at capacity, cant land any more planes here!"
     else 
       @runway << flying_plane
