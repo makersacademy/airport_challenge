@@ -1,10 +1,10 @@
-# Weekend 1 Aiport challenge... yay!
+# Weekend 1 Airport challenge... yay!
 
 # Goals
 # 1. Have planes land at the Airport
 # => Create an airport class **Done
 # => Create a plane class. **Done
-# => Get them to play nicely together
+# => Get them to play nicely together **Done
 # => Make use of an array to keep track of whats going on **Done
 
 # 2. Have planes depart the Airport
@@ -62,6 +62,8 @@ class Airport
   def take_off(plane)
     raise 'Plane cannot take off; Weather is stormy!' if stormy?
     raise "Plane can't take off; Not at airport." unless at_airport?(plane)
+
+    plane
   end
 
   private

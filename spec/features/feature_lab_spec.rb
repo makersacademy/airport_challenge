@@ -26,6 +26,18 @@ describe "Features lab:" do
       expect { default_airport.land(plane) }.to raise_error 'Cannot land plane; Airport full'
     end
 
+    it 'Error check; Flying planes cannot take off' do
+      airport.land(plane)
+      flying_plane = airport.take_off(plane)
+      expect { flying_plane.take_off }.to raise_error 'Plane cannot take off; Plane flying already!'
+    end
+
+    it 'Error check; Flying planes cannot be in an airport' do
+      airport.land(plane)
+      flying_plane = airport.take_off(plane)
+      expect { flying_plane.airport}.to raise_error 'Plane cannot be at airport; Plane flying already!'
+    end
+
     it 'Plane leaves current airport' do
       airport_2 = Airport.new(weather_reporter, 20)
       airport_2.land(plane)

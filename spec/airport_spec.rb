@@ -15,6 +15,11 @@ describe Airport do
         expect(airport).to respond_to(:land).with(1).argument
       end
 
+      it 'Returns a plane that took off' do
+        airport.land(plane)
+        expect(airport.take_off(plane)).to eq plane
+      end
+
       context 'When full' do
         it 'raises an error' do
           20.times do
