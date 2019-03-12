@@ -95,10 +95,16 @@ describe Airport do
       end 
  	end 
 
-  describe 'random weather' do 
-    it 'weather is randomly at 90/10 not stormy' do 
-      
-    end
+  # describe 'random weather' do 
+  #   it 'weather is randomly at 90/10 not stormy' do 
+  #     airports = []
+  #     100.times do 
+  #       airports << Airport.new
+  #     end
 
-  end 
+  #     airports.each do |x|
+  #       x.random_weather
+  #     end   
+  #   end
+  # end 
 end
