@@ -1,6 +1,34 @@
 Airport Challenge
 =================
 
+My approach
+---------
+
+* I read the user stories and broke them down into things I need the programme to do
+* For each line of "I want to be able to do this", I wrote the simplest test, fixed it, and repeated. I refactored my code every time the test passed.
+* Every now and again I refactored tests to make them easier to read/find and to ensure they didn't do unnecessary steps
+* Every now and again I ran rubocop to lint my code
+* Once I had done enough tests to complete a particular thing the code should do, I check the user stories to make sure I was still following the brief
+
+* NOTE: I have started the feature test but haven't worked out how to make it work with RSpec feature yet.
+
+Reflection
+-------
+
+1. I didn't feature test anything in ```irb``` as I went. Would this have changed my design/approach at all?
+2. I have written what I think is the cleanest, simplest code for the task that I have ever written. My concern - have I actually answered all of the brief?
+3. My head just doesn't want to think up new edge cases!
+
+How to run my code
+-------
+
+1. Run any of the test files to test the classes. ```airport_spec``` or ```weather_spec``` or ```plane_spec```
+2. Run any of the commands in ```irb``` or a ruby file ```Airport.new``` ```Plane.new``` ```Weather.new```
+
+
+Airport Challenge
+=================
+
 ```
         ______
         _\____\___
@@ -36,25 +64,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +101,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
