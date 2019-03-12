@@ -87,13 +87,17 @@ describe Airport do
     it { is_expected.to respond_to(:capacity) }
 
     it 'should set the capacity when an airport is created' do
-      airport = Airport.new(30)
-      expect(airport.max_capacity).to eq 30
+      airport = Airport.new(3)
+      allow(airport).to receive(:current_weather) { "Sunny" }
+      3.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
     end
 
     it 'should set a default capacity when a new airport is created' do
       airport = Airport.new
-      expect(airport.max_capacity).to eq 20
+      allow(airport).to receive(:current_weather) { "Sunny" }
+      20.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
     end
 
     it 'should return 15 when there are 5 planes landed' do
