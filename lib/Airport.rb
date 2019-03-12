@@ -19,13 +19,10 @@ class Airport
   def take_off(plane)
     raise "No take-off allowed - Stormy weather" if current_weather == "Stormy"
     raise "There are no planes at the airport" if @plane_list.empty?
+    raise "That plane isn't at the airport" if !@plane_list.include?(plane)
 
-    if @plane_list.include?(plane)
-      @plane_list.delete(plane)
-      return "Successful take off"
-    end
-
-    raise "That plane isn't at the airport"
+    @plane_list.delete(plane)
+    return "Successful take off"
   end
 
   def include?(plane)
