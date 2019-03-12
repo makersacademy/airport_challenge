@@ -13,15 +13,6 @@ Airport Challenge
 
 ```
 
-**Makers Instructions and setup**
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
 Set Up Steps
 -------
 
@@ -171,11 +162,21 @@ Ensuring that planes can only take off from airports they are in.
 
 - i plan to test using 2 airports, and set a scenario where one plan leaves a wrong airport and raises an error. To pass this test I think i might be able to assign 2 airports or assign airport attribute on plane class (e.g. @airport = 1) and use a conditional statement in land. I would test both of these approaches to see which one would work/work better.
 
+- Use a mock for plane
 
 
 
 **Maker's extra notes & guidance**
 -------
+
+**Makers Instructions**
+
+* Challenge time: rest of the day and weekend, until Monday 9am
+* Feel free to use google, your notes, books, etc. but work on your own
+* If you refer to the solution of another coach or student, please put a link to that in your README
+* If you have a partial solution, **still check in a partial solution**
+* You must submit a pull request to this repo with your code by 9am Monday morning
+
 
 **BONUS**
 
