@@ -1,9 +1,7 @@
 class Weather
-  def current_weather
-    random = Random.rand(1..50)
-    p random
-    return "Sunny" if random != 25
+  STORM_POSSIBILITY = 1
 
-    return "Stormy"
+  def stormy?
+    STORM_POSSIBILITY < rand(1..50)
   end
 end
