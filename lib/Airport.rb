@@ -25,7 +25,7 @@ class Airport
     return "Successful take off"
   end
 
-  def include?(plane)
+  def has_plane?(plane)
     @plane_list.include?(plane)
   end
 

@@ -30,17 +30,17 @@ describe Airport do
   end
 
   describe '#plane_list' do
-    it { is_expected.to respond_to :include? }
+    it { is_expected.to respond_to :has_plane? }
 
     it 'should not include a new plane when the airport is empty' do
-      expect(subject.include?(Plane.new)).to eq false
+      expect(subject.has_plane?(Plane.new)).to eq false
     end
 
     it 'should show that my landed plane is in the airport' do
       allow(subject).to receive(:current_weather) { "Sunny" }
       my_plane = Plane.new
       subject.land(my_plane)
-      expect(subject.include?(my_plane)).to eq true
+      expect(subject.has_plane?(my_plane)).to eq true
     end
   end
 
@@ -66,7 +66,7 @@ describe Airport do
       my_plane = Plane.new
       subject.land(my_plane)
       subject.take_off(my_plane)
-      expect(subject.include?(my_plane)).to eq false
+      expect(subject.has_plane?(my_plane)).to eq false
     end
 
     it 'should stop a plane from taking off when the weather is Stormy' do
