@@ -12,7 +12,6 @@
 
 ```
 
-## Boris Bikes
 This program emulates all the requirements by air traffic controller to system designer in order to control the flow of planes at an airport and make changes to the airport plane capacity.
 
 ## Tech/framework used
