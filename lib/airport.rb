@@ -9,7 +9,6 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
-    @weather = Weather.new
   end
 
   def land(plane)
@@ -21,7 +20,6 @@ class Airport
   end
 
   def take_off(plane)
-    puts @hangar
     raise "Plane not in airport" unless @hangar.include?(plane)
     raise "Cannot depart due to stormy weather" if stormy?
 
@@ -30,7 +28,7 @@ class Airport
   end
 
   def stormy?
-    @weather.forecast == 'Stormy'
+    Weather.new.forecast == 'Stormy'
   end
 
   def full?

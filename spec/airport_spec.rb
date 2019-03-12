@@ -3,70 +3,62 @@ require 'weather'
 
 describe Airport do
 
+  let(:plane) { double :plane }
+  let(:plane2) { double :plane2 }
+
   context 'weather is clear' do
     before(:each) do
-      @plane = Plane.new
-      @plane2 = Plane.new
+      allow(subject).to receive(:stormy?).and_return(false)
     end
-
     it 'allows plane to land and logs landing' do
-      expect(subject).to receive(:stormy?).and_return(false)
-      subject.land(@plane)
-      expect(subject.hangar).to include @plane
+      subject.land(plane)
+      expect(subject.hangar).to include plane
     end
 
     it 'allows planes to land and logs second landing' do
-      2.times { expect(subject).to receive(:stormy?).and_return(false) }
-      subject.land(@plane)
-      subject.land(@plane2)
-      expect(subject.hangar).to include @plane2
+      subject.land(plane)
+      subject.land(plane2)
+      expect(subject.hangar).to include plane2
     end
 
     it 'allows plane to take off and logs the departure' do
-      2.times { expect(subject).to receive(:stormy?).and_return(false) }
-      subject.land(@plane)
-      subject.take_off(@plane)
-      expect(subject.hangar).not_to include @plane
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.hangar).not_to include plane
     end
 
     it 'does not allow the same plane to land twice' do
-      2.times { allow(subject).to receive(:stormy?).and_return(false) }
-      subject.land(@plane)
-      expect { subject.land(@plane) }.to raise_error('Plane already landed!')
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error('Plane already landed!')
     end
 
     it 'does not allow planes to take off unless in the airport' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      expect { subject.take_off(@plane) }.to raise_error('Plane not in airport')
-
+      expect { subject.take_off(plane) }.to raise_error('Plane not in airport')
     end
   end
 
   context 'weather is clear but hangar is full' do
-
+    before(:each) do
+      allow(subject).to receive(:stormy?).and_return(false)
+    end
     it 'raises an error when trying to land_plane' do
-      # ok that this is allow rather than expect?
-      100.times { allow(subject).to receive(:stormy?).and_return(false) }
-      100.times { subject.land(Plane.new) }
-      plane = Plane.new
+      100.times { subject.land(double(:plane)) }
       expect { subject.land(plane) }.to raise_error('Cannot land - airport full')
     end
   end
 
   context 'weather is stormy' do
-    before(:each) do
-      @plane = Plane.new
-    end
 
     it 'does not allow planes to land' do
-      expect(subject).to receive(:stormy?).and_return(true)
-      expect { subject.land(@plane) }.to raise_error('Cannot land due to stormy weather')
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane) }.to raise_error('Cannot land due to stormy weather')
     end
 
     it 'does not take off' do
-      subject.land(@plane)
-      expect(subject).to receive(:stormy?).and_return(true)
-      expect { subject.take_off(@plane) }.to raise_error('Cannot depart due to stormy weather')
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.land(plane)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.take_off(plane) }.to raise_error('Cannot depart due to stormy weather')
     end
   end
 
@@ -75,10 +67,16 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'can take a capacity from the user' do
-      airport = Airport.new(5000)
-      expect(airport.capacity).to eq 5000
+    it 'can take a higher capacity from the user' do
+      airport = Airport.new(500)
+      expect(airport.capacity).to eq 500
     end
+
+    it 'can take a lower capacity from the user' do
+      airport = Airport.new(4)
+      expect(airport.capacity).to eq 4
+    end
+
   end
 
   describe '#land' do
@@ -100,22 +98,20 @@ describe Airport do
   end
 
   describe '#full?' do
-
+    before(:each) do
+      allow(subject).to receive(:stormy?).and_return(false)
+    end
     it { is_expected.to respond_to :full? }
 
     it 'returns true if at capacity' do
-      100.times { expect(subject).to receive(:stormy?).and_return(false) }
-      100.times { subject.land(Plane.new) }
+      100.times { subject.land(double(:plane)) }
       expect(subject.full?).to eq true
     end
 
     it 'returns false if fewer planes than capacity' do
-      64.times { expect(subject).to receive(:stormy?).and_return(false) }
-      64.times { subject.land(Plane.new) }
+      64.times { subject.land(double(:plane)) }
       expect(subject.full?).to eq false
     end
   end
 
-# removed ability to change capacity due to potential risk that
-# there are more aeroplanes in the airport than the reduced capacity
 end
