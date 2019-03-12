@@ -1,6 +1,5 @@
 class Airport
 
-  attr_reader :plane_list
   attr_reader :max_capacity
 
   def initialize(max_capacity = 20)
@@ -19,7 +18,7 @@ class Airport
 
   def take_off(plane)
     raise "No take-off allowed - Stormy weather" if current_weather == "Stormy"
-    raise "There are no planes at the airport" if plane_list.empty?
+    raise "There are no planes at the airport" if @plane_list.empty?
 
     if @plane_list.include?(plane)
       @plane_list.delete(plane)
@@ -27,6 +26,10 @@ class Airport
     end
 
     raise "That plane isn't at the airport"
+  end
+
+  def include?(plane)
+    @plane_list.include?(plane)
   end
 
   def capacity

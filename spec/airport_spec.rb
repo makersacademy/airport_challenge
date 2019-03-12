@@ -15,7 +15,7 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "No landing allowed - Stormy weather"
     end
 
-    it 'should stop a plan from landing when the airport is full' do
+    it 'should stop a plane from landing when the airport is full' do
       allow(subject).to receive(:current_weather) { "Sunny" }
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
@@ -30,17 +30,17 @@ describe Airport do
   end
 
   describe '#plane_list' do
-    it { is_expected.to respond_to :plane_list }
+    it { is_expected.to respond_to :include? }
 
-    it 'should return no planes when airport is empty' do
-      expect(subject.plane_list).to eq []
+    it 'should not include a new plane when the airport is empty' do
+      expect(subject.include?(Plane.new)).to eq false
     end
 
     it 'should show that my landed plane is in the airport' do
       allow(subject).to receive(:current_weather) { "Sunny" }
       my_plane = Plane.new
       subject.land(my_plane)
-      expect(subject.plane_list).to include my_plane
+      expect(subject.include?(my_plane)).to eq true
     end
   end
 
@@ -54,7 +54,7 @@ describe Airport do
       expect(subject.take_off(my_plane)).to eq "Successful take off"
     end
 
-    it 'should raise an error if I try to make a non-existent plane take off' do
+    it 'should raise an error if I try to make a plane take off that is not in the airport' do
       allow(subject).to receive(:current_weather) { "Sunny" }
       my_plane = Plane.new
       subject.land(my_plane)
@@ -66,7 +66,7 @@ describe Airport do
       my_plane = Plane.new
       subject.land(my_plane)
       subject.take_off(my_plane)
-      expect(subject.plane_list).not_to include my_plane
+      expect(subject.include?(my_plane)).to eq false
     end
 
     it 'should stop a plane from taking off when the weather is Stormy' do
