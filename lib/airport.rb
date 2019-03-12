@@ -4,13 +4,11 @@ class Airport
 	 attr_reader :planes
 	 attr_accessor :stormy
 	 attr_accessor :capacity
-	 attr_accessor :default_capacity
+	 DEFAULT_CAPACITY = 20
 
-	 def initialize(default_capacity = 20, capacity = default_capacity, 
-    stormy = false)
+	 def initialize(capacity = DEFAULT_CAPACITY, stormy = false)
  		 @planes = []
  		 @stormy = stormy
- 		 @default_capacity = default_capacity
  		 @capacity = capacity
  		# if capacity != nil 
  		# @capacity = capacity  
@@ -24,12 +22,9 @@ class Airport
  		 raise 'cannot land' if stormy?
  		 raise 'Airport full' if full? 
  		 raise 'already landed' if @planes.include?(plane)
+ 		 plane.flying = false
+     @planes << plane 
 
- 		 @planes << plane 
- 	end 
-
-	 def check 
- 		 @planes
  	end 
 
 	 def takeoff(plane)
@@ -56,5 +51,7 @@ class Airport
  		# generates random value for stormy
  		 @stormy = rand < 0.2
  	end 
+
+
 
 end

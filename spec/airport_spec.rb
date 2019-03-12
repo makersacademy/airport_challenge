@@ -11,16 +11,21 @@ describe Airport do
   			 plane = Plane.new
   			 expect(subject.land(plane)).to eq([plane])
   		end 
- 		# do I replace this test?
- 		# it 'initialize with no plane in airport' do 
- 		# expect()
- 		# end 
- 		 it 'check if any plane in airport and returns all planes' do
+
+ 		 it 'check if a plane in airport and returns that plane in airport' do
   			 plane = Plane.new
   			 subject.land(plane)
-  			 expect(subject.check).to eq([plane])
+  			 expect(subject.planes).to eq([plane])
   		end 
  		# maybe move this somewhere
+
+     it 'check if planes in airport and returns all planes in airport' do
+        
+        plane1 = Plane.new
+        plane2 = Plane.new
+         subject.land(plane1)
+         expect(subject.land(plane2)).to eq [plane1, plane2]
+     end 
 
  		 it 'prevents landing when weather is stormy' do
   			 plane = Plane.new
@@ -74,8 +79,8 @@ describe Airport do
   		end 
  	end 
 
-	 describe 'default capacity' do 
- 		 it 'it can change default capacity' do 
+	 describe 'capacity' do 
+ 		 it 'it sets capacity and can land plane within capacity' do 
   			# p Airport::DEFAULT_CAPACITY
   			# Airport::DEFAULT_CAPACITY = 30 
   			 airport1 = Airport.new(30)
@@ -85,6 +90,15 @@ describe Airport do
    			end 
   			 expect(airport1.planes.count).to eq 29
   		end 
+      it 'defaults to default capacity if capacity not set' do 
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end 
  	end 
 
+  describe 'random weather' do 
+    it 'weather is randomly at 90/10 not stormy' do 
+      
+    end
+
+  end 
 end

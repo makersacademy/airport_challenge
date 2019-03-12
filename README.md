@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-Instructions
+**Makers Instructions and setup**
 ---------
 
 * Challenge time: rest of the day and weekend, until Monday 9am
@@ -22,39 +22,41 @@ Instructions
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
+Set Up Steps
 -------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
+4. Run rspec for running tests.
+5. Complete the following task:
 
-Task
+
+**TASK SUMMARY**
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+- We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -69,13 +71,111 @@ For overriding random weather behaviour, please read the documentation to learn 
 
 Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+**APPROACH**
+-------
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+The initial step is to have break down each user story into 1-2 tests. For example, instruct plane to land. that would require the planes on the ground to have that plane landed.
+
+So to pass this test, and the other tests. I drew up a 'relationship' diagram, where there are 2 classes, Airport and Plane, with the method being land, takeoff etc. Then i defined attribute of airport class, stormy, which sets condition whether can takeoff/land. Same with validation of full?, which sets before action requirement for land.
+
+1.
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+```
+Tests(plane):
+plane class
+Tests(airport):
+plane lands in airport array
+
+2.
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+Tests(airport, take off)
+plane takes off and results in an empty airport array
+
+3.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+Tests(airport)
+Returns true or false stormy condition if a method is called
+raises an error when plane tries to takeoff  when stormy
+
+4.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+Tests(airport)
+Raises an error when planes tries to land when stormy.
+
+5.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+Tests(airport)
+Set the airport full by landing planes up to capacity and landing another plane would raise an error.
+
+6.
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+Tests(airport)
+
+Airport can set capacity and planes can land up to that capacity
+If capacity not set, it defaults to a set default capacity
+
+The last point is quite confusing, as I was thinking about changing default capacity, rather than changing capacity. Initially, I set the default capacity as variable in the test and code, however, later I changed default capacity to a constant, and capacity to variable. This way, the airport controller can set default capacity if needed.
+
+
+
+***Extras***
+
+**stub**
+
+To do the stub took quite a while(2- 3hours), as I experimented using a Double of airport, but it wouldn't respond to other methods in Airport class. So I used stub to set
+
+**edge cases**
+
+Then, to pass the extra validation tests:
+
+- Plane cannot takeoff if already flying,
+raise error if these conditions are present.
+Test: if plane is currently flying, it would raise error message when trying to takeoff.
+
+Code: I defined attribute and method flying in plane class, which would return true if flying and false if not. I made test to  The code to pass the test would be incorporated into the takeoff and land methods.
+
+
+- Cannot land if already landed.
+
+Test: if plane has already landed, it would raise error when trying to land.
+
+
+**Things I didn't do:**
+
+Ensuring that planes can only take off from airports they are in.
+
+- i plan to test using 2 airports, and set a scenario where one plan leaves a wrong airport and raises an error. To pass this test I think i might be able to assign 2 airports or assign airport attribute on plane class (e.g. @airport = 1) and use a conditional statement in land. I would test both of these approaches to see which one would work/work better.
+
+
+
+
+**Maker's extra notes & guidance**
+-------
 
 **BONUS**
 
@@ -85,6 +185,10 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+In code review we'll be hoping to see:
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* All tests passing
+* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
+* The code is elegant: every class has a clear responsibility, methods are short etc.
+
+Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
