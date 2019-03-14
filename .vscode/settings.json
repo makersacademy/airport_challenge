@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "ruby.rubocop.onSave": true,
+  "ruby.rubocop.executePath": "/Users/Jeremyrrsmith/.rvm/gems/ruby-2.5.0/bin/rubocop",
+  "ruby.lint": {
+    "reek": true,
+    "rubocop": true,
+    "ruby": true, //Runs ruby -wc
+    "fasterer": true,
+    "debride": true,
+    "ruby-lint": true
+  }
+}
