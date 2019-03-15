@@ -3,7 +3,7 @@ require_relative 'plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 100
+  DEFAULT_CAPACITY = 10
   attr_reader :hangar, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -15,8 +15,9 @@ class Airport
     raise "Plane already landed!" if @hangar.include?(plane)
     raise "Cannot land due to stormy weather" if stormy?
     raise "Cannot land - airport full" if full?
-
+    
     @hangar << plane
+    plane.land(self)
   end
 
   def take_off(plane)
@@ -27,6 +28,7 @@ class Airport
     puts "#{plane} has taken off"
   end
 
+# need to move this into the initialize method
   def stormy?
     Weather.new.forecast == 'Stormy'
   end

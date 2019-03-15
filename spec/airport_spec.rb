@@ -5,17 +5,21 @@ describe Airport do
 
   let(:plane) { double :plane }
   let(:plane2) { double :plane2 }
+  let(:plane3) { double :plane3 }
 
   context 'weather is clear' do
     before(:each) do
       allow(subject).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:land).with(subject)
     end
+
     it 'allows plane to land and logs landing' do
       subject.land(plane)
       expect(subject.hangar).to include plane
     end
 
     it 'allows planes to land and logs second landing' do
+      allow(plane2).to receive(:land).with(subject)
       subject.land(plane)
       subject.land(plane2)
       expect(subject.hangar).to include plane2
@@ -41,8 +45,13 @@ describe Airport do
     before(:each) do
       allow(subject).to receive(:stormy?).and_return(false)
     end
+
     it 'raises an error when trying to land_plane' do
-      100.times { subject.land(double(:plane)) }
+      Airport::DEFAULT_CAPACITY.times do
+        error_plane = double(:plane)
+        allow(error_plane).to receive(:land).with(subject)
+        subject.land(error_plane)
+      end
       expect { subject.land(plane) }.to raise_error('Cannot land - airport full')
     end
   end
@@ -56,6 +65,7 @@ describe Airport do
 
     it 'does not take off' do
       allow(subject).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:land).with(subject)
       subject.land(plane)
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off(plane) }.to raise_error('Cannot depart due to stormy weather')
@@ -104,12 +114,20 @@ describe Airport do
     it { is_expected.to respond_to :full? }
 
     it 'returns true if at capacity' do
-      100.times { subject.land(double(:plane)) }
+      Airport::DEFAULT_CAPACITY.times do
+        capacity_plane = double(:plane)
+        allow(capacity_plane).to receive(:land).with(subject)
+        subject.land(capacity_plane)
+      end
       expect(subject.full?).to eq true
     end
 
     it 'returns false if fewer planes than capacity' do
-      64.times { subject.land(double(:plane)) }
+      (Airport::DEFAULT_CAPACITY - 1).times do
+        capacity_plane = double(:plane)
+        allow(capacity_plane).to receive(:land).with(subject)
+        subject.land(capacity_plane)
+      end
       expect(subject.full?).to eq false
     end
   end
