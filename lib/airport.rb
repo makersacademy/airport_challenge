@@ -6,16 +6,17 @@ class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :hangar, :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @hangar = []
+    @weather = weather
   end
 
   def land(plane)
     raise "Plane already landed!" if @hangar.include?(plane)
     raise "Cannot land due to stormy weather" if stormy?
     raise "Cannot land - airport full" if full?
-    
+
     @hangar << plane
     plane.land(self)
   end
@@ -28,9 +29,8 @@ class Airport
     puts "#{plane} has taken off"
   end
 
-# need to move this into the initialize method
   def stormy?
-    Weather.new.forecast == 'Stormy'
+    @weather.forecast == 'Stormy'
   end
 
   def full?
