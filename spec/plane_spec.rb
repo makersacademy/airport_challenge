@@ -33,6 +33,6 @@ describe Plane do
 
   it 'raises an error if trying to take off when already in an airport' do
     subject.land(airport)
-    expect{ subject.land(airport2) }.to raise_error 'Plane already landed at another airport'
+    expect { subject.land(airport2) }.to raise_error 'Plane already landed at another airport'
   end
 end

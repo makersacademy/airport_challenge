@@ -8,6 +8,7 @@ class Plane
 
   def land(airport)
     raise 'Plane already landed at another airport' unless @airport.nil?
+
     @flying = false
     @airport = airport
   end
