@@ -1,4 +1,4 @@
-require_relative 'weather.rb'
+require_relative 'weather'
 require_relative 'plane'
 
 class Airport

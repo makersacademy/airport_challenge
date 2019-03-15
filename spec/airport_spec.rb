@@ -5,7 +5,6 @@ describe Airport do
 
   let(:plane) { double :plane }
   let(:plane2) { double :plane2 }
-  let(:plane3) { double :plane3 }
 
   context 'weather is clear' do
     before(:each) do
