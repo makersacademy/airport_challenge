@@ -29,7 +29,7 @@ case to account for this change
 
 ## Introduction to the project
 
-This project is part of Week 1 of the Makers Academy software engineering programme. It focuses on test-driven development and object-oriented programming skills to satisfy the client's requirements presented in 'challenge_instructions.md'.
+This project is part of Week 1 of the Makers Academy 12-week software engineering programme. It focuses on test-driven development and object-oriented programming skills to satisfy the client's requirements presented in 'challenge_instructions.md'.
 
 The aim of this project is to write software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy in which case no planes can land or take off.
 
