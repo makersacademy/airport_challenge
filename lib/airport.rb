@@ -1,3 +1,5 @@
+require_relative './weather.rb'
+
 class Airport
 
   attr_reader :plane, :hangar, :capacity
@@ -6,6 +8,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -22,7 +25,7 @@ class Airport
   private
 
   def stormy?
-    conditions
+    @weather.conditions
   end
 
   def full?

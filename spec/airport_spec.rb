@@ -1,5 +1,4 @@
 require 'airport'
-#  require 'plane'
 
 describe "#airport" do
   let(:airport) { Airport.new }
