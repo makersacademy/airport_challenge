@@ -18,7 +18,8 @@ describe Airport do
 
     it 'raises an error if the weather is not safe to fly' do
       plane = double(:plane)
-      expect { subject.land_plane(plane, true) }.to raise_error 'Weather not safe to land'
+      subject.safe_to_fly = false
+      expect { subject.land_plane(plane) }.to raise_error 'Weather not safe to land'
     end
 
     it "plane is in the airport once it has landed" do
@@ -36,7 +37,8 @@ describe Airport do
     it 'raises an error if the weather is not safe to fly' do
       plane = double(:plane)
       subject.land_plane(plane)
-      expect { subject.take_off(true) }.to raise_error 'Weather not safe to take off'
+      subject.safe_to_fly = false
+      expect { subject.take_off }.to raise_error 'Weather not safe to take off'
     end
 
     it 'plane is not at the airport once it has taken off' do
@@ -59,7 +61,4 @@ describe Airport do
     end
   end
 
-  it 'safe to fly can be true all false depending on the weather' do
-    expect(subject.safe_to_fly).to eq(true).or eq(false)
-  end
 end
