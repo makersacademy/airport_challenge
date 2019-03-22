@@ -7,15 +7,14 @@ describe Plane do
   describe '#landing' do
     it 'lands at airport' do
       allow(subject).to receive(:landing).and_return(true)
-      allow(subject).to receive(:landed).and_return(true)
       ap = Airport.new
       ap.land_on_runway(subject)
       expect(ap.planes).to eq [subject]
     end
 
     it "doesn't land in a storm" do
-      weather = Weather.new
-      allow(weather).to receive(:random_weather).and_return("stormy")
+      weather = double(:weather)
+      allow(weather).to receive(:check_for_storm).and_return(true)
       subject.stormy?(weather)
       expect { subject.land }.to raise_error "Can't land in a storm"
     end
@@ -42,11 +41,10 @@ describe Plane do
     end
 
     it "doesn't take off in a storm" do
-      weather = Weather.new
-      allow(weather).to receive(:random_weather).and_return("stormy")
-      plane = Plane.new
-      plane.stormy?(weather)
-      expect { plane.take_off }.to raise_error "Can't take off in a storm"
+      weather = double(:weather)
+      allow(weather).to receive(:check_for_storm).and_return(true)
+      subject.stormy?(weather)
+      expect { subject.take_off }.to raise_error "Can't take off in a storm"
     end
 
     it "doesn't let flying planes take off" do

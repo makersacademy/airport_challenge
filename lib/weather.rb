@@ -6,9 +6,7 @@ class Weather
   end
 
   def random_weather
-    return "stormy" if rand(1..100) >= 90
-    
-    return "sunny"
+    return "stormy" if rand(1..100) >= 95
   end
 
   def check_for_storm
