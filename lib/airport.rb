@@ -19,6 +19,8 @@ class Airport
   end
 
   def take_off_from_runway(plane)
+    fail "Plane not told to take off" unless plane.take_off == true
+    
     plane_position = planes.index(plane)
     planes.slice!(plane_position)
   end

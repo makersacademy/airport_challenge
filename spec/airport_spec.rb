@@ -28,6 +28,12 @@ describe Airport do
       subject.take_off_from_runway(plane)
       expect(subject.planes).not_to include [plane]
     end
+
+    it 'only lets planes take off if told too' do
+      plane = Plane.new
+      allow(plane).to receive(:take_off).and_return(false)
+      expect { subject.take_off_from_runway(plane) }.to raise_error "Plane not told to take off"
+    end
   end
 
   describe '#airport capacity' do

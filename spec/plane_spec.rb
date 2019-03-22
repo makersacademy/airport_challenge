@@ -31,7 +31,7 @@ describe Plane do
 
   end
 
-  describe '#take_off' do
+  describe '#take off' do
     it 'takes off from airport' do
       ap = Airport.new
       allow(subject).to receive(:take_off).and_return(true)
@@ -53,14 +53,15 @@ describe Plane do
       expect { subject.take_off }.to raise_error "Flying plane can't take off"
     end
   end
+  describe '#plane status' do
+    it 'checks plane is flying' do
+      subject.taken_off
+      expect(subject.flying?).to eq true
+    end
 
-  it 'checks plane is flying' do
-    subject.taken_off
-    expect(subject.flying?).to eq true
-  end
-
-  it 'checks plane is at the airport' do
-    expect(subject.at_airport?).to eq true
+    it 'checks plane is at the airport' do
+      expect(subject.at_airport?).to eq true
+    end
   end
 
 end
