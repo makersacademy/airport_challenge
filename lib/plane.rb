@@ -17,10 +17,6 @@ class Plane
     @storm = true if weather.check_for_storm
   end
 
-  def landing?
-    true unless @landing == false
-  end
-
   def take_off
     fail "Can't take off in a storm" if storm == true
     fail "Flying plane can't take off" if flying == true

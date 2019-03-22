@@ -7,7 +7,9 @@ describe Plane do
   describe '#landing' do
     it 'lands at airport' do
       ap = Airport.new
-      allow(subject).to receive(:landing?).and_return(true)
+      plane = double(:plain)
+      allow(subject).to receive(:landing).and_return(true)
+      allow(plane).to receive(:landed).and_return(true)
       ap.land_on_runway(subject)
       expect(ap.planes).to eq [subject]
     end
@@ -34,7 +36,7 @@ describe Plane do
   describe '#take off' do
     it 'takes off from airport' do
       ap = Airport.new
-      allow(subject).to receive(:take_off).and_return(true)
+      allow(subject).to receive(:takes_off).and_return(true)
       ap.planes << subject
       ap.take_off_from_runway(subject)
       expect(ap.planes).not_to include [subject]

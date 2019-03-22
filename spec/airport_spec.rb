@@ -6,14 +6,15 @@ describe Airport do
   describe '#landing planes' do
     it 'accepts planes to land at airport' do
       plane = double(:plane)
-      allow(plane).to receive(:landing?).and_return(true)
+      allow(plane).to receive(:landing).and_return(true)
+      allow(plane).to receive(:landed).and_return(true)
       subject.land_on_runway(plane)
       expect(subject.planes).to include plane
     end
 
     it 'only accepts planes that have been told to land' do
       plane = double(:plane)
-      allow(plane).to receive(:landing?).and_return(false)
+      allow(plane).to receive(:landing).and_return(false)
       expect { subject.land_on_runway(plane) }.to raise_error "Plane not told to land"
     end
 
@@ -24,6 +25,7 @@ describe Airport do
       plane = double(:plane)
       allow(plane).to receive(:take_off).and_return(true)
       subject.planes << plane
+      allow(plane).to receive(:taken_off)
       subject.take_off_from_runway(plane)
       expect(subject.planes).not_to include plane
     end
@@ -39,7 +41,8 @@ describe Airport do
     it 'has a capacity' do
       ap = Airport.new(30)
       plane = double(:plane)
-      allow(plane).to receive(:landing?).and_return(true)
+      allow(plane).to receive(:landing).and_return(true)
+      allow(plane).to receive(:landed).and_return(true)
       ap.capacity.times { ap.land_on_runway(plane) }
       expect { ap.land_on_runway(plane) }.to raise_error "Airport at capacity"
     end
