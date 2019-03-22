@@ -15,7 +15,7 @@ class Airport
     check_weather
 
     # NOT WORKING
-    fail 'Weather is not good for take off' unless @safe_to_fly
+    fail 'Weather is not safe to take off' unless @safe_to_fly
 
     fail 'No planes at airport' if @planes.empty?
 
@@ -27,7 +27,7 @@ class Airport
     check_weather
 
     # NOT WORKING
-    fail 'Weather is not good for landing' unless @safe_to_fly
+    fail 'Weather is not safe for landing' unless @safe_to_fly
 
     fail 'Airport full' if @planes.count >= capacity
 
