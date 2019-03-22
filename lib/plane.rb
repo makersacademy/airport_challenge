@@ -13,7 +13,7 @@ class Plane
     @flying = false
   end
 
-  def stormy?(weather)
+  def stormy?(weather = Weather.new)
     @storm = true if weather.check_for_storm
   end
 
