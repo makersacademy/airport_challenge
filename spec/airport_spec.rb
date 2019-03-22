@@ -3,27 +3,26 @@ require 'airport'
 describe Airport do
   it { expect(subject).to respond_to(:land_plane) }
 
-  it { expect(subject).to respond_to(:check_weather) }
-
-  it 'it is not safe to takeoff when weather is stormy' do
-    subject.check_weather
-    expect(subject.safe_to_fly).to eq(true).or eq(false)
-  end
-
   describe '#land_plane' do
     it 'lands plane' do
       plane = Plane.new
       expect(subject.land_plane(plane)).to include plane
     end
 
-    it 'raises error when trying to land plane at full airport' do
+    it 'raises error when trying to land plane at full airport' do\
       20.times { subject.land_plane(Plane.new) }
       expect { subject.land_plane Plane.new }.to raise_error 'Airport full'
     end
 
+    it 'raises an error if the weather is not safe to fly' do
+      plane = Plane.new
+      expect { subject.land_plane(plane, true) }.to raise_error 'Weather not safe to land'
+    end
+
     it "plane is in the airport once it has landed" do
       plane = Plane.new
-      expect(subject.land_plane(plane)).to include plane
+      subject.land_plane(plane)
+      expect(subject.planes).to include plane
     end
   end
 
@@ -32,10 +31,17 @@ describe Airport do
       expect { subject.take_off }.to raise_error 'No planes at airport'
     end
 
-    it 'plane is not at the airport when it has taken off' do
+    it 'raises an error if the weather is not safe to fly' do
       plane = Plane.new
       subject.land_plane(plane)
-      expect(subject.take_off).to eq 'Plane has left the airport'
+      expect { subject.take_off(true) }.to raise_error 'Weather not safe to take off'
+    end
+
+    it 'plane is not at the airport once it has taken off' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      subject.take_off
+      expect(subject.planes).not_to include plane
     end
   end
 
@@ -49,5 +55,9 @@ describe Airport do
       airport = Airport.new
       expect(airport.capacity).to eq 20
     end
+  end
+
+  it 'safe to fly can be true all false depending on the weather' do
+    expect(subject.safe_to_fly).to eq(true).or eq(false)
   end
 end

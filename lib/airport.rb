@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_accessor :plane, :capacity, :safe_to_fly
+  attr_accessor :planes, :capacity
 
   DEFAULT_CAPACITY = 20
 
@@ -11,36 +11,28 @@ class Airport
     @planes = []
   end
 
-  def take_off
-    check_weather
-
-    # NOT WORKING
-    fail 'Weather is not safe to take off' unless @safe_to_fly
+  def take_off(stormy = @safe_to_fly)
 
     fail 'No planes at airport' if @planes.empty?
+
+    fail 'Weather not safe to take off' if stormy
 
     @planes.pop
     'Plane has left the airport'
   end
 
-  def land_plane(plane)
-    check_weather
+  def land_plane(plane, stormy = @safe_to_fly)
 
-    # NOT WORKING
-    fail 'Weather is not safe for landing' unless @safe_to_fly
+    fail 'Weather not safe to land' if stormy
 
     fail 'Airport full' if @planes.count >= capacity
 
     @planes << plane
   end
 
-  def check_weather
+  def safe_to_fly
     weather = Weather.new
-    if weather.generate_weather == 'stormy'
-      @safe_to_fly = false
-    else
-      @safe_to_fly = true
-    end
+    @safe_to_fly = weather.generate_weather
   end
 
 end

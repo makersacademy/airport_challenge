@@ -2,14 +2,13 @@ require 'weather'
 
 describe Weather do
   describe '#generate_weather' do
-    it { expect(subject).to respond_to(:generate_weather) }
 
     it 'weather can be stormy or sunny' do
-      expect(subject.generate_weather).to eq("stormy").or eq("sunny")
+      expect(subject.generate_weather).to eq(true).or eq(false)
     end
 
     it 'weather can be stormy' do
-      expect(subject.generate_weather(1)).to eq("stormy")
+      expect(subject.generate_weather(1)).to eq(false)
     end
   end
 

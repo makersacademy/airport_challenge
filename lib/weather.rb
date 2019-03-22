@@ -3,14 +3,12 @@ class Weather
 
   def initialize
     @number = rand(1..4)
+    generate_weather
   end
 
   def generate_weather(number = @number)
-    if number == 1
-      "stormy"
-    else
-      "sunny"
-    end
+    (number != 1)
+    false
   end
 
 end
