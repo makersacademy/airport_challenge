@@ -1,4 +1,5 @@
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
   attr_reader :planes
@@ -12,7 +13,8 @@ class Airport
 
   def land_on_runway(plane)
     fail "Airport at capacity" if full?
-    
+    fail "Plane not told to land" unless plane.landing? == true
+
     planes << plane
   end
 

@@ -1,4 +1,5 @@
 require_relative 'weather'
+require_relative 'airport'
 
 class Plane
   attr_reader :landing
@@ -23,7 +24,7 @@ class Plane
   def take_off
     fail "Can't take off in a storm" if storm == true
     fail "Flying plane can't take off" if flying == true
-    
+
     @takes_off = true
   end
 
@@ -40,7 +41,8 @@ class Plane
   end
 
   def landed
-    @landing = false && @flying = false
+    @landing = false
+    @flying = false
   end
 
   def flying?
