@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane){double :plane}
+  let(:plane) { double :plane }
 
   it { expect(subject).to respond_to(:land_plane) }
 
