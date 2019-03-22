@@ -24,8 +24,8 @@ describe Airport do
     it 'checks plane is gone after take off' do
       plane = double(:plane)
       allow(plane).to receive(:take_off).and_return(true)
-      subject.planes << plane
       allow(plane).to receive(:taken_off)
+      subject.planes << plane
       subject.take_off_from_runway(plane)
       expect(subject.planes).not_to include plane
     end
