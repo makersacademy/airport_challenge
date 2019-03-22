@@ -5,6 +5,12 @@ require 'weather'
 describe Plane do
 
   describe '#landing' do
+    it 'can land' do
+      allow(subject).to receive(:flying).and_return(true)
+      subject.land
+      expect(subject.landing).to eq true
+    end
+
     it 'lands at airport' do
       allow(subject).to receive(:landing).and_return(true)
       ap = Airport.new
