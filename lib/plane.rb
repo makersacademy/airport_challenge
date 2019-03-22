@@ -4,6 +4,7 @@ class Plane
 attr_reader :landing
 attr_reader :take_off
 attr_reader :flying
+attr_reader :storm
 
   def initialize
     @landing = false
@@ -11,11 +12,17 @@ attr_reader :flying
     @flying = false
   end
 
+  def stormy?(weather)
+    @storm = true if weather.check_for_storm
+  end
+
   def landing?
     true unless @landing == false
   end
 
   def take_off
+    fail "Can't take off in a storm" if storm == true
+    fail "Flying plane can't take off" if flying == true
     @take_off = true
   end
 
@@ -25,6 +32,8 @@ attr_reader :flying
   end
 
   def land
+    fail "Can't land in a storm" if storm == true
+    fail "Landed plane can't land again" if flying == false
     @landing = true
   end
 

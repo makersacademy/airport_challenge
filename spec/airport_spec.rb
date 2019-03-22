@@ -4,9 +4,10 @@ require 'airport'
 describe Airport do
 
   it 'accepts planes instructed to land at airport' do
-    p = Plane.new
-    p.land
-    subject.land_on_runway(p)
+    plane = Plane.new
+    allow(plane).to receive(:flying).and_return(true)
+    plane.land
+    subject.land_on_runway(plane)
     expect(subject.planes.map { |plane| plane.landing?}).to eq [true]
   end
 
