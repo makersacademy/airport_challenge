@@ -1,26 +1,28 @@
 require 'airport'
 
 describe Airport do
+  let(:plane){double :plane}
+
   it { expect(subject).to respond_to(:land_plane) }
 
   describe '#land_plane' do
     it 'lands plane' do
-      plane = Plane.new
+      plane = double(:plane)
       expect(subject.land_plane(plane)).to include plane
     end
 
     it 'raises error when trying to land plane at full airport' do\
-      20.times { subject.land_plane(Plane.new) }
-      expect { subject.land_plane Plane.new }.to raise_error 'Airport full'
+      20.times { subject.land_plane(double(:plane)) }
+      expect { subject.land_plane double(:plane) }.to raise_error 'Airport full'
     end
 
     it 'raises an error if the weather is not safe to fly' do
-      plane = Plane.new
+      plane = double(:plane)
       expect { subject.land_plane(plane, true) }.to raise_error 'Weather not safe to land'
     end
 
     it "plane is in the airport once it has landed" do
-      plane = Plane.new
+      plane = double(:plane)
       subject.land_plane(plane)
       expect(subject.planes).to include plane
     end
@@ -32,13 +34,13 @@ describe Airport do
     end
 
     it 'raises an error if the weather is not safe to fly' do
-      plane = Plane.new
+      plane = double(:plane)
       subject.land_plane(plane)
       expect { subject.take_off(true) }.to raise_error 'Weather not safe to take off'
     end
 
     it 'plane is not at the airport once it has taken off' do
-      plane = Plane.new
+      plane = double(:plane)
       subject.land_plane(plane)
       subject.take_off
       expect(subject.planes).not_to include plane
