@@ -1,5 +1,3 @@
-
-
 class Weather
   attr_reader :weather
 
@@ -9,6 +7,7 @@ class Weather
 
   def random_weather
     return "stormy" if rand(1..100) >= 90
+    
     return "sunny"
   end
 

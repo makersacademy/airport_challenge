@@ -21,7 +21,7 @@ describe Plane do
 
     it "doesn't let landed planes land again" do
       subject.landed
-      expect{ subject.land }.to raise_error ("Landed plane can't land again")
+      expect { subject.land }.to raise_error "Landed plane can't land again"
     end
 
     it "checks landed planes are at the airport" do
@@ -50,7 +50,7 @@ describe Plane do
 
     it "doesn't let flying planes take off" do
       subject.taken_off
-      expect{ subject.take_off }.to raise_error ("Flying plane can't take off")
+      expect { subject.take_off }.to raise_error "Flying plane can't take off"
     end
   end
 

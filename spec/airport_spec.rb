@@ -8,7 +8,7 @@ describe Airport do
     allow(plane).to receive(:flying).and_return(true)
     plane.land
     subject.land_on_runway(plane)
-    expect(subject.planes.map { |plane| plane.landing?}).to eq [true]
+    expect(subject.planes.map { |airplane| airplane.landing? }).to eq [true]
   end
 
   it 'checks plane is gone after take off' do
@@ -21,8 +21,8 @@ describe Airport do
 
   it 'has a capacity' do
     ap = Airport.new(30)
-    ap.capacity.times {ap.land_on_runway(Plane.new)}
-    expect{ ap.land_on_runway(Plane.new) }.to raise_error ("Airport at capacity")
+    ap.capacity.times { ap.land_on_runway(Plane.new) }
+    expect { ap.land_on_runway(Plane.new) }.to raise_error "Airport at capacity"
   end
 
   it 'has a default capacity if left blank' do

@@ -1,14 +1,14 @@
 require_relative 'weather'
 
 class Plane
-attr_reader :landing
-attr_reader :take_off
-attr_reader :flying
-attr_reader :storm
+  attr_reader :landing
+  attr_reader :takes_off
+  attr_reader :flying
+  attr_reader :storm
 
   def initialize
     @landing = false
-    @take_off = false
+    @takes_off = false
     @flying = false
   end
 
@@ -23,17 +23,19 @@ attr_reader :storm
   def take_off
     fail "Can't take off in a storm" if storm == true
     fail "Flying plane can't take off" if flying == true
-    @take_off = true
+    
+    @takes_off = true
   end
 
   def taken_off
-    @take_off = false
+    @takes_off = false
     @flying = true
   end
 
   def land
     fail "Can't land in a storm" if storm == true
     fail "Landed plane can't land again" if flying == false
+
     @landing = true
   end
 

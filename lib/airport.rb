@@ -1,9 +1,9 @@
 require_relative 'weather'
 
 class Airport
-attr_reader :planes
-attr_accessor :capacity
-DEFAULT_CAPACITY = 20
+  attr_reader :planes
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -12,6 +12,7 @@ DEFAULT_CAPACITY = 20
 
   def land_on_runway(plane)
     fail "Airport at capacity" if full?
+    
     planes << plane
   end
 
