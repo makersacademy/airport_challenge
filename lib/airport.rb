@@ -1,7 +1,6 @@
 require_relative 'plane'
 
 class Airport
-
   def initialize
     @planes = []
   end
@@ -11,31 +10,28 @@ class Airport
   def landing_plane
   end
 
-  def airport_capacity(plane)
-    fail 'Airport is full' if empty?
-    @planes.pop
+  def airport_capacity(plane) #dockbike
+    fail 'Airport is full' if full?
+    @planes << plane
   end
 
   def land(plane)
     fail 'Stormy weather, do not land!' unless @plane
-    fail 'Airport is full' if full?
     @plane = plane
-    @planes << plane
   end
 
-  def take_off(plane)
-    fail 'Stormy weather, do not take off!' unless @plane
-    @plane
+  def take_off(plane) #releasebike
+    fail 'Stormy weather, do not take off!' if empty?
+    @planes.pop
   end
 
-private
+  private
 
-def full?
-  bikes.count >= 20
-end
+  def full?
+    @planes.count >= 20
+  end
 
-def empty?
-  @planes.empty?
-end
-
+  def empty?
+    @planes.empty?
+  end
 end
