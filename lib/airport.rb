@@ -8,6 +8,14 @@ class Airport
     @planes = []
   end
 
+  def landed(plane)
+    @planes << plane
+  end
+
+  def departed(plane)
+    @planes.delete_at(planes.index(plane))
+  end
+
   def full?
     @planes.size >= @capacity
   end

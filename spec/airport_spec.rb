@@ -23,4 +23,19 @@ describe Airport do
       expect(airport.capacity).to eq 5
     end
   end
+
+  describe "#landed" do
+    it "stores a planes properly landed" do
+      plane = double :plane
+      expect(subject.landed(plane)).to eq [plane]
+    end
+  end
+
+  describe "#departed" do
+    it "removes a plane from the list when departed" do
+      plane = double :plane
+      subject.planes << plane
+      expect(subject.departed(plane)).to eq plane
+    end
+  end
 end
