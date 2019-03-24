@@ -32,18 +32,20 @@ Reading the stories we think we will need the following objects and messages.
   * [take_off](#take_off)
 2. [Airport](#airport)
   * [full?](#full?)
+  * [landed](#landed)
+  * [departed](#departed)
 3. [Weather](#weather)
   * [stormy?](#stormy?)
 
 ## Plane
 
-The plane is going to have two different states, landed or flying. To set this state we are going to have a variable with the airport is landed in or is going to be "empty" if it is flying.
+The plane is going to have two different states, landed or flying. To set this state we are going to have a variable with the airport is landed in or is going to be "FLYING_STATUS" if it is flying.
 
 #### `land`
-When the plane is flying, the given airport is not full and the weather is not stormy we land the plane, setting the airport to the given one.
+When the plane is flying, the given airport is not full and the weather is not stormy we land the plane, setting the airport to the given one and adding the plane to the airport with `landed`.
 
 #### `take_off`
-When we are in the given airport and the weather is not stormy we will take off, setting the airport to "empty"
+When we are in the given airport and the weather is not stormy we will take off, setting the airport to "FLYING_STATUS" and removing the plane from the airport using the `departed` method.
 
 ## Airport
 
@@ -54,6 +56,12 @@ We will need as well a place to store the planes that the airport have. this wil
 
 #### `full?`
 We need a method to check if this capacity have been reached for the landing plane process. We compare the capacity with the size of our @planes variable.
+
+#### `landed`
+We store the given plane in the list of planes.
+
+#### `departed`
+We remove the given plane from the list of planes.
 
 ## Weather
 Whenever we have to land or take off we will have to check if it stormy.
