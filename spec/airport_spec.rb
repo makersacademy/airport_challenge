@@ -7,7 +7,7 @@ describe Airport do
   describe '#initialize' do
     it 'accept a capacity when initializing' do
       airport = Airport.new(30)
-      expect(airport.capacity).to eq (30)
+      expect(airport.capacity).to eq 30
     end
     it 'default capacity should be DEFAULT_CAPACITY' do
       airport = Airport.new
@@ -28,7 +28,7 @@ describe Airport do
       expect(airport).to receive(:storm).and_return(true)
       plane = double(:plane)
       airport.hanger << plane
-      expect{airport.take_off}.to raise_error "Can't take off due to stormy weather"
+      expect { airport.take_off }.to raise_error "Can't take off due to stormy weather"
     end
   end
 
@@ -51,14 +51,14 @@ describe Airport do
     it 'raises an error when airport full' do
       airport = Airport.new
       plane = double(:plane)
-      ::DEFAULT_CAPACITY.times {airport.hanger << plane}
-      expect {airport.land(plane)}.to raise_error "Airport full"
+      ::DEFAULT_CAPACITY.times { airport.hanger << plane }
+      expect { airport.land(plane) }.to raise_error "Airport full"
     end
     it 'prevent landing in stormy weather' do
       airport = Airport.new
       expect(airport).to receive(:storm).and_return(true)
       plane = double(:plane)
-      expect{airport.land(plane)}.to raise_error "Can't land due to stormy weather"
+      expect { airport.land(plane) }.to raise_error "Can't land due to stormy weather"
     end
   end
 end
