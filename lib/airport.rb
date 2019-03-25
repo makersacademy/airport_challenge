@@ -1,9 +1,14 @@
 class Airport
+  attr_reader :capacity
   attr_reader :hanger
-  def initialize
+  ::DEFAULT_CAPACITY = 20
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @hanger = []
+    @weather = ["stormy", "sunny"].sample
   end
   def land(plane)
+    fail "Airport full" if full?
     fail "Can't land due to stormy weather" if storm
     @hanger << plane
   end
@@ -15,11 +20,9 @@ class Airport
     @hanger.length
   end
   def storm
-    true if ["stormy", "sunny"].sample == "stormy"
+    true if @weather == "stormy"
+  end
+  def full?
+    true if @hanger.count >= DEFAULT_CAPACITY
   end
 end
-
-#airport = Airport.new
-#plane = Plane.new
-#puts airport.land(plane)
-#puts airport.take_off
