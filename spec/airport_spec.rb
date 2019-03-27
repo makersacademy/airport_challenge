@@ -29,10 +29,31 @@ describe '#land' do
   end
 end
 
-  it 'only allows #take_off in sunny weather' do
-    allow(weather).to receive(:stormy?).and_return true
-    expect { airport.take_off(plane) }.to raise_error("The weather is too stormy, you cannot take off")
+describe '#take_off' do
+  context 'in good weather' do
+    before do
+      allow(weather).to receive(:stormy?).and_return false
+    end
+
+    it 'removes a plane with #take off' do
+      airport.land(plane)
+      airport.take_off
+      expect(airport.hangar.length).to eq 0
+    end
+
   end
+
+  context 'in bad weather' do
+    before do 
+      allow(weather).to receive(:stormy?).and_return true
+    end
+
+    it 'raises an error' do
+      expect { airport.take_off }.to raise_error("The weather is too stormy, you cannot take off")
+    end
+  end
+
+end
 
   it 'only allows 5 planes to land' do
     allow(weather).to receive(:stormy?).and_return false

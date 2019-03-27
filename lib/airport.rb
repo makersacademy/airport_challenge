@@ -25,7 +25,7 @@ CAPACITY = 5
     end
   end
 
-  def take_off(plane)
+  def take_off
     if stormy?
       raise "The weather is too stormy, you cannot take off"
     else
