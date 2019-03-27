@@ -3,11 +3,13 @@ require_relative 'weather'
 
 class Airport
 
+CAPACITY = 5
+
   attr_reader :hangar, :capacity, :weather
 
-  def initialize(weather = Weather.new)
+  def initialize(weather = Weather.new, capacity = CAPACITY)
     @hangar = []
-    @capacity = 5
+    @capacity = capacity
     @weather = weather
   end
 
