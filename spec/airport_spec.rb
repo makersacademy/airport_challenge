@@ -36,11 +36,9 @@ describe Airport do
 
   it '#change_capacity changes the airport capacity' do
     allow(weather).to receive(:stormy?).and_return false
-    airport.land(plane)
-    airport.land(plane)
-    airport.land(plane)
-    airport.land(plane)
-    airport.land(plane)
+    5.times do
+      airport.land(plane)
+    end
     airport.change_capacity_to(10)
     airport.land(plane)
     expect(airport.hangar.length).to eql(6)
