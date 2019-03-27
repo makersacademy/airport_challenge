@@ -5,7 +5,7 @@ class Airport
 
 CAPACITY = 5
 
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :hangar, :capacity
 
   def initialize(weather = Weather.new, capacity = CAPACITY)
     @hangar = []
@@ -35,6 +35,14 @@ CAPACITY = 5
 
   def change_capacity_to(capacity)
     capacity > 0 ? @capacity = capacity : @capacity = 5
+  end
+
+  private
+
+  attr_reader :weather
+
+  def stormy?
+    weather.stormy?
   end
 
 end
