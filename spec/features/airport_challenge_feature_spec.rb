@@ -10,4 +10,9 @@ describe 'Airport' do
     expect(airport.hangar).to eql([plane])
   end
 
+  it 'only allows #take_off in sunny weather' do
+    allow(weather).to receive(:stormy?).and_return true
+    expect { airport.take_off(plane) }.to raise_error("The weather is too stormy, you cannot take off")
+  end
+
 end
