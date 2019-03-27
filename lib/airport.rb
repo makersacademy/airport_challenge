@@ -16,7 +16,7 @@ CAPACITY = 5
 
 
   def land(plane) 
-    if @weather.stormy? == false && @hangar.count >= @capacity
+    if !stormy? && @hangar.count >= @capacity
       raise "This airport is full, you cannot land here"
     elsif @weather.stormy? == false && @hangar.count < @capacity
       @hangar << plane
