@@ -28,4 +28,14 @@ describe 'Airport' do
     expect{ airport.land(plane) }.to raise_error("This airport is full, you cannot land here")
   end
 
+  it '#change_capacity changes the airport capacity' do
+    allow(weather).to receive(:stormy?).and_return false
+    5.times do
+      airport.land(plane)
+    end
+    airport.change_capacity_to(10)
+    airport.land(plane)
+    expect(airport.hangar.length).to eql(6)
+  end
+
 end
