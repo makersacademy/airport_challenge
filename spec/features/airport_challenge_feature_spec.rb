@@ -20,4 +20,12 @@ describe 'Airport' do
     expect { airport.land(plane) }.to raise_error 'The weather is too stormy, you cannot land'
   end
 
+  it 'only allows 5 planes to land' do
+    allow(weather).to receive(:stormy?).and_return false
+    5.times do
+      airport.land(plane)
+    end
+    expect{ airport.land(plane) }.to raise_error("This airport is full, you cannot land here")
+  end
+
 end
