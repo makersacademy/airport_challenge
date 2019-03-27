@@ -19,7 +19,7 @@ CAPACITY = 5
     if !stormy? && full?
       raise "This airport is full, you cannot land here"
     elsif !stormy? && !full?
-      @hangar << plane
+      add_to_hangar(plane)
     else 
       raise "The weather is too stormy, you cannot land"
     end
@@ -47,6 +47,10 @@ CAPACITY = 5
 
   def full?
     hangar.count >= capacity
+  end
+
+  def add_to_hangar(plane)
+    hangar << plane
   end
 
 end
