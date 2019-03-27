@@ -26,7 +26,7 @@ CAPACITY = 5
   end
 
   def take_off(plane)
-    if @weather.stormy? == true
+    if stormy?
       raise "The weather is too stormy, you cannot take off"
     else
       @hangar.pop
