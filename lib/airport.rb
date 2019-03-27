@@ -5,7 +5,7 @@ class Airport
 
 CAPACITY = 5
 
-  attr_reader :hangar, :capacity
+  attr_reader :hangar
 
   def initialize(weather = Weather.new, capacity = CAPACITY)
     @hangar = []
@@ -16,9 +16,9 @@ CAPACITY = 5
 
 
   def land(plane) 
-    if !stormy? && @hangar.count >= @capacity
+    if !stormy? && full?
       raise "This airport is full, you cannot land here"
-    elsif !stormy? && @hangar.count < @capacity
+    elsif !stormy? && !full?
       @hangar << plane
     else 
       raise "The weather is too stormy, you cannot land"
@@ -39,10 +39,14 @@ CAPACITY = 5
 
   private
 
-  attr_reader :weather
+  attr_reader :weather, :capacity
 
   def stormy?
     weather.stormy?
+  end
+
+  def full?
+    hangar.count >= capacity
   end
 
 end
