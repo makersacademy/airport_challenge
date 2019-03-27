@@ -11,10 +11,6 @@ describe Airport do
     airport.land(plane)
     expect(airport.hangar).to eql([plane])
   end
-     
-  it 'responds to #take_off' do
-    expect(airport).to respond_to(:take_off).with(1).argument
-  end
 
   it 'only allows #take_off in sunny weather' do
     allow(weather).to receive(:stormy?).and_return true
