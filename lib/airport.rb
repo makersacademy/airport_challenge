@@ -29,7 +29,7 @@ CAPACITY = 5
     if stormy?
       raise "The weather is too stormy, you cannot take off"
     else
-      @hangar.pop
+      remove_from_hangar
     end
   end
 
@@ -51,6 +51,10 @@ CAPACITY = 5
 
   def add_to_hangar(plane)
     hangar << plane
+  end
+
+  def remove_from_hangar
+    hangar.pop
   end
 
 end
