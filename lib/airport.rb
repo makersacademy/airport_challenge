@@ -20,11 +20,10 @@ class Airport
 	 def land(plane)
  		# p @planes.count	
  		 raise 'cannot land' if stormy?
- 		 raise 'Airport full' if full? 
+			raise 'Airport full' if full? 
+			@planes
  		 raise 'already landed' if @planes.include?(plane)
- 		 plane.flying = false
      @planes << plane 
-
  	end 
 
 	 def takeoff(plane)

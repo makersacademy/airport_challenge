@@ -7,7 +7,6 @@ class Plane
 
   def flying?
   		@flying
-  		# only flying or landed here
   end 
 
 
