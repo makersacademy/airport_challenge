@@ -6,7 +6,6 @@ describe Airport do
 	let(:plane) { double(:plane) }
 	let(:plane1) { double(:plane) }
 	let(:plane2) { double(:plane) }
-	
 
 	before do 
 		allow(plane).to receive(:flying).and_return(true)
@@ -65,7 +64,6 @@ describe Airport do
   		end 
 
  		 it 'prevents takeoff when stormy' do  				
-			allow(plane).to receive(:flying).and_return(true)	
 			subject.land(plane)
   			 subject.stormy = true
   			 expect { subject.takeoff(plane) }.to raise_error 'cannot takeoff'
