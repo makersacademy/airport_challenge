@@ -9,6 +9,8 @@ describe Airport do
 
 	before do 
 		allow(plane).to receive(:flying).and_return(true)
+		allow(plane1).to receive(:flying).and_return(true)
+		allow(plane2).to receive(:flying).and_return(true)
 	end 
 
 	 before { allow(subject).to receive(:stormy).and_return(false) }
