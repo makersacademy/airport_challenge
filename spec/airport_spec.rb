@@ -15,10 +15,25 @@ describe Airport do
 		expect(subject).to respond_to :capacity
 	end
 
+	it "has a variable planes" do
+		expect(subject).to respond_to :planes
+	end
+
 	describe "#take_off" do
 		
 		it "should release a plane" do
 			expect(subject.take_off).to be_instance_of Plane
+		end
+	end
+
+	describe "#land_a_plane" do
+
+		it "should add one to planes everytime it is called" do
+			airport = subject
+			airport.land_a_plane
+			expect(subject.planes).to eq 1
+			airport.land_a_plane
+			expect(subject.planes).to eq 2
 		end
 	end
 
