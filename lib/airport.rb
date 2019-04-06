@@ -6,6 +6,8 @@ class Airport
   end
 
   def take_off
-    @plane
+    @plane = nil
+    "The plane has taken off"
   end
+
 end
