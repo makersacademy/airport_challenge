@@ -15,6 +15,12 @@ describe Airport do
       15.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "The airport is full"
     end
+
+    it 'should be able to accept different capacities' do
+      allow(subject).to receive(:rand).and_return(1)
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error "The airport is full"
+    end
   end
 
   describe '#take_off' do
