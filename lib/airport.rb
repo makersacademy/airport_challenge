@@ -1,6 +1,6 @@
 class Airport
 
-    def land_a_plane
+    def land
     end
     
     def take_off
@@ -13,5 +13,8 @@ class Airport
     def plane
         @plane
     end
+
+    def stormy?
+    end    
 
 end
