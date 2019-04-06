@@ -12,7 +12,7 @@ describe Airport do
     it 'should not allow landing in stormy weather' do
       plane = Plane.new
       allow(subject).to receive(:rand).and_return(0)
-      expect{ subject.land(plane) }.to raise_error "Planes can't land in stormy weather"
+      expect { subject.land(plane) }.to raise_error "Planes can't land in stormy weather"
     end
   end
 
@@ -22,9 +22,9 @@ describe Airport do
       expect(subject.take_off).to eq 'The plane has taken off'
     end
 
-    it 'should not allow takeoff in stormy weather' do
+    it 'should not allow take off in stormy weather' do
       allow(subject).to receive(:rand).and_return(0)
-      expect{ subject.take_off }.to raise_error "Planes can't take off in stormy weather"
+      expect { subject.take_off }.to raise_error "Planes can't take off in stormy weather"
     end
 
   end
