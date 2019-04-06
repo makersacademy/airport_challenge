@@ -4,7 +4,7 @@ class Airport
 
   CAPACITY = 5
 
-  attr_reader :capacity
+  attr_accessor :capacity
   attr_reader :planes
 
   def initialize(capacity = CAPACITY)
@@ -13,24 +13,25 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "Plane cannot take off in this weather" if storm?
+    fail "Plane cannot take off in this weather" if storm
     plane = @planes.pop
-    "#{plane} has taken off"
+    "Plane has taken off"
   end
 
   def land(plane)
-    fail "Plane cannot land in this weather" if storm?
+    fail "Plane cannot land in this weather" if storm
+    fail "No space for plane to land" if full
     @planes << plane
     plane
   end
 
   private
 
-  def full?
+  def full
     @planes.count >= @capacity
   end
 
-  def storm?
+  def storm
     random_forecast == :stormy
   end
 

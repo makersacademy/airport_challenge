@@ -14,7 +14,7 @@ RSpec.describe Airport do
     it "allows plane to takeoff and confirms it has left airport" do
       allow(subject).to receive(:random_forecast) { :fine }
       plane = Plane.new
-      expect(subject.takeoff(plane)).to eq "#{plane} has taken off"
+      expect(subject.takeoff(plane)).to eq "Plane has taken off"
     end
   end
 
