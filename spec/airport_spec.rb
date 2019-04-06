@@ -10,8 +10,14 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'should allow to instruct a plane to take off' do
-      expect(subject.take_off).to eq "The plane has taken off"
+    it 'should allow a user to instruct a plane to take off' do
+      allow(subject).to receive(:rand).and_return(1)
+      expect(subject.take_off).to eq 'The plane has taken off'
+    end
+
+    it 'should not allow takeoff in stormy weather' do
+      allow(subject).to receive(:rand).and_return(0)
+      expect{ subject.take_off }.to raise_error "Planes can't take off in stormy weather"
     end
   end
 
