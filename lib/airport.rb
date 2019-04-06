@@ -9,18 +9,20 @@ class Airport
 
   def initialize(capacity = CAPACITY)
     @capacity = capacity
-    @planes = [] << rand(1..capacity).times.collect {Plane.new}
+    @planes = [] << rand(1..capacity).times.collect { Plane.new }
   end
 
-  def takeoff(plane)
+  def takeoff
     fail "Plane cannot take off in this weather" if storm
-    plane = @planes.pop
+
+    @planes.pop
     "Plane has taken off"
   end
 
   def land(plane)
     fail "No space for plane to land" if full
     fail "Plane cannot land in this weather" if storm
+
     @planes << plane
     plane
   end
