@@ -1,11 +1,13 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class AirPort
 
+  include WeatherConditions
   attr_reader :landed_plane
 
   def initialize
-    @landed_plane = []
+    @landed_plane ||= []
   end
 
   def land(plane)
@@ -13,7 +15,10 @@ class AirPort
   end
 
   def take_off(plane)
-    fail 'There are currently no planes' if @landed_plane.empty?
+    puts good_weather?
+    raise 'There are currently no planes' if @landed_plane.empty?
+
+    raise 'The weather is stormy' unless good_weather?
     
     delete_plane(plane)
     confirm?(plane)
@@ -28,4 +33,10 @@ class AirPort
     plane_id = @landed_plane.index(plane)
     @landed_plane.delete_at(plane_id)
   end
+
+  def good_weather?
+    airport_weather = WeatherConditions::Weather.new
+    airport_weather.good?
+  end
+
 end

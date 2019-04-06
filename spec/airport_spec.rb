@@ -18,6 +18,10 @@ RSpec.describe AirPort do
     it 'raises an error if there is no plane' do
       expect { subject.take_off(plane) }.to raise_error 'There are currently no planes'
     end
+    it 'raises and error if the weather is stormy' do
+      allow(subject).to receive(:good_weather?).and_return true
+      expect { subject.take_off(plane) }.to raise_error 'The weather is stormy'
+    end
   end
 
   describe '#landed_plane' do
@@ -25,5 +29,4 @@ RSpec.describe AirPort do
       expect(subject.landed_plane).to eq(Array.new)
     end
   end
-
 end
