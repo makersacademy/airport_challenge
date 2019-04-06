@@ -6,33 +6,32 @@ describe Airport do
     expect(initialize(10)).to eq @capacity
   end
 
-  describe '#land_plane' do
+  describe '#land' do
+    it 'raises an error if the airport is full' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("Unable to land a plane as the airport is full.")
+    end
     it 'lands a plane' do
-      expect(subject).to respond_to(:land_plane).with(1).argument
+      expect(subject).to respond_to(:land).with(1).argument
     end
     it 'stores a plane at the airport' do
       plane = Plane.new
-      subject.land_plane(plane)
+      subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
   end
 
-  describe '#plane_takeoff' do
+  describe '#take_off' do
     it 'confirms plane is no longer in airport' do
       plane = Plane.new
-      subject.land_plane(plane)
-      subject.plane_takeoff
+      subject.land(plane)
+      subject.take_off(plane)
       expect(subject.planes.empty?).to eq true
     end
     it 'raises an error if the airport is empty' do
-      expect { subject.plane_takeoff }.to raise_error("Airport is empty.")
-    end
-  end
-
-  describe '#empty?' do
-    it 'checks if the airport is empty' do
-      subject.land_plane(Plane.new)
-      expect(subject.empty?).to eq false
+      plane = Plane.new
+      expect { subject.take_off(plane) }.to raise_error("Unable to take off as the airport is empty.")
     end
   end
 
