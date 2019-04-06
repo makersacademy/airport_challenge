@@ -1,5 +1,10 @@
+require_relative "plane"
 class Airport
-  def plane_landed
+  def land
     Plane.new
   end
+
+  def airport(plane)
+    @plane = plane
+end
 end

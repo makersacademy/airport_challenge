@@ -2,7 +2,8 @@ require "Airport"
 
 describe Airport do
   describe "#plane_landed" do
-  it {is_expected.to respond_to :plane_landed }
-  it { expect(subject.plane_landed).to be_a Plane }
+  airport = Airport.new
+  plane = airport.land
+  it { expect(subject.land).to be_a Plane }
 end
 end
