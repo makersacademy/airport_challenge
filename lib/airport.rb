@@ -1,16 +1,13 @@
+require_relative 'plane'
 
 class Airport
-
-  def initialize
-
+attr_reader :plane
+  def land_plane(plane)
+    plane
   end
 
-  def land_plane
-
-  end
-
-  def take_off
-    
+  def take_off(plane)
+    plane
   end
 
 end
