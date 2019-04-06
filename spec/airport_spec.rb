@@ -17,12 +17,12 @@ describe Airport do
   describe '#take_off' do
     it 'should allow a plane to take_off' do
       plane = Plane.new
-      expect(subject.take_off(plane)). to eq plane
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
+    end
+
+    it 'raises an error when there are no planes in airport' do
+      expect(subject.take_off).to raise_error 'no planes available'
     end
   end
-
-
-
-
-
 end
