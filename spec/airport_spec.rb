@@ -7,18 +7,18 @@ describe Airport do
   describe '#recieve_plane' do
     it 'recieves plane' do
       plane = Plane.new
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       expect(subject.recieve_plane(plane)).to eq [plane]
     end
 
     it "raises error when airport is full" do
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       20.times { subject.recieve_plane Plane.new }
       expect { subject.recieve_plane(Plane.new) }.to raise_error("airport is full")
     end
 
     it "raises an error when stormy" do
-      allow(subject).to receive(:stormy?) {true}
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.recieve_plane(Plane.new) }.to raise_error("dangerous weather!")
     end
   end
@@ -36,11 +36,9 @@ describe Airport do
 
     it "raises an error when stormy" do
       subject.recieve_plane(Plane.new)
-      allow(subject).to receive(:stormy?) {true}
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.release_plane }.to raise_error("dangerous weather!")
     end
   end
 
 end
-
-#dangerous weather!
