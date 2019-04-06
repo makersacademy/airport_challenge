@@ -13,10 +13,11 @@ describe Airport do
   end
 
   it 'will not let planes land when full' do
+    plane = double :plane
     50.times do
-      airport.land_plane(:plane)
+      airport.land_plane(plane)
     end
-    expect { airport.land_plane(:plane) }.to raise_error "Airport is full"
+    expect { airport.land_plane(plane) }.to raise_error "Airport is full"
   end
 
 end
