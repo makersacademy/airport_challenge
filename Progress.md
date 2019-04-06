@@ -680,3 +680,104 @@ Weather condition is self-generated could redundant weather. stormy but keep wea
 
 ### Git commit.  
 Update Progress.md and git commit.
+
+
+## User Story 4
+> As an air traffic controller.  
+> To ensure safety.
+> I want to prevent landing when weather is stormy.
+
+### Doman model:  
+  Objects  | Messages.  
+  ------------- | -------------
+  Traffic controller |   
+  Weather |  is_stormy?
+  Airport  |   prevent_land_when_stormy
+
+> Weather <— is_stormy? —>  true/false.
+> Airport  <— prevent_land—> a Plane.  
+
+### Feature Test
+‘stormy?’ is an exciting feature, so new feature to be developed is ‘prevent_land’
+
+* expect to raise an error
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fa1fc8fd568>
+2.5.0 :003 > weather.stormy?
+ => false
+2.5.0 :004 > airport = Airport.new(weather)
+ => #<Airport:0x00007fa1fc8f5840 @weather=#<Weather:0x00007fa1fc8fd568>>
+2.5.0 :005 > plane = Plane.new
+ => #<Plane:0x00007fa1fc8edb18>
+2.5.0 :006 > airport.land(plane)
+ => #<Plane:0x00007fa1fc8edb18>
+2.5.0 :007 >
+```
+
+### Unit tests.  
+Update the unit tests:
+```
+context "when is not stormy:" do
+#some other code
+
+describe '#land' do
+      it 'land a plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        expect(subject.land(plane)).to eq plane
+      end
+    end
+
+#some other code
+
+ context "when stormy:" do
+#some other code
+
+    describe '#land' do
+      it "prevent land" do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane) }.to raise_error "it is stormy"
+      end
+    end
+
+#some other code
+
+```
+
+### code to pass the test.
+In the land method:
+
+```
+  def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    @plane = plane
+  end
+```
+
+### Feature test
+Pass the feature test.  
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007ffd9ea44540>
+2.5.0 :003 > airport = Airport.new(weather)
+ => #<Airport:0x00007ffd9ea2f870 @weather=#<Weather:0x00007ffd9ea44540>>
+2.5.0 :004 > plane = Plane.new
+ => #<Plane:0x00007ffd9ea37b60>
+2.5.0 :005 > airport.land(plane)
+ => #<Plane:0x00007ffd9ea37b60>
+2.5.0 :006 > airport.land(plane)
+ => #<Plane:0x00007ffd9ea37b60>
+2.5.0 :007 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):7
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:12:in `land'
+RuntimeError (it is stormy)
+2.5.0 :008 >
+```

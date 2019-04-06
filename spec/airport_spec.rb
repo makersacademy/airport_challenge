@@ -13,6 +13,7 @@ describe Airport do
 
     describe '#land' do
       it 'land a plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
         expect(subject.land(plane)).to eq plane
       end
     end
@@ -32,6 +33,13 @@ describe Airport do
   context "when stormy:" do
     attr_reader :weather, :subject, :plane
 
+    describe '#land' do
+      it "prevent land" do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane) }.to raise_error "it is stormy"
+      end
+    end
+
     describe '#take_off' do
       it "prevent takeoff" do
         allow(weather).to receive(:stormy?).and_return(true)
@@ -39,5 +47,4 @@ describe Airport do
       end
     end
   end
-
 end

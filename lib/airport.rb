@@ -9,6 +9,8 @@ class Airport
   end
 
   def land(plane)
+    raise "it is stormy" if weather.stormy?
+
     @plane = plane
   end
 
