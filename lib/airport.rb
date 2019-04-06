@@ -5,10 +5,11 @@ class Airport
 	attr_accessor :capacity, :planes
 
 	def land_a_plane
-		if @planes == nil
-			@planes = 1
+
+		if @planes
+			@planes += 1
 		else
-			@planes +=1
+			@planes = 1
 		end
 	end
 

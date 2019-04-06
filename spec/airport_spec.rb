@@ -35,6 +35,9 @@ describe Airport do
 			airport.land_a_plane
 			expect(subject.planes).to eq 2
 		end
+
+		it "should not allow a plane to land if airport is full"
+		
 	end
 
 	describe "@capacity" do
