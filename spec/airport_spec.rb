@@ -23,7 +23,7 @@ describe Airport do
     end
 
     it 'raises an error if the airport is empty' do
-      expect{subject.plane_takeoff}.to raise_error("Airport is empty.")
+      expect { subject.plane_takeoff }.to raise_error("Airport is empty.")
     end
   end
 
