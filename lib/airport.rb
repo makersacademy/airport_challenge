@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off
-    raise "it is stormy" if weather.stormy
+    raise "it is stormy" if weather.stormy?
 
     plane.taken_off?
     plane

@@ -390,3 +390,293 @@ NoMethodError (undefined method `take_off' for #<Airport:0x00007f8e0d09d6a0 @pla
  => #<Plane:0x00007fe1628a60d8 @taken_off=true>
 2.5.0 :006 >
 ```
+
+## User Story 3
+> As an air traffic controller.  
+> To ensure safety.    
+> I want to prevent takeoff when weather is stormy.
+
+### Doman model:  
+  Objects  | Messages.  
+  ------------- | -------------
+  Traffic controller |   
+  Weather |  is_stormy?
+  Airport  |   prevent_takeoff_when_stormy
+
+> Weather <— is_stormy? —>  true/false.
+> Airport  <— prevent_takeoff—> a Plane.    
+
+###  Feature test for Weather.  
+
+```
+2.5.0 :001 > weather = Weather.new
+Traceback (most recent call last):
+        2: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        1: from (irb):1
+NameError (uninitialized constant Weather)
+2.5.0 :002 >
+```
+
+### Unit Test.
+create a lib/weather_spec.rb file.
+
+```
+require 'weather'
+
+describe Weather do
+  before :each do
+    subject { described_class.new }
+  end
+
+  describe '#is_stormy?' do
+    it "check the weather being stormy " do
+      subject.is_stormy?
+      expect(subject.stormy). to eq true
+    end
+  end
+end
+```
+
+### Code to pass the unit test.
+create a lib/weather.rb file.  
+
+```
+class Weather
+  attr_reader :stormy
+
+  def stormy?
+    @stormy = true
+  end
+
+end
+```
+
+
+### Feature Test.    
+
+* pass the feature test for weather stormy.  
+```
+2.5.0 :001 > require './lib/weather'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fae8a134e90>
+2.5.0 :003 > weather.stormy?
+ => true
+2.5.0 :004 > weather.stormy
+ => true
+2.5.0 :005 > weather
+ => #<Weather:0x00007fae8a134e90 @stormy=true>
+2.5.0 :006 >
+```
+
+* Fail the feature test which supposed to raise an error as weather is stormy.
+```
+2.5.0 :006 > require "./lib/airport"
+ => true
+2.5.0 :007 > airport = Airport.new
+ => #<Airport:0x00007fae8a115428>
+2.5.0 :008 > plane = Plane.new
+ => #<Plane:0x00007fae8a1116e8>
+2.5.0 :009 > airport.land(plane)
+ => #<Plane:0x00007fae8a1116e8>
+2.5.0 :010 > airport.take_off
+ => #<Plane:0x00007fae8a1116e8 @taken_off=true>
+2.5.0 :011 >
+```
+
+### Unit Tests
+
+* Use Stub and Mock.  
+* extra the repeatedly assignment to ‘before do’   
+
+```
+require 'airport'
+
+describe Airport do
+
+  before(:each) do
+    @weather = double :weather
+    @subject = described_class.new(weather)
+    @plane = double :plane
+  end
+
+  context "when is not stormy:" do
+    attr_reader :weather, :subject, :plane
+
+    describe '#land' do
+      it 'land a plane' do
+        expect(subject.land(plane)).to eq plane
+      end
+    end
+
+    describe '#take_off' do
+
+      it 'take off a plane' do
+        allow(weather).to receive(:stormy).and_return(false)
+        allow(plane).to receive(:taken_off?).and_return(true)
+        subject.land(plane)
+        taken_off_plane = subject.take_off
+        expect(taken_off_plane.taken_off?).to eq true
+      end
+    end
+  end
+
+  context "when stormy:" do
+    attr_reader :weather, :subject, :plane
+
+    describe '#take_off' do
+      it "prevent takeoff" do
+        allow(weather).to receive(:stormy).and_return(true)
+        expect { subject.take_off }.to raise_error "it is stormy"
+      end
+    end
+  end
+
+end
+```
+
+### Code to pass unit test.
+
+```
+require_relative 'plane'
+require_relative 'weather'
+
+class Airport
+  attr_reader :plane, :weather
+
+  def initialize(weather)
+    @weather = weather
+  end
+
+  def land(plane)
+    @plane = plane
+  end
+
+  def take_off
+    raise "it is stormy" if weather.stormy
+
+    plane.taken_off?
+    plane
+  end
+end
+```
+
+
+
+### Feature Test
+
+* Pass the minimum requirement for feature test.
+
+```
+2.5.0 :001 > require "./lib/airport"
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fe3c8060ac8>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fe3c8058d50>
+2.5.0 :004 > airport = Airport.new(weather)
+ => #<Airport:0x00007fe3c80500b0 @weather=#<Weather:0x00007fe3c8060ac8>>
+2.5.0 :005 > airport.land(plane)
+ => #<Plane:0x00007fe3c8058d50>
+2.5.0 :006 > weather.stormy?
+ => true
+2.5.0 :007 > airport
+ => #<Airport:0x00007fe3c80500b0 @weather=#<Weather:0x00007fe3c8060ac8 @stormy=true>, @plane=#<Plane:0x00007fe3c8058d50>>
+2.5.0 :008 > airport.take_off
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):8
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `take_off'
+RuntimeError (it is stormy)
+2.5.0 :009 >
+```
+
+### Additional Feature
+* Generate the weather randomly.  
+
+```
+2.5.0 :001 > require './lib/weather.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007f7fd4877458>
+2.5.0 :003 > weather.stormy?
+ => true
+2.5.0 :004 > weather.stormy?
+ => true
+2.5.0 :005 > weather.stormy?
+ => true
+2.5.0 :006 > weather.stormy?
+ => true
+2.5.0 :007 > weather.stormy?
+ => true
+2.5.0 :008 >
+```
+
+Expected to have both true and false ; Update the unit tests to be:  
+
+```
+  describe '#stormy?' do
+    it "check the weather being stormy " do
+      allow(subject).to receive(:rand).and_return(2)
+      expect(subject.stormy?). to eq true
+    end
+
+    it "check the weather being stormy " do
+      allow(subject).to receive(:rand).and_return(5)
+      expect(subject.stormy?). to eq false
+    end
+  end
+```
+
+Pass the tests with code:
+
+```
+class Weather
+  attr_reader :stormy
+
+  def stormy?
+    rand(1..10) <= RATEOUTOFTEN
+  end
+
+  RATEOUTOFTEN = 3
+  private_constant :RATEOUTOFTEN
+
+end
+```
+
+Pass the Feature Test.
+
+```
+➜  airport_challenge git:(master) ✗ irb
+2.5.0 :001 > require './lib/weather.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007feb61937138>
+2.5.0 :003 > weather.stormy?
+ => false
+2.5.0 :004 > weather.stormy?
+ => false
+2.5.0 :005 > weather.stormy?
+ => false
+2.5.0 :006 > weather.stormy?
+ => true
+2.5.0 :007 > weather.stormy?
+ => true
+2.5.0 :008 > weather.stormy?
+ => true
+2.5.0 :009 > weather.stormy?
+ => true
+2.5.0 :010 > weather.stormy?
+ => true
+2.5.0 :011 > weather.stormy?
+ => false
+2.5.0 :012 > weather.stormy?
+ => false
+2.5.0 :013 >
+```
+
+### Refactor.  
+Weather condition is self-generated could redundant weather. stormy but keep weather.stormy? Update the code and tests accordingly.   
+
+### Git commit.  
+Update Progress.md and git commit.

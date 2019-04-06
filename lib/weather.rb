@@ -1,8 +1,10 @@
 class Weather
-  attr_reader :stormy
 
   def stormy?
-    @stormy = true
+    rand(1..10) <= RATEOUTOFTEN
   end
+
+  RATEOUTOFTEN = 3
+  private_constant :RATEOUTOFTEN
 
 end
