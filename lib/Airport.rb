@@ -1,5 +1,5 @@
 class Airport
-  def plane_landed(plane)
-    plane
+  def plane_landed
+    Plane.new
   end
 end

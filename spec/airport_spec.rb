@@ -1,10 +1,8 @@
 require "Airport"
 
 describe Airport do
+  describe "#plane_landed" do
   it {is_expected.to respond_to :plane_landed }
-
-  it "Allows Planes to land" do
-    plane = Plane.new
-    expect(subject.plane_landed(plane)).to eq plane
-  end
+  it { expect(subject.plane_landed).to be_a Plane }
+end
 end
