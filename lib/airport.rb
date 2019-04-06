@@ -11,5 +11,10 @@ class Airport
     @planes << plane
   end
 
+  def take_off(plane)
+    @planes.pop
+    "#{plane} is no longer at the airport"
+  end
+
 
 end

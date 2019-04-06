@@ -13,4 +13,12 @@ describe Airport do
       expect(subject.land(plane)).to eq [plane]
     end
   end
+
+  describe '#take_off' do
+    it 'instructs a plane to leave the airport and confirm' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq "#{plane} is no longer at the airport"
+    end
+  end
 end
