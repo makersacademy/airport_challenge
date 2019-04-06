@@ -1,9 +1,10 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  def initialize(capacity=10)
+    @capacity = capacity
     @planes = []
   end
 

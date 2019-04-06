@@ -2,11 +2,14 @@ require 'airport'
 
 describe Airport do
 
+  it 'takes an argument for setting capacity number' do
+    expect(initialize(10)).to eq @capacity
+  end
+
   describe '#land_plane' do
     it 'lands a plane' do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
-
     it 'stores a plane at the airport' do
       plane = Plane.new
       subject.land_plane(plane)
@@ -21,7 +24,6 @@ describe Airport do
       subject.plane_takeoff
       expect(subject.planes.empty?).to eq true
     end
-
     it 'raises an error if the airport is empty' do
       expect { subject.plane_takeoff }.to raise_error("Airport is empty.")
     end
