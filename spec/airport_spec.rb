@@ -13,7 +13,7 @@ describe Airport do
     it 'should not allow planes to land if the airport is full' do
       allow(subject).to receive(:rand).and_return(1)
       15.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error "The plane is unable to land"
+      expect { subject.land(Plane.new) }.to raise_error "The airport is full"
     end
   end
 
