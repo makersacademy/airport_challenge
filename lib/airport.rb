@@ -8,8 +8,8 @@ class Airport
   attr_reader :planes
 
   def initialize(capacity = CAPACITY)
-    @capacity = CAPACITY
-    @planes = []
+    @capacity = capacity
+    @planes = [] << rand(1..capacity).times.collect {Plane.new}
   end
 
   def takeoff(plane)
@@ -19,8 +19,8 @@ class Airport
   end
 
   def land(plane)
-    fail "Plane cannot land in this weather" if storm
     fail "No space for plane to land" if full
+    fail "Plane cannot land in this weather" if storm
     @planes << plane
     plane
   end
