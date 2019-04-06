@@ -3,4 +3,8 @@ class Airport
   def initialize
     @hanger = []
   end
+
+  def take_off(plane)
+    @hanger -= [plane]
+  end
 end
