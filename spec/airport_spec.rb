@@ -15,8 +15,14 @@ RSpec.describe AirPort do
   end
 
   describe '#take_off' do
-    it 'should let plane to take off' do
-      expect(subject.take_off(plane)).to eq(plane)
+    it 'raises an error if there is no plane' do
+      expect { subject.take_off(plane) }.to raise_error 'There are currently no planes'
+    end
+  end
+
+  describe '#landed_plane' do
+    it 'should return an array' do
+      expect(subject.landed_plane).to eq(Array.new)
     end
   end
 
