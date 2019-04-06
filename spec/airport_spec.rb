@@ -1,4 +1,5 @@
 require "airport"
+require "plane"
 
 describe Airport do
     
@@ -10,4 +11,9 @@ describe Airport do
     expect(subject).to respond_to :take_off
  end 
  
+ it 'confirms plane has taken off' do
+        plane = Plane.new
+        subject.taken_off(plane)
+        expect(subject.plane).to eq plane
+    end
 end
