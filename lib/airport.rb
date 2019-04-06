@@ -1,3 +1,6 @@
+require_relative 'weather'
+require_relative 'plane'
+
 class Airport
 
   attr_reader :planes_landed
