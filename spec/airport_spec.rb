@@ -13,4 +13,13 @@ describe Airport do
       expect(subject.planes).to eq [plane]
     end
   end
+
+  describe '#plane_takeoff' do
+    it 'confirms plane is no longer in airport' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      subject.plane_takeoff
+      expect(subject.planes.empty?).to eq true
+    end
+  end
 end
