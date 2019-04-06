@@ -3,11 +3,13 @@ require_relative 'plane'
 class Airport
   def land(plane)
     raise "Planes can't land in stormy weather" if stormy?
+
     @plane = plane
   end
 
   def take_off
     raise "Planes can't take off in stormy weather" if stormy?
+     
     @plane = nil
     "The plane has taken off"
   end
