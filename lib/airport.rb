@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   attr_reader :planes
 
@@ -11,7 +13,7 @@ class Airport
 
   def plane_takeoff
     raise "Airport is empty." if empty?
-    
+
     @planes[0]
     @planes.delete_at(0)
   end
