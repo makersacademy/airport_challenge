@@ -14,6 +14,12 @@ describe Airport do
       allow(subject).to receive(:rand).and_return(0)
       expect { subject.land(plane) }.to raise_error "Planes can't land in stormy weather"
     end
+
+    it 'should not allow planes to land if the airport is full' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "The airport is full"
+    end
   end
 
   describe '#take_off' do
@@ -26,7 +32,6 @@ describe Airport do
       allow(subject).to receive(:rand).and_return(0)
       expect { subject.take_off }.to raise_error "Planes can't take off in stormy weather"
     end
-
   end
 
 end
