@@ -22,4 +22,12 @@ describe Airport do
       expect(subject.planes.empty?).to eq true
     end
   end
+
+  describe '#empty?' do
+    it 'checks if the airport is empty' do
+      subject.land_plane(Plane.new)
+      expect(subject.empty?).to eq false
+    end
+  end
+
 end

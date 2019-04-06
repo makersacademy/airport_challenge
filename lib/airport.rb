@@ -14,4 +14,8 @@ class Airport
     @planes.delete_at(0)
   end
 
+  def empty?
+    @planes.empty?
+  end
+
 end
