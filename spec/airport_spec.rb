@@ -10,7 +10,7 @@ describe Airport do
   describe '#land' do
     it 'should land a plane' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq [plane]
     end
   end
 
@@ -22,7 +22,7 @@ describe Airport do
     end
 
     it 'raises an error when there are no planes in airport' do
-      expect(subject.take_off).to raise_error 'no planes available'
+      expect { subject.take_off }.to raise_error 'no planes available'
     end
   end
 end
