@@ -2,18 +2,23 @@ require_relative 'plane'
 
 class Airport
 
+  def initialize
+    @planes = []
+    @capacity = 15
+  end
+
   def land(plane)
     raise "The plane is unable to land" if stormy?
 
     raise "The plane is unable to land" if full?
 
-    @plane = plane
+    @planes << plane
   end
 
   def take_off
     raise "Planes can't take off in stormy weather" if stormy?
 
-    @plane = nil
+    @planes.pop
     "The plane has taken off"
   end
 
@@ -26,7 +31,7 @@ private
   end
 
   def full?
-    true if @plane
+    @planes.length >= @capacity
 
   end
 
