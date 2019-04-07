@@ -8,4 +8,11 @@ describe Plane do
       expect(subject.land(airport)).to eq "The plane has landed at #{airport}"
     end
   end
+  describe '#take_off' do
+    it 'should take off from an airport' do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject.take_off).to eq "The plane has taken off from #{airport}"
+    end
+  end
 end
