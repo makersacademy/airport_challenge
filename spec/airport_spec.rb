@@ -11,7 +11,7 @@ describe Airport do
 
   describe '#takeoff' do
     it 'plane can take off from airport' do
-      plane ='plane'
+      plane = 'plane'
       expect(subject.takeoff(plane)). to eq 'plane'
     end
   end
