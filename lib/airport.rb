@@ -9,12 +9,15 @@ class Airport
   end
 
   def land(plane)
-    fail "Plane has already landed!" if @planes.include?(plane)
+    fail "Plane has already landed!" unless plane.landed == false
+    plane.landed = true
     @planes << plane
   end
 
   def take_off
-    @planes.shift
+    plane = @planes.shift
+    plane.landed = false
+    return plane
   end
 
 end
