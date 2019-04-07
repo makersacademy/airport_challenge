@@ -1433,7 +1433,7 @@ RuntimeError (it is stormy)
         expect { subject.land(plane2) }.to raise_error "Error, the plane arleady in apron"
       end
 ```
- 
+
 #### code to pass the test   
 
 ```
@@ -1469,4 +1469,57 @@ Traceback (most recent call last):
         1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:18:in `land'
 RuntimeError (Error, the plane arleady in apron)
 2.5.0 :007 >
+```
+
+### Additional Feature, shall be able to takeoff according to the index ( first one as default)
+
+#### feature test
+
+```
+2.5.0 :007 > airport
+ => #<Airport:0x00007fec1c9d7b68 @weather=#<Weather:0x00007fec1c9e51a0>, @airport_apron=[#<Plane:0x00007fec1c9cfcb0 @in_apron=true>], @capcity=3>
+2.5.0 :008 > plane2 = Plane.new
+ => #<Plane:0x00007fec1c9b4320>
+2.5.0 :009 > airport.land(plane2)
+ => [#<Plane:0x00007fec1c9cfcb0 @in_apron=true>, #<Plane:0x00007fec1c9b4320 @in_apron=true>]
+2.5.0 :010 > airport.take_off(1)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):10
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:26:in `take_off'
+ArgumentError (wrong number of arguments (given 1, expected 0))
+2.5.0 :011 >
+```
+
+#### Unit test
+
+```
+      it 'allow to takeoff plane according to index' do
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        subject.take_off(1)
+        expect(subject.airport_apron.include?(plane2)).to eq false
+      end
+```
+
+#### code to pass unit test
+```
+  def take_off(index = 0)
+    raise "it is stormy" if weather.stormy?
+
+    taking_off_plane = airport_apron.delete_at(index)
+    taking_off_plane.taken_off?
+    taking_off_plane
+  end
+```
+
+#### feature test
+
+```
+2.5.0 :011 > airport
+ => #<Airport:0x00007fc76c13aef8 @weather=#<Weather:0x00007fc76c148300>, @airport_apron=[#<Plane:0x00007fc76c1330e0 @in_apron=true>, #<Plane:0x00007fc76c1274c0 @in_apron=true>, #<Plane:0x00007fc76c123780 @in_apron=true>], @capcity=3>
+2.5.0 :012 > airport.take_off(1)
+ => #<Plane:0x00007fc76c1274c0 @in_apron=false>
+2.5.0 :013 > airport.airport_apron
+ => [#<Plane:0x00007fc76c1330e0 @in_apron=true>, #<Plane:0x00007fc76c123780 @in_apron=true>]
+2.5.0 :014 >
 ```

@@ -23,10 +23,10 @@ class Airport
     airport_apron << plane
   end
 
-  def take_off
+  def take_off(index = 0)
     raise "it is stormy" if weather.stormy?
 
-    taking_off_plane = airport_apron.shift
+    taking_off_plane = airport_apron.delete_at(index)
     taking_off_plane.taken_off?
     taking_off_plane
   end

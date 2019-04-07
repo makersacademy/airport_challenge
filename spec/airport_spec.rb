@@ -9,6 +9,7 @@ describe Airport do
     def plane_example
       plane = double :plane
       allow(plane).to receive(:land?)
+      allow(plane).to receive(:taken_off?)
       plane
     end
 
@@ -34,7 +35,7 @@ describe Airport do
         [plane, plane2, plane3].map { |p| subject.land(p) }
         expect { subject.land(plane2) }.to raise_error "Error, the plane arleady in apron"
       end
-      
+
       it 'allow to land when airport_apron is not full' do
         (described_class::DEFAULT_CAPACITY - 1).times { subject.land(plane_example) }
         subject.land(plane)
@@ -63,18 +64,26 @@ describe Airport do
     end
 
     describe '#take_off' do
-      it 'take off a plane and the first plane as default' do
+
+      it 'takeoff a plane and the first plane as default' do
         [plane, plane2, plane3].map { |p| subject.land(p) }
         expect(plane).to receive(:taken_off?)
         subject.take_off
       end
 
       it 'update the airport_apron stock' do
-        allow(plane).to receive(:taken_off?)
+
         [plane, plane2, plane3].map { |p| subject.land(p) }
         subject.take_off
         expect(subject.airport_apron.size).to eq 2
       end
+
+      it 'allow to takeoff plane according to index' do
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        subject.take_off(1)
+        expect(subject.airport_apron.include?(plane2)).to eq false
+      end
+
     end
   end
 
