@@ -38,7 +38,7 @@ describe Airport do
 # I need to fix it with correct capacity (that raise an error)
     # it "raises an error if the airport is full" do
     #   subject.landing(Plane.new)
-    #   Airport::DEFAULT_CAPACITY.times{subject.landing(Plane.new)}
+    #   subject.capacity.times{subject.landing(Plane.new)}
     #   expect{subject.landing(Plane.new)}.to raise_error 'No space for landing'
     # end
 
