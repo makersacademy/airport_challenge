@@ -1,7 +1,8 @@
 class Airport
 
-  def initialize(capacity)
+  def initialize(capacity, weather_report)
     @capacity = capacity
+    @weather_report = weather_report
     @hanger = []
   end
 
@@ -12,6 +13,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Cannot take off: weather is stormy" if stormy?
   end
 
   private
@@ -21,7 +23,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..4) > 3
-  end 
+    @weather_report.stormy?
+  end
 
 end
