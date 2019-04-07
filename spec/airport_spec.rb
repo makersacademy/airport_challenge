@@ -17,9 +17,9 @@ describe Airport do
     end
 
     it 'should be able to accept different default capacities' do
-      allow(subject).to receive(:rand).and_return(1)
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error "The airport is full"
+      allow(subject).to receive(:stormy?).and_return(false)
+      Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane)) }
+      expect { subject.land(double(:plane)) }.to raise_error "The airport is full"
     end
   end
 
