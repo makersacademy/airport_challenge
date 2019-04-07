@@ -4,6 +4,13 @@
 
   I approached this challenge by using TDD and debugging with rspec tests to reach my final version. I wrote out a rspec test that described my aim and then followed the error messages to create source-code that corresponded to those errors.
 
+## How to get this program
+
+  1. Fork this repository.
+  2. Clone the repository onto your device.
+  3. Run 'gem install bundle' into your command line.
+  4. Run 'bundle' after the installation has finished.
+  5. You should be good to go!
 
 ## How to use in irb
 
