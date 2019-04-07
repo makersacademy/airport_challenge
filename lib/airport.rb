@@ -1,24 +1,31 @@
 
 class Airport
-   attr_reader :planes, :capacity
+  CAPACITY = 50
 
-  def initialize(capacity = CAPACITY)
-    @capacity = capacity
+  def initialize(options = {})
+    @landing_planes = true
+    @departing_planes = true
+    @capacity = options.fetch(:capacity, CAPACITY)
     @planes = []
   end
 
-  def land_plane(plane)
-    fail "Full Airport. Keep flying!" if @planes.length >= @capacity
-    @planes << plane
+  def plane_landing?
+    @landing_planes
   end
 
-  def take_off(plane)
-    fail "There are no planes!" unless @planes.include?(plane)
-    @planes.delete(plane)
+  def take_off_planes?
+    @departing_planes
   end
 
+  def land planes
+    @planes << planes
+  end
 
-private
-CAPACITY = 50
+  def full?
+    @full == @capacity
+  end
 
+  def full_airport
+    50.times { airport.full(Airport.new)}
+  end
 end

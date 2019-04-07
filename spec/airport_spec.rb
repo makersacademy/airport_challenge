@@ -1,49 +1,25 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
-  before do
-  @plane = double(:plane)
-  allow(@plane).to receive_lines([:land, :depart_plane])
+  let(:airport) {Airport.new(capacity: 200)}
+  let(:plane) {Plane.new}
+
+  context 'take off and landing' do
+
+    it 'plane is able to land' do
+      expect(airport).to be_plane_landing
+    end
+
+    it 'plane is able to take off' do
+      expect(airport).to be_take_off_planes
+  end
 end
 
-end
-   describe '#land_plane' do
-    it "instructs a plane to land at an airport" do
-      expect(subject).to receive(:land_plane)
-      subject.land_plane
-    end
-
-    it "returns a status of landed" do
-      subject.land_plane
-      expect(subject.planes).to include(@plane)
-    end
-
-    it "gives error if airport full" do
-      Airport::CAPACITY.times { subject.land_plane(@plane) }
-      expect(subject.land_plane(@plane)).to raise_error("Full Airport. Keep flying!")
-    end
+context 'systems controller' do
+  it 'a plane is not able to land if airport is full' do
+    full_airport, empty_airport = Airport.new, Airport.new
+    expect(airport).not_to be_full
   end
-
-
-  describe '#take_off' do
-    it "gives error if plane is not at the airport" do
-      expect(subject.take_off(@plane)).to raise_error("There are no planes!")
-    end
-
-    it "gives instruction to take off" do
-      expect(subject).to receive(:take_off)
-      subject.take_off(@plane)
-
-    it  "makes sure the plane has taken off" do
-      subject.land_plane(@plane)
-      subject.take_off(@plane)
-      expect(subject.planes).to_not include(@plane)
-    end
-  end
-
-  describe 'CAPACITY' do
-    it "is the default capacity" do
-      expect(subject.capacity).to eq Airport::CAPACITY
-    end
   end
 end
