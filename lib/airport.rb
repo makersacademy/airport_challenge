@@ -1,16 +1,19 @@
 require_relative 'weather'
 
 class Airport
-  attr_reader :hanger
+  attr_reader :hangar
+  attr_reader :capacity
+
   def initialize
-    @hanger = []
+    @hangar = []
+    @capacity = 2
   end
 
-  def take_off(plane, forecast)
+  def takeoff(plane, forecast)
     if forecast == "stormy"
       "Takeoff prevented due to stormy weather"
     else
-      @hanger -= [plane]
+      @hangar -= [plane]
     end
   end
 end
