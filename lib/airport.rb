@@ -30,4 +30,6 @@ class Airport
     @hangar.empty?
   end
 
+
+
 end

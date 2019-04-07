@@ -29,6 +29,13 @@ describe Airport do
       stormy_conditions
       expect { subject.land(plane) }.to raise_error 'cant land in storm'
     end
+
+    it 'raises an error when airport is full' do
+      plane = Plane.new
+      allow(subject).to receive(:full?).and_return true
+      clear_conditions
+      expect { subject.land(plane) }.to raise_error 'hangar full'
+    end
   end
 
 
