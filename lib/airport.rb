@@ -8,6 +8,7 @@ class Airport
 
   def takeoff(plane)
     raise 'Weather is too stormy to takeoff' if stormy?
+
     plane_taken_off
     plane
   end
@@ -15,7 +16,7 @@ class Airport
   private
 
   def stormy?
-    Weather.new.stormy?
+    rand(1..6) > 4 
   end
 
   def plane_taken_off
