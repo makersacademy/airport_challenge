@@ -12,7 +12,7 @@ The first step was to create a domain model from the 6 user stories.
 
 Object | Message
 ------ | -------  
-Plane | land <br/> take-off <br/> location  
+Plane | land <br/> take-off <br/> in_airport?  
 Airport | full? <br/> update_capacity  
 Weather | stormy?
 
