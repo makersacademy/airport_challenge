@@ -1,17 +1,22 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes, :capacity, :weather
+  DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = 10, weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @planes = []
     @weather = weather
   end
 
   def land(plane)
-    raise "Unable to land a plane as the airport is full." if full?
-    raise "Unable to land a plane due to stormy weather." if weather.stormy?
+    raise "Unable to land plane as the airport is full." if full?
+
+    raise "Unable to land plane as it is already landed." if @planes.include?(plane)
+
+    raise "Unable to land plane due to stormy weather." if weather.stormy?
 
     @planes << plane
     self
@@ -19,9 +24,12 @@ class Airport
 
   def take_off(plane)
     raise "Unable to take off as the airport is empty." if empty?
+
+    raise "Unable to take off as that plane is not in the airport." if !@planes.include?(plane)
+
     raise "Unable to take off due to stormy weather." if weather.stormy?
 
-    @planes.delete_at(@planes.find_index(plane))
+    @planes.delete(plane)
   end
 
   private
@@ -31,22 +39,7 @@ class Airport
   end
 
   def full?
-    @planes.count.positive?
-  end
-
-end
-
-class Weather
-
-  def stormy?
-    forecast == :stormy
-  end
-
-  private
-
-  def forecast
-    weather_type = [:stormy, :sunny, :sunny]
-    weather_type.sample
+    @planes.count >= @capacity
   end
 
 end
