@@ -18,9 +18,17 @@ describe Plane do
   describe '#location' do
     it 'should return current plane location' do
       expect(subject.location).to eq "In flight"
+    end
+    it 'should return the airport it last landed at' do
       airport = Airport.new
       subject.land(airport)
       expect(subject.location).to eq airport
+    end
+    it 'should no longer be in the airport after landing and taking off' do
+      airport = Airport.new
+      subject.land(airport)
+      subject.take_off
+      expect(subject.location).to eq "In flight"
     end
   end
 end
