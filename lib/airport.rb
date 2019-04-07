@@ -16,6 +16,8 @@ class AirPort
 
     raise 'Sorry: can not land plane, airport is full.' if full?
 
+    raise 'Sorry: this plane has already landed.' if at_airport?(plane)
+
     @plane.push(plane)
   end
 
