@@ -16,6 +16,7 @@ class Airport
     true
   end
 
-  def prevent_landing_if_airport_is_full
+  def prevent_landing_if_airport_is_full(_plane)
+    true
   end
 end

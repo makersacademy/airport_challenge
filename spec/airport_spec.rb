@@ -20,7 +20,8 @@ describe Airport do
     expect(subject.prevent_landing_if_stormy(plane)).to eq true
   end
 
-  describe "prevent landing if airport is full" do
-    it { is_expected.to respond_to :prevent_landing_if_airport_is_full }
+  it "prevents landing if airport is full" do
+    plane = Plane.new
+    expect(subject.prevent_landing_if_airport_is_full(plane)).to eq true
   end
 end
