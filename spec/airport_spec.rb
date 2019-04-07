@@ -18,7 +18,6 @@ describe Airport do
   end
 
   context "when is not stormy:" do
-
     attr_reader :weather, :subject, :plane, :plane2, :plane3
 
     before :each do
@@ -26,17 +25,16 @@ describe Airport do
     end
 
     describe '#land' do
-
-      before :each do
-        allow(weather).to receive(:stormy?).and_return(false)
-        [plane, plane2, plane3].map { |p| allow(p).to receive(:land?) }
-      end
-
       it 'land a plane' do
         [plane, plane2, plane3].map { |p| subject.land(p) }
         expect(subject.airport_apron.last).to eq plane3
       end
 
+      it 'not allow to land if the plane is already landed' do
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        expect { subject.land(plane2) }.to raise_error "Error, the plane arleady in apron"
+      end
+      
       it 'allow to land when airport_apron is not full' do
         (described_class::DEFAULT_CAPACITY - 1).times { subject.land(plane_example) }
         subject.land(plane)
@@ -44,7 +42,6 @@ describe Airport do
       end
 
       it 'rasie error if try to land when airport_apron is full' do
-        allow(weather).to receive(:stormy?).and_return(false)
         described_class::DEFAULT_CAPACITY.times { subject.land(plane_example) }
         expect { subject.land(plane_example) }.to raise_error "airport apron is full"
       end
@@ -63,29 +60,17 @@ describe Airport do
         capcity.times { subject.land(plane_example) }
         expect { subject.land(plane_example) }.to raise_error "airport apron is full"
       end
-
     end
 
     describe '#take_off' do
-
-      it 'take off a plane' do
-        allow(weather).to receive(:stormy?).and_return(false)
-        allow(plane).to receive(:taken_off?).and_return(true)
+      it 'take off a plane and the first plane as default' do
         [plane, plane2, plane3].map { |p| subject.land(p) }
-        taking_off_plane = subject.take_off
-        expect(taking_off_plane.taken_off?).to eq true
-      end
-
-      it 'take off the frist plane' do
-        allow(weather).to receive(:stormy?).and_return(false)
-        allow(plane).to receive(:taken_off?).and_return(true)
-        [plane, plane2, plane3].map { |p| subject.land(p) }
-        expect(subject.take_off).to eq plane
+        expect(plane).to receive(:taken_off?)
+        subject.take_off
       end
 
       it 'update the airport_apron stock' do
-        allow(weather).to receive(:stormy?).and_return(false)
-        allow(plane).to receive(:taken_off?).and_return(true)
+        allow(plane).to receive(:taken_off?)
         [plane, plane2, plane3].map { |p| subject.land(p) }
         subject.take_off
         expect(subject.airport_apron.size).to eq 2
@@ -95,6 +80,7 @@ describe Airport do
 
   context "when stormy:" do
     attr_reader :weather, :subject, :plane
+
     before :each do
       allow(weather).to receive(:stormy?).and_return(true)
     end

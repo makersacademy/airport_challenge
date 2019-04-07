@@ -1398,3 +1398,75 @@ Feature test:
 2.5.0 :008 > plane
  => #<Plane:0x00007faa340673f0 @in_apron=true>
 ```
+
+### Edge case - mistakenly input same airport twice
+Airport system shall alert an error input ( same plane project )  
+
+#### Feature test:
+  Would expect raise an error in the follow case.
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007f93c4135038>
+2.5.0 :003 > weather = Weather.new
+ => #<Weather:0x00007f93c41250c0>
+2.5.0 :004 > airport = Airport.new(weather, 3)
+ => #<Airport:0x00007f93c41239f0 @weather=#<Weather:0x00007f93c41250c0>, @airport_apron=[], @capcity=3>
+2.5.0 :005 > airport.land(plane)
+ => [#<Plane:0x00007f93c4135038 @in_apron=true>]
+2.5.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):6
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (it is stormy)
+2.5.0 :007 > airport.land(plane)
+ => [#<Plane:0x00007f93c4135038 @in_apron=true>, #<Plane:0x00007f93c4135038 @in_apron=true>]
+2.5.0 :008 >
+```
+
+#### Unit test.  
+```
+    it 'not allow to land if the plane is already landed' do
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        expect { subject.land(plane2) }.to raise_error "Error, the plane arleady in apron"
+      end
+```
+ 
+#### code to pass the test   
+
+```
+def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    raise "Error, the plane arleady in apron" if airport_apron.include?(plane)
+
+    raise "airport apron is full" if airport_apron.size >= capcity
+
+    plane.land?
+    airport_apron << plane
+  end
+```
+
+#### feature test   
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fec1c9e51a0>
+2.5.0 :003 > airport = Airport.new(weather, 3)
+ => #<Airport:0x00007fec1c9d7b68 @weather=#<Weather:0x00007fec1c9e51a0>, @airport_apron=[], @capcity=3>
+2.5.0 :004 > plane = Plane.new
+ => #<Plane:0x00007fec1c9cfcb0>
+2.5.0 :005 > airport.land(plane)
+ => [#<Plane:0x00007fec1c9cfcb0 @in_apron=true>]
+2.5.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):6
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:18:in `land'
+RuntimeError (Error, the plane arleady in apron)
+2.5.0 :007 >
+```

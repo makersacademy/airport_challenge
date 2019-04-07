@@ -15,6 +15,8 @@ class Airport
   def land(plane)
     raise "it is stormy" if weather.stormy?
 
+    raise "Error, the plane arleady in apron" if airport_apron.include?(plane)
+
     raise "airport apron is full" if airport_apron.size >= capcity
 
     plane.land?
