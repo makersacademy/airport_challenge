@@ -15,4 +15,12 @@ describe Plane do
       expect(subject.take_off).to eq "The plane has taken off from #{airport}"
     end
   end
+  describe '#location' do
+    it 'should return current plane location' do
+      expect(subject.location).to eq "In flight"
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject.location).to eq airport
+    end
+  end
 end
