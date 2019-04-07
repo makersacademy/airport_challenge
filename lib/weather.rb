@@ -1,14 +1,13 @@
 class Weather
 
-def generate_weather
-  rand(1..6)
+attr_reader :random_weather
+
+def initialize
+  @random_weather = generate_weather
 end
 
-def stormy?
-  if generate_weather == 6
-    true
-
-  end
+def generate_weather
+  @random_weather = rand(1..6)
 end
 
 end
