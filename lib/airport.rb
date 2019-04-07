@@ -17,6 +17,7 @@ class Airport
   def take_off
     plane = @planes.shift
     plane.landed = false
+    puts "#{plane} has taken off from #{self}"
     return plane
   end
 
