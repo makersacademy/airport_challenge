@@ -8,12 +8,13 @@ Object orientated principles
 Edge cases  
 
 ### Approach
-The first step was to create a domain model from the 6 user stories.
-Object|Message
--|-
-Plane|land  take-off  location
-Airport|full?  update_capacity
-Weather|stormy?
+The first step was to create a domain model from the 6 user stories.  
+
+Object | Message
+------ | -------  
+Plane | land <br/> take-off <br/> location  
+Airport | full? <br/> update_capacity  
+Weather | stormy?
 
 ### Installing
 To run this challenge, fork this repo and clone to your local machine.
