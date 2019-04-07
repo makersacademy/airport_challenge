@@ -11,6 +11,7 @@ describe Airport do
   describe '#land' do
     it 'should land a plane' do
       plane = Plane.new
+      allow(subject.instance_of_weather).to receive(:storm?).and_return false
       expect(subject.land(plane)).to eq [plane]
     end
 
@@ -26,6 +27,7 @@ describe Airport do
   describe '#take_off' do
     it 'should allow a plane to take_off' do
       plane = Plane.new
+      allow(subject.instance_of_weather).to receive(:storm?).and_return false
       subject.land(plane)
       allow(subject.instance_of_weather).to receive(:storm?).and_return false
       expect(subject.take_off).to eq plane
@@ -37,6 +39,7 @@ describe Airport do
 
     it 'raises an error if storm? is true' do
       plane = Plane.new
+      allow(subject.instance_of_weather).to receive(:storm?).and_return false
       subject.land(plane)
       allow(subject.instance_of_weather).to receive(:storm?).and_return true
       expect { subject.take_off }.to raise_error 'cant fly in storm!'

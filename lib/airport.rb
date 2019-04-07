@@ -12,6 +12,8 @@ class Airport
   end
 
   def land(plane)
+    fail 'cant land in storm' if @instance_of_weather.storm?
+
     @plane = plane
     @hangar << plane
   end
