@@ -1,4 +1,3 @@
-require_relative 'weather'
 require_relative 'plane'
 
 class Airport
@@ -18,14 +17,18 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Plane unable to take off, weather is stormy' if stormy?
     @planes_taken_off.push(plane)
   end
 
 private
 
   def full?
-    @planes.length >= @capacity
+    @planes_landed.length >= @capacity
   end
 
+  def stormy?
+    rand(1..6) > 4
+  end
 
 end
