@@ -1,6 +1,10 @@
 require 'plane'
 class Airport
 
+  def capacity(capacity = 1)
+    @capacity = capacity
+  end
+
   def land_plane(_plane)
   end
 
