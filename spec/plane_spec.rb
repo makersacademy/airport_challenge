@@ -27,20 +27,20 @@ describe Plane do
       expect { subject.take_off }.to raise_error("Plane not at an airport")
     end
   end
-  # describe '#in_airport?' do
-  #   it 'should initialize as false' do
-  #     expect(subject.in_airport?).to eq false
-  #   end
-  #   it 'should return the airport it last landed at' do
-  #     airport = Airport.new
-  #     subject.land(airport)
-  #     expect(subject.airport).to eq airport
-  #   end
-  #   it 'should no longer be in the airport after landing and taking off' do
-  #     airport = Airport.new
-  #     subject.land(airport)
-  #     subject.take_off
-  #     expect(subject.airport).to eq nil
-  #   end
-  # end
+  describe '#in_airport?' do
+    it 'should initialize as false' do
+      expect(subject.in_airport?).to eq false
+    end
+    it 'should return true when plane has landed' do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject.in_airport?).to eq true
+    end
+    it 'should return false after plane has landed and taken off' do
+      airport = Airport.new
+      subject.land(airport)
+      subject.take_off
+      expect(subject.in_airport?).to eq false
+    end
+  end
 end
