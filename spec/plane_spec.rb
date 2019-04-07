@@ -16,6 +16,11 @@ describe Plane do
       subject.land(airport)
       expect { subject.land(airport) }.to raise_error("Plane not in flight")
     end
+    it 'prevents landing if weather is stormy' do
+      airport = Airport.new
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(airport) }.to raise_error("Weather is stormy, landing not allowed")
+    end
   end
   describe '#take_off' do
     it 'takes off from an airport' do
@@ -25,6 +30,12 @@ describe Plane do
     end
     it 'raises an error if the plane is not at an airport' do
       expect { subject.take_off }.to raise_error("Plane not at an airport")
+    end
+    it 'prevents take off if weather is stormy' do
+      airport = Airport.new
+      subject.land(airport)
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.take_off }.to raise_error("Weather is stormy, take off not allowed")
     end
   end
   describe '#in_airport?' do
