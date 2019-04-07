@@ -983,4 +983,133 @@ RuntimeError (airport apron is full)
 ```
 
 ### Commit the updates
-Prevent land when airport ( airport_ apron is full) 
+Prevent land when airport ( airport_ apron is full)
+
+
+User Story 6
+> As the system designer
+> So that the software can be used for many different airports
+> I would like a default airport capacity that can be overridden as appropriate
+
+### Doman model:  
+  Objects  | Messages.  
+  ------------- | -------------
+  Traffic controller |   
+  default_airport_capacity  |   be_overridden.
+
+> default_airport_capacity  < be_overridden
+
+Set airport capacity
+
+### Feature test.
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fc7d7a14cc0>
+2.5.0 :003 > airport = Airport.new(weather,5)
+Traceback (most recent call last):
+        4: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        3: from (irb):3
+        2: from (irb):3:in `new'
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:9:in `initialize'
+ArgumentError (wrong number of arguments (given 2, expected 1))
+2.5.0 :004 >
+```
+
+### Unit tests.
+
+```
+      it 'allow to land when the reset capcity is not met yet' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        (capcity - 1).times { subject.land(double :plane) }
+        subject.land(plane)
+        expect(subject.airport_apron.last).to eq plane
+      end
+
+      it 'rasie error if try to land when is over the reset airport capacity' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        capcity.times { subject.land(double :plane) }
+        expect { subject.land(double :plane) }.to raise_error "airport apron is full"
+      end
+```
+
+### Code to pass the unit tests.
+
+```
+class Airport
+  attr_reader :plane, :weather, :airport_apron, :capcity
+
+  DEFAULT_CAPACITY = 20
+
+  def initialize(weather, capcity = DEFAULT_CAPACITY)
+    @weather = weather
+    @airport_apron = []
+    @capcity = capcity
+  end
+
+  def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    raise "airport apron is full" if airport_apron.size >= capcity
+
+    airport_apron << plane
+  end
+
+  def take_off
+    raise "it is stormy" if weather.stormy?
+
+    taking_off_plane = airport_apron.shift
+    taking_off_plane.taken_off?
+    taking_off_plane
+  end
+end
+```
+
+### Feature Test.  
+Pass the feature test of set capacity:  
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fc696914a10>
+2.5.0 :003 > airport = Airport.new(weather,2)
+ => #<Airport:0x00007fc69691f640 @weather=#<Weather:0x00007fc696914a10>, @airport_apron=[], @capcity=2>
+2.5.0 :004 > airport.land(Plane.new)
+ => [#<Plane:0x00007fc69690f1f0>]
+2.5.0 :005 > airport.land(Plane.new)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):5
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (it is stormy)
+2.5.0 :006 > airport.land(Plane.new)
+ => [#<Plane:0x00007fc69690f1f0>, #<Plane:0x00007fc6969014d8>]
+2.5.0 :007 > airport.land(Plane.new)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):7
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:18:in `land'
+RuntimeError (airport apron is full)
+2.5.0 :008 > airport
+ => #<Airport:0x00007fc69691f640 @weather=#<Weather:0x00007fc696914a10>, @airport_apron=[#<Plane:0x00007fc69690f1f0>, #<Plane:0x00007fc6969014d8>], @capcity=2>
+2.5.0 :009 > airport.take_off
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):9
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:24:in `take_off'
+RuntimeError (it is stormy)
+2.5.0 :010 > airport.take_off
+ => #<Plane:0x00007fc69690f1f0 @taken_off=true>
+2.5.0 :011 > airport
+ => #<Airport:0x00007fc69691f640 @weather=#<Weather:0x00007fc696914a10>, @airport_apron=[#<Plane:0x00007fc6969014d8>], @capcity=2>
+2.5.0 :012 > airport.land(Plane.new)
+ => [#<Plane:0x00007fc6969014d8>, #<Plane:0x00007fc69687c008>]
+2.5.0 :013 >
+```

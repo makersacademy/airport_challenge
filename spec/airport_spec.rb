@@ -32,6 +32,24 @@ describe Airport do
         described_class::DEFAULT_CAPACITY.times { subject.land(double :plane) }
         expect { subject.land(double :plane) }.to raise_error "airport apron is full"
       end
+
+      it 'allow to land when the reset capcity is not met yet' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        (capcity - 1).times { subject.land(double :plane) }
+        subject.land(plane)
+        expect(subject.airport_apron.last).to eq plane
+      end
+
+      it 'rasie error if try to land when is over the reset airport capacity' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        capcity.times { subject.land(double :plane) }
+        expect { subject.land(double :plane) }.to raise_error "airport apron is full"
+      end
+
     end
 
     describe '#take_off' do
