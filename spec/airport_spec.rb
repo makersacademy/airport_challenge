@@ -1,14 +1,10 @@
 require 'airport'
 
 describe Airport do
-let(:weather_go) {double(:weather, stormy?: false)}
-let(:weather_awful) {double(:weather, stormy?: true)}
-let(:plane) {double(:plane, landed?: (), taking_off: ())}
-
-context "if there is no storm" do
-  subject do
-    appointed_class.new(appointed_class::Full_Capacity, weather_go)
-  end
+  before do
+  @plane = double(:plane)
+  allow(@plane).to receive_lines([:land, :depart_plane])
+end
 
 end
    describe '#land_plane' do
@@ -18,23 +14,16 @@ end
     end
 
     it "returns a status of landed" do
-      subject.land_plane (@plane)
+      subject.land_plane
       expect(subject.planes).to include(@plane)
     end
 
-    it "avoids landing as plane already landed" do
-      subject.land_plane(plane)
-      expect(subject.land_plane(plane)).to raise_error('Plane is at the airport!'[occupied_space?])
+    it "gives error if airport full" do
+      Airport::CAPACITY.times { subject.land_plane(@plane) }
+      expect(subject.land_plane(@plane)).to raise_error("Full Airport. Keep flying!")
     end
+  end
 
-     it "gives error if airport is full" do
-       appointed_class::Full_Capacity.times do
-       plane_here = double(:plane, landed?: (), taking_off: ())
-       subject.land_plane(plane_here)
-       expect(subject.land_plane(plane_here).to raise_error('Full Airport. Keep flying!')[full?]
-     end 
-   end
-end
 
   describe '#take_off' do
     it "gives error if plane is not at the airport" do
@@ -52,9 +41,9 @@ end
     end
   end
 
-  describe 'Full_Capacity' do
-    it "this is the default capacity" do
-      expect(subject.capacity).to eq Airport::Full_Capacity
+  describe 'CAPACITY' do
+    it "is the default capacity" do
+      expect(subject.capacity).to eq Airport::CAPACITY
     end
   end
 end
