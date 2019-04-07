@@ -4,7 +4,9 @@ describe Airport do
 
   describe '#land' do
     plane = 'plane'
-    it 'lands plane at the airport' do
+
+    it 'lands plane at the airport when weather is sunny' do
+      allow(subject).to receive(:stormy?).and_return false
       expect(subject.land(plane)).to eq 'plane'
     end
   end
@@ -13,7 +15,8 @@ describe Airport do
     plane = 'plane'
 
     it 'plane can take off from airport' do
-      expect(subject).to respond_to(:takeoff).with(1).argument
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect(subject.takeoff(plane)).to eq 'plane'
     end
 
     it 'prevent plane from taking off if weather is stormy' do

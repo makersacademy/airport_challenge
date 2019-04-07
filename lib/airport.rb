@@ -3,6 +3,8 @@ require 'weather'
 class Airport
 
   def land(plane)
+    raise 'It is too stormy to land' if stormy?
+    
     plane
   end
 
@@ -16,7 +18,7 @@ class Airport
   private
 
   def stormy?
-    rand(1..6) > 4 
+    @stormy
   end
 
   def plane_taken_off
