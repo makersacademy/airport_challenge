@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    raise("Plane not in flight") unless @location == "In flight"
     @location = airport
     "The plane has landed at #{@location}"
   end

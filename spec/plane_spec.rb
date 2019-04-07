@@ -19,6 +19,9 @@ describe Plane do
       subject.land(airport)
       expect(subject.take_off).to eq "The plane has taken off from #{airport}"
     end
+    it 'raises an error if the plane is not at an airport' do
+      expect { subject.take_off }.to raise_error("Plane not at an airport")
+    end
   end
   describe '#location' do
     it 'should return current plane location' do
