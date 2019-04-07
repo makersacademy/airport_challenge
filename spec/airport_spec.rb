@@ -5,7 +5,7 @@ RSpec.describe AirPort do
   RSpec.configure do |config|
     config.example_status_persistence_file_path = './spec/fail_test.txt'
   end 
-  
+
   subject(:airport) { described_class.new(10) }
   let(:plane) { Plane.new }
 
@@ -30,6 +30,10 @@ RSpec.describe AirPort do
     it 'raises and error if the weather is stormy' do
       allow(airport).to receive(:bad_weather?).and_return true
       expect { airport.take_off(plane) }.to raise_error 'The weather is stormy'
+    end
+    
+    it 'raises an error if plane not in airport' do
+      expect { airport.take_off(plane) }.to raise_error 'Plane not in this airport'
     end
   end
 
