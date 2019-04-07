@@ -1,11 +1,13 @@
 require 'plane'
 class Airport
+  attr_reader :plane
 
   def capacity(capacity = 1)
     @capacity = capacity
   end
 
-  def land_plane(_plane)
+  def land_plane(plane)
+    p @plane = plane
   end
 
   def plane_take_off(_plane)
