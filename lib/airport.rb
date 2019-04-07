@@ -5,12 +5,16 @@ class Airport
 
   include Weather
 
+  DEFAULT_CAPACITY = 10
+
   def initialize
     @planes = []
-    @weather = :weather
+    @weather = weather
   end
 
   def land(plane)
+    raise 'Weather is too dangerous for take off.' if stormy?
+    raise 'Airport capacity is full.' if capacity_full?
     @planes << plane
   end
 
@@ -22,5 +26,9 @@ class Airport
   def plane_counter
     :weather
     @planes.count
+  end
+
+  def capacity_full?
+    plane_counter >= DEFAULT_CAPACITY
   end
 end

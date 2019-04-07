@@ -15,6 +15,18 @@ describe Airport do
       airport.land(plane)
       expect(airport.plane_counter).to eq(2)
     end
+
+    it "should raise an error when weather stormy" do
+      allow(airport).to receive(:stormy?).and_return true
+      expect{subject.land(plane)}.to raise_error 'Weather is too dangerous for take off.'
+    end
+
+    it "should raise an error when airport capacity is full" do
+      allow(plane).to receive(:land)
+      allow(airport).to receive(:stormy?).and_return false
+      allow(airport).to receive(:capacity_full?).and_return true
+      expect{subject.land(plane)}.to raise_error 'Airport capacity is full.'
+    end
   end
 
   context 'take off' do
