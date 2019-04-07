@@ -6,14 +6,14 @@ class Airport
     @planes = []
   end
 
-  def recieve_plane(plane)
+  def land(plane)
     fail "airport is full" if full?
     fail "dangerous weather!" if stormy?
 
     @planes << plane
   end
 
-  def release_plane
+  def take_off
     fail "airport is empty" if empty?
     fail "dangerous weather!" if stormy?
 
@@ -30,10 +30,10 @@ def full?
 end
 
 def empty?
-  @planes.count < 1
+  @planes.empty?
 end
 
 def stormy?
-  roll = rand(1..10)
-  roll < 2
+  likelihood = rand(1..10)
+  likelihood < 3
 end
