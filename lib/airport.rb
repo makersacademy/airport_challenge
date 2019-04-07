@@ -1,16 +1,26 @@
 require_relative 'planes'
 
 class Airport
-  attr_reader :plane
+  attr_reader :planes
+  attr_reader :capacity
+  DEFAULT_CAPACITY = 20
 
-  def land
-    raise "Airport full" if full?
-    raise "Too stormy to land" if stormy?
-    @plane = 'plane'
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = DEFAULT_CAPACITY
+    @planes = []
   end
 
-  def take_off
+  def land(plane)
+    raise 'Airport full' if full?
+    raise 'Too stormy to land' if stormy?
+    raise 'Plane has already landed' if planes.include(plane)
+
+    planes << plane
+  end
+
+  def take_off(plane)
     raise "Too stormy to take off" if stormy?
+    planes.pop
   end
 
 private
@@ -20,7 +30,6 @@ private
   end
 
   def full?
-    @plane = 'plane'
+    planes.count >= DEFAULT_CAPACITY
   end
-
 end
