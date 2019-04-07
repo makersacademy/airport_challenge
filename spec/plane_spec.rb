@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
   describe '#land' do
     it { expect(subject).to respond_to(:land).with(1).argument }
-    it 'should land at an airport' do
+    it 'lands at an airport' do
       airport = Airport.new
       expect(subject.land(airport)).to eq airport
     end
@@ -18,7 +18,7 @@ describe Plane do
     end
   end
   describe '#take_off' do
-    it 'should take off from an airport' do
+    it 'takes off from an airport' do
       airport = Airport.new
       subject.land(airport)
       expect(subject.take_off).to eq nil
@@ -28,15 +28,15 @@ describe Plane do
     end
   end
   describe '#in_airport?' do
-    it 'should initialize as false' do
+    it 'initially is false' do
       expect(subject).not_to be_in_airport
     end
-    it 'should return true when plane has landed' do
+    it 'returns true when plane has landed' do
       airport = Airport.new
       subject.land(airport)
       expect(subject).to be_in_airport
     end
-    it 'should return false after plane has landed and taken off' do
+    it 'returns false after plane has landed and taken off' do
       airport = Airport.new
       subject.land(airport)
       subject.take_off

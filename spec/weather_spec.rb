@@ -2,11 +2,11 @@ require 'weather'
 
 describe Weather do
   describe 'stormy?' do
-    it 'should be true when random number generator returns > 95' do
+    it 'is true when random number generator returns > 95' do
       allow(subject).to receive(:random_integer) { 96 }
       expect(subject).to be_stormy
     end
-    it 'should be false when random number generator returns <= 95' do
+    it 'is false when random number generator returns <= 95' do
       allow(subject).to receive(:random_integer) { 95 }
       expect(subject).not_to be_stormy
     end
