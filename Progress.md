@@ -1523,3 +1523,25 @@ ArgumentError (wrong number of arguments (given 1, expected 0))
  => [#<Plane:0x00007fc76c1330e0 @in_apron=true>, #<Plane:0x00007fc76c123780 @in_apron=true>]
 2.5.0 :014 >
 ```
+
+### Refactor the airport class the extract the permission validation
+
+```
+  private
+
+  def landing_permission_check  
+
+    raise "it is stormy" if weather.stormy?
+
+    raise "Error, the plane arleady in apron" if airport_apron.include?(plane)
+
+    raise "airport apron is full" if airport_apron.size >= capcity
+  end
+
+  def takeoff_permission_check
+    raise "it is stormy" if weather.stormy?
+  end
+
+```
+
+## Update README.md  
