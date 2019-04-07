@@ -1,12 +1,12 @@
 class Plane
-  attr_reader :taken_off, :landed
+  attr_reader :taken_off, :in_apron
 
   def land?
-    @landed = true
+    @in_apron = true
   end
 
   def taken_off?
-    @taken_off = true
+    @in_apron = false
   end
 
 end

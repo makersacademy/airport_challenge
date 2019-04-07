@@ -8,14 +8,14 @@ describe Plane do
   describe '#land?' do
     it "chage the plane status to landed" do
       subject.land?
-      expect(subject.landed).to eq true
+      expect(subject.in_apron).to eq true
     end
   end
 
   describe '#taken_off?' do
     it "confirm the airplane status as taken off " do
       subject.taken_off?
-      expect(subject.taken_off). to eq true
+      expect(subject.in_apron). to eq false
     end
   end
 end

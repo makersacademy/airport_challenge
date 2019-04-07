@@ -1315,3 +1315,86 @@ RuntimeError (it is stormy)
  => #<Plane:0x00007fabfd127888 @landed=true>
 2.5.0 :009 >
 ```
+
+### plane.landed?  plane.takenoff?
+
+We will  need update the landed status if the plane takeoff again
+
+### feature test
+
+```
+2.5.0 :001 > require "./lib/plane.rb"
+ => true
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007ffb119571a8>
+2.5.0 :003 > plane.land?
+ => true
+2.5.0 :004 > plane.taken_off?
+ => true
+2.5.0 :005 > plane
+ => #<Plane:0x00007ffb119571a8 @landed=true, @taken_off=true>
+2.5.0 :006 >
+```
+
+It is better to use in_apron to store the return value.  
+Unit test:  
+```
+require 'plane'
+
+describe Plane do
+  before :each do
+    subject { described_class.new }
+  end
+
+  describe '#land?' do
+    it "chage the plane status to landed" do
+      subject.land?
+      expect(subject.in_apron).to eq true
+    end
+  end
+
+  describe '#taken_off?' do
+    it "confirm the airplane status as taken off " do
+      subject.taken_off?
+      expect(subject.in_apron). to eq false
+    end
+  end
+end
+```
+
+Code to pass the unit test:  
+```
+class Plane
+  attr_reader :taken_off, :in_apron
+
+  def land?
+    @in_apron = true
+  end
+
+  def taken_off?
+    @in_apron = false
+  end
+
+end
+```
+
+Feature test:
+
+```
+2.5.0 :001 > require "./lib/plane.rb"
+ => true
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007faa340673f0>
+2.5.0 :003 > plane.land?
+ => true
+2.5.0 :004 > plane
+ => #<Plane:0x00007faa340673f0 @in_apron=true>
+2.5.0 :005 > plane.taken_off?
+ => false
+2.5.0 :006 > plane
+ => #<Plane:0x00007faa340673f0 @in_apron=false>
+2.5.0 :007 > plane.land?
+ => true
+2.5.0 :008 > plane
+ => #<Plane:0x00007faa340673f0 @in_apron=true>
+```
