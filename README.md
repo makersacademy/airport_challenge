@@ -24,3 +24,12 @@ RuntimeError (Unable to take off due to stormy weather.)
  => #<Plane:0x00007fa116848aa0>
 2.5.0 :008 > exit
 ```
+
+  If you are interested in changing the capacity of the airport, you should write an integer argument for a new Airport class instance, like this:
+
+```shell
+2.5.0 :002 > require './lib/airport.rb'
+ => true
+2.5.0 :003 > airport = Airport.new(30)
+ => #<Airport:0x00007fa116858888 @capacity=30, @planes=[], @weather=#<Weather:0x00007fa116858860>>
+```
