@@ -29,18 +29,18 @@ describe Plane do
   end
   describe '#in_airport?' do
     it 'should initialize as false' do
-      expect(subject.in_airport?).to eq false
+      expect(subject).not_to be_in_airport
     end
     it 'should return true when plane has landed' do
       airport = Airport.new
       subject.land(airport)
-      expect(subject.in_airport?).to eq true
+      expect(subject).to be_in_airport
     end
     it 'should return false after plane has landed and taken off' do
       airport = Airport.new
       subject.land(airport)
       subject.take_off
-      expect(subject.in_airport?).to eq false
+      expect(subject).not_to be_in_airport
     end
   end
 end
