@@ -2,16 +2,19 @@ require 'weather'
 require 'plane'
 
 class Airport
-  attr_reader :spaces
+  attr_reader :spaces, :capacity
+  CAPACITY = 1
 
   def initialize
     @spaces = []
+    @capacity = CAPACITY
   end
 
   def land(plane)
     raise 'It is too stormy to land' if stormy?
+    raise 'Airport is full' if full?
 
-    plane
+    spaces << plane
   end
 
   def takeoff(plane)
@@ -19,6 +22,10 @@ class Airport
 
     plane_taken_off
     plane
+  end
+
+  def full?
+    spaces.count >= capacity
   end
 
   private

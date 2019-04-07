@@ -7,7 +7,14 @@ describe Airport do
 
     it 'lands plane at the airport when weather is sunny' do
       allow(subject).to receive(:stormy?).and_return false
-      expect(subject.land(plane)).to eq 'plane'
+      subject.land(plane)
+      expect(subject.spaces).to eq([plane])
+    end
+
+    it 'raises an error when the airport is full' do
+      allow(subject).to receive(:stormy?).and_return false
+      subject.land(plane)
+      expect { subject.land(double('plane')) }.to raise_error 'Airport is full'
     end
   end
 
@@ -27,8 +34,11 @@ describe Airport do
 
   describe '#initialize' do
     it 'assumes all spaces are empty' do
-      expect(subject.spaces).to eq []
+      expect(subject.spaces).to eq([])
+    end
+
+    it 'has a capacity of 1' do
+      expect(subject.capacity).to eq(1)
     end
   end
-
 end
