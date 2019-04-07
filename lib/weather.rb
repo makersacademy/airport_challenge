@@ -2,12 +2,12 @@ module WeatherConditions
 
   class Weather
 
-    def stormy?
+    def stormy
       rand(1..10)
     end
     
     def bad?
-      stormy? > 6
+      stormy > 6
     end
 
   end
