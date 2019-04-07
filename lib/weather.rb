@@ -6,4 +6,8 @@ class Weather
     @stormy = false
   end
 
+  def stormy?
+    @stormy = true
+  end
+
 end
