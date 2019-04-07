@@ -1,17 +1,17 @@
 require 'planes'
 
 describe Planes do
-  it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :flying }
 
-  describe '#land' do
+  describe '#landed' do
     it "shows the plane has landed" do
-      expect(subject.land).to eq true
+      expect(subject.landed).to eq false
     end
   end
 
-  describe 'take_off' do
+  describe '#taken_off' do
     it "shows plane has taken off" do
-      expect(subject.take_off).to eq false
+      expect(subject.taken_off).to eq true
     end
   end
 
