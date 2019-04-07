@@ -13,15 +13,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
 Steps
 -------
 
@@ -61,30 +52,54 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+How this program works
+-----
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+This program is run from the command line using irb:
+```
+irb -r './lib/airport.rb'
+> airport = Airport.new
+=> #<Airport:0x00007fdda59aa4e0 @planes=[], @capacity=15> 
+> plane = Plane.new
+=> #<Plane:0x00007fdda59a1b10>
+```
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+**Users are able to instruct planes to land at an airport**
+```
+> airport.land(plane)
+=> [#<Plane:0x00007fdda59a1b10>] 
+> plane_two = Plane.new
+=> #<Plane:0x00007fdda59909a0>
+> airport.land(plane_two)
+```
 
-Please create separate files for every class, module and test suite.
+**The program has a random weather generator that will prevent planes from landing or taking off in stormy weather**
+```
+> airport.land(plane_two)
+Traceback (most recent call last):
+        3: from /Users/student/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):8
+        1: from ../lib/airport.rb:13:in `land'
+RuntimeError (The plane is unable to land)
 
-In code review we'll be hoping to see:
+```
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+**Users are able to instruct planes to take off from an airport and receive a confirmation message**
+```
+> airport.take_off
+=> "The plane has taken off" 
+```
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+**Users are able to set a default capacity and will get an error message if the number of planes that land exceeds the capacity**
+```
+2.5.0 :002 > airport = Airport.new(20)
+ => #<Airport:0x00007feb9217d290 @planes=[], @capacity=20>
+```
 
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Issues
+-----
+* This program does not defend against the following edge cases:
+* Ensuring that planes can only take off from airports they are in
+* Planes that are already flying cannot takes off and/or be in an airport
+* Planes that are landed cannot land again and must be in an airport
+* Awaiting an RSpec **feature** test that lands and takes off a number of planes
