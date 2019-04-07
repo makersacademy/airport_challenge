@@ -16,7 +16,7 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
-       expect { subject.land(plane) }.to raise_error 'Airport is full'
+      expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
   end
 
@@ -39,7 +39,7 @@ describe Airport do
       expect(subject.spaces).to eq([])
     end
 
-    it 'default capacity' do
+    it 'has a default capacity' do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 

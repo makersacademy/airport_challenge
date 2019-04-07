@@ -5,7 +5,7 @@ class Airport
   attr_reader :spaces, :capacity
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @spaces = []
     @capacity = capacity
   end
