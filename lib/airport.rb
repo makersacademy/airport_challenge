@@ -32,7 +32,7 @@ class AirPort
 
   private
   def confirm?(plane)
-    true unless @plane.include?(plane)
+    true unless at_airport?(plane)
   end
 
   def delete_plane(plane)
