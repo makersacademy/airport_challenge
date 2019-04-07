@@ -34,23 +34,28 @@ describe 'user stories' do
       end
     end
   end
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent takeoff when weather is stormy
+
   context 'when stormy' do
-    it 'Aiport does not allow planes to take off' do
+    before do
       allow(airport).to receive(:stormy?).and_return true
+    end
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent takeoff when weather is stormy
+    it 'Aiport does not allow planes to take off' do
       expect { airport.take_off(plane) }.to raise_error 'Plane unable to take off, weather is stormy'
     end
-  end
 
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when weather is stormy
-  context 'when stormy' do
     it 'Aiport does not allow planes to land' do
-      allow(airport).to receive(:stormy?).and_return true
       expect { airport.land(plane) }.to raise_error 'Plane unable to land, weather is stormy'
     end
   end
+
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity
+  # that can be overridden as appropriate
 end
