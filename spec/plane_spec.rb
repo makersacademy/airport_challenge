@@ -9,8 +9,14 @@ describe Plane do
   end
 
   describe '#landed'
-  it 'assumes plane has landed' do
+  it 'plane has landed' do
     subject.landed
-      expect(subject.in_air).to eq false
+    expect(subject.in_air).to eq false
+  end
+
+  describe '#departed'
+  it 'plane has departed' do
+    subject.departed
+    expect(subject.in_air).to eq true
   end
 end
