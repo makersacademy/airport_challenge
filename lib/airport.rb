@@ -4,6 +4,8 @@ require_relative 'weather'
 class Airport
   attr_reader :plane, :weather, :airport_apron
 
+  DEFAULT_CAPACITY = 3
+
   def initialize(weather)
     @weather = weather
     @airport_apron = []
@@ -11,6 +13,8 @@ class Airport
 
   def land(plane)
     raise "it is stormy" if weather.stormy?
+
+    raise "airport apron is full" if airport_apron.size >= DEFAULT_CAPACITY
 
     airport_apron << plane
   end

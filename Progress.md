@@ -781,3 +781,206 @@ Traceback (most recent call last):
 RuntimeError (it is stormy)
 2.5.0 :008 >
 ```
+
+## User Story 5
+> As an air traffic controller
+> To ensure safety
+> I want to prevent landing when the airport is full
+
+### Doman model:  
+  Objects  | Messages.  
+  ------------- | -------------
+  Traffic controller |   
+   airport |  full?
+  Airport  |   prevent_landing_when_full
+
+> airport <— full? —>  true —>prevent_landing
+> 				—>  false
+
+### Feature test.
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fb9c30ccb08>
+2.5.0 :003 > airport = Airport.new(weather)
+ => #<Airport:0x00007fb9c30bfe30 @weather=#<Weather:0x00007fb9c30ccb08>>
+2.5.0 :004 > plane = Plane.new
+ => #<Plane:0x00007fb9c30bc0c8>
+2.5.0 :005 > airport.land(plane)
+ => #<Plane:0x00007fb9c30bc0c8>
+2.5.0 :006 > airport.full?
+Traceback (most recent call last):
+        2: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        1: from (irb):6
+NoMethodError (undefined method `full?' for #<Airport:0x00007fb9c30bfe30>)
+2.5.0 :007 >
+```
+
+### Unit test.
+* full? Indicates capacity, so need use airport _apron（array） to store plane when landing and release plane when takeoff.
+* full? also indicate maximum capacity.
+
+Update the tests to reflect the use of array (airport_apron):
+* push the landing plane to the airport_apron array.
+* shift the airport_apron array to takeoff.  
+
+```
+before(:each) do
+    @weather = double :weather
+    @subject = described_class.new(weather)
+    @plane = double :plane
+    @plane2 = double :plane
+    @plane3 = double :plane
+  end
+
+  context "when is not stormy:" do
+    attr_reader :weather, :subject, :plane, :plane2, :plane3
+
+    describe '#land' do
+      it 'land a plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        expect(subject.airport_apron.last).to eq plane3
+      end
+    end
+
+    describe '#take_off' do
+
+      it 'take off a plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:taken_off?).and_return(true)
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        taking_off_plane = subject.take_off
+        expect(taking_off_plane.taken_off?).to eq true
+      end
+
+      it 'take off the frist plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:taken_off?).and_return(true)
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        expect(subject.take_off).to eq plane
+      end
+
+      it 'update the airport_apron stock' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:taken_off?).and_return(true)
+        [plane, plane2, plane3].map { |p| subject.land(p) }
+        subject.take_off
+        expect(subject.airport_apron.size).to eq 2
+      end
+    end
+  end
+```
+
+### Update code to pass unit tests.  
+```
+class Airport
+  attr_reader :plane, :weather, :airport_apron
+
+  def initialize(weather)
+    @weather = weather
+    @airport_apron = []
+  end
+
+  def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    airport_apron << plane
+  end
+
+  def take_off
+    raise "it is stormy" if weather.stormy?
+
+    taking_off_plane = airport_apron.shift
+    taking_off_plane.taken_off?
+    taking_off_plane
+  end
+end
+```
+
+
+### Commit the updates.  
+Use array to store the landed planes.
+
+
+### Unit tests for capacity.  
+Expect to raise error when airport apron is full.  
+
+```
+    it 'allow to land when airport_apron is not full' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      (described_class::DEFAULT_CAPACITY - 1).times { subject.land(double :plane) }
+      subject.land(plane)
+      expect(subject.airport_apron.last).to eq plane
+    end
+
+    it 'rasie error if try to land when airport_apron is full' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      described_class::DEFAULT_CAPACITY.times { subject.land(double :plane) }
+      expect { subject.land(double :plane) }.to raise_error "airport apron is full"
+    end
+```
+
+Edge case tested.  
+
+### Code to pass the unit tests.  
+In airport.rb:
+```
+  DEFAULT_CAPACITY = 20
+
+  def initialize(weather)
+    @weather = weather
+    @airport_apron = []
+  end
+
+  def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    raise "airport apron is full" if airport_apron.size >= DEFAULT_CAPACITY
+
+    airport_apron << plane
+  end
+```
+
+## Feature test.
+Pass the feature test:  
+DEFAULT_CAPACITY is set to 3 to make the demo of feature tests shorter.   
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fb8111c4c30>
+2.5.0 :003 > airport = Airport.new(weather)
+ => #<Airport:0x00007fb8111b7fa8 @weather=#<Weather:0x00007fb8111c4c30>, @airport_apron=[]>
+2.5.0 :004 > airport.land(Plane.new)
+ => [#<Plane:0x00007fb8111afbc8>]
+2.5.0 :005 > airport.land(Plane.new)
+ => [#<Plane:0x00007fb8111afbc8>, #<Plane:0x00007fb8111a7a18>]
+2.5.0 :006 > airport.land(Plane.new)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):6
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:15:in `land'
+RuntimeError (it is stormy)
+2.5.0 :007 > airport.land(Plane.new)
+ => [#<Plane:0x00007fb8111afbc8>, #<Plane:0x00007fb8111a7a18>, #<Plane:0x00007fb8111853a0>]
+2.5.0 :008 > airport.land(Plane.new)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):8
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:17:in `land'
+RuntimeError (airport apron is full)
+2.5.0 :009 > airport.land(Plane.new)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):9
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:17:in `land'
+RuntimeError (airport apron is full)
+2.5.0 :010 >
+```
+
+### Commit the updates
+Prevent land when airport ( airport_ apron is full) 

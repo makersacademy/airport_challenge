@@ -19,6 +19,19 @@ describe Airport do
         [plane, plane2, plane3].map { |p| subject.land(p) }
         expect(subject.airport_apron.last).to eq plane3
       end
+
+      it 'allow to land when airport_apron is not full' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        (described_class::DEFAULT_CAPACITY - 1).times { subject.land(double :plane) }
+        subject.land(plane)
+        expect(subject.airport_apron.last).to eq plane
+      end
+
+      it 'rasie error if try to land when airport_apron is full' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        described_class::DEFAULT_CAPACITY.times { subject.land(double :plane) }
+        expect { subject.land(double :plane) }.to raise_error "airport apron is full"
+      end
     end
 
     describe '#take_off' do
