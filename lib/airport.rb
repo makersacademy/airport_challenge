@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Plane has already landed!" if @planes.include?(plane)
     @planes << plane
   end
 
