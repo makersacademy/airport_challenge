@@ -14,12 +14,11 @@ describe Airport do
       end
     end
 
-# I need to fix it to check the confirm comment
   describe '#take_off' do
     it 'when the plane takes off, it confirms' do
       plane = Plane.new
       subject.landing(plane)
-      expect(subject.take_off).to eq "Flight just took off"
+      expect(subject.take_off).to eq plane
     end
 
 # I need to fix it to raise an error
@@ -34,7 +33,7 @@ describe Airport do
     it 'lands the plane' do
       plane = Plane.new
       subject.landing(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.plane).to eq [plane]
     end
 
 # I need to fix it with correct capacity (that raise an error)
