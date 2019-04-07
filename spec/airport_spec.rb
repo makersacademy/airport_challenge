@@ -5,8 +5,8 @@ describe Airport do
   describe '#land' do
 
     it 'should not allow landing in stormy weather' do
-      plane = Plane.new
-      allow(subject).to receive(:rand).and_return(0)
+      plane = double(:plane)
+      allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error "The plane is unable to land"
     end
 
@@ -16,7 +16,7 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "The airport is full"
     end
 
-    it 'should be able to accept different capacities' do
+    it 'should be able to accept different default capacities' do
       allow(subject).to receive(:rand).and_return(1)
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "The airport is full"
