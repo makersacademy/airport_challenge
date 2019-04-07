@@ -19,7 +19,7 @@ class Airport
   def take_off
     fail 'no planes available' if empty?
 
-    fail 'cant fly in storm!' if @instance_of_weather.storm? == true
+    fail 'cant fly in storm!' if @instance_of_weather.storm?
 
     @hangar.pop
   end
