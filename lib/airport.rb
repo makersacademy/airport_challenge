@@ -12,6 +12,7 @@ class Airport
     true
   end
 
-  def prevent_landing_if_stormy
+  def prevent_landing_if_stormy(plane)
+    true
   end
 end
