@@ -39,18 +39,27 @@ User Software Guide
 **As an air traffic controller**
 
 A plane is able to receive one command:
-`land_at(airport, forecast)` - The airport name and the weather status must be given
+
+`land_at(airport, forecast)` - The airport name and the weather status must be given.
+
 In the interest of safety:
+
 Landing is prevented if the weather is stormy.
+
 Landing is also prevented if the airport is full.
 
 An airport can receive three commands:
+
 `hangar` - Returns that are in planes currently in the hanger.
+
 `capacity` - Returns the maximum capacity of the airport.
+
 `takeoff(plane, forecast)` - Allows a plane to takeoff from the airport. The plane in question and the weather status must be given.
 
 In the interest of safety:
+
 Takeoff is prevented if the weather is stormy.
+
 
 
 **As the system designer**
@@ -60,7 +69,9 @@ You are able to update the default airport capacity. Simply edit the value for
 before initializing the system.
 
 Please note you will then need to update the following rspec tests:
+
 `returns airport capacity` - update the equal to value
+
 `prevents landing if airport is at full capacity` - append enough planes to fill the new capacity
 
 
@@ -119,6 +130,7 @@ Edge cases
 * Planes can only take off from airports they are in
 * Planes that are already flying cannot takes off
 * Planes can only land in airports that exist
+
  **Unresolved**
 * Planes that are already flying cannot be in an airport
 * Planes that are landed cannot land again and must be in an airport
