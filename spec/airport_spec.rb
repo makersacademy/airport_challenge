@@ -22,4 +22,4 @@ describe Airport do
       expect(subject.take_off(plane)).to eq plane
     end
   end
-end
+end 
