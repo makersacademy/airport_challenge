@@ -5,7 +5,8 @@ RSpec.describe AirPort do
   RSpec.configure do |config|
     config.example_status_persistence_file_path = './spec/fail_test.txt'
   end 
-  subject(:airport){described_class.new(10)}
+  
+  subject(:airport) { described_class.new(10) }
   let(:plane) { Plane.new }
 
   describe '#land_plane' do
@@ -20,7 +21,7 @@ RSpec.describe AirPort do
 
     it 'should raise an error when airport is full' do
       allow(airport).to receive(:bad_weather?).and_return(false)
-      10.times {airport.land(plane)}
+      10.times { airport.land(plane) }
       expect { airport.land(plane) }. to raise_error 'Sorry: can not land plane, airport is full.' 
     end
   end
