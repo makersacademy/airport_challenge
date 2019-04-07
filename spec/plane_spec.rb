@@ -6,7 +6,10 @@ describe Plane do
   end
 
   describe '#land?' do
-    it { expect(subject.land?).to eq true }
+    it "chage the plane status to landed" do
+      subject.land?
+      expect(subject.landed).to eq true
+    end
   end
 
   describe '#taken_off?' do

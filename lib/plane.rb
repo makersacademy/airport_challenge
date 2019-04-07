@@ -1,8 +1,8 @@
 class Plane
-  attr_reader :taken_off
+  attr_reader :taken_off, :landed
 
   def land?
-    true
+    @landed = true
   end
 
   def taken_off?

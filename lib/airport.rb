@@ -17,6 +17,7 @@ class Airport
 
     raise "airport apron is full" if airport_apron.size >= capcity
 
+    plane.land?
     airport_apron << plane
   end
 

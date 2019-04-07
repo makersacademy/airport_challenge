@@ -1113,3 +1113,205 @@ RuntimeError (it is stormy)
  => [#<Plane:0x00007fc6969014d8>, #<Plane:0x00007fc69687c008>]
 2.5.0 :013 >
 ```
+
+## Revisit and Reactor
+### plane.land?
+Currently, ‘plane, land?’ Is a ‘ setter’ and will set the return value as  ’true’,  whenever calling the method. To make this function useful. A variable will be need  store the ‘landed’ status and use a ‘getter’ to read the value when necessary,
+
+#### feature test    
+
+```
+2.5.0 :001 > require "./lib/plane.rb"
+ => true
+2.5.0 :002 > plan = Plane.new
+ => #<Plane:0x00007fb9a8866e10>
+2.5.0 :003 > plan.land?
+ => true
+2.5.0 :004 > plan.landed
+Traceback (most recent call last):
+        2: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        1: from (irb):4
+NoMethodError (undefined method `landed' for #<Plane:0x00007fb9a8866e10>
+Did you mean?  land?)
+2.5.0 :005 >
+```
+
+#### update unit tests.   
+
+```
+class Plane
+  attr_reader :taken_off, :landed
+
+  def land?
+    @landed = true
+  end
+
+  def taken_off?
+    @taken_off = true
+  end
+
+end
+```
+
+#### update code.   
+```
+class Plane
+  attr_reader :taken_off, :landed
+
+  def land?
+    @landed = true
+  end
+
+  def taken_off?
+    @taken_off = true
+  end
+
+end
+```
+
+#### pass the feature test.       
+
+```
+2.5.0 :001 > require "./lib/plane.rb"
+ => true
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007fbf2787af30>
+2.5.0 :003 > plane.land?
+ => true
+2.5.0 :004 > plane.landed
+ => true
+2.5.0 :005 > plane
+ => #<Plane:0x00007fbf2787af30 @landed=true>
+2.5.0 :006 >
+```
+
+
+### airport.land(plane) to change the airplane ‘landed’ too true.
+We can invoking the  plane.land? With in the airplane.land(plan).  
+
+#### feature test.
+Expected the plane to have  @landed. = true.
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > plane = Plane.new
+ => #<Plane:0x00007fb3bb1f4b88>
+2.5.0 :003 > weather = Weather.new
+ => #<Weather:0x00007fb3bb1ccb88>
+2.5.0 :004 > airport = Airport.new(weather,3)
+ => #<Airport:0x00007fb3bb1cb760 @weather=#<Weather:0x00007fb3bb1ccb88>, @airport_apron=[], @capcity=3>
+2.5.0 :005 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):5
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (it is stormy)
+2.5.0 :006 > airport.land(plane)
+ => [#<Plane:0x00007fb3bb1f4b88>]
+2.5.0 :007 > plane
+ => #<Plane:0x00007fb3bb1f4b88>
+2.5.0 :008 >
+```
+
+Unit tests.  
+```
+      it 'call land? method to plane' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        expect(plane).to receive(:land?)
+        subject.land(plane)
+      end
+```
+
+#### programme code.  
+
+```
+  def land(plane)
+    raise "it is stormy" if weather.stormy?
+
+    raise "airport apron is full" if airport_apron.size >= capcity
+
+    plane.land?
+    airport_apron << plane
+  end
+```
+
+#### update the unit tests to make the all test pass
+* use ‘before do’ to extra shared condition.  
+* use a method to regular the behaviour of double : plane, and replace the double :plane by calling the method.
+
+```
+  before(:each) do
+    @weather = double :weather
+    @subject = described_class.new(weather)
+
+    def plane_example
+      plane = double :plane
+      allow(plane).to receive(:land?)
+      plane
+    end
+
+    @plane = plane_example
+    @plane2 = plane_example
+    @plane3 = plane_example
+  end
+```
+
+```
+      it 'allow to land when airport_apron is not full' do
+        (described_class::DEFAULT_CAPACITY - 1).times { subject.land(plane_example) }
+        subject.land(plane)
+        expect(subject.airport_apron.last).to eq plane
+      end
+
+      it 'rasie error if try to land when airport_apron is full' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        described_class::DEFAULT_CAPACITY.times { subject.land(plane_example) }
+        expect { subject.land(plane_example) }.to raise_error "airport apron is full"
+      end
+
+      it 'allow to land when the reset capcity is not met yet' do
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        (capcity - 1).times { subject.land(plane_example) }
+        subject.land(plane)
+        expect(subject.airport_apron.last).to eq plane
+      end
+
+      it 'rasie error if try to land when is over the reset airport capacity' do
+        capcity = rand(5..10)
+        subject = described_class.new(weather, capcity)
+        capcity.times { subject.land(plane_example) }
+        expect { subject.land(plane_example) }.to raise_error "airport apron is full"
+      end
+```
+
+#### Feature test.
+ Pass the feature test.    
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > weather = Weather.new
+ => #<Weather:0x00007fabfd140b08>
+2.5.0 :003 > airport = Airport.new(weather,3)
+ => #<Airport:0x00007fabfd12f740 @weather=#<Weather:0x00007fabfd140b08>, @airport_apron=[], @capcity=3>
+2.5.0 :004 > plane = Plane.new
+ => #<Plane:0x00007fabfd127888>
+2.5.0 :005 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):5
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (it is stormy)
+2.5.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/simonyi/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):6
+        1: from /Users/simonyi/Projects/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (it is stormy)
+2.5.0 :007 > airport.land(plane)
+ => [#<Plane:0x00007fabfd127888 @landed=true>]
+2.5.0 :008 > plane
+ => #<Plane:0x00007fabfd127888 @landed=true>
+2.5.0 :009 >
+```
