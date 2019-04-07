@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:airport) {Airport.new(capacity: 200)}
+  let(:airport) {Airport.new(capacity: 50)}
   let(:plane) {Plane.new}
 
   context 'take off and landing' do
