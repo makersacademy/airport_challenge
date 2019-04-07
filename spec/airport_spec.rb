@@ -19,6 +19,7 @@ describe Airport do
     it 'should allow a plane to take_off' do
       plane = Plane.new
       subject.land(plane)
+      allow(subject.instance_of_weather).to receive(:storm?).and_return false
       expect(subject.take_off).to eq plane
     end
 
@@ -26,12 +27,11 @@ describe Airport do
       expect { subject.take_off }.to raise_error 'no planes available'
     end
 
-    it 'raises an error if the weather if storm? is true' do
+    it 'raises an error if storm? is true' do
       plane = Plane.new
       subject.land(plane)
-      weather = Weather.new
-      allow(weather).to receive(:storm?) and_return true 
-      expect { subject.take_off }.to raise_error 'stormy weather preventing take off'
+      allow(subject.instance_of_weather).to receive(:storm?).and_return true
+      expect { subject.take_off }.to raise_error 'cant fly in storm!'
     end
   end
 end
