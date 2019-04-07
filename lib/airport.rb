@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes
@@ -15,6 +16,4 @@ class Airport
     @planes.pop
     "#{plane} is no longer at the airport"
   end
-
-
 end
