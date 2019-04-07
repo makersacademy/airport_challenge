@@ -1,9 +1,9 @@
-module Weather
+class Weather
   def random_integer
     rand(100)
   end
 
-  def stormy?
-    random_integer > 95
+  def current
+    random_integer > 95 ? "stormy" : "sunny"
   end
 end
