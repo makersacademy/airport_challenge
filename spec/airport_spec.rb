@@ -8,5 +8,6 @@ describe Airport do
   it "#allows plane to take off" do
     plane = Plane.new
     subject.plane_take_off(plane)
+    expect(subject.plane_take_off(plane)).to eq false
   end
 end
