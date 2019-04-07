@@ -21,7 +21,7 @@ describe Plane do
     it 'should take off from an airport' do
       airport = Airport.new
       subject.land(airport)
-      expect(subject.take_off).to eq "The plane has taken off from #{airport}"
+      expect(subject.take_off).to eq nil
     end
     it 'raises an error if the plane is not at an airport' do
       expect { subject.take_off }.to raise_error("Plane not at an airport")
@@ -40,7 +40,7 @@ describe Plane do
       airport = Airport.new
       subject.land(airport)
       subject.take_off
-      expect(subject.location).to eq "In flight"
+      expect(subject.location).to eq nil
     end
   end
 end
