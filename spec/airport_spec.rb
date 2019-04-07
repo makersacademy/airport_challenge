@@ -1,25 +1,27 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:land) }
-  it { is_expected.to respond_to(:take_off) }
+  subject(:airport) {described_class.new(20)}
+  let(:plane) { double :plane }
 
-  it 'Airport allows landing plane' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.planes_landed).to include plane
+  describe '#land' do
+    it 'should allow a plane to land' do
+      expect(airport).to respond_to(:land).with(1).argument
+    end
+
+    context 'when airport is full' do
+      it 'raises landing error' do
+        20.times do
+          airport.land(plane)
+        end
+        expect { airport.land(plane) }.to raise_error 'Plane unable to land, airport full'
+      end
+    end
   end
 
-  it 'Airport allows planes to take off' do
-    plane = Plane.new
-    subject.take_off(plane)
-    expect(subject.planes_taken_off).to include plane
+  describe '#take_off' do
+    it 'should allow a plane to take off' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
   end
 end
-
-# require './lib/airport.rb'
-#
-# airport = Airport.new
-# plane = Plane.new
-# airport.land(plane)
-# airport.take_off(plane)
