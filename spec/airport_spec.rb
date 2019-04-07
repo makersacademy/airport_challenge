@@ -27,7 +27,7 @@ describe Airport do
 
   describe '#initialize' do
     it 'assumes all spaces are empty' do
-    expect(subject.spaces).to eq []
+      expect(subject.spaces).to eq []
     end
   end
 

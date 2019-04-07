@@ -1,7 +1,8 @@
 require 'weather'
+require 'plane'
 
 class Airport
-attr_reader :spaces
+  attr_reader :spaces
 
   def initialize
     @spaces = []
