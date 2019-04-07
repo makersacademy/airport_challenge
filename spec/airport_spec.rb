@@ -1,8 +1,12 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do
-    it { is_expected.to respond_to :stormy? }
+    
+    describe 'allows the airport to take the weather into consideration'
+        it { is_expected.to respond_to(:stormy) }
+
     
     it 'allows planes to land' do
         expect(subject).to respond_to :land

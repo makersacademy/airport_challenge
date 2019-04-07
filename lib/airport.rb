@@ -1,7 +1,11 @@
 class Airport
 
+    def stormy
+        (weather.new) == stormy?
+    end    
+
     def land
-    end
+    end   
     
     def take_off
     end    
@@ -14,7 +18,4 @@ class Airport
         @plane
     end
 
-    def stormy?
-    end    
-
-end
+end    
