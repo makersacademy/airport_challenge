@@ -1,7 +1,7 @@
 class Weather
   def storm?
-    if rand(2) == 0
-     true
+    if rand(2).zero?
+      true
     end
   end
 end

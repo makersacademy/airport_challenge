@@ -9,7 +9,7 @@ class Airport
   attr_reader :instance_of_weather
   attr_accessor :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
     @instance_of_weather = Weather.new
@@ -17,7 +17,9 @@ class Airport
 
   def land(plane)
     fail 'cant land in storm' if @instance_of_weather.storm?
+
     fail 'hangar full' if full?
+
     @plane = plane
     @hangar << plane
   end
