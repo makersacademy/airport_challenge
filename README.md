@@ -52,6 +52,44 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+Approach
+-----
+In order to build this program I followed the following steps:
+* Break down each user story into its objects and messages by separting out the nouns and verbs
+* Perform a manual feature test to work out how I would expect that part of the program to work e.g
+* From the feature test I built a failing unit test
+* Write code to make the test pass
+* Feature test to check it works as expected
+* I repeated this process for each user story - sometimes I would tweak the code and tests if I changed the way the program would work.
+
+**Example User Story**
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
+| Objects    | Nouns     | 
+| ---------- |---------- |
+| Airport    | take_off  |
+| Plane      |           | 
+
+**Example of Imagined program**
+```
+> airport = Airport.new
+> plane = Plane.new
+> airport.land(plane)
+```
+**Example Feature Test**
+```
+> airport = Airport.new
+=> Traceback (most recent call last):
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):1
+NameError (uninitialized constant Airport)
+```
+
 How this program works
 -----
 
@@ -96,10 +134,29 @@ RuntimeError (The plane is unable to land)
  => #<Airport:0x00007feb9217d290 @planes=[], @capacity=20>
 ```
 
-Issues
+Issues/ further developement
 -----
-* This program does not defend against the following edge cases:
+**This program does not defend against the following edge cases:**
 * Ensuring that planes can only take off from airports they are in
 * Planes that are already flying cannot takes off and/or be in an airport
 * Planes that are landed cannot land again and must be in an airport
-* Awaiting an RSpec **feature** test that lands and takes off a number of planes
+
+**Awaiting an RSpec *feature* test that lands and takes off a number of planes**
+
+Topics covered
+-----
+* TDD
+* Encapsulation
+* Guard clauses
+* Single-responsibility principle
+* Stubs and doubles using RSpec
+
+Resources used
+-----
+**[Relishapp: Mocks](https://relishapp.com/rspec/rspec-mocks/docs)**
+
+**[Youtube: How to Use RSpec Mocks & Stubs](https://www.youtube.com/watch?v=oyMPzA-ZWkE)**
+
+**[Better Specs: RSpec Best Practice Guide](http://www.betterspecs.org)**
+
+**Boris Bike Challenge**
