@@ -24,4 +24,11 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error('Weather is too stormy to takeoff')
     end
   end
+
+  describe '#initialize' do
+    it 'assumes all spaces are empty' do
+    expect(subject.spaces).to eq []
+    end
+  end
+
 end

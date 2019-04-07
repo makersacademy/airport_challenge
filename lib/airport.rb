@@ -1,10 +1,15 @@
 require 'weather'
 
 class Airport
+attr_reader :spaces
+
+  def initialize
+    @spaces = []
+  end
 
   def land(plane)
     raise 'It is too stormy to land' if stormy?
-    
+
     plane
   end
 
