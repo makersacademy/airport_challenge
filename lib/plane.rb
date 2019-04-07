@@ -9,10 +9,9 @@ class Plane
 
   def land(airport)
     raise("Plane not in flight") unless @location == "In flight"
-    raise("Airport does not exist") unless airport.instance_of? Airport 
+    raise("Airport does not exist") unless airport.instance_of? Airport
 
     @location = airport
-    "The plane has landed at #{@location}"
   end
 
   def take_off

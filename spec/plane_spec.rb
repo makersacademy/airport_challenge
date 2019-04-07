@@ -5,7 +5,7 @@ describe Plane do
     it { expect(subject).to respond_to(:land).with(1).argument }
     it 'should land at an airport' do
       airport = Airport.new
-      expect(subject.land(airport)).to eq "The plane has landed at #{airport}"
+      expect(subject.land(airport)).to eq airport
     end
     it 'raises an error if the airport does not exist' do
       airport = "Imaginary"
