@@ -4,6 +4,9 @@ class Airport
         (weather.new) == stormy?
     end    
 
+    def capacity
+    end    
+
     def land
     end   
     

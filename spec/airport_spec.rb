@@ -5,7 +5,10 @@ require "weather"
 describe Airport do
     
     describe 'allows the airport to take the weather into consideration'
-        it { is_expected.to respond_to(:stormy) }
+        it { is_expected.to respond_to :stormy  }
+        
+     describe 'can check airport capacity' 
+        it { is_expected.to respond_to :capacity }
 
     
     it 'allows planes to land' do
