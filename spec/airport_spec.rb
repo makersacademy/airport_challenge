@@ -28,11 +28,14 @@ RSpec.describe AirPort do
 
   describe '#take_off' do
     it 'raises and error if the weather is stormy' do
+      allow(airport).to receive(:at_airport?).with(plane).and_return(true)
       allow(airport).to receive(:bad_weather?).and_return true
       expect { airport.take_off(plane) }.to raise_error 'The weather is stormy'
     end
-    
+
     it 'raises an error if plane not in airport' do
+      allow(airport).to receive(:bad_weather?).and_return false
+      allow(airport).to receive(:at_airport?).with(plane).and_return(false)
       expect { airport.take_off(plane) }.to raise_error 'Plane not in this airport'
     end
   end
