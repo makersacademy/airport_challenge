@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
 
   def land(plane)
-    return plane
+    @plane = plane
   end
 
 end
