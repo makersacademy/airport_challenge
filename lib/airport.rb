@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_reader :plane
-  attr_writer :planes
+  attr_writer :hangar
 
   def initialize
     @hangar = []
