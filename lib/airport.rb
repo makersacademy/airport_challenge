@@ -4,21 +4,22 @@ require_relative 'weather'
 class AirPort
 
   include WeatherConditions
-  attr_reader :landed_plane
+  attr_reader :plane
 
-  def initialize
-    @landed_plane ||= []
+  def initialize(capacity)
+    @plane ||= []
+    @capacity = capacity
   end
 
   def land(plane)
-    @landed_plane.push(plane)
+    raise 'Sorry: can not land plane due to stormy weather' if bad_weather?
+
+    raise 'Sorry: can not land plane, airport is full.' if full?
+    @plane.push(plane)
   end
 
   def take_off(plane)
-    puts good_weather?
-    raise 'There are currently no planes' if @landed_plane.empty?
-
-    raise 'The weather is stormy' unless good_weather?
+    raise 'The weather is stormy' if bad_weather?
     
     delete_plane(plane)
     confirm?(plane)
@@ -26,17 +27,20 @@ class AirPort
 
   private
   def confirm?(plane)
-    true unless @landed_plane.include?(plane)
+    true unless @plane.include?(plane)
   end
 
   def delete_plane(plane)
-    plane_id = @landed_plane.index(plane)
-    @landed_plane.delete_at(plane_id)
+    plane_id = @plane.index(plane)
+    @plane.delete_at(plane_id)
   end
 
-  def good_weather?
+  def bad_weather?
     airport_weather = WeatherConditions::Weather.new
-    airport_weather.good?
+    airport_weather.bad?
   end
 
+  def full?
+    @plane.size >= @capacity
+  end
 end
