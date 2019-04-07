@@ -5,8 +5,8 @@ describe Airport do
     subject.land_plane(plane)
   end
   
-  # planes can take off from an airport
-  describe "#plane_take_off" do
-    it { is_expected.to respond_to :plane_take_off }
+  it "#allows plane to take off" do
+    plane = Plane.new
+    subject.plane_take_off(plane)
   end
 end
