@@ -25,7 +25,6 @@ class Airport
   end
 
 private
-
   def stormy?
     weather = ["stormy", "sunny"]
     random_weather = weather[rand(0..1)]
@@ -34,7 +33,6 @@ private
 
   def full?
     @planes.length >= @capacity
-
   end
 
 end
