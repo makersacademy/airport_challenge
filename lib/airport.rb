@@ -6,7 +6,7 @@ class AirPort
   include WeatherConditions
   attr_reader :plane
 
-  def initialize(capacity)
+  def initialize(capacity = 10)
     @plane ||= []
     @capacity = capacity
   end
@@ -15,6 +15,7 @@ class AirPort
     raise 'Sorry: can not land plane due to stormy weather' if bad_weather?
 
     raise 'Sorry: can not land plane, airport is full.' if full?
+
     @plane.push(plane)
   end
 
