@@ -1,4 +1,5 @@
 class Plane
-  def confirm
+  def working?
+    true
   end
 end
