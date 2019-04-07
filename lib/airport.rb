@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :plane
+  DEFAULT_CAPACITY = 30
   def initialize
     @plane = []
   end
@@ -17,6 +18,7 @@ class Airport
   def take_off
     fail 'No plane to fly' if empty?
     fail 'Not a good weather to fly' if weather == "stormy"
+
     p "Flight just took off"
     @plane.pop
   end
@@ -24,13 +26,15 @@ class Airport
   def landing(plane)
     fail 'No space for landing' if full?
     fail 'Not a good weather to land' if weather == "stormy"
+
     @plane << plane
   end
 
   def empty?
     @plane.empty?
   end
+
   def full?
-    @plane.count >= 30
+    @plane.count >= DEFAULT_CAPACITY
   end
 end
