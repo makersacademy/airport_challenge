@@ -8,7 +8,7 @@ class Airport
     false
   end
 
-  def no_take_off_if_stormy(plane)
+  def prevent_take_off_if_stormy(plane)
     true
   end
 end
