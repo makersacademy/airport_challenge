@@ -6,8 +6,8 @@ module WeatherConditions
       rand(1..10)
     end
     
-    def good?
-      stormy? < 6
+    def bad?
+      stormy? > 6
     end
 
   end
