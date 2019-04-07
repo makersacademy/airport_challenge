@@ -11,7 +11,9 @@ describe Airport do
     expect(subject.plane_take_off(plane)).to eq false
   end
 
-  describe "prevents plane from taking off if weather is stormy" do
-    it { is_expected.to respond_to :no_take_off_if_stormy }
+  it "prevents plane from taking off if weather is stormy" do
+    plane = Plane.new
+    subject.plane_take_off(plane)
+    expect(subject.no_take_off_if_stormy(plane)).to eq true
   end
 end
