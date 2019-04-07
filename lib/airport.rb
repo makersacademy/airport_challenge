@@ -11,4 +11,7 @@ class Airport
   def prevent_take_off_if_stormy(plane)
     true
   end
+
+  def prevent_landing_if_stormy
+  end
 end

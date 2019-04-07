@@ -14,4 +14,8 @@ describe Airport do
     plane = Plane.new
     expect(subject.prevent_take_off_if_stormy(plane)).to eq true
   end
+
+  describe "prevent landing if weather is stormy" do
+    it { is_expected.to respond_to :prevent_landing_if_stormy }
+  end
 end
