@@ -30,13 +30,16 @@ describe Airport do
   describe '#take_off' do
     it 'confirms plane is no longer in airport' do
       plane = Plane.new
-      allow(subject).to receive(:forecast) { :sunny }
+      weather = Weather.new
+      allow(weather).to receive(:forecast) { 2 }
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes.empty?).to eq true
     end
     it 'raises an error if the airport is empty' do
       plane = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:forecast) { 2 }
       expect { subject.take_off(plane) }.to raise_error("Unable to take off as the airport is empty.")
     end
   end
