@@ -1,3 +1,7 @@
 class Weather
 
-end 
+  def generate
+    rand(1..10)
+  end
+  
+end
