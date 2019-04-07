@@ -44,9 +44,8 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-##
-Objects	                          Messages
-Air Traffic Controller
-Plane	                         landed?
-Airport	                       land_plane(plane) / take_off(plane)/full?
-Weather	                       stormy?
+## Objects and Messages
+#Air Traffic Controller
+#Plane --landed?
+#Airport--land_plane(plane) / take_off(plane)/full?
+#Weather--stormy?
