@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -6,16 +7,18 @@ class Airport
 
   attr_accessor :capacity
   attr_reader :planes
+  attr_reader :weather
 
   def initialize(capacity = CAPACITY)
     @capacity = capacity
-    @planes = [] << rand(1..capacity).times.collect { Plane.new }
+    @planes = [].concat new_plane
+    @weather = Weather.new
   end
 
-  def takeoff
+  def takeoff(plane)
     fail "Plane cannot take off in this weather" if storm
 
-    @planes.pop
+    @planes.delete(plane)
     "Plane has taken off"
   end
 
@@ -24,17 +27,21 @@ class Airport
     fail "Plane cannot land in this weather" if storm
 
     @planes << plane
-    plane
-  end
-
-  private
-
-  def full
-    @planes.count >= @capacity
+    "Plane has landed"
   end
 
   def storm
     random_forecast == :stormy
+  end
+
+  private
+
+  def new_plane
+    Array.new(rand(1..capacity)) { Plane.new }
+  end
+
+  def full
+    @planes.count >= @capacity
   end
 
   FORECASTS = [:stormy, :normal, :normal, :normal]
