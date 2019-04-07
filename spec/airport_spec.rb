@@ -63,12 +63,19 @@ describe Airport do
 
   describe '#initialize' do
     it 'has a variable capacity' do
-    airport = Airport.new(50)
-    allow(subject).to receive(:full?).and_return true
-    clear_conditions
-    50.times { airport.land Plane.new }
-    expect { airport.land Plane.new }.to raise_error 'hangar full'
+      airport = Airport.new(50)
+      allow(subject).to receive(:full?).and_return true
+      clear_conditions
+      50.times { airport.land Plane.new }
+      expect { airport.land Plane.new }.to raise_error 'hangar full'
     end
-  end 
 
+    it 'defaults capacity' do
+      airport = Airport.new
+      allow(subject).to receive(:full?).and_return true
+      clear_conditions
+      Airport::DEFAULT_CAPACITY.times { airport.land Plane.new }
+      expect { airport.land Plane.new }.to raise_error 'hangar full'
+    end
+  end
 end
