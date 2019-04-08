@@ -10,7 +10,7 @@ class Airport
     @plane = plane
   end
 
-  def plane_take_off(plane)
+  def plane_take_off(_plane)
     "Plane left the airport"
   end
 
@@ -19,7 +19,7 @@ class Airport
   end
 
   def prevent_landing_if_stormy(_plane)
-    true
+    "Plane cannot land due to story weather"
   end
 
   def prevent_landing_if_airport_is_full(_plane)

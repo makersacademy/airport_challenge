@@ -19,9 +19,9 @@ describe Airport do
   end
 
   it "prevents landing if weather is stormy" do
+    airport = Airport.new
     plane = Plane.new
-    expect(subject.prevent_landing_if_stormy(plane)).to eq true
-    # I want to know a plane is not in the airport
+    expect(airport.prevent_landing_if_stormy(plane)).to eq "Plane cannot land due to story weather"
   end
   
   it "prevents landing if airport is full" do
