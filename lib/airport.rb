@@ -9,12 +9,16 @@ class Airport
     @planes = []
   end
 
+  def stormy?
+    @stormy
+  end
+
   def plane_landing?
     @landing_planes
   end
 
   def take_off_planes?
-    @departing_planes
+   @departing_planes
   end
 
   def land planes
