@@ -24,11 +24,8 @@ class Airport
     @planes.pop
   end
 
-private
 
-  def stormy?
-    rand(1..10) > 6
-  end
+private
 
   def full?
     planes.count >= capacity

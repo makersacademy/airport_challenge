@@ -1,5 +1,6 @@
 require 'airport'
 require 'planes'
+require 'weather'
 
 describe Airport do
 
@@ -63,25 +64,6 @@ describe Airport do
       end
       it "Plane cannot land" do
         expect { subject.take_off }.to raise_error 'Too stormy to take off'
-      end
-    end
-  end
-
-  describe '#stormy?' do
-    context 'Yes' do
-      before do
-        allow(subject).to receive(:rand).and_return 7
-      end
-      it 'Is stormy' do
-        expect(subject.stormy?).to eq true
-      end
-    end
-    context 'No' do
-      before do
-        allow(subject).to receive(:rand).and_return 3
-      end
-      it 'Is not stormy' do
-        expect(subject.stormy?).to eq false
       end
     end
   end
