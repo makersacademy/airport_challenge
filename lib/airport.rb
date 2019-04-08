@@ -14,8 +14,8 @@ class Airport
     "Plane left the airport"
   end
 
-  def prevent_take_off_if_stormy(_plane)
-    true
+  def prevent_take_off_if_stormy(plane)
+    @plane = plane
   end
 
   def prevent_landing_if_stormy(_plane)
