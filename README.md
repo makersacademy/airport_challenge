@@ -141,6 +141,8 @@ Issues/ further developement
 * Planes that are already flying cannot takes off and/or be in an airport
 * Planes that are landed cannot land again and must be in an airport
 
+**Need to add a test for land method that checks if the plane has been added to the planes array**
+
 **Awaiting an RSpec *feature* test that lands and takes off a number of planes**
 
 Topics covered
