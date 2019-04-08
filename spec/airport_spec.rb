@@ -7,9 +7,9 @@ describe Airport do
   end
   
   it "allows plane to take off" do
+    airport = Airport.new
     plane = Plane.new
-    expect(subject.plane_take_off(plane)).to eq false
-    # I want to know a plane was here then took off so is no longer present
+    expect(airport.plane_take_off(plane)).to eq "Plane left the airport"
   end
 
   it "prevents plane from taking off if weather is stormy" do

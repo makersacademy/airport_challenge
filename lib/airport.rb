@@ -7,11 +7,11 @@ class Airport
   end
 
   def land_plane(plane)
-    p @plane = plane
+    @plane = plane
   end
 
-  def plane_take_off(_plane)
-    false
+  def plane_take_off(plane)
+    "Plane left the airport"
   end
 
   def prevent_take_off_if_stormy(_plane)
