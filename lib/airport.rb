@@ -1,5 +1,4 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
   attr_reader :planes, :capacity
@@ -25,6 +24,10 @@ class Airport
     raise "Unable to take off due to stormy weather." if stormy?
 
     @planes.delete(plane)
+  end
+
+  def stormy?
+    rand(1..10) > 8
   end
 
   private

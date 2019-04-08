@@ -2,15 +2,16 @@
 
   This program replicates the landing and taking off of planes at an airport, as well as testing for weather conditions to ensure it is safe to land or take off.
 
-  I approached this challenge by using TDD and debugging with rspec tests to reach my final version. I wrote out a rspec test that described my aim and then followed the error messages to create source-code that corresponded to those errors.
+  I approached this challenge by using TDD and debugging with Rspec tests to reach my final version. I wrote out a Rspec test that described my aim and then followed the error messages to create source-code that corresponded to those errors.
+
+  It acts as practice for my Ruby and Rspec skills.
 
 ## How to get this program
 
-  1. Fork this repository.
-  2. Clone the repository onto your device.
-  3. Run 'gem install bundle' into your command line.
-  4. Run 'bundle' after the installation has finished.
-  5. You should be good to go!
+  1. Clone the repository onto your device.
+  2. Run 'gem install bundle' into your command line.
+  3. Run 'bundle' after the installation has finished.
+  4. You should be good to go!
 
 ## How to use in irb
 
@@ -41,6 +42,6 @@ RuntimeError (Unable to take off due to stormy weather.)
  => #<Airport:0x00007fa116858888 @capacity=30, @planes=[], @weather=#<Weather:0x00007fa116858860>>
 ```
 
-## Rspec tests
+## Rspec Tests
 
-  This program should return all (12) green rspec tests with 100% coverage and no offences detected in rubocop.
+  This program should return all (12) green Rspec tests with 100% coverage and no offences detected in Rubocop.

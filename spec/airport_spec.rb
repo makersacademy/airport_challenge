@@ -1,5 +1,4 @@
 require 'airport'
-require 'weather'
 
 describe Airport do
 
@@ -14,7 +13,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { false }
       end
-      it 'raises an error' do
+      it 'raise an error' do
         Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
         expect { subject.land(Plane.new) }.to raise_error("Unable to land plane as the airport is full.")
       end
@@ -23,7 +22,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { false }
       end
-      it 'raises an error' do
+      it 'raise an error' do
         plane = Plane.new
         subject.land(plane)
         expect { subject.land(plane) }.to raise_error("That plane has already landed.")
@@ -46,7 +45,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { true }
       end
-      it 'raises an error' do
+      it 'raise an error' do
         plane = Plane.new
         expect { subject.land(plane) }.to raise_error("Unable to land plane due to stormy weather.")
       end
@@ -58,7 +57,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { false }
       end
-      it 'raises an error' do
+      it 'raise an error' do
         plane = Plane.new
         expect { subject.take_off(plane) }.to raise_error("Unable to take off as the airport is empty.")
       end
@@ -67,7 +66,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { false }
       end
-      it 'raises an error' do
+      it 'raise an error' do
         plane = Plane.new
         subject.land(Plane.new)
         expect { subject.take_off(plane) }.to raise_error("That plane is not in the airport.")
@@ -77,7 +76,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?) { false }
       end
-      it 'confirms plane is no longer in airport' do
+      it 'confirm plane is no longer in airport' do
         plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
@@ -85,12 +84,27 @@ describe Airport do
       end
     end
     context 'when stormy' do
-      it 'raises an error' do
+      it 'raise an error' do
         plane = Plane.new
         allow(subject).to receive(:stormy?) { false }
         subject.land(plane)
         allow(subject).to receive(:stormy?) { true }
         expect { subject.take_off(plane) }.to raise_error("Unable to take off due to stormy weather.")
+      end
+    end
+  end
+
+  describe '#stormy?' do
+    context 'when not stormy' do
+      it 'returns false' do
+        allow(subject).to receive(:rand) { 2 }
+        expect(subject.stormy?).to eq false
+      end
+    end
+    context 'when stormy' do
+      it 'returns true' do
+        allow(subject).to receive(:rand) { 9 }
+        expect(subject.stormy?).to eq true
       end
     end
   end
