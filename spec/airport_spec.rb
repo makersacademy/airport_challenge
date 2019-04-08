@@ -7,6 +7,14 @@ describe Airport do
 
   describe '#land(plane)' do
 
+    it 'allows a plane to land' do
+      allow(subject).to receive(:stormy?).and_return false
+      allow(subject).to receive(:already_landed?).and_return false
+      allow(subject).to receive(:in_airport?).and_return false
+      subject.land(plane)
+      allow(subject).to receive(:already_landed?).and_return true
+    end
+
     it 'does not allow landing in stormy weather' do
       allow(subject).to receive(:stormy?).and_return true
       expect { subject.land(plane) }.to raise_error "It is too stormy to land"
@@ -27,6 +35,15 @@ describe Airport do
   end
 
   describe '#take_off(plane)' do
+
+    it 'allows a plane to take off' do
+      allow(subject).to receive(:stormy?).and_return false
+      allow(subject).to receive(:already_landed?).and_return false
+      allow(subject).to receive(:in_airport?).and_return true
+      subject.take_off(plane)
+      expect(plane).to eq(plane)
+    end
+
     it 'does not allow planes to take off in stormy weather' do
       allow(subject).to receive(:stormy?).and_return true
       expect { subject.take_off(plane) }.to raise_error "It is too stormy to take off"
