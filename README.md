@@ -12,7 +12,7 @@
   - Prevent take off when the weather is stormy.
   - Prevent landing when the weather is stormy.
   - Prevent landing when the airport is full.
-  - Ability to set a override a default airport capacity.
+  - Ability to override a default airport capacity.
 
 ## How to get this program
 
