@@ -6,6 +6,14 @@
 
   It acts as practice for my Ruby and Rspec skills.
 
+## What criteria should this program satisfy?
+  - Instruct a plane to land at the airport.
+  - Instruct a plane to take off from the airport.
+  - Prevent take off when the weather is stormy.
+  - Prevent landing when the weather is stormy.
+  - Prevent landing when the airport is full.
+  - Ability to set a override a default airport capacity.
+
 ## How to get this program
 
   1. Clone the repository onto your device.
