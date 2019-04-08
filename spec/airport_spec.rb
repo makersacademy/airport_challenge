@@ -43,13 +43,12 @@ describe Airport do
         Airport::DEFAULT_CAPACITY.times do
           subject.land(double('plane'))
         end
-        expect { subject.land(plane) }.to raise_error 'Airport is full'
+        expect { subject.land(plane) }.to raise_error 'Airport full'
       end
     end
   end
 
   describe '#take_off' do
-    plane = 'plane'
     context 'when not stormy' do
       before do
         allow(subject).to receive(:stormy).and_return false

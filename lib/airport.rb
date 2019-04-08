@@ -15,7 +15,7 @@ class Airport
     raise "Too stormy to land" if stormy?
     raise "Plane has already landed" if planes.include?(plane)
 
-    planes << plane
+    @planes << plane
   end
 
   def take_off
