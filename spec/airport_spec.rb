@@ -20,57 +20,50 @@ describe Airport do
   end
 
   describe '#land' do
+    plane = 'plane'
     context 'when not stormy' do
       before do
-        airport = Airport.new
-        allow(airport).to receive(:stormy?).and_return false
+        allow(subject).to receive(:stormy?).and_return false
       end
       it 'instructs a plane to land' do
-        airport = Airport.new
-        expect(airport).to respond_to(:land).with(1).argument
+        expect(subject).to respond_to(:land).with(1).argument
       end
     end
     context 'when stormy' do
       before do
-        airport = Airport.new
-        allow(airport).to receive(:stormy?).and_return true
+        allow(subject).to receive(:stormy?).and_return true
       end
       it "Plane cannot land when stormy" do
-        airport = Airport.new
-        expect { airport.land(plane) }.to raise_error { "Too stormy to land" }
+        expect { subject.land(plane) }.to raise_error 'Too stormy to land'
       end
     end
     context 'when the airport is full' do
-      before do
-        airport = Airport.new
-        allow(airport).to receive(:stormy?).and_return false
-      end
       it "cannot land plane as airport is full" do
-        airport = Airport.new
-        expect { airport.land(plane) }.to raise_error { "Airport is full" }
+        allow(subject).to receive(:stormy?).and_return false
+        Airport::DEFAULT_CAPACITY.times do
+          subject.land(double('plane'))
+        end
+        expect { subject.land(plane) }.to raise_error 'Airport is full'
       end
     end
   end
 
   describe '#take_off' do
+    plane = 'plane'
     context 'when not stormy' do
       before do
-        airport = Airport.new
-        allow(airport).to receive(:stormy).and_return false
+        allow(subject).to receive(:stormy).and_return false
       end
       it 'instructs the plane to take off' do
-        airport = Airport.new
-        expect(airport).to respond_to(:take_off)
+        expect(subject).to respond_to(:take_off)
       end
     end
     context 'when stormy' do
       before do
-        airport = Airport.new
-        allow(airport).to receive(:stormy).and_return false
+        allow(subject).to receive(:stormy?).and_return true
       end
-      it "Plane cannot take off when stormy" do
-        airport = Airport.new
-        expect { airport.take_off }.to raise_error { "Too stormy to take off" }
+      it "Plane cannot land when stormy" do
+        expect { subject.take_off }.to raise_error 'Too stormy to take off'
       end
     end
   end
