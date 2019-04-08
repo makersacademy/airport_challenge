@@ -3,28 +3,27 @@ require 'weather'
 require 'airport_occupancy.rb'
 
 class AirTrafficControl # Resposible of issuing landing and takeoff instructions
-  attr_accessor :planes_list, :capacity, :stormy
+  attr_accessor :capacity, :stormy, :planes_list
+  #attr_reader
 
   @stormy = Weather.new
 
-  def initialize(planes_list = [], capacity = 20)
-    @planes_list = planes_list
+  def initialize(capacity = 20)
     @capacity = capacity
+    @planes_list = []
   end
 
   def land(plane)
-    is_full = AirportOccupancy.new(@capacity, @planes_list.count).check_full
-    raise "Airport full, can't land now!" if is_full
+    raise "Airport full, can't land now!" if AirportOccupancy.new(@capacity, @planes_list.count).check_full
     raise "This plane landed in the airport already!" if @planes_list.include?(plane)
-    @planes_list << (plane) unless @stormy
     raise "Stormy weather, can't land now!" if @stormy
+    @planes_list << (plane)
   end
 
   def take_off(plane)
-    is_empty = AirportOccupancy.new(@capacity, planes_list.count).check_empty
-    raise "Airport empty, no planes to takeoff!" if is_empty
+    raise "Airport empty, no planes to takeoff!" if AirportOccupancy.new(@capacity, planes_list.count).check_empty
     raise "This plane left the airport already!" if !@planes_list.include?(plane)
-    @planes_list.delete(plane) unless @stormy
     raise "Stormy weather, can't take off now!" if @stormy
+    @planes_list.delete(plane)
   end
 end

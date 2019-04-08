@@ -52,9 +52,9 @@ describe AirTrafficControl do
     end
 
     it "Check if plane will takeoff from an empty airport" do
-      airport.stormy = false
-      airport.planes_list = []
-      expect { airport.take_off(additional_plane.plane_sign) }.to raise_error("Airport empty, no planes to takeoff!")
+      empty_airport = AirTrafficControl.new
+      empty_airport.stormy = false
+      expect { empty_airport.take_off(additional_plane.plane_sign) }.to raise_error("Airport empty, no planes to takeoff!")
     end
   end
 
