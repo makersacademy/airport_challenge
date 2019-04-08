@@ -5,56 +5,29 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-   attr_accessor :capacity
-   attr_accessor :weather
-   attr_accessor :planes
-
-
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
-    if full?
-      "Airport full"
-    else
+    raise "It is too stormy to land" if stormy?
+    raise "Airport full" if full?
     @planes << plane
-    'Plane landed'
     end
-  end
 
-  def delete(*)
+  def take_off
+    raise "It is too stormy to take off" if stormy?
     @planes.pop
-    "Plane is no longer in airport"
-  end
-
-  def empty?
-    @planes.empty?
   end
 
   def full?
-    @planes.count == @capacity
+    @planes.length >= @capacity
   end
 
-  def control_landing(plane)
-    airport = Airport.new
-    return "It is too stormy to land" if weather == "Stormy"
-    return "Airport full" if full?
-
-    airport.land(plane)
-    end
-
-  def control_takeoff(plane)
-    airport = Airport.new
-    return "It is too stormy to take off" if weather == "Stormy"
-    return "The airport is empty" if empty?
-
-    airport.delete(plane)
-  end
-  
-  def weather
-     Weather.new
+  def stormy?
+    @weather.forecast == "Stormy"
   end
 
 end

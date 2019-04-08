@@ -4,10 +4,12 @@ describe Weather do
   let(:weather) { Weather.new }
 
   it "is stormy outside" do
-    allow(weather).to receive(:forecast) { "Stormy" }
+    allow(weather).to receive(:randomise) { 95 }
+    expect(weather.forecast).to eq "Stormy"
   end
 
   it "is sunny outside" do
-    allow(weather).to receive(:forecast) { "Sunny" }
+    allow(weather).to receive(:randomise) { 20 }
+    expect(weather.forecast).to eq "Sunny"
   end
 end
