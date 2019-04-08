@@ -20,7 +20,7 @@ describe Airport do
   end
 
   describe '#land' do
-    plane = 'plane'
+    plane = Planes.new
     context 'when not stormy' do
       before do
         allow(subject).to receive(:stormy?).and_return false
@@ -33,15 +33,15 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?).and_return true
       end
-      it "Plane cannot land when stormy" do
+      it "Plane cannot land" do
         expect { subject.land(plane) }.to raise_error 'Too stormy to land'
       end
     end
     context 'when the airport is full' do
-      it "cannot land plane as airport is full" do
+      it "cannot land plane" do
         allow(subject).to receive(:stormy?).and_return false
         Airport::DEFAULT_CAPACITY.times do
-          subject.land(double('plane'))
+          subject.land(double(plane))
         end
         expect { subject.land(plane) }.to raise_error 'Airport full'
       end
@@ -61,7 +61,7 @@ describe Airport do
       before do
         allow(subject).to receive(:stormy?).and_return true
       end
-      it "Plane cannot land when stormy" do
+      it "Plane cannot land" do
         expect { subject.take_off }.to raise_error 'Too stormy to take off'
       end
     end
