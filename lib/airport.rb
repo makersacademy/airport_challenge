@@ -21,7 +21,6 @@ class Airport
   def take_off
     raise 'Too stormy to take off' if stormy?
 
-    plane_taken_off
     @planes.pop
   end
 
@@ -35,7 +34,4 @@ private
     planes.count >= capacity
   end
 
-  def plane_taken_off
-    'Plane taken off'
-  end
 end
