@@ -6,8 +6,12 @@ class Airport
 
 	def land_a_plane
 
-		if @planes
-			@planes += 1
+		if @planes != nil
+			if @planes < @capacity
+				@planes += 1
+			else
+				puts "Plane can't land. Airport full."
+			end
 		else
 			@planes = 1
 		end
