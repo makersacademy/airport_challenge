@@ -13,23 +13,21 @@ class Planes
   end
 
   def take_off(airport)
-    raise "Wrong airport." unless @plane.include?(airport)
-
-    raise "Already left the airport." if empty?
+    raise "Plane not in airport." unless @plane.include?(airport)
 
     @plane.pop
   end
 
   private
   # def wrong?
-  #
+  #   @plane.include?(airport)
   # end
-  
+
   def landed?
     @plane.count == 1
   end
 
-  def empty?
-    @plane.count.zero?
-  end
+  # def empty?
+  #   @plane.count.zero?
+  # end
 end

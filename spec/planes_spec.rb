@@ -26,13 +26,13 @@ RSpec.describe Planes do
     airport = Airport.new
     subject.land_in(airport)
     subject.take_off(airport)
-    expect { subject.take_off(airport) }.to raise_error("Already left the airport.")
+    expect { subject.take_off(airport) }.to raise_error("Plane not in airport.")
   end
 
   it 'prevents a plane from taking off from a different airport' do
     airport = Airport.new
     airport_two = Airport.new
     subject.land_in(airport)
-    expect { subject.take_off(airport_two) }.to raise_error("Wrong airport.")
+    expect { subject.take_off(airport_two) }.to raise_error("Plane not in airport.")
   end
 end
