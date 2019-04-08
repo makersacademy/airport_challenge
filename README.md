@@ -1,3 +1,10 @@
+# Airport Challenge README
+
+## Introduction
+The airport challenge was the first weekend challenge on the course. We were given a number of user stories and using `TDD` we were to write the system in `Ruby`. Testing was to be carried out using `rspec` and code quality to be checked using `rubocop`.
+The majority of this project was completed that weekend but I revisted the challenge in week 10 to complete the challenge, refactor and update the README.
+
+## The User Stories
 
 
 The current status of this challenge is the following:
