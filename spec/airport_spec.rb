@@ -1,7 +1,8 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
-  
+
   describe '#initialize' do
     it 'takes an argument for setting capacity number' do
       expect(initialize(10)).to eq @capacity
@@ -59,8 +60,6 @@ describe Airport do
       end
       it 'raises an error' do
         plane = Plane.new
-        allow(subject).to receive(:rand) { 2 }
-        expect(subject.stormy?).to eq false
         expect { subject.take_off(plane) }.to raise_error("Unable to take off as the airport is empty.")
       end
     end
@@ -92,21 +91,6 @@ describe Airport do
         subject.land(plane)
         allow(subject).to receive(:stormy?) { true }
         expect { subject.take_off(plane) }.to raise_error("Unable to take off due to stormy weather.")
-      end
-    end
-  end
-
-  describe '#stormy?' do
-    context 'when not stormy' do
-      it 'returns false' do
-        allow(subject).to receive(:rand) { 2 }
-        expect(subject.stormy?).to eq false
-      end
-    end
-    context 'when stormy' do
-      it 'returns true if forecast is stormy' do
-        allow(subject).to receive(:rand) { 9 }
-        expect(subject.stormy?).to eq true
       end
     end
   end
