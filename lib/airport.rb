@@ -12,14 +12,18 @@ class Airport
   end
 
   def land(plane)
+    raise "That plane has already landed" if already_landed?(plane)
     raise "It is too stormy to land" if stormy?
     raise "Airport full" if full?
+    plane.plane_landed
     @planes << plane
-    end
+  end
 
-  def take_off
+  def take_off(plane)
     raise "It is too stormy to take off" if stormy?
-    @planes.pop
+    raise "This plane is not here" unless in_airport?(plane)
+    plane.plane_flying
+    @planes.delete(plane)
   end
 
   def full?
@@ -30,4 +34,11 @@ class Airport
     @weather.forecast == "Stormy"
   end
 
+  def already_landed?(plane)
+    plane.landed?
+  end
+
+  def in_airport?(plane)
+    @planes.include? plane
+  end
 end
