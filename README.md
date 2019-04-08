@@ -40,3 +40,7 @@ RuntimeError (Unable to take off due to stormy weather.)
 2.5.0 :003 > airport = Airport.new(30)
  => #<Airport:0x00007fa116858888 @capacity=30, @planes=[], @weather=#<Weather:0x00007fa116858860>>
 ```
+
+## Rspec tests
+
+  This program should return all (12) green rspec tests with 100% coverage and no offences detected in rubocop.

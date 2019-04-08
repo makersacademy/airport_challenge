@@ -10,7 +10,7 @@ describe Weather do
       end
     end
     context 'when stormy' do
-      it 'returns true if forecast is stormy' do
+      it 'returns true' do
         allow(subject).to receive(:rand) { 9 }
         expect(subject.stormy?).to eq true
       end
