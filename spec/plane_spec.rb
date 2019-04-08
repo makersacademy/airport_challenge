@@ -23,6 +23,11 @@ describe Plane do
       allow(airport).to receive(:stormy?) { true }
       expect { subject.land(airport) }.to raise_error("Weather is stormy, landing not allowed")
     end
+    it 'sends add_plane message to Airport' do
+      airport = Airport.new
+      subject.land(airport)
+      expect(airport.apron).to include(subject)
+    end
   end
   describe '#take_off' do
     it 'takes off from an airport' do
@@ -40,6 +45,13 @@ describe Plane do
       subject.land(airport)
       allow(airport).to receive(:stormy?) { true }
       expect { subject.take_off }.to raise_error("Weather is stormy, take off not allowed")
+    end
+    it 'sends remove_plane message to Airport' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?) { false }
+      subject.land(airport)
+      subject.take_off
+      expect(airport.apron).not_to include(subject)
     end
   end
   describe '#in_airport?' do
