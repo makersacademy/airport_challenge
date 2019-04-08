@@ -11,7 +11,7 @@ describe Weather do
       expect(subject.stormy?). to eq true
     end
 
-    it "check the weather being stormy " do
+    it "check the weather being not stormy " do
       allow(subject).to receive(:rand).and_return(5)
       expect(subject.stormy?). to eq false
     end

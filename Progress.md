@@ -1545,3 +1545,6 @@ ArgumentError (wrong number of arguments (given 1, expected 0))
 ```
 
 ## Update README.md  
+
+## Refactor the unit tests
+Use the preferred ‘let’ block to replace ‘before do’ in airport_sepc.rb and make the test code drier.
