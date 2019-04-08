@@ -1,3 +1,8 @@
+Approach
+---------
+For this challenge I will develop a program starting with the User Stories. From the information in the User Stories I can create the tests to be able to write the code. By working through each user story I was able to create objects and messages use as the subjects and instructions for testing. I was able to work through the first 5 user stories and test for each but was unable to complete testing for the final user story.
+
+
 Airport Challenge
 =================
 
