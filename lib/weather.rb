@@ -7,7 +7,7 @@ class Weather
   end
 
   def stormy?
-    @stormy = true
+    rand(1..10) > 6
   end
-
+  
 end

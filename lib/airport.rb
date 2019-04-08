@@ -31,10 +31,6 @@ class Airport
 
   private
 
-  def stormy?
-    @stormy
-  end
-
   def plane_taken_off
     'Plane has taken off'
   end
