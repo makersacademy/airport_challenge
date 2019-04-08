@@ -5,12 +5,17 @@ class Airport
 
   attr_reader :planes
 
+  include Weather
+
   def initialize
     @planes = []
+    @weather
   end
 
   def land(plane)
+    @weather = self.generate_weather
     fail "Plane has already landed!" unless plane.landed == false
+    fail "The weather is too bad to land." if @weather == "Stormy"
     plane.landed = true
     @planes << plane
   end

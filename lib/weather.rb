@@ -1,4 +1,4 @@
-class Weather
+module Weather
 
   def generate_weather
     weather = rand(1..10)
