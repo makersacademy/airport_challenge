@@ -24,11 +24,17 @@ describe Airport do
     expect(airport.prevent_landing_if_stormy(plane)).to eq "Plane cannot land due to story weather"
   end
   
-  it "prevents landing if airport is full" do
-    plane = Plane.new
-    expect(subject.prevent_landing_if_airport_is_full(plane)).to eq true
+  it "set airport default value" do
     expect(subject.capacity).to eq 1
-    expect(subject.capacity(2)).to eq 2
-    # I want to know a plane is not in the airport
+  end
+
+  it "changes default capacity" do
+    airport = Airport.new(2)
+    expect(airport.capacity).to eq 2
+  end
+  
+  it 'raises an error when full' do
+    airport = Airport.new(0)
+    expect { airport.prevent_landing_if_airport_is_full }.to raise_error 'Airport full'
   end
 end

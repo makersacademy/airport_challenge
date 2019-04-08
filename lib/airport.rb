@@ -1,8 +1,9 @@
 require 'plane'
 class Airport
   attr_reader :plane
+  attr_reader :capacity
 
-  def capacity(capacity = 1)
+  def initialize(capacity = 1)
     @capacity = capacity
   end
 
@@ -22,7 +23,8 @@ class Airport
     "Plane cannot land due to story weather"
   end
 
-  def prevent_landing_if_airport_is_full(_plane)
-    true
+  def prevent_landing_if_airport_is_full
+    raise "Airport full" if @capacity.zero?
+    
   end
 end
