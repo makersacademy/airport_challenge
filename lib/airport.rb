@@ -3,9 +3,9 @@ require_relative 'weather'
 
 class Airport
 
-  DEFAULT_CAPACITY = 50
+  DEFAULT_CAPACITY = 1
 
-  attr_writer :hangar
+  attr_reader :hangar
   attr_reader :instance_of_weather
   attr_accessor :capacity
 
@@ -20,7 +20,6 @@ class Airport
 
     fail 'hangar full' if full?
 
-    @plane = plane
     @hangar << plane
   end
 

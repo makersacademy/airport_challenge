@@ -60,6 +60,7 @@ describe Airport do
   end
 
   describe '#initialize' do
+    
     it 'has a variable capacity' do
       airport = Airport.new(50)
       50.times { airport.land Plane.new }
@@ -73,3 +74,7 @@ describe Airport do
     end
   end
 end
+
+# observations:
+# plane is landable on second attempt if storm prevented it initially? =>
+# needs condition that if plane instance is in hangar, cannot be landed twice!
