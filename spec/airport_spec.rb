@@ -13,6 +13,7 @@ describe Airport do
       allow(subject).to receive(:in_airport?).and_return false
       subject.land(plane)
       allow(subject).to receive(:already_landed?).and_return true
+      expect(subject.planes).to include plane 
     end
 
     it 'does not allow landing in stormy weather' do
