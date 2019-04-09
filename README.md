@@ -32,7 +32,7 @@ Approach to Solution
 
 **Edge cases**
 
-- As it stands, the plane can 'land' and 'take_off' more than once. To solve the 'land' issue, I would write code to raise an error if that instance of plane resides in the hangar array. Similarly, to solve the same issue with 'take_off', I would raise an error if that plane is NOT in the hangar.
+- As it stands, the plane can 'land' and '''take_off''' more than once. To solve the 'land' issue, I would write code to raise an error if that instance of plane resides in the hangar array. Similarly, to solve the same issue with 'take_off', I would raise an error if that plane is NOT in the hangar.
 
 **Stormy weather**
 
