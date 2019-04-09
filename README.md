@@ -1,90 +1,93 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+This challenge was set as our first weekend challenge of the Makers Academy course. It enabled me to practice transforming user stories into usable code using test driven development, as well as improve my Ruby skills generally and become more comfortable with OOP and encapsulation.
 
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
+Steps to run this program
 -------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
------
+Using this program
+-------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+This is an example of how you could use this program in irb. You will need to `require` the `airport.rb` file first:
+```
+irb
+require './lib/airport.rb'
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+plane.landed?
+airport.take_off(plane)
+```
+
+My Approach
+---------
+
+At the beginning of the challenge, I was given the following tasks and user stories. I have explained my approach to problem solving under each individual user story below:
+
+"We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:"
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
+```
+I decided that I would need an Airport class and a Plane class. I would then need method to land a plane(object) in the airport(object).
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+I created a method that enabled the user to instruct planes to take off from the airport. In order to confirm that the plane is no longer at the airport, I created methods in the Plane class to set the state of the plane. This way I would be able to record that the plane has taken off and is now set to "flying".
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+In order to ensure that the Single Responsibility Principle was adhered to, I wanted to create a separate Weather class which randomised weather instances. I wanted it to be more likely that it would be a sunny day but with the chance of an occasional storm.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+If there was a storm, the plane would be prevented from taking off. This would involve creating a method in the Airport class which would check whether or not the weather was stormy and an error being raised if it was. I used stubs in my testing to ensure that when it was stormy the plane would not take off.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+My approach here mirrored my approach when preventing take off during a storm. I used the same method in the Airport class to check the weather and raised an error to prevent landing if the weather was stormy. Again, I used stubs in my testing to ensure that when it was stormy the plane would not be able to land.
 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+Firstly I needed to decide what it would mean for the airport to be 'full'. Therefore I would need to set the capacity. Initially, I set the airport capacity as a number but later changed this to the constant 'DEFAULT_CAPACITY' so that this could be easily changed later if necessary.
+
+I then created a predicate method in the Airport class which returned `true` if the airport was full  (i.e. the number of planes was equal to or greater than the DEFAULT_CAPACITY). I then raised an error that informed the planes the airport was too full for them to land.
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+When initializing the Airport class, I passed an argument for setting the airport capacity using the constant `DEFAULT_CAPACITY`, which will be the default airport capacity if the user does not pass an argument. Therefore, my airport can be expanded later in the future.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+I also defended against certain edge cases such as ensuring that planes could only take off if they were actually in the airport. To improve this code, I would defend against further edge cases by ensuring that planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc. I have already created methods in my Plane class which reflect the status of the Plane, so it would be a case of implementing these. 
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+What I learned from this challenge
+-----
+* How to use stubs in my tests
+* Further practice with TDD and Rspec
+* Defending against edge cases
+* OOP and Encapsulation
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Author/Acknowledgements
+-----
+Jordan Roberts
+Makers Academy Challenge
