@@ -15,7 +15,7 @@ class Airport
     raise "That plane has already landed" if already_landed?(plane)
     raise "It is too stormy to land" if stormy?
     raise "Airport full" if full?
-    
+
     plane.plane_landed
     @planes << plane
   end
