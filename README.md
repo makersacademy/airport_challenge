@@ -50,7 +50,7 @@ To test the application `run rspec `
 ```
 1. Learn how to test private methods.
 2. Learn how to test modules.
-3. Learn more about RSpec duoble.
+3. Learn more about RSpec double.
 ```
 
 
