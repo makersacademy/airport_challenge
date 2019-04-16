@@ -1,5 +1,5 @@
 # To Run Test For Application.
-- cd clone repo
+- clone repo
 - cd into airport_challenge
 - run ``rspec``
 
