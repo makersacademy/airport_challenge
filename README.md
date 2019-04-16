@@ -7,7 +7,7 @@
 ```
  This was a challenge given to students in week one at makers. 
  The aim of the challenge was to allow students to practice TDD and to learn 
- how to convert user stories into Domain models
+ how to convert user stories into Domain models.
 ```
 # To Use Application Please Follow These Steps.
 ```
