@@ -173,12 +173,6 @@ Ensuring that planes can only take off from airports they are in.
 
 - Use a mock for plane
 
-
-
-**Maker's extra notes & guidance**
--------
-**BONUS**
-
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
 
