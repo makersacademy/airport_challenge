@@ -73,7 +73,7 @@ describe Airport do
     expect(airport.report(plane1)).to eq false
     plane1.set_request("take off")
     airport.communicate(plane1)
-    expect(airport.report(plane1)).to eq true 
+    expect(airport.report(plane1)).to eq true
 
 
   end
