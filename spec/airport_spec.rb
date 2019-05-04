@@ -6,7 +6,7 @@ describe Airport do
     @airport = Airport.new
   end
 
-  it "is empty by default" do
+  it 'is empty by default' do
     expect(@airport.planes).to be_empty
   end
 
@@ -30,9 +30,8 @@ describe Airport do
     plane = Plane.new
     @airport.land(plane)
     @airport.take_off(plane)
-    
+
     expect(@airport.planes).not_to include(plane)
     expect(@airport.planes.size).to eq(0)
   end
-
 end
