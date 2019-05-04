@@ -14,7 +14,8 @@ describe Airport do
     expect(@airport).to respond_to(:land).with(1).argument
   end
 
-  it 'can be used to land at' do
+  it 'can be used to land at if weather is stormy' do
+    allow(Weather).to receive(:stormy?) { false }
     plane = Plane.new
     @airport.land(plane)
 
@@ -22,12 +23,18 @@ describe Airport do
     expect(@airport.planes.size).to eq(1)
   end
 
+  it 'raises an error when a plane tries to land in stormy weather' do
+    allow(Weather).to receive(:stormy?) { true }
+
+    expect { @airport.land(Plane.new) }.to raise_error('Cannot land in stormy weather')
+  end
+
   it 'has a take_off method which requires an argument' do
     expect(@airport).to respond_to(:take_off).with(1).argument
   end
 
   it 'can be used to take off from if weather is not stormy' do
-    allow(Weather).to receive(:stormy?){false}
+    allow(Weather).to receive(:stormy?) { false }
     plane = Plane.new
     @airport.land(plane)
     @airport.take_off(plane)
@@ -37,8 +44,8 @@ describe Airport do
   end
 
   it 'raises an error when a plane tries to take off in stormy weather' do
-    allow(Weather).to receive(:stormy?){true}
+    allow(Weather).to receive(:stormy?) { true }
 
-    expect{@airport.take_off(Plane.new)}.to raise_error('Cannot take off in stormy weather')
+    expect { @airport.take_off(Plane.new) }.to raise_error('Cannot take off in stormy weather')
   end
 end
