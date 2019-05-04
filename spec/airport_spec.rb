@@ -12,4 +12,10 @@ describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it "expects aiport to respond to take off" do
+      expect(subject).to respond_to :take_off
+    end
+  end
+
 end
