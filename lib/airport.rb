@@ -9,11 +9,12 @@ class Airport
   end
 
   def land(plane)
+    planes << plane
     "Cleared to land"
   end
 
   def take_off
-    "Cleared for take off"
     planes.pop
+    "Cleared for take off"
   end
 end

@@ -6,7 +6,7 @@ I want to instruct a plane to land at an airport
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-(At this stage I will initialize the airport class with an @planes method which is an array for storing planes.  First I created a new Plane class and added a require relative to the airport file.  The @planes array is empty but there is the pop method for removing an airplane from the array when the take_off method is called)
+(At this stage I will initialize the airport class with an @planes method which is an array for storing planes.  First I created a new Plane class and added a require relative to the airport file.  Planes can now be stored or removed from the airport in the @planes array).
 
 As an air traffic controller
 To ensure safety
