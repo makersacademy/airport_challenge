@@ -11,11 +11,11 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
-
+(I have added a method that randomly chooses a number between 1 and 100.  If it is 90 or below, the weather is sunny and planes can take off.  Otherwise planes cannot take off due to stormy conditions.)
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
-
+(Likewise I can )
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
