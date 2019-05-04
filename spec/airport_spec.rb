@@ -22,5 +22,17 @@ describe Airport do
     expect(@airport.planes.size).to eq(1)
   end
 
+  it 'has a take_off method which requires an argument' do
+    expect(@airport).to respond_to(:take_off).with(1).argument
+  end
+
+  it 'can be used to take off from' do
+    plane = Plane.new
+    @airport.land(plane)
+    @airport.take_off(plane)
+    
+    expect(@airport.planes).not_to include(plane)
+    expect(@airport.planes.size).to eq(0)
+  end
 
 end
