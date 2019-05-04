@@ -14,4 +14,8 @@ describe Airport do
     plane.take_off_from(subject)
     expect(subject.planes.include?(plane)).to eq(false)
   end
+
+  it 'should respond to #stormy?' do
+    expect(subject).to respond_to(:stormy?)
+  end
 end
