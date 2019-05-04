@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 describe Plane do
   describe "#land" do
