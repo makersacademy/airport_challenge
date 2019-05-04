@@ -1,4 +1,3 @@
-
 class Plane
   def landed?
     true
