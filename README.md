@@ -8,13 +8,16 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
-Behaviours for the story:
 
-ATC - tell plane to land
-passengers
-airport - accept plane
-plane - land
+objects | behaviours
+-|-
+ATC | tell plane to land  
+passengers |
+airport | accept plane
+plane | land
+
 ![story1](https://github.com/n3ttl3t/airport_challenge/blob/master/uml/userstory01.png)
+
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
