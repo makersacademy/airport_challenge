@@ -14,7 +14,7 @@ ATC - tell plane to land
 passengers
 airport - accept plane
 plane - land
-![story1](https://n3ttl3t.github.com/airport_challenge/blob/master/uml/userstory01.png)
+![story1](https://github.com/n3ttl3t/airport_challenge/blob/master/uml/userstory01.png)
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
