@@ -31,12 +31,11 @@ airport.take_off(plane)
 * From the root directory load ./lib/airports.rb into irb.
 
 * Create new planes with Plane.new, and new airports with Airport.new(capacity).
+The default capacity for airports is 10 (if no argument given to #new).
 
-* The default capacity for airports is 10 (if no argument given to #new).
+* Users should not call methods on plane objects.
 
-* The user should not call methods on plane objects.
-
-* The user can land planes in an airport using the #land method. Planes can
+* Users can land planes in an airport using the #land method. Planes can
 take off using the #take_off method.
 
 * Planes cannot land if they are already landed, or take off if they are in
