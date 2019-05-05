@@ -22,7 +22,18 @@ plane | land
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
+objects | behaviours
+-|-
+ATC |   
+passengers |  
+plane | take off from airport, confirm
+airport |  
+
+![story2](https://github.com/n3ttl3t/airport_challenge/blob/master/uml/userstory02.png)
+
+```
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
