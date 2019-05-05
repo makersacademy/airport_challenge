@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/micosmin/airport_challenge.svg?branch=master)](https://travis-ci.org/micosmin/airport_challenge)
+
 # Airpot challenge
 
 ## Client requirements
