@@ -4,6 +4,7 @@ require 'plane'
 describe Airport do
   before :each do
     @airport = Airport.new
+    allow(Weather).to receive(:stormy?) { false }
   end
 
   it 'is empty by default' do
@@ -22,8 +23,15 @@ describe Airport do
     expect(@airport).to respond_to(:land).with(1).argument
   end
 
-  it 'can be used to land at if weather is stormy' do
-    allow(Weather).to receive(:stormy?) { false }
+  it 'raises an error when a plane tries to land at an airport it is already at' do
+    plane = Plane.new
+    @airport.land(plane)
+
+    expect { @airport.land(plane) }.to \
+    raise_error('Cannot land: Plane is already at Airport')
+  end
+
+  it 'can be used to land at if weather is not stormy' do
     plane = Plane.new
     @airport.land(plane)
 
@@ -38,21 +46,18 @@ describe Airport do
   end
 
   it 'can be used to land planes up to capacity if airport is default' do
-    allow(Weather).to receive(:stormy?) { false }
     Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 
     expect(@airport.planes.size).to eq(Airport::DEFAULT_CAPACITY)
   end
 
   it 'raises an error when a plane tries to land at an airport at default max capacity' do
-    allow(Weather).to receive(:stormy?) { false }
     Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 
     expect { @airport.land(Plane.new) }.to raise_error('Cannot land: Airport is full')
   end
 
   it 'can be used to land planes up to capacity if airport is custom' do
-    allow(Weather).to receive(:stormy?) { false }
     custom_capacity = Airport::DEFAULT_CAPACITY + 5
     airport = Airport.new(custom_capacity)
     custom_capacity.times { airport.land(Plane.new) }
@@ -61,7 +66,6 @@ describe Airport do
   end
 
   it 'raises an error when a plane tries to land at an airport at custom max capacity' do
-    allow(Weather).to receive(:stormy?) { false }
     custom_capacity = Airport::DEFAULT_CAPACITY + 5
     airport = Airport.new(custom_capacity)
     custom_capacity.times { airport.land(Plane.new) }
@@ -79,7 +83,6 @@ describe Airport do
   end
 
   it 'can be used to take off from if weather is not stormy' do
-    allow(Weather).to receive(:stormy?) { false }
     plane = Plane.new
     @airport.planes << plane
     @airport.take_off(plane)

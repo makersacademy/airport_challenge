@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land: Plane is already at Airport" if at_airport?(plane)
     raise "Cannot land: Airport is full" if full?
     raise "Cannot land in stormy weather" if Weather.stormy?
 
@@ -15,7 +16,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Cannot take off: Plane is not at Airport" if !at_airport?(plane)
+    raise "Cannot take off: Plane is not at Airport" unless at_airport?(plane)
     raise "Cannot take off in stormy weather" if Weather.stormy?
 
     @planes.delete(plane)
