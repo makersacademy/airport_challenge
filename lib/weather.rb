@@ -1,5 +1,10 @@
 class Weather
+  def weather
+    weather = [:sunny, :sunny, :sunny, :sunny, :stormy]
+    weather.sample
+  end
+
   def stormy?
-    rand(10) < 2
+    weather == :stormy
   end
 end
