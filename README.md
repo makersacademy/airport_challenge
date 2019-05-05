@@ -61,7 +61,15 @@ weather |
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+```
+objects | behaviours
+-|-
+ATC | prevent landing in full airport
+airport | is full or not
 
+![story5](https://github.com/n3ttl3t/airport_challenge/blob/master/uml/userstory05.png)
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate

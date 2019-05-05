@@ -41,4 +41,12 @@ describe Plane do
     expect { plane.land(weather, airport) } .to raise_error("can\'t land in bad weather")
   end
 
+  it 'already landed stops landing' do
+    plane = Plane.new
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive(:condition) { 'good' }
+    plane.land(weather, airport)
+    expect { plane.land(weather, airport) } .to raise_error("can\'t land if you already did")
+  end
 end
