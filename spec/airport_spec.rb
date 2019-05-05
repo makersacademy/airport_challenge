@@ -4,12 +4,19 @@ require 'weather'
 
 describe Airport do
 
-describe '#land'
+weather = Weather.new
 plane = Plane.new
+
+describe '#land'
 
   it 'should instruct plane to land at an airport' do
   subject.land(plane)
   expect(subject.planes).to include(plane)
+end
+
+it 'should display error message if weather is stormy' do
+  weather.is_stormy?
+  expect { true }.to raise_error("Stormy weather conditions")
 end
 
 describe '#takeoff'
