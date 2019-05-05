@@ -2,8 +2,7 @@ require_relative './planes.rb'
 require_relative './weather.rb'
 
 class Airport
-  attr_accessor :planes
-  attr_reader :capacity, :weather
+  attr_reader :capacity, :planes, :weather
 
   DEFAULT_CAPACITY = 10
 
@@ -13,7 +12,31 @@ class Airport
     @weather = Weather.new
   end
 
+  def land(plane)
+    check_landing_issues(plane)
+    @planes << plane
+    plane.land
+  end
+
+  def take_off(plane)
+    check_take_off_issues(plane)
+    @planes.delete(plane)
+    plane.fly
+  end
+
+  private
   def at_capacity?
     @planes.size >= capacity
+  end
+
+  def check_landing_issues(plane)
+    raise 'The plane is already landed' if plane.status == :landed
+    raise 'Airport at capacity' if at_capacity?
+    raise 'Too stormy to land' if @weather.stormy?
+  end
+
+  def check_take_off_issues(plane)
+    raise 'The plane is not landed here' unless @planes.include?(plane)
+    raise 'Too stormy to take off' if @weather.stormy?
   end
 end

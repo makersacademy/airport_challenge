@@ -1,10 +1,10 @@
 class Weather
-  def weather
-    weather = [:sunny, :sunny, :sunny, :sunny, :stormy]
-    weather.sample
+  def stormy?
+    current_weather == :stormy
   end
 
-  def stormy?
-    weather == :stormy
+  private
+  def current_weather
+    [:fine, :downpours, :overcast, :light_showers, :stormy].sample
   end
 end
