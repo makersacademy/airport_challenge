@@ -14,7 +14,6 @@ describe Plane do
     end
 
     it 'should set status to :flying from :landed' do
-      2.times { subject.change_status }
       expect(subject.status).to eq(:flying)
     end
   end
