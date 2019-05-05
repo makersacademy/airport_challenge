@@ -1,7 +1,7 @@
 # Airport Challenge
 
 ## Approach
-* I aimed for a 'proper' TDD approach, only writing code in the ./lib files
+* I aimed for a TDD approach, only writing code in the ./lib files
 after first writing a test in the ./spec folder.
 
 * As seen in earlier commits, my initial approach was to call #land and #take_off
@@ -24,27 +24,30 @@ airport.land(plane)
 airport.take_off(plane)
 ```
 
-* This led to refactoring much of the code, but it seems to work better now.
+* This led to refactoring much of the code, but it seems to work better now
+with no public access to the planes array.
 
 ## How to use
 
 * From the root directory load ./lib/airports.rb into irb.
 
 * Create new planes with Plane.new, and new airports with Airport.new(capacity).
-The default capacity for airports is 10 (if no argument given to #new).
+The default capacity for airports is 10 (if no argument given).
 
-* Users should not call methods on plane objects.
+* Users do not have to call any methods on plane objects.
 
 * Users can land planes in an airport using the #land method. Planes can
-take off using the #take_off method.
+take off from an airport using the #take_off method.
 
-* Planes cannot land if they are already landed, or take off if they are in
-the air.
+* Planes cannot land if they are already in an airport, or take off if they are
+in the air.
 
 * Planes cannot land at an airport which has no capacity left.
 
 * There is a 1/5 chance the weather will be stormy, in which case planes cannot
 land or take off.
+
+### irb example
 
 ```
 $ irb -r ./lib/airports.rb
