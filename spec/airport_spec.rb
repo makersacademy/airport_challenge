@@ -26,7 +26,7 @@ describe Airport do
       expect(@airport).to respond_to(:land).with(1).argument
     end
 
-    it 'raises an error when a plane tries to land at an airport it is already at' do
+    it 'raises an error when trying to land a plane already at the airport' do
       plane = Plane.new
       @airport.land(plane)
 
@@ -34,7 +34,7 @@ describe Airport do
       raise_error('Cannot land: Plane is already at Airport')
     end
 
-    it 'can be used to land at if weather is not stormy' do
+    it 'can land a plane if weather is not stormy' do
       plane = Plane.new
       @airport.land(plane)
 
@@ -48,19 +48,19 @@ describe Airport do
       expect { @airport.land(Plane.new) }.to raise_error('Cannot land in stormy weather')
     end
 
-    it 'can be used to land planes up to capacity if airport is default' do
+    it 'can land planes up to capacity if airport is default' do
       Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 
       expect(@airport.planes.size).to eq(Airport::DEFAULT_CAPACITY)
     end
 
-    it 'raises an error when a plane tries to land at an airport at default max capacity' do
+    it 'raises an error when a plane tries to land and airport is at default max capacity' do
       Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 
       expect { @airport.land(Plane.new) }.to raise_error('Cannot land: Airport is full')
     end
 
-    it 'can be used to land planes up to capacity if airport is custom' do
+    it 'can land planes up to capacity if airport is custom' do
       custom_capacity = Airport::DEFAULT_CAPACITY + 5
       airport = Airport.new(custom_capacity)
       custom_capacity.times { airport.land(Plane.new) }
@@ -68,7 +68,7 @@ describe Airport do
       expect(airport.planes.size).to eq(custom_capacity)
     end
 
-    it 'raises an error when a plane tries to land at an airport at custom max capacity' do
+    it 'raises an error when a plane tries to land and airport is at custom max capacity' do
       custom_capacity = Airport::DEFAULT_CAPACITY + 5
       airport = Airport.new(custom_capacity)
       custom_capacity.times { airport.land(Plane.new) }
@@ -82,12 +82,12 @@ describe Airport do
       expect(@airport).to respond_to(:take_off).with(1).argument
     end
 
-    it 'raises an error when a plane tries to take off from an airport it is not at' do
+    it 'raises an error when trying to take off a plane not at the airport' do
       expect { @airport.take_off(Plane.new) }.to \
       raise_error('Cannot take off: Plane is not at Airport')
     end
 
-    it 'can be used to take off from if weather is not stormy' do
+    it 'can take off a plane if weather is not stormy' do
       plane_1 = Plane.new
       plane_2 = Plane.new
       plane_3 = Plane.new
