@@ -14,6 +14,6 @@ class Airport
   end
 
   def at_capacity?
-    @planes.size >= @capacity
+    @planes.size >= capacity
   end
 end
