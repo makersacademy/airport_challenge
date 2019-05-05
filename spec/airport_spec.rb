@@ -73,10 +73,15 @@ describe Airport do
     expect(@airport).to respond_to(:take_off).with(1).argument
   end
 
+  it 'raises an error when a plane tries to take off from an airport it is not at' do
+    expect { @airport.take_off(Plane.new) }.to \
+    raise_error('Cannot take off: Plane is not at Airport')
+  end
+
   it 'can be used to take off from if weather is not stormy' do
     allow(Weather).to receive(:stormy?) { false }
     plane = Plane.new
-    @airport.land(plane)
+    @airport.planes << plane
     @airport.take_off(plane)
 
     expect(@airport.planes).not_to include(plane)
@@ -84,8 +89,10 @@ describe Airport do
   end
 
   it 'raises an error when a plane tries to take off in stormy weather' do
+    plane = Plane.new
+    @airport.planes << plane
     allow(Weather).to receive(:stormy?) { true }
 
-    expect { @airport.take_off(Plane.new) }.to raise_error('Cannot take off in stormy weather')
+    expect { @airport.take_off(plane) }.to raise_error('Cannot take off in stormy weather')
   end
 end
