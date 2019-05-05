@@ -5,18 +5,22 @@ describe Plane do
     expect(subject.status).to eq(:flying)
   end
 
-  describe '#land' do
-    it 'should set status to :landed' do
-      subject.land
+  describe '#change_status' do
+    it 'should set status to :landed from :flying' do
+      subject.change_status
       expect(subject.status).to eq(:landed)
+    end
+
+    it 'should set status to :flying from :landed' do
+      subject.change_status
+      subject.change_status
+      expect(subject.status).to eq(:flying)
     end
   end
 
-  describe '#fly' do
-    it 'should set status to :flying' do
-      subject.land
-      subject.fly
-      expect(subject.status). to eq(:flying)
+  describe '#landed?' do
+    it 'should return true or false' do
+      expect([true, false].include?(subject.landed?)).to eq true
     end
   end
 end

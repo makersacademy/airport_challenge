@@ -5,11 +5,11 @@ class Plane
     @status = :flying
   end
 
-  def land
-    @status = :landed
+  def change_status
+    @status == :landed ? @status = :flying : @status = :landed
   end
 
-  def fly
-    @status = :flying
+  def landed?
+    @status == :landed
   end
 end

@@ -15,13 +15,13 @@ class Airport
   def land(plane)
     check_landing_issues(plane)
     @planes << plane
-    plane.land
+    plane.change_status
   end
 
   def take_off(plane)
     check_take_off_issues(plane)
     @planes.delete(plane)
-    plane.fly
+    plane.change_status
   end
 
   private
@@ -30,7 +30,7 @@ class Airport
   end
 
   def check_landing_issues(plane)
-    raise 'The plane is already landed' if plane.status == :landed
+    raise 'The plane is already landed' if plane.landed?
     raise 'Airport at capacity' if at_capacity?
     raise 'Too stormy to land' if @weather.stormy?
   end
