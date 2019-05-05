@@ -45,27 +45,26 @@ RSpec.describe Airport do
   end
 
   context "TAKEOFF: instructs plane" do
-  
+    let(:airport) { Airport.new("LHR", 1, :sunny) }
+
     it "to take_off and confirm it has taken off" do 
-      airport = Airport.new("LHR", 1, :sunny)
       airport.land(plane)
       expect(subject.takeoff(plane)).to eq("Plane has taken off")
     end
 
     it "to not take off if weather is stormy" do
-      airport = Airport.new("LHR", 1, :sunny)
       airport.land(plane)
       airport = Airport.new("LHR", 1, :stormy)
       expect { airport.takeoff(plane) }.to raise_error("Stormy weather: Take off denied")
     end
 
-    it "takes off from the airport it is in" do
-      airport = Airport.new("LHR", 1, :sunny)
+    it "to take off from the airport it is in" do
       airport.land(plane)
       expect(airport.name).to eq plane.airport.name
       expect(plane.status).to eq :landed
 
       airport.takeoff(plane)
+
       expect(airport.hangar).not_to include plane
       expect(plane.status).to eq :flying
       expect(plane.airport).to eq nil
