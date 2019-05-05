@@ -14,7 +14,7 @@ class Airport
 
   def takeoff
     @planes.pop
-    "The plane is no longer in the airport"
+    "The plane has left the airport"
   end
 
 end
