@@ -8,15 +8,13 @@ class Plane
   def land_at(airport)
     check_landing_issues(airport)
     airport.planes << self
-    @landed = true
-    return
+    @landed = true; return
   end
 
   def take_off_from(airport)
     check_take_off_issues(airport)
     airport.planes.delete(self)
-    @landed = false
-    return
+    @landed = false; return
   end
 
   private
