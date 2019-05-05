@@ -1,9 +1,9 @@
 class Weather
-  def random_num
-    rand(100)
+  def stormy?
+    random_num == 5
   end
 
-  def stormy?
-    true if random_num >= 85
+  def random_num
+    [1, 2, 3, 4, 5].sample
   end
 end

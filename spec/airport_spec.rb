@@ -3,12 +3,18 @@ require 'plane'
 require 'weather'
 
 describe Airport do
-  describe '#land' do
-    it "should respond to land" do
-      weather = Weather.new
-      allow(weather).to receive(:stormy?) { false }
-      expect(subject).to respond_to(:land)
+  describe '#initialize' do
+    it "creates an empty array for airport" do
+      expect(subject).to be_empty
     end
+    it 'initializes without arguments' do
+      expect(Airport).to respond_to(:new).with(0).arguments
+    end
+  end
+
+
+  describe '#land' do
+    it { is_expected.to respond_to(:land).with(1).argument }
     it "should return a plane" do
       weather = Weather.new
       allow(weather).to receive(:stormy?) { false }
@@ -19,7 +25,7 @@ describe Airport do
       weather = Weather.new
       allow(weather).to receive(:stormy?) { false }
       3.times { subject.land(Plane.new) }
-      expect{ subject.land Plane.new }.to raise_error "airport is full"
+      expect { subject.land Plane.new }.to raise_error "airport is full"
     end
   end
 
@@ -39,12 +45,13 @@ describe Airport do
     it "should raise an error if plane has already taken off" do
       weather = Weather.new
       allow(weather).to receive(:stormy?) { false }
-      expect{ subject.take_off }.to raise_error "plane already taken off"
+      expect { subject.take_off }.to raise_error "plane already taken off"
     end
     it "should be unable to take off if it is stormy" do
-      allow(Weather).to receive(:stormy?) { true }
       subject.land Plane.new
-      expect{ subject.take_off }.to raise_error "cannot take off, it is stormy"
+      expect(Weather).to receive(:stormy?).and_return(true)
+      expect(Weather).to receive(:random_num) { 5 }
+      expect { subject.take_off }.to raise_error "cannot take off, it is stormy"
     end
   end
 end
