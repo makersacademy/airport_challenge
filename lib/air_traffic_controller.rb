@@ -1,3 +1,7 @@
-class AirTrafficController
+require_relative 'plane'
+require_relative 'airport'
+require_relative 'passengers'
 
-end 
+class AirTrafficController
+  
+end
