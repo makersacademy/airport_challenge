@@ -5,7 +5,8 @@ class Plane
     @location = 'sky'
   end
 
-  def land(_weather, airport)
+  def land(weather, airport)
+    raise "can\'t land in bad weather" if weather.condition == 'bad'
     # raise 'can\'t land' unless self.location == 'sky'
     airport.land_plane
     self.location = airport
