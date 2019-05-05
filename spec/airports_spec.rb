@@ -8,14 +8,11 @@ describe Airport do
     expect(subject.planes.include?(plane)).to eq(true)
   end
 
-  it 'should not contain planes which have just taken off' do
+  it 'should not contain planes which have taken off' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
     plane.land_at(subject)
     plane.take_off_from(subject)
     expect(subject.planes.include?(plane)).to eq(false)
-  end
-
-  it 'should respond to #stormy?' do
-    expect(subject).to respond_to(:stormy?)
   end
 end
