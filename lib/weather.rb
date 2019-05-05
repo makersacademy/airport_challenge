@@ -1,5 +1,3 @@
-require_relative './airports.rb'
-
 class Weather
   def stormy?
     rand(10) < 2

@@ -2,7 +2,6 @@ require_relative './planes.rb'
 require_relative './weather.rb'
 
 class Airport
-
   attr_accessor :planes
   attr_reader :capacity, :weather
 
