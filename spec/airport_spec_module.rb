@@ -9,7 +9,7 @@ module HelperMethodsModule
 
   def takeoff_multiple_planes(planes)
     planes.times do
-      subject.takeoff(plane) if subject.weather == :sunny
+      subject.takeoff(subject.hangar[0]) if subject.weather == :sunny
     end
   end
 end

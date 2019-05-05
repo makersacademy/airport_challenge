@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 require 'airport_spec_module'
 
 RSpec.describe Airport do
@@ -100,7 +99,7 @@ RSpec.describe Airport do
 
     it "allows multiple plane takeoff" do
       land_multiple_planes(10)
-      takeoff_multiple_planes(100)
+      takeoff_multiple_planes(5)
       expect(subject.hangar.size).to be > 0
     end
 
