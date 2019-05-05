@@ -10,6 +10,14 @@ describe Airport do
     expect(@airport.planes).to be_empty
   end
 
+  it 'can be initialized without arguments' do
+    expect(Airport).to respond_to(:new).with(0).argument
+  end
+
+  it 'can be initialized with an argument' do
+    expect(Airport).to respond_to(:new).with(1).argument
+  end
+
   it 'has a land method which requires an argument' do
     expect(@airport).to respond_to(:land).with(1).argument
   end
@@ -27,6 +35,13 @@ describe Airport do
     allow(Weather).to receive(:stormy?) { true }
 
     expect { @airport.land(Plane.new) }.to raise_error('Cannot land in stormy weather')
+  end
+
+  it 'raises an error when a plane tries to land at an airport at max capacity' do
+    allow(Weather).to receive(:stormy?) { false }
+    Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
+
+    expect { @airport.land(Plane.new) }.to raise_error('Cannot land: Airport is full')
   end
 
   it 'has a take_off method which requires an argument' do
