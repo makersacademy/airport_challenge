@@ -2,9 +2,9 @@ class Airport
   attr_accessor :planes
   attr_accessor :capacity
 
-  def initialize
+  def initialize(capacity = 1)
     @planes = 0
-    @capacity = 1
+    @capacity = capacity
   end
 
   def check_capacity
