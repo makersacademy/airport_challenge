@@ -3,11 +3,7 @@ class Weather
     rand(100)
   end
 
-  def weather
-    if random_num >= 85
-      "stormy"
-    else
-      "fair"
-    end
+  def stormy?
+    true if random_num >= 85
   end
 end
