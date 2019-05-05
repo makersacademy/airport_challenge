@@ -1,5 +1,6 @@
 require 'plane'
 require 'weather'
+require 'airport'
 
 describe Plane do
   describe "#land" do
@@ -8,7 +9,7 @@ describe Plane do
     end
     it "lands a plane at the airport" do
       airport = Airport.new
-      expect(subject.land(airport)). to eq(airport)
+      expect(subject.land(airport)).to eq(airport)
     end
   end
 
