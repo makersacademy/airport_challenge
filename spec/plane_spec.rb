@@ -1,5 +1,5 @@
-# require 'airport'
-#
-# describe Plane do
-#   it {is_expected.to respond_to(:working?)}
-# end
+require 'airport'
+
+describe Plane do
+  # it {is_expected.to respond_to(:land_plane)}
+end
