@@ -1,8 +1,10 @@
 require 'planes'
 
 describe Plane do
-  it 'should have a default status of :flying' do
-    expect(subject.status).to eq(:flying)
+  describe 'initial status' do
+    it 'should have an initial status of :flying' do
+      expect(subject.status).to eq(:flying)
+    end
   end
 
   describe '#change_status' do
