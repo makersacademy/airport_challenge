@@ -59,8 +59,8 @@ $ irb -r ./lib/airports.rb
 * The default status of new planes is :flying. They could start within airports,
 if given the airport as an argument. Not sure if this is better.
 
-* I could try using the before hook in the rspec tests, will have to think if
-it would increase concision.
+* I could try using the 'before' or doubles more in the rspec tests, will
+have to think if it makes the tests more concise.
 
 * The plane methods #change_status and #landed? are available publicly. Curious
 if I can make them available to ./lib/airports.rb without this being the case.
