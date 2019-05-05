@@ -27,7 +27,7 @@ describe Plane do
   describe '#take_off_from' do
     it 'should only take off from an airport it is in' do
       airport = Airport.new
-      expect { subject.take_off_from(airport) }.to raise_error 'The plane is not at this airport'
+      expect { subject.take_off_from(airport) }.to raise_error 'The plane is not landed here'
     end
 
     it 'should not be able to take off in stormy weather' do
