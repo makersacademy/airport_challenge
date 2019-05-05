@@ -37,11 +37,36 @@ describe Airport do
     expect { @airport.land(Plane.new) }.to raise_error('Cannot land in stormy weather')
   end
 
-  it 'raises an error when a plane tries to land at an airport at max capacity' do
+  it 'can be used to land planes up to capacity if airport is default' do
+    allow(Weather).to receive(:stormy?) { false }
+    Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
+
+    expect(@airport.planes.size).to eq(Airport::DEFAULT_CAPACITY)
+  end
+
+  it 'raises an error when a plane tries to land at an airport at default max capacity' do
     allow(Weather).to receive(:stormy?) { false }
     Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
 
     expect { @airport.land(Plane.new) }.to raise_error('Cannot land: Airport is full')
+  end
+
+  it 'can be used to land planes up to capacity if airport is custom' do
+    allow(Weather).to receive(:stormy?) { false }
+    custom_capacity = Airport::DEFAULT_CAPACITY + 5
+    airport = Airport.new(custom_capacity)
+    custom_capacity.times { airport.land(Plane.new) }
+
+    expect(airport.planes.size).to eq(custom_capacity)
+  end
+
+  it 'raises an error when a plane tries to land at an airport at custom max capacity' do
+    allow(Weather).to receive(:stormy?) { false }
+    custom_capacity = Airport::DEFAULT_CAPACITY + 5
+    airport = Airport.new(custom_capacity)
+    custom_capacity.times { airport.land(Plane.new) }
+
+    expect { airport.land(Plane.new) }.to raise_error('Cannot land: Airport is full')
   end
 
   it 'has a take_off method which requires an argument' do

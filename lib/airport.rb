@@ -23,6 +23,6 @@ class Airport
   private
 
   def full?
-    @planes.size >= DEFAULT_CAPACITY
+    @planes.size >= capacity
   end
 end
