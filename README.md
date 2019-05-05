@@ -37,7 +37,16 @@ airport |
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
+```
 
+objects | behaviours
+-|-
+ATC | prevent takeoff
+weather |
+
+![story3](https://github.com/n3ttl3t/airport_challenge/blob/master/uml/userstory03.png)
+
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy

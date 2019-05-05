@@ -6,8 +6,6 @@ class Airport
   end
 
   def land_plane
-    # change this to just be an accumulator, to adhere to
-    # encapsulation by not repeating data
     self.planes += 1
   end
 
