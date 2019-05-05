@@ -25,7 +25,7 @@ class Plane
   end
 
   def check_take_off_issues(airport)
-    raise 'The plane is not landed here' unless airport.planes.include?(self)
+    raise 'The plane was not landed here' unless airport.planes.include?(self)
     raise 'Too stormy to take off' if airport.weather.stormy?
   end
 end
