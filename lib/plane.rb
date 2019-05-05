@@ -14,6 +14,7 @@ class Plane
   def land_guards(weather, airport)
     raise "can\'t land in bad weather" if weather.condition == 'bad'
     raise 'can\'t land if you already did' unless self.location == 'sky'
+    raise "can't land in a full airport" if airport.check_capacity == 'full'
   end
 
   def takeoff(weather, airport)
