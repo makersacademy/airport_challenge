@@ -30,7 +30,7 @@ class Airport
   end
 
   def check_landing_issues(plane)
-    raise 'The plane is already landed' if plane.landed?
+    raise 'The plane is already landed somewhere' if plane.landed?
     raise 'Airport at capacity' if at_capacity?
     raise 'Too stormy to land' if @weather.stormy?
   end

@@ -25,8 +25,8 @@ describe Airport do
     end
 
     it 'should override default capacity when given an argument' do
-      random_capacity = rand(1..100)
-      expect(Airport.new(random_capacity).capacity).to eq(random_capacity)
+      random_number = rand(1..100)
+      expect(Airport.new(random_number).capacity).to eq(random_number)
     end
   end
 
@@ -49,7 +49,7 @@ describe Airport do
 
       it 'should not be able to land a plane if it is already landed' do
         land_process
-        message = 'The plane is already landed'
+        message = 'The plane is already landed somewhere'
         expect { land_process }.to raise_error message
       end
     end
