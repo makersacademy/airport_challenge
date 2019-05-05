@@ -7,6 +7,7 @@ class Plane
   def land_at(airport)
     raise 'Airport at capacity' if airport.at_capacity?
     raise 'This plane is already landed' if @landed
+    raise 'Too stormy to land' if airport.stormy?
     airport.planes << self
     @landed = true
     'Plane successfully landed'
