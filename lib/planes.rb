@@ -20,8 +20,4 @@ class Plane
     @landed = false
     'Plane successfully took off'
   end
-
-  def local_weather_stormy?
-    rand(10) < 2
-  end
 end

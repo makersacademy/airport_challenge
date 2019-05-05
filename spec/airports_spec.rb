@@ -1,5 +1,4 @@
 require 'airports'
-require 'planes'
 
 describe Airport do
   it 'should store landed planes' do
@@ -15,5 +14,9 @@ describe Airport do
     plane.land_at(subject)
     plane.take_off_from(subject)
     expect(subject.planes.include?(plane)).to eq(false)
+  end
+
+  it 'should return true or false to #stormy?' do
+    expect([true, false].include?(subject.stormy?)).to eq(true)
   end
 end
