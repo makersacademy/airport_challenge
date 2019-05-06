@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 airport = Airport.new
 plane = Plane.new

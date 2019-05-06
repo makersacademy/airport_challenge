@@ -6,6 +6,12 @@ airport <-- land --> plane
 
 Story 2
 
-User  = air traffic controller 
+User  = air traffic controller
 airport <-- take off --> plane
 airport <-- contain? --> plane
+
+Story 3
+
+User = air traffic controller
+weather <-- status --> stormy
+airport <-- take_off --> plane --> prevent
