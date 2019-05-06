@@ -1,7 +1,9 @@
+require_relative 'airport'
+
 class Weather
 
   def stormy?
-    [false, false, false, true].sample
+    return [false, false, false, true].sample
   end
 
 end

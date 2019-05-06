@@ -187,8 +187,9 @@ I want to prevent takeoff when weather is stormy`
 
 ###TEST CASES
 
-- [ ] Weather instantiated
-- [ ] Weather has `stormy?` method which return `true` or `false` at random
+- [X] Weather instantiated
+- [X] Weather has a `stormy?` method
+- [ ] Weather has `stormy?` method which returns `true` when stormy or `false` when sunny at random
 - [ ] If Airport tells a plane to take off and `stormy?` returns true a plane does not take off and an error message is given
 
 ###STORY 4
