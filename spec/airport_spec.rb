@@ -49,4 +49,11 @@ describe Airport do
     capacity.times { subject.land(plane) }
     expect(subject.land(plane)).to eq("Unable to land; airport full.")
   end
+
+  it 'allows change of defauly capacity' do
+    plane = Plane.new
+    airport = Airport.new(5)
+    5.times { airport.land(plane) }
+    expect(airport.land(plane)).to eq("Unable to land; airport full.")
+  end
 end
