@@ -29,7 +29,8 @@ with no public access to the planes array.
 
 ## How to use
 
-* From the root directory load ./lib/airports.rb into irb.
+* From the root directory load ./lib/airports.rb, ./lib/planes.rb and
+./lib/weather.rb into irb.
 
 * Create new planes with Plane.new, and new airports with Airport.new(capacity).
 The default capacity for airports is 10 (if no argument given).

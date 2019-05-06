@@ -1,6 +1,3 @@
-require_relative './planes.rb'
-require_relative './weather.rb'
-
 class Airport
   DEFAULT_CAPACITY = 10
 
