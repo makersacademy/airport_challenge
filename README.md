@@ -24,6 +24,21 @@ Once I felt the user story was satisfied I have tried to add in more tests to de
 
 I have refactored methods so that they only perform one function and have tried to shorten tests to one line where possible. All tests have been organised against the method that they test against. Rubocop has been ran to make sure there are no mistakes in terms of formatting.
 
+# How to Use
+- From the parent directory load ./lib/airport.rb into irb.
+
+- Create a new instance of a plane with Plane.new and create a new instance of an airport with Airport.new.
+
+- Users can use the take_off method on remove a plane from the airport, and use the land method taking their instance of a plane to land the plane and store it at the airport.
+
+- The airport can store 20 planes by default but this can be changed by the user.
+
+- Planes cannot land if the airport is full, or if that instance of the plane has already landed.
+
+- Planes cannot take off if that instance of a plane has already taken off.
+
+- Planes cannot take off if it is stormy. There is a 1 in 5 chance of this happening, that has been enabled using a random number generator.
+
 
 Instructions
 ---------
