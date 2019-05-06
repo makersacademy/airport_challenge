@@ -6,11 +6,13 @@ describe Airport do
 
   describe "#landing" do
     it "instructs plane to land" do
+      allow(airport).to receive(:current_weather).and_return("sunny")
       expect(airport).to respond_to(:land).with(1).argument
     end
 
     context "when airport is full" do
       it "does not allow landing and raises error" do
+        allow(airport).to receive(:current_weather).and_return("sunny")
         50.times do
           airport.land(plane)
         end
