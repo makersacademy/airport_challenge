@@ -141,9 +141,8 @@ I want to instruct a plane to land at an airport`
 - [X] Airport instantiated
 - [X] Plane instantiated
 - [X] Airport has `land` method
-- [X] Plan has `land` method
-- [ ] Airport sends message to tell plane to land; plane receives land
-- [ ] Airport has list of planes
+- [X] Airport sends message to tell plane to land; plane receives land
+- [X] Airport has list of planes
 
 ###STORY 2
 
