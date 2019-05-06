@@ -33,4 +33,20 @@ describe Airport do
       expect(subject.take_off(plane, weather_check)).to eq("Planes grounded; stormy weather.")
     end
   end
+
+  it 'prevents planes landing when stormy' do
+    plane = Plane.new
+    weather = Weather.new
+    weather_check = weather.check
+    if weather_check == 'stormy'
+      expect(subject.land(plane, weather_check)).to eq("Unable to land; stormy weather.")
+    end
+  end
+
+  it 'prevents landing if airport full' do
+    plane = Plane.new
+    capacity = 10
+    capacity.times { subject.land(plane) }
+    expect(subject.land(plane)).to eq("Unable to land; airport full.")
+  end
 end

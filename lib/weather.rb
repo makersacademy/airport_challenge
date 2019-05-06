@@ -1,5 +1,5 @@
 class Weather
- def check
-   'stormy'
- end
+  def check
+    'stormy'
+  end
 end
