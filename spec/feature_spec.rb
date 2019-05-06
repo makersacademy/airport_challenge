@@ -47,3 +47,39 @@
 # => #<Plane:0x00007f895c8ac950>
 # airport.planes.count
 # => 0
+
+# default capacity
+# require './lib/airport.rb'
+#  => true
+# airport = Airport.new
+# #<Airport:0x00007f80a20eb800 @planes=[], @capacity=10>
+# plane = Plane.new
+#  => #<Plane:0x00007f80a20e3920>
+# airport.land(plane)
+#  => [#<Plane:0x00007f80a20e3920>]
+# 10.times { airport.land(plane) }
+# Traceback (most recent call last):
+#         5: from /Users/yems/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+#         4: from (irb):5
+#         3: from (irb):5:in `times'
+#         2: from (irb):5:in `block in irb_binding'
+#         1: from /Users/yems/Projects/airport_challenge/lib/airport.rb:14:in `land'
+# RuntimeError (Airport full)
+
+# variable capacity at initialization
+# require './lib/airport.rb'
+#  => true
+# airport = Airport.new
+#  => #<Airport:0x00007ff15f8cb1f0 @planes=[], @capacity=10>
+# airport.capacity = 100
+#  => 100
+# plane = Plane.new
+#  => #<Plane:0x00007ff15f8bb5c0>
+# 100.times { airport.land(plane) }
+#  => 100
+# airport.land(plane)
+# Traceback (most recent call last):
+#         3: from /Users/yems/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+#         2: from (irb):6
+#         1: from /Users/yems/Projects/airport_challenge/lib/airport.rb:14:in `land'
+# RuntimeError (Airport full)
