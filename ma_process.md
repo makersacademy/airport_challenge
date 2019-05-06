@@ -164,8 +164,8 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 ###TEST CASES
 
 - [X] Airport has a `take_off` method
-- [ ] Airport tells a plane from list of planes to take off
-- [ ] Airport checks plane is no longer in list; prints confirmation message
+- [X] Airport tells a plane from list of planes to take off
+- [X] Airport checks plane is no longer in list; prints confirmation message
 
 ###STORY 3
 
