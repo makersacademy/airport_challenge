@@ -18,13 +18,11 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it "should return a plane" do
-      weather = Weather.new
       allow(subject.weather).to receive(:stormy?) { false }
       plane = Plane.new
       expect(subject.land(plane)).to eq(plane)
     end
     it "raises an error when airport is full" do
-      weather = Weather.new
       allow(subject.weather).to receive(:stormy?) { false }
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }.to raise_error "airport is full"
@@ -37,7 +35,7 @@ describe Airport do
     it "raises an error when trying to land a plane that has already landed" do
       plane = Plane.new
       subject.land(plane)
-      expect{ subject.land(plane) }.to raise_error "plane already at airport"
+      expect { subject.land(plane) }.to raise_error "plane already at airport"
     end
     it 'can land a plane if weather is not stormy' do
       allow(subject.weather).to receive(:stormy?) { false }
@@ -50,7 +48,7 @@ describe Airport do
     end
     it 'will raise an error if plane tries to land in stormy weather' do
       allow(subject.weather).to receive(:stormy?) { true }
-      expect{ subject.land Plane.new }.to raise_error "cannot land in stormy weather"
+      expect { subject.land Plane.new }.to raise_error "cannot land in stormy weather"
     end
   end
 
