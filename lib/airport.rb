@@ -16,18 +16,18 @@ class Airport
     planes << plane
   end
 
-  def land_guards(plane)
-    raise "Airport full" if full?
-    raise "Too stormy to land right now" if stormy?
-    raise "Plane already at the airport!" if plane_at_airport?(plane)
-    raise "Plane already at another airport" if !airborne?(plane)
-  end
-
   def take_off(plane)
     take_off_guards(plane)
     planes.delete(plane)
     plane.taken_off
     planes
+  end
+
+  def land_guards(plane)
+    raise "Airport full" if full?
+    raise "Too stormy to land right now" if stormy?
+    raise "Plane already at the airport!" if plane_at_airport?(plane)
+    raise "Plane already at another airport" unless airborne?(plane)
   end
 
   def take_off_guards(plane)
@@ -52,5 +52,4 @@ class Airport
   def airborne?(plane)
     plane.airborne == true
   end
-
 end
