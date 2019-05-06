@@ -6,6 +6,7 @@ class Airport
   end
 
   def take_off
-
+    Plane.new
+    # take_off should give us a plane object
   end
 end
