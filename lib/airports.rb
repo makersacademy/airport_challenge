@@ -2,9 +2,9 @@ require_relative './planes.rb'
 require_relative './weather.rb'
 
 class Airport
-  attr_reader :capacity, :planes, :weather
-
   DEFAULT_CAPACITY = 10
+
+  attr_reader :capacity, :planes, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -22,6 +22,10 @@ class Airport
     check_take_off_issues(plane)
     @planes.delete(plane)
     plane.change_status
+  end
+
+  def airport_include?(plane)
+    @planes.include?(plane)
   end
 
   private

@@ -38,7 +38,7 @@ describe Airport do
     describe '#land' do
       it 'should store landed planes' do
         land_process
-        expect(subject.planes.include?(plane)).to eq(true)
+        expect(subject.airport_include?(plane)).to eq(true)
       end
 
       it 'should not be able to land planes if airport is at capacity' do
@@ -58,7 +58,7 @@ describe Airport do
       it 'should not contain planes which have just taken off' do
         land_process
         take_off_process
-        expect(subject.planes.include?(plane)).to eq(false)
+        expect(subject.airport_include?(plane)).to eq(false)
       end
 
       it 'should not take off non-existent planes' do
