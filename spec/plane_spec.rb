@@ -1,5 +1,5 @@
 require 'plane'
 
 describe 'Plane' do 
-  subject(:plane) { Plane.new }
+  let(:plane) { Plane.new }
 end
