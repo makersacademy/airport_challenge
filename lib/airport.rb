@@ -9,7 +9,12 @@ class Airport
     planes.push(plane)
   end
 
-  def take_off(plane)
-    planes.delete(plane)
+  def take_off(plane, weather = 'clear')
+    case weather
+    when 'stormy'
+      return "Planes grounded; stormy weather."
+    else
+      planes.delete(plane)
+    end
   end
 end

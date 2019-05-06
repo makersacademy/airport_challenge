@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it 'instructs a plane to land' do
@@ -21,5 +22,15 @@ describe Airport do
     subject.land(plane)
     subject.take_off(plane)
     expect(subject.planes).not_to include plane
+  end
+
+  it 'prevents take-off when stormy' do
+    plane = Plane.new
+    subject.land(plane)
+    weather = Weather.new
+    weather_check = weather.check
+    if weather_check == 'stormy'
+      expect(subject.take_off(plane, weather_check)).to eq("Planes grounded; stormy weather.")
+    end
   end
 end
