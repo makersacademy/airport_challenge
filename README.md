@@ -15,9 +15,13 @@ Airport Challenge
 # My Approach
 
 I approached this task looking at each user story one at a time.
+
 I then would run a feature test through IRB and assess what the program was/wasn't doing and add a unit test in to the appropriate spec file that would reflect what the particular function in the program is supposed to output. Then, I wrote the code that would make the test pass.
+
 I have left a lot of the refactoring until the end which retrospectively was not the best idea! I will make a note not to do that next time.
-Once I felt the user story was satisfied I have tried to add in more tests to defend against edge cases, although I have found getting the test coverage up to 95% very tough. I have found it hard to assess where the test coverage is lacking.
+
+Once I felt the user story was satisfied I have tried to add in more tests to defend against edge cases, although I have found getting the test coverage up to 95% very tough. I have found it hard to assess where the test coverage is lacking. Looking at the table the SimpleCov gem gives after running rspec, the files where 100% coverage is not shown all seem to be the gem files. I'm not sure if this is a mistake and it shouldn't be assessing test coverage for these files or whether I have missed something?
+
 I have refactored methods so that they only perform one function and have tried to shorten tests to one line where possible. All tests have been organised against the method that they test against.
 
 
