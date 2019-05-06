@@ -31,3 +31,19 @@
 # => #<Plane:0x00007ffa5f127b98>
 # airport.plane
 # => #<Plane:0x00007ffa5f127b98>
+
+# confirm take off
+# require './lib/airport.rb'
+# => true
+# require './lib/plane'
+# => false
+# airport = Airport.new
+# => #<Airport:0x00007f895c8b46c8 @planes=[]>
+# plane = Plane.new
+# => #<Plane:0x00007f895c8ac950>
+# airport.land(plane)
+# => [#<Plane:0x00007f895c8ac950>]
+# airport.take_off
+# => #<Plane:0x00007f895c8ac950>
+# airport.planes.count
+# => 0
