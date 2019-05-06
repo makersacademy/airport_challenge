@@ -26,4 +26,11 @@ describe Airport do
     expect(subject.take_off).to eq plane
   end
 
+  it 'checks plane is no longer on plane list' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off
+    expect(subject.plane_list).not_to include plane
+  end
+
 end
