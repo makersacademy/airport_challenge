@@ -4,7 +4,7 @@ class Weather
     rand(1..10)
   end
 
-  def weather_report
+  def stormy
     if random_weather >= 8
       "stormy"
     else

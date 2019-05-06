@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -8,8 +9,8 @@ class Airport
 
   end
 
-  def take_off(plane)
-
+  def take_off(*)
+    fail "Stormy weather prevents takeoff" if Weather.stormy
   end
 
 end
