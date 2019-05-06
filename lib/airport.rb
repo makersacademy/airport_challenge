@@ -1,4 +1,5 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
 
@@ -9,6 +10,7 @@ class Airport
 
   def land(plane)
     raise 'Airport Full - Cannot Land' if @hanger.count >= @capacity
+    raise 'Stormy Weather - Cannot Land' if @current_weather == "stormy"
     @hanger << plane
   end
 
