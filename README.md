@@ -204,6 +204,7 @@ Objects:
 * Airport
   * land
   * take_off
+  * at_airport? (private)
 * Plane
 
 Test Cases:
