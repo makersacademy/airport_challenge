@@ -138,9 +138,10 @@ I want to instruct a plane to land at an airport`
 
 ###TEST CASES
 
-- [ ] Airport instantiated
-- [ ] Plane instantiated
-- [ ] Airport has `land` method
+- [X] Airport instantiated
+- [X] Plane instantiated
+- [X] Airport has `land` method
+- [X] Plan has `land` method
 - [ ] Airport sends message to tell plane to land; plane receives land
 - [ ] Airport has list of planes
 
@@ -204,7 +205,7 @@ I want to prevent landing when weather is stormy`
 
 ###MESSAGES
 
-* Weather uses random number generator to set weather as stormy or sunny
+* Weather uses random number generator to set weather as stormy or sunny (it is only stormy on rare occasions)
 * Message (sunny or stormy) sent to Airport
 * Airport receives message
 * If weather is stormy plane prevented from taking off
