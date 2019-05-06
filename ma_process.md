@@ -231,8 +231,8 @@ I want to prevent landing when the airport is full`
 
 ###TEST CASES
 
-- [ ] Airport has a default capacity
-- [ ] An error is raised if a plane is instructed to land and the number of planes in the airport equal capacity
+- [X] Airport has a default capacity
+- [X] An error is raised if a plane is instructed to land and the number of planes in the airport equal capacity
 
 ###STORY 6
 
@@ -251,4 +251,4 @@ I would like a default airport capacity that can be overridden as appropriate`
 
 ###TEST CASES
 
-- [ ] Default capacity is used if capacity is not specified when instantiated
+- [X] Default capacity is used if capacity is not specified when instantiated

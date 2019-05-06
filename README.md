@@ -44,6 +44,46 @@ Learn how to setup and structure a new Ruby project, and turn user requirements 
 
 Focus on specific techniques for uncovering the root-cause of bugs in your code.
 
+##Specific goals
+
+* Fully grasp the concept of TDD. Follow a clear structure and approach that can be applied to all projects.
+
+* Develop understanding of RSpec functionality.
+
+Build Status
+---------
+
+Complete:
+
+* All user stories have been fulfilled and pass green.
+
+Incomplete:
+
+* Edge cases have not been tested.
+* Bonus of writing RSpec feature that tests a number of planes landing and taking off has not been written.
+
+Installation
+---------
+
+##1. Getting Started
+
+* Enter the interactive terminal by typing `irb` from the root directory of the airport_challenge directory.
+* Once in the `irb`, type the following dependencies:
+
+`irb(main):001:0> require './lib/airport'
+=> true
+irb(main):002:0> require './lib/plane'
+=> false
+irb(main):003:0> require './lib/weather'`
+
+This allows access to the folders from within `irb`. The next step is to create your aiport.
+
+##2. Creating airports
+
+Unfinished (for the time being!!)
+
+Below are the instructions as provided by Makers Academy
+
 Instructions
 ---------
 
