@@ -12,32 +12,42 @@ describe Airport do
     end
   end
 
-
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it "should return a plane" do
       weather = Weather.new
-      allow(weather).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) { false }
       plane = Plane.new
       expect(subject.land(plane)).to eq(plane)
     end
     it "raises an error when airport is full" do
       weather = Weather.new
-      allow(weather).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) { false }
       3.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }.to raise_error "airport is full"
+    end
+    it 'can land a plane if weather is not stormy' do
+      allow(subject.weather).to receive(:stormy?) { false }
+      @planes = []
+      plane = Plane.new
+      subject.land(plane)
+      @planes << plane
+      expect(@planes).to include(plane)
+      expect(@planes.size).to eq(1)
+    end
+    it 'will raise an error if plane tries to land in stormy weather' do
+      allow(subject.weather).to receive(:stormy?) { true }
+      expect{ subject.land Plane.new }.to raise_error "cannot land in stormy weather"
     end
   end
 
   describe '#take_off' do
     it "should respond to take off" do
-      weather = Weather.new
-      allow(weather).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) { false }
       expect(subject).to respond_to(:take_off)
     end
     it "should allow a plane to take off" do
-      weather = Weather.new
-      allow(weather).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) { false }
       plane = Plane.new
       subject.land(plane)
       expect(subject.take_off).to eq(plane)
@@ -47,11 +57,10 @@ describe Airport do
       allow(weather).to receive(:stormy?) { false }
       expect { subject.take_off }.to raise_error "plane already taken off"
     end
-    it "should be unable to take off if it is stormy" do
-      subject.land Plane.new
-      expect(Weather).to receive(:stormy?).and_return(true)
-      expect(Weather).to receive(:random_num) { 5 }
-      expect { subject.take_off }.to raise_error "cannot take off, it is stormy"
+    it 'raises an error when a plane tries to take off in stormy weather' do
+      subject.land(Plane.new)
+      allow(subject.weather).to receive(:stormy?) { true }
+      expect { subject.take_off }.to raise_error("cannot take off, it is stormy")
     end
   end
 end
