@@ -1,20 +1,35 @@
 require 'plane'
 
 describe Plane do
-  describe '#landed' do
-    it 'specifies that a plane is no longer airborne' do
-      plane = Plane.new
-      plane.landed
-      expect(plane.airborne).to eq(false)
-    end
+
+  before(:each) { @plane = Plane.new }
+
+  it 'cannot be at an airport if airborne' do
+    airport = Airport.new
+    expect(airport.planes).not_to include(@plane)
   end
 
-  describe '#taken_off' do
-    it 'specifies that a plane is airborne' do
-      plane = Plane.new
-      plane.landed
-      plane.taken_off
-      expect(plane.airborne).to eq(true)
+  it 'must be at an airport if not airborne' do
+    airport = Airport.new
+    airport.land(@plane)
+    expect(airport.planes).to include(@plane)
+  end
+
+  describe 'these tests require a landed plane' do
+
+    before(:each) { @plane.landed }
+
+    describe '#landed' do
+      it 'specifies that a plane is no longer airborne' do
+        expect(@plane.airborne).to eq(false)
+      end
+    end
+
+    describe '#taken_off' do
+      it 'specifies that a plane is airborne' do
+        @plane.taken_off
+        expect(@plane.airborne).to eq(true)
+      end
     end
   end
 end

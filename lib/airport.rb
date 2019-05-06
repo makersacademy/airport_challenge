@@ -24,7 +24,7 @@ class Airport
   end
 
   def land_guards(plane)
-    raise "Airport full" if full?
+    raise "Abort - Airport full" if full?
     raise "Too stormy to land right now" if stormy?
     raise "Plane already at the airport!" if plane_at_airport?(plane)
     raise "Plane already at another airport" unless airborne?(plane)
