@@ -1,0 +1,18 @@
+current directory: /Users/student/makers/weekend_challenges/airport_challenge/.bundle/gems/jaro_winkler-1.5.1/ext/jaro_winkler
+/Users/student/.rvm/rubies/ruby-2.6.0/bin/ruby -I /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/2.6.0 -r ./siteconf20190504-39474-1ccunfm.rb extconf.rb
+creating Makefile
+
+current directory: /Users/student/makers/weekend_challenges/airport_challenge/.bundle/gems/jaro_winkler-1.5.1/ext/jaro_winkler
+make "DESTDIR=" clean
+
+current directory: /Users/student/makers/weekend_challenges/airport_challenge/.bundle/gems/jaro_winkler-1.5.1/ext/jaro_winkler
+make "DESTDIR="
+compiling adj_matrix.c
+compiling codepoints.c
+compiling jaro.c
+compiling jaro_winkler.c
+linking shared-object jaro_winkler/jaro_winkler_ext.bundle
+
+current directory: /Users/student/makers/weekend_challenges/airport_challenge/.bundle/gems/jaro_winkler-1.5.1/ext/jaro_winkler
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 jaro_winkler_ext.bundle ./.gem.20190504-39474-t7jv7m/jaro_winkler
