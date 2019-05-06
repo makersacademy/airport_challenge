@@ -15,4 +15,11 @@ describe Airport do
   it 'instructs a plane to take-off' do
     expect(subject).to respond_to(:take_off)
   end
+
+  it 'checks taken-off plane has left airport' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes).not_to include plane
+  end
 end
