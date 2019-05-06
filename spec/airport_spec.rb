@@ -20,4 +20,10 @@ describe Airport do
     expect(subject.land(plane2)).to eq [plane1, plane2]
   end
 
+  it 'instructs a plane to take off and returns plane' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.take_off).to eq plane
+  end
+
 end
