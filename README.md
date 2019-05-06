@@ -98,10 +98,44 @@ RuntimeError (All planes are grounded!)
 2.5.0 :007 >
 ```
 
+##*USER STORY 4*
+
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+```
+
+Traffic Controller(User)
+weather                       |            stormy?
+landing                       |            prevent  
+
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007ff62b831430 @planes=[], @weather=#<Weather:0x00007ff62b831408>>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007ff62b829618>
+2.5.0 :004 > airport.land(plane)
+ => "#<Plane:0x00007ff62b829618> has landed"
+2.5.0 :005 > plane = Plane.new
+ => #<Plane:0x00007ff62b815190>
+2.5.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/kiri/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):6
+        1: from /Users/kiri/Documents/GitHub/airport_challenge/lib/airport.rb:13:in `land'
+RuntimeError (Plane landing is delayed due to stormy weather)
+2.5.0 :007 > airport.take_off(plane)
+ => "#<Plane:0x00007ff62b815190> has taken off"
+2.5.0 :008 > airport.take_off(plane)
+Traceback (most recent call last):
+        3: from /Users/kiri/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):8
+        1: from /Users/kiri/Documents/GitHub/airport_challenge/lib/airport.rb:20:in `take_off'
+RuntimeError (All planes are grounded!)
 ```
 
 ```

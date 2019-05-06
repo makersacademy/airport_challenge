@@ -10,6 +10,8 @@ class Airport
   end
 
   def land(plane)
+    raise "Plane landing is delayed due to stormy weather" if weather.stormy?
+
     @planes << plane
     return "#{plane} has landed"
   end
