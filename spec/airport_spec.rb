@@ -36,6 +36,14 @@ describe Airport do
       expect(airport.take_off(plane).length).to eq(n - 1)
     end
 
+    it 'raises an error if it is stormy' do
+      plane = Plane.new
+      airport = Airport.new
+      airport.land(plane)
+
+      expect{airport.take_off(plane)}.to raise_error("Too stormy to take off right now")
+    end
+
     it 'takes off a specified plane' do
       plane1 = Plane.new
       plane2 = Plane.new
