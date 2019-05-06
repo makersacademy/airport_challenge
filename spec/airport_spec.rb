@@ -12,7 +12,7 @@ describe Airport do
   end
 
   it "does not allow landing when airport is full" do
-    50.times do
+    5.times do
       airport.land(:plane)
     end
     expect(airport.land(:plane)).to raise_error 'Airport Full - Cannot Land'
