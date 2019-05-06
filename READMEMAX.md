@@ -1,5 +1,5 @@
 # Airport Challenge - Max Van Aken
-The goal of this challenge is to create a pice of software to control the flow of planes at an airport. 
+The goal of this challenge is to create a pice of software to control the flow of planes at an airport.
 
 ## User Stories
 As an air traffic controller
