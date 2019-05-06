@@ -1,8 +1,8 @@
 require './lib/plane.rb'
 
 class Airport
-
-  def initialize(capacity)
+DEFAULT_CAPACITY = 50
+  def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @hanger = []
   end
@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Stormy Weather - Cannot Take Off' if current_weather == "stormy"
   end
 
   def current_weather
