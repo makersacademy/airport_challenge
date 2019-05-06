@@ -32,8 +32,13 @@ describe Airport do
         subject.take_off
         expect(subject.plane_list).not_to include plane
       end
+
+      it 'has a default capacity' do
+        expect(subject.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
+      end
     end
     context 'weater is stormy' do
+
       it 'raises error message when #land is passed and weather is stormy' do
         subject = Airport.new(double :stormy_weather, :stormy? => true)
         expect{subject.land(plane)}.to raise_error 'Cannot land due to stormy weather'

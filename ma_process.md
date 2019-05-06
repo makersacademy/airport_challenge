@@ -231,6 +231,7 @@ I want to prevent landing when the airport is full`
 
 ###TEST CASES
 
+- [ ] Airport has a default capacity
 - [ ] An error is raised if a plane is instructed to land and the number of planes in the airport equal capacity
 
 ###STORY 6
