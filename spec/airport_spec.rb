@@ -36,12 +36,17 @@ describe Airport do
       it 'has a default capacity' do
         expect(subject.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
       end
+
+      it 'raises error message when #land is passd and airport is at capacity' do
+        subject.capacity.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error 'Airport capacity reached!'
+      end
     end
     context 'weater is stormy' do
 
       it 'raises error message when #land is passed and weather is stormy' do
         subject = Airport.new(double :stormy_weather, :stormy? => true)
-        expect{subject.land(plane)}.to raise_error 'Cannot land due to stormy weather'
+        expect { subject.land(plane) }.to raise_error 'Cannot land due to stormy weather'
       end
     end
   end
