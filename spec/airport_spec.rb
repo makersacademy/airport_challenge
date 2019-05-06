@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  it 'will respond to land' do
-    expect(Airport.new).to respond_to(:land)
-  end
-
   it 'will instruct a plane to land if sunny' do
     allow(subject.weather).to receive(:stormy?).and_return(false)
     expect(subject.land(Plane.new)).to eq('Cleared to land')
@@ -20,10 +16,6 @@ describe Airport do
     message = 'Airport full, permisson to land denied'
     allow(subject).to receive(:full?).and_return(true)
     expect { subject.land(Plane.new) }.to raise_error message
-  end
-
-  it 'will respond to take off' do
-    expect(Airport.new).to respond_to(:take_off)
   end
 
   it 'will instruct a plane to take off if sunny' do

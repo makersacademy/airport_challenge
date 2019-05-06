@@ -5,6 +5,7 @@ class Weather
     @condition = :stormy
   end
 
+
   WEATHER = [:sunny, :sunny, :stormy, :sunny, :sunny]
 
   def stormy?
