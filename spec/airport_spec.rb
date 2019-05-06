@@ -1,25 +1,21 @@
 require "airport"
 
 describe Airport do
-  describe "#landing" do
-    context "given airport has space" do
-      it "allows plane to land" do
-        plane = Plane.new
-        airport = Airport.new
-        airport.land(plane)
-        expect(airport.hanger.include?(plane)).to eq(true)
-      end
-    end
+  subject(:airport) { described_class.new(50) }
+
+  it "instructs plane to land" do
+    expect(airport).to respond_to(:land).with(1).argument
   end
-  describe "#takeoff" do
-    context "given weather is good" do
-      it "allows plane to takeoff" do
-        plane = Plane.new
-        airport = Airport.new
-        airport.land(plane)
-        airport.takeoff(plane)
-        expect(airport.hanger.include?(plane)).to eq(false)
-      end
-    end
+
+  it "instructs plane to take off" do
+    expect(airport).to respond_to(:take_off).with(1).argument
   end
+
+  it "does not allow landing when airport is full" do
+    50.times do
+      airport.land(:plane)
+    end
+    expect(airport.land(:plane)).to raise_error 'Airport Full - Cannot Land'
+  end
+
 end

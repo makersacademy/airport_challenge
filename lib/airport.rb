@@ -1,16 +1,18 @@
-require_relative 'plane'
+require './lib/plane.rb'
 
 class Airport
-  attr_reader :hanger
-  def initialize
+
+  def initialize(capacity)
+    @capacity = capacity
     @hanger = []
   end
 
   def land(plane)
+    raise 'Airport Full - Cannot Land' if @hanger.count >= @capacity
     @hanger << plane
   end
 
-  def takeoff(plane)
-    @hanger.pop
+  def take_off(plane)
   end
+
 end
