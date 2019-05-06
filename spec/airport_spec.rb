@@ -6,6 +6,12 @@ describe Airport do
   end
 
   it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :take_off}
+
+  it 'instructs plan to land and returns a plane instance in an array' do
+    plane = Plane.new
+    expect(subject.land(plane)).to eq [plane]
+  end
 
   it 'instructs an instance of plane to land and returns a list of planes' do
     plane1 = Plane.new
