@@ -8,31 +8,31 @@ describe Airport do
   describe "account for random weather value" do
 
     it "returns stormy weather" do
-      allow(@airport).to receive(:weather).and_return "stormy"
-      expect(@airport.weather).to eq("stormy")
+      allow(@airport).to receive(:weather).and_return :stormy
+      expect(@airport.weather).to eq(:stormy)
     end
 
     it "returns sunny weather" do
-      allow(@airport).to receive(:weather).and_return "sunny"
-      expect(@airport.weather).to eq("sunny")
+      allow(@airport).to receive(:weather).and_return :sunny
+      expect(@airport.weather).to eq(:sunny)
     end
   end
 
   describe 'initialization' do
 
     it 'defaults capacity' do
-      expect(@airport.capacity).to eq(described_class::DEFAULT_CAPACITY)
+      expect(@airport.send(:capacity)).to eq(described_class::DEFAULT_CAPACITY)
     end
 
     it 'returns an airport with the specified capacity' do
-      expect(Airport.new(90).capacity).to eq(90)
+      expect(Airport.new(90).send(:capacity)).to eq(90)
     end
   end
 
   describe 'these tests mostly require a new Plane instance and sunny weather' do
 
     before(:each) { @plane = Plane.new }
-    before(:each) { allow(@airport).to receive(:weather).and_return "sunny" }
+    before(:each) { allow(@airport).to receive(:weather).and_return :sunny }
 
     describe '#land' do
 
@@ -60,7 +60,7 @@ describe Airport do
 
       it 'raises error when trying to land a plane already at another airport' do
         other_airport = Airport.new
-        allow(other_airport).to receive(:weather).and_return "sunny"
+        allow(other_airport).to receive(:weather).and_return :sunny
         @airport.land(@plane)
         message = "Plane already at another airport"
         expect { other_airport.land(@plane) }.to raise_error(message)
@@ -68,7 +68,7 @@ describe Airport do
 
       it 'raises error if it is stormy' do
         stormy_airport = Airport.new
-        allow(stormy_airport).to receive(:weather).and_return "stormy"
+        allow(stormy_airport).to receive(:weather).and_return :stormy
         message = "Too stormy to land right now"
         expect { stormy_airport.land(@plane) }.to raise_error(message)
       end
@@ -79,7 +79,7 @@ describe Airport do
       before(:each) { @airport.land(@plane) }
 
       it 'takes off a plane' do
-        n = @airport.planes.length
+        n = @airport.send(:planes).length
         expect(@airport.take_off(@plane).length).to eq(n - 1)
       end
 
@@ -93,14 +93,14 @@ describe Airport do
       end
 
       it 'raises error if it is stormy' do
-        allow(@airport).to receive(:weather).and_return "stormy"
+        allow(@airport).to receive(:weather).and_return :stormy
         message = "Too stormy to take off right now"
         expect { @airport.take_off(@plane) }.to raise_error(message)
       end
 
       it 'raises an error if plane at another airport' do
         other_airport = Airport.new
-        allow(other_airport).to receive(:weather).and_return "sunny"
+        allow(other_airport).to receive(:weather).and_return :sunny
         message = "Specified plane at another airport"
         expect { other_airport.take_off(@plane) }.to raise_error(message)
       end

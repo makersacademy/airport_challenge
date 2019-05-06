@@ -6,13 +6,14 @@ describe Plane do
 
   it 'cannot be at an airport if airborne' do
     airport = Airport.new
-    expect(airport.planes).not_to include(@plane)
+    expect(airport.send(:planes)).not_to include(@plane)
   end
 
   it 'must be at an airport if not airborne' do
     airport = Airport.new
+    allow(airport).to receive(:weather).and_return :sunny
     airport.land(@plane)
-    expect(airport.planes).to include(@plane)
+    expect(airport.send(:planes)).to include(@plane)
   end
 
   describe 'these tests require a landed plane' do
