@@ -1,6 +1,12 @@
 require 'airport'
 
 describe Airport do
+
+  let (:good_weather) { double(:good_weather, :stormy? => false) }
+  let (:subject) { Airport.new(good_weather) }
+  let (:plane) { double(:plane) }
+
+
   it 'creates new airport object' do
     expect(Airport.new.is_a? Airport).to eq true
   end
