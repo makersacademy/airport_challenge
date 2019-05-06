@@ -9,7 +9,8 @@ class Airport
 
   def land(plane)
     raise "Plane already at the airport!" if planes.include?(plane)
-
+    raise "Too stormy to land right now" if weather == "stormy"
+    
     planes << plane
   end
 

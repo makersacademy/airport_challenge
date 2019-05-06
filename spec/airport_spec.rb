@@ -27,10 +27,18 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect {
-        airport.land(plane)
-      }.to raise_error("Plane already at the airport!")
+      message = "Plane already at the airport!"
+      expect { airport.land(plane) }.to raise_error(message)
     end
+
+    it 'raises error if it is stormy' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(airport).to receive(:weather).and_return "stormy"
+      message = "Too stormy to land right now"
+      expect { airport.land(plane) }.to raise_error(message)
+    end
+
   end
 
   describe '#take_off' do
@@ -49,7 +57,7 @@ describe Airport do
       allow(airport).to receive(:weather).and_return "stormy"
       airport.land(plane)
       message = "Too stormy to take off right now"
-      expect{airport.take_off(plane)}.to raise_error(message)
+      expect { airport.take_off(plane) }.to raise_error(message)
     end
 
     it 'takes off a specified plane' do
