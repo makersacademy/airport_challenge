@@ -1,26 +1,28 @@
-require_relative 'plane'
 require_relative 'weather'
-
+require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
+  attr_accessor :capacity, :weather, :planes
 
-  def initialize
+  def initialize(capacity = 2)
+    @capacity = capacity
+    @weather = Weather.new
     @planes = []
   end
 
   def land(plane)
-    weather = Weather.new
-    fail "Stormy weather conditions" if weather.is_stormy?
+    fail "airport is full" if @planes.count >= 2
+    fail "stormy weather conditions" if @weather.generate_weather == "stormy"
+
     @planes << plane
   end
 
   def takeoff
-    weather = Weather.new
-    fail "Stormy weather conditions" if weather.is_stormy?
+    fail "Stormy weather conditions" if @weather.generate_weather == "stormy"
+
     @planes.pop
-    "The plane has left the airport"
+    # "The plane has left the airport"
   end
 
 end
