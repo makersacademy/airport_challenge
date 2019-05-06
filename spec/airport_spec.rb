@@ -33,6 +33,12 @@ describe Airport do
         expect(subject.plane_list).not_to include plane
       end
     end
+    context 'weater is stormy' do
+      it 'raises error message when #land is passed and weather is stormy' do
+        subject = Airport.new(double :stormy_weather, :stormy? => true)
+        expect{subject.land(plane)}.to raise_error 'Cannot land due to stormy weather'
+      end
+    end
   end
 
   describe '#take_off' do

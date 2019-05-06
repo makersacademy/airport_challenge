@@ -189,8 +189,8 @@ I want to prevent takeoff when weather is stormy`
 
 - [X] Weather instantiated
 - [X] Weather has a `stormy?` method
-- [ ] Weather has `stormy?` method which returns `true` when stormy or `false` when sunny at random
-- [ ] If Airport tells a plane to take off and `stormy?` returns true a plane does not take off and an error message is given
+- [X] Weather has `stormy?` method which returns `true` when stormy or `false` when sunny at random
+- [X] If Airport tells a plane to take off and `stormy?` returns true a plane does not take off and an error message is given
 
 ###STORY 4
 
@@ -212,7 +212,7 @@ I want to prevent landing when weather is stormy`
 
 ###TEST CASES
 
-- [ ] If Airport tells a plane to land and `stormy?` returns true a plane does not land and an error message is given
+- [X] If Airport tells a plane to land and `stormy?` returns true a plane does not land and an error message is given
 
 ###STORY 5
 
