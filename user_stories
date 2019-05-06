@@ -1,0 +1,11 @@
+Story 1
+
+User = air traffic controller
+
+airport <-- land --> plane
+
+Story 2
+
+User  = air traffic controller 
+airport <-- take off --> plane
+airport <-- contain? --> plane
