@@ -10,6 +10,9 @@ describe Airport do
     it 'initializes without arguments' do
       expect(Airport).to respond_to(:new).with(0).arguments
     end
+    it 'initializes with an argument' do
+      expect(Airport).to respond_to(:new).with(1).argument
+    end
   end
 
   describe '#land' do
@@ -23,8 +26,18 @@ describe Airport do
     it "raises an error when airport is full" do
       weather = Weather.new
       allow(subject.weather).to receive(:stormy?) { false }
-      3.times { subject.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }.to raise_error "airport is full"
+    end
+    it "can land planes up to airports default capacity" do
+      allow(subject.weather).to receive(:stormy?) { false }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect(subject.planes.size).to eq(Airport::DEFAULT_CAPACITY)
+    end
+    it "raises an error when trying to land a plane that has already landed" do
+      plane = Plane.new
+      subject.land(plane)
+      expect{ subject.land(plane) }.to raise_error "plane already at airport"
     end
     it 'can land a plane if weather is not stormy' do
       allow(subject.weather).to receive(:stormy?) { false }
@@ -62,5 +75,9 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.take_off }.to raise_error("cannot take off, it is stormy")
     end
+  end
+
+  describe '#landed' do
+    it { is_expected.to respond_to(:landed?).with(1).argument }
   end
 end
