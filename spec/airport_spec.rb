@@ -118,4 +118,17 @@ describe Airport do
       end
     end
   end
+
+  describe 'test that takes off and lands several planes' do
+    it 'the program can land 99 planes and take off 33' do
+      allow(@airport).to receive(:weather).and_return :sunny
+      99.times do
+        @airport.land(Plane.new)
+      end
+      @airport.send(:planes).reject!.with_index do |_, i|
+        i % 3 == 0
+      end
+      expect(@airport.send(:planes).length).to eq(66)
+    end
+  end
 end
