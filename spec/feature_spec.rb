@@ -69,12 +69,10 @@
 # variable capacity at initialization
 # require './lib/airport.rb'
 #  => true
-# airport = Airport.new
-#  => #<Airport:0x00007ff15f8cb1f0 @planes=[], @capacity=10>
-# airport.capacity = 100
-#  => 100
+# airport = Airport.new(100)
+# => #<Airport:0x00007f9faa138ca0 @planes=[], @capacity=100>
 # plane = Plane.new
-#  => #<Plane:0x00007ff15f8bb5c0>
+# #<Plane:0x00007f9faa130f78>
 # 100.times { airport.land(plane) }
 #  => 100
 # airport.land(plane)
