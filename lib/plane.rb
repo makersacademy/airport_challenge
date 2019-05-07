@@ -1,5 +1,5 @@
 class Plane
   def plane
-    plane
+    true
   end
 end
