@@ -43,9 +43,5 @@ describe Airport do
         expect { airport.take_off(plane) }.to raise_error 'Stormy Weather - Cannot Take Off'
       end
     end
-
   end
-
-
-
 end
