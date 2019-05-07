@@ -43,10 +43,9 @@ describe Airport do
         expect { airport.land(plane) }.to raise_error 'Unable to land; airport full.'
       end
     end
-  end
 
     context('stormy weather') do
-      
+
       before(:each) do
         allow(subject).to receive(:weather_permit?).and_return(true)
       end
@@ -59,4 +58,5 @@ describe Airport do
         expect { subject.land(plane) }.to raise_error 'Unable to land; stormy weather.'
       end
     end
+  end
 end
