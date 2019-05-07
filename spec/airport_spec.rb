@@ -3,10 +3,6 @@ require "airport"
 describe Airport do
   plane = Plane.new
 
-  it { is_expected.to respond_to(:planes) }
-  it { is_expected.to respond_to(:take_off) }
-  it { is_expected.to respond_to(:land).with(1).argument }
-
   describe "#capacity" do
     subject { Airport.new }
     let(:plane) { Plane.new }
@@ -25,37 +21,25 @@ describe Airport do
   end
 
   describe "#land_plane" do
-    it "allows plane to land" do
-      expect(subject.land(plane)).to include plane
-    end
-
-    it "an instance of a plane landed" do
+    it "an instance of a plane lands" do
       subject.land(plane)
       expect(subject.planes).to include plane
     end
 
     it "plane cannot land in stormy weather" do
-      plane = Plane.new
-      allow(subject.land(plane)).to receive(:weather) { 20 }
+      allow(subject).to receive(:weather) { 5 }
       expect { subject.land(plane) }.to raise_error "No landing during storm"
     end
   end
 
   describe "#take_off" do
-    it "a plane can take off" do
-      plane = subject.take_off
-    end
-
     it "confirm plane has taken off" do
-      plane = Plane.new
       subject.land(plane)
-      subject.take_off
-      expect(subject.planes.count).to eq(0)
+      expect { subject.take_off }.to change { subject.planes.count }.by(-1)
     end
 
     it "plane cannot take off in stormy weather" do
-      plane = Plane.new
-      allow(subject.land(plane)).to receive(:weather) { 20 }
+      allow(subject).to receive(:weather) { 5 }
       expect { subject.take_off }.to raise_error "No take off during storm"
     end
   end
