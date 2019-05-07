@@ -33,8 +33,19 @@ describe Airport do
   describe "#takeoff" do
     context "when sunny" do
       it "instructs plane to take off" do
+        allow(airport).to receive(:current_weather).and_return("sunny")
         expect(airport).to respond_to(:take_off).with(1).argument
       end
+      it "checks plane has left hanger" do
+        allow(airport).to receive(:current_weather).and_return("sunny")
+        50.times do
+          airport.land(plane)
+        end
+        airport.take_off(plane)
+        expect(airport.hanger.length).to eq(49)
+      end
+
+
     end
 
     context "when stormy" do

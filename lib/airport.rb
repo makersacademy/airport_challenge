@@ -3,6 +3,7 @@ require './lib/plane.rb'
 class Airport
 
   DEFAULT_CAPACITY = 50
+  attr_reader :hanger
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
