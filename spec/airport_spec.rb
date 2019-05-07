@@ -7,7 +7,7 @@ describe 'Airport' do
   let(:weather) { Weather.new }
   
   describe '#land' do
-    context "when weather is not stormy"
+    context "when weather is not stormy" do
       before do
         allow(airport).to receive(:stormy?).and_return(false)
       end
@@ -15,10 +15,14 @@ describe 'Airport' do
         airport.land(plane)
         expect(airport.land(plane)).to eq("#{plane} has landed")
       end
-
       it "Confirms the plane is in the airport" do
         airport.land(plane)
         expect(airport.planes).to include(plane)
+      end
+
+      it "gives an error if the airport is full" do
+        3.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error("Airport is full. Flight redirected to a different airport!")
       end
     end
 
@@ -29,7 +33,8 @@ describe 'Airport' do
       it "raises an error" do
         expect { airport.land(plane) }.to raise_error("Plane landing is delayed due to stormy weather")
       end
-  end
+    end
+  end  
 
   describe '#take_off' do
     context 'when weather is not stormy' do

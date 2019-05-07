@@ -11,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "Plane landing is delayed due to stormy weather" if weather.stormy?
+    raise "Airport is full. Flight redirected to a different airport!" if full?
 
     @planes << plane
     return "#{plane} has landed"
@@ -22,4 +23,11 @@ class Airport
     @planes.delete(plane)
     return "#{plane} has taken off"
   end
+
+private
+
+  def full?
+    @planes.count >= 3
+  end  
+
 end

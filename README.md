@@ -137,12 +137,51 @@ Traceback (most recent call last):
         1: from /Users/kiri/Documents/GitHub/airport_challenge/lib/airport.rb:20:in `take_off'
 RuntimeError (All planes are grounded!)
 ```
+##*USER STORY 5*
 
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
 ```
+
+Traffic Controller(User)
+airport                       |            full?
+landing                       |            reject
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007fe9a192c1f0 @planes=[], @weather=#<Weather:0x00007fe9a192c1c8>>
+2.5.0 :003 > plane = Plane.new("AF3026")
+ => #<Plane:0x00007fe9a191ee38 @flight_number="AF3026">
+2.5.0 :004 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/kiri/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):4
+        1: from /Users/kiri/Documents/GitHub/airport_challenge/lib/airport.rb:13:in `land'
+RuntimeError (Plane landing is delayed due to stormy weather)
+2.5.0 :005 > airport.land(plane)
+ => "#<Plane:0x00007fe9a191ee38> has landed"
+2.5.0 :006 > plane = Plane.new("GH4232")
+ => #<Plane:0x00007fe9a1915220 @flight_number="GH4232">
+2.5.0 :007 > airport.land(plane)
+ => "#<Plane:0x00007fe9a1915220> has landed"
+2.5.0 :008 > plane = Plane.new("FF331")
+ => #<Plane:0x00007fe9a1031dc0 @flight_number="FF331">
+2.5.0 :009 > airport.land(plane)
+ => "#<Plane:0x00007fe9a1031dc0> has landed"
+2.5.0 :010 > plane = Plane.new("TP2343")
+ => #<Plane:0x00007fe9a10129e8 @flight_number="TP2343">
+2.5.0 :011 > airport.land(plane)
+Traceback (most recent call last):
+        3: from /Users/kiri/.rvm/rubies/ruby-2.5.0/bin/irb:11:in `<main>'
+        2: from (irb):11
+        1: from /Users/kiri/Documents/GitHub/airport_challenge/lib/airport.rb:14:in `land'
+RuntimeError (Airport is full. Flight redirected to a different airport!)
+```
+
 ```
 As the system designer
 So that the software can be used for many different airports
