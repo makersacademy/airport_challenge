@@ -1,5 +1,12 @@
 class Weather
   def check
-    'stormy'
+    chance = rand(5)
+    
+    case chance
+    when 1
+      'stormy'
+    else
+      'clear'
+    end
   end
 end
