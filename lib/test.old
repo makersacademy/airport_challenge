@@ -1,0 +1,33 @@
+# This is my testing code to test the classes Plne, Weather and Airport
+# The functionality we want to test 
+require './lib/weather'
+require './lib/plane'
+require './lib/airport'
+
+def get_weather
+  weather_conditions = ["Sunny","Cloudy","Stormy","Raining","Snowing"]
+  x = rand(weather_conditions.length)
+  weather_condition = weather_conditions[x]
+  puts "Today it is #{weather_condition}"
+  return weather_condition
+end
+
+
+
+  case selection
+  when "1"
+
+
+
+def print_menu
+  puts "1. I want to instruct a plane to land at an airport"
+  puts "2. I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport"
+  puts "3. I want to prevent takeoff when weather is stormy"
+  puts "4. I want to prevent landing when weather is stormy"
+  puts "5. I want to prevent landing when the airport is full"
+  puts "6. I would like a default airport capacity that can be overridden as appropriate"
+  puts "9. Exit"
+end
+
+
+
