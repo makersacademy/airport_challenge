@@ -1,90 +1,173 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+[Getting started](#getting-started) | [Usage](#Usage) | [Running tests](#running-tests)
 
-```
+[Brief](#Brief) | [Approach](#Approach) | [Areas for improvement](#Areas-for-improvement)
 
-Instructions
----------
+This is one of the weekend challenges from the Makers Academy course.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+It is a program that can be run in REPL to control the flow of planes in an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-Steps
+[See here](https://github.com/makersacademy/airport_challenge) for Makers' original repo.
+
+### Getting started
+
+`git clone https://github.com/amyj0rdan/airport_challenge`     
+`gem install bundle`     
+`bundle`     
+
+### Usage
+
+Run in `irb`
+
+### Running tests
+
+`rspec`
+
 -------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
+## Brief
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
+**Bonus**
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+-------
+## Approach
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+- Broke down each user story into nouns and corresponding verbs
+- Derived suitable corresponding likely methods for feature testing
+- Used TDD to build program, starting with `Airport` and `Plane` classes, then adding `Weather` classes when I reached that user story
+- Refactored tests by context when introduced the `Weather` class
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+**User story 1**
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+```
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+1. `Airport` class
+
+Tests:
+- `land` method
+- with 1 argument (`plane`)
+
+
+2. `Plane` class
+
+Tests:
+- Only to check existence of `Plane` class
+
+**User story 2**
+
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+1. `Airport` class
+
+Tests:
+- `take_off` method
+- Be able to check if instance of a `Plane` is no longer held by that `Airport`
+- Update `land` method to track planes that land so tracking both ways
+
+**User stories 3 and 4**
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+1. `Weather` class
+
+Tests:
+- `forecast` method
+- Be able to check if the `forecast` is 'Clear' or 'Stormy'
+
+
+2. `Airport` class
+
+Tests:
+- `stormy?` method     
+_(Originally tried a `weather` method but that resulted in more complicated syntax than just checking if the weather was stormy)_
+- Use an instance of the `Weather` class to check if the weather is stormy
+- Update `land` and `take_off` methods to raise an error if `stormy?`
+
+**User story 5**
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+1. `Airport` class
+
+Tests:
+- `full?` method
+- Create an attribute of `capacity` to check against
+- Update `land` method to raise an error if `full?`
+
+**User story 6**
+
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+1. `Airport` class
+
+Tests:
+- `DEFAULT_CAPACITY` exists
+- Able to input a variable capacity at instatiation of an `Airport`
+
+--------
+
+## Areas for improvement
+
+- `Weather` class, `forecast` method - not testing the randomness of the generator (only that it produces 'Stormy' or 'Clear')      
+-- Possible to use a mock?
+- `Weather` class, `forecast` method - rubocop requirements were for use of ternary method rather than an if/else statement     
+-- Would prefer to use if/else statement
+- `Airport` class, `stormy?` method - not testing the randomness of the generator (only that it produces 'true' or 'false')     
+-- Possible to use a mock?
+- Unsure how to use mocks in `before(:each)` statements (ie, in the context setups)     
+-- Is it possible?     
+- Haven't used doubles for `stormy?` so that other tests aren't disrupted by changes
+- Other edge cases to consider:     
+_---Plane cannot land in another airport if already landed in one airport._
