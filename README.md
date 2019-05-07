@@ -32,19 +32,19 @@ Motivation
 
 The purpose of this project is to work of my weekly focus goals:
 
-## I can TDD anything
+### I can TDD anything
 
 Write a meaningful test. based on the user requirements. Write code using TDD to make the test pass.
 
-## I can program fluently
+### I can program fluently
 
 Learn how to setup and structure a new Ruby project, and turn user requirements into working code.
 
-## I can debug anything
+### I can debug anything
 
 Focus on specific techniques for uncovering the root-cause of bugs in your code.
 
-## Specific goals
+### Specific goals
 
 * Fully grasp the concept of TDD. Follow a clear structure and approach that can be applied to all projects.
 
