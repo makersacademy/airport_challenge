@@ -1,3 +1,5 @@
+require_relative './weather.rb'
+
 class Airport
   attr_reader :plane
 
@@ -5,7 +7,8 @@ class Airport
     @plane = plane
   end
 
-  def take_off
+  def take_off(weather)
+    raise "too dangerous to take off" if weather == 'stormy'
     @plane = nil
   end
 
