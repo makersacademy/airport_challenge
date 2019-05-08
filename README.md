@@ -4,6 +4,39 @@
 * I aimed for a TDD approach, only writing code in the ./lib files
 after first writing a test in the ./spec folder.
 
+* There were a series of user stories which needed to be fulfilled, as below:
+
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is
+no longer in the airport
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+* The process for each user story was fairly similar. From the user stories I
+feature tested in irb which informed the writing of unit tests. Passing these
+tests drove the code in airports.rb, planes.rb, and weather.rb.
+
 * As seen in earlier commits, my initial approach was to call #land and #take_off
 methods on planes, as such:
 
@@ -40,7 +73,7 @@ The default capacity for airports is 10 (if no argument given).
 * Users can land planes in an airport using the #land method. Planes can
 take off from an airport using the #take_off method.
 
-* Planes cannot land if they are already in an airport, or take off if they are
+* Planes cannot land if they are already in any airport, or take off if they are
 in the air.
 
 * Planes cannot land at an airport which has no capacity left.
@@ -64,7 +97,7 @@ $ irb -r ./lib/airports.rb
 if given the airport as an argument. Not sure if this is better.
 
 * I could try using 'before' or doubles more in the rspec tests, will
-have to think if it makes the tests more concise.
+have to think if it can make the tests more concise.
 
 * The plane methods #change_status and #landed? are available publicly. Curious
 if I can make them available to ./lib/airports.rb without this being the case.
