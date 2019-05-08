@@ -13,78 +13,181 @@ Airport Challenge
 
 ```
 
-Instructions
+Documented process in 'ma_process.md'
+---------
+* Full documentation of the steps taken to complete this project. Please read!!
+
+**Things I can do to improve for future projects:**
+
+Introduction
+---------
+This project is provided by Makers Academy. It is the first individual project given to students on completion of Week 1 of the course. It consolidates the skills taught during Week 1 in test-driven development and object-oriented programming.
+
+The aim of this project is to write software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+The template for this this README file has been taken from [A Medium Corpo](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3).
+
+Motivation
+----------
+
+The purpose of this project is to work of my weekly focus goals:
+
+### I can TDD anything
+
+Write a meaningful test. based on the user requirements. Write code using TDD to make the test pass.
+
+### I can program fluently
+
+Learn how to setup and structure a new Ruby project, and turn user requirements into working code.
+
+### I can debug anything
+
+Focus on specific techniques for uncovering the root-cause of bugs in your code.
+
+### Specific goals
+
+* Fully grasp the concept of TDD. Follow a clear structure and approach that can be applied to all projects.
+
+* Develop understanding of RSpec functionality.
+
+Build Status
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Complete:
 
-Steps
--------
+* All user stories (specified in [ma_process.md](https://github.com/marbuthnott/airport_challenge/blob/master/ma_process.md)) have been fulfilled and pass green.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Working progress:
 
-Task
------
+* Edge cases are still to be tested.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Tech/Framework Used
+---------
+
+This project will use Behaviour Driven Development (BDD) for Ruby with the RSpec testing language.
+
+Code Style
+--------
+
+I will be checking my code conforms to the [Rubocop](https://github.com/rubocop-hq/rubocop) style guide.
+
+How to use the airport program
+---------
+
+### 1. Getting Started
+
+* Enter the interactive terminal by typing `irb` from the root of the airport_challenge directory.
+* Once in the `irb`, type the following dependencies:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+irb(main):001:0> require './lib/airport'
+=> true
+irb(main):002:0> require './lib/plane'
+=> false
+irb(main):003:0> require './lib/weather'
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+This allows access to the folders from within `irb`. The next step is to create your aiport.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+### 2. Creating airports
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+* To create an airport, type in the following into your `irb`
 
-Please create separate files for every class, module and test suite.
+```
+irb(main):005:0> gatwick = Airport.new
+=> #<Airport:0x00007fd44b8159d0 @plane_list=[], @weather=#<Weather:0x00007fd44b815958>, @capacity=5>
+irb(main):006:0> london_city = Airport.new
+=> #<Airport:0x00007fd44b24c4e0 @plane_list=[], @weather=#<Weather:0x00007fd44b24c4b8>, @capacity=5>
+irb(main):007:0>
+```
 
-In code review we'll be hoping to see:
+When an airport is created, it has a default capacity of 5, a list of planes (which is empty by default) and some information about the weather at the airport location (instantiated at random by the weather object).
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+You can create as many airports as you like!
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+### 3. How to change the airport capacity
 
-**BONUS**
+If you do not provide a capacity when creating the airport, it will give you a default of 5. In order to set a capacity at the time of airport creation, do the following:
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+```
+irb(main):012:0> stansted = Airport.new(Weather.new.stormy?, 15)
+=> #<Airport:0x00007fd44b1b1008 @plane_list=[], @weather=false, @capacity=15>
+irb(main):013:0>
+```
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+In this example, you can see that Stansted airport has two arguments, `Weather.new.stormy?` and `15`, the first instantiates a new instance of weather and the second sets the airport capacity to 15 at the time of creation.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+### 4. Creating a plane
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+* To create a plane, type the following into your `irb`
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+2.3.4 :009 > british_airways = Plane.new  
+ => #<Plane:0x007faa2a887508>
+2.3.4 :010 > air_france = Plane.new
+ => #<Plane:0x007faa2a8777c0>
+2.3.4 :011 >
+```
+
+### 5. Landing a plane
+
+* To land a plane, type the following into your `irb`
+
+```
+2.3.4 :011 > heathrow.land(air_france)
+ => [#<Plane:0x007faa2a8777c0>]
+2.3.4 :012 >
+```
+
+air_france has now landed at heathrow! You can see the plane at the airport by typing the airport name again.
+
+```
+2.3.4 :012 > heathrow
+ => #<Airport:0x007faa2b00a668 @capacity=2, @plane_list=[#<Plane:0x007faa2a8777c0>], @weather=#<Weather:0x007faa2b00a640>>
+2.3.4 :013 >
+```
+
+### 6. Instructing a plane to take off
+
+* To instruct a plane to take off, type the following into your `irb`
+
+```
+2.3.4 :014 > heathrow.take_off(air_france)
+ => #<Plane:0x007faa2a887508>
+2.3.4 :015 >
+```
+
+The plane has taken off from the airport and will no longer be included in the `plane_list`
+
+### 7. Storms
+
+* Sometimes, a message will appear to let you know that it is not safe to land or take off from the airport because it is stormy.
+
+### 8. Reaching capacity
+
+* If the `plane_list` has reached its capactiy (either set by you or at the default of 5) an error message will show. Can't have a crowded aiport!
+
+### 9. Airport has no planes
+
+* If the airport is not empty, you will need to land some planes before you can ask them to take off.
+
+Images/Screenshots
+---------
+
+Getting started
+---------
+
+To start you will need to download the program onto your terminal. Do this by entering the directory you wish to copy to and execute the following.
+
+`git clone git@github.com:marbuthnott/airport_challenge.git`
+
+Once download enter `irb` and you'll be ready to run your airport!
+
+Running tests
+---------
+
+Tests can be run from the root directory with:
+
+`rspec`
+
+Thank you for reading and I hope you have fun with the airport simulation!
