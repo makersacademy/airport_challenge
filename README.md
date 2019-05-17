@@ -1,4 +1,4 @@
-Airport Challenge
+Airport Challenge - Helen's Notes when walking through the user stories
  
 User story 1
 
