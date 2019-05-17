@@ -33,6 +33,14 @@ describe Airport do
     expect(output).to eq(0)
   end
 
+  it 'can raise an error if there are no planes to take-off' do 
+    expect { airport.plane_takeoff }.to raise_error("There are no planes in the airport")
+  end
+
+  it '...' do
+
+  end
+
 end
 
   #unit testing steps

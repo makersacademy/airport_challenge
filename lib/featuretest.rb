@@ -1,7 +1,6 @@
 require_relative 'airport'
 require_relative 'plane'
 
-
 airport = Airport.new
 plane = Plane.new
 
