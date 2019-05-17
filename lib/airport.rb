@@ -2,7 +2,8 @@ class Airport
 
   attr_reader :name, :code, :planes
 
-  def initialize(name, code)
+  def initialize(weather, name, code)
+    @weather = weather
     @name = name
     @code = code
     @planes = []
@@ -18,8 +19,11 @@ class Airport
     return true
   end
 
+  def cleared_for_takeoff?(plane)
+    contains?(plane)
+  end
+
   def contains?(plane)
     @planes.any? { |plane_in_airport| plane_in_airport == plane }
   end
-
 end

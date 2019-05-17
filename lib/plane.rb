@@ -14,7 +14,7 @@ class Plane
   end
 
   def take_off(airport)
-    if airport.contains?(self) && @state == :landed
+    if airport.cleared_for_takeoff?(self) && @state == :landed
       airport.release(self)
       @state = :flying
       return "Plane took off from #{airport.name} (#{airport.code})"

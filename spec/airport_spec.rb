@@ -1,15 +1,20 @@
 require 'airport'
 
 describe 'airport' do
-  let(:lsx_airport) { Airport.new('Los Santos International','LSX') } 
-  let(:dhs_airport) { Airport.new('Death Star Spaceport', 'DHS') } 
+  let(:lsx_airport) { Airport.new(good_weather, 'Los Santos International','LSX') } 
+  let(:dhs_airport) { Airport.new(good_weather, 'Death Star Spaceport', 'DHS') } 
+  let(:lsx_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
+  let(:dhs_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
   let(:plane) { double(:plane) }
+  let(:good_weather) { double(:weather, :stormy? => false) }
+  let(:stormy_weather) { double(:weather, :stormy? => true) }
 
   context 'when initialising' do
-    it 'cannot be initialised with less than two arguments' do
+    it 'cannot be initialised with less than three arguments' do
       expect { Airport.new("String 1") }.to raise_error(ArgumentError)
       expect { Airport.new }.to raise_error(ArgumentError)
-      expect { Airport.new("String 1", "String 2") }.not_to raise_error
+      expect { Airport.new("String 1", "String 2") }.to raise_error(ArgumentError)
+      expect { Airport.new(good_weather, "String 1", "String 2") }.not_to raise_error
     end
 
     it 'stores its name' do
@@ -58,5 +63,9 @@ describe 'airport' do
       expect(lsx_airport.planes).not_to include(plane)
     end
     
+    it 'does not allow takeoff if weather is stormy' do
+
+    end
+
   end
 end

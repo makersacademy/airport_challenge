@@ -40,16 +40,16 @@ describe 'plane' do
       expect(lsx_airport).to receive(:release).with(plane)
       plane.take_off(lsx_airport)
     end
-    it "calls contains? on airport with self" do
-      expect(lsx_airport).to receive(:contains?).with(plane)
+    it "calls cleared_for_takeoff? on airport with self" do
+      expect(lsx_airport).to receive(:cleared_for_takeoff?).with(plane)
       plane.take_off(lsx_airport)
     end
   end
 
   context "when asked to take off from an airport where not located" do
     it "does not call release on airport" do
-      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
-      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+      allow(lsx_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(false)
 
       plane.land(lsx_airport)
       expect(dhs_airport).not_to receive(:release)
@@ -57,16 +57,16 @@ describe 'plane' do
     end
 
     it "returns a friendly string" do
-      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
-      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+      allow(lsx_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(false)
 
       plane.take_off(lsx_airport)
       expect(plane.take_off(dhs_airport)).to eq("I'm not at that airport!")
     end
 
     it "can later be asked to take off from the correct airport" do
-      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
-      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+      allow(lsx_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:cleared_for_takeoff?).with(plane).and_return(false)
 
       plane.land(lsx_airport)
       plane.take_off(dhs_airport)
