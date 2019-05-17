@@ -10,4 +10,8 @@ let(:airport) { Airport.new }
   it 'Airport has a default capacity of 5 planes' do
     expect(airport.capacity).to eq(5)
   end
+
+  it 'Airport has empty parking station' do
+    expect(airport.parking_station).to eql([])
+  end
 end
