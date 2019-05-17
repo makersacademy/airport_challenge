@@ -1,33 +1,39 @@
 require 'airport'
 
 describe Airport do
-  let(:ap) { Airport.new }
-  let(:pl) { double :plane }
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
+  let(:weather) { instance_double("Weather") }
   
   it { should respond_to(:land).with(1).argument }
 
   it 'should return landed planes when queried' do
-    ap.land(pl)
-    expect(ap.planes).to eq([pl])
+    airport.land(plane)
+    expect(airport.hangar).to eq([plane])
   end
-  it { should respond_to(:take_off).with(1).argument }
+  it { should respond_to(:take_off).with(2).arguments }
   
   
-  context 'the weather is nice' do
-    it 'should return the requested plane from take off' do
-      ap.land(pl)
-      ap.land(Plane.new)
-      expect(ap.take_off(pl)).to eq(pl)
+  context 'with nice weather' do
+    it 'should let the requested plane take off' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport.land(plane)
+      airport.land(Plane.new)
+      expect(airport.take_off(plane, weather)).to eq(plane)
     end
     it 'should no longer store the plane after take off' do
-      ap.land(pl)
-      ap.take_off(pl)
-      expect(ap.planes).to eq([])
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport.land(plane)
+      airport.take_off(plane, weather)
+      expect(airport.hangar).to eq([])
     end
   end
   
-  context 'the weather is stormy' do
-    pending 'should not let planes take off' do
+  context 'with stormy weather' do
+    it 'should not let planes take off' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      airport.land(plane)
+      expect{ airport.take_off(plane, weather) }.to raise_error('Planes grounded: stormy weather!')
     end
   end
 end

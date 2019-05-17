@@ -1,17 +1,18 @@
+require_relative '../lib/weather'
+
 class Airport
-  attr_reader :planes, :stormy
+  attr_reader :hangar
 
   def initialize
-    @planes = []
-    @stormy = false
+    @hangar = []
   end
 
   def land(plane)
-    planes << plane
+    @hangar << plane
   end
 
-  def take_off(plane)
-    raise 'Planes grounded: stormy weather!' if @stormy == true
-    planes.delete(plane)
+  def take_off(plane, weather = Weather.new)
+    raise 'Planes grounded: stormy weather!' if weather.stormy? == true
+    @hangar.delete(plane)
   end
 end
