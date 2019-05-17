@@ -13,7 +13,7 @@ class Weather
     @weather_generator[num]
   end
 
-  def safe?
-    
+  def safe?(weather)
+    true unless weather == "stormy"
   end
 end

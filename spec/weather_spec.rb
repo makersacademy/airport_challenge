@@ -36,4 +36,9 @@ describe Weather do
   it 'responds to safe?' do
     expect(weather).to respond_to(:safe?)
   end
+
+  it 'is safe? to fly when weather is sunny' do
+    weather_generated = weather.get_weather(2)
+    expect(weather.safe?(weather_generated)).to eq(true)
+  end
 end
