@@ -8,4 +8,7 @@ class Weather
   def rand_num
     rand(4)
   end
+
+  def get_weather
+  end
 end
