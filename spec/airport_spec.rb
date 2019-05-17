@@ -8,11 +8,23 @@ describe Airport do
       expect(airport).to respond_to(:plane)
     end
 
-    it 'a plane can take off' do 
+end
+
+describe Plane do
+
+    it 'a plane can interact with take_off' do 
     #   arrange, act, assert
-     plane = Plane.new
-     expect(plane).to respond_to(:take_off)
+      plane = Plane.new
+      expect(plane).to respond_to(:take_off)
+    end
+    
+    it 'can take off' do
+    #   arrange, act, assert
+      plane_store = [1]
+      plane = Plane.new
+      airport = Airport.new
+      expect(plane.take_off).to be_an_instance_of(plane)
     end
 
-     
 end
+
