@@ -22,8 +22,8 @@ describe Plane do
     #   arrange, act, assert
       plane_store = [1]
       plane = Plane.new
-      airport = Airport.new
-      expect(plane.take_off).to be_an_instance_of(plane)
+    #   airport = Airport.new
+      expect(plane.take_off).to be_an_instance_of(:airport)
     end
 
 end

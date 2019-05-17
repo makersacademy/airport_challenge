@@ -4,7 +4,12 @@ class Airport
 end
 
 class Plane 
+
+    def init
+       
+    end
+
     def take_off
-        
+        hanger = []
     end
 end
