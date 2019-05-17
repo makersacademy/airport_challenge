@@ -12,4 +12,11 @@ describe Airport do
    end
 
    it { should respond_to(:take_off).with(1).argument }
+
+   it 'should no longer store the plane after take off' do
+    ap.land(pl)
+    ap.take_off(pl)
+    expect(ap.planes).to eq([])
+   end
+
 end
