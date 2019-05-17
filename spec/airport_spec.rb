@@ -29,8 +29,12 @@ describe Airport do
   end
 
   it "can prevent landing if the airport is full" do
-    allow(fake_plane).to receive(:land) { true }
-    50.times { airport.hello(fake_plane) }
+    # Need a new plane every time
+    Airport::DEFAULT_CAPACITY.times {
+      fake_plane = double Plane.new
+      allow(fake_plane).to receive(:land) { true }
+      airport.hello(fake_plane)
+    }
     expect { airport.hello(fake_plane) }.to raise_error(RuntimeError)
   end
 
@@ -64,5 +68,11 @@ describe Airport do
     airport.hello(fake_plane2)
     airport.byebye(fake_plane)
     expect { airport.byebye(fake_plane) }.to raise_error(RuntimeError)
+  end
+
+  it "will not allow a plan that has landed to land again" do
+    allow(fake_plane).to receive(:land) { true }
+    airport.hello(fake_plane)
+    expect { airport.hello(fake_plane) }.to raise_error(RuntimeError)
   end
 end
