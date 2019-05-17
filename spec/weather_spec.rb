@@ -35,8 +35,8 @@ describe Weather do
     expect(weather.safe?).to eq(true)
   end
 
-  it 'is not .safe? to fly when weather is stormy' do
+  it 'is .not_safe? to fly when weather is stormy' do
     weather_generated = weather.get_weather(4)
-    expect(weather.safe?).to eq(false)
+    expect(weather.not_safe?).to eq(false)
   end
 end

@@ -14,7 +14,10 @@ class Weather
   end
 
   def safe?
-    return false if @weather_active == "stormy"
-    true
+    true if @weather_active == "sunny"
+  end
+
+  def not_safe?
+    false if @weather_active == "stormy"
   end
 end
