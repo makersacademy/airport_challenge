@@ -1,6 +1,5 @@
 require 'weather'
 
-
 class Airport
   include Weather
 
@@ -16,6 +15,7 @@ class Airport
     raise "Stormy, cannot land" if stormy?
     raise "Airport is full" if full?
     raise "Plane has already landed" unless plane.flying
+
     plane.flying = false
     hangar.push(plane)
   end
@@ -23,8 +23,10 @@ class Airport
   def takeoff
     raise "No Planes to take off" if hangar.empty?
     raise "Stormy, cannot takeoff" if stormy?
+
     plane = hangar.pop
     raise "Plane is already flying" if plane.flying
+    
     plane.flying = true
     plane
   end

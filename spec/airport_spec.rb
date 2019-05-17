@@ -1,6 +1,5 @@
 require 'airport'
 
-
 describe Airport do
 
   let(:airport) { Airport.new }
@@ -41,11 +40,11 @@ describe Airport do
   end
 
   it 'will reject a plane if airport is full' do
-    Airport::DEFAULT_HANGAR_SIZE.times { airport.land_plane(plane)}
+    Airport::DEFAULT_HANGAR_SIZE.times { airport.land_plane(plane) }
     expect { airport.land_plane(plane) }.to raise_error("Airport is full")
   end
 
-  it { expect{ airport.takeoff }.to raise_error("No Planes to take off") }
+  it { expect { airport.takeoff }.to raise_error("No Planes to take off") }
 
   it 'allows custom airport sizes' do
     airport_40 = Airport.new 40
@@ -60,7 +59,6 @@ describe Airport do
     expect(airport.stormy?).to eq(false)
   end
 
-
   it 'will sometimes return stormy' do
     airport_storm = Airport.new
     allow(airport_storm).to receive(:rand).and_return(50)
@@ -69,24 +67,24 @@ describe Airport do
 
   it 'prevents planes landing if its stormy' do
     allow(airport).to receive(:stormy?).and_return(true)
-    expect{ airport.land_plane(plane) }.to raise_error("Stormy, cannot land")
+    expect { airport.land_plane(plane) }.to raise_error("Stormy, cannot land")
   end
 
   it 'prevents palnes taking off if its stormy' do
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     allow(airport).to receive(:stormy?).and_return(true)
-    expect{ airport.takeoff }.to raise_error("Stormy, cannot takeoff")
+    expect { airport.takeoff }.to raise_error("Stormy, cannot takeoff")
   end
 
   it 'prevents a landed plane from landing again' do
     allow(plane).to receive(:flying).and_return(false)
-    expect{ airport.land_plane(plane) }.to raise_error("Plane has already landed")
+    expect { airport.land_plane(plane) }.to raise_error("Plane has already landed")
   end
 
   it 'prevents a flying plane from taking off' do
     airport.land_plane(plane)
-    expect{ airport.takeoff }.to raise_error("Plane is already flying")
+    expect { airport.takeoff }.to raise_error("Plane is already flying")
   end
 
   it 'changes from flying to not flying when it lands' do
@@ -102,7 +100,5 @@ describe Airport do
     allow(plane).to receive(:flying).and_return(true)
     expect(plane.flying).to eq(true)
   end
-
-
 
 end
