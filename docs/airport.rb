@@ -13,10 +13,7 @@ class Airport
   end
 
   def take_off
-    if @parking_station.empty?
-      raise "No planes available for take off"
-    else
-      plane_to_fly = @parking_station.shift
-    end
+    raise "No planes available for take off" if @parking_station.empty?
+    plane_to_fly = @parking_station.shift
   end
 end
