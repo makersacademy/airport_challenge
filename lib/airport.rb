@@ -19,6 +19,7 @@ class Airport
   def takeoff
     raise "Stormy, cannot takeoff" if stormy?
     plane = @hangar.pop
+    raise "Plane is already flying" if plane.flying
     plane.flying = true
     return plane
   end
@@ -26,11 +27,8 @@ class Airport
 
   def stormy?
     weather_chance = rand(1..50)
-    if weather_chance == 50
-      @stromy = true
-    else
-      @stormy = false
-    end
+    return @stromy = true if weather_chance == 50
+    @stormy = false
   end
 
 
