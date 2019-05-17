@@ -26,4 +26,10 @@ describe Airport do
     airport.remove(fake_plane)
     expect(airport.base).not_to include(fake_plane)
   end
+
+  it "can prevent landing if the airport is full" do
+    allow(fake_plane).to receive(:land) { true }
+    50.times { airport.add(fake_plane) }
+    expect { airport.add(fake_plane) }.to raise_error
+  end
 end

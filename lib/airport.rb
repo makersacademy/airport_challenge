@@ -6,9 +6,13 @@ class Airport
   end
 
   def add(plane)
-    plane.land ? @base.push(plane) : raise {
-      RuntimeError.new("This plane has not landed")
-    }
+    if @base.length >= 50 || !plane.land
+      raise {
+        RuntimeError.new("This plane has not landed")
+      }
+    else
+      @base.push(plane)
+    end
   end
 
   def remove(plane)
