@@ -20,21 +20,23 @@ describe Weather do
 
   it '.get_weather outputs sunny' do
     num = random_num[2]
-    expect(weather.get_weather(num)).to eq("sunny")
+    weather.get_weather(num)
+    expect(weather.weather_active).to eq("sunny")
   end
 
   it '.get_weather outputs stormy' do
     num = random_num[4]
-    expect(weather.get_weather(num)).to eq("stormy")
+    weather.get_weather(num)
+    expect(weather.weather_active).to eq("stormy")
   end
 
   it 'is .safe? to fly when weather is sunny' do
-    weather_generated = weather.get_weather(2)
-    expect(weather.safe?(weather_generated)).to eq(true)
+    weather.get_weather(2)
+    expect(weather.safe?).to eq(true)
   end
 
   it 'is not .safe? to fly when weather is stormy' do
     weather_generated = weather.get_weather(4)
-    expect(weather.safe?(weather_generated)).to eq(false)
+    expect(weather.safe?).to eq(false)
   end
 end
