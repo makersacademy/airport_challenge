@@ -28,8 +28,18 @@ describe Airport do
 
       my_airport.land(flying_double)
 
-      expect(my_airport.landed).to eq(flying_double)
+      expect(my_airport.landed).to include(flying_double)
+    end
 
+    it 'can store multiple flying objects' do
+      flying_double_1 = double
+      flying_double_2 = double
+
+      my_airport.land(flying_double_1)
+      my_airport.land(flying_double_2)
+
+      expect(my_airport.landed)
+          .to include(flying_double_1, flying_double_2)
     end
   end
 end
