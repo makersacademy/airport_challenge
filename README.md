@@ -5,10 +5,10 @@ As an air traffic controller
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
  
-Create Class for Airport and for Plane
-Define initialise method and landing_plane method(plane)
-Define airport as an array: Airport = []
-Attr_reader :airport_store for airport array so it can be accessed anywhere within the airport class
+1. Create Class for Airport and for Plane
+2. Define initialise method and landing_plane method(plane)
+3. Define airport as an array: Airport = []
+4. Attr_reader :airport_store for airport array so it can be accessed anywhere within the airport class
 —————————————————————————————————————————
  
 User story 2
