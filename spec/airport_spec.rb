@@ -41,5 +41,16 @@ describe Airport do
       expect(my_airport.landed)
           .to include(flying_double_1, flying_double_2)
     end
+
+    it 'can limit the amount of planes landed' do
+      flying_double = double
+
+      Airport::DEFAULT_CAPACITY.times do
+        my_airport.land(flying_double)
+      end
+
+      expect { my_airport.land(flying_double) }
+          .to raise_error Airport::AIRPORT_AT_CAPACITY
+    end
   end
 end
