@@ -1,12 +1,18 @@
-require './lib/airport.rb'
+require './lib/airport'
 
-
-describe airport do
+describe Airport do
     
     it 'contains a plane' do
-      # arrange, act, assert
+    #   arrange, act, assert
       airport = Airport.new
-      expect(airport).to respond_to(plane)
+      expect(airport).to respond_to(:plane)
     end
+
+    it 'a plane can take off' do 
+    #   arrange, act, assert
+     airport = Airport.new
+     expect(plane).to respond_to(:take_off)
+    end
+
      
-end 
+end
