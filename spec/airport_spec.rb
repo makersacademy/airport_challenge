@@ -10,4 +10,6 @@ describe Airport do
     ap.land(pl)
     expect(ap.planes).to eq([pl])
    end
+
+   it { should respond_to(:take_off).with(1).argument }
 end
