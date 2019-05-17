@@ -3,20 +3,18 @@ require 'weather'
 
 
 class Airport
-    attr_accessor :hangar
+    attr_reader :hanger
 
     def initialize 
-      @hangar = []  
+      @hanger = []  
       
     end
 
     def land(plane)
-      @hangar << plane
+      @hanger << plane
     end
 
     def take_off(plane)
-      hangar.pop
-      raise 'Plane has taken off' if hangar.length == 0
       @hanger.delete(plane)
     end
 

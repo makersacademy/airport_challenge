@@ -8,7 +8,15 @@ describe Airport do
     describe 'plane landing' do
         it 'stores plane in hangar when landed' do
             airport.land(plane)
-            expect(airport.hangar.length).to eq(1)
+            expect(airport.hanger.length).to eq(1)
+          end    
+    end
+
+    describe 'plane take off' do
+        it 'plane can take off and confirm take off' do
+            airport.take_off(plane)
+            expect(plane.status_flying?).to eq(true)
+            expect(airport.hanger).to be_empty
           end    
     end
 
