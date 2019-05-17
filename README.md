@@ -25,9 +25,9 @@ Instructions
 Steps
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
+1. Fork this repo, and clone to your local machine *(done)*
+2. Run the command `gem install bundle` (if you don't have bundle already) *(done)*
+3. When the installation completes, run `bundle` *(done)*
 4. Complete the following task:
 
 Task
