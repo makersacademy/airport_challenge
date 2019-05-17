@@ -61,7 +61,8 @@ describe Airport do
       flying_double = double('flying_double')
       my_stormy_airport = Airport.new(20, weather_double)
 
-      expect { my_stormy_airport.land(flying_double) }.to raise_error('Plane cant take off due to stormy weather')
+      expect { my_stormy_airport.land(flying_double) }
+          .to raise_error(Airport::WEATHER_STORMY_ERROR)
     end
   end
 end
