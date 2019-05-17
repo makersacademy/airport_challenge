@@ -1,15 +1,15 @@
 class Airport
+  DEFAULT_CAPACITY = 50
   attr_reader :base
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @base = []
+    @capacity = capacity
   end
 
   def add(plane)
-    if @base.length >= 50 || !plane.land
-      raise {
-        RuntimeError.new("This plane has not landed")
-      }
+    if @base.length >= @capacity || !plane.land
+      raise { RuntimeError.new("This plane has not landed") }
     else
       @base.push(plane)
     end
