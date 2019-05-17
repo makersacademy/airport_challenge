@@ -19,4 +19,7 @@ class Airport
 
   def full?
   end
+
+  def empty?
+  end
 end

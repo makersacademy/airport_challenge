@@ -47,4 +47,8 @@ let(:plane) { Plane.new }
   it 'responds to .full?' do
     expect(airport).to respond_to(:full?)
   end
+  
+  it 'responds to .empty?' do
+    expect(airport).to respond_to(:empty?)
+  end
 end
