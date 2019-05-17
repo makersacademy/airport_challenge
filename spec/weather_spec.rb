@@ -10,4 +10,9 @@ describe Weather do
     weather = Weather.new
     expect(weather).to respond_to(:rand_num)
   end
+
+  it '.rand_num outputs a number between 0 and 4' do
+    weather = Weather.new
+    expect(weather.rand_num).to be_between(0, 4).inclusive
+  end
 end

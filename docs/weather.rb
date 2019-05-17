@@ -6,6 +6,6 @@ class Weather
   end
 
   def rand_num
-
+    rand(4)
   end
 end
