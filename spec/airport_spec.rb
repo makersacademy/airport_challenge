@@ -43,12 +43,4 @@ let(:plane) { Plane.new }
   it 'raise error for take_off if airport has no planes available' do
     expect{airport.take_off}.to raise_error "No planes available for take off"
   end
-
-  it 'responds to .full?' do
-    expect(airport).to respond_to(:full?)
-  end
-  
-  it 'responds to .empty?' do
-    expect(airport).to respond_to(:empty?)
-  end
 end
