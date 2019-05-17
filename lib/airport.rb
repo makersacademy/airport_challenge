@@ -1,14 +1,17 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
 attr_reader :landed
+# attr_reader :weather
 
   def initialize
     @landed = []
-    @weather = rand(10)
+    @weather = Weather.new.weather_generator
   end
 
-  def land(plane)
+  def land(plane, weather=@weather)
+    raise if weather == 1
     landed << plane
   end
 
