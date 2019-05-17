@@ -44,5 +44,9 @@ let(:plane) { Plane.new }
     expect{airport.take_off}.to raise_error "No planes available for take off"
   end
 
-  
+  it '.take_off set plane to flying' do
+    airport.parking_station.push(plane)
+    airport.take_off
+    expect(plane.flying?).to eq(true)
+  end
 end
