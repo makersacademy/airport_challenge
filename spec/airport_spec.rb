@@ -10,8 +10,6 @@ describe 'airport' do
       expect { Airport.new("String 1") }.to raise_error(ArgumentError)
       expect { Airport.new }.to raise_error(ArgumentError)
       expect { Airport.new("String 1", "String 2") }.not_to raise_error
-
-
     end
 
     it 'stores its name' do
@@ -27,10 +25,38 @@ describe 'airport' do
   end
 
   context 'when being landed at by a plane' do
+    it "returns true when plane is stored" do
+      expect(lsx_airport.receive(plane)).to be true
+    end
+
     it 'stores the plane' do
       lsx_airport.receive(plane)
       expect(lsx_airport.planes).to include(plane)
     end
   end
 
+  context 'when asked if it contains a plane' do
+    it 'returns true if it contains the plane' do
+      lsx_airport.receive(plane)
+      expect(lsx_airport.contains?(plane)).to be true
+    end
+
+    it 'returns false if it does not contain the plane' do
+      expect(lsx_airport.contains?(plane)).to be false
+    end
+  end
+
+  context 'when being taken off from by a plane' do
+    it "returns true when plane is released" do
+      lsx_airport.receive(plane)
+      expect(lsx_airport.release(plane)).to be true
+    end
+
+    it 'no longer contains the plane after takeoff' do
+      lsx_airport.receive(plane)
+      lsx_airport.release(plane)
+      expect(lsx_airport.planes).not_to include(plane)
+    end
+    
+  end
 end
