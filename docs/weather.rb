@@ -4,4 +4,8 @@ class Weather
   def initialize
     @weather_generator = ["sunny", "sunny", "sunny", "sunny", "stormy"]
   end
+
+  def rand_num
+
+  end
 end
