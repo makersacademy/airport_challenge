@@ -22,7 +22,7 @@ let(:aero) { Plane.new }
   end
 
   it 'can report the weather' do
-    expect(Weather.new).to respond_to(:weather_generator)
+    expect(Weather.new).to respond_to(:report)
   end
   #
   # it 'can report weather as stormy' do
