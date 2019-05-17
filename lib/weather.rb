@@ -6,22 +6,22 @@ class Weather
 #     @weather_today
 #   end
 
-#   def weather_generator
-#     @outlook = rand(10)
-#   end
-# #
-  def report
-    outlook = rand(10)
-    outlook == 1? "stormy" : "sunny"
-
+  def weather_generator
+    @outlook = rand(10)
   end
 
+  def report
+    if stormy?
+      "stormy"
+    else
+      "sunny"
+    end
+  end
 
-
-# private
-#   def stormy?
-#     @outlook == 1
-#   end
+private
+  def stormy?
+    @outlook == 1
+  end
 
 
 end
