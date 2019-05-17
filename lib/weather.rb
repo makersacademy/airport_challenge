@@ -1,13 +1,7 @@
 class Weather
 
-    attr_reader :conditions
-    
-    def initialize
-        @stormy = true
-    end
-    
-    def conditions 
-        stormy = true
+    def current_weather
+        rand(1..6) > 5 ? "stormy" : "sunny"
     end
 
 end
