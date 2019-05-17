@@ -5,5 +5,4 @@ describe Plane do
     expect(Plane.new.flying?).to eq(true)
   end
 
-
 end

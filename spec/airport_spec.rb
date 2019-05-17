@@ -39,7 +39,6 @@ let(:aero) { Plane.new }
     expect {air.take_off(1)}.to raise_error(RuntimeError)
   end
 
-
   it 'prevents landing if airport is full' do
     50.times { air.land(aero, 2) }
     expect {air.land(aero, 2)}.to raise_error(RuntimeError)
