@@ -2,7 +2,8 @@ Airport Challenge
 =================
 Makers Academy - Week 3
 
-29th May 2019
+2nd Friday challenge (29th May 2019)
+
 ```
         ______
         _\____\___
