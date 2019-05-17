@@ -2,6 +2,13 @@ require_relative '../docs/weather.rb'
 
 describe Weather do
   let(:weather) { Weather.new }
+  let(:random_num) {
+    ->(num) {
+      obj = double()
+      allow(obj).to receive(:rand_num) { num }
+      obj.rand_num
+    }
+  }
 
   it '.initialize sets up array of weather outcomes' do
     expect(weather.weather_generator).to eq(["sunny", "sunny", "sunny", "sunny", "stormy"])
@@ -12,16 +19,12 @@ describe Weather do
   end
 
   it '.get_weather outputs sunny' do
-    obj = double()
-    allow(obj).to receive(:rand_num) { 2 }
-    num = obj.rand_num
+    num = random_num[2]
     expect(weather.get_weather(num)).to eq("sunny")
   end
 
   it '.get_weather outputs stormy' do
-    obj = double()
-    allow(obj).to receive(:rand_num) { 4 }
-    num = obj.rand_num
+    num = random_num[4]
     expect(weather.get_weather(num)).to eq("stormy")
   end
 
