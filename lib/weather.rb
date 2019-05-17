@@ -7,7 +7,7 @@ class Weather
   end
 
   def stormy?
-    rand(1..10) > 6
+    true
   end
-  
+
 end
