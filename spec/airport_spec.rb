@@ -38,4 +38,14 @@ describe Airport do
 
     expect{airport.land_plane(plane, weather)}.to raise_error("too stormy to land")
   end 
+
+  it 'can prevent landing when the airport is full' do 
+    allow(plane).to receive(:flying=)
+    allow(plane).to receive(:flying)
+    allow(weather).to receive(:weather_number).and_return(2)
+
+    airport.land_plane(plane, weather)
+    
+    expect(airport.full?).to eq(true)
+  end 
 end 
