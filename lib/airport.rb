@@ -1,10 +1,9 @@
 class Airport 
     def plane
-     puts "bum"
     end
-
 end
 
 class Plane 
-
+    def take_off
+    end
 end
