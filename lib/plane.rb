@@ -1,9 +1,9 @@
 class Plane
-  def landed
-    true
+  def land(weather)
+    !weather.stormy ? true : false
   end
 
-  def take_off
-    false
+  def take_off(weather)
+    !weather.stormy ? true : false
   end
 end

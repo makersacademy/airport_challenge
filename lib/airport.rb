@@ -6,7 +6,7 @@ class Airport
   end
 
   def add(plane)
-    plane.landed ? @base.push(plane) : raise {
+    plane.land ? @base.push(plane) : raise {
       RuntimeError.new("This plane has not landed")
     }
   end
