@@ -1,11 +1,12 @@
 require './lib/airport'
 
 describe Airport do
+    let(:plane) { Plane.new }
+
     it {is_expected.to respond_to(:land).with(1).argument}
     
     describe 'landing' do
       it 'stores plane when landed' do
-        plane = Plane.new
         subject.land(plane)
         expect(subject.plane).to eq plane
       end
