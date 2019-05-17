@@ -16,4 +16,7 @@ class Airport
     raise "No planes available for take off" if @parking_station.empty?
     plane_to_fly = @parking_station.shift
   end
+
+  def full?
+  end
 end
