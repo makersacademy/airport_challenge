@@ -14,6 +14,7 @@ class Weather
   end
 
   def safe?(weather)
-    true unless weather == "stormy"
+    return false if weather == "stormy"
+    true
   end
 end
