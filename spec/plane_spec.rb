@@ -6,10 +6,10 @@ describe Plane do
   }
   
   it "can land" do
-    expect(plane).to respond_to(:land)
+    expect(plane).to respond_to(:landed)
   end
   
   it "can land" do
-    expect(plane.land).to be true
+    expect(plane.landed).to be true
   end
 end
