@@ -1,5 +1,5 @@
 class Plane
   def flying?
-    true
+    @in_flight = true
   end
 end
