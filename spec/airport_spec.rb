@@ -52,15 +52,21 @@ let(:plane) { Plane.new }
 
   it '.take_off does not happen when weather is stormy' do
     airport.parking_station.push(plane)
-    airport.weather.get_weather(4)
+    airport.weather.get_weather(4) # => stormy
     airport.weather.not_safe?
     expect{airport.take_off}.to raise_error "Cannot take off in a storm"
   end
 
   it '.take_off does happen when weather is sunny' do
     airport.parking_station.push(plane)
-    airport.weather.get_weather(2)
+    airport.weather.get_weather(2) # => sunny
     airport.weather.not_safe?
     expect{airport.take_off}.not_to raise_error
+  end
+
+  it '.land does not happen when weather is stormy' do
+    airport.weather.get_weather(4) # => stormy
+    airport.weather.not_safe?
+    expect{airport.land(plane)}.to raise_error "Cannot land in a storm"
   end
 end

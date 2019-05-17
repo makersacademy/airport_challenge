@@ -12,6 +12,7 @@ class Airport
 
   def land(plane)
     raise "Unable to land, this airport is full" if full?
+    raise "Cannot land in a storm" if @weather.not_safe?
     @parking_station.push(plane)
   end
 
