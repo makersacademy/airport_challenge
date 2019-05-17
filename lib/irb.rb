@@ -6,4 +6,5 @@ plane1 = Plane.new
 plane2 = Plane.new
 plane3 = Plane.new
 weather = Weather.new
-airport = Airport.new
+airport1 = Airport.new
+airport2 = Airport.new
