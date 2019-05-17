@@ -1,50 +1,39 @@
 require 'airport'
-require 'plane'
+
 
 describe Airport do
 
   let(:airport) { Airport.new }
   let(:plane) { double(:plane) }
 
-  it 'can instruct a plane to land' do
-    expect(airport).to respond_to('land_plane')
-  end
-
-  it 'stores a plane in a hangar when it lands' do
+  before do
     allow(plane).to receive(:flying).and_return(true)
     allow(plane).to receive(:flying=)
-    allow(airport).to receive(:rand).and_return(1)
+    allow(airport).to receive(:stormy?).and_return(false)
+  end
+
+  it { expect(airport).to respond_to('land_plane') }
+
+  it 'stores a plane in a hangar when it lands' do
     airport.land_plane(plane)
     expect(airport.hangar).to include(plane)
   end
 
-  it 'can instruct a plane to take off' do
-    allow(airport).to receive(:rand).and_return(1)
-    expect(airport).to respond_to('takeoff')
-  end
+  it { expect(airport).to respond_to('takeoff') }
 
   it 'can takeoff a plane' do
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
-    allow(airport).to receive(:rand).and_return(1)
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     expect(airport.takeoff).to eq(plane)
   end
 
-  it 'will release a plane from the hangar, not generate a new plane' do
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
-    allow(airport).to receive(:rand).and_return(1)
+  it 'will release a plane from the hangar' do
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     expect(airport.takeoff).to eq(plane)
   end
 
-  it 'will remove the plane from the hangar when it takes off and not make a copy' do
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
-    allow(airport).to receive(:rand).and_return(1)
+  it 'will remove the plane from the hangar when it takes off' do
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     airport.takeoff
@@ -52,75 +41,61 @@ describe Airport do
   end
 
   it 'will reject a plane if airport is full' do
-    allow(airport).to receive(:rand).and_return(1)
-    Airport::DEFDAULT_HANGAR_SIZE.times { airport.land_plane(Plane.new)}
+    Airport::DEFAULT_HANGAR_SIZE.times { airport.land_plane(plane)}
     expect { airport.land_plane(plane) }.to raise_error("Airport is full")
   end
 
+  it { expect{ airport.takeoff }.to raise_error("No Planes to take off") }
+
   it 'allows custom airport sizes' do
-    airport = Airport.new 40
-    allow(airport).to receive(:rand).and_return(1)
-    40.times { airport.land_plane(Plane.new) }
-    expect { airport.land_plane(Plane.new) }.to raise_error("Airport is full")
+    airport_40 = Airport.new 40
+    allow(airport_40).to receive(:rand).and_return(1)
+    40.times { airport_40.land_plane(plane) }
+    expect { airport_40.land_plane(plane) }.to raise_error("Airport is full")
   end
 
-  it 'can tell you the weather' do
-    expect(airport).to respond_to('stormy?')
-  end
+  it { expect(airport).to respond_to('stormy?') }
 
-  it 'can tell you if its sunny' do
-    allow(airport).to receive(:rand).and_return(20)
+  it 'should often no be stormy' do
     expect(airport.stormy?).to eq(false)
   end
 
+
   it 'will sometimes return stormy' do
-    allow(airport).to receive(:rand).and_return(50)
-    expect(airport.stormy?).to eq(true)
+    airport_storm = Airport.new
+    allow(airport_storm).to receive(:rand).and_return(50)
+    expect(airport_storm.stormy?).to eq(true)
   end
 
   it 'prevents planes landing if its stormy' do
-    allow(airport).to receive(:rand).and_return(50)
+    allow(airport).to receive(:stormy?).and_return(true)
     expect{ airport.land_plane(plane) }.to raise_error("Stormy, cannot land")
   end
 
   it 'prevents palnes taking off if its stormy' do
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
-    allow(airport).to receive(:rand).and_return(1)
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
-    allow(airport).to receive(:rand).and_return(50)
+    allow(airport).to receive(:stormy?).and_return(true)
     expect{ airport.takeoff }.to raise_error("Stormy, cannot takeoff")
   end
 
   it 'prevents a landed plane from landing again' do
-    allow(airport).to receive(:rand).and_return(1)
     allow(plane).to receive(:flying).and_return(false)
     expect{ airport.land_plane(plane) }.to raise_error("Plane has already landed")
   end
 
   it 'prevents a flying plane from taking off' do
-    allow(airport).to receive(:rand).and_return(1)
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
     airport.land_plane(plane)
-    allow(plane).to receive(:flying).and_return(true)
     expect{ airport.takeoff }.to raise_error("Plane is already flying")
   end
 
   it 'changes from flying to not flying when it lands' do
-    allow(airport).to receive(:rand).and_return(1)
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     expect(plane.flying).to eq(false)
   end
 
   it 'changes from not flying to flying when it takes off' do
-    allow(airport).to receive(:rand).and_return(1)
-    allow(plane).to receive(:flying).and_return(true)
-    allow(plane).to receive(:flying=)
     airport.land_plane(plane)
     allow(plane).to receive(:flying).and_return(false)
     airport.takeoff
