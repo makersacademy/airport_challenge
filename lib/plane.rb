@@ -8,4 +8,4 @@ class Plane
   def weather_number
     rand(1..6)
   end
-end 
+end

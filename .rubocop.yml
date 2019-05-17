@@ -7,7 +7,7 @@
 # The linter file that doesn't lead junior developers to bad habits.
 # https://github.com/makersacademy/scaffolint
 #
-# Tested with Rubocop version 0.56.0
+# Tested with Rubocop version 0.69.0
 #
 # Introduction
 # ============
@@ -286,7 +286,7 @@ FirstMethodArgumentLineBreak:
   Enabled: false
 FirstMethodParameterLineBreak:
   Enabled: false
-FirstParameterIndentation:
+IndentFirstArgument:
   Enabled: false
 FlipFlop:
   Enabled: false
@@ -310,11 +310,11 @@ IfWithSemicolon:
   Enabled: false
 ImplicitRuntimeError:
   Enabled: false
-IndentArray:
+IndentFirstArrayElement:
   Enabled: false
 IndentAssignment:
   Enabled: false
-IndentHash:
+IndentFirstHashElement:
   Enabled: false
 IndentHeredoc:
   Enabled: false
