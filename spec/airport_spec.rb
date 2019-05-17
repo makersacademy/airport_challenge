@@ -6,6 +6,7 @@ describe Airport do
 
   let(:airport) {Airport.new}
   let(:plane) {Plane.new}
+  let(:weather) {Weather.new}
 
   it 'can respond to land' do
     expect(airport).to respond_to(:land)
@@ -39,8 +40,12 @@ describe Airport do
   end
 
   it 'can prevent plane take-off when weather is stormy' do
-    expect { airport.stormy? }.to raise_error("Plane cannot take-off from airport due to stormy weather")
+    allow(weather.stormy).to receive(:stormy).and_return(true)
+    weather.stormy
+    expect { airport.weather.stormy }.to raise_error("Plane cannot take-off from airport due to stormy weather")
   end
+
+
 
 end
 
