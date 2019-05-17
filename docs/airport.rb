@@ -6,7 +6,7 @@ class Airport
     @parking_station = []
   end
 
-  def land
-
+  def land(plane)
+    @parking_station.push(plane)
   end
 end

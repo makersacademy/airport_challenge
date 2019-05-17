@@ -1,4 +1,5 @@
 require_relative '../docs/airport'
+require_relative '../docs/plane'
 
 describe Airport do
 let(:airport) { Airport.new }
@@ -17,5 +18,12 @@ let(:airport) { Airport.new }
 
   it 'responds to .land' do
     expect(airport).to respond_to(:land)
+  end
+
+  it '.land adds plane to airport parking_station' do
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.parking_station).to include(plane)
+    expect(airport.parking_station.length).to eq(1)
   end
 end
