@@ -5,5 +5,6 @@ class Plane
   end
   def land
     raise "You can't land a plan that is on the ground" unless @flying
+    'landing'
   end
 end
