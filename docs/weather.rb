@@ -9,6 +9,7 @@ class Weather
     rand(4)
   end
 
-  def get_weather
+  def get_weather(num)
+    @weather_generator[num]
   end
 end

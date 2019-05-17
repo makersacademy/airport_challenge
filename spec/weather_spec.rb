@@ -18,4 +18,14 @@ describe Weather do
   it 'responds to get_weather' do
     expect(weather).to respond_to(:get_weather)
   end
+
+  it '.get_weather outputs sunny' do
+    obj = double()
+    allow(obj).to receive(:rand_num) { 2 }
+    num = obj.rand_num
+    puts "***********"
+    puts num
+    puts "***********"
+    expect(weather.get_weather(num)).to eq("sunny")
+  end
 end
