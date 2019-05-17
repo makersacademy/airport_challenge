@@ -3,15 +3,18 @@ require './lib/weather'
 
 class Airport
 attr_reader :landed
-# attr_reader :weather
+attr_reader :capacity
 
-  def initialize
+DEFAULT_CAPACITY = 50
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
     @landed = []
     @weather = Weather.new.weather_generator
   end
 
   def land(plane, weather=@weather)
-    raise if weather == 1
+    raise if weather == 1 || full?
     landed << plane
   end
 
@@ -21,7 +24,9 @@ attr_reader :landed
     landed.pop
   end
 
-
-
+private
+def full?
+  landed.length >= capacity
+end
 
 end

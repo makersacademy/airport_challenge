@@ -40,8 +40,9 @@ let(:aero) { Plane.new }
   end
 
 
-  # it 'raises and error if weather is stormy' do
-  #   allow(weather).to receive(:generate) { 1 }
-  # end
+  it 'prevents landing if airport is full' do
+    50.times { air.land(aero, 2) }
+    expect {air.land(aero, 2)}.to raise_error(RuntimeError)
+  end
 
 end
