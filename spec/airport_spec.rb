@@ -1,33 +1,25 @@
 require 'airport'
 
 describe Airport do
-  let(:my_airport) { Airport.new }
+  let(:my_airport) { Airport.new(20, double('weather double', :is_stormy? => false)) }
 
   context 'creating an airport' do
-    it 'allows Airport objects to be created' do
-      expect(Airport.new).to be_kind_of(Airport)
-    end
-
-    it 'can set a default capacity' do
-      expect(my_airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
-    end
-
-    it 'can be instantiated with a different capacity' do
-      my_larger_airport = Airport.new(100)
+    it 'can be instantiated with a capacity' do
+      my_larger_airport = Airport.new(100, double('weather double', :is_stormy? => false))
 
       expect(my_larger_airport.capacity).to eq(100)
+    end
+
+    it 'can be instantiated with a weather checker' do
+      weather_checker_double = double("weather_double")
+      my_airport = Airport.new(20, weather_checker_double)
+      # How can we set rely on one default and not the other?
+      # I am using the 20 here because otherwise capacity takes the weather_checker_double
+      expect(my_airport.weather_checker).to eq(weather_checker_double)
     end
   end
 
   describe '#land' do
-    it 'can respond to land' do
-      expect(subject).to respond_to(:land)
-    end
-
-    it 'can respond to land with an argument' do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
-
     it 'returns the object it receives' do
       flying_double = double
       expect(my_airport.land(flying_double)).to eq(flying_double)
@@ -52,28 +44,24 @@ describe Airport do
           .to include(flying_double_1, flying_double_2)
     end
 
-
-    it 'can limit the amount of planes landed' do
+    it 'can limit the amount of planes landed in an airport' do
       flying_double = double
-
-      Airport::DEFAULT_CAPACITY.times do
-        my_airport.land(flying_double)
-      end
-
-      expect { my_airport.land(flying_double) }
-          .to raise_error Airport::AIRPORT_AT_CAPACITY_ERROR
-    end
-
-    it 'can limit the amount of planes landed in a large airport' do
-      flying_double = double
-
-      my_larger_airport = Airport.new(50)
+      weather_double = double('weather double', :is_stormy? => false)
+      my_larger_airport = Airport.new(50, weather_double)
 
       50.times do
         my_larger_airport.land(flying_double)
       end
       expect { my_larger_airport.land(flying_double) }
           .to raise_error Airport::AIRPORT_AT_CAPACITY_ERROR
+    end
+
+    it 'wont allow a plane to land if the weather is stormy' do
+      weather_double = double('weather double', :is_stormy? => true)
+      flying_double = double('flying_double')
+      my_stormy_airport = Airport.new(20, weather_double)
+
+      expect { my_stormy_airport.land(flying_double) }.to raise_error('Plane cant take off due to stormy weather')
     end
   end
 end
