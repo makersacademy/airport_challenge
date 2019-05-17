@@ -44,7 +44,7 @@ describe Airport do
           .to include(flying_double_1, flying_double_2)
     end
 
-    it 'can limit the amount of planes landed in an airport' do
+    it 'can limit the amount of planes landed in an§ airport' do
       flying_double = double
       weather_double = double('weather double', :is_stormy? => false)
       my_larger_airport = Airport.new(50, weather_double)
