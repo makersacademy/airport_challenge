@@ -1,15 +1,22 @@
 class Airport 
-    def plane
+    def initialize
+        hanger = []
     end
+
+    def land
+        @plane
+    end
+
 end
+
+
 
 class Plane 
 
-    def init
-       hanger
+    attr_reader :plane
+
+    def initialize 
+        @plane 
     end
 
-    def take_off
-        hanger = [1]
-    end
 end
