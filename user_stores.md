@@ -61,3 +61,15 @@ I would like a default airport capacity that can be overridden as appropriate
 | ------------- | ------------- |
 | Airport | capacity |
 
+```
+Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+
+```
+BONUS
+
+Write an RSpec feature test that lands and takes off a number of planes
+```
+
+## Brain dump
+ * Should there be be a state check in receive & release?

@@ -3,7 +3,7 @@ require 'airport'
 describe 'airport' do
   let(:lsx_airport) { Airport.new('Los Santos International','LSX') } 
   let(:dhs_airport) { Airport.new('Death Star Spaceport', 'DHS') } 
-  let(:plane) { Plane.new }
+  let(:plane) { double(:plane) }
 
   context 'when initialising' do
     it 'cannot be initialised with less than two arguments' do

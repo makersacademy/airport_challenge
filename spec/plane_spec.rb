@@ -29,4 +29,66 @@ describe 'plane' do
       expect(plane.land(dhs_airport)).to eq("I'm already at an airport!")
     end
   end
+
+  context "when taking off from an airport" do
+    it "returns a friendly string" do
+      plane.land(lsx_airport)
+      expect(plane.take_off(lsx_airport)).to eq("Plane took off from #{lsx_airport.name} (#{lsx_airport.code})")
+    end
+    it "calls release on airport" do
+      plane.land(lsx_airport)
+      expect(lsx_airport).to receive(:release).with(plane)
+      plane.take_off(lsx_airport)
+    end
+    it "calls contains? on airport with self" do
+      expect(lsx_airport).to receive(:contains?).with(plane)
+      plane.take_off(lsx_airport)
+    end
+  end
+
+  context "when asked to take off from an airport where not located" do
+    it "does not call release on airport" do
+      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+
+      plane.land(lsx_airport)
+      expect(dhs_airport).not_to receive(:release)
+      plane.take_off(dhs_airport)
+    end
+
+    it "returns a friendly string" do
+      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+
+      plane.take_off(lsx_airport)
+      expect(plane.take_off(dhs_airport)).to eq("I'm not at that airport!")
+    end
+
+    it "can later be asked to take off from the correct airport" do
+      allow(lsx_airport).to receive(:contains?).with(plane).and_return(true)
+      allow(dhs_airport).to receive(:contains?).with(plane).and_return(false)
+
+      plane.land(lsx_airport)
+      plane.take_off(dhs_airport)
+      expect(lsx_airport).to receive(:release).with(plane)
+      plane.take_off(lsx_airport)
+    end
+  end
+
+  context "when asked to take off if already in the air" do
+    it "won't take off again until landing" do
+      plane.land(lsx_airport)
+      plane.take_off(lsx_airport)
+      expect(lsx_airport).not_to receive(:release)
+      plane.take_off(lsx_airport)
+    end
+
+    it "returns a friendly string" do
+      plane.land(lsx_airport)
+      plane.take_off(lsx_airport)
+      expect(lsx_airport).not_to receive(:release)
+      expect(plane.take_off(lsx_airport)).to eq("I'm not at that airport!")
+    end
+
+  end
 end
