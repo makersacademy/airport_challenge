@@ -39,4 +39,8 @@ let(:airport) { Airport.new }
     }
     expect{airport.land(plane)}.to raise_error "Unable to land, this airport is full"
   end
+
+  it 'raise error for take_off if airport has no planes available' do
+    expect{airport.take_off}.to raise_error "No planes available for take off"
+  end
 end
