@@ -32,4 +32,8 @@ describe Weather do
     num = obj.rand_num
     expect(weather.get_weather(num)).to eq("stormy")
   end
+
+  it 'responds to safe?' do
+    expect(weather).to respond_to(:safe?)
+  end
 end

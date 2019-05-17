@@ -12,4 +12,8 @@ class Weather
   def get_weather(num)
     @weather_generator[num]
   end
+
+  def safe?
+    
+  end
 end
