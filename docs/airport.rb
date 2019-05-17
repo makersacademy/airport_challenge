@@ -8,7 +8,11 @@ class Airport
   end
 
   def land(plane)
-    @parking_station.push(plane)
+    if @parking_station.length >= @capacity
+      raise "Unable to land, this airport is full"
+    else
+      @parking_station.push(plane)
+    end
   end
 
   def take_off

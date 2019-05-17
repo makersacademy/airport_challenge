@@ -30,4 +30,13 @@ let(:airport) { Airport.new }
     expect(airport.parking_station).not_to include(plane)
     expect(airport.parking_station.length).to eq(0)
   end
+
+  it 'raise error for landing if airport is full' do
+    plane = Plane.new
+    5.times {
+      plane = Plane.new
+      airport.parking_station.push(plane)
+    }
+    expect{airport.land(plane)}.to raise_error "Unable to land, this airport is full"
+  end
 end
