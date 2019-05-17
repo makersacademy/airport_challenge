@@ -20,4 +20,10 @@ describe Airport do
     allow(fake_plane).to receive(:landed) { false }
     expect { airport.add(fake_plane) }.to raise_error(RuntimeError)
   end
+
+  it "knows that a plane has taken off and is no londer at the airport" do
+    allow(fake_plane).to receive(:take_off) { true }
+    airport.remove(fake_plane)
+    expect(airport.base).not_to include(fake_plane)
+  end
 end

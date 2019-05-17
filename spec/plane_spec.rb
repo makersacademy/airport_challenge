@@ -12,4 +12,8 @@ describe Plane do
   it "knows it landed" do
     expect(plane.landed).to be true
   end
+
+  it "knows it took off" do 
+    expect(plane.take_off).to be false
+  end
 end
