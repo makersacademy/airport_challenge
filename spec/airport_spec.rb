@@ -34,23 +34,24 @@ let(:weather) { Weather.new }
     end
 
     it 'Prevent takeoff when weather is stormy' do
+      airport.landing_plane(plane, weather.state_of_weather)
       weather = instance_double("Weather", :state_of_weather => "stormy")
       airport.take_off(plane, weather.state_of_weather)
       expect(airport.airport_store.include?(plane)).to eq(true)
-      #  Why is this test expecting false?
-      # I have used my weather instance_double as a parameter. Can I call this and the passed tests still account?
     end
-
-  end
-
-    describe '#airport_is_full' do
 
   end
 
   describe '#airport full' do
 
-    it 'Airport is full' do
-      
+    it 'When no capacity is specified, default airport capacity to value 3' do
+      expect(airport.capacity).to eq(3)
+    end
+
+    it 'Prevent plane for landing as airport is full' do
+      weather = instance_double("Weather", :state_of_weather => "sunny")
+      airport.capacity.times{airport.landing_plane(plane, weather.state_of_weather)}
+      expect{airport.landing_plane(plane, weather.state_of_weather)}.to raise_error("Airport is full")
     end
 
   end

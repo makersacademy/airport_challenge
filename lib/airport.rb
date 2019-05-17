@@ -1,12 +1,15 @@
 class Airport
 
-attr_reader :airport_store
+attr_reader :airport_store, :capacity
+DEFAULT_CAPACITY = 3
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @airport_store = []
+    @capacity = capacity
   end
 
   def landing_plane(plane, weather)
+    raise "Airport is full" if full?
     if weather == "sunny"
       airport_store << plane
     end
@@ -16,9 +19,10 @@ attr_reader :airport_store
     if weather == "sunny"
       airport_store.pop
     end
-    # if airport_store.length == 0
-    #   return "Plane has taken off from the airport"
-    # end
+  end
+
+  def full?
+    @airport_store.length >= DEFAULT_CAPACITY ? true : false
   end
 
 end
