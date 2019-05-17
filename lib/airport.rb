@@ -6,10 +6,10 @@ end
 class Plane 
 
     def init
-       
+       hanger
     end
 
     def take_off
-        hanger = []
+        hanger = [1]
     end
 end

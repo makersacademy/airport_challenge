@@ -20,10 +20,10 @@ describe Plane do
     
     it 'can take off' do
     #   arrange, act, assert
-      plane_store = [1]
-      plane = Plane.new
-    #   airport = Airport.new
-      expect(plane.take_off).to be_an_instance_of(:airport)
+      airport = Airport.new
+      result = Plane.new.take_off
+      puts result
+      expect(result.length).to eq(0)
     end
 
 end
