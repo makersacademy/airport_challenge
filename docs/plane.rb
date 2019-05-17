@@ -1,9 +1,11 @@
 class Plane
-  def report_in_flight
+attr_reader :flying
 
+  def report_in_flight
+    @flying = true
   end
-  
+
   def flying?
-    @in_flight = true
+    @flying
   end
 end
