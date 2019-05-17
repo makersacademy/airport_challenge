@@ -12,6 +12,6 @@ class Airport
   end
 
   def take_off
-
+    plane_to_fly = @parking_station.shift
   end
 end
