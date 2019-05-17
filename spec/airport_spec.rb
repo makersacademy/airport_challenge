@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 describe Airport do
 
@@ -37,8 +38,8 @@ describe Airport do
     expect { airport.plane_takeoff }.to raise_error("There are no planes in the airport")
   end
 
-  it '...' do
-
+  it 'can prevent plane take-off when weather is stormy' do
+    expect { airport.stormy? }.to raise_error("Plane cannot take-off from airport due to stormy weather")
   end
 
 end
