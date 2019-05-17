@@ -11,25 +11,27 @@ describe Airport do
   it "knows that a plane has landed" do
     allow(fake_plane).to receive(:land) { true }
 
-    expect { airport.add(fake_plane) }.not_to raise_error
+    expect { airport.hello(fake_plane) }.not_to raise_error
     expect(airport.base).to include(fake_plane)
   end
 
   it "only registers a plan if it has landed" do
     allow(fake_plane).to receive(:land) { false }
-    expect { airport.add(fake_plane) }.to raise_error(RuntimeError)
+    expect { airport.hello(fake_plane) }.to raise_error(RuntimeError)
   end
 
-  it "knows that a plane has taken off and is no longer at the airport" do
+  it "knows that a plane that can and has taken off => is no longer at the airport" do
+    allow(fake_plane).to receive(:land) { true }
     allow(fake_plane).to receive(:take_off) { true }
-    airport.remove(fake_plane)
+    airport.hello(fake_plane)
+    airport.byebye(fake_plane)
     expect(airport.base).not_to include(fake_plane)
   end
 
   it "can prevent landing if the airport is full" do
     allow(fake_plane).to receive(:land) { true }
-    50.times { airport.add(fake_plane) }
-    expect { airport.add(fake_plane) }.to raise_error(RuntimeError)
+    50.times { airport.hello(fake_plane) }
+    expect { airport.hello(fake_plane) }.to raise_error(RuntimeError)
   end
 
   it "has a default capacity" do
@@ -37,14 +39,30 @@ describe Airport do
   end
 
   it "has a default capacity that can be overridden" do
-    #I want to have different planes in the airport
+    # I want to have different planes in the airport
     bigger_airport = Airport.new(100)
     allow(fake_plane).to receive(:land) { true }
-    80.times { 
+    80.times {
       plane_plane = double(Plane.new)
       allow(plane_plane).to receive(:land) { true }
-      bigger_airport.add(plane_plane) 
+      bigger_airport.hello(plane_plane)
     }
-    expect(bigger_airport.add(fake_plane)).to include(fake_plane)
+    expect(bigger_airport.hello(fake_plane)).to include(fake_plane)
+  end
+
+  it "will not approve a take off if no planes in the airport" do
+    allow(fake_plane).to receive(:take_off) { true }
+    expect { airport.byebye(fake_plane) }.to raise_error(RuntimeError)
+  end
+
+  it "will not allow for a plane that has taken off to take off again" do
+    fake_plane2 = double(Plane.new)
+    allow(fake_plane).to receive(:land) { true }
+    allow(fake_plane2).to receive(:land) { true }
+    allow(fake_plane).to receive(:take_off) { true }
+    airport.hello(fake_plane)
+    airport.hello(fake_plane2)
+    airport.byebye(fake_plane)
+    expect { airport.byebye(fake_plane) }.to raise_error(RuntimeError)
   end
 end
