@@ -17,7 +17,7 @@ let(:aero) { Plane.new }
 
   it 'can instruct a plane to take off and confirm it has left' do
     air.land(aero, 2)
-    expect(air.take_off).to eq(aero)
+    expect(air.take_off(2)).to eq(aero)
 
   end
 
@@ -31,11 +31,12 @@ let(:aero) { Plane.new }
     expect(weather.weather_generator).to eq(1)
   end
 
-  it 'can prevent take off if weather is stormy' do
-    # w = Weather.new
-    # result = w.weather_generator
-    # puts result
+  it 'can prevent landing if weather is stormy' do
     expect {air.land(aero, 1)}.to raise_error(RuntimeError)
+  end
+
+  it 'can prevent take off if weather is stormy' do
+    expect {air.take_off(1)}.to raise_error(RuntimeError)
   end
 
 

@@ -16,7 +16,8 @@ attr_reader :landed
   end
 
 
-  def take_off
+  def take_off(weather=@weather)
+    raise if weather == 1
     landed.pop
   end
 
