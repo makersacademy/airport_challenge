@@ -26,7 +26,7 @@ class Airport
 
     plane = hangar.pop
     raise "Plane is already flying" if plane.flying
-    
+
     plane.flying = true
     plane
   end

@@ -55,7 +55,7 @@ describe Airport do
 
   it { expect(airport).to respond_to('stormy?') }
 
-  it 'should often no be stormy' do
+  it 'should often not be stormy' do
     expect(airport.stormy?).to eq(false)
   end
 
