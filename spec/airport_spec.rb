@@ -1,8 +1,9 @@
-require 'plane'
+require_relative '../docs/airport'
 
-describe Plane do
-  it 'creates a new instance of plane' do
-    plane = Plane.new
-    expect(plane).to be_an_instance_of(Plane)
+describe Airport do
+let(:airport) { Airport.new }
+
+  it 'creates a new instance of airport' do
+    expect(airport).to be_an_instance_of(Airport)
   end
 end
