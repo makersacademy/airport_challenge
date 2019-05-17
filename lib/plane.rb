@@ -4,4 +4,8 @@ class Plane
   def initialize
     @flying = true
   end
+
+  def weather_number
+    rand(1..6)
+  end
 end 
