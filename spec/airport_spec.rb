@@ -14,8 +14,3 @@ describe Airport do
 
   end
 
-describe Plane do
-
-
-end
-
