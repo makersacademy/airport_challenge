@@ -63,5 +63,17 @@ describe Airport do
       expect { my_airport.land(flying_double) }
           .to raise_error Airport::AIRPORT_AT_CAPACITY_ERROR
     end
+
+    it 'can limit the amount of planes landed in a large airport' do
+      flying_double = double
+
+      my_larger_airport = Airport.new(50)
+
+      50.times do
+        my_larger_airport.land(flying_double)
+      end
+      expect { my_larger_airport.land(flying_double) }
+          .to raise_error Airport::AIRPORT_AT_CAPACITY_ERROR
+    end
   end
 end
