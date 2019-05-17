@@ -36,14 +36,4 @@ describe Airport do
     airport.land(plane)
     expect(airport.land(plane)).to eq("There's no more space on the runway")
   end
-  # it 'expects weather to return stormy' do
-  #   airport = Airport.new
-  #   output = airport.weather
-  #   expect(output).to eq("STORMY")
-  # end
-  # it 'expects weather to return sunny' do
-  #   airport = Airport.new
-  #   output = airport.weather
-  #   expect(output).to eq("SUNNY")
-  # end
 end
