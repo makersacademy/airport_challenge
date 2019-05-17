@@ -23,9 +23,13 @@ describe Weather do
     obj = double()
     allow(obj).to receive(:rand_num) { 2 }
     num = obj.rand_num
-    puts "***********"
-    puts num
-    puts "***********"
     expect(weather.get_weather(num)).to eq("sunny")
+  end
+
+  it '.get_weather outputs stormy' do
+    obj = double()
+    allow(obj).to receive(:rand_num) { 4 }
+    num = obj.rand_num
+    expect(weather.get_weather(num)).to eq("stormy")
   end
 end
