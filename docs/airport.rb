@@ -5,4 +5,8 @@ class Airport
     @capacity = capacity
     @parking_station = []
   end
+
+  def land
+
+  end
 end

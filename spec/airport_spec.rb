@@ -14,4 +14,8 @@ let(:airport) { Airport.new }
   it 'Airport has empty parking station' do
     expect(airport.parking_station).to eql([])
   end
+
+  it 'responds to .land' do
+    expect(airport).to respond_to(:land)
+  end
 end
