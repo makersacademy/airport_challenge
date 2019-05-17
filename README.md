@@ -33,6 +33,7 @@ I want to prevent takeoff when weather is stormy
 2. Define state_of_weather method
 3. Create a random_number variable assigned to the rand() syntax, and associate each number with either sunny or stormy. 3. Assign 4 numbers to sunny and 2 to stormy, as the stormy weather condition is less frequent
 4. weather = instance_double("Weather", :state_of_weather => "sunny") -> Insert an instance_double to ‘Mock’ the weather. In this instance we require the weather to be sunny in order for a plane to land at the airport
+5. I had the issue of setting the instance_double as stomy for this test, however this mean't that a plane never landed, therefore there was no plane to take off. In order to fix this, in the test I moved the instance_double to AFTER the plane has landed, so there was a plane stored in the airport_store
  
 Notes on instance_double: A test double is an object that stands in for another object - The double method passes in an optional identifier
 
