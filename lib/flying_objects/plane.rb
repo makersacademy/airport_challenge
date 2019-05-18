@@ -1,4 +1,4 @@
-require 'flying_object'
+require 'flying_objects/flying_object'
 
 class Plane
   include(FlyingObject)

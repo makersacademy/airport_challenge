@@ -1,5 +1,4 @@
-require 'plane'
-require 'flying_object'
+require 'flying_objects/plane'
 require 'support/shared_examples_for_flying_object'
 
 describe Plane do
