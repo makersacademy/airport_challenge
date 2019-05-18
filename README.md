@@ -50,7 +50,9 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 
 <p>You can check out feature_spec.rb file in spec folder to see sample instructions that you can use in irb.</p>
+
 You can land a plane at the airport with `hello` method and the plane will take off if you use `byebye` method.
+
 <p>The weather you have an 80% chance that the weather will be sunny.</p>
 
 ## Have fun!
