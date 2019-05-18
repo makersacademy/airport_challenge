@@ -28,6 +28,8 @@ class Airport
     return WEATHER_STORMY_ERROR if weather_checker.stormy?
 
     flying_object.take_off
+
+    landed.delete_at(landed.find_index(flying_object))
   end
 
   private

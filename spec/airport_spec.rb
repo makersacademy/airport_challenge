@@ -101,5 +101,28 @@ describe Airport do
 
       my_airport.take_off(flying_double)
     end
+
+    it 'an object that has taken off will no longer be landed' do
+      flying_double = double('flying_double')
+      my_airport.land(flying_double)
+      expect(flying_double).to receive(:take_off)
+
+      my_airport.take_off(flying_double)
+
+      expect(my_airport.landed).to_not include(flying_double)
+    end
+
+    it 'an object that has not been told to take off will still be landed' do
+      departing_double = double('flying_double')
+      staying_double = double('flying_double')
+      my_airport.land(departing_double)
+      my_airport.land(staying_double)
+      expect(departing_double).to receive(:take_off)
+
+      my_airport.take_off(departing_double)
+
+      expect(my_airport.landed).to include(staying_double)
+      expect(my_airport.landed).to_not include(departing_double)
+    end
   end
 end
