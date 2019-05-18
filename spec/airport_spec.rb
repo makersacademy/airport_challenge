@@ -27,6 +27,11 @@ describe Airport do
       airport.take_off(plane, clear)
       expect(airport.hangar).to eq([])
     end
+    it 'should only allow take off of planes in hangar' do
+      airport.land(plane, clear)
+      plane2 = Plane.new
+      expect { airport.take_off(plane2, clear) }.to raise_error('Plane not at specified airport')
+    end
   end
   
   context 'with stormy weather' do
