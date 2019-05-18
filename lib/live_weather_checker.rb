@@ -4,8 +4,9 @@ class LiveWeatherChecker
   def stormy?
     response = call_weather_api
     puts response
+    # stormy if greater that 40 mph and raining
 
-    return true
+    true
   end
 
   private
@@ -16,6 +17,3 @@ class LiveWeatherChecker
     response
   end
 end
-
-
-# stormy if greater that 40 mph and raining
