@@ -78,7 +78,7 @@ describe Airport do
       already_landed_double = double('flying_double', :flying? => false)
 
       expect(my_airport.land(already_landed_double))
-          .to eq(Airport::CANT_LAND_NOT_FLYING_PLANE_MESSAGE)
+          .to eq(Airport::LANDING_FLYING_PLANE_MESSAGE)
     end
   end
 
