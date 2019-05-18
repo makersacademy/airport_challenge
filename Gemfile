@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'httparty'
 gem 'rake'
-gem 'rubocop', '0.60.0'
+gem 'rubocop'
 
 group :test do
   gem 'rspec'
