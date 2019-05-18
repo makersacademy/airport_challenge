@@ -15,7 +15,7 @@ class Airport
   def land(flying_object)
     raise AIRPORT_AT_CAPACITY_ERROR if at_capacity?
 
-    raise WEATHER_STORMY_ERROR if weather_checker.is_stormy?
+    raise WEATHER_STORMY_ERROR if weather_checker.stormy?
 
     landed.push(flying_object)
     flying_object

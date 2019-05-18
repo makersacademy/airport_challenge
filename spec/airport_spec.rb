@@ -1,11 +1,11 @@
 require 'airport'
 
 describe Airport do
-  let(:my_airport) { Airport.new(20, double('weather double', :is_stormy? => false)) }
+  let(:my_airport) { Airport.new(20, double('weather double', :stormy? => false)) }
 
   context 'creating an airport' do
     it 'can be instantiated with a capacity' do
-      weather_double = double('weather double', :is_stormy? => false)
+      weather_double = double('weather double', :stormy? => false)
       airport_capacity = 30
       my_larger_airport = Airport.new(airport_capacity, weather_double)
 
@@ -48,7 +48,7 @@ describe Airport do
 
     it 'can limit the amount of planes landed in an airport' do
       flying_double = double
-      weather_double = double('weather double', :is_stormy? => false)
+      weather_double = double('weather double', :stormy? => false)
       larger_airport_capacity = 50
       my_larger_airport = Airport.new(larger_airport_capacity, weather_double)
 
@@ -60,7 +60,7 @@ describe Airport do
     end
 
     it 'wont allow a plane to land if the weather is stormy' do
-      weather_double = double('weather double', :is_stormy? => true)
+      weather_double = double('weather double', :stormy? => true)
       flying_double = double('flying_double')
       my_stormy_airport = Airport.new(20, weather_double)
 
