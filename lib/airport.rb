@@ -9,7 +9,7 @@ class Airport
   end
 
   def hello(plane)
-    if @base.length >= @capacity || !plane.land(@weather) || @base.include?(plane)
+    if full? || !plane.land(@weather) || @base.include?(plane)
       raise { RuntimeError.new("This plane cannot land") }
     else
       @base.push(plane)
@@ -19,5 +19,10 @@ class Airport
   def byebye(plane)
     i_can_land = plane.take_off(@weather) && @base.include?(plane) 
     i_can_land ? @base.delete(plane) : raise { RuntimeError.new("NO take off") }
+  end
+
+  private
+  def full?
+    @base.length >= @capacity
   end
 end
