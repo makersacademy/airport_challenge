@@ -17,6 +17,14 @@ describe Plane do
 
       expect(plane.flying?).to eq(false)
     end
+
+    it 'will stay the same if already not flying' do
+      my_ground_plane = Plane.new(false)
+
+      my_ground_plane.land
+
+      expect(my_ground_plane.flying?).to eq(false)
+    end
   end
 
   describe '#flying?' do
