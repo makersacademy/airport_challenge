@@ -8,5 +8,3 @@ class RandomWeatherChecker
     rand < chance_of_storminess
   end
 end
-
-
