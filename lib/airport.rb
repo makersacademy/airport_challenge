@@ -26,6 +26,8 @@ class Airport
     return NOT_AT_AIRPORT_ERROR unless landed.include?(flying_object)
 
     return WEATHER_STORMY_ERROR if weather_checker.stormy?
+
+    flying_object.take_off
   end
 
   private

@@ -93,5 +93,13 @@ describe Airport do
       expect(my_airport.take_off(flying_double))
           .to eq(Airport::WEATHER_STORMY_ERROR)
     end
+
+    it 'will instruct the object to take off' do
+      flying_double = double('flying_double')
+      my_airport.land(flying_double)
+      expect(flying_double).to receive(:take_off)
+
+      my_airport.take_off(flying_double)
+    end
   end
 end
