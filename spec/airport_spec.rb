@@ -5,9 +5,12 @@ describe 'airport' do
   let(:dhs_airport) { Airport.new(good_weather, 'Death Star Spaceport', 'DHS') } 
   let(:lsx_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
   let(:dhs_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
+  let(:tiny_airport) { Airport.new(good_weather, "Tiny airport", 'TNY', 1)  }
   let(:plane) { double(:plane) }
+  let(:second_plane) { double(:plane) }
   let(:good_weather) { double(:weather, :stormy? => false) }
   let(:stormy_weather) { double(:weather, :stormy? => true) }
+  let(:capacity_error_message) { Airport::CAPACITY_ERROR_MESSAGE }
 
   context 'when initialising' do
     it 'cannot be initialised with less than three arguments' do
@@ -15,6 +18,7 @@ describe 'airport' do
       expect { Airport.new }.to raise_error(ArgumentError)
       expect { Airport.new("String 1", "String 2") }.to raise_error(ArgumentError)
       expect { Airport.new(good_weather, "String 1", "String 2") }.not_to raise_error
+      expect { Airport.new(good_weather, "Tiny airport", 'TNY', 1) }.not_to raise_error
     end
 
     it 'stores its name' do
@@ -27,6 +31,13 @@ describe 'airport' do
       expect(dhs_airport.code).to eq('DHS')
     end
 
+    it 'stores its capacity' do
+      expect(tiny_airport.capacity).to be 1
+    end
+
+    it 'has a default capacity of 5' do
+      expect(lsx_airport.capacity).to be 5
+    end
   end
 
   context 'when being landed at by a plane' do
@@ -46,6 +57,16 @@ describe 'airport' do
 
     it 'does not clear landing if the weather is stormy' do
       expect(lsx_airport_stormy.cleared_for_landing?(plane)).to eq(:weather)
+    end
+
+    it 'does not clear landing if the airport is full' do
+      tiny_airport.receive(plane)
+      expect(tiny_airport.cleared_for_landing?(second_plane)).to eq(:capacity)
+    end
+
+    it 'raises an error if forced to receive planes where the airport is full' do
+      tiny_airport.receive(plane)
+      expect { tiny_airport.receive(second_plane) }.to raise_error(RuntimeError, capacity_error_message)
     end
   end
 

@@ -1,15 +1,17 @@
 class Airport
+  CAPACITY_ERROR_MESSAGE = "The airport is over capacity, a plane landed on top of another plane and everyone died"
+  attr_reader :name, :code, :planes, :capacity
 
-  attr_reader :name, :code, :planes
-
-  def initialize(weather, name, code)
+  def initialize(weather, name, code, capacity = 5)
     @weather = weather
     @name = name
     @code = code
     @planes = []
+    @capacity = capacity
   end
 
   def receive(plane)
+    fail(RuntimeError.new(CAPACITY_ERROR_MESSAGE)) unless capacity_ok?
     @planes.push(plane)
     return true
   end
@@ -27,6 +29,7 @@ class Airport
 
   def cleared_for_landing?(plane)
     return :weather unless weather_ok?
+    return :capacity unless capacity_ok?
     return true
   end
 
@@ -36,5 +39,9 @@ class Airport
 
   def weather_ok?
     !@weather.stormy?
+  end
+
+  def capacity_ok?
+    @planes.length < @capacity
   end
 end

@@ -9,6 +9,7 @@ describe 'plane' do
   let(:not_at_airport_message) { Plane::NOT_AT_AIRPORT_MESSAGE }
   let(:already_at_airport_message) { Plane::ALREADY_AT_AIRPORT_MESSAGE }
   let(:already_in_air_message) { Plane::ALREADY_IN_AIR_MESSAGE }
+  let(:capacity_message) { Plane::CAPACITY_MESSAGE }
 
 
   context 'when landing at an airport' do
@@ -49,6 +50,19 @@ describe 'plane' do
     it "returns a friendly message" do
       allow(lsx_airport).to receive(:cleared_for_landing?).and_return(:weather)
       expect(plane.land(lsx_airport)).to eq(bad_weather_message)
+    end
+  end
+
+  context 'when asked to land at an airport but the airport is full' do
+    it "doesn't call receive at airport" do
+      allow(lsx_airport).to receive(:cleared_for_landing?).and_return(:capacity)
+      expect(lsx_airport).not_to receive(:receive)
+      plane.land(lsx_airport)
+    end
+
+    it "returns a friendly message" do
+      allow(lsx_airport).to receive(:cleared_for_landing?).and_return(:capacity)
+      expect(plane.land(lsx_airport)).to eq(capacity_message)
     end
   end
 
