@@ -23,8 +23,8 @@ class Airport
   end
 
   def cleared_for_takeoff?(plane)
-    return :not_in_airport unless contains?(plane)
     return :weather unless weather_ok?
+    return :not_in_airport unless contains?(plane)
 
     return true
   end
