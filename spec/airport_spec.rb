@@ -1,11 +1,11 @@
 require 'airport'
 
 describe 'airport' do
-  let(:lsx_airport) { Airport.new(good_weather, 'Los Santos International','LSX') } 
+  let(:lsx_airport) { Airport.new(good_weather, 'Los Santos International', 'LSX') } 
   let(:dhs_airport) { Airport.new(good_weather, 'Death Star Spaceport', 'DHS') } 
   let(:lsx_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
   let(:dhs_airport_stormy) { Airport.new(stormy_weather, 'Death Star Spaceport', 'DHS') } 
-  let(:tiny_airport) { Airport.new(good_weather, "Tiny airport", 'TNY', 1)  }
+  let(:tiny_airport) { Airport.new(good_weather, "Tiny airport", 'TNY', 1) }
   let(:plane) { double(:plane) }
   let(:second_plane) { double(:plane) }
   let(:good_weather) { double(:weather, :stormy? => false) }
@@ -43,7 +43,7 @@ describe 'airport' do
   context 'when being landed at by a plane' do
 
     it 'clears for landing when weather is fine' do
-      expect(lsx_airport.cleared_for_landing?(plane)).to eq(true)
+      expect(lsx_airport.cleared_for_landing?).to eq(true)
     end
 
     it "returns true when plane is stored" do
@@ -56,12 +56,12 @@ describe 'airport' do
     end
 
     it 'does not clear landing if the weather is stormy' do
-      expect(lsx_airport_stormy.cleared_for_landing?(plane)).to eq(:weather)
+      expect(lsx_airport_stormy.cleared_for_landing?).to eq(:weather)
     end
 
     it 'does not clear landing if the airport is full' do
       tiny_airport.receive(plane)
-      expect(tiny_airport.cleared_for_landing?(second_plane)).to eq(:capacity)
+      expect(tiny_airport.cleared_for_landing?).to eq(:capacity)
     end
 
     it 'raises an error if forced to receive planes where the airport is full' do

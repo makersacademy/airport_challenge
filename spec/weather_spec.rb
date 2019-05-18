@@ -2,7 +2,7 @@ require 'weather'
 
 describe 'weather' do
 
-  before(:each) { srand(12345) }
+  before(:each) { srand(12_345) }
 
   let(:weather) { Weather.new }
 

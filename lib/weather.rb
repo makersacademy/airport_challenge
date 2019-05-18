@@ -1,6 +1,7 @@
 class Weather
+
   def stormy?
-    return [true,false].sample
+    return [true, false].sample
   end
 
 end

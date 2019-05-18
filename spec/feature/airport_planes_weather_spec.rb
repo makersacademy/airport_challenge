@@ -5,7 +5,7 @@ require 'weather'
 describe 'feature test' do
   let(:weather) { double(:weather) }
   let(:real_weather) { Weather.new }
-  let(:lsx_airport) { Airport.new(weather, 'Los Santos International','LSX') } 
+  let(:lsx_airport) { Airport.new(weather, 'Los Santos International', 'LSX') } 
   let(:dhs_airport) { Airport.new(weather, 'Death Star Spaceport', 'DHS') } 
   let(:tiny_airport) { Airport.new(weather, "Tiny airport", 'TNY', 1) }
   let(:real_life_airport) { Airport.new(real_weather, "London Heathrow", 'LHR') }
@@ -17,7 +17,6 @@ describe 'feature test' do
   let(:already_at_airport_message) { Plane::ALREADY_AT_AIRPORT_MESSAGE }
   let(:already_in_air_message) { Plane::ALREADY_IN_AIR_MESSAGE }
   let(:capacity_message) { Plane::CAPACITY_MESSAGE }
-
 
   it 'allows multiple planes to land and take off' do
     allow(weather).to receive(:stormy?).and_return(false)
@@ -60,4 +59,3 @@ describe 'feature test' do
   end
   
 end
-

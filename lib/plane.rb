@@ -3,7 +3,7 @@ class Plane
   NOT_AT_AIRPORT_MESSAGE = "I'm not at that airport!"
   ALREADY_AT_AIRPORT_MESSAGE = "I'm already at an airport!"
   ALREADY_IN_AIR_MESSAGE = "I'm already in the air!!"
-  CAPACITY_MESSAGE = "I can't land there, the airport is full! Better hope there's another airport nearby!"
+  CAPACITY_MESSAGE = "I can't land there, the airport is full!"
 
   def initialize(state = :flying)
     @state = state
@@ -11,7 +11,8 @@ class Plane
 
   def land(airport)
     return ALREADY_AT_AIRPORT_MESSAGE if @state == :landed
-    case airport.cleared_for_landing?(self)
+
+    case airport.cleared_for_landing?
     when :weather
       return BAD_WEATHER_MESSAGE
     when :capacity
@@ -23,6 +24,7 @@ class Plane
 
   def take_off(airport)
     return ALREADY_IN_AIR_MESSAGE if @state == :flying
+
     case airport.cleared_for_takeoff?(self)
     when :weather
       return BAD_WEATHER_MESSAGE

@@ -2,7 +2,7 @@ require_relative '../lib/airport.rb'
 require_relative '../lib/plane.rb'
 require_relative '../lib/weather.rb'
 weather = Weather.new
-airport = Airport.new(weather, 'Los Santos International','LSX')
+airport = Airport.new(weather, 'Los Santos International', 'LSX')
 plane = Plane.new
 
 different_airport = Airport.new(weather, 'Death Star Spaceport', 'DHS')
