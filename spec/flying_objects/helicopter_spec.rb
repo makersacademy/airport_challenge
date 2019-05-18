@@ -1,5 +1,5 @@
 require 'flying_objects/helicopter'
-require 'support/shared_examples_for_flying_object'
+require_relative 'support/shared_examples_for_flying_object'
 
 describe Helicopter do
   it_behaves_like FlyingObject
