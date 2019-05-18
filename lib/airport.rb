@@ -1,4 +1,4 @@
-require 'weather_checker'
+require 'random_weather_checker'
 
 class Airport
   AIRPORT_AT_CAPACITY_ERROR = "The airport is full. Plane can not land."
