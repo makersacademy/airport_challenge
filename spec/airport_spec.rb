@@ -17,6 +17,9 @@ describe Airport do
       my_airport = Airport.new(20, weather_checker_double)
       # How can we set rely on one default and not the other?
       # I am using the 20 here because otherwise capacity takes the weather_checker_double
+      # Some tests here are now using 2 arguments correctly
+      # (we now have a default landed)but i'm not sure how this is working
+      # seems like magic ?
       expect(my_airport.weather_checker).to eq(weather_checker_double)
     end
   end
@@ -80,6 +83,15 @@ describe Airport do
       not_in_my_airport_double = double('UFO')
       expect(my_airport.take_off(not_in_my_airport_double))
           .to eq(Airport::NOT_AT_AIRPORT_ERROR)
+    end
+
+    it 'wont try to take off an object if it is stormy' do
+      weather_double = double('weather double', :stormy? => true)
+      flying_double = double('flying_double')
+      my_airport = Airport.new([flying_double], 20, weather_double)
+
+      expect(my_airport.take_off(flying_double))
+          .to eq(Airport::WEATHER_STORMY_ERROR)
     end
   end
 end
