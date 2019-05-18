@@ -21,6 +21,10 @@ class Airport
     flying_object
   end
 
+  def take_off(flying_object)
+
+  end
+
   private
 
   def at_capacity?

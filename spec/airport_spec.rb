@@ -68,4 +68,10 @@ describe Airport do
           .to raise_error(Airport::WEATHER_STORMY_ERROR)
     end
   end
+
+  describe '#take_off' do
+    it 'can be respond to take_off with an argument' do
+      expect(my_airport).to respond_to(:take_off).with(1).argument
+    end
+  end
 end
