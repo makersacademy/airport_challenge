@@ -26,12 +26,12 @@ describe Airport do
 
   describe '#land' do
     it 'returns the object it receives' do
-      flying_double = double
+      flying_double = double('flying_double', :flying? => true)
       expect(my_airport.land(flying_double)).to eq(flying_double)
     end
 
     it 'stores the object' do
-      flying_double = double
+      flying_double = double('flying_double', :flying? => true)
 
       my_airport.land(flying_double)
 
@@ -39,8 +39,9 @@ describe Airport do
     end
 
     it 'can store multiple objects' do
-      flying_double_1 = double
-      flying_double_2 = double
+      flying_double_1 = double('flying_double', :flying? => true)
+
+      flying_double_2 = double('flying_double', :flying? => true)
 
       my_airport.land(flying_double_1)
       my_airport.land(flying_double_2)
@@ -50,7 +51,7 @@ describe Airport do
     end
 
     it 'can limit the amount of objects landed in an airport' do
-      flying_double = double
+      flying_double = double('flying_double', :flying? => true)
       weather_double = double('weather double', :stormy? => false)
       larger_airport_capacity = 50
       my_larger_airport = Airport.new(larger_airport_capacity, weather_double)
@@ -71,6 +72,13 @@ describe Airport do
       expect(my_stormy_airport.land(flying_double))
           .to eq(Airport::WEATHER_STORMY_MESSAGE)
       expect(my_stormy_airport.landed.count).to eq(0)
+    end
+
+    it 'will notify it is not possible to land an already landed object' do
+      already_landed_double = double('flying_double', :flying? => false)
+
+      expect(my_airport.land(already_landed_double))
+          .to eq(Airport::CANT_LAND_NOT_FLYING_PLANE_MESSAGE)
     end
   end
 
@@ -96,7 +104,8 @@ describe Airport do
 
     it 'will instruct the object to take off' do
       flying_double = double('flying_double', :flying? => false)
-      my_airport.land(flying_double)
+      weather_double = double('weather double', :stormy? => false)
+      my_airport = Airport.new([flying_double], 20, weather_double)
       expect(flying_double).to receive(:take_off)
 
       my_airport.take_off(flying_double)
@@ -104,7 +113,8 @@ describe Airport do
 
     it 'an object that has taken off will no longer be landed' do
       flying_double = double('flying_double', :flying? => false)
-      my_airport.land(flying_double)
+      weather_double = double('weather double', :stormy? => false)
+      my_airport = Airport.new([flying_double], 20, weather_double)
       expect(flying_double).to receive(:take_off)
 
       my_airport.take_off(flying_double)
@@ -115,8 +125,8 @@ describe Airport do
     it 'an object that has not been told to take off will still be landed' do
       departing_double = double('flying_double', :flying? => false)
       staying_double = double('flying_double', :flying? => false)
-      my_airport.land(departing_double)
-      my_airport.land(staying_double)
+      weather_double = double('weather double', :stormy? => false)
+      my_airport = Airport.new([departing_double, staying_double], 20, weather_double)
       expect(departing_double).to receive(:take_off)
 
       my_airport.take_off(departing_double)

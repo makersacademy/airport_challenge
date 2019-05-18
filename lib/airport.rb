@@ -5,6 +5,8 @@ class Airport
   AIRPORT_AT_CAPACITY_MESSAGE = "The airport is full. Plane can not land."
   NOT_AT_AIRPORT_MESSAGE = 'This can not take off, it is not in the airport.'
   WEATHER_STORMY_MESSAGE = 'Operation can not be performed due to stormy weather'
+  CANT_LAND_NOT_FLYING_PLANE_MESSAGE =
+      'Operation not possible. Can not land an object that is not flying.'
 
   attr_reader :landed, :capacity, :weather_checker
 
@@ -19,6 +21,8 @@ class Airport
 
     return WEATHER_STORMY_MESSAGE if weather_checker.stormy?
 
+    return CANT_LAND_NOT_FLYING_PLANE_MESSAGE unless flying_object.flying?
+
     landed.push(flying_object)
     flying_object
   end
@@ -31,7 +35,7 @@ class Airport
     return WEATHER_STORMY_MESSAGE if weather_checker.stormy?
 
     flying_object.take_off
-
+    ## Should I check here whether is has actually taken off?
     landed.delete_at(landed.find_index(flying_object))
   end
 
