@@ -5,9 +5,11 @@ describe Airport do
 
   context 'creating an airport' do
     it 'can be instantiated with a capacity' do
-      my_larger_airport = Airport.new(100, double('weather double', :is_stormy? => false))
+      weather_double = double('weather double', :is_stormy? => false)
+      airport_capacity = 30
+      my_larger_airport = Airport.new(airport_capacity, weather_double)
 
-      expect(my_larger_airport.capacity).to eq(100)
+      expect(my_larger_airport.capacity).to eq(airport_capacity)
     end
 
     it 'can be instantiated with a weather checker' do
@@ -44,12 +46,13 @@ describe Airport do
           .to include(flying_double_1, flying_double_2)
     end
 
-    it 'can limit the amount of planes landed in an§ airport' do
+    it 'can limit the amount of planes landed in an airport' do
       flying_double = double
       weather_double = double('weather double', :is_stormy? => false)
-      my_larger_airport = Airport.new(50, weather_double)
+      larger_airport_capacity = 50
+      my_larger_airport = Airport.new(larger_airport_capacity, weather_double)
 
-      50.times do
+      larger_airport_capacity.times do
         my_larger_airport.land(flying_double)
       end
       expect { my_larger_airport.land(flying_double) }

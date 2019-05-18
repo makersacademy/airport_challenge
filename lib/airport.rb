@@ -12,7 +12,6 @@ class Airport
     @weather_checker = weather_checker
   end
 
-
   def land(flying_object)
     raise AIRPORT_AT_CAPACITY_ERROR if at_capacity?
 
