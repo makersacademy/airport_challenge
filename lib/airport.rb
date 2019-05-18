@@ -2,6 +2,7 @@ require 'random_weather_checker'
 
 class Airport
   AIRPORT_AT_CAPACITY_ERROR = "The airport is full. Plane can not land."
+  NOT_AT_AIRPORT_ERROR = 'This can not take off, it is not in the airport.'
   WEATHER_STORMY_ERROR = 'Plane cant take off due to stormy weather'
 
   attr_reader :landed, :capacity, :weather_checker
@@ -22,7 +23,7 @@ class Airport
   end
 
   def take_off(flying_object)
-
+    raise NOT_AT_AIRPORT_ERROR unless landed.include?(flying_object)
   end
 
   private

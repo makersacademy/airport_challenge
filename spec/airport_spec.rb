@@ -73,5 +73,11 @@ describe Airport do
     it 'can be respond to take_off with an argument' do
       expect(my_airport).to respond_to(:take_off).with(1).argument
     end
+
+    it 'will raise error if the flying object is not in the airport' do
+      not_in_my_airport_double = double('UFO')
+      expect { my_airport.take_off(not_in_my_airport_double) }
+          .to raise_error(Airport::NOT_AT_AIRPORT_ERROR)
+    end
   end
 end
