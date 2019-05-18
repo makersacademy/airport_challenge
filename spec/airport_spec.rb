@@ -27,7 +27,7 @@ describe Airport do
       expect(my_airport.land(flying_double)).to eq(flying_double)
     end
 
-    it 'stores the flying object' do
+    it 'stores the object' do
       flying_double = double
 
       my_airport.land(flying_double)
@@ -35,7 +35,7 @@ describe Airport do
       expect(my_airport.landed).to include(flying_double)
     end
 
-    it 'can store multiple flying objects' do
+    it 'can store multiple objects' do
       flying_double_1 = double
       flying_double_2 = double
 
@@ -46,7 +46,7 @@ describe Airport do
           .to include(flying_double_1, flying_double_2)
     end
 
-    it 'can limit the amount of planes landed in an airport' do
+    it 'can limit the amount of objects landed in an airport' do
       flying_double = double
       weather_double = double('weather double', :stormy? => false)
       larger_airport_capacity = 50
@@ -55,26 +55,28 @@ describe Airport do
       larger_airport_capacity.times do
         my_larger_airport.land(flying_double)
       end
-      expect { my_larger_airport.land(flying_double) }
-          .to raise_error Airport::AIRPORT_AT_CAPACITY_ERROR
+      expect(my_larger_airport.land(flying_double))
+          .to eq(Airport::AIRPORT_AT_CAPACITY_ERROR)
+      expect(my_larger_airport.landed.count).to eq(larger_airport_capacity)
     end
 
-    it 'wont allow a plane to land if the weather is stormy' do
+    it 'wont allow an object to land if the weather is stormy' do
       weather_double = double('weather double', :stormy? => true)
       flying_double = double('flying_double')
       my_stormy_airport = Airport.new(20, weather_double)
 
-      expect { my_stormy_airport.land(flying_double) }
-          .to raise_error(Airport::WEATHER_STORMY_ERROR)
+      expect(my_stormy_airport.land(flying_double))
+          .to eq(Airport::WEATHER_STORMY_ERROR)
+      expect(my_stormy_airport.landed.count).to eq(0)
     end
   end
 
   describe '#take_off' do
-    it 'can be respond to take_off with an argument' do
+    it 'can respond to take_off with an argument' do
       expect(my_airport).to respond_to(:take_off).with(1).argument
     end
 
-    it 'will raise error if the flying object is not in the airport' do
+    it 'wont try to take off an object if it is not in the airport' do
       not_in_my_airport_double = double('UFO')
       expect { my_airport.take_off(not_in_my_airport_double) }
           .to raise_error(Airport::NOT_AT_AIRPORT_ERROR)

@@ -1,4 +1,4 @@
-require 'random_weather_checker'
+require_relative 'random_weather_checker'
 
 class Airport
   AIRPORT_AT_CAPACITY_ERROR = "The airport is full. Plane can not land."
@@ -14,9 +14,9 @@ class Airport
   end
 
   def land(flying_object)
-    raise AIRPORT_AT_CAPACITY_ERROR if at_capacity?
+    return AIRPORT_AT_CAPACITY_ERROR if at_capacity?
 
-    raise WEATHER_STORMY_ERROR if weather_checker.stormy?
+    return WEATHER_STORMY_ERROR if weather_checker.stormy?
 
     landed.push(flying_object)
     flying_object
