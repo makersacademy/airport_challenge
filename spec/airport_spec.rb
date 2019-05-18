@@ -78,8 +78,8 @@ describe Airport do
 
     it 'wont try to take off an object if it is not in the airport' do
       not_in_my_airport_double = double('UFO')
-      expect { my_airport.take_off(not_in_my_airport_double) }
-          .to raise_error(Airport::NOT_AT_AIRPORT_ERROR)
+      expect(my_airport.take_off(not_in_my_airport_double))
+          .to eq(Airport::NOT_AT_AIRPORT_ERROR)
     end
   end
 end

@@ -23,7 +23,7 @@ class Airport
   end
 
   def take_off(flying_object)
-    raise NOT_AT_AIRPORT_ERROR unless landed.include?(flying_object)
+    NOT_AT_AIRPORT_ERROR unless landed.include?(flying_object)
   end
 
   private
