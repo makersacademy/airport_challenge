@@ -73,3 +73,4 @@ Write an RSpec feature test that lands and takes off a number of planes
 
 ## Brain dump
  * Should there be be a state check in receive & release?
+ * Should strings use constants & test call the constants?

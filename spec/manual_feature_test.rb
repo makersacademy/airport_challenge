@@ -1,9 +1,11 @@
 require_relative '../lib/airport.rb'
 require_relative '../lib/plane.rb'
-
-airport = Airport.new('Los Santos International','LSX')
+require_relative '../lib/weather.rb'
+weather = Weather.new
+airport = Airport.new(weather, 'Los Santos International','LSX')
 plane = Plane.new
-different_airport = Airport.new('Death Star Spaceport', 'DHS')
+
+different_airport = Airport.new(weather, 'Death Star Spaceport', 'DHS')
 
 plane.land(airport)
 # => "Plane landed at airport!"
@@ -17,3 +19,6 @@ plane.land(airport)
 # => landed
 plane.take_off(different_airport)
 # => "I'm not at that airport!"
+
+plane.land(airport) # stormy
+# => I can't land, it's stormy! Let's hope the weather clears up soon...

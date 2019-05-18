@@ -30,6 +30,11 @@ describe 'airport' do
   end
 
   context 'when being landed at by a plane' do
+
+    it 'clears for landing when weather is fine' do
+      expect(lsx_airport.cleared_for_landing?(plane)).to eq(true)
+    end
+
     it "returns true when plane is stored" do
       expect(lsx_airport.receive(plane)).to be true
     end
@@ -37,6 +42,10 @@ describe 'airport' do
     it 'stores the plane' do
       lsx_airport.receive(plane)
       expect(lsx_airport.planes).to include(plane)
+    end
+
+    it 'does not clear landing if the weather is stormy' do
+      expect(lsx_airport_stormy.cleared_for_landing?(plane)).to eq(:weather)
     end
   end
 
@@ -64,8 +73,13 @@ describe 'airport' do
     end
     
     it 'does not allow takeoff if weather is stormy' do
-
+      lsx_airport_stormy.receive(plane)
+      expect(lsx_airport_stormy.cleared_for_takeoff?(plane)).to eq(:weather)
     end
 
+    it 'clears plane for takeoff if weather is OK and plane is present' do
+      lsx_airport.receive(plane)
+      expect(lsx_airport.cleared_for_takeoff?(plane)).to be true
+    end
   end
 end
