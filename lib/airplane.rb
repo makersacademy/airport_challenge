@@ -6,7 +6,13 @@ attr_accessor :flying
     @flying = false
   end 
 
-  def flying
-    @flying
+  def fly
+    @flying = true
   end
+
+  def land
+    @flying = false
+  end
+
+
 end
