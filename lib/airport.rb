@@ -21,7 +21,7 @@ class Airport
   def take_off(plane, weather = Weather.new)
     raise 'Planes grounded: stormy weather!' if weather.stormy?
     raise 'Plane not at specified airport' if !@hangar.include? plane
-
+    plane.grounded = false
     @hangar.delete(plane)
   end
 
