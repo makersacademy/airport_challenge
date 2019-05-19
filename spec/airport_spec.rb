@@ -5,8 +5,8 @@ require './lib/weather'
 describe Airport do
 
   let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
-  let(:weather) {Weather.new}
+  let(:plane) {double :plane}
+  let(:weather) {double :weather}
 
   it 'can respond to land' do
     expect(airport).to respond_to(:land)
