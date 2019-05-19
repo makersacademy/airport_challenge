@@ -6,8 +6,7 @@ describe Airport do
   let(:grounded_plane) { instance_double("Plane", :grounded => true) }
   let(:stormy) { instance_double("Weather", :stormy? => true) }
   let(:sunny) { instance_double("Weather", :stormy? => false) }
-  # look into the 'before' syntax to set conditions
-  # for multiple tests
+  
   it 'should allow user to set capacity of new instance' do
     expect(Airport.new(50).capacity).to equal(50)
   end
