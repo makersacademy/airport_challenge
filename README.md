@@ -29,6 +29,11 @@ Ed's Airport Challenge
 
 ```
 
+Approach
+---------
+
+
+
 Program
 ---------
 
@@ -59,3 +64,19 @@ weather.rb
 ```airport.take_off(plane)```
 * To check which planes are grounded at an airport
 ```airport.hangar```
+
+e.g.
+
+```
+2.5.0 :005 > airport = Airport.new
+ => #<Airport:0x00007fe8c4108560 @hangar=[], @capacity=1> 
+2.5.0 :006 > plane = Plane.new
+ => #<Plane:0x00007fe8c4100900 @grounded=false> 
+2.5.0 :007 > airport.land(plane)
+ => [#<Plane:0x00007fe8c4100900 @grounded=true>] 
+2.5.0 :008 > airport.hangar
+ => [#<Plane:0x00007fe8c4100900 @grounded=true>] 
+2.5.0 :009 > airport.take_off(plane)
+ => #<Plane:0x00007fe8c4100900 @grounded=false> 
+2.5.0 :010 > 
+```
