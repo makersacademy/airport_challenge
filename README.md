@@ -9,6 +9,7 @@ Project: Airport challenge
 Purpose: Friday challenge
 
 Date: 17/05/2019
+
 ---------
 
 Status: incomplete 
@@ -17,6 +18,7 @@ Status: incomplete
 - test failures on 'stormy weather' (likely due to incorrect call/referencing of class methods across another class and RSpec) resulting in guard clause not working
 
 Author: Lin Trieu
+
 ---------
 
 ```
