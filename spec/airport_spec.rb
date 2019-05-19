@@ -13,12 +13,14 @@ describe Airport do
   end
   
   it 'expects planes can land at the airport' do
-    airport.land(plane) # => num of planes should = 1
+    allow(weather).to receive(:stormy) {false}
+    airport.land(plane) # => num of planes  = 1
     output = airport.planes.length
     expect(output).to eq(1)
   end
 
   it 'can add planes to the planes array total' do
+    allow(weather).to receive(:stormy) {false}
     5.times {airport.land(plane)}
     output = airport.planes.length
     expect(output).to eq(5)
@@ -29,6 +31,7 @@ describe Airport do
   end
 
   it 'expects planes can leave the airport' do
+    allow(weather).to receive(:stormy) {false}
     airport.land(plane) # => num of planes should = 1
     airport.plane_takeoff
     output = airport.planes.length
@@ -39,18 +42,26 @@ describe Airport do
     expect { airport.plane_takeoff }.to raise_error("There are no planes in the airport")
   end
 
-  it 'can prevent plane take-off when weather is stormy' do
-    allow(weather.stormy).to receive(:stormy).and_return(true)
-    weather.stormy
-    expect { airport.weather.stormy }.to raise_error("Plane cannot take-off from airport due to stormy weather")
+  it 'prevents plane take-off when weather is stormy' do
+    allow(weather).to receive(:stormy) {true}
+    airport.land(plane)
+    expect { airport.plane_takeoff }.to raise_error("Plane cannot take-off due to stormy weather")
   end
+ 
+  it 'prevents plane landing when weather is stormy' do
+    allow(weather).to receive(:stormy) {true}
+    expect { airport.land(plane) }.to raise_error("Plane cannot land due to stormy weather")
+  end
+
+  it 'prevents a plane landing if the airport is full' do
+    aiport.capacity.times {airport.land(plane)}
+    expect{airport.land(plane)}.to raise_error('Airport at full capacity')
+  end
+
+  # it 'has a default capacity if no capacity argument is passed' do
+  #   expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  # end
 
 
 
 end
-
-  #unit testing steps
-  #act
-  #arrange
-  #assert
-
