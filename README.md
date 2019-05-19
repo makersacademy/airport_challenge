@@ -28,7 +28,9 @@ Instructions
 The program can be run in the terminal/irb, and requires the following files;
 
 airport.rb
+
 plane.rb
+
 weather.rb
 
 * To create a new airport
@@ -36,8 +38,8 @@ weather.rb
 * To create a new plane
 ```Plane.new```
 * To land a plane at an airport
-```airport.land(plane)
+```airport.land(plane)```
 * To take off a plane from an airport
-```airport.take_off(plane)
+```airport.take_off(plane)```
 * To check which planes are grounded at an airport
 ```airport.hangar```
