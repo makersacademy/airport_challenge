@@ -1,8 +1,19 @@
 Airport Challenge 
 =================
-Makers Academy - Week 3 Friday challenge
+Makers Academy
+Week: 3
+Project: Airport challenge
+Purpose: Friday challenge
+Date: 17/05/2019
+---------
 
-29th May 2019
+Status: incomplete 
+- syntax error on airport 'capacity' parameter in Initialize method preventing code from running
+- feature for 'default capacity' to be added
+- test failures on 'stormy weather' (likely due to incorrect call/referencing of class methods across another class and RSpec) resulting in guard clause not working
+
+Author: Lin Trieu
+---------
 
 ```
         ______
