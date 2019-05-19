@@ -28,12 +28,6 @@ Ed's Airport Challenge
       `*
 
 ```
-
-Approach
----------
-
-
-
 Program
 ---------
 

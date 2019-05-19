@@ -3,6 +3,7 @@ require 'plane'
 describe Plane do
   let(:airport) { instance_double("Airport", :land => plane, :take_off => plane) }
   let(:plane) { Plane.new }
+  
   it 'should be grounded once landed at airport' do
     # Don't understand how to test this properly
     # when relying on another method that 
