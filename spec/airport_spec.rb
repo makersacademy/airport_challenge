@@ -1,12 +1,15 @@
 require 'airport.rb'
 require 'airplane.rb'
+require 'weather.rb'
 
 describe Airport do
   let(:airport) {Airport.new}
   let(:airplane) {Airplane.new}
+  let(:weather) {Weather.new}
   it 'can instruct plane to take off' do
     airport.planes << airplane 
-    airport.instruct_take_off
+    weather.stormy?(2)
+    airport.instruct_take_off(weather)
     expect(airplane.flying).to eq true
   end
 
@@ -32,5 +35,10 @@ describe Airport do
     airplane.fly
     airport.instruct_landing(airplane)
     expect(airplane.flying).to eq false
+  end
+
+  it 'can prevent take off when weather is stormy' do 
+    weather.report(1)
+    expect{airport.instruct_take_off(weather)}.to raise_error "Stormy weather, take off denied"
   end
 end

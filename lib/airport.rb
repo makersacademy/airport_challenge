@@ -1,4 +1,5 @@
 require 'airplane.rb'
+require 'weather.rb'
 
 class Airport
   attr_reader :planes
@@ -7,8 +8,8 @@ class Airport
     @planes = []
   end
 
-  def instruct_take_off
-    plane = @planes.pop
+  def instruct_take_off(weather)
+    weather.stormy? ? raise("Stormy weather, take off denied") : plane = @planes.pop 
     plane.fly
   end
 
@@ -16,4 +17,7 @@ class Airport
     plane.land
     @planes << plane
   end
+
+  
+
 end
