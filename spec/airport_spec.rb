@@ -21,10 +21,6 @@ let(:plane) { Plane.new }
     expect(airport.parking_station.length).to eq(1)
   end
 
-  it 'responds to .take_off' do
-    expect(airport).to respond_to(:take_off)
-  end
-
   it '.take_off removes a plane from airport parking station' do
     airport.parking_station.push(plane) # => 1
     airport.take_off
