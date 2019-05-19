@@ -6,7 +6,7 @@ class Weather
 
   def weather
     choice = random
-    if choice == 0
+    if choice.zero?
       "STORMY"
     else
       "SUNNY"
