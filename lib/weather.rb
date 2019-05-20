@@ -8,7 +8,7 @@ class Weather
   end
   
   def random_outlook
-    @outlook = [:bad, :sunny, :sunny].sample # => when 'bad' outlook, planes cannot fly
+    @outlook = [:bad, :sunny, :sunny, :sunny].sample # => when 'bad' outlook, planes cannot fly
   end
   
   def stormy

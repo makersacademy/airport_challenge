@@ -14,7 +14,7 @@ class Airport
 
   def land(plane)
     fail 'Airport at full capacity' if full?
-    fail "Plane cannot land due to stormy weather" if weather.stormy == true
+    fail "Plane cannot land due to stormy weather" if weather.stormy == true #=> as 'weather' is in attr_reader, we do not need '@', otherwise we would need to @weather!!
     @planes << plane
     self
   end
@@ -31,6 +31,6 @@ class Airport
   end
 
   def empty?
-    @planes.count.empty?
+    @planes.empty?
   end
 end
