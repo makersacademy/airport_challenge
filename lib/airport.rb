@@ -4,9 +4,9 @@ class Airport
 
   attr_reader :planes, :weather
 
-  # DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
-  def initialize(weather: Weather.new, capacity=20)
+  def initialize(weather=Weather.new, capacity=DEFAULT_CAPACITY)
     @weather = weather
     @capacity = capacity
     @planes = []
