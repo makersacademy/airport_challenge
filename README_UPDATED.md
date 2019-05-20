@@ -23,4 +23,4 @@ Thanks to Makers Academy for setting this challenge.
 Please ask permission from the owner of this repo.
 
 ## Project status
-Project is not completly finished. With more time I would add features to check for multiple airports and check that the planes can only take off from the same airport they landed in.
+Project is not completly finished. With more time I would add features to check for multiple airports and check that the planes can only take off from the same airport they landed in. I would also add functionality to make sure the correct plane takes off from the airport, rather than just any.
