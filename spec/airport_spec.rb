@@ -1,13 +1,17 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 describe Airport do
     let(:airport) { Airport.new }
     let(:plane) { Plane.new }
+    let(:weather) { Weather.new }
     
     describe 'plane landing' do
         it 'stores plane in hangar when landed' do
             airport.land(plane)
+            puts "bum bum bum"
+            puts airport.land(plane)
             expect(airport.hanger.length).to eq(1)
           end    
     end

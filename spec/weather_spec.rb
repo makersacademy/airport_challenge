@@ -12,10 +12,10 @@ describe Weather do
     # describe 'stormy weather' do
     #     it 'stops plane takeoff in stormy weather' do
           
-    #     weather = instance_double("Weather", :state_of_weather => "stormy")
-    #     airport.landing_plane(plane, weather.state_of_weather)
-    #     expect(airport.airport_store.include?(plane)).to eq(false)
-        
+    #     weather = instance_double("Weather", :current_weather => "stormy")
+    #     airport.land(plane, weather.current_weather)
+    #     expect(airport.hanger.include?(plane)).to eq(false)
     #     end
+    # end
 
 end
