@@ -13,10 +13,6 @@ class Weather
     @weather_active = @weather_generator[num]
   end
 
-  def safe?
-    @weather_active == "sunny"
-  end
-
   def not_safe?
     @weather_active == "stormy"
   end

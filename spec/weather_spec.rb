@@ -32,11 +32,11 @@ describe Weather do
 
   it 'is .safe? to fly when weather is sunny' do
     weather.get_weather(2)
-    expect(weather.safe?).to eq(true)
+    expect(weather.not_safe?).to eq(false)
   end
 
   it 'is .not_safe? to fly when weather is stormy' do
-    weather_generated = weather.get_weather(4)
+    weather.get_weather(4)
     expect(weather.not_safe?).to eq(true)
   end
 end
