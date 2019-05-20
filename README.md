@@ -15,6 +15,8 @@ Attempt submission:
 7iii) Progress to modules in Boris Bikes and then apply knowledge here.
 7iv) Write out feature test.
 
+8) Not sure why Rubocop not running - investigate and fix to meet requirements.
+
 =================
 
 ```
