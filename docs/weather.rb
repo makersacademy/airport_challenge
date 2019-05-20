@@ -6,7 +6,7 @@ class Weather
   end
 
   def rand_num
-    rand(4)
+    rand(5)
   end
 
   def get_weather(num)
