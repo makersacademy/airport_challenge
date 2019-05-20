@@ -11,13 +11,15 @@ class Airport
     end
 
     def land(plane)
-      
+
         @hanger << plane
-     
+
     end
 
     def take_off(plane)
-      if :weather == "sunny"
+        if @weather = true 
+            raise 'no flights in stormy weather'
+        else
         @hanger.delete(plane)
       end
     end

@@ -6,8 +6,9 @@ class Weather
         @current_weather
     end
 
-    def current_weather
-        rand(1..6) > 5 ? "stormy" : "sunny"
+    def current_weather?
+        rand(1..6) > 5 ? true : false
+        #true is stormy and false is sunny
     end
 
 end
