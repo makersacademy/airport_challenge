@@ -12,12 +12,12 @@ Date: 17/05/2019
 
 ---------
 
-Self-assesment: RED
+Self-assesment: AMBER
 
 Status: incomplete
-- Syntax error on airport 'capacity' parameter in Initialize method preventing code from running
-- Feature for 'default capacity' to be added
-- Test failures on 'stormy weather' (likely due to incorrect call/referencing of class methods across another class and RSpec) resulting in guard clause not working
+- Refactoring required
+- All user story requirements complete 
+- All RSpec tests passed
 
 Author: Lin Trieu
 
