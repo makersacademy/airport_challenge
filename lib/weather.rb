@@ -1,4 +1,9 @@
 class Weather 
+  attr_accessor :stormy
+  
+  def initialize 
+    @stormy = false
+  end
 
   def report(weather)
     case weather
@@ -11,7 +16,7 @@ class Weather
 
   def stormy?
     conditions = rand(1..3)
-    report(conditions) == 'stormy' 
+    @stormy = report(conditions) == 'stormy' 
   end
 end
 
