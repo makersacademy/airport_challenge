@@ -11,13 +11,34 @@ describe Airport do
   it 'can respond to land' do
     expect(airport).to respond_to(:land)
   end
-  
+
+  # 1. discussed with Lindsay on Mon 20 May for correct test (vs. incorrect @ the 2nd) 
   it 'expects planes can land at the airport' do
-    allow(weather).to receive(:stormy) {false}
-    airport.land(plane) # => num of planes  = 1
-    output = airport.planes.length
+    airporttwo = Airport.new(weather) # => declare a new instance of the Airport class, and insert double of weather as parameter
+    allow(weather).to receive(:stormy) {false} # => stub to ensure randomness
+    airporttwo.land(plane) 
+    output = airporttwo.planes.length
     expect(output).to eq(1)
   end
+ 
+  # 2. the previous code (assumed the default parameter to 'Airport.new' was a NEW instance of Weather, not the dummy)
+  it 'expects planes can land at the airport' do
+    airporttwo = Airport.new(Weather.new) # => by default a new instance of weather is created, but it needs to be a double
+    airporttwo.land(plane) 
+    output = airporttwo.planes.length
+    expect(output).to eq(1)
+  end
+
+  # it 'expects planes can land at the airport' do
+  #   allow(weather).to receive(:stormy) {false}
+  #   airport.land(plane) # => num of planes  = 1
+  #   output = airport.planes.length
+  #   expect(output).to eq(1)
+  # end
+
+
+
+
 
   it 'can add planes to the planes array total' do
     allow(weather).to receive(:stormy) {false}
