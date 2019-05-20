@@ -9,9 +9,8 @@ describe Airport do
     
     describe 'plane landing' do
         it 'stores plane in hangar when landed' do
+            hanger = []
             airport.land(plane)
-            puts "bum bum bum"
-            puts airport.land(plane)
             expect(airport.hanger.length).to eq(1)
           end    
     end
