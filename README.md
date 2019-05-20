@@ -1,6 +1,22 @@
 Airport Challenge
 =================
 
+Attempt submission:
+
+1) Took user stories and put into Airport spec.
+2) Read through and built out file structure of solution.
+3) Used TDD to build out solution one user story at a time.
+4) Cleaned up tests as I went to be put into different describe bands and contexts.
+5) Got stuck with double usage. Built out tests and code for weather inclusion, but changing to doubles to test didn't work.
+6) Continues with code to add in some edge cases, without doubles working.
+7) Would finish by:
+7)i) Checking double syntax and fixing two tests for stormy.
+7ii) Completion of edge cases. - Planes that are flying can't be in an airport. Planes that are landed have to be in an airport.
+7iii) Progress to modules in Boris Bikes and then apply knowledge here.
+7iv) Write out feature test.
+
+=================
+
 ```
         ______
         _\____\___
@@ -36,25 +52,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +89,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
