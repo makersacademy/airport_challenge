@@ -2,13 +2,8 @@ require_relative '../docs/weather.rb'
 
 describe Weather do
   let(:weather) { Weather.new }
-  let(:random_num) {
-    ->(num) {
-      obj = double()
-      allow(obj).to receive(:rand_num) { num }
-      obj.rand_num
-    }
-  }
+  let(:sunny) { double(:weather, :rand_num => 2) }
+  let(:stormy) { double(:weather, :rand_num => 4) }
 
   it '.initialize sets up array of weather outcomes' do
     expect(weather.weather_generator).to eq(["sunny", "sunny", "sunny", "sunny", "stormy"])
@@ -18,25 +13,7 @@ describe Weather do
     expect(weather.rand_num).to be_between(0, 4).inclusive
   end
 
-  it '.get_weather outputs sunny' do
-    num = random_num[2]
-    weather.get_weather(num)
-    expect(weather.weather_active).to eq("sunny")
-  end
-
-  it '.get_weather outputs stormy' do
-    num = random_num[4]
-    weather.get_weather(num)
-    expect(weather.weather_active).to eq("stormy")
-  end
-
-  it 'is .safe? to fly when weather is sunny' do
-    weather.get_weather(2)
-    expect(weather.not_safe?).to eq(false)
-  end
-
-  it 'is .not_safe? to fly when weather is stormy' do
-    weather.get_weather(4)
-    expect(weather.not_safe?).to eq(true)
+  it '.not_safe? returns true/false' do
+    expect(weather.not_safe?).to be(true).or be(false)
   end
 end
