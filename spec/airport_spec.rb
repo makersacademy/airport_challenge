@@ -2,23 +2,28 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
+  context '#when landing a plane' do
+    # it { is_expected.to respond_to(:land).with(1).argument }
+    let(:plane_double) { double :plane }
+
+    #   before(:each) do
+    #   @plane_double = double :plane
+    # end
 
     it 'should return a success message when we land a plane' do
       allow(subject).to receive(:current_weather) { "Sunny" }
-      expect(subject.land(Plane.new)).to eq "Plane landed"
+      expect(subject.land(plane_double)).to eq "Plane landed"
     end
 
     it 'should stop a plane from landing when the weather is Stormy' do
       allow(subject).to receive(:current_weather) { "Stormy" }
-      expect { subject.land(Plane.new) }.to raise_error "No landing allowed - Stormy weather"
+      expect { subject.land(plane_double) }.to raise_error "No landing allowed - Stormy weather"
     end
 
     it 'should stop a plane from landing when the airport is full' do
       allow(subject).to receive(:current_weather) { "Sunny" }
       20.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error "The airport is full - no landing allowed"
+      expect { subject.land(plane_double) }.to raise_error "The airport is full - no landing allowed"
     end
 
     it 'should prevent a plane that has already landed from landing again' do
