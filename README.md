@@ -25,9 +25,9 @@ Instructions
 Steps
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
+1. Fork this repo, and clone to your local machine *(done)*
+2. Run the command `gem install bundle` (if you don't have bundle already) *(done)*
+3. When the installation completes, run `bundle` *(done)*
 4. Complete the following task:
 
 Task
@@ -39,14 +39,17 @@ We have a request from a client to write the software to control the flow of pla
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
+- [x] 
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+- [x] 
 
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+- [ ] 
 
 As an air traffic controller 
 To ensure safety 
