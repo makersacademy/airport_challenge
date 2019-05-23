@@ -22,12 +22,27 @@ The aim of this challenge is to -
 - Learn how to use test doubles
 
 
-Steps
+How to use
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
+- Clone this repo to your machine
+- Run bundle
+- Run from the terminal
+
+```
+require './lib/airport'
+airport = Airport.new
+=> airport @airport=[], @capacity=10, @weather=Weather.new
+plane = Plane.new
+=> plane
+
+airport.lane(plane)
+=> [plane]
+airport.take_off 
+=> plane
+11.times { airport.land(plane) }
+=> Error - Airport full, can't land
+```
 
 User Stories
 -----
@@ -36,24 +51,34 @@ User Stories
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
-
+```
+```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
+```
+```
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
-
+```
+```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-
+```
+```
 As an air traffic controller 
 To ensure safety 
-I want to prevent landing when the airport is full 
-
+I want to prevent landing when the airport is full
+```
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+### Status
+- I got up to and completed the user story asking to prevent landing if the airport is full 
+- All tests are passing
+- Test coverage is 96.23%
