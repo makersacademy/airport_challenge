@@ -73,11 +73,11 @@ describe 'airport' do
   context 'when asked if it contains a plane' do
     it 'returns true if it contains the plane' do
       lsx_airport.receive(plane)
-      expect(lsx_airport.contains?(plane)).to be true
+      expect(lsx_airport.planes).to include(plane)
     end
 
     it 'returns false if it does not contain the plane' do
-      expect(lsx_airport.contains?(plane)).to be false
+      expect(lsx_airport.planes).not_to include(plane)
     end
   end
 

@@ -24,6 +24,25 @@ Info
 ---------
 For original readme with challenge instructions, see https://github.com/makersacademy/airport_challenge
 
+Usage
+---------
+```Ruby
+# instantiate classes 
+require 'airport'
+require 'plane'
+require 'weather'
+weather = Weather.new
+airport = Airport.new(weather, 'Airport name', 'Airport Code')
+plane = Plane.new
+
+# land a plane
+plane.land(airport)
+
+# take off a plane
+plane.take_off(airport)
+
+```
+
 My approach to the challenge
 ---------
 * TDD approach using rspec unit tests (see below)

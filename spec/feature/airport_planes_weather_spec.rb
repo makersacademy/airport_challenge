@@ -28,7 +28,6 @@ describe 'feature test' do
     expect(plane.take_off(dhs_airport)).to eq(not_at_airport_message)
     expect(plane.take_off(lsx_airport)).to eq("Plane took off from #{lsx_airport.name} (#{lsx_airport.code})")
     expect(lsx_airport.planes).not_to include(plane)
-    expect(lsx_airport.contains?(plane)).to be false
     expect(plane.take_off(lsx_airport)).to eq(already_in_air_message)
   end
 

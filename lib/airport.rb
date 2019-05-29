@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   CAPACITY_ERROR_MESSAGE = "Plane landed on top of another plane, everyone died"
   attr_reader :name, :code, :planes, :capacity
@@ -35,6 +37,8 @@ class Airport
 
     return true
   end
+
+  private
 
   def contains?(plane)
     @planes.any? { |plane_in_airport| plane_in_airport == plane }
