@@ -8,11 +8,14 @@ class Airport
   end
 
   def land(plane)
+    raise "Can't land because it's stormy" if weather == 'stormy'
+    
     @hanger.push(plane)
   end
 
   def takeoff(plane)
     raise "Can't take off because it's stormy" if weather == 'stormy'
+
     @hanger.delete(plane)
   end
 
