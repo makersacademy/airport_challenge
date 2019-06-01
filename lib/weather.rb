@@ -1,5 +1,5 @@
 class Weather
   def is_stormy?
-    false
+    [true,false].sample
   end
 end
