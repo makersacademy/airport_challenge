@@ -10,7 +10,7 @@ RSpec.describe Airport do
 
   it "receives a plane" do
     # arrange
-    airport = Airport.new(:stormy)
+    airport = Airport.new(:not_stormy)
     plane = Plane.new
     # act
     airport.land(plane)
@@ -37,4 +37,12 @@ RSpec.describe Airport do
     expect { airport.take_off(plane) }.to raise_error("denied due to weather")
   end
 
+  it "refuses landing in stormy weather" do
+    # arrange
+    plane = Plane.new
+    weather = :stormy
+    airport = Airport.new(weather)
+    # act & assert
+    expect { airport.land(plane) }.to raise_error("denied due to weather")
+  end
 end

@@ -7,7 +7,12 @@ class Airport
   end
 
   def land(plane)
-    @landed_planes << plane
+    case @weather
+    when :stormy
+      raise "denied due to weather"
+    else
+      @landed_planes << plane
+    end
   end
 
   def take_off(plane)
