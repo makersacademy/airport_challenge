@@ -5,10 +5,8 @@ class Airport
   attr_reader :hanger
 
   def initialize(capacity = 10)
-    set_safety
     @capacity = capacity
     @hanger = []
-    @full = false
   end
 
   def safe?
@@ -19,16 +17,20 @@ class Airport
     @full
   end
 
+  def sunny?
+    @sunny
+  end
+
   def weather
     weather = Weather.new
     weather.generate_weather
   end
 
-  def set_safety
+  def check_weather
     if weather == 'sunny'
-      @safe = true
+      @sunny = true
     else
-      @safe = false
+      @sunny = false
     end
   end
 
@@ -38,6 +40,16 @@ class Airport
     else
       @full = false
     end    
+  end
+
+  def set_safety
+    check_capacity
+    check_weather
+    if sunny? && !full?
+      @safe = true
+    else
+      @safe = false
+    end
   end
 
 end
