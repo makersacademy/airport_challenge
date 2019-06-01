@@ -6,4 +6,8 @@ class Airport
   def capacity
     @capacity
   end
+
+  def capacity=(num_of_planes)
+    @capacity = num_of_planes
+  end
 end
