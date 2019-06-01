@@ -17,4 +17,5 @@ describe Plane do
     airport = Airport.new
     expect(subject.take_off_from(airport)).to equal(true)
   end
+
 end

@@ -19,4 +19,8 @@ class Airport
   def add_plane(plane)
     @planes.push(plane)
   end
+
+  def remove_plane(plane)
+    @planes.delete(plane)
+  end
 end

@@ -19,4 +19,11 @@ describe Airport do
     subject.add_plane(plane)
     expect(subject.planes).to include(plane)
   end
+
+  it 'removes a plane from the list at the airport when requested' do
+    plane = Plane.new
+    subject.add_plane(plane)  
+    subject.remove_plane(plane)
+    expect(subject.planes).not_to include(plane)
+  end
 end
