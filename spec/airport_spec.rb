@@ -15,5 +15,9 @@ describe Airport do
     expect(airport.contents).to include(plane)
   end
 
+  it "responds to message takeoff" do
+    airport = Airport.new
+    expect(airport).to respond_to(:take_off)
+  end
 
 end

@@ -9,6 +9,9 @@ class Airport
     @contents << plane
   end
 
+  def take_off
+  end
+
 
 
 
