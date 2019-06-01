@@ -15,4 +15,8 @@ class Airport
   def capacity=(num_of_planes)
     @capacity = num_of_planes
   end
+
+  def add_plane(plane)
+    @planes.push(plane)
+  end
 end

@@ -13,4 +13,10 @@ describe Airport do
   it 'defaults the list of Planes to no planes at the airport' do
     expect(subject.planes).to be_empty
   end
+
+  it 'allows a plane to be added to the list at the airport' do
+    plane = Plane.new
+    subject.add_plane(plane)
+    expect(subject.planes).to include(plane)
+  end
 end
