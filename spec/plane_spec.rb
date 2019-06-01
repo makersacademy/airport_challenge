@@ -5,4 +5,11 @@ describe Plane do
     airport = Airport.new
     expect(subject.land_at(airport)).to equal(true)
   end
+
+  it 'adds itself to the list of planes at the airport after landing' do
+    airport = Airport.new
+    plane = Plane.new
+    plane.land_at(airport)
+    expect(airport.planes).to include(plane)
+  end
 end
