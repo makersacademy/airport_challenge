@@ -18,6 +18,8 @@ Notes on How I Solved the Problem
 
 I realised half way through that I'd probably over-engineered the solution. I'd kept a record of all the planes at the airport, in an airport variable, but probably only needed to store the number of planes at the airport, and for the plane to know if it was at the airport or not. I refactored some of the tests to reflect this.
 
+I then simplified even further realising that the spec didn't ask for knowledge of which airport the plane was at! So changed to a boolean at_airport?
+
 Instructions
 ---------
 
