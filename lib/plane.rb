@@ -10,8 +10,12 @@ class Plane
 
   end
 
-  def take_off
-    @at_airport = false
+  def take_off(airport)
+    if airport.safe?
+      @at_airport = false
+    else
+      @at_airport = true
+    end
   end
 
   def at_airport?
