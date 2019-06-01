@@ -12,4 +12,11 @@ describe Plane do
     expect(subject.instance_variable_get(:@at_airport)).to be true
   end
 
+  it 'should not allow take off if weather is stormy' do
+    weather = object_double(Weather.new)
+    allow(weather).to receive(:generate_weather) { 'stormy' }
+    subject.take_off
+    expect(subject).to be_at_airport  
+  end
+
 end
