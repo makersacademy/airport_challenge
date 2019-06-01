@@ -3,15 +3,18 @@ require "plane"
 
 RSpec.describe Airport do
   it "is created with no planes" do
-    airport = Airport.new(:stormy)
+    capacity = 3
+    airport = Airport.new(:stormy, capacity)
 
     expect(airport.landed_planes).to be_empty
   end
 
   it "receives a plane" do
     # arrange
-    airport = Airport.new(:not_stormy)
     plane = Plane.new
+    capacity = 3
+    airport = Airport.new(:not_stormy, capacity)
+
     # act
     airport.land(plane)
     # assert
@@ -21,7 +24,8 @@ RSpec.describe Airport do
   it "allows a plane to leave" do
     # arrange
     plane = Plane.new
-    airport = Airport.new(:not_stormy, [plane])
+    capacity = 3
+    airport = Airport.new(:not_stormy, capacity, [plane])
     # act
     airport.take_off(plane)
     # assert
@@ -32,7 +36,8 @@ RSpec.describe Airport do
     # arrange
     plane = Plane.new
     weather = :stormy
-    airport = Airport.new(weather, [plane])
+    capacity = 3
+    airport = Airport.new(weather, capacity, [plane])
     # act & assert
     expect { airport.take_off(plane) }.to raise_error("denied due to weather")
   end
@@ -41,8 +46,19 @@ RSpec.describe Airport do
     # arrange
     plane = Plane.new
     weather = :stormy
-    airport = Airport.new(weather)
+    capacity = 3
+    airport = Airport.new(weather, capacity)
     # act & assert
     expect { airport.land(plane) }.to raise_error("denied due to weather")
+  end
+
+  it "refuses landing when full" do
+    # arrange
+    plane = Plane.new
+    weather = :not_stormy
+    capacity = 3
+    airport = Airport.new(weather, capacity, [plane, plane, plane])
+    # act & assert
+    expect { airport.land(plane) }.to raise_error("denied: airport is full")
   end
 end

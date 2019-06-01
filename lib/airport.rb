@@ -1,15 +1,17 @@
 class Airport
-  attr_reader :landed_planes, :weather
+  attr_reader :landed_planes, :weather, :capacity
 
-  def initialize(weather, landed_planes = [])
+  def initialize(weather, capacity, landed_planes = [])
     @landed_planes = landed_planes
     @weather = weather
+    @capacity = capacity
   end
 
   def land(plane)
-    case @weather
-    when :stormy
-      raise "denied due to weather"
+    if @weather == :stormy
+      weather_error
+    elsif @capacity == @landed_planes.count
+      raise "denied: airport is full"
     else
       @landed_planes << plane
     end
@@ -18,9 +20,13 @@ class Airport
   def take_off(plane)
     case @weather
     when :stormy
-      raise "denied due to weather"
+      weather_error
     else
       @landed_planes.delete(plane)
     end
+  end
+
+  def weather_error
+    raise "denied due to weather"
   end
 end
