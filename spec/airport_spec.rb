@@ -21,7 +21,7 @@ RSpec.describe Airport do
   it "allows a plane to leave" do
     # arrange
     plane = Plane.new
-    airport = Airport.new([plane])
+    airport = Airport.new(:not_stormy, [plane])
     # act
     airport.take_off(plane)
     # assert
