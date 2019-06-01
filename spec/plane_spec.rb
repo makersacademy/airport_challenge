@@ -22,7 +22,6 @@ describe Plane do
       subject.land(airport)
       expect(subject).to be_at_airport
     end
-
   end
 
   context "airport is not safe" do
@@ -31,6 +30,13 @@ describe Plane do
       allow(airport).to receive(:safe?).and_return(false)
       subject.take_off(airport)
       expect(subject).to be_at_airport
+    end
+
+    it 'when it is not safe the plane cannot land' do
+      airport = object_double(Airport.new)
+      allow(airport).to receive(:safe?).and_return(false)
+      subject.land(airport)
+      expect(subject).not_to be_at_airport
     end
   end
 
