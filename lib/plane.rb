@@ -3,7 +3,7 @@ class Plane
     @at_airport = true
   end
 
-  def take_off_from(airport)
+  def take_off
     true
   end
 
