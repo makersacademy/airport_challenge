@@ -1,9 +1,7 @@
 <h1 align='center'>
 :airplane:
-</h1>
-
-<h1 align='center'>
 Airport Challenge 
+:airplane:
 </h1>
 
 ## User Stories
