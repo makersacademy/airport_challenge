@@ -4,7 +4,7 @@ require "weather"
 
 describe Airport do
 
-before(:all) do
+before(:each) do
   @airport = Airport.new
   @plane = Plane.new
   @weather = Weather.new
@@ -54,6 +54,15 @@ end
   end
 
 #User Story 5
+  it "knows when it is full" do
+    allow(@airport).to receive(:MAX_CAPACITY) {3}
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.land(@plane, @weather)
+    allow(@weather).to receive(:stormy?) {false}
+    expect{@airport.land(@plane, @weather)}.to raise_error("Airport full")
+
+  end
+
   it "does not all planes to land when airport is full" do
     allow(@weather).to receive(:stormy?) {false}
     allow(@airport).to receive(:full?) {true}
