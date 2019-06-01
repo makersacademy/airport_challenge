@@ -12,4 +12,9 @@ describe Plane do
     plane.land_at(airport)
     expect(airport.planes).to include(plane)
   end
+
+  it 'accepts a request to take off from the airport' do
+    airport = Airport.new
+    expect(subject.take_off_from(airport)).to equal(true)
+  end
 end
