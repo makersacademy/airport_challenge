@@ -10,6 +10,10 @@ class Airport
     @safe
   end
 
+  def full?
+    true  
+  end
+
   def weather
     weather = Weather.new
     weather.generate_weather
