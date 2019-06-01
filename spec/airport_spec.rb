@@ -2,7 +2,7 @@ require "airport"
 require "plane"
 
 describe Airport do
-
+#User Story 1
   it "responds to message land" do
     airport = Airport.new
     expect(airport).to respond_to(:land)
@@ -15,9 +15,18 @@ describe Airport do
     expect(airport.contents).to include(plane)
   end
 
+#User Story 2
   it "responds to message takeoff" do
     airport = Airport.new
     expect(airport).to respond_to(:take_off)
+  end
+
+  it "no longer contains a plain once it has taken off" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.contents).not_to include(plane)
   end
 
 end
