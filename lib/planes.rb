@@ -1,6 +1,7 @@
 class Planes
 
-  def flying # plane no longer in airport
+  # plane no longer in airport
+  def flying 
     @flying = true
   end
 
@@ -9,5 +10,4 @@ class Planes
   end
 end
 
-# plane take off from airport then plane is flying
-
+  # plane take off from airport then plane is flying

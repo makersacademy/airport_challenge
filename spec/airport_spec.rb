@@ -21,7 +21,11 @@ describe Airport do
     
     it 'raises an error when airport full' do
       20.times { subject.apron Planes.new }
-      expect { subject.apron Planes.new}.to raise_error 'Airport is full'
+      expect { subject.apron Planes.new }.to raise_error 'Airport is full'
+    end
+
+    it 'raise an error when there are no planes to take off' do
+      expect { subject.take_off }.to raise_error 'All planes departed'
     end
   end
 end

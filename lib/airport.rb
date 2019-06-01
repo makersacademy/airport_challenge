@@ -1,7 +1,8 @@
 require 'planes'
 
 class Airport
-  attr_reader :planes # planes in airport
+  attr_reader :planes 
+  # planes in airport
 
   def initialize
     @planes = []
@@ -11,13 +12,31 @@ class Airport
     @planes
   end
 
-  def apron(planes) # planes on the airport 
-    fail 'Airport is full' if @planes.count >= 20
+  def take_off
+    fail 'All planes departed' if empty?
+
+    @planes.pop
+  end 
+
+  # planes on the airport
+  def apron(planes)  
+    fail 'Airport is full' if full?
+
     @planes << planes
+  end
+
+  private
+
+  def full?
+    @planes.count >= 20
+  end
+
+  def empty?
+    @planes.empty?
   end
 end
 
-
-# planes.pop  remove planes from aiport 
-# when airport reached capacity no landing
-# default airport capacity later can be overridden 
+  # planes.pop  remove planes from aiport 
+  # when airport reached capacity no landing
+  # default airport capacity later can be overridden 
+  
