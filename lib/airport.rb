@@ -1,7 +1,9 @@
+require_relative 'plane'
+
 class Airport
 
-  def plane_landed?
-    true
+  def plane_land
+    Plane.new
   end
 
 end
