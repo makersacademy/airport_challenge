@@ -6,4 +6,8 @@ class Airport
     Airplane.new
   end
 
+  def take_off(airplane)
+    "The airplane #{airplane} has taken off"
+  end
+
 end
