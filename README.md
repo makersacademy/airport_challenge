@@ -1,90 +1,45 @@
-Airport Challenge
-=================
+<h1> README: Airport Challenge </h1>
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+<h2> Initial thoughts: </h2>
 
-```
+- After reading the user stories I identified that three classes were needed: Airport, Plane and Weather
 
-Instructions
----------
+<h2> Airport: </h2>
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+- When an airport lands(#land) a plane it is added to its contents(@contents)
+- When an airport takes off(#take_off) a plane it is no longer in its contents, it confirms that the take off was completed successfully ("Take off complete")
+- If weather is identified as stormy it will not land a plane or allow it to take off, instead it will raise corresponding error messages ("Weather preventing landing" and "Weather preventing take_off")
+- It has a default capacity(@capacity) which can be overridden
+- It can check if it is full(#full?) and does not allow planes to land when this is the case, instead raising an error message ("Airport full")
+- It does not allow a plane which is already in the airport to re-land, instead raising an error("Plane already landed)
+- It does not allow a plane which is already in the air to re-take off, instead raising an error("Plane already in the sky")
 
-Steps
--------
+<h2> Plane: </h2>
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+- It can make planes
 
-Task
------
+<h2> Weather: </h2>
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+- When an instance is created it is randomly assigned an index(@random_index) which will influence what type of weather
+- The options for type of weather are sunny or stormy
+- It relays what weather type it is when (#forecast)
+- It responds true or false when asked if it is stormy(#stormy?)
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+<h2> Testing: </h2>
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+- This program has 100% coverage
+- To run tests run `rspec` in the main project directory
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+<h2> Possible Room for Development: </h2>
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+- This program does not currently deal with the edge case of what happens when you try and land a plane which is currently not in the airport but is in another airport.
+- It is possibly closer to real life practices to have the planes land and take off themselves, with the airport being primarily responsible for knowing if it is at capacity and what planes it contains
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+<h2> Basic running of the program</h2>
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+1. create an airport `airport_a = Airport.new`
+2. create an plane `plane_a = Plane.new`
+3. create the weather `weather = Weather.new`
+3. have the airport land the plane, specifying which plane and the current weather `airport.land(plane_a, weather)`
+4. have the airport allow the plane to take off, specifying which plane and the current weather `airport.take_off(plane_a, weather)`
+5. Add more airports and planes as desired
