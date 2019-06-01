@@ -1,8 +1,9 @@
 class Airport
-  attr_reader :landed_planes
+  attr_reader :landed_planes, :weather
 
-  def initialize(landed_planes = [])
+  def initialize(weather, landed_planes = [])
     @landed_planes = landed_planes
+    @weather = weather
   end
 
   def land(plane)
@@ -10,6 +11,11 @@ class Airport
   end
 
   def take_off(plane)
-    @landed_planes.delete(plane)
+    case @weather
+    when :stormy
+      raise "denied due to weather"
+    else
+      @landed_planes.delete(plane)
+    end
   end
 end
