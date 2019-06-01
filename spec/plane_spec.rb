@@ -2,7 +2,6 @@ require 'plane'
 require 'airport'
 
 describe Plane do
-  it { is_expected.to respond_to(:land) }
 
   it 'should be initialised with a state of being at the airport' do
     expect(subject.instance_variable_get(:@at_airport)).to be true
