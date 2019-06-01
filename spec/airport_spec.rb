@@ -2,7 +2,9 @@ require 'airport'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:safe?) }
+  it 'weather is either sunny or stormy' do
+    expect(subject.weather).to eq('sunny').or eq('stormy')
+  end
 
   context "weather is sunny" do
     airport = Airport.new
