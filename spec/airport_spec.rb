@@ -6,6 +6,10 @@ describe Airport do
     expect(subject.weather).to eq('sunny').or eq('stormy')
   end
 
+  it 'checks to see if airport is full' do
+    expect(subject).to be_full  
+  end
+
   context "weather is sunny" do
     airport = Airport.new
     before { allow(airport).to receive(:weather).and_return('sunny') }
