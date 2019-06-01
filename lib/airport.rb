@@ -1,3 +1,5 @@
+require_relative "weather"
+
 class Airport
   attr_accessor :contents
 
@@ -9,7 +11,8 @@ class Airport
     @contents << plane
   end
 
-  def take_off(plane)
+  def take_off(plane,weather)
+    raise "Weather preventing takeoff" if weather.stormy?
     @contents.delete(plane)
     "Take off complete"
   end

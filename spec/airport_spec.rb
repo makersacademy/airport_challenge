@@ -1,46 +1,46 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do
+
+before(:all) do
+  @airport = Airport.new
+  @plane = Plane.new
+  @weather = Weather.new
+end
+
 #User Story 1
   it "responds to message land" do
-    airport = Airport.new
-    expect(airport).to respond_to(:land)
+    expect(@airport).to respond_to(:land)
   end
 
   it "adds a plane to contents when it has landed a plane" do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    expect(airport.contents).to include(plane)
+    @airport.land(@plane)
+    expect(@airport.contents).to include(@plane)
   end
 
 #User Story 2
   it "responds to message takeoff" do
-    airport = Airport.new
-    expect(airport).to respond_to(:take_off)
+    expect(@airport).to respond_to(:take_off)
   end
 
   it "no longer contains a plane once it has taken off" do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    airport.take_off(plane)
-    expect(airport.contents).not_to include(plane)
+    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.take_off(@plane, @weather)
+    expect(@airport.contents).not_to include(@plane)
   end
 
   it "confirms take off has occurred" do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    expect(airport.take_off(plane)).to eq("Take off complete")
+    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    expect(@airport.take_off(@plane, @weather)).to eq("Take off complete")
   end
 #User Story 3
-  it "does not allow take off if weather is stormy"
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    weather = Weather.new
-    weather.forecast = "stormy"
-    expect(airport.take_off(plane)).to raise_error("Weather preventing takeoff")
+  it "does not allow take off if weather is stormy" do
+    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {true}
+    expect{@airport.take_off(@plane,@weather)}.to raise_error("Weather preventing takeoff")
+  end
 end
