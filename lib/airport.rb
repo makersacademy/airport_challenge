@@ -5,6 +5,7 @@ class Airport
   def initialize(capacity = 10)
     set_safety
     @capacity = capacity
+    @hanger = []
   end
 
   def safe?

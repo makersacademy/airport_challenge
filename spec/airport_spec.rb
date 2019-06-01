@@ -19,7 +19,7 @@ describe Airport do
 
   it 'is initialised with a instance variable to hold planes' do
     airport = Airport.new
-    expect(airport.instance_variable_get(:@hanger)).to be true
+    expect(airport.instance_variable_get(:@hanger)).to be_an_instance_of(Array)
   end
 
   context "weather is sunny" do
