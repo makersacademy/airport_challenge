@@ -1,11 +1,12 @@
 require_relative "weather"
 
 class Airport
-  attr_accessor :contents
-  MAX_CAPACITY = 1
+  attr_accessor :contents, :capacity
 
-  def initialize
+
+  def initialize(capacity= 5)
     @contents = []
+    @capacity = capacity
   end
 
   def land(plane, weather)
@@ -18,10 +19,9 @@ class Airport
     raise "Weather preventing takeoff" if weather.stormy?
     @contents.delete(plane)
     "Take off complete"
-
   end
 
   def full?
-    @contents.length == MAX_CAPACITY
+    @contents.length == capacity
   end
 end

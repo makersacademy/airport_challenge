@@ -54,13 +54,16 @@ end
   end
 
 #User Story 5
+  it "has a default airport capacity which can be overridden" do
+    expect(@airport.capacity).to eq(5)
+  end
+
   it "knows when it is full" do
-    allow(@airport).to receive(:MAX_CAPACITY) {3}
+    allow(@airport).to receive(:capacity) {1}
     allow(@weather).to receive(:stormy?) {false}
     @airport.land(@plane, @weather)
     allow(@weather).to receive(:stormy?) {false}
     expect{@airport.land(@plane, @weather)}.to raise_error("Airport full")
-
   end
 
   it "does not all planes to land when airport is full" do
