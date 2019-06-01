@@ -18,6 +18,11 @@ describe Airport do
     expect(airport.hanger).not_to include(plane)
   end
 
+  it 'returns either stormy or sunny randomly when .weather is called' do
+    srand 5
+    expect(airport.weather).to eq('sunny')
+  end
+
   context 'when weather is stormy' do
 
     it 'raises error if trying to take off' do

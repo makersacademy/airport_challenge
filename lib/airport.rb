@@ -9,7 +9,7 @@ class Airport
 
   def land(plane)
     raise "Can't land because it's stormy" if weather == 'stormy'
-    
+
     @hanger.push(plane)
   end
 
@@ -20,12 +20,7 @@ class Airport
   end
 
   def weather
-    weather = rand(10)
-    if weather <= 2
-      'stormy'
-    else
-      'sunny'
-    end
+    ['stormy', 'sunny', 'sunny'].sample
   end
 
 end
