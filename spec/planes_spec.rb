@@ -1,5 +1,8 @@
 require 'planes'
 
 describe Planes do
-  it { is_expected.to respond_to :landing? }
+  it 'plane is flying' do
+    subject.flying
+    expect(subject).to be_flying
+  end
 end
