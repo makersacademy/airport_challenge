@@ -22,4 +22,10 @@ describe Airport do
     expect(subject.planes).to eql(1)
   end
 
+  it 'responds to question is_full? with true if no capacity' do
+    subject.capacity = 10
+    subject.planes = 10
+    expect(subject.is_full?).to eql(true)
+  end
+
 end

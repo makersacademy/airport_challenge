@@ -28,4 +28,8 @@ class Airport
     @planes -= 1
   end
 
+  def is_full?
+    @planes == @capacity ? true : false
+  end
+
 end
