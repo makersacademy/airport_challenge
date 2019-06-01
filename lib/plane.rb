@@ -1,6 +1,6 @@
 class Plane
   def land_at(airport)
-    airport.add_plane(self)
+    airport.add_plane
     true
   end
 

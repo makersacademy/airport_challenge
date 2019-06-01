@@ -1,7 +1,7 @@
 class Airport
   def initialize
     @capacity = 10
-    @planes = []
+    @planes = 0
   end
 
   def capacity
@@ -16,15 +16,8 @@ class Airport
     @capacity = num_of_planes
   end
 
-  def add_plane(plane)
-    @planes.push(plane)
+  def add_plane
+    @planes += 1
   end
 
-  def remove_plane(plane)
-    @planes.delete(plane)
-  end
-
-  def plane_at_airport?(plane)
-    @planes.include?(plane)
-  end
 end

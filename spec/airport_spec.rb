@@ -10,31 +10,9 @@ describe Airport do
     expect(subject.capacity).to equal(20)
   end
 
-  it 'defaults the list of Planes to no planes at the airport' do
-    expect(subject.planes).to be_empty
+  it 'allows the number of planes at the airport to be increased by 1' do
+    subject.add_plane
+    expect(subject.planes).to eql(1)
   end
 
-  it 'allows a plane to be added to the list at the airport' do
-    plane = Plane.new
-    subject.add_plane(plane)
-    expect(subject.planes).to include(plane)
-  end
-
-  it 'removes a plane from the list at the airport when requested' do
-    plane = Plane.new
-    subject.add_plane(plane)  
-    subject.remove_plane(plane)
-    expect(subject.planes).not_to include(plane)
-  end
-
-  it 'returns false when asked if a plane is at the airport which isnt there' do
-    plane = Plane.new
-    expect(subject.plane_at_airport?(plane)).to eql(false)
-  end
-
-  it 'returns true when asked if a plane is at the airport which is there' do
-    plane = Plane.new
-    subject.add_plane(plane)
-    expect(subject.plane_at_airport?(plane)).to eql(true)
-  end
 end
