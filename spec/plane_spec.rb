@@ -11,5 +11,8 @@ describe Plane do
     expect(subject).not_to be_at_airport 
   end
 
-
+  it 'should be initialised with a state of being at the airport' do
+    expect(subject.instance_variable_get(:@at_airport)).to eq(true)
+  end
+  
 end
