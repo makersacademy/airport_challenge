@@ -6,7 +6,7 @@ describe Airport do
     it 'lands a plane' do
       planes = Planes.new
       subject.apron(planes)
-      expect(subject.land_plane).to eq planes
+      expect(subject.land_plane).to eq [planes]
     end
   end
 
@@ -16,13 +16,12 @@ describe Airport do
     it 'returns planes to apron' do 
       planes = Planes.new
       subject.apron(planes)
-      expect(subject.planes).to eq planes
+      expect(subject.planes).to eq [planes]
     end
     
     it 'raises an error when airport full' do
-      subject.apron(Planes.new)
+      20.times { subject.apron Planes.new }
       expect { subject.apron Planes.new}.to raise_error 'Airport is full'
     end
   end
-
 end
