@@ -2,10 +2,13 @@ require_relative './weather.rb'
 
 class Airport
 
+  attr_reader :hanger
+
   def initialize(capacity = 10)
     set_safety
     @capacity = capacity
     @hanger = []
+    @full = false
   end
 
   def safe?
@@ -13,7 +16,7 @@ class Airport
   end
 
   def full?
-    true  
+    @full
   end
 
   def weather
@@ -27,6 +30,14 @@ class Airport
     else
       @safe = false
     end
+  end
+
+  def check_capacity
+    if @hanger.length == @capacity
+      @full = true
+    else
+      @full = false
+    end    
   end
 
 end

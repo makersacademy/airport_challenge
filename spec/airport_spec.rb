@@ -7,11 +7,6 @@ describe Airport do
     expect(airport.weather).to eq('sunny').or eq('stormy')
   end
 
-  it 'checks to see if airport is full' do
-    airport = Airport.new
-    expect(airport).to be_full  
-  end
-
   it 'is initialised with a capacity argument that can override default' do
     airport = Airport.new(100)
     expect(airport.instance_variable_get(:@capacity)).to eq(100)
@@ -24,10 +19,21 @@ describe Airport do
 
   context "hanger should be at capacity" do
     airport = Airport.new
-    before { allow(airport).to receive(:hanger.length).and_return(10) }
+    before { allow(airport.hanger).to receive(:length).and_return(10) }
 
     it 'should be full if the hanger is at capacity' do
+      airport.check_capacity
       expect(airport).to be_full
+    end
+  end
+
+  context "hanger is not at capacity" do
+    airport = Airport.new
+    before { allow(airport.hanger).to receive(:length).and_return(2) }
+
+    it 'should be full if the hanger is at capacity' do
+      airport.check_capacity
+      expect(airport).not_to be_full
     end
   end
 
