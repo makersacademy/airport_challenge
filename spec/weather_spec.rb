@@ -8,13 +8,13 @@ describe Weather do
 
   it "knows if it is stormy" do
     @weather = Weather.new
-    allow(@weather).to receive(:forecast) {"stormy"}
+    allow(@weather).to receive(:forecast) { "stormy" }
     expect(@weather.stormy?).to eq(true)
   end
 
   it "assigns weather randomly" do
     weather = Weather.new
-    allow(weather).to receive(:random_index) {0}
+    allow(weather).to receive(:random_index) { 0 }
     expect(weather.forecast).to eq("sunny")
   end
 

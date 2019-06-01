@@ -1,5 +1,5 @@
 class Weather
-  attr_reader :forecast, :weather_options, :random_index
+  attr_reader :weather_options, :random_index
 
   def initialize
     @weather_options = ["sunny", "stormy"]
