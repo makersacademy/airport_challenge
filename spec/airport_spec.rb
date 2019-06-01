@@ -34,6 +34,13 @@ describe Airport do
     plane = Plane.new
     airport.land(plane)
     expect(airport.take_off(plane)).to eq("Take off complete")
-  end 
-
+  end
+#User Story 3
+  it "does not allow take off if weather is stormy"
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    weather = Weather.new
+    weather.forecast = "stormy"
+    expect(airport.take_off(plane)).to raise_error("Weather preventing takeoff")
 end
