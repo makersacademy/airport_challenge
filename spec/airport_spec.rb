@@ -20,12 +20,12 @@ RSpec.describe Airport do
 
   it "allows a plane to leave" do
     # arrange
-    airport = Airport.new
     plane = Plane.new
-    @landed_planes = [plane]
+    airport = Airport.new([plane])
     # act
     airport.take_off(plane)
     # assert
     expect(airport.landed_planes).to eq([])
   end
+
 end
