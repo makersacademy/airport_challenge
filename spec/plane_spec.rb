@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
   it { is_expected.to respond_to(:land) }
@@ -12,11 +13,16 @@ describe Plane do
     expect(subject.instance_variable_get(:@at_airport)).to be true
   end
 
-  it 'should not allow take off if weather is stormy' do
-    weather = object_double(Weather.new)
-    allow(weather).to receive(:generate_weather) { 'stormy' }
-    subject.take_off
-    expect(subject).to be_at_airport  
+  context "airport is safe" do
+    #airport = object_double(Airport.new)
+    #before { allow(airport).to receive(:safe?).and_return(true) }
+    
+    it 'when it is safe the plane can take off' do
+      airport = object_double(Airport.new)
+      allow(airport).to receive(:safe?).and_return(true)
+      subject.take_off(airport)
+      expect(subject).not_to be_at_airport
+    end
   end
 
 end
