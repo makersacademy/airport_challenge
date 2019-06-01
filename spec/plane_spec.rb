@@ -1,7 +1,8 @@
 require 'plane'
 
 describe Plane do
-  it 'should create an instance of Plane' do
+  it 'exists as a class' do
     expect(described_class).to eq(Plane)
   end
+  
 end
