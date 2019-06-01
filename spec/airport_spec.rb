@@ -16,7 +16,8 @@ end
   end
 
   it "adds a plane to contents when it has landed a plane" do
-    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.land(@plane,@weather)
     expect(@airport.contents).to include(@plane)
   end
 
@@ -26,21 +27,29 @@ end
   end
 
   it "no longer contains a plane once it has taken off" do
-    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.land(@plane,@weather)
     allow(@weather).to receive(:stormy?) {false}
     @airport.take_off(@plane, @weather)
     expect(@airport.contents).not_to include(@plane)
   end
 
   it "confirms take off has occurred" do
-    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.land(@plane,@weather)
     allow(@weather).to receive(:stormy?) {false}
     expect(@airport.take_off(@plane, @weather)).to eq("Take off complete")
   end
 #User Story 3
   it "does not allow take off if weather is stormy" do
-    @airport.land(@plane)
+    allow(@weather).to receive(:stormy?) {false}
+    @airport.land(@plane,@weather)
     allow(@weather).to receive(:stormy?) {true}
     expect{@airport.take_off(@plane,@weather)}.to raise_error("Weather preventing takeoff")
+  end
+#User Story 4
+  it "does not allow landing if weather is stormy" do
+    allow(@weather).to receive(:stormy?) {true}
+    expect{@airport.land(@plane,@weather)}.to raise_error("Weather preventing landing")
   end
 end
