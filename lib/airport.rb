@@ -11,6 +11,7 @@ class Airport
 
   def take_off(plane)
     @contents.delete(plane)
+    "Take off complete"
   end
 
 

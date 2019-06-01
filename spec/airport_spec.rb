@@ -21,12 +21,19 @@ describe Airport do
     expect(airport).to respond_to(:take_off)
   end
 
-  it "no longer contains a plain once it has taken off" do
+  it "no longer contains a plane once it has taken off" do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.contents).not_to include(plane)
   end
+
+  it "confirms take off has occurred" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq("Take off complete")
+  end 
 
 end
