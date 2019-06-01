@@ -1,10 +1,13 @@
+require_relative './weather.rb'
+
 class Plane
 
   def initialize
     @at_airport = true
   end
   
-  def land  
+  def land
+
   end
 
   def take_off
