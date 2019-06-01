@@ -3,7 +3,7 @@ require_relative './weather.rb'
 class Airport
 
   def initialize(capacity)
-    @safe
+    set_safety
     @capacity = capacity
   end
 
