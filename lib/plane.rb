@@ -4,7 +4,7 @@ class Plane
   end
 
   def take_off
-    true
+    @at_airport = false
   end
 
   def at_airport?
