@@ -10,6 +10,10 @@ describe Airport do
     expect(subject).to be_full  
   end
 
+  it 'is initialised with a capacity argument' do
+    expect(subject).to respond_to(:initialize).with(1).argument
+  end
+
   context "weather is sunny" do
     airport = Airport.new
     before { allow(airport).to receive(:weather).and_return('sunny') }
