@@ -1,16 +1,8 @@
-# Airport Challenge :airplane:
+<h1 align='center'>
+:airplane: 
+</h1>
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
+# Airport Challenge 
 
 ## User Stories
 
