@@ -2,7 +2,7 @@
 
 <h2> Initial thoughts </h2>
 
-- After reading the user stories I identified that three classes were needed: Airport, Plane and weather
+- After reading the user stories I identified that three classes were needed: Airport, Plane and Weather
 
 <h2> Airport: </h2>
 - When an airport lands(#land) a plane it is added to its contents(@contents)
