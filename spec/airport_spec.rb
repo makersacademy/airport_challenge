@@ -17,6 +17,11 @@ describe Airport do
     expect(airport.instance_variable_get(:@capacity)).to eq(100)
   end
 
+  it 'is initialised with a instance variable to hold planes' do
+    airport = Airport.new
+    expect(airport.instance_variable_get(:@hanger)).to be true
+  end
+
   context "weather is sunny" do
     airport = Airport.new
     before { allow(airport).to receive(:weather).and_return('sunny') }
