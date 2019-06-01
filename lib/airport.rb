@@ -2,4 +2,8 @@ require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challen
 
 class Airport
 
+  def land
+    Airplane.new
+  end
+
 end
