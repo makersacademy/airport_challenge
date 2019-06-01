@@ -1,14 +1,17 @@
 class Weather
-  attr_reader :forecast, :weather_options, :index
+  attr_reader :forecast, :weather_options, :random_index
 
   def initialize
     @weather_options = ["sunny", "stormy"]
-    @index = rand(@weather_options.length)
-    @forecast = weather_options[@index]
+    @random_index = rand(@weather_options.length)
+  end
+
+  def forecast
+    @weather_options[random_index]
   end
 
   def stormy?
-    @forecast == "stormy"
+    forecast == "stormy"
   end
 
 end

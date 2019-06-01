@@ -58,7 +58,7 @@ end
     expect(@airport.capacity).to eq(3)
   end
 
-  it "knows when it is full" do
+  it "responds true to full? when reached capacity" do
     allow(@airport).to receive(:capacity) {1}
     @airport.land(@plane, @weather)
     plane2 = Plane.new
