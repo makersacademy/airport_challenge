@@ -11,7 +11,14 @@ describe Airport do
   end
 
   it 'allows the number of planes at the airport to be increased by 1' do
+    subject.planes = 0
     subject.add_plane
+    expect(subject.planes).to eql(1)
+  end
+
+  it 'allows the number of planes at the airport to be reduced by 1' do
+    subject.planes = 2
+    subject.remove_plane
     expect(subject.planes).to eql(1)
   end
 

@@ -12,12 +12,20 @@ class Airport
     @planes
   end
 
+  def planes=(num)
+    @planes = num
+  end
+
   def capacity=(num_of_planes)
     @capacity = num_of_planes
   end
 
   def add_plane
     @planes += 1
+  end
+
+  def remove_plane
+    @planes -= 1
   end
 
 end
