@@ -4,10 +4,9 @@ require_relative '../lib/airport.rb'
 
 airport = Airport.new
 plane = Plane.new
-#weather = Weather.new
 puts "Plane at airport? #{plane.at_airport?}"
-#puts "Weather at airport: #{weather.generate_weather}"
+airport.set_safety
 puts "Airport safe: #{airport.safe?}"
 puts "Plane asked to take-off"
-plane.take_off
+plane.take_off(airport)
 puts "Plane at airport? #{plane.at_airport?}"
