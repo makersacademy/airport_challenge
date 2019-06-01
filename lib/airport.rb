@@ -23,4 +23,8 @@ class Airport
   def remove_plane(plane)
     @planes.delete(plane)
   end
+
+  def plane_at_airport?(plane)
+    return false
+  end
 end

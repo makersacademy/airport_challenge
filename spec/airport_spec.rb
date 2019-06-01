@@ -26,4 +26,9 @@ describe Airport do
     subject.remove_plane(plane)
     expect(subject.planes).not_to include(plane)
   end
+
+  it 'returns false when asked if a plane is at the airport which isnt there' do
+    plane = Plane.new
+    expect(subject.plane_at_airport?(plane)).to eql(false)
+  end
 end
