@@ -52,4 +52,11 @@ end
     allow(@weather).to receive(:stormy?) {true}
     expect{@airport.land(@plane,@weather)}.to raise_error("Weather preventing landing")
   end
+
+#User Story 5
+  it "does not all planes to land when airport is full" do
+    allow(@weather).to receive(:stormy?) {false}
+    allow(@airport).to receive(:full?) {true}
+    expect{@airport.land(@plane,@weather)}.to raise_error("Airport full")
+  end
 end
