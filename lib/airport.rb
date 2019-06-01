@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     raise "Can't land because it's stormy" if weather == 'stormy'
+    raise "Can't land, airport is full" if @hanger.count.positive?
 
     @hanger.push(plane)
   end
