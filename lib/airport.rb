@@ -2,8 +2,8 @@ require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challen
 
 class Airport
 
-  def land
-    Airplane.new
+  def land(airplane)
+    airplane
   end
 
   def take_off(airplane)
