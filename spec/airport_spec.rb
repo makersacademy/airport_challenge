@@ -31,4 +31,10 @@ describe Airport do
     plane = Plane.new
     expect(subject.plane_at_airport?(plane)).to eql(false)
   end
+
+  it 'returns true when asked if a plane is at the airport which is there' do
+    plane = Plane.new
+    subject.add_plane(plane)
+    expect(subject.plane_at_airport?(plane)).to eql(true)
+  end
 end

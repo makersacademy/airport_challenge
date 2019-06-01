@@ -25,6 +25,6 @@ class Airport
   end
 
   def plane_at_airport?(plane)
-    return false
+    @planes.include?(plane)
   end
 end
