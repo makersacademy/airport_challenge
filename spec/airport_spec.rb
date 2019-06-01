@@ -22,6 +22,15 @@ describe Airport do
     expect(airport.instance_variable_get(:@hanger)).to be_an_instance_of(Array)
   end
 
+  context "hanger should be at capacity" do
+    airport = Airport.new
+    before { allow(airport).to receive(:hanger.length).and_return(10) }
+
+    it 'should be full if the hanger is at capacity' do
+      expect(airport).to be_full
+    end
+  end
+
   context "weather is sunny" do
     airport = Airport.new
     before { allow(airport).to receive(:weather).and_return('sunny') }
