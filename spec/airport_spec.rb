@@ -35,6 +35,7 @@ describe Airport do
     before { allow(airport).to receive(:check_weather).and_return(true) }
     before { allow(airport).to receive(:check_capacity).and_return(false) }
     before { allow(airport).to receive(:check_hanger).and_return(false) }
+    before { allow(plane).to receive(:at_airport).and_return(false) }
     it 'should be clear for landing' do
       expect(airport.clear_for_landing(plane)).to be true
     end
@@ -44,6 +45,7 @@ describe Airport do
     before { allow(airport).to receive(:check_weather).and_return(false) }
     before { allow(airport).to receive(:check_capacity).and_return(false) }
     before { allow(airport).to receive(:check_hanger).and_return(false) }
+    before { allow(plane).to receive(:at_airport).and_return(true) }
     it 'should not be clear for landing' do
       expect(airport.clear_for_landing(plane)).not_to be true
     end
@@ -68,6 +70,7 @@ describe Airport do
 
   context "ok to land plane" do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
+    before { allow(plane).to receive(:in_hanger) }
     it 'should put the plane in the hanger' do
       airport.land(plane)
       expect(airport.hanger).to include(plane)
@@ -76,6 +79,7 @@ describe Airport do
 
   context "not ok to land plane" do
     before { allow(airport).to receive(:clear_for_landing).and_return(false) }
+    before { allow(plane).to receive(:in_hanger) }
     it 'plane should not be in the hanger' do
       airport.land(plane)
       expect(airport.hanger).not_to include(plane)
@@ -85,6 +89,7 @@ describe Airport do
   context "ok to take off" do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
     before { allow(airport).to receive(:clear_for_take_off).and_return(true) }
+    before { allow(plane).to receive(:in_hanger) }
     it 'should put the plane in the hanger' do
       airport.land(plane)
       airport.take_off(plane)
@@ -95,6 +100,7 @@ describe Airport do
   context "not ok to take off" do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
     before { allow(airport).to receive(:clear_for_take_off).and_return(false) }
+    before { allow(plane).to receive(:in_hanger) }
     it 'plane should remain in the hanger' do
       airport.land(plane)
       airport.take_off(plane)

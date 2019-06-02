@@ -18,7 +18,7 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    if check_weather && !check_hanger(plane) && !check_capacity
+    if check_weather && !check_hanger(plane) && !check_capacity && !plane.at_airport
       true
     else
       false
@@ -43,7 +43,12 @@ class Airport
   end
 
   def land(plane)
-    clear_for_landing(plane) ? @hanger << plane : puts('Plane not able to land')
+    if clear_for_landing(plane)
+      @hanger << plane
+      plane.in_hanger
+    else
+      puts('Plane not able to land')
+    end
   end
 
   def take_off(plane)
