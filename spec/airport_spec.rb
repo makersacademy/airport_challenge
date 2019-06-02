@@ -5,11 +5,7 @@ describe Airport do
     expect(described_class).to eq(Airport)
   end
 
-  it { is_expected.to respond_to(:land) }
-
-  it 'accepts one argument to land' do         
-    expect { subject.land(1) }.not_to raise_error
-  end
+  it { is_expected.to respond_to(:land).with(1).argument }
 
   it 'lands a plane' do
     plane = Plane.new
@@ -17,4 +13,6 @@ describe Airport do
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
+
+  it { is_expected.to respond_to(:plane) }
 end
