@@ -120,8 +120,9 @@ describe Airport do
   context "land plane" do
     it 'should land a plane' do
       airport = Airport.new
+      plane = object_double(Plane.new)
       airport.land(plane)
-      expect(airport.hanger).to inlude(plane)
+      expect(airport.hanger).to include(plane)
     end
   end
 

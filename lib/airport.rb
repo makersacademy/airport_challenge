@@ -65,4 +65,9 @@ class Airport
     end
   end
 
+  def land(plane)
+    @hanger << plane
+  end
+
+
 end
