@@ -16,7 +16,7 @@ Airport Challenge
 
 Introduction
 ---------
-This is my attempt at the Makers Academy Week 1 challenge. The original instructions can be found in the ORIGINAL_README.md file.
+This is my attempt at the Makers Academy Week 1 challenge. The original instructions can be found in the `ORIGINAL_README.md` file.
 
 Instructions
 -----------
