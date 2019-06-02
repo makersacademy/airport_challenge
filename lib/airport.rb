@@ -2,8 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  def plane_land
-    Plane.new
+  def land(plane)
+    plane
   end
-
 end
