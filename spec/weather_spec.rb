@@ -1,7 +1,7 @@
 require 'weather'
 describe Weather do
   it { is_expected.to respond_to :stormy? }
-  end
+end
 
 describe '#stormy?' do
   it 'returns true if storm_level is more than 7' do

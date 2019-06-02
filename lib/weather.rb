@@ -6,4 +6,8 @@ class Weather
   def stormy?
     @storm_level >= 7
   end
+
+  def storm_level
+    rand(1..10)
+  end
 end
