@@ -1,5 +1,6 @@
-Airport Challenge
-=================
++My approach: 
+
+Similar to boris bikes so used that as a starting point.  Worked through irb and tests in detail, checking the class can respond to methods first before writing.  Removed unnecessary tests such as capacity because the test for checking if it's full is doing this. Initially started with weather in the airport class but changed to its own class and passed as an argument to allow weather doubles to work.  
 
 ```
         ______
@@ -10,7 +11,6 @@ Airport Challenge
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
-
 ```
 
 Instructions
@@ -39,23 +39,18 @@ We have a request from a client to write the software to control the flow of pla
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
-
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
-
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
-
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
