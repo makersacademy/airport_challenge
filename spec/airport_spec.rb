@@ -8,7 +8,7 @@ describe Airport do
     expect(airport.weather).to eq('sunny').or eq('stormy')
   end
 
-  context "checking weather" do
+  context "Verify checking weather is true when sunny" do
     before { allow(airport).to receive(:weather).and_return('sunny') }
     it 'should return true' do
       expect(airport.check_weather).to be true
@@ -24,21 +24,21 @@ describe Airport do
     expect(airport.instance_variable_get(:@hanger)).to be_an_instance_of(Array)
   end
 
-  context "hanger should be at capacity" do
+  context "Comparing hanger to capacity when airport full" do
     before { allow(airport.hanger).to receive(:length).and_return(10) }
     it 'should be full if the hanger is at capacity' do      
       expect(airport.check_capacity).to be true
     end
   end
 
-  context "hanger should not be at capacity" do
+  context "Comparing hanger to capacity when airport not full" do
     before { allow(airport.hanger).to receive(:length).and_return(2) }
     it 'should not be at capacity' do      
       expect(airport.check_capacity).to be false
     end
   end
 
-  context "clear for landing" do
+  context "Check logic for clear for landing - true" do
     before { allow(airport).to receive(:check_weather).and_return(true) }
     before { allow(airport).to receive(:check_capacity).and_return(false) }
     before { allow(airport).to receive(:check_hanger).and_return(false) }
@@ -48,7 +48,7 @@ describe Airport do
     end
   end
 
-  context "not clear for landing" do
+  context "Check a scenario when not clear for landing" do
     before { allow(airport).to receive(:check_weather).and_return(false) }
     before { allow(airport).to receive(:check_capacity).and_return(false) }
     before { allow(airport).to receive(:check_hanger).and_return(false) }
@@ -58,7 +58,7 @@ describe Airport do
     end
   end
 
-  context "clear for take-off" do
+  context "Check scenario for clear for take-off" do
     before { allow(airport).to receive(:check_weather).and_return(true) }
     before { allow(airport).to receive(:check_hanger).and_return(true) }
     it 'should be clear for take-off' do
@@ -66,7 +66,7 @@ describe Airport do
     end
   end
 
-  context "not clear for take-off" do
+  context "Check a scenario when not clear for take-off" do
     before { allow(airport).to receive(:check_weather).and_return(false) }
     before { allow(airport).to receive(:check_hanger).and_return(true) }
 
@@ -75,25 +75,36 @@ describe Airport do
     end
   end
 
-  context "ok to land plane" do
+  context "Plane ok to land" do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
     before { allow(plane).to receive(:in_hanger) }
     it 'should put the plane in the hanger' do
       airport.land(plane)
       expect(airport.hanger).to include(plane)
     end
+    it 'should find plane in hanger' do
+      airport.land(plane)
+      expect(airport.check_hanger(plane)).to be true
+    end
   end
 
-  context "not ok to land plane" do
+  context "Plane not able to land" do
     before { allow(airport).to receive(:clear_for_landing).and_return(false) }
     before { allow(plane).to receive(:in_hanger) }
     it 'plane should not be in the hanger' do
       airport.land(plane)
       expect(airport.hanger).not_to include(plane)
     end
+    it 'should put a message' do
+      expect{airport.land(plane)}.to output("Plane not able to land\n").to_stdout
+    end
+    it 'should not find plane in hanger' do
+      airport.land(plane)
+      expect(airport.check_hanger(plane)).to be false
+    end
   end
 
-  context "ok to take off" do
+  context "Plane allowed to take off" do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
     before { allow(airport).to receive(:clear_for_take_off).and_return(true) }
     before { allow(plane).to receive(:in_hanger) }
@@ -105,15 +116,18 @@ describe Airport do
     end
   end
 
-  # context "not ok to take off" do
-  #   before { allow(airport).to receive(:clear_for_landing).and_return(true) }
-  #   before { allow(airport).to receive(:clear_for_take_off).and_return(false) }
-  #   before { allow(plane).to receive(:in_hanger) }
-  #   it 'plane should remain in the hanger' do
-  #     airport.land(plane)
-  #     airport.take_off(plane)
-  #     expect(airport.hanger).to include(plane)
-  #   end
-  # end
+  context "Plane cannot take off" do
+    before { allow(airport).to receive(:clear_for_landing).and_return(true) }
+    before { allow(airport).to receive(:clear_for_take_off).and_return(false) }
+    before { allow(plane).to receive(:in_hanger) }
+    it 'plane should remain in the hanger' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.hanger).to include(plane)
+    end
+    it 'should put a message' do
+      expect{airport.take_off(plane)}.to output("Plane not able to take off\n").to_stdout
+    end
+  end
 
 end
