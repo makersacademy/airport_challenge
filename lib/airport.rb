@@ -2,19 +2,22 @@ require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challen
 require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challenge/lib/weather.rb'
 
 class Airport
-  attr_accessor :weather, :capacity
+  attr_accessor :weather, :capacity, :hangar
 
-  def initialize 
+  def initialize
     @weather = Weather.new.status
-    @capacity = []
+    @capacity = 5
+    @hangar = []
   end
 
   def land(airplane)
     raise 'The weather is stormy' if @weather == :stormy
 
-    raise 'The airport is full' unless @capacity.empty?
+    raise 'The airport is full' unless @hangar.length < @capacity
 
-    airplane
+    raise 'The airplane has already landed' if @hangar.include?(airplane)
+
+    @hangar << airplane
   end
 
   def take_off(airplane)
