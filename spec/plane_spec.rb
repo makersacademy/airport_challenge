@@ -19,4 +19,14 @@ describe Plane do
         plane.takeoff
         expect(plane.status).to eq("IN-AIR")
     end
+
+    it "raises err when plane is grounded and a land is attempted" do
+        plane.status = "GROUNDED"
+        expect {plane.land}.to raise_exception "Plane is already grounded"
+    end
+
+    it "raises err when plane is airbourne and takeoff is attempted" do
+        plane.status = "IN-AIR"
+        expect {plane.takeoff}.to raise_exception "Plane is already airbourne"
+    end
 end
