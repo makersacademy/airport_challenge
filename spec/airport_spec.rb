@@ -1,8 +1,9 @@
 require 'airport'
 
 describe Airport do
-#	 it { is_expected.to respond_to :land_plane }
-  describe '#land_planes' do 
+  it { is_expected.to respond_to :land_plane }
+  
+  describe '#land_plane' do 
     it 'lands a plane' do
       planes = Planes.new
       subject.apron(planes)
@@ -10,7 +11,7 @@ describe Airport do
     end
   end
 
-#  it { is_expected.to respond_to(:apron).with(1).argument }
+  it { is_expected.to respond_to(:apron).with(1).argument }
 #	 it { is_expected.to respond_to(:planes) }
   describe '#apron' do
     it 'returns planes to apron' do 
@@ -20,8 +21,8 @@ describe Airport do
     end
 
     it 'raises an error when airport is full' do
-      subject.capacity.times { subject.apron Planes.new }
-      expect { subject.apron Planes.new }.to raise_error 'Airport is full'
+      subject.capacity.times { subject.apron double :planes }
+      expect { subject.apron double(:planes) }.to raise_error 'Airport is full'
     end
 
     it 'raise an error when there are no planes to take off' do
