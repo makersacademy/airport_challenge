@@ -13,7 +13,7 @@ class Airport
   def land(plane)
     raise "Can't land because it's stormy" if weather == 'stormy'
     raise "Can't land, airport is full" if @hanger.count == @capacity
-    raise "Plane lane is currently in hanger" if @hanger.include?(plane)
+    raise "Plane is currently in hanger" if @hanger.include?(plane)
     raise "Plane is currently landed" if plane.current_state == 'landed'
 
     @hanger.push(plane)

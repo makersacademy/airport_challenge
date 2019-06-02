@@ -45,7 +45,7 @@ describe Airport do
 
     it 'raises error if plane is in hanger when trying to land' do
       @airport.land(@plane)
-      expect { @airport.land(@plane) }.to raise_error("Can't land plane, plane is currently in hanger")
+      expect { @airport.land(@plane) }.to raise_error("Plane is currently in hanger")
     end
   end
 
