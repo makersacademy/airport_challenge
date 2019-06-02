@@ -38,10 +38,16 @@ RSpec.describe Airport do
     it 'raise an error if the weather is stormy' do
       airport.weather = :stormy
       expect { airport.take_off(airplane) }.to raise_error 'The weather is stormy'
-    end 
+    end
+
+    it 'raise an error if there are no airplanes in the airport' do
+      airport.weather = :sunny
+      expect { airport.take_off(airplane) }.to raise_error 'There are no airplanes in the airport'
+    end
 
     it 'instruct a plane to take off' do 
       airport.weather = :sunny
+      airport.hangar = [airplane]
       expect(airport.take_off(airplane)).to eq "The airplane #{airplane} has taken off"
     end
   end
