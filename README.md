@@ -1,6 +1,6 @@
 # My Solution to Airport Challenge
 
- Read the main [Airport Challenge](Airport-Challenge) instructions at the bottom
+ Read the main [Airport Challenge](#Airport-Challenge) instructions at the bottom
 
  ## Assumptions
 
@@ -27,9 +27,9 @@ This is still a work in progress, at minimum I still need to...
 
  ## Acknowledgements
 
- Thanks to Rachel and to Chris for their morale contributions, helping me to persist with the problem when I hit dead ends, and reminding me I don't know _nothing_! :love:
+ Thanks to Rachel and to Chris for their morale contributions, helping me to persist with the problem when I hit dead ends, and reminding me I don't know _nothing_! :gem:
 
-:aeroplane: :aeroplane: :aeroplane: :aeroplane: :aeroplane: :aeroplane: 
+:airplane: :airplane: :airplane: :airplane: :airplane: :airplane: 
 
 Airport Challenge
 =================
