@@ -16,5 +16,6 @@ class Airport
 
   def take_off(plane)
     @planetoadd.pop
+    puts "Plane has taken off \n"
   end
 end

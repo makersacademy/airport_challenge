@@ -19,4 +19,9 @@ describe Airport do
     airport.take_off(plane)
     expect(airport.planetoadd).not_to include(plane)
   end
+
+  it 'prints a message' do
+    airport = Airport.new
+    expect {airport.take_off(@plane) }.to output("Plane has taken off \n").to_stdout
+  end
 end
