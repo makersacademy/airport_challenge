@@ -1,13 +1,13 @@
 class Plane
     attr_accessor :status
     def initialize
-        @status = "GROUNDED"
+        @status = :grounded
     end
 
     def land
-        if @status == "IN-AIR"
+        if @status == :airbourne
             puts "Plane landed"
-            @status = "GROUNDED"
+            @status = :grounded
             return self
         else
             raise "Plane is already grounded"
@@ -15,11 +15,11 @@ class Plane
     end
 
     def takeoff
-        if  @status == "GROUNDED"
+        if  @status == :grounded
             puts  "Plane is in the air"
-            @status = "IN-AIR"
+            @status = :airbourne
             return self
-        elsif @status == "IN-AIR"
+        elsif @status == :airbourne
             raise "Plane is already airbourne"
         end
     end
