@@ -8,7 +8,7 @@ describe Airport do
 
   describe 'initialization' do
     before(:each) do
-      allow(subject).to receive(:weather) { "sunny" }
+      allow(subject).to receive(:weather) { :sunny }
     end
 
     it 'has a default capacity' do
@@ -25,7 +25,7 @@ describe Airport do
 
   context 'when sunny' do
     before(:each) do
-      allow(subject).to receive(:weather) { "sunny" }
+      allow(subject).to receive(:weather) { :sunny }
     end
 
     describe '#land' do
@@ -35,11 +35,13 @@ describe Airport do
       end
       it 'prevents landing if airport is full' do
         subject.capacity.times { subject.land(Plane.new(true)) }
-        expect { subject.land(Plane.new(true)) }.to raise_error("Cannot land, airport full")
+        message = "Cannot land, airport full"
+        expect { subject.land(Plane.new(true)) }.to raise_error(message)
       end
       it 'cannot land plane if it is not airborne' do
         subject.land(@plane)
-        expect { subject.land(@plane) }.to raise_error("Plane not airborne")
+        message = "Plane not airborne"
+        expect { subject.land(@plane) }.to raise_error(message)
       end
     end
 
@@ -50,23 +52,35 @@ describe Airport do
         expect(subject.planes).not_to include(@plane)
       end
       it 'cannot take off if it is already airborne' do
-        @plane.airborne = true
-        expect { subject.take_off(@plane) }.to raise_error("Plane already airborne")
+        message = "Plane already airborne"
+        expect { subject.take_off(@plane) }.to raise_error(message)
+      end
+      it 'cannot take off if it is not at this airport' do
+        airport_1 = Airport.new
+        airport_2 = Airport.new
+        allow(airport_1).to receive(:weather) { :sunny }
+        allow(airport_2).to receive(:weather) { :sunny }
+        airport_1.land(@plane)
+        airport_1.take_off(@plane)
+        airport_2.land(@plane)
+        message = "Plane not at this airport"
+        expect { airport_1.take_off(@plane) }.to raise_error(message)
       end
     end
   end
 
   context 'when stormy' do
     before(:each) do
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(subject).to receive(:weather) { :stormy }
+      @message = "Stormy weather prevents take off and landing"
     end
 
     it 'prevents take off' do
       @plane.airborne = false
-      expect { subject.take_off(@plane) }.to raise_error("Stormy weather prevents take off and landing")
+      expect { subject.take_off(@plane) }.to raise_error(@message)
     end
     it 'prevents landing' do
-      expect { subject.land(@plane) }.to raise_error("Stormy weather prevents take off and landing")
+      expect { subject.land(@plane) }.to raise_error(@message)
     end
   end
 end

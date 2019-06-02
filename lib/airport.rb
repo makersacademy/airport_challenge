@@ -23,6 +23,7 @@ class Airport
   def take_off(plane)
     prevent_if_stormy
     raise "Plane already airborne" if plane.airborne
+    raise "Plane not at this airport" unless at_airport?(plane)
 
     plane_took_off(plane)
     planes.delete(plane)
@@ -32,11 +33,11 @@ class Airport
 
   def weather
     # 1 in 7 chance of stormy weather
-    rand(7).zero? ? "stormy" : "sunny"
+    rand(7).zero? ? :stormy : :sunny
   end
 
   def prevent_if_stormy
-    raise "Stormy weather prevents take off and landing" if weather == "stormy"
+    raise "Stormy weather prevents take off and landing" if weather == :stormy
   end
 
   def full?
@@ -49,5 +50,9 @@ class Airport
 
   def plane_took_off(plane)
     plane.airborne = true
+  end
+
+  def at_airport?(plane)
+    planes.include?(plane)
   end
 end

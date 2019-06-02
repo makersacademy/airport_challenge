@@ -8,8 +8,10 @@ describe Plane do
   end
 
   it 'knows it is flying after take off' do
-    @airport.take_off(subject)
-    expect(subject.airborne).to eq(true)
+    plane = Plane.new(true)
+    @airport.land(plane)
+    @airport.take_off(plane)
+    expect(plane.airborne).to eq(true)
   end
   it 'knows it is not flying after landing' do
     subject.airborne = true
