@@ -13,13 +13,13 @@ describe Airport do
 
     it 'has a default capacity' do
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-      expect{ subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+      expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
     end
     it 'has an overridden capacity' do
       random_capacity = rand(100)
       subject { Airport.new(random_capacity) }
       subject.capacity.times { subject.land(Plane.new) }
-      expect{ subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+      expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
     end
   end
 
