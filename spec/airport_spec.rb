@@ -39,23 +39,90 @@ describe Airport do
 
   context "weather is sunny" do
     airport = Airport.new
-    before { allow(airport).to receive(:weather).and_return('sunny') }
-    
-    it 'should be safe to land / takeoff if weather is sunny' do
+    before { allow(airport).to receive(:weather).and_return('sunny') }    
+    it 'should be return weather is sunny' do
       airport.check_weather
-      airport.set_safety
-      expect(airport).to be_safe
+      expect(airport).to be_sunny
     end
   end
 
   context "weather is stormy" do
     airport = Airport.new
     before { allow(airport).to receive(:weather).and_return('stormy') }
-    
-    it 'should not be safe to land / takeoff if weather is stormy' do
+    it 'should return not weather sunny' do
       airport.check_weather
-      airport.set_safety
-      expect(airport).not_to be_safe
+      expect(airport).not_to be_sunny
     end
   end
+
+  context "airport is sunny and not full" do
+    airport = Airport.new
+    before { allow(airport).to receive(:sunny?).and_return(true) }
+    before { allow(airport).to receive(:full?).and_return(false) }
+    it 'should be clear for landing' do
+      airport.set_landing_safety
+      expect(airport).to be_clear_for_landing
+    end
+    it 'should be safe to take off' do
+      airport.set_take_off_safety
+      expect(airport).to be_clear_for_take_off
+    end
+  end
+
+  context "airport is not sunny and full" do
+    airport = Airport.new
+    before { allow(airport).to receive(:sunny?).and_return(false) }
+    before { allow(airport).to receive(:full?).and_return(true) }
+    
+    it 'should not be clear for landing' do
+      airport.set_landing_safety
+      expect(airport).not_to be_clear_for_landing
+    end
+
+    it 'should not be safe to take off' do
+      airport.set_take_off_safety
+      expect(airport).not_to be_clear_for_take_off
+    end
+  end
+
+  context "airport is not sunny and not full" do
+    airport = Airport.new
+    before { allow(airport).to receive(:sunny?).and_return(false) }
+    before { allow(airport).to receive(:full?).and_return(false) }
+    
+    it 'should not be clear for landing' do
+      airport.set_landing_safety
+      expect(airport).not_to be_clear_for_landing
+    end
+
+    it 'should not be safe to take off' do
+      airport.set_take_off_safety
+      expect(airport).not_to be_clear_for_take_off
+    end
+  end
+
+  context "airport is sunny and full" do
+    airport = Airport.new
+    before { allow(airport).to receive(:sunny?).and_return(true) }
+    before { allow(airport).to receive(:full?).and_return(true) }
+    
+    it 'should not be clear for landing' do
+      airport.set_landing_safety
+      expect(airport).not_to be_clear_for_landing
+    end
+
+    it 'should be safe to take off' do
+      airport.set_take_off_safety
+      expect(airport).to be_clear_for_take_off
+    end
+  end
+
+
+
+
+
+
+
+
+
 end

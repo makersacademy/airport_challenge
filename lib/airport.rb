@@ -9,9 +9,9 @@ class Airport
     @hanger = []
   end
 
-  def safe?
-    @safe
-  end
+  # def safe?
+  #   @safe
+  # end
 
   def full?
     @full
@@ -19,6 +19,14 @@ class Airport
 
   def sunny?
     @sunny
+  end
+
+  def clear_for_take_off?
+    @clear_for_take_off  
+  end
+
+  def clear_for_landing?
+    @clear_for_landing
   end
 
   def weather
@@ -42,13 +50,22 @@ class Airport
     end    
   end
 
-  def set_safety
+  def set_take_off_safety
+    check_weather
+    if sunny?
+      @clear_for_take_off = true
+    else
+      @clear_for_take_off = false
+    end
+  end
+
+  def set_landing_safety
     check_capacity
     check_weather
     if sunny? && !full?
-      @safe = true
+      @clear_for_landing = true
     else
-      @safe = false
+      @clear_for_landing = false
     end
   end
 

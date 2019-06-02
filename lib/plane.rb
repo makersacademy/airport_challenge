@@ -7,7 +7,7 @@ class Plane
   end
   
   def land(airport)
-    if airport.safe?
+    if airport.clear_for_landing?
       @at_airport = true
     else
       @at_airport = false
@@ -15,7 +15,7 @@ class Plane
   end
 
   def take_off(airport)
-    if airport.safe?
+    if airport.clear_for_take_off?
       @at_airport = false
     else
       @at_airport = true
