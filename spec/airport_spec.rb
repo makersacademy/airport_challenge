@@ -25,32 +25,37 @@ RSpec.describe Airport do
 
     expect(airport.landed_planes).to eq([])
   end
-    
-  it "denies take off in stormy weather" do
-    plane = Plane.new
 
-    airport = Airport.new(weather: :stormy, landed_planes: [plane])
+  context "when weather is stormy" do
+    it "denies take off" do
+      plane = Plane.new
+      airport = Airport.new(weather: :stormy, landed_planes: [plane])
 
-    expect { airport.take_off(plane) }.to raise_error("denied due to weather")
+      expect { airport.take_off(plane) }.to raise_error("denied due to weather")
+    end
+
+    it "refuses landing" do
+      plane = Plane.new
+      airport = Airport.new(weather: :stormy)
+  
+      expect { airport.land(plane) }.to raise_error("denied due to weather")
+    end
   end
 
-  it "refuses landing in stormy weather" do
-    plane = Plane.new
-    airport = Airport.new(weather: :stormy)
+  context "when capacity is full" do
+    it "refuses landing" do
+      plane = Plane.new
+      airport = Airport.new(capacity: 1, landed_planes: [plane])
 
-    expect { airport.land(plane) }.to raise_error("denied due to weather")
+      expect { airport.land(plane) }.to raise_error("denied: airport is full")
+    end
   end
 
-  it "refuses landing when full" do
-    plane = Plane.new
-    airport = Airport.new(capacity: 1, landed_planes: [plane])
+  context "when created without a specified capacity" do
+    it "uses default capacity" do
+      airport = Airport.new(weather: :sunny, landed_planes: 0)
 
-    expect { airport.land(plane) }.to raise_error("denied: airport is full")
-  end
-
-  it "has a default capacity when none given" do
-    airport = Airport.new(weather: :sunny, landed_planes: 0)
-
-    expect(airport.capacity).to eq(4)
+      expect(airport.capacity).to eq(4)
+    end
   end
 end
