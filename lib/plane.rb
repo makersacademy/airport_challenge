@@ -1,5 +1,5 @@
 class Plane
-  def land
+  def land_at(airport)
 
   end
 end
