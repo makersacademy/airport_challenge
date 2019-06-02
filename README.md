@@ -20,7 +20,6 @@ Task
 
 ### User stories covered:
 
-```
 ~As an air traffic controller~   
 ~So I can get passengers to a destination~   
 ~I want to instruct a plane to land at an airport~  
@@ -44,7 +43,7 @@ Task
 ~As the system designer~  
 ~So that the software can be used for many different airports~  
 ~I would like a default airport capacity that can be overridden as appropriate~  
-```
+
 
  #### still to do: 
  - tests are not DRY and should be refactored
