@@ -2,28 +2,17 @@ require_relative './weather.rb'
 
 class Plane
 
-  def initialize
+  attr_reader :at_airport
+   def initialize
+     @at_airport = false
+   end
+
+  def at_airport
     @at_airport = true
   end
-  
-  def land(airport)
-    if airport.clear_for_landing?
-      @at_airport = true
-    else
-      @at_airport = false
-    end
-  end
 
-  def take_off(airport)
-    if airport.clear_for_take_off?
-      @at_airport = false
-    else
-      @at_airport = true
-    end
-  end
-
-  def at_airport?
-    @at_airport  
+  def not_at_airport?
+    @at_airport = false
   end
 
 

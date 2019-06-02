@@ -3,8 +3,8 @@ require 'airport'
 
 describe Plane do
 
-  it 'should be initialised with a state of being at the airport' do
-    expect(subject.instance_variable_get(:@at_airport)).to be true
+  it 'should be initialised with a state of being not at the airport' do
+    expect(subject.instance_variable_get(:@at_airport)).to be false
   end
 
   # it 'when it is clear for landing the plane can land' do
