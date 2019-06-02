@@ -1,23 +1,11 @@
 class Airport
+  
+  attr_accessor :capacity
+  attr_accessor :planes
+  
   def initialize
     @capacity = 10
     @planes = 0
-  end
-
-  def capacity
-    @capacity
-  end
-
-  def planes
-    @planes
-  end
-
-  def planes=(num)
-    @planes = num
-  end
-
-  def capacity=(num_of_planes)
-    @capacity = num_of_planes
   end
 
   def add_plane
@@ -28,8 +16,8 @@ class Airport
     @planes -= 1
   end
 
-  def is_full?
-    @planes == @capacity ? true : false
+  def full?
+    @planes == @capacity
   end
 
 end

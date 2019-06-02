@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+
   it 'has a default capacity of 10 planes' do
     expect(subject.capacity).to equal(10)
   end
@@ -22,10 +23,10 @@ describe Airport do
     expect(subject.planes).to eql(1)
   end
 
-  it 'responds to question is_full? with true if no capacity' do
+  it 'responds to question full? with true if no capacity' do
     subject.capacity = 10
     subject.planes = 10
-    expect(subject.is_full?).to eql(true)
+    expect(subject.full?).to eql(true)
   end
 
 end

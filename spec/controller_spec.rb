@@ -10,14 +10,15 @@ describe Controller do
     airport.capacity = 10
     airport.planes = 10
     weather = double
-    allow(weather).to receive_messages(:is_stormy? => false)
-    expect(subject.land_plane?(airport,weather)).to eql(false)
+    allow(weather).to receive_messages(:stormy? => false)
+    expect(subject.land_plane?(airport, weather)).to eql(false)
   end
 
   it 'decides not to allow plane to land if weather is stormy' do
     airport = Airport.new
     weather = double
-    allow(weather).to receive_messages(:is_stormy? => true)
-    expect(subject.land_plane?(airport,weather)).to eql(false)
+    allow(weather).to receive_messages(:stormy? => true)
+    expect(subject.land_plane?(airport, weather)).to eql(false)
   end
+
 end
