@@ -3,11 +3,19 @@ Airport Challenge
 
 For this challenge, I am creating a set of classes and modules to simulate air traffic control at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-This challenge is incomplete. I intend on working on this during the week after speaking with coaches, fellow cohorts and my mentor.
+-----
+
+My approach was to build a domain model from the the user stories a create a diagram for how the objects will use the messages to communicate with one another.
+
+Airport <-----land_plane/take_off -----> A Plane
+Plane <-----Stormy?-----> True/False?
+
+I feature tested the user stories and used the errors to drive my TDD process.
 
 -----
 
-Here are the user stories that we worked out in collaboration with the client:
+This challenge is incomplete. I intend on working on this during the week after speaking with coaches and fellow cohorts.
+Here are the user stories that we created in collaboration with the client:
 
 ```
 As an air traffic controller
