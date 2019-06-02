@@ -51,4 +51,15 @@ describe Controller do
     expect(subject.take_off?(weather)).to eql(true)
   end
 
+  it 'should comfirm a plane has landed if request is successful' do
+    plane = Plane.new
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive_messages(:stormy? => false)
+    airport.capacity = 10
+    airport.planes = 5
+    result = subject.handle_landing_request(plane, airport, weather)
+    expect(result).to eql(true)
+  end
+
 end
