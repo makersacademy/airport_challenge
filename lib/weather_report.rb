@@ -10,7 +10,7 @@ class WeatherReport
   end
 
   def forecast
-    return @tower_call
+    @tower_call
   end
 
 end
