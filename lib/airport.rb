@@ -2,14 +2,17 @@ require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challen
 require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challenge/lib/weather.rb'
 
 class Airport
-  attr_accessor :weather
+  attr_accessor :weather, :capacity
 
   def initialize 
     @weather = Weather.new.status
+    @capacity = []
   end
 
   def land(airplane)
     raise 'The weather is stormy' if @weather == :stormy
+
+    raise 'The airport is full' unless @capacity.empty?
 
     airplane
   end
