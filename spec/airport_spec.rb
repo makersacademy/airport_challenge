@@ -6,7 +6,7 @@ RSpec.describe Airport do
   let(:planes) { double :plane }
 
   it 'has the plane after landing' do
-    allow(planes).to receive(:land) {land}
+    allow(planes).to receive(:land) { land }
     airport.land(planes)
     expect(airport.planes).to include planes
   end
@@ -32,24 +32,25 @@ RSpec.describe Airport do
   context 'landing' do
     it { is_expected.to respond_to(:land).with(1).argument }
     
-    describe '#land' do 
-      it 'should be able to land plane' do
+    describe '#land' do
+      before do
         allow(airport).to receive(:apron).with(planes).and_return(false)
-        allow(airport).to receive(:stormy?).and_return(false)
-        expect(airport.land(planes)).to eq([planes])
+        allow(airport).to receive(:stormy?).and_return(false) 
       end
 
-      it 'should raise and error when there is a stormy weather' do
-        allow(airport).to receive(:apron).with(planes).and_return(false)
-        allow(airport).to receive(:stormy?).and_return(true)
-        expect { airport.land(planes) }.to raise_error 'Weather is stormy, landing is not permitted' 
+      it 'should land plane keep them' do
+        expect(airport.land(planes)).to include planes
       end
 
       it 'should raise an error when airport is full' do
-        allow(airport).to receive(:apron).with(planes).and_return(false)
-        allow(airport).to receive(:stormy?).and_return(false)
         20.times { airport.land(planes) }
         expect { airport.land(planes) }.to raise_error 'Airport is full' 
+      end
+
+      it 'does not allow plane to take off' do
+        allow(airport).to receive(:apron).with(planes).and_return(false)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.land(planes) }.to raise_error 'Delayed due to bad weather' 
       end
 
       it 'raises an error if plane tries to land again' do
@@ -67,7 +68,7 @@ RSpec.describe Airport do
       it 'raises and error if the weather is stormy' do
         allow(airport).to receive(:apron).with(planes).and_return(true)
         allow(airport).to receive(:stormy?).and_return(true)
-        expect { airport.take_off(planes) }.to raise_error 'Weather is stormy, take-off is not permitted'
+        expect { airport.take_off(planes) }.to raise_error 'Delayed due to bad weather'
       end
 
       it 'raises an error if plane not in airport' do
@@ -77,14 +78,17 @@ RSpec.describe Airport do
       end
     end
   end
-
+ 
   context 'stormy' do 
     describe '#stormy?' do
       it 'returns true when stormy' do
-        allow(subject).to receive(:stormy).and_return true
+        allow(subject).to receive(:stormy?).and_return(true)
       end
-      it 'returns true when stormy' do
-        allow(subject).to receive(:stormy).and_return true
+      it 'returns false when sunny' do
+        allow(subject).to receive(:stormy?).and_return(false)
+      end
+      it 'raises error' do
+        expect { raise RuntimeError, 'Delayed due to bad weather' }.to raise_error('Delayed due to bad weather')
       end
     end
   end

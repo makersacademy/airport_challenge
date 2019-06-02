@@ -67,4 +67,4 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## Passing Test Suites
 
-<img src='https://user-images.githubusercontent.com/23095774/58767846-f1c86780-8588-11e9-8341-d4854bbee3ef.png' width='50%'>
+<img src='https://user-images.githubusercontent.com/23095774/58768195-0f98cb00-858f-11e9-9c9b-e618ad8674b9.png' width='50%'>
