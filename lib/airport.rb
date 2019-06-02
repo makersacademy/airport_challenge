@@ -1,13 +1,16 @@
 require 'planes'
 
 class Airport
-  attr_reader :planes 
-  # planes in airport
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  attr_accessor :capacity, :planes
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
   end
 
+# planes in airport
   def land_plane
     @planes
   end
@@ -15,7 +18,7 @@ class Airport
   def take_off
     fail 'All planes departed' if empty?
 
-    @planes.pop
+#    @planes.pop
   end 
 
   # planes on the airport
@@ -25,10 +28,11 @@ class Airport
     @planes << planes
   end
 
-  private
+# private
+# attr_reader :planes
 
   def full?
-    @planes.count >= 20
+    @planes.count >= capacity
   end
 
   def empty?
@@ -39,4 +43,3 @@ end
   # planes.pop  remove planes from aiport 
   # when airport reached capacity no landing
   # default airport capacity later can be overridden 
-  
