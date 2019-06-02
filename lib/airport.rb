@@ -23,8 +23,9 @@ class Airport
   def take_off(airplane)
     raise 'The weather is stormy' if @weather == :stormy
 
-    raise 'There are no airplanes in the airport' if @hangar.empty?
+    raise 'There are no airplanes in the airport' if @hangar.empty?\
 
+    airplane = @hangar.delete(airplane)
     "The airplane #{airplane} has taken off"
   end
 
