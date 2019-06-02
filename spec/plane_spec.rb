@@ -1,8 +1,8 @@
 require 'plane'
 
 describe Plane do
-    it 'lands at airport' do
-      plane = Plane.new
-      expect(plane).to respond_to(:land)
-    end
+  it 'lands at airport' do
+    plane = Plane.new
+    expect(plane.land).to be_a Plane
+  end
 end
