@@ -21,4 +21,11 @@ describe Controller do
     expect(subject.land_plane?(airport, weather)).to eql(false)
   end
 
+  it 'decides not to allow plane to take off if weather is stormy' do
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive_messages(:stormy? => true)
+    expect(subject.take_off?(weather)).to eql(false)
+  end
+
 end

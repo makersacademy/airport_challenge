@@ -8,4 +8,12 @@ class Controller
     end
   end
 
+  def take_off?(weather)
+    if weather.stormy?
+      false
+    else
+      true
+    end
+  end
+
 end
