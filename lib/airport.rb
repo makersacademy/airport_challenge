@@ -19,7 +19,7 @@ class Airport
   def take_off
     fail 'All planes departed' if empty?
 
-#    @planes.pop
+    @planes.pop
   end 
 
   # planes on the airport
