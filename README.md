@@ -13,7 +13,9 @@ Airport Challenge
 
 ```
 
-For this challenge, I am creating a set of classes and modules to simulate air traffic control at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories:
+For this challenge, I am creating a set of classes and modules to simulate air traffic control at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+This challenge is incomplete.
 
 
 Steps
