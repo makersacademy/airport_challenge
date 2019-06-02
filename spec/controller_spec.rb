@@ -62,7 +62,7 @@ describe Controller do
     expect(result).to eql(true)
   end
 
-  it 'should comfirm a plane has not if request is not successful' do
+  it 'should comfirm a plane has not landed if request is not successful' do
     plane = Plane.new
     airport = Airport.new
     weather = double
@@ -70,6 +70,28 @@ describe Controller do
     airport.capacity = 10
     airport.planes = 10
     result = subject.handle_landing_request(plane, airport, weather)
+    expect(result).to eql(false)
+  end
+
+  it 'should comfirm a plane has taken off if request is successful' do
+    plane = Plane.new
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive_messages(:stormy? => false)
+    airport.capacity = 10
+    airport.planes = 5
+    result = subject.handle_take_off_request(plane, airport, weather)
+    expect(result).to eql(true)
+  end
+
+  it 'should comfirm a plane has not taken off if request is not successful' do
+    plane = Plane.new
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive_messages(:stormy? => true)
+    airport.capacity = 10
+    airport.planes = 5
+    result = subject.handle_take_off_request(plane, airport, weather)
     expect(result).to eql(false)
   end
 

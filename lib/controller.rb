@@ -9,6 +9,16 @@ class Controller
       false
     end
   end
+
+  def handle_take_off_request(plane, airport, weather)
+    if take_off?(weather)
+      plane.take_off
+      airport.remove_plane
+      true
+    else
+      false
+    end
+  end
   
   def land_plane?(airport, weather)
     if airport.full? || weather.stormy?
