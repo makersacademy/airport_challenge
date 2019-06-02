@@ -1,8 +1,5 @@
 class Plane
   def land_at(airport)
-
-  end
-
-  def take_off(airport)
-  end
+    airport.landed_planes << self
+  end  
 end
