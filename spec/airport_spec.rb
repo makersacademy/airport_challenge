@@ -5,12 +5,6 @@ RSpec.describe Airport do
   subject(:airport) { described_class.new }
   let(:planes) { double :plane }
 
-  it 'has the plane after landing' do
-    allow(planes).to receive(:land) { land }
-    airport.land(planes)
-    expect(airport.planes).to include planes
-  end
-
   describe '#initialize' do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -36,6 +30,12 @@ RSpec.describe Airport do
       before do
         allow(airport).to receive(:apron).with(planes).and_return(false)
         allow(airport).to receive(:stormy?).and_return(false) 
+      end
+
+      it 'has the plane after landing' do
+        allow(planes).to receive(:land) { land }
+        airport.land(planes) 
+        expect(airport.planes).to include planes
       end
 
       it 'should land plane keep them' do
@@ -86,9 +86,6 @@ RSpec.describe Airport do
       end
       it 'returns false when sunny' do
         allow(subject).to receive(:stormy?).and_return(false)
-      end
-      it 'raises error' do
-        expect { raise RuntimeError, 'Delayed due to bad weather' }.to raise_error('Delayed due to bad weather')
       end
     end
   end
