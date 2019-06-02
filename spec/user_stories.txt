@@ -1,0 +1,76 @@
+Airport Challenge:
+
+Objects | messages
+
+
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+1 -
+
+atc  | landing | <--plane
+plane | landing at airport(dock)
+airport | adding plane as a number
+
+------------------------------------------------------------------------------
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+2 - 
+
+atc | takeoff | <--plane
+plane | left airport
+
+------------------------------------------------------------------------------
+
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+3 -
+
+atc |
+weather |  if stormy? => no takeoff (fail if)
+
+------------------------------------------------------------------------------
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+4 -
+
+atc |
+weather | if stormy? => no landing (fail if)
+
+------------------------------------------------------------------------------
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+5 -
+
+atc |
+airport | if full? => no landing (fail if)
+
+------------------------------------------------------------------------------
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+6 -
+
+DEFAULT_CAPACITY = 10
+
+DEFAULT_CAPACITY :: Airport.times => name space operator
+
+
+airport class
+place class
+spec files for each
