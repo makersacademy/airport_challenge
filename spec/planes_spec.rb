@@ -1,8 +1,18 @@
 require 'planes'
 
-describe Planes do
-  it 'plane is flying' do
-    subject.flying
-    expect(subject).to be_flying
+RSpec.describe Planes do
+
+  it { is_expected.to respond_to :flying }
+
+  describe '#taken_off' do
+    it 'plane has take off' do
+      expect(subject.taken_off).to eq true
+    end
+  end
+  
+  describe '#landed' do
+    it 'plane has landed' do
+      expect(subject.landed).to eq false
+    end
   end
 end

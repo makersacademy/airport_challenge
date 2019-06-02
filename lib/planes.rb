@@ -1,13 +1,15 @@
 class Planes
+  attr_reader :flying
 
-  # plane no longer in airport
-  def flying 
+  def inintialize
     @flying = true
   end
 
-  def flying?
-    @flying
+  def taken_off
+    @flying = true
+  end
+
+  def landed
+    @flying = false
   end
 end
-
-  # plane take off from airport then plane is flying
