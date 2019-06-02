@@ -13,14 +13,21 @@ RSpec.describe Airport do
 
     it 'raise an error if the airport is full' do
       airport.weather = :sunny
-      airport.capacity = [3]
+      airport.capacity = 2
+      airport.hangar = [1, 2, 3]
       expect { airport.land(airplane) }.to raise_error 'The airport is full'
+    end
+
+    it 'raise an error if the airplane has already landed' do
+      airport.weather = :sunny
+      airport.hangar = [airplane]
+      expect { airport.land(airplane) }.to raise_error 'The airplane has already landed'
     end
 
     it 'instruct an airplane to land at the airport' do
       airport = Airport.new
       airport.weather = :sunny
-      expect(airport.land(airplane)).to eq(airplane)
+      expect(airport.land(airplane)).to include(airplane)
     end
   end
 
