@@ -59,7 +59,10 @@ Task
 ~I would like a default airport capacity that can be overridden as appropriate~  
 
 
- #### still to do: 
+ #### Still to do: 
  - tests are not DRY and should be refactored
- - suspected edge cases that will fail program: plane already grounded can land, plane already in air can take off
  - suspected incorrect test syntax in mocking methods
+ - deprecated methods used in some test mocks
+ - overcomplicated logic of planes requesting permissions to land/takeoff and airports issuing/denying permissions: given more time, I would refactor methods to meet the SRP rule
+ - planes and airports should have ids - given more time I would use the object id to identify that correct planes end up in correct airports
+ - feature test that creates muliple airports that handle multiple planes

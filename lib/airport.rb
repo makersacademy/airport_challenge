@@ -16,7 +16,7 @@ class Airport
   end
 
   def tower_permission_to_land(plane)
-    if permission_to_land_granted?
+    if plane.status_report == "in air" && permission_to_land_granted?
       @ground_control << plane
       plane.update
     else
@@ -24,9 +24,10 @@ class Airport
     end
   end
 
-  def tower_permission_to_takeoff
-    if permission_to_takeoff_granted?
-      @ground_control.pop
+  def tower_permission_to_takeoff(plane)
+    if plane.status_report == "grounded" && permission_to_takeoff_granted?
+      @ground_control.delete[plane]
+      plane.update
     else
       p "Request denied"
     end
