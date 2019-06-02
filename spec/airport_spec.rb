@@ -3,7 +3,7 @@ require 'plane'
 
 describe Airport do
   before(:each) do
-    @plane = Plane.new
+    @plane = Plane.new(true)
   end
 
   describe 'initialization' do
@@ -12,14 +12,14 @@ describe Airport do
     end
 
     it 'has a default capacity' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new(true)) }
+      expect { subject.land(Plane.new(true)) }.to raise_error("Cannot land, airport full")
     end
     it 'has an overridden capacity' do
       random_capacity = rand(100)
       subject { Airport.new(random_capacity) }
-      subject.capacity.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+      subject.capacity.times { subject.land(Plane.new(true)) }
+      expect { subject.land(Plane.new(true)) }.to raise_error("Cannot land, airport full")
     end
   end
 
@@ -34,8 +34,12 @@ describe Airport do
         expect(subject.planes).to include(@plane)
       end
       it 'prevents landing if airport is full' do
-        subject.capacity.times { subject.land(Plane.new) }
-        expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+        subject.capacity.times { subject.land(Plane.new(true)) }
+        expect { subject.land(Plane.new(true)) }.to raise_error("Cannot land, airport full")
+      end
+      it 'cannot land plane if it is not airborne' do
+        subject.land(@plane)
+        expect { subject.land(@plane) }.to raise_error("Plane not airborne")
       end
     end
 
@@ -54,10 +58,10 @@ describe Airport do
     end
 
     it 'prevents take off' do
-      expect { subject.take_off(@plane) }.to raise_error("Stormy weather prevents take off")
+      expect { subject.take_off(@plane) }.to raise_error("Stormy weather prevents take off and landing")
     end
     it 'prevents landing' do
-      expect { subject.land(@plane) }.to raise_error("Stormy weather prevents landing")
+      expect { subject.land(@plane) }.to raise_error("Stormy weather prevents take off and landing")
     end
   end
 end

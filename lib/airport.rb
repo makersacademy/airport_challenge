@@ -11,33 +11,42 @@ class Airport
 
   attr_reader :planes, :capacity
 
+  def land(plane)
+    raise "Plane not airborne" if plane.airborne == false
+    stormy?
+    raise "Cannot land, airport full" if full?
+
+    plane_landed(plane)
+    planes << plane
+  end
+
+  def take_off(plane)
+    stormy?
+
+    plane_took_off(plane)
+    planes.delete(plane)
+  end
+
+  private
+
   def weather
     # 1 in 7 chance of stormy weather
     rand(7).zero? ? "stormy" : "sunny"
   end
 
-  def land(plane)
-    raise "Stormy weather prevents landing" if stormy?
-    raise "Cannot land, airport full" if full?
-
-    planes << plane
-    plane.airborne = false
-  end
-
-  def take_off(plane)
-    raise "Stormy weather prevents take off" if stormy?
-
-    planes.delete(plane)
-    plane.airborne = true
-  end
-
-  private
-
   def stormy?
-    weather == "stormy"
+    raise "Stormy weather prevents take off and landing" if weather == "stormy"
   end
 
   def full?
     planes.length >= @capacity
+  end
+
+  def plane_landed(plane)
+    plane.airborne = false
+  end
+
+  def plane_took_off(plane)
+    plane.airborne = true
   end
 end

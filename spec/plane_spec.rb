@@ -12,6 +12,7 @@ describe Plane do
     expect(subject.airborne).to eq(true)
   end
   it 'knows it is not flying after landing' do
+    subject.airborne = true
     @airport.land(subject)
     expect(subject.airborne).to eq(false)
   end
