@@ -1,3 +1,25 @@
+## README: Rachel Griffiths
+
+### METHOD
+* Read through question and identified key factors in the program.
+* Identified 3 classes: Plane, Airport, Weather.
+* Reviewed each user story and broke them down into Objects & Methods.
+* Used feature test > unit test > define method approach.
+* Used Boris Bike weekly challenge to guide me.
+* Documented thoroughly my progress on each user story using screen shots of Feature Tests, Unit Tests and code and explanations at each step using Bear.
+* Regularly checked Test Coverage and used Rubocop.
+
+### ISSUES IDENTIFIED
+* Started off building methods under Plane class, which I identified as incorrect so started again using the Airport class to drive the program.
+* Chose to tackle user stories 1, 2, 5 and 6.  Therefore, I have not built in the weather conditions into my program or testing.
+* The same instance of Plane can land more than once.
+* The take_off method can only be applied to the last plane that landed.
+
+### FOLLOW UP
+* Review edge cases and correct tests and code to cover these.
+* Add in user stories 3 and 4 to add in weather conditions using a random number generator and a stub, as well as learning how to test doubles.
+* Spend more time planning out user stories and class structure in the beginning.
+
 Airport Challenge
 =================
 
@@ -36,25 +58,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +95,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
