@@ -35,7 +35,7 @@ class Airport
   private
 
   def permission_to_land_granted?
-    return true if @ground_control.count < @capacity
+    return true if weather_good? && @ground_control.count < @capacity
   end
 
   def permission_to_takeoff_granted?

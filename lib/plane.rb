@@ -2,10 +2,10 @@ class Plane
 
   attr_accessor :status
 
-  STATUSES = { 0 => "in air", 1 => "grounded" }
+  PLANE_STATUS = { 0 => "in air", 1 => "grounded" }
 
   def initialize(status = 0)
-    @status = STATUSES[status]
+    @status = PLANE_STATUS[status]
   end
 
   def status_report
@@ -13,10 +13,10 @@ class Plane
   end
 
   def update
-    if @status == STATUSES[0]
-      @status = STATUSES[1]
+    if @status == PLANE_STATUS[0]
+      @status = PLANE_STATUS[1]
     else
-      @status = STATUSES[0]
+      @status = PLANE_STATUS[0]
     end 
   end
 
