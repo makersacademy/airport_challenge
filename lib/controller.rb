@@ -16,7 +16,7 @@ class Controller
       airport.remove_plane
       true
     else
-      false
+      "Plane did not take off due to stormy weather."
     end
   end
   
