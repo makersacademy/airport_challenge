@@ -5,12 +5,14 @@ class Airport
     @planes = []
     # it's stormy 1 day a week
     @weather = rand(7).zero? ? "stormy" : "sunny"
+    @capacity = 20
   end
 
-  attr_reader :planes, :weather
+  attr_reader :planes, :weather, :capacity
 
   def land(plane)
     raise "Stormy weather prevents landing" if weather == "stormy"
+    raise "Cannot land, airport full" unless @planes.empty?
 
     @planes << plane
   end
