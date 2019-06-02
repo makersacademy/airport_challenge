@@ -10,14 +10,16 @@ RSpec.describe Airport do
     expect(airport.landed_planes).to be_empty
   end
 
-  it "receives a plane" do    airport = Airport.new
+  it "receives a plane" do
+    airport = Airport.new
 
     airport.land(plane)
 
     expect(airport.landed_planes).to eq([plane])
   end
 
-  it "allows a plane to leave" do    airport = Airport.new(landed_planes: [plane])
+  it "allows a plane to leave" do
+    airport = Airport.new(landed_planes: [plane])
 
     airport.take_off(plane)
 
@@ -39,18 +41,22 @@ RSpec.describe Airport do
   end
 
   context "when capacity is full" do
+    let(:plane_inventory) { [plane] }
+
     it "refuses landing" do
-      airport = Airport.new(capacity: 1, landed_planes: [plane])
+      airport = Airport.new(landed_planes: plane_inventory, capacity: plane_inventory.count)
 
       expect { airport.land(plane) }.to raise_error("denied: airport is full")
     end
   end
 
   context "when created without a specified capacity" do
-    it "uses default capacity" do
-      airport = Airport.new(weather: :sunny, landed_planes: 0)
+    let(:default_capacity) { 4 }
 
-      expect(airport.capacity).to eq(4)
+    it "uses default capacity" do
+      airport = Airport.new(landed_planes: 0)
+
+      expect(airport.capacity).to eq(default_capacity)
     end
   end
 end
