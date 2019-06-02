@@ -12,6 +12,11 @@ describe Airport do
     expect(@airport.weather).to eq('sunny')
   end
 
+  it 'can change hanger capacity' do
+    airport = Airport.new(20)
+    expect(@airport.capacity).to eq(20)
+  end
+
   context 'weather is clear' do
 
     before(:each) do
@@ -30,12 +35,13 @@ describe Airport do
     end
 
     it 'raies error if trying to land while airport is full' do
-      @airport.land(@plane)
+      Airport::DEFAULT_CAPACITY.times { @airport.land(@plane) }
       expect { @airport.land(@plane) }.to raise_error("Can't land, airport is full")
     end
   end
 
   context 'weather is stormy' do
+
     before(:each) do
       allow(@airport).to receive(:weather) { "stormy" }
     end

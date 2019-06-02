@@ -2,14 +2,17 @@ require './lib/plane.rb'
 
 class Airport
   attr_reader :hanger
+  attr_reader :capacity
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @hanger = []
   end
 
   def land(plane)
     raise "Can't land because it's stormy" if weather == 'stormy'
-    raise "Can't land, airport is full" if @hanger.count.positive?
+    raise "Can't land, airport is full" if @hanger.count == @capacity
 
     @hanger.push(plane)
   end
