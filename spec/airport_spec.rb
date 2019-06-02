@@ -3,62 +3,54 @@ require "plane"
 
 RSpec.describe Airport do
   it "is created with no planes" do
-    capacity = 3
-    airport = Airport.new(:stormy, capacity)
+    airport = Airport.new
 
     expect(airport.landed_planes).to be_empty
   end
 
   it "receives a plane" do
-    # arrange
     plane = Plane.new
-    capacity = 3
-    airport = Airport.new(:not_stormy, capacity)
+    airport = Airport.new
 
-    # act
     airport.land(plane)
-    # assert
+
     expect(airport.landed_planes).to eq([plane])
   end
 
   it "allows a plane to leave" do
-    # arrange
     plane = Plane.new
-    capacity = 3
-    airport = Airport.new(:not_stormy, capacity, [plane])
-    # act
+    airport = Airport.new(landed_planes: [plane])
+
     airport.take_off(plane)
-    # assert
+
     expect(airport.landed_planes).to eq([])
   end
-
+    
   it "denies take off in stormy weather" do
-    # arrange
     plane = Plane.new
-    weather = :stormy
-    capacity = 3
-    airport = Airport.new(weather, capacity, [plane])
-    # act & assert
+
+    airport = Airport.new(weather: :stormy, landed_planes: [plane])
+
     expect { airport.take_off(plane) }.to raise_error("denied due to weather")
   end
 
   it "refuses landing in stormy weather" do
-    # arrange
     plane = Plane.new
-    weather = :stormy
-    capacity = 3
-    airport = Airport.new(weather, capacity)
-    # act & assert
+    airport = Airport.new(weather: :stormy)
+
     expect { airport.land(plane) }.to raise_error("denied due to weather")
   end
 
   it "refuses landing when full" do
-    # arrange
     plane = Plane.new
-    weather = :not_stormy
-    capacity = 3
-    airport = Airport.new(weather, capacity, [plane, plane, plane])
-    # act & assert
+    airport = Airport.new(capacity: 1, landed_planes: [plane])
+
     expect { airport.land(plane) }.to raise_error("denied: airport is full")
+  end
+
+  it "has a default capacity when none given" do
+    airport = Airport.new(weather: :sunny, landed_planes: 0)
+
+    expect(airport.capacity).to eq(4)
   end
 end
