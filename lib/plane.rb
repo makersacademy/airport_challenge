@@ -1,6 +1,3 @@
-#require 'airport'
-#require 'weather_report'
-
 class Plane
 
   attr_accessor :status

@@ -1,11 +1,10 @@
-#require 'plane'
-#require 'weather_report'
+require 'plane'
+require 'weather_report'
 
 class Airport
 
   attr_accessor :capacity
   attr_accessor :ground_control
-
 
   def initialize(capacity = 10)
     @capacity = capacity
@@ -40,11 +39,9 @@ class Airport
   end
 
   def permission_to_takeoff_granted?
-    if weather_good?
-      return true if @ground_control.count > 0 && ground_control.count >= @capacity
-    else
-      return false
-    end
+    return true if weather_good? && 
+    @ground_control.count.positive? && 
+    ground_control.count >= @capacity
   end
 
   def weather_good?

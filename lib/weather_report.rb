@@ -1,6 +1,3 @@
-#require 'airport'
-#require 'plane'
-
 class WeatherReport
 
   attr_accessor :tower_call
