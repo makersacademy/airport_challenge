@@ -10,12 +10,13 @@ describe Airport do
         expect(subject.land(plane)).to eq true
       end
       it 'if weather is stormy, planes can not land' do
-          if Weather.new == "stormy"
-            expect(subject.land(plane)).to eq false
-          else
-            expect(subject.land(plane)).to eq true
-          end
-       end
+          allow(Weather.new).to receive("stormy")
+          expect(subject.land(plane)).to eq false
+      end
+      it 'if weather is stormy, planes can not land' do
+          allow(Weather.new).to receive("sunny")
+          expect(subject.land(plane)).to eq true
+      end
   end
 
   context 'plane is in the aiport' do
@@ -23,12 +24,25 @@ describe Airport do
       it 'plane takes off' do
         expect(subject.take_off(plane)).to eq true
       end
-    it 'if weather is stormy, planes can not take off' do
-        if Weather.new == "stormy"
-          expect(subject.take_off(plane)).to eq false
-        else
+     it 'if weather is stormy, planes can not take off' do
+        allow(Weather.new).to receive("stormy")
+        expect(subject.take_off(plane)).to eq false
+     end
+     it 'if weather is stormy, planes can not take off' do
+        allow(Weather.new).to receive("sunny")
           expect(subject.take_off(plane)).to eq true
-        end
      end
    end
-end
+
+  it 'if the airport is full, planes can not land' do
+    plane = Plane.new
+    allow(subject).to receive(:full?) { true }
+    expect(subject.land(plane)).to eq false
+  end
+  it 'if the airport is full, planes can not land' do
+    plane = Plane.new
+    allow(subject).to receive(:full?) { false }
+    expect(subject.land(plane)).to eq true
+  end
+
+  end

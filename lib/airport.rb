@@ -1,25 +1,31 @@
+require './lib/weather.rb'
 
 class Airport
-
+@weather = Weather.new
   def initialize(capacity = 5)
     @capacity = capacity
-    @planes = [1]
+    @planes = []
   end
 
+ def full?
+   @planes.length >= @capacity
+ end
+
     def land(plane)
-      if @planes.length < @capacity
-          @planes << plane
-        true
-      else
-        false
-      end
+      return false if full?
+       @planes << plane
     end
+
       def take_off(plane)
-        if @planes.length > 0
-           @planes.pop
-            true
+        if @weather = "stormy"
+          false
         else
-         false
+          if @planes.length > 0
+            @planes.pop
+            true
+          else
+            false
+        end
        end
       end
 
