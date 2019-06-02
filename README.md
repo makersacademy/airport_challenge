@@ -27,3 +27,8 @@ I've used a test double for Weather to test it's behaviour.
 
 I haven't managed to test many edge cases due to time pressure.
 I also haven't managed to do refactoring of my tests for the same reason.
+
+Questions
+---------
+
+How should I access internal attributes for testing? I've added attribute writers but this didn't seem quite right.
