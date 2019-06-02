@@ -13,8 +13,12 @@ describe Airport do
   end
 
   it 'can change hanger capacity' do
-    airport = Airport.new(20)
-    expect(airport.capacity).to eq(20)
+    airport = Airport.new(25)
+    expect(airport.capacity).to eq(25)
+  end
+
+  it 'checks plane to make sure its in hanger before take off' do
+    expect { @airport.takeoff(@plane) }.to raise_error('Plane is not in hanger')
   end
 
   context 'weather is clear' do

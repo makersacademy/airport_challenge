@@ -19,6 +19,7 @@ class Airport
 
   def takeoff(plane)
     raise "Can't take off because it's stormy" if weather == 'stormy'
+    raise 'Plane is not in hanger' unless @hanger.include?(plane)
 
     @hanger.delete(plane)
   end
