@@ -1,5 +1,10 @@
-class Plane
-  def land_at(airport)
-    airport.landed_planes << self
-  end  
+class Plane 
+  attr_writer :location  
+  def initialize
+    @location = "air"
+  end 
+
+  def location
+    "air"
+  end
 end
