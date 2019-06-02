@@ -1,5 +1,5 @@
 class Plane
-  
+
   def land
     @at_airport = true
   end
@@ -10,6 +10,10 @@ class Plane
 
   def at_airport?
     @at_airport
+  end
+
+  def at_airport=(value)
+    @at_airport = value
   end
 
 end

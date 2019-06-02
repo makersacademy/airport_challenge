@@ -38,14 +38,12 @@ describe Controller do
   end
 
   it 'decides not to allow plane to take off if weather is stormy' do
-    airport = Airport.new
     weather = double
     allow(weather).to receive_messages(:stormy? => true)
     expect(subject.take_off?(weather)).to eql(false)
   end
 
   it 'decides to allow plane to take off if weather is not stormy' do
-    airport = Airport.new
     weather = double
     allow(weather).to receive_messages(:stormy? => false)
     expect(subject.take_off?(weather)).to eql(true)
@@ -75,6 +73,7 @@ describe Controller do
 
   it 'should comfirm a plane has taken off if request is successful' do
     plane = Plane.new
+    plane.at_airport = true
     airport = Airport.new
     weather = double
     allow(weather).to receive_messages(:stormy? => false)
@@ -84,8 +83,9 @@ describe Controller do
     expect(result).to eql(true)
   end
 
-  it 'should comfirm a plane has not taken off if request is not successful' do
+  it 'should comfirm a plane has not taken off if request is not successful due to bad weather' do
     plane = Plane.new
+    plane.at_airport = true
     airport = Airport.new
     weather = double
     allow(weather).to receive_messages(:stormy? => true)
@@ -93,6 +93,18 @@ describe Controller do
     airport.planes = 5
     result = subject.handle_take_off_request(plane, airport, weather)
     expect(result).to eql("Plane did not take off due to stormy weather.")
+  end
+
+  it 'should comfirm a plane has not taken off if request is not successful due to plane not being at airport' do
+    plane = Plane.new
+    plane.at_airport = false
+    airport = Airport.new
+    weather = double
+    allow(weather).to receive_messages(:stormy? => false)
+    airport.capacity = 10
+    airport.planes = 5
+    result = subject.handle_take_off_request(plane, airport, weather)
+    expect(result).to eql("Plane did not take off due to not being at the airport.")
   end
 
 end

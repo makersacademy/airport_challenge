@@ -11,7 +11,10 @@ class Controller
   end
 
   def handle_take_off_request(plane, airport, weather)
-    if take_off?(weather)
+
+    if !plane.at_airport?
+      "Plane did not take off due to not being at the airport."
+    elsif take_off?(weather)
       plane.take_off
       airport.remove_plane
       true
