@@ -1,7 +1,9 @@
 require './lib/plane.rb'
 
 class Airport
-  def initialize(capacity = 20)
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @weather = weather
     @capacity = capacity
@@ -18,13 +20,13 @@ class Airport
     raise "Stormy weather prevents landing" if stormy?
     raise "Cannot land, airport full" if full?
 
-    @planes << plane
+    planes << plane
   end
 
   def take_off(plane)
     raise "Stormy weather prevents take off" if stormy?
 
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   private
@@ -32,8 +34,8 @@ class Airport
   def stormy?
     weather == "stormy"
   end
-  
+
   def full?
-    @planes.length >= @capacity
+    planes.length >= @capacity
   end
 end

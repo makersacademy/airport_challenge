@@ -6,12 +6,21 @@ describe Airport do
     @plane = Plane.new
   end
 
-  it 'has a default capacity of 20' do
-    expect(subject.capacity).to eq(20)
-  end
-  it 'has an overridden capacity of 50' do
-    airport = Airport.new(50)
-    expect(airport.capacity).to eq(50)
+  describe 'initialization' do
+    before(:each) do
+      allow(subject).to receive(:weather) { "sunny" }
+    end
+
+    it 'has a default capacity' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect{ subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+    end
+    it 'has an overridden capacity' do
+      random_capacity = rand(100)
+      subject { Airport.new(random_capacity) }
+      subject.capacity.times { subject.land(Plane.new) }
+      expect{ subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
+    end
   end
 
   context 'when sunny' do
@@ -25,7 +34,7 @@ describe Airport do
         expect(subject.planes).to include(@plane)
       end
       it 'prevents landing if airport is full' do
-        20.times { subject.land(Plane.new) }
+        subject.capacity.times { subject.land(Plane.new) }
         expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
       end
     end
