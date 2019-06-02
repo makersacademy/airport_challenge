@@ -4,6 +4,8 @@ Airport Challenge
 :airplane:
 </h1>
 
+This application is controlling the flow of planes at an airport. The aircrafts can land and take off when the weather is the sunny, occasionally it may be stormy, in which case no planes can land or take off. 
+
 ## User Stories
 
 ```
@@ -36,5 +38,21 @@ I would like a default airport capacity that can be overridden as appropriate
 
 [![Build Status](https://travis-ci.com/petraartep/airport_challenge.svg?branch=master)](https://travis-ci.com/petraartep/airport_challenge)
 
-## How to use
+## Technologies Used
+- Ruby 2.5.0
+- RSpec 3.7
+  - Rspec-core 3.7.1
+  - Rspec-expectations 3.7.0
+  - Rspec-mocks 3.7.0
+  - Rspec-support 3.7.0
+
+## Challenges
+- Converting User Stories to Objects
+- Using RSpec Mocks, Stubs
+- Reach high test coverage
+- All tests passing
+- Clean code
+
+## Passing Test suites
+
 
