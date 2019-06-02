@@ -39,4 +39,4 @@ Challenges / Thoughts
 * My gut feeling is that this could be simplified. It went through multiple iterations and refactoring. The `plane` class was simplified and remains only with a state.
 * Testing scenarios with multiple conditionals - I have got very confused here. My feeling is that there are some redundant tests.
 * Again testing for multiple conditions - how to better group these to avoid code repetition. Most evident is `airport_spec.rb`
- 
+* There reached a stage - mainly around large refactor - where TDD was not followed explicitly.  
