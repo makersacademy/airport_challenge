@@ -9,7 +9,9 @@ describe Airport do
   it 'has a default capacity of 20' do
     expect(subject.capacity).to eq(20)
   end
-  it 'has a capacity of 50' do
+  it 'has an overridden capacity of 50' do
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq(50)
   end
 
   context 'is sunny' do
@@ -23,9 +25,10 @@ describe Airport do
         expect(subject.planes).to include(@plane)
       end
       it 'prevents landing if airport is full' do
-        subject.land(@plane)
+        airport = Airport.new(1)
+        airport.land(@plane)
         second_plane = Plane.new
-        expect { subject.land(second_plane) }.to raise_error("Cannot land, airport full")
+        expect { airport.land(second_plane) }.to raise_error("Cannot land, airport full")
       end
     end
 

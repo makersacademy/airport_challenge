@@ -1,18 +1,18 @@
 require './lib/plane.rb'
 
 class Airport
-  def initialize
+  def initialize(capacity = 20)
     @planes = []
     # it's stormy 1 day a week
     @weather = rand(7).zero? ? "stormy" : "sunny"
-    @capacity = 20
+    @capacity = capacity
   end
 
   attr_reader :planes, :weather, :capacity
 
   def land(plane)
     raise "Stormy weather prevents landing" if weather == "stormy"
-    raise "Cannot land, airport full" unless @planes.empty?
+    raise "Cannot land, airport full" if @planes.length >= @capacity
 
     @planes << plane
   end
