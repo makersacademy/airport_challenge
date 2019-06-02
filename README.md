@@ -1,7 +1,21 @@
 Airport Challenge
 =================
 
-Airport accepts and releases a given number of planes depending on the weather.
+The program is divided into 3 classes: Airport, Plane and WeatherReport. 
+
+**Airport object:**   
+- can be assigned custom capacity when initialized
+- is initialized in an empty state
+- calls ground control to return current number of planes
+- receives requests from planes: to land and to take off
+- has private methods that act as tower: they ask another private method for current weather report before issuing permission or denying it to the methods that receive requests from planes 
+
+**Plane object:**
+- is assigned status of "in air" by default (as Airport objects are initialised in an empty state)
+- can be assigned status "grounded" with the .update method
+
+**WeatherReport object:**
+- randomly selects weather forecast from an array of forecasts, 7 of which are good for flight and 3 of which are "stormy"
 
 ```
         ______
