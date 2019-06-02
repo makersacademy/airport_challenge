@@ -49,7 +49,7 @@ I would like a default airport capacity that can be overridden as appropriate
 ## Challenges
 - Converting User Stories to Objects
 - Using RSpec Mocks, Stubs
-- Reach high test coverage
+- Reaching high test coverage
 - All tests passing
 - Clean code
 

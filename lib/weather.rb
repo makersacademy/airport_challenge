@@ -1,9 +1,9 @@
-# weather = stormy then no take off && landing
-# random number generator to set weather 
-# stub to override random weather
-class Weather
+module Weather
+
+  class Weather
   
-  def stormy?
-    rand(1..20) > 5 
+    def stormy
+      rand(1..10) > 7 
+    end
   end
 end

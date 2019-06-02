@@ -1,61 +1,85 @@
 require 'airport'
 
 RSpec.describe Airport do
-  it { is_expected.to respond_to :land_plane }
-  
-  describe '#land_plane' do 
-    it 'lands a plane' do
-      planes = Planes.new
-      subject.apron(planes)
-      expect(subject.land_plane).to eq [planes]
-    end
-  end
 
-  it { is_expected.to respond_to(:apron).with(1).argument }
-#	 it { is_expected.to respond_to(:planes) }
-  describe '#apron' do
-    it 'returns planes to apron' do 
-      planes = Planes.new
-      subject.apron(planes)
-      expect(subject.planes).to eq [planes]
+  subject(:airport) { described_class.new }
+  let(:planes) { double :plane }
+
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      allow(subject).to receive(:full?) { true }
     end
 
-    it 'raises an error when airport is full' do
-      subject.capacity.times { subject.apron double :planes }
-      expect { subject.apron double(:planes) }.to raise_error 'Airport is full'
+    it 'user can set the capacity' do
+      subject { Airport.new(20) }
+      expect(subject.capacity).to eq(20)
     end
 
-    it 'raise an error when there are no planes to take off' do
-      expect { subject.take_off }.to raise_error 'All planes departed'
-    end
-  end
-  
-  describe 'initialization' do
-    subject { Airport.new }
-    let(:planes) { Planes.new }
-    it 'defaults capacity' do
-      described_class::DEFAULT_CAPACITY.times do
-        subject.apron(planes)
+    describe '#planes' do
+      it 'should return planes in array' do
+        expect(subject.planes).to eq(Array.new)
       end
-      expect { subject.apron(planes) }.to raise_error 'Airport is full'
     end
+  end 
 
-#  it 'has a default capacity' do
-#     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-#  end
+  context 'landing' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+    
+    describe '#land' do 
+      it 'should be able to land plane' do
+        allow(airport).to receive(:apron).with(planes).and_return(false)
+        allow(airport).to receive(:stormy?).and_return(false)
+        expect(airport.land(planes)).to eq([planes])
+      end
 
-#    it 'has variable capacity' do
-#      airport = Airport.new(5)
-#      5.times { airport.apron(Planes.new) }
-#      expect { airpot.apron(Planes.new) }.to raise_error 'Airport is full'
-#    end
+      it 'should raise and error when there is a stormy weather' do
+        allow(airport).to receive(:apron).with(planes).and_return(false)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.land(planes) }.to raise_error 'Weather is stormy, landing is not permitted' 
+      end
 
-#    Airport::DEFAULT_CAPACITY.times do
-#      it 'raises an error when airport full' do
-#        subject.capacity.times { subject.apron Planes.new } 
-#        expect { subject.apron Planes.new }.to raise_error 'Airport is full'
-#      end
-#    end
+      it 'should raise an error when airport is full' do
+        allow(airport).to receive(:apron).with(planes).and_return(false)
+        allow(airport).to receive(:stormy?).and_return(false)
+        20.times { airport.land(planes) }
+        expect { airport.land(planes) }.to raise_error 'Airport is full' 
+      end
 
+      it 'raises an error if plane tries to land again' do
+        allow(airport).to receive(:apron).with(planes).and_return(true)
+        allow(airport).to receive(:stormy?).and_return(false)
+        expect { airport.land(planes) }.to raise_error 'Plane has already landed'
+      end
+    end
+  end
+
+  context 'take off' do
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+    
+    describe '#take_off' do
+      it 'raises and error if the weather is stormy' do
+        allow(airport).to receive(:apron).with(planes).and_return(true)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.take_off(planes) }.to raise_error 'Weather is stormy, take-off is not permitted'
+      end
+
+      it 'raises an error if plane not in airport' do
+        allow(airport).to receive(:apron).with(planes).and_return(false)
+        allow(airport).to receive(:stormy?).and_return(false)
+        expect { airport.take_off(planes) }.to raise_error 'Plane is not in this airport'
+      end
+    end
+  end
+
+  context 'stormy' do 
+    describe '#stormy?' do
+      it 'returns true when stormy' do
+        allow(subject).to receive(:stormy).and_return true
+      end
+      it 'returns true when stormy' do
+        allow(subject).to receive(:stormy).and_return true
+      end
+    end
   end
 end

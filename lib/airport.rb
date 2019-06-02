@@ -2,45 +2,43 @@ require_relative 'planes'
 require_relative 'weather'
 
 class Airport
-  DEFAULT_CAPACITY = 20
-
+  
+  include Weather
   attr_accessor :capacity, :planes
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
   end
 
-# planes in airport
-  def land_plane
-    @planes
+  def land(planes)
+    raise 'Airport is full' if full?
+    raise 'Weather is stormy, landing is not permitted' if stormy?
+    raise 'Plane has already landed' if apron(planes)
+    
+    @planes << planes
   end
 
-  def take_off
-    fail 'All planes departed' if empty?
+  def take_off(planes)
+    raise 'Weather is stormy, take-off is not permitted' if stormy?
+    raise 'Plane is not in this airport' unless apron(planes)
 
     @planes.pop
   end 
 
-  # planes on the airport
-  def apron(planes)  
-    fail 'Airport is full' if full?
-
-    @planes << planes
-  end
-
-# private
-# attr_reader :planes
+  private
 
   def full?
     @planes.count >= capacity
   end
 
-  def empty?
-    @planes.empty?
+  def apron(planes)
+    @planes.include?(planes)
+  end
+
+  def stormy?
+    weather = Weather::Weather.new
+    weather.stormy
   end
 end
-
-  # planes.pop  remove planes from aiport 
-  # when airport reached capacity no landing
-  # default airport capacity later can be overridden 
