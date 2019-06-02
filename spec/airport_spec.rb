@@ -90,6 +90,7 @@ describe Airport do
     before { allow(airport).to receive(:clear_for_landing).and_return(true) }
     before { allow(airport).to receive(:clear_for_take_off).and_return(true) }
     before { allow(plane).to receive(:in_hanger) }
+    before { allow(plane).to receive(:not_in_hanger) }
     it 'should put the plane in the hanger' do
       airport.land(plane)
       airport.take_off(plane)

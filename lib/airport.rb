@@ -52,7 +52,12 @@ class Airport
   end
 
   def take_off(plane)
-    clear_for_take_off(plane) ? @hanger.delete(plane) : puts('Plane not able to take off')
+    if clear_for_take_off(plane)
+      @hanger.delete(plane)
+      plane.not_in_hanger
+    else
+      puts('Plane not able to take off')
+    end
   end
 
 
