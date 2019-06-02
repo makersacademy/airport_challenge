@@ -17,10 +17,6 @@ describe Airport do
     expect(airport.capacity).to eq(25)
   end
 
-  it 'checks plane to make sure its in hanger before take off' do
-    expect { @airport.takeoff(@plane) }.to raise_error('Plane is not in hanger')
-  end
-
   context 'weather is clear' do
 
     before(:each) do
@@ -32,15 +28,29 @@ describe Airport do
       expect(@airport.hanger).to include(@plane)
     end
 
-    it 'take off plane from @airport and confirm @plane is not in hanger' do
+    it 'take off plane from airport and confirm plane is not in hanger' do
       @airport.land(@plane)
       @airport.takeoff(@plane)
       expect(@airport.hanger).not_to include(@plane)
     end
 
     it 'raies error if trying to land while airport is full' do
-      Airport::DEFAULT_CAPACITY.times { @airport.land(@plane) }
-      expect { @airport.land(@plane) }.to raise_error("Can't land, airport is full")
+      Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
+      expect { @airport.land(Plane.new) }.to raise_error("Can't land, airport is full")
+    end
+
+    it 'checks plane to make sure its in hanger before take off' do
+      expect { @airport.takeoff(@plane) }.to raise_error('Plane is not in hanger')
+    end
+
+    it 'raises error if plane is in hanger when trying to land' do
+      @airport.land(@plane)
+      expect { @airport.land(@plane) }.to raise_error("Plane lane is currently in hanger")
+    end
+
+    it 'checks state of airplane prior to landing' do
+      @plane.current_state = 'landed'
+      expect { @airport.land(@plane) }.to raise_error("Plane is currently landed")
     end
   end
 
