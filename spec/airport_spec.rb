@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) {Airport.new}
-  let(:plane) {object_double(Plane.new)}
+  let(:airport) { Airport.new }
+  let(:plane) { object_double(Plane.new) }
 
   it 'weather is either sunny or stormy' do
     expect(airport.weather).to eq('sunny').or eq('stormy')
@@ -115,6 +115,5 @@ describe Airport do
   #     expect(airport.hanger).to include(plane)
   #   end
   # end
-
 
 end

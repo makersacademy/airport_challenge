@@ -31,11 +31,11 @@ class Airport
   end
 
   def check_weather
-    weather == 'sunny' ? true : false
+    weather == 'sunny'
   end
 
   def check_capacity
-    @hanger.length == @capacity ? true : false 
+    @hanger.length == @capacity 
   end
 
   def check_hanger(plane)
@@ -59,6 +59,5 @@ class Airport
       puts('Plane not able to take off')
     end
   end
-
 
 end

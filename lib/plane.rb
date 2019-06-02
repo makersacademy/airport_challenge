@@ -4,9 +4,9 @@ class Plane
 
   attr_reader :at_airport
 
-   def initialize
-     @at_airport = false
-   end
+  def initialize
+    @at_airport = false
+  end
 
   def in_hanger
     @at_airport = true
@@ -15,6 +15,5 @@ class Plane
   def not_in_hanger
     @at_airport = false
   end
-
 
 end
