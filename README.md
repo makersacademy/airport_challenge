@@ -1,3 +1,52 @@
+# First solution to airport challenge
+
+The aim of this challenge was to develop a piece of software that allowed management arriving and departing planes at an airport.
+
+[REQUIREMENTS](#airport-challenge)
+
+## Approach
+A test driven approach was required for the task, utilising object oriented principles to create the appropriate classes and methods for a solution.
+
+#### User story -> Modelling -> Feature test -> Unit Test -> Red-Green-Refactor
+
+Three main classes are needed to meet the requirements:
+
+**Airport** responsible for planes taking off and landing, including keeping track of airport capacity & checking weather conditions
+
+**Plane** responsible for creating new planes and knowing whether plane was in the air or on the ground
+
+**Weather** responsible for generating a random weather condition (Sunny or Stormy) for the airport
+
+## Technologies
+
+**Ruby 2.5.0**
+
+**RSpec 3.7** testing framework
+
+**Rubocop** code liniting
+
+**SimpleCov** test coverage gem
+
+## Progress
+
+I had some trouble breaking down the user story I was unable to progress as much as I wanted, but this is a work in progress
+
+#### Things to improve
+
+* Ensure classes use SRP & encapsulation 
+
+* Make sure plane has attribute confirming location
+
+* Build a thorough mental model of the problem
+
+## Resources
+
+* https://github.com/makersacademy/course/blob/master/pills/code_reviews.md
+* https://www.chris-granger.com/2015/01/26/coding-is-not-the-new-literacy/
+
+
+
+
 Airport Challenge
 =================
 
@@ -27,7 +76,7 @@ Steps
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
+3. When the installation completes, run `bundle`to install the dependencies
 4. Complete the following task:
 
 Task
