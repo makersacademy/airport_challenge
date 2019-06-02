@@ -4,6 +4,7 @@
 
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe AirportController do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -21,5 +22,15 @@ describe AirportController do
   it "informs the AirportController that a plane has left the port" do
     plane = Plane.new
     expect(subject.take_off(plane)).to match_array([])
+  end
+
+#  As an air traffic controller
+#  To ensure safety
+#  I want to prevent takeoff when weather is stormy
+
+  it "prevents take off when weather is stormy" do
+    weather = Weather.new
+    plane = Plane.new
+    expect(weather.take_off(plane)).to eq "Can't take off - weather is stormy"
   end
 end
