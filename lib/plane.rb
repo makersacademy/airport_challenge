@@ -8,6 +8,10 @@ class Plane
     @status = STATUSES[status]
   end
 
+  def status_report
+    @status
+  end
+
   def update
     if @status == STATUSES[0]
       @status = STATUSES[1]
