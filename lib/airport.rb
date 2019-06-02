@@ -8,26 +8,18 @@ class Airport
     @landed = []
   end
 
-  def takeoff(*)
+  def takeoff
     @landed.pop
-    "Plane has taken off from airport"
+    raise "stop" if weather == true
   end
 
-  def land(*)
+  def land(plane)
     @landed << plane
-    "Plane has landed at airport"
+    raise "stop" if weather == true
   end
 
   def weather
-    random_weather == :stormy
-  end
-
-private
-
-  WEATHER = [:stormy, :sunny]
-
-  def random_weather
-    WEATHER.sample
+    true
   end
 
 end
