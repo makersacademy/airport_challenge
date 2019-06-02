@@ -1,2 +1,3 @@
-class Plane
-end 
+class Plane #RZECZOWNIK
+
+end
