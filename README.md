@@ -1,3 +1,37 @@
+# My Solution to Airport Challenge
+
+ Read the main [Airport Challenge](#Airport-Challenge) instructions at the bottom
+
+ ## Assumptions
+
+ - The air traffic controller is responsible for the airports and not the planes
+ - Instructing a plane to land will result in a plane being landed in an airport
+ - The `landed_planes` object is sufficient for confirmation of a plane's departure
+ - The default capacity of an airport is estimated at 4 (it's a small airport `¯\_(ツ)_/¯`)
+ - The default capacity of the airport will be overidden only at the time of its creation
+
+ ## Progress
+
+This is still a work in progress, at minimum I still need to...
+ - :airplane: randomise the weather
+ - :airplane: consider creating a weather class
+ - :airplane: handle edge cases
+
+ ## References
+
+ - [A practical guide to user story splitting for agile teams](https://techbeacon.com/app-dev-testing/practical-guide-user-story-splitting-agile-teams) by Mark J. Balbes, PhD on techbeacon.com
+ - [Better Specs { rspec guidelines with ruby }](http://www.betterspecs.org/)
+ - [Ruby 2 Keyword Arguments](https://thoughtbot.com/blog/ruby-2-keyword-arguments) by Ian C. Anderson on thoughtbot.com
+ - [Utilizing Ruby Keyword Arguments](https://medium.com/@tyler_brewer2/utilizing-ruby-keyword-arguments-462ba8366483) by Tyler Brewer on medium.com
+ - [Airport Challenge](https://github.com/ayelishaamoah/airport_challenge) by Ayelisha Amoah on GitHub
+
+ ## Acknowledgements
+
+ Thanks to Rachel and to Chris for their morale contributions, helping me to persist with the problem when I hit dead ends, and reminding me I don't know _nothing_! :gem:
+
+--------
+
+
 Airport Challenge
 =================
 
