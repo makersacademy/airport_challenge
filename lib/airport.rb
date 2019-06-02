@@ -12,8 +12,8 @@ class Airport
   attr_reader :planes, :capacity
 
   def land(plane)
-    raise "Plane not airborne" if plane.airborne == false
-    stormy?
+    raise "Plane not airborne" unless plane.airborne
+    prevent_if_stormy
     raise "Cannot land, airport full" if full?
 
     plane_landed(plane)
@@ -21,7 +21,7 @@ class Airport
   end
 
   def take_off(plane)
-    stormy?
+    prevent_if_stormy
 
     plane_took_off(plane)
     planes.delete(plane)
@@ -34,7 +34,7 @@ class Airport
     rand(7).zero? ? "stormy" : "sunny"
   end
 
-  def stormy?
+  def prevent_if_stormy
     raise "Stormy weather prevents take off and landing" if weather == "stormy"
   end
 
