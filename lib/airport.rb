@@ -9,20 +9,20 @@ class Airport
     @hanger = []
   end
 
-  def full?
-    @full
+  def clear_for_take_off(plane)
+    if check_weather && check_hanger(plane)
+      true
+    else
+      false
+    end
   end
 
-  def sunny?
-    @sunny
-  end
-
-  def clear_for_take_off?
-    @clear_for_take_off  
-  end
-
-  def clear_for_landing?
-    @clear_for_landing
+  def clear_for_landing(plane)
+    if check_weather && !check_hanger(plane) && !check_capacity
+      true
+    else
+      false
+    end
   end
 
   def weather
@@ -31,42 +31,23 @@ class Airport
   end
 
   def check_weather
-    if weather == 'sunny'
-      @sunny = true
-    else
-      @sunny = false
-    end
+    weather == 'sunny' ? true : false
   end
 
   def check_capacity
-    if @hanger.length == @capacity
-      @full = true
-    else
-      @full = false
-    end    
+    @hanger.length == @capacity ? true : false 
   end
 
-  def set_take_off_safety
-    check_weather
-    if sunny?
-      @clear_for_take_off = true
-    else
-      @clear_for_take_off = false
-    end
-  end
-
-  def set_landing_safety
-    check_capacity
-    check_weather
-    if sunny? && !full?
-      @clear_for_landing = true
-    else
-      @clear_for_landing = false
-    end
+  def check_hanger(plane)
+    @hanger.include?(plane)
   end
 
   def land(plane)
-    @hanger << plane
+    clear_for_landing(plane) ? @hanger << plane : puts('Plane not able to land')
+  end
+
+  def take_off(plane)
+    clear_for_take_off(plane) ? @hanger.delete(plane) : puts('Plane not able to take off')
   end
 
 
