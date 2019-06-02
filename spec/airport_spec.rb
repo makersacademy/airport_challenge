@@ -5,5 +5,8 @@
 require 'airport'
 
 describe AirportController do
-    it { is_expected.to respond_to(:land) }
+    it { is_expected.to respond_to(:land).with(1).argument }
   end
+  #  As an air traffic controller
+#  So I can get passengers on the way to their destination
+#  I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport

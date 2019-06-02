@@ -1,4 +1,4 @@
 class AirportController
-  def land
+  def land(plane)
   end
 end
