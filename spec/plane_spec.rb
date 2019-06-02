@@ -1,10 +1,11 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 describe Plane do
   before(:each) do
     @airport = Airport.new
-    allow(@airport).to receive(:weather) { "sunny" }
+    allow(@airport.weather).to receive(:stormy?) { false }
   end
 
   it 'knows it is flying after take off' do

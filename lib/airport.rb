@@ -1,15 +1,16 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = weather
+    @weather = Weather.new
     @capacity = capacity
   end
 
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
 
   def land(plane)
     prevent_if_stormy
@@ -31,13 +32,8 @@ class Airport
 
   private
 
-  def weather
-    # 1 in 7 chance of stormy weather
-    rand(7).zero? ? :stormy : :sunny
-  end
-
   def prevent_if_stormy
-    raise "Stormy weather prevents take off and landing" if weather == :stormy
+    raise "Stormy weather prevents take off and landing" if weather.stormy?
   end
 
   def full?
