@@ -1,6 +1,6 @@
 require 'weather'
 
-RSpec.describe Weather do
+RSpec.describe WeatherCondition do
   describe '#stormy?' do
     context 'stormy' do
       it 'returns 9 when stormy' do

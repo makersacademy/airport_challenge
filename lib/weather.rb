@@ -1,4 +1,4 @@
-module Weather
+module WeatherCondition
 
   class Weather
   

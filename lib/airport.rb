@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
   
-  include Weather
+  include WeatherCondition
   attr_accessor :capacity, :planes
   DEFAULT_CAPACITY = 20
 
@@ -38,7 +38,7 @@ class Airport
   end
 
   def stormy?
-    weather = Weather::Weather.new
+    weather = WeatherCondition::Weather.new
     weather.stormy
   end
 end

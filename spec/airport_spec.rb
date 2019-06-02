@@ -5,6 +5,12 @@ RSpec.describe Airport do
   subject(:airport) { described_class.new }
   let(:planes) { double :plane }
 
+  it 'has the plane after landing' do
+    allow(planes).to receive(:land) {land}
+    airport.land(planes)
+    expect(airport.planes).to include planes
+  end
+
   describe '#initialize' do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
