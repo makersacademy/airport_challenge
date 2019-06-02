@@ -13,9 +13,9 @@
  ## Progress
 
 This is still a work in progress, at minimum I still need to...
- - randomise the weather
- - consider creating a weather class
- - handle edge cases
+ - :airplane: randomise the weather
+ - :airplane: consider creating a weather class
+ - :airplane: handle edge cases
 
  ## References
 
@@ -29,7 +29,8 @@ This is still a work in progress, at minimum I still need to...
 
  Thanks to Rachel and to Chris for their morale contributions, helping me to persist with the problem when I hit dead ends, and reminding me I don't know _nothing_! :gem:
 
-:airplane: :airplane: :airplane: :airplane: :airplane: :airplane: 
+--------
+
 
 Airport Challenge
 =================
