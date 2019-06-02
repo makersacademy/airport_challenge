@@ -15,5 +15,6 @@ class Airport
   end
 
   def take_off(plane)
+    @planetoadd.pop
   end
 end

@@ -1,12 +1,6 @@
 require 'airport'
 
 describe Airport do
-
-  it 'plane takes off' do
-    plane = Plane.new
-    expect(plane).to respond_to(:take_off)
-  end
-
   it 'plane lands' do
     plane = Plane.new
     expect(plane.land).to be_a Plane
@@ -17,5 +11,12 @@ describe Airport do
     airport = Airport.new
     airport.add(plane)
     expect(airport.planetoadd).to include(plane)
+  end
+
+  it 'plane takes off' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.take_off(plane)
+    expect(airport.planetoadd).not_to include(plane)
   end
 end
