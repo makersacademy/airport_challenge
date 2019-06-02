@@ -117,6 +117,14 @@ describe Airport do
     end
   end
 
+  context "land plane" do
+    it 'should land a plane' do
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport.hanger).to inlude(plane)
+    end
+  end
+
 
 
 
