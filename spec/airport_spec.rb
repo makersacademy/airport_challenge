@@ -14,7 +14,7 @@ describe Airport do
 
   it 'can change hanger capacity' do
     airport = Airport.new(20)
-    expect(@airport.capacity).to eq(20)
+    expect(airport.capacity).to eq(20)
   end
 
   context 'weather is clear' do
