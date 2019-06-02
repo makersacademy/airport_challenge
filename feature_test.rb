@@ -3,9 +3,4 @@ require './lib/airport'
 
 print airport = Airport.new
 puts
-
 print airport.land Plane.new
-puts
-
-print airport.land Plane.new
-puts

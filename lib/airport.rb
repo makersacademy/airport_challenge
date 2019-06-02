@@ -6,11 +6,14 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if @plane
+
     @plane = plane
   end
 
-  def take_off(plane)
-    @plane = plane
+  def take_off
+    fail 'Airport empty' unless @plane
+
+    @plane
   end
 
   # def plane
