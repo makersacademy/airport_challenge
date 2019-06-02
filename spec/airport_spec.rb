@@ -40,9 +40,9 @@ RSpec.describe Airport do
       expect { airport.take_off(airplane) }.to raise_error 'The weather is stormy'
     end
 
-    it 'raise an error if there are no airplanes in the airport' do
+    it 'raise an error if the airplane has already took off or is not in the hangar' do
       airport.weather = :sunny
-      expect { airport.take_off(airplane) }.to raise_error 'There are no airplanes in the airport'
+      expect { airport.take_off(airplane) }.to raise_error 'The airplane is not in the airport'
     end
 
     it 'instruct a plane to take off' do 
