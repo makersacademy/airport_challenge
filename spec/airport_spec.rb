@@ -49,6 +49,10 @@ describe Airport do
         subject.take_off(@plane)
         expect(subject.planes).not_to include(@plane)
       end
+      it 'cannot take off if it is already airborne' do
+        @plane.airborne = true
+        expect { subject.take_off(@plane) }.to raise_error("Plane already airborne")
+      end
     end
   end
 
@@ -58,6 +62,7 @@ describe Airport do
     end
 
     it 'prevents take off' do
+      @plane.airborne = false
       expect { subject.take_off(@plane) }.to raise_error("Stormy weather prevents take off and landing")
     end
     it 'prevents landing' do

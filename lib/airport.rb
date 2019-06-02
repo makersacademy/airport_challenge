@@ -12,8 +12,8 @@ class Airport
   attr_reader :planes, :capacity
 
   def land(plane)
-    raise "Plane not airborne" unless plane.airborne
     prevent_if_stormy
+    raise "Plane not airborne" unless plane.airborne
     raise "Cannot land, airport full" if full?
 
     plane_landed(plane)
@@ -22,6 +22,7 @@ class Airport
 
   def take_off(plane)
     prevent_if_stormy
+    raise "Plane already airborne" if plane.airborne
 
     plane_took_off(plane)
     planes.delete(plane)
