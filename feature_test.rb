@@ -3,7 +3,7 @@ require './lib/airport'
 
 print airport = Airport.new
 puts
-airport.capacity = 10
+puts airport.capacity = 10
 puts
 print 5.times { airport.land(Plane.new) }
 puts
