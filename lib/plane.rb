@@ -1,21 +1,26 @@
 class Plane
-    attr_accessor :weather
+    attr_accessor :status
     def initialize
-        @weather = "POOR"
-    end 
+        @status = "GROUNDED"
+    end
+
     def land
-        if @weather == "POOR"
-            raise "Conditions are unfavourable"
+        if @status == "IN-AIR"
+            puts "Plane landed"
+            @status = "GROUNDED"
+            return self
         else
-            return "Plane landed"
+            raise "Plane is already grounded"
         end
     end
 
     def takeoff
-        if @weather == "POOR"
-            raise "Conditions are unfavourable"
-        else 
-            return "Plane is in the air"
+        if  @status == "GROUNDED"
+            puts  "Plane is in the air"
+            @status = "IN-AIR"
+            return self
+        elsif @status == "IN-AIR"
+            raise "Plane is already airbourne"
         end
     end
 end
