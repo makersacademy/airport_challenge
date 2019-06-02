@@ -14,7 +14,7 @@ describe Airport do
     expect(airport.capacity).to eq(50)
   end
 
-  context 'is sunny' do
+  context 'when sunny' do
     before(:each) do
       allow(subject).to receive(:weather) { "sunny" }
     end
@@ -25,10 +25,8 @@ describe Airport do
         expect(subject.planes).to include(@plane)
       end
       it 'prevents landing if airport is full' do
-        airport = Airport.new(1)
-        airport.land(@plane)
-        second_plane = Plane.new
-        expect { airport.land(second_plane) }.to raise_error("Cannot land, airport full")
+        20.times { subject.land(Plane.new) }
+        expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport full")
       end
     end
 
@@ -41,7 +39,7 @@ describe Airport do
     end
   end
 
-  context 'is stormy' do
+  context 'when stormy' do
     before(:each) do
       allow(subject).to receive(:weather) { "stormy" }
     end
