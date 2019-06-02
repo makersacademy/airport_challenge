@@ -21,12 +21,14 @@ class Airport
     raise "Cannot land, airport full" if full?
 
     planes << plane
+    plane.airborne = false
   end
 
   def take_off(plane)
     raise "Stormy weather prevents take off" if stormy?
 
     planes.delete(plane)
+    plane.airborne = true
   end
 
   private

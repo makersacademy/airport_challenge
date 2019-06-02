@@ -1,5 +1,7 @@
 class Plane
-  def flying?
-    true
+  def initialize
+    @airborne = false
   end
+
+  attr_accessor :airborne
 end

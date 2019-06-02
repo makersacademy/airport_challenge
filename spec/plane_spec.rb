@@ -7,8 +7,12 @@ describe Plane do
     allow(@airport).to receive(:weather) { "sunny" }
   end
 
-  it 'knows it is flying after take_off' do
+  it 'knows it is flying after take off' do
     @airport.take_off(subject)
-    expect(subject).to be_flying
+    expect(subject.airborne).to eq(true)
+  end
+  it 'knows it is not flying after landing' do
+    @airport.land(subject)
+    expect(subject.airborne).to eq(false)
   end
 end
