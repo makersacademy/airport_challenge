@@ -1,4 +1,5 @@
-require 'planes'
+require_relative 'planes'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20

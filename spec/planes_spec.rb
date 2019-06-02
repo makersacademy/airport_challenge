@@ -8,6 +8,11 @@ RSpec.describe Planes do
     it 'plane has take off' do
       expect(subject.taken_off).to eq true
     end
+
+    it 'plane has take off' do
+      subject.taken_off 
+      expect(subject).to be_taken_off
+    end
   end
 
   describe '#landed' do
@@ -15,9 +20,4 @@ RSpec.describe Planes do
       expect(subject.landed).to eq false
     end
   end
-
-#  it 'plane has take off' do
-#    subject.taken_off 
-#    expect(subject).to be_taken_off
-#  end
 end

@@ -1,6 +1,6 @@
 require 'airport'
 
-describe Airport do
+RSpec.describe Airport do
   it { is_expected.to respond_to :land_plane }
   
   describe '#land_plane' do 
