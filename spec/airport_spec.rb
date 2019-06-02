@@ -14,6 +14,10 @@ describe Airport do
     expect(subject.planes).to eq [plane]
   end
 
+  it 'airport has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#take_off' do
 
     it 'plane takes off from airport' do
