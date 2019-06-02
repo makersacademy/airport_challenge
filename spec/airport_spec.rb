@@ -22,6 +22,6 @@ describe Airport do
 
   it 'prints a message' do
     airport = Airport.new
-    expect {airport.take_off(@plane) }.to output("Plane has taken off \n").to_stdout
+    expect { airport.take_off(@plane) }.to output("Plane has taken off \n").to_stdout
   end
 end
