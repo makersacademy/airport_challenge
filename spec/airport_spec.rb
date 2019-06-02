@@ -8,6 +8,13 @@ describe Airport do
     expect(airport.weather).to eq('sunny').or eq('stormy')
   end
 
+  context "checking weather" do
+    before { allow(airport).to receive(:weather).and_return('sunny') }
+    it 'should return true' do
+      expect(airport.check_weather).to be true
+    end
+  end
+
   it 'is initialised with a capacity argument that can override default' do
     airport = Airport.new(100)
     expect(airport.instance_variable_get(:@capacity)).to eq(100)
@@ -98,16 +105,16 @@ describe Airport do
     end
   end
 
-  context "not ok to take off" do
-    before { allow(airport).to receive(:clear_for_landing).and_return(true) }
-    before { allow(airport).to receive(:clear_for_take_off).and_return(false) }
-    before { allow(plane).to receive(:in_hanger) }
-    it 'plane should remain in the hanger' do
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.hanger).to include(plane)
-    end
-  end
+  # context "not ok to take off" do
+  #   before { allow(airport).to receive(:clear_for_landing).and_return(true) }
+  #   before { allow(airport).to receive(:clear_for_take_off).and_return(false) }
+  #   before { allow(plane).to receive(:in_hanger) }
+  #   it 'plane should remain in the hanger' do
+  #     airport.land(plane)
+  #     airport.take_off(plane)
+  #     expect(airport.hanger).to include(plane)
+  #   end
+  # end
 
 
 end
