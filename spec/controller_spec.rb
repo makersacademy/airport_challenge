@@ -80,7 +80,7 @@ describe Controller do
     airport.capacity = 10
     airport.planes = 5
     result = subject.handle_take_off_request(plane, airport, weather)
-    expect(result).to eql(true)
+    expect(result).to eql("Plane has taken off.")
   end
 
   it 'should comfirm a plane has not taken off if request is not successful due to bad weather' do

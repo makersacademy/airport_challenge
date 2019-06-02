@@ -17,7 +17,7 @@ class Controller
     elsif take_off?(weather)
       plane.take_off
       airport.remove_plane
-      true
+      "Plane has taken off."
     else
       "Plane did not take off due to stormy weather."
     end
