@@ -9,10 +9,6 @@ class Airport
     @hanger = []
   end
 
-  # def safe?
-  #   @safe
-  # end
-
   def full?
     @full
   end
