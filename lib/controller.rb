@@ -1,7 +1,13 @@
 class Controller
 
   def handle_landing_request(plane, airport, weather)
-    true
+    if land_plane?(airport, weather)
+      plane.land
+      airport.add_plane
+      true
+    else
+      false
+    end
   end
   
   def land_plane?(airport, weather)
