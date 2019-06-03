@@ -1,29 +1,52 @@
-require 'plane'
-require 'weather'
+require_relative 'weather'
 
 class Airport
-  attr_reader :hangar, :weather, :capacity
-  DEFAULT_CAPACITY = 10
+  attr_reader :hangar
+  DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @weather = Weather.new
+    @weather = weather
     @capacity = capacity
   end
 
   def land(plane)
-    "Plane already in hangar" if hangar.include?(plane) == true
-    "There is a storm, cannot land" if weather.stormy? == true
-    "Hangar is full, cannot land" if hangar.length > capacity
-    hangar << plane
-    "Plane has landed"
+    raise "There is a storm, cannot land" if stormy?
+    raise "Hangar is full, cannot land" if full?
+    plane.land(self)
+    add_plane(plane)
   end
 
   def take_off(plane)
-    "Error: Plane is not in hangar" if hangar.include?(plane) == false
-    "There is a storm, can't take off" if weather.stormy? == true
-    hangar.delete(plane)
-    "Plane has taken off"
+    raise "There is a storm, can't take off" if stormy?
+    raise "Error: Plane not at this airport" unless at_airport?(plane)
+    plane.take_off
+    remove_plane(plane)
+    plane
+  end
+
+  private
+
+  attr_reader :capacity, :weather
+
+  def full?
+    hangar.length >= capacity
+  end
+
+  def stormy?
+    weather.stormy?
+  end
+
+  def add_plane(plane)
+    hangar << plane
+  end
+
+  def remove_plane(plane)
+    hangar.pop
+  end
+
+  def at_airport?(plane)
+    hangar.include?(plane)
   end
 
 end

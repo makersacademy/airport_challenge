@@ -1,59 +1,96 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:land) }
-  it { is_expected.to respond_to(:take_off) }
-
-  it "allows user to set a capacity" do
-    expect(Airport.new(20).capacity).to eq 20
-  end
-
-  # default capacity is 25
-
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+  subject(:airport) { described_class.new(weather, 20) }
+  let(:plane) { double :plane, land: nil, take_off: nil }
+  let(:weather) { double :weather}
 
   describe "#land" do
-  # scenario 1: cannot land the plane because its already in the hangar
-    it "cannot land if the plane is already in the hangar" do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.land(plane))== "Plane already in the hangar"
-    end
-
-  # scenario 2: the plane can only land if there is no storm :
-    it "cannot land the plane if it is stormy" do
-      plane = Plane.new
-      if Weather.new.stormy? == true
-        expect(subject.land(plane))== "There is a storm, cannot land"
+    context 'when not stormy' do
+      before do
+        allow(weather).to receive(:stormy?).and_return false
       end
-    end
-  # scenario 3: the plan can land and can be added to hangar if there is no storm
-    it "adds the plane to the hangar if it is not stormy" do
-      plane = Plane.new
-      if Weather.new.stormy? == false
-        expect(subject.land(plane))== "Plane has landed"
+
+      it "adds the plane to the hangar" do
+        expect(plane).to receive(:land)
+        airport.land(plane)
+      end
+
+    context 'when full' do
+      it 'raises an error' do
+        20.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error 'Hangar is full, cannot land'
       end
     end
   end
+
+    context 'when stormy' do
+        it 'raises an error' do
+          allow(weather).to receive(:stormy?).and_return true
+          expect { airport.land(plane) }.to raise_error 'There is a storm, cannot land'
+        end
+      end
+    end
 
   describe "#take_off" do
-  # scenario 1: there is no plane in hangar to take off:
-    it "returns and error that there is no plane in hangar" do
-      plane = Plane.new
-      subject.take_off(plane)
-      expect(subject.take_off(plane))== "Error: Plane is not in hangar"
+    context 'when not stormy' do
+      before do
+        allow(weather).to receive(:stormy?).and_return false
+      end
+
+      it 'instructs the plane to take off' do
+        airport.land(plane)
+        expect(plane).to receive(:take_off)
+        airport.take_off(plane)
+      end
+
+      it 'returns the plane that took off' do
+        airport.land(plane)
+        expect(airport.take_off(plane)).to eq plane
+      end
+
+      it 'raises an error if plane is not at this airport' do
+        other_airport = described_class.new(weather, 20)
+        other_airport.land(plane)
+        expect { airport.take_off(plane) }.to raise_error "Error: Plane not at this airport"
+      end
     end
 
-  # scenario 2: the plane will take off if it is not stormy:
-    it "if there is no storm, the plane can take off" do
-      plane = Plane.new
-      subject.land(plane)
-      unless Weather.new.stormy? == true
-        expect(subject.take_off(plane)).to eq "Plane has taken off"
+    context 'when stormy' do
+      before do
+        allow(weather).to receive(:stormy?).and_return true
+      end
+
+      it 'raises an error' do
+        expect { airport.take_off(plane) }.to raise_error "There is a storm, can't take off"
       end
     end
   end
 
+  describe '#hangar' do
+    before do
+      allow(weather).to receive(:stormy?).and_return false
+    end
+
+    it 'returns planes at the airport' do
+      airport.land(plane)
+      expect(airport.hangar).to include plane
+    end
+
+    it 'does not return planes that have taken off' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.hangar).not_to include plane
+    end
+
+    context 'defaults' do
+      subject(:default_airport) { described_class.new(weather) }
+
+      it 'has a default capacity' do
+        allow(weather).to receive(:stormy?).and_return false
+        described_class::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+        expect { default_airport.land(plane) }.to raise_error "Hangar is full, cannot land"
+      end
+    end
+  end
 end
