@@ -24,8 +24,6 @@ RSpec.describe Airport do
   end 
 
   context 'landing' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-    
     describe '#land' do
       before do
         allow(airport).to receive(:apron).with(planes).and_return(false)
@@ -75,17 +73,6 @@ RSpec.describe Airport do
         allow(airport).to receive(:apron).with(planes).and_return(false)
         allow(airport).to receive(:stormy?).and_return(false)
         expect { airport.take_off(planes) }.to raise_error 'Plane is not in this airport'
-      end
-    end
-  end
- 
-  context 'stormy' do 
-    describe '#stormy?' do
-      it 'returns true when stormy' do
-        allow(subject).to receive(:stormy?).and_return(true)
-      end
-      it 'returns false when sunny' do
-        allow(subject).to receive(:stormy?).and_return(false)
       end
     end
   end

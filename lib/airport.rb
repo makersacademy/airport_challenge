@@ -3,13 +3,14 @@ require_relative 'weather'
 
 class Airport
   
-  include WeatherCondition
+#  include WeatherCondition
   attr_accessor :capacity, :planes
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @capacity = capacity
     @planes = []
+    @weather = weather
   end
 
   def land(planes)
@@ -30,7 +31,7 @@ class Airport
   private 
 
   def full?
-    @planes.count >= capacity
+    @planes.length >= capacity
   end
 
   def apron(planes)
@@ -38,7 +39,6 @@ class Airport
   end
 
   def stormy?
-    weather = WeatherCondition::Weather.new
-    weather.stormy
+    @weather.stormy?
   end
 end

@@ -1,9 +1,6 @@
-module WeatherCondition
-
-  class Weather
+class Weather
   
-    def stormy
-      rand(1..10) > 7 
-    end
+  def stormy?
+    Kernel.rand(1..10) > 7
   end
 end
