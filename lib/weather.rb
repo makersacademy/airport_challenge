@@ -1,6 +1,5 @@
 class Weather
   def stormy?
-    weather = [1, 2].sample
-    weather = 1 ? true : false
+    Kernel.rand(1..6) > 4
   end
 end
