@@ -43,8 +43,8 @@ I would like a default airport capacity that can be overridden as appropriate
 - Converting the user stories to objects and messages
 - Creating seperate files for objects and module
 - Feature test in irb
-- Write the unit tests with RSpec before the code base to reach near 100 % coverage
-- Run Rubocop and Travis CI regularly 
+- Writing the unit tests with RSpec before the code base to reach near 100 % coverage
+- Running Rubocop and Travis CI regularly 
 
 ## Technologies Used
 
