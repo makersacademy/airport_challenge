@@ -1,7 +1,6 @@
-require_relative 'plane'
 
 class Airport
-
+  attr_reader :initialize
   def initialize
   @hanger = []
   end
@@ -17,7 +16,7 @@ class Airport
 end
 
 class Weather
-
+  attr_reader :initialize
   def initialize
   @weather = [sunny, sunny, sunny, sunny, sunny,
               sunny, sunny, sunny, stormy, stormy]
@@ -26,5 +25,10 @@ class Weather
   def stormy
   return @weather.sample
   end
+
+end
+
+
+class Plane
 
 end
