@@ -8,12 +8,11 @@ RSpec.describe Airport do
   it 'a plane can takeoff' do
     airport = Airport.new
     airport.takeoff
-    expect(@landed).to be_empty
+    expect(@hanger).to be_empty
   end
 
   it 'stops takeoff if weather is stormy' do
     airport = Airport.new
-    plane = Plane.new
     expect { airport.takeoff }.to raise_error "stop"
   end
 
@@ -21,13 +20,13 @@ RSpec.describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-      expect(@landed).to_not be_empty
+    expect(@hanger).to include(plane)
   end
 
   it 'stops landing if weather is stormy' do
     airport = Airport.new
     plane = Plane.new
-    expect { airport.land }.to raise_error "stop"
+    expect { airport.land(plane) }.to raise_error "stop"
   end
 end
 

@@ -2,19 +2,19 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :landed
+  attr_reader :hanger
 
   def initialize
-    @landed = []
+    @hanger = []
   end
 
   def takeoff
-    @landed.pop
+    @hanger.pop
     raise "stop" if weather == true
   end
 
   def land(plane)
-    @landed << plane
+    @hanger << plane
     raise "stop" if weather == true
   end
 
