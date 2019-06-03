@@ -1,4 +1,4 @@
-require './lib/plane'
+require_relative 'plane'
 class Airport
   attr_accessor :hangar
 
@@ -11,7 +11,7 @@ class Airport
   end
 
   def take_off(plane)
-    @hangar.pop(plane)
+    @hangar.delete(plane)
     "Airborne!"
   end
 end

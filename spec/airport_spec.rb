@@ -2,8 +2,9 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+
   it 'tells a plane to land' do
+    airport = Airport.new
     expect(airport).to respond_to(:land).with(1).argument
   end
   it "adds a new plane to hangar" do
@@ -13,7 +14,15 @@ describe Airport do
     expect(airport.hangar).to include(plane)
   end
 
-  it "tells a plane to take off" do
+  it "instructs a plane to take off" do
+    airport = Airport.new
     expect(airport).to respond_to(:take_off).with(1).argument
+  end
+  it "removes plane once taken off" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.hangar).not_to include(plane)
   end
 end
