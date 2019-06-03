@@ -29,6 +29,9 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-  expect(airport.take_off(plane)).to eq("Airborne!")
+    expect(airport.take_off(plane)).to eq("Airborne!")
+  end
+  it "raises error when no planes at airport" do
+    expect { subject.take_off(plane) }.to raise_error 'No planes available'
   end
 end
