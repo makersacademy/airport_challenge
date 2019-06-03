@@ -1,5 +1,5 @@
-require 'Plane'
-require 'Airport'
+require 'plane'
+require 'airport'
 
   describe Plane do
     it 'should create an instance of Plane' do
@@ -11,4 +11,4 @@ require 'Airport'
     plane = Plane.new
     it (subject.land).to respond_to (:airport) do
   end
-end 
+end

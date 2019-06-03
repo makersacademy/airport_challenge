@@ -20,10 +20,11 @@ require 'plane'
       airport.take_off(plane)
       expect(airport.store_planes).not_to include(plane)
     end
-    
+
    describe '#land_plane' do
 	    it 'lands a plane' do
 	      planes = Planes.new
 	      expect(subject.land_plane).to eq [planes]
 	    end
-	  end
+	 end
+end
