@@ -25,4 +25,10 @@ describe Airport do
     airport.take_off(plane)
     expect(airport.hangar).not_to include(plane)
   end
+  it "Take off confirmation" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+  expect(airport.take_off(plane)).to eq("Airborne!")
+  end
 end
