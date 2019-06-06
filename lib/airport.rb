@@ -6,16 +6,10 @@ class Airport
     @planetoadd = []
   end
 
-  def land
-    Plane.new
-  end
+  def land(plane) # giving land an argument
 
-  def add(plane)
-    @planetoadd << plane
   end
 
   def take_off(plane)
-    @planetoadd.pop
-    puts "Plane has taken off \n"
-  end
+  end 
 end

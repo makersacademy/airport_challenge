@@ -1,27 +1,18 @@
 require 'airport'
 
 describe Airport do
-  it 'plane lands' do
+  it 'intructs a plane to land at airport' do
+    airport = Airport.new
     plane = Plane.new
-    expect(plane.land).to be_a Plane
+    expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it 'adds a plane to the airport' do
+# As an air traffic controller
+# So I can get passengers on the way to their destination
+# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+  it 'so planes take off from airport, instruct a plane to take_off' do
+    airport = Airport.new
     plane = Plane.new
-    airport = Airport.new
-    airport.add(plane)
-    expect(airport.planetoadd).to include(plane)
-  end
-
-  it 'plane takes off' do
-    plane = Plane.new
-    airport = Airport.new
-    airport.take_off(plane)
-    expect(airport.planetoadd).not_to include(plane)
-  end
-
-  it 'prints a message' do
-    airport = Airport.new
-    expect { airport.take_off(@plane) }.to output("Plane has taken off \n").to_stdout
+    expect(airport). to respond_to(:take_off)
   end
 end
