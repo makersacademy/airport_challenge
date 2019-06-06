@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new(20) }
+  let(:plane) {double :plane}
+
   it 'intructs a plane to land at airport' do
     expect(subject).to respond_to(:land).with(1).argument
   end
@@ -17,12 +19,14 @@ describe Airport do
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when the airport is full
-  it 'does not allow planes to land when airport is full' do
-    airport = Airport.new(20)
-    plane = Plane.new
-    20.times do # land all planes to fill up capacity
-      airport.land(plane)
+  context 'when full' do
+    it 'raises an error' do
+      airport = Airport.new(20)
+      plane = Plane.new
+      20.times do # land all planes to fill up capacity
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error "Cannot land plane airport full."
     end
-    expect { airport.land(plane) }.to raise_error "Cannot land plane airport full."
   end
 end
