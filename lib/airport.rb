@@ -1,15 +1,17 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planetoadd
-  def initialize
-    @planetoadd = []
+  def initialize(capacity)
+    @capacity = capacity
+    @planes = []
   end
 
-  def land(plane) # giving land an argument
-
+  def land(plane)
+    raise "Cannot land plane airport full." if @planes.length >= 20
+    
+    @planes << plane
   end
 
   def take_off(plane)
-  end 
+  end
 end
