@@ -1,16 +1,10 @@
-<h1 align='center'>
-:airplane:
-Airport Challenge 
-:airplane:
-</h1>
+# :airplane: Airport Challenge :airplane:
 
----
+[![Build Status](https://travis-ci.com/petraartep/airport_challenge.svg?branch=master)](https://travis-ci.com/petraartep/airport_challenge)
+
 
 This application is controlling the flow of planes at an airport. The aircrafts can land and take off when the weather is the sunny, occasionally it may be stormy, in which case no planes can land or take off. 
 
-## Build Status
-
-[![Build Status](https://travis-ci.com/petraartep/airport_challenge.svg?branch=master)](https://travis-ci.com/petraartep/airport_challenge)
 
 ## User Stories
 
