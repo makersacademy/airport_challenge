@@ -1,3 +1,4 @@
+#### for Ruby purpuses
 .DS_Store
 coverage/**/*
 .rubocop-upgraded.yml
@@ -7,3 +8,4 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+#### for PyTest purposes
