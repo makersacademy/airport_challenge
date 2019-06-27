@@ -1,4 +1,7 @@
 
 class TrafficController
 
-end 
+  def instruct
+
+  end 
+end
