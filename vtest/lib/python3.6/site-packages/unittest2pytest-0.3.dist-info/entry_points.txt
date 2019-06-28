@@ -1,0 +1,3 @@
+[console_scripts]
+unittest2pytest = unittest2pytest.__main__:main
+
