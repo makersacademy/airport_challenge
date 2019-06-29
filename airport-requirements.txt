@@ -28,10 +28,28 @@ THEN: the airpot releases the plane
 
 ------------------------------------------------------------
 
+As an air traffic controller 
+To ensure safety 
+I want to check to see if the weather is stormy
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the weather is stormy
+WHEN: I check the weather report
+THEN: it tells me the weather is stormy
+
+------------------------------------------------------------
 
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the plane which landed now wants to takeoff
+WHEN: the weather is stormy
+THEN: the airpot does not release the plane
+
+------------------------------------------------------------
+
 
 As an air traffic controller 
 To ensure safety 
@@ -46,15 +64,19 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 
+------------------------------------------------------------
+------------------------------------------------------------
 
-
+Domain Modelling
 
 Objects:
 Plane
 Airport : runway_land / runway_takeoff
+Weather : stormy?
 
 
 
 Airport.runway_land -> Plane
 Airport.runway_takeoff -> Plane
+Airport.runway_takeoff -> Weather.stormy?
 

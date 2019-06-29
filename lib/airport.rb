@@ -1,3 +1,4 @@
+require './lib/weather'
 
 class Airport
 
@@ -10,7 +11,19 @@ class Airport
   end
 
   def runway_takeoff(plane)
-    @hangar -= [plane]
+    if check_for_storms
+      "Planes are grounded due to weather conditions"
+    else
+      @hangar -= [plane]
+    end
+  end
+
+  def get_weather_status(weather)
+    @weather = weather
+  end
+
+  def check_for_storms
+    @weather.stormy?
   end
 
 end
