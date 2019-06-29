@@ -1,10 +1,12 @@
-class Weather
-  attr_accessor :current_weather
+module Weather
 
-  def initialize
-    @current_weather = 'sunny'
-    @random_number = rand(25)
-    @current_weather == 'stormy' if @random_number == 8 ||
-      @random_number == 16
+  def generate_weather
+    @random_number = rand(2)
+    if @random_number == 1
+      @current_weather = 'stormy'
+    else
+      @current_weather = 'sunny'
+    end
+    @current_weather
   end
 end

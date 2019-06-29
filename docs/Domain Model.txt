@@ -1,0 +1,27 @@
+OBJECTS
+Plane
+Airport
+Weather
+System Designer
+
+MESSAGES
+Airport.land_plane
+Aiport.plane_take_off
+Weather.stormy?
+
+
++--+--+--+--+--+--+--+--+--+--++--+--+--+--+--+--
+| OBJECTS         | MESSAGES                    |
++--+--+--+--+--+--+--+--+--+--++--+--+--+--+--+--
+| Plane           | flying?                     |
++--+--+--+--+--+--+--+--+--+--++--+--+--+--+--+--
+| Airport         | land_plane, plane_take_off  |
++--+--+--+--+--++--+--+--+--+--+--+--+--+--+--++-
+| Weather         | stormy?                     |
++--+--+--+--+--++--+--+--+--+--+--+--+--+--+--++-
+
+
+Airport -- plane_take_off --> Plane
+Airport -— land_plan -—> Plane
+Plane—-flying?-—>Airport
+Weather--stormy?-->Airport

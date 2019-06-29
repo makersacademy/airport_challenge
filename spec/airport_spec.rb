@@ -18,7 +18,7 @@ describe Airport do
 
     it "Adds the landed plane to a list of planes" do
       airport = Airport.new
-      airport.change_weather('sunny')
+      allow(airport).to receive(:generate_weather) {'sunny'}
       plane = Plane.new
       airport.land_plane(plane)
       expect(airport.planes).to include(plane)
@@ -26,7 +26,10 @@ describe Airport do
 
     it "Raises an error when it tries to land a plane when stormy" do
       airport_3 = Airport.new
-      airport_3.change_weather('stormy')
+      p airport_3.weather
+      allow(airport_3).to receive(:generate_weather) {'stormy'}
+      p "AFTER STUD"
+      p airport_3.weather
       plane_3 = Plane.new
       expect { airport_3.land_plane(plane_3) }.to raise_error "Weather is stormy - "\
       "Cannot land plane"
@@ -34,6 +37,7 @@ describe Airport do
 
     it "Raises an error when it tries to land a plane when it is full" do
       airport_4 = Airport.new
+      allow(airport_4).to receive(:generate_weather) {'sunny'}
       plane_4 = Plane.new
       airport_4.capacity.times { airport_4.land_plane(plane_4) }
       expect { airport_4.land_plane(plane_4) }.to raise_error "Airport full"
@@ -44,7 +48,7 @@ describe Airport do
 
     it "will remove plane from airport's stock of planes" do
       airport_2 = Airport.new
-      airport_2.change_weather('sunny')
+      allow(airport_2).to receive(:generate_weather) {'sunny'}
       plane_2 = Plane.new
       airport_2.land_plane(plane_2)
       airport_2.plane_take_off(plane_2)
@@ -53,7 +57,10 @@ describe Airport do
 
     it "Raises an error if weather is stormy" do
       airport_6 = Airport.new
-      airport_6.change_weather('stormy')
+      allow(airport_6).to receive(:generate_weather) {'stormy'}
+      airport_6.generate_weather
+      p "LINE 60: "
+      p airport_6.weather 
       plane_6 = Plane.new
       expect { airport_6.plane_take_off(plane_6) }.to raise_error "Weather is "\
         "stormy - cannot take off"
