@@ -6,7 +6,7 @@ I want to instruct a plane to land at an airport
 
 Scenario: User is an air traffic controller interacting with the program
 GIVEN: there is an aeroplane wanting to land
-WHEN: the aeroplane requests to land
+WHEN: the airport instructs the plane to land
 THEN: the airpot receives the plane
 
 
