@@ -50,6 +50,14 @@ describe Airport do
       airport_2.plane_take_off(plane_2)
       expect(airport_2.planes).to eq []
     end
+
+    it "Raises an error if weather is stormy" do
+      airport_6 = Airport.new
+      airport_6.change_weather('stormy')
+      plane_6 = Plane.new
+      expect { airport_6.plane_take_off(plane_6)}.to raise_error "Weather is "\
+        "stormy - cannot take off"
+    end
   end
 
 end
