@@ -1,3 +1,6 @@
+
+------------------------------------------------------------
+
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -10,13 +13,25 @@ WHEN: the airport instructs the plane to land
 THEN: the airpot receives the plane
 
 
+------------------------------------------------------------
+
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
+----
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the plane which landed now wants to takeoff
+WHEN: the airport instructs the plane to takeoff
+THEN: the airpot releases the plane
+
+------------------------------------------------------------
+
+
 As an air traffic controller 
 To ensure safety 
-I want to prevent takeoff when weather is stormy 
+I want to prevent takeoff when weather is stormy
 
 As an air traffic controller 
 To ensure safety 
@@ -36,4 +51,10 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Objects:
 Plane
-Airport : runway.land /
+Airport : runway_land / runway_takeoff
+
+
+
+Airport.runway_land -> Plane
+Airport.runway_takeoff -> Plane
+
