@@ -1,15 +1,21 @@
 require_relative 'plane'
 
 class Airport
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
+
   def land(plane)
-    true
+    planes << plane
   end
 
   def takeoff(plane)
-    true
+    planes.pop
   end
 
   def confirm(plane)
-    return 1 if takeoff(plane)
+    planes.count
   end
 end
