@@ -35,4 +35,15 @@ describe Airport do
     end
   end
 
+  describe '#max_capacity' do
+    it 'raises an error when a plane tries to land in a full airport' do
+      subject.max_capacity.times { subject.instruct_land Plane.new }
+      expect { subject.instruct_land Plane.new }.to raise_error("Error: Airport is full. find somewhere else to land")
+    end
+  end
+    
+    it 'allows a maximum capacity to be specified' do
+        expect(Airport.new(5).max_capacity).to eq 5
+    end
+
 end
