@@ -1,6 +1,9 @@
 class Airport
+  attr_reader :local_weather
   def initialize
     @planes = []
+    @airport_weather_object = Weather.new
+    @local_weather = @airport_weather_object.weather
   end
 
   def land_plane(plane)

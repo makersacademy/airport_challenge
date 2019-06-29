@@ -5,6 +5,11 @@ require 'weather'
 describe Airport do
   it { is_expected.to respond_to(:land_plane).with(1).argument }
   it { is_expected.to respond_to(:takeoff_plane) }
+  
+  it 'generates weather on instantiation' do
+    expect(subject.local_weather).to eq('Sunny').or eq('Stormy')
+  end
+
   describe '#land_plane' do
     it 'stores planes' do
       plane = Plane.new
