@@ -55,7 +55,7 @@ describe Airport do
       airport_6 = Airport.new
       airport_6.change_weather('stormy')
       plane_6 = Plane.new
-      expect { airport_6.plane_take_off(plane_6)}.to raise_error "Weather is "\
+      expect { airport_6.plane_take_off(plane_6) }.to raise_error "Weather is "\
         "stormy - cannot take off"
     end
   end
