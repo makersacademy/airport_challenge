@@ -8,14 +8,16 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = generate_weather
+    generate_weather
     @capacity = capacity
   end
 
   def land_plane(plane)
     fail "Weather is stormy - Cannot land plane" if @weather == 'stormy'
     fail "Airport full" if planes.length >= @capacity
+    fail "Plane not flying" if !plane.flying?
 
+    plane.flying = false if plane.flying?
     @planes << plane
   end
 
