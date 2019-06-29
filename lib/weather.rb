@@ -1,7 +1,7 @@
 module Weather
 
   def generate_weather
-    @random_number = rand(2)
+    @random_number = rand(20)
     if @random_number == 1
       @current_weather = 'stormy'
     else
