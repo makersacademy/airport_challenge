@@ -17,6 +17,14 @@ describe Airport do
       airport.land_plane(plane)
       expect(airport.planes).to include(plane)
     end
+
+    it "Raises an error when it tries to land a plane when stormy" do
+      airport_3 = Airport.new
+      plane_3 = Plane.new
+      airport_3.weather == 'stormy'
+      expect{airport_3.land_plane(plane_3)}.to raise_error "Weather is stormy - "\
+      "Cannot land plane" 
+    end
   end
 
   describe '#plane_take_off' do
