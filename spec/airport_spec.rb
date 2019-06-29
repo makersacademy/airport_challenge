@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it { is_expected.to respond_to(:land_plane).with(1).argument }
@@ -23,7 +24,6 @@ describe Airport do
       subject.land_plane(plane)
       subject.takeoff_plane
       expect { subject.takeoff_plane }.to raise_error 'No planes available for takeoff'
-
     end  
   end
 end
