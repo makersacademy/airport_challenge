@@ -17,4 +17,14 @@ describe Airport do
       expect(airport.planes).to include(plane)
     end
   end
+
+  describe '#plane_take_off' do
+    airport_2 = Airport.new
+    plane_2 = Plane.new
+    airport_2.land_plane(plane_2)
+    airport_2.plane_take_off(plane_2)
+    it "will remove plane from airport's stock of planes" do
+      expect(airport_2.planes).to eq []
+    end
+  end
 end
