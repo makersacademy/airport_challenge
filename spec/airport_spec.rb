@@ -9,6 +9,11 @@ describe Airport do
     expect(subject).to respond_to :plane_take_off
   end
 
+  it "responds to setting the capacity" do
+    airport_5 = Airport.new(20)
+    expect(airport_5.capacity).to eq 20
+  end
+
   describe '#land_plane' do
 
     it "Adds the landed plane to a list of planes" do
