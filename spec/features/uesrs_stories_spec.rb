@@ -11,9 +11,13 @@ describe "feature test for rspec" do
 #   As an air traffic controller
 #   So I can get passengers on the way to their destination
 #   I want to instruct a plane to take off from an airport and confirm that it is no longer
-it 'for planes to take off from the aiport' do
-  airport = Airport.new
-  plane = Plane.new
-  expect { airport.take_off(plane) }.to raise_error "No planes available"
-end
+# it 'for planes to take off from the aiport' do
+#   airport = Airport.new
+#   plane = Plane.new
+#   expect { airport.take_off(plane) }.to raise_error "No planes available"
+# end
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
 end

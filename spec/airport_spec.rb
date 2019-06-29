@@ -2,7 +2,14 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  let(:plane) { double :plane }
   subject(:airport) { described_class.new }
+
+  describe '#new' do
+    it "has no planes when inititialized" do
+    expect(airport.planes).to eq []
+    end
+  end
   describe '#land' do
     it 'allows planes to land' do
     expect(airport).to respond_to(:land).with(1).argument
@@ -12,8 +19,10 @@ describe Airport do
     it 'allows planes to take_off' do
     expect(airport).to respond_to(:take_off).with(1).argument
     end
-    it 'raises a message when there are no planes available' do
-    expect { airport.take_off(:plane) }.to raise_error 'No planes available'
+  end
+  describe '#empty_error' do
+      it 'sends a message when there are no planes available' do
+      expect{ airport.empty_error }.to raise_error  'No planes available'
     end
   end
 end
