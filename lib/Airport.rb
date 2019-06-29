@@ -1,4 +1,5 @@
 require_relative './plane.rb'
+require_relative './weather.rb'
 
 class Airport
 
@@ -6,11 +7,16 @@ class Airport
 
   def initialize
     @planes = []
-    @weather = 'stormy'
+    @weather = Weather.new
+  end
+
+  def change_weather(weather)
+    @weather = weather
   end
 
   def land_plane(plane)
     fail "Weather is stormy - Cannot land plane" if @weather == 'stormy'
+    
     @planes << plane
   end
 
