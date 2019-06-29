@@ -10,4 +10,3 @@ class Weather
   end
 
 end
-

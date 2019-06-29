@@ -55,6 +55,13 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: a plane wants to land
+WHEN: the weather is stormy
+THEN: the airpot does not allow the plane to land
+
+------------------------------------------------------------
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
@@ -79,4 +86,8 @@ Weather : stormy?
 Airport.runway_land -> Plane
 Airport.runway_takeoff -> Plane
 Airport.runway_takeoff -> Weather.stormy?
+Airport.runway_land -> Weather.stormy?
+
+
+
 
