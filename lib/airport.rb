@@ -11,11 +11,7 @@ class Airport
   end
 
   def runway_takeoff(plane)
-    if check_for_storms
-      "Planes are grounded due to weather conditions"
-    else
-      @hangar -= [plane]
-    end
+   check_for_storms ? "Planes are grounded due to adverse weather conditions" : @hangar -= [plane]
   end
 
   def get_weather_status(weather)

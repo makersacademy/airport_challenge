@@ -30,14 +30,12 @@ describe Airport do
     end
   end
 
-  # it "does not allow the plane to takeoff when the weather is stormy" do
-  #   plane1 = instance_double('Airplane')
-  #   todays_weather = instance_double('Weather')
-  #   allow(todays_weather).to receive(:is_stormy)
-  #   subject.runway_land(plane1)
-  #   todays_weather.is_stormy
-  #   expect(subject.runway_takeoff(plane1)).to eq("Planes are grounded due to weather conditions")
-  # end
+  it "does not allow the plane to takeoff when the weather is stormy" do
+    todays_weather = instance_double('Weather')
+    allow(todays_weather).to receive_messages(:stormy? => true)
+    subject.get_weather_status(todays_weather)
+    expect(subject.runway_takeoff("plane")).to eq("Planes are grounded due to adverse weather conditions")
+  end
 
 
 
