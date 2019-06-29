@@ -7,7 +7,8 @@ class Airport
   end
 
   def runway_land(plane)
-    check_for_storms ? "Planes are prohibited to land due to adverse weather conditions" : @hangar << plane
+    return "Planes are prohibited to land due to adverse weather conditions" if check_for_storms
+    hangar_at_capacity? ? "Planes are prohibited to land due to hangar at max. capacity" : @hangar << plane
   end
 
   def runway_takeoff(plane)
@@ -20,6 +21,10 @@ class Airport
 
   def check_for_storms
     @weather.stormy?
+  end
+
+  def hangar_at_capacity?
+    @hangar.length >= 20
   end
 
 end

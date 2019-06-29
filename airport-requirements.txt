@@ -66,6 +66,13 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: a plane wants to land
+WHEN: the airport is full
+THEN: the airpot does not allow the plane to land
+
+------------------------------------------------------------
+
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
