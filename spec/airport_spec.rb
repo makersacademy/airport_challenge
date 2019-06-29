@@ -21,6 +21,11 @@ describe Airport do
       subject.local_weather = 'Stormy'
       expect { subject.land_plane(plane) }.to raise_error 'The Stormy weather prevents landing'
     end
+    it 'raises error if @planes is full' do
+      subject.local_weather = 'Sunny'
+      1.times { subject.land_plane(Plane.new) }
+      expect { subject.land_plane(Plane.new) }.to raise_error 'The Airport is full'
+    end
   end
 
   describe '#takeoff_plane' do

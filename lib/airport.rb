@@ -9,7 +9,8 @@ class Airport
 
   def land_plane(plane)
     fail 'The Stormy weather prevents landing' if @local_weather == 'Stormy'
-    
+    fail 'The Airport is full' if @planes.count >= 1
+
     @planes << plane
     plane
   end
