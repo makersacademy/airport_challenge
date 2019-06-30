@@ -1,3 +1,5 @@
+require 'plane'
+
 describe Plane do
   it 'can take off and is flying' do
     subject.take_off
