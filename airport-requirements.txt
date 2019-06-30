@@ -1,0 +1,141 @@
+
+------------------------------------------------------------
+
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+----
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: there is an aeroplane wanting to land
+WHEN: the airport instructs the plane to land
+THEN: the airpot receives the plane
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: there is an aeroplane flying
+WHEN: the airport instructs the plane to takeoff
+THEN: the plane cannot takeoff as it is flying
+
+
+------------------------------------------------------------
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+----
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the plane which landed now wants to takeoff
+WHEN: the airport instructs the plane to takeoff
+THEN: the airpot releases the plane
+
+------------------------------------------------------------
+
+As an air traffic controller 
+To ensure safety 
+I want to check to see if the weather is stormy
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the weather is stormy
+WHEN: I check the weather report
+THEN: it tells me the weather is stormy
+
+------------------------------------------------------------
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: the plane which landed now wants to takeoff
+WHEN: the weather is stormy
+THEN: the airpot does not release the plane
+
+------------------------------------------------------------
+
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: a plane wants to land
+WHEN: the weather is stormy
+THEN: the airpot does not allow the plane to land
+
+------------------------------------------------------------
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: a plane wants to land
+WHEN: the airport is full
+THEN: the airpot does not allow the plane to land
+
+------------------------------------------------------------
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Scenario: User is system designer building a new instance of the program
+GIVEN: a new instance of the program is being built
+WHEN: the airport hangar can store more than the default 10 planes
+THEN: the instance default hangar capacity can be increased
+
+------------------------------------------------------------
+
+As an airside operations person 
+To ensure proper airplane storage
+I want to add the plane which has landed in the hangar
+
+Scenario: airside operations person is storing a plane in the hangar
+GIVEN: a plane has landed
+WHEN: the airside operations person stores the plane in the hangar
+THEN: the airpot hangar reflects this change
+------------------------------------------------------------
+
+As an airside operations person 
+To ensure air traffic control have the correct info
+I want to provide a list of all planes in the hangar
+
+Scenario: airside operations person is providing list of planes in hangar
+GIVEN: a airplanes have been stored in the hangar
+WHEN: the airside operations person requests a hangar storage report
+THEN: the report provides a list of all airplanes in the hangar
+
+------------------------------------------------------------
+
+As an airside operations person 
+To ensure proper airplane release
+I want to release the plane which has been stored in the hangar
+
+Scenario: airside operations person is releasing a plane from the hangar
+GIVEN: a plane is taking off
+WHEN: the airside operations person releases the plane from the hangar
+THEN: the airpot hangar reflects this change
+
+------------------------------------------------------------
+------------------------------------------------------------
+
+Domain Modelling
+
+Objects:
+Plane
+Airport : runway_land / runway_takeoff
+Weather : stormy?
+AirTrafficControl
+
+
+Airport.runway_land -> Plane
+Airport.runway_takeoff -> Plane
+Airport.runway_takeoff -> Weather.stormy?
+Airport.runway_land -> Weather.stormy?
+
+
+
+
