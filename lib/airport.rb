@@ -3,6 +3,11 @@ require_relative 'plane'
 class Airport
   attr_reader :planes
 
+  def stormy?
+    weather = ["Sunny", "Stormy"].sample
+    weather == "Stormy"
+  end
+
   def initialize
     @planes = []
   end
@@ -11,7 +16,8 @@ class Airport
     planes << plane
   end
 
-  def takeoff(plane)
+  def takeoff(weather, planers)
+    fail 'Weather is stormy!' if weather.stormy?
     planes.pop
   end
 
