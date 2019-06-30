@@ -13,12 +13,14 @@ class Airport
   def plane_land(plane, weather)
     fail 'Landing prevented due to storm' if weather.stormy?
     fail 'Airport is full' if full?
+
     @planes << plane
   end
 
   def plane_depart(plane, weather)
     fail 'Takeoff prevented due to storm' if weather.stormy?
     fail 'Plane no longer here' if plane_status?(plane) == false
+  
     @planes.delete(plane)
   end
 

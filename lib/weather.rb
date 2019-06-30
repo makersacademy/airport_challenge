@@ -9,12 +9,7 @@ class Weather
   end
 
   def forecast?
-    random = rand(10)
-    if random == 2
-      'Stormy'
-    else
-      'Sunny'
-    end
+    rand(10) == 2 ? 'Stormy' : 'Sunny'
   end
 
   def stormy?

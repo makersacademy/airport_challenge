@@ -10,17 +10,17 @@ describe Airport do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(true)
       plane = double(:plane)
-      expect { subject.plane_land(plane, weather)}.to raise_error 'Landing prevented due to storm'
+      expect { subject.plane_land(plane, weather) }.to raise_error 'Landing prevented due to storm'
     end
 
     it 'Airport full. Unable to land' do
-        airport = Airport.new(20)
-        plane = double(:plane)
-        weather = double(:weather)
-        allow(weather).to receive(:stormy?).and_return(false)
+      airport = Airport.new(20)
+      plane = double(:plane)
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(false)
 
-        20.times { airport.plane_land(plane, weather) }
-        expect{ airport.plane_land(plane, weather)}.to raise_error 'Airport is full'
+      20.times { airport.plane_land(plane, weather) }
+      expect { airport.plane_land(plane, weather) }.to raise_error 'Airport is full'
     end
   end
 
@@ -45,7 +45,7 @@ describe Airport do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(true)
       plane = double(:plane)
-      expect {subject.plane_depart(plane, weather)}.to raise_error 'Takeoff prevented due to storm'
+      expect { subject.plane_depart(plane, weather) }.to raise_error 'Takeoff prevented due to storm'
     end
   end
 end
