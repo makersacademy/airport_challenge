@@ -1,4 +1,3 @@
-
 class Weather
 
   def is_stormy

@@ -45,7 +45,7 @@ describe Airport do
       good_weather = instance_double('Weather')
       allow(good_weather).to receive_messages(:stormy? => false)
       subject.get_weather_status(good_weather)
-      subject.hangar_capacity.times {subject.runway_land("plane")}
+      subject.hangar_capacity.times { subject.runway_land("plane") }
       expect(subject.runway_land("plane")).to eq("Planes are prohibited to land due to hangar at max. capacity")
     end
 

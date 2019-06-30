@@ -11,6 +11,7 @@ class Airport
 
   def runway_land(plane)
     return "Planes are prohibited to land due to adverse weather conditions" if check_for_storms
+
     hangar_at_capacity? ? "Planes are prohibited to land due to hangar at max. capacity" : @hangar << plane
   end
 
