@@ -1,26 +1,17 @@
 require 'plane'
+
 describe Plane do
-  let(heathrow) { double :airport}
-  describe '#land' do
+  let(:airport) { double :airport }
+  describe '#land_at' do
     it "should land if safe to do so and store in airport instance" do
-
-      expect(subject.safe?(true).land(heathrow).status).to output("Landed safely at LHR").to_stdout
-    end
-    it "should return 'Not safe to land in this weather' if unsafe" do
-
-      expect(subject.safe?(false).land(heathrow)).to output("Not safe to land in this weather").to_stdout
-    end
-    it "should return 'Airport is full' if at capacity" do
-
-      expect(subject.land(heathrow).status).to output("Airport is full, cannot land").to_stdout
+      allow(airport).to receive(:name).and_return("Heathrow")
+      allow(airport).to receive(:land_plane)
+      expect(subject.land_at(airport)).to output("Landed safely at LHR").to_stdout
     end
   end
-  describe '#take_off' do
+  describe '#take_off_from' do
     it "should take off if weather is fine" do
-
-    end
-    it "should return 'Not safe to fly' if the weather isn't safe" do
-
+      allow(airport).to receive(:take_off_from).to output("Flight safely departed").to_stdout
     end
   end
 end

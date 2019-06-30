@@ -1,6 +1,5 @@
 module Weather
-  possible_weather = ["Sunny", "Stormy", "Sunny", "Sunny"]
-  def safe?
-    !(possible_weather.sample != "Stormy")
+  def safe_to_fly?
+    (rand 10) < 7
   end
 end
