@@ -1,11 +1,8 @@
 class Weather
-  attr_reader :stormy
 
-  def initialize
-    @stormy = false
+  def stormy?
+    weather = rand 10
+    weather == 4 || weather == 8
   end
 
-  def stormy_weather
-    @stormy = true
-  end
 end
