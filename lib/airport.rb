@@ -1,39 +1,39 @@
 require_relative 'weather'
 
 class Airport
-  attr_accessor :planes, :capacity, :airport_code, :safe_to_fly?
+  attr_accessor :current_aircraft, :capacity, :airport_code, :safe_to_fly
 
-  # include Weather
+  include Weather
 
   DEFAULT_CAPACITY = 20
 
   def initialize(airport_name = "Heathrow", capacity = DEFAULT_CAPACITY)
     @name = airport_name
     @capacity = capacity
-    @planes = []
+    @current_aircraft = []
     @safe_to_fly = safe_to_fly?
   end
 
   def land_plane(plane)
-    fail "Too Stormy to land" if @safe_to_fly == false
+    raise "Too Stormy to land" if @safe_to_fly == false
 
-    fail "Airport is full" if at_capacity?
+    raise "Airport is full" if at_capacity?
 
-    @planes.push(plane)
-    puts "#{plane} landed safely."
+    @current_aircraft.push(plane)
+    # puts "#{plane} landed safely."
   end
 
   def take_off_plane(plane)
-    fail "Too Stormy to take off" if @safe_to_fly == false
 
-    @planes.delete(plane)
-    plane.status = "Flying"
-    puts "#{plane} took off successfully."
+    raise "Too Stormy to take off" if @safe_to_fly == false
+
+    @current_aircraft.delete(plane)
+    # puts "#{plane} took off successfully."
   end
-
+  
 private
   def at_capacity?
-    @planes.length >= @capacity
+    @current_aircraft.length >= @capacity
   end
 
 end
