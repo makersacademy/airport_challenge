@@ -40,8 +40,6 @@ describe Airport do
       expect { airport_4.land_plane(Plane.new) }.to raise_error "Airport full"
     end
 
-    it "Raises error "
-
     it "Raises an error if tries to land a plan that is not flying" do
       airport_8 = Airport.new
       plane_8 = Plane.new
