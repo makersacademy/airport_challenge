@@ -11,12 +11,17 @@ class Airport
     @airport << plane
   end
 
-  def take_off(plane)
-    @airport.pop
+  def take_off(weather)
+    @airport.pop unless weather.stormy == true
+    return @airport
   end
 
   def prevent_take_off(weather)
     fail "Plane cannot take off" if weather.stormy == true
+  end
+
+  def prevent_landing(weather)
+    fail "Plane cannot land" if weather.stormy == true
   end
 
 end
