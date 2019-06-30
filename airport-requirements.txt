@@ -77,6 +77,11 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
+Scenario: User is system designer building a new instance of the program
+GIVEN: a new instance of the program is being built
+WHEN: the airport hangar can store more than the default 10 planes
+THEN: the instance default hangar capacity can be increased
+
 
 ------------------------------------------------------------
 ------------------------------------------------------------

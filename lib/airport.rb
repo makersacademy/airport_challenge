@@ -2,7 +2,10 @@ require './lib/weather'
 
 class Airport
 
-  def initialize
+  attr_reader :hangar_capacity
+
+  def initialize(hangar_capacity=10)
+    @hangar_capacity = hangar_capacity
     @hangar = []
   end
 
@@ -24,7 +27,7 @@ class Airport
   end
 
   def hangar_at_capacity?
-    @hangar.length >= 20
+    @hangar.length >= @hangar_capacity
   end
 
 end
