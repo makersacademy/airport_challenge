@@ -46,9 +46,10 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Create a method that defines the weather
-Weather most of the time if sunny but occasionally stormy
-
+Create a method that defines the weather which will mostly output sunny.
+Create a test to ensure that planes can take off when sunny.
+Create another test that will force the weather condition to be stormy thus
+raising an error message. 
 ------------------------------------------------
 ################################################
 ------------------------------------------------
@@ -56,8 +57,9 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+Create a stub that ensures the weather for this test will be stormy.
+Pass a test that will raise an error if weather is stormy so plane cannot land.
+Ensure when weather sunny, planes can still land fine.
 ------------------------------------------------
 ################################################
 ------------------------------------------------
