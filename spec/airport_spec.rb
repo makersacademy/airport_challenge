@@ -18,8 +18,8 @@ describe Airport do
       allow(plane).to receive(:grounded?) { false }
       airport = Airport.new(3)
       airport.land(plane)
-      plane2 = airport.takeoff
-      expect(plane.grounded?).to eq(false)
+      moving_plane = airport.takeoff
+      expect(moving_plane.grounded?).to eq(false)
     end
   end
 
@@ -41,13 +41,13 @@ describe Airport do
     it "raises error if the plane tries to land while weather is bad" do
       airport = Airport.new
       airport.weather_generator
-      expect{airport.land(double(:bike))}.to raise_error('Can not land while weather is this bad')
+      expect{airport.land(double(:plane))}.to raise_error('Can not land while weather is this bad')
     end
 
     it "Should prevent landing if capacity is full" do
       airport = Airport.new
-      200.times{airport.land(double(:bike))}
-      expect{airport.land(double(:bike))}.to raise_error("Airport is full!")
+      200.times{airport.land(double(:plane))}
+      expect{airport.land(double(:plane))}.to raise_error("Airport is full!")
     end
   end
 
