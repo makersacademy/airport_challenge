@@ -1,5 +1,7 @@
 require 'airport'
 require 'plane'
+require 'weather'
+
 
 describe Airport do
   let(:plane) { double :plane }
@@ -13,6 +15,11 @@ describe Airport do
   describe '#land' do
     it 'allows planes to land' do
     expect(airport).to respond_to(:land).with(1).argument
+    end
+    it "raises an error when it's stormy and a plane tries to land or take_off" do
+    airport.stormy = true
+    expect { airport.land(plane) }.to raise_error 'Landing not allowed due to the poor weather conditions'
+    expect { airport.take_off(plane) }.to raise_error 'Take off not allowed due to the poor weather conditions'
     end
   end
   describe '#take_off' do
