@@ -1,36 +1,43 @@
 require './lib/weather'
+require './lib/airport'
 
 class AirTrafficControl
-
-  attr_reader :hangar_capacity
 
   def initialize(hangar_capacity=10)
     @hangar_capacity = hangar_capacity
     @hangar = []
   end
 
-  def pre_land_checks(plane)
-    return "Planes are prohibited to land due to adverse weather conditions" if check_for_storms
-
-    hangar_at_capacity? ? "Planes are prohibited to land due to hangar at max. capacity" : @hangar << plane
-
-  end
-
-  def pre_take_off_checks(plane)
-    return  "Planes are grounded due to adverse weather conditions" if check_for_storms
-    check_if_plane_is_flying(plane) ? "The plane is already flying" : @hangar -= [plane]
+  def connect_with_airside_ops(airport)
+    @airport = airport
   end
 
   def get_weather_status(weather)
     @weather = weather
   end
 
-  def check_for_storms
-    @weather.stormy?
+  def pre_land_checks(plane)
+    return "the plane is not airborne" if check_if_plane_is_flying(plane) == false
+
+    return "Planes are prohibited to land due to adverse weather conditions" if check_for_storms
+
+    return "Planes are prohibited to land due to hangar at max. capacity" if @airport.hangar_at_capacity?
+
+    @airport.store(plane)
+    plane.has_landed
   end
 
-  def hangar_at_capacity?
-    @hangar.length >= @hangar_capacity
+  def pre_take_off_checks(plane)
+    return  "Plane is not stored at this airport" if @airport.plane_stored?(plane) == false
+
+    return  "Planes are grounded due to adverse weather conditions" if check_for_storms
+
+    @airport.release(plane)
+    plane.is_flying
+  end
+
+  def check_for_storms
+    @weather.stormy?
   end
 
   def check_if_plane_is_flying(plane)

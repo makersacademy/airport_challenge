@@ -7,4 +7,8 @@ class Airplane
   def flying?
     @flying == true
   end
+
+  def has_landed
+    @flying = false
+  end
 end

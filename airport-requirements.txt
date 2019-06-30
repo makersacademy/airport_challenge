@@ -90,13 +90,35 @@ THEN: the instance default hangar capacity can be increased
 ------------------------------------------------------------
 
 As an airside operations person 
-to ensure proper airplane storage
-I want add a plane which has landed in the hangar
+To ensure proper airplane storage
+I want to add the plane which has landed in the hangar
 
 Scenario: airside operations person is storing a plane in the hangar
 GIVEN: a plane has landed
 WHEN: the airside operations person stores the plane in the hangar
 THEN: the airpot hangar reflects this change
+------------------------------------------------------------
+
+As an airside operations person 
+To ensure air traffic control have the correct info
+I want to provide a list of all planes in the hangar
+
+Scenario: airside operations person is providing list of planes in hangar
+GIVEN: a airplanes have been stored in the hangar
+WHEN: the airside operations person requests a hangar storage report
+THEN: the report provides a list of all airplanes in the hangar
+
+------------------------------------------------------------
+
+As an airside operations person 
+To ensure proper airplane release
+I want to release the plane which has been stored in the hangar
+
+Scenario: airside operations person is releasing a plane from the hangar
+GIVEN: a plane is taking off
+WHEN: the airside operations person releases the plane from the hangar
+THEN: the airpot hangar reflects this change
+
 ------------------------------------------------------------
 ------------------------------------------------------------
 
