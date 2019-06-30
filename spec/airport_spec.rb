@@ -37,17 +37,6 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  it 'defaults capacity' do
-    described_class::DEFAULT_CAPACITY.times do
-      weather = double(:weather, stormy?: false)
-      plane = Plane.new
-      subject.land(weather, plane)
-    end
-    weather = double(:weather, stormy?: false)
-    plane = Plane.new
-    expect { subject.land(weather, plane) }.to raise_error 'Airport full!'
-  end
-
   it 'does not exceed default capacity' do
     Airport::DEFAULT_CAPACITY.times do
       weather = double(:weather, stormy?: false)
