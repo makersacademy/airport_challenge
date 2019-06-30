@@ -5,8 +5,12 @@ describe Airport do
   describe '#instruct_land' do
     it 'instructs a plane to land at an airport' do
         allow(subject.weather).to receive(:sample) { "sunny" }
-        plane = Plane.new
-        expect(subject.instruct_land(plane)).to eq subject.planes
+        expect(subject.instruct_land Plane.new).to eq subject.planes
+    end
+
+    it 'instructs multiple planes to land at an airport' do
+        allow(subject.weather).to receive(:sample) { "sunny" }
+        expect(10.times { subject.instruct_land Plane.new }).to eq 10
     end
 
     it 'instructs a plane to land when there is already one there' do
@@ -48,6 +52,12 @@ describe Airport do
       subject.instruct_land Plane.new
       allow(subject.weather).to receive(:sample) { "stormy" }
       expect { subject.instruct_take_off }.to raise_error("Permission to take off denied due to stormy weather")
+    end
+
+    it 'instructs multiple planes to take-off from an airport' do
+      allow(subject.weather).to receive(:sample) { "sunny" }
+      10.times { subject.instruct_land Plane.new }
+      expect(10.times { subject.instruct_take_off}).to eq 10
     end
 
   end
