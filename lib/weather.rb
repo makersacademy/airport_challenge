@@ -5,7 +5,7 @@ class Weather
     @stormy = false
   end
 
-  def stormy?
+  def stormy_weather
     @stormy = true
   end
 end

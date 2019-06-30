@@ -11,7 +11,7 @@ class Airport
     @airport << plane
   end
 
-  def take_off(weather)
+  def take_off
     @airport.pop unless weather.stormy == true
     return @airport
   end
