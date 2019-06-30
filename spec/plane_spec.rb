@@ -5,5 +5,4 @@ describe Plane do
     plane = Plane.new
     expect(plane.grounded?).to eq(true)
   end
-
 end

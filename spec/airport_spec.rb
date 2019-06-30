@@ -16,10 +16,12 @@ describe Airport do
     it "Confirms plane has left" do
       plane = double(:plane)
       allow(plane).to receive(:grounded?) { false }
+      allow(plane).to receive(:taken_off?) { false }
       airport = Airport.new(3)
       airport.land(plane)
       moving_plane = airport.takeoff
-      expect(moving_plane.grounded?).to eq(false)
+      moving_plane_status = moving_plane.taken_off?
+      expect(moving_plane_status.grounded?).to eq(false)
     end
   end
 
