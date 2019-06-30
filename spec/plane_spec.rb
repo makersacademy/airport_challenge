@@ -1,16 +1,9 @@
 require './lib/plane.rb'
 
 describe Plane do
-  it "Should return false if plane has taken off"  do
+  it "Plane should be grounded, return true"  do
     plane = Plane.new
-    plane.takeoff
-    expect(plane.grounded?).to eq(false)
+    expect(plane.grounded?).to eq(true)
   end
 
-  it "Should tell retutrn true if plane landed" do
-      plane = Plane.new
-      plane.takeoff
-      plane.land
-      expect(plane.grounded?).to eq(true)
-  end
 end

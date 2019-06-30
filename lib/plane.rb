@@ -5,12 +5,11 @@ class Plane
   def grounded?
     @grounded
   end
-
-  def takeoff
+  def taken_off
     @grounded = false
   end
 
-  def land
+  def landed
     @grounded = true
   end
 end
