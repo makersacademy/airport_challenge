@@ -5,10 +5,10 @@ class Airport
 
   attr_accessor :planes, :stormy, :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @stromy = stormy
-    @capacity = 50
+    @capacity = capacity 
   end
 
   include Weather
