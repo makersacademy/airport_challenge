@@ -17,15 +17,13 @@ describe Airport do
   end
 
   it "Error 'Too Stormy to take off' when stormy and takeoff attempted" do
-    # subject.safe_to_fly = true
-    # subject.land_plane(plane)
     subject.safe_to_fly = false
-    expect(subject.take_off_plane(plane)).to raise_error("Too Stormy to take off")
+    expect(subject.take_off_plane(plane)).to raise_error(RuntimeError, "Too Stormy to take off")
   end
 
   it "Error 'Too Stormy to land' when stormy and landing attempted" do
     subject.safe_to_fly = false
-    expect(subject.land_plane(plane)).to raise_error
+    expect(subject.land_plane(plane)).to raise_error(RuntimeError, 'Too Stormy to land')
   end
 
 end

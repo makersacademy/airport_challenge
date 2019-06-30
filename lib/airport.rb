@@ -16,7 +16,7 @@ class Airport
 
   def land_plane(plane)
     raise "Too Stormy to land" if @safe_to_fly == false
-
+    p @safe_to_fly
     raise "Airport is full" if at_capacity?
 
     @current_aircraft.push(plane)
@@ -30,7 +30,7 @@ class Airport
     @current_aircraft.delete(plane)
     # puts "#{plane} took off successfully."
   end
-  
+
 private
   def at_capacity?
     @current_aircraft.length >= @capacity
