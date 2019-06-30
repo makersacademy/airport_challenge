@@ -9,7 +9,12 @@ class Weather
   end
 
   def forecast?
-    @forecast = 'Stormy'
+    random = rand(10)
+    if random == 2
+      'Stormy'
+    else
+      'Sunny'
+    end
   end
 
   def stormy?
