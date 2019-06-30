@@ -18,6 +18,7 @@ describe Airport do
   it 'raises error when default capacity reached' do
     plane = Plane.new
     airport = Airport.new
+    allow(subject.weather).to receive(:stormy?) {true}
     described_class::DEFAULT_CAPACITY.times {subject.land(plane)}
     expect { subject.land(plane) }.to raise_error 'Airport full'
   end

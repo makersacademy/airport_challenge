@@ -6,7 +6,7 @@ class Airport
   attr_reader :weather
   attr_reader :capacity
 
-  DEFAULT_CAPACTIY = 10
+  DEFAULT_CAPACITY = 10
 
   def initialize
     @landed_planes = []
@@ -16,7 +16,7 @@ class Airport
 
   def land(plane)
     fail 'Can not take off in stormy weather' if @weather.stormy?
-    fail 'Airport is full' if full? == true
+    fail 'Airport is full' if full?
 
     @landed_planes << plane
   end
