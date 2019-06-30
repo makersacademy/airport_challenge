@@ -12,6 +12,11 @@ GIVEN: there is an aeroplane wanting to land
 WHEN: the airport instructs the plane to land
 THEN: the airpot receives the plane
 
+Scenario: User is an air traffic controller interacting with the program
+GIVEN: there is an aeroplane flying
+WHEN: the airport instructs the plane to takeoff
+THEN: the plane cannot takeoff as it is flying
+
 
 ------------------------------------------------------------
 
