@@ -30,11 +30,11 @@ class Airport
 
   private
 
-   def full?
-     return true if @planes.length >= @capacity
-   end
+  def full?
+    return true if @planes.length >= @capacity
+  end
 
-   def stormy?
-     return true if @weather == 'stormy'
-   end
+  def stormy?
+    return true if @weather == 'stormy'
+  end
 end

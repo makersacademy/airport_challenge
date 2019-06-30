@@ -1,8 +1,8 @@
 require 'Airport'
 
 describe Airport do
-  let (:airport) { Airport.new }
-  let (:plane) { Plane.new }
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   it "responds to setting the capacity" do
     airport_new = Airport.new(20)
