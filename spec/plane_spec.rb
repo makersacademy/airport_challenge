@@ -4,7 +4,7 @@ describe Plane do
     plane = Plane.new
     plane.fly
     it 'changes the plane flying attribute to true' do
-      expect(plane.fly).to eq true
+      expect(plane.flying).to eq true
     end
   end
 end
