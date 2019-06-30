@@ -5,4 +5,8 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
   end
+
+  def weather_generator
+    @weather = ["sunny", "stormy"].sample
+  end
 end
