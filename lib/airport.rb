@@ -1,7 +1,6 @@
 require_relative './weather.rb'
 require_relative './plane.rb'
 
-
 class Airport
 
   def initialize
@@ -13,11 +12,11 @@ class Airport
     @planes << plane
   end
 
-  def plane_depart(plane)
+  def plane_depart(plane, weather)
+    fail 'Takeoff prevented due to storm' if weather.stormy?
     fail 'Plane no longer here' if plane_status?(plane) == false
     @planes.delete(plane)
   end
-
 
   def plane_status?(plane)
     @planes.include?(plane)

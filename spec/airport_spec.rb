@@ -19,7 +19,7 @@ describe Airport do
     weather = double(:weather)
     allow(weather).to receive(:stormy?).and_return(false)
     subject.plane_land(:plane, weather)
-    expect(subject).to respond_to(:plane_depart).with(1).argument
+    expect(subject).to respond_to(:plane_depart).with(2).argument
     end
 
     it 'raises error if plane no longer at airport' do
@@ -27,8 +27,15 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(false)
       plane = double(:plane)
       subject.plane_land(plane, weather)
-      subject.plane_depart(plane)
-        expect { subject.plane_depart(plane) }.to raise_error 'Plane no longer here'
+      subject.plane_depart(plane, weather)
+        expect { subject.plane_depart(plane, weather) }.to raise_error 'Plane no longer here'
+    end
+
+    it 'Storm. Plane cannot depart' do
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(true)
+      plane = double(:plane)
+      expect {subject.plane_depart(plane, weather)}.to raise_error 'Takeoff prevented due to storm'
     end
   end
 

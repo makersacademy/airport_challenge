@@ -16,13 +16,4 @@ class Weather
     @forecast == 'Stormy'
   end
 
-  # def check_weather
-  #   @forecast = 'Stormy'
-end
-
-
-module MyWeather
-  def check_weather
-    'Stormy'
-  end
 end
