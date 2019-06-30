@@ -1,11 +1,6 @@
-class Weather
-  attr_accessor :outlook
-  def initialize
-    possible_weather = ["Sunny", "Stormy"]
-    @outlook = possible_weather.sample
-  end
-
+module Weather
+  possible_weather = ["Sunny", "Stormy", "Sunny", "Sunny"]
   def safe?
-    (@outlook != "Stormy")
+    !(possible_weather.sample != "Stormy")
   end
 end
