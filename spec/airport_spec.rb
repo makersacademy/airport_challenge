@@ -100,7 +100,7 @@ describe Airport do
 
   describe "#land" do
     it "prevents a landing when the airport is full" do
-      subject = Airport.new(1)
+      subject = Airport.new("Gatwick", 1)
       plane = Plane.new
       plane2 = Plane.new
       storm = double(:weather)
@@ -127,7 +127,7 @@ describe Airport do
 
   describe "#CAPACITY" do
     it "airport capacity able to be changed by input" do
-      subject = Airport.new(5)
+      subject = Airport.new("Gatwick", 5)
       expect(subject.CAPACITY).to eq 5
     end
   end
