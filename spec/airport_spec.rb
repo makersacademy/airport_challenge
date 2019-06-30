@@ -22,8 +22,8 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error 'Take off not allowed due to the poor weather conditions'
       end
     it 'has a set default' do
-       50.times { airport.land(plane) }
-       expect{ airport.land(plane) }.to raise_error 'Plane is full'
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect{ airport.land(plane) }.to raise_error 'Plane is full'
     end
   end
   describe '#take_off' do
