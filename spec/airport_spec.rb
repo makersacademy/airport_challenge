@@ -27,7 +27,7 @@ describe Airport do
       "Cannot land plane"
     end
 
-    it "Raises an error when it tries to land a plane when it is full" do
+    it "Succesfully lands planes until airport is full" do
       airport_4 = Airport.new
       allow(airport_4).to receive(:generate_weather) { 'sunny' }
       airport_4.capacity.times do
@@ -39,6 +39,8 @@ describe Airport do
       plane_4.fly
       expect { airport_4.land_plane(Plane.new) }.to raise_error "Airport full"
     end
+
+    it "Raises error "
 
     it "Raises an error if tries to land a plan that is not flying" do
       airport_8 = Airport.new
@@ -76,6 +78,5 @@ describe Airport do
       expect { airport_7.plane_take_off(plane_7) }.to raise_error "Plane "\
         "already flying"
     end
-
   end
 end

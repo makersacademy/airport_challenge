@@ -14,8 +14,8 @@ class Airport
 
   def land_plane(plane)
     fail "Weather is stormy - Cannot land plane" if @weather == 'stormy'
-    fail "Airport full" if planes.length >= @capacity
-    fail "Plane not flying" unless plane.flying? 
+    fail "Airport full" if full? 
+    fail "Plane not flying" unless plane.flying?
 
     plane.flying = false if plane.flying?
     @planes << plane
@@ -27,4 +27,11 @@ class Airport
 
     @planes.delete(plane)
   end
+
+  private
+
+   def full?
+     return true if @planes.length >= @capacity
+   end
+
 end
