@@ -9,29 +9,41 @@ describe Airport do
   end
 
   describe 'land_plane' do
-    it 'lands a plane' do
+    it 'lands a plane in good weather' do
       plane = Plane.new
-      subject.land_plane(plane)
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { false }
+      subject.land_plane(plane, weather)
       expect(subject.hangar).to eq [plane]
+    end
+
+    it 'stops plane landing when stormy weather' do
+      plane = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { true }
+      subject.land_plane(plane, weather)
+      expect(subject.hangar).to eq []
     end
   end
 
   describe 'take_off' do
-    it 'allows plane to take off from airport' do
+    it 'allows plane to take off from airport in good weather' do
       plane = Plane.new
       weather = Weather.new
       allow(weather).to receive(:stormy?) { false }
-      subject.land_plane(plane)
+      subject.land_plane(plane, weather)
       subject.take_off(weather)
       expect(subject.hangar).to eq []
     end
 
     it 'stops plane taking off when stormy weather' do
       plane = Plane.new
-      weather = Weather.new
-      allow(weather).to receive(:stormy?) { true }
-      subject.land_plane(plane)
-      subject.take_off(weather)
+      bad_weather = Weather.new
+      good_weather = Weather.new
+      allow(bad_weather).to receive(:stormy?) { true }
+      allow(good_weather).to receive(:stormy?) { false }
+      subject.land_plane(plane, good_weather)
+      subject.take_off(bad_weather)
       expect(subject.hangar).to eq [plane]
     end
   end

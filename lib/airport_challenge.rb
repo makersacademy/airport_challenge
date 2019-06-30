@@ -7,8 +7,8 @@ class Airport
     @hangar = []
   end
 
-  def land_plane(plane)
-    @hangar << plane
+  def land_plane(plane, weather)
+    @hangar << plane unless weather.stormy?
   end
 
   def take_off(weather)
