@@ -1,5 +1,7 @@
 require 'Plane'
+
 describe Plane do
+
   describe '#fly' do
     plane = Plane.new
     plane.fly

@@ -1,6 +1,7 @@
 require 'Airport'
 
 describe Airport do
+  
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
