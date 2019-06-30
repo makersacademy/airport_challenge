@@ -55,5 +55,6 @@ private
   def stormy?
     weather_state == 'stormy'
   end
+  binding.pry
 
 end
