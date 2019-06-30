@@ -24,6 +24,16 @@ describe Airport do
       subject.land_plane(plane, weather)
       expect(subject.hangar).to eq []
     end
+
+    it 'stops plane landing when airport full' do
+      plane_one = Plane.new
+      plane_two = Plane.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { false }
+      subject.land_plane(plane_one, weather)
+      subject.land_plane(plane_two, weather)
+      expect(subject.hangar).to eq [plane_one]
+    end
   end
 
   describe 'take_off' do
