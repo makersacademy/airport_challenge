@@ -87,7 +87,16 @@ GIVEN: a new instance of the program is being built
 WHEN: the airport hangar can store more than the default 10 planes
 THEN: the instance default hangar capacity can be increased
 
+------------------------------------------------------------
 
+As an airside operations person 
+to ensure proper airplane storage
+I want add a plane which has landed in the hangar
+
+Scenario: airside operations person is storing a plane in the hangar
+GIVEN: a plane has landed
+WHEN: the airside operations person stores the plane in the hangar
+THEN: the airpot hangar reflects this change
 ------------------------------------------------------------
 ------------------------------------------------------------
 
@@ -97,7 +106,7 @@ Objects:
 Plane
 Airport : runway_land / runway_takeoff
 Weather : stormy?
-
+AirTrafficControl
 
 
 Airport.runway_land -> Plane
