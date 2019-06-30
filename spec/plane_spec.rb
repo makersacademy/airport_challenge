@@ -1,6 +1,10 @@
 require 'Plane'
 describe Plane do
-  it "Responds to flying? method" do
-    expect(subject).to respond_to :flying?
+  describe '#fly' do
+    plane = Plane.new
+    plane.fly
+    it 'changes the plane flying attribute to true' do
+      expect(plane.fly).to eq true
+    end
   end
 end

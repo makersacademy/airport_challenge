@@ -1,13 +1,6 @@
 require 'Airport'
 
 describe Airport do
-  it "responds to a land_plane method" do
-    expect(subject).to respond_to(:land_plane).with(1).argument
-  end
-
-  it "responds to a plane_take_off method" do
-    expect(subject).to respond_to :plane_take_off
-  end
 
   it "responds to setting the capacity" do
     airport_5 = Airport.new(20)
@@ -37,7 +30,7 @@ describe Airport do
     it "Raises an error when it tries to land a plane when it is full" do
       airport_4 = Airport.new
       allow(airport_4).to receive(:generate_weather) { 'sunny' }
-      airport_4.capacity.times do |land|
+      airport_4.capacity.times do
         plane = Plane.new
         plane.fly
         airport_4.land_plane(plane)
