@@ -35,7 +35,7 @@ describe Airport do
       expect { airport.land_plane(plane) }.to raise_error "Airport full"
     end
 
-    it "Raises an error if tries to land a plane that is not flying" do
+    it "Raises an error if it tries to land a plane that is not flying" do
       allow(airport).to receive(:stormy?) { false }
       expect { airport.land_plane(plane) }.to raise_error "Plane not flying"
     end
