@@ -30,6 +30,7 @@ class Airport
 
     @planes.pop
     'Plane has taken off'
+    # doesn't set plane to flying
   end
 
   def regenerate_weather
@@ -51,7 +52,7 @@ class Airport
     @local_weather == 'Stormy'
   end
 
-  def flying?(plane)
+  def flying?
     plane.state == 'Flying'
   end
 

@@ -16,7 +16,9 @@ describe Airport do
   end
   it 'has a variable capacity' do
     my_airport = Airport.new(capacity: 10)
-    my_airport.local_weather = 'Sunny'
+    allow(my_airport).to receive(:stormy?).and_return(false)
+    # allow(bike).to receive(:dock).and_return(:bike)
+    # my_airport.local_weather = 'Sunny'
     10.times { my_airport.land_plane(flying_plane) }
     expect { my_airport.land_plane(flying_plane) }.to raise_error 'The Airport is full'
   end
@@ -28,6 +30,7 @@ describe Airport do
     end
     it 'raises error if weather is stormy' do
       subject.local_weather = 'Stormy'
+      # allow(subject).to receive(:rand) {"stormy"} <---
       expect { subject.land_plane(flying_plane) }.to raise_error 'The Stormy weather prevents landing'
     end
     it 'raises error if @planes is full' do
