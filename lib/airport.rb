@@ -3,7 +3,6 @@ require_relative 'weather'
 class Airport
 
   attr_reader :landed_planes
-  attr_reader :weather
   attr_reader :capacity
 
   DEFAULT_CAPACITY = 10
@@ -15,24 +14,19 @@ class Airport
   end
 
   def land(plane)
-    fail 'Can not take off in stormy weather' if @weather.stormy?
-    fail 'Airport is full' if full?
+    raise(RuntimeError, 'Can not take off in stormy weather') if @weather.stormy?
+    raise "Airport is full" if full?
 
     @landed_planes << plane
   end
 
   def full?
-    if @landed_planes.length >= @capacity
-      true
-    else
-      false
-    end
+    @landed_planes.length >= @capacity
   end
 
-  def depart
-    fail 'Can not take off in stormy weather' if @weather.stormy?
+  def depart(plane)
+    raise(RuntimeError, 'Can not take off in stormy weather') if @weather.stormy?
 
-    @landed_planes.pop
+    @landed_planes.pop(plane)
   end
-
 end

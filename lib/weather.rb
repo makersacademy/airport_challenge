@@ -1,10 +1,9 @@
 class Weather
- def weather
-   rand(1..10)
- end
+  def weather
+    rand(1..10)
+  end
 
- def stormy?
-     true
- end
-
+  def stormy?
+    true
+  end
 end
