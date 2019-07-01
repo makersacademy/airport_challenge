@@ -1,4 +1,3 @@
-require 'pry'
 require 'plane'
 
 class Airport
@@ -36,7 +35,7 @@ class Airport
   end
 
   def weather_state
-    weather = ['sunny', 'sunny', 'sunny', 'stormy']
+    weather = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
     weather.sample
   end
 
@@ -55,6 +54,4 @@ private
   def stormy?
     weather_state == 'stormy'
   end
-  binding.pry
-
 end
