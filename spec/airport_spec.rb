@@ -84,14 +84,14 @@ describe AirPort do
     expect(plane0.inair).to eq true
   end
   it 'stormy? returns false when rand(5) > 0' do
-  airport = AirPort.new
-  allow(airport).to receive(:chance).and_return(1)
-  expect(airport.stormy?).to eq(false)
+    airport = AirPort.new
+    allow(airport).to receive(:chance).and_return(1)
+    expect(airport.stormy?).to eq(false)
   end
   it 'stormy? returns true when rand(5) == 0' do
-  airport = AirPort.new
-  allow(airport).to receive(:chance).and_return(0)
-  expect(airport.stormy?).to eq(true)
+    airport = AirPort.new
+    allow(airport).to receive(:chance).and_return(0)
+    expect(airport.stormy?).to eq(true)
   end
 
 end
