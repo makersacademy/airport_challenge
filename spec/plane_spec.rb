@@ -2,17 +2,27 @@ require './lib/plane'
 
 describe Plane do
 
-  it "Changes status of the plane" do
-    plane = Plane.new
-    plane.report_status(true)
-    expect(plane.flying?).to eq true
+  describe "#flying" do
+    it "returns true" do
+      expect(subject.flying).to eq true
+    end
   end
 
-  it "Check mocked plane status" do
-    plane = Plane.new
-    plane = double(:plane)
-    allow(plane).to receive(:flying?).and_return(true)
-    expect(plane.flying?).to eq true
+  describe "#landed" do
+    it "returns false" do
+      expect(subject.landed).to eq false
+    end
   end
 
+  describe "#flying?" do
+    it "returns true if is flying" do
+      subject.flying
+      expect(subject.flying?).to eq true
+    end
+
+    it "returns false if is landed" do
+      subject.landed
+      expect(subject.landed).to eq false
+    end
+  end
 end

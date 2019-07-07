@@ -1,17 +1,15 @@
 class Plane
 
-  def initialize
+  def flying
+    @status = true
+  end
+
+  def landed
     @status = false
   end
 
-  def report_status(status)
-    if status == true
-      @status = true
-    end
-  end
-
   def flying?
-    @status
+    @status 
   end
 
 end

@@ -11,29 +11,17 @@ DEFAULT_CAPACITY = 50
   end
 
   def take_off(plane)
-    if random_weather == "stormy"
-      raise "The plane can't take off with the stormy weather"
-    else
-      @plane_list.pop
-    end
+    raise "The plane can't take off with the stormy weather"  if random_weather == "stormy"
+    @plane_list -= [plane]
+    plane.flying
+    "The plane took off" if plane.flying? == true
   end
 
   def land(plane)
-    if  random_weather == "stormy"
-      raise "The plane can't land with the stormy weather"
-    elsif full?
-      raise "The airport is full"
-    else
-      @plane_list << plane
-    end
-  end
-
-  def plane_status(plane)
-    if plane.flying? true
-      raise "The plane is already flying"
-    else
-      raise "The plane is already in the airport"
-    end
+    raise "The plane can't land with the stormy weather" if random_weather == "stormy"
+    raise "The airport is full" if full?
+    plane.landed
+    @plane_list << plane
   end
 
   def random_weather
@@ -43,11 +31,7 @@ DEFAULT_CAPACITY = 50
 private
 
   def full?
-    if @plane_list.count >= DEFAULT_CAPACITY
-      true
-    else
-      false
-    end
+    @plane_list.count >= DEFAULT_CAPACITY
   end
 
 end
