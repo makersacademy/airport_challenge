@@ -29,7 +29,7 @@ describe Airport do
 
   describe "#take_off" do
     it "confirm plane has taken off" do
-      allow(airport).to receive(:weather) { :sunny }
+      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
       expect { airport.take_off }.to change { subject.planes.count }.by(-1)
     end
