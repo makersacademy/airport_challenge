@@ -30,7 +30,7 @@ class Airport
   private
 
   def stormy?
-    @weather == :stormy
+    @weather.stormy?
   end
 
   def full?
