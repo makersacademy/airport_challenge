@@ -4,26 +4,44 @@ describe Airport do
 
   let(:plane) { double :plane }
 
-  it "lands a plane" do
-    subject.safe_to_fly = true
-    subject.land_plane(plane)
-    expect(subject.current_aircraft).to include(plane)
+  context 'weather is sunny' do
+    before do
+      srand(2)
+    end
+
+    describe '#land_plane' do
+      it "lands a plane" do
+        subject.land_plane(plane)
+        expect(subject.current_aircraft).to include(plane)
+      end
+    end
+
+    describe '#take_off_plane' do
+      it "takes off a plane" do
+        subject.land_plane(plane)
+        subject.take_off_plane(plane)
+      end
+    end
+
   end
 
-  it "removes a plane from the airport" do
-    subject.safe_to_fly = true
-    subject.land_plane(plane)
-    subject.take_off_plane(plane)
-  end
+  context 'weather is stormy' do
+    before do
+      srand(6)
+    end
 
-  it "Error 'Too Stormy to take off' when stormy and takeoff attempted" do
-    subject.safe_to_fly = false
-    expect(subject.take_off_plane(plane)).to raise_error(RuntimeError, "Too Stormy to take off")
-  end
+    describe '#take_off_plane' do
+      it "raises an error when trying to take off a plane" do
+        expect { subject.take_off_plane(plane) }.to raise_error 'Too Stormy to take off'
+      end
+    end
 
-  it "Error 'Too Stormy to land' when stormy and landing attempted" do
-    subject.safe_to_fly = false
-    expect(subject.land_plane(plane)).to raise_error(RuntimeError, 'Too Stormy to land')
+    describe '#land_plane' do
+      it "raises an error when trying to land a plane" do
+        expect { subject.land_plane(plane) }.to raise_error 'Too Stormy to land'
+      end
+    end
+
   end
 
 end
