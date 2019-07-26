@@ -3,23 +3,34 @@ require "Plane"
 
 describe Airport do
 
+
+describe "#land(plane)" do
   it "allows planes to land" do
   plane = Plane.new
   expect(subject.land(plane)).to eq plane
 end
+it "raises and error when there is no room to land" do
+  plane = Plane.new
+  subject.land(plane)
+  expect { subject.land(plane) }.to raise_error "No room to land"
+end
+end
+
+
 
 
 describe "#takeoff" do
 it "allows a plane to take off" do
   plane = Plane.new
   subject.land(plane)
-  expect(subject.takeoff).to eq plane 
+  expect(subject.takeoff).to eq plane
 
 end
 
   it "raises an error when there are no airplanes to takeoff" do
   expect { subject.takeoff }.to raise_error "No planes available"
 end
+
 
 end
 end

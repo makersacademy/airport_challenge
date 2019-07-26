@@ -5,11 +5,12 @@ class Airport
   def takeoff
     fail "No planes available" unless @plane
     @plane
-    
+
 
   end
 
   def land(plane)
+    fail "No room to land" if @plane
     @plane = plane
   end
 
