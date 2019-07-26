@@ -26,30 +26,44 @@ it "raises an error when landing attempted during a storm" do
 #   expect(subject.land(plane)).to eq plane
 # end
 
-it "raises and error when there is no room to land" do
-  weather = double
+it "raises an error when there is no room to land" do
+  weather = double(:weather)
   allow(weather).to receive(:stormy?).and_return(false)
-plane = Plane.new
-  subject.land(plane)
+  plane = Plane.new
+  airport = Airport.new(weather)
+  airport.land(plane)
 
   #allow(weather).to receive(:stormy?).and_return false
-  expect { subject.land(plane) }.to raise_error "No room to land"
+  expect { airport.land(plane) }.to raise_error "No room to land"
 end
 end
-
 
 
 describe "#takeoff" do
 
 it "allows a plane to take off and confirm that its not at airport" do
+  weather = double(:weather)
+  allow(weather).to receive(:stormy?).and_return(false)
   plane = Plane.new
-  subject.land(plane)
+  airport = Airport.new(weather)
+  airport.land(plane)
+
     #allow(weather).to receive(:OUTLOOK) {'ok'}
   #allow(weather).to receive(:stormy?).and_return false
-  expect(subject.takeoff).to eq "Takeoff"
+  expect(airport.takeoff).to eq "Takeoff"
   #plane
 
 end
+
+# it "raises an error when takeoff attempted during a storm" do
+#   weather2 = double(:weather2)
+#   allow(weather2).to receive(:stormy?).and_return(true)
+#   airport2 = Airport.new(weather2)
+#   plane = Plane.new
+#
+#
+#   expect { airport2.land(plane) }.to raise_error "Too stormy to takeoff"
+#   end
 
 
 # it "raises an error when takeoff attempted during a storm" do
@@ -72,4 +86,4 @@ end
 
 
 
-# 
+#
