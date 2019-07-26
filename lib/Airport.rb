@@ -11,8 +11,8 @@ class Airport
   end
 
   def takeoff
-    fail "No planes available" unless @planes.count!= 0
-    fail "Too stormy to takeoff" if weather.stormy?
+    fail "No planes available" if empty?
+    raise "Too stormy to takeoff" unless !weather.stormy?
 @planes.pop
 "Takeoff"
   #@plane
@@ -24,25 +24,30 @@ class Airport
 
 
   def land(plane)
-    fail "No room to land" if @planes.count == 1
+    fail "No room to land" if full?
     fail "Too stormy to land" if weather.stormy?
     @planes << plane
 
   end
-end
+
 
 private
 
-# attr_reader :planes
-#
-# def empty?
-#   planes.empty
-# end
-#
-#
-#   # def plane_check
-#   # end
-# end
+attr_reader :planes
+
+def empty?
+  planes.count == 0
+end
+
+def full?
+  planes.count >= 1
+end
+
+
+
+  # def plane_check
+  # end
+end
 
 
 
