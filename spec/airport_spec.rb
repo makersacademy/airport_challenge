@@ -55,15 +55,17 @@ it "allows a plane to take off and confirm that its not at airport" do
 
 end
 
-# it "raises an error when takeoff attempted during a storm" do
-#   weather2 = double(:weather2)
-#   allow(weather2).to receive(:stormy?).and_return(true)
-#   airport2 = Airport.new(weather2)
-#   plane = Plane.new
-#
-#
-#   expect { airport2.land(plane) }.to raise_error "Too stormy to takeoff"
-#   end
+it "raises an error when takeoff attempted during a storm" do
+  weather = double(:weather)
+allow(weather).to receive(:stormy?).and_return(true)
+
+   airport = Airport.new(weather)
+   plane = Plane.new
+
+#problem here is that when i do airport.land(plane) then thats causing an error because you're landing a plane in a storm
+# could you do a double in here like allow airport to be full? need to write full and empty methods but could work
+   expect(airport.takeoff).to raise_error "Too stormy to takeoff"
+ end
 
 
 # it "raises an error when takeoff attempted during a storm" do

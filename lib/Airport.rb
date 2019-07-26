@@ -7,11 +7,12 @@ class Airport
 
   def initialize(weather = Weather.new)
     @weather = weather
+  #  @planes = []
   end
 
   def takeoff
     fail "No planes available" unless @plane
-    #fail "Too stormy to takeoff" if weather.stormy?
+    fail "Too stormy to takeoff" if weather.stormy?
 "Takeoff"
   #@plane
     end
