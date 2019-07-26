@@ -1,18 +1,31 @@
 require_relative 'Plane.rb'
+require_relative 'Weather.rb'
 
 class Airport
 
+  attr_reader :weather
+
   def takeoff
     fail "No planes available" unless @plane
-    @plane
+"Takeoff"
+  #@plane
+    end
 
-
+  def initialize(weather: Weather.new)
+    @weather = weather
   end
+
+
+
 
   def land(plane)
     fail "No room to land" if @plane
+    fail "Too stormy to land" if weather.stormy?
     @plane = plane
   end
+
+
+
 
   # def plane_check
   # end

@@ -1,29 +1,44 @@
 require "Airport"
 require "Plane"
+require "Weather"
 
 describe Airport do
 
+  attr_reader :weather
+
 
 describe "#land(plane)" do
+
   it "allows planes to land" do
   plane = Plane.new
   expect(subject.land(plane)).to eq plane
 end
+
 it "raises and error when there is no room to land" do
   plane = Plane.new
   subject.land(plane)
   expect { subject.land(plane) }.to raise_error "No room to land"
 end
+
+
+it "raises an error when landing attempted during a storm" do
+plane = Plane.new
+weather = Weather.new
+allow(weather).to receive(:stormy?).and_return true
+expect { subject.land(plane) }.to raise_error "Too stormy to land"
+end
 end
 
 
 
 
+
 describe "#takeoff" do
-it "allows a plane to take off" do
+it "allows a plane to take off and confirm that its not at airport" do
   plane = Plane.new
   subject.land(plane)
-  expect(subject.takeoff).to eq plane
+  expect(subject.takeoff).to eq "Takeoff"
+  #plane
 
 end
 
@@ -33,9 +48,9 @@ end
 
 
 end
+
+
 end
-
-
 
 
 
