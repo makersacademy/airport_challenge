@@ -5,15 +5,17 @@ class Airport
 
   attr_reader :weather
 
+  def initialize(weather = Weather.new)
+    @weather = weather
+  end
+
   def takeoff
     fail "No planes available" unless @plane
 "Takeoff"
   #@plane
     end
 
-  def initialize(weather: Weather.new)
-    @weather = weather
-  end
+
 
 
 
