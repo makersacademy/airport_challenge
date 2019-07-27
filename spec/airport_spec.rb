@@ -9,10 +9,12 @@ describe Airport do
   describe '#land' do
 
     it "let's plane to land" do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport).to respond_to(:land).with(1).argument
     end
     context 'when airport is full'do
       it 'stop plane from landing when airport is full' do
+        allow(airport).to receive(:stormy?).and_return false
         10.times {airport.land plane}
         expect { airport.land plane}.to raise_error "Full capacity reached! You can not land here."
       end
