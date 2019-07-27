@@ -9,6 +9,7 @@ class Airport
   end
 
   def order_take_off(plane)
+    raise "Planes grounded, the weather doesn't allow for take-offs!" if @local_weather.stormy?
     plane.take_off
     @tarmac.delete(plane)
   end
