@@ -1,6 +1,6 @@
 class Plane
 
-  attr_reader :current_airport
+  attr_reader :current_airport, :status
 
   def land(airport)
   end

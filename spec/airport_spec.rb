@@ -47,7 +47,7 @@ describe Airport do
     end
 
     it "raises an error if the plane is not landed at the airport" do
-      expect { Airport.new.order_take_off(landed_plane) }.to raise_error(
+      expect { sunny_airport.order_take_off(landed_plane) }.to raise_error(
           "This plane is not landed at this airport"
         )
     end
