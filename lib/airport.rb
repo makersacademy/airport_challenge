@@ -10,7 +10,7 @@ class Airport
 
   def land(plane)
     fail "Full capacity reached! You can not land here." if full?
-    @planes << plane
+    store_plane(plane)
   end
 
   def take_off(plane)
@@ -25,6 +25,10 @@ class Airport
 
   def remove_plane(plane)
     @planes.delete(plane)
+  end
+
+  def store_plane(plane)
+    @planes << plane
   end
 
 end
