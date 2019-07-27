@@ -13,13 +13,19 @@ class Plane
   end
 
   def take_off(airport)
-    raise "Attempting take-off from wrong airport. Aborting procedure." if airport != @current_airport
+    clear_for_take_off(airport)
     @flying_status = true
     @current_airport = nil
   end
 
   def flying?
     @flying_status
+  end
+
+  private
+
+  def clear_for_take_off(airport)
+    raise "Take off from wrong airport, abort." if airport != @current_airport
   end
 
 end

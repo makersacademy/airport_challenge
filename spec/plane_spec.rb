@@ -6,7 +6,6 @@ describe Plane do
 
   subject { Plane.new(fakeport) }
 
-
   it { is_expected.to respond_to(:flying?, :land, :take_off, :current_airport) }
 
   it "requires an airport at creation" do
@@ -30,8 +29,8 @@ describe Plane do
     end
 
     it "raises an error if trying to take off from different airport" do
-      expect { subject.take_off(fakeport2) }.to raise_error (
-        "Attempting take-off from wrong airport. Aborting procedure."
+      expect { subject.take_off(fakeport2) }.to raise_error(
+        "Take off from wrong airport, abort."
       )
     end
 
