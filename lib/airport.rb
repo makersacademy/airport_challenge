@@ -10,23 +10,29 @@ class Airport
   end
 
   def order_take_off(plane)
-    raise "Planes grounded, the weather doesn't allow for take-offs!" if @local_weather.stormy?
-
+    clear_for_take_off
     plane.take_off
     @tarmac.delete(plane)
   end
 
   def order_landing(plane)
-    raise "Too dangerous to land in this weather!" if @local_weather.stormy?
-    
+    clear_for_landing
     plane.land
     @tarmac << plane
   end
 
-  def prevent_take_off
+  def clear_for_take_off
+    raise "The weather doesn't allow for take-offs!" if @local_weather.stormy?
   end
 
-  def prevent_landing
+  def clear_for_landing
+    raise "Too dangerous to land in this weather!" if @local_weather.stormy?
+    raise "Landing denied, airport is full." if full?
+  end
+
+  private
+  def full?
+    @tarmac.count >= @capacity
   end
 
 end

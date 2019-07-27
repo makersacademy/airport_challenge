@@ -4,8 +4,8 @@ require 'airport'
 describe Airport do
   it { is_expected.to respond_to(:order_take_off,
                                 :order_landing,
-                                :prevent_take_off,
-                                :prevent_landing)
+                                :clear_for_take_off,
+                                :clear_for_landing)
   }
 
   let(:plane) { double("plane", :take_off => true, :land => true) }
@@ -29,7 +29,7 @@ describe Airport do
     
     it "prevents any take-off if the weather is stormy" do
       airport = Airport.new(stormy_weather, [plane])
-      expect { airport.order_take_off(plane) }.to raise_error("Planes grounded, the weather doesn't allow for take-offs!")
+      expect { airport.order_take_off(plane) }.to raise_error("The weather doesn't allow for take-offs!")
     end
 
   end
@@ -52,10 +52,10 @@ describe Airport do
 
     it "prevents landing when airport is full" do
       sunny_airport.capacity.times {sunny_airport.order_landing(double(:land => true))}
-      puts sunny_airport.tarmac[0] == sunny_airport.tarmac[1]
-      puts sunny_airport.tarmac.size
       expect { sunny_airport.order_landing(plane) }.to raise_error("Landing denied, airport is full.")
     end
+
+
 
   end
 
