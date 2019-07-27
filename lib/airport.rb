@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Stormy weather! You can not take off!!" if stormy?
     remove_plane(plane)
   end
 

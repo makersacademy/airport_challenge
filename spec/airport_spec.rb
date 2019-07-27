@@ -35,6 +35,7 @@ describe Airport do
   describe '#take_off' do
     it {is_expected.to respond_to(:take_off).with(1).argument}
     it "doesn't store plane after it took off" do
+      allow(airport).to receive(:stormy?). and_return false
       airport.take_off(plane)
       expect(subject.planes).not_to include(plane)
     end
