@@ -28,8 +28,8 @@ describe Airport do
     end
     
     it "prevents any take-off if the weather is stormy" do
-      stormy_airport.order_landing(plane)
-      expect { stormy_airport.order_take_off(plane) }.to raise_error("Planes grounded, the weather doesn't allow for take-offs!")
+      airport = Airport.new(stormy_weather, [plane])
+      expect { airport.order_take_off(plane) }.to raise_error("Planes grounded, the weather doesn't allow for take-offs!")
     end
 
   end

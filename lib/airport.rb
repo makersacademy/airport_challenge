@@ -3,8 +3,8 @@ require 'weather'
 class Airport
   attr_reader :tarmac
 
-  def initialize(weather_forecast= Weather.new)
-    @tarmac = []
+  def initialize(weather_forecast= Weather.new, tarmac= [])
+    @tarmac = tarmac
     @local_weather = weather_forecast
   end
 
@@ -15,11 +15,13 @@ class Airport
   end
 
   def order_landing(plane)
+    raise "Too dangerous to land in this weather!" if @local_weather.stormy?
     plane.land
     @tarmac << plane
   end
 
   def prevent_take_off
+
   end
 
   def prevent_landing
