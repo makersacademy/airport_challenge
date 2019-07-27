@@ -3,9 +3,10 @@ require 'weather'
 class Airport
   attr_reader :tarmac
 
-  def initialize(weather_forecast= Weather.new, tarmac= [])
+  def initialize(weather_forecast= Weather.new, tarmac= [], capacity= 20)
     @tarmac = tarmac
     @local_weather = weather_forecast
+    @capacity = capacity
   end
 
   def order_take_off(plane)
@@ -21,7 +22,6 @@ class Airport
   end
 
   def prevent_take_off
-
   end
 
   def prevent_landing
