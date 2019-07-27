@@ -1,9 +1,11 @@
 require 'plane'
 
 describe Plane do
-  subject { Plane.new(double("airport")) }
-
   let(:fakeport) { double("Airport") }
+  let(:fakeport2) { double("Airport 2") }
+
+  subject { Plane.new(fakeport) }
+
 
   it { is_expected.to respond_to(:flying?, :land, :take_off, :current_airport) }
 
@@ -25,6 +27,12 @@ describe Plane do
     it "removes any current airport data" do
       subject.take_off(fakeport)
       expect(subject.current_airport).to eq nil
+    end
+
+    it "raises an error if trying to take off from different airport" do
+      expect { subject.take_off(fakeport2) }.to raise_error (
+        "Attempting take-off from wrong airport. Aborting procedure."
+      )
     end
 
   end
