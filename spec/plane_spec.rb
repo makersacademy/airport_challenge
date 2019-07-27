@@ -30,7 +30,14 @@ describe Plane do
     expect( new_airport.planes.count).to be < original_plane_count
   end
 
-
+  it 'Checks that a plane cannot be landed when the Airports capacity has been reached' do
+    airport = Airport.new
+    plane1 = Plane.new("plane1")
+    plane2 = Plane.new("plane2")
+    airport.update_capacity(1)
+    plane1.land(airport)
+    expect{plane2.land(airport)}.to raise_error(RuntimeError)
+  end
 
 end
 

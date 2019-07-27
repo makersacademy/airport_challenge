@@ -7,10 +7,11 @@ class Plane
 
   def initialize(id)
     @id = id
-    @at_airport = nil
+    @at_airport = "No"
   end
 
   def land(airport)
+    raise 'Landing cannot take place as the Airport has reached full capacity' if airport.capacity == airport.planes.count
     airport.planes << :id
     @at_airport = airport
   end
@@ -18,4 +19,5 @@ class Plane
   def take_off(airport=@at_airport)
     @at_airport.planes.delete(:id)
   end
+
 end
