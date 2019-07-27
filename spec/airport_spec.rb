@@ -11,8 +11,8 @@ describe Airport do
   let(:plane) { double("plane", :take_off => true, :land => true) }
   let(:stormy_weather) { double("weather", :stormy? => true) }
   let(:sunny_weather) { double("weather", :stormy? => false) }
-  let(:stormy_airport) {Airport.new(stormy_weather)}
-  let(:sunny_airport) {Airport.new(sunny_weather)}
+  let(:stormy_airport) { Airport.new(stormy_weather) }
+  let(:sunny_airport) { Airport.new(sunny_weather) }
 
   describe "#order_take_off" do
 
@@ -48,6 +48,13 @@ describe Airport do
 
     it "prevents any landing if the weather is stormy" do
       expect { stormy_airport.order_landing(plane) }.to raise_error("Too dangerous to land in this weather!")
+    end
+
+    it "prevents landing when airport is full" do
+      sunny_airport.capacity.times {sunny_airport.order_landing(double(:land => true))}
+      puts sunny_airport.tarmac[0] == sunny_airport.tarmac[1]
+      puts sunny_airport.tarmac.size
+      expect { sunny_airport.order_landing(plane) }.to raise_error("Landing denied, airport is full.")
     end
 
   end

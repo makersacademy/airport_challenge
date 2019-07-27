@@ -17,7 +17,7 @@ describe Weather do
       weather = Weather.new(storm_probability)
       weather_tests = []
       test_magnitude.times { weather_tests << weather.stormy? }
-      expect(weather_tests.count(true)).to be_within((storm_probability*test_magnitude)/4).of(storm_probability*test_magnitude)
+      expect(weather_tests.count(true)).to be_within((storm_probability * test_magnitude) / 4).of(storm_probability * test_magnitude)
     end
   end
 end
