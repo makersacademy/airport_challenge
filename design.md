@@ -40,7 +40,7 @@ After running a test in `spec/check_weather_persistence.rb` I have discovered th
 Structure sketch:
 - Airport
   - `.new(weather = Weather.new, cap = default cap)` : will take a weather system and an optional capacity.
-  - `.land(Plane)` : will throw error if a storm is a brewing or the airport is full.
+  - `.land(Plane)` : will throw error if a storm is a brewing or the airport is full. Should return nil if too stormy, or plane if landed? Otherwise program breaks. Can keep atempting to land until weather clears.
   - `.takeoff(Plane)` : will throw an error if weather is stormy.
   - `.planes` : see which planes are in the airport. To see if plane is still there after takeoff.
   - `.capacity` : see the set capacity.
@@ -51,12 +51,13 @@ Structure sketch:
 
 - Weather
   - `stormy?` : Reports the weather. Hard coded change of being stormy.
-  - # Extensions for fun.
+  - # Extensions for fun and good for testing!
   - `.new(stormy_probability = 0.25)` : Could take the chance of being stormy?
 
-- Plane(name = "")
+- Plane
   - From the user stories a "Plane" might not even have to exist. However to prevent a plane being in more than one place at once I've added a couple of methods.
   - # Extensions for edge cases.
+  - `.new("FlapMcFlappyFace")` : Set a planes name on creation
   - `.name` : Find the planes name. allow instructing he plane to take off by name. Or can pass the pointer to it.
   - `.flying?` : To protect against the same plane being landed in different airports only flying planes should be instructed to land.
   - # Maybe extensions?
