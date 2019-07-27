@@ -1,24 +1,16 @@
-require_relative 'Airport.rb'
+require_relative 'airport.rb'
 
 class Weather
 
-def stormy?
+  def stormy?
+    random_outlook == :stormy
+  end
 
-random_outlook == :stormy
+  private
 
-end
+  OUTLOOKS = [:stormy, :ok, :ok, :ok]
 
-
-
-private
-
-OUTLOOKS = [ :stormy, :ok, :ok, :ok]
-
-def random_outlook
-
-OUTLOOKS.sample
-
-end
-
-
+  def random_outlook
+    OUTLOOKS.sample
+  end
 end
