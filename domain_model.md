@@ -2,8 +2,8 @@
 
 |   Objects   |    Behaviours      |                                                                |
 |-------------|--------------------|----------------------------------------------------------------|
-|Airport      |instruct take off   | -> Plane takes off from Airport                                |
-|             |instruct landing    | -> Plane lands at Airport                                      |
+|Airport      |instruct take off   | -> Plane takes off from Airport, plane is no longer in Aiport  |
+|             |instruct landing    | -> Plane lands at Airport, plane is now in the aiport          |
 |             |prevent take off    | -> Weather stormy? -> true                                     |
 |             |prevent landing     | -> Airport full? -> true                                       |
 |             |has default capacity| -> New airport has default capacity if no capacity specified   |
