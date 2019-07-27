@@ -10,5 +10,13 @@ describe Weather do
       1000.times { weather_tests << subject.stormy? }
       expect(weather_tests.count(true)).to be_within(50).of(200)
     end
+
+    it "should allow for different probabilities of weather" do
+      storm_probability = 2
+      subject { Weather.new(storm_probability) }
+      weather_tests = []
+      1000.times { weather_tests << subject.stormy? }
+      expect(weather_tests.count(true)).to be_within((storm_probability*10)/4).of(storm_probability*10)
+    end
   end
 end
