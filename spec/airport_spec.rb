@@ -9,7 +9,8 @@ describe Airport do
       "flying_plane",
       :take_off => nil,
       :land => nil,
-      :flying? => true
+      :flying? => true,
+      :current_airport => nil
     )
   }
   let(:landed_plane) { 
@@ -17,7 +18,8 @@ describe Airport do
       "flying_plane",
       :take_off => nil,
       :land => nil,
-      :flying? => false
+      :flying? => false,
+      :current_airport => sunny_airport
     )
   }
   let(:stormy_weather) { double("weather", :stormy? => true) }
@@ -28,6 +30,7 @@ describe Airport do
   describe "#order_take_off" do
 
     it "makes a plane take off" do
+      airport = Airport.new(sunny_weather)
       expect(landed_plane).to receive(:take_off)
       sunny_airport.order_take_off(landed_plane)
     end
@@ -41,6 +44,12 @@ describe Airport do
     it "prevents any take-off if the weather is stormy" do
       airport = Airport.new(stormy_weather, [landed_plane])
       expect { airport.order_take_off(landed_plane) }.to raise_error("The weather doesn't allow for take-offs!")
+    end
+
+    it "raises an error if the plane is not landed at the airport" do
+      expect{ sunny_airport.order_take_off(landed_plane) }.to raise_error(
+          "This plane is not landed at this airport"
+        )
     end
 
   end

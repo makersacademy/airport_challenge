@@ -11,20 +11,21 @@ class Airport
 
   def order_take_off(plane)
     clear_for_take_off(plane)
-    plane.take_off
+    plane.take_off(self)
     @tarmac.delete(plane)
   end
 
   def order_landing(plane)
     clear_for_landing(plane)
-    plane.land
+    plane.land(self)
     @tarmac << plane
   end
 
   private
-  
+
   def clear_for_take_off(plane)
     raise "The weather doesn't allow for take-offs!" if @local_weather.stormy?
+    raise "This plane is not landed at this airport" if plane.current_airport != self
   end
 
   def clear_for_landing(plane)
