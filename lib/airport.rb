@@ -12,7 +12,7 @@ class Airport
   ERR_DUPLICATE_PLANE = "The airport has detected a duplicate plane."
   ERR_MISSING_PLANE = "Plane cannot be found"
   ERR_PLANE_BAD_STATE = "Plane is in the incorrect state for instruction"
-  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY )
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @capacity = capacity
     @planes = []
@@ -20,9 +20,11 @@ class Airport
 
   def build_plane
     raise ERR_CAPACITY if full?
+
     # defending against the edgiest of cases.
     nu_plane = Plane.new(false)
     raise ERR_DUPLICATE_PLANE if plane_exists?(nu_plane) # impossible to happen since new is being called
+
     @planes << nu_plane
   end
 
@@ -31,8 +33,9 @@ class Airport
     raise ERR_PLANE_BAD_STATE unless plane.flying?
     raise ERR_CAPACITY if full?
     raise ERR_STORMY_LAND if @weather.stormy?
+
     plane.land
-    @planes<<plane
+    @planes << plane
     plane
   end
 
@@ -40,6 +43,7 @@ class Airport
     raise ERR_MISSING_PLANE unless plane_exists?(plane)
     raise ERR_PLANE_BAD_STATE if plane.flying?
     raise ERR_STORMY_TAKEOFF if @weather.stormy?
+
     plane.takeoff
     @planes.delete(plane) # this is safe since duplicate planes are checked
   end
