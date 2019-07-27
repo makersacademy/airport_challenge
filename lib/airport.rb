@@ -13,6 +13,7 @@ class Airport
   def land_plane(plane)
     fail "Cannot do that" unless safe?
     fail "Cannot do that, airport full" if full?
+
     @planes << plane
   end
 
@@ -28,11 +29,7 @@ class Airport
   end
 
   def full?
-    if @planes.count < DEFAULT_CAPACITY
-      false
-    else
-      true
-    end
+    !(@planes.count < DEFAULT_CAPACITY)
   end
 
   def safe?
