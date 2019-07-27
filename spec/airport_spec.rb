@@ -1,16 +1,25 @@
 require 'airport'
 require 'plane'
+require 'weather_report'
 
 describe Airport do
 
-  subject(:airport) {described_class.new(10)}
+  subject(:airport) {described_class.new(described_class::DEFAULT_CAPACITY)}
   let(:plane) {double(:plane)}
+  let(:weahter_report) {double :weahter_report}
+
+  describe "#initializer" do
+    it 'has a default capacity that can be changed' do
+      airport = Airport.new(14)
+      expect(airport.capacity).to eq 14
+    end
+  end
 
   describe '#land' do
 
     context 'weather not stormy' do
       before do
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weahter_report).to receive(:stormy?).and_return false
       end
       it "plane land" do
         expect(airport).to respond_to(:land).with(1).argument
