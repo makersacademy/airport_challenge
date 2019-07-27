@@ -8,7 +8,7 @@ describe Airport do
                                 :clear_for_landing)
   }
 
-  let(:plane) { double("plane", :take_off => true, :land => true) }
+  let(:plane) { double("plane", :take_off => nil, :land => nil) }
   let(:stormy_weather) { double("weather", :stormy? => true) }
   let(:sunny_weather) { double("weather", :stormy? => false) }
   let(:stormy_airport) { Airport.new(stormy_weather) }
@@ -55,7 +55,11 @@ describe Airport do
       expect { sunny_airport.order_landing(plane) }.to raise_error("Landing denied, airport is full.")
     end
 
-
+    it "raises an error if the plane is already landed" do
+      expect{
+        sunny_airport.order_landing(double("plane", :land => nil, :flying => true))
+      }.to raise_error "Can't make a plane land when it's not flying."
+    end
 
   end
 
