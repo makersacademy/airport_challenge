@@ -38,12 +38,16 @@ describe Airport do
 
     it "makes a plane land" do
       expect(plane).to receive(:land)
-      subject.order_landing(plane)
+      sunny_airport.order_landing(plane)
     end
 
     it "adds a plane to the tarmac" do
-      subject.order_landing(plane)
-      expect(subject.tarmac).to eq [plane]
+      sunny_airport.order_landing(plane)
+      expect(sunny_airport.tarmac).to eq [plane]
+    end
+
+    it "prevents any landing if the weather is stormy" do
+      expect { stormy_airport.order_landing(plane) }.to raise_error("Too dangerous to land in this weather!")
     end
 
   end
