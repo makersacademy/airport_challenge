@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     fail "Full capacity reached! You can not land here." if full?
+    fail "Stormy weather! You can not land!!" if stormy?
     store_plane(plane)
   end
 
@@ -29,6 +30,10 @@ class Airport
 
   def store_plane(plane)
     @planes << plane
+  end
+
+  def stormy?
+    rand(4) == 1
   end
 
 end
