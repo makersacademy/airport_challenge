@@ -15,7 +15,7 @@ class Plane
     @at_airport = airport
   end
 
-  def take_off
-    
+  def take_off(airport=@at_airport)
+    @at_airport.planes.delete(:id)
   end
 end
