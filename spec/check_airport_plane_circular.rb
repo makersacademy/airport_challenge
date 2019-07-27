@@ -8,7 +8,6 @@ class Plane
   attr_accessor :airport
 end
 
-
 pl = Plane.new
 ap = Airport.new
 

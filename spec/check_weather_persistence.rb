@@ -1,4 +1,3 @@
-
 class Airport
 
   attr_reader :weather
@@ -6,6 +5,7 @@ class Airport
   def initialize(weather = Weather.new)
     @weather = weather
   end
+
   def weather_name
     puts @weather.name
   end

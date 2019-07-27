@@ -56,10 +56,12 @@ Structure sketch:
 
 - Plane
   - From the user stories a "Plane" might not even have to exist. However to prevent a plane being in more than one place at once I've added a couple of methods.
-  - # Extensions for edge cases.
-  - `.new("FlapMcFlappyFace")` : Set a planes name on creation
-  - `.name` : Find the planes name. allow instructing he plane to take off by name. Or can pass the pointer to it.
   - `.flying?` : To protect against the same plane being landed in different airports only flying planes should be instructed to land.
+  - `.land` : To set flying to false
+  - `.takeoff` : To set flying to true
+  - # Extensions for edge cases.
+  - `.new("FlapMcFlappyFace")` : Set a planes name on creation.
+  - `.name` : Find the planes name. allow instructing he plane to take off by name. Or can pass the pointer to it.
   - # Maybe extensions?
   - `.airport` : Could also store the airport in the plane? Creates a circular reference. Might be superfluous code. `spec/check_airport_plane_circular.rb` has tested this and a circular reference of objects seems fine in this case. Will attempt to write some tests and see what happens.
 
