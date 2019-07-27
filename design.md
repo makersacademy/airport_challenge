@@ -40,7 +40,7 @@ After running a test in `spec/check_weather_persistence.rb` I have discovered th
 Structure sketch:
 - Airport
   - `.new(weather = Weather.new, cap = default cap)` : will take a weather system and an optional capacity.
-  - `.land(Plane)` : will throw error if a storm is a brewing or the airport is full. Should return nil if too stormy, or plane if landed? Otherwise program breaks. Can keep atempting to land until weather clears.
+  - `.land(Plane)` : will throw error if a storm is a brewing or the airport is full. Should return nil if too stormy, or plane if landed? Otherwise program breaks. Can keep attempting to land until weather clears.
   - `.takeoff(Plane)` : will throw an error if weather is stormy.
   - `.planes` : see which planes are in the airport. To see if plane is still there after takeoff.
   - `.capacity` : see the set capacity.
