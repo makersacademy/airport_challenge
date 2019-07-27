@@ -9,8 +9,7 @@ describe Airport do
       "flying_plane",
       :take_off => nil,
       :land => nil,
-      :flying? => true,
-      :current_airport => nil
+      :flying? => true
     )
   }
   let(:landed_plane) { 
@@ -18,8 +17,7 @@ describe Airport do
       "flying_plane",
       :take_off => nil,
       :land => nil,
-      :flying? => false,
-      :current_airport => sunny_airport
+      :flying? => false
     )
   }
   let(:stormy_weather) { double("weather", :stormy? => true) }
@@ -30,15 +28,17 @@ describe Airport do
   describe "#order_take_off" do
 
     it "makes a plane take off" do
-      airport = Airport.new(sunny_weather)
+      plane = landed_plane
+      airport = Airport.new(sunny_weather, [plane])
       expect(landed_plane).to receive(:take_off)
-      sunny_airport.order_take_off(landed_plane)
+      airport.order_take_off(landed_plane)
     end
 
     it "withdraws the plane from the tarmac" do
-      airport = Airport.new(tarmac = [landed_plane])
-      sunny_airport.order_take_off(landed_plane)
-      expect(sunny_airport.tarmac).to be_empty
+      plane = landed_plane
+      airport = Airport.new(sunny_weather, [plane])
+      airport.order_take_off(plane)
+      expect(airport.tarmac).to be_empty
     end
     
     it "prevents any take-off if the weather is stormy" do
@@ -47,7 +47,7 @@ describe Airport do
     end
 
     it "raises an error if the plane is not landed at the airport" do
-      expect{ sunny_airport.order_take_off(landed_plane) }.to raise_error(
+      expect { Airport.new.order_take_off(landed_plane) }.to raise_error(
           "This plane is not landed at this airport"
         )
     end
@@ -71,12 +71,12 @@ describe Airport do
     end
 
     it "prevents landing when airport is full" do
-      sunny_airport.capacity.times {sunny_airport.order_landing(flying_plane)}
+      sunny_airport.capacity.times { sunny_airport.order_landing(flying_plane) }
       expect { sunny_airport.order_landing(flying_plane) }.to raise_error("Landing denied, airport is full.")
     end
 
     it "raises an error if the plane is already landed" do
-      expect{
+      expect {
         sunny_airport.order_landing(landed_plane)
       }.to raise_error "Can't make a plane land when it's not flying."
     end

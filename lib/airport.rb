@@ -24,14 +24,22 @@ class Airport
   private
 
   def clear_for_take_off(plane)
-    raise "The weather doesn't allow for take-offs!" if @local_weather.stormy?
-    raise "This plane is not landed at this airport" if plane.current_airport != self
+    raise "The weather doesn't allow for take-offs!" if stormy?
+    raise "This plane is not landed at this airport" unless in_airport?(plane)
   end
 
   def clear_for_landing(plane)
-    raise "Too dangerous to land in this weather!" if @local_weather.stormy?
+    raise "Too dangerous to land in this weather!" if stormy?
     raise "Landing denied, airport is full." if full?
     raise "Can't make a plane land when it's not flying." unless plane.flying?
+  end
+
+  def stormy?
+    @local_weather.stormy?
+  end
+
+  def in_airport?(plane)
+    @tarmac.include?(plane)
   end
 
   def full?
