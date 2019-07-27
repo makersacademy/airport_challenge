@@ -31,8 +31,8 @@ it "raises an error when there is no room to land" do
   allow(weather).to receive(:stormy?).and_return(false)
   plane = Plane.new
   airport = Airport.new(weather)
-  Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-
+#  Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+airport.capacity.times { airport.land(plane)}
   #allow(weather).to receive(:stormy?).and_return false
   expect { airport.land(plane) }.to raise_error "No room to land"
 end
@@ -98,6 +98,17 @@ plane = Plane.new
   it "raises an error when there are no airplanes to takeoff" do
   expect { subject.takeoff }.to raise_error "No planes available"
 end
+end
+
+it "has a default capacity" do
+  expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+end
+
+it "has a default capacity that can be overridden as appropriate" do
+airport = Airport.new
+airport.capacity = 25
+expect(airport.capacity).to eq 25
+
 end
 end
 
