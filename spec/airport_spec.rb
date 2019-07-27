@@ -13,4 +13,8 @@ describe Airport do
       expect(subject.land(plane)).to eq plane
     end
   end
+
+  describe '#take_off' do
+    it {is_expected.to respond_to :take_off}
+  end
 end
