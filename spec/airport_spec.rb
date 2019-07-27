@@ -9,8 +9,10 @@ describe Airport do
   }
 
   let(:plane) { double("plane", :take_off => true, :land => true) }
+  let(:stormy_weather) { double("weather", :stormy? => true) }
 
   describe "#order_take_off" do
+
     it "makes a plane take off" do
       expect(plane).to receive(:take_off)
       subject.order_take_off(plane)
@@ -21,10 +23,16 @@ describe Airport do
       subject.order_take_off(plane)
       expect(subject.tarmac).to be_empty
     end
-        
+    
+    it "prevents any take-off if the weather is stormy" do
+      subject.local_weather = stormy_weather
+      except { subject.order_take_off }.to raise_error("Planes grounded, the weather doesn't allow for take-offs!")
+    end
+
   end
 
   describe "#order_landing" do
+
     it "makes a plane land" do
       expect(plane).to receive(:land)
       subject.order_landing(plane)
@@ -34,6 +42,7 @@ describe Airport do
       subject.order_landing(plane)
       expect(subject.tarmac).to eq [plane]
     end
+
   end
 
 end
