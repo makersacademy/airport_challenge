@@ -7,6 +7,7 @@ class Airport
 
   def order_take_off(plane)
     plane.take_off
+    @tarmac.delete(plane)
   end
 
   def order_landing(plane)

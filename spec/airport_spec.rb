@@ -19,7 +19,7 @@ describe Airport do
     it "withdraws the plane from the tarmac" do
       subject.order_landing(plane)
       subject.order_take_off(plane)
-      expect(subject.tarmac)to be_empty
+      expect(subject.tarmac).to be_empty
     end
         
   end
