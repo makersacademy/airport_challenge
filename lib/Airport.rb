@@ -2,6 +2,7 @@ require_relative 'Plane.rb'
 require_relative 'Weather.rb'
 
 class Airport
+  DEFAULT_CAPACITY = 40
 
   attr_reader :weather
 
@@ -40,7 +41,7 @@ def empty?
 end
 
 def full?
-  planes.count >= 1
+  planes.count >= DEFAULT_CAPACITY
 end
 
 

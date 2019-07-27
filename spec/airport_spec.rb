@@ -31,7 +31,7 @@ it "raises an error when there is no room to land" do
   allow(weather).to receive(:stormy?).and_return(false)
   plane = Plane.new
   airport = Airport.new(weather)
-  airport.land(plane)
+  Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
 
   #allow(weather).to receive(:stormy?).and_return false
   expect { airport.land(plane) }.to raise_error "No room to land"
