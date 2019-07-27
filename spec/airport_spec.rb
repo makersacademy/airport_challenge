@@ -7,4 +7,12 @@ describe Airport do
                                 :prevent_take_off,
                                 :prevent_landing)
   }
+
+  describe "#order_take_off" do
+    it "makes a plane take off" do
+      plane = double(:flying? => false)
+      subject.order_take_off(plane)
+      expect(plane).to be_flying
+    end
+  end
 end
