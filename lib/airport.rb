@@ -1,6 +1,7 @@
 class Airport
 
-  def order_take_off
+  def order_take_off(plane)
+    plane.take_off
   end
 
   def order_landing
