@@ -15,4 +15,12 @@ describe Airport do
       expect(subject.order_take_off(plane)).to eq plane.take_off
     end
   end
+
+  describe "#order_landing" do
+    it "makes a plane land" do
+      plane = double(:land => true)
+      subject.order_landing(plane)
+      expect(subject.order_landing(plane)).to eq plane.land
+    end
+  end
 end
