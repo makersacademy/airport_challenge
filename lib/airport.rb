@@ -10,27 +10,29 @@ class Airport
   end
 
   def order_take_off(plane)
-    clear_for_take_off
+    clear_for_take_off(plane)
     plane.take_off
     @tarmac.delete(plane)
   end
 
   def order_landing(plane)
-    clear_for_landing
+    clear_for_landing(plane)
     plane.land
     @tarmac << plane
   end
 
-  def clear_for_take_off
+  private
+  
+  def clear_for_take_off(plane)
     raise "The weather doesn't allow for take-offs!" if @local_weather.stormy?
   end
 
-  def clear_for_landing
+  def clear_for_landing(plane)
     raise "Too dangerous to land in this weather!" if @local_weather.stormy?
     raise "Landing denied, airport is full." if full?
+    raise "Can't make a plane land when it's not flying." unless plane.flying?
   end
 
-  private
   def full?
     @tarmac.count >= @capacity
   end
