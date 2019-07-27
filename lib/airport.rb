@@ -1,3 +1,4 @@
+require_relative '../lib/plane.rb'
 
 class Airport
 
@@ -7,6 +8,10 @@ class Airport
   def initialize
     @planes = []
     @capacity = 10
+  end
+
+  def update_capacity(new_value)
+    @capacity = new_value
   end
 
 end
