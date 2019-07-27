@@ -1,4 +1,6 @@
 require_relative 'plane'
+require_relative 'weather_report'
+
 
 class Airport
   def initialize(capacity)
@@ -34,7 +36,7 @@ class Airport
   end
 
   def stormy?
-    rand(4) == 1
+    WeatherReport.new.stormy?
   end
 
 end
