@@ -2,7 +2,7 @@
 
 |   Objects   |    Behaviours      |                                                                |
 |-------------|--------------------|----------------------------------------------------------------|
-|Airport      |instruct take off   | -> Plane takes off from Airport, plane is no longer in Aiport  |
+|Airport      |instruct take off   | -> Plane takes off from Airport, plane is no longer in Arport  |
 |             |instruct landing    | -> Plane lands at Airport, plane is now in the aiport          |
 |             |prevent take off    | -> Weather stormy? -> true                                     |
 |             |prevent landing     | -> Airport full? -> true                                       |

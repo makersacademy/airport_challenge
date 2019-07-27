@@ -15,6 +15,8 @@ describe Airport do
       subject.order_take_off(plane)
       expect(subject.order_take_off(plane)).to eq plane.take_off
     end
+
+    
   end
 
   describe "#order_landing" do
@@ -22,6 +24,11 @@ describe Airport do
       subject.order_landing(plane)
       expect(subject.order_landing(plane)).to eq plane.land
     end
+
+    it "adds a plane to the tarmac" do
+      subject.order_landing(plane)
+      expect(subject.tarmac).to eq [plane]
+    end
   end
-  
+
 end
