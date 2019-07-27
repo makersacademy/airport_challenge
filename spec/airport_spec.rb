@@ -11,7 +11,9 @@ describe Airport do
     end
 
     it 'prevent landing when airport full capacity is reached' do
-      expect { subject.land Plane.new}.to raise_error "Full capacity reached!"
+      airport = Airport.new(10)
+      10.times {airport.land Plane.new}
+      expect { airport.land Plane.new}.to raise_error "Full capacity reached!"
     end
 
   end
