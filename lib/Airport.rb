@@ -6,41 +6,40 @@ class Airport
 
   attr_reader :weather
   attr_accessor :capacity
+  attr_reader :plane
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @weather = weather
-    @planes = []
+    $planes = []
     @capacity = capacity
   end
 
-  def takeoff
+  def takeoff(plane)
     fail "No planes available" if empty?
     raise "Too stormy to takeoff" if weather.stormy?
+    fail "Plane already in the air" unless plane.landed?
 
-    @planes.pop
+    $planes.pop
     "Takeoff"
   end
 
   def land(plane)
     fail "No room to land" if full?
     fail "Too stormy to land" if weather.stormy?
+    fail "Plane already landed" if plane.landed?
 
-    @planes << plane
+    $planes << plane
   end
 
-  # def capacity
-  #   @capacity
-  # end
-
-  private
+private
 
   attr_reader :planes
 
   def empty?
-    planes.count.zero?
+    $planes.count.zero?
   end
 
   def full?
-    planes.count >= capacity
+    $planes.count >= capacity
   end
 end

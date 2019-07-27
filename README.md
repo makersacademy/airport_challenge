@@ -1,8 +1,6 @@
 ## README
 
-Simple program to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
-
-I used TDD to create this program. The next steps to be completed are to track planes (instance variables) to ensure that a plane that's already in the air can't takeoff, and a landed plane can't land.
+Simple program to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Planes that are already in the air cannot takeoff, just as landed planes cannot land.
 
 ### Getting started
 

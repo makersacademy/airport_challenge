@@ -1,5 +1,4 @@
 require "airport"
-require "plane"
 
 describe Airport do
 
@@ -15,34 +14,60 @@ describe Airport do
     it "raises an error when there is no room to land" do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(false)
-      plane = Plane.new
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(false)
       airport = Airport.new(weather)
       airport.capacity.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error "No room to land"
     end
-  end
 
-  describe "#takeoff" do
-    it "allows a plane to take off and confirm that its not at airport" do
+    it "raises an error when the plane is already landed" do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(false)
-      plane = Plane.new
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(true)
+      airport = Airport.new(weather)
+      expect { airport.land(plane) }.to raise_error "Plane already landed"
+
+    end
+
+  end
+
+  describe "#takeoff(plane)" do
+    it "allows a plane to take off and confirm that its not at airport" do
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(false, false)
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(false, true)
       airport = Airport.new(weather)
       airport.land(plane)
-      expect(airport.takeoff).to eq "Takeoff"
+      expect(airport.takeoff(plane)).to eq "Takeoff"
     end
 
     it "raises an error when takeoff attempted during a storm" do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(false, true)
-      plane = Plane.new
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(false)
       airport = Airport.new(weather)
       airport.land(plane)
-      expect { airport.takeoff }.to raise_error "Too stormy to takeoff"
+      expect { airport.takeoff(plane) }.to raise_error "Too stormy to takeoff"
+    end
+
+    it "raises an error when the plane is already in the air" do
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(false)
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(false)
+      airport = Airport.new(weather)
+      airport.land(plane)
+      expect { airport.takeoff(plane) }.to raise_error "Plane already in the air"
     end
 
     it "raises an error when there are no airplanes to takeoff" do
-      expect { subject.takeoff }.to raise_error "No planes available"
+      plane = double(:plane)
+      allow(plane).to receive(:landed?).and_return(false)
+      expect { subject.takeoff(plane) }.to raise_error "No planes available"
     end
   end
 
