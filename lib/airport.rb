@@ -28,7 +28,6 @@ class Airport
     else
       plane = @planes[0]
       @planes.shift
-      plane.location = "in transit"
       plane
     end
   end
