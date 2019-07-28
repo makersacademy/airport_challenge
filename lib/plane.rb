@@ -1,3 +1,6 @@
+require 'weather' 
+require 'pry'
+
 class Plane
     attr_accessor :departed
 
@@ -8,7 +11,7 @@ class Plane
     
     def land
         # if @can_land
-        if @departed
+        if @departed == true && is_not_stormy?
             @departed = false
             true
         else
@@ -17,11 +20,15 @@ class Plane
     end
 
     def takeoff
-        if @departed == false
+        if @departed == false && is_not_stormy?
             @departed = true
             true
         else
             false
         end
+    end
+
+    def is_not_stormy?
+        Weather.new.stormy? == false
     end
 end
