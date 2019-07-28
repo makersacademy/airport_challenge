@@ -2,26 +2,29 @@ require_relative 'plane'
 class Airport
   attr_accessor :planes
   attr_writer :capacity
+  attr_reader :weather
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = "clear"
+    @weather = wait_a_few_minutes
     @capacity = capacity
+  end
+
+  def wait_a_few_minutes
+    @weather = ["stormy", "clear", "clear", "clear", "clear"].sample
   end
 
   def land(plane)
     landing_checks(plane)
     touchdown(plane)
+    wait_a_few_minutes
   end
 
   def take_off(plane)
     flight_checks(plane)
     charter_flight(plane)
-  end
-
-  def weather(report)
-    @weather = report
+    wait_a_few_minutes
   end
 
   private
@@ -50,7 +53,7 @@ class Airport
   end
 
   def weather_check(operation)
-    if @weather == "stormy"
+    if weather == "stormy"
       raise "no #{operation} while weather is stormy"
     end
   end
