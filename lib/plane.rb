@@ -2,6 +2,6 @@ class Plane
   attr_accessor :location
 
   def initialize
-    @location = "docked"
+    @location = "in transit"
   end
 end

@@ -8,6 +8,7 @@ class Airport
     @planes = []
     @weather = "clear"
     @capacity = capacity
+    @location = "grounded"
   end
 
   def land(plane)
@@ -15,7 +16,10 @@ class Airport
       raise "cannot land while weather is stormy"
     elsif full?
       raise "cannot land while airport is full"
+    elsif plane.location != "in transit"
+      raise "cannot land a plane which is already grounded"
     else
+      plane.location = @location
       @planes << plane
     end
   end
@@ -28,6 +32,7 @@ class Airport
     else
       plane = @planes[0]
       @planes.shift
+      plane.location = "in transit"
       plane
     end
   end
