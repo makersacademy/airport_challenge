@@ -6,7 +6,7 @@ class Airport
 
   def initialize
     @airborne_plane = [Plane.new(1), Plane.new(2)]
-    @landed_plane = [Plane.new(1)]
+    @landed_plane = [Plane.new(1),Plane.new(1)]
   end
 
   def land_plane
@@ -16,6 +16,7 @@ class Airport
 
   def takeoff_plane
     @airborne_plane << @landed_plane[0]
+    @landed_plane.delete_at(0)
   end
 
 end

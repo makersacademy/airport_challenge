@@ -32,6 +32,13 @@ describe Airport do
 
   describe '#takeoff_plane' do
 
+    it 'Should remove a plane from landed_planes' do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport1.takeoff_plane
+      expect(airport1.landed_plane.count).to eq (airport2.landed_plane.count - 1)
+    end
+
     it 'Should add a plane to airborne_plane'  do
       airport1 = Airport.new
       airport2 = Airport.new
