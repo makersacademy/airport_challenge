@@ -45,6 +45,14 @@ describe Airport do
       airport1.takeoff_plane
       expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count + 1)
     end
+
+    it 'Should confirm that the plane has left the airport' do
+      airport = Airport.new
+      take_off = airport.landed_planes[0]
+      expect(airport.takeoff_plane).to eq ("#{take_off} has left the airport")
+    end
+
+
   end
 
 end
