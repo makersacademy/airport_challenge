@@ -78,6 +78,12 @@ describe Airport do
     expect(airport.weather_generator).to eq ('Sunny')
   end
 
+  it 'Should output Stormy if 5' do
+    airport = Airport.new
+    expect(airport).to receive(:rand).and_return(4)
+    expect(airport.weather_generator).to eq ('Stormy')
+  end
+
   end
 
 end
