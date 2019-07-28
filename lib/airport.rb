@@ -2,7 +2,7 @@ require_relative 'plane.rb'
 
 class Airport
 
-  attr_reader :airborne_planes, :landed_planes
+  attr_reader :airborne_planes, :landed_planes, :weather
 
   def initialize
     @airborne_planes = [Plane.new(1), Plane.new(2)]
@@ -23,10 +23,10 @@ class Airport
     "#{take_off} has left the airport"
   end
 
-  def weather
+  def weather_generator
   end
 
 end
 
 # test = Airport.new
-# test.takeoff_plane
+# test.weather

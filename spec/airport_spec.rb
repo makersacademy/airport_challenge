@@ -57,6 +57,14 @@ describe Airport do
       expect(airport.takeoff_plane).to eq ("#{take_off} has left the airport")
     end
 
+  end
+
+  describe '#weather' do
+
+  it '@weather should return specific array' do
+    airport = Airport.new
+    expect(airport.weather).to eq ['Sunny','Sunny','Sunny','Sunny','Stormy']
+  end
 
   end
 
