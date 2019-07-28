@@ -7,6 +7,8 @@ class Airport
   def initialize
     @airborne_planes = [Plane.new(1), Plane.new(2)]
     @landed_planes = [Plane.new(1),Plane.new(1)]
+    @weather = ['Sunny','Sunny','Sunny','Sunny','Stormy']
+
   end
 
   def land_plane
