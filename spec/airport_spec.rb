@@ -3,14 +3,15 @@ require 'airport'
 describe Airport do
 
 	it 'responds to land_plane' do
-		expect(subject).to respond_to :land_plane
+		expect(subject).to respond_to :land
 	end
 
-	it 'lands planes'
-		subject.land_plane
-		expect(plane).to be_landed?
-	end
-
+	describe '#land' do
+    it 'Raises an error when airport is full' do
+      20.times { subject.land Plane.new }
+      expect { subject.land Plane.new }.to raise_error 'Airport full'
+    end
+  end
 
 
 end
