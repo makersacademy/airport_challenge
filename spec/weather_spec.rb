@@ -2,6 +2,6 @@ require "airport"
 require "plane"
 require "weather" 
 
-describe Plane do
-
+describe Weather do
+    
 end
