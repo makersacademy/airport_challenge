@@ -1,18 +1,19 @@
-require 'plane'
+require_relative 'plane.rb'
 
 class Airport
 
-  attr_reader :airbourne_planes
+  attr_reader :airborne_plane, :landed_plane
 
   def initialize
-    @airbourne_plane = Plane.new(1)
+    @airborne_plane = [Plane.new(1), Plane.new(2)]
     @landed_plane = []
   end
 
   def land_plane
+    @landed_plane << @airborne_plane[0]
   end
 
 end
 
-# test = Airport.new
-# puts test.airbourne_planes
+ test = Airport.new
+ print test.airborne_plane.count
