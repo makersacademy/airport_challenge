@@ -11,6 +11,7 @@ class Airport
 
   def land_plane
     @landed_plane << @airborne_plane[0]
+    @airborne_plane.delete_at(0)
   end
 
 end
