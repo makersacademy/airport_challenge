@@ -2,8 +2,11 @@ require 'airport'
 
 describe Airport do
 
-	it 'responds to land_plane' do
+	it 'responds to plane landing' do
 		expect(subject).to respond_to :land
+	end
+	it 'responds to plane taking off' do
+		expect(subject).to respond_to :take_off
 	end
 
 	describe '#land' do
