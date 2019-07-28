@@ -1,8 +1,16 @@
 class Airplane
-  def land_plane
-    "Plane has landed"
+  attr_reader :location
+
+  def initialize
+    @location = "sky"
   end
+
+  def land_plane
+    @location == "airport" ? fail('Error - plane already landed') : @location = "airport"
+  end
+
   def take_off
-    "Plane has taken off and is no longer in airport"
+    @location == "sky" ? fail('Error - plane already in sky') : @location = "sky"
+    puts "Success, plane took off!"
   end
 end
