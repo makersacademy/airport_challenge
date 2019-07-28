@@ -1,3 +1,5 @@
+require_relative 'airport'
+
 class Airplane
   attr_reader :status
 
@@ -7,14 +9,18 @@ class Airplane
   end
 
   def land_plane(airport)
-    @status == "grounded" ? fail('Error: plane grounded') : @status = "grounded"
-    @airport == airport ? fail('Error: already at airport') : @airport = airport
-    puts "Success, plane landed at #{airport.airport_name}!"
+    fail('Error: plane grounded') unless @status == "flying"
+    fail('Error: already at airport') unless @airport == ""
+    @status = "grounded"
+    @airport = airport
+    puts "Success, plane landed at #{airport.airport_name}"
   end
 
   def take_off(airport)
-    @status == "flying" ? fail('Error: plane in sky') : @status = "flying"
-    @airport != airport ? fail('Error: wrong airport') : @airport = ""
-    puts "Success, plane took off!"
+    fail('Error: plane in sky') unless @status == "grounded"
+    fail('Error: wrong airport') unless @airport == airport
+    puts "Success, plane took off from #{airport.airport_name}!"
+    @status = "flying"
+    @airport = ""
   end
 end
