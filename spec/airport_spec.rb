@@ -22,6 +22,11 @@ describe Airport do
     expect(airport.weather).to eq ['Sunny','Sunny','Sunny','Sunny','Stormy']
   end
 
+  it 'Should have functionality to change the airport capacity' do
+    airport = Airport.new(4)
+    expect(airport.capacity).to eq 4
+  end
+
   describe '#land_plane' do
 
     it 'Should remove a plane from airborne_planes' do
@@ -31,15 +36,6 @@ describe Airport do
       allow(airport1.weather_generator).to receive(:rand) { 0 }
       allow(airport2.weather_generator).to receive(:rand) { 0 }
       expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count - 1)
-    end
-
-    it 'Should add a plane to landed_planes'  do
-      airport1 = Airport.new
-      airport2 = Airport.new
-      airport1.land_plane
-      allow(airport1.weather_generator).to receive(:rand) { 0 }
-      allow(airport2.weather_generator).to receive(:rand) { 0 }
-      expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count + 1)
     end
 
     it 'Should not allow planes to land if weather is stormy' do
@@ -60,6 +56,15 @@ describe Airport do
       expect(airport.land_plane).to eq ("No planes can land, the airport is at full capacity")
     end
 
+    it 'Should add a plane to landed_planes'  do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport1.land_plane
+      allow(airport1.weather_generator).to receive(:rand) { 0 }
+      allow(airport2.weather_generator).to receive(:rand) { 0 }
+      expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count + 1)
+    end
+
 
 
   end
@@ -73,15 +78,6 @@ describe Airport do
       allow(airport1).to receive(:rand) { 0 }
       allow(airport2).to receive(:rand) { 0 }
       expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count - 1)
-    end
-
-    it 'Should add a plane to airborne_plane'  do
-      airport1 = Airport.new
-      airport2 = Airport.new
-      airport1.takeoff_plane
-      allow(airport1).to receive(:rand) { 0 }
-      allow(airport2).to receive(:rand) { 0 }
-      expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count + 1)
     end
 
     it 'Should confirm that the plane has left the airport' do
@@ -105,6 +101,16 @@ describe Airport do
       expect(airport.takeoff_plane).to eq ("No planes can take off, due to stormy weather")
     end
 
+    it 'Should add a plane to airborne_plane'  do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport1.takeoff_plane
+      allow(airport1).to receive(:rand) { 0 }
+      allow(airport2).to receive(:rand) { 0 }
+      expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count + 1)
+    end
+
+
   end
 
   describe '#weather_generator' do
@@ -112,13 +118,13 @@ describe Airport do
   it 'Should output Sunny if 1' do
     airport = Airport.new
     allow(airport).to receive(:rand) { 0 }
-    expect(airport.weather_generator).to eq ('Sunny')
+    expect(airport.weather_generator).to eq 'Sunny'
   end
 
   it 'Should output Stormy if 5' do
     airport = Airport.new
     allow(airport).to receive(:rand) { 4 }
-    expect(airport.weather_generator).to eq ('Stormy')
+    expect(airport.weather_generator).to eq 'Stormy'
   end
 
   end
