@@ -1,6 +1,6 @@
 require_relative 'plane'
 class Airport
-  attr_reader :planes
+  attr_accessor :planes
   attr_writer :capacity
   DEFAULT_CAPACITY = 10
 
@@ -8,7 +8,6 @@ class Airport
     @planes = []
     @weather = "clear"
     @capacity = capacity
-    @location = "grounded"
   end
 
   def land(plane)
@@ -16,9 +15,9 @@ class Airport
     touchdown(plane)
   end
 
-  def take_off
-    flight_checks
-    charter_flight
+  def take_off(plane)
+    flight_checks(plane)
+    charter_flight(plane)
   end
 
   def weather(report)
@@ -30,33 +29,40 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def flight_checks
-    if @weather == "stormy"
-      raise "cannot take off while weather is stormy"
-    elsif @planes[0].location == "in transit"
-      raise "cannot take off while plane is in transit"
-    end
-  end
-
-  def charter_flight
-    plane = @planes[0]
-    @planes.shift
-    plane.location = "in transit"
+  def charter_flight(plane)
+    @planes.delete(plane)
+    plane.change_location
     plane
   end
 
   def landing_checks(plane)
+    weather_check("landing")
+    hanger_check
+    plane.landing_check
+  end
+
+  def flight_checks(plane)
+    weather_check("flights")
+    unless @planes.include?(plane)
+      raise "that plane is not in this airport"
+    end
+    plane.flight_check
+  end
+
+  def weather_check(operation)
     if @weather == "stormy"
-      raise "cannot land while weather is stormy"
-    elsif full?
+      raise "no #{operation} while weather is stormy"
+    end
+  end
+
+  def hanger_check
+    if full?
       raise "cannot land while airport is full"
-    elsif plane.location != "in transit"
-      raise "cannot land a plane which is already grounded"
     end
   end
 
   def touchdown(plane)
-    plane.location = @location
+    plane.change_location(self)
     @planes << plane
   end
 
