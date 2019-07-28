@@ -12,9 +12,9 @@ class Airplane
     puts "Success, plane landed at #{airport.airport_name}!"
   end
 
-  def take_off
+  def take_off(airport)
     @status == "flying" ? fail('Error - plane already in sky') : @status = "flying"
-    @airport = ""
+    @airport != airport ? fail('Error - you are not in that airport') : @airport = ""
     puts "Success, plane took off!"
   end
 end
