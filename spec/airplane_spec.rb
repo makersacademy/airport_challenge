@@ -22,6 +22,7 @@ describe Airplane do
   end
   it 'plane cannot take off if weather is stormy' do
     airport = Airport.new("Test Airport Name")
+    weather_check = double("stormy")
     subject.land_plane(airport)
     expect { subject.take_off(airport) }.to raise_error 'Error'
   end

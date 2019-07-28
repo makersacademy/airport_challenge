@@ -9,8 +9,7 @@ class Airplane
   end
 
   def weather_check
-    choice = 1 + rand(2)
-    choice == 1 ? "sunny" : "stormy"
+    1 + rand(2) == 1 ? "sunny" : "stormy"
   end
 
   def land_plane(airport)
