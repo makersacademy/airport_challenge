@@ -18,14 +18,14 @@ describe Airport do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.land_plane
-      expect(airport1.airborne_plane.count).to eq (airport2.airborne_plane.count - 1)
+      expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count - 1)
     end
 
     it 'Should add a plane to landed_planes'  do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.land_plane
-      expect(airport1.landed_plane.count).to eq (airport2.landed_plane.count + 1)
+      expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count + 1)
     end
 
   end
@@ -36,14 +36,14 @@ describe Airport do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.takeoff_plane
-      expect(airport1.landed_plane.count).to eq (airport2.landed_plane.count - 1)
+      expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count - 1)
     end
 
     it 'Should add a plane to airborne_plane'  do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.takeoff_plane
-      expect(airport1.airborne_plane.count).to eq (airport2.airborne_plane.count + 1)
+      expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count + 1)
     end
   end
 
