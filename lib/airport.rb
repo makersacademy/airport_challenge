@@ -14,6 +14,9 @@ class Airport
     @airborne_plane.delete_at(0)
   end
 
+  def takeoff_plane
+  end
+
 end
 
  test = Airport.new
