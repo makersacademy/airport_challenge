@@ -17,6 +17,11 @@ describe Airport do
     expect(airport).to respond_to :weather
   end
 
+  it '@weather should return specific array' do
+    airport = Airport.new
+    expect(airport.weather).to eq ['Sunny','Sunny','Sunny','Sunny','Stormy']
+  end
+
   describe '#land_lane' do
 
     it 'Should remove a plane from airborne_planes' do
@@ -59,11 +64,12 @@ describe Airport do
 
   end
 
-  describe '#weather' do
+  describe '#weather_generator' do
 
-  it '@weather should return specific array' do
+  it 'Should output a random number' do
     airport = Airport.new
-    expect(airport.weather).to eq ['Sunny','Sunny','Sunny','Sunny','Stormy']
+    expect(airport).to receive(:rand).and_return(1)
+    expect(airport.weather_generator).to eq (1)
   end
 
   end

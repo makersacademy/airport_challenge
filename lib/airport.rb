@@ -24,9 +24,10 @@ class Airport
   end
 
   def weather_generator
+    rand(1..5)
   end
 
 end
 
-# test = Airport.new
-# test.weather
+test = Airport.new
+puts test.weather_generator
