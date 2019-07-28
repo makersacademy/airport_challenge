@@ -28,8 +28,8 @@ describe Airport do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.land_plane
-      allow(airport1).to receive(:rand) { 0 }
-      allow(airport2).to receive(:rand) { 0 }
+      allow(airport1.weather_generator).to receive(:rand) { 0 }
+      allow(airport2.weather_generator).to receive(:rand) { 0 }
       expect(airport1.airborne_planes.count).to eq (airport2.airborne_planes.count - 1)
     end
 
@@ -37,8 +37,8 @@ describe Airport do
       airport1 = Airport.new
       airport2 = Airport.new
       airport1.land_plane
-      allow(airport1).to receive(:rand) { 0 }
-      allow(airport2).to receive(:rand) { 0 }
+      allow(airport1.weather_generator).to receive(:rand) { 0 }
+      allow(airport2.weather_generator).to receive(:rand) { 0 }
       expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count + 1)
     end
 
@@ -47,6 +47,20 @@ describe Airport do
       allow(airport).to receive(:rand) { 4 }
       expect(airport.land_plane).to eq ("No planes can land, due to stormy weather")
     end
+
+    # it 'Should not allow planes to land if weather is stormy' do
+    #   airport = Airport.new
+    #   allow(airport.weather_generator).to receive(:rand) { 4 }
+    #   expect(airport.land_plane).to eq ("No planes can land, due to stormy weather")
+    # end
+
+    it 'Should not allow plane to land if airport is at capacity' do
+      airport = Airport.new(1)
+      allow(airport).to receive(:rand) { 0 }
+      expect(airport.land_plane).to eq ("No planes can land, the airport is at full capacity")
+    end
+
+
 
   end
 
