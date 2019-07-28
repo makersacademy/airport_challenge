@@ -15,13 +15,16 @@ class Airport
   end
 
   def takeoff_plane
-    p take_off = @landed_planes[0]
-    p @airborne_planes << @landed_planes[0]
-    p @landed_planes.delete_at(0)
-    p "#{take_off} has left the airport"
+    take_off = @landed_planes[0]
+    @airborne_planes << @landed_planes[0]
+    @landed_planes.delete_at(0)
+    "#{take_off} has left the airport"
+  end
+
+  def weather
   end
 
 end
 
-test = Airport.new
-test.takeoff_plane
+# test = Airport.new
+# test.takeoff_plane

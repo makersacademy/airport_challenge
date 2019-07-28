@@ -2,14 +2,19 @@ require 'airport.rb'
 
 describe Airport do
 
-  it 'should respond to land plane' do
+  it 'Should respond to land plane' do
     airport = Airport.new
     expect(airport).to respond_to :land_plane
   end
 
-  it 'should respond to takeoff_plane' do
+  it 'Should respond to takeoff_plane' do
     airport = Airport.new
     expect(airport).to respond_to :takeoff_plane
+  end
+
+  it 'Should respond to weather' do
+    airport = Airport.new
+    expect(airport).to respond_to :weather
   end
 
   describe '#land_lane' do
