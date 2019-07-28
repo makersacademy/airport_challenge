@@ -23,6 +23,8 @@ class Airport
   def take_off
     if @weather == "stormy"
       raise "cannot take off while weather is stormy"
+    elsif @planes[0].location == "in transit"
+      raise "cannot take off while plane is in transit"
     else
       plane = @planes[0]
       @planes.shift

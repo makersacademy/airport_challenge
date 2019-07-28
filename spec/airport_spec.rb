@@ -38,4 +38,11 @@ describe Airport do
     30.times{heathrow.land(Plane.new)}
     expect{heathrow.land(Plane.new)}.to raise_error("cannot land while airport is full")
   end
+
+  it 'when attempting to take off a plane which is already in transit' do
+    plane = Plane.new
+    plane.location = "in transit"
+    subject.land(plane)
+    expect{subject.take_off}.to raise_error 'cannot take off while plane is in transit'
+  end
 end
