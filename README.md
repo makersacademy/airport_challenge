@@ -15,7 +15,7 @@ Airport Challenge
 
 
 ## Client Request
-Software which can control the flow of planes at an airport. The planes can land and take off providing it is not stormyin which case no planes can land or take off.
+The client is an air traffic controller in a busy airport with planes taking off and landing they require software which can keep track of this activity. Planes can only take off or land if the weather permits it. Stormy weather will result in grounded flights and delayed arrivals.
 
 ## How to Use
 Create new airports with Airport.new
