@@ -20,10 +20,9 @@ describe Airplane do
     subject.land_plane(Airport.new("Test Airport Name"))
     expect { subject.take_off(Airport.new("Second Test Airport Name")) }.to raise_error 'Error'
   end
-  # DRAFT CODE BELOW FOR NEXT STEP
-  # it 'plane cannot take off if weather is stormy' do
-  #   airport = Airport.new("Test Airport Name")
-  #   subject.land_plane(airport)
-  #   expect { subject.take_off(airport) }.to raise_error 'Error'
-  # end
+  it 'plane cannot take off if weather is stormy' do
+    airport = Airport.new("Test Airport Name")
+    subject.land_plane(airport)
+    expect { subject.take_off(airport) }.to raise_error 'Error'
+  end
 end
