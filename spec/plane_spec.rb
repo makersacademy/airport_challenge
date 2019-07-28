@@ -1,2 +1,5 @@
-# describe Plane do
-# end
+describe Plane do
+
+	it { is_expected.to respond to :landed? }
+
+end

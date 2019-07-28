@@ -1,2 +1,7 @@
-# class Plane
-# end
+class Plane
+
+	def landed?
+		true
+	end
+
+end
