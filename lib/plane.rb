@@ -1,5 +1,4 @@
+require_relative 'airport'
+
 class Plane
-  def landing?
-    true
-  end
 end
