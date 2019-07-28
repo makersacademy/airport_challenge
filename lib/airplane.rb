@@ -9,11 +9,12 @@ class Airplane
   end
 
   def weather_check
-    1 + rand(2) == 1 ? "sunny" : "stormy"
+    rand(1..2) == 1 ? "sunny" : "stormy"
   end
 
   def land_plane(airport)
     fail('Error') unless @status == "flying" && @airport == ""
+
     @status = "grounded"
     @airport = airport
     puts "Success, plane landed at #{airport.airport_name}"
@@ -22,6 +23,7 @@ class Airplane
   def take_off(airport)
     fail('Error') unless @status == "grounded" && @airport == airport
     fail('Error') unless weather_check == "sunny"
+
     puts "Success, plane took off from #{airport.airport_name}!"
     @status = "flying"
     @airport = ""
