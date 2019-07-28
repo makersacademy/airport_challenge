@@ -1,23 +1,31 @@
 class Plane
-  attr_accessor :location
+  attr_reader :location
 
   def initialize
-    @location = "in transit"
+    @location = :in_transit
   end
 
-  def change_location(location = "in transit")
+  def change_location(location = :in_transit)
     @location = location
   end
 
   def landing_check
-    unless @location == "in transit"
+    unless in_transit?
       raise "cannot land a plane which is already grounded"
     end
   end
 
   def flight_check
-    if @location == "in transit"
+    if in_transit?
       raise "cannot take off while plane is in transit"
     end
   end
+
+  private
+
+  def in_transit?
+    @location == :in_transit
+  end
+
+
 end
