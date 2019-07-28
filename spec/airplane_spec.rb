@@ -10,14 +10,14 @@ describe Airplane do
   end
   it 'plane can only land if it is flying' do
     subject.land_plane(Airport.new("Test Airport Name"))
-    expect{subject.land_plane(Airport.new("Test Airport Name 2"))}.to raise_error ('Error - plane already grounded')
+    expect { subject.land_plane(Airport.new("Test Airport Name 2")) }.to raise_error 'Error: plane grounded'
   end
   it 'plane can only take off if it is grounded' do
     # Assume starting status is "flying"
-    expect{subject.take_off(Airport.new("Test Airport Name"))}.to raise_error ('Error - plane already in sky')
+    expect { subject.take_off(Airport.new("Test Airport Name")) }.to raise_error 'Error: plane in sky'
   end
   it 'plane can only take off from the airport it is in' do
     subject.land_plane(Airport.new("Test Airport Name"))
-    expect{subject.take_off(Airport.new("Second Test Airport Name"))}.to raise_error ('Error - you are not in that airport')
+    expect { subject.take_off(Airport.new("Second Test Airport Name")) }.to raise_error 'Error: wrong airport'
   end
 end

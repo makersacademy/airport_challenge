@@ -17,5 +17,5 @@ puts "status: " + first_airplane.status
 puts " "
 
 puts "TAKING OFF AIRPLANE:"
-first_airplane.take_off
+first_airplane.take_off(my_airport)
 puts "status: " + first_airplane.status
