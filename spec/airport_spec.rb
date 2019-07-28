@@ -62,14 +62,20 @@ describe Airport do
       expect(airport.takeoff_plane).to eq ("#{take_off} has left the airport")
     end
 
+    it 'Should not allow planes to takeoff if weather is stormy' do
+      airport = Airport.new
+      take_off = airport.landed_planes[0]
+      expect(airport.takeoff_plane).to eq ("#{take_off} has left the airport")
+    end
+
   end
 
   describe '#weather_generator' do
 
-  it 'Should output a random number' do
+  it 'Should output Sunny if 1' do
     airport = Airport.new
     expect(airport).to receive(:rand).and_return(1)
-    expect(airport.weather_generator).to eq (1)
+    expect(airport.weather_generator).to eq ('Sunny')
   end
 
   end

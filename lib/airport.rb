@@ -24,7 +24,7 @@ class Airport
   end
 
   def weather_generator
-    rand(1..5)
+    @weather[rand(1..5)]
   end
 
 end
