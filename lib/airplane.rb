@@ -1,16 +1,20 @@
 class Airplane
-  attr_reader :location
+  attr_reader :status
 
   def initialize
-    @location = "sky"
+    @status = "flying"
+    @airport = ""
   end
 
-  def land_plane
-    @location == "airport" ? fail('Error - plane already landed') : @location = "airport"
+  def land_plane(airport)
+    @status == "grounded" ? fail('Error - plane already grounded') : @status = "grounded"
+    @airport == airport ? fail('Error - plane already at that airport') : @airport = airport
+    puts "Success, plane landed at #{airport.airport_name}!"
   end
 
   def take_off
-    @location == "sky" ? fail('Error - plane already in sky') : @location = "sky"
+    @status == "flying" ? fail('Error - plane already in sky') : @status = "flying"
+    @airport = ""
     puts "Success, plane took off!"
   end
 end

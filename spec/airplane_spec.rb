@@ -1,4 +1,5 @@
 require 'airplane'
+require 'airport'
 
 describe Airplane do
   it 'tells a plane to land at an airport' do
@@ -6,5 +7,13 @@ describe Airplane do
   end
   it 'tells a plane to take off and confirm it is no longer in the airport' do
     expect(subject).to respond_to :take_off
+  end
+  it 'plane can only land if it is flying' do
+    subject.land_plane(Airport.new("Test Airport Name"))
+    expect{subject.land_plane(Airport.new("Test Airport Name 2"))}.to raise_error ('Error - plane already grounded')
+  end
+  it 'plane can only take off if it is grounded' do
+    # Assume starting status is "flying"
+    expect{subject.take_off}.to raise_error ('Error - plane already in sky')
   end
 end
