@@ -42,7 +42,12 @@ describe Airport do
       expect(airport1.landed_planes.count).to eq (airport2.landed_planes.count + 1)
     end
 
-    
+    it 'Should not allow planes to land if weather is stormy' do
+      airport = Airport.new
+      allow(airport).to receive(:rand) { 4 }
+      expect(airport.land_plane).to eq ("No planes can land, due to stormy weather")
+    end
+
   end
 
   describe '#takeoff_plane' do
