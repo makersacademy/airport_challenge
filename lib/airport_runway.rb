@@ -1,8 +1,13 @@
-# require 'controller'
+
 class AirportRunway
 
   def initialize
     @weather = true
+    @check = rand(27)
+  end
+
+  def stormcheck?
+    @check == 13
   end
 
   def weather?
