@@ -9,19 +9,28 @@ describe Controller do
       runway = AirportRunway.new
       runway.report_storm
       hanger = AirportHanger.new
-      expect{subject.greenlighttakeoff(hanger, runway)}.to raise_error 'cannot take off'
+      plane = Plane.new
+      expect{subject.greenlighttakeoff(hanger, runway, plane)}.to raise_error 'cannot take off'
     end
-  end
 
-  describe 'storm conditions' do
     it "cannot land when storm reported" do
       runway = AirportRunway.new
       runway.report_storm
       hanger = AirportHanger.new
-      expect{subject.greenlightlanding(hanger, runway)}.to raise_error 'cannot land'
+      plane = Plane.new
+      expect{subject.greenlightlanding(hanger, runway, plane)}.to raise_error 'cannot land'
     end
   end
 
-  
+  describe 'good weather' do
+    it 'can land if safe conditions and theres space' do
+      runway = AirportRunway.new
+      hanger = AirportHanger.new
+      plane = Plane.new
+      subject.greenlightlanding(hanger, runway, plane)
+      expect(hanger.planes.count). to eq(1)
+  end
+end
+
 
 end

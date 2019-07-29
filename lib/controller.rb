@@ -1,9 +1,8 @@
-# require 'airport_runway'
-# require 'plane'
-# require 'airport_hanger'
+require 'airport_runway'
+require 'plane'
+require 'airport_hanger'
 #
 class Controller
-
 
   def runwayweather(runway)
     if runway.stormcheck?
@@ -12,7 +11,7 @@ class Controller
   end
 
 
-  def greenlightlanding(hanger, runway)
+  def greenlightlanding(hanger, runway, plane)
     if runway.weather?
       hanger.land(plane)
     else
@@ -20,7 +19,7 @@ class Controller
     end
   end
 
-  def greenlighttakeoff(hanger, runway)
+  def greenlighttakeoff(hanger, runway, plane)
     if runway.weather?
       hanger.takeoff
     else

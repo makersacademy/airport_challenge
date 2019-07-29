@@ -13,7 +13,6 @@ class AirportHanger
   def land(plane)
     fail 'Cannot Land' if full?
     @planes << plane
-    plane
   end
 
   def takeoff
