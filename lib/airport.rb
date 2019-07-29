@@ -7,8 +7,8 @@ class Airport
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    @airborne_planes = [Plane.new(1), Plane.new(1)]
-    @landed_planes = [Plane.new(1)]
+    @airborne_planes = [Plane.new, Plane.new]
+    @landed_planes = [Plane.new]
     @weather = ['Sunny','Sunny','Sunny','Sunny','Stormy']
     @capacity = capacity
 
@@ -18,7 +18,7 @@ class Airport
     if weather_generator == 'Stormy'
       "No planes can land, due to stormy weather"
     elsif @capacity == @landed_planes.count
-       "No planes can land, the airport is at full capacity"
+      "No planes can land, the airport is at full capacity"
     else
       @landed_planes << @airborne_planes.delete_at(0)
     end
@@ -35,10 +35,11 @@ class Airport
   end
 
   def weather_generator
-    @weather[rand(1..5)]
+    @weather[Kernel.rand(1..5)]
   end
+
 
 end
 
-# test = Airport.new(2)
-# test.land_plane
+ # test = Airport.new(2)
+ # puts test.weather_generator

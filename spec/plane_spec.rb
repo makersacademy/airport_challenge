@@ -1,7 +1,8 @@
 require 'plane'
 
-describe Plane do
-  # it 'Should return a new plane' do
-  #   expect(Plane.new(1)).to eq Plane.new(1)
-  # end
-end
+# describe Plane do
+#   it 'Should return a new plane' do
+#     plane = Plane.new
+#     expect(plane).to return Plane.new
+#    end
+# end
