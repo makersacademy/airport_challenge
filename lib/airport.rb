@@ -8,10 +8,11 @@ class Airport
 
   ERR_STORMY_LAND = "The weather conditions are too poor to allow a plane to land"
   ERR_STORMY_TAKEOFF = "The weather conditions are too poor to allow a plane to takeoff"
-  ERR_CAPACITY = "The airport is currently full."
+  ERR_CAPACITY = "The airport is currently full. SO back off and head back to plane land"
   ERR_DUPLICATE_PLANE = "The airport has detected a duplicate plane."
   ERR_MISSING_PLANE = "Plane cannot be found"
   ERR_PLANE_BAD_STATE = "Plane is in the incorrect state for instruction"
+
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @capacity = capacity
@@ -26,9 +27,11 @@ class Airport
     raise ERR_DUPLICATE_PLANE if plane_exists?(nu_plane) # impossible to happen since new is being called
 
     @planes << nu_plane
+    nu_plane
   end
 
   def land(plane)
+
     raise ERR_DUPLICATE_PLANE if plane_exists?(plane)
     raise ERR_PLANE_BAD_STATE unless plane.flying?
     raise ERR_CAPACITY if full?
