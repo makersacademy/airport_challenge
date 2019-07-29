@@ -54,29 +54,23 @@ class Airport
   end
 
   def weather_check(operation)
-    if stormy?
-      raise "no #{operation} while weather is stormy"
-    end
+    raise "no #{operation} while weather is stormy" if stormy?
   end
 
   def hanger_check
-    if full?
-      raise "cannot land while airport is full"
-    end
+    raise "cannot land while airport is full" if full?
   end
 
   def plane_id_check(plane)
-    unless available?(plane)
-      raise "that plane is not in this airport"
-    end
+    raise "that plane is not in this airport" if unavailable?(plane)
   end
 
   def stormy?
     weather == :stormy
   end
 
-  def available?(plane)
-    @planes.include?(plane)
+  def unavailable?(plane)
+    !@planes.include?(plane)
   end
 
   def touchdown(plane)

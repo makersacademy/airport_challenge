@@ -10,15 +10,11 @@ class Plane
   end
 
   def landing_check
-    unless in_transit?
-      raise "cannot land a plane which is already grounded"
-    end
+    raise "cannot land a plane which is already grounded" if landed?
   end
 
   def flight_check
-    if in_transit?
-      raise "cannot take off while plane is in transit"
-    end
+    raise "cannot take off while plane is in transit" if in_transit?
   end
 
   private
@@ -26,6 +22,8 @@ class Plane
   def in_transit?
     @location == :in_transit
   end
-
-
+  
+  def landed?
+    @location != :in_transit
+  end
 end
