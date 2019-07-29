@@ -6,7 +6,7 @@ describe Airport do
     it { is_expected.to respond_to :land_plane }
 
     # test to prevent landing when weather is stormy
-      context "when stormy" do
+      describe "when stormy" do
         before do
           allow(subject).to receive(:stormy?).and_return true
         end
@@ -19,7 +19,7 @@ describe Airport do
     it { is_expected.to respond_to :take_off } #need to add test here re. return message
 
     # test to prevent take off when weather is stormy
-      context "when stormy" do
+      describe "when stormy" do
         before do
           allow(subject).to receive(:stormy?).and_return true
         end
@@ -29,7 +29,7 @@ describe Airport do
       end
 
       # test to prevent landing when airport is full
-        context "when airport is full" do
+        describe "when airport is full" do
           before do
             allow(subject).to receive(:full?).and_return true
           end
@@ -38,6 +38,3 @@ describe Airport do
             end
         end
 end
-
-# reference:
-# https://github.com/nfabacus/airport-challenge-Ruby-revisited/tree/master/spec

@@ -1,8 +1,8 @@
 class Airport
 
   def land_plane
-    raise "Plane cannot land as weather is stormy" if stormy?
     raise "Plane cannot land as airport is full!" if full?
+    raise "Plane cannot land as weather is stormy" if stormy?
   end
 
   def take_off
