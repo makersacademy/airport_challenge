@@ -2,12 +2,10 @@ class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :airport
   attr_accessor :capacity
-  attr_accessor :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @airport = []
     @capacity = capacity
-    @weather = []
   end
 
   def land(plane)
@@ -22,7 +20,7 @@ class Airport
   def take_off
     # If the airport is empty, raise an error
     raise 'Airport is empty' if empty?
-
+ 
     # Confirms plane is no longer in airport
     puts "Plane #{airport.last} has taken off"
     # If airport is not allow plane to take off

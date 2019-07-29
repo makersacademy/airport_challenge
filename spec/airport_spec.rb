@@ -28,22 +28,16 @@ describe Airport do
     10.times { subject.land(Plane.new) }
 		expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
     end
-    
-    it 'raises an error when weather is stormy' do
-    end
-  end
 
   describe '#take_off' do
     it 'raises an error when airport is full' do
       expect { subject.take_off }.to raise_error 'Airport is empty'
     end
-    
-    it 'raises an error when weather is stormy' do
-    end
-  end
-
-  describe '#weather' do
-    it 'allows user to set weather' do
+    describe '#take_off'
+      it 'confirms plane has taken off' do
+       10.times { subject.land(Plane.new) }  
+        expect(subject.airport.last). to eq(subject.airport.pop)
+      end
     end
   end
 end
