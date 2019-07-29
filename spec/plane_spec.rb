@@ -39,6 +39,13 @@ describe Plane do
     expect{plane2.land(airport)}.to raise_error(RuntimeError)
   end
 
+  it 'Checks that a plane cannot land when weather is stormy' do
+    plane = Plane.new("plane")
+    airport = Airport.new
+    plane.weather?
+
+  end
+
 end
 
 
