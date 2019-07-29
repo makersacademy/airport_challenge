@@ -8,7 +8,7 @@ class Airport
 
   ERR_STORMY_LAND = "The weather conditions are too poor to allow a plane to land"
   ERR_STORMY_TAKEOFF = "The weather conditions are too poor to allow a plane to takeoff"
-  ERR_CAPACITY = "The airport is currently full. SO back off and head back to plane land"
+  ERR_CAPACITY = "The airport is currently full."
   ERR_DUPLICATE_PLANE = "The airport has detected a duplicate plane."
   ERR_MISSING_PLANE = "Plane cannot be found"
   ERR_PLANE_BAD_STATE = "Plane is in the incorrect state for instruction"
