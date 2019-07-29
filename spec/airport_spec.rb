@@ -2,6 +2,11 @@ require 'airport'
 
 describe Airport do
 
+  let(:weather_clear) { double("weather never stormy", :stormy? => false) }
+  let(:weather_stormy) { double("weather never stormy", :stormy? => true) }
+  let(:plane_flying) { double("flying plane", :flying? => true, :land => false, :takeoff => true) }
+  let(:plane_grounded) { double("flying plane", :flying? => false, :land => false, :takeoff => true) }
+
   describe '.build_plane' do
     it 'builds a plane' do
       subject.build_plane
@@ -11,45 +16,33 @@ describe Airport do
   end
 
   describe '.land(plane)' do
+
     it 'lands with clear skys' do
-      weather = double("weather never stormy", :stormy? => false)
-      plane = double("flying plane", :flying? => true, :land => false)
-      subject = Airport.new(weather)
-      expect(subject.land(plane)).to eq(plane)
+      subject = Airport.new(weather_clear)
+      expect(subject.land(plane_flying)).to eq(plane_flying)
       expect(subject.planes.count).to eq(1)
     end
     it 'doesn\'t land with stormy skys' do
-      weather = double("weather stormy", :stormy? => true)
-      plane = double("flying plane", :flying? => true, :land => false)
-      subject = Airport.new(weather)
-      # Option 1
-      # expect(subject.land(plane)).to eq(nil)
-      # Option 2
-      expect { subject.land(plane) }.to raise_error(Airport::ERR_STORMY_LAND)
+      subject = Airport.new(weather_stormy)
+      expect { subject.land(plane_flying) }.to raise_error(Airport::ERR_STORMY_LAND)
     end
 
     it 'cannot land the same plane twice' do
-      weather = double("weather never stormy", :stormy? => false)
-      plane = double("flying plane", :flying? => true, :land => false)
-      subject = Airport.new(weather)
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error(Airport::ERR_DUPLICATE_PLANE)
+      subject = Airport.new(weather_clear)
+      subject.land(plane_flying)
+      expect { subject.land(plane_flying) }.to raise_error(Airport::ERR_DUPLICATE_PLANE)
     end
 
     it 'cannot land grounded plane' do
-      weather = double("weather never stormy", :stormy? => false)
-      plane = double("flying plane", :flying? => false, :land => false)
-      subject = Airport.new(weather)
-      expect { subject.land(plane) }.to raise_error(Airport::ERR_PLANE_BAD_STATE)
-
+      subject = Airport.new(weather_clear)
+      expect { subject.land(plane_grounded) }.to raise_error(Airport::ERR_PLANE_BAD_STATE)
     end
 
   end
 
   describe '.takeoff(plane)' do
     it 'takes off with clear skys' do
-      weather = double("weather never stormy", :stormy? => false)
-      subject = Airport.new(weather)
+      subject = Airport.new(weather_clear)
       subject.build_plane
       plane = subject.planes[0]
       expect(subject.planes.count).to eq(1)
@@ -57,31 +50,22 @@ describe Airport do
       expect(subject.planes.count).to eq(0)
     end
     it 'doesn\'t take off with stormy skys' do
-      weather = double("weather never stormy", :stormy? => true)
-      subject = Airport.new(weather)
+      subject = Airport.new(weather_stormy)
       subject.build_plane
       plane = subject.planes[0]
       expect(subject.planes.count).to eq(1)
-      # Option 1
-      # expect(subject.takeoff(plane)).to eq(nil)
-      # expect(subject.planes.count).to eq(1)
-      # Option 2
       expect { subject.takeoff(plane) }.to raise_error(Airport::ERR_STORMY_TAKEOFF)
     end
 
     it 'cannot takeoff a plane it does not have' do
-      weather = double("weather never stormy", :stormy? => false)
-      subject = Airport.new(weather)
-      plane = double("any grounded plane", :flying? => false)
-      expect { subject.takeoff(plane) }.to raise_error(Airport::ERR_MISSING_PLANE)
+      subject = Airport.new(weather_clear)
+      expect { subject.takeoff(plane_grounded) }.to raise_error(Airport::ERR_MISSING_PLANE)
     end
 
     it 'cannot takeoff a flying plane' do
-      weather = double("weather never stormy", :stormy? => false)
-      subject = Airport.new(weather)
-      plane = double("any grounded plane", :flying? => true, :land => false)
-      subject.land(plane)
-      expect { subject.takeoff(plane) }.to raise_error(Airport::ERR_PLANE_BAD_STATE)
+      subject = Airport.new(weather_clear)
+      subject.land(plane_flying)
+      expect { subject.takeoff(plane_flying) }.to raise_error(Airport::ERR_PLANE_BAD_STATE)
     end
 
   end
@@ -105,14 +89,12 @@ describe Airport do
   context 'with custom parameters' do
     describe '.capacity' do
       it 'has custom capacity' do
-        weather = double()
-        subject = Airport.new(weather, 15)
+        subject = Airport.new(double(), 15)
         expect(subject.capacity).to eq(15)
       end
 
       it 'will not have more planes than capacity' do
-        weather = double()
-        subject = Airport.new(weather, 1)
+        subject = Airport.new(double(), 1)
         subject.build_plane
         expect { subject.build_plane }.to raise_error(Airport::ERR_CAPACITY)
 

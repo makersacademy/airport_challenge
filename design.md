@@ -41,11 +41,11 @@ Structure sketch:
 - Airport
   - `.new(weather = Weather.new, cap = default cap)` : will take a weather system and an optional capacity.
   - `.land(Plane)` : will throw error if a storm is a brewing or the airport is full. Should return nil if too stormy, or plane if landed? Otherwise program breaks. Can keep attempting to land until weather clears.
-  - `.takeoff(Plane)` : will throw an error if weather is stormy.
+  - `.takeoff(Plane)` : will return nil if weather is stormy.
   - `.planes` : see which planes are in the airport. To see if plane is still there after takeoff.
   - `.capacity` : see the set capacity.
   - # Extensions for edge cases
-  - `.plane_exists(plane)` : private. Checks if the plane has already landed
+  - `.plane_exists?(plane)` : private. Checks if the plane has already landed
   - # Extensions for fun.
   - `.build_plane` : Seems strange to have airplanes appear from the sky! Adds a new plane if there's space.
 
