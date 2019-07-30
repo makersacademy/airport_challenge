@@ -25,8 +25,8 @@ describe Airport do
   end
    
    describe '#takeoff' do
-    Airport.new.weather("stormy")
   it 'stormy so no takeoff' do
+    allow(subject).to receive(:stormy?).and_return("stormy")
     expect(subject.takeoff(Plane.new)).to raise_error('weather is stormy')
   end
   end

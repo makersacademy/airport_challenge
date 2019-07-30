@@ -5,7 +5,7 @@ class Airport
     
   end
   
-  def weather(conditions)
+  def weather
     conditions = rand(1..2)
     if conditions == 1
       return "stormy"
@@ -15,7 +15,7 @@ class Airport
   end
   
   def takeoff(plane)
-    Plane.new
+    stormy?
     Airport.new
     if plane.flying?
       Plane.new.plane_in_air
@@ -25,7 +25,7 @@ class Airport
   private 
   
   def stormy?
-    airport.weather("stormy")
+    airport.weather == "stormy"
   end
 
 end
