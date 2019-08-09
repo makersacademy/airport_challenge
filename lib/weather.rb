@@ -5,7 +5,8 @@ class Weather
   def initialize
     generate_weather
   end
-  def is_stormy?
+
+  def stormy?
     @weather_rating >= 9
   end
 
