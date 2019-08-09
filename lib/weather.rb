@@ -1,6 +1,5 @@
-# require 'pry'
 class Weather
-  attr_accessor :weather_rating
+  attr_reader :weather_rating
 
   def initialize
     generate_weather
@@ -16,4 +15,3 @@ class Weather
     @weather_rating = rand(1..10)
   end
 end
-# binding.pry

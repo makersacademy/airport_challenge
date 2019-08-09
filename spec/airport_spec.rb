@@ -16,8 +16,6 @@ describe Airport do
     subject.instruct_plane_to_land(plane, weather)
     expect(subject.planes).to include(plane)
   end
-  xit 'cannot store more planes than capacity' do #this is tested with prevent landing when full I think?
-  end
   it 'can confirm a plane is or isn\'t in the airport' do
     allow(weather).to receive(:stormy?).and_return(false)
     expect(subject.in_airport?(plane)).to_not be(true)
@@ -45,7 +43,7 @@ describe Airport do
     allow(weather).to receive(:stormy?).and_return(false)
     subject.instruct_plane_to_land(plane, weather)
     allow(weather).to receive(:stormy?).and_return(true)
-    expect{ subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("Cannot take off - severe weather warning!")
+    expect { subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("Cannot take off - severe weather warning!")
     expect(subject.planes).to include(plane)
   end
 end

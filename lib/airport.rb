@@ -1,6 +1,10 @@
+# require 'pry'
+require_relative './weather'
+require_relative './plane'
+
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_accessor :capacity, :planes
+  attr_reader :capacity, :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -14,6 +18,7 @@ class Airport
     raise "Cannot land - airport is full!" if full?
 
     @planes << plane
+    # plane.flying = false
   end
 
   def instruct_plane_to_take_off(plane, weather = Weather.new)
@@ -31,3 +36,4 @@ class Airport
     @planes.size == @capacity
   end
 end
+# binding.pry
