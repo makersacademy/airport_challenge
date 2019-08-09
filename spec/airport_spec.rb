@@ -2,7 +2,8 @@ require './lib/airport'
 
 describe Airport do
   it 'can host a plane' do
-    @planes.push(Plane.new)
+    plane = Plane.new
+    plane.land 
     expect(subject.planes).to include(plane)
   end
 end
