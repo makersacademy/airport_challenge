@@ -8,10 +8,15 @@ end
 
 it 'can create an instance of a plane' do
   airport = Airport.new
-  expect(airport).to respond_to(:plane)
+  expect(airport).to include(:plane)
 end
 
 it 'should show a plane has landed' do
   airport = Airport.new
   expect(airport.plane).to eq(:landed)
+end
+
+it 'should show a plane has taken off' do
+  airport = Airport.new
+  expect(airport.plane).to eq(:takenoff)
 end
