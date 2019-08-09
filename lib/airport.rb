@@ -14,7 +14,7 @@ class Airport
 
   def instruct_plane_to_land(plane, weather = Weather.new)
     # write exception for stormy and full?
-    raise "This plane is not in flight!" if plane.flying? == false
+    raise "This plane is not in flight!" unless plane.flying?
 
     raise "Cannot land - severe weather warning!" if weather.stormy?
 
@@ -25,6 +25,11 @@ class Airport
   end
 
   def instruct_plane_to_take_off(plane, weather = Weather.new)
+    # raise "This plane is not in your airport!" if !@planes.include?(plane)
+    # rubocop says: "Style/NegatedIf:
+    # Favor unless over if for negative conditions."
+    raise "This plane is not in your airport!" unless @planes.include?(plane)
+
     raise "Cannot take off - severe weather warning!" if weather.stormy?
 
     @planes.delete_at(planes.index(plane))

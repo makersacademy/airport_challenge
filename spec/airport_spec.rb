@@ -76,6 +76,31 @@ describe Airport do
       allow(plane).to receive(:flying?).and_return(false)
       expect { subject.instruct_plane_to_land(plane, weather) }.to raise_error("This plane is not in flight!")
     end
-    # a plane can\'t land if it\'s already at an airport
+    it 'a plane can\'t land if it\'s already at an airport' do
+      airport_2 = Airport.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:flying?).and_return(true)
+      allow(plane).to receive(:land)
+      airport_2.instruct_plane_to_land(plane, weather)
+      allow(plane).to receive(:flying?).and_return(false)
+      expect(airport_2.planes).to include(plane)
+      expect { subject.instruct_plane_to_land(plane, weather) }.to raise_error("This plane is not in flight!")
+      expect(subject.planes).to_not include(plane)
+    end
+    it 'a plane can only take off from an airport it is in' do
+      airport_2 = Airport.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:flying?).and_return(true)
+      allow(plane).to receive(:land)
+      airport_2.instruct_plane_to_land(plane, weather)
+
+      expect { subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("This plane is not in your airport!")
+      expect(airport_2.planes).to include(plane)
+    end
+    # a plane that's flying can't be in an airport # can't really test for this?
+    it 'a plane that\'s flying can\'t take off' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("This plane is not in your airport!")
+    end
   end
 end
