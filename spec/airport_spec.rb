@@ -14,7 +14,6 @@ describe Airport do
   end
   it 'should only allow 5 planes' do
     new = Airport.new
-    new.land('croissant')
-    expect {new.airport}
+    expect{new.airport.full}.to raise_error('the runway is full')
   end
 end

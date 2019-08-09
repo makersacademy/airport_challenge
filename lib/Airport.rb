@@ -15,7 +15,7 @@ class Airport
   end
   def land(plane)
     fail 'it is too stormy' if stormy_weather
-    fail 'the runway is full' if airport.length == capacity
+    fail 'the runway is full' if full
     @airport.push(plane)
   end
   def leave_airport
@@ -24,5 +24,7 @@ class Airport
   def stormy_weather
      rand > 0.9
   end
-end
-    
+  def full
+    @airport.count >= capacity
+  end
+end  
