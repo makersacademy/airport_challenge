@@ -7,12 +7,12 @@ class Airport
   end
 
   def landed(plane)
-    @plane.push plane
+    @plane.push(plane)
     return @plane
   end
 
   def takenoff(plane)
-    @plane.delete plane
+    @plane.delete(plane)
     return @plane
   end
 
