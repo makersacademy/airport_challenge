@@ -35,6 +35,8 @@ describe Airport do
     plane = Plane.new
     airport.land(plane)
     plane2 = Plane.new
-    expect {airport.land(plane2)}.to raise_error("The airport is full! No more room!")
+    airport.land(plane2)
+    plane3 = Plane.new
+    expect { airport.land(plane3) }.to raise_error("The airport is full! No more room!")
   end
 end

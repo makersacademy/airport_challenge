@@ -8,8 +8,9 @@ class Airport
   #   @planes
   # end
   def land(plane)
-    @planes.push(plane)
     raise "The airport is full! No more room!" if full?
+    @planes.push(plane)
+
   end
 
   def takeoff(plane)
@@ -21,10 +22,7 @@ class Airport
   end
 
   def full?
-    if @planes.size == 2
-      true
-    else
-      false
-    end
+    @planes.size == 2
   end
+
 end
