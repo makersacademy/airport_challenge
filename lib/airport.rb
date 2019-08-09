@@ -1,2 +1,9 @@
 class Airport
-end 
+
+  def plane
+  end
+
+  def landed
+  end 
+
+end
