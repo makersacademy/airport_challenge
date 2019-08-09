@@ -1,5 +1,6 @@
 class Weather
-  attr_reader :weather_rating
+  attr_reader :weather_rating # this was here for testing
+                              # but might remove and rewrite tests
 
   def initialize
     generate_weather

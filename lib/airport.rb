@@ -4,7 +4,8 @@ require_relative './plane'
 
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :capacity, :planes
+  attr_reader :capacity, :planes # capacity is only here for testing
+                                 # so might remove it and rewrite tests
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -13,12 +14,14 @@ class Airport
 
   def instruct_plane_to_land(plane, weather = Weather.new)
     # write exception for stormy and full?
+    raise "This plane is not in flight!" if plane.flying? == false
+
     raise "Cannot land - severe weather warning!" if weather.stormy?
 
     raise "Cannot land - airport is full!" if full?
 
     @planes << plane
-    # plane.flying = false
+    plane.land
   end
 
   def instruct_plane_to_take_off(plane, weather = Weather.new)
