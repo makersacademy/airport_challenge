@@ -11,6 +11,4 @@ airport = Airport.new
 
 airport.land_plane
 
-plane = Plane.new
-
-plane.take_off
+airport.take_off
