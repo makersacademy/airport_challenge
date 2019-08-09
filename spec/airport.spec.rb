@@ -23,7 +23,7 @@ end
 
 it 'should say if a empty if plane has taken off' do
   airport = Airport.new
-  airport.plane.landed = plane
+  airport.plane.landed = plane 
   ariport.takenoff(plane)
   expect(airport.plane(plane)).to be false
 end
