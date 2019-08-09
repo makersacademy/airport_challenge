@@ -7,7 +7,7 @@ class Airport
     @planes = []
   end
 
-  def accept_plane(plane, weather = Weather.new)
+  def instruct_plane_to_land(plane, weather = Weather.new)
     # write exception for stormy and full?
     raise "Cannot land - severe weather warning!" if weather.stormy?
 
