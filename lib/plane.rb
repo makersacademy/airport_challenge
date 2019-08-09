@@ -1,7 +1,3 @@
 class Plane
-  def land
-    true
-  end
-  def takeoff
-  end
+  attr_reader :planes
 end
