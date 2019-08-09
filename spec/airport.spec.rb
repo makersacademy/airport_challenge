@@ -21,10 +21,9 @@ it 'should check planes at the airport' do
   expect(airport.plane.landed).to eq(:landed)
 end
 
-it 'should say it is empty if plane has taken off' do
+it 'should say if a empty if plane has taken off' do
   airport = Airport.new
-  airport.plane = plane
-  airport.landed(plane)
+  airport.plane.landed = plane
   ariport.takenoff(plane)
   expect(airport.plane(plane)).to be false
 end
