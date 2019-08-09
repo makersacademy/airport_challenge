@@ -41,4 +41,11 @@ describe Airport do
     subject.instruct_plane_to_take_off(plane, weather)
     expect(subject.planes).to_not include(plane)
   end
+  it 'can prevent planes from taking off when stormy' do
+    allow(weather).to receive(:stormy?).and_return(false)
+    subject.instruct_plane_to_land(plane, weather)
+    allow(weather).to receive(:stormy?).and_return(true)
+    expect{ subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("Cannot take off - severe weather warning!")
+    expect(subject.planes).to include(plane)
+  end
 end

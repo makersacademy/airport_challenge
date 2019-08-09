@@ -16,6 +16,12 @@ class Airport
     @planes << plane
   end
 
+  def instruct_plane_to_take_off(plane, weather = Weather.new)
+    raise "Cannot take off - severe weather warning!" if weather.stormy?
+
+    @planes.delete_at(planes.index(plane))
+  end
+
   def in_airport?(plane)
     @planes.include?(plane)
   end
