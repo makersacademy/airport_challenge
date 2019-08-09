@@ -6,12 +6,14 @@ class Airport
     @plane = []
   end
 
-  def landed
+  def landed(plane)
     @plane.push plane
+    return @plane
   end
 
-  def takenoff
+  def takenoff(plane)
     @plane.delete plane
+    return @plane
   end
 
 end

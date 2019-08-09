@@ -13,10 +13,14 @@ end
 
 it 'should show a plane has landed' do
   airport = Airport.new
-  expect(airport.plane).to eq(:landed)
+  expect(airport.plane).to exist(:landed)
 end
 
 it 'should show a plane has taken off' do
   airport = Airport.new
   expect(airport.plane).to eq(:takenoff)
+end
+
+it 'should say it is empty if plane has taken off' do
+
 end
