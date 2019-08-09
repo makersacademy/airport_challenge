@@ -1,25 +1,28 @@
 class Airport
   attr_reader :planes
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 100
 
   def initialize
     @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
-    error_message_1 = "Airport is full, no landing allowed"
-    raise error_message_1 if full?
-    error_message_2 = "Plane already landed cannot land again"
-    raise error_message_2 if @planes.include?(plane)
+    raise "Airport full" if full?
+
+    raise "Plane already landed" if @planes.include?(plane)
+
     @planes << plane
   end
 
   def takeoff(plane)
-    error_message = "Plane not in the airport cannot takeoff"
-    raise error_message unless @planes.include?(plane)
+    raise "Plane is not in the airport" unless @planes.include?(plane)
+
     @planes.delete(plane)
   end
 
   def full?
-
+    @planes.count >= @capacity
   end
 end
