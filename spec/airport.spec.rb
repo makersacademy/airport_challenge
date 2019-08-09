@@ -16,11 +16,15 @@ it 'should show a plane has landed' do
   expect(airport.plane).to exist(:landed)
 end
 
-it 'should show a plane has taken off' do
+it 'should check planes at the airport' do
   airport = Airport.new
-  expect(airport.plane).to eq(:takenoff)
+  expect(airport.plane.landed).to eq(:landed)
 end
 
 it 'should say it is empty if plane has taken off' do
-
+  airport = Airport.new
+  airport.plane = plane
+  airport.landed(plane)
+  ariport.takenoff(plane)
+  expect(airport.plane(plane)).to be false
 end
