@@ -8,12 +8,20 @@ class Airport
   end
 
   def accept_plane(plane, weather = Weather.new)
+    # write exception for stormy and full?
     raise "Cannot land - severe weather warning!" if weather.stormy?
-    
+
+    raise "Cannot land - airport is full!" if full?
+
     @planes << plane
   end
 
   def in_airport?(plane)
     @planes.include?(plane)
+  end
+
+  private
+  def full?
+    @planes.size == @capacity
   end
 end
