@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:plane) }
+  let(:plane) { double(:plane, flying?: true) }
   let(:weather) { double(:weather) }
 
   it 'has a default capacity' do
@@ -11,49 +11,42 @@ describe Airport do
     airport = Airport.new(20)
     expect(airport.capacity).to eq(20)
   end
-  it 'can intruct planes to land' do
-    allow(weather).to receive(:stormy?).and_return(false)
-    allow(plane).to receive(:flying?).and_return(true)
-    allow(plane).to receive(:land)
 
-    subject.instruct_plane_to_land(plane, weather)
-    expect(subject.planes).to include(plane)
-  end
-  it 'can confirm a plane is or isn\'t in the airport' do
-    allow(weather).to receive(:stormy?).and_return(false)
-    expect(subject.in_airport?(plane)).to_not be(true)
+  context 'when weather is not stormy' do
+    let(:weather) { double(:weather, stormy?: false) }
+    it 'can intruct planes to land' do
+      allow(plane).to receive(:land)
 
-    allow(plane).to receive(:flying?).and_return(true)
-    allow(plane).to receive(:land)
+      subject.instruct_plane_to_land(plane, weather)
+      expect(subject.planes).to include(plane)
+    end
+    it 'can prevent landing when full' do
+      allow(plane).to receive(:land)
+      full_airport = Airport.new(0)
 
-    subject.instruct_plane_to_land(plane, weather)
-    expect(subject.in_airport?(plane)).to be(true)
+      expect { full_airport.instruct_plane_to_land(plane, weather) }.to raise_error("Cannot land - airport is full!")
+      expect(full_airport.planes).to_not include(plane)
+    end
+    it 'can confirm a plane is or isn\'t in the airport' do
+      allow(plane).to receive(:land)
+
+      expect(subject.in_airport?(plane)).to_not be(true)
+      subject.instruct_plane_to_land(plane, weather)
+      expect(subject.in_airport?(plane)).to be(true)
+    end
+    it 'can instruct planes to take off' do
+      allow(plane).to receive(:land)
+
+      subject.instruct_plane_to_land(plane, weather)
+      subject.instruct_plane_to_take_off(plane, weather)
+      expect(subject.planes).to_not include(plane)
+    end
   end
   it 'can prevent landing when stormy' do
     allow(weather).to receive(:stormy?).and_return(true)
-
-    allow(plane).to receive(:flying?).and_return(true)
     allow(plane).to receive(:land)
 
     expect { subject.instruct_plane_to_land(plane, weather) }.to raise_error("Cannot land - severe weather warning!")
-    expect(subject.planes).to_not include(plane)
-  end
-  it 'can prevent landing when full' do
-    allow(weather).to receive(:stormy?).and_return(false)
-    allow(plane).to receive(:flying?).and_return(true)
-    allow(plane).to receive(:land)
-
-    full_airport = Airport.new(0)
-    expect { full_airport.instruct_plane_to_land(plane, weather) }.to raise_error("Cannot land - airport is full!")
-    expect(full_airport.planes).to_not include(plane)
-  end
-  it 'can instruct planes to take off' do
-    allow(weather).to receive(:stormy?).and_return(false)
-    allow(plane).to receive(:flying?).and_return(true)
-    allow(plane).to receive(:land)
-
-    subject.instruct_plane_to_land(plane, weather)
-    subject.instruct_plane_to_take_off(plane, weather)
     expect(subject.planes).to_not include(plane)
   end
   it 'can prevent planes from taking off when stormy' do
