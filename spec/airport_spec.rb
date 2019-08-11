@@ -3,27 +3,36 @@ require 'airport'
 describe Airport do
   describe '#land' do
     it 'can instruct a plane to land' do
+      allow(subject.weather).to receive(:stormy) { false }
       plane = Plane.new
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
 
     it 'raises an error if the plane is already in the airport' do
+      allow(subject.weather).to receive(:stormy) { false }
       plane = Plane.new
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error "Plane already landed"
     end
 
     it 'raises an error when the airport is full' do
+      allow(subject.weather).to receive(:stormy) { false }
       plane = Plane.new
-      subject.land(plane)
-      allow(subject).to receive(:full?).and_return(true)
+      allow(subject).to receive(:full?) { true }
       expect { subject.land(plane) }.to raise_error "Airport full"
+    end
+
+    it 'raises an error when the weather is stormy' do
+      allow(subject.weather).to receive(:stormy) { true }
+      plane = Plane.new
+      expect { subject.land(plane) }.to raise_error "Stormy weather"
     end
   end
 
   describe '#takeoff' do
     it 'can instruct a plane to takeoff' do
+      allow(subject.weather).to receive(:stormy) { false }
       plane = Plane.new
       subject.land(plane)
       subject.takeoff(plane)
@@ -31,8 +40,17 @@ describe Airport do
     end
 
     it 'raises an error if plane is not in the airport' do
+      allow(subject.weather).to receive(:stormy) { false }
       plane = Plane.new
       expect { subject.takeoff(plane) }.to raise_error "Plane is not in the airport"
+    end
+
+    it 'raises error when weather is stormy' do
+      allow(subject.weather).to receive(:stormy) { false }
+      plane = Plane.new
+      subject.land(plane)
+      allow(subject.weather).to receive(:stormy) { true }
+      expect { subject.takeoff(plane) }.to raise_error "Stormy weather"
     end
   end
 

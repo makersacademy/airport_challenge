@@ -30,6 +30,6 @@ weather = Weather.new
 weather.stormy?
 # if the weather is stormy
 airport.takeoff(plane)
-# prevent takeoff and raise error "Stormy weather, no takeoff allowed"
+# prevent takeoff and raise error "Stormy weather"
 airport.land(plane)
-# prevent landing and raise error "Stormy weather, no landing allowed"
+# prevent landing and raise error "Stormy weather"
