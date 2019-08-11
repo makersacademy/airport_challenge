@@ -4,8 +4,7 @@ require_relative './plane'
 
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :capacity, :planes # capacity is only here for testing
-                                 # so might remove it and rewrite tests
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
