@@ -9,6 +9,7 @@ class Airport
 
   def land
     plane = Plane.new
+    @planes.push(plane)
   end
 
   def take_off

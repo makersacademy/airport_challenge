@@ -17,8 +17,12 @@ describe Airport do
     end
   end
   describe '#land' do
-    it 'can create a new plane' do
-      expect(subject.land).to be_kind_of(Plane)
+    # it 'can create a new plane' do
+    #   expect(subject.land).to be_kind_of(Plane)
+    # end
+    it 'can increase total_planes' do
+      subject.land
+      expect(subject.total_planes).to eq(1)
     end
   end
 
