@@ -2,6 +2,7 @@
 
 ## What was this challenge?
 
+Using user stories, feature tests and unit tests, write a piece of software controlling the landing and taking off of planes at airports.
 The original repo can be found [here](https://github.com/makersacademy/airport_challenge)
 
 ## How did I approach solving this challenge?
@@ -15,11 +16,11 @@ I then translated these User Stories to a an Object-behaviour/method table
 I then sketched out an interaction diagram/model ![diagram/model](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/diagram.jpeg)
 
 My basic feature test was:
-
-> airport = Airport.new
+```
+airport = Airport.new
 plane = Plane.new
 airport.instruct_plane_to_land(plane) # => plane lands or warning message about weather
-
+```
 and variations on this (instruct_plane_to_take_off).
 Using my feature tests as a guide, I turned my user stories into discrete unit tests and TDD'd them - write test, Red, Green, Refactor. As I didn't have my other classes yet I used doubles, stubs and mocks to substitute them and imitate their behaviour - I had an idea of what this would be thanks to my diagram from before.
 
@@ -33,11 +34,11 @@ Using my feature tests as a guide, I turned my user stories into discrete unit t
 
 I repeated this for the Weather and Plane classes.
 I then wrote another feature test:
-
-> airport = Airport.new
+```
+airport = Airport.new
 plane = Plane.new
 airport.instruct_plane_to_land(plane)
 airport.instruct_plane_to_land(plane) # => plane can't land twice so expect error
-
+```
 which allowed me to land the plane twice - so I went back to writing my unit tests, for edge cases (photo) of stickies. TDD, Red Green Refactor again.
 To test my code fully, with all the classes written and passing their tests, I created a branch and swapped the doubles for the Class counterparts (due to the randomness in the Weather class that had to remain stubbed).
