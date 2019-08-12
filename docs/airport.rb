@@ -1,21 +1,20 @@
-
+require './docs/plane.rb'
 class Airport
 
   attr_reader :num_of_planes
 
-
-
   def initialize
-    @num_of_planes = []
+    @planes = []
   end
 
   def land
+    plane = Plane.new
   end
 
   def take_off
   end
 
   def total_planes
-    @num_of_planes.count
+    @planes.count
   end
 end

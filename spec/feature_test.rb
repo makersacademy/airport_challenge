@@ -9,6 +9,6 @@ require './docs/plane'
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 airport = Airport.new
 
-airport.land_plane
+airport.land #creates new Plane & adds to @planes
 
 airport.take_off
