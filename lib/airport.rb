@@ -19,18 +19,16 @@ class Airport
 
     raise "Cannot land - airport is full!" if full?
 
-    @planes << plane
     plane.land
+    @planes << plane
   end
 
   def instruct_plane_to_take_off(plane, weather = Weather.new)
-    # raise "This plane is not in your airport!" if !@planes.include?(plane)
-    # rubocop says: "Style/NegatedIf:
-    # Favor unless over if for negative conditions."
     raise "This plane is not in your airport!" unless @planes.include?(plane)
 
     raise "Cannot take off - severe weather warning!" if weather.stormy?
 
+    plane.take_off
     @planes.delete_at(planes.index(plane))
   end
 

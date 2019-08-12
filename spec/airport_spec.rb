@@ -56,10 +56,15 @@ describe Airport do
       it 'a plane that\'s flying can\'t take off' do
         expect { subject.instruct_plane_to_take_off(plane, weather) }.to raise_error("This plane is not in your airport!")
       end
+      it 'a plane lands when it enters the airport' do
+        expect(plane).to receive(:land)
+        subject.instruct_plane_to_land(plane, weather)
+      end
     end
 
     context 'when plane is not flying' do
       before(:each) { subject.instruct_plane_to_land(plane, weather) }
+      before(:each) { allow(plane).to receive(:take_off) }
       it 'can instruct planes to take off' do
         expect(subject.planes).to include(plane)
         subject.instruct_plane_to_take_off(plane, weather)
@@ -80,6 +85,10 @@ describe Airport do
         airport_2 = Airport.new
         expect { airport_2.instruct_plane_to_take_off(plane, weather) }.to raise_error("This plane is not in your airport!")
         expect(subject.planes).to include(plane)
+      end
+      it 'a plane takes off when it leaves the airport' do
+        expect(plane).to receive(:take_off)
+        subject.instruct_plane_to_take_off(plane, weather)
       end
     end
   end
