@@ -25,5 +25,12 @@ describe Airport do
       expect(subject.total_planes).to eq(1)
     end
   end
+  describe '#take_off' do
+    it 'can reduce total_planes' do
+      subject.land
+      subject.take_off
+      expect(subject.total_planes).to eq(0)
+    end
+  end
 
 end
