@@ -24,13 +24,13 @@ airport.instruct_plane_to_land(plane) # => plane lands or warning message about 
 and variations on this (instruct_plane_to_take_off).
 Using my feature tests as a guide, I turned my user stories into discrete unit tests and TDD'd them - write test, Red, Green, Refactor. As I didn't have my other classes yet I used doubles, stubs and mocks to substitute them and imitate their behaviour - I had an idea of what this would be thanks to my diagram from before.
 
-![airport_tests](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/tests1.jpeg)
+![airport_tests](./images/tests1.jpeg)
 
-![weather_tests](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/tests2.jpeg)
+![weather_tests](./images/tests2.jpeg)
 
-![plane_tests](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/tests3.jpeg)
+![plane_tests](./images/tests3.jpeg)
 
-![edge_tests](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/tests4.jpeg)
+![edge_tests](./images/tests4.jpeg)
 
 I repeated this for the Weather and Plane classes.
 I then wrote another feature test:
