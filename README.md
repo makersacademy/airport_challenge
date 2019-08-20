@@ -8,12 +8,12 @@ The original repo can be found [here](https://github.com/makersacademy/airport_c
 ## How did I approach solving this challenge?
 
 I transferred my User Stories to "index cards" (Mac stickies).
-![user_stories](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/stickies.png)
+![user_stories](./images/stickies.png)
 
 I then translated these User Stories to a an Object-behaviour/method table
-![object-behaviour_method-table](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/table.jpeg)
+![object-behaviour_method-table](./images/table.jpeg)
 
-I then sketched out an interaction diagram/model ![diagram/model](https://github.com/sebastianchristopher/airport_challenge/tree/master/images/diagram.jpeg)
+I then sketched out an interaction diagram/model ![diagram/model](./images/diagram.jpeg)
 
 My basic feature test was:
 ```
