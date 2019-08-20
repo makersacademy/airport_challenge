@@ -14,7 +14,7 @@ describe Airport do
   }
   let(:landed_plane) { 
     double(
-      "flying_plane",
+      "landed_plane",
       :take_off => nil,
       :land => nil,
       :flying? => false
