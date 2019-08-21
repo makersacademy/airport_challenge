@@ -3,52 +3,67 @@ require 'airport'
 RSpec.describe Airport do
 
   describe '#land' do 
-    airplane = Airplane.new
-    airport = Airport.new
 
-    it 'raise an error if the weather is stormy' do
-      weather = :stormy
-      expect { airport.land(airplane, weather) }.to raise_error 'The weather is stormy'
+    it 'raise an error whether the weather is stormy' do
+      stubWeather = double(:status => :stormy)
+      allow(stubWeather).to receive(:status).and_return(:stormy)
+      airport = Airport.new(stubWeather)
+      airplane = Airplane.new
+      expect { airport.land(*airplane) }.to raise_error 'The weather is stormy'
     end
 
-    it 'raise an error if the airport is full' do
-      weather = :sunny
-      airport.capacity = 2
-      airport.hangar = [1, 2, 3]
-      expect { airport.land(airplane, weather) }.to raise_error 'The airport is full'
+    it 'raise an error whether the airport is full' do
+      stubWeather = object_double(Weather.new, :status => :sunny)
+      allow(stubWeather).to receive(:status) {:sunny}
+      airport = Airport.new(stubWeather, 2)
+      airplane = Airplane.new
+      airport.land(Airplane.new, Airplane.new)
+      expect { airport.land(*airplane) }.to raise_error 'The airport is full'
     end
 
-    it 'raise an error if the airplane has already landed' do
-      weather = :sunny
-      airport.hangar = [airplane]
-      expect { airport.land(airplane, weather) }.to raise_error 'The airplane has already landed'
+    it 'raise an error whether the airplane has already landed' do
+      stubWeather = object_double(Weather.new, :status => :sunny)
+      allow(stubWeather).to receive(:status) {:sunny}
+      airport = Airport.new(stubWeather)
+      airplane = Airplane.new
+      p airport.land(airplane)
+      expect { p airport.land(airplane) }.to raise_error 'The airplane has already landed'
     end
 
     it 'instruct an airplane to land at the airport' do
-      airport = Airport.new
-      weather = :sunny
-      expect(airport.land(airplane, weather)).to include(airplane)
+      stubWeather = object_double(Weather.new, :status => :sunny)
+      allow(stubWeather).to receive(:status) {:sunny}
+      airplane = Airplane.new
+      airport = Airport.new(stubWeather)
+      expect(airport.land(airplane)).to eq([airplane])
     end
   end
 
   describe '#take_off' do
-    airplane = Airplane.new
-    airport = Airport.new
     
     it 'raise an error if the weather is stormy' do
-      weather = :stormy
-      expect { subject.take_off(airplane, weather) }.to raise_error 'The weather is stormy'
+      stubWeather = double(:status => :stormy)
+      allow(stubWeather).to receive(:status).and_return(:stormy)
+      airport = Airport.new(stubWeather)
+      airplane = Airplane.new
+      expect { airport.take_off(airplane) }.to raise_error 'The weather is stormy'
     end
 
     it 'raise an error if the airplane has already took off or is not in the hangar' do
-      weather = :sunny
-      expect { airport.take_off(airplane, weather) }.to raise_error 'The airplane is not in the airport'
+      stubWeather = object_double(Weather.new, :status => :sunny)
+      allow(stubWeather).to receive(:status) {:sunny}
+      airport = Airport.new(stubWeather)
+      airplane = Airplane.new
+      expect { airport.take_off(airplane) }.to raise_error 'The airplane is not in the airport'
     end
 
     it 'instruct a plane to take off' do 
-      weather = :sunny
-      airport.hangar = [airplane]
-      expect(airport.take_off(airplane, weather)).to eq "The airplane #{airplane} has taken off"
+      stubWeather = object_double(Weather.new, :status => :sunny)
+      allow(stubWeather).to receive(:status) {:sunny}
+      airport = Airport.new(stubWeather)
+      airplane = Airplane.new
+      airport.land(airplane)
+      expect(airport.take_off(airplane)).to eq "The airplane #{airplane} has taken off"
     end
   end
 

@@ -1,30 +1,29 @@
-require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challenge/lib/airplane.rb'
-require '/Users/student/Desktop/Desktop/projects/Week1/Weekend_1/airport_challenge/lib/weather.rb'
+require './lib/airplane.rb'
+require './lib/weather.rb'
 
 class Airport
 
-  attr_accessor :weather, :capacity, :hangar
+ # attr_accessor :weather, :capacity, :hangar
 
-  def initialize
-    @weather = :sunny
-    @capacity = 5
+  def initialize(weather = Weather.new.status, capacity = 5)
+    @weather = weather
+    @capacity = capacity
     @hangar = []
   end
 
-  def land(airplane, weather = Weather.new.status)
-    weather
-    raise 'The weather is stormy' if weather == :stormy
+  def land(*airplane)
+    raise 'The weather is stormy' if @weather.status == :stormy
 
     raise 'The airport is full' unless @hangar.length < @capacity
 
-    raise 'The airplane has already landed' if @hangar.include?(airplane)
+    raise 'The airplane has already landed' if @hangar.include?(airplane[0])
 
-    @hangar << airplane
+    airplane.each {|plane| @hangar << plane}
+    @hangar
   end
 
-  def take_off(airplane, weather = Weather.new.status)
-    weather
-    raise 'The weather is stormy' if weather == :stormy
+  def take_off(airplane)
+    raise 'The weather is stormy' if @weather.status == :stormy
 
     raise 'The airplane is not in the airport' unless @hangar.include?(airplane)
 
