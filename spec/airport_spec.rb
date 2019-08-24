@@ -9,12 +9,12 @@ describe Airport do
     end
     it "lands a plane" do
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       expect(subject.land_plane(plane)).to eq(plane)
     end
     it "raises an error if too stormy to land" do
-      allow(subject).to receive(:rand).and_return(0.05)
-      expect(subject.stormy?).to eq true
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.05) # stormy
       expect{subject.land_plane(plane)}.to raise_error("It is too stormy to land")
     end
   end
@@ -25,15 +25,16 @@ describe Airport do
     end
     it "confirms that the plane has taken off" do
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       subject.land_plane(plane)
       expect(subject.takeoff_plane).to eq(true)
     end
 
     it "raises an error if too stormy to take off" do
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       subject.land_plane(plane)
-      allow(subject).to receive(:rand).and_return(0.05)
-      expect(subject.stormy?).to eq true
+      allow(subject).to receive(:rand).and_return(0.05) # now stormy
       expect{subject.takeoff_plane}.to raise_error("It is too stormy to take off")
     end
   end
@@ -47,12 +48,14 @@ describe Airport do
     end
     it "returns true if a plane has taken off" do
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       subject.land_plane(plane)
       subject.takeoff_plane
       expect(subject.confirm_takeoff_plane(plane)).to eq true
     end
     it "returns false if a plane has taken off" do
       plane = Plane.new
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       subject.land_plane(plane)
       expect(subject.confirm_takeoff_plane(plane)).to eq false
     end
@@ -63,11 +66,11 @@ describe Airport do
       expect(subject).to respond_to(:stormy?)
     end
     it "Returns false if #rand is 0.8 (0.8 < 0.1)" do
-      allow(subject).to receive(:rand).and_return(0.8)
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       expect(subject.stormy?).to eq false
     end
     it "Returns true if #rand is 0.05 (0.8 < 0.1)" do
-      allow(subject).to receive(:rand).and_return(0.05)
+      allow(subject).to receive(:rand).and_return(0.05) # stormy
       expect(subject.stormy?).to eq true
     end
   end
