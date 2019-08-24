@@ -11,34 +11,36 @@ describe Airport do
   let(:weather_station) { instance_double('WeatherStation', :weather => :sunny) }
 
   describe '#land' do
-    it 'adds plane to planes array' do
-      subject.land(plane)
-      expect(subject.planes.first).to eq plane
+    context 'when there is space' do
+      it 'stores plane' do
+        subject.land(plane)
+        expect(subject.planes.first).to eq plane
+      end
+
+      context 'when plane is already landed' do
+        it 'raises an error' do
+          subject.land(plane)
+          expect { subject.land(plane) }.to raise_error Airport::PlaneAlreadyLanded
+        end
+      end
     end
 
-    context 'when airport is full' do
+    context 'when there is no space' do
       it 'raises an error' do
         2.times { subject.land(Plane.new('BA165')) }
         expect { subject.land(Plane.new('BA165')) }.to raise_error Airport::AirportFull
       end
     end
-
-    context 'when plane is already landed' do
-      it 'raises an error' do
-        subject.land(plane)
-        expect { subject.land(plane) }.to raise_error Airport::PlaneAlreadyLanded
-      end
-    end
   end
 
   describe '#landed?' do
-    context 'when plane has not landed' do
+    context 'when plane has not landed at airport' do
       it 'is false' do
         expect(subject.landed?(plane)).to eq false
       end
     end
 
-    context 'when plane is already landed' do
+    context 'when plane has landed at airport' do
       it 'is true' do
         subject.land(plane)
         expect(subject.landed?(plane)).to eq true
@@ -47,14 +49,14 @@ describe Airport do
   end
 
   describe '#take_off' do
-    context 'when plane has not landed' do
+    context 'when plane has not landed at airport' do
       it 'raises an error' do
         expect { subject.take_off(plane) }.to raise_error Airport::PlaneNotFound
       end
     end
 
-    context 'when plane has already landed' do
-      it 'removes plane from planes array' do
+    context 'when plane has landed at airport' do
+      it 'removes plane' do
         subject.planes << plane
         subject.take_off(plane)
         expect(subject.planes).to be_empty
