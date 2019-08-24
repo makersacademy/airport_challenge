@@ -4,12 +4,13 @@ class Plane
 
   def land(at:)
     @airport = at
+    @airport.land_plane(self)
   end
 
   def take_off
     raise NotLanded if @airport.nil?
 
-    @airport.take_off(self)
+    @airport.take_off_plane(self)
     @airport = nil
   end
 

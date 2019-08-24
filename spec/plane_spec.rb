@@ -6,11 +6,11 @@ describe Plane do
   end
 
   subject { PlaneSpy.new }
-  let(:airport) { double('Airport', :take_off => nil, :land => nil) }
+  let(:airport) { double('Airport', :take_off_plane => nil, :land_plane => nil) }
 
   describe '#land' do
     it 'lands a plane at an airport' do
-      expect(airport).to receive(:land).with(subject)
+      expect(airport).to receive(:land_plane).with(subject)
       subject.land(at: airport)
       expect(subject.airport).not_to be_nil
     end
@@ -36,7 +36,7 @@ describe Plane do
 
     it 'take off notifies airport' do
       subject.land(at: airport)
-      expect(airport).to receive(:take_off).with(subject)
+      expect(airport).to receive(:take_off_plane).with(subject)
       subject.take_off
     end
   end

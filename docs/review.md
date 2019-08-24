@@ -57,9 +57,9 @@ subject(:plane) { described_class.new }
 let(:airport) { double: airport }
 
 it 'is in the airport after landing' do
-  allow(airport).to receive(:land)
+  allow(airport).to receive(:land_plane)
   allow(airport).to receive(:planes).and_return [plane]
-  airport.land(plane)
+  airport.land_plane(plane)
   expect(airport.planes).to include plane
 end
 ```
@@ -72,8 +72,8 @@ subject(:airport) { described_class.new }
 let(:plane) { double :plane }
 
 it 'has the plane after landing' do
-  allow(:plane).to receive(:land)
-  airport.land(plane)
+  allow(:plane).to receive(:land_plane)
+  airport.land_plane(plane)
   expect(airport.planes).to include plane
 end
 ```
@@ -85,7 +85,7 @@ For example, to set up stubbing behaviour that is shared across a number of test
 ```ruby
 describe 'a group of tests that need to call #land on a plane double' do
   before do
-    allow(plane).to receive(:land)
+    allow(plane).to receive(:land_plane)
   end
 
   it ...
@@ -102,8 +102,8 @@ describe Airport do
   let(:plane) { double :plane }
 
   it 'can land planes' do
-    allow(plane).to receive(:land)
-    subject.land plane
+    allow(plane).to receive(:land_plane)
+    subject.land_plane plane
     expect(subject.planes).to include plane
   end
 end
@@ -114,13 +114,13 @@ We are not testing that the `land` method of `plane` is called.  This should be 
 ```ruby
 describe 'landing planes' do
   it 'instructs the plane to land' do
-    expect(plane).to receive(:land)
-    subject.land plane
+    expect(plane).to receive(:land_plane)
+    subject.land_plane plane
   end
 
   it 'has the plane after it has landed' do
-    allow(plane).to receive(:land)
-    subject.land plane
+    allow(plane).to receive(:land_plane)
+    subject.land_plane plane
     expect(subject.planes).to include plane
   end
 end
@@ -142,8 +142,8 @@ The previous example _could_ be combined into one test, but this is not good pra
 
 ```ruby
 it 'instructs the plane to land and then has the plane' do
-  expect(plane).to receive(:land)
-  subject.land plane
+  expect(plane).to receive(:land_plane)
+  subject.land_plane plane
   expect(subject.planes).to include plane
 end
 ```
@@ -153,7 +153,7 @@ Also, avoid additional `expect`s when stubbing.  Prefer `allow`.  Avoid the foll
 ```ruby
 it 'does not allow plane to take off' do
   expect(weather).to receive(:stormy?).and_return(true)
-  expect{airport.take_off}.to raise_error 'Cannot take off due to stormy weather'
+  expect{airport.take_off_plane}.to raise_error 'Cannot take off due to stormy weather'
 end
 ```
 
@@ -162,7 +162,7 @@ We are not _testing_ that `weather` receives `stormy?` in this test, so it shoul
 ```ruby
 it 'does not allow plane to take off' do
   allow(weather).to receive(:stormy?).and_return(true)
-  expect{subject.take_off}.to raise_error 'Cannot take off due to stormy weather'
+  expect{subject.take_off_plane}.to raise_error 'Cannot take off due to stormy weather'
 end
 ```
 
@@ -174,12 +174,12 @@ It's important that tests don't fail randomly, so it's critical that any randomn
 describe 'storm blocks landing' do
   allow(weather).to receive(:stormy?).and_return true
   message = 'Unable to land due to stormy weather'
-  expect { airport.land(plane) }.to raise_error message
+  expect { airport.land_plane(plane) }.to raise_error message
 end
 
 describe 'a plane can land after storm has cleared' do
   allow(weather).to receive(:stormy?).and_return false
-  expect { airport.land(plane) }.not_to raise_error
+  expect { airport.land_plane(plane) }.not_to raise_error
 end
 ```
 
@@ -189,22 +189,22 @@ Note that tests like this:
 
 ```ruby
 it 'can land a plane' do
-  is_expected.to respond_to(:land).with(1).argument
+  is_expected.to respond_to(:land_plane).with(1).argument
 end
 ```
 can be collapsed to one liners like this
 
 ```ruby
-it { is_expected.to respond_to(:land).with(1).argument }
+it { is_expected.to respond_to(:land_plane).with(1).argument }
 ```
 
 and also that these become somewhat redundant once you are actively testing the method like so:
 
 ```ruby
 it 'fails when the airport is full' do
-  airport.land(plane)
+  airport.land_plane(plane)
   error = 'Cannot land since airport is full'
-  expect { airport.land(double :plane) }.to raise_error error
+  expect { airport.land_plane(double :plane) }.to raise_error error
 end
 ```
 
@@ -216,7 +216,7 @@ Note that by breaking some long lines (to go below 80 chars) in:
 
 ```ruby
   it 'a plane can only take off from an airport it is at' do
-    expect { airport.take_off(plane) }.to raise_error
+    expect { airport.take_off_plane(plane) }.to raise_error
     'The plane is not currently landed at this airport'
   end
 ```
@@ -226,7 +226,7 @@ creates two separate lines that are interpreted separately.  The expect now chec
 ```ruby
   it 'a plane can only take off from an airport it is at' do
     message = 'The plane is not currently landed at this airport'
-    expect { airport.take_off(plane) }.to raise_error message
+    expect { airport.take_off_plane(plane) }.to raise_error message
   end
 ```
 
@@ -514,7 +514,7 @@ plane.landed = true
 or
 
 ```ruby
-plane.land
+plane.land_plane
 ```
 *Prefer the custom method (`land`) for more control over the value of `@landed` and use `attr_reader` instead.*
 
