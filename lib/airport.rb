@@ -1,5 +1,5 @@
 class Airport
-  def test_method
+  def land_plane
   end
 end
 
