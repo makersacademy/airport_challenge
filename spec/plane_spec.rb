@@ -1,6 +1,11 @@
 require './lib/plane'
 
 describe Plane do
+  class PlaneSpy < Plane
+    attr_reader :airport
+  end
+
+  subject { PlaneSpy.new }
   let(:airport) { double('Airport', :take_off => nil) }
 
   describe '#land' do

@@ -2,10 +2,6 @@ class Plane
   class NotLanded < RuntimeError
   end
 
-  attr_reader :airport
-
-  @airport
-
   def land(at:)
     @airport = at
   end
