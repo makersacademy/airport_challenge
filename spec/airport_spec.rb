@@ -17,10 +17,10 @@ describe Airport do
     it "Airport responded to #takeoff_plane" do
       expect(subject).to respond_to(:takeoff_plane)
     end
-    it "takeoff a plane" do
+    it "confirms that the plane has taken off" do
       plane = Plane.new
       subject.land_plane(plane)
-      expect(subject.takeoff_plane).to eq(plane)
+      expect(subject.takeoff_plane).to eq(true)
     end
   end
 
