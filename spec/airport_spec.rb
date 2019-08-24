@@ -86,6 +86,7 @@ describe Airport do
       expect(subject).to respond_to(:full?)
     end
     it "returns true if airport if full" do
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
       Airport::DEFAULT_CAPACITY.times do
         subject.land_plane Plane.new
       end
