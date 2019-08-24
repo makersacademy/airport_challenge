@@ -8,33 +8,61 @@ class Airport
   class PlaneAlreadyLanded < RuntimeError
   end
 
+  class BadWeather < RuntimeError
+  end
+
   DEFAULT_CAPACITY = 100
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather_station)
     @capacity = capacity
     @planes = Set.new
+    @weather_station = weather_station
   end
 
   def land(plane)
-    raise PlaneAlreadyLanded if landed?(plane)
-    raise AirportFull if at_capacity?
+    raise_if_bad_weather
+    raise_if_already_landed(plane)
+    raise_if_full
 
     plane.is_landed = true
     @planes.add(plane)
   end
 
-  def at_capacity?
-    @planes.count == @capacity
+  def take_off(plane)
+    raise_if_bad_weather
+    raise_if_not_found(plane)
+
+    plane.is_landed = false
+    @planes.delete(plane)
   end
 
   def landed?(plane)
     @planes.include?(plane)
   end
 
-  def take_off(plane)
-    raise PlaneNotFound unless landed?(plane)
+  private
 
-    plane.is_landed = false
-    @planes.delete(plane)
+  def raise_if_bad_weather
+    raise BadWeather if bad_weather?
+  end
+
+  def bad_weather?
+    @weather_station.weather == :stormy
+  end
+
+  def raise_if_already_landed(plane)
+    raise PlaneAlreadyLanded if landed?(plane)
+  end
+
+  def raise_if_not_found(plane)
+    raise PlaneNotFound unless landed?(plane)
+  end
+
+  def raise_if_full
+    raise AirportFull if full?
+  end
+
+  def full?
+    @planes.count == @capacity
   end
 end

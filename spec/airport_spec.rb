@@ -3,10 +3,12 @@ require './lib/airport'
 describe Airport do
   class AirportSpy < Airport
     attr_reader :planes
+    attr_accessor :weather_station
   end
 
-  subject { AirportSpy.new(2) }
+  subject { AirportSpy.new(2, weather_station) }
   let(:plane) { double("Plane", :is_landed= => nil) }
+  let(:weather_station) { double("WeatherStation", :weather => :sunny) }
 
   describe '#land' do
     it 'adds plane to planes array' do
@@ -56,6 +58,21 @@ describe Airport do
       subject.land(plane)
       expect(plane).to receive(:is_landed=).with(false)
       subject.take_off(plane)
+    end
+  end
+
+  describe 'weather rules' do
+    it 'raises error when landing during bad weather' do
+      weather = double("WeatherStation", :weather => :stormy)
+      airport = Airport.new(1, weather)
+      expect { airport.land(plane) }.to raise_error Airport::BadWeather
+    end
+
+    it 'raises error when taking off during bad weather' do
+      airport = AirportSpy.new(1, double("WeatherStation", :weather => :sunny))
+      airport.land(plane)
+      airport.weather_station = double("WeatherStation", :weather => :stormy)
+      expect { airport.take_off(plane) }.to raise_error Airport::BadWeather
     end
   end
 end
