@@ -9,12 +9,21 @@ class Plane
   end
 
   def land(airport)
-    airport.planes << self unless airport.stormy
+    return "Cannot land due to poor weather" if airport.stormy
+
+    airport.planes << self
   end
 
   def take_off(airport)
-    airport.planes.delete(self) unless airport.stormy
-    "#{self} has successfully departed" unless airport.planes.include?(self)
+    return "Cannot take off due to stormy weather" if airport.stormy
+
+    airport.planes.delete(self)
+    check_departure(airport)
   end
 
+  def check_departure(airport)
+    return "#{self} has failed to depart" if airport.planes.include?(self)
+
+    "#{self} has successfully departed"
+  end
 end
