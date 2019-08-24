@@ -24,7 +24,6 @@ class Airport
     raise_if_already_landed(plane)
     raise_if_full
 
-    plane.is_landed = true
     @planes.add(plane)
   end
 
@@ -32,7 +31,6 @@ class Airport
     raise_if_bad_weather
     raise_if_not_found(plane)
 
-    plane.is_landed = false
     @planes.delete(plane)
   end
 

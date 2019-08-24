@@ -1,8 +1,9 @@
 require './lib/plane'
 
-describe Plane do
-  it 'has a settable landed flag' do
-    subject.is_landed = true
-    expect(subject.is_landed).to eq true
+describe 'Plane' do
+  subject { Plane.new('BA165') }
+
+  it 'has a call sign' do
+    expect(subject.call_sign).to eq 'BA165'
   end
 end

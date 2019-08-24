@@ -1,14 +1,14 @@
 require './lib/airport'
 
 describe Airport do
-  class AirportSpy < Airport
+  class TestableAirport < Airport
     attr_reader :planes
     attr_accessor :weather_station
   end
 
-  subject { AirportSpy.new(2, weather_station) }
-  let(:plane) { double("Plane", :is_landed= => nil) }
-  let(:weather_station) { double("WeatherStation", :weather => :sunny) }
+  subject { TestableAirport.new(2, weather_station) }
+  let(:plane) { Plane.new('BA165') }
+  let(:weather_station) { double('WeatherStation', :weather => :sunny) }
 
   describe '#land' do
     it 'adds plane to planes array' do
@@ -16,14 +16,9 @@ describe Airport do
       expect(subject.planes.first).to eq plane
     end
 
-    it 'sets plane to landed' do
-      expect(plane).to receive(:is_landed=).with(true)
-      subject.land(plane)
-    end
-
     it 'raises error if airport full' do
-      2.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error Airport::AirportFull
+      2.times { subject.land(Plane.new('BA165')) }
+      expect { subject.land(Plane.new('BA165')) }.to raise_error Airport::AirportFull
     end
 
     it 'raises error if plane already landed' do
@@ -53,26 +48,18 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes).to be_empty
     end
-
-    it 'sets plane to not landed' do
-      subject.land(plane)
-      expect(plane).to receive(:is_landed=).with(false)
-      subject.take_off(plane)
-    end
   end
 
   describe 'weather rules' do
     it 'raises error when landing during bad weather' do
-      weather = double("WeatherStation", :weather => :stormy)
-      airport = Airport.new(1, weather)
-      expect { airport.land(plane) }.to raise_error Airport::BadWeather
+      subject.weather_station = double("WeatherStation", :weather => :stormy)
+      expect { subject.land(plane) }.to raise_error Airport::BadWeather
     end
 
     it 'raises error when taking off during bad weather' do
-      airport = AirportSpy.new(1, double("WeatherStation", :weather => :sunny))
-      airport.land(plane)
-      airport.weather_station = double("WeatherStation", :weather => :stormy)
-      expect { airport.take_off(plane) }.to raise_error Airport::BadWeather
+      subject.land(plane)
+      subject.weather_station = double("WeatherStation", :weather => :stormy)
+      expect { subject.take_off(plane) }.to raise_error Airport::BadWeather
     end
   end
 end
