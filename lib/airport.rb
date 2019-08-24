@@ -12,8 +12,12 @@ class Airport
 
   # Allow planes to take off
   def takeoff_plane(plane)
-    @planes_in_airport.delete(plane)
-    plane_in_airport?(plane)
+    if is_it_sunny?
+      @planes_in_airport.delete(plane)
+      plane_in_airport?(plane)
+    else
+      raise "It's too Stormy to take off"
+    end
   end
 
   #check if plane is currently in the airport
