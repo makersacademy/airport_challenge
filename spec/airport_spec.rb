@@ -31,6 +31,17 @@ describe Airport do
     it "takes an argument" do
       expect(subject).to respond_to(:confirm_takeoff_plane).with(1).argument
     end
+    it "returns true if a plane has taken off" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      subject.takeoff_plane
+      expect(subject.confirm_takeoff_plane(plane)).to eq true
+    end
+    it "returns false if a plane has taken off" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.confirm_takeoff_plane(plane)).to eq false
+    end
   end
 
 
