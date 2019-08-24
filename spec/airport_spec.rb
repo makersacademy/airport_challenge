@@ -10,4 +10,11 @@ describe Airport do
     expect(airport.planes).to include plane
   end
 
+  it 'instructs a plane to land at an airport' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.instruct_landing(plane)
+    expect(plane.is_flying).to eq false
+  end
+
 end
