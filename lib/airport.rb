@@ -1,5 +1,5 @@
 class Airport
-  #DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
   def initialize
     @all_planes = []
