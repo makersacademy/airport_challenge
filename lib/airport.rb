@@ -15,4 +15,8 @@ class Airport
     plane.land
   end
 
+  def instruct_take_off(plane)
+    plane.is_flying
+  end
+
 end

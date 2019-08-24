@@ -9,7 +9,7 @@ class Plane
   end
 
   def land
-    fail "Plane already landed" unless self.is_flying
+    fail "Plane already landed" unless is_flying
 
     @flying = false
   end
