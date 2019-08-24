@@ -9,6 +9,11 @@ describe Plane do
   let(:airport) { double('Airport', :take_off_plane => nil, :land_plane => nil) }
 
   describe '#land' do
+    it 'cannot land if landed' do
+      subject.land(at: airport)
+      expect { subject.land(at: airport) }.to raise_error Plane::AlreadyLanded
+    end
+
     it 'lands a plane at an airport' do
       expect(airport).to receive(:land_plane).with(subject)
       subject.land(at: airport)
