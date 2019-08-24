@@ -17,6 +17,12 @@ describe Airport do
       allow(subject).to receive(:rand).and_return(0.05) # stormy
       expect{subject.land_plane(plane)}.to raise_error("It is too stormy to land")
     end
+    it "raises an error if airport is too full" do
+      plane = Plane.new
+
+      allow(subject).to receive(:rand).and_return(0.8) # not stormy
+      expect{subject.land_plane(plane)}.to raise_error("Airport is full")
+    end
   end
 
   describe '#takeoff_plane' do
@@ -62,7 +68,7 @@ describe Airport do
   end
 
   describe '#stormy?' do
-    it "Weather class responded to stormy?" do
+    it "Airport class responded to stormy?" do
       expect(subject).to respond_to(:stormy?)
     end
     it "Returns false if #rand is 0.8 (0.8 < 0.1)" do
@@ -72,6 +78,22 @@ describe Airport do
     it "Returns true if #rand is 0.05 (0.8 < 0.1)" do
       allow(subject).to receive(:rand).and_return(0.05) # stormy
       expect(subject.stormy?).to eq true
+    end
+  end
+
+  describe '#full?' do
+    it "Airport class responds to full?" do
+      expect(subject).to respond_to(:full?)
+    end
+    it "returns true if airport if full" do
+      Airport::DEFAULT_CAPACITY.times do
+        station.land_plane Plane.new
+      end
+      expect(subject.full?).to eq true
+    end
+    it "returns false if airport is not full" do
+
+      expect(subject.full?).to eq false
     end
   end
 
