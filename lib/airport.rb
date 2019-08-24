@@ -5,6 +5,9 @@ class Airport
   class AirportFull < RuntimeError
   end
 
+  class PlaneAlreadyLanded < RuntimeError
+  end
+
   DEFAULT_CAPACITY = 100
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -13,8 +16,10 @@ class Airport
   end
 
   def land(plane)
+    raise PlaneAlreadyLanded if landed?(plane)
     raise AirportFull if at_capacity?
 
+    plane.is_landed = true
     @planes.add(plane)
   end
 
@@ -29,6 +34,7 @@ class Airport
   def take_off(plane)
     raise PlaneNotFound unless landed?(plane)
 
+    plane.is_landed = false
     @planes.delete(plane)
   end
 end

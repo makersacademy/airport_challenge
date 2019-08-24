@@ -1,3 +1,0 @@
-class AirTrafficControl
-
-end
