@@ -19,8 +19,10 @@ describe Airport do
     end
     it "raises an error if airport is too full" do
       plane = Plane.new
-
       allow(subject).to receive(:rand).and_return(0.8) # not stormy
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land_plane(plane)
+      end
       expect{subject.land_plane(plane)}.to raise_error("Airport is full")
     end
   end
@@ -85,10 +87,10 @@ describe Airport do
     it "Airport class responds to full?" do
       expect(subject).to respond_to(:full?)
     end
-    it "returns true if airport if full" do
+    it "returns true if airport is full" do
       allow(subject).to receive(:rand).and_return(0.8) # not stormy
       Airport::DEFAULT_CAPACITY.times do
-        subject.land_plane Plane.new
+        subject.land_plane(Plane.new)
       end
       expect(subject.full?).to eq true
     end
