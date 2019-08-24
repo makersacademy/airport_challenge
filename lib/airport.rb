@@ -11,7 +11,7 @@ class Airport
   class BadWeather < RuntimeError
   end
 
-  DEFAULT_CAPACITY = 100
+  DEFAULT_CAPACITY = 100.freeze
 
   def initialize(capacity = DEFAULT_CAPACITY, weather_station)
     @capacity = capacity
