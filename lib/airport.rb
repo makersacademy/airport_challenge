@@ -6,6 +6,8 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "It is too stormy to land" if stormy?
+
     @all_planes << plane # appends Plane object to @all_planes
     @all_planes.last # returns last element of @all_planes
   end
