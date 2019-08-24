@@ -32,6 +32,10 @@ class Airport
     false
   end
 
+  def full?
+
+  end
+
 end
 
 
