@@ -33,7 +33,9 @@ class Airport
   end
 
   def full?
+    return true if @all_planes.size >= 20
 
+    false
   end
 
 end

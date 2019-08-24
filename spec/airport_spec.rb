@@ -87,7 +87,7 @@ describe Airport do
     end
     it "returns true if airport if full" do
       Airport::DEFAULT_CAPACITY.times do
-        station.land_plane Plane.new
+        subject.land_plane Plane.new
       end
       expect(subject.full?).to eq true
     end
