@@ -1,5 +1,7 @@
+require_relative "airport"
+
 class Plane
   def land(airport)
-    true
+    airport.receive_plane(self)
   end
 end

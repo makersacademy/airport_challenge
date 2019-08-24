@@ -6,6 +6,8 @@ describe Plane do
   end
 # refactor the below
   it 'can land at an airport' do
-    expect(subject.land("airport")).to eq true
+    airport = Airport.new
+    expect(subject.land(airport)).to eq (airport.receive_plane(self))
+
   end
 end
