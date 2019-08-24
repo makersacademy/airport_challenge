@@ -16,7 +16,7 @@ Airport Challenge
 Instructions
 ---------
 
-This is a small application that allows the user to create, land and take off planes from airports. In order to run this application, the user will need to require the three necessary files: './lib/airport.rb'; './lib/weather_station'; './lib/plane.rb'.
+This is a small application that allows the user to create, land and take off planes from airports. In order to run this application, the user will need to require the three necessary files in irb: './lib/airport'; './lib/weather_station'; './lib/plane.rb'.
 
 You can set up an airport as follows:
 
