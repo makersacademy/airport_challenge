@@ -1,8 +1,8 @@
 class Airport
-  @planes_in_airport
 
-  def initialize
+  def initialize(storm_chance = 20)
     @planes_in_airport = []
+    @storm_chance_percentage = storm_chance
   end
 
   # land planes at airport
@@ -20,6 +20,11 @@ class Airport
   def plane_in_airport?(search_plane)
     @planes_in_airport.each {|plane| return true if search_plane == plane}
     false
+  end
+
+  #lets you know if it's sunny out there
+  def is_it_sunny?
+    rand(100) < @storm_chance_percentage ? false : true
   end
 end
 
