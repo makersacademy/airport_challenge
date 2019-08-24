@@ -6,10 +6,11 @@ describe Plane do
   end
 
   subject { PlaneSpy.new }
-  let(:airport) { double('Airport', :take_off => nil) }
+  let(:airport) { double('Airport', :take_off => nil, :land => nil) }
 
   describe '#land' do
     it 'lands a plane at an airport' do
+      expect(airport).to receive(:land).with(subject)
       subject.land(at: airport)
       expect(subject.airport).not_to be_nil
     end
