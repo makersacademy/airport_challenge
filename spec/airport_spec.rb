@@ -4,7 +4,7 @@ describe Airport do
     it "Airport responded to #land_plane" do
       expect(subject).to respond_to(:land_plane)
     end
-    it "land_plane takes an argument" do
+    it "takes an argument" do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
   end
@@ -24,4 +24,8 @@ describe Weather do
       expect(subject.stormy?).to eq true
     end
   end
+end
+
+describe Plane do
+
 end

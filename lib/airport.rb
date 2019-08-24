@@ -10,3 +10,7 @@ class Weather
     false
   end
 end
+
+class Plane
+
+end
