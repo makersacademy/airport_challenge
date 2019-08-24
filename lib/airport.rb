@@ -11,7 +11,8 @@ class Airport
   end
 
   def takeoff_plane
-    @all_planes.pop # returns and removed last element of @all_planes
+    plane = @all_planes.pop # returns and removed last element of @all_planes
+    confirm_takeoff_plane(plane)
   end
 
   # return true if plane is not in @all_planes array
