@@ -8,7 +8,7 @@ describe Airport do
 
   subject { TestableAirport.new(2, weather_station) }
   let(:plane) { Plane.new('BA165') }
-  let(:weather_station) { double('WeatherStation', :weather => :sunny) }
+  let(:weather_station) { instance_double('WeatherStation', :weather => :sunny) }
 
   describe '#land' do
     it 'adds plane to planes array' do
