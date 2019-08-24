@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @planes = []
+    @stormy = [true, false].sample
   end
 
 end
