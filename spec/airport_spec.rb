@@ -7,6 +7,10 @@ describe Airport do
     it "takes an argument" do
       expect(subject).to respond_to(:land_plane).with(1).argument
     end
+    it "lands a plane" do
+      plane = Plane.new
+      expect(subject.land_plane(plane)).to eq(plane)
+    end
   end
 end
 
