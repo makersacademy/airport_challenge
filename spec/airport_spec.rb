@@ -1,6 +1,12 @@
 require 'airport'
+
 describe Airport do
+
+  let(:plane) { double(:plane, :passengers => []) }
+  
   it "can store planes" do
-    expect(subject.planes).to be_instance_of(Array)
+    subject.planes << plane
+    expect(subject.planes).to include(plane)
   end
+
 end
