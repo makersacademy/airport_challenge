@@ -42,4 +42,15 @@ describe Airport do
     plane1 = Plane.new
     expect {airport.takeoff_plane(plane1)}.to raise_error("It's too Stormy to take off")
   end
+
+  it "The plane can't land if it's stormy" do
+    airport = Airport.new(100)
+    plane1 = Plane.new
+    expect {airport.land_plane(plane1)}.to raise_error("It's too Stormy to land")
+  end
+
+  it "If the airport is full, don't allow a plane to land" do
+    3.times {subject.land_plane(Plane.new)}
+    expect{subject.land_plane(Plane.new)}.to raise_error("Airport is full")
+  end
 end
