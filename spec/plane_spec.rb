@@ -14,4 +14,16 @@ describe Plane do
     expect { plane.land }.to raise_error "Plane already landed"
   end
 
+  it 'can take off' do
+    plane = Plane.new
+    plane.land
+    plane.take_off
+    expect(plane.is_flying).to eq true
+  end
+
+  it 'will not take off if not already flying' do
+    plane = Plane.new
+    expect { plane.take_off }.to raise_error "Plane is already flying"
+  end
+
 end

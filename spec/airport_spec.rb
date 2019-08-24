@@ -20,8 +20,12 @@ describe Airport do
   it 'instructs a plane to take off from an airport' do
     plane = Plane.new
     airport = Airport.new
+    airport.track_plane(plane)
+    airport.instruct_landing(plane)
     airport.instruct_take_off(plane)
-    expect(plane.land).to eq false
+    expect(airport.planes).to_not include plane
   end
+
+
 
 end

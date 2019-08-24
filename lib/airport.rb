@@ -1,7 +1,6 @@
 class Airport
 
   attr_accessor :planes
-  attr_accessor :flying
 
   def initialize
     @planes = []
@@ -16,7 +15,8 @@ class Airport
   end
 
   def instruct_take_off(plane)
-    plane.is_flying
+    plane.take_off
+    @planes.pop
   end
 
 end
