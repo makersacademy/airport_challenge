@@ -6,13 +6,21 @@ class Airport
   end
 
   def land_plane(plane)
-    @all_planes << plane
-    @all_planes.last
+    @all_planes << plane # appends Plane object to @all_planes
+    @all_planes.last # returns last element of @all_planes
   end
 
   def takeoff_plane
-    @all_planes.pop
+    @all_planes.pop # returns and removed last element of @all_planes
   end
+
+  # return true if plane is not in @all_planes array
+  def confirm_takeoff_plane(plane)
+    return false if @all_planes.include? plane
+
+    true
+  end
+
 end
 
 class Weather

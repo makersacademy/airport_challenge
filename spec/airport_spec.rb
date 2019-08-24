@@ -23,6 +23,17 @@ describe Airport do
       expect(subject.takeoff_plane).to eq(plane)
     end
   end
+
+  describe "#confirm_takeoff_plane" do
+    it "Airport responded to #confirm_takeoff_plane" do
+      expect(subject).to respond_to(:confirm_takeoff_plane)
+    end
+    it "takes an argument" do
+      expect(subject).to respond_to(:confirm_takeoff_plane).with(1).argument
+    end
+  end
+
+
 end
 
 describe Weather do
