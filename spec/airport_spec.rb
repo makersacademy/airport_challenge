@@ -32,16 +32,16 @@ describe Airport do
   end
 
   describe '#landed?' do
+    context 'when plane has not landed' do
+      it 'is false' do
+        expect(subject.landed?(plane)).to eq false
+      end
+    end
+
     context 'when plane is already landed' do
       it 'is true' do
         subject.land(plane)
         expect(subject.landed?(plane)).to eq true
-      end
-    end
-
-    context 'when plan has not landed' do
-      it 'is false' do
-        expect(subject.landed?(plane)).to eq false
       end
     end
   end
@@ -53,7 +53,7 @@ describe Airport do
       end
     end
 
-    context 'when plane has landed' do
+    context 'when plane has already landed' do
       it 'removes plane from planes array' do
         subject.planes << plane
         subject.take_off(plane)
