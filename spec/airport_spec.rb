@@ -22,6 +22,14 @@ describe Airport do
       subject.land_plane(plane)
       expect(subject.takeoff_plane).to eq(true)
     end
+
+    it "raises an error if too stormy to take off" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      allow(subject).to receive(:rand).and_return(0.05)
+      expect(subject.stormy?).to eq true
+      expect{subject.takeoff_plane}.to raise_error("It is too stormy to take off")
+    end
   end
 
   describe "#confirm_takeoff_plane" do
@@ -44,23 +52,21 @@ describe Airport do
     end
   end
 
-
-end
-
-describe Weather do
-  describe '#random?' do
+  describe '#stormy?' do
     it "Weather class responded to stormy?" do
       expect(subject).to respond_to(:stormy?)
     end
     it "Returns false if #rand is 0.8 (0.8 < 0.1)" do
-      expect(subject).to receive(:rand).and_return(0.8)
+      allow(subject).to receive(:rand).and_return(0.8)
       expect(subject.stormy?).to eq false
     end
     it "Returns true if #rand is 0.05 (0.8 < 0.1)" do
-      expect(subject).to receive(:rand).and_return(0.05)
+      allow(subject).to receive(:rand).and_return(0.05)
       expect(subject.stormy?).to eq true
     end
   end
+
+
 end
 
 describe Plane do

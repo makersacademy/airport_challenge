@@ -11,6 +11,8 @@ class Airport
   end
 
   def takeoff_plane
+    fail "It is too stormy to take off" if stormy?
+
     plane = @all_planes.pop # returns and removed last element of @all_planes
     confirm_takeoff_plane(plane)
   end
@@ -22,15 +24,14 @@ class Airport
     true
   end
 
-end
-
-class Weather
   def stormy?
     return true if rand < 0.1
 
     false
   end
+
 end
+
 
 class Plane
 
