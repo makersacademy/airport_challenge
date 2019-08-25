@@ -29,6 +29,8 @@ class Airport
     !at_airport?(plane) # not at airport?
   end
 
+  private
+
   # return true if plane is in airport (a.k.a @all_planes array)
   def at_airport?(plane)
     all_planes.include?(plane)
@@ -38,8 +40,4 @@ class Airport
   def full?
     all_planes.size >= capacity
   end
-
-  private
-
-
 end

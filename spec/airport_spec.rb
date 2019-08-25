@@ -1,6 +1,5 @@
 require_relative "../lib/airport.rb"
 describe Airport do
-
   describe '#land_plane' do
     it "lands a plane and confirm that it is in airport" do
       plane = Plane.new
@@ -47,35 +46,6 @@ describe Airport do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       expect{subject.takeoff_plane(plane)}.to raise_error("Plane is not at airport!")
-    end
-  end
-
-  describe "#at_airport?" do
-    it "returns false if plane is not at airport" do
-      plane = Plane.new
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
-      subject.land_plane(plane)
-      subject.takeoff_plane(plane)
-      expect(subject.at_airport?(plane)).to eq false
-    end
-    it "returns true if plane is at airport" do
-      plane = Plane.new
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
-      subject.land_plane(plane)
-      expect(subject.at_airport?(plane)).to eq true
-    end
-  end
-
-  describe '#full?' do
-    it "returns true if airport is full" do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
-      Airport::DEFAULT_CAPACITY.times do
-        subject.land_plane(Plane.new)
-      end
-      expect(subject.full?).to eq true
-    end
-    it "returns false if airport is not full" do
-      expect(subject.full?).to eq false
     end
   end
 end
