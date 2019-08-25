@@ -30,3 +30,13 @@ Weather | conditions?
 
 4) I want to prevent landing when weather is stormy
 useful URL https://devblast.com/b/what-are-guard-clauses
+
+Objects  | Messages
+------------- | -------------
+Plane | land; take_off;
+Airport | receive_plane; release_plane;
+Weather | conditions?
+
+5) I want to prevent landing when the airport is full
+
+6) I would like a default airport capacity that can be overridden as appropriate

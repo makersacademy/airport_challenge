@@ -1,6 +1,12 @@
 require_relative "../lib/airport"
 
 describe Airport do
+  describe '#capacity'
+  it 'Airport capacity can be modified' do
+    airport = Airport.new(4)
+    expect(airport.capacity). to eq 4
+  end
+
   describe '#receive_plane'
   it "receives a plane" do
     expect(subject).to respond_to(:receive_plane).with(1).argument
@@ -21,6 +27,15 @@ describe Airport do
     expect { airport.receive_plane(plane) }. to raise_error 'Conditions not safe to land'
   end
 
+  describe '#full?'
+    it 'raises an error when hanger is full'do
+      plane = Plane.new
+      airport = Airport.new
+      allow(airport).to receive(:condition?) {true}
+      airport.receive_plane(plane)
+      airport.receive_plane(plane)
+      expect { airport.receive_plane(plane) }.to raise_error 'Airport full'
+    end
 
   describe '#release_plane'
   it 'releases plane so no longer in the hanger' do
