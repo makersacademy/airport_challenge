@@ -8,7 +8,6 @@ class Airport
 
   def land_plane(plane)
     fail "It is too stormy to land" if @weather.stormy?
-
     fail "Airport is full" if full?
     @all_planes << plane # appends Plane object to @all_planes
     @all_planes.last # returns last element of @all_planes
@@ -16,15 +15,16 @@ class Airport
 
   def takeoff_plane
     fail "It is too stormy to take off" if @weather.stormy?
-
     plane = @all_planes.pop # returns and removed last element of @all_planes
-    confirm_takeoff_plane(plane)
+    !at_airport?(plane) # not at airport?
   end
 
   # return true if plane is not in @all_planes array
-  def confirm_takeoff_plane(plane)
+  def at_airport?(plane)
     !@all_planes.include?(plane)
   end
+
+
 
 
   def full?

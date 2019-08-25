@@ -21,12 +21,12 @@ describe Airport do
       expect{subject.land_plane(plane)}.to raise_error("It is too stormy to land")
     end
     it "raises an error if airport is too full" do
-      plane = Plane.new
+
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       Airport::DEFAULT_CAPACITY.times do
-        subject.land_plane(plane)
+        subject.land_plane(Plane.new)
       end
-      expect{subject.land_plane(plane)}.to raise_error("Airport is full")
+      expect{subject.land_plane(Plane.new)}.to raise_error("Airport is full")
     end
   end
 
@@ -38,7 +38,7 @@ describe Airport do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       subject.land_plane(plane)
-      expect(subject.takeoff_plane).to eq(true)
+      expect(subject.takeoff_plane).to eq(false)
     end
 
     it "raises an error if too stormy to take off" do
@@ -50,25 +50,25 @@ describe Airport do
     end
   end
 
-  describe "#confirm_takeoff_plane" do
+  describe "#at_airport?" do
     it "Airport responded to #confirm_takeoff_plane" do
-      expect(subject).to respond_to(:confirm_takeoff_plane)
+      expect(subject).to respond_to(:at_airport?)
     end
     it "takes an argument" do
-      expect(subject).to respond_to(:confirm_takeoff_plane).with(1).argument
+      expect(subject).to respond_to(:at_airport?).with(1).argument
     end
     it "returns true if a plane has taken off" do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       subject.land_plane(plane)
       subject.takeoff_plane
-      expect(subject.confirm_takeoff_plane(plane)).to eq true
+      expect(subject.at_airport?(plane)).to eq true
     end
     it "returns false if a plane has taken off" do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       subject.land_plane(plane)
-      expect(subject.confirm_takeoff_plane(plane)).to eq false
+      expect(subject.at_airport?(plane)).to eq false
     end
   end
 
