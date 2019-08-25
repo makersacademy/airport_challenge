@@ -1,6 +1,9 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
+include Weather
+
   attr_reader :hanger
   def initialize
     @hanger = []
@@ -11,8 +14,7 @@ class Airport
   end
 
   def release_plane(plane)
-    fail 'Weather bad, no fly zone' if @hanger.size == 2
-    
+    fail 'Weather bad, no fly zone' unless condition?
     @hanger.delete(plane)
   end
 end
