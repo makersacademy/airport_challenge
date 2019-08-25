@@ -1,11 +1,4 @@
 class Airport
-  DEFAULT_CAPACITY = 20
-
-  # initialise Airport instance
-  def initialize
-    @all_planes = []
-    @weather = Weather.new
-  end
 
   # lands plane after checking #stormy? / #full? / #at_airport?
   def land_plane(plane)
@@ -33,5 +26,14 @@ class Airport
   def full?
     @all_planes.size >= DEFAULT_CAPACITY
   end
-end
 
+  private
+  DEFAULT_CAPACITY = 20
+
+  # initialise Airport instance
+  def initialize
+    @all_planes = []
+    @weather = Weather.new
+  end
+
+end
