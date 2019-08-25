@@ -1,9 +1,12 @@
+AIRPORT_CAPACITY = 100
+
 class Airport
 
   attr_accessor :planes
 
-  def initialize(weather)
+  def initialize(weather, capacity = AIRPORT_CAPACITY)
     @weather = weather
+    @capacity = capacity
     @planes = []
   end
 
@@ -11,9 +14,11 @@ class Airport
     @planes << plane
   end
 
-  def instruct_landing(plane)
+  def instruct_landing(plane, index = 0)
     fail "Stormy conditions" if stormy?
+    fail "Airport full" if full?
     plane.land
+    @planes
   end
 
   def instruct_take_off(plane)
@@ -26,6 +31,10 @@ private
 
   def stormy?
     @weather.weather_condition == :stormy
+  end
+
+  def full?
+    @planes.length == @capacity
   end
 
 end

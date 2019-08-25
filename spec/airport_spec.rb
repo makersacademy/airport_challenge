@@ -20,7 +20,6 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new(weather)
       airport.instruct_landing(plane)
-
       expect(plane.is_flying).to eq false
     end
 
@@ -29,6 +28,18 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new(weather)
       expect { airport.instruct_landing(plane) }.to raise_error "Stormy conditions"
+    end
+
+    it "will prevent a plane from landing when the airport is full" do
+      airport = Airport.new(weather)
+      allow(weather).to receive(:weather_condition) { :sunny }
+      expect {
+        101.times do
+          plane = Plane.new
+          airport.track_plane(plane)
+          airport.instruct_landing(plane)
+        end
+      }.to raise_error "Airport full"
     end
 
   end
