@@ -7,6 +7,7 @@ describe Plane do
   # refactor the below
   it 'can land at an airport' do
     airport = Airport.new
+    allow(airport).to receive(:condition?) { true }
     expect(subject.land(airport)).to eq airport.receive_plane(self)
   end
 

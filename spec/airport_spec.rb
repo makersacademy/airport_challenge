@@ -9,16 +9,26 @@ describe Airport do
   it "stores plane in the hanger" do
     plane = Plane.new
     airport = Airport.new
+    allow(airport).to receive(:condition?) { true }
     airport.receive_plane(plane)
     expect(airport.hanger).to eq [plane]
   end
 
+  it 'raises an error if weather not clear to land' do
+    plane = Plane.new
+    airport = Airport.new
+    allow(airport).to receive(:condition?) {false}
+    expect { airport.receive_plane(plane) }. to raise_error 'Conditions not safe to land'
+  end
+
+
   describe '#release_plane'
   it 'releases plane so no longer in the hanger' do
+
     airport = Airport.new
     plane = Plane.new
-    plane.land(airport)
     allow(airport).to receive(:condition?) { true }
+    plane.land(airport)
     airport.release_plane(plane)
     expect(airport.hanger).to eq []
   end

@@ -10,6 +10,7 @@ include Weather
   end
 
   def receive_plane(plane)
+    fail 'Conditions not safe to land' unless condition?
     @hanger << plane
   end
 
