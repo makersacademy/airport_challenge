@@ -14,7 +14,7 @@ describe Airport do
     context 'when there is space' do
       it 'stores plane' do
         subject.land(plane)
-        expect(subject.planes.first).to eq plane
+        expect(subject.planes).to include plane
       end
 
       context 'when plane is already landed' do
