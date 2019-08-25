@@ -17,7 +17,6 @@ describe Airport do
 
     it "instructs a plane to land at an airport" do
       allow(weather).to receive(:weather_condition) { :sunny }
-
       plane = Plane.new
       airport = Airport.new(weather)
       airport.instruct_landing(plane)
@@ -27,10 +26,8 @@ describe Airport do
 
     it "will prevent a plane from landing when the weather is stormy" do
       allow(weather).to receive(:weather_condition) { :stormy }
-
       plane = Plane.new
       airport = Airport.new(weather)
-
       expect { airport.instruct_landing(plane) }.to raise_error "Stormy conditions"
     end
 
@@ -40,22 +37,21 @@ describe Airport do
 
     it "instructs take off when the weather is sunny" do
       allow(weather).to receive(:weather_condition) { :sunny }
-
       plane = Plane.new
       airport = Airport.new(weather)
       airport.track_plane(plane)
       airport.instruct_landing(plane)
       airport.instruct_take_off(plane)
-
       expect(airport.planes).to_not include plane
     end
 
     it "will prevent take off when the weather is stormy" do
-      allow(weather).to receive(:weather_condition) { :stormy }
-
+      allow(weather).to receive(:weather_condition) { :sunny }
       plane = Plane.new
       airport = Airport.new(weather)
-
+      airport.track_plane(plane)
+      airport.instruct_landing(plane)
+      allow(weather).to receive(:weather_condition) { :stormy }
       expect { airport.instruct_take_off(plane) }.to raise_error "Stormy conditions"
     end
 
