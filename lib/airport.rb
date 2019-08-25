@@ -1,6 +1,6 @@
 class Airport
 
-  def initialize(storm_chance = 20, capacity = 3)
+  def initialize(capacity = 3, storm_chance = 20)
     @planes_in_airport = []
     @airport_capacity = capacity
     @storm_chance_percentage = storm_chance
@@ -9,18 +9,13 @@ class Airport
   # land planes at airport
   def land_plane(plane)
     raise "Airport is full" if is_airport_full?
-
-    if is_it_sunny?
-      @planes_in_airport << plane
-    else
-      raise "It's too Stormy to land"
-    end
-
+    raise "It's too Stormy to land" if !is_it_sunny?
+    raise "Plane is aready at Airport" if plane_in_airport?(plane)
+    @planes_in_airport << plane
   end
 
   # Allow planes to take off
   def takeoff_plane(plane)
-    p @planes_in_airport
     raise "Plane not in the airport" if !plane_in_airport?(plane)
     raise "It's too Stormy to take off" if !is_it_sunny?
     @planes_in_airport.delete(plane)

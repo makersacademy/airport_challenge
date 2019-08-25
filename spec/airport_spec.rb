@@ -2,7 +2,7 @@ require "airport.rb"
 
 describe Airport do
   #Default tests never get stormy weather returned
-  subject { Airport.new(0) }
+  subject { Airport.new(3,0) }
 
   it "Test allow airplane to land at airport" do
     plane1 = Plane.new
@@ -33,8 +33,8 @@ describe Airport do
   end
 
   it "The weather returns false when 100% chance of storm" do
-    airport = Airport.new(100)
-    expect(airport.is_it_sunny?).to eq(false)
+    subject.instance_variable_set(:@storm_chance_percentage, 100)
+    expect(subject.is_it_sunny?).to eq(false)
   end
 
   it "The plane can't take off if it's stormy" do
@@ -45,9 +45,10 @@ describe Airport do
   end
 
   it "The plane can't land if it's stormy" do
-    airport = Airport.new(100)
     plane1 = Plane.new
-    expect {airport.land_plane(plane1)}.to raise_error("It's too Stormy to land")
+    subject.instance_variable_set(:@planes_in_airport, [plane1])
+    subject.instance_variable_set(:@storm_chance_percentage, 100)
+    expect {subject.land_plane(plane1)}.to raise_error("It's too Stormy to land")
   end
 
   it "If the airport is full, with defauly capacity of 3, don't allow a plane to land" do
@@ -56,8 +57,14 @@ describe Airport do
   end
 
   it "If the airport is full, with override capacity of 100, don't allow a plane to land" do
-    airport = Airport.new(0,100)
-    100.times {airport.land_plane(Plane.new)}
-    expect{airport.land_plane(Plane.new)}.to raise_error("Airport is full")
+    subject.instance_variable_set(:@airport_capacity, 100)
+    100.times {subject.land_plane(Plane.new)}
+    expect{subject.land_plane(Plane.new)}.to raise_error("Airport is full")
+  end
+
+  it "Can't land plane if it's already at the airport" do
+    plane1 = Plane.new
+    subject.instance_variable_set(:@planes_in_airport, [plane1])
+    expect{subject.land_plane(plane1)}.to raise_error("Plane is aready at Airport")
   end
 end
