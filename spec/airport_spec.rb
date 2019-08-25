@@ -13,7 +13,7 @@ describe Airport do
   end
 
   describe '#release_plane'
-  it 'releases plane from hanger' do
+  it 'releases plane so no longer in the hanger' do
     airport = Airport.new
     plane = Plane.new
     plane.land(airport)

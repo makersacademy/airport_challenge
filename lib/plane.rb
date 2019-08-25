@@ -5,6 +5,7 @@ class Plane
     airport.receive_plane(self)
   end
 
-  def take_off
+  def take_off(airport)
+    airport.release_plane(self)
   end
 end
