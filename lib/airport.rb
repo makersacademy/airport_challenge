@@ -30,7 +30,7 @@ class Airport
 
   #check if plane is currently in the airport
   def plane_in_airport?(search_plane)
-    @planes_in_airport.each {|plane| return true if search_plane == plane}
+    return true if @planes_in_airport.include?(search_plane)
     false
   end
 
