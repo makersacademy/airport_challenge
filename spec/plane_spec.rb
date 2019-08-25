@@ -1,25 +1,26 @@
 require_relative "../lib/plane"
 
 describe Plane do
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+
   it 'can land' do
-    expect(subject).to respond_to(:land).with(1).argument
+    expect(plane).to respond_to(:land).with(1).argument
   end
-  # refactor the below
+
   it 'can land at an airport' do
-    airport = Airport.new
     allow(airport).to receive(:condition?) { true }
-    expect(subject.land(airport)).to eq airport.receive_plane(self)
+    expect(plane.land(airport)).to eq airport.receive_plane(self)
   end
 
   describe '#take_off' do
     it 'plane responds to take_off' do
-      expect(subject).to respond_to(:take_off)
+      expect(plane).to respond_to(:take_off)
     end
 
     it 'tells the airport that the plane has been released' do
-      airport = Airport.new
       allow(airport).to receive(:condition?) { true }
-      expect(subject.take_off(airport)).to eq 'Plane has departed the airport'
+      expect(plane.take_off(airport)).to eq 'Plane has departed the airport'
     end
   end
 end
