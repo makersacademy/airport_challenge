@@ -10,14 +10,14 @@ RSpec.describe Plane do
   context "when not stormy" do
     it "can land" do
       subject.land(airport)
-      expect(airport.planes).to include(subject)
+      expect(subject).to be_parked_in(airport)
     end
 
     it "can take_off" do
       allow(airport).to receive(:confirm_departure)
       subject.land(airport)
       subject.take_off(airport)
-      expect(airport.planes).to_not include(subject)
+      expect(subject).to_not be_parked_in(airport)
     end
 
   end
@@ -27,13 +27,13 @@ RSpec.describe Plane do
 
     it "planes cannot land" do
       subject.land(airport)
-      expect(airport.planes).to_not include(subject)
+      expect(subject).to_not be_parked_in(airport)
     end
 
     it "planes cannot take_off" do
       airport.planes << subject
       subject.take_off(airport)
-      expect(airport.planes).to include(subject)
+      expect(subject).to be_parked_in(airport)
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe Plane do
 
     it "cannot take_off from airport it's not in" do
       subject.land(airport2)
-      expect(airport2.planes).to include(subject)
+      expect(subject).to be_parked_in(airport2)
       expect(subject.take_off(airport)).to eq("#{subject} not at this airport")
     end
 
