@@ -10,7 +10,7 @@ describe Airport do
   end
 
   it "can confirm_departure" do
-    allow(plane).to receive(:parcked_in?) { false }
+    allow(plane).to receive(:parked_in?) { false }
     subject.planes << plane
     subject.stormy = false
     subject.planes.pop
