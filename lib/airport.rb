@@ -1,35 +1,36 @@
 class Airport
   DEFAULT_CAPACITY = 20
 
+  # initialise Airport instance
   def initialize
     @all_planes = []
     @weather = Weather.new
   end
 
+  # lands plane after checking #stormy? / #full? / #at_airport?
   def land_plane(plane)
     fail "It is too stormy to land" if @weather.stormy?
     fail "Airport is full" if full?
+    fail "Plane is already at airport!" if at_airport?(plane)
     @all_planes << plane # appends Plane object to @all_planes
-    @all_planes.last # returns last element of @all_planes
+    at_airport?(plane) # confirms plane is at airport
   end
 
-  def takeoff_plane
+  # takes off the most recent plane that has landed after checking #stormy?
+  def takeoff_plane(plane)
     fail "It is too stormy to take off" if @weather.stormy?
-    plane = @all_planes.pop # returns and removed last element of @all_planes
+    @all_planes.delete(plane) # returns and removed last element of @all_planes
     !at_airport?(plane) # not at airport?
   end
 
-  # return true if plane is not in @all_planes array
+  # return true if plane is in airport (a.k.a @all_planes array)
   def at_airport?(plane)
-    !@all_planes.include?(plane)
+    @all_planes.include?(plane)
   end
 
-
-
-
+  # return true if airport is full
   def full?
     @all_planes.size >= DEFAULT_CAPACITY
   end
-
 end
 
