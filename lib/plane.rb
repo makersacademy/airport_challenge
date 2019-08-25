@@ -13,6 +13,7 @@ class Plane
   def land(airport)
     return "Cannot land due to poor weather" if airport.stormy
     return "#{self} not currently in the air" if @landed
+    return "no space to land" if airport.full?
 
     airport.planes << self
     @landed = true if parked_in?(airport)

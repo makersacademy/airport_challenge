@@ -1,7 +1,12 @@
 require 'plane'
 
 RSpec.describe Plane do
-  let(:airport) { double(:airport, :planes => [], :stormy => false) }
+  let(:airport) { double(
+    :airport,
+    :planes => [],
+    :stormy => false,
+    :full? => false)
+  }
 
   it "can hold passengers" do
     expect(subject.passengers).to be_instance_of(Array)
@@ -9,6 +14,7 @@ RSpec.describe Plane do
 
   context "when not stormy" do
     it "can land" do
+      # allow(airport).to receive(:full?) { false }
       subject.land(airport)
       expect(subject).to be_parked_in(airport)
     end
@@ -17,20 +23,25 @@ RSpec.describe Plane do
       allow(airport).to receive(:confirm_departure)
       subject.land(airport)
       subject.take_off(airport)
-      expect(subject).to_not be_parked_in(airport)
+      expect(subject).not_to be_parked_in(airport)
     end
 
   end
 
   context "when stormy" do
-    let(:airport) { double(:airport, :planes => [], :stormy => true) }
+    let(:airport) { double(
+      :airport,
+      :planes => [],
+      :stormy => true,
+      :full? => false)
+    }
 
-    it "planes cannot land" do
+    it "cannot land" do
       subject.land(airport)
-      expect(subject).to_not be_parked_in(airport)
+      expect(subject).not_to be_parked_in(airport)
     end
 
-    it "planes cannot take_off" do
+    it "cannot take_off" do
       airport.planes << subject
       subject.take_off(airport)
       expect(subject).to be_parked_in(airport)
@@ -38,7 +49,18 @@ RSpec.describe Plane do
   end
 
   context "edge cases" do
-    let(:airport2) { double(:airport, :planes => [], :stormy => false) }
+    let(:airport2) { double(
+      :airport,
+      :planes => [],
+      :stormy => false,
+      :full? => false)
+    }
+    let(:full_airport) { double(
+      :airport,
+      :planes => [],
+      :stormy => false,
+      :full? => true)
+    }
 
     it "cannot land when already in airport" do
       2.times { subject.land(airport) }
@@ -53,6 +75,11 @@ RSpec.describe Plane do
       subject.land(airport2)
       expect(subject).to be_parked_in(airport2)
       expect(subject.take_off(airport)).to eq("#{subject} not at this airport")
+    end
+
+    it "cannot land in a full airport" do
+      subject.land(full_airport)
+      expect(full_airport.planes).not_to include(subject)
     end
 
   end
