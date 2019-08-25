@@ -9,6 +9,7 @@ class Plane
 
   def take_off_from(airport, weather)
     fail 'Take off not allowed due to stormy weather' if weather.stormy? == true
+    fail 'Plane is not at the airport' if airport.contains?(self) == false
   end
 
   def taken_off?

@@ -17,4 +17,8 @@ class Airport
     true if @planes_array.length == @capacity
   end
 
+  def contains?(plane)
+    @planes_array.include?(plane) ? true : false
+  end
+
 end

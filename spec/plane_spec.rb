@@ -25,12 +25,21 @@ describe Plane do
   describe '#take off' do
     it "confirms that it has taken off" do
       allow(weather).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:contains?).and_return(true)
       subject.take_off_from(airport, weather)
       expect(subject.taken_off?).to eq true
     end
     it "prevents takeoff when stormy" do
       allow(weather).to receive(:stormy?).and_return(true)
       expect{ subject.take_off_from(airport, weather) }.to raise_error 'Take off not allowed due to stormy weather'
+    end
+    it "can only take off from airport it is in" do
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:land)
+      subject.land_at(airport, weather)
+      another_airport = Airport.new
+      expect{ subject.take_off_from(another_airport, weather) }.to raise_error 'Plane is not at the airport'
     end
   end
 
