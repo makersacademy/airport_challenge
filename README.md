@@ -16,7 +16,7 @@ Airport Challenge
 Instructions
 ---------
 
-This is a small application that allows the user to create, land and take off planes from airports. In order to run this application, the user will need to require the three necessary files: './lib/airport.rb'; './lib/weather_station'; './lib/plane.rb'.
+This is a small application that allows the user to create, land and take off planes from airports. In order to run this application, the user will need to require the three necessary files in irb: './lib/airport'; './lib/weather_station'; './lib/plane.rb'.
 
 You can set up an airport as follows:
 
@@ -91,5 +91,5 @@ There were three alternative strategies I considered:
 
 2. Add methods that would allow the client to query the Airport before asking to do things - this would allow the responsibility to be moved up the chain to the client, who would be expected to ask if an operation was permissible before doing so. However, given that this is an airport, and lives are at stake, the defensive exception raising behaviour would still need to remain in place. This would therefore add complexity for little clear gain.
 
-3. Create a system whereby clients of the Airport can query it for a list of affordances (using the command pattern) - this would allow the Airport to determine what client's *can* do rather than what they *cannot* do. However, implementing this in a way that would be entirely say (for example, to make sure that clients could not store previously allowable affordances than then reuse them inappropriately) would be a major undertaking and would make no sense in the context of such a tiny little demo
+3. Create a system whereby clients of the Airport can query it for a list of affordances (using the command pattern) - this would allow the Airport to determine what clients *can* do rather than what they *cannot* do. However, implementing this in a way that would be entirely say (for example, to make sure that clients could not store previously allowable affordances to then reuse them inappropriately) would be a major undertaking and would make no sense in the context of such a tiny little demo
 
