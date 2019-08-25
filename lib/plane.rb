@@ -26,5 +26,4 @@ class Plane
     raise "Plane can't take off, it's already flying" if @status == FLYING
     @status = FLYING
   end
-
 end
