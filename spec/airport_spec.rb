@@ -38,9 +38,10 @@ describe Airport do
   end
 
   it "The plane can't take off if it's stormy" do
-    airport = Airport.new(100)
     plane1 = Plane.new
-    expect {airport.takeoff_plane(plane1)}.to raise_error("It's too Stormy to take off")
+    subject.instance_variable_set(:@planes_in_airport, [plane1])
+    subject.instance_variable_set(:@storm_chance_percentage, 100)
+    expect {subject.takeoff_plane(plane1)}.to raise_error("It's too Stormy to take off")
   end
 
   it "The plane can't land if it's stormy" do
@@ -49,8 +50,14 @@ describe Airport do
     expect {airport.land_plane(plane1)}.to raise_error("It's too Stormy to land")
   end
 
-  it "If the airport is full, don't allow a plane to land" do
+  it "If the airport is full, with defauly capacity of 3, don't allow a plane to land" do
     3.times {subject.land_plane(Plane.new)}
     expect{subject.land_plane(Plane.new)}.to raise_error("Airport is full")
+  end
+
+  it "If the airport is full, with override capacity of 100, don't allow a plane to land" do
+    airport = Airport.new(0,100)
+    100.times {airport.land_plane(Plane.new)}
+    expect{airport.land_plane(Plane.new)}.to raise_error("Airport is full")
   end
 end
