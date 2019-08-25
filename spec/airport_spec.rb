@@ -21,4 +21,12 @@ describe Airport do
     expect(airport.hanger).to eq []
   end
 
+  it 'raises error if weather is not clear to fly' do
+    airport = Airport.new
+    plane = Plane.new
+    plane2 = Plane.new
+    plane.land(airport)
+    plane2.land(airport)
+    expect { airport.release_plane(plane) }.to raise_error 'Weather bad, no fly zone'
+  end
 end

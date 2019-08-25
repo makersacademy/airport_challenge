@@ -11,6 +11,8 @@ class Airport
   end
 
   def release_plane(plane)
+    fail 'Weather bad, no fly zone' if @hanger.size == 2
+    
     @hanger.delete(plane)
   end
 end
