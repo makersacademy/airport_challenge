@@ -23,19 +23,19 @@ describe Airport do
   it 'raises an error if weather not clear to land' do
     plane = Plane.new
     airport = Airport.new
-    allow(airport).to receive(:condition?) {false}
+    allow(airport).to receive(:condition?) { false }
     expect { airport.receive_plane(plane) }. to raise_error 'Conditions not safe to land'
   end
 
   describe '#full?'
-    it 'raises an error when hanger is full'do
-      plane = Plane.new
-      airport = Airport.new
-      allow(airport).to receive(:condition?) {true}
-      airport.receive_plane(plane)
-      airport.receive_plane(plane)
-      expect { airport.receive_plane(plane) }.to raise_error 'Airport full'
-    end
+  it 'raises an error when hanger is full' do
+    plane = Plane.new
+    airport = Airport.new
+    allow(airport).to receive(:condition?) { true }
+    airport.receive_plane(plane)
+    airport.receive_plane(plane)
+    expect { airport.receive_plane(plane) }.to raise_error 'Airport full'
+  end
 
   describe '#release_plane'
   it 'releases plane so no longer in the hanger' do
