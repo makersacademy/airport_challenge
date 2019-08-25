@@ -16,10 +16,10 @@ describe Plane do
       expect(subject).to respond_to(:take_off)
     end
 
-    it 'tells the airport to release plane' do
+    it 'tells the airport that the plane has been released' do
       airport = Airport.new
       allow(airport).to receive(:condition?) { true }
-      expect(subject.take_off(airport)).to eq airport.release_plane(self)
+      expect(subject.take_off(airport)).to eq 'Plane has departed the airport'
     end
   end
 end

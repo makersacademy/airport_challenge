@@ -7,5 +7,6 @@ class Plane
 
   def take_off(airport)
     airport.release_plane(self)
+    return "Plane has departed the airport"
   end
 end
