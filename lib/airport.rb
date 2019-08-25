@@ -12,6 +12,7 @@ class Airport
   end
 
   def instruct_landing(plane)
+    fail "Stormy conditions" if stormy?
     plane.land
   end
 
