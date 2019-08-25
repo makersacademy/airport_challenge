@@ -34,6 +34,17 @@ describe Airport do
       }.to raise_error "Airport full"
     end
 
+    it "will override the default airport capacity" do
+      airport = Airport.new(weather, 68)
+      allow(weather).to receive(:weather_condition) { :sunny }
+      expect {
+        69.times do
+          plane = Plane.new
+          airport.instruct_landing(plane)
+        end
+      }.to raise_error "Airport full"
+    end
+
   end
 
   describe "takeoff" do
