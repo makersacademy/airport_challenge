@@ -48,4 +48,17 @@ describe Airport do
       expect{subject.takeoff_plane(plane)}.to raise_error("Plane is not at airport!")
     end
   end
+
+  context 'When multiply airports exist' do
+    it 'a plane that lands at airport_a cannot take off from airport_b' do
+      airport_a = Airport.new
+      airport_b = Airport.new
+      plane_a = Plane.new
+      plane_b = Plane.new
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
+      airport_a.land_plane(plane_a)
+      airport_b.land_plane(plane_b)
+      expect{airport_a.takeoff_plane(plane_b)}.to raise_error("Plane is not at airport!")
+    end
+  end
 end
