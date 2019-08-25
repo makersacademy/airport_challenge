@@ -1,7 +1,7 @@
 class Plane
 
   def landed
-    true
+    @flying = false
   end
 
   def taken_off
