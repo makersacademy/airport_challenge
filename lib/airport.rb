@@ -16,9 +16,10 @@ class Airport
     at_airport?(plane) # confirms plane is at airport
   end
 
-  # takes off the most recent plane that has landed after checking #stormy?
+  # takes off plane after checking #stormy? !#at_airport?
   def takeoff_plane(plane)
     fail "It is too stormy to take off" if @weather.stormy?
+    fail "Plane is not at airport!" if !at_airport?(plane)
     @all_planes.delete(plane) # returns and removed last element of @all_planes
     !at_airport?(plane) # not at airport?
   end

@@ -2,13 +2,7 @@ require_relative "../lib/airport.rb"
 describe Airport do
 
   describe '#land_plane' do
-    it "Airport responded to #land_plane" do
-      expect(subject).to respond_to(:land_plane)
-    end
-    it "takes an argument" do
-      expect(subject).to respond_to(:land_plane).with(1).argument
-    end
-    it "lands a plane" do
+    it "lands a plane and confirm that it is in airport" do
       plane = Plane.new
       weather = Weather.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
@@ -36,16 +30,12 @@ describe Airport do
   end
 
   describe '#takeoff_plane' do
-    it "Airport responded to #takeoff_plane" do
-      expect(subject).to respond_to(:takeoff_plane)
-    end
-    it "confirms that the plane has taken off" do
+    it "confirms that the plane has taken off and no longer at airport" do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       subject.land_plane(plane)
       expect(subject.takeoff_plane(plane)).to eq(true)
     end
-
     it "raises an error if too stormy to take off" do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
@@ -53,15 +43,14 @@ describe Airport do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true) # now stormy
       expect{subject.takeoff_plane(plane)}.to raise_error("It is too stormy to take off")
     end
+    it "raises an error if plane is not at airport" do
+      plane = Plane.new
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
+      expect{subject.takeoff_plane(plane)}.to raise_error("Plane is not at airport!")
+    end
   end
 
   describe "#at_airport?" do
-    it "Airport responded to #confirm_takeoff_plane" do
-      expect(subject).to respond_to(:at_airport?)
-    end
-    it "takes an argument" do
-      expect(subject).to respond_to(:at_airport?).with(1).argument
-    end
     it "returns false if plane is not at airport" do
       plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
@@ -77,12 +66,7 @@ describe Airport do
     end
   end
 
-
-
   describe '#full?' do
-    it "Airport class responds to full?" do
-      expect(subject).to respond_to(:full?)
-    end
     it "returns true if airport is full" do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false) # not stormy
       Airport::DEFAULT_CAPACITY.times do
@@ -91,7 +75,6 @@ describe Airport do
       expect(subject.full?).to eq true
     end
     it "returns false if airport is not full" do
-
       expect(subject.full?).to eq false
     end
   end

@@ -2,7 +2,7 @@ require_relative "../lib/weather.rb"
 
 describe Weather do
   describe '#stormy?' do
-    it "Airport class responded to stormy?" do
+    it "Weather class responded to stormy?" do
       expect(subject).to respond_to(:stormy?)
     end
     it "Returns false if #rand is 0.8 (0.8 < 0.1)" do
