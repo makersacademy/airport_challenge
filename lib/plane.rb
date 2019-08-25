@@ -6,24 +6,27 @@ class Plane
 
   def initialize
     @passengers = []
+    @landed = false
   end
 
   def land(airport)
     return "Cannot land due to poor weather" if airport.stormy
+    return "#{self} not currently in the air" if @landed
 
     airport.planes << self
+    @landed = true if parked_in(airport)
   end
 
   def take_off(airport)
     return "Cannot take off due to stormy weather" if airport.stormy
-
+    return "#{self} not at this airport" unless parked_in(airport)
+    
     airport.planes.delete(self)
-    check_departure(airport)
+    airport.confirm_departure(self)
+    @landed = false
   end
 
-  def check_departure(airport)
-    return "#{self} has failed to depart" if airport.planes.include?(self)
-
-    "#{self} has successfully departed"
+  def parked_in(airport)
+    airport.planes.include?(self)
   end
 end
