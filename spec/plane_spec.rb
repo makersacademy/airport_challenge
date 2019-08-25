@@ -1,12 +1,15 @@
 require 'airport'
 require 'plane'
 
-describe 'Plane' do
+describe Plane do
     let(:airport) { Airport.new }
 
-    it 'checks whether a plane has departed' do
+    it 'checks whether a particular plane has departed from airport' do
+        airport.land(subject)
         expect(airport.take_off(subject)).to eq(subject)
-        expect(subject).to respond_to(:departed?)
     end
 
+    it 'checks whether a plane instance has departed' do
+        expect(subject).to respond_to(:departed?)
+    end
 end

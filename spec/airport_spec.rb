@@ -2,9 +2,9 @@ require 'airport'
 require 'plane'
 
 
-describe 'Airport' do
+describe Airport do
     let(:plane) { Plane.new }
-    
+
     it 'instructs a plane to land at the airport' do
         expect(subject).to respond_to(:land).with(1).argument
     end
@@ -14,6 +14,7 @@ describe 'Airport' do
     end
 
     it 'checks whether a plane that has taken off is no longer at the airport' do
+        subject.land(plane)
         subject.take_off(plane)
         expect(subject.planes).not_to include(plane)
     end
@@ -31,13 +32,13 @@ describe 'Airport' do
     end
 
     it 'raises exception if land is attempted when airport is full' do
-        expect{subject.land(plane)}.to raise_error('Cannot land, airport full') if subject.planes.size == capacity
+        expect{subject.land(plane)}.to raise_error('Cannot land, airport full') if subject.planes.size == subject.capacity
     end
 
     it 'allows default capacity of an airport to be overridden if required' do
         random_capacity = Random.rand(1000)
         subject = Airport.new(random_capacity)
-        expect(subject.capacity).to_eq random_capacity
+        expect(subject.capacity).to eq(random_capacity)
     end
 
 end
