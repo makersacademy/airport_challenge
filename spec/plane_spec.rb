@@ -5,12 +5,21 @@ describe Plane do
   let (:airport) { double :airport }
   let (:weather) { double :weather }
 
-  it { is_expected.to respond_to(:land_at).with(1).arguments }
+  it { is_expected.to respond_to(:land_at).with(2).arguments }
   it { is_expected.to respond_to(:take_off_from).with(2).arguments}
   it { is_expected.to respond_to(:taken_off?) }
 
-  it "lands at the airport" do
-    expect(subject.land_at(airport)).to eq true
+  describe '#landing' do
+    it "lands at the airport" do
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:land)
+      expect(subject.land_at(airport, weather)).to eq true
+    end
+    it "prevents landing when stormy" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{ subject.land_at(airport, weather)}.to raise_error 'Landing not allowed due to stormy weather'
+    end
   end
 
   describe '#take off' do

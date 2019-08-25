@@ -1,6 +1,9 @@
 class Plane
 
-  def land_at(airport)
+  def land_at(airport, weather)
+    fail 'Landing not allowed due to stormy weather' if weather.stormy? == true
+    fail 'Landing not permitted as airport is full' if airport.full? == true
+    airport.land(self)
     true
   end
 
