@@ -1,6 +1,6 @@
 require 'plane'
 
-describe Plane do
+RSpec.describe Plane do
   let(:airport) { double(:airport, :planes => [], :stormy => false) }
 
   it "can hold passengers" do
@@ -19,6 +19,7 @@ describe Plane do
       subject.take_off(airport)
       expect(airport.planes).to_not include(subject)
     end
+
   end
 
   context "when stormy" do
