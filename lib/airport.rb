@@ -21,7 +21,7 @@ class Airport
     raise "Plane not in the airport" if !plane_in_airport?(plane)
     raise "It's too Stormy to take off" if !is_it_sunny?
     raise "plane not at this airport" if plane.get_airport != @airport_name
-    plane.take_off
+    plane.take_off(@airport_name)
     @planes_in_airport.delete(plane)
     plane_in_airport?(plane)
   end
