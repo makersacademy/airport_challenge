@@ -1,3 +1,62 @@
+## Airport Challenge - Week 1
+
+This is the first weekend challenge at Makers Academy, where we've been tasked to write software to address some user stories. The aim of the task is to consolidate the week's key goals and learnt concepts.
+
+The learning objective is to implement TDD, encapsulation and OOP to write the software, including learning best practice in Rspec through Rubocop.
+
+My approach was to first breakdown each user story, map out which class/methods were needed and then write a test Red, Green, Refactor. I then moved on to the next user story. At the end I refactored the whole test.
+
+```
+1) instruct a plane to land at an airport
+
+Objects  | Messages
+------------- | -------------
+Plane | land;
+Airport | receive_plane
+
+2) instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+Objects  | Messages
+------------- | -------------
+Plane | land; take_off;
+Airport |receive_plane; release_plane;
+
+3) I want to prevent takeoff when weather is stormy
+useful URL https://devblast.com/b/what-are-guard-clauses
+
+Objects  | Messages
+------------- | -------------
+Plane | land; take_off;
+Airport | receive_plane; release_plane;
+Weather | conditions?
+
+4) I want to prevent landing when weather is stormy
+useful URL https://devblast.com/b/what-are-guard-clauses
+
+Objects  | Messages
+------------- | -------------
+Plane | land; take_off;
+Airport | receive_plane; release_plane;
+Weather | conditions?
+
+5) I want to prevent landing when the airport is full
+
+Objects  | Messages
+------------- | -------------
+Plane | land; take_off;
+Airport | receive_plane; release_plane;
+Weather | conditions?
+
+6) I would like a default airport capacity that can be overridden as appropriate.
+
+Edgecases:
+
+planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+
+
+## Original Instructions
+
 Airport Challenge
 =================
 
@@ -36,25 +95,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +132,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
