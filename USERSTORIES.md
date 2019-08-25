@@ -19,5 +19,5 @@ Plane | land; take_off;
 Airport | receive_plane; release_plane;
 Weather | can_fly?
 
-3) I want to prevent takeoff when weather is stormy]
+3) I want to prevent takeoff when weather is stormy
 useful URL https://devblast.com/b/what-are-guard-clauses
