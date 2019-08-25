@@ -6,13 +6,6 @@ describe Airport do
 
   let (:weather) { double :weather }
 
-  it "tracks a plane that is flying to it" do
-    plane = Plane.new
-    airport = Airport.new(weather)
-    airport.track_plane(plane)
-    expect(airport.planes).to include plane
-  end
-
   describe "landing" do
 
     it "instructs a plane to land at an airport" do
@@ -36,7 +29,6 @@ describe Airport do
       expect {
         101.times do
           plane = Plane.new
-          airport.track_plane(plane)
           airport.instruct_landing(plane)
         end
       }.to raise_error "Airport full"
@@ -50,7 +42,6 @@ describe Airport do
       allow(weather).to receive(:weather_condition) { :sunny }
       plane = Plane.new
       airport = Airport.new(weather)
-      airport.track_plane(plane)
       airport.instruct_landing(plane)
       airport.instruct_take_off(plane)
       expect(airport.planes).to_not include plane
@@ -60,7 +51,6 @@ describe Airport do
       allow(weather).to receive(:weather_condition) { :sunny }
       plane = Plane.new
       airport = Airport.new(weather)
-      airport.track_plane(plane)
       airport.instruct_landing(plane)
       allow(weather).to receive(:weather_condition) { :stormy }
       expect { airport.instruct_take_off(plane) }.to raise_error "Stormy conditions"

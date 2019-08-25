@@ -10,15 +10,11 @@ class Airport
     @planes = []
   end
 
-  def track_plane(plane)
-    @planes << plane
-  end
-
-  def instruct_landing(plane, index = 0)
+  def instruct_landing(plane)
     fail "Stormy conditions" if stormy?
     fail "Airport full" if full?
     plane.land
-    @planes
+    @planes << plane
   end
 
   def instruct_take_off(plane)
