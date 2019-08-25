@@ -2,7 +2,8 @@ class Airport
 
   attr_accessor :planes
 
-  def initialize
+  def initialize(weather)
+    @weather = weather
     @planes = []
   end
 
@@ -15,8 +16,15 @@ class Airport
   end
 
   def instruct_take_off(plane)
+    fail "Stormy conditions" if stormy?
     plane.take_off
     @planes.pop
+  end
+
+private
+
+  def stormy?
+    @weather.weather_condition == :stormy
   end
 
 end
