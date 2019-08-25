@@ -9,13 +9,16 @@ class Airport
     @capacity = capacity
   end
 
-  def take_off
-    fail 'No plane at airport' if empty?
-    @planes.delete_at(rand(@planes.size))
+  def take_off(plane)
+    fail 'Plane not in this airport' unless parked?(plane)
+
+    plane.taken_off
+    @planes.delete(plane)
   end
 
   def land(plane)
     fail "Airport full" if full?
+    fail "Plane already landed" if parked?(plane)
     @planes << plane
   end
 
@@ -24,8 +27,8 @@ class Airport
   def full?
     @planes.size >= @capacity
   end
-
-  def empty?
-    @planes.empty?
+  
+  def parked?(plane)
+    @planes.include? plane
   end
 end
