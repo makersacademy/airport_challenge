@@ -17,6 +17,7 @@ describe Plane do
 
     it 'tells the airport to release plane' do
       airport = Airport.new
+      allow(airport).to receive(:condition?) { true }
       expect(subject.take_off(airport)).to eq airport.release_plane(self)
     end
   end

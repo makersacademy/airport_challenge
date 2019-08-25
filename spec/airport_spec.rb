@@ -12,12 +12,13 @@ describe Airport do
     airport.receive_plane(plane)
     expect(airport.hanger).to eq [plane]
   end
-  
+
   describe '#release_plane'
   it 'releases plane so no longer in the hanger' do
     airport = Airport.new
     plane = Plane.new
     plane.land(airport)
+    allow(airport).to receive(:condition?) { true }
     airport.release_plane(plane)
     expect(airport.hanger).to eq []
   end
@@ -25,6 +26,7 @@ describe Airport do
   it 'raises error if weather is not clear to fly' do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:condition?) { false }
     expect { airport.release_plane(plane) }.to raise_error 'Weather bad, no fly zone'
   end
 end
