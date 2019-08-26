@@ -11,4 +11,8 @@ describe Weather do
     expect(subject.weather_forcast).to eq 'stormy'
   end
 
+  it 'respondes to method random_weather' do
+    expect(subject).to respond_to :random_weather
+  end
+
 end
