@@ -34,7 +34,19 @@ describe Plane do
 
     it 'tells the airport that the plane has been released' do
       allow(airport).to receive(:condition?) { true }
+      plane.land(airport)
       expect(plane.take_off(airport)).to eq 'Plane has departed the airport'
+    end
+
+    it 'error raised if plane airbourne' do
+      allow(airport).to receive(:condition?) { true }
+      expect{ plane.take_off(airport) }. to raise_error 'Plane is airbourne'
+    end
+
+    it 'error not raised if plane has landed' do
+    allow(airport).to receive (:condition?) { true }
+    plane.land(airport)
+    expect{ plane.take_off(airport) }. to_not raise_error 'Plane is airbourne'
     end
   end
 end
