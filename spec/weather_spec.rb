@@ -1,0 +1,2 @@
+describe Weather do
+end 
