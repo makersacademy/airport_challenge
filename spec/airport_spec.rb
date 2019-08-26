@@ -37,5 +37,13 @@ describe Airport do
       expect(subject.plane).to eq nil
     end
   end
-  
+
+  describe '#land_a_plane' do
+    it 'raises an error when plane is already in airport' do
+      plane = Plane.new
+      subject.land_a_plane(plane)
+      expect { subject.land_a_plane(plane) }.to raise_error 'Unable to land: plane already in airport.'
+    end
+  end
+
 end

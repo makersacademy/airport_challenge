@@ -4,6 +4,8 @@ class Airport
   attr_reader :plane
 
   def land_a_plane(plane)
+    fail 'Unable to land: plane already in airport.' unless @plane.nil?
+
     @plane = plane
   end
 

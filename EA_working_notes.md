@@ -225,3 +225,43 @@ Traceback (most recent call last):
         2: from (irb):8
         1: from /Users/Contrabando2/Documents/Coding/MA_course/Wk1/airport_challenge/lib/airport.rb:11:in `take_off_plane'
 RuntimeError (Unable to take off: no planes available)
+
+Can I land the same plane twice in a row, without taking off in between?
+Feature test:
+2.6.0 :010 > airport.plane
+ => nil
+2.6.0 :011 > airport.land_a_plane(plane2)
+ => #<Plane:0x00007f80a90f73b0>
+2.6.0 :012 > airport.plane
+ => #<Plane:0x00007f80a90f73b0>
+2.6.0 :013 > airport.land_a_plane(plane2)
+ => #<Plane:0x00007f80a90f73b0>
+2.6.0 :014 > airport.plane
+ => #<Plane:0x00007f80a90f73b0>
+
+The same plane can land multiple times without taking off in between.
+Write unit test:
+ expect that land_a_plane will raise_error if plane already in airport.
+Write code to pass test.
+
+Working feature test:
+2.6.0 :001 > require './lib/airport.rb'
+ => true
+2.6.0 :002 > airport = Airport.new
+ => #<Airport:0x00007f86141300f0>
+2.6.0 :003 > airport.plane
+ => nil
+2.6.0 :004 > plane = Plane.new
+ => #<Plane:0x00007f8614100c88>
+2.6.0 :005 > airport.land_a_plane(plane)
+ => #<Plane:0x00007f8614100c88>
+2.6.0 :006 > airport.plane
+ => #<Plane:0x00007f8614100c88>
+2.6.0 :007 > airport.land_a_plane(plane)
+Traceback (most recent call last):
+        5: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):7
+        1: from /Users/Contrabando2/Documents/Coding/MA_course/Wk1/airport_challenge/lib/airport.rb:7:in `land_a_plane'
+RuntimeError (Unable to land: plane already in airport.)
