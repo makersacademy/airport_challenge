@@ -17,7 +17,7 @@ class Airport
     fail 'Cannot take off in stormy weather' if bad_weather?
 
     @planes.delete(plane)
-    # plane.taken_off
+    plane.taken_off
   end
 
   def land(plane)
@@ -27,18 +27,18 @@ class Airport
 
     fail "Cannot land in stormy weather" if bad_weather?
 
-    # plane.landed
-    @planes << plane 
+    @planes << plane
+    plane.landed 
   end
 
   private
 
-  def full?
-    @planes.size >= @capacity
-  end
-  
   def parked?(plane)
     @planes.include? plane
+  end
+
+  def full?
+    @planes.size >= @capacity
   end
 
   def bad_weather?
