@@ -5,11 +5,11 @@ describe Airport do
   let (:plane) { double :plane }
 
   describe "#landing" do
-    it "airport instructed to land plane" do
+    it "can be instructed to land plane" do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it "instruct to land plane, airport contains plane" do
+    it "when instructed to land plane, airport contains plane" do
       allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       subject.land(plane)
@@ -21,7 +21,7 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Stormy - no plane movements at airport"
     end
 
-    it 'no landing when aiport is full - set capacity' do
+    it 'no landing when aiport is full - set capacity to 1' do
       allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       allow(subject).to receive(:capacity) { 1 }
@@ -32,7 +32,7 @@ describe Airport do
   end
 
   describe "#take-off" do
-    it "airport instructed to have plane take off" do
+    it "can be instructed to have plane take off" do
       allow(subject).to receive(:weather) { "sunny" }
       expect(subject).to respond_to(:takeoff).with(1).argument
     end
