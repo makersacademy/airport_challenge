@@ -22,7 +22,7 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 
 required: 
-weather variable on initialize method for plane class 
+weather variable on initialize method for airport class 
 randomize_weather method - (Random.rand(11)) - if it is 10 then return stormy, else sunny.
 failcase for take_off method if weather is stormy
 
