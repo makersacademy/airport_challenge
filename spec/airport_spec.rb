@@ -8,6 +8,7 @@ describe Airport do
   describe '#take_off_plane' do
     it 'takes off a plane that landed' do
       plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
       expect(subject.take_off_plane).to eq plane
     end
@@ -24,6 +25,7 @@ describe Airport do
   describe '#plane' do
     it 'returns landed planes' do
       plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
       expect(subject.plane).to eq plane
     end
@@ -32,6 +34,7 @@ describe Airport do
   describe '#plane' do
     it 'confirms plane no longer in airport after take-off' do
       plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
       subject.take_off_plane
       expect(subject.plane).to eq nil
@@ -41,6 +44,7 @@ describe Airport do
   describe '#land_a_plane' do
     it 'raises an error when plane is already in airport' do
       plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
       expect { subject.land_a_plane(plane) }.to raise_error 'Unable to land: plane already in airport.'
     end

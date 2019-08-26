@@ -298,7 +298,10 @@ Need a test where output is conditional on weather
 Or need to generate consistent weather to test.
 The latter can be done using a stub.
 
+Write tests and modify take_off_plane and land_a_plane to raise errors if stormy.
+Completed stories 3 and 4, except:
+
 The stub means the weather at the airport is always stormy.
 The resulting storm errors when calling take-off and landing are causing some tests to fail.
 How test for behaviour during stormy weather, but restrict it to the two storm tests?
-Can I use a double of airport for those two tests?
+I used a fair-weather stub to ensure that the non-storm tests ran.
