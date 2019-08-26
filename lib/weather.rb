@@ -1,2 +1,6 @@
 class Weather
-end 
+
+  def weather_forcast
+  end
+  
+end
