@@ -3,10 +3,12 @@ require_relative 'weather'
 
 class Airport
 
+DEFAULT_CAPACITY = 10
 attr_reader :plane
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -20,8 +22,6 @@ attr_reader :plane
   end
 
   def take_off(plane)
-    # if @planes.empty?
-    #   raise "This plane is not in the airport"
     if !@planes.include?(plane)
       raise "This plane is not in the airport"
     else
@@ -37,7 +37,7 @@ attr_reader :plane
 private
 
 def full?
-  @planes.length >= 10
+  @planes.length >= @capacity
 end
 
 end

@@ -6,6 +6,14 @@ describe Airport do
   it { is_expected. to respond_to(:take_off).with(1).argument }
   it { is_expected. to respond_to(:plane) }
 
+describe 'initialisation' do
+  it "allows the default airport capacity to be set" do
+    airport = Airport.new(50)
+    50.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error ("Airport full")
+  end
+end
+
   describe '#land' do
     it "stores a plane when a plane lands at the airport" do
       plane = Plane.new
@@ -13,8 +21,7 @@ describe Airport do
     end
 
     it "raises an error if a plane tries to land at a full airport" do
-      # Capacity of airport is 10
-      10.times { subject.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error ("Airport full")
     end
 
