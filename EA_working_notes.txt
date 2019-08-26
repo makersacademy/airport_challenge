@@ -305,3 +305,18 @@ The stub means the weather at the airport is always stormy.
 The resulting storm errors when calling take-off and landing are causing some tests to fail.
 How test for behaviour during stormy weather, but restrict it to the two storm tests?
 I used a fair-weather stub to ensure that the non-storm tests ran.
+
+User story 5:
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+Airport capacity:
+I will create an airport with a capacity of five planes.
+
+I am intermittently getting errors when I run rspec.
+Perhaps the stubs are not working to ensure the correct weather for the tests?
+
+I realised that some tests involve landing or taking off as a precondition.
+I added fair-weather stubs above these calls to enable take-off/landing.
+I retained the stormy-weather stubs immediately before the calls testing storm response.
