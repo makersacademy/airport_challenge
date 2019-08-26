@@ -9,8 +9,8 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it 'lands a plane' do
+  it 'records planes that have landed' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
 end
