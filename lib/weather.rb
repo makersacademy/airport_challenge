@@ -1,7 +1,8 @@
 class Weather
 
   def forecast
-    "Sny"
+    randomiser = rand(4)
+    randomiser == 1 ? "Stormy" : "Sunny"
   end
 
 end
