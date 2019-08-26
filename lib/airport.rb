@@ -20,12 +20,10 @@ class Airport
     
     fail "No available space for this plane" unless @hangar.count < @capacity
     
-    if plane.status == "landed"
-      fail "Plane is already on the ground"
-    else
-      @hangar << plane
-      plane.status = "landed"
-    end
+    fail "Plane is already on the ground" if plane.status == "landed"
+    
+    @hangar << plane
+    plane.status = "landed"
   end
 	
   def take_off(plane)
