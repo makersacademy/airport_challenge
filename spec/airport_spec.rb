@@ -58,4 +58,12 @@ describe Airport do
       expect { subject.take_off_plane }.to raise_error 'Take-off ban: storm force winds' if subject.current_windspeed_report >= 7
     end
   end
+
+  describe '#land_a_plane' do
+    it 'raises an error when windspeed is greater than seven' do
+      plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 7 }
+      expect { subject.land_a_plane(plane) }.to raise_error 'Landing ban: storm force winds' if subject.current_windspeed_report >= 7
+    end
+  end
 end

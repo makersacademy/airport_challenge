@@ -8,6 +8,7 @@ class Airport
 
   def land_a_plane(plane)
     fail 'Unable to land: plane already in airport.' unless @plane.nil?
+    fail 'Landing ban: storm force winds' unless current_windspeed_report < 7
 
     @plane = plane
   end
