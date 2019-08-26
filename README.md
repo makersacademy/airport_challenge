@@ -12,79 +12,27 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+SUMMARY
+This file contains the program files and spec files for the Airport Challenge weekend exercise.  This exercise is the first weekend exercise as part of the 12-week Makers Academy coding mastery course.  
 
-Instructions
----------
+AUTHOR
+This solution is authored by Thomas Ross.  Questions can be referred to thomasross3610@gmail.com.  This is my first stab at a solo project like this...
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+STRUCTURE
+This solution consists of three lib files and three associated spec files.  These Lib files correspond to the three separate Ruby Classes created as part of the project.  These classes are as follows:
 
-Steps
--------
+Airport Class - This Class contains the most code and its corresponding Spec file is therefore the largest.  The majority of the methods in this solution refer to the Airport class.  The reason for this is that the overall Airport problem is set out from the perspective of an airport, specifically an air traffic controller.  It therefore made sense that the majority of the methods would refer to actions taken to an Airport object.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Plane Class - Planes are clearly separate objects to Airports so they warrant their own object class.  There are relatively few methods for the Plane Class, however, as there was no requirement in the instructions to differentiate between types of planes.  My solution did not require any methods to be run on the planes, as opposed to just using them as variables in a method called on an Airport object.  This class could be expanded and due course as the project grows in sophistication - for example by having different types of plane (freight vs passenger) or different sizes of plane.
 
-Task
------
+Weather Class - I chose to make Weather a separate class to Planes and Airports in recognition of it being a clearly separate phenomenon that required its own class object status.  The purpose of the weather class is to set the weather conditions for the aiport - in this case rather simply "stormy" or "sunny".  In the future this class could expand to encompass more complex methods related to the weather which would in turn affect other class objects as appropriate.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+ROOM FOR IMPROVEMENT
+- The code can no doubt be refactored more effectively to ensure it is DRY-er and more human readable.  I struggled a bit with the instance variables if I am honest.
+- I tried to allow TDD to drive the development of the code as much as possible.  This was not always easy, although I think I got better towards the end.  Whilst my test coverage is high (97%), I am not convinced that I have effectively used the tests to cover all possible edge cases.
+- The fluency of drafting my code is driving me TOTALLY NUTS.  I need to get faster and more competent with the syntax or this is going to be a long slog each week...
+- I have some methods that seem to work well in IRB - next step is to turn these isolated methods into a functional Ruby program with some sort of user interface that doesn't require IRB jiggery-pokery.
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+Thank you for reading!
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+PS - I didn't make the plane at the top alas.
