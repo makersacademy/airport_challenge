@@ -3,14 +3,10 @@ require './lib/airport.rb'
 
 describe Airport do
 
-  let (:plane) { double :plane }
-  let (:weather) { double :weather }
-
-  it "prevents landing when capacty reached" do
-    plane = Plane.new
-    allow(weather).to receive(:stormy?).and_return(false)
-    subject.capacity.times { plane.land_at(subject, weather) }
-    expect{ plane.land_at(subject, weather) }.to raise_error "Landing not permitted as airport is full"
+  it "is full when capacity is reached" do
+    plane = instance_double("Plane")
+    subject.capacity.times { subject.land(plane) }
+    expect(subject.full?).to eq true
   end
 
   it "capacity is 10 if set by user" do
