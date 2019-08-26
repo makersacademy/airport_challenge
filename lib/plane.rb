@@ -11,6 +11,7 @@ end
 class Airport
   attr_reader :hangar
   attr_reader :weather
+  STORM_CHANCE = 0.05
   
   def initialize
     @hangar = []
@@ -18,15 +19,17 @@ class Airport
   end
 	
   def land(plane)
-    # simulating a 5% chance of stormy weather with a random float 0 < f < 1   
-    fail "Landing not permitted due to weather" unless (@weather.check > 0.05)
+    unless (@weather.check > STORM_CHANCE)
+      fail "Landing not permitted due to weather"
+    end
     
     @hangar << plane
   end
 	
   def take_off(plane)
-    # simulating a 5% chance of stormy weather with a random float 0 < f < 1   
-    fail "Take-off not permitted due to weather" unless (@weather.check > 0.05)
+    unless (@weather.check > STORM_CHANCE)
+      fail "Take-off not permitted due to weather" 
+    end
     
     @hangar.delete(plane)
   end

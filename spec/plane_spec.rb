@@ -25,13 +25,13 @@ describe "air traffic control" do
     allow(airport.weather).to receive(:check).and_return(0.5)
     airport.land(plane)
     allow(airport.weather).to receive(:check).and_return(0.01)
-    expect { airport.take_off(plane) }. to raise_error("Take-off not permitted due to weather conditions")
+    expect { airport.take_off(plane) }. to raise_error("Take-off not permitted due to weather")
   end
   
   it "can prevent landing during unfavourable weather" do
     airport = Airport.new
     plane = Plane.new
     allow(airport.weather).to receive(:check).and_return(0.01)
-    expect { airport.land(plane) }. to raise_error("Landing not permitted due to weather conditions")
+    expect { airport.land(plane) }. to raise_error("Landing not permitted due to weather")
   end
 end
