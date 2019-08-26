@@ -6,6 +6,11 @@ class Weather
 end
 
 class Plane
+  attr_accessor :status
+  
+  def initialize
+    @status = "flying"
+  end
 end
 
 class Airport
@@ -24,6 +29,8 @@ class Airport
     unless (@weather.check > STORM_CHANCE)
       fail "Landing not permitted due to weather"
     end
+    
+    fail "No available space for this plane" unless @hangar.count < @capacity
     
     @hangar << plane
   end
