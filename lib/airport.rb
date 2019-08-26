@@ -20,18 +20,18 @@ attr_reader :plane
   end
 
   def take_off(plane)
-    if @planes.length == 0
-      raise "There are no planes in the airport"
+    if @planes.empty?
+      raise "This plane is not in the airport"
     elsif !@planes.include?(plane)
       raise "This plane is not in the airport"
     else
-      @planes.pop
+      @planes.delete(plane)
     end
+  end
 
-    # if @capacity.empty?
-    #   raise RuntimeError.new("There is no plane in the airport")
-    # else @capacity.delete(@plane)
-    # end
+  def weather_check
+    todays_weather = Weather.new
+    todays_weather.forecast
   end
 
 end

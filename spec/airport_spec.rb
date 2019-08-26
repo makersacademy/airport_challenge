@@ -28,7 +28,7 @@ describe Airport do
   describe '#take_off' do
 
     it "raises an error if a plane tries to take off from an empty airport" do
-      expect { subject.take_off(Plane.new) }.to raise_error ("There are no planes in the airport")
+      expect { subject.take_off(Plane.new) }.to raise_error ("This plane is not in the airport")
     end
 
     it "raises an error if a non existent plane tries to take off from an airport" do
@@ -36,6 +36,13 @@ describe Airport do
       plane2 = Plane.new
       subject.land(plane1)
       expect { subject.take_off(plane2) }.to raise_error ("This plane is not in the airport")
+    end
+
+    it "raises an error if the same plane tries to take off from the airport twice." do
+      plane1 = Plane.new
+      subject.land(plane1)
+      subject.take_off(plane1)
+      expect { subject.take_off(plane1) }.to raise_error("This plane is not in the airport")
     end
   end
 
