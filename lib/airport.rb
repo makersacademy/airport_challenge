@@ -21,6 +21,7 @@ class Airport
 
   def release_plane(plane)
     fail 'Weather bad, no fly zone' unless condition?
+    fail 'Plane not in the hanger' if (@hanger.include?(plane) == false)
 
     @hanger.delete(plane)
   end
