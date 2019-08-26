@@ -8,7 +8,11 @@ class Airport
   end
 
   def take_off_plane
-    Plane.new
+    fail 'Unable to take off: no planes available' unless @plane
+
+    plane_that_just_took_off = @plane
+    @plane = nil
+    plane_that_just_took_off
   end
 
 end
