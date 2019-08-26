@@ -1,2 +1,4 @@
+require 'weather'
+
 describe Weather do
-end 
+end
