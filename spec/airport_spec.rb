@@ -1,8 +1,6 @@
 require 'airport'
 require 'weather'
 
-
-
 describe Airport do
 
   it { is_expected. to respond_to(:land).with(1).argument }
@@ -39,6 +37,7 @@ describe Airport do
   end
 
   describe '#take_off' do
+
     it "raises an error if a plane tries to take off from an empty airport" do
       allow(subject).to receive(:weather_unsafe?).and_return false
       expect { subject.take_off(Plane.new) }.to raise_error "This plane is not in the airport"
@@ -62,16 +61,17 @@ describe Airport do
   end
 
   describe '#weather_unsafe?' do
+
     it "raises an error if a plane tries to land in stormy weather" do
       allow(subject).to receive(:weather_unsafe?).and_return true
       expect{ subject.land(Plane.new) }.to raise_error "The weather is too dangerous to land"
     end
-  end
 
-    it "raises an error if a plane tries to take off in stormy weather" do
-      plane1 = Plane.new
-      @planes = [plane1]
-      allow(subject).to receive(:weather_unsafe?).and_return true
-      expect{ subject.take_off(plane1) }.to raise_error "The weather is too dangerous to take off"
-    end
+  it "raises an error if a plane tries to take off in stormy weather" do
+    plane1 = Plane.new
+    @planes = [plane1]
+    allow(subject).to receive(:weather_unsafe?).and_return true
+    expect{ subject.take_off(plane1) }.to raise_error "The weather is too dangerous to take off"
+  end
+end
 end

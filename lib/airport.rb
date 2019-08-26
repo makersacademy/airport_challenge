@@ -30,6 +30,7 @@ class Airport
       raise "This plane is not in the airport"
     else
       @planes.delete(plane)
+      @planes
     end
   end
 
