@@ -11,6 +11,7 @@ class Airport
   end
 
   def land(plane)
+    randomize_weather
     stormy?
     airport_full?
     plane.land
@@ -18,6 +19,7 @@ class Airport
   end
 
   def takeoff(plane)
+    randomize_weather
     stormy?
     plane_at_airport?(plane)
     plane.takeoff
