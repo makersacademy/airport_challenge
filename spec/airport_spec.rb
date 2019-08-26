@@ -48,4 +48,14 @@ describe Airport do
 
   it { is_expected.to respond_to(:current_windspeed_report) }
 
+  describe '#take_off_plane' do
+    it 'raises an error when windspeed is greater than seven' do
+      # Stormy weather is defined as windspeed >= 7 on the Beaufort scale.
+      plane = Plane.new
+      subject.land_a_plane(plane)
+      # Using a stub to mimic consistently stormy weather:
+      allow(subject).to receive(:current_windspeed_report) { 7 }
+      expect { subject.take_off_plane }.to raise_error 'Take-off ban: storm force winds' if subject.current_windspeed_report >= 7
+    end
+  end
 end
