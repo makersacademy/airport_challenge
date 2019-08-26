@@ -13,7 +13,6 @@ class Airport
     
     fail 'Sorry - poor weather' unless weather.set_weather
 
-
     plane.has_landed = false
     plane_array.delete(plane)
   end
