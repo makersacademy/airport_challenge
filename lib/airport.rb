@@ -3,16 +3,18 @@ require_relative 'weather'
 
 class Airport
 
-DEFAULT_CAPACITY = 10
-attr_reader :plane
+  DEFAULT_CAPACITY = 10
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
-    if full?
+    if weather_unsafe?
+      raise "The weather is too dangerous to land"
+    elsif full?
       raise "Airport full"
     elsif @planes.include?(plane)
       raise "This plane is already in the airport"
@@ -22,22 +24,23 @@ attr_reader :plane
   end
 
   def take_off(plane)
-    if !@planes.include?(plane)
+    if weather_unsafe?
+      raise "The weather is too dangerous to take off"
+    elsif !@planes.include?(plane)
       raise "This plane is not in the airport"
     else
       @planes.delete(plane)
     end
   end
 
-  def weather_check
-    todays_weather = Weather.new
-    todays_weather.forecast
+  def weather_unsafe?
+    @weather.stormy?
   end
 
-private
+  private
 
-def full?
-  @planes.length >= @capacity
-end
+  def full?
+    @planes.length >= @capacity
+  end
 
 end

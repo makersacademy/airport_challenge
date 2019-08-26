@@ -1,8 +1,12 @@
 class Weather
 
-  def forecast
-    randomiser = rand(4)
-    randomiser == 1 ? "Stormy" : "Sunny"
+  def initialize
+    randomiser = rand(2)
+    randomiser == 1 ? @weather = "Stormy" : @weather = "Sunny"
+  end
+
+  def stormy?
+    @weather == "Stormy"
   end
 
 end
