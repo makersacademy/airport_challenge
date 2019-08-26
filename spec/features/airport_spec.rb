@@ -26,7 +26,7 @@ it { is_expected.to respond_to(:takeoff).with(1).argument }
   it 'not letting plane land' do
     airport = Airport.new
     plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return false
+    allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(plane) }.to raise_error 'cannot let plane land due to stormy weather'
   end
 end
