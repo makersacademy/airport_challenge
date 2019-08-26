@@ -8,7 +8,6 @@ class Airport
   ERROR_AIRPORT_FULL = "Airport Full"
   ERROR_PLANE_NOT_FOUND = "This plane is not here"
 
-
   attr_reader :hanger, :weather, :capacity
 
   def initialize(capacity: DEFAULT_CAPACITY, weather: Weather.new)
@@ -20,12 +19,14 @@ class Airport
   def land(plane)
     fail ERROR_TO_WEATHER_CONDITION if @weather.stormy
     fail ERROR_AIRPORT_FULL if full
+
     @hanger << plane
   end
 
   def take_off(plane)
     fail ERROR_TO_WEATHER_CONDITION if @weather.stormy
     fail ERROR_PLANE_NOT_FOUND unless landed(plane)
+
     @hanger.delete(plane)
   end
 
@@ -37,4 +38,4 @@ class Airport
     @hanger.size >= DEFAULT_CAPACITY
   end
 
- end
+end

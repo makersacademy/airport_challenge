@@ -36,7 +36,7 @@ describe Airport do
       overflow = Airport::DEFAULT_CAPACITY + 1
       allow(weather_mock).to receive(:stormy) { false }
       expect {
-        (overflow).times do
+        overflow.times do
           subject.land(:plane_mock)
         end
       }.to raise_error Airport::ERROR_AIRPORT_FULL
@@ -46,7 +46,7 @@ describe Airport do
       overflow = Airport::DEFAULT_CAPACITY + 1
       allow(weather_mock).to receive(:stormy) { true }
       expect {
-        (overflow).times do
+        overflow.times do
           subject.land(:plane_mock)
         end
       }.to raise_error Airport::ERROR_TO_WEATHER_CONDITION
@@ -64,12 +64,12 @@ describe Airport do
     it "when is not stormy and landed" do
       allow(weather_mock).to receive(:stormy) { false }
       subject.land(plane_mock)
-      expect{ subject.take_off(plane_mock) }.not_to raise_error
+      expect { subject.take_off(plane_mock) }.not_to raise_error
     end
 
     it 'when is not stormy and not landed' do
       allow(weather_mock).to receive(:stormy) { false }
-      expect{
+      expect {
         subject.take_off(plane_mock)
       }.to raise_error Airport::ERROR_PLANE_NOT_FOUND
     end
@@ -100,7 +100,6 @@ describe Airport do
     it "when is not landed" do
       expect(subject.landed(plane_mock)).to eq false
     end
-
-
   end
+  
 end
