@@ -18,11 +18,16 @@ class Airport
   end
 	
   def land(plane)
-    fail "Landing not permitted due to weather conditions" unless (@weather.check > 0.05)
+    # simulating a 5% chance of stormy weather with a random float 0 < f < 1   
+    fail "Landing not permitted due to weather" unless (@weather.check > 0.05)
+    
     @hangar << plane
   end
 	
   def take_off(plane)
+    # simulating a 5% chance of stormy weather with a random float 0 < f < 1   
+    fail "Take-off not permitted due to weather" unless (@weather.check > 0.05)
+    
     @hangar.delete(plane)
   end
 end
