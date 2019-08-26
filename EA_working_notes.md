@@ -48,11 +48,45 @@ What is a module? Research:
 What is a stub?
 Read docs re test doubles.
 What other edge cases will I test for?
+Re-write tests using one-liner syntax once I understand what they do.
+
+When I changed into the airport_challenge directory, I saw this message:
+Required ruby-2.6.0 is not installed.
+To install do: 'rvm install "ruby-2.6.0"'
+So I ran the above command to install ruby 2.6.0.
 
 User story 1:
 
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
-Objects: ATC, plane(s), airport.
-Methods: #initialize, #land_a_plane, #plane_id.
+Objects: ATC, plane, airport.
+Method: #land_a_plane
+
+Domain model:
+Airport <-- land_a_plane --> a Plane.
+
+User story 2:
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport
+and confirm that it is no longer in the airport
+Objects: ATC, plane, airport.
+Methods: #plane_take_off
+Domain model:
+Airport <-- plane_take_off --> a Plane.
+
+Edge cases provided:
+Your code should defend against edge cases
+such as inconsistent states of the system ensuring that
+planes can only take off from airports they are in;
+planes that are already flying cannot take off and/or be in an airport;
+planes that are landed cannot land again and must be in an airport, etc.
+
+My notes about cases:
+Need to confirm that plane is not on "landed" list unless it has landed.
+Need to add plane to the "landed" list as it lands.
+Need to confirm that plane is on "landed" list if it has landed.
+Plane cannot land if it is already on landed list.
+Need to confirm that plane is on the landed list before it can take off.
+Need to remove plane from the landed list as it takes off.
