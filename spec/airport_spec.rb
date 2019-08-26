@@ -28,11 +28,8 @@ describe Airport do
 
   describe '#full?'
   it 'raises an error when hanger is full' do
-    plane = Plane.new
-    airport = Airport.new
     allow(airport).to receive(:condition?) { true }
-    airport.receive_plane(plane)
-    airport.receive_plane(plane)
+    airport.capacity.times { airport.receive_plane(plane) }
     expect { airport.receive_plane(plane) }.to raise_error 'Airport full'
   end
 
