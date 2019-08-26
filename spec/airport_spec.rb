@@ -11,6 +11,13 @@ describe Airport do
     expect(subject.land(plane)).to eq plane
   end
 
+  it '#land should raise an error if weather is stormy' do
+    weather = Weather.new
+    weather.weather_forcast(1) 
+    plane = Plane.new
+    expect {subject.land(plane)}.to raise_error('Landing denied due to bad weather')
+  end
+
   it 'respondes to take_off and takes an argument' do
     expect(subject).to respond_to :take_off
   end
