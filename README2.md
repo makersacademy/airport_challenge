@@ -1,6 +1,10 @@
 Airport Challenge
 ==================
 
+````
+[![Build Status](https://travis-ci.org/jgeorgex/airport_challenge.svg?branch=master)](https://travis-ci.org/jgeorgex/airport_challenge)
+````
+
 ## Approach to solving the challenge
 
 This README is to briefly explain my approach to solving the Airport Challenge.
