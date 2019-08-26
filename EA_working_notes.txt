@@ -281,3 +281,13 @@ please read the documentation to learn how to use test doubles:
 https://www.relishapp.com/rspec/rspec-mocks/docs .
 There’s an example of using a test double
 to test a die that’s relevant to testing random weather in the test.
+
+Will use a random weather generator to generate weather.
+To test it, will use a double that is a stub.
+The stub will always return a storm if the test requires it, or vice versa.
+
+Write a unit test for airport to respond to a windspeed method
+Add a weather method to Airport
+Write a unit test for windspeed method to generate random number 1..12.
+Refactor:
+Add weather module inc #windspeed, weather_spec.rb; include Weather in Airport.

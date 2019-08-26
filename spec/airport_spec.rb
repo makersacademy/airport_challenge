@@ -46,4 +46,6 @@ describe Airport do
     end
   end
 
+  it { is_expected.to respond_to(:current_windspeed_report) }
+
 end
