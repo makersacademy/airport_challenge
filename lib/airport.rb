@@ -34,5 +34,6 @@ class Airport
     end
     
     @hangar.delete(plane)
+    plane.status = "flying"
   end
 end
