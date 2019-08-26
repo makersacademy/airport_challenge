@@ -12,11 +12,12 @@ describe Airport do
   end
 
   describe 'initialization' do
-    it 'has a default capacity' do
-      described_class::DEFAULT_CAPACITY.times do
-        subject.land Plane.new
-      end
-      expect { subject.land Plane.new }.to raise_error 'Airport full'
+    it 'has a variable capacity' do
+      weather = double(:weather)
+      allow(weather).to receive(:weather_condition).and_return(:sunny)
+      airport = Airport.new(20, weather)
+      20.times { airport.land Plane.new }  
+      expect { airport.land Plane.new }.to raise_error 'Airport full'
     end
   end
 
