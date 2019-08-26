@@ -9,4 +9,12 @@ class Airport
     @planes << plane
   end
 
+  def take_off(plane)
+    @planes.delete(plane)
+  end
+
+  def is_parked?(plane)
+    @planes.include?(plane)
+  end
+
 end
