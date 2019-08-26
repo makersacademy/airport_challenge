@@ -34,4 +34,8 @@ describe "air traffic control" do
     allow(airport.weather).to receive(:check).and_return(0.01)
     expect { airport.land(plane) }. to raise_error("Landing not permitted due to weather")
   end
+  
+  it "sets a default capacity of 20 if not otherwise specified" do
+    expect(Airport.new.capacity).to eq(20)
+  end  
 end
