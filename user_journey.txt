@@ -1,0 +1,51 @@
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+required: 
+plane class, airport class, 
+airport.land(plane) method
+
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+required:
+plane class, airport class
+airport.take_off(plane) method
+departed? method... @planes include? (same plane instance used in takeoff method)
+
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+required: 
+weather variable on initialize method for airport class 
+randomize_weather method - (Random.rand(11)) - if it is 10 then return stormy, else sunny.
+failcase for take_off method if weather is stormy
+
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+required:
+failcase for landing method if weather is stormy
+
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+required:
+failcase for land method if @planes.size - planes already in the airport - is equal to capacity
+
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+required: 
+default capacity constant as part of airport initialize, set to defualt (any number)

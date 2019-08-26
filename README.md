@@ -81,6 +81,7 @@ Reviewers will potentially be using this [code review rubric](docs/review.md).  
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
+
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
@@ -88,3 +89,10 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+## My approach to solving this challenge
+
+1. Write down code unit requirements in a [.txt file](https://github.com/DanGyi23/airport_challenge/blob/master/user_journey.txt) for each user journey provided
+2. Use these requirements to [write tests that fail](https://github.com/DanGyi23/airport_challenge/commit/65ec4ef6bc3e176a6ed24f80f816553610f26b83)
+3. Iteratively create methods based on requirements, until [all tests pass](https://github.com/DanGyi23/airport_challenge/commit/0f14aef3c8358ab984325bfa9479e0be83a0408a)
+4. [Tidy up code using RuboCop](https://github.com/DanGyi23/airport_challenge/commit/f00043fbe207c66b8c3e64a4db9a85e77a21c8cc), and change some of the method names to be more readable
