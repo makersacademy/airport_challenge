@@ -10,7 +10,7 @@ attr_reader :plane
   end
 
   def land(plane)
-    if @planes.length >= 10
+    if full?
       raise "Airport full"
     elsif @planes.include?(plane)
       raise "This plane is already in the airport"
@@ -20,9 +20,9 @@ attr_reader :plane
   end
 
   def take_off(plane)
-    if @planes.empty?
-      raise "This plane is not in the airport"
-    elsif !@planes.include?(plane)
+    # if @planes.empty?
+    #   raise "This plane is not in the airport"
+    if !@planes.include?(plane)
       raise "This plane is not in the airport"
     else
       @planes.delete(plane)
@@ -33,5 +33,11 @@ attr_reader :plane
     todays_weather = Weather.new
     todays_weather.forecast
   end
+
+private
+
+def full?
+  @planes.length >= 10
+end
 
 end
