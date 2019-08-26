@@ -7,7 +7,7 @@ describe Airport do
   end
 
   it 'respondes to take_off' do
-    expect(subject).to respond_to :take_off
+    expect(subject).to respond_to(:take_off).with(1).argument
   end
 
 end
