@@ -4,8 +4,9 @@ require 'plane'
 class Airport
 
   DEFAULT_CAPACITY = 10
-  ERROR_LAND_WEATHER_CONDITION = "Not possible to land during bad weather"
-  FULL_ERROR = "Airport Full"
+  ERROR_TO_WEATHER_CONDITION = "Not possible to operate during bad weather"
+  ERROR_AIRPORT_FULL = "Airport Full"
+  ERROR_PLANE_NOT_FOUND = "This plane is not here"
 
 
   attr_reader :hanger, :weather, :capacity
@@ -17,18 +18,23 @@ class Airport
   end
 
   def land(plane)
-    fail ERROR_LAND_WEATHER_CONDITION if @weather.stormy
-    fail FULL_ERROR if full
+    fail ERROR_TO_WEATHER_CONDITION if @weather.stormy
+    fail ERROR_AIRPORT_FULL if full
     @hanger << plane
   end
 
   def take_off(plane)
-    fail "Stormy weather" if @weather.stormy
+    fail ERROR_TO_WEATHER_CONDITION if @weather.stormy
+    fail ERROR_PLANE_NOT_FOUND unless landed(plane)
     @hanger.delete(plane)
+  end
+
+  def landed(plane)
+    @hanger.include?(plane)
   end
 
   def full
     @hanger.size >= DEFAULT_CAPACITY
   end
 
-end
+ end

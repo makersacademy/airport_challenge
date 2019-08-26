@@ -29,7 +29,7 @@ describe Airport do
       # called in a block
       expect {
         subject.land(plane_mock)
-      }.to raise_error Airport::ERROR_LAND_WEATHER_CONDITION
+      }.to raise_error Airport::ERROR_TO_WEATHER_CONDITION
     end
 
     it "when is full" do
@@ -39,7 +39,7 @@ describe Airport do
         (overflow).times do
           subject.land(:plane_mock)
         end
-      }.to raise_error Airport::FULL_ERROR
+      }.to raise_error Airport::ERROR_AIRPORT_FULL
     end
 
     it "when is full and stormy" do
@@ -49,25 +49,58 @@ describe Airport do
         (overflow).times do
           subject.land(:plane_mock)
         end
-      }.to raise_error Airport::ERROR_LAND_WEATHER_CONDITION
+      }.to raise_error Airport::ERROR_TO_WEATHER_CONDITION
     end
 
   end
 
-  #
-  # describe 'take off' do
-  #   it "Should allow a plane to take off" do
-  #     plane = Plane.new
-  #     airport = Airport.new
-  #     expect(airport.take_off(plane)).to eq "Plane Already taked off"
-  #   end
-  #
-  #   it 'raises error when try to take off and weather is stormy' do
-  #     plane = Plane.new
-  #     airport = Airport.new
-  #     allow(airport).to receive(:stormy) { true }
-  #     expect { airport.take_off(plane) }.to raise_error "Stormy weather"
-  #   end
-  # end
+  describe '#take off' do
 
+    let(:plane_mock) { double :plane }
+    let(:weather_mock) { double :weather }
+
+    subject { Airport.new(:weather => weather_mock) }
+
+    it "when is not stormy and landed" do
+      allow(weather_mock).to receive(:stormy) { false }
+      subject.land(plane_mock)
+      expect{ subject.take_off(plane_mock) }.not_to raise_error
+    end
+
+    it 'when is not stormy and not landed' do
+      allow(weather_mock).to receive(:stormy) { false }
+      expect{
+        subject.take_off(plane_mock)
+      }.to raise_error Airport::ERROR_PLANE_NOT_FOUND
+    end
+
+    it "when is stormy and landed" do
+      allow(weather_mock).to receive(:stormy) { false }
+      subject.land(plane_mock)
+      allow(weather_mock).to receive(:stormy) { true }
+      expect {
+        subject.take_off(plane_mock)
+      }.to raise_error Airport::ERROR_TO_WEATHER_CONDITION
+    end
+  end
+
+  describe '#landed' do
+
+    let(:plane_mock) { double :plane }
+    let(:weather_mock) { double :weather }
+
+    subject { Airport.new(:weather => weather_mock) }
+
+    it "when is landed" do
+      allow(weather_mock).to receive(:stormy) { false }
+      subject.land(plane_mock)
+      expect(subject.landed(plane_mock)).to eq true
+    end
+
+    it "when is not landed" do
+      expect(subject.landed(plane_mock)).to eq false
+    end
+
+
+  end
 end
