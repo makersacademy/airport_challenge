@@ -6,8 +6,8 @@ class Airport
 
   def initialize(capacity=20)
     @planes = []
-    @weather = "nice"
     @capacity = capacity
+    rand(1..20) < 20 ? @weather = "sunny" : @weather = "stormy"
   end
 
   def land(plane)

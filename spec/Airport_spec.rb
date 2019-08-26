@@ -10,6 +10,7 @@ describe Airport do
     end
 
     it "instruct to land plane, airport contains plane" do
+      allow(subject).to receive(:weather) {"sunny"}
       subject.land(plane)
       expect(subject.planes).to include plane
     end
@@ -25,15 +26,16 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error "Airport full - no landing"
     end
 
-
   end
 
   describe "#take-off" do
     it "airport instructed to have plane take off" do
+      allow(subject).to receive(:weather) {"sunny"}
       expect(subject).to respond_to(:takeoff).with(1).argument
     end
 
     it "instruct to take off plane and plane has left airport" do
+      allow(subject).to receive(:weather) {"sunny"}
       subject.planes << plane
       subject.takeoff(plane)
       expect(subject.planes).not_to include plane
