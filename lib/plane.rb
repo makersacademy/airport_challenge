@@ -1,9 +1,12 @@
 class Plane
 
-def land_at_airport
-  plane
+def land_at_airport(airport)
+
 end
 
-def take_off
+# def not_in_airport?
+# end
+
+def take_off(airport)
 end
 end
