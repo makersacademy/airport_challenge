@@ -1,4 +1,4 @@
-require 'plane'
+require 'airport'
 
 describe "air traffic control" do
 	
@@ -42,6 +42,14 @@ describe "air traffic control" do
   it "prevents a plane from landing at a full airport" do
     airport = Airport.new(1)
     airport.land(Plane.new)
+    allow(airport.weather).to receive(:check).and_return(0.5)
     expect { airport.land(Plane.new) }.to raise_error("No available space for this plane") 
+  end
+  
+  it "doesn't attempt to land a plane that is already on the ground" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error("Plane is already on the ground")
   end
 end
