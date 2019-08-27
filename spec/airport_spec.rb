@@ -91,4 +91,20 @@ describe Airport do
     end
   end
 
+  it { is_expected.to respond_to :airport_capacity }
+
+  describe '#airport_capacity' do
+    it 'sets the airport capacity to a new value' do
+      subject.airport_capacity(10)
+      allow(subject).to receive(:current_windspeed_report) { 1 }
+      expect { 11.times { subject.land_a_plane Plane.new } }.to raise_error 'Unable to land: airport full.'
+    end
+  end
+
+  describe '#capacity' do
+    it 'returns the airport capacity' do
+      subject.airport_capacity(10)
+      expect(subject.capacity).to eq(10)
+    end
+  end
 end

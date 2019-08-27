@@ -6,13 +6,14 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 20
   end
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   def land_a_plane(plane)
     fail 'Landing ban: storm force winds' unless current_windspeed_report < 7
-    fail 'Unable to land: airport full.' if @planes.length >= 20
+    fail 'Unable to land: airport full.' if @planes.length >= @capacity
     fail 'Unable to land: plane already in airport.' if @planes.include?(plane)
 
     @planes.push(plane)
@@ -28,6 +29,10 @@ class Airport
     plane_index = @planes.index(plane)
     @planes.delete_at(plane_index)
     plane
+  end
+
+  def airport_capacity(capacity)
+    @capacity = capacity
   end
 
 end

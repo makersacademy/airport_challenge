@@ -364,3 +364,15 @@ To limit capacity: @planes.length >= 20
 Modify unit test: take_off_plane takes plane as argument, and returns it.
 Write unit test: take_off_plane to raise error if plane not in airport.
 Modified various lines to make tests pass.
+Ran rubocop and made further modifications.
+
+User story 6:
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Set a default value.
+Write test: Capacity should equal default unless set to new value
+Will I have problems running other tests if I re-set capacity?
+Also want to be able to check current value it is set to.
+Write test: subject.capacity returns capacity
