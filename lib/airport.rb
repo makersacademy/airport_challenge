@@ -1,8 +1,13 @@
 require_relative 'plane'
 
 class Airport
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  attr_reader :planes
+  attr_reader :capacity
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
   end 
 
@@ -17,6 +22,13 @@ class Airport
 
   def land(plane)
     fail 'Cannot land due to stormy weather' unless weather == 'sunny'
+    fail 'Cannot land - airport full' if full?
     @planes << plane
+  end
+
+  private 
+  
+  def full?
+    @planes.count >= @capacity
   end
 end 
