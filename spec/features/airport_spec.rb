@@ -34,7 +34,8 @@ it { is_expected.to respond_to(:takeoff).with(1).argument }
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return false
+    40.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error 'cannot land plane; airport full.'
-  end 
+  end
 
 end
