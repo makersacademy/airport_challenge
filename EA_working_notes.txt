@@ -376,3 +376,11 @@ Write test: Capacity should equal default unless set to new value
 Will I have problems running other tests if I re-set capacity?
 Also want to be able to check current value it is set to.
 Write test: subject.capacity returns capacity
+
+If i have time in future:
+
+I'd like to look at refactoring to ensure that methods are short
+and do only one thing.
+
+I'd also like to complete the bonus task:
+Write an RSpec feature test that lands and takes off a number of planes.
