@@ -16,7 +16,6 @@ describe Airport do
 
   describe '#take_off_plane' do
     it 'raises an error when there are no planes available' do
-      planes = []
       plane = Plane.new
       allow(subject).to receive(:current_windspeed_report) { 1 }
       expect { subject.take_off_plane(plane) }.to raise_error 'Unable to take off: no planes available'
@@ -88,7 +87,7 @@ describe Airport do
       plane2 = Plane.new
       allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane2)
-      expect { subject.take_off_plane(plane) }.to raise_error 'Unable to take off: plane not in airport'
+      expect { subject.take_off_plane(plane) }.to raise_error 'Unable to take off: plane not @ airport'
     end
   end
 

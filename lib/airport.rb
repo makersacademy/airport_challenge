@@ -20,17 +20,14 @@ class Airport
 
   def take_off_plane(plane)
     fail 'Take-off ban: storm force winds' unless current_windspeed_report < 7
-    unless @planes.empty?
-      if @planes.include? plane
-        plane_index = @planes.index(plane)
-        @planes.delete_at(plane_index)
-        plane
-      else
-        fail 'Unable to take off: plane not in airport'
-      end
-    else
-      fail 'Unable to take off: no planes available'
-    end
+
+    fail 'Unable to take off: no planes available' if @planes.empty?
+
+    fail 'Unable to take off: plane not @ airport' unless @planes.include? plane
+
+    plane_index = @planes.index(plane)
+    @planes.delete_at(plane_index)
+    plane
   end
 
 end
