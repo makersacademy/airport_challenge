@@ -1,38 +1,3 @@
---- Completing the Makers Academy Airport challenge ---
-
-I completed this project at the end of my first week at Makers. As requested in CONTRIBUTING.md, I created this README to explain my approach.
-
-Please see below the grey line for notes I made whilst completing the challenge.
-These notes are also saved as a text file (EA_working_notes.txt) to aid readability.
-
-These notes demonstrate that I:
-
-Made notes as I worked, to keep track of where I was in the process.
-
-Pasted key parts of the instructions, to focus my attention.
-
-Made notes of edits I made to the Gemfile and rubocop.yml.
-
-Ran feature tests in irb, sometimes pasting output into notes as an aide-memoir.
-
-Ran a failing feature test, then wrote a unit test, then wrote code to pass.
-
-Ran a passing feature test after passing the unit test.
-
-Used this cycle repeatedly to develop my code.
-
-Wrote shorter notes as I became familiar with the TDD cycle.
-
-Noted potential edge cases and tested them.
-
-Noted potential queries as they occurred to me.
-
-Wrote out my thought process to help me understand the logic.
-
-Noted further steps I'd like to complete in the future, if time allows.
-
-*******************************************************************************
-
 Elsie Ashworth, 24/08/19
 Notes made during my work on this project:
 
@@ -379,7 +344,7 @@ Traceback (most recent call last):
         4: from (irb):4:in `rescue in irb_binding'
         3: from (irb):4:in `times'
         2: from (irb):4:in `block in irb_binding'
-        1: from /Users/Contrabando2/Documents/Coding/MA_course/Wk1/airport_challenge/lib/airport.rb:10:in `land_a_plane`
+        1: from /Users/Contrabando2/Documents/Coding/MA_course/Wk1/airport_challenge/lib/airport.rb:10:in `land_a_plane'
 RuntimeError (Unable to land: plane already in airport.)
 
 The first failure was due to poor weather.
@@ -419,5 +384,3 @@ and do only one thing.
 
 I'd also like to complete the bonus task:
 Write an RSpec feature test that lands and takes off a number of planes.
-
-*******************************************************************************
