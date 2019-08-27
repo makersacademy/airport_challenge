@@ -1,20 +1,34 @@
-As requested in CONTRIBUTING.md, I created this README to explain my approach.
+--- Completing the Makers Academy Airport challenge ---
 
-Please see below the asterisks for notes I made whilst completing the challenge.
+I completed this project at the end of my first week at Makers. As requested in CONTRIBUTING.md, I created this README to explain my approach.
+
+Please see below the grey line for notes I made whilst completing the challenge.
 These notes are also saved as a text file (EA_working_notes.txt) to aid readability.
 
 These notes demonstrate that I:
+
 Made notes as I worked, to keep track of where I was in the process.
+
 Pasted key parts of the instructions, to focus my attention.
+
 Made notes of edits I made to the Gemfile and rubocop.yml.
+
 Ran feature tests in irb, sometimes pasting output into notes as an aide-memoir.
+
 Ran a failing feature test, then wrote a unit test, then wrote code to pass.
+
 Ran a passing feature test after passing the unit test.
+
 Used this cycle repeatedly to develop my code.
+
 Wrote shorter notes as I became familiar with the TDD cycle.
+
 Noted potential edge cases and tested them.
+
 Noted potential queries as they occurred to me.
+
 Wrote out my thought process to help me understand the logic.
+
 Noted further steps I'd like to complete in the future, if time allows.
 
 *******************************************************************************
