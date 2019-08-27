@@ -1,9 +1,6 @@
 class Plane
 
-  def land
+  def grounded?
+    true
   end
-
-  def take_off
-  end
-
 end
