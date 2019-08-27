@@ -12,10 +12,6 @@ describe Airport do
   end
 
   describe '#receive_plane' do
-    it "receives a plane" do
-      expect(airport).to respond_to(:receive_plane).with(1).argument
-    end
-
     it "stores plane in the hanger" do
       allow(airport).to receive(:condition?) { true }
       airport.receive_plane(plane)

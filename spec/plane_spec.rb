@@ -5,10 +5,6 @@ describe Plane do
   let(:plane) { Plane.new }
 
   describe '#land' do
-    it 'can land' do
-      expect(plane).to respond_to(:land).with(1).argument
-    end
-
     it 'can land at an airport' do
       allow(airport).to receive(:condition?) { true }
       expect(plane.land(airport)).to eq @airbourne = false
