@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :state
+  attr_reader :state
 
   def initialize(state = "flying")
     @state = state
@@ -7,11 +7,13 @@ class Plane
 
   def land
     raise "Plane already landed" if @state == "landed"
+
     @state = "landed"
   end
 
   def takeoff
     raise "Plane has already taken off" if @state == "flying"
+    
     @state = "flying"
   end
 

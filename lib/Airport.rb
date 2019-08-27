@@ -3,7 +3,6 @@ class Airport
   attr_reader :weather
   attr_reader :capacity
 
-
   def initialize(capacity = 20)
     @planes = []
     @capacity = capacity
@@ -29,16 +28,16 @@ class Airport
   private
 
   def stormy?
-    raise "Stormy - no plane movements at airport" if self.weather == "stormy"
+    raise "Stormy - no plane movements at airport" if weather == "stormy"
   end
 
   def airport_full?
-    raise "Airport full - no landing" if @planes.length >= self.capacity
+    raise "Airport full - no landing" if @planes.length >= capacity
     # check - why did I need self.weather and could not use @weather??
   end
 
   def plane_at_airport?(plane)
-    raise "Specified plane not at airport" unless self.planes.include?(plane)
+    raise "Specified plane not at airport" unless planes.include?(plane)
     # not well written - is there an exclude method?
   end
 

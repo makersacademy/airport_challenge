@@ -2,7 +2,7 @@ require "plane.rb"
 
 describe Plane do
   subject { Plane.new }
-  let (:airport) { double :airport }
+  let(:airport) { double :airport }
 
   describe "#Plane status" do
 

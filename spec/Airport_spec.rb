@@ -1,8 +1,8 @@
 require "airport.rb"
 
 describe Airport do
-  subject { Airport.new }
-  let (:plane) { double :plane }
+#  subject { Airport.new }
+  let(:plane) { double :plane }
 
   describe "#landing" do
     it "can be instructed to land plane" do
@@ -40,7 +40,8 @@ describe Airport do
     it "instruct to take off plane and plane has left airport" do
       allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:takeoff)
-      subject.planes << plane
+      allow(plane).to receive(:land)
+      subject.land(plane)
       subject.takeoff(plane)
       expect(subject.planes).not_to include plane
     end
