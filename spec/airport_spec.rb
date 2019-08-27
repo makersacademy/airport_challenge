@@ -13,7 +13,7 @@ describe Airport do
 
   it "Allows a plane to take off and confirm false that its not in the airport" do
     subject.instance_variable_set(:@planes_in_airport, [plane1])
-    allow(plane1).to receive(:get_airport).and_return("Makers Airport")
+    allow(plane1).to receive(:airport).and_return("Makers Airport")
     allow(plane1).to receive(:take_off)
     expect(subject.takeoff_plane(plane1)).to eq(false)
   end
