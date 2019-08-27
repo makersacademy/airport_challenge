@@ -3,7 +3,7 @@ require './lib/plane.rb'
 describe Plane do
 
   it { is_expected.to respond_to(:land_at).with(2).arguments }
-  it { is_expected.to respond_to(:take_off_from).with(2).arguments}
+  it { is_expected.to respond_to(:take_off_from).with(2).arguments }
   it { is_expected.to respond_to(:in_air?) }
 
   describe '#landing' do
@@ -20,7 +20,7 @@ describe Plane do
       airport = instance_double("Airport")
       weather = instance_double("Weather")
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{ subject.land_at(airport, weather)}.to raise_error 'Landing not allowed due to stormy weather'
+      expect { subject.land_at(airport, weather) }.to raise_error 'Landing not allowed due to stormy weather'
     end
   end
 
@@ -38,7 +38,7 @@ describe Plane do
       airport = instance_double("Airport")
       weather = instance_double("Weather")
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{ subject.take_off_from(airport, weather) }.to raise_error 'Take off not allowed due to stormy weather'
+      expect { subject.take_off_from(airport, weather) }.to raise_error 'Take off not allowed due to stormy weather'
     end
     it "can not take off if already flying" do
       airport = instance_double("Airport")
@@ -47,9 +47,8 @@ describe Plane do
       allow(airport).to receive(:contains?).and_return(false)
       allow(weather).to receive(:stormy?).and_return(false)
       allow(subject).to receive(:in_air?).and_return(true)
-      expect{ subject.take_off_from(airport, weather) }.to raise_error 'Plane has already taken off'
+      expect { subject.take_off_from(airport, weather) }.to raise_error 'Plane has already taken off'
     end
   end
-
 
 end

@@ -5,6 +5,6 @@ describe Weather do
 
   it "returns true or false when asked if stormy" do
     expect(subject.stormy?).to eq true if subject.stormy?
-    expect(subject.stormy?).to eq false if !subject.stormy?
+    expect(subject.stormy?).to eq false unless subject.stormy?
   end
 end

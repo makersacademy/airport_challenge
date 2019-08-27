@@ -1,4 +1,3 @@
-
 require './lib/airport.rb'
 
 describe Airport do
@@ -26,10 +25,10 @@ describe Airport do
   it "prevents landing if full" do
     plane = instance_double("Plane")
     subject.capacity.times { subject.land(plane) }
-    expect{ subject.land(plane) }.to raise_error "Landing not permitted as airport is full"
+    expect { subject.land(plane) }.to raise_error "Landing not permitted as airport is full"
   end
   it 'prevents take off if plane not at airport' do
     plane = instance_double("Plane")
-    expect{ subject.takeoff(plane) }.to raise_error 'Plane is not at the airport'
+    expect { subject.takeoff(plane) }.to raise_error 'Plane is not at the airport'
   end
 end

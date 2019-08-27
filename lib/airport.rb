@@ -10,12 +10,14 @@ class Airport
   end
 
   def land(plane)
-    fail 'Landing not permitted as airport is full' if self.full? == true
+    fail 'Landing not permitted as airport is full' if full? == true
+
     @planes_array.push(plane)
   end
 
   def takeoff(plane)
-    fail 'Plane is not at the airport' if self.contains?(plane) == false
+    fail 'Plane is not at the airport' if contains?(plane) == false
+
     @planes_array.delete(plane)
   end
 
