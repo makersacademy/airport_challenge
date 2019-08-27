@@ -25,7 +25,7 @@ class Airport
 
     raise "It's too Stormy to take off" unless is_it_sunny?
 
-    raise "plane not at this airport" if plane.get_airport != @airport_name
+    raise "plane not at this airport" if plane.airport != @airport_name
 
     plane.take_off(@airport_name)
     @planes_in_airport.delete(plane)
@@ -35,7 +35,7 @@ class Airport
   # check if plane is currently in the airport
   def plane_in_airport?(search_plane)
     return true if @planes_in_airport.include?(search_plane)
-    
+
     false
   end
 
