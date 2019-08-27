@@ -10,34 +10,37 @@ describe Airport do
       plane = Plane.new
       allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
-      expect(subject.take_off_plane).to eq plane
+      expect(subject.take_off_plane(plane)).to eq plane
     end
   end
 
   describe '#take_off_plane' do
     it 'raises an error when there are no planes available' do
-      expect { subject.take_off_plane }.to raise_error 'Unable to take off: no planes available'
+      planes = []
+      plane = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
+      expect { subject.take_off_plane(plane) }.to raise_error 'Unable to take off: no planes available'
     end
   end
 
-  it { is_expected.to respond_to(:plane) }
+  it { is_expected.to respond_to(:planes) }
 
-  describe '#plane' do
+  describe '#planes' do
     it 'returns landed planes' do
       plane = Plane.new
       allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.planes.include?(plane)).to eq true
     end
   end
 
-  describe '#plane' do
+  describe '#planes' do
     it 'confirms plane no longer in airport after take-off' do
       plane = Plane.new
       allow(subject).to receive(:current_windspeed_report) { 1 }
       subject.land_a_plane(plane)
-      subject.take_off_plane
-      expect(subject.plane).to eq nil
+      subject.take_off_plane(plane)
+      expect(subject.planes.include?(plane)).to eq false
     end
   end
 
@@ -60,7 +63,7 @@ describe Airport do
       subject.land_a_plane(plane)
       # Using a stub to mimic consistently stormy weather:
       allow(subject).to receive(:current_windspeed_report) { 7 }
-      expect { subject.take_off_plane }.to raise_error 'Take-off ban: storm force winds' if subject.current_windspeed_report >= 7
+      expect { subject.take_off_plane(plane) }.to raise_error 'Take-off ban: storm force winds' if subject.current_windspeed_report >= 7
     end
   end
 
@@ -71,4 +74,22 @@ describe Airport do
       expect { subject.land_a_plane(plane) }.to raise_error 'Landing ban: storm force winds' if subject.current_windspeed_report >= 7
     end
   end
+
+  describe '#land_a_plane' do
+    it 'raises an error when airport is full' do
+      allow(subject).to receive(:current_windspeed_report) { 1 }
+      expect { 21.times { subject.land_a_plane Plane.new } }.to raise_error 'Unable to land: airport full.'
+    end
+  end
+
+  describe '#take_off_plane' do
+    it 'raises an error when plane not in airport' do
+      plane = Plane.new
+      plane2 = Plane.new
+      allow(subject).to receive(:current_windspeed_report) { 1 }
+      subject.land_a_plane(plane2)
+      expect { subject.take_off_plane(plane) }.to raise_error 'Unable to take off: plane not in airport'
+    end
+  end
+
 end
