@@ -2,9 +2,9 @@ require './lib/plane.rb'
 
 describe Plane do
 
-  it { is_expected.to respond_to(:land_at).with(2).arguments }
-  it { is_expected.to respond_to(:take_off_from).with(2).arguments }
-  it { is_expected.to respond_to(:in_air?) }
+  # it { is_expected.to respond_to(:land_at).with(2).arguments }
+  # it { is_expected.to respond_to(:take_off_from).with(2).arguments }
+  # it { is_expected.to respond_to(:in_air?) }
 
   describe '#landing' do
     it "lands at the airport" do
