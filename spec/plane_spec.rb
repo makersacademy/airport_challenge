@@ -17,8 +17,7 @@ describe Plane do
     expect { plane_1.take_off }.to raise_error "Cannot take off - already in flight"
   end
 
-  # it "raises error if not in flight when asked to land" do
-  #   plane_1.land
-  #   expect { plane_1.land }.to raise_error "Cannot land - not in flight"
-  # end
+  it "raises error if not in flight when asked to land" do
+    expect { plane_1.land }.to raise_error "Cannot land - not in flight"
+  end
 end

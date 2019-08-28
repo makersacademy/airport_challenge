@@ -13,8 +13,7 @@ class Plane
   end
 
   def land
-    fail "Cannot land - not in flight" unless @in_flight == true
+    fail "Cannot land - not in flight" if @in_flight == false
     @in_flight = false
   end
 end
-

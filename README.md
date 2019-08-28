@@ -89,8 +89,11 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
+
 To Do 
 -------
 
-* Plane to raise error when not in flight when asked to land 
+* Give responsibility of confirming plane no longer in airport to airport 
 * Refactor tests to remove any unnecessary stubs
+* Add installation instructions
+* Add approach to problem 
