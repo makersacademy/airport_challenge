@@ -10,9 +10,9 @@ describe Plane do
 
   describe ".grounded?" do
     it "returns true if plane has landed" do
-      airport = Airport.new
+      airport = Airport.new # Mock for airport class
       plane = Plane.new
-      airport.land(plane)
+      airport.land(plane) #Stub for Land method
       expect(plane.grounded?).to eq true
     end
   end

@@ -84,3 +84,5 @@ Right now the methods tests are only for the accessibility and existence of the 
 The next stage would be to write the tests for the Airport methods that would interface with the plane method.  Then create the class and methods to get the tests to pass.
 
 After that I would continue with the other classes and methods identified.  As I progress it's possible that it will become apparent that design will need to be adapted along the way. If that is the case I will review and adapt the original diagram and also make sure that all previously tested user stories are still being met.
+
+Move over to Readme 1 + review changes

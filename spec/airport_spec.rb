@@ -9,7 +9,7 @@ describe Airport do
   describe "#land" do
     it "confirm plan has landed" do
       airport = Airport.new
-      plane = Plane.new
+      plane = Plane.new #Mock
       expect(airport.land(plane)).to eq("Plane has landed")
     end
   end
@@ -17,7 +17,7 @@ describe Airport do
     describe "#take_off" do
       it "instructs a plane to take off" do
         airport = Airport.new
-        plane = Plane.new
+        plane = Plane.new #Mock
         airport.planes = [plane]
         expect(airport.take_off(plane)).to eq("Plane has taken off")
       end
