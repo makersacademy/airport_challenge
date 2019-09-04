@@ -26,6 +26,7 @@ class Airport
     fail 'Cannot land - airport full' if full?
     
     @planes << plane
+    plane.land
   end
 
   private 
