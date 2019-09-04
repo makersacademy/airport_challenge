@@ -1,6 +1,6 @@
 ## Airport Challenge
 
-
+![Build Status](https://travis-ci.com/mikjw/airport_challenge.svg?branch=master)
 
 The first weekend challenge at Makers Academy: use test-driven development to write a simple command line app to control the flow of traffic at an airport.  
 
@@ -79,3 +79,5 @@ RuntimeError (Cannot land - not in flight)
 * Tidy test suite be removing `responds_to` tests that are no longer needed.
 * Defend against further edge cases - e.g. by having planes rememeber specifically which airport they have landed in and not just that they are no longer 'in flight'.
 <br>
+
+Returning to the project the following week to update the README and add Travis CI, I found the tests were not detecting a bug in the `land` menthod in the `Airport` class which caused planes not to land. With the bug fixed, some tests failed - solved by using a plane double to the airport spec. With more time the test suite would benefit from further tidying. 

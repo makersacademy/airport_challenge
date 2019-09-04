@@ -4,6 +4,8 @@ describe Airport do
 
   let(:gatwick) { Airport.new }
   let(:plane_1) { Plane.new }
+  
+  let(:plane_2) { double :plane_2 }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -21,14 +23,16 @@ describe Airport do
 
   it "adds plane to planes array" do
     allow(gatwick).to receive(:weather) { :sunny }
-    gatwick.land(plane_1) 
-    expect(gatwick.planes.pop).to eq(plane_1)
+    allow(plane_2).to receive(:land)
+    gatwick.land(plane_2) 
+    expect(gatwick.planes.pop).to eq(plane_2)
   end
 
   it "raises error when trying to land a plane at a full airport" do
     allow(gatwick).to receive(:weather) { :sunny }
-    gatwick.capacity.times { gatwick.land(Plane.new) }
-    expect { gatwick.land(plane_1) }.to raise_error "Cannot land - airport full"
+    allow(plane_2).to receive(:land)
+    gatwick.capacity.times { gatwick.land(plane_2) }
+    expect { gatwick.land(plane_2) }.to raise_error "Cannot land - airport full"
   end
 
   it "has capacity that can be set on initialization" do
