@@ -1,7 +1,6 @@
 ## Airport Challenge
 
 
-![Build Status](https://travis-ci.com/mikjw/airport_challenge.svg?branch=master)
 
 The first weekend challenge at Makers Academy: use test-driven development to write a simple command line app to control the flow of traffic at an airport.  
 
