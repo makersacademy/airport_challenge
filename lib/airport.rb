@@ -13,25 +13,37 @@ class Airport
 
   def land(plane, weather)
     if weather.current_conditions == "stormy"
-      raise "Weather is stormy: permission to land denied"
+      raise stormy_error
     elsif full?
-      raise "Airport is full, unable to land plane"
+      raise full_error
     else
       @planes << plane
     end
+    plane.mark_landed
   end
 
   def takeoff(plane, weather)
     if weather.current_conditions == "stormy"
-      raise "Weather is stormy: permission to takeoff denied"
+      raise stormy_error
+    elsif plane.flying == true
+      raise "Plane is already airborne"
     else
       @planes[0]
     end
+    plane.mark_flying
   end
 
   private
 
   def full?
     @planes.length == @capacity
+  end
+
+  def full_error
+    "Airport is full, unable to land plane"
+  end
+
+  def stormy_error
+    "Weather is stormy: permission to land denied"
   end
 end
