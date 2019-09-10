@@ -23,13 +23,10 @@ class Airport
   end
 
   def takeoff(plane, weather)
-    if weather.current_conditions == "stormy"
-      raise stormy_error
-    elsif plane.flying == true
-      raise "Plane is already airborne"
-    else
-      @planes[0]
-    end
+    raise stormy_error if weather.current_conditions == "stormy"
+    raise plane_not_in_airport_error if @planes.include?(plane) == false
+    @planes[0]
+    @planes.delete(plane)
     plane.mark_flying
   end
 
@@ -45,5 +42,9 @@ class Airport
 
   def stormy_error
     "Weather is stormy: permission to land denied"
+  end
+
+  def plane_not_in_airport_error
+    "Plane is not present in the airport"
   end
 end

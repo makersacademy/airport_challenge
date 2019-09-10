@@ -15,6 +15,15 @@ describe Airport do
     expect { subject.takeoff(plane, weather) }.not_to raise_error
   end
 
+  it 'allows only planes within it to takeoff' do
+    plane = Plane.new
+    airport = Airport.new
+    airport_2 = Airport.new
+    weather = double("weather", :current_conditions => "sunny")
+    airport.land(plane, weather)
+    expect { airport_2.takeoff(plane, weather) }.to raise_error("Plane is not present in the airport")
+  end
+
   it 'prevents takeoff if weather is stormy' do
     plane = double("plane")
     weather = double("weather", :current_conditions => "stormy")
@@ -39,7 +48,7 @@ describe Airport do
     weather = double("weather", :current_conditions => "sunny")
     subject.land(plane, weather)
     subject.takeoff(plane, weather)
-    expect { subject.takeoff(plane, weather) }.to raise_error("Plane is already airborne")
+    expect { subject.takeoff(plane, weather) }.to raise_error("Plane is not present in the airport")
   end
 
   it 'has a default capacity of 10' do
