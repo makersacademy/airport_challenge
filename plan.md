@@ -24,7 +24,7 @@ plane        |  land_plane
 airport      |
 
 Airport <-- land_plane --> a Plane
-plane.land_plane
+airport.land_plane
 
 I will need an *Airport* class and a *Plane* class.
 
@@ -43,6 +43,6 @@ plane        |
 airport      |  take_off
 
 Airport <-- take_off --> a Plane
-plane.take_off 
+airport.take_off
 
 * Add goals this achieves in readme. *  
