@@ -45,4 +45,11 @@ airport      |  take_off
 Airport <-- take_off --> a Plane
 airport.take_off
 
+### User Story 3
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+
 * Add goals this achieves in readme. *  

@@ -2,12 +2,13 @@ require_relative 'plane'
 
 class Airport
 
-  def land_plane
-    "Plane has taken landed"
+  def land_plane(plane)
+    @plane = plane
   end
 
   def take_off
-    "Plane has taken off"
+    @plane
+    "The plane has taken off"  
   end
 
 end
