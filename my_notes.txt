@@ -2,7 +2,7 @@ Hi!
 
 Unfortunately didn't get a huge amount done. It was slow going so I left out the video, would've been way too long. 
 
-I think I've roughly completed the code for all user stories but couldn't get the RSpec to pass properly at the end. My code works in IRB, it's just how I have implemented the stormy weather story is having RSpec issues I can't get around at the moment, so I get one failure.
+I think I've roughly completed the code for all user stories but couldn't get the RSpec to pass properly at the end. My code works in IRB, it's just how I have implemented the stormy weather story is having RSpec issues I can't get around at the moment, so I get one failure. The failure I get is I cannot get the RSpec raise error for stormy weather to only test stormy weather on the weather_conditions method. It is set to sunny on all the other methods. The test works occasionally when my random weather selection picks stormy for it. I have set up my code so that it expects sunny weather 80% of the time. 
 
 All I have to submit today is the code I did, don't have any notes either unfortunately so I hope it makes sense. I will submit what I have anyway and see what you guys think. 
 
