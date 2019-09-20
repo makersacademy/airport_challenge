@@ -1,17 +1,15 @@
 class Plane
 attr_reader :space
+attr_reader :weather
 
   def initialize
     @airport_capacity = 1
+    @weather = ["sunny", "sunny", "sunny", "sunny", "stormy"]
   end
 
   def weather_conditions
-    puts "is the weather stormy? type: y/n"
-    weather = gets.chomp
-    raise 'weather is too stormy to takeoff or land' if (weather == "y")
-    if weather != "n"
-      puts "answer not clear"
-    end
+    @weather.sample
+    raise 'weather is too stormy to takeoff or land' if (@weather.sample == "stormy")
   end
 
   def land(number_of_planes)
