@@ -51,5 +51,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
+raise_error when weather is stormy.
+airport.take_off == false if weather == stormy
 
 * Add goals this achieves in readme. *  
