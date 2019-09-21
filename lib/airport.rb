@@ -9,6 +9,8 @@ class Airport
   end
 
   def land_plane(plane)
+    raise "Plane currently in airport" if in_airport?(plane)
+
     raise "Airport full, no space to land" if full?
 
     stormy?

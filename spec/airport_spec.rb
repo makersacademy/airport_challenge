@@ -20,7 +20,7 @@ describe Airport do
   end
 
   it "allows multiple planes to land" do
-    airport = Airport.new(5)
+    airport = Airport.new
     plane1 = Plane.new
     plane2 = Plane.new
     allow(airport). to receive(:rand).and_return(1)
@@ -29,19 +29,28 @@ describe Airport do
     expect(airport.planes).to include(plane1, plane2)
   end
 
+  it "throws error if plane already in airport tries to land" do
+    airport = Airport.new
+    plane1 = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
+    airport.land_plane(plane1)
+    expect { airport.land_plane(plane1) }.to raise_error "Plane currently in airport"
+  end
+
+  it "prevents landing a plane when airport full" do
+    airport = Airport.new(1)
+    plane1 = Plane.new
+    plane2 = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
+    airport.land_plane(plane1)
+    expect { airport.land_plane(plane2) }. to raise_error "Airport full, no space to land"
+  end
+
   it "prevents landing plane when stormy" do
     airport = Airport.new
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(5)
     expect { airport.land_plane(plane) }.to raise_error "Too stormy to land"
-  end
-
-  it "prevents landing a plane when airport full" do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport). to receive(:rand).and_return(1)
-    Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
-    expect { airport.land_plane(plane) }. to raise_error "Airport full, no space to land"
   end
 
   describe "#take_off"
@@ -68,9 +77,10 @@ describe Airport do
     airport = Airport.new
     plane1 = Plane.new
     plane2 = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane1)
     expect { airport.take_off(plane2) }.to raise_error "Plane not currently in airport"
-    
+
   end
 
   it "prevents take off when stormy" do
