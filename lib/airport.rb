@@ -9,15 +9,18 @@ class Airport
   end
 
   def land_plane(plane)
+    stormy?
     raise "Too stormy to land" if @stormy
-    raise "Airport full, no space to land" if @planes.size > @capacity
+    raise "Airport full, no space to land" if @planes.size >= @capacity
+
     @planes << plane
   end
 
   def take_off
+    stormy?
     raise "Too stormy to take off!" if @stormy
 
-    @planes = nil
+    @planes.pop
     "plane has left the airport"
   end
 

@@ -10,13 +10,15 @@ describe Airport do
   it "lands a plane" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport). to receive(:rand).and_return(2)
     expect(airport.land_plane(plane)).to include plane
   end
 
   it "allows multiple planes to land" do
-    airport = Airport.new
+    airport = Airport.new(5)
     plane1 = Plane.new
     plane2 = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane1)
     airport.land_plane(plane2)
     expect(airport.planes).to include(plane1, plane2)
@@ -26,7 +28,6 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(5)
-    airport.stormy?
     expect { airport.land_plane(plane) }.to raise_error "Too stormy to land"
   end
 
@@ -34,8 +35,8 @@ describe Airport do
     airport = Airport.new(1)
     plane1 = Plane.new
     plane2 = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane1)
-    airport.land_plane(plane2)
     expect { airport.land_plane(plane2) }. to raise_error "Airport full, no space to land"
   end
 
@@ -46,27 +47,29 @@ describe Airport do
   it "takes off a plane" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane)
     airport.take_off
-    expect(airport.planes).to eq nil
+    expect(airport.planes).to be_empty
   end
 
   it "prevents take off when stormy" do
     airport = Airport.new
     allow(airport). to receive(:rand).and_return(5)
-    airport.stormy?
     expect { airport.take_off }.to raise_error "Too stormy to take off!"
   end
 
   it "confirms plane has left airport" do
     airport = Airport.new
     plane = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane)
     expect(airport.take_off).to eq "plane has left the airport"
   end
 
   describe "#stormy?"
-  it "checks if weather is stormy when #weather_gen = 5" do
+
+  it "checks if weather is stormy when rand(1..5) = 5" do
     airport = Airport.new
     allow(airport). to receive(:rand).and_return(5)
     expect(airport.stormy?). to eq true
