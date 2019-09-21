@@ -1,17 +1,63 @@
-require "plane"
+require "controller" # controller requires all the required files in one place
 
 describe Plane do
 
-  it "lands" do
-    expect(subject).to respond_to :land
+  let(:plane) { described_class.new }
+  airport = Airport.new
+
+  # As an air traffic controller
+  # So I can get passengers to a destination
+  # I want to instruct a plane to land at an airport
+  describe "#land" do
+
+    before(:each) { plane.land(airport) }
+
+    it "takes one argument (an airport to land at)" do
+      expect(plane).to respond_to(:land).with(1).argument
+    end
+
+    # might be more relevant in airport_spec => Do this later
+    # otherwise how to isolate the airport object?
+    it "causes an airport to confirm the plane is there" do
+      expect(airport.planes.include?(plane)).to eq true
+    end
+
+    it "confirms that the plane is not airborne" do
+      expect(plane).not_to be_airborne
+    end
+
   end
 
-  it "takes off" do
-    expect(subject).to respond_to :take_off
+  # As an air traffic controller
+  # So I can get passengers on the way to their destination
+  # I want to instruct a plane to take off from an airport and
+  # confirm that it is no longer in the airport
+  describe "#take_off" do
+
+    before(:each) { plane.take_off(airport) }
+
+    it "takes one argument (an airport to take off from)" do
+      expect(plane).to respond_to(:take_off).with(1).argument
+    end
+
+    it "confirms the plane is no longer in the airport" do
+      expect(plane).to be_airborne
+    end
+
   end
 
-  it "confirms it has taken off" do
-    expect(subject).to respond_to :confirm_take_off
-  end
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent takeoff when weather is stormy
+
+
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when weather is stormy
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
 
 end
