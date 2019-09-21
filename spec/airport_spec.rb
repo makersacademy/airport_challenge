@@ -24,9 +24,16 @@ describe Airport do
       expect(airport.permission_to_land(plane)).to eq "Safe to land"
     end
 
-    it 'informs planes when it is full' do
-      airport::DEFAULT_CAPACITY.times { airport.permission_to_land(plane) }
+    it 'hangar has a default capacity' do
+      airport.capacity.times { airport.permission_to_land(plane) }
       expect { airport.permission_to_land(plane) }.to raise_error 'Airport full'
+    end
+
+    it 'Capacity can be changed' do
+      subject = Airport.new(100)
+      allow(subject).to receive(:clear?) { true }
+      subject.capacity.times { subject.permission_to_land(plane) }
+      expect { subject.permission_to_land(plane) }.to raise_error 'Airport full'
     end
 
     it "tells planes when it is not safe to land" do
