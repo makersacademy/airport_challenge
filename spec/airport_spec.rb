@@ -13,6 +13,12 @@ describe Airport do
       my_plane = Plane.new
       expect { gatwick.land(my_plane) }.to raise_error "At capacity"
     end
+    it "prevents landing if weather is stormy" do
+      gatwick = Airport.new
+      plane_1 = Plane.new
+      # forecast.stormy? = true
+      expect { gatwick.land(plane_1) }.to raise_error "Permission denied due to weather"
+    end
   end
 
   describe "#take_off" do
