@@ -108,8 +108,15 @@ describe Plane do
         expect(plane).to be_airborne
       end
 
-      it "does not 'take off' again if plane is already airborne" do
+      it "does not 'take off' again if already airborne" do
         expect { plane.take_off(airport) }.to raise_error "Plane is already airborne"
+      end
+
+      it "does not take off from an airport it is not in" do
+        another_airport = Airport.new
+        another_airport.weather = "sunny"
+        plane.land(airport)
+        expect { plane.take_off(another_airport) }.to raise_error "Plane is not in #{another_airport}"
       end
 
     end
