@@ -58,6 +58,6 @@ _I would like a default airport capacity that can be overridden as appropriate_
 - - - -
 
 **Airport**               		
-*Has a Default Capacity     
-*Knows when capacity is full
-*Capacity can be changed
+* Has a Default Capacity     
+* Knows when capacity is full
+* Capacity can be changed
