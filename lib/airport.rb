@@ -1,6 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  include Weather
   attr_reader :hangar
 
   def initialize
@@ -13,6 +15,7 @@ class Airport
   end
 
   def permission_to_takeoff(plane)
+    weather_conditions
     clear_for_takeoff(plane)
     "You are clear for take off"
   end
@@ -25,5 +28,9 @@ class Airport
 
   def clear_for_takeoff(plane)
     hangar.delete(plane)
+  end
+
+  def weather_conditions
+    raise 'unsafe weather conditions' unless clear?
   end
 end

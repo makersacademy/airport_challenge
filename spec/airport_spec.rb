@@ -35,5 +35,11 @@ describe Airport do
       airport.permission_to_takeoff(plane)
       expect(airport.hangar).to be_empty
     end
+
+    it "tells planes when it is not safe to take off" do
+      allow(airport).to receive(:clear?).and_return(false)
+      airport.permission_to_land(plane)
+      expect { airport.permission_to_takeoff(plane) }.to raise_error('unsafe weather conditions')
+    end
   end
 end
