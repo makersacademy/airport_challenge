@@ -8,7 +8,13 @@ class Airport
   end
 
   def permission_to_land(plane)
-    hangar << plane
+    taxi_to_hangar(plane)
     'Safe to land'
+  end
+
+  private
+
+  def taxi_to_hangar(plane)
+    hangar << plane
   end
 end
