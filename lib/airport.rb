@@ -9,5 +9,6 @@ class Airport
 
   def permission_to_land(plane)
     hangar << plane
+    'Safe to land'
   end
 end

@@ -17,6 +17,9 @@ describe Airport do
       allow(plane).to receive(:class) { Plane }
       expect(airport.hangar[0].class).to eq Plane
     end
-  end
 
+    it 'tells plane it is safe to land' do
+      expect(airport.permission_to_land(plane)).to eq "Safe to land"
+    end
+  end
 end
