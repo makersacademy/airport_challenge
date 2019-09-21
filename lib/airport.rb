@@ -11,6 +11,7 @@ attr_reader :planes, :stormy
   end
 
   def land_plane(plane)
+    raise "Weather is too stormy to land" if (stormy == true)
     @planes << plane
   end
 
