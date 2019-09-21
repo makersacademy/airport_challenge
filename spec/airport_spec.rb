@@ -22,6 +22,8 @@ describe Airport do
     end
     it 'should not take off if weather is stormy' do
       plane = double(:plane)
+      allow(airport).to receive(:safe?) { false }
+      expect { airport.take_off(plane) }.to raise_error 'Unsafe flying conditions, stay grounded'
       
     end
   end

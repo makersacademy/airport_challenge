@@ -17,11 +17,21 @@ class Airport
 
   def take_off(plane)
 
+    raise 'Unsafe flying conditions, stay grounded' if safe? == false
+
     @hangar.delete(plane)
   
   end
 
-end
+  private
 
-
+  def safe?
+    forecast == :sunny
+  end
   
+  def forecast
+    conditions = rand()
+    conditions > 0.8 ? :stormy : :sunny
+  end
+
+end
