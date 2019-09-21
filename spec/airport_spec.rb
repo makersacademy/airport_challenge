@@ -31,13 +31,12 @@ describe Airport do
     expect { airport.land_plane(plane) }.to raise_error "Too stormy to land"
   end
 
-  it "prevents landing a plane when airport full (capacity of 1)" do
-    airport = Airport.new(1)
-    plane1 = Plane.new
-    plane2 = Plane.new
+  it "prevents landing a plane when airport full" do
+    airport = Airport.new
+    plane = Plane.new
     allow(airport). to receive(:rand).and_return(1)
-    airport.land_plane(plane1)
-    expect { airport.land_plane(plane2) }. to raise_error "Airport full, no space to land"
+    10.times {airport.land_plane(plane)}
+    expect { airport.land_plane(plane) }. to raise_error "Airport full, no space to land"
   end
 
   describe "#take_off"
@@ -74,4 +73,6 @@ describe Airport do
     allow(airport). to receive(:rand).and_return(5)
     expect(airport.stormy?). to eq true
   end
+
+
 end
