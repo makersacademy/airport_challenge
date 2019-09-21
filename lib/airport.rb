@@ -4,7 +4,7 @@ class Airport
   attr_reader :planes, :capacity
 
   def initialize(capacity = 10)
-    @planes = []
+    @planes = [] # list of current planes in airport
     @capacity = capacity
   end
 
@@ -16,7 +16,8 @@ class Airport
     stormy?
     raise "Too stormy to land" if @stormy
 
-    @planes << plane
+    @planes << plane # adds plane to list of planes currently in airport
+
   end
 
   def take_off(plane)
@@ -27,22 +28,27 @@ class Airport
     stormy?
     raise "Too stormy to take off!" if @stormy
 
-    @planes.delete(plane)
+    @planes.delete(plane) # removes plane from list of current airport planes
     "#{plane} has left the airport"
   end
 
+  private
+  # based on 1 in 5 chance, checks if weather is stormy
   def stormy?
     rand(1..5) == 5 ? @stormy = true : @stormy = false
   end
 
+  # checks if number of planes currently in airport is greater than capacity
   def full?
     @planes.size >= @capacity
   end
 
+  # checks if there are 0 planes in the airport
   def empty?
     @planes.size.zero?
   end
 
+  # checks if given plane is in the airport
   def in_airport?(plane)
     @planes.include?(plane)
   end
