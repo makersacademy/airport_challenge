@@ -34,21 +34,42 @@ describe Plane do
   # confirm that it is no longer in the airport
   describe "#take_off" do
 
-    before(:each) { plane.take_off(airport) }
+    context "when weather is sunny" do
 
-    it "takes one argument (an airport to take off from)" do
-      expect(plane).to respond_to(:take_off).with(1).argument
+      before(:each) do
+        airport.weather = "sunny"
+        plane.take_off(airport)
+      end
+
+      it "takes one argument (an airport to take off from)" do
+        expect(plane).to respond_to(:take_off).with(1).argument
+      end
+
+      it "confirms the plane is no longer in the airport" do
+        expect(plane).to be_airborne
+      end
+
     end
 
-    it "confirms the plane is no longer in the airport" do
-      expect(plane).to be_airborne
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent takeoff when weather is stormy
+    context "when weather is stormy" do
+
+      before(:each) { airport.weather = "stormy" }
+
+      it "raises an error" do
+        expect { plane.take_off(airport) }.to raise_error "Cannot take off due to stormy weather"
+      end
+
     end
+
+
 
   end
 
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent takeoff when weather is stormy
+
+
 
 
 

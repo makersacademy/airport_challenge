@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off(airport)
+    fail "Cannot take off due to stormy weather" if airport.weather == "stormy"
     self.airborne = true
   end
 
