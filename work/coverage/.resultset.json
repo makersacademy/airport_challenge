@@ -12,6 +12,16 @@
       ],
       "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/lib/airport.rb": [
         1,
+        null,
+        1,
+        null
+      ],
+      "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/lib/plane.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/spec/plane_spec.rb": [
@@ -21,13 +31,11 @@
         1,
         1,
         null,
-        null
-      ],
-      "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/lib/plane.rb": [
-        1,
+        null,
+        2,
         null
       ]
     },
-    "timestamp": 1569101503
+    "timestamp": 1569102172
   }
 }
