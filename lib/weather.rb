@@ -1,18 +1,16 @@
 class Weather
 
   def initialize
-    @weather_array = []
-    5.times {@weather_array.push("sun")}
-    2.times {@weather_array.push("storm")}
-  end
-
-  def stormy?
-    if @weather_array.sample == "storm"
-      return true
+    random = rand(1..10)
+    if  random == 2
+      @stormy = true
     else
-      return false
+      @stormy = false
     end
   end
 
-  
+  def stormy?
+    @stormy
+  end
+
 end

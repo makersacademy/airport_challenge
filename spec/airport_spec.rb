@@ -33,7 +33,7 @@ describe Airport do
 
   it "if Airport is full, it does not allow a plane to take off" do
     airport = Airport.new(double(:weather, stormy?: false))
-    (airport.capacity).do { airport.land(:plane) }
+    (airport.capacity).times { airport.land(:plane) }
     expect{ airport.land(:plane) }.to raise_error "Airport is full!"
   end
 
