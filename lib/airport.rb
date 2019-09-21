@@ -10,6 +10,7 @@ class Airport
   end
 
   def permission_to_land(plane)
+    weather_conditions
     taxi_to_hangar(plane)
     'Safe to land'
   end
