@@ -3,11 +3,14 @@ require_relative 'weather'
 
 class Airport
 
-attr_reader :planes, :stormy
+  attr_reader :planes, :stormy, :capacity
 
-  def initialize(weather)
+  DEFAULT_CAPACITY = 10
+
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @planes = []
     @stormy = weather.stormy?
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -18,6 +21,12 @@ attr_reader :planes, :stormy
   def takeoff
     raise "Weather is too stormy to takeoff" if (stormy == true)
     @planes.pop
+  end
+
+  private
+  
+  def capacity
+    @capacity
   end
 
 end

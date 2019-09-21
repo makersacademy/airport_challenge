@@ -35,4 +35,19 @@ describe Airport do
     airport = Airport.new(double(:weather, stormy?: true))
     expect {airport.land_plane(plane)}.to raise_error "Weather is too stormy to land"
   end
+
+  it 'has a default capacity' do
+    airport = Airport.new(double(:weather, stormy?: false))
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+    it 'has a capacity that can be set' do
+      airport = Airport.new(double(:weather, stormy?: false),30)
+      expect(airport.capacity).to eq 30
+    end
+  #below test assumes that the capacity of the airport is 20
+  # it "stops more planes landing when the airport is full"
+  #   plane = Plane.new
+  #   airport = Airport.new(double(:weather, stormy?: false))
+  #   airport
 end
