@@ -108,6 +108,10 @@ describe Plane do
         expect(plane).to be_airborne
       end
 
+      it "does not 'take off' again if plane is already airborne" do
+        expect { plane.take_off(airport) }.to raise_error "Plane is already airborne"
+      end
+
     end
 
     # As an air traffic controller
