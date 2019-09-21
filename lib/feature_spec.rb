@@ -1,7 +1,7 @@
 # specification diagrams
 
 # 1. DONE Airport <-- planes land
-# 2. Airport --> planes takeoff (and confirm no longer at airport)
+# 2. DONE Airport --> planes takeoff (and confirm no longer at airport)
 # 3. Airport (stormy) --> planes do not takeoff 
 # 4. Airport (stormy) --> planes do not land
 # 5. Airport (full) --> planes do not land

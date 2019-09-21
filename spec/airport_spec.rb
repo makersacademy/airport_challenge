@@ -24,4 +24,19 @@ describe Airport do
       expect{subject.land(Plane.new)}.to raise_error("Hangar is full")
     end
   end
+
+  describe '#takeoff' do
+    it 'removes a plane from the hangar' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.takeoff).to eq plane
+    end
+
+    it 'raises error if no planes in hangar to takeoff' do
+      plane = Plane.new
+      subject.land(plane)
+      expect{2.times{subject.takeoff}}.to raise_error("No planes in hangar")
+    end
+  end
+
 end

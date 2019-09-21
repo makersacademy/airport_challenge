@@ -14,4 +14,8 @@ class Airport
     @hangar << plane
   end
 
+  def takeoff
+    raise "No planes in hangar" if @hangar.empty?
+    @hangar.pop
+  end
 end
