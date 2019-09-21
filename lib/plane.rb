@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Cannot land due to stormy weather" if airport.weather == "stormy"
     airport.planes << self
     self.airborne = false
   end

@@ -10,23 +10,58 @@ describe Plane do
   # I want to instruct a plane to land at an airport
   describe "#land" do
 
-    before(:each) { plane.land(airport) }
+    context "when airport weather is sunny" do
 
-    it "takes one argument (an airport to land at)" do
-      expect(plane).to respond_to(:land).with(1).argument
-    end
+      before(:each) do
+        airport.weather = "sunny"
+        plane.land(airport)
+      end
 
-    # might be more relevant in airport_spec => Do this later
-    # otherwise how to isolate the airport object?
-    it "causes an airport to confirm the plane is there" do
-      expect(airport.planes.include?(plane)).to eq true
-    end
+      it "takes one argument (an airport to land at)" do
+        expect(plane).to respond_to(:land).with(1).argument
+      end
 
-    it "confirms that the plane is not airborne" do
-      expect(plane).not_to be_airborne
-    end
+      # might be more relevant in airport_spec => Do this later
+      # otherwise how to isolate the airport object?
+      it "causes an airport to confirm the plane is there" do
+        expect(airport.planes.include?(plane)).to eq true
+      end
 
-  end
+      it "confirms that the plane is not airborne" do
+        expect(plane).not_to be_airborne
+      end
+
+    end # end of context: sunny
+
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when weather is stormy
+    context "when airport weather is stormy" do
+
+      before(:each) { airport.weather = "stormy" }
+
+      it "raises an error" do
+        expect { plane.land(airport) }.to raise_error "Cannot land due to stormy weather"
+      end
+
+      it "keeps the plane airborne" do
+        expect(plane).to be_airborne
+      end
+
+      it "causes airport to not have the plane" do
+        expect(airport.planes).not_to include plane
+      end
+
+    end # end of context: stormy
+
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when the airport is full
+    context "when airport is full" do
+
+    end # end of context: airport full
+
+  end # end of describe #land
 
   # As an air traffic controller
   # So I can get passengers on the way to their destination
@@ -35,7 +70,10 @@ describe Plane do
   describe "#take_off" do
 
     before(:each) do
-      plane.land(airport) # because plane is airborne when instantiated
+      # because plane is airborne when instantiated, we need to land it first
+      # to land it, the weather must first be sunny
+      airport.weather = "sunny"
+      plane.land(airport)
     end
 
     context "when airport weather is sunny" do
@@ -53,7 +91,7 @@ describe Plane do
         expect(plane).to be_airborne
       end
 
-    end
+    end # end of context: sunny
 
     # As an air traffic controller
     # To ensure safety
@@ -76,21 +114,8 @@ describe Plane do
         expect(plane).not_to be_airborne
       end
 
-    end
+    end # end of context: stormy
 
-  end
+  end # end of describe #take_off
 
-
-
-
-
-
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when weather is stormy
-
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when the airport is full
-
-end
+end # end of describe Plane
