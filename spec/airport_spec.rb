@@ -3,11 +3,16 @@ require 'plane'
 
 describe Airport do
 
+  it "checks default capcity of airport is 10" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 10
+  end
+
   describe "#lands_plane"
 
   it { is_expected.to respond_to(:land_plane) }
 
-  it "lands a plane" do
+  it "lands a specific plane" do
     airport = Airport.new
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(2)
@@ -35,7 +40,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(1)
-    10.times {airport.land_plane(plane)}
+    Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
     expect { airport.land_plane(plane) }. to raise_error "Airport full, no space to land"
   end
 
@@ -43,19 +48,29 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
-  it "takes off a plane" do
+  it "takes off a specific plane" do
     airport = Airport.new
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane)
-    airport.take_off
+    airport.take_off(plane)
     expect(airport.planes).to be_empty
+  end
+
+  it "throws error if no planes available to take_off" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
+    expect { airport.take_off(plane) }.to raise_error "No planes in airport"
   end
 
   it "prevents take off when stormy" do
     airport = Airport.new
+    plane = Plane.new
+    allow(airport). to receive(:rand).and_return(1)
+    airport.land_plane(plane)
     allow(airport). to receive(:rand).and_return(5)
-    expect { airport.take_off }.to raise_error "Too stormy to take off!"
+    expect { airport.take_off(plane) }.to raise_error "Too stormy to take off!"
   end
 
   it "confirms plane has left airport" do
@@ -63,7 +78,7 @@ describe Airport do
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(1)
     airport.land_plane(plane)
-    expect(airport.take_off).to eq "plane has left the airport"
+    expect(airport.take_off(plane)).to eq "#{plane} has left the airport"
   end
 
   describe "#stormy?"
@@ -73,6 +88,4 @@ describe Airport do
     allow(airport). to receive(:rand).and_return(5)
     expect(airport.stormy?). to eq true
   end
-
-
 end
