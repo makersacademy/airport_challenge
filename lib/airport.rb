@@ -15,9 +15,10 @@ class Airport
       safe?
       move_to_hangar(plane)
       :granted
-    rescue Exception => error
-      raise "#{error.message} for landing" if error.message == "Not safe"
-      raise error.message
+    rescue RuntimeError => e
+      raise "#{e.message} for landing" if e.message == "Not safe"
+
+      raise e.message
     end
   end
 
@@ -26,8 +27,8 @@ class Airport
       safe?
       remove_from_hangar(plane)
       :granted
-    rescue Exception => error
-      raise "#{error.message} for takeoff"
+    rescue RuntimeError => e
+      raise "#{e.message} for takeoff"
     end
   end
   
@@ -43,16 +44,13 @@ class Airport
   
   def safe?
     raise "Airport Full" if full?
-    raise 'Not safe' if !@weather.sunny?
+    raise 'Not safe' unless @weather.sunny?
+
     true
   end
   
   def full?
-    if @hangar.count >= DEFAULT_CAPACITY
-      true
-    else 
-      false
-    end
+    @hangar.count >= DEFAULT_CAPACITY
   end
 
   attr_accessor :hangar, :weather

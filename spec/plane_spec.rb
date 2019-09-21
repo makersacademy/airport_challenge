@@ -21,9 +21,14 @@ describe Plane do
       expect(subject.land(airport)).to eq airport
     end
 
+    it "raises error if plane is already landed" do
+      subject.land(airport)
+      expect { subject.land(airport) } .to raise_error(RuntimeError, "Plane not flying")
+    end
+
     it 'can be denied if airport is unsafe' do
       allow(airport).to receive(:request_landing) { raise "Not safe to land" }
-      expect{ subject.land(airport) }.to raise_error(RuntimeError, "Not safe to land")
+      expect { subject.land(airport) } .to raise_error(RuntimeError, "Not safe to land")
     end
   end
 
@@ -35,13 +40,13 @@ describe Plane do
 
     it "cannot take off from an airport it isn't landed at" do
       subject.land(airport)
-      expect{ subject.takeoff(airport2) }.to raise_error(RuntimeError, 'This plane is not landed there')
+      expect { subject.takeoff(airport2) }.to raise_error(RuntimeError, 'This plane is not landed there')
     end
 
     it 'cannot take off if it is already flying' do
       subject.land(airport)
       subject.takeoff(airport)
-      expect{ subject.takeoff(airport) }.to raise_error(RuntimeError, 'This plane is not landed there')
+      expect { subject.takeoff(airport) }.to raise_error(RuntimeError, 'This plane is not landed there')
     end
   end
 end
