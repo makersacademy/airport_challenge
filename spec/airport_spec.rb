@@ -10,7 +10,16 @@ describe Airport do
   it "lands a plane" do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.land_plane(plane)).to eq plane
+    expect(airport.land_plane(plane)).to include plane
+  end
+
+  it "allows multiple planes to land" do
+    airport = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport.land_plane(plane1)
+    airport.land_plane(plane2)
+    expect(airport.planes).to include(plane1, plane2)
   end
 
   it "prevents landing plane when stormy" do
@@ -18,7 +27,7 @@ describe Airport do
     plane = Plane.new
     allow(airport). to receive(:rand).and_return(5)
     airport.stormy?
-    expect { airport.land_plane(plane) }. to raise_error "Too stormy to land"
+    expect { airport.land_plane(plane) }.to raise_error "Too stormy to land"
   end
 
   describe "#take_off"
@@ -30,7 +39,7 @@ describe Airport do
     plane = Plane.new
     airport.land_plane(plane)
     airport.take_off
-    expect(airport.plane).to eq nil
+    expect(airport.planes).to eq nil
   end
 
   it "prevents take off when stormy" do
