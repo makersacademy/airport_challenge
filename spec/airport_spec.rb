@@ -64,6 +64,15 @@ describe Airport do
     expect { airport.take_off(plane) }.to raise_error "No planes in airport"
   end
 
+  it "throws error if requested plane for take off not in airport" do
+    airport = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport.land_plane(plane1)
+    expect { airport.take_off(plane2) }.to raise_error "Plane not currently in airport"
+    
+  end
+
   it "prevents take off when stormy" do
     airport = Airport.new
     plane = Plane.new

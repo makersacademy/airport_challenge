@@ -20,6 +20,8 @@ class Airport
   def take_off(plane)
     raise "No planes in airport" if empty?
 
+    raise "Plane not currently in airport" if in_airport?(plane) == false
+
     stormy?
     raise "Too stormy to take off!" if @stormy
 
@@ -37,6 +39,10 @@ class Airport
 
   def empty?
     @planes.size.zero?
+  end
+
+  def in_airport?(plane)
+    @planes.include?(plane)
   end
 
   DEFAULT_CAPACITY = 10
