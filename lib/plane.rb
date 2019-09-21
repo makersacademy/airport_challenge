@@ -1,7 +1,7 @@
 require_relative 'airport'
 
 class Plane
-  attr_reader :flying
+  attr_accessor :flying
 
   def initialize
     @flying = true
@@ -10,14 +10,14 @@ class Plane
   def land(airport)
     raise 'plane already grounded' unless flying?
 
-    @flying = false
+    @flying = false if airport.permission_to_land(self)
+
     "plane landed safely at #{airport.name}"
   end
 
-  private
+private
 
   def flying?
     @flying
   end
-
 end
