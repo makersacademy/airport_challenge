@@ -3,7 +3,7 @@ require "controller" # controller requires all the required files in one place
 describe Plane do
 
   let(:plane) { described_class.new }
-  airport = Airport.new
+  let(:airport) { Airport.new }
 
   # As an air traffic controller
   # So I can get passengers to a destination
@@ -31,7 +31,7 @@ describe Plane do
         expect(plane).not_to be_airborne
       end
 
-    end # end of context: sunny
+    end
 
     # As an air traffic controller
     # To ensure safety
@@ -48,11 +48,11 @@ describe Plane do
         expect(plane).to be_airborne
       end
 
-      it "causes airport to not have the plane" do
+      it "causes the airport to confirm the plane is not there" do
         expect(airport.planes).not_to include plane
       end
 
-    end # end of context: stormy
+    end
 
     # As an air traffic controller
     # To ensure safety
@@ -61,16 +61,24 @@ describe Plane do
 
       before(:each) do
         airport.weather = "sunny"
-        # make airport full capacity
+        airport.capacity.times { subject.land(airport) }
       end
 
-      # it "raises an error" do
-      #   expect { plane.land(airport) }.to raise_error "#{airport} is full"
-      # end
+      it "raises an error" do
+        expect { plane.land(airport) }.to raise_error "Cannot land as #{airport} is full"
+      end
 
-    end # end of context: airport full
+      it "keeps the plane airborne" do
+        expect(plane).to be_airborne
+      end
 
-  end # end of describe #land
+      it "causes the airport to confirm the plane is not there" do
+        expect(airport.planes).not_to include plane
+      end
+
+    end
+
+  end
 
   # As an air traffic controller
   # So I can get passengers on the way to their destination
@@ -79,8 +87,8 @@ describe Plane do
   describe "#take_off" do
 
     before(:each) do
-      # because plane is airborne when instantiated, we need to land it first
-      # to land it, the weather must first be sunny
+      # Because plane is airborne when instantiated, we need to land it first.
+      # To land it, the weather must first be sunny.
       airport.weather = "sunny"
       plane.land(airport)
     end
@@ -100,7 +108,7 @@ describe Plane do
         expect(plane).to be_airborne
       end
 
-    end # end of context: sunny
+    end
 
     # As an air traffic controller
     # To ensure safety
@@ -123,8 +131,8 @@ describe Plane do
         expect(plane).not_to be_airborne
       end
 
-    end # end of context: stormy
+    end
 
-  end # end of describe #take_off
+  end
 
-end # end of describe Plane
+end

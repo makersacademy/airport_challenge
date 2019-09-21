@@ -15,4 +15,4 @@ describe Airport do
     expect(airport.capacity).to eq 100
   end
 
-end # end of describe Airport
+end
