@@ -31,6 +31,10 @@ describe Plane do
         expect(plane).not_to be_airborne
       end
 
+      it "cannot not 'land' again if already landed" do
+        expect { plane.land(airport) }.to raise_error "Plane has already landed"
+      end
+
     end
 
     # As an air traffic controller
@@ -61,7 +65,7 @@ describe Plane do
 
       before(:each) do
         airport.weather = "sunny"
-        airport.capacity.times { subject.land(airport) }
+        airport.capacity.times { Plane.new.land(airport) }
       end
 
       it "raises an error" do
@@ -105,17 +109,17 @@ describe Plane do
       end
 
       it "confirms the plane is no longer in the airport" do
-        expect(plane).to be_airborne
+        expect(airport.planes).not_to include plane
       end
 
-      it "does not 'take off' again if already airborne" do
+      it "cannot 'take off' again if already airborne" do
         expect { plane.take_off(airport) }.to raise_error "Plane is already airborne"
       end
 
-      it "does not take off from an airport it is not in" do
+      it "cannot take off from an airport it is not in" do
         another_airport = Airport.new
         another_airport.weather = "sunny"
-        plane.land(airport)
+        plane.land(airport) # reset to landed status to test next line
         expect { plane.take_off(another_airport) }.to raise_error "Plane is not in #{another_airport}"
       end
 
