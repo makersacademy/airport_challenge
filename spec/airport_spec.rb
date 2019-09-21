@@ -30,6 +30,15 @@ describe Airport do
     expect { airport.land_plane(plane) }.to raise_error "Too stormy to land"
   end
 
+  it "prevents landing a plane when airport full (capacity of 1)" do
+    airport = Airport.new(1)
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport.land_plane(plane1)
+    airport.land_plane(plane2)
+    expect { airport.land_plane(plane2) }. to raise_error "Airport full, no space to land"
+  end
+
   describe "#take_off"
 
   it { is_expected.to respond_to(:take_off) }

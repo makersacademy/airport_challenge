@@ -3,13 +3,14 @@ require_relative 'plane'
 class Airport
   attr_reader :planes
 
-  def initialize
+  def initialize(capacity = 1)
     @planes = []
+    @capacity = capacity
   end
 
   def land_plane(plane)
     raise "Too stormy to land" if @stormy
-
+    raise "Airport full, no space to land" if @planes.size > @capacity
     @planes << plane
   end
 
