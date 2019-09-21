@@ -34,7 +34,11 @@ describe Plane do
   # confirm that it is no longer in the airport
   describe "#take_off" do
 
-    context "when weather is sunny" do
+    before(:each) do
+      plane.land(airport) # because plane is airborne when instantiated
+    end
+
+    context "when airport weather is sunny" do
 
       before(:each) do
         airport.weather = "sunny"
@@ -54,17 +58,25 @@ describe Plane do
     # As an air traffic controller
     # To ensure safety
     # I want to prevent takeoff when weather is stormy
-    context "when weather is stormy" do
+    context "when airport weather is stormy" do
 
-      before(:each) { airport.weather = "stormy" }
+      before(:each) do
+        airport.weather = "stormy"
+      end
 
       it "raises an error" do
         expect { plane.take_off(airport) }.to raise_error "Cannot take off due to stormy weather"
       end
 
+      it "causes airport to ground the plane" do
+        expect(airport.planes).to include plane
+      end
+
+      it "confirms plane is not airborne" do
+        expect(plane).not_to be_airborne
+      end
+
     end
-
-
 
   end
 
