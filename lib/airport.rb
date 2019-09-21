@@ -1,10 +1,13 @@
 class Airport
 
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :weather, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @weather = ["sunny", "stormy"].sample
+    @capacity = capacity
   end
 
 end

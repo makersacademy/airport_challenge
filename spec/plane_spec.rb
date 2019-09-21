@@ -59,6 +59,15 @@ describe Plane do
     # I want to prevent landing when the airport is full
     context "when airport is full" do
 
+      before(:each) do
+        airport.weather = "sunny"
+        # make airport full capacity
+      end
+
+      # it "raises an error" do
+      #   expect { plane.land(airport) }.to raise_error "#{airport} is full"
+      # end
+
     end # end of context: airport full
 
   end # end of describe #land
