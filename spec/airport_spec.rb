@@ -65,4 +65,13 @@ describe Airport do
       20.times { airport.land(plane, weather) }
       expect { airport.land(plane, weather) }.to raise_error("Airport is full, unable to land plane")
   end
+
+  it 'ensures an airborne plane is no longer in the airport' do
+    plane = Plane.new
+    weather = double("weather", :current_conditions => "sunny")
+    subject.land(plane, weather)
+    subject.takeoff(plane, weather)
+    expect(subject.planes.length).to eq 0
+  end
+
 end
