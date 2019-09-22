@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
@@ -10,18 +12,19 @@ class Airport
   end
 
   def land(plane)
-    raise "Sorry, airport is full" if @hangar.length == @capacity
+    
+    raise "Sorry, airport is full" if airport_full?
 
-    raise "Landing denied, conditions are unsafe" if safe_conditions? == false
+    raise "Landing denied, conditions are unsafe" unless safe_conditions?
 
-    @hangar << plane
+    @hangar << plane && 'Plane landed safely'
   end
 
   def takeoff(plane)
 
-    raise 'Unsafe flying conditions, stay grounded' if safe_conditions? == false
+    raise 'Unsafe flying conditions, stay grounded' unless safe_conditions?
 
-    @hangar.delete(plane)
+    @hangar.delete(plane) && 'Plane departed'
   
   end
 
@@ -36,4 +39,8 @@ class Airport
     conditions > 0.8 ? :stormy : :sunny
   end
 
+  def airport_full?
+    @hangar.length == @capacity
+  end
+  
 end
