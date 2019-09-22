@@ -15,7 +15,11 @@ class Plane
     "plane landed safely at #{airport.name}"
   end
 
-private
+  def takeoff(airport)
+
+  end
+
+  private
 
   def flying?
     @flying
