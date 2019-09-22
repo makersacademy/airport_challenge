@@ -21,6 +21,8 @@ class Airport
     weather = self.stormy?
     if weather == true
       fail "Cannot take off in STORMY weather"
+    elsif @plane == nil
+      fail "There are no planes in the airport"
     else
       "#{@plane} has left the airport"
     end
