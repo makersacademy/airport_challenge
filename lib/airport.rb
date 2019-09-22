@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-    fail 'PlaneAlreadyLanded' if plane.landed == true
+    fail "Error: You have already landed this plane" if plane.landed == true
     
     plane.report_landed    
     @planes << plane
