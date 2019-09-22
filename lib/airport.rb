@@ -1,4 +1,10 @@
 class Airport
+  attr_accessor :capacity
+
+  def initialize
+    @capacity = 20
+  end
+
   def land(plane)
     raise 'Plane cannot land because it is stormy' if :stormy?
   end
@@ -9,10 +15,6 @@ class Airport
 
   def stormy?
     random_generator = rand(1..10)
-    if random_generator > 7
-      true
-    else
-      false
-    end
+    random_generator > 7
   end
 end

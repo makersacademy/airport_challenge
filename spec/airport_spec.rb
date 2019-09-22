@@ -21,13 +21,12 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error('Plane cannot land because it is stormy')
   end
 
-  # it '#stormy? returns a number between 1 and 10' do
-  #   expect(subject.stormy?).to be_between(1, 10)
-  # end
+  it 'has a default capacity of 20' do
+    expect(subject.capacity).to eq 20
+  end
 
-  # it '#stormy? returns true if response is above 7' do
-  #   allow(subject).to receive(:stormy?).and_return(8)
-  #   # expect(subject.stormy?).to eq true
-  #
-  # end
+  it 'can change the capacity' do
+    subject.capacity = 30
+    expect(subject.capacity).to eq 30
+  end
 end
