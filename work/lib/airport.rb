@@ -18,7 +18,7 @@ class Airport
   end
 
   def takeoff
-   @planes.pop
+    @planes.pop
   end
 
   private
@@ -26,5 +26,5 @@ class Airport
   def full?
     @planes.count >= DEFAULT_CAPACITY
   end
-
+  
 end

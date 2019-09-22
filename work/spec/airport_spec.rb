@@ -9,7 +9,7 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane at the airport' do
-      plane = (Plane.new)
+      plane = Plane.new
       subject.land(plane)
       expect(subject.plane).to eq @planes
     end
@@ -32,8 +32,8 @@ describe Airport do
   describe '#takeoff' do
     it 'removes a plane from the airport' do
       plane = Plane.new
-      subject.takeoff
-      expect(subject.plane).to eq plane
+      subject.land(plane)
+      expect(subject.takeoff).to eq plane
     end
   end
 end
