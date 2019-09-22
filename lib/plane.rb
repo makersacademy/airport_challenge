@@ -11,7 +11,6 @@ class Plane
   def take_off
     @in_flight = true
   end
-  
 
   def landed?
     !@in_flight
@@ -20,4 +19,5 @@ class Plane
   def in_flight?
     @in_flight
   end
+
 end
