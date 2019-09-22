@@ -17,6 +17,7 @@ describe Airport do
     it { is_expected.to respond_to :planes }
 
     it 'plane can only land if it is flying' do
+      allow(subject).to receive(:weather_check).and_return "sunny"
       subject.land_plane(Plane.new)
       expect { subject.land_plane(Plane.new) }.to raise_error 'Error'
     end
@@ -48,6 +49,7 @@ describe Airport do
     it { is_expected.to respond_to :take_off }
 
     it 'plane takes off' do
+      allow(subject).to receive(:weather_check).and_return "sunny"
       plane = Plane.new
       subject.land_plane(plane)
       expect(subject.take_off).to eq 'The plane has taken off'
@@ -57,7 +59,7 @@ describe Airport do
       allow(subject).to receive(:weather_check).and_return "sunny"
       subject.land_plane(Plane.new)
       allow(subject).to receive(:weather_check).and_return "stormy"
-      # subject.land_plane(Plane.new)
+      #subject.land_plane(Plane.new)
       expect { subject.take_off }.to raise_error 'Take off prevented due to stormy weather'
     end
 
