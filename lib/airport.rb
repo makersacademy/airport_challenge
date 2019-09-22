@@ -1,10 +1,10 @@
 class Airport
-  def prevent_take_off
+  def take_off(plane)
 
   end
 
-  def prevent_landing
-
+  def land(plane)
+    Plane.new
   end
 
   def full?(number_of_planes)
