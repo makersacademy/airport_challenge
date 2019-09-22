@@ -14,31 +14,29 @@ class Airport
 
   def stormy?
     number = rand(1..10)
-    number > 8 ? true : false
+    number > 8
   end
 
   def land(plane)
     @plane = plane
-    weather = self.stormy?
-    if weather == true
-      fail "Cannot land in STORMY weather"
-    elsif @bay.length >= DEFAULT_CAPACITY
-      fail "Cannot land when airport is full"
-    else
-      @bay << @plane
-      "#{@plane} has landed at the airport"
-    end
+    weather = stormy?
+    fail "Cannot land in STORMY weather" if weather == true
+
+    fail "Cannot land when airport is full" if @bay.length >= DEFAULT_CAPACITY
+
+    @bay << @plane
+    "#{@plane} has landed at the airport"
   end
 
   def take_off
-    weather = self.stormy?
-    if weather == true
-      fail "Cannot take off in STORMY weather"
-    elsif @plane == nil
-      fail "There are no planes in the airport"
-    else
-      "#{@plane} has left the airport"
-    end
+    weather = stormy?
+    fail "Cannot take off in STORMY weather" if weather == true
+    
+    fail "There are no planes in the airport" if @bay.length.zero?
+
+    plane = @bay.sample
+    @bay.delete(plane)
+    "#{plane} has left the airport"
   end
 
 end

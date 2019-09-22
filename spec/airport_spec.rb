@@ -46,15 +46,30 @@ describe Airport do
 
   it 'prevents landing when the airport is full' do
     allow(subject).to receive(:stormy?).and_return(false)
-    20.times {subject.land(Plane.new)}
+    20.times { subject.land(Plane.new) }
     plane = Plane.new
     expect { subject.land(plane) }.to raise_error "Cannot land when airport is full"
   end
 
   it 'returns number of planes in the bay' do
     allow(subject).to receive(:stormy?).and_return(false)
-    15.times {subject.land(Plane.new)}
+    15.times { subject.land(Plane.new) }
     expect(subject.bay_count).to eq "There are 15 planes currently in the bay"
+  end
+
+  it 'reduces the bay count when an airplane takes off' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    15.times { subject.land(Plane.new) }
+    subject.take_off
+    expect(subject.bay_count).to eq "There are 14 planes currently in the bay"
+  end
+
+  it 'increases the bay count when an airplane lands' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    15.times { subject.land(Plane.new) }
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.bay_count).to eq "There are 16 planes currently in the bay"
   end
 
 end
