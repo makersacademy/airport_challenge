@@ -15,7 +15,7 @@ air traffic controller  |
 plane  | land
 airport  |
 
-plane  > land > airport
+plane > land > airport
 
 ### Story 2
 ```
@@ -54,6 +54,7 @@ plane  | landing
 weather | stormy
 airport  |
 
+stormy? <> true/false > prevent_landing
 plane  > landing > airport
 
 ### Story 4
@@ -74,7 +75,8 @@ plane  | take-off
 weather | stormy
 airport  |
 
-plane  > take-off > airport
+stormy? <> true/false > prevent_take_off
+plane  > take_off> airport
 
 ### Story 5
 ```
@@ -84,7 +86,7 @@ I want to prevent landing when the airport is full
 
 ```
 nouns: air traffic controller, airport, full
-verbs: prevent, landing,
+verbs: prevent, landing
 
 
 Objects  | Messages
@@ -93,4 +95,22 @@ air traffic controller  |
 plane  | landing
 airport full | prevent
 
+full? <> true/false > prevent_landing
 plane  > landing > airport
+
+
+### Story 6
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+nouns: air traffic controller, airport, custom_capacity
+verbs: prevent, landing, overridden
+
+Objects  | Messages
+------------- | -------------
+air traffic controller  |  
+airport  | overridden capacity
+
+airport > custom_capacity > overridden
