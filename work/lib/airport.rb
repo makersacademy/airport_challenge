@@ -11,10 +11,20 @@ class Airport
   end
 
   def land(plane)
+    raise 'Airport full' if full?
+
     @planes << plane
+    puts @planes
   end
 
   def takeoff
+   @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.count >= DEFAULT_CAPACITY
   end
 
 end

@@ -1,0 +1,25 @@
+ def report_broken
+    @broken = true
+  end 
+
+  def broken?
+  @broken
+  end
+end
+
+  it 'does not release a broken bike' do
+      # given
+      bike = Bike.new
+      # when
+      bike.report_broken
+      subject.dock(bike)
+      expect { subject.not_to respond_to(:release_bike) }
+     end
+
+
+
+      ##not yet working##
+    #   it 'does not let planes land when full' do
+    #   DEFAULT_CAPACITY.times { subject.land double :plane }
+    #   expect { subject.not_to respond_to(:land) }
+    # end
