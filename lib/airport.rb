@@ -6,13 +6,12 @@ class Airport
 
   def initialize
     @planes = []
-    @safe_to_fly = true
-    weather_forecast
+    update_forecast
   end
   
   def land(plane)
     raise "At capacity" if full
-    raise "Permission denied due to weather" unless safe?
+    raise "Permission denied due to weather" unless safe_to_fly?
 
     @planes << plane
     return "roger wilko"
@@ -25,18 +24,17 @@ class Airport
     return "In the air"
   end
 
-  private
+  def update_forecast
+    @forecast = Weather.new
+  end
 
   def full
     @planes.length >= CAPACITY
   end
 
-  def weather_forecast
-    @forecast = Weather.new
-  end
-
-  def safe?
-    @safe_to_fly = false if @forecast.stormy?
-    @safe_to_fly
+  def safe_to_fly?
+    return false if @forecast.stormy?
+    
+    true
   end
 end

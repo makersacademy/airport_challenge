@@ -5,24 +5,12 @@ class Weather
   end
 
   def stormy?
-    @storm
+    return true if @weather_id > 8
+    
+    false
   end
 
-  def sunny?
-    @sunny
-  end
-   
   def update
-    weather_id = rand(1..10)
-
-    case 
-    when weather_id < 8
-      @storm = false
-      @sunny = true
-    when weather_id >= 8 && weather_id <= 10
-      @storm = true
-      @sunny = false
-    end
-
+    @weather_id = rand(1..10)
   end
 end
