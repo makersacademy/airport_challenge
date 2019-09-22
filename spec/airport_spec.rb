@@ -8,7 +8,8 @@ describe Airport do
 
   it 'saves the landed plane as instance variable & returns it' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    allow(subject).to receive(:stormy?).and_return(false)
+    expect(subject.land(plane)).to eq "#{plane} has landed at the airport"
   end
 
   it 'respond to take_off' do
@@ -17,8 +18,8 @@ describe Airport do
 
   it 'takes a plane off from the airport and confirms it has left' do
     plane = Plane.new
-    subject.land(plane)
     allow(subject).to receive(:stormy?).and_return(false)
+    subject.land(plane)
     expect(subject.take_off).to eq("#{plane} has left the airport")
   end
 
@@ -35,6 +36,12 @@ describe Airport do
   it 'prevents take off in stormy weather' do
     allow(subject).to receive(:stormy?).and_return(true)
     expect { subject.take_off }.to raise_error "Cannot take off in STORMY weather"
+  end
+
+  it 'prevents landing in stormy weather' do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect { subject.land(plane) }.to raise_error "Cannot land in STORMY weather"
   end
 
 end
