@@ -9,6 +9,13 @@
         1,
         null,
         null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         2,
         null,
         1,
@@ -21,13 +28,6 @@
         1,
         21,
         2,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         null,
         null,
@@ -59,7 +59,6 @@
         23,
         null,
         22,
-        22,
         null,
         null,
         1,
@@ -67,15 +66,16 @@
         null,
         null,
         1,
-        null,
         1,
         23,
-        null,
         null,
         null
       ],
       "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/lib/plane.rb": [
         1,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/danielleinkster/Projects/makers/week1/airport/airport_challenge/work/spec/plane_spec.rb": [
@@ -86,9 +86,14 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1569147318
+    "timestamp": 1569171082
   }
 }

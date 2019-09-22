@@ -14,7 +14,6 @@ class Airport
     raise 'Airport full' if full?
 
     @planes << plane
-    puts @planes
   end
 
   def takeoff
@@ -22,9 +21,7 @@ class Airport
   end
 
   private
-
   def full?
     @planes.count >= DEFAULT_CAPACITY
   end
-  
 end
