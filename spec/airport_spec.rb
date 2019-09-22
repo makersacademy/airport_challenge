@@ -4,6 +4,18 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { double :plane }
 
+  it 'Capacity can be changed' do
+    subject = Airport.new(100)
+    allow(subject).to receive(:clear?) { true }
+    subject.capacity.times { subject.permission_to_land(plane) }
+    expect { subject.permission_to_land(plane) }.to raise_error 'Airport full'
+  end
+
+  it 'responds to weather methods' do
+    allow(airport).to receive(:clear?) { true }
+    expect(airport.clear?).to eq true
+  end
+
   describe '#permission_to_land' do
     it { is_expected.to respond_to(:permission_to_land).with(1).argument }
 
@@ -27,13 +39,6 @@ describe Airport do
     it 'hangar has a default capacity' do
       airport.capacity.times { airport.permission_to_land(plane) }
       expect { airport.permission_to_land(plane) }.to raise_error 'Airport full'
-    end
-
-    it 'Capacity can be changed' do
-      subject = Airport.new(100)
-      allow(subject).to receive(:clear?) { true }
-      subject.capacity.times { subject.permission_to_land(plane) }
-      expect { subject.permission_to_land(plane) }.to raise_error 'Airport full'
     end
 
     it "tells planes when it is not safe to land" do
