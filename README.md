@@ -4,11 +4,13 @@
 
 This app controls the flow of planes at airports. Planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-## How to install
+## System requirements
 
 This app requires Ruby 2.6 or later installed on your computer.
 
-To download this app, clone this repository to your local machine. How to do this: In your terminal, change into your projects directory and then paste this in:
+## How to install
+
+To download this app, clone this repository to your local machine.  How to do this: Open your command line interface (e.g. Terminal), navigate to the directory where you want to store this app, then paste in the following command:
 
 ```shell
 git clone git@github.com:melvinlau/airport_challenge.git
@@ -18,7 +20,7 @@ git clone git@github.com:melvinlau/airport_challenge.git
 
 ### How to run and exit the app
 
-Open your command line interface (e.g. Terminal), start `irb` ('Interactive Ruby'), load the app using `require "./lib/controller"` and you're good to go.
+In your command line interface, `cd` into the `airport_challenge` directory, start `irb` ('Interactive Ruby'), load the app using `require "./lib/controller"` and you're good to go.
 
 ```shell
 irb
