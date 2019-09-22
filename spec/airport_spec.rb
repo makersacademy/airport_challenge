@@ -21,4 +21,14 @@ describe Airport do
     expect(subject.take_off).to eq("#{plane} has left the airport")
   end
 
+  it 'returns true to stormy? weather' do
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect(subject.stormy?).to eq true
+  end
+
+  it 'returns false to stormy? weather' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    expect(subject.stormy?).to eq false
+  end
+  
 end
