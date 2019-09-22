@@ -17,6 +17,8 @@ class Plane
 
   def takeoff(airport)
 
+    @flying = true
+
   end
 
   private
