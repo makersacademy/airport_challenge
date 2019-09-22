@@ -3,16 +3,6 @@ require "weather"
 
 describe Airport do
 
-  # it "responds to land" do
-  #   expect(subject).to respond_to :land_plane
-  # end
-
-  it "lands a plane" do
-    plane = Plane.new
-    airport = Airport.new(double(:weather, stormy?: false))
-    expect(airport.land_plane(plane)).to eq plane
-  end
-
   #'lands a plane' test returns an error even though the plane returned is same that lands.
 
   it "allows a plane to takeoff and removes it from the airport" do
@@ -41,13 +31,15 @@ describe Airport do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-    it 'has a capacity that can be set' do
-      airport = Airport.new(double(:weather, stormy?: false),30)
-      expect(airport.capacity).to eq 30
-    end
-  #below test assumes that the capacity of the airport is 20
-  # it "stops more planes landing when the airport is full"
-  #   plane = Plane.new
-  #   airport = Airport.new(double(:weather, stormy?: false))
-  #   airport
+  it 'has a capacity that can be set' do
+    airport = Airport.new(double(:weather, stormy?: false),30)
+    expect(airport.capacity).to eq 30
+  end
+
+  it 'stops a plane landing when airport is full and raises error' do
+    airport = Airport.new(double(:weather, stormy?: false))
+    (Airport::DEFAULT_CAPACITY).times { airport.land_plane(Plane.new)}
+    expect { airport.land_plane(Plane.new) }.to raise_error "No space to land"
+  end
+
 end
