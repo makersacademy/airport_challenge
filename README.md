@@ -36,15 +36,22 @@ User guide
 Commands
 -------
 
-#Create an airport: gatwick = Airport.new (supply an argument to set airport capacity)
-#Create a plane: london_air = Plane.new
-#Land a plane(same as parking for newly created planes): gatwick.land(london_air)
-#Fly a plane: gatwick.take_off(london_air)
+Create an airport: gatwick = Airport.new (supply an argument to set airport capacity)
+
+Create a plane: london_air = Plane.new
+
+Land a plane(same as parking for newly created planes): gatwick.land(london_air)
+
+Fly a plane: gatwick.take_off(london_air)
 
 Possible errors when trying to fly...
 -------
-#'Unable to take off due to stormy weather'
-#'Plane is already in the air'
-#'Plane has already landed'
-#'Unable to land due to stormy weather'
-#'Can't land, airport is full'
+'Unable to take off due to stormy weather'
+
+'Plane is already in the air'
+
+'Plane has already landed'
+
+'Unable to land due to stormy weather'
+
+'Can't land, airport is full'
