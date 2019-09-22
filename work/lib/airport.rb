@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -11,16 +12,32 @@ class Airport
   end
 
   def land(plane)
+    raise 'No landing: Bad weather!' if stormy?
+
+    raise 'Plane has already landed' if plane.flying == false
+
     raise 'Airport full' if full?
 
+    plane.landed
     @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
+    raise 'No taking off: Bad weather!' if stormy?
+
+    raise 'Plane is already flying' if plane.flying == true
+
+    plane.taken_off
     @planes.pop
+   
   end
 
   private
+
+  def stormy?
+    Weather.new.weather
+  end
+
   def full?
     @planes.count >= DEFAULT_CAPACITY
   end
