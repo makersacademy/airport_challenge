@@ -16,6 +16,22 @@ git clone git@github.com:melvinlau/airport_challenge.git
 
 ## How to use
 
+### How to run and exit the app
+
+Open your command line interface (e.g. Terminal), start `irb` ('Interactive Ruby'), load the app using `require "./lib/controller"` and you're good to go.
+
+```shell
+irb
+2.6.0 :001 > require "./lib/controller"
+ => true
+```
+
+To exit the app, type `exit` and hit return.  This will bring you back to your command prompt.
+
+```shell
+2.6.0 :002 > exit
+```
+
 ### Creating planes and airports
 
 This program comprises two main classes of objects: `Plane` and `Airport`. To create (instantiate) planes and airports, use the following commands. Note that their names such as `my_plane` and `heathrow` can be anything you like.

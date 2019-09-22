@@ -15,6 +15,7 @@ class Plane
 
     airport.add_plane(self)
     self.airborne = false
+    return "#{self} landed at #{airport}"
   end
 
   def take_off(airport)
