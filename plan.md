@@ -72,4 +72,12 @@ Push plane into planes array.
 Start with capacity 1.
 Adjust to capacity 100.
 
+### User Story 6
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+Use constant variable. 
+
 * Add goals this achieves in readme. *  

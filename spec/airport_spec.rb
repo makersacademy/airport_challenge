@@ -26,7 +26,7 @@ describe Airport do
     end
 
     it 'raises an error when airport has max capacity 100' do
-      100.times { subject.land_plane(Plane.new) }
+      Airport::AIRPORT_CAPACITY.times { subject.land_plane(Plane.new) }
       expect { subject.land_plane(Plane.new) }.to raise_error 'Airport full'
     end
 
@@ -42,7 +42,7 @@ describe Airport do
       expect(subject.take_off).to eq "The plane has taken off"
     end
 
-    it 'raises an error when stormy' do
+    it 'raises an error when stormy' do 
       subject.weather
       expect { subject.take_off }.to raise_error 'Take off prevented due to stormy weather'
     end
