@@ -80,4 +80,8 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 Use constant variable. 
 
+### Still to do:
+- Struggling to create system where the plane is recognised as being in a specific airport. 
+- A few failing tests that still need fixing but can't quite figure out why they're failing. 
+
 * Add goals this achieves in readme. *  
