@@ -1,13 +1,17 @@
 class Plane
 
-  attr_accessor :grounded
+  attr_accessor :flying
 
-  def initialize(status = true)
-    @grounded = status
+  def initialize
+    @flying = true
   end
 
-  def grounded?
-    grounded
+  def is_not_flying
+    @flying = false
+  end
+
+  def is_flying
+    @flying = true
   end
 
 end

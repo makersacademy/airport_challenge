@@ -35,6 +35,7 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?).and_return(true)
       plane = Plane.new
       error = 'Unable to take off due to stormy weather'
+      plane.is_not_flying
       expect { subject.take_off(plane) }.to raise_error error
     end
   end
@@ -61,6 +62,7 @@ describe Airport do
     it "should not allow the plane to land and return an error" do
       allow(subject.weather).to receive(:stormy?).and_return(false)
       plane = Plane.new
+      allow(plane).to receive(:is_not_flying).and_return(false)
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       error = "Can't land, airport is full"
       expect { subject.land(plane) }.to raise_error error
@@ -72,20 +74,32 @@ describe Airport do
       airport = Airport.new(20)
       allow(airport.weather).to receive(:stormy?).and_return(false)
       plane = Plane.new
+      allow(plane).to receive(:is_not_flying).and_return(false)
       airport.capacity.times { airport.land(plane) }
       error = "Can't land, airport is full"
       expect { airport.land(plane) }.to raise_error error
     end
   end
 
-  # describe "Plane tries to land twice at an airport" do
-  #   it "should not land and return an error" do
-  #     allow(subject.weather).to receive(:stormy?).and_return(false)
-  #     plane = Plane.new
-  #     error = "Plane has already landed"
-  #     subject.land(plane)
-  #     subject.land(plane)
-  #     expect { subject.land(plane) }.to raise_error error
-  #   end
-  # end
+  describe "Plane tries to land again after already landing" do
+    it "should not land and return an error" do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+      plane = Plane.new
+      error = "Plane has already landed"
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error error
+    end
+  end
+
+  describe "Plane tries to take off again after already taking off" do
+    it "should not take off and return an error" do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+      plane = Plane.new
+      error = "Plane is already in the air"
+      subject.land(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error error
+    end
+  end
+
 end
