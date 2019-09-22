@@ -14,6 +14,10 @@ class Airport
     @capacity = capacity
   end
 
+  def update_capacity(capacity)
+    @capacity = capacity
+  end
+
   def land(plane)
     # creating a new method to land a plane
     raise "Weather is stormy" if stormy?

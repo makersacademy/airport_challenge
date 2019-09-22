@@ -46,6 +46,15 @@ describe Airport do
       50.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error "Airport full"
     end
+
+    it 'does not let a plane land if airport is full (changing capacity)' do
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
+      airport.update_capacity(50)
+      50.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "Airport full"
+    end
+
   end
 
   describe '#take_off' do
