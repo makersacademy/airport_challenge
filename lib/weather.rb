@@ -1,10 +1,10 @@
 class Weather
 
-attr_reader :stormy
+  attr_reader :stormy
 
   def initialize
     rand_weather = rand(1..6)
-    #random number generator used to randomly select if weather is stormy.
+    # random number generator used to randomly select if weather is stormy.
     if rand_weather > 4
       @stormy = true
     else
