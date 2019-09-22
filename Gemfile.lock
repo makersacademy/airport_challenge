@@ -11,6 +11,7 @@ GEM
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
+    rack (2.0.7)
     rainbow (3.0.0)
     rake (12.3.0)
     rspec (3.7.0)
@@ -33,6 +34,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.0.1)
+      rack (>= 1.1)
+      rubocop (>= 0.70.0)
     ruby-progressbar (1.10.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
@@ -52,8 +56,9 @@ DEPENDENCIES
   rake
   rspec
   rubocop (= 0.71.0)
+  rubocop-rails
   simplecov
   simplecov-console
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
