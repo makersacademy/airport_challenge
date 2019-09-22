@@ -68,7 +68,8 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
-Push plane into array.  
+Push plane into planes array.  
 Start with capacity 1.
+Adjust to capacity 100.
 
 * Add goals this achieves in readme. *  

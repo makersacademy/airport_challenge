@@ -11,7 +11,7 @@ class Airport
   def land_plane(plane)
     fail 'Landing prevented due to stormy weather' if @weather == 'stormy'
 
-    fail 'Airport full' if @planes.count >= 100
+    fail 'Airport full' if full?
 
     @planes << plane
   end
@@ -26,6 +26,12 @@ class Airport
   def weather
     weather_options = ['sunny', 'stormy']
     @weather = weather_options.sample
+  end
+
+  private
+
+  def full?
+    return true if @planes.count >= 100
   end
 
 end
