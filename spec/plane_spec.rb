@@ -12,11 +12,9 @@ describe Plane do
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    before { allow(airport).to receive(:permission_to_land).with(plane) }
-
     it "is expected to change flying status to false" do
-      subject.land(airport)
-      expect(subject.flying).to eq false
+      plane.land(airport)
+      expect(plane.flying).to eq false
     end
 
     it "confirms it landed safely" do
@@ -38,12 +36,10 @@ describe Plane do
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
-    before { allow(airport).to receive(:permission_to_takeoff).with(plane) }
-
     it "is expected to change flying status to true" do
-      subject.land(airport)
-      subject.takeoff(airport)
-      expect(subject.flying).to eq true
+      plane.land(airport)
+      plane.takeoff(airport)
+      expect(plane.flying).to eq true
     end
 
     it "confirms it took off safely" do
