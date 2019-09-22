@@ -72,4 +72,23 @@ describe Airport do
     expect(subject.bay_count).to eq "There are 16 planes currently in the bay"
   end
 
+  it 'cannot land a plane that has already landed' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    plane = Plane.new
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error "Plane has already landed"
+  end
+
 end
+
+  describe 'initialization' do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(:plane)
+      end
+      expect{ subject.land(plane) }.to raise_error "Cannot land when airport is full"
+    end
+
+  end

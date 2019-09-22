@@ -4,8 +4,15 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @bay = []
+    @new_capcity = capacity
+  end
+
+  def overwrite_capacity
+    puts "How many planes can be stored in bay? Currently, the maximum capacity is: #{DEFAULT_CAPACITY}" if @new_capcity == nil
+    puts "How many planes can be stored in bay? Currently, the maximum capacity is: #{@new_capcity}" if @new_capcity != nil
+    @new_capcity = gets.chomp.to_i
   end
 
   def bay_count
@@ -22,7 +29,11 @@ class Airport
     weather = stormy?
     fail "Cannot land in STORMY weather" if weather == true
 
-    fail "Cannot land when airport is full" if @bay.length >= DEFAULT_CAPACITY
+    fail "Cannot land when airport is full" if @bay.length >= DEFAULT_CAPACITY && @new_capcity == nil
+
+    fail "Cannot land when airport is full" if @new_capcity != nil && @bay.length >= @new_capcity
+
+    fail "Plane has already landed" if @bay.include?(@plane)
 
     @bay << @plane
     "#{@plane} has landed at the airport"
@@ -31,7 +42,7 @@ class Airport
   def take_off
     weather = stormy?
     fail "Cannot take off in STORMY weather" if weather == true
-    
+
     fail "There are no planes in the airport" if @bay.length.zero?
 
     plane = @bay.sample
