@@ -2,15 +2,18 @@ require_relative "plane"
 require_relative "weather"
 
 class Airport
-  CAPACITY = 20
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
     update_forecast
   end
   
   def land(plane)
     raise "At capacity" if full
+    raise "Already landed!" if @planes.include?(plane)
     raise "Permission denied due to weather" unless safe_to_fly?
 
     @planes << plane
@@ -29,12 +32,12 @@ class Airport
   end
 
   def full
-    @planes.length >= CAPACITY
+    @planes.length >= @capacity
   end
 
   def safe_to_fly?
     return false if @forecast.stormy?
-    
+
     true
   end
 end
