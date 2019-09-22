@@ -11,6 +11,7 @@ class Airport
     raise 'Plane cannot land because it is stormy' if stormy?
 
     @landed_planes << plane
+    plane.status = 'landed'
   end
 
   def take_off(plane)
@@ -18,6 +19,7 @@ class Airport
     raise 'Plane cannot take off as it is not in this airport' unless @landed_planes.include?(plane)
 
     @landed_planes.delete(plane)
+    plane.status = 'flying'
   end
 
   def stormy?
