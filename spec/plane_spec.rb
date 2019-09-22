@@ -13,19 +13,14 @@ describe Plane do
     context "when airport weather is sunny" do
 
       before(:each) do
-        airport.weather = "sunny"
-        # allow(airport).to receive(:rand).with(11) { 3 }
+        airport.sunny
         plane.land(airport)
-      end
-
-      it "takes one argument (an airport to land at)" do
-        expect(plane).to respond_to(:land).with(1).argument
       end
 
       # might be more relevant in airport_spec => Do this later
       # otherwise how to isolate the airport object?
       it "causes an airport to confirm the plane is there" do
-        expect(airport.planes.include?(plane)).to eq true
+        expect(airport.planes).to include plane
       end
 
       it "confirms that the plane is not airborne" do
@@ -44,8 +39,7 @@ describe Plane do
     context "when airport weather is stormy" do
 
       before(:each) do
-        airport.weather = "stormy"
-        # allow(airport).to receive(:rand).with(11) { 10 }
+        airport.stormy
       end
 
       it "raises an error" do
@@ -68,7 +62,7 @@ describe Plane do
     context "when airport is full" do
 
       before(:each) do
-        airport.weather = "sunny"
+        airport.sunny
         airport.capacity.times { Plane.new.land(airport) }
       end
 
@@ -97,19 +91,15 @@ describe Plane do
     before(:each) do
       # Because plane is airborne when instantiated, we need to land it first.
       # To land it, the weather must first be sunny.
-      airport.weather = "sunny"
+      airport.sunny
       plane.land(airport)
     end
 
     context "when airport weather is sunny" do
 
       before(:each) do
-        airport.weather = "sunny"
+        airport.sunny
         plane.take_off(airport)
-      end
-
-      it "takes one argument (an airport to take off from)" do
-        expect(plane).to respond_to(:take_off).with(1).argument
       end
 
       it "confirms the plane is no longer in the airport" do
@@ -122,7 +112,7 @@ describe Plane do
 
       it "cannot take off from an airport it is not in" do
         another_airport = Airport.new
-        another_airport.weather = "sunny"
+        another_airport.sunny
         plane.land(airport) # reset to landed status to test next line
         expect { plane.take_off(another_airport) }.to raise_error "Plane is not in #{another_airport}"
       end
@@ -135,7 +125,7 @@ describe Plane do
     context "when airport weather is stormy" do
 
       before(:each) do
-        airport.weather = "stormy"
+        airport.stormy
       end
 
       it "raises an error" do
