@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_accessor :hanger
@@ -10,19 +11,19 @@ class Airport
     @capacity = capacity
   end
 
-  def land_plane(plane)
+  def land_plane(plane, weather)
     fail "Cannot land, airport full" if full?
     fail "Plane is not airborne" if !plane.airborne?
-    fail "Cannot land in stormy weather" if stormy?
+    fail "Cannot land in stormy weather" if weather.stormy?
 
     plane.lands
     @hanger << plane
   end
 
-  def takeoff_plane(plane)
+  def takeoff_plane(plane, weather)
     fail "No planes available for take off" if @hanger.empty?
-    fail "Plane not in hanger" if !@hanger.include? plane
-    fail "Cannot take off in stormy weather" if stormy?
+    fail "Plane not at airport" if !@hanger.include? plane
+    fail "Cannot take off in stormy weather" if weather.stormy?
 
     @hanger.delete(plane)
     plane.takes_off
@@ -30,10 +31,6 @@ class Airport
   end
 
   private
-
-  def stormy?
-    rand(1..10) >= 9
-  end
 
   def full?
     @hanger.size >= @capacity
