@@ -20,9 +20,9 @@ describe Airport do
       airport.take_off(plane) # when
       expect(airport.hangar).not_to include plane # then
     end
-    it 'should not take off if weather is stormy' do
+    it 'should prevent take off if weather is stormy' do
       plane = double(:plane)
-      allow(airport).to receive(:safe?) { false }
+      allow(airport).to receive(:safe_conditions?) { false }
       expect { airport.take_off(plane) }.to raise_error 'Unsafe flying conditions, stay grounded'
       
     end
@@ -36,8 +36,14 @@ describe Airport do
   end
   it 'should raise an error when the airport is full' do
     plane = double(:plane)
+    allow(airport).to receive(:safe_conditions?) { true }
     airport.capacity.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error "Sorry, airport is full"
+  end
+  it 'should prevent landing if weather is stormy' do
+    plane = double(:plane)
+    allow(airport).to receive(:safe_conditions?) { false }
+    expect { airport.land(plane) }.to raise_error "Landing denied, conditions are unsafe"
   end
 
 end

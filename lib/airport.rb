@@ -12,12 +12,14 @@ class Airport
   def land(plane)
     raise "Sorry, airport is full" if @hangar.length == @capacity
 
+    raise "Landing denied, conditions are unsafe" if safe_conditions? == false
+
     @hangar << plane
   end
 
   def take_off(plane)
 
-    raise 'Unsafe flying conditions, stay grounded' if safe? == false
+    raise 'Unsafe flying conditions, stay grounded' if safe_conditions? == false
 
     @hangar.delete(plane)
   
@@ -25,7 +27,7 @@ class Airport
 
   private
 
-  def safe?
+  def safe_conditions?
     forecast == :sunny
   end
   
