@@ -1,14 +1,16 @@
 Airport Challenge
 =================
 
-This is an air traffic control app that let planes land to the airport or take off depending on the weather conditions. It's initially designed for the airports with capacity of 12 planes, but this can be changed on initialisation. 
+This is an air traffic control app that instructs planes to land in the airport or to take off depending on weather conditions. It's initially designed for the airports with capacity of 12 planes, but this can be changed upon initialisation.
+
 
 ## Features
-* The planes can land or take off if the weather is not stormy
-* The planes won't be able to land if the airport is full
-* A plane is contained at the airport when it's landed
-* A plane can no longer be found at the airport after it took off
-* Implemented edge cases: a plane can't land when it's already landed, it also can't take off again when it's already in flight. It's also impossible let plane take off if the airport is empty.
+* Planes can land or take off if weather is not stormy.
+* Planes won't be able to land if the airport is full.
+* A plane is contained at the airport when it's landed.
+* A plane can no longer be found at the airport after it took off.
+* Implemented edge cases: a plane can't land when it's already landed, it also can't take off again when it's already in flight. It's also impossible to instruct plane to take off if the airport is empty.
+
 
 ## Feature test: Landing and taking off multiple planes
 
