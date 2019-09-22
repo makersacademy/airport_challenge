@@ -17,12 +17,14 @@ class Airport
     raise "Weather is too stormy to land" if (stormy == true)
 
     raise "No space to land" if full? == true
-    
+
     @planes << plane
   end
 
   def takeoff
     raise "Weather is too stormy to takeoff" if (stormy == true)
+
+    raise "No planes in the airport" if empty? == true
     @planes.pop
   end
 
@@ -40,4 +42,11 @@ class Airport
     end
   end
 
+  def empty?
+    if @planes.empty?
+      true
+    else
+      false
+    end
+  end
 end

@@ -42,4 +42,9 @@ describe Airport do
     expect { airport.land_plane(Plane.new) }.to raise_error "No space to land"
   end
 
+  it 'stops a plane taking off if there are no planes in the airport' do
+    airport = Airport.new(double(:weather, stormy?: false))
+    expect { airport.takeoff }.to raise_error "No planes in the airport"
+  end
+
 end
