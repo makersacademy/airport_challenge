@@ -4,11 +4,7 @@ class Airport
 
   def stormy?
     number = rand(1..10)
-    if number > 8
-      true
-    else
-      false
-    end
+    number > 8 ? true : false
   end
 
   def land(plane)
@@ -16,7 +12,12 @@ class Airport
   end
 
   def take_off
-    "#{@plane} has left the airport"
+    weather = self.stormy?
+    if weather == true
+      fail "Cannot take off in STORMY weather"
+    else
+      "#{@plane} has left the airport"
+    end
   end
 
 end
