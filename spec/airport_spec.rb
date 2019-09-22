@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -16,6 +17,11 @@ describe Airport do
   it 'take-off' do
     plane = Plane.new
     expect(subject.take_off.class).to eq plane.class
+    #check whether a plane is created when take off is called
+  end
+
+  it 'take-off denined if stormy' do
+    expect{ subject.take_off}.to raise_error ("Weather is stormy")
     #check whether a plane is created when take off is called
   end
 

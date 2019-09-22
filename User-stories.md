@@ -35,3 +35,23 @@ plane  | take-off
 airport  |
 
 plane  > take-off > airport
+
+### Story 3
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+```
+nouns: air traffic controller, weather, stormy
+verbs: prevent take-off,
+
+
+Objects  | Messages
+------------- | -------------
+air traffic controller  |  
+plane  | take-off
+weather | stormy
+airport  |
+
+plane  > take-off > airport
