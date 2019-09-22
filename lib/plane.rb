@@ -17,9 +17,12 @@ class Plane
 
   def takeoff(airport)
 
-    @flying = true
+    raise 'plane already flying' if flying?
+
+    @flying = true if airport.permission_to_takeoff(self)
 
     "plane took off from #{airport.name} safely"
+    
   end
 
   private

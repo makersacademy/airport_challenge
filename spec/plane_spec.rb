@@ -3,7 +3,7 @@ require 'airport'
 
 describe Plane do
   let(:plane) { Plane.new }
-  let(:airport) { double :airport, name: 'Heathrow', permission_to_land: 'Safe to land' }
+  let(:airport) { double :airport, name: 'Heathrow', permission_to_land: 'Safe to land', permission_to_takeoff: 'You are clear for take off' }
 
   it 'is expected to be flying upon creation' do
     expect(plane.flying).to eq true
@@ -38,6 +38,8 @@ describe Plane do
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
+    before { allow(airport).to receive(:permission_to_takeoff).with(plane) }
+
     it "is expected to change flying status to true" do
       subject.land(airport)
       subject.takeoff(airport)
@@ -45,11 +47,19 @@ describe Plane do
     end
 
     it "confirms it took off safely" do
+      plane.land(airport)
       expect(plane.takeoff(airport)).to eq "plane took off from #{airport.name} safely"
     end
 
-    it "raises" do
+    it "raises error if plane is already flying" do
+      allow(plane).to receive(:flying?) { true }
+      expect { plane.takeoff(airport) }.to raise_error 'plane already flying'
+    end
 
+    it "will not takeoff in bad weather" do
+      plane.land(airport)
+      allow(airport).to receive(:permission_to_takeoff) { raise "unsafe weather conditions" }
+      expect { plane.takeoff(airport) }.to raise_error 'unsafe weather conditions'
     end
   end
 end
