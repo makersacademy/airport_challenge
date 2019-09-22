@@ -2,8 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
-  attr_reader :status
+  attr_reader :planes, :status
   attr_accessor :capacity
   AIRPORT_CAPACITY = 100
 
@@ -35,7 +34,7 @@ class Airport
   end
 
   def weather_check
-   rand(1..2) == 1 ? "sunny" : "stormy"
+    rand(1..2) == 1 ? "sunny" : "stormy"
   end
 
   private

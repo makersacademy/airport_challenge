@@ -1,8 +1,7 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
-
-  let(:airport) { double (:airport) }
 
   describe '#land_plane' do
 
@@ -11,16 +10,15 @@ describe Airport do
     it { is_expected.to respond_to(:land_plane).with(1).argument }
 
     it 'raises an error when stormy - prevents plane landing' do
-      allow(airport).to receive(:weather_check).and_return("stormy")
-      plane = Plane.new
-      expect { subject.land_plane(plane) }.to raise_error 'Landing prevented due to stormy weather'
+      allow(subject).to receive(:weather_check).and_return "stormy"
+      expect { subject.land_plane(Plane.new) }.to raise_error 'Landing prevented due to stormy weather'
     end
 
     it { is_expected.to respond_to :planes }
 
     it 'plane can only land if it is flying' do
-     subject.land_plane(Plane.new)
-     expect { subject.land_plane(Plane.new) }.to raise_error 'Error'
+      subject.land_plane(Plane.new)
+      expect { subject.land_plane(Plane.new) }.to raise_error 'Error'
     end
 
   end
@@ -28,11 +26,12 @@ describe Airport do
   describe '#initialization' do
 
     it 'raises an error when airport hits max capacity' do
+      allow(subject).to receive(:weather_check).and_return "sunny"
       subject.capacity.times { subject.land_plane(Plane.new) }
       expect { subject.land_plane(Plane.new) }.to raise_error 'Airport full'
     end
 
-    it 'has a default capacity' do
+    it 'has a default capacity of 100 planes' do
       expect(subject.capacity).to eq Airport::AIRPORT_CAPACITY
     end
 
@@ -54,16 +53,11 @@ describe Airport do
       expect(subject.take_off).to eq 'The plane has taken off'
     end
 
-    it 'plane can only take off if it is grounded' do
-      expect { subject.take_off }.to raise_error 'Error'
-    end
-
-
     it 'raises an error when stormy - prevents plane taking off' do
-      allow(airport).to receive(:weather_check).and_return("stormy")
-      # or allow(airport).to receive(:rand).and_return("stormy") ?
-      plane = Plane.new
-      subject.land_plane(plane)
+      allow(subject).to receive(:weather_check).and_return "sunny"
+      subject.land_plane(Plane.new)
+      allow(subject).to receive(:weather_check).and_return "stormy"
+      # subject.land_plane(Plane.new)
       expect { subject.take_off }.to raise_error 'Take off prevented due to stormy weather'
     end
 
@@ -71,8 +65,8 @@ describe Airport do
 
   it 'generates random weather' do
     airport = Airport.new
-    allow(airport).to receive(:rand).and_return ("stormy")
-    expect(airport.weather_check).to eq ("stormy")
+    allow(airport).to receive(:rand).and_return "stormy"
+    expect(airport.weather_check).to eq "stormy"
   end
 
 end
