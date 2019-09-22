@@ -12,9 +12,9 @@ class Airport
   end
 
   def land(plane)
-    raise 'No landing: Bad weather!' if stormy?
+    raise 'No landing: Bad weather!' if stormy? &&  plane.flying == true 
 
-    raise 'Plane has already landed' if plane.flying == false
+    raise 'Plane has already landed' if plane.flying == false 
 
     raise 'Airport full' if full?
 
@@ -23,9 +23,9 @@ class Airport
   end
 
   def takeoff(plane)
-    raise 'No taking off: Bad weather!' if stormy?
+    raise 'No taking off: Bad weather!' if stormy? &&  plane.flying == false 
 
-    raise 'Plane is already flying' if plane.flying == true
+    raise 'Plane is already flying' if plane.flying == true 
 
     plane.taken_off
     @planes.pop

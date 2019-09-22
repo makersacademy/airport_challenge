@@ -2,6 +2,9 @@ require 'airport'
 require 'weather'
 
 describe Airport do
+  
+  let(:plane) { double :plane }
+
   it 'exists!' do
     expect(subject.class).to eq Airport
   end
@@ -12,13 +15,13 @@ describe Airport do
     end
 
     it 'prevents landing when weather is stormy' do
-      plane = Plane.new
+      allow(plane).to receive(:flying).and_return true
       allow(subject).to receive(:stormy?).and_return true
       expect { subject.land(plane) }.to raise_error "No landing: Bad weather!"
     end
 
     it 'prevents taking off when weather is stormy' do
-      plane = Plane.new
+      allow(plane).to receive(:flying).and_return false
       allow(subject).to receive(:stormy?).and_return true
       expect { subject.takeoff(plane) }.to raise_error "No taking off: Bad weather!"
     end
@@ -27,7 +30,7 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
 
   describe '#land' do
-    it 'lands a plane at the airport' do
+    it 'lands a plane at the airport' do  
       plane = Plane.new
       allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
