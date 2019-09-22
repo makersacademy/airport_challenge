@@ -15,6 +15,13 @@ describe Airport do
     expect(subject.landed_planes).not_to include(plane)
   end
 
+  it '#take_off(plane) only runs if the plane is in the airport' do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
+    # subject.land(plane)
+    expect { subject.take_off(plane) }.to raise_error('Plane cannot take off as it is not in this airport')
+  end
+
   it 'stores landed planes' do
     plane = Plane.new
     allow(subject).to receive(:stormy?).and_return(false)
