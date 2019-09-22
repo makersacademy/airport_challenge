@@ -28,7 +28,7 @@ describe Plane do
       expect { plane.land(airport) }.to raise_error 'unsafe weather conditions'
     end
 
-    it "raise error if plane is already landed" do
+    it "raises error if plane is already landed" do
       plane.land(airport)
       allow(plane).to receive(:flying?) { false }
       expect { plane.land(airport) }.to raise_error 'plane already grounded'
@@ -42,6 +42,14 @@ describe Plane do
       subject.land(airport)
       subject.takeoff(airport)
       expect(subject.flying).to eq true
+    end
+
+    it "confirms it took off safely" do
+      expect(plane.takeoff(airport)).to eq "plane took off from #{airport.name} safely"
+    end
+
+    it "raises" do
+
     end
   end
 end

@@ -19,6 +19,7 @@ class Plane
 
     @flying = true
 
+    "plane took off from #{airport.name} safely"
   end
 
   private
