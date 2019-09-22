@@ -1,19 +1,24 @@
-require 'Airport'
+require 'airport'
 
 describe Airport do
+
+  let(:weather) { double :weather, :stormy= => true, stormy?: true }
 
   describe '#land_plane' do
 
     it { is_expected.to respond_to :land_plane }
 
+    it { is_expected.to respond_to(:land_plane).with(1).argument }
+
     it 'lands a plane' do
       plane = Plane.new
+      subject.stormy = false
       expect(subject.land_plane(plane)).to eq subject.planes
     end
 
-    it 'raises an errory when stormy' do
+    it 'raises an error when stormy - prevents plane landing' do
       plane = Plane.new
-      subject.weather
+      subject.stormy = true
       expect { subject.land_plane(plane) }.to raise_error 'Landing prevented due to stormy weather'
     end
 
@@ -54,12 +59,13 @@ describe Airport do
 
     it 'plane takes off' do
       plane = Plane.new
+      subject.stormy = false
       subject.land_plane(plane)
-      expect(subject.take_off).to eq 'The plane has taken off' 
+      expect(subject.take_off).to eq 'The plane has taken off'
     end
 
-    it 'raises an error when stormy' do
-      subject.weather
+    it 'raises an error when stormy - prevents plane taking off' do
+      subject.stormy = true
       expect { subject.take_off }.to raise_error 'Take off prevented due to stormy weather'
     end
 
