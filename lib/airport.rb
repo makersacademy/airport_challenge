@@ -2,17 +2,24 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def land_plane(plane)
     fail 'Landing prevented due to stormy weather' if @weather == 'stormy'
-    fail 'Airport full' if @plane 
-    @plane = plane
+
+    fail 'Airport full' if @planes.count >= 100
+
+    @planes << plane
   end
 
   def take_off
     fail 'Take off prevented due to stormy weather' if @weather == 'stormy'
-    @plane
+
+    @planes.pop
     "The plane has taken off"
   end
 
