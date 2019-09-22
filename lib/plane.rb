@@ -7,11 +7,11 @@ class Plane
   end
 
   def land
-    @landed = true
+    @landed = true #marks the plane as landed
   end
 
   def take_off
-    @landed = false
+    @landed = false #marks the plane as taken off
   end
 
 end
