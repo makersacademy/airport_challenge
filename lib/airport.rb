@@ -13,7 +13,7 @@ class Airport
   end
 
   def land(plane) #creating a new method to land a plane
-    raise "Weather is stormy" if @stormy
+    raise "Weather is stormy" if stormy?
     raise "Airport full" if full?
     raise "Plane already landed" if plane.landed?
     plane.land
@@ -21,7 +21,7 @@ class Airport
   end
 
   def take_off
-    raise "Weather is stormy" if @stormy
+    raise "Weather is stormy" if stormy?
     raise "Airport empty" if empty?
     plane = @planes.delete(@planes.sample)#creating a new instance of the plane class to take off
     plane.take_off
