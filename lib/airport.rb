@@ -15,7 +15,11 @@ class Airport
     
     raise "Sorry, airport is full" if airport_full?
 
+    raise "Plane already grounded" if plane.grounded? == true
+
     raise "Landing denied, conditions are unsafe" unless safe_conditions?
+
+    plane.land
 
     @hangar << plane && 'Plane landed safely'
   end
@@ -23,6 +27,8 @@ class Airport
   def takeoff(plane)
 
     raise 'Unsafe flying conditions, stay grounded' unless safe_conditions?
+
+    plane.fly
 
     @hangar.delete(plane) && 'Plane departed'
   

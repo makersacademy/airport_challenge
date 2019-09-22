@@ -4,7 +4,7 @@ require 'plane'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:plane) { double(:plane, :plane_landed => false) }
+  let(:plane) { double(:plane, grounded?: false, land: true, fly: false) }
 
   it 'should have a capacity of 50 if not specified' do
     expect(airport.capacity).to eq 50
@@ -30,14 +30,20 @@ describe Airport do
       allow(city).to receive(:safe_conditions?) { true }
       allow(airport).to receive(:safe_conditions?) { true }
       city.land(plane)
-      expect(airport.takeoff(:plane)).to eq nil
+      expect(airport.takeoff(plane)).to eq nil
+    end
+    it 'should prevent takeoff if a plane is not grounded' do
+      allow(airport).to receive(:safe_conditions?) { true }
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(airport.takeoff(plane)).to eq nil
+    
     end
   end
 
   describe '#land' do
     it 'should allow a plane to land' do
       allow(airport).to receive(:safe_conditions?) { true }
-      allow(plane).to receive(:flying?) { true }
       airport.land(plane)
       expect(airport.hangar).to include plane
     end
