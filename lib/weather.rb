@@ -1,15 +1,12 @@
 
-
 module Weather
 
-  attr_reader :stormy
-
-  def initialize
-    @stormy = false
-  end
-
   def stormy?
-    @stormy = true
+    chance_of_storm = rand(10)
+    if chance_of_storm == 7
+      @stormy = true
+    else @stormy = false
+   end
   end
 
 end
