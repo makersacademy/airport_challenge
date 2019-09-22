@@ -8,7 +8,9 @@ describe Plane do
     it 'registers true after taking off' do
       subject
       airport = Airport.new
+      allow(airport).to receive(:weather).and_return(:sunny)
       airport.take_off(plane)
+      
       expect(plane.flying).to eq true
     end
   end
@@ -18,6 +20,7 @@ describe Plane do
       subject
       airport = Airport.new
       airport.land(plane)
+      allow(airport).to receive(:weather_generator).and_return(:sunny)
       expect(plane.landed).to eq true    
     end
   end  
