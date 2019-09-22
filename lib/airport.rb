@@ -6,4 +6,8 @@ class Airport
     @plane = plane
   end
 
+  def take_off
+    "#{@plane} has left the airport"
+  end
+
 end
