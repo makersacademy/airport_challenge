@@ -66,7 +66,7 @@ I would like a default airport capacity that can be overridden as appropriate
 * Planes are stored at each airport, a plane cannot land at same or another airport if it has already landed.
 * The planes cannot take off if they are already flying.
 * Planes cannot land or takeoff if the weather is stormy. The weather is set to be stormy 10% of the time.
-* Planes cannot land if an airport is full. The default capacity of the airport is set to 20, but this can be changed on initialization or upon calling the update_capacity command
+* Planes cannot land if an airport is full. The default capacity of the airport is set to 20, but this can be changed on initialization or upon calling the update_capacity command.
 
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.

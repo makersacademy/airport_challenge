@@ -50,9 +50,13 @@ describe Airport do
     it 'does not let a plane land if airport is full (changing capacity)' do
       airport = Airport.new
       allow(airport).to receive(:rand).and_return(1)
-      airport.update_capacity(50)
+      airport.capacity = 50
       50.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error "Airport full"
+    end
+
+    it 'is not a Plane and therefore cannot be landed' do
+      expect { subject.land("hey") }.to raise_error "Not a plane"
     end
 
   end
@@ -67,6 +71,7 @@ describe Airport do
 
     it 'take-off denined if stormy' do
       airport = Airport.new
+      airport.land(Plane.new)
       allow(airport).to receive(:rand).and_return(2)
       airport.stormy?
       expect { airport.take_off }.to raise_error "Weather is stormy"
