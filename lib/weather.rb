@@ -1,12 +1,9 @@
-
 module Weather
-
-  def stormy? #random weather generator
+# random weather generator
+  def stormy?
     chance_of_storm = rand(10)
-    if chance_of_storm == 2
-      return true #returns true to the question stromy 10% of the time
-    else return false
-   end
+    chance_of_storm == 2
+    # returns true to the question stromy 10% of the time
   end
 
 end
