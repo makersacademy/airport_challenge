@@ -1,6 +1,22 @@
 require 'airport'
 
 describe Airport do
+  describe '#planes' do
+    it 'returns list of planes currently landed' do
+      gatwick = Airport.new
+      allow(gatwick).to receive(:safe_to_fly?).and_return(true)
+      gatwick.update_forecast
+
+      array = []
+      5.times {
+        plane = Plane.new
+        gatwick.land(plane)
+        array << plane
+      }
+      expect(gatwick.planes).to eq array
+    end
+  end
+  
   describe "#land" do
     it "instructs plane to land at the airport" do
       gatwick = Airport.new
