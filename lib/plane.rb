@@ -13,7 +13,7 @@ class Plane
     fail "Cannot land due to stormy weather" if airport.weather == "stormy"
     fail "Cannot land as #{airport} is full" if airport.full?
 
-    airport.planes << self
+    airport.add_plane(self)
     self.airborne = false
   end
 
@@ -24,7 +24,7 @@ class Plane
     fail "Cannot take off due to stormy weather" if airport.weather == "stormy"
     fail "Plane is not in #{airport}" if !airport.planes.include?(self)
 
-    airport.planes.delete(self)
+    airport.remove_plane(self)
     self.airborne = true
   end
 

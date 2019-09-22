@@ -14,6 +14,7 @@ describe Plane do
 
       before(:each) do
         airport.weather = "sunny"
+        # allow(airport).to receive(:rand).with(11) { 3 }
         plane.land(airport)
       end
 
@@ -42,7 +43,10 @@ describe Plane do
     # I want to prevent landing when weather is stormy
     context "when airport weather is stormy" do
 
-      before(:each) { airport.weather = "stormy" }
+      before(:each) do
+        airport.weather = "stormy"
+        # allow(airport).to receive(:rand).with(11) { 10 }
+      end
 
       it "raises an error" do
         expect { plane.land(airport) }.to raise_error "Cannot land due to stormy weather"
