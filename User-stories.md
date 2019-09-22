@@ -40,6 +40,26 @@ plane  > take-off > airport
 ```
 As an air traffic controller
 To ensure safety
+I want to prevent landing when weather is stormy
+
+```
+nouns: air traffic controller, weather, stormy
+verbs: prevent landing,
+
+
+Objects  | Messages
+------------- | -------------
+air traffic controller  |  
+plane  | landing
+weather | stormy
+airport  |
+
+plane  > landing > airport
+
+### Story 4
+```
+As an air traffic controller
+To ensure safety
 I want to prevent takeoff when weather is stormy
 
 ```
@@ -55,3 +75,22 @@ weather | stormy
 airport  |
 
 plane  > take-off > airport
+
+### Story 5
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+```
+nouns: air traffic controller, airport, full
+verbs: prevent, landing,
+
+
+Objects  | Messages
+------------- | -------------
+air traffic controller  |  
+plane  | landing
+airport full | prevent
+
+plane  > landing > airport

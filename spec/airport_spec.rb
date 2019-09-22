@@ -8,20 +8,21 @@ describe Airport do
   end
 
   it 'lands a plane' do
-    plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    subject.land(Plane.new)
+    expect(subject.planes).to_not be_empty
     #check whether the plane instance is stored once it has landed
   end
 
-  it 'lands a plane if stormy' do
+  it 'does not land a plane if stormy' do
     subject.stormy?
     expect{subject.land(Plane.new)}.to raise_error ("Weather is stormy")
     #check weather is stormy before landing a plane
   end
 
-  it 'take-off' do
-    plane = Plane.new
-    expect(subject.take_off.class).to eq plane.class
+  it 'allows a plane to take-off' do
+    subject.land(Plane.new)
+    subject.take_off
+    expect(subject.planes).to be_empty
     #check whether a plane is created when take off is called
   end
 
@@ -29,6 +30,11 @@ describe Airport do
     subject.stormy?
     expect{ subject.take_off}.to raise_error ("Weather is stormy")
     #check whether a plane is created when take off is called
+  end
+
+  it 'does not let a plane land if airport is full (capacity 20)' do
+    20.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error("Airport full")
   end
 
 end
