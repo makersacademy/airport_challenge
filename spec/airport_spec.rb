@@ -5,6 +5,18 @@ describe Airport do
     expect(subject).to respond_to :take_off
   end
 
+  it 'plane takes off from airport' do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect(subject.take_off(plane)).to be_a Plane
+  end
+  # 
+  # it 'it raises an error if weather is stormy' do
+  #   subject.weather == "stormy"
+  #   expect {subject.weather}.to raise_error("Weather is too stormy")
+  # end
+  #
+
   it 'responds to #land' do
     expect(subject).to respond_to :land
   end
