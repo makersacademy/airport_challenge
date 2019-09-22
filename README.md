@@ -85,6 +85,17 @@ You can't land or take off a plane at an airport if the local weather is stormy,
 
 ---
 
+# Progress Report on the Airport challenge
+
+Manual feature tests indicate the program is working as it should, and all the RSpec unit tests are passing.
+
+I have managed to isolate the unit tests in `./spec/airport_spec.rb`.  However, if I had more time I would do the following:
+
+- isolate unit tests in `./spec/plane_spec.rb` using mocks and stubs
+- if possible, extract repetitive test code into a module and use it as a mixin
+
+---
+
 Airport Challenge
 =================
 
