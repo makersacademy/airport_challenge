@@ -13,17 +13,18 @@ describe Airport do
     expect(airport.capacity).to eq 90
   end
 
-  describe '#take_off' do
+  describe '#takeoff' do
     it 'should instruct a plane to take off' do
       plane = double(:plane) # given
+      allow(airport).to receive (:safe_conditions?) { true }
       airport.land(plane) # given
-      airport.take_off(plane) # when
+      airport.takeoff(plane) # when
       expect(airport.hangar).not_to include plane # then
     end
     it 'should prevent take off if weather is stormy' do
       plane = double(:plane)
       allow(airport).to receive(:safe_conditions?) { false }
-      expect { airport.take_off(plane) }.to raise_error 'Unsafe flying conditions, stay grounded'
+      expect { airport.takeoff(plane) }.to raise_error 'Unsafe flying conditions, stay grounded'
       
     end
   end
@@ -31,6 +32,7 @@ describe Airport do
   describe '#land'
   it 'should allow a plane to land' do
     plane = double(:plane)
+    allow(airport).to receive (:safe_conditions?) { true }
     airport.land(plane)
     expect(airport.hangar).to include plane
   end

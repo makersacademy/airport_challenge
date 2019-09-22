@@ -17,7 +17,7 @@ class Airport
     @hangar << plane
   end
 
-  def take_off(plane)
+  def takeoff(plane)
 
     raise 'Unsafe flying conditions, stay grounded' if safe_conditions? == false
 
