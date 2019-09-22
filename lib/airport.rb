@@ -9,7 +9,7 @@ class Airport
   end
 
   def take_off
-    raise "Weather is stormy" if self.stormy?
+    raise "Weather is stormy" if @stormy
     Plane.new #creating a new instance of the plane class to take off
   end
 

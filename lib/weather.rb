@@ -2,8 +2,14 @@
 
 module Weather
 
+  attr_reader :stormy
+
+  def initialize
+    @stormy = false
+  end
+
   def stormy?
-    true
+    @stormy = true
   end
 
 end

@@ -21,6 +21,7 @@ describe Airport do
   end
 
   it 'take-off denined if stormy' do
+    subject.stormy?
     expect{ subject.take_off}.to raise_error ("Weather is stormy")
     #check whether a plane is created when take off is called
   end
