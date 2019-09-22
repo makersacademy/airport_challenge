@@ -52,6 +52,23 @@ To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 raise_error when weather is stormy.
-airport.take_off == false if weather == stormy
+airport.take_off to fail if weather == stormy
+
+### User Story 4
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+airport.land_plane(plane)
+
+### User Story 5
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+Push plane into array.  
+Start with capacity 1.
 
 * Add goals this achieves in readme. *  
