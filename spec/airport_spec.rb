@@ -1,5 +1,4 @@
 require 'airport'
-require 'weather'
 
 describe Airport do
 
@@ -11,7 +10,13 @@ describe Airport do
   it 'lands a plane' do
     plane = Plane.new
     expect(subject.land(plane)).to eq plane
-    #check whether the plane istance is stored once it has landed
+    #check whether the plane instance is stored once it has landed
+  end
+
+  it 'lands a plane if stormy' do
+    subject.stormy?
+    expect{subject.land(Plane.new)}.to raise_error ("Weather is stormy")
+    #check weather is stormy before landing a plane
   end
 
   it 'take-off' do

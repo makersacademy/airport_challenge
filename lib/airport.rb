@@ -5,6 +5,7 @@ class Airport
   include Weather
 
   def land(plane) #creating a new method to land a plane
+    raise "Weather is stormy" if @stormy
     @plane = plane
   end
 
