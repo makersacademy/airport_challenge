@@ -15,23 +15,4 @@ describe Airport do
     expect(airport.capacity).to eq 100
   end
 
-  # new changes
-
-  context "when a plane lands successfully" do
-
-
-  end
-
-  context "when a plane takes off successfully" do
-
-  end
-
-  context "when a plane is prevented from landing" do
-
-  end
-
-  context "when a plane is prevented from taking off" do
-
-  end
-
 end
