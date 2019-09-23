@@ -91,7 +91,6 @@ describe Airport do
 
 end
 
-
 describe 'initialization' do
 
   it 'has a variable capacity' do
