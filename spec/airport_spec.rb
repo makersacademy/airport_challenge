@@ -16,10 +16,12 @@ describe Airport do
 
     it { is_expected.to respond_to :planes }
 
-    it 'plane can only land if it is flying' do
+    it 'plane can only land if it is flying and not already in airport' do
       allow(subject).to receive(:weather_check).and_return "sunny"
-      subject.land_plane(Plane.new)
-      expect { subject.land_plane(Plane.new) }.to raise_error 'Error'
+      allow(subject).to receive(:status).and_return "flying"
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect { subject.land_plane(plane) }.to raise_error 'Error'
     end
 
   end
@@ -48,19 +50,35 @@ describe Airport do
 
     it { is_expected.to respond_to :take_off }
 
-    it 'plane takes off' do
+    it 'plane takes off from airport it is in' do
       allow(subject).to receive(:weather_check).and_return "sunny"
-      plane = Plane.new
-      subject.land_plane(plane)
-      expect(subject.take_off).to eq 'The plane has taken off'
+      allow(subject).to receive(:status).and_return "grounded"
+      plane1 = Plane.new
+      subject.land_plane(plane1)
+      expect(subject.take_off(plane1)).to eq 'The plane has taken off'
     end
 
     it 'raises an error when stormy - prevents plane taking off' do
       allow(subject).to receive(:weather_check).and_return "sunny"
       subject.land_plane(Plane.new)
       allow(subject).to receive(:weather_check).and_return "stormy"
-      expect { subject.take_off }.to raise_error 'Take off prevented due to stormy weather'
+      expect { subject.take_off(Plane.new) }.to raise_error 'Take off prevented due to stormy weather'
     end
+
+    it 'plane can only take off if it is grounded' do
+      allow(subject).to receive(:weather_check).and_return "sunny"
+      allow(subject).to receive(:status).and_return "grounded"
+      expect { subject.take_off(Plane.new) }.to raise_error 'Error'
+    end
+
+    # it 'can only take off from airport plane is in' do
+    #   allow(subject).to receive(:weather_check).and_return "sunny"
+    #   allow(subject).to receive(:status).and_return "grounded"
+    #   plane1 = Plane.new
+    #   subject.land_plane(plane1)
+    #   expectsubject.take_off
+    #   #expect(subject.planes).not_to include(plane1)
+    # end
 
   end
 
