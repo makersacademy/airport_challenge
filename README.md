@@ -55,3 +55,7 @@ Possible errors when trying to fly...
 'Unable to land due to stormy weather'
 
 'Can't land, airport is full'
+
+Bugs / Issues
+-------
+Need to restrict access to to the Plane class methods #is_flying and #is_not_flying. These should only be accessible from within the Airpot #land and #take_off methods. Once fixed, rspec Airport_spec test 4 needs updating to use a plane double instead of calling on the #is_not_flying method now being used.
