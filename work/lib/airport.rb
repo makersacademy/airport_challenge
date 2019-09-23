@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
 
   attr_reader :plane
+
   ::DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -46,6 +47,8 @@ class Airport
   end
 
   private
+
+  attr_reader :weather
 
   def stormy?
     # generates weather condition
