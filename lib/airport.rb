@@ -9,6 +9,7 @@ class Airport
   end
 
   def land_plane(plane)
+     
     plane.on_ground
     plane_hangar << plane
   end
