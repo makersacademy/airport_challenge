@@ -9,7 +9,7 @@ class Airport
   end
 
   def land_plane(plane)
-     
+    raise 'Plane is already on the ground' if plane_hangar.any?{|planes| planes == plane}
     plane.on_ground
     plane_hangar << plane
   end
