@@ -3,7 +3,7 @@ require 'airport'
 
 describe Plane do
   let(:plane) { Plane.new }
-  let(:airport) { double :airport, name: 'Heathrow', permission_to_land: 'Safe to land', permission_to_takeoff: 'You are clear for take off' }
+  let(:airport) { double :airport, name: 'Heathrow', permission_to_land: '', permission_to_takeoff: 'f' }
 
   it 'is expected to be flying upon creation' do
     expect(plane.flying).to eq true
