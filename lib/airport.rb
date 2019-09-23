@@ -2,21 +2,21 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :planes
+  attr_reader :plane_hangar
 
   def initialize
-    @planes = []
+    @plane_hangar = []
   end
 
   def land_plane(plane)
     plane.on_ground
-    planes << plane
+    plane_hangar << plane
   end
 
   def take_off
-    planes.each{|plane|
+    plane_hangar.each{|plane|
       plane.in_air
-      return planes.shift
+      return plane_hangar.shift
     }
   end
 end

@@ -1,3 +1,3 @@
-class weather
+class Weather
 
 end
