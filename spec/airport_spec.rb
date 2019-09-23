@@ -34,7 +34,8 @@ describe Airport do
   end
 
   it 'prevents take off in stormy weather' do
-    allow(subject).to receive(:stormy?).and_return(true)
+    allow(subject).to receive(:rand).and_return(9)
+    # allow(subject).to receive(:stormy?).and_return(true)
     expect { subject.take_off }.to raise_error "Cannot take off in STORMY weather"
   end
 
@@ -77,6 +78,15 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error "Plane has already landed"
+  end
+
+  it 'allows user to overwrite capacity' do
+    airport = Airport.new
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:gets).and_return("3")
+    airport.overwrite_capacity
+    3.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error "Cannot land when airport is full"
   end
 
 end

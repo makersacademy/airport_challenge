@@ -26,12 +26,10 @@ class Airport
 
   def land(plane)
     @plane = plane
-    weather = stormy?
-    fail "Cannot land in STORMY weather" if weather == true
 
-    fail "Cannot land when airport is full" if @bay.length >= DEFAULT_CAPACITY && @new_capcity == nil
+    fail "Cannot land in STORMY weather" if stormy?
 
-    fail "Cannot land when airport is full" if @new_capcity != nil && @bay.length >= @new_capcity
+    fail "Cannot land when airport is full" if @bay.length >= @new_capcity
 
     fail "Plane has already landed" if @bay.include?(@plane)
 
@@ -40,8 +38,7 @@ class Airport
   end
 
   def take_off
-    weather = stormy?
-    fail "Cannot take off in STORMY weather" if weather == true
+    fail "Cannot take off in STORMY weather" if stormy?
 
     fail "There are no planes in the airport" if @bay.length.zero?
 
