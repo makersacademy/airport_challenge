@@ -1,4 +1,19 @@
-# My Methodology
+# Week 1 Challenge - Airport Challenge
+
+This application allows a user to direct planes to land and take off at airports, and allows for weather to be taken into account when performing these actions.
+
+```ruby
+irb(main):005:0> plane = Plane.new
+=> #<Plane:0x00007f901d1ae898 @current_airport=nil>
+irb(main):006:0> airport = Airport.new
+=> #<Airport:0x00007f901c84d290 @weather=#<Weather:0x00007f901c84d128>, @capacity=20, @hangar=[]>
+irb(main):007:0> plane.land(airport)
+=> #<Airport:0x00007f901c84d290 @weather=#<Weather:0x00007f901c84d128>, @capacity=20, @hangar=[#<Plane:0x00007f901d1ae898 @current_airport=#<Airport:0x00007f901c84d290 ...>>]>
+irb(main):008:0> plane.flying?
+=> false
+```
+
+## My Methodology
 
 Reading the user stories gave me the following objects / messages:
 
