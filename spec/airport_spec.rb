@@ -3,6 +3,8 @@ require 'plane'
 
 describe Airport do
 
+  # Could have added let(:plane) { Plane.new } and then just use plane throughout tests.
+
   describe '#land_plane' do
 
     it { is_expected.to respond_to :land_plane }
@@ -11,7 +13,7 @@ describe Airport do
     it { is_expected.to respond_to(:land_plane).with(1).argument }
 
     it 'raises an error when stormy - prevents plane landing' do
-      allow(subject).to receive(:weather_check).and_return "stormy"
+      allow(subject).to receive(:weather_check).and_return :stormy
       expect { subject.land_plane(Plane.new) }.to raise_error 'Landing prevented due to stormy weather'
     end
 
@@ -35,8 +37,8 @@ describe Airport do
     it { is_expected.to respond_to :planes }
 
     it 'plane can only land if it is flying and not already in airport' do
-      allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "flying"
+      allow(subject).to receive(:weather_check).and_return :sunny
+      allow(subject).to receive(:status).and_return :flying
       plane = Plane.new
       subject.land_plane(plane)
       expect { subject.land_plane(plane) }.to raise_error 'Error'
@@ -71,29 +73,29 @@ describe Airport do
     it { is_expected.to respond_to :take_off }
 
     it 'plane takes off from airport it is in' do
-      allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "grounded"
+      allow(subject).to receive(:weather_check).and_return :sunny
+      allow(subject).to receive(:status).and_return :grounded
       plane1 = Plane.new
       subject.land_plane(plane1)
       expect(subject.take_off(plane1)).to eq 'The plane has taken off'
     end
 
     it 'raises an error when stormy - prevents plane taking off' do
-      allow(subject).to receive(:weather_check).and_return "sunny"
+      allow(subject).to receive(:weather_check).and_return :sunny
       subject.land_plane(Plane.new)
-      allow(subject).to receive(:weather_check).and_return "stormy"
+      allow(subject).to receive(:weather_check).and_return :stormy
       expect { subject.take_off(Plane.new) }.to raise_error 'Take off prevented due to stormy weather'
     end
 
     it 'plane can only take off if it is grounded' do
-      allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "flying" ##CHECK THIS, COULD ALSO BE USED AS :flying
+      allow(subject).to receive(:weather_check).and_return :sunny
+      allow(subject).to receive(:status).and_return :flying
       expect { subject.take_off(Plane.new) }.to raise_error 'Error'
     end
 
     it 'plane can only take off if it is already in airport' do
-      allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "grounded"
+      allow(subject).to receive(:weather_check).and_return :sunny
+      allow(subject).to receive(:status).and_return :grounded
       plane = Plane.new
       subject.land_plane(plane)
       expect(subject.planes).to include(plane)
@@ -103,8 +105,8 @@ describe Airport do
 # WEATHER TEST COULD GO INTO CONTEXT BLOCK
   it 'generates random weather' do
     airport = Airport.new
-    allow(airport).to receive(:rand).and_return "stormy"
-    expect(airport.weather_check).to eq "stormy"
+    allow(airport).to receive(:rand).and_return :stormy
+    expect(airport.weather_check).to eq :stormy
   end
 
 end
