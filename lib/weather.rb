@@ -1,12 +1,18 @@
 class Weather
+  def initialize
+    @stormy_weather = nil
+  end
 
-  def weather_condition
+  def generate_weather
   random_number = rand(10)
     if random_number < 2
-      return "stormy"
+      @stormy_weather = true
     else
-      return "sunny"
+      @stormy_weather = false
     end
   end
 
+  def unsafe_to_fly?
+      @stormy_weather
+  end
 end
