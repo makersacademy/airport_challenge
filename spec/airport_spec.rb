@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   let(:airport) { Airport.new }
@@ -12,7 +13,7 @@ describe Airport do
   end
 
   it 'responds to weather methods' do
-    allow(airport).to receive(:clear?) { true }
+    allow(airport).to receive(:rand) { 2 }
     expect(airport.clear?).to eq true
   end
 
