@@ -1,10 +1,10 @@
 require 'weather'
 
 describe Weather do
-  subject(:weather) { described_class.new }
+  include Weather
 
   describe '#stormy?' do
-    it { expect(weather.stormy?).to be(true).or be(false) }
+    it { expect(stormy?).to be(true).or be(false) }
   end
 
 end
