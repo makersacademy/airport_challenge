@@ -14,4 +14,12 @@ describe Plane do
         expect(plane.flying?).to eq true
       end
     end
+
+    describe '#on_ground' do
+      it 'reports plane as on the ground' do
+        plane = Plane.new
+        plane.on_ground
+        expect(plane.flying?).to eq false
+      end
+    end
 end

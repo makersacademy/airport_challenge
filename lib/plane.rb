@@ -1,8 +1,8 @@
 class Plane
 
   def initialize
-    @flying = false
-    # Not in flight by default.
+    @flying = nil
+    # set when plane is assigned to an airport.
   end
 
   def flying?
@@ -13,4 +13,7 @@ class Plane
     @flying = true
   end
 
+  def on_ground
+    @flying = false
+  end
 end

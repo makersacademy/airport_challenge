@@ -8,10 +8,14 @@ class Airport
   end
 
   def land_plane(plane)
+    plane.on_ground
     planes << plane
   end
 
   def take_off
-    planes.each{|plane| return plane}
+    planes.each{|plane|
+      plane.in_air
+      return planes.shift
+    }
   end
 end
