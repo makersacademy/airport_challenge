@@ -1,5 +1,4 @@
 class Plane
-
   def initialize
     @flying = nil
     # set when plane is assigned to an airport.
