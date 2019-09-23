@@ -1,6 +1,6 @@
 require "airport"
 
-describe Airport do
+describe Airport do #use context and describes for each methods to better organise and refactor spec tests.
 
   # 'lands a plane' test returns an error even though the plane returned is same that lands.
 
@@ -19,7 +19,7 @@ describe Airport do
     expect { airport.takeoff }.to raise_error "Weather is too stormy to takeoff"
   end
 
-  it "stops plan landing when it's stormy" do
+  it "stops plane landing when it's stormy" do
     plane = Plane.new
     airport = Airport.new(double(:weather, stormy?: true))
     expect { airport.land_plane(plane) }.to raise_error "Weather is too stormy to land"
