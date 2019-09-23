@@ -14,4 +14,3 @@ p7 = Plane.new
 p8 = Plane.new
 p9 = Plane.new
 p10 = Plane.new
-w = Weather.new

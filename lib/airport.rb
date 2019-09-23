@@ -6,6 +6,7 @@ class Airport
   attr_reader :capacity
   DEFAULT_CAPACITY = 50
   include Weather
+  include PlaneMovements
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
