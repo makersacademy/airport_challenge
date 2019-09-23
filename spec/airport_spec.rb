@@ -81,14 +81,14 @@ describe Airport do
 
 end
 
-  describe 'initialization' do
-    subject { Airport.new }
-    let(:plane) { Plane.new }
-    it 'defaults capacity' do
-      described_class::DEFAULT_CAPACITY.times do
-        subject.land(:plane)
-      end
-      expect{ subject.land(plane) }.to raise_error "Cannot land when airport is full"
-    end
 
+describe 'initialization' do
+
+  it 'has a variable capacity' do
+    airport = Airport.new(50)
+    allow(airport).to receive(:stormy?).and_return(false)
+    50.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error "Cannot land when airport is full"
   end
+
+end

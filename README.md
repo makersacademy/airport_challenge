@@ -1,10 +1,10 @@
-Airport Challenge - Partial Solution
+Airport Challenge - Completed
+
+The user stories have been completed - however there are still some unexpected bugs that need to be corrected.
 
 To do:
 
-Write test to check that users can overwrite the maximum capcity.
-
-Planes cannot land at multple airports.
+Planes cannot land at multiple airports.
 
 Refactor (Rubocop).
 
@@ -23,25 +23,25 @@ Create own WeatherGenerator class (SRP) and relevant changes.
                 =  ===(_________)
 
 
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -60,5 +60,3 @@ Planes cannot land when airport capacity is at full.
 Planes that take off are removed from the airport bay.
 
 Only one plane can land/take off at any one moment.
-
-
