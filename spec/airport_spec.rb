@@ -19,9 +19,7 @@ describe Airport do
       plane = Plane.new
       subject.land_plane(plane)
       expect(subject.take_off).to eq plane
+    #  expect { subject.take_off}.to raise_error 'weather too bad to fly' if dangerous_weather? = true
     end
   end
 end
-#    it 'raises an error if the weather is not safe' do
-#      expect { subject.release_bike }.to raise_error 'No bikes available'
-#    end

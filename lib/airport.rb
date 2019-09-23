@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off
+    raise 'takeoff prevented when weather is stormy' if Weather.new.dangerous_weather?
     plane_hangar.each{|plane|
       plane.in_air
       return plane_hangar.shift
