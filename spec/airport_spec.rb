@@ -45,5 +45,5 @@ describe Airport do #use context and describes for each methods to better organi
     airport = Airport.new(double(:weather, stormy?: false))
     expect { airport.takeoff }.to raise_error "No planes in the airport"
   end
-
+  
 end

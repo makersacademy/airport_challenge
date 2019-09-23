@@ -1,3 +1,22 @@
 class Plane
-# Need to add inflight and landed methods (and takeoff and landed? methods too to change status of plane?)
+
+def initialize
+  @flying = true
+end
+
+  def land
+    @flying = false
+  end
+
+  def takeoff
+    @flying = true
+  end
+
+  def landed?
+    !@flying
+  end
+
+  def flying?
+    @flying
+  end
 end
