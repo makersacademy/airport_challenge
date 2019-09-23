@@ -83,8 +83,8 @@ I would like a default airport capacity that can be overridden as appropriate
 Use constant variable for airport capacity.
 
 
-* Way to add in Weather Class *
-weather.rb 
+*Way to add in Weather Class* 
+weather.rb
 ```
 def stormy?
   random_outlook == :stormy
@@ -121,3 +121,5 @@ class Airport
   attr_reader :weather
 end
 ```
+
+*Add something about a specific airport name*

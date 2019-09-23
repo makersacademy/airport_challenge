@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
 
   attr_reader :planes, :status
-  attr_accessor :capacity # Should probably be a reader, not an accessor 
+  attr_accessor :capacity # Should probably be a reader, not an accessor
   AIRPORT_CAPACITY = 100
 
   def initialize(capacity = AIRPORT_CAPACITY)
@@ -31,7 +31,7 @@ class Airport
     fail('Error') unless @status == "grounded"
     fail('Error') unless @planes.include?(plane)
 
-    @planes.pop #CHANGE TO PLANES.DELETE(PLANE)
+    @planes.delete(plane) 
     @status = "flying"
     "The plane has taken off"
   end

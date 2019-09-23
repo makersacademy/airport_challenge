@@ -25,7 +25,7 @@ describe Airport do
     # COULD HAVE RUN TEST THAT A PLANE CAN LAND WHEN SUNNY
     # COULD HAVE TESTED THAT 2 PLANES CAN GO INTO THE ARRAY
 
-# NOTES FROM CODE REVIEW - Could have added this test 
+# NOTES FROM CODE REVIEW - Could have added this test
     # it 'has the plane after it has landed' do
     #   allow(Plane.new).to receive(land_plane)
     #   subject.land_plane(Plane.new)
@@ -89,6 +89,14 @@ describe Airport do
       allow(subject).to receive(:weather_check).and_return "sunny"
       allow(subject).to receive(:status).and_return "flying" ##CHECK THIS, COULD ALSO BE USED AS :flying
       expect { subject.take_off(Plane.new) }.to raise_error 'Error'
+    end
+
+    it 'plane can only take off if it is already in airport' do
+      allow(subject).to receive(:weather_check).and_return "sunny"
+      allow(subject).to receive(:status).and_return "grounded"
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.planes).to include(plane)
     end
 
   end
