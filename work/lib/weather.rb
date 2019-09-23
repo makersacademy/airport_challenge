@@ -1,11 +1,8 @@
 class Weather
   attr_reader :storm
 
-  def check_weather
-    @storm = weather
-  end
-
   def weather
-    rand(10) > 7
+    # generates random storm intensity. Nums > 7 are considred 'stormy.'
+    @storm = rand(10) > 7
   end
 end

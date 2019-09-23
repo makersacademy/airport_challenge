@@ -5,13 +5,11 @@ describe Weather do
     expect(subject.class).to eq Weather
   end
 
-  it { is_expected.to respond_to(:check_weather) }
-
   it { is_expected.to respond_to(:weather) }
 
   describe '#weather' do  
-    it 'generates a number for storm intensity' do
-      allow(Weather.new).to receive(:weather).and_return(Integer)
-    end
+    it 'weather to be stormy or not' do
+      expect(subject.weather).to be(true).or be(false)
+    end 
   end
 end

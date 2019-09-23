@@ -12,33 +12,47 @@ class Airport
   end
 
   def land(plane)
-    raise 'No landing: Bad weather!' if stormy? &&  plane.flying == true 
 
+    # will not allow plane to land in bad weather if it is flying
+    raise 'No landing: Bad weather!' if stormy? && plane.flying == true 
+
+    # will not allow plane to land if it has already landed
     raise 'Plane has already landed' if plane.flying == false 
 
+    # will not allow plane to land if airport is at capacity
     raise 'Airport full' if full?
 
+    # changes 'flying' status to false
     plane.landed
+    # adds plane to airport 
     @planes << plane
   end
 
   def takeoff(plane)
-    raise 'No taking off: Bad weather!' if stormy? &&  plane.flying == false 
 
+    # will not allow plane to take off in bad weather if it is landed
+    raise 'No taking off: Bad weather!' if stormy? && plane.flying == false 
+
+    # will not allow plane to take off if it has already taken off
     raise 'Plane is already flying' if plane.flying == true 
 
+    raise "Plane is in another airport" unless @planes.include? plane 
+
+    # changes 'flying' status to true
     plane.taken_off
+    # removes plane from airport
     @planes.pop
-   
+    
   end
 
   private
 
   def stormy?
+    # generates weather condition
     Weather.new.weather
   end
 
   def full?
-    @planes.count >= DEFAULT_CAPACITY
+    @planes.count >= @capacity
   end
 end
