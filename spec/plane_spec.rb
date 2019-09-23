@@ -28,7 +28,6 @@ describe Plane do
 
     it "raises error if plane is already landed" do
       plane.land(airport)
-      allow(plane).to receive(:flying?) { false }
       expect { plane.land(airport) }.to raise_error 'plane already grounded'
     end
   end
@@ -48,7 +47,6 @@ describe Plane do
     end
 
     it "raises error if plane is already flying" do
-      allow(plane).to receive(:flying?) { true }
       expect { plane.takeoff(airport) }.to raise_error 'plane already flying'
     end
 
