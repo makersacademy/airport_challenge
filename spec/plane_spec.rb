@@ -10,7 +10,6 @@ describe Plane do
 
     describe '#in_air' do
       it 'reports plane as in the air' do
-        #plane = Plane.new
         plane.in_air
         expect(plane.flying?).to eq true
       end
@@ -18,7 +17,6 @@ describe Plane do
 
     describe '#on_ground' do
       it 'reports plane as on the ground' do
-        #plane = Plane.new
         plane.on_ground
         expect(plane.flying?).to eq false
       end
