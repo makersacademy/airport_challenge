@@ -13,6 +13,8 @@ Airport Challenge
 
 ```
 
+[![Build Status](https://travis-ci.org/NabilleH/airport_challenge.svg?branch=master)](https://travis-ci.org/NabilleH/airport_challenge)
+
 Intro
 ---------
 This command line application allows you to create airports and planes, and perform basic operations such as landing and taking off. The user may define the capacity of an airport but it will else default to 20.
