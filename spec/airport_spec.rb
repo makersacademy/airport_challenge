@@ -25,7 +25,7 @@ describe Airport do
     # COULD HAVE RUN TEST THAT A PLANE CAN LAND WHEN SUNNY
     # COULD HAVE TESTED THAT 2 PLANES CAN GO INTO THE ARRAY
 
-# NOTES FROM CODE REVIEW
+# NOTES FROM CODE REVIEW - Could have added this test 
     # it 'has the plane after it has landed' do
     #   allow(Plane.new).to receive(land_plane)
     #   subject.land_plane(Plane.new)
@@ -46,6 +46,7 @@ describe Airport do
 
   describe '#initialization' do
 
+# NEED TO FIX TEST
     # it 'raises an error when airport hits max capacity' do
     #   allow(subject).to receive(:weather_check).and_return "sunny"
     #   subject.capacity.times { subject.land_plane(Plane.new) }
@@ -56,6 +57,7 @@ describe Airport do
       expect(subject.capacity).to eq Airport::AIRPORT_CAPACITY
     end
 
+# NEED TO FIX TEST
     # it 'has a variable capacity' do
     #   airport = Airport.new(150)
     #   150.times { airport.land_plane(Plane.new) }
@@ -85,7 +87,7 @@ describe Airport do
 
     it 'plane can only take off if it is grounded' do
       allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "flying" ##CHECK THIS, COULD ALSO BE USED AS :flying 
+      allow(subject).to receive(:status).and_return "flying" ##CHECK THIS, COULD ALSO BE USED AS :flying
       expect { subject.take_off(Plane.new) }.to raise_error 'Error'
     end
 
