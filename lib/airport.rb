@@ -10,4 +10,8 @@ class Airport
   def land_plane(plane)
     planes << plane
   end
+
+  def take_off
+    planes.each{|plane| return plane}
+  end
 end
