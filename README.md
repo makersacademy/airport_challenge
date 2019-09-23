@@ -89,5 +89,20 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
+### How to Use
+```
+irb
+2.6.0 :001 > require './lib/airport.rb'
+ => true
+2.6.0 :002 > airport = Airport.new
+ => #<Airport:0x00007fe592157190 @capacity=100, @planes=[], @status=:flying>
+2.6.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fe592133c18>
+2.6.0 :004 > airport.land_plane(plane)
+ => :grounded
+```
+### Project Status
+Project close to completion by 22nd September 2019. However, I need to fix two tests within #initialization and reassess the way I'm declaring the flying / grounded status of the plane.
+I could also look into moving the weather function into its own class. See plan for more details 
+
 See [Plan](https://github.com/jessmar94/airport_challenge/blob/master/plan.md) for my breakdown of the user stories.
-Project almost fully completed on 22nd September (but need to include way of tracking specific airport). 

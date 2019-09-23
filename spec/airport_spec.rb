@@ -3,36 +3,17 @@ require 'plane'
 
 describe Airport do
 
-  # Could have added let(:plane) { Plane.new } and then just use plane throughout tests.
-
   describe '#land_plane' do
 
     it { is_expected.to respond_to :land_plane }
 
-# THIS COULD BE DELETED AS BECOMES REDUNDANT WITH FURTHER TESTS
     it { is_expected.to respond_to(:land_plane).with(1).argument }
 
     it 'raises an error when stormy - prevents plane landing' do
       allow(subject).to receive(:weather_check).and_return :stormy
-      expect { subject.land_plane(Plane.new) }.to raise_error 'Landing prevented due to stormy weather'
+      message = 'Landing prevented due to stormy weather'
+      expect { subject.land_plane(Plane.new) }.to raise_error(message)
     end
-
-# THE ABOVE TEST COULD HAVE BEEN RE-WRITTEN LIKE THIS SO YOU DON'T BREAK LONG LINES
-    # it 'raises an error when stormy - prevents plane landing' do
-    #   allow(subject).to receive(:weather_check).and_return "stormy"
-    #   message = 'Landing prevented due to stormy weather'
-    #   expect { subject.land_plane(Plane.new) }.to raise_error(message)
-    # end
-
-    # COULD HAVE RUN TEST THAT A PLANE CAN LAND WHEN SUNNY
-    # COULD HAVE TESTED THAT 2 PLANES CAN GO INTO THE ARRAY
-
-# NOTES FROM CODE REVIEW - Could have added this test
-    # it 'has the plane after it has landed' do
-    #   allow(Plane.new).to receive(land_plane)
-    #   subject.land_plane(Plane.new)
-    #   expect(subject.planes).to include(Plane.new)
-    # end
 
     it { is_expected.to respond_to :planes }
 
@@ -55,13 +36,15 @@ describe Airport do
     #   expect { subject.land_plane(Plane.new) }.to raise_error 'Airport full'
     # end
 
-    it 'has a default capacity with instance variable' do
+    it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::AIRPORT_CAPACITY
     end
 
 # NEED TO FIX TEST
     # it 'has a variable capacity' do
     #   airport = Airport.new(150)
+    #   allow(airport).to receive(:weather_check).and_return :sunny
+    #   allow(airport).to receive(:status).and_return :flying
     #   150.times { airport.land_plane(Plane.new) }
     #   expect { airport.land_plane(Plane.new) }.to raise_error 'Airport full'
     # end

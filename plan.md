@@ -60,7 +60,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
-airport.land_plane(plane)
+airport.land_plane(plane) to fail if weather == stormy 
 
 ### User Story 5
 ```
@@ -83,7 +83,7 @@ I would like a default airport capacity that can be overridden as appropriate
 Use constant variable for airport capacity.
 
 
-*Way to add in Weather Class* 
+*Way to add in Weather Class*
 weather.rb
 ```
 def stormy?
@@ -123,3 +123,12 @@ end
 ```
 
 *Add something about a specific airport name*
+
+    # COULD HAVE RUN TEST THAT A PLANE CAN LAND WHEN SUNNY
+    # COULD HAVE TESTED THAT 2 PLANES CAN GO INTO THE ARRAY
+    # COULD HAVE INCLUDED THIS TEST:
+    <!-- it 'has the plane after it has landed' do
+      allow(Plane.new).to receive(:land_plane)
+      subject.land_plane(Plane.new)
+      expect(subject.planes).to include(Plane.new)
+    end -->

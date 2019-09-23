@@ -3,14 +3,13 @@ require_relative 'plane'
 class Airport
 
   attr_reader :planes, :status
-  attr_accessor :capacity # Should probably be a reader, not an accessor
+  attr_accessor :capacity
   AIRPORT_CAPACITY = 100
 
   def initialize(capacity = AIRPORT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @status = :flying # COULD BE :flying - every time you use a string, it creates a new object.
-    # Using a symbol is good here, especially as we're not going to be changing this flying value.
+    @status = :flying 
   end
 
   def land_plane(plane)
