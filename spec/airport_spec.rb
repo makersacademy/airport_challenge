@@ -7,12 +7,30 @@ describe Airport do
 
     it { is_expected.to respond_to :land_plane }
 
+# THIS COULD BE DELETED AS BECOMES REDUNDANT WITH FURTHER TESTS
     it { is_expected.to respond_to(:land_plane).with(1).argument }
 
     it 'raises an error when stormy - prevents plane landing' do
       allow(subject).to receive(:weather_check).and_return "stormy"
       expect { subject.land_plane(Plane.new) }.to raise_error 'Landing prevented due to stormy weather'
     end
+
+# THE ABOVE TEST COULD HAVE BEEN RE-WRITTEN LIKE THIS SO YOU DON'T BREAK LONG LINES
+    # it 'raises an error when stormy - prevents plane landing' do
+    #   allow(subject).to receive(:weather_check).and_return "stormy"
+    #   message = 'Landing prevented due to stormy weather'
+    #   expect { subject.land_plane(Plane.new) }.to raise_error(message)
+    # end
+
+    # COULD HAVE RUN TEST THAT A PLANE CAN LAND WHEN SUNNY
+    # COULD HAVE TESTED THAT 2 PLANES CAN GO INTO THE ARRAY
+
+# NOTES FROM CODE REVIEW
+    # it 'has the plane after it has landed' do
+    #   allow(Plane.new).to receive(land_plane)
+    #   subject.land_plane(Plane.new)
+    #   expect(subject.planes).to include(Plane.new)
+    # end
 
     it { is_expected.to respond_to :planes }
 
@@ -67,21 +85,12 @@ describe Airport do
 
     it 'plane can only take off if it is grounded' do
       allow(subject).to receive(:weather_check).and_return "sunny"
-      allow(subject).to receive(:status).and_return "grounded"
+      allow(subject).to receive(:status).and_return "flying" ##CHECK THIS, COULD ALSO BE USED AS :flying 
       expect { subject.take_off(Plane.new) }.to raise_error 'Error'
     end
 
-    # it 'can only take off from airport plane is in' do
-    #   allow(subject).to receive(:weather_check).and_return "sunny"
-    #   allow(subject).to receive(:status).and_return "grounded"
-    #   plane1 = Plane.new
-    #   subject.land_plane(plane1)
-    #   expectsubject.take_off
-    #   #expect(subject.planes).not_to include(plane1)
-    # end
-
   end
-
+# WEATHER TEST COULD GO INTO CONTEXT BLOCK
   it 'generates random weather' do
     airport = Airport.new
     allow(airport).to receive(:rand).and_return "stormy"

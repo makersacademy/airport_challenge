@@ -37,13 +37,13 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 Objects      |   Messages
 -------------------------
 controller   |  
-passengers   |  to_destination
+passengers   |  
 destination  |  
 plane        |  
 airport      |  take_off
 
 Airport <-- take_off --> a Plane
-airport.take_off
+airport.take_off(plane)
 
 ### User Story 3
 ```
@@ -52,7 +52,7 @@ To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 raise_error when weather is stormy.
-airport.take_off to fail if weather == stormy
+airport.take_off(plane) to fail if weather == stormy
 
 ### User Story 4
 ```
@@ -72,16 +72,52 @@ Push plane into planes array.
 Start with capacity 1.
 Adjust to capacity 100.
 
+Create planes array.
+
 ### User Story 6
 ```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-Use constant variable. 
+Use constant variable for airport capacity.
 
-### Still to do:
-- Struggling to create system where the plane is recognised as being in a specific airport. 
-- A few failing tests that still need fixing but can't quite figure out why they're failing. 
 
-* Add goals this achieves in readme. *  
+* Way to add in Weather Class *
+weather.rb 
+```
+def stormy?
+  random_outlook == :stormy
+end
+
+private
+
+OUTLOOKS = [:stormy, :fine, :fine, :fine]
+
+def random_outlook
+  OUTLOOKS.sample
+end
+```
+
+airport.rb
+```
+class Weather
+  def stormy?
+    ...
+  end
+end
+
+class Airport
+  def initialize(weather: Weather.new)
+    ...
+  end
+
+  def take_off(plane)
+    fail 'Unable to take off due to stormy weather' if weather.stormy?
+    ...
+  end
+
+  private
+  attr_reader :weather
+end
+```
