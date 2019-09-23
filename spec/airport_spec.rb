@@ -1,5 +1,5 @@
 require 'airport'
-require 'weather'
+
 
 describe Airport do
   it { is_expected.to respond_to(:land_plane).with(1).argument }
@@ -12,9 +12,9 @@ describe Airport do
         expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
       end
 
-      it 'creates a full station with a specified max capacity' do
+      it 'creates a full station with a specified max capacity, tests it does not exceed that.' do
         airport = Airport.new(12)
-        12.times { airport.land_plane(plane) }
+        12.times { airport.land_plane(Plane.new) }
         expect { airport.land_plane(plane) }.to raise_error(RuntimeError, 'Airport is full')
       end
     end
@@ -33,7 +33,7 @@ describe Airport do
       plane = Plane.new
       subject.land_plane(plane)
       expect(subject.take_off).to eq plane
-    #  expect { subject.take_off}.to raise_error 'weather too bad to fly' if dangerous_weather? = true
+    # expect { subject.take_off}.to raise_error 'weather too bad to fly' if dangerous_weather? = true
     end
   end
 end
