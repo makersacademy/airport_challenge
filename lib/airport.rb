@@ -21,7 +21,6 @@ DEFAULT_CAPACITY = 50
     raise "The plane can't land with the stormy weather" if random_weather == "stormy"
     raise "The airport is full" if full?
     plane.landed?
-    # "Plane can't land is already in the airport"
     @plane_list << plane
   end
 
