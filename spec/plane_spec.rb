@@ -2,27 +2,18 @@ require './lib/plane'
 
 describe Plane do
 
+  let(:plane){Plane.new}
+
   describe "#flying" do
     it "returns true" do
-      expect(subject.flying).to eq true
+      expect(plane.flying?).to eq false
     end
   end
 
   describe "#landed" do
     it "returns false" do
-      expect(subject.landed).to eq false
+      expect(plane.landed?).to eq true
     end
   end
 
-  describe "#flying?" do
-    it "returns true if is flying" do
-      subject.flying
-      expect(subject.flying?).to eq true
-    end
-
-    it "returns false if is landed" do
-      subject.landed
-      expect(subject.landed).to eq false
-    end
-  end
 end

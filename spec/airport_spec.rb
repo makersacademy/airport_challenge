@@ -18,8 +18,8 @@ describe Airport do
 
     it "Gives the message the plane took off" do
        allow(airport).to receive(:random_weather) {"sunny"}
-       plane.flying?(true)
-       expect{airport.take_off(plane)}.to eq "The plane took off"
+       plane.flying?
+       expect(airport.take_off(plane)).to eq "The plane took off"
      end
   end
 
@@ -32,7 +32,7 @@ describe Airport do
 
     it "Error airport full" do
       allow(airport).to receive(:random_weather) {"sunny"}
-      50.times { airport.land(plane)}
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane)}
       expect {airport.land double(:plane)}.to raise_error "The airport is full"
     end
   end
