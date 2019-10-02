@@ -73,6 +73,9 @@ You will need to use a random number generator to set the weather (it is normall
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
+Development notes
+-----------------
+
 Please create separate files for every class, module and test suite.
 
 In code review we'll be hoping to see:
@@ -83,13 +86,17 @@ In code review we'll be hoping to see:
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
-**BONUS**
+Bonus
+-----
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+And finally
+-----------
+
+...don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
