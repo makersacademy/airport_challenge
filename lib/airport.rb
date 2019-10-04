@@ -2,8 +2,7 @@ class Airport
   CAPACITY = 5
   attr_accessor :capacity
   def initialize(input = CAPACITY)
-    @planes = []
-    @capacity = input
+    @planes, @capacity = [], input
   end
 
   def conditions(input)
