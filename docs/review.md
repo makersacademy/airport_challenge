@@ -11,7 +11,7 @@ Also, there's a tonne of stuff here. Pace yourself, take on the improvements tha
 
 ## Does it pass the tests?
 
-Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
+Please checkout your reviewer's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
 
 ## Is the README useful?
 
