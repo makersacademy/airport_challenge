@@ -17,6 +17,12 @@ class Airport
 
   def take_off_plane(plane)
     raise "Unsuitable take off conditions." if stormy?
+    index = search_for_plane(plane)
+    hanger.delete_at(index)
+    puts "#{plane} has left the hanger..."
+  end
+
+  def search_for_plane(plane)
     i = 0
     hanger.each do |current_plane|
       if current_plane == plane
@@ -25,8 +31,7 @@ class Airport
         i += 1
       end
     end
-    hanger.delete_at(i)
-    puts "#{plane} has left the hanger..."
+    return i
   end
 
   def full?
