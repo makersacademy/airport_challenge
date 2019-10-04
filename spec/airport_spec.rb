@@ -50,4 +50,20 @@ describe Airport do
 
   end
 
+  describe '#capacity' do
+
+    it {is_expected.to respond_to(:capacity)}
+
+    it 'has default capacity of 20' do
+      expect(subject.capacity).to eq(20)
+    end
+
+    it 'can overide the default capacity' do
+      capacity = Random.rand(100)
+      airport = described_class.new(capacity)
+      expect(airport.capacity).to eq(capacity)
+    end
+
+  end
+
 end
