@@ -21,6 +21,11 @@ describe Airport do
       expect { raise subject.add_plane(plane)}.to raise_error 'weather is too stormy for landing'
     end
 
+    it 'wont allow a plane to land if airport is full' do
+      (subject.capacity).times { subject.add_plane(plane) }
+      expect {raise subject.add_plane(plane)}.to raise_error 'airport is full so plane cannot land'
+    end
+
   end
 
   describe '#remove_plane' do
