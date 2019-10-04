@@ -5,7 +5,7 @@ class Airport
     @planes, @capacity = [], input
   end
 
-  def conditions(input='sunny')
+  def conditions(input = 'sunny')
     @wheather = input
   end
 
