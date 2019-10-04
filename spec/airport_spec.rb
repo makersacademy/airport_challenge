@@ -26,12 +26,17 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
+    it 'wont release a plane if weather is stormy' do
+      subject.add_plane(plane)
+      subject.weather_is_stormy
+      expect { raise subject.remove_plane(plane)}.to raise_error 'weather is too stormy for take off'
+    end
+
   end
 
-  describe '#grounded_planes' do
+  describe '#planes' do
 
     it {is_expected.to respond_to(:planes)}
-
 
   end
 
