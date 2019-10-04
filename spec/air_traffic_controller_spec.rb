@@ -3,11 +3,12 @@ require "Plane"
 
 describe AirTrafficController do
   it "intructs a plane to land" do
-    plane = Plane.new
+    subject = AirTrafficController.new(10)
 
-    instruct_landing = subject.plane_landing(plane)
+    plane = double(:plane, full?: true)
+    subject.capacity.times { subject.plane_landing(plane) }
 
-    expect(subject.hanger).to include(plane)
+    expect{ subject.plane_landing(plane) }.to raise_error "hanger full"
   end
 
   it "plane taking off" do
@@ -17,4 +18,5 @@ describe AirTrafficController do
 
     expect(subject.hanger).to_not include(plane)
   end
+
 end
