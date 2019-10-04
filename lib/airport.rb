@@ -1,12 +1,14 @@
+require 'plane'
+
 class Airport
   DEFAULT_CAPACITY = 20
-  DEFAULT_WEATHER = 'sunny'
+  DEFAULT_WEATHER = ['stormy', 'sunny']
   attr_accessor :hanger, :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = DEFAULT_WEATHER)
     @hanger = []
     @capacity = capacity
-    @weather = weather
+    @weather = weather[rand(0..1)]
   end
 
   def land_plane(plane)
@@ -39,9 +41,6 @@ class Airport
   end
 
   def stormy?
-    weather == 'stormy'
+    @weather == 'stormy'
   end
-end
-
-class Plane
 end
