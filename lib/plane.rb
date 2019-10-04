@@ -1,4 +1,4 @@
-# require '/Users/student/projects/airport_challenge/lib/airport.rb'
+require "airport.rb"
 
 class Plane
 
@@ -9,17 +9,19 @@ class Plane
   end
 
   def land(airport)
+    fail 'this plane has aleady landed' if flight_status == 'landed'
     airport.add_plane(itself)
     @flight_status = 'landed'
   end
 
   def take_off(airport)
+    fail 'this plane has aleady landed' if flight_status == 'landed'
     airport.remove_plane(itself)
     @flight_status = 'flying'
   end
 
 end
 
-# plane = Plane.new
-# airport = Airport.new
-# plane.land(airport)
+plane = Plane.new
+airport = Airport.new
+plane.land(airport)
