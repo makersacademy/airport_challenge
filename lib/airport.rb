@@ -3,10 +3,9 @@ require 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  # DEFAULT_WEATHER = ['stormy', 'sunny']
-  attr_accessor :hanger, :capacity , :weather
+  attr_accessor :hanger, :capacity, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY) #, weather = DEFAULT_WEATHER)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
     @weather = nil
@@ -14,12 +13,15 @@ class Airport
 
   def land_plane(plane)
     raise "Unsuitable landing conditions." if stormy?
+
     raise "Hanger is full." if full?
+
     hanger << plane
   end
 
   def take_off_plane(plane)
     raise "Unsuitable take off conditions." if stormy?
+
     index = search_for_plane(plane)
     hanger.delete_at(index)
     puts "#{plane} has left the hanger..."

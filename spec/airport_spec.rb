@@ -6,7 +6,6 @@ describe Airport do
     plane = double(:plane)
     weather = double(:weather, :status => 'sunny')
     # Act
-    # subject.weather = Airport::DEFAULT_WEATHER[1]
     subject.weather = weather.status
     subject.land_plane(plane)
     # Assert
@@ -18,11 +17,10 @@ describe Airport do
     plane = double(:plane)
     weather = double(:weather, :status => 'sunny')
     # Act
-    # subject.weather = Airport::DEFAULT_WEATHER[1]
     subject.weather = weather.status
     subject.land_plane(plane)
     subject.take_off_plane(plane)
-    # Assert
+    # Assert
     expect(subject.hanger).to_not include(plane)
   end
 
@@ -31,7 +29,6 @@ describe Airport do
     plane = double(:plane)
     weather = double(:plane, :status => 'sunny')
     # Act
-    # subject.weather = Airport::DEFAULT_WEATHER[1]
     subject.weather = weather.status
     subject.capacity.times { subject.land_plane plane }
     # Assert
@@ -43,7 +40,6 @@ describe Airport do
     plane = double(:plane)
     weather = double(:weather, :status => 'stormy')
     # Act
-    # subject.weather = Airport::DEFAULT_WEATHER[0]
     subject.weather = weather.status
     # Assert
     expect { raise subject.take_off_plane(plane) }.to raise_error 'Unsuitable take off conditions.'
@@ -54,7 +50,6 @@ describe Airport do
     plane = double(:plane)
     weather = double(:weather, :status => 'stormy')
     # Act
-    # subject.weather = Airport::DEFAULT_WEATHER[0]
     subject.weather = weather.status
     # Assert
     expect { raise subject.land_plane(plane) }.to raise_error 'Unsuitable landing conditions.'
