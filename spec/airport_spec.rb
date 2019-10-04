@@ -25,4 +25,14 @@ describe Airport do
     airport.capasity.times { airport.land Plane.new }
     expect { airport.land Plane.new }.to raise_error 'Airport is full'
   end
+
+#----- this was my attempt at stormy weather test -----
+
+  #it 'prevents takeoff in stormy weather' do
+    #plane = Plane.new
+    #airport = Airport.new
+    #if airport.weather == "stormy"
+      #expect { airport.take_off Plane.new }.to raise_error 'Weather is stormy'
+    #end
+  # end
 end
