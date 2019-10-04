@@ -25,8 +25,22 @@ describe Airport do
   it 'prevents landing when airport is full' do
     airport = Airport.new
     10.times { airport.land_plane Plane.new }
-    p airport.print_planes
     expect { airport.land_plane Plane.new }.to raise_error 'Airport is full'
+  end
+
+  it 'prevents landing if weather is stormy' do
+    plane = Plane.new
+    subject.weather_conditions('stormy')
+
+    expect { subject.land_plane(plane) }.to raise_error 'Weather is bad!'
+  end
+
+  it 'prevents taking off if weather is stormy' do
+    plane = Plane.new
+    subject.land_plane(plane)
+    subject.weather_conditions('stormy')
+
+    expect { subject.take_off_plane }.to raise_error 'Weather is bad!'
   end
 
 end
