@@ -3,7 +3,7 @@ class Plane
     @flying = nil
   end
   def flying?
-    @flying 
+    @flying
   end
   def inAir
     @flying = true
