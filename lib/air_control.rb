@@ -3,20 +3,24 @@ class Airport
 
   attr_reader :capacity
   attr_accessor :plane_storage
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @plane_storage = []
+    @weather = Weather.new
   end
 
   def take_off
-    fail 'BAD WEATHER, ALL PLANES GROUNDED' if @condition == :stormy
+    # weather = false
+    # fail 'BAD WEATHER, ALL PLANES GROUNDED' if weather
 
     plane_storage.pop
   end
 
   def land(plane_id)
-    fail 'BAD WEATHER, ALL PLANES GROUNDED' if @condition == :stormy
+    # weather = true
+    # fail 'BAD WEATHER, ALL PLANES GROUNDED' if weather
 
     fail 'Airport is at max capacity!!!ABORT!' if full?
 

@@ -9,7 +9,7 @@ describe Airport do
   end
   it 'instructs a plane to land at an airport.' do
     airport.land(plane_unqie)
-    expect(airport.plane_storage).to include(plane)
+    expect(airport.plane_storage).to include(plane_unqie)
   end
 
   it 'intructs plane to take off from an airport.' do
@@ -27,13 +27,11 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error("Airport is at max capacity!!!ABORT!")
   end
 
-  xit 'prevents takeoff when weather is stormy' do
-    condition = double :condition
-    # condition = double(false)
+  it 'prevents takeoff when weather is stormy' do
     expect { airport.take_off }.to raise_error("BAD WEATHER, ALL PLANES GROUNDED")
   end
 
-  xit 'prevents landing when weather is stormy' do
+  it 'prevents landing when weather is stormy' do
     airport.land(plane)
     expect { airport.weather }.to raise_error("BAD WEATHER, ALL PLANES GROUNDED")
   end
