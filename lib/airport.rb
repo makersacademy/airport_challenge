@@ -10,8 +10,12 @@ attr_accessor :capacity
  end
 
  def land(planes)
+   stormy?
    fail "Airport is full" if full?
-   @airport << planes
+   fail "conditions are stormy" if stormy? == "stormy"
+   if stormy? == "sunny"
+     @airport << planes
+   end
  end
 
  def take_off
@@ -26,5 +30,14 @@ attr_accessor :capacity
 
  def full?
    @airport.count >= capacity
+ end
+
+ def stormy?
+   ran_num = rand(1..2)
+   if ran_num == 1
+     return "stormy"
+   elsif ran_num == 2
+     return "sunny"
+   end
  end
 end

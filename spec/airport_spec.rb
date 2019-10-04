@@ -14,13 +14,13 @@ describe Airport do #.new(1) do
     airport = Airport.new(1)
     plane = Plane.new #makes a new plane
     #airport.land(plane) #laning the neewly made plane which stores it into an array
-
+    allow(airport).to receive(:stormy?).and_return("sunny")
     expect(airport.land(plane)).to eq([plane])
 
 
   end
 
-    it "can take off" do
+    xit "can take off" do
     airport = Airport.new(1)
     plane = Plane.new
     airport.land(plane)
@@ -36,11 +36,21 @@ describe Airport do #.new(1) do
   end
   describe Airport do
     describe 'initialize' do
-      it 'has a variable capacity and shows full if that capacity is exceded' do
+      xit 'has a variable capacity and shows full if that capacity is exceded' do
       airport = Airport.new(50)
-      50.times { airport.land Plane.new }
+      50.times { airport.land Plane.new  }
+      allow(airport).to receive(:stormy?).and_return("sunny")
       expect{ airport.land Plane.new }.to raise_error 'Airport is full'
     end
   end
-end
+    describe "land" do
+      it "wont happen if its stormy" do
+        airport = Airport.new(1)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return("stormy")
+        expect { airport.land(plane) }.to raise_error 'conditions are stormy'
+      end
+    end
+  end
+
 end

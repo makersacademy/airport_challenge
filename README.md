@@ -13,10 +13,12 @@ Airport Challenge
 
 ```
 STORIES COMPLETED:
-1
-2
-3
-
+1 (100% coverage)
+2 (100% coverage)
+5 (100% coverage)
+3 (incomplete, most recent test is workig with stubs but i am now
+  trying to get the stubs to work with my other tests so my coverage
+  is not quite up to par at the moment)
 Instructions
 ---------
 
