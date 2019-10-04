@@ -1,5 +1,7 @@
 class Airplane
+  def flying?
+  end
+
   def stormy?
-    true
   end
 end
