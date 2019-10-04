@@ -30,6 +30,12 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
+Stretch challenges 
+
+----- ATTEMPTED -----
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
 Instructions
 ---------
