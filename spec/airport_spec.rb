@@ -28,4 +28,36 @@ describe Airport do
     # Assert
     expect { raise subject.land_plane(plane) }.to raise_error 'Hanger is full.'
   end
+
+  it 'can prevent take off when weather is stormy' do
+    # Arrange
+    plane = Plane.new
+    # Act
+    subject.weather = 'stormy'
+    # Assert
+    expect { raise subject.take_off_plane(plane) }.to raise_error 'Unsuitable take off conditions.'
+  end
+
+  it 'can prevent landing when weather is stormy' do
+    # Arrange
+    plane = Plane.new
+    # Act
+    subject.weather = 'stormy'
+    # Assert
+    expect { raise subject.land_plane(plane) }.to raise_error 'Unsuitable landing conditions.'
+  end
+
+  describe 'DEFAULT_CAPACITY' do
+    it 'can set a DEFAULT_CAPACITY' do
+      # Assert
+      expect(subject.capacity).to eq(20)
+    end
+
+    it 'can override DEFAULT_CAPACITY' do
+      # Act
+      subject.capacity = 5
+      # Assert
+      expect(subject.capacity).to eq(5)
+    end
+  end
 end

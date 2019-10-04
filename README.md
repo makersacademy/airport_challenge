@@ -14,7 +14,7 @@ Airport Challenge
 ```
 ## Time
 **started** - 09:28
-**stopped** -
+**stopped** - 10:29
 
 ## Stories completed
 As an air traffic controller
@@ -28,6 +28,18 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
 
 Instructions
 ---------
