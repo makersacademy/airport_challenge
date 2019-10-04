@@ -13,7 +13,9 @@ Airport Challenge
 
 ```
 Stories completed
-
+-land planes
+-when planes fly they are removed from airport
+-planes cannot land when airport is full
 Instructions
 ---------
 
