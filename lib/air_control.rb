@@ -10,17 +10,21 @@ class Airport
   end
 
   def take_off
+    fail 'BAD WEATHER, ALL PLANES GROUNDED' if @condition == :stormy
+
     plane_storage.pop
   end
 
   def land(plane_id)
+    fail 'BAD WEATHER, ALL PLANES GROUNDED' if @condition == :stormy
+
     fail 'Airport is at max capacity!!!ABORT!' if full?
 
     plane_storage << plane_id
   end
 
   def full?
-    plane_storage.length >= capacity
+    plane_storage.count >= capacity
   end
 
   def plane_status(plane_id)
@@ -35,5 +39,13 @@ class Plane
 
   def initialize
     @plane = rand(1000)
+  end
+end
+
+class Weather
+  attr_reader :condition
+  @@conditions = [:good, :stormy, :good, :good, :good]
+  def initialize
+    @condition = @@conditions.sample
   end
 end
