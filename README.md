@@ -16,6 +16,12 @@ Stories completed
 -land planes
 -when planes fly they are removed from airport
 -planes cannot land when airport is full
+
+Stretch work
+-sets default value or lets flight controller enter the number of spaces when defining the class
+-does not land when stormy
+-does not takeoff when stormy
+
 Instructions
 ---------
 
