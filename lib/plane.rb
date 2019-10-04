@@ -2,7 +2,7 @@
 
 class Plane
 
-  attr_reader :flight_status
+  attr_accessor :flight_status
 
   def initialize(status='undefined')
     @flight_status = status

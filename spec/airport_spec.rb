@@ -16,6 +16,11 @@ describe Airport do
       expect(subject.planes).to include(plane)
     end
 
+    it 'wont allow a plane to land if weather is too stormy' do
+      subject.weather_is_stormy
+      expect { raise subject.add_plane(plane)}.to raise_error 'weather is too stormy for landing'
+    end
+
   end
 
   describe '#remove_plane' do
@@ -26,7 +31,7 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
-    it 'wont release a plane if weather is stormy' do
+    it 'wont remove a plane if weather is stormy' do
       subject.add_plane(plane)
       subject.weather_is_stormy
       expect { raise subject.remove_plane(plane)}.to raise_error 'weather is too stormy for take off'

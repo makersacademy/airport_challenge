@@ -10,6 +10,7 @@ class Airport
   end
 
   def add_plane(plane)
+    fail 'weather is too stormy for landing' if weather_stormy?
     @planes << plane
   end
 
