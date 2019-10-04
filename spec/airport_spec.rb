@@ -24,10 +24,13 @@ describe Airport do
     end
   end
 
-
-  describe 'take_off'
-    it 'confirms plane has taken off' do
-      20.times { subject.land(plane.new) }
-      expect(subject.airport.last).to eq(subject.airport.pop)
+  describe 'take_off' do
+    let(:plane) { double :plane }
+    it "plane takes off" do
+      plane = double(:flying? => true)
+      subject.land(plane)
+      take_off_plane = subject.take_off
+      expect(take_off_plane).to be_flying
     end
   end
+end 
