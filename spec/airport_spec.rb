@@ -1,11 +1,13 @@
 require 'airport.rb'
 
 describe Airport do
-  it 'can land a plane when stormy' do
+  it 'can land a plane when sunny' do
     # Arrange
     plane = double(:plane)
+    weather = double(:weather, :status => 'sunny')
     # Act
-    subject.weather = Airport::DEFAULT_WEATHER[1]
+    # subject.weather = Airport::DEFAULT_WEATHER[1]
+    subject.weather = weather.status
     subject.land_plane(plane)
     # Assert
     expect(subject.hanger).to include(plane)
@@ -14,8 +16,10 @@ describe Airport do
   it 'can get a plane to take off when sunny' do
     # Arrange
     plane = double(:plane)
+    weather = double(:weather, :status => 'sunny')
     # Act
-    subject.weather = Airport::DEFAULT_WEATHER[1]
+    # subject.weather = Airport::DEFAULT_WEATHER[1]
+    subject.weather = weather.status
     subject.land_plane(plane)
     subject.take_off_plane(plane)
     # Assert
@@ -25,9 +29,11 @@ describe Airport do
   it 'can prevent planes from landing when hanger is full' do
     # Arrange
     plane = double(:plane)
+    weather = double(:plane, :status => 'sunny')
     # Act
-    subject.weather = Airport::DEFAULT_WEATHER[1]
-    subject.capacity.times { subject.land_plane Plane.new }
+    # subject.weather = Airport::DEFAULT_WEATHER[1]
+    subject.weather = weather.status
+    subject.capacity.times { subject.land_plane plane }
     # Assert
     expect { raise subject.land_plane(plane) }.to raise_error 'Hanger is full.'
   end
@@ -35,8 +41,10 @@ describe Airport do
   it 'can prevent take off when weather is stormy' do
     # Arrange
     plane = double(:plane)
+    weather = double(:weather, :status => 'stormy')
     # Act
-    subject.weather = Airport::DEFAULT_WEATHER[0]
+    # subject.weather = Airport::DEFAULT_WEATHER[0]
+    subject.weather = weather.status
     # Assert
     expect { raise subject.take_off_plane(plane) }.to raise_error 'Unsuitable take off conditions.'
   end
@@ -44,8 +52,10 @@ describe Airport do
   it 'can prevent landing when weather is stormy' do
     # Arrange
     plane = double(:plane)
+    weather = double(:weather, :status => 'stormy')
     # Act
-    subject.weather = Airport::DEFAULT_WEATHER[0]
+    # subject.weather = Airport::DEFAULT_WEATHER[0]
+    subject.weather = weather.status
     # Assert
     expect { raise subject.land_plane(plane) }.to raise_error 'Unsuitable landing conditions.'
   end
