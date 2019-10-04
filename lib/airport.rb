@@ -25,7 +25,6 @@ end
     @airport_planes.count >= capasity
   end
 
-
 class Plane
 
 end
