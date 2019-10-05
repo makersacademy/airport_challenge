@@ -13,7 +13,6 @@ describe Airport do
       expect{ subject.land plane}.to raise_error('Plane has already landed')
     end
 
-    #need to try land more than 10 greater than 10 all_planes
     it 'Will not let planes land if capacity is full' do
      airport = Airport.new(20)
     20.times { airport.land Plane.new }
@@ -22,10 +21,10 @@ describe Airport do
     end
 
   describe "#takeoff" do
-   it "Will let the plane take off" do
+   it 'Will let the plane take off' do
      plane = Plane.new
      subject.land(plane)
      expect(subject.takeoff).to eq plane
    end
-  end
+   end
 end

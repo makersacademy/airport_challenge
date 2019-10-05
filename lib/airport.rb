@@ -17,6 +17,7 @@ class Airport
   end
   #instruct plane to takeoff
   def takeoff
+    raise 'No Planes available for take off' if parked_planes.count == 0
     parked_planes.each do |plane|
       plane.inAir
       return parked_planes.shift
