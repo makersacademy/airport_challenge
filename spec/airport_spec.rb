@@ -6,24 +6,24 @@ describe Airport do
   it { is_expected.to respond_to :take_off }
 
   it 'lands a plane' do
-    plane = Plane.new
+    plane1 = double(:plane)
     airport = Airport.new
-    airport.land(plane)
-    expect(airport.list_of_planes).to include(plane)
+    airport.land(plane1)
+    expect(airport.list_of_planes).to include(plane1)
   end
 
   it 'takes off' do
-    plane = Plane.new
+    plane1 = double(:plane)
     airport = Airport.new
-    airport.take_off(plane)
-    expect(airport.list_of_planes).not_to include(plane)
+    airport.take_off(plane1)
+    expect(airport.list_of_planes).not_to include(plane1)
   end
 
   it 'raises an error if airport is full' do
-    plane = Plane.new
+    plane1 = double(:plane)
     airport = Airport.new
-    airport.capasity.times { airport.land Plane.new }
-    expect { airport.land Plane.new }.to raise_error 'Airport is full'
+    airport.capasity.times { airport.land plane1 }
+    expect { airport.land plane1 }.to raise_error 'Airport is full'
   end
 
 #----- this was my attempt at stormy weather test -----
