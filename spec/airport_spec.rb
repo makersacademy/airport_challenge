@@ -14,6 +14,7 @@ describe Airport do
   end
 
   it "doesnt let planes land when at full capacity" do
+    # instantiates and airport with capacity of 1.
     airport1 = Airport.new(1)
     airport1.land(Plane.new)
     expect { airport1.land(Plane.new) }.to raise_error "airport full!"
