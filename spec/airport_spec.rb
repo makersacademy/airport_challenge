@@ -9,7 +9,7 @@ describe Airport do
     let(:plane) { double :plane }
 
     it 'raises error when no planes in airport' do
-      expect { subject.take_off }.to raise_error 'no planes in airport'
+      expect { subject.take_off(plane) }.to raise_error 'no planes in airport'
     end
 
     it 'airport capacity is full' do
@@ -24,13 +24,20 @@ describe Airport do
     end
   end
 
+  describe 'land' do
+    let(:plane) { double :plane }
+    it 'can land the plane' do
+      subject.land(plane)
+      expect(subject.airport).to include(plane)
+    end
+  end
+
   describe 'take_off' do
     let(:plane) { double :plane }
     it "plane takes off" do
-      plane = double(:flying? => true)
       subject.land(plane)
-      take_off_plane = subject.take_off
-      expect(take_off_plane).to be_flying
+      take_off_plane = subject.take_off(plane)
+      expect(subject.airport).to_not include(plane)
     end
   end
-end 
+end

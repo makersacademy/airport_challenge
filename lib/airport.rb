@@ -15,7 +15,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'airport is empty' if empty?
+    raise 'no planes in airport' if empty?
     airport.pop
     puts "#{plane} has left the airport"
   end
@@ -23,4 +23,8 @@ class Airport
   def full?
     @airport.count >= capacity
   end
+
+  def empty?
+    @airport.count == 0
+  end 
 end
