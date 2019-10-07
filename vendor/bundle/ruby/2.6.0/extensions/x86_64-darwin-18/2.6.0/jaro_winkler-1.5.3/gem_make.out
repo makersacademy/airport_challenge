@@ -1,0 +1,18 @@
+current directory: /Users/Student/projects/airport_challenge/vendor/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.3/ext/jaro_winkler
+/Users/Student/.rvm/rubies/ruby-2.6.0/bin/ruby -I /Users/Student/.rvm/rubies/ruby-2.6.0/lib/ruby/site_ruby/2.6.0 -r ./siteconf20191004-56315-mf8nre.rb extconf.rb
+creating Makefile
+
+current directory: /Users/Student/projects/airport_challenge/vendor/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.3/ext/jaro_winkler
+make "DESTDIR=" clean
+
+current directory: /Users/Student/projects/airport_challenge/vendor/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.3/ext/jaro_winkler
+make "DESTDIR="
+compiling adj_matrix.c
+compiling codepoints.c
+compiling jaro.c
+compiling jaro_winkler.c
+linking shared-object jaro_winkler/jaro_winkler_ext.bundle
+
+current directory: /Users/Student/projects/airport_challenge/vendor/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.3/ext/jaro_winkler
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 jaro_winkler_ext.bundle ./.gem.20191004-56315-54wes4/jaro_winkler
