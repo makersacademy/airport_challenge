@@ -1,7 +1,7 @@
 class Airport
 
   DEFAULT_CAPACITY = 10
-  attr_accessor :capacity
+  attr_accessor :capacity, :planes
 
   def initialize
     @planes = []
@@ -34,9 +34,10 @@ class Airport
     @weather == 'stormy'
   end
 
-  def print_planes
-    @planes
-  end
+  # Replaced with attr_accessor :planes
+  # def print_planes
+  #   @planes
+  # end
 
   def land_plane(plane)
     raise 'Airport is full' if airport_full?
