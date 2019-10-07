@@ -5,11 +5,27 @@ describe Airport do
 
   let(:plane) {double :plane}
 
+  it '' do
+    expect(Airport).to receive(:new).with(10)
+    airport = Airport.new(10)
+    # expect(airport.planes).to eq(10)
+  end
+
+  it 'defines the capacity, planes and weather stormy arrays and variables.' do
+     airport = described_class.new(6)
+    expect(airport.capacity).to eq(6)
+    expect(airport.planes).to eq([])
+    expect{ raise airport.weather_stormy?}.to raise_error NoMethodError
+  end
+
   describe '#add_plane' do
 
     it {is_expected.to respond_to(:add_plane)}
 
-    # it {is_expected.to respond_to()}
+    it 'will receive plane as argument' do
+      is_expected.to receive(:add_plane).with(plane)
+      subject.add_plane(plane)
+    end
 
     it 'confirms a plane is in the airport after it lands' do
       subject.add_plane(plane)
@@ -55,7 +71,7 @@ describe Airport do
     it {is_expected.to respond_to(:capacity)}
 
     it 'has default capacity of 20' do
-      expect(subject.capacity).to eq(20)
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 
     it 'can overide the default capacity' do

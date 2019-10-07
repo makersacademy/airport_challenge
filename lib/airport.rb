@@ -1,8 +1,8 @@
-require '/Users/student/projects/airport_challenge/lib/plane.rb'
+# require '/Users/student/projects/airport_challenge/lib/plane.rb'
 
 class Airport
 
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather_stormy
 
   DEFAULT_CAPACITY = 20
 

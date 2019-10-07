@@ -14,6 +14,11 @@ describe Plane do
       subject.land(airport)
     end
 
+    it 'instructs airport to add plane' do
+      expect(airport).to receive(:add_plane).with(subject)
+      subject.land(airport)
+    end
+
   end
 
   describe '#flight_status' do
@@ -40,6 +45,12 @@ describe Plane do
 
     it 'accepts an airport as an argument' do
       expect(subject).to receive(:take_off).with(airport)
+      subject.take_off(airport)
+    end
+
+    it 'instructs airport to remove plane' do
+      subject.land(airport)
+      expect(airport).to receive(:remove_plane).with(subject)
       subject.take_off(airport)
     end
 
