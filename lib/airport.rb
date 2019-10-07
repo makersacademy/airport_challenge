@@ -1,12 +1,12 @@
 class Airport
-  CAPACITY = 5
+  DEFAULT_CAPACITY = 5
   attr_accessor :capacity
-  def initialize(input = CAPACITY)
+  def initialize(input = DEFAULT_CAPACITY)
     @planes, @capacity = [], input
   end
 
   def conditions(input = 'sunny')
-    @wheather = input
+    @weather = input
   end
 
   def inventory
@@ -15,28 +15,28 @@ class Airport
 
   def land(plane)
     fail 'no room' if full?
-    fail 'bad wheather' if wheather?
+    fail 'bad weather' if weather?
 
     @planes << plane
   end
 
-  def fly(plane)
-    fail 'bad wheather' if wheather?
+  def takeoff(plane)
+    fail 'bad weather' if weather?
 
     for i in (0...@planes.count)
       if @planes[i] == plane
-        temp = @planes[i]
+        plane_tempory = @planes[i]
         @planes.delete_at(i)
       end
     end
-    temp
+    plane_tempory
   end
   private
   def full?
     @planes.count >= @capacity
   end
 
-  def wheather?
-    @wheather == 'stormy'
+  def weather?
+    @weather == 'stormy'
   end
 end

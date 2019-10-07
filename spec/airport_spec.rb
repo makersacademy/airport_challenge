@@ -9,7 +9,7 @@ describe Airport do
   it 'checks plane is gone' do
     plane = Airplane.new
     subject.land(plane)
-    subject.fly(plane)
+    subject.takeoff(plane)
     expect(subject.inventory).to eq([])
   end
   it 'will not land when no space' do
@@ -31,11 +31,11 @@ describe Airport do
     plane = Airplane.new
     subject.land(plane)
     subject.conditions('stormy')
-    expect { subject.fly(plane) }.to raise_error 'bad wheather'
+    expect { subject.takeoff(plane) }.to raise_error 'bad weather'
   end
   it 'does not land when stormy' do
     plane = Airplane.new
     subject.conditions('stormy')
-    expect { subject.land(plane) }.to raise_error 'bad wheather'
+    expect { subject.land(plane) }.to raise_error 'bad weather'
   end
 end
