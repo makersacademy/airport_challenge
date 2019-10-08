@@ -11,9 +11,7 @@ describe Airport do
   end
 
   it 'doesnt land plane if capacity is full' do
-    4.times do
-      subject.land(Plane.new)
-    end
+    4.times {subject.land(Plane.new)}
     expect { subject.land Plane.new}.to raise_error 'Airport at capacity'
   end
 

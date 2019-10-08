@@ -15,6 +15,9 @@ Airport Challenge
 
 Stories Completed
 
+plane lands
+plane can take off
+airport capacity
 
 Instructions
 ---------
