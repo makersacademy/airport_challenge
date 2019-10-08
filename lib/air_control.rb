@@ -1,26 +1,21 @@
 class Airport
   DEFAULT_CAPACITY = 20
+  attr_accessor :plane_storage, :capacity, :weather
 
-  attr_reader :capacity
-  attr_accessor :plane_storage
-  attr_reader :weather
-
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @plane_storage = []
-    @weather = Weather.new
+    @weather = weather
   end
 
-  def take_off
-    # weather = false
-    # fail 'BAD WEATHER, ALL PLANES GROUNDED' if weather
+  def take_off(plane_id)
+    fail 'BAD WEATHER, ALL PLANES GROUNDED' if stormy?
 
-    plane_storage.pop
+    plane_storage.delete(plane_id)
   end
 
   def land(plane_id)
-    # weather = true
-    # fail 'BAD WEATHER, ALL PLANES GROUNDED' if weather
+    fail 'BAD WEATHER, ALL PLANES GROUNDED' if stormy?
 
     fail 'Airport is at max capacity!!!ABORT!' if full?
 
@@ -35,6 +30,10 @@ class Airport
     puts "Is plane #{plane_id} still in the airport:"
     print plane_storage.include?(plane_id)
   end
+
+  def stormy?
+    @weather == 'stormy'
+  end
 end
 
 class Plane
@@ -47,7 +46,7 @@ class Plane
 end
 
 class Weather
-  attr_reader :condition
+  attr_accessor :condition
   @@conditions = [:good, :stormy, :good, :good, :good]
   def initialize
     @condition = @@conditions.sample
