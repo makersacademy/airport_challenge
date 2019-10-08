@@ -6,7 +6,9 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
 
+    airport.land(plane) #land the plane before taking off
     airport.takeoff(plane)
+
     expect(airport.plane_count).to eq 0
   end
 

@@ -1,4 +1,3 @@
-require 'plane'
 class Airport
   attr_reader :capacity
   DEFAULT_CAPACITY = 10
@@ -24,9 +23,6 @@ class Airport
   end
 
   def airport_full?
-    if @planes.length >= capcity
-      p "Airport is full try again later"
-    end
+    raise "The airport is currently full" if @planes.length >= capcity
   end
-
 end
