@@ -6,7 +6,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
 
-    airport.land(plane) #land the plane before taking off
+    airport.land(plane) # land the plane before taking off
     airport.takeoff(plane)
 
     expect(airport.plane_count).to eq 0
@@ -17,13 +17,15 @@ describe Airport do
     plane = Plane.new
 
     airport.land(plane)
-    expect(airport.plane_count).to eq 1
+    expect(airport.plane_count).to eq(1)
   end
 
-  it "checks if plane capacity matches wirth default capacity" do
+  it "can check to see when a plane lands if the airport is full" do
     airport = Airport.new
+    plane = Plane.new
 
-    expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
+    10.times { airport.land(plane) }
+
+    expect(airport.land(plane))
   end
-
 end

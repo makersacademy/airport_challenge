@@ -8,12 +8,13 @@ class Airport
   end
 
   def takeoff(plane)
-    p "Clear for takeoff :)"
     @planes.delete(plane) # delete plane from array
-    plane.take_off && plane.flying
+    plane.flying
   end
 
   def land(plane)
+    airport_full?
+
     @planes << plane # add plane to array
     plane.landed
   end
@@ -23,6 +24,6 @@ class Airport
   end
 
   def airport_full?
-    raise "The airport is currently full" if @planes.length >= capcity
-  end
+    raise "The airport is currently full" if @planes.count == capacity
+   end
 end
