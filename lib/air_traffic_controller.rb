@@ -1,6 +1,6 @@
 
 class AirTrafficController
-  attr_reader :plane, :hanger, :capacity
+  attr_reader :hanger, :capacity
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -14,11 +14,9 @@ class AirTrafficController
   end
 
   def plane_taking_off(plane)
-    counter = -1
-    @hanger.each do |e|
-      counter += 1
-      if e == plane
-        @hanger.delete_at(counter)
+    @hanger.each_with_index do |plane, index|
+      if plane == plane
+        @hanger.delete_at(index)
       end
     end
   end
