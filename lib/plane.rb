@@ -1,16 +1,15 @@
 class Plane
   #This class has the planes status of flight
-  attr_reader :isFlying
 
-  def initialize(isFlying = true)
-    @isFlying = isFlying
+  def initialize(is_flying = true)
+    @is_flying = is_flying
   end
 
   def flying
-    @isFlying = true
+    @is_flying = true
   end
 
   def landed
-    @isFlying = false
+    @is_flying = false
   end
 end

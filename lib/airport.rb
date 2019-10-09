@@ -20,7 +20,7 @@ class Airport
   end
 
   def plane_count
-    @planes.count
+    @planes.length
   end
 
   def airport_full?
