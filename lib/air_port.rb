@@ -17,10 +17,7 @@ class Airport
     return planes
   end
 
-  def return_plane(num)
-    plane = planes[num]
-    return plane
-  end
+  private
 
   def full?
     planes.count >= @limit
