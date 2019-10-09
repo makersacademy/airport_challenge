@@ -1,6 +1,6 @@
 class Plane
 
-  def test
+  def working?
     true
   end
 
