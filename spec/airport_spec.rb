@@ -10,7 +10,7 @@ describe Airport do
     plane = Airplane.new
     subject.land(plane)
     subject.takeoff(plane)
-    expect(subject.inventory).to eq([])
+    expect(subject.inventory).to be_empty
   end
   it 'will not land when no space' do
     plane = Airplane.new
@@ -30,12 +30,14 @@ describe Airport do
   it 'does not takeoff if stormy' do
     plane = Airplane.new
     subject.land(plane)
-    subject.conditions('stormy')
+    subject.conditions
+    allow(subject.weather?).to receive('stormy')
     expect { subject.takeoff(plane) }.to raise_error 'bad weather'
   end
   it 'does not land when stormy' do
     plane = Airplane.new
-    subject.conditions('stormy')
+    subject.conditions
+    allow(subject.weather?).to receive('stormy')
     expect { subject.land(plane) }.to raise_error 'bad weather'
   end
 end
