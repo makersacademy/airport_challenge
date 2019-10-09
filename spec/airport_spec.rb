@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   it { is_expected.to respond_to :land }
@@ -22,10 +23,16 @@ describe Airport do
   it 'raises an error if airport is full' do
     plane1 = double(:plane)
     airport = Airport.new
-    airport.capasity.times { airport.land plane1 }
+    airport.capacity.times { airport.land plane1 }
     expect { airport.land plane1 }.to raise_error 'Airport is full'
   end
 
+  it 'rejects takeoff if plane is already flying' do
+    plane1 = double(:plane)
+    airport = Airport.new
+    airport.flying = true
+    expect { airport.land plane1 }.to raise_error 'The plane is already in the airport'
+  end
 #----- this was my attempt at stormy weather test -----
 
   #it 'prevents takeoff in stormy weather' do
