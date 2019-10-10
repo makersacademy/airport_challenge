@@ -16,22 +16,23 @@ describe Airport do
     end
     it 'if plane wants to land, raises an error if weather is stormy' do
       allow(subject).to receive(:empty?).and_return false
-        allow(subject).to receive(:weather_condition).and_return "stormy" 
-        expect{subject.landing Plane.new}.to raise_error 'cant land due to storm'
+      allow(subject).to receive(:weather_condition).and_return "stormy" 
+      #mock_thing = double("describption",:empty? => false,:weather_condition=> "stormy")
+      expect{subject.landing Plane.new}.to raise_error 'cant land due to storm'
     end
   end
 
   describe '#departing' do
     it 'plane departs from an airport' do
-        allow(subject).to receive(:weather_condition).and_return ("sunny")
-        subject.landing(plane)
-        expect(subject.departing).to eq plane
+      allow(subject).to receive(:weather_condition).and_return ("sunny")
+      subject.landing(plane)
+      expect(subject.departing).to eq plane
     end
 
     it 'if plane is departing, raises an error if weather is stormy' do
       allow(subject).to receive(:empty?).and_return false
-        allow(subject).to receive(:weather_condition).and_return "stormy" 
-        expect{subject.departing}.to raise_error 'cant fly due to storm'
+      allow(subject).to receive(:weather_condition).and_return "stormy" 
+      expect{subject.departing}.to raise_error 'cant fly due to storm'
     end
 
     it 'raises an error if no planes are at airport to depart' do
@@ -41,12 +42,11 @@ describe Airport do
   end
 
   it 'allows airport to have default capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
-   
 
   it 'returns the landed plane' do
-      expect(subject).to respond_to (:plane)
+    expect(subject).to respond_to (:plane)
   end
     
 end

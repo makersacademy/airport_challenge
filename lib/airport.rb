@@ -16,6 +16,7 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
   # the land methods creates instances of planes
   # is an instance variable to store planes
   def landing(plane)
@@ -23,6 +24,7 @@ class Airport
     fail 'cant land due to storm' if weather_condition == "stormy"
     @planes << plane
   end
+
   # plane departs, one less plane in airport each time, unless weather is stormy
   def departing
     fail 'no planes at the airport' if empty?
