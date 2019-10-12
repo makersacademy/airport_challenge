@@ -21,7 +21,7 @@ class Airport
     raise "Airport full" if full?
     raise "Plane already landed" if plane.landed?
     raise "Weather is stormy" if stormy?
-    
+
     plane.land # planes are marked as being landed
     @planes << plane # landed planes are added to an array
   end
@@ -30,8 +30,8 @@ class Airport
     # created a method for take_off
     raise "Airport empty" if empty?
     raise "Weather is stormy" if stormy?
-
-    plane = @planes.delete(@planes.sample) # planes are removed fromt the array
+    # raise "Plane is airborn" unless plane.landed?
+    plane = @planes.delete(@planes.sample)
     plane.take_off # planes are marked as being in the sky
     plane
   end

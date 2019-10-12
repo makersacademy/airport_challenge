@@ -30,7 +30,6 @@ describe Airport do
     it 'does not land a plane if stormy' do
       airport = Airport.new
       allow(airport).to receive(:rand).and_return(2)
-      airport.stormy?
       expect { airport.land(Plane.new) }.to raise_error "Weather is stormy"
     end
 
@@ -73,7 +72,6 @@ describe Airport do
       airport = Airport.new
       airport.land(Plane.new)
       allow(airport).to receive(:rand).and_return(2)
-      airport.stormy?
       expect { airport.take_off }.to raise_error "Weather is stormy"
     end
 
