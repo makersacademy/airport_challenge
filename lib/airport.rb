@@ -1,7 +1,12 @@
 # /lib/airport
 
+require './lib/plane'
+require './lib/weather'
+
 class Airport
-  
+
+  attr_reader :planes
+
   def initialize
     @planes = []
     @capacity = 1
@@ -10,11 +15,12 @@ class Airport
 
   def land(plane)
     @planes << plane
-    plane.arrive
+    plane.land
   end
 
   def takeoff(plane)
-
+    @plane # remove the plane somehow
+    plane.takeoff
   end
 
 end

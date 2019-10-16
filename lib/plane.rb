@@ -1,17 +1,17 @@
 # /lib/plane
 
 class Plane
-  
+
   def initialize
-    @flying = true
+
   end
 
-  def arrive
-    @flying = false
+  def land
+
   end
 
-  def depart
-    @flying = true
+  def takeoff
+    
   end
 
 end
