@@ -1,6 +1,14 @@
+require_relative 'plane'
+
 class Airport
 
-  def initialize
+  DEFAULT_CAPACITY = 5
+
+attr_accessor :capacity
+attr_reader :plane
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
     @landed = []
   end
 
@@ -10,13 +18,8 @@ class Airport
   end
 
   def land(planes)
+    fail 'Airport is full' if @landed.count >= capacity
     @landed << planes
   end
 
-end
-
-class Plane
-  def plane
-    @plane = Plane.new
-  end
 end
