@@ -16,6 +16,6 @@ describe Airport do
     subject.planes = [plane]
     position = subject.get_permission_to_take_off plane
     expect(position).to be_an_instance_of Integer
-    expect(subject.position).to be >= 0
+    expect(position).to be >= 0
   end
 end
