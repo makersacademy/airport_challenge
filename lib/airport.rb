@@ -12,6 +12,7 @@ class Airport
   end
 
   def get_permission_to_take_off(plane)
+    raise 'Plane is not docked' unless @planes.include? plane
     return nil if @weather == 'stormy'
     @planes.index(plane)
   end
