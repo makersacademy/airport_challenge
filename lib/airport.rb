@@ -14,12 +14,12 @@ class Airport
     capacity_for_landing
     forecast_for_landing
     hangar << plane
-    plane.land
+    plane.landed!
   end
 
   def instruct_take_off(plane)
     forecast_for_take_off
-    plane.take_off
+    plane.take_off!
   end
 
   private
@@ -40,7 +40,11 @@ class Airport
     landed_planes_total >= @capacity
   end
 
+  def empty?
+    hangar.empty?
+  end
+
   def landed_planes_total
-    hangar.length
+    hangar.count
   end
 end
