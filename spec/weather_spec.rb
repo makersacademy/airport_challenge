@@ -12,6 +12,6 @@ describe Weather do
     it 'should randomly pick if the weather is stormy' do
         subject.set_weather
 
-        expect(subject.stormy).to eq true | false
+        expect(subject.stormy).to eq(true) | eq(false)
     end
 end

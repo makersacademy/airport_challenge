@@ -3,4 +3,8 @@ class Weather
     def initialize
         @stormy = false 
     end
+
+    def set_weather
+        [true, false, false, false, false].sample
+    end
 end
