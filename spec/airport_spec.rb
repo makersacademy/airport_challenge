@@ -23,9 +23,9 @@ describe Airport do
   end
 
   it 'should land a plane' do
-    plane = Plane.new
-    plane.land
-    expect(plane.land).to include plane
+    airport = Airport.new
+
+    expect(planes.land).to include plane
   end
 
 end
