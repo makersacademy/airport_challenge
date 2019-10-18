@@ -23,6 +23,14 @@ describe Airport do
     expect(subject.plane_capacity).to include(plane)
   end
 
+  it 'Will not allow a plane to land when airport is full' do
+    airport = Airport.new(1)
+    plane1 = Plane.new
+    plane1.land(airport)
+    plane2 = Plane.new
+    expect{ plane2.land }.to raise_error "No space available"
+  end
+
   it 'Will allow a plane to take off' do
     plane = Plane.new
     plane.take_off(subject)
