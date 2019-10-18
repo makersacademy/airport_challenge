@@ -28,4 +28,10 @@ describe Airport do
     allow(plane).to receive(:land)
     expect { 21.times { airport.instruct_landing(plane) } }.to raise_error(RuntimeError, "Hangar capacity at maximum, please continue to circle")
   end
+
+  it "allows the user to change the hangar capacity for a different airport" do
+    test_capacity = rand(1..100)
+    test_airport = Airport.new(test_capacity)
+    expect(test_airport.capacity).to eq (test_capacity)
+  end
 end
