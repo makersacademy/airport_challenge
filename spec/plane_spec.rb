@@ -24,5 +24,10 @@ describe Plane do
       expect(airliner1.flying).to be(true)
       expect(airliner1.location).to eq("in transit")
     end
+
+    it "reports plane has left airport" do
+      airliner1 = Plane.new
+      expect { airliner1.takeoff }.to output("Leaving Factory airport at #{Time.new}\n").to_stdout
+    end
   end
 end
