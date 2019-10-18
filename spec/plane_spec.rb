@@ -10,7 +10,8 @@ describe Plane do
 
   it 'Planes status can be "Grounded"' do
     airport = Airport.new
-    subject.land(airport)
+    weather = double(:weather, status: "Sunny")
+    subject.land(airport,weather)
     expect(subject.grounded).to eq true
   end
 
@@ -23,9 +24,10 @@ describe Plane do
 
   it 'Will not allow a plane to land when airport is full' do
     airport = Airport.new(1)
+    weather = double(:weather, status: "Sunny")
     plane1 = Plane.new
-    plane1.land(airport)
+    plane1.land(airport,weather)
     plane2 = Plane.new
-    expect { plane2.land(airport) }.to raise_error "No space available"
+    expect { plane2.land(airport, weather) }.to raise_error "No space available"
   end
 end  

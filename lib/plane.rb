@@ -6,11 +6,15 @@ class Plane
   end
 
   def land(airport, weather)
-    if airport.plane_capacity.length < airport.max_capacity
-      @grounded = true
-      airport.plane_capacity << self      
+    if weather.status == "Sunny"
+      if airport.plane_capacity.length < airport.max_capacity
+        @grounded = true
+        airport.plane_capacity << self      
+      else
+        raise "No space available"
+      end
     else
-      raise "No space available"
+      raise "Weather is stormy"
     end
   end
 
