@@ -15,7 +15,11 @@ describe Airport do
   end
 
   it 'will allow the user to change the max capacity' do
-    airport = Airport.new(5)
-    expect(airport.max_capacity).to eq 5
+    expect(subject.max_capacity).to eq 5
+  end
+
+  it 'will set a default capacity if user does not define a capacity' do
+    airport = Airport.new
+    expect(airport.max_capacity).to eq Airport::DEFAULT_CAPACITY
   end
 end
