@@ -11,4 +11,9 @@ describe Plane do
     expect(airliner1.landed).to be(true)
     expect(airliner1.location).to eq("Tokyo")
   end
+
+  it "reports plane as landed" do
+    airliner1 = Plane.new
+    expect { airliner1.land("Munich") }.to output("Landed at Munich airport.\n").to_stdout
+  end
 end
