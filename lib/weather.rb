@@ -5,6 +5,6 @@ class Weather
     end
 
     def set_weather
-        [true, false, false, false, false].sample
+        @stormy = [true, false, false, false, false].sample
     end
 end
