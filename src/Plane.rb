@@ -7,7 +7,7 @@ class Plane
     end
 
     def Land(airport, weather)
-        if airport.status != "Full"
+        if airport.GetStatus() != "Full"
             if weather != "Stormy"
                 airport.planes << self
                 @isFlying = false
