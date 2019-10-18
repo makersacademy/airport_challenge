@@ -13,5 +13,4 @@ class Airport
         @planes.delete(plane_to_take_off)
         return plane_to_take_off
     end
-
 end
