@@ -1,8 +1,11 @@
-require 'Plane'
-
-subject { Plane.new }
-
+require_relative '../src/Plane'
+require_relative '../src/Airport'
 
 describe Plane do
+    subject { Plane.new }
     it "should instruct the plane to land at the airport" do
-        expect(subject.Land(Airport.new).to eq true
+        airport = Airport.new
+        subject.Land(airport)
+        expect(airport.planes).to include(subject)
+    end
+end
