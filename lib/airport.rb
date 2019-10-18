@@ -21,8 +21,9 @@ def land(plane)
 end
 
 def take_off
+  @planes.pop
+  end
 
-end
 
 def weather
   weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny",
