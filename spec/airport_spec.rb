@@ -14,12 +14,12 @@ describe Airport do
   it 'allows a plane to takeoff from and airport' do
     plane = Plane.new
     subject.takeoff(plane)
-    expect(subject.zero?).to eq true #1
+    expect(subject.planes.empty?).to eq true #1
   end
 end
 
 # #sources
 
 #1
-# .zero predicate matcher
+# .empty predicate matcher
 # https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers/predicate-matchers
