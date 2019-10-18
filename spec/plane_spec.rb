@@ -21,10 +21,18 @@ describe Plane do
         subject.Land(airport, "Stormy")
         expect(subject.isFlying).to eq(true)
     end
-    it "should not allow the plane to land if weather is stormy" do
+    it "should not allow the plane to take off if weather is stormy" do
         airport = Airport.new
         subject.Land(airport, "Sunny")
         subject.TakeOff(airport, "Stormy")
         expect(subject.isFlying).to eq(false)
     end
+
+    it "should not allow the plane to land if the airport is full" do
+        airport = Airport.new
+        airport.status = "Full"
+        subject.Land(airport, "Sunny")
+        expect(subject.Land(airport, "Sunny")).to eq('Airport is full')
+    end
+
 end

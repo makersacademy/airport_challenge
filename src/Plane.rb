@@ -7,9 +7,13 @@ class Plane
     end
 
     def Land(airport, weather)
-        if weather != "Stormy"
-            airport.planes << self
-            @isFlying = false
+        if airport.status != "Full"
+            if weather != "Stormy"
+                airport.planes << self
+                @isFlying = false
+            end
+        else
+            return "Airport is full"      
         end
     end
 
