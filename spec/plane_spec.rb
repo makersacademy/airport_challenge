@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  it 'should be an instance of plane' do
+  it 'is an instance of plane' do
     expect(subject).to be_an_instance_of Plane
   end
   it 'can land at an airport' do
