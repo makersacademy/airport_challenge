@@ -1,10 +1,13 @@
 class Airport
     attr_accessor :planes
+
     def initialize
         @planes = []
+        @capacity = 20
     end
 
     def land_plane(plane, weather)
+        raise "You cannot land. The airport is full" if is_airport_full?
         prevent_landing(weather)
         @planes << plane
     end
@@ -23,5 +26,9 @@ class Airport
 
     def prevent_landing(weather)
         raise "You cannot land. Weather is stormy" if weather.stormy?
+    end
+
+    def is_airport_full?
+        @planes.length == @capacity
     end
 end
