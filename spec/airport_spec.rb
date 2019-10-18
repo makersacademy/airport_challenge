@@ -15,7 +15,12 @@ describe Airport do
       2.times do
         subject.dock plane
       end
-    }.to raise_error "Plane is already docked"
+    }.to raise_error 'Plane is already docked'
+  end
+  it 'raises error if non-docked plane asks for takeoff permission' do
+    expect {
+      subject.get_permission_to_take_off double :plane
+    }.to raise_error 'Plane is not docked'
   end
   it 'gives permission for planes to takeoff' do
     # if permission is granted #get_permission_to_take_off
