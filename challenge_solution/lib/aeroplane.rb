@@ -1,7 +1,14 @@
-require "./lib/airport"
+# require "./lib/airport"
 
-class Aeroplane
-  def initialize
-    counter = 1
-  end
-end
+# class Aeroplane
+#   attr_accessor :name
+
+#   def initialize
+#     @counter = 1
+#   end
+
+#   def name
+#     name = "aeroplane#{counter}"
+#     @counter += 1
+#   end
+# end

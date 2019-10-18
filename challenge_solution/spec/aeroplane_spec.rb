@@ -22,8 +22,8 @@
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
-require "./lib/aeroplane"
-require "./lib/airport"
+# require "./lib/aeroplane"
+# require "./lib/airport"
 
-describe Aeroplane do
-end
+# describe Aeroplane do
+# end

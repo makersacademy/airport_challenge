@@ -9,3 +9,5 @@ Next I have written a test to allow planes to take off, to do this I will write 
 Next I have written a test to stop planes from taking off when weather is stormy, to do this I will create a variable called weather that randomly selects a weather system (from a range of numbers) and adapt my takeoff method depending on the weather.
 
 Next I have written a test to stop planes from landing if the weather is stormy, to do this I will adapt my landing method to use the weather in a conditional.
+
+Next I have written a test to stop planes from landing if the airport is at max capacity, to do this I will adapt my landing method to use capacity in a conditional.

@@ -3,15 +3,19 @@
 class Airport
   attr_accessor :landed
   attr_accessor :weather
+  attr_accessor :capacity
 
   def initialize
     @landed = []
     @weather = rand(10)
+    @capacity = 2
   end
 
   def land(aeroplane)
-    if @weather == 1
+    if @weather == 1 && @landed.count < @capacity
       return "Stormy conditions, #{aeroplane} cannot safely land"
+    elsif @landed.count >= @capacity
+      return "Airport is at max capacity"
     else
       @landed << aeroplane
     end

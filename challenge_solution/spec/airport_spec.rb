@@ -61,4 +61,16 @@ describe Airport do
     airport.weather = 1
     expect(airport.land(aeroplane)).to eq("Stormy conditions, #{aeroplane} cannot safely land")
   end
+
+  it "can prevent landing when airport is full" do
+    #Aeroplane.new
+    airport = Airport.new
+    airport.weather = 2
+    2.times do
+      aeroplane = "aeroplane"
+      airport.land(aeroplane)
+    end
+    aeroplane = "aeroplane"
+    expect(airport.land(aeroplane)).to eq("Airport is at max capacity")
+  end
 end
