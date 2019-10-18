@@ -22,15 +22,14 @@
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
-require "./lib/plane"
+require "./lib/aeroplane"
 require "./lib/airport"
 
-
 describe Airport do
-    it "can land a plane at the airport" do
-        plane = Plane.new
-        airport = Airport.new
-        airport.land(plane)
-       expect(airport.landed.to eq [plane]
-    end
+  it "can land a plane at the airport" do
+    aeroplane = Aeroplane.new
+    airport = Airport.new
+    airport.land(aeroplane)
+    expect(airport.landed).to include(aeroplane)
+  end
 end
