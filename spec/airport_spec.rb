@@ -16,7 +16,7 @@ describe Airport do
     expect(subject.land_plane(plane)).to include(plane)
   end
 
-  it "planes can depart from the airport" do
+  it "planes can take off from the airport" do
     subject.land_plane(plane)
     subject.plane_depart(plane)
     expect(subject.landed_planes.count).to eq(0)

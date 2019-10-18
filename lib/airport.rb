@@ -12,6 +12,6 @@ class Airport
   end
 
   def plane_depart(plane)
-    landed_planes.delete(plane)
+    landed_planes.delete(plane) if weather_generator != "storm"
   end
 end
