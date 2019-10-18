@@ -8,6 +8,6 @@ describe Weather do
     end
 
     it 'creates an array of weather' do
-        expect(subject.weather_arr).to include?('sunny')
+        expect(subject.weather_arr).to include('Sunny')
     end
 end
