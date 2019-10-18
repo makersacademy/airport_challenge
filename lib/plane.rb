@@ -1,3 +1,4 @@
+
 class Plane
   attr_reader :grounded
 
@@ -6,15 +7,20 @@ class Plane
   end
 
   def land(airport, weather)
-    if weather.status == "Sunny"
-      if airport.plane_capacity.length < airport.max_capacity
-        @grounded = true
-        airport.plane_capacity << self      
+    puts @grounded
+    if @grounded == false
+      if weather.status == "Sunny"
+        if airport.plane_capacity.length < airport.max_capacity
+          @grounded = true
+          airport.plane_capacity << self      
+        else
+          raise "No space available"
+        end
       else
-        raise "No space available"
+        raise "Weather is stormy"
       end
     else
-      raise "Weather is stormy"
+      raise "Plane already landed"
     end
   end
 

@@ -20,6 +20,7 @@ describe Airport do
   it 'Will allow a plane to land' do
     plane = Plane.new
     weather = double(:weather, status: "Sunny")
+    plane.take_off(subject,weather)
     plane.land(subject,weather)
     expect(subject.plane_capacity).to include(plane)
   end
@@ -47,6 +48,8 @@ describe Airport do
   it 'Will not allow a plane to land if weather is stormy' do
     plane = Plane.new
     weather = double(:weather, status: "Stormy")
+    weather2 = double(:weather, status: "Sunny")
+    plane.take_off(subject,weather2)
     expect { plane.land(subject,weather) }.to raise_error "Weather is stormy"
   end
 end

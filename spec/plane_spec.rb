@@ -11,6 +11,7 @@ describe Plane do
   it 'Planes status can be "Grounded"' do
     airport = Airport.new
     weather = double(:weather, status: "Sunny")
+    subject.take_off(airport,weather)
     subject.land(airport,weather)
     expect(subject.grounded).to eq true
   end
@@ -26,8 +27,10 @@ describe Plane do
     airport = Airport.new(1)
     weather = double(:weather, status: "Sunny")
     plane1 = Plane.new
+    plane1.take_off(airport,weather)
     plane1.land(airport,weather)
     plane2 = Plane.new
+    plane2.take_off(airport,weather)
     expect { plane2.land(airport, weather) }.to raise_error "No space available"
   end
   it 'Will not allow a plane to take off if its already taken off' do
