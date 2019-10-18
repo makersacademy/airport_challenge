@@ -37,7 +37,7 @@ describe Airport do
   it "allows the user to change the hangar capacity for a different airport" do
     test_capacity = rand(1..100)
     test_airport = Airport.new(test_capacity)
-    expect(test_airport.capacity).to eq (test_capacity)
+    expect(test_airport.capacity).to eq test_capacity
   end
 
   it "if the weather is stormy, a plane cannot take-off" do

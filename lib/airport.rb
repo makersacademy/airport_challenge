@@ -12,13 +12,16 @@ class Airport
 
   def instruct_landing(plane)
     raise "Storms persist, please continue to circle" unless good_weather?
+
     raise "Hangar capacity at maximum, please continue to circle" if full?
+
     hangar << plane
     plane.land
   end
 
   def instruct_take_off(plane)
     raise "Storms persist, take-off is delayed" unless good_weather?
+
     plane.take_off
   end
 
