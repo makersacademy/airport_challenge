@@ -11,3 +11,7 @@ Next I have written a test to stop planes from taking off when weather is stormy
 Next I have written a test to stop planes from landing if the weather is stormy, to do this I will adapt my landing method to use the weather in a conditional.
 
 Next I have written a test to stop planes from landing if the airport is at max capacity, to do this I will adapt my landing method to use capacity in a conditional.
+
+the last 2 tests set a default value for the capacity.
+
+All of the user stories have now been solved.

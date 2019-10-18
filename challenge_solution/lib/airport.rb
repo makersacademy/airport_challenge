@@ -1,5 +1,3 @@
-# require "./lib/aeroplane"
-
 class Airport
   attr_accessor :landed_planes
   attr_accessor :weather
@@ -35,10 +33,3 @@ class Airport
     end
   end
 end
-
-# airport = Airport.new
-# airport.weather = 1
-# puts airport.weather
-# airport.land("aeroplane")
-# airport.takeoff("aeroplane")
-# puts airport.weather
