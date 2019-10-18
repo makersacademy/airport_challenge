@@ -7,6 +7,6 @@ describe Plane do
 
     it 'should have a random flight number created' do 
         expect(subject.flight_number.length).to eq 8
-        expect(subject.flight_number.match(/^[[:alpha:][:blank:]]+$/)).to be true
+        expect(subject.flight_number == subject.flight_number[/[a-zA-Z]+/]).to be true
     end
 end
