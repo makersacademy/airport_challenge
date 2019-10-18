@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject { Airport.new }
+  subject { Airport.new(5) }
 
   it 'Creates an instance of Airport' do
     expect(subject).to be_instance_of Airport

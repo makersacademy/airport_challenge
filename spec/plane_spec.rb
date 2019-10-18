@@ -9,7 +9,7 @@ describe Plane do
   end
 
   it 'Planes status can be "landed"' do
-    airport = Airport.new
+    airport = Airport.new(5)
     subject.land(airport)
     expect(subject.grounded).to eq true
   end
