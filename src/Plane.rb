@@ -7,10 +7,10 @@ class Plane
         @isFlying = true
     end
 
-    def Land(airport, weather)
+    def Land(airport)
         if @isFlying != false
             if airport.GetStatus() != "Full"
-                if weather != "Stormy"
+                if airport.weather != "Stormy"
                     airport.planes << self
                     @isFlying = false
                 end
@@ -20,9 +20,9 @@ class Plane
         end
     end
 
-    def TakeOff(airport, weather)
+    def TakeOff(airport)
         if @isFlying == false
-            if weather != "Stormy"
+            if airport.weather != "Stormy"
                 airport.planes.each_with_index do |plane, index|
                     if plane == self
                         airport.planes.delete_at(index)

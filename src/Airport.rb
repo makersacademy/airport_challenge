@@ -1,7 +1,8 @@
 class Airport
-    attr_accessor :planes, :status, :max_planes
+    attr_accessor :planes, :status, :max_planes, :weather
     def initialize(plane_count)
         @max_planes = plane_count
+        @weather = "Clear"
         @status = "Spaces_Available"
         @planes = []
     end

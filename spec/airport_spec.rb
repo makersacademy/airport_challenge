@@ -6,8 +6,8 @@ describe Airport do
 
     it "should allow the user to set an airport size" do
         plane = Plane.new
-        plane.Land(subject, "Sunny")
+        plane.Land(subject)
         plane2 = Plane.new
-        expect(plane2.Land(subject, "Sunny")).to eq('Airport is full')
+        expect(plane2.Land(subject)).to eq('Airport is full')
     end
 end
