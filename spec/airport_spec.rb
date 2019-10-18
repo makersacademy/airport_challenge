@@ -17,4 +17,10 @@ describe Airport do
     expect(plane).to receive(:take_off)
     airport.instruct_take_off(plane)
   end
+
+  it "confirms the airport is empty when there are no planes landed" do
+    expect(plane).to receive(:take_off)
+    airport.instruct_take_off(plane)
+    expect(airport.hangar).to be_empty
+  end
 end
