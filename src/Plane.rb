@@ -2,6 +2,7 @@ require_relative 'Airport'
 
 class Plane
     attr_reader :isFlying
+
     def initialize
         @isFlying = true
     end

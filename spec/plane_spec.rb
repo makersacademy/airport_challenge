@@ -3,6 +3,7 @@ require_relative '../src/Airport'
 
 describe Plane do
     subject { Plane.new }
+    
     it "should instruct the plane to land at the airport" do
         airport = Airport.new(5)
         subject.Land(airport, "Sunny")
@@ -25,11 +26,9 @@ describe Plane do
         subject.TakeOff(airport, "Stormy")
         expect(subject.isFlying).to eq(false)
     end
-
     it "should not allow the plane to land if the airport is full" do
         airport = Airport.new(1)
         subject.Land(airport, "Sunny")
         expect(subject.Land(airport, "Sunny")).to eq('Airport is full')
     end
-
 end
