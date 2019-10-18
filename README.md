@@ -26,9 +26,10 @@ Steps
 -------
 
 1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+2. Navigate to your `airport_challenge` directory in the terminal
+3. Run the command `gem install bundle` (if you don't have bundle already)
+4. When the installation completes, run `bundle`
+5. Complete the following task:
 
 Task
 -----
