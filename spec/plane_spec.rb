@@ -13,6 +13,7 @@ describe Plane do
   it 'can take off and confirm that it is no longer in the airport' do
     airport_planes = [subject]
     airport = double(:airport, planes: airport_planes)
+    subject.landed_at = airport
     subject.take_off
     expect(airport.planes.include? subject).to eq false
   end
