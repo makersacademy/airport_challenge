@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
   subject { Plane.new }
@@ -8,7 +9,8 @@ describe Plane do
   end
 
   it 'Planes status can be "landed"' do
+    airport = Airport.new
     subject.land(airport)
-    expect(subject.landed?).to eq true
+    expect(subject.grounded).to eq true
   end
 end  

@@ -1,7 +1,6 @@
 require 'airport'
 require 'plane'
 
-
 describe Airport do
   subject { Airport.new }
 
@@ -10,7 +9,8 @@ describe Airport do
   end
 
   it 'Will allow a plane to land' do
-      plane = Plane.new
-      expect(airport.plane_capacity).to include(plane)
+    plane = Plane.new
+    plane.land(subject)
+    expect(subject.plane_capacity).to include(plane)
   end
 end
