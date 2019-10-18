@@ -7,7 +7,8 @@ class Plane
   end
 
   def take_off(airport)
-    airport.planes.pop
+    raise 'Too stormy to take off' if airport.stormy == true
+    airport.planes.delete(self)
   end
 
 end
