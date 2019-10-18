@@ -12,6 +12,6 @@ describe Airport do
   end
 
   it "has a landing area" do
-    expect(subject.landing_area).to be_instance_of(Airport)
+    expect(subject.landing_Area).to respond_to(Airport)
   end
 end

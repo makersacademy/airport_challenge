@@ -4,4 +4,7 @@ class Airport
   def initialize
     @passengers = []
   end
+
+  def landing_area
+  end
 end
