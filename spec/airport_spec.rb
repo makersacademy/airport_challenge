@@ -9,6 +9,14 @@ describe Airport do
     subject.dock plane
     expect(subject.planes.include? plane).to eq true
   end
+  it 'raises error if docked plane tries to dock again' do
+    plane = double :plane
+    expect {
+      2.times do
+        subject.dock plane
+      end
+    }.to raise_error "Plane is already docked"
+  end
   it 'gives permission for planes to takeoff' do
     # if permission is granted #get_permission_to_take_off
     # should return index of plane in Airport.planes
