@@ -13,9 +13,7 @@ describe Weather do
 
     describe '#set_weather' do
         it 'returns one item in the array at random' do
-            expect(subject.set_weather).to include(
-                'Sunny', 'Stormy', 'Raining', 'Cloudy'
-            )
+            expect(['Sunny', 'Stormy', 'Raining', 'Cloudy']).to include(subject.set_weather)
         end
     end
 end
