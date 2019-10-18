@@ -55,4 +55,16 @@ describe Airport do
         expect(subject.planes.length).to be 0
         expect{ subject.land_plane(plane, weather) }.to raise_error "You cannot land. Weather is stormy"
     end
+
+    it 'should not allow planes to land if airport is full' do
+        # Arrange
+        plane = double(:plane)
+        weather = double(:weather, :stormy? => false)
+
+        20.times { subject.land_plane(plane, weather) }
+
+        # Assert 
+        expect{ subject.land_plane(plane, weather) }.to raise_error "You cannot land. The airport is full"
+        expect(subject.planes.length).to eq 20  
+    end
 end
