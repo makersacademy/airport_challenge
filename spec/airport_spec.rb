@@ -35,4 +35,11 @@ describe Airport do
     weather = double(:weather, status: "Stormy")
     expect { plane.take_off(subject,weather) }.to raise_error "Weather is stormy"
   end
+
+  it 'will allow plane to take off if weather is sunny' do
+    plane = Plane.new
+    weather = double(:weather, status: "Sunny")
+    plane.take_off(subject,weather)
+    expect(subject.plane_capacity).to_not include(plane)
+  end
 end
