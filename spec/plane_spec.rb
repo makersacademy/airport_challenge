@@ -30,4 +30,10 @@ describe Plane do
     plane2 = Plane.new
     expect { plane2.land(airport, weather) }.to raise_error "No space available"
   end
+  it 'Will not allow a plane to take off if its already taken off' do
+    airport = Airport.new
+    weather = double(:weather, status: "Sunny")
+    subject.take_off(airport,weather)
+    expect { subject.take_off(airport,weather) }.to raise_error "Plane already Taken Off"
+  end
 end  
