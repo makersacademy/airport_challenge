@@ -8,10 +8,12 @@ describe Weather do
   end
 
   it 'Can return sunny when randomly choosing weather' do
-    expect (subject.stub(:random_weather) {1..8}).to eq "Sunny"
+    subject.stub(:random_number) {5}
+    expect(subject.status).to eq "Sunny"
   end
 
   it 'Can return stormy when randomly choosing weather' do
-    expect (subject.stub(:random_weather) {9..10}).to eq "Stormy"
+    subject.stub(:random_number) {9}
+    expect(subject.status).to eq "Stormy"
   end
 end
