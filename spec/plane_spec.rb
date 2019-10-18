@@ -26,8 +26,8 @@ describe Plane do
     end
 
     it "reports plane has left airport" do
-      airliner1 = Plane.new
-      expect { airliner1.takeoff }.to output("Leaving Factory airport at #{Time.new}\n").to_stdout
+      airliner2 = Plane.new
+      expect { airliner2.takeoff }.to output("Leaving Factory airport at #{Time.new}\n").to_stdout
     end
   end
 end

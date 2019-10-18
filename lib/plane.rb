@@ -14,6 +14,7 @@ class Plane
 
   def takeoff
     @flying = true
+    puts "Leaving #{@location} airport at #{Time.new}"
     @location = "in transit"
   end
 end
