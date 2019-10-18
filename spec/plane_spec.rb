@@ -9,8 +9,8 @@ describe Plane do
 
     describe '#generate_flight_number' do
         it 'creates a string that returns 16 characters' do
-            flight_number = subject.flight_number
-            expect(flight_number.count).to eq(16)
+            flight_number = subject.generate_flight_number
+            expect(flight_number.length).to eq(16)
         end
     end
 end
