@@ -1,5 +1,6 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Airport do
     it 'creates an instance of the airport class' do
