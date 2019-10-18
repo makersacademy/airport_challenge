@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
   
   attr_reader :capacity, :planes
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 1
   
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -17,7 +17,7 @@ class Airport
     
   def take_off(_plane)
     planes.pop
-    p planes
+    puts "#{_plane} has taken off" if !@planes.include?(_plane)
   end       
     
   def stormy?
