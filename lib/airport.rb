@@ -10,4 +10,8 @@ class Airport
   def land_plane(plane)
     landed_planes << plane
   end
+
+  def plane_depart(plane)
+    landed_planes.delete(plane)
+  end
 end
