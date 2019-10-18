@@ -19,7 +19,7 @@ describe Airport do
   end
   it 'raises error if non-docked plane asks for takeoff permission' do
     expect {
-      subject.get_permission_to_take_off double :plane
+      subject.get_permission_to_take_off double(:plane)
     }.to raise_error 'Plane is not docked'
   end
   it 'gives permission for planes to takeoff' do
