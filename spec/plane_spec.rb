@@ -14,6 +14,6 @@ describe Plane do
 
   it "reports plane as landed" do
     airliner1 = Plane.new
-    expect { airliner1.land("Munich") }.to output("Landed at Munich airport.\n").to_stdout
+    expect { airliner1.land("Munich") }.to output("Landed at Munich airport at #{Time.new}\n").to_stdout
   end
 end

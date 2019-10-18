@@ -9,5 +9,6 @@ class Plane
   def land(destination)
     @landed = true
     @location = destination
+    puts "Landed at #{destination} airport at #{Time.new}"
   end
 end
