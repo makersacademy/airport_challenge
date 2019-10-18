@@ -6,4 +6,9 @@ describe Airport do
         airport = Airport.new
         expect(airport).to be_a(Airport)
     end
+
+    it 'should have an empty array of planes' do
+        airport = Airport.new
+        expect(airport.planes_arr).to be_empty
+    end
 end
