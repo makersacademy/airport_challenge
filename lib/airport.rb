@@ -3,7 +3,7 @@ class Airport
 
   def initialize
     @planes = []
-    @weather = 'clear'
+    @weather = random_weather
   end
 
   def dock(plane)
@@ -15,5 +15,15 @@ class Airport
     raise 'Plane is not docked' unless @planes.include? plane
     return nil if @weather == 'stormy'
     @planes.index(plane)
+  end
+
+  private
+
+  def random_weather
+    if rand(10) <= 8
+      'sunny'
+    else
+      'clear'
+    end
   end
 end
