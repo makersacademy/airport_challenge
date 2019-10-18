@@ -1,6 +1,6 @@
 require "airport"
 
-describe Plane do
+describe Airport do
   let(:airport) { Airport.new }
 
   it "successfully instantiates the airport class" do
