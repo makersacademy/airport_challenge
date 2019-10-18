@@ -1,4 +1,4 @@
-require_relative 'plane'
+require 'plane'
 
 class Airport
 
@@ -7,6 +7,7 @@ class Airport
   attr_accessor :take_off
   attr_accessor :weather
   attr_accessor :capacity
+  attr_accessor :planes
 
   def initialize
     @planes = []
@@ -16,7 +17,7 @@ end
 
 def land(plane)
   raise 'Airport is full' if full?
-  @plane << plane
+  @planes << plane
 end
 
 def take_off
@@ -28,4 +29,10 @@ def weather
               "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny",
                "stormy"]
   weather.sample
+end
+
+private
+
+def full?
+  planes.count >= DEFAULT_CAPACITY
 end
