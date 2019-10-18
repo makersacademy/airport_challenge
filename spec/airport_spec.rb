@@ -19,7 +19,6 @@ describe Airport do
 end
 
 # #sources
-
 #1
 # .empty predicate matcher
 # https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers/predicate-matchers
