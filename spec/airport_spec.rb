@@ -67,4 +67,17 @@ describe Airport do
         expect{ subject.land_plane(plane, weather) }.to raise_error "You cannot land. The airport is full"
         expect(subject.planes.length).to eq 20  
     end
+
+    it 'should be able to override airport capacity' do 
+        # Arrange
+        airport = Airport.new(5)
+        plane = double(:plane)
+        weather = double(:weather, :stormy? => false)
+
+        5.times { airport.land_plane(plane, weather) }
+
+        # Assert 
+        expect{ subject.land_plane(plane, weather) }.to raise_error "You cannot land. The airport is full"
+        expect(subject.planes.length).to eq 5
+    end 
 end
