@@ -14,7 +14,7 @@ describe Airport do
     @airport = Airport.new
     @plane = Plane.new
     @airport.land_plane(@plane)
-    @airport.take_off
-    expect(@airport.runway.length).to be_empty
+    @airport.allow_take_off
+    expect(@airport.runway).to be_empty
   end
 end

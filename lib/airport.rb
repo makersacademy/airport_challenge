@@ -10,4 +10,8 @@ class Airport
   def land_plane(plane)
     @runway << plane
   end
+
+  def allow_take_off
+    @runway.pop
+  end
 end
