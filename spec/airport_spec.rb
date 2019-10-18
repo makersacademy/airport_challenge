@@ -17,10 +17,4 @@ describe Airport do
     subject.takeoff(plane)
     expect(subject.planes.include? plane).to eq false #1
   end
-
-  describe "#takeoff" do
-    it "stops takeoff if weather is stormy" do
-      expect { subject.takeoff }.to raise_error "Weather is too dangers"
-    end
-  end
 end
