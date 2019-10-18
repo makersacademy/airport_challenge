@@ -21,6 +21,10 @@ class Airport
   private
 
   def full?
-    hangar.length >= @capacity
+    landed_planes_total >= @capacity
+  end
+
+  def landed_planes_total
+    hangar.length
   end
 end
