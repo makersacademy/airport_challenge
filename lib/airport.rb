@@ -7,6 +7,7 @@ class Airport
   end
 
   def dock(plane)
+    raise 'Plane is already docked' if @planes.include? plane
     @planes << plane
   end
 
