@@ -6,17 +6,15 @@ class Airport
   attr_reader :planes
   def initialize
     @planes = []
+    @weather = check_weather
   end
-
-
-
 
 def check_weather
   # Checks if weather is Stormy or Sunny, and gives a
   # random result. There is a 1 in 40 chance that it is
   # Stormy, all other times will be Sunny
-    weather = Kernel.rand(1..40)
-    if weather == 1
+    the_weather = Kernel.rand(1..40)
+    if the_weather == 1
       return "Stormy"
     else
       return "Sunny"
