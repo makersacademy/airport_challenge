@@ -22,4 +22,10 @@ describe Airport do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'should land a plane' do
+    plane = Plane.new
+    plane.land
+    expect(plane.land).to include plane
+  end
+
 end

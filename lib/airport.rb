@@ -9,6 +9,7 @@ class Airport
   attr_accessor :capacity
 
   def initialize
+
     @capacity = DEFAULT_CAPACITY
   end
 end
@@ -23,6 +24,7 @@ end
 
 def weather
   weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny",
-              "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"]
+              "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny",
+               "stormy"]
   weather.sample
 end
