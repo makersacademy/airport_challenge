@@ -14,8 +14,7 @@ describe Airport do
   end
 end
 
-describe Airport do
-  subject(:airport) { described_class.new }
+describe Airport.new do
   let(:plane) { double(:plane) }
   it "lets a plane takeoff" do
     allow(plane).to receive(:land)
@@ -30,4 +29,11 @@ describe Airport do
     subject.takeoff(plane)
     expect(subject.planes).not_to include plane
   end
+end
+
+describe Airport.new do
+  let(:plane) { double(:plane) }
+  context "weather tests"
+  
+
 end
