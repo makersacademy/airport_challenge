@@ -2,16 +2,18 @@ require_relative 'plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 5
   attr_accessor :land
   attr_accessor :take_off
   attr_accessor :weather
 end
 
 def land
+
 end
 
 def take_off
+
 end
 
 def weather

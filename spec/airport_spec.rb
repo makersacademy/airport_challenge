@@ -17,4 +17,9 @@ describe Airport do
     expect(airport).to respond_to(:weather)
   end
 
+  it 'has a default capacity' do
+    airport = Airport.new
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 end
