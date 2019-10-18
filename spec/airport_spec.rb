@@ -9,6 +9,10 @@ describe Airport do
     expect(airport).to be_instance_of(Airport)
   end
 
+  it { is_expected.to respond_to :instruct_landing }
+
+  it { is_expected.to respond_to :instruct_take_off }
+
   it "a plane can land at the airport" do
     allow(airport).to receive(:good_weather?).and_return(true)
     expect(plane).to receive(:land)

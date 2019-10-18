@@ -11,21 +11,30 @@ class Airport
   end
 
   def instruct_landing(plane)
-    raise "Storms persist, please continue to circle" unless good_weather?
-
-    raise "Hangar capacity at maximum, please continue to circle" if full?
-
+    capacity_for_landing
+    forecast_for_landing
     hangar << plane
     plane.land
   end
 
   def instruct_take_off(plane)
-    raise "Storms persist, take-off is delayed" unless good_weather?
-
+    forecast_for_take_off
     plane.take_off
   end
 
   private
+
+  def capacity_for_landing
+    raise "Hangar capacity at maximum, please continue to circle" if full?
+  end
+
+  def forecast_for_landing
+    raise "Storms persist, please continue to circle" unless good_weather?
+  end
+
+  def forecast_for_take_off
+    raise "Storms persist, take-off is delayed" unless good_weather?
+  end
 
   def full?
     landed_planes_total >= @capacity
