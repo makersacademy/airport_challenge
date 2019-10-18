@@ -6,5 +6,6 @@ describe Weather do
     end
 
     it 'should have a stormy value' do 
-        expect(subject.stormy?).to be false
+        expect(subject.stormy).to be false
+    end
 end
