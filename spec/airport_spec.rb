@@ -6,7 +6,7 @@ describe Airport do
     @airport = Airport.new
     @plane = Plane.new
     @airport.land_plane(@plane)
-    p @airport.hangar
-    expect(@airport.hangar.length).to eq 1
+    p @airport.runway
+    expect(@airport.runway.length).to eq 1
   end
 end
