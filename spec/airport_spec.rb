@@ -12,4 +12,12 @@ describe Airport do
     plane = Plane.new
     expect(plane).to be_instance_of Plane
   end
+
+  it 'instructs a plane to land' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect(plane).to receive(:land)
+    
+  end
 end
