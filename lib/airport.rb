@@ -7,9 +7,11 @@ class Airport
   def initialize
     @planes = []
   end
+
   def land_plane(plane)
     @planes << plane
   end
+
   def take_off
   # removes Planes from the Airport's @planes array,
   # and confirms that the number of Planes in the
