@@ -10,6 +10,6 @@ describe Airport do
 
   it "a plane can land at the airport" do
     expect(plane).to receive(:land)
-    airport.land(plane)
+    airport.instruct_landing(plane)
   end
 end
