@@ -23,8 +23,6 @@ describe Airport do
     expect(subject.plane_capacity).to include(plane)
   end
 
-  
-
   it 'Will allow a plane to take off' do
     plane = Plane.new
     plane.take_off(subject)
