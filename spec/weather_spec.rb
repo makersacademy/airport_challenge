@@ -8,6 +8,10 @@ describe Weather do
   end
 
   it "has an array of weather types" do
-    expect(subject.weather_generator).to include("sun")
+    expect(subject.weather).to include("sun", "rain", "snow", "fog")
+  end
+  it "returns one type of weather" do
+    test_Weather = weather_generator
+    expect(subject.test_weather).not_to eq(subject.weather_generator)
   end
 end
