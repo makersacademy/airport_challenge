@@ -8,7 +8,7 @@ describe Airport do
     end
 
     it 'should have an empty array of planes' do
-        airport = Airport.new
-        expect(airport.planes_arr).to be_empty
+        # airport = Airport.new
+        expect(subject.planes_arr).to be_empty
     end
 end
