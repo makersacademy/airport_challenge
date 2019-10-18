@@ -77,7 +77,7 @@ describe Airport do
         5.times { airport.land_plane(plane, weather) }
 
         # Assert 
-        expect{ subject.land_plane(plane, weather) }.to raise_error "You cannot land. The airport is full"
-        expect(subject.planes.length).to eq 5
+        expect{ airport.land_plane(plane, weather) }.to raise_error "You cannot land. The airport is full"
+        expect(airport.planes.length).to eq 5
     end 
 end
