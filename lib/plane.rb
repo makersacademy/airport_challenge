@@ -1,14 +1,19 @@
 class Plane
-  attr_reader :landed, :location
+  attr_reader :flying, :location
 
   def initialize
-    @landed = false
+    @flying = false
     @location = "Factory"
   end
 
   def land(destination)
-    @landed = true
+    @flying = false
     @location = destination
     puts "Landed at #{destination} airport at #{Time.new}"
+  end
+
+  def takeoff
+    @flying = true
+    @location = "in transit"
   end
 end

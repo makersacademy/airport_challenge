@@ -7,7 +7,7 @@ describe Plane do
     it "lands at the specified destination" do
       airliner1 = Plane.new
       airliner1.land("Tokyo")
-      expect(airliner1.landed).to be(true)
+      expect(airliner1.flying).to be(false)
       expect(airliner1.location).to eq("Tokyo")
     end
 
@@ -22,7 +22,7 @@ describe Plane do
       airliner1 = Plane.new
       airliner1.takeoff
       expect(airliner1.flying).to be(true)
-      expect(airliner1.location).to be("in transit")
+      expect(airliner1.location).to eq("in transit")
     end
   end
 end
