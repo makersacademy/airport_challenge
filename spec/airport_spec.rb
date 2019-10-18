@@ -8,6 +8,10 @@ describe Airport do
   end
 
   it " has passengers" do
-    expect(subject.passengers).to have_key(:passengers)
+    expect(subject.passengers).to be_a(Array)
+  end
+
+  it "has a landing area" do
+    expect(subject.landing_area).to be_instance_of(Airport)
   end
 end
