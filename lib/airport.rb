@@ -1,3 +1,5 @@
+require './lib/plane.rb'
+
 class Airport
     attr_reader :planes_arr
 
@@ -18,3 +20,14 @@ class Airport
         @planes_arr.pop
     end
 end
+
+airport = Airport.new 
+plane_one = Plane.new
+plane_one_num = plane_one.generate_flight_number
+plane_two = Plane.new
+plane_two_num = plane_two.generate_flight_number
+airport.land_at_airport(plane_one)
+airport.land_at_airport(plane_two)
+puts airport.planes_arr
+airport.take_off(plane_one)
+puts airport.planes_arr
