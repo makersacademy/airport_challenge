@@ -9,7 +9,9 @@ class Airport
     end
 
     def take_off(ready_plane)
-        @planes.select! { |plane| plane.flight_number == ready_plane.flight_number }[0]
+        plane_to_take_off = @planes.select { |plane| plane.flight_number == ready_plane.flight_number }[0]
+        @planes.delete(plane_to_take_off)
+        return plane_to_take_off
     end
 
 end
