@@ -22,7 +22,7 @@
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
-require "./lib/aeroplane"
+#require "./lib/aeroplane"
 require "./lib/airport"
 
 describe Airport do
@@ -32,17 +32,26 @@ describe Airport do
   #   end
 
   it "can land a plane at the airport" do
-    aeroplane = Aeroplane.new
+    aeroplane = "aeroplane" #Aeroplane.new
     airport = Airport.new
     airport.land(aeroplane)
     expect(airport.landed).to include(aeroplane)
   end
 
   it "can instruct a plane to take off a plane" do
-    aeroplane = Aeroplane.new
+    aeroplane = "aeroplane" #Aeroplane.new
     airport = Airport.new
+    weather = 2
     airport.land(aeroplane)
     airport.takeoff(aeroplane)
     expect(airport.landed).not_to include(aeroplane)
+  end
+
+  it "can prevent takeoff when weather is stormy " do
+    aeroplane = "aeroplane" #Aeroplane.new
+    airport = Airport.new
+    airport.land(aeroplane)
+    airport.weather = 1
+    expect(airport.takeoff(aeroplane)).to eq("Stormy conditions, #{aeroplane} cannot take off")
   end
 end

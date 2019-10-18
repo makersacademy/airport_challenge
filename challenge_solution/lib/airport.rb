@@ -1,10 +1,12 @@
-require "./lib/aeroplane"
+# require "./lib/aeroplane"
 
 class Airport
   attr_accessor :landed
+  attr_accessor :weather
 
   def initialize
     @landed = []
+    @weather = rand(10)
   end
 
   def land(aeroplane)
@@ -12,9 +14,21 @@ class Airport
   end
 
   def takeoff(aeroplane)
-    @landed.delete(aeroplane)
-    if @landed.include?(aeroplane) == false
-      puts "The aeroplane #{aeroplane} has taken off"
+    if @weather == 1
+      return "Stormy conditions, #{aeroplane} cannot take off"
+    else
+      @landed.delete(aeroplane)
+      if @landed.include?(aeroplane) == false
+        aeroplane.capitalize![0]
+        puts "#{aeroplane} has taken off"
+      end
     end
   end
 end
+
+# airport = Airport.new
+# airport.weather = 1
+# puts airport.weather
+# airport.land("aeroplane")
+# airport.takeoff("aeroplane")
+# puts airport.weather
