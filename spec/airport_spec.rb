@@ -6,4 +6,8 @@ describe Airport do
   it "is an instance of a Airport" do
     expect(subject).to be_a(Airport)
   end
+
+  it " has passengers" do
+    expect(subject.passengers).to be_a(Array)
+  end
 end
