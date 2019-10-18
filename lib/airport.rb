@@ -6,6 +6,11 @@ class Airport
   attr_accessor :land
   attr_accessor :take_off
   attr_accessor :weather
+  attr_accessor :capacity
+
+  def initialize
+    @capacity = DEFAULT_CAPACITY
+  end
 end
 
 def land
