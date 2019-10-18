@@ -23,4 +23,9 @@ describe Airport do
     airport.instruct_take_off(plane)
     expect(airport.hangar).to be_empty
   end
+
+  it "if the hangar is full a plane cannot land and receives a message" do
+    allow(plane).to receive(:land)
+    expect { 21.times { airport.instruct_landing(plane) } }.to raise_error(RuntimeError, "Hangar capacity at maximum, please continue to circle")
+  end
 end
