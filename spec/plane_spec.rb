@@ -8,4 +8,11 @@ describe Plane do
         subject.Land(airport)
         expect(airport.planes).to include(subject)
     end
+
+    it "should instruct the plane to take off" do
+        airport = Airport.new
+        subject.Land(airport)
+        subject.TakeOff(airport)
+        expect(subject.isFlying).to eq(true)
+    end
 end
