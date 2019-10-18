@@ -12,4 +12,9 @@ describe Airport do
     expect(plane).to receive(:land)
     airport.instruct_landing(plane)
   end
+
+  it "a plane can take off from the airport" do
+    expect(plane).to receive(:take_off)
+    airport.instruct_take_off(plane)
+  end
 end
