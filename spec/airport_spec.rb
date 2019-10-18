@@ -27,6 +27,7 @@ describe Airport do
     # should return index of plane in Airport.planes
     plane = double :plane
     subject.planes = [plane]
+    subject.weather = 'sunny'
     position = subject.get_permission_to_take_off plane
     expect(position).to be_an_instance_of Integer
     expect(position).to be >= 0
