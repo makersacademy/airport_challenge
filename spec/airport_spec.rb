@@ -17,4 +17,13 @@ describe Airport do
             expect(subject.planes_arr).to include(plane)
         end
     end
+
+    describe '#take_off' do
+        it 'makes a plane take off if there is one in the array' do
+            plane = Plane.new
+            subject.land_at_airport(plane)
+            subject.take_off(plane)
+            expect(subject.planes_arr).to be_empty
+        end
+    end
 end
