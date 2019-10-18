@@ -11,7 +11,7 @@ describe Airport do
     expect(subject.passengers).to be_a(Array)
   end
 
-  it "has a landing area" do
-    expect(subject.landing_Area).to respond_to(Airport)
+  it "allows planes to land" do
+    expect(subject.landing_status).to eq(true)
   end
 end
