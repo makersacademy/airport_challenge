@@ -19,10 +19,9 @@ class Airport
 
   def instruct_take_off(plane)
     forecast_for_take_off
+    hangar.delete(plane)
     plane.take_off!
   end
-
-  private
 
   def capacity_for_landing
     raise "Hangar capacity at maximum, please continue to circle" if full?
@@ -40,11 +39,7 @@ class Airport
     landed_planes_total >= @capacity
   end
 
-  def empty?
-    hangar.empty?
-  end
-
   def landed_planes_total
-    hangar.count
+    hangar.length
   end
 end

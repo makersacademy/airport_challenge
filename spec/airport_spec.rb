@@ -1,9 +1,11 @@
 require "airport"
 require "weather"
+require "plane"
 
 describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { double :plane }
+  let(:planes) { 20.times.collect { Plane.new } }
 
   it "successfully instantiates the airport class" do
     expect(airport).to be_instance_of(Airport)
@@ -61,5 +63,14 @@ describe Airport do
   end
 
   context "multiple planes can land or take-off from the same airport" do
+    before { allow(airport).to receive(:good_weather?).and_return(true) }
+    it "a maximum of 20 planes can land if airport is empty in clear weather" do
+      expect { planes.each { |plane| airport.instruct_landing(plane) } }.to change { airport.landed_planes_total }.from(0).to(20)
+    end
+
+    it "a maximum of 20 planes can take-off from same airport if full and clear weather" do
+      planes.each { |plane| airport.instruct_landing(plane) }
+      expect { planes.each { |plane| airport.instruct_take_off(plane) } }.to change { airport.landed_planes_total }.from(20).to(0)
+    end
   end
 end
