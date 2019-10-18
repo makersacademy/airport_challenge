@@ -34,6 +34,13 @@ describe Plane do
     airport = Airport.new
     weather = double(:weather, status: "Sunny")
     subject.take_off(airport,weather)
-    expect { subject.take_off(airport,weather) }.to raise_error "Plane already Taken Off"
+    expect { subject.take_off(airport,weather) }.to raise_error "Plane already taken off"
+  end
+  it 'Will not allow a plane to land if it has already landed' do
+    airport = Airport.new
+    weather = double(:weather, status: "Sunny")
+    subject.take_off(airport,weather)
+    subject.land(airport,weather)
+    expect { subject.land(airport,weather) }.to raise_error "Plane already landed"
   end
 end  

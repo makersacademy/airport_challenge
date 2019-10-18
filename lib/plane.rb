@@ -19,11 +19,15 @@ class Plane
   end
 
   def take_off(airport,weather)
-    if weather.status == "Sunny"
-      @grounded = false
-      airport.plane_capacity.delete(self)
+    if @grounded == true
+      if weather.status == "Sunny"
+        @grounded = false
+        airport.plane_capacity.delete(self)
+      else
+        raise "Weather is stormy"
+      end
     else
-      raise "Weather is stormy"
+      raise "Plane already taken off"
     end
   end
 end
