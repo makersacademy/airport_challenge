@@ -8,17 +8,19 @@ describe Airport do
   it 'allows a plane to land at airport' do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.land(plane)).to include(plane)
+    expect(subject.planes).to include(plane)
   end
 
   it 'allows a plane to takeoff from and airport' do
     plane = Plane.new
+    subject.planes = [plane]
     subject.takeoff(plane)
-    expect(subject.planes.empty?).to eq true #1
+    expect(subject.planes.include? plane).to eq false #1
+  end
+
+  describe "#takeoff" do
+    it "stops takeoff if weather is stormy" do
+      expect { subject.takeoff }.to raise_error "Weather is too dangers"
+    end
   end
 end
-
-# #sources
-#1
-# .empty predicate matcher
-# https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers/predicate-matchers
