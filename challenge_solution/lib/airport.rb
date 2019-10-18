@@ -1,23 +1,25 @@
 # require "./lib/aeroplane"
 
 class Airport
-  attr_accessor :landed
+  attr_accessor :landed_planes
   attr_accessor :weather
   attr_accessor :capacity
 
-  def initialize
-    @landed = []
+  DEFAULT_CAPACITY = 8
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @landed_planes = []
     @weather = rand(10)
-    @capacity = 2
+    @capacity = capacity
   end
 
   def land(aeroplane)
-    if @weather == 1 && @landed.count < @capacity
+    if @weather == 1 && @landed_planes.count < @capacity
       return "Stormy conditions, #{aeroplane} cannot safely land"
-    elsif @landed.count >= @capacity
+    elsif @landed_planes.count >= @capacity
       return "Airport is at max capacity"
     else
-      @landed << aeroplane
+      @landed_planes << aeroplane
     end
   end
 
@@ -25,8 +27,8 @@ class Airport
     if @weather == 1
       return "Stormy conditions, #{aeroplane} cannot take off"
     else
-      @landed.delete(aeroplane)
-      if @landed.include?(aeroplane) == false
+      @landed_planes.delete(aeroplane)
+      if @landed_planes.include?(aeroplane) == false
         aeroplane.capitalize![0]
         puts "#{aeroplane} has taken off"
       end
