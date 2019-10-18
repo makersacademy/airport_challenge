@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes
+  attr_accessor :planes
 
   def initialize
     @planes = []
@@ -7,5 +7,9 @@ class Airport
 
   def dock(plane)
     @planes << plane
+  end
+
+  def get_permission_to_take_off(plane)
+    @planes.index(plane)
   end
 end
