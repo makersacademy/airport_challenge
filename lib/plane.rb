@@ -12,8 +12,12 @@ class Plane
   end
 
   def take_off
-    position = @landed_at.planes.index(self)
-    @landed_at.planes.delete_at(position)
-    @landed_at = nil
+    position = @landed_at.get_permission_to_take_off(self)
+    if position != nil
+      @landed_at.planes.delete_at(position)
+      @landed_at = nil
+    else
+      raise "Denied permission to take off"
+    end
   end
 end
