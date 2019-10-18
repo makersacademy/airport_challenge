@@ -16,7 +16,8 @@ describe Plane do
 
   it 'Planes status can be not be "Grounded"' do
     airport = Airport.new
-    subject.take_off(airport)
+    weather = double(:weather, status: "Sunny")
+    subject.take_off(airport,weather)
     expect(subject.grounded).to eq false
   end
 
