@@ -4,9 +4,6 @@ describe Airport do
   it 'is an instance of airport' do
     expect(subject).to be_an_instance_of Airport
   end
-  it 'tracks planes that have landed' do
-    expect(subject.planes).to be_an_instance_of Array
-  end
   it 'docks planes that have landed' do
     plane = double :plane
     subject.dock plane
