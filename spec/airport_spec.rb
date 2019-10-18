@@ -3,12 +3,10 @@ require './lib/plane.rb'
 
 describe Airport do
     it 'creates an instance of the airport class' do
-        airport = Airport.new
-        expect(airport).to be_a(Airport)
+        expect(subject).to be_a(Airport)
     end
 
     it 'should have an empty array of planes' do
-        # airport = Airport.new
         expect(subject.planes_arr).to be_empty
     end
 end
