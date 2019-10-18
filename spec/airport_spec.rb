@@ -12,4 +12,14 @@ describe Airport do
 
         expect(subject.planes.length).to be 1
     end
+
+    it 'should instruct planes to take off' do 
+        planes = [double(:plane, :flight_number => 1), double(:plane, :flight_number => 2), double(:plane, :flight_number => 3)]
+        planes.each { |plane| subject.land_plane(plane) }
+
+        actual = subject.take_off(planes[1])
+
+        expect(actual).to be planes[1]
+        expect(actual.flight_number).to be 2
+    end
 end
