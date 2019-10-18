@@ -13,4 +13,9 @@ describe Airport do
     plane.land(subject)
     expect(subject.plane_capacity).to include(plane)
   end
+
+  it 'will allow the user to change the max capacity' do
+    airport = Airport.new(5)
+    expect(airport.max_capacity).to eq 5
+  end
 end
