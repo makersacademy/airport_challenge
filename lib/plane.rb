@@ -9,4 +9,9 @@ class Plane
     @grounded = true
     airport.plane_capacity << self
   end
+
+  def take_off(airport)
+    @grounded = false
+    airport.plane_capacity.delete(self)
+  end
 end
