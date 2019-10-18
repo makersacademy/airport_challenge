@@ -6,23 +6,38 @@ describe Airport do
     end
 
     it 'should instruct planes to land' do 
+        # Arrange
         plane = double(:plane)
         
+        # Act
         subject.land_plane(plane)
 
+        # Assert
         expect(subject.planes.length).to be 1
+        expect(subject.planes.first).to be plane
     end
 
     it 'should instruct planes to take off' do 
+        # Arrange
         planes = [double(:plane, :flight_number => 1), double(:plane, :flight_number => 2), double(:plane, :flight_number => 3)]
         planes.each { |plane| subject.land_plane(plane) }
+        weather = double(:weather, :stormy? => false)
 
-        expect(subject.planes.length).to be 3
-        
-        actual = subject.take_off(planes[1])
+        # Act
+        actual = subject.take_off(planes[1], weather)
 
+        # Assert
         expect(actual).to be planes[1]
         expect(actual.flight_number).to be 2
         expect(subject.planes.length).to be 2
+    end
+
+    it 'should not allow planes to take off when stormy' do 
+        # Arrange
+        planes = [double(:plane, :flight_number => 1), double(:plane, :flight_number => 2), double(:plane, :flight_number => 3)]
+        planes.each { |plane| subject.land_plane(plane) }
+        weather = double(:weather, :stormy? => true)
+
+        expect{ subject.take_off(planes[1], weather) }.to raise_error "You cannot take off. Weather is stormy"
     end
 end
