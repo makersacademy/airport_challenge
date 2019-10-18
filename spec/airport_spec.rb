@@ -28,7 +28,7 @@ describe Airport do
     plane1 = Plane.new
     plane1.land(airport)
     plane2 = Plane.new
-    expect{ plane2.land }.to raise_error "No space available"
+    expect { plane2.land(airport) }.to raise_error "No space available"
   end
 
   it 'Will allow a plane to take off' do

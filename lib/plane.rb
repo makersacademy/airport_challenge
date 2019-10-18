@@ -6,8 +6,12 @@ class Plane
   end
 
   def land(airport)
-    @grounded = true
-    airport.plane_capacity << self
+    if airport.plane_capacity.length < airport.max_capacity
+      @grounded = true
+      airport.plane_capacity << self
+    else
+      raise "No space available"
+    end
   end
 
   def take_off(airport)
