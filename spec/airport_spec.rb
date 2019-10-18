@@ -31,9 +31,9 @@ describe Airport do
     it 'stops flights from taking off if the weather is stormy' do
         plane = Plane.new
         weather = Weather.new
-        weather.set_weather
+        set = weather.set_weather
         subject.land_at_airport(plane)
-        subject.check_weather
-        expect(subject).to respnd_to(:take_off)
+        subject.check_weather(set)
+        expect(subject).to respond_to(:take_off) 
     end
 end
