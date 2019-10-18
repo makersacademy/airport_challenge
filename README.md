@@ -19,6 +19,8 @@ Stories completed
 * Taking off Planes
 * Prevent taking off when stormy 
 * Prevent landing when stormy
+* Prevent landing when airport is full
+* Ability to override airport capacity 
 
 
 
