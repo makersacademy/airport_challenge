@@ -18,4 +18,10 @@ describe Airport do
     expect(position).to be_an_instance_of Integer
     expect(position).to be >= 0
   end
+  it 'it does not give take of permission if weather is stormy' do
+    plane = double :plane
+    subject.planes = [plane]
+    subject.weather = 'stormy'
+    expect(subject.get_permission_to_take_off plane).to eq nil
+  end
 end
