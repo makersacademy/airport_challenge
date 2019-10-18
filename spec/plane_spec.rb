@@ -8,9 +8,15 @@ describe Plane do
     expect(subject).to be_instance_of Plane
   end
 
-  it 'Planes status can be "landed"' do
-    airport = Airport.new(5)
+  it 'Planes status can be "Grounded"' do
+    airport = Airport.new
     subject.land(airport)
     expect(subject.grounded).to eq true
+  end
+
+  it 'Planes statys can be not be "Grounded"' do
+    airport = Airport.new
+    subject.take_off(airport)
+    expect(subject.grounded).to eq false
   end
 end  
