@@ -1,29 +1,30 @@
-# frozen_string_literal: true
-
 require_relative 'plane'
 
-# Aiport class
 class Airport
-  attr_reader :planes
-
-  def initialize
+  
+  attr_reader :capacity, :planes
+  DEFAULT_CAPACITY = 20
+  
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 5
+    @capacity = capacity
   end
-
+    
   def land(_plane)
+    raise "Airport is full" if full?
     planes << _plane
   end
-
+    
   def take_off(_plane)
     planes.pop
-  end
-
+    p planes
+  end       
+    
   def stormy?
-    stormy
   end
-
+  
   def full?
     planes.count >= capacity
   end
+  
 end
