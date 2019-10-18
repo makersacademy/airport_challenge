@@ -7,6 +7,6 @@ describe Plane do
     expect(subject).to be_a(Plane)
   end
   it "has a limited number of seats" do
-    expect(subject.capacity).to eq(50)
+    expect(subject.capacity).to eq(30)
   end
 end
