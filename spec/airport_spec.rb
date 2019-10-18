@@ -13,6 +13,8 @@ describe Airport do
  # instance of the Airport class 
   it 'can instuct planes to land at an airport' do
   airport = Airport.new
+  plane = Plane.new
+  airport.land_plane(plane)
   expect(airport.planes.length).to eq 1
   end
 end
