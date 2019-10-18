@@ -28,4 +28,9 @@ describe Airport do
     plane.take_off(subject)
     expect(subject.plane_capacity).to_not include(plane)
   end
+
+  it 'Will not allow a plane to take of if weather is stormy' do
+    plane = Plane.new
+    weather = Weather.new
+    expect { plane.take_off(subject,weather) }.to raise_error "Weather is stormy"
 end

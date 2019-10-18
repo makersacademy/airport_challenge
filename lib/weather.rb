@@ -1,7 +1,7 @@
 class Weather
   attr_reader :status, :random_number
-  
-  def random_weather
+
+  def initialize
     @random_number = rand(1..10)
     if @random_number.between?(1,8)
       @status = "Sunny"
