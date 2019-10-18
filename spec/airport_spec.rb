@@ -39,4 +39,10 @@ describe Airport do
     airport = Airport.new
     expect(airport.check_weather).to eq ("Sunny" || "Stormy")
   end
+
+  it 'can check that the weather checker is random' do
+    airport = Airport.new
+    expect(Kernel).to receive(:rand)
+    airport.check_weather
+  end
 end
