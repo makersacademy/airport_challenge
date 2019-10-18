@@ -7,3 +7,5 @@ Then I have written my first test for landing an aeroplane, to make this pass I 
 Next I have written a test to allow planes to take off, to do this I will write a method that removes planes from the landed array.
 
 Next I have written a test to stop planes from taking off when weather is stormy, to do this I will create a variable called weather that randomly selects a weather system (from a range of numbers) and adapt my takeoff method depending on the weather.
+
+Next I have written a test to stop planes from landing if the weather is stormy, to do this I will adapt my landing method to use the weather in a conditional.

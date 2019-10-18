@@ -41,7 +41,7 @@ describe Airport do
   it "can instruct a plane to take off a plane" do
     aeroplane = "aeroplane" #Aeroplane.new
     airport = Airport.new
-    weather = 2
+    airport.weather = 2
     airport.land(aeroplane)
     airport.takeoff(aeroplane)
     expect(airport.landed).not_to include(aeroplane)
@@ -53,5 +53,12 @@ describe Airport do
     airport.land(aeroplane)
     airport.weather = 1
     expect(airport.takeoff(aeroplane)).to eq("Stormy conditions, #{aeroplane} cannot take off")
+  end
+
+  it "can prevent landing when weather is stormy" do
+    aeroplane = "aeroplane" #Aeroplane.new
+    airport = Airport.new
+    airport.weather = 1
+    expect(airport.land(aeroplane)).to eq("Stormy conditions, #{aeroplane} cannot safely land")
   end
 end

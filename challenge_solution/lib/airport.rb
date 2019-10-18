@@ -10,7 +10,11 @@ class Airport
   end
 
   def land(aeroplane)
-    @landed << aeroplane
+    if @weather == 1
+      return "Stormy conditions, #{aeroplane} cannot safely land"
+    else
+      @landed << aeroplane
+    end
   end
 
   def takeoff(aeroplane)
