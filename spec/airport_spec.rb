@@ -9,4 +9,12 @@ describe Airport do
     p @airport.runway
     expect(@airport.runway.length).to eq 1
   end
+
+  it "can allow planes to take off" do
+    @airport = Airport.new
+    @plane = Plane.new
+    @airport.land_plane(@plane)
+    @airport.take_off
+    expect(@airport.runway.length).to be_empty
+  end
 end
