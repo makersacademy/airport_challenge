@@ -16,6 +16,7 @@ class Airport
         return plane_to_take_off
     end
 
+    
     def pevent_takeoff(weather)
         raise "You cannot take off. Weather is stormy" if weather.stormy?
     end
