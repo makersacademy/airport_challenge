@@ -26,7 +26,7 @@ class Airport
     if rand(10) <= 8
       'sunny'
     else
-      'clear'
+      'stormy'
     end
   end
 end
