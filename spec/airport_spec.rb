@@ -23,4 +23,12 @@ describe Airport do
   airport.take_off
   expect(airport.planes.length).to eq 0 
   end
+  # Checks that when a plane takes off, that we
+  # recieve confirmation it is no longer in the Airport
+  it 'can confirm planes have left the airport' do
+  airport = Airport.new
+  plane = Plane.new
+  airport.land_plane(plane)
+  expect(airport.take_off).to eq "Flight has departed."
+  end
 end
