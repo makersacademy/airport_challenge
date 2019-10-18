@@ -10,6 +10,7 @@ describe Airport do
   it 'can instuct planes to land at an airport' do
     airport = Airport.new
     plane = Plane.new
+
     airport.land_plane(plane)
     expect(airport.planes.length).to eq 1
     # Checks that instances of the Plane class can be stored
@@ -37,12 +38,22 @@ describe Airport do
 
   it 'can check if weather is sunny or stormy' do
     airport = Airport.new
-    expect(airport.check_weather).to eq ("Sunny" || "Stormy")
+    expect(airport.check_weather).to eq("Sunny").or eq("Stormy")
   end
 
   it 'can check that the weather checker is random' do
     airport = Airport.new
     expect(Kernel).to receive(:rand)
     airport.check_weather
+    # This tests that the result of the
+    # check_weather method is always random
+  end
+
+  it 'can prevent take off during storms' do
+    airport = Airport.new
+
+
+
+
   end
 end
