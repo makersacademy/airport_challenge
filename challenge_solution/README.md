@@ -1,3 +1,7 @@
 This is my solution to the airport Friday challenge.
 
 To start with I have initialised rspec and created 2 test files, one for airport.rb and one for aeroplane.rb
+
+Then I have written my first test for landing an aeroplane, to make this pass I created an array for the planes that have landed and defined a method that adds planes to this array.
+
+Next I have written a test to allow planes to take off, to do this I will write a method that removes planes from the landed array.

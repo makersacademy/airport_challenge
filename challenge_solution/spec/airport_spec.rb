@@ -26,10 +26,23 @@ require "./lib/aeroplane"
 require "./lib/airport"
 
 describe Airport do
+  #   before(:each) do
+  #     aeroplane = Aeroplane.new
+  #     airport = Airport.new
+  #   end
+
   it "can land a plane at the airport" do
     aeroplane = Aeroplane.new
     airport = Airport.new
     airport.land(aeroplane)
     expect(airport.landed).to include(aeroplane)
+  end
+
+  it "can instruct a plane to take off a plane" do
+    aeroplane = Aeroplane.new
+    airport = Airport.new
+    airport.land(aeroplane)
+    airport.takeoff(aeroplane)
+    expect(airport.landed).not_to include(aeroplane)
   end
 end
