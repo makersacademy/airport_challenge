@@ -1,3 +1,5 @@
+# Final Version
+
 require_relative "weather"
 
 class Airport
@@ -18,13 +20,24 @@ class Airport
   end
 
   def instruct_take_off(plane)
+    capacity_for_take_off
     forecast_for_take_off
     hangar.delete(plane)
     plane.take_off!
   end
 
+  def landed_planes_total
+    hangar.length
+  end
+
+  private
+
   def capacity_for_landing
     raise "Hangar capacity at maximum, please continue to circle" if full?
+  end
+
+  def capacity_for_take_off
+    raise "You ain't getting on no plane fool" if empty?
   end
 
   def forecast_for_landing
@@ -39,7 +52,7 @@ class Airport
     landed_planes_total >= @capacity
   end
 
-  def landed_planes_total
-    hangar.length
+  def empty?
+    hangar.length.zero?
   end
 end

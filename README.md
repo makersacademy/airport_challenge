@@ -37,3 +37,7 @@
 -   [x] As an air traffic controller
         To ensure safety
         I want to prevent landing when weather is stormy
+
+-   [x] As an air traffic controller
+        To ensure multiple operations
+        I want to be able to allow multiple planes to land or take-off when safe

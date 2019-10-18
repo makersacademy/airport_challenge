@@ -1,3 +1,5 @@
+# Final Version
+
 require "airport"
 require "weather"
 require "plane"
@@ -24,6 +26,8 @@ describe Airport do
 
     it "a plane can take off from the airport" do
       allow(airport).to receive(:good_weather?).and_return(true)
+      expect(plane).to receive(:landed!)
+      airport.instruct_landing(plane)
       expect(plane).to receive(:take_off!)
       airport.instruct_take_off(plane)
     end
@@ -32,9 +36,16 @@ describe Airport do
   context "capacity checks" do
     it "confirms the airport is empty when there are no planes landed" do
       allow(airport).to receive(:good_weather?).and_return(true)
+      expect(plane).to receive(:landed!)
+      airport.instruct_landing(plane)
       expect(plane).to receive(:take_off!)
       airport.instruct_take_off(plane)
       expect(airport.hangar).to be_empty
+    end
+
+    it "if the hangar is empty a plane cannot take off and there is a message" do
+      allow(airport).to receive(:good_weather?).and_return(true)
+      expect(lambda { airport.instruct_take_off(plane) }).to raise_error(RuntimeError, "You ain't getting on no plane fool")
     end
 
     it "if the hangar is full a plane cannot land and receives a message" do
@@ -52,6 +63,9 @@ describe Airport do
 
   context "weather" do
     it "if the weather is stormy, a plane cannot take-off" do
+      allow(airport).to receive(:good_weather?).and_return(true)
+      expect(plane).to receive(:landed!)
+      airport.instruct_landing(plane)
       allow(airport).to receive(:good_weather?).and_return(false)
       expect { airport.instruct_take_off(plane) }.to raise_error("Storms persist, take-off is delayed")
     end
