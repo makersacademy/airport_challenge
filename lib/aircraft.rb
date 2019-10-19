@@ -8,7 +8,8 @@ class Aircraft
   end
 
   def land_aircraft(airport_code)
-    return false unless @status == "in flight"
+    return fail "aircraft landed - cannot land again"\
+     unless @status == "in flight"
 
     @status = "landed"
     @airport = airport_code
