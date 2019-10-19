@@ -5,6 +5,18 @@ describe Plane do
   let(:plane) {Plane.new}
   let(:airport) {Airport.new}
 
+  context "airport capacity" do
+
+    it "a new airport is created with a default capacity of 20" do
+      expect(airport.capacity).to eq(20)
+    end
+
+    it "a new airport can be created with a custom capacity" do
+      sml_airport = Airport.new(5)
+      expect(sml_airport.capacity).to eq(5)
+    end
+  end
+
   context "landing a plane" do
 
     it "lands a plane in an airport" do
@@ -19,6 +31,11 @@ describe Plane do
     it "a plane that is already landed cannot land again" do
       plane.landed
       expect{airport.land(plane)}.to raise_error("That plane has already landed")
+    end
+
+    it "a plane cannot land if the airport is full" do
+      airport.capacity.times { airport.land(Plane.new) }
+      expect{airport.land(plane)}.to raise_error("There are too many planes in the airport")
     end
 
   end
@@ -41,6 +58,5 @@ describe Plane do
     end
 
   end
-
 
 end
