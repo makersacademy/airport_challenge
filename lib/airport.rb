@@ -1,6 +1,10 @@
 class Airport
-  def initialize
+
+  attr_reader :airport_code
+
+  def initialize(airport_code)
     @aircraft_present = []
+    @airport_code = airport_code
   end
 
   def airport_landing(plane)
