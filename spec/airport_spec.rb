@@ -3,9 +3,15 @@
 # # I want to instruct a plane to land at an airport
 require 'airport'
 
+
 describe Airport do
-  it 'airport responds to plane' do
-    Airport = Airport.new
-    expect(subject).to respond_to (:plane)
+
+let(:airport) { Airport.new }
+let (:plane) { Plane.new }
+
+describe '#land(plane)' do
+  it 'allows planes to land at airport' do
+    subject.land(plane)
+    end
   end
 end

@@ -1,5 +1,7 @@
+require 'plane'
+
 class Airport
 
-def plane
+def land(plane)
   end
 end

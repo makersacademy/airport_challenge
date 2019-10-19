@@ -1,6 +1,6 @@
 class Plane
 
 
-def land
+def landed
   end
 end
