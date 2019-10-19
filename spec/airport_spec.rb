@@ -7,8 +7,8 @@ require 'plane'
 
 describe 'air traffic controller' do
   it 'instructs a plane to land at an airport' do
-    airport = Airport
-    plane = Plane
-    expect(plane.land).to eq("plane has landed")
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.land(plane)).to eq("plane has landed")
   end
 end
