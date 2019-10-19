@@ -10,7 +10,7 @@ class Airport
 
   def aircraft_arriving(plane)
     return fail "Airport is full.  Permission to land denied." \
-    unless @airport_capacity > @aircraft_present.length
+    unless !full?
 
     @aircraft_present << plane
     return true
@@ -32,3 +32,13 @@ class Airport
     return departing_plane
   end
 end
+
+private
+
+  def full?
+    if @airport_capacity > @aircraft_present.length
+      return false
+    else
+      return true
+    end
+  end
