@@ -13,15 +13,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
 Steps completed:
 -------
 
@@ -61,13 +52,13 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-1. Test driven the set of classes/modules to satisfy all the above user stories. 
+1. Test driven the set of classes/modules to satisfy all the above user stories.
   - used a random number generator, in creating and setting the weather (normally sunny but on rare occasions it may be stormy).
   - used a stub to override random weather to ensure consistent test behaviour.
 
 2. My code defends against the following [edge cases]:
  - inconsistent states of the system, ensuring that planes can only take off from airports they are in
- - planes that are already flying cannot take off and be in an airport; 
+ - planes that are already flying cannot take off and be in an airport;
  - planes that are already flying cannot take off or be in an airport
  - planes that are landed cannot land again
  - planes that are landed must be in an airport
@@ -77,13 +68,13 @@ I would like a default airport capacity that can be overridden as appropriate
 4. (Bonus attempted and completed) RSpec **feature** test written that lands and takes off a number of planes
 
 Headsup for code review:
-=======================
+-----------------------
 
 * All tests are passing
 * [Test coverage] rubocop: (100%)
 
 Monday morning:
-==============
+--------------
 1. **Pull request submitted**
 
 **References Used:**
