@@ -10,7 +10,8 @@ class Plane
   end
 
   def land(airport)
-    raise "Plane not flying" if not flying? 
+    raise "Plane not flying" unless flying?
+    
     @flying = false
     @airport = airport
   end
