@@ -28,7 +28,7 @@ describe Plane do
       expect(subject.take_off(airport)).to eq 'Too stormy to take off'
     end
 
-    it 'Lands at an airport when instructed' do
+    it 'Cannot land' do
       airport = double(:airport, :planes => [], :stormy => true)
       plane = Plane.new
       expect(plane.land(airport)).to eq 'Too stormy to land'
