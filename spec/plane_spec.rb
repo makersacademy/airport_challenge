@@ -24,6 +24,7 @@ describe Plane do
       a_plane.land(an_airport)
       expect { a_plane.land(an_airport) }.to raise_error(RuntimeError, "Plane not flying")
     end
+
   end
 
   describe 'takeoff' do
@@ -38,6 +39,5 @@ describe Plane do
       landed_plane.takeoff
       expect(landed_plane.airport).to eq ""
     end
-
   end
 end
