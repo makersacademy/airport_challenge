@@ -1,2 +1,8 @@
 class Airport
-end  
+  def open_for_landing?
+    true
+  end
+
+
+
+end
