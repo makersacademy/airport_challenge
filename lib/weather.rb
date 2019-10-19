@@ -2,8 +2,10 @@
 
 class Weather
 
+  attr_reader = :stormy
+
   def initialize
-    @state = 0
+    @stormy = true
   end
 
 end

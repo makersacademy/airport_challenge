@@ -33,7 +33,13 @@ end
 
 describe Airport.new do
   let(:plane) { double(:plane) }
+  let(:weather) { double(:weather) }
   context "weather tests"
-  
+  it "prevents landing in stormy weather" do
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:takeoff)
+    allow(weather).to receive(:stormy)
+    expect(subject.land(plane)).to raise_error("cannot land in stormy weather")
+  end
 
 end

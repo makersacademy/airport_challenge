@@ -19,7 +19,7 @@ class Airport
   end
 
   def takeoff(plane)
-    @planes.pop # change so you can control which plane
+    @planes.pop # change so you can control which plane?
     plane.takeoff
   end
 

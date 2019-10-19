@@ -6,12 +6,4 @@ class Plane
 
   end
 
-  def land
-
-  end
-
-  def takeoff
-    
-  end
-
 end
