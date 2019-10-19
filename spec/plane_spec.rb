@@ -27,8 +27,17 @@ describe Plane do
   end
 
   describe 'takeoff' do
-    plane = Plane.new
-    airport = Airport.new
-    plane.land(airport)
+
+    it 'raise error if trying to take off a flying plane' do
+      flying_plane = Plane.new
+      expect { flying_plane.takeoff }.to raise_error(RuntimeError, "Plane flying, cannot take off")
+    end
+
+    it 'take off the plane and confirm not in airport' do
+      landed_plane = Plane.new(false)
+      landed_plane.takeoff
+      expect(landed_plane.airport).to eq ""
+    end
+
   end
 end
