@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 # As an air traffic controller
 # So I can get passengers to a destination
@@ -8,6 +9,10 @@ require 'plane'
 # As an air traffic controller
 # So I can get passengers on the way to their destination
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
 
 describe 'air traffic controller' do
   it 'instructs a plane to land at an airport' do
