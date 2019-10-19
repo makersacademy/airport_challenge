@@ -14,7 +14,7 @@ describe Airport do
     test_plane = heathrow.aircraft_departing("G-BNLO")
     expect(test_plane.registration).to eq "G-BNLO"
   end
-  it "throws an error if we ask for a plane not at the airport" do
+  it "throws an error if we ask for a plane not at the airport. Unit test" do
     heathrow = Airport.new "LHR"
     b747 = Aircraft.new("landed", "LHR", "G-BNLO")
     heathrow.aircraft_arriving(b747)

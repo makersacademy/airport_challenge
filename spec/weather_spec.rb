@@ -1,12 +1,12 @@
 require 'weather'
 
 describe Weather do
-  it "is fine" do
-    srand 500
-    expect(subject.status).to eq "fine"
+  it "is fine. Unit test" do
+    srand 3
+    expect(subject.forecast).to eq "fine"
   end
-  it "is stormy" do
-    srand 300
-    expect(subject.status).to eq "stormy"
+  it "is stormy. Unit test" do
+    srand 5
+    expect(subject.forecast).to eq "stormy"
   end
 end

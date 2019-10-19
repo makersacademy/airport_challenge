@@ -17,6 +17,7 @@ class Airport
     { |aircraft| aircraft.registration == ac_reg }
 
       return fail "#{ac_reg} not present at #{@airport_code}. Cannot takeoff."
+
     end
 
     departing_plane = @aircraft_present.find\
