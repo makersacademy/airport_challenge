@@ -1,13 +1,17 @@
 class Airport
-
   attr_reader :airport_code
+  DEFAULT_CAPACITY = 20
 
-  def initialize(airport_code)
+  def initialize(airport_code, airport_capacity = DEFAULT_CAPACITY)
     @aircraft_present = []
     @airport_code = airport_code
+    @airport_capacity = airport_capacity
   end
 
   def aircraft_arriving(plane)
+    return fail "Airport is full.  Permission to land denied." \
+    unless @airport_capacity > @aircraft_present.length
+
     @aircraft_present << plane
     return true
   end

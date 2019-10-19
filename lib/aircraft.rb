@@ -13,9 +13,12 @@ class Aircraft
     @registration = registration
   end
 
-  def land_aircraft(airport_code)
+  def land_aircraft(airport_code = "")
     return fail "aircraft landed - cannot land again"\
      unless @status == "in flight"
+
+    return fail "need to specify airport to land"\
+     unless airport_code != ""
 
     @status = "landed"
     @airport = airport_code

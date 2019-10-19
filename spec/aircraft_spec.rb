@@ -22,4 +22,9 @@ describe Aircraft do
     a320 = Aircraft.new("in flight", "")
     expect { a320.takeoff("") }.to raise_error("Already in flight. Cannot takeoff.")
   end
+  it "throws an error if don't specify which airport we are landing at. \
+  Unit test" do
+    a320 = Aircraft.new("in flight")
+    expect { a320.land_aircraft }.to raise_error("need to specify airport to land")
+  end
 end
