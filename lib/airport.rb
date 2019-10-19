@@ -7,13 +7,15 @@ class Airport
 
   attr_reader :planes
 
-  def initialize
+  def initialize(weather: Weather.new)
     @planes = []
     @capacity = 1
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
+    raise "cannot land in stormy weather" if @weather.stormy?
+    
     @planes << plane
     plane.land
   end
@@ -22,5 +24,9 @@ class Airport
     @planes.pop # change so you can control which plane?
     plane.takeoff
   end
+
+  private
+
+  attr_reader :stormy
 
 end

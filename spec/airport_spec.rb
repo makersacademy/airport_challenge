@@ -31,14 +31,17 @@ describe Airport.new do
   end
 end
 
-describe Airport.new do
+describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
-  context "weather tests"
-  it "prevents landing in stormy weather" do
+  before :each do
     allow(plane).to receive(:land)
     allow(plane).to receive(:takeoff)
-    allow(weather).to receive(:stormy)
+  end
+  context "stormy tests"
+  it "prevents landing in stormy weather" do
+    stormy_airport = Airport.new(weather)
+    allow(weather).to receive(:stormy?).and_return true
     expect(subject.land(plane)).to raise_error("cannot land in stormy weather")
   end
 
