@@ -2,12 +2,12 @@ require 'airport'
 require 'aircraft'
 
 describe Airport do
-  it 'Lands a plane - into array. Unit test' do
+  it 'lands a plane - into array. Unit test' do
     heathrow = Airport.new "LHR"
     b747 = Aircraft.new("in flight")
     expect(heathrow.aircraft_arriving(b747)).to be true
   end
-  it 'Departs a plane - out of array. Unit test' do
+  it 'departs a plane - out of array. Unit test' do
     heathrow = Airport.new "LHR"
     b747 = Aircraft.new("landed", "LHR", "G-BNLO")
     heathrow.aircraft_arriving(b747)

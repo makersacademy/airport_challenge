@@ -2,7 +2,8 @@ class Atc
 
   def auth_landing(aircraft, airport, airport_code)
     met_office = Weather.new
-    return fail "Poor weather. Airport closed." unless met_office.forecast == "fine"
+    return fail "Poor weather. Airport closed." \
+    unless met_office.forecast == "fine"
 
     airport.aircraft_arriving(aircraft)
     aircraft.land_aircraft(airport_code)
@@ -10,7 +11,8 @@ class Atc
 
   def auth_takeoff(aircraft, airport, airport_code)
     met_office = Weather.new
-    return fail "Poor weather. Airport closed." unless met_office.forecast == "fine"
+    return fail "Poor weather. Airport closed." \
+    unless met_office.forecast == "fine"
 
     airport.aircraft_departing(aircraft.registration)
     aircraft.takeoff(airport_code)
