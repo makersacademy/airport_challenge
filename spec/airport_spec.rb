@@ -4,22 +4,11 @@ require 'plane'
 # As an air traffic controller
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport
-describe Airport do
 
-  describe "#land" do
-    it "confirm plan has landed" do
-      airport = Airport.new
-      plane = Plane.new #Mock
-      expect(airport.land(plane)).to eq("Plane has landed")
-    end
+describe 'air traffic controller' do
+  it 'instructs a plane to land at an airport' do
+    airport = Airport
+    plane = Plane
+    expect(plane.land).to eq("plane has landed")
   end
-
-    describe "#take_off" do
-      it "instructs a plane to take off" do
-        airport = Airport.new
-        plane = Plane.new #Mock
-        airport.planes = [plane]
-        expect(airport.take_off(plane)).to eq("Plane has taken off")
-      end
-    end
 end
