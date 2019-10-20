@@ -35,7 +35,7 @@ Rspec tests are included in the 'spec' directory.
 - At last commit, all tests were passing (12/12)
 - At last commit, coverage was 100%
 
-How to use the programe
+How to use the program
 ----
 
 The following irb transcript should give an idea of how the program is
