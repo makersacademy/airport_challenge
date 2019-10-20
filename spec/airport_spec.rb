@@ -9,11 +9,13 @@ describe Airport do
   context 'landing a plane' do
 
     it 'expects plane to be in airport' do
+      allow(airport).to receive(:weather) { "sunny" }
       airport.land(plane)
       expect(airport.landed_planes).to include(plane)
     end
 
     it 'checked that if plane already landed get error' do
+      allow(airport).to receive(:weather) { "sunny" }
       airport.land(plane)
       expect { airport.land(plane) }.to raise_error("Plane already landed.")
     end
@@ -43,6 +45,13 @@ describe Airport do
         plane = Plane.new
         allow(airport).to receive(:weather) { "stormy" }
         expect { airport.takeoff(plane) }.to raise_error("To stormy to take off.")
+      end
+    end
+
+    describe 'landing' do
+      it 'prevents landing' do
+        allow(airport).to receive(:weather) { "stormy" }
+        expect { airport.land(plane) }.to raise_error("To stormy to land.")
       end
     end
 

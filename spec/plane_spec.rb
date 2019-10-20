@@ -8,6 +8,7 @@ describe Plane do
   context 'land plane' do
 
     it 'updates plane flying status' do
+      allow(airport).to receive(:weather) { "sunny" }
       airport.land(plane)
       expect(plane.flying).to eq false
     end
