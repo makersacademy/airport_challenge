@@ -42,11 +42,12 @@ describe Plane do
       plane.take_off
     end
 
-    it 'so we know the plane is in the air is the string "air" saved to @location?' do
+    it "stop raise error is plane is already in air" do
       allow(airport).to receive(:can_plane_take_off?).and_return(false)
-      plane.land(airport)
-      plane.take_off
-      expect(plane.location).to eq "air"
+      air_traffic_control = AirTrafficControl.new
+      air_traffic_control.land_plane_at_airport(plane, airport)
+      air_traffic_control.take_off_from_airport(plane)
+      expect { plane.take_off }.to raise_error "** Plane is in the air **"
     end
 
   end

@@ -2,14 +2,20 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :planes_at_airport
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  attr_reader :planes_at_airport, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes_at_airport = []
+    @capacity = capacity
   end
 
   def incoming_plane(plane)
     raise "** No landings due to storm **" if can_plane_take_off?
-    raise "** Plane is already at airport **" if @planes_at_airport.count(plane) > 0
+    raise "** Already landed **" if @planes_at_airport.count(plane).positive?
+    raise "** Airport is full **" if full?
+
     @planes_at_airport << plane
     plane.location = self
   end
@@ -20,7 +26,7 @@ class Airport
     @planes_at_airport.delete(plane)
     plane.location = "air"
     "Plane has left airport"
-    
+
   end
 
   private
@@ -28,6 +34,10 @@ class Airport
   def can_plane_take_off?
     weather = Weather.new
     weather.stormy?
+  end
+
+  def full?
+    @planes_at_airport.count == @capacity
   end
 
 end
