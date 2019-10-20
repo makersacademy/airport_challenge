@@ -1,10 +1,18 @@
 class Airport
-  def plane_leaves
-    @plane = false
+  def initialize
+    @planes = 0
   end
 
-  def plane?
-    @plane
+  def plane_takes_off
+    @planes -= 1
+  end
+
+  def plane_lands
+    @planes += 1
+  end
+
+  def plane_count
+    @planes
   end
 
   def stormy?

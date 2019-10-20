@@ -5,14 +5,16 @@ describe Plane do
   context 'when not stormy' do
     it 'can take off' do
       plane = Plane.new
-      airport = double('Airport', :stormy? => false, :plane_leaves => true)
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
       expect { plane.take_off(airport) }.not_to raise_error
     end
 
     context 'when airport is not full' do
       it 'can land' do
         plane = Plane.new
-        airport = double('Airport', :stormy? => false, :plane? => false)
+        airport = Airport.new
+        allow(airport).to receive(:stormy?).and_return false
         expect { plane.land(airport) }.not_to raise_error
       end
     end
@@ -35,7 +37,7 @@ describe Plane do
   context 'when the airport is full' do
     it 'raises an error when land is called' do
       plane = Plane.new
-      airport = double('Airport', :stormy? => false, :plane? => true)
+      airport = double('Airport', :stormy? => false, :plane_count => 1)
       expect { plane.land(airport) }.to raise_error 'Airport is full'
     end
   end
