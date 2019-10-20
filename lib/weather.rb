@@ -1,4 +1,4 @@
-class Weather
+class 
 
   def randomise
     rand(100)
