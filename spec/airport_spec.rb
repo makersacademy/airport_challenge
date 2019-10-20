@@ -19,7 +19,7 @@ describe Airport do
 
   describe '#take_off' do
     context 'planes should take off from the airport'
-    it 'shows plane has left the airport' do
+    it 'shows plane has left the airport in sunny weather' do
       subject.weather = 1
       plane = Plane.new
       subject.land plane
@@ -41,7 +41,7 @@ describe Airport do
 
   describe '#land' do
     context 'planes should land at the airport'
-    it "should let planes land" do
+    it "should let planes land in sunny weather" do
       subject.weather = 1
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
@@ -65,7 +65,9 @@ describe Airport do
       plane = Plane.new
       expect { subject.land(plane) }.to raise_error 'Cannot land in stormy weather'
     end
+  end
 
+  describe '#capacity' do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
