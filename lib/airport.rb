@@ -20,10 +20,12 @@ class Airport
   def take_off(plane)
     raise "Cannot take off due to stormy weather" if stormy?
     raise "Plane not in airport" unless @planes.include?(plane)
-    
+
     @planes.delete(plane)
     puts "#{plane} no longer in airport"
   end
+
+  private
 
   def stormy?
     Weather.new.stormy?
