@@ -11,10 +11,6 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return false
       end
 
-      it 'instructs a plane to land' do
-        expect(airport).to respond_to(:land).with(1).argument
-      end
-
       it 'has plane after landing' do
         airport.land plane
         expect(airport.planes).to include plane
@@ -46,10 +42,6 @@ describe Airport do
     context 'when weather is sunny' do
       before do
         allow(airport).to receive(:stormy?).and_return false
-      end
-
-      it 'instructs a plane to take off' do
-        expect(airport).to respond_to(:take_off).with(1).argument
       end
 
       # it 'does not have plane' do
