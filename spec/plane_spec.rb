@@ -23,14 +23,16 @@ describe Plane do
   context 'when stormy' do
     it 'raises an error when land is called' do
       plane = Plane.new
-      airport = double('Airport', :stormy? => true)
-      expect { plane.land(airport) }.to raise_error 'Too stormy to land'
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return true
+      expect { plane.land(airport) }.to raise_error 'Too stormy for landing'
     end
 
     it 'raises an error when take_off is called' do
       plane = Plane.new
-      airport = double('Airport', :stormy? => true)
-      expect { plane.take_off(airport) }.to raise_error 'Too stormy to take off'
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return true
+      expect { plane.take_off(airport) }.to raise_error 'Too stormy for takeoff'
     end
   end
 

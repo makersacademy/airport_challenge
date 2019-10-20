@@ -28,7 +28,7 @@ describe Airport do
   it 'allows up to 10 planes to land by default' do
     airport = Airport.new
     allow(airport).to receive(:stormy?).and_return false
-    9.times { Plane.new.land(airport) } 
+    10.times { Plane.new.land(airport) } 
     expect { Plane.new.land(airport) }.to raise_error
   end
 end
