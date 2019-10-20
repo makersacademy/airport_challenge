@@ -15,9 +15,17 @@ describe Airport do
   end
 
   context 'take off' do
+
+    it 'expects plane to not be in airport' do
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(airport.landed_planes).not_to include(plane)
+    end
+
     it 'plane takes off' do
       expect(airport.takeoff(plane)).to eq("Plane safely taken off.")
     end
+    
   end
 
 end
