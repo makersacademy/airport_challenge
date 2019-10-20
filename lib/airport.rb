@@ -1,4 +1,5 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
   attr_reader :grounded_planes, :capacity
@@ -15,8 +16,9 @@ class Airport
     plane.landed
   end
 
-  def takeoff(plane)
+  def takeoff(plane, weather)
     raise "That plane is not in this airport" if !@grounded_planes.include?(plane)
+    raise "It is too stormy for takeoff" if weather.forecast == "stormy"
     @grounded_planes.delete(plane)
     plane.taken_off
   end

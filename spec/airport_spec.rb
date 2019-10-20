@@ -1,9 +1,11 @@
 require 'plane.rb'
 require 'airport.rb'
+require 'weather.rb'
 
 describe Plane do
   let(:plane) {Plane.new}
   let(:airport) {Airport.new}
+  let(:today) {Weather.new}
 
   context "airport capacity" do
 
@@ -43,18 +45,31 @@ describe Plane do
   context "plane taking off" do
 
     it "plane takes off from an airport" do
+      allow(today).to receive(:forecast) {"sunny"}
       airport.land(plane)
-      expect(airport.takeoff(plane)).to eq("The plane is in the air")
+      expect(airport.takeoff(plane, today)).to eq("The plane is in the air")
     end
 
     it "confirms when a plane takes off it is no longer in the airport" do
+      allow(today).to receive(:forecast) {"sunny"}
       airport.land(plane)
-      airport.takeoff(plane)
+      airport.takeoff(plane, today)
       expect(airport.grounded_planes).not_to include(plane)
     end
 
     it "throws an error if a plane that is not in the airport tries to take off" do
-      expect{airport.takeoff(plane)}.to raise_error("That plane is not in this airport")
+      allow(today).to receive(:forecast) {"sunny"}
+      expect{airport.takeoff(plane, today)}.to raise_error("That plane is not in this airport")
+    end
+
+  end
+
+  context "weather conditions" do
+
+    it "plane cannot take off if weather is stormy" do
+      allow(today).to receive(:forecast) {"stormy"}
+      airport.land(plane)
+      expect{airport.takeoff(plane, today)}.to raise_error("It is too stormy for takeoff")
     end
 
   end
