@@ -11,6 +11,10 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return false
       end
 
+      it "can override default DEFAULT_CAPACITY" do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+
       it 'instructs a plane to land' do
         expect(airport).to respond_to(:land).with(1).argument
       end
