@@ -71,11 +71,18 @@ Headsup for code review:
 -----------------------
 
 * All tests are passing
-* [Test coverage] rubocop: (100%)
+* [Test coverage] SimpleCov: (98%)
 
 Monday morning:
 --------------
 1. **Pull request submitted**
+
+
+Tools used:
+--------------
+1. **rspec**
+2. **rubocop**
+3. **SimpleCov**
 
 **References Used:**
 
