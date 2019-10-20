@@ -1,18 +1,26 @@
 class Airport
 
-  attr_accessor :plane
+  attr_reader :planes
 
   def initialize
-    @plane = []
+    @planes = []
   end
 
   def land(plane)
-    @plane << plane
+    raise "Plane already landed" if @planes.include?(plane)
+
+    @planes << plane
   end
 
   def take_off(plane)
-    @plane.delete(plane)
+    raise "Cannot take off due to stormy weather" if stormy?
+
+    # raise "Plane not in airport" if @planes.include?(plane) == false
+    @planes.delete(plane)
     puts "#{plane} no longer in airport"
   end
 
+  def stormy?
+    Weather.new.stormy?
+  end
 end
