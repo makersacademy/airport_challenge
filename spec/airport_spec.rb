@@ -22,22 +22,23 @@ describe Plane do
   context "landing a plane" do
 
     it "lands a plane in an airport" do
-      expect(airport.land(plane)).to eq("The plane has safely landed")
+      expect(airport.land(plane, today)).to eq("The plane has safely landed")
     end
 
     it "when a plane lands the airport stores the plane" do
-      airport.land(plane)
+      airport.land(plane, today)
       expect(airport.grounded_planes).to include(plane)
     end
 
     it "a plane that is already landed cannot land again" do
       plane.landed
-      expect{airport.land(plane)}.to raise_error("That plane has already landed")
+      expect{airport.land(plane, today)}.to raise_error("That plane has already landed")
     end
 
     it "a plane cannot land if the airport is full" do
-      airport.capacity.times { airport.land(Plane.new) }
-      expect{airport.land(plane)}.to raise_error("There are too many planes in the airport")
+      allow(today).to receive(:forecast) {"sunny"}
+      airport.capacity.times { airport.land(Plane.new, today) }
+      expect{airport.land(plane, today)}.to raise_error("There are too many planes in the airport")
     end
 
   end
@@ -46,18 +47,18 @@ describe Plane do
 
     it "plane takes off from an airport" do
       allow(today).to receive(:forecast) {"sunny"}
-      airport.land(plane)
+      airport.land(plane, today)
       expect(airport.takeoff(plane, today)).to eq("The plane is in the air")
     end
 
     it "confirms when a plane takes off it is no longer in the airport" do
       allow(today).to receive(:forecast) {"sunny"}
-      airport.land(plane)
+      airport.land(plane, today)
       airport.takeoff(plane, today)
       expect(airport.grounded_planes).not_to include(plane)
     end
 
-    it "throws an error if a plane that is not in the airport tries to take off" do
+    it "a plane that is not already in the airport cannot take off" do
       allow(today).to receive(:forecast) {"sunny"}
       expect{airport.takeoff(plane, today)}.to raise_error("That plane is not in this airport")
     end
@@ -67,9 +68,17 @@ describe Plane do
   context "weather conditions" do
 
     it "plane cannot take off if weather is stormy" do
+      sunny_weather = Weather.new
+      stormy_weather = Weather.new
+      allow(sunny_weather).to receive(:forecast) {"sunny"}
+      allow(stormy_weather).to receive(:forecast) {"stormy"}
+      airport.land(plane, sunny_weather)
+      expect{airport.takeoff(plane, stormy_weather)}.to raise_error("It is too stormy for takeoff")
+    end
+
+    it "plane cannot land if weather is stormy" do
       allow(today).to receive(:forecast) {"stormy"}
-      airport.land(plane)
-      expect{airport.takeoff(plane, today)}.to raise_error("It is too stormy for takeoff")
+      expect{airport.land(plane, today)}.to raise_error("It is too stormy to land")
     end
 
   end

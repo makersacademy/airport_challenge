@@ -9,9 +9,10 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def land(plane, weather)
     raise "That plane has already landed" if plane.flying? == "landed"
     raise "There are too many planes in the airport" if full?
+    raise "It is too stormy to land" if weather.forecast == "stormy"
     @grounded_planes << plane
     plane.landed
   end

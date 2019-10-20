@@ -1,7 +1,7 @@
 require 'weather.rb'
 
 describe Weather do
-  today = Weather.new
+  let(:today) {Weather.new}
 
   it "weather can be stormy" do
     allow(today).to receive(:forecast) {"stormy"}
