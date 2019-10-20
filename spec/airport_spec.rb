@@ -18,4 +18,10 @@ describe Airport do
     airport = Airport.new
     expect(airport).to respond_to(:take_off).with(1).argument
   end
+  it 'does not allow planes to land and take off when stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect(airport.land(plane)).to raise_error 'The landing is not allowed : stormy weather'
+  end
 end
