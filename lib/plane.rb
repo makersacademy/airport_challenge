@@ -1,10 +1,8 @@
 class Plane
-  attr_writer :in_airport
   attr_accessor :airport, :flying
 
   def initialize
     @flying = true
-    @in_airport = false
     @airport = ""
   end
 
