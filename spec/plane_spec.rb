@@ -2,11 +2,11 @@ require 'plane'
 
 describe Plane do
   context "When using the Plane class" do
-    it "should tell us which aiport it is landing in" do
+    it "should tell us which airport it is landing in" do
       airport = Airport.new
       allow(airport).to receive(:stormy?).and_return(false)
       airport.land(subject)
-      expect(subject.current_airport).to eq(airport.airport_id)
+      expect(subject.airport).to eq(airport.airport_id)
     end
 
     it "should tell us if the plane is flying" do
@@ -23,8 +23,15 @@ describe Plane do
       airport.land(subject)
       airport.take_off(subject)
       expect(airport.in_airport?(subject)).to be(false)
-      expect(subject.current_airport).to eq("")
+      expect(subject.airport).to eq("")
     end
+
+    it "shouldbe able to change the flight status" do
+      subject.change_status("Heathrow", true)
+      expect(subject.flying).to eq(true)
+      expect(subject.airport).to eq("Heathrow")
+    end
+
   end
 
 end

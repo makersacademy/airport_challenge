@@ -1,14 +1,14 @@
 class Airport
   DEFAULT_CAPACITY = 40
   attr_reader :hangar, :capacity, :airport_id
-  attr_writer :stormy, :full
+  attr_writer :full
   
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @stormy = [1,0].sample
+    @stormy = rand(10)
     @full = false
     @capacity = capacity
-    @airport_id = self.object_id
+    @airport_id = object_id
   end
 
   def land(plane)
@@ -24,7 +24,7 @@ class Airport
   def take_off(plane)
     fail "Can't take off due to stormy weather!" if stormy?
     fail "This plane is already flying" if plane.flying?
-    fail "This plane is not at this airport, cant take off" unless plane.current_airport == @airport_id
+    fail "This plane is not at this airport" unless plane.airport == @airport_id
 
     @hangar.delete(plane)
     plane.change_status("", true)
@@ -36,21 +36,11 @@ class Airport
   end
 
   def stormy?
-    if @stormy == 1
-      return true
-    else
-      return false
-    end
+    return @stormy <= 3
   end
 
   def full?
-    if @hangar.length >= capacity
-      @full = true
-    else
-      @full = false
-    end
-
-    return @full
+    @full = (@hangar.length >= capacity)
   end
 
 end
