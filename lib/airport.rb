@@ -6,7 +6,6 @@ class Airport
 
   def plane_takes_off
     raise 'Too stormy for takeoff' if stormy?
-    raise 'Airport empty' if @planes.zero?
 
     @planes -= 1
   end

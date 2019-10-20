@@ -2,14 +2,6 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  context 'when airport is empty' do
-    it 'raises error if a plane tries to take off' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return false
-      expect { Plane.new.take_off(airport) }.to raise_error 'Airport empty'
-    end
-  end
-
   it 'returns "true" when stormy? is called if rand = 0.8' do
     airport = Airport.new
     allow(airport).to receive(:rand).and_return 0.8
