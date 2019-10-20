@@ -27,7 +27,7 @@ describe Airport do
       # end
 
       it 'cannot land if at full capacity' do
-        10.times { airport.land(plane) }
+        airport.capacity.times { airport.land(plane) }
         message = "Cannot land as airport full"
         expect { airport.land(plane) }.to raise_error message
       end
