@@ -6,24 +6,38 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe 'landing a plane' do
-    it 'instructs a plane to land' do
-      expect(airport).to respond_to(:land).with(1).argument
+    context 'when weather is sunny' do
+      before do
+        allow(airport).to receive(:stormy?).and_return false
+      end
+
+      it 'instructs a plane to land' do
+        expect(airport).to respond_to(:land).with(1).argument
+      end
+
+      it 'has plane after landing' do
+        airport.land plane
+        expect(airport.planes).to include plane
+      end
+
+      it 'planes that are landed cannot land again' do
+        airport.land plane
+        message = "Plane already landed"
+        expect { airport.land(plane) }.to raise_error message
+      end
     end
 
-    it 'has plane after landing' do
-      airport.land plane
-      expect(airport.planes).to include plane
-    end
-
-    it 'planes that are landed cannot land again' do
-      airport.land plane
-      message = "Plane already landed"
-      expect { airport.land(plane) }.to raise_error message
+    context 'when weather is stormy' do
+      it 'prevents landing' do
+        allow(airport).to receive(:stormy?).and_return true
+        message = "Cannot land due to stormy weather"
+        expect { airport.land(plane) }.to raise_error message
+      end
     end
   end
 
   describe 'plane taking off' do
-    context 'when not stormy' do
+    context 'when weather is sunny' do
       before do
         allow(airport).to receive(:stormy?).and_return false
       end
@@ -50,7 +64,7 @@ describe Airport do
       #  end
     end
 
-    context 'when it is stormy' do
+    context 'when weather is stormy' do
       it 'prevents takeoff' do
         # subject.land(plane)
         allow(airport).to receive(:stormy?).and_return true
