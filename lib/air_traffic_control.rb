@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class AirTrafficControl
   def land_plane_at_airport(plane, airport)
