@@ -1,10 +1,10 @@
 class Plane
   def initialize
-    @location = 'air'
+    @location = :air
   end
 
   def land(airport)
-    raise "Plane is not in the air" if @location != 'air'
+    raise "Plane is not in the air" if @location != :air
 
     airport.plane_lands
     @location = airport
@@ -14,6 +14,6 @@ class Plane
     raise "Plane is not in the airport" if @location != airport
 
     airport.plane_takes_off
-    @location = 'air'
+    @location = :air
   end
 end
