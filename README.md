@@ -56,16 +56,7 @@ I would like a default airport capacity that can be overridden as appropriate
   - used a random number generator, in creating and setting the weather (normally sunny but on rare occasions it may be stormy).
   - used a stub to override random weather to ensure consistent test behaviour.
 
-2. My code defends against the following [edge cases]:
- - inconsistent states of the system, ensuring that planes can only take off from airports they are in
- - planes that are already flying cannot take off and be in an airport;
- - planes that are already flying cannot take off or be in an airport
- - planes that are landed cannot land again
- - planes that are landed must be in an airport
-
-3. Separate files were created for every class, module and test suite.
-
-4. (Bonus attempted and completed) RSpec **feature** test written that lands and takes off a number of planes
+2. Separate files were created for every class, module and test suite.
 
 Headsup for code review:
 -----------------------
