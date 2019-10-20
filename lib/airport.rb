@@ -9,6 +9,11 @@ attr_reader :capacity
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
+    @stormy = stormy
+  end
+
+  def stormy
+    [true, false].sample
   end
 
   def land(plane)
