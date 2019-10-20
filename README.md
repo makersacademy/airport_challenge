@@ -1,3 +1,51 @@
+My Approach
+============
+1. Implement user stories in Task section below using test driven development
+2. Keep separate files for every class and test suite
+3. Use simplest possible first test approach
+4. Adhere to SRP and encapsulation principles (to the best of my ability)
+5. Run Rubocop before every commit, tidying as I go
+6. Once satisfied minimum user requirements, refactor to defend against edge cases
+
+At last commit, all 12 tests passed and test coverage was 98.08%
+
+How to use program
+------------------
+**Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation
+**Plane** handles flying status - not quite complete
+**Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny
+
+```
+2.6.0 :001 > require './lib/plane.rb'
+ => true
+
+2.6.0 :002 > require './lib/airport.rb'
+ => true
+
+2.6.0 :003 > require './lib/weather.rb'
+ => true
+
+2.6.0 :004 > city_airport = Airport.new(20)
+ => #<Airport:0x00007f86d68b7ae0 @capacity=20, @planes=[]>
+
+2.6.0 :005 > plane = Plane.new
+ => #<Plane:0x00007f86d68a7230 @flying=true>
+
+2.6.0 :006 > city_airport.land(plane)
+RuntimeError (Cannot land due to stormy weather)
+
+2.6.0 :007 > city_airport.take_off(plane)
+RuntimeError (Plane not in airport)
+
+```
+
+Comments
+---------
+Used stack overflow, Ruby docs, relish and watched some of https://www.youtube.com/watch?v=Vg0cFVLH_EM to help me better understand how to stub randomness using doubles and how to use context and before blocks
+
+If I had more time I would have refactored Plane and Airport classes to make **Plane** more responsible for handling the edge cases.
+
+
 Airport Challenge
 =================
 
@@ -36,25 +84,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +121,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
