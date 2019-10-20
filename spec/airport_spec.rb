@@ -20,11 +20,6 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error("Plane already landed.")
     end
 
-    it 'checks if airport is full' do
-      allow(airport).to receive(:weather) { "sunny" }
-      expect { airport.land(plane) }.to raise_error("Airport full!")
-    end
-
   end
 
   context 'take off' do
