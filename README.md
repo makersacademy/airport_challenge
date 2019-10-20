@@ -1,17 +1,21 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+Answered with help of this video: https://www.youtube.com/watch?v=Vg0cFVLH_EM
 
-```
+Correctly passed user stories 1 & 2 without it. Worked with the video to implement user story 5, and understood it.
+Had already intended to use an array for capacity, and fill it with planes, in a way similar to the Boris Bikes Weekly
+exercise. 
+Before starting the video, spent time attempting to implement a weather system. Created the following code within
+a Weather Class:
+```def forecast
+    prediction = rand(1..10)
+    if prediction == 10
+      puts "fine"
+    else
+      puts "stormy"
+    end```
+
 
 Instructions
 ---------
