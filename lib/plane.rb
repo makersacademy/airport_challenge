@@ -12,4 +12,9 @@ class Plane
     return @flying
   end
 
+  def change_status(airport_id, flying_status)
+    @current_airport = airport_id
+    @flying = flying_status
+  end
+
 end
