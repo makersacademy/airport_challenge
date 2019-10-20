@@ -6,6 +6,18 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  context "when weather is stormy" do
+
+    it "prevents plane taking off when weather is stormy" do
+      weather = double(:weather, stormy: true)
+      plane = double(:plane)
+      subject.land(plane)
+      expect { subject.takeoff }.to raise_error "Cannot take off in stormy weather"
+    end
+
+
+  end
+
   describe "takeoff method" do
 
     it "raises an error when airport is empty" do
@@ -23,7 +35,8 @@ describe Airport do
   describe "land method" do
 
     it "raises an error when airport is full" do
-      subject.capacity.times { subject.land(double :plane) }
+      plane = double(:plane)
+      subject.capacity.times { subject.land(plane) }
       expect { subject.land(double :plane) }.to raise_error "Airport is full"
     end
 

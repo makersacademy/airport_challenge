@@ -1,19 +1,17 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
 DEFAULT_CAPACITY = 1
 
-attr_reader :capacity
+attr_accessor :capacity
+attr_accessor :stormy
 
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
-    @stormy = stormy
-  end
-
-  def stormy
-    [true, false].sample
+    @forecast = Weather.new
   end
 
   def land(plane)
@@ -22,6 +20,7 @@ attr_reader :capacity
   end
 
   def takeoff
+    fail "Cannot take off in stormy weather" if @stormy == true
     fail "Airport is empty" if empty?
     @planes.pop
   end

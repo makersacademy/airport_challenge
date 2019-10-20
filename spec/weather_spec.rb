@@ -9,14 +9,6 @@ describe Weather do
       expect(airport.stormy).to eq true
     end
 
-    #it "does not allow plane to take off" do
-    #  airport = double(:airport, stormy: true)
-    #  plane = double(:plane)
-    #  airport.takeoff
-    #  allow(airport).to receive(:stormy).and_return(true)
-    #  expect { airport.takeoff }.to raise_error "Cannot take off in stormy weather"
-    #end
-
   end
 
   context "is sunny" do
