@@ -101,13 +101,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 5) Moving to the second user story. For this task I will need another method 'take_off' that will also accept one argument (airport). I will also need a method that confirms that the plane has left the airport (left_airport?) and a status associated with it (flying). Feature test.
 6) I wrote a unit test for the above: after calling the method left_airport, I'd expect subject to be_flying. Test failed.
 7) In my code, I created the method take_off(airport), and the method left_airport. Within left_airport I have set a variable 'flying' = true. I also added a method flying? that returns the variable 'flying'. Unit test passed. Feature test.
-8) At this point I realised that the methods 'land' and 'take_off' would be more suited in a different class ('Airport') rather than 'Plane'. I created a new Airport class in a different file, and adjusted my unit tests accordingly.
-9) The third user story introduces a different object (weather). I created a file for this new class and a spec file. I created a unit test for the Weather class - the weather_today method should return 'sunny'. Test failed. Added method that always returns the string 'sunny'. Test passed.
-10) The value of the weather object could be either 'sunny' or 'stormy', so I implemented that in my code (an array with the two strings and a .sample method).
-11) An error should be raised when takeoff is called and the weather is stormy. I wrote a rspec test for this. Test failed. I added the exception under the take_off method.
+8) At this point I realised that the methods 'land' and 'take_off' would be more suited in a different class ('Airport') rather than 'Plane'. I created a new Airport class in a different file, and adjusted my unit tests accordingly. First commit.
+9) The third user story introduces a different object (weather). I created a file for this new class and a spec file. I created a unit test for the Weather class - the weather_forecast method should return true or false. Test failed.
+10) The value of the weather object could be either 'sunny' or 'stormy', so I implemented that in my code (an array with booleans and a .sample method).
+11) An error should be raised when takeoff is called and the weather is not sunny. I wrote a rspec test for this. Test failed. I added the exception under the take_off method.
 12) Given that the weather selection is random, I had to modify the test to predict what the weather would be (using a stub).
-13) For the fourth user story, I repeated the previous step for the method land.
-
-
-I refactored the code and checked indentation.
-I can now commit and send a pull request.
+13) For the fourth user story, I repeated the previous step for the method land. Second commit.
+14) For the fifth user story, I had to test that landing was not possible if airport is full. For this I had to introduce a capacity variable in the Airport class (part of initialize). I wrote a spec test to raise error if trying to land and airport is full. Test failed. I introduced an array to store the planes that have landed. The airport will be full if the length of the array is bigger than the set capacity.
+15) For the sixth user story I have introduced a constant for the default capacity and set that has the default value when initializing. Third commit.
+16) I refactored the code and checked indentation. Ready to commit and send a pull request.
