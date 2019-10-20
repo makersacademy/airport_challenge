@@ -9,6 +9,18 @@ describe Airport do
     it 'instructs a plane to land' do
       expect(airport).to respond_to(:land).with(1).argument
     end
+
+    it "confirms that plane has landed" do
+      allow(airport).to receive(:stormy?).and_return false
+      expect(airport.land(plane)).to eq "landed"
+    end
+
+    context "when stormy" do
+      it "prevents 'landing' when weather is stormy" do
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.land(plane) }.to raise_error "Cannot land: weather is stormy"
+      end
+    end
   end
 
   describe "#take_off" do

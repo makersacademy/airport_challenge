@@ -1,6 +1,9 @@
 class Airport
 
-  def land(plane)
+  def land(_plane)
+    fail "Cannot land: weather is stormy" if stormy?
+
+    "landed"
   end
 
   def take_off(_plane)
