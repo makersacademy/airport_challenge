@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Plane
 
-def landed?
+def takenoff?
   true
 end
 
