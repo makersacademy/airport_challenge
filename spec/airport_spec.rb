@@ -8,7 +8,7 @@ describe Airport do
 
   context "When hangar is full"
   
-  it "prevents planes from landing when hangar is full" do
+  it "allows planes to land when hangar is not full" do
     san_jose = Airport.new
     jimbo = Plane.new
     spruce_goose = Plane.new

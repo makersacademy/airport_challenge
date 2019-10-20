@@ -15,7 +15,8 @@ class Plane
 # I want to prevent landing when the airport is full 
 
   def land(airport)
-    airport.hangar << self unless airport.stormy == true || airport.hangar.count >= airport.capacity
+    airport.hangar << self unless airport.stormy == true || 
+    airport.hangar.count >= airport.capacity
   end
   
 # As an air traffic controller 

@@ -34,7 +34,7 @@ describe Plane do
 
   context "When grounded"
   
-    it "takes off" do
+    it "takes off from airport" do
       jimbo = Plane.new
       san_jose = Airport.new
       jimbo.land(san_jose)
@@ -54,7 +54,7 @@ describe Plane do
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy 
 
-    it "does not take off when stormy" do
+    it "will not take off if stormy" do
       jimbo = Plane.new
       san_jose = Airport.new
       jimbo.land(san_jose)
@@ -63,4 +63,3 @@ describe Plane do
     expect(san_jose.hangar.include? jimbo).to eq true
     end
 end
-

@@ -25,12 +25,13 @@ require_relative 'plane'
 # I would like a default airport capacity that can be overridden as appropriate
 
 class Airport
-  attr_accessor :hangar, :stormy, :capacity
+  attr_accessor :hangar, :stormy, :capacity, :forecast
 
   def initialize(capacity = 2)
     @hangar = []
     @capacity = capacity
-    # @stormy = true if rand[10] == 9 
+    @forecast = rand(10)
+    @forecast == 9 ? @stormy = true : @stormy = false  
   end
   
 end
