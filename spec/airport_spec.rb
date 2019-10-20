@@ -5,7 +5,6 @@ describe Airport do
   let(:weather) { double(:weather) }
   it "has the plane after it lands" do
     allow(weather).to receive(:stormy?).and_return false
-    allow(plane).to receive(:land)
     airport = Airport.new(weather)
     airport.land(plane)
     expect(airport.planes).to include plane
@@ -17,8 +16,6 @@ describe Airport do
   let(:weather) { double(:weather) }
   it "no longer has the plane after it takes off" do
     allow(weather).to receive(:stormy?).and_return false
-    allow(plane).to receive(:land)
-    allow(plane).to receive(:takeoff)
     airport = Airport.new(weather)
     airport.land(plane)
     airport.takeoff(plane)
@@ -30,8 +27,6 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
   before :each do
-    allow(plane).to receive(:land)
-    allow(plane).to receive(:takeoff)
     allow(weather).to receive(:stormy?).and_return true
   end
   context "stormy tests"
@@ -50,8 +45,6 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
   before :each do
-    allow(plane).to receive(:land)
-    allow(plane).to receive(:takeoff)
     allow(weather).to receive(:stormy?).and_return false
   end
   context "capacity tests"

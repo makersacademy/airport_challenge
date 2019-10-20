@@ -18,14 +18,12 @@ class Airport
     raise "Airport is full" if @planes.length >= @capacity
 
     @planes << plane
-    plane.land
   end
 
   def takeoff(plane)
     raise "Cannot take off in stormy weather" if @weather.stormy?
 
     @planes.pop # change so you can control which plane?
-    plane.takeoff
   end
 
   private
