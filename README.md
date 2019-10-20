@@ -38,6 +38,16 @@ Researched testing for randomness - could not find anything that I could make se
 
 At this point, turned to the video walkthrough to attempt to learn how this works in a way I can follow. 
 
+## Did not finish
+
+Did not finish the challenge - chose to stop after implementing the "Planes can't land when weather is stormy" user story. Would complete the next section by adapting this user story, and applying it to the take_off method. 
+
+For the "over-ride capacity" user story, I would like to set the airport capacity as a variable instead of a fixed number. This should allow me to change the capacity if needed. Alternatively, it may be possible to write a method that simply changes it. Several previous tests would need to be refactored to adapt to this.
+
+I have not used the Travis system, as despite signing up for the website I do not understand what it does, how it works, how to us it, or how to get a badge here. The rubocop process was very useful and helpful. 
+
+Matt Freeman.
+
 Instructions
 ---------
 
