@@ -97,12 +97,16 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 1) I started from the first user story, and tried to identify the 'objects' and the 'messages'.
 2) I set up the workspace with the first spec file.
 3) I wrote the first unit test: this is a simple test to verify that instances of the class Plane respond to the method '#land'. Test failed.
-4) In my code file, I have created a class called 'Plane' and within this class I have defined a method called 'land' that accepts one argument ('airport').
+4) In my code file, I have created a class called 'Plane' and within this class I have defined a method called 'land' that accepts one argument.
 5) Moving to the second user story. For this task I will need another method 'take_off' that will also accept one argument (airport). I will also need a method that confirms that the plane has left the airport (left_airport?) and a status associated with it (flying). Feature test.
 6) I wrote a unit test for the above: after calling the method left_airport, I'd expect subject to be_flying. Test failed.
-7) In my code, I created the method take_off(airport), and the method left_airport. Within left_airport I have set a variable 'flying' = true. I also added a method flying? that returns @flying. Unit test passed. Feature test.
+7) In my code, I created the method take_off(airport), and the method left_airport. Within left_airport I have set a variable 'flying' = true. I also added a method flying? that returns the variable 'flying'. Unit test passed. Feature test.
 8) At this point I realised that the methods 'land' and 'take_off' would be more suited in a different class ('Airport') rather than 'Plane'. I created a new Airport class in a different file, and adjusted my unit tests accordingly.
-
+9) The third user story introduces a different object (weather). I created a file for this new class and a spec file. I created a unit test for the Weather class - the weather_today method should return 'sunny'. Test failed. Added method that always returns the string 'sunny'. Test passed.
+10) The value of the weather object could be either 'sunny' or 'stormy', so I implemented that in my code (an array with the two strings and a .sample method).
+11) An error should be raised when takeoff is called and the weather is stormy. I wrote a rspec test for this. Test failed. I added the exception under the take_off method.
+12) Given that the weather selection is random, I had to modify the test to predict what the weather would be (using a stub).
+13) For the fourth user story, I repeated the previous step for the method land.
 
 
 I refactored the code and checked indentation.
