@@ -2,17 +2,8 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  context 'after a plane has landed and taken off' do
-    it 'returns 0 when plane_count is called' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return false
-      plane = Plane.new
-      plane.land(airport)
-      plane.take_off(airport)
-      expect(airport.plane_count).to eq 0
-    end
-
-    it 'raises an error if a plane tries to take off from the airport' do
+  context 'when airport is empty' do
+    it 'raises error if a plane tries to take off' do
       airport = Airport.new
       allow(airport).to receive(:stormy?).and_return false
       expect { Plane.new.take_off(airport) }.to raise_error 'Airport empty'
@@ -31,11 +22,20 @@ describe Airport do
     expect(airport).not_to be_stormy
   end
 
-  it 'allows up to 10 planes to land by default' do
-    airport = Airport.new
-    allow(airport).to receive(:stormy?).and_return false
-    9.times { Plane.new.land(airport) } 
-    expect { Plane.new.land(airport) }.not_to raise_error
+  context 'with default capacity' do
+    it 'does not raise error when 10 planes are landed' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
+      9.times { Plane.new.land(airport) } 
+      expect { Plane.new.land(airport) }.not_to raise_error
+    end
+
+    it 'raises error when 11 planes are landed' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
+      10.times { Plane.new.land(airport) } 
+      expect { Plane.new.land(airport) }.to raise_error 'Airport is full'
+    end
   end
 
   context 'when capacity is overridden to 6' do
