@@ -3,7 +3,7 @@ class Airport
     @plane = false
   end
 
-  def has_plane?
+  def plane?
     @plane
   end
 

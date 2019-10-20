@@ -3,11 +3,11 @@ require 'plane'
 
 describe Airport do
   context 'after a plane has taken off' do
-    it 'returns false when has_plane? is called' do
+    it 'returns false when plane? is called' do
       airport = Airport.new
       plane = Plane.new
       plane.take_off(airport)
-      expect(airport).not_to have_plane
+      expect(airport.plane?).to eq false
     end
   end
 

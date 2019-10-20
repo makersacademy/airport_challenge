@@ -1,6 +1,7 @@
 class Plane
   def land(airport)
     raise 'Too stormy to land' if airport.stormy?
+    raise 'Airport is full' if airport.plane?
   end
 
   def take_off(airport)

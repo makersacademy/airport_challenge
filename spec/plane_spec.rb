@@ -3,16 +3,18 @@ require 'airport'
 
 describe Plane do
   context 'when not stormy' do
-    it 'can land' do
-      plane = Plane.new
-      airport = double('Airport', :stormy? => false)
-      expect { plane.land(airport) }.not_to raise_error
-    end
-
     it 'can take off' do
       plane = Plane.new
       airport = double('Airport', :stormy? => false, :plane_leaves => true)
       expect { plane.take_off(airport) }.not_to raise_error
+    end
+
+    context 'when airport is not full' do
+      it 'can land' do
+        plane = Plane.new
+        airport = double('Airport', :stormy? => false, :plane? => false)
+        expect { plane.land(airport) }.not_to raise_error
+      end
     end
   end
 
@@ -27,6 +29,14 @@ describe Plane do
       plane = Plane.new
       airport = double('Airport', :stormy? => true)
       expect { plane.take_off(airport) }.to raise_error 'Too stormy to take off'
+    end
+  end
+
+  context 'when the airport is full' do
+    it 'raises an error when land is called' do
+      plane = Plane.new
+      airport = double('Airport', :stormy? => false, :plane? => true)
+      expect { plane.land(airport) }.to raise_error 'Airport is full'
     end
   end
 end
