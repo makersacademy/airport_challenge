@@ -1,8 +1,7 @@
 class Airport
-  DEFAULT_CAPACITY = 10
-
-  def initialize
+  def initialize(capacity = 10)
     @planes = 0
+    @capacity = capacity
   end
 
   def plane_takes_off
@@ -13,7 +12,7 @@ class Airport
 
   def plane_lands
     raise 'Too stormy for landing' if stormy?
-    raise 'Airport is full' if plane_count >= DEFAULT_CAPACITY
+    raise 'Airport is full' if plane_count >= @capacity
 
     @planes += 1
   end

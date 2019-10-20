@@ -31,4 +31,20 @@ describe Airport do
     9.times { Plane.new.land(airport) } 
     expect { Plane.new.land(airport) }.not_to raise_error
   end
+
+  context 'when capacity is overridden to 6' do
+    it 'does not raise error when 6 planes are landed' do
+      airport = Airport.new(6)
+      allow(airport).to receive(:stormy?).and_return false
+      5.times { Plane.new.land(airport) }
+      expect { Plane.new.land(airport) }.not_to raise_error
+    end
+
+    it 'raises error when 7 planes are landed' do
+      airport = Airport.new(6)
+      allow(airport).to receive(:stormy?).and_return false
+      6.times { Plane.new.land(airport) }
+      expect { Plane.new.land(airport) }.to raise_error 'Airport is full'
+    end
+  end
 end
