@@ -13,6 +13,30 @@ Airport Challenge
 
 ```
 
+#My Approach
+
+1) Read each User Story to break down the verbs and nouns.
+
+2) Use strict TDD process of writing a test first before any production code.
+Pass this test and then refactor, making use of Rubocop.
+
+3) Use **RED** - **GREEN** - **REFACTOR** approach.
+
+4) Only move on once each User Story is complete.
+
+## Did not finish
+
+User Stories 1 - 4 completed with passing test.
+
+To implement User Story 5 I would have written a test to check whether the current ```capacity``` of airport was greater than current ```landed_planes.count```. If not, throw error message of
+```
+Warning! Airport Full!
+```
+The warning message would have been implemented in the ```land(plane)``` method inside the Airport class.
+
+To implement User Story 6 I would have written a test to check if the Airport class had a defaul capacity constant initialised.  If not, next step would be to add one to the class ```initialize``` method.  Adding the option, via a parameter on said method, to change the default at creation.
+
+
 Instructions
 ---------
 
@@ -22,13 +46,6 @@ Instructions
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
