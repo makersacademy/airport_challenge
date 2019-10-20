@@ -32,7 +32,7 @@ and a fail. This is a manual process to check the code fundementally works. Next
 the code to test for randomness. Had looked at https://blog.appsignal.com/2018/07/31/generating-random-numbers-in-ruby.html
 for helpful information on generating random outputs.
 
-Had also researched the double, stub and spies information as given. Continued to try and understand it, without success.
+Had also researched the double, stub and spies information via https://relishapp.com/rspec/rspec-mocks/docs. Continued to try and understand it, without success. I find the definition of terms without full explanation or context to be very difficult to integrate into my own code.
 
 Researched testing for randomness - could not find anything that I could make sense of. 
 
