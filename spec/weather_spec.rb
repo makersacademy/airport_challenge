@@ -3,8 +3,8 @@ require 'weather'
 describe Weather do
   let(:weather) { Weather.new }
 
-  it "it is stormy" do
-    allow(weather).to receive(:randomise) { 95 }
+  it "is stormy outside" do
+    allow(weather).to receive(:randomise) { 80 }
     expect(weather.forecast).to eq "Stormy"
   end
 
