@@ -82,7 +82,7 @@ Upon landing, planes are stored in a hangar, here represented by an array. The s
 
 Planes will not be permitted to land if the weather is stormy or if the hangar is over capacity. Trying to receive a plane that is already in the hangar will throw an error.
 
-###### Each instance can allow planes to take off
+### Each instance can allow planes to take off
 
 ```
 Heathrow.allow_take_off(boeing_747)
@@ -98,8 +98,8 @@ If the weather is not stormy, planes can leave the airport. When a plane leaves 
 
 ## Aiport Class:
 
-###### Each instance can recieve planes as they land.
-###### The initialize method sets up some important parameters:
+### Each instance can recieve planes as they land.
+### The initialize method sets up some important parameters:
 
 ```
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -110,7 +110,7 @@ If the weather is not stormy, planes can leave the airport. When a plane leaves 
     @airport_id = object_id
   end
 ```
-###### Take off and Landing
+### Take off and Landing
 
 Planes are not permitted to take off if the weather is stormy. It is not possible to take off from an airport in which that plane is not stored in and no plane can take off if it is already flying.
 
@@ -139,7 +139,7 @@ Planes cannot land if the weather is stormy and an error will be thrown if you t
 ```
 
 
-###### State
+### State
 
 It is possible to check if a plane is being stored at the airport, to check if the weather is stormy and if the hangar is full.
 
