@@ -48,33 +48,34 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## Usage:
 
-Each instance will have a capacity of 40 by default, as well as a 30% chance of stormy weather.
-
+Each Airport instance will have a capacity of 40 by default, as well as a 30% chance of stormy weather.
 Passing in a value for capacity on the creation of new Airport instances will override this value.
 
+Planes can land and take off from airports allowing for Airport capacity and weather conditions
 ```
 require_relative 'airport'
 require_relative 'plane'
 
 # Create objects
-Heathrow = Airport.new(capacity = 100)
+Heathrow = Airport.new(100)
 boeing_747 = Plane.new
 boeing_737 = Plane.new
 
 # Get flying status
 puts boeing_747.flying # => true
 
-Heathrow.receive(boeing_747)
-Heathrow.receive(boeing_737)
+boeing_737.land(Heathrow)
+boeing_747.land(Heathrow)
 puts boeing_747.airport # => <airport ID>
 
 puts Heathrow.hangar # => <Plane:0x00007fc738826890> , <Plane:0x00007fc738826840>
 puts boeing_747.flying # => false
 
-Heathrow.receive(boeing_747) # => Plane already in airport! (RuntimeError)
+boeing_747.land(Heathrow) # => Plane already in airport! (RuntimeError)
 
 Heathrow.allow_take_off(boeing_737)
 puts Heathrow.hangar # => <Plane:0x00007fc738826890>
+puts Heathrow.stormy? # => true or false
 
 ```
 
@@ -82,23 +83,76 @@ Upon landing, planes are stored in a hangar, here represented by an array. The s
 
 Planes will not be permitted to land if the weather is stormy or if the hangar is over capacity. Trying to receive a plane that is already in the hangar will throw an error.
 
-### Each instance can allow planes to take off
+### Each Plane instance can allow planes to take off
 
 ```
-Heathrow.allow_take_off(boeing_747)
+boeing_747.take_off(Heathrow)
 
 puts Heathrow.hangar # => []
 puts boeing_747.flying # => true
 puts boeing_747.airport # => ""
 ```
 
-If the weather is not stormy, planes can leave the airport. When a plane leaves the airport any referneces to it being in the hangar are removed. The planes flying status will set to true and its airport attribute will be an empty string.
+If the weather is not stormy, planes can leave the airport. When a plane leaves the airport it is also removed from the hangar. The plane's flying status will set to true and its airport attribute will be an empty string to denote that it no longer is at an airport.
 
 # My approach to Solving this challenge.
 
-## Aiport Class:
+## Plane Class:
 
-### Each instance can recieve planes as they land.
+### Take off and Landing
+
+Planes are not permitted to take off if the weather is stormy. It is not possible to take off from an airport in which that plane is not stored in and no plane can take off if it is already flying.
+
+Planes cannot land if the weather is stormy and an error will be thrown if you try to land a plane that is already on the ground or if the hangar is full.
+
+```
+  def take_off(airport)
+    fail "Can't take off due to stormy weather!" if airport.stormy?
+    fail "This plane is already flying" if flying?
+    fail "This plane is not at this airport" unless @airport == airport.airport_id
+
+    airport.hangar.delete(self)
+    change_status("", true)
+    return airport
+  end
+
+  def land(airport)
+    fail "Can't land due to stormy weather!" if airport.stormy?
+    fail "Can't land, hangar is full!" if airport.full?
+    fail "Plane already in airport!" if airport.in_airport?(self)
+    
+    airport.hangar << self
+    change_status(airport.airport_id, false)
+    return airport
+  end
+```
+## Attributes
+
+Each Plane instance has a few attributes:
+
+* Flying Status (flying is either true or false)
+* Airport (Which airport it is in)
+
+The `change_status` method changes the flight status upon landing and take off 
+
+```
+  def initialize
+    @flying = true
+    @airport = ""
+  end
+
+  def flying?
+    return @flying
+  end
+
+  def change_status(airport_id, flying_status)
+    @airport = airport_id
+    @flying = flying_status
+  end
+
+```
+
+## Airport Class:
 ### The initialize method sets up some important parameters:
 
 ```
@@ -110,36 +164,8 @@ If the weather is not stormy, planes can leave the airport. When a plane leaves 
     @airport_id = object_id
   end
 ```
-### Take off and Landing
 
-Planes are not permitted to take off if the weather is stormy. It is not possible to take off from an airport in which that plane is not stored in and no plane can take off if it is already flying.
-
-Planes cannot land if the weather is stormy and an error will be thrown if you try to land a plane that is already on the ground or if the hangar is full.
-
-```
-  def receive(plane)
-    fail "Can't land due to stormy weather!" if stormy?
-    fail "Can't land, hangar is full!" if @hangar.length >= @capacity
-    fail "Plane already in airport!" if in_airport?(plane)
-    
-    @hangar << plane
-    plane.change_status(@airport_id, false)
-    return plane
-  end
-
-  def allow_take_off(plane)
-    fail "Can't take off due to stormy weather!" if stormy?
-    fail "This plane is already flying" if plane.flying?
-    fail "This plane is not at this airport" unless plane.airport == @airport_id
-
-    @hangar.delete(plane)
-    plane.change_status("", true)
-    return plane
-  end
-```
-
-
-### State
+### Attributes
 
 It is possible to check if a plane is being stored at the airport, to check if the weather is stormy and if the hangar is full.
 
@@ -156,35 +182,3 @@ It is possible to check if a plane is being stored at the airport, to check if t
     @full = (@hangar.length >= capacity)
   end
 ```
-
-## Plane Class:
-
-Each Plane instance has a few attributes:
-
-* Flying Status (flying = true or false)
-* Airport (Which airport it is in)
-
-The `change_status` method allows the airport to change the flight status upon landing and take off 
-
-```
-class Plane
-  attr_accessor :airport, :flying
-
-  def initialize
-    @flying = true
-    @airport = ""
-  end
-
-  def flying?
-    return @flying
-  end
-
-  def change_status(airport_id, flying_status)
-    @airport = airport_id
-    @flying = flying_status
-  end
-
-end
-```
-
-
