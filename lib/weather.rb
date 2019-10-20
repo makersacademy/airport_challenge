@@ -1,8 +1,11 @@
 class Weather
 
-def forecast
-  end
 
-  def stormy?
+def randomise
+  rand(100)
+end
+
+def forecast
+  randomise <= 90 ? "Sunny" : "Stormy"
   end
 end
