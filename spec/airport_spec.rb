@@ -60,4 +60,9 @@ describe Airport do
     full_airport.land(plane)
     expect { full_airport.land(plane) }.to raise_error(RuntimeError, "Airport is full")
   end
+  it "can have the capacity overridden" do
+    diff_capacity_airport = Airport.new(weather, 5)
+    4.times { diff_capacity_airport.land(plane) }
+    expect { diff_capacity_airport.land(plane) }.not_to raise_error()
+  end
 end
