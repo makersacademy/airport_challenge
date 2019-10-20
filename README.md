@@ -3,19 +3,40 @@ Airport Challenge
 
 Answered with help of this video: https://www.youtube.com/watch?v=Vg0cFVLH_EM
 
-Correctly passed user stories 1 & 2 without it. Worked with the video to implement user story 5, and understood it.
+Correctly passed user stories 1 & 2 without the video. Worked with the video to implement user story 5, and understood it.
 Had already intended to use an array for capacity, and fill it with planes, in a way similar to the Boris Bikes Weekly
 exercise. 
 Before starting the video, spent time attempting to implement a weather system. Created the following code within
-a Weather Class:
-```def forecast
-    prediction = rand(1..10)
-    if prediction == 10
-      puts "fine"
-    else
-      puts "stormy"
-    end```
+a Weather Class, giving a 10% chance of stormy weather:
+def forecast
+  prediction = rand(1..10)
+  if prediction == 10
+    "stormy"
+  else
+    "fine"
+  end
+end
 
+ Had also altered by "land" method in the airport class to return different values, depending on whether the weather
+ was "fine" or "stormy", by using an 'if' statement. Spent a significant amount of time trying to get this to work,
+ without sucess.
+
+Had attempted to run a test along these lines:
+context "preventing take-off in stormy weather" do
+it "states the plane can't leave due to storms" do
+  expect(subject.take_off).to eq "Can't take off during storms."
+  end
+
+Plan: to firstly set the chance of stormy weather to 90% (instead of 10%) and run the test until I got both a pass
+and a fail. This is a manual process to check the code fundementally works. Next step was to research and update
+the code to test for randomness. Had looked at https://blog.appsignal.com/2018/07/31/generating-random-numbers-in-ruby.html
+for helpful information on generating random outputs.
+
+Had also researched the double, stub and spies information as given. Continued to try and understand it, without success.
+
+Researched testing for randomness - could not find anything that I could make sense of. 
+
+At this point, turned to the video walkthrough to attempt to learn how this works in a way I can follow. 
 
 Instructions
 ---------
