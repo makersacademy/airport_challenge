@@ -54,7 +54,7 @@ $ irb
 2.6.0 :005 > city = Airport.new(4)
  => #<Airport:0x00007f9c27925c28 @planes=0, @capacity=4> 
 2.6.0 :006 > airbus.land(city)
-=> RuntimeError (Too stormy for landing)
+ => RuntimeError (Too stormy for landing)
 2.6.0 :007 > airbus.land(luton)
  => #<Airport:0x00007f9c2791f5f8 @planes=1, @capacity=10> 
 2.6.0 :008 > airbus.take_off(luton)
