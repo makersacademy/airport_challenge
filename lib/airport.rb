@@ -13,7 +13,7 @@ class Airport
 
   def plane_lands
     raise 'Too stormy for landing' if stormy?
-    raise 'Airport is full' if plane_count >= 1
+    raise 'Airport is full' if plane_count >= DEFAULT_CAPACITY
 
     @planes += 1
   end
