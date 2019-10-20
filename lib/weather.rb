@@ -4,9 +4,10 @@ require_relative 'plane'
 class Weather
 
 attr_accessor :stormy
+attr_accessor :weather
 
 def stormy
-  @weather = [true, false].sample
+  [true, false].sample
 end
 
 end

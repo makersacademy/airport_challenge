@@ -24,9 +24,6 @@ Instances of Airport are initialized with 3 attributes:
 - A default capacity which is currently set at 1
 - A weather forecast (instance of Weather.new)
 
-Instances of Weather are initialized with 1 attribute:
-- Stormy weather which is either true or false
-
 You can call #takeoff on an airport instance to take off a plane.
 
 You can call #land on an airport instance with an instance of Plane.new as an argument to land the plane.
