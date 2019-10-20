@@ -14,10 +14,9 @@ describe Airport do
   end
 
   it 'instructs a plane to land' do
-    airport = Airport.new
-    plane = Plane.new
-    expect(plane).to receive(:land)
-    airport.land(plane)
+    
+    expect(subject).to respond_to(:land).with(1).argument
+  
   end
   
 end
