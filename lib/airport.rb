@@ -1,17 +1,19 @@
 class Airport
+  attr_reader :planes_on_groud
+
 
   def land(plane)
+    raise "cannot land the plane: weather is stormy!" if stormy?
+    @planes_on_groud = plane
   end
 
   def take_off(plane)
-    return "plane has taken off and is no longer in the airport"
+    raise "cannot take off: weather is stormy!" if stormy?
+    @planes_on_groud
   end
 
-end
-
-
-
-
-class Plane
+  def stormy?
+    rand(1..6) > 4
+  end
 
 end
