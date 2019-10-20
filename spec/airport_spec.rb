@@ -7,17 +7,27 @@ describe Airport do
     it 'should not allow take off and landing in stormy weather' do
       allow(subject).to receive(:weather) { 2 }
     end
+
+    it 'should allow take off and landing in sunny weather' do
+      allow(subject).to receive(:weather) { 1 }
+    end
+
+    it 'should respond to a weather condition' do
+      expect(subject.weather).to be_between(1, 2)
+    end
   end
 
   describe '#take_off' do
     context 'planes should take off from the airport'
     it 'shows plane has left the airport' do
+      subject.weather = 1
       plane = Plane.new
       subject.land plane
       expect(subject.take_off(plane)).to eq plane
     end
 
     it 'should raise an error if there are no planes to take off' do
+      subject.weather = 1
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error 'There are no planes in the airport'
     end
@@ -32,17 +42,20 @@ describe Airport do
   describe '#land' do
     context 'planes should land at the airport'
     it "should let planes land" do
+      subject.weather = 1
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'should raise error if airport is full' do
+      subject.weather = 1
       subject.capacity.times { subject.land Plane.new }
       expect { subject.land Plane.new }.to raise_error 'Airport is full'
     end
 
     it 'should raise error if plane already in the airport' do
       plane = Plane.new
+      subject.weather = 1
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'That plane is already in the airport'
     end

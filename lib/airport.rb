@@ -11,10 +11,8 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed = []
-  end
-
-  def weather
     @weather = rand(1..2)
+
   end
 
   def take_off(plane)
