@@ -3,6 +3,7 @@ require_relative 'plane.rb'
 class Airport
   attr_reader :landed_planes
   attr_reader :weather
+  attr_reader :capacity
 
   def initialize
     weather = Weather.new
