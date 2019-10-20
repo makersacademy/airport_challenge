@@ -11,6 +11,12 @@ end
     raise "it is too stormy for take off" if stormy?
   end
 
+  def full?
+  end
+
   def stormy?
+  end
+
+  def has_landed?(plane)
   end
 end
