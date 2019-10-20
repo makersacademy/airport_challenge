@@ -5,7 +5,7 @@ class Airport
   
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @stormy = rand(10) <= 3
+    @stormy = rand(9) <= 2
     @full = false
     @capacity = capacity
     @airport_id = object_id
