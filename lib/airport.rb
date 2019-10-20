@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 class Airport
 
@@ -6,5 +7,9 @@ class Airport
 end
 
   def take_off(plane)
+    raise "it is too stormy for take off" if stormy?
+  end
+
+  def stormy?
   end
 end
