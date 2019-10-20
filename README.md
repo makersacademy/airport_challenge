@@ -75,7 +75,7 @@ Heathrow.receive(boeing_747)
 puts Heathrow.hangar # => [boeing_747]
 ```
 
-Upon landing, planes are stored in a hangar, here represented by an array and the status of each plane (What airport is it in? Is it flying?) is appropriately changed.
+Upon landing, planes are stored in a hangar, here represented by an array. The status of each plane (What airport is it in? Is it flying?) is appropriately changed.
 
 Planes will not be permitted to land if the weather is stormy or if the hangar is over capacity. It is also not permitted to receive a plane that is already in the hangar.
 
@@ -91,6 +91,6 @@ puts boeing_747.airport # => ""
 
 If the weather is not stormy, planes can leave the airport. When a plane leaves the airport any referneces to it being in the hangar are removed. The planes flying status will set to true and its aiport attribute will be an empty string.
 
-Planes are not permitted to take off if the weather is stormy. It is also not possible to take off from an aiport that that plane is not stored in and it cannot take off if it is already flying.
+Planes are not permitted to take off if the weather is stormy. It is not possible to take off from an airport in which that plane is not stored in and no plane can take off if it is already flying.
 
 
