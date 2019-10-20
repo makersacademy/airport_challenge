@@ -5,12 +5,8 @@ class Weather
 
 attr_accessor :stormy
 
-def initialize
-  @stormy = [true, false].sample
+def stormy
+  @weather = [true, false].sample
 end
-
-
-
-
 
 end

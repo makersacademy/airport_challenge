@@ -8,10 +8,10 @@ DEFAULT_CAPACITY = 1
 attr_accessor :capacity
 attr_accessor :stormy
 
-  def initialize
+  def initialize(weather: Weather.new)
     @planes = []
     @capacity = DEFAULT_CAPACITY
-    @forecast = Weather.new
+    @weather = weather
   end
 
   def land(plane)
@@ -20,7 +20,7 @@ attr_accessor :stormy
   end
 
   def takeoff
-    fail "Cannot take off in stormy weather" if @stormy == true
+    fail "Cannot take off in stormy weather" if @weather.stormy == true
     fail "Airport is empty" if empty?
     @planes.pop
   end

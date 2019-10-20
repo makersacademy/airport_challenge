@@ -9,14 +9,26 @@ describe Airport do
   context "when weather is stormy" do
 
     it "prevents plane taking off when weather is stormy" do
-      weather = double(:weather, stormy: true)
+      weather = double(:weather)
       plane = double(:plane)
       subject.land(plane)
+      allow(weather).to receive(:stormy).and_return(true)
       expect { subject.takeoff }.to raise_error "Cannot take off in stormy weather"
     end
 
-
   end
+
+#  context "when weather is not stormy" do
+
+#    it "allows plane to take off when weather is not stormy" do
+#      weather = double(:weather)
+#      plane = double(:plane)
+#      subject.land(plane)
+#      allow(weather).to receive(:stormy) { false }
+#      expect { subject.takeoff }.not_to raise_error
+#    end
+
+#  end
 
   describe "takeoff method" do
 
@@ -25,8 +37,10 @@ describe Airport do
     end
 
     it "makes a plane take off" do
+      weather = double(:weather)
       plane = double(:plane)
       subject.land(plane)
+      allow(weather).to receive(:stormy) { true }
       expect(subject.takeoff).to be plane
     end
 
