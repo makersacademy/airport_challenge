@@ -6,6 +6,7 @@ describe Plane do
     it 'can take off' do
       plane = Plane.new
       airport = Airport.new
+      plane.land(airport)
       allow(airport).to receive(:stormy?).and_return false
       expect { plane.take_off(airport) }.not_to raise_error
     end

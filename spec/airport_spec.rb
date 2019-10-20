@@ -11,6 +11,12 @@ describe Airport do
       plane.take_off(airport)
       expect(airport.plane_count).to eq 0
     end
+
+    it 'raises an error if a plane tries to take off from the airport' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
+      expect { Plane.new.take_off(airport) }.to raise_error 'Airport empty'
+    end
   end
 
   it 'returns "true" when stormy? is called if rand = 0.8' do
