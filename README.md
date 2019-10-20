@@ -12,6 +12,22 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Approach
+--------
+
+* Separate classes for airport and plane
+* Planes can take off, land and confirm departure
+* Separate methods for take off and confirmation
+* Dummy names used in tests for ease of comprehension
+* Edgecase accounted for - cannot land when grounded
+* Edgecase accounted for - cannot take off when flying
+* Edgecase accounted for - cannot take off from wrong airport
+* Plane cannot land if weather is bad
+* Plane cannot take off if weather is bad
+* Plane cannot land if hangar is full
+* Airports created with default capacity, can be specified
+* Planes created on ground
+* Random weather stubbed with variable setting
 
 Instructions
 ---------

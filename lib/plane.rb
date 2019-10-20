@@ -1,7 +1,12 @@
 require_relative 'airport.rb'
 
 class Plane
-
+  attr_accessor :flying
+  
+  def initialize(flying = false)
+    @flying = flying
+  end
+  
 # As an air traffic controller 
 # So I can get passengers to a destination 
 # I want to instruct a plane to land at an airport
@@ -15,8 +20,10 @@ class Plane
 # I want to prevent landing when the airport is full 
 
   def land(airport)
+    return "Already landed" if @flying == false
     airport.hangar << self unless airport.stormy == true || 
     airport.hangar.count >= airport.capacity
+    @flying = false
   end
   
 # As an air traffic controller 
@@ -28,7 +35,10 @@ class Plane
 # I want to prevent takeoff when weather is stormy 
 
   def take_off(airport)
+    return "Already in flight" if @flying == true
+    return "Plane not in hangar" if !airport.hangar.include? self 
     airport.hangar.pop unless airport.stormy == true
+    @flying = true
     confirm(airport)
   end
   
