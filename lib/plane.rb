@@ -1,7 +1,5 @@
 class Plane
   def land(airport)
-    raise 'Airport is full' if airport.plane_count >= 1
-
     airport.plane_lands
   end
 

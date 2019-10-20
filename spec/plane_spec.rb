@@ -39,7 +39,9 @@ describe Plane do
   context 'when the airport is full' do
     it 'raises an error when land is called' do
       plane = Plane.new
-      airport = double('Airport', :stormy? => false, :plane_count => 1)
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return false
+      plane.land(airport)
       expect { plane.land(airport) }.to raise_error 'Airport is full'
     end
   end
