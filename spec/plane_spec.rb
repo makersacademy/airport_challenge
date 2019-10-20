@@ -1,3 +1,4 @@
+require 'plane'
 
 describe Plane do
 
@@ -6,5 +7,5 @@ describe Plane do
       expect(subject.landing?).to eq subject.in_airport
     end
   end
-  
+
 end
