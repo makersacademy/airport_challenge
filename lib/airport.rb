@@ -8,7 +8,10 @@ class Airport
   end
 
   def land(plane)
+    raise "Plane already landed." if plane.flying == false
+
     @landed_planes << plane
+    plane.landed
   end
 
   def takeoff(plane)

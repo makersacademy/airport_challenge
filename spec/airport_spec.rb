@@ -12,6 +12,11 @@ describe Airport do
       expect(airport.landed_planes).to include(plane)
     end
 
+    it 'checked that if plane already landed get error' do
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("Plane already landed.")
+    end
+
   end
 
   context 'take off' do
