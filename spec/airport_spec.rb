@@ -20,9 +20,15 @@ describe Airport do
         expect(airport.planes).to include plane
       end
 
-      it 'planes that are landed cannot land again' do
-        airport.land plane
-        message = "Plane already landed"
+      # it 'planes that are landed cannot land again' do
+      #   airport.land plane
+      #   message = "Plane already landed"
+      #   expect { airport.land(plane) }.to raise_error message
+      # end
+
+      it 'cannot land if at full capacity' do
+        10.times { airport.land(plane) }
+        message = "Cannot land as airport full"
         expect { airport.land(plane) }.to raise_error message
       end
     end
