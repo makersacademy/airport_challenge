@@ -52,13 +52,13 @@ describe Airport do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 
-    it "Planes in the airport should not be able to land while already landed" do
+    it "should raise an error when trying to land a plane that is already on ground" do
       plane = Plane.new
       subject.land(plane)
       expect{ subject.land(plane)}.to raise_error "Plane already in airport!"
     end
 
-    it "should not allow planes to take off when already flying" do
+    it "should raise an error when trying to take off a plane that is already in the air" do
       plane = Plane.new
       subject.land(plane)
       subject.take_off(plane)

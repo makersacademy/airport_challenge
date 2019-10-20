@@ -15,19 +15,12 @@ describe Plane do
       expect(subject.flying?).to eq(true)
     end
 
-    it "should not be able to take off when already airbourne" do
-      airport = Airport.new
-      airport.land(subject)
-      airport.take_off(subject)
-      expect{airport.take_off(subject)}.to raise_error "This plane is already flying"
-    end
-
     it "should not be assigned to an airport while flying" do
       airport = Airport.new
       airport.land(subject)
       airport.take_off(subject)
-      expect(subject.current_airport).to eq("")
       expect(airport.in_airport?(subject)).to be(false)
+      expect(subject.current_airport).to eq("")
     end
   end
 
