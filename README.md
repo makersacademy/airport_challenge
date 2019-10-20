@@ -7,13 +7,13 @@ My Approach
 5. Run Rubocop before every commit, tidying as I go
 6. Once satisfied minimum user requirements, refactor to defend against edge cases
 
-At last commit, all 12 tests passed and test coverage was 98.08%
+* At last commit, all 12 tests passed and test coverage was 98.08%
 
 How to use program
 ------------------
-**Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation
-**Plane** handles flying status - not quite complete
-**Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny
+* **Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation
+* **Plane** class handles flying status - this is not quite complete
+* **Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny
 
 ```
 2.6.0 :001 > require './lib/plane.rb'
@@ -41,9 +41,9 @@ RuntimeError (Plane not in airport)
 
 Comments
 ---------
-Used stack overflow, Ruby docs, relish and watched some of https://www.youtube.com/watch?v=Vg0cFVLH_EM to help me better understand how to stub randomness using doubles and how to use context and before blocks
+* I used stack overflow, Ruby docs, relish and watched some of https://www.youtube.com/watch?v=Vg0cFVLH_EM to help me better understand how to stub randomness using doubles and how to use context and before blocks
 
-If I had more time I would have refactored Plane and Airport classes to make **Plane** more responsible for handling the edge cases.
+* If I had more time I would have refactored the Plane and Airport classes to make **Plane** more responsible for handling the edge cases.
 
 
 Airport Challenge
