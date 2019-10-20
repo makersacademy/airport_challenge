@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 5
@@ -14,7 +16,7 @@ class Airport
     fail 'There are no planes in the airport' if @landed == []
     @landed.pop
     plane.in_airport = false
-    return "This plane has left the airport"
+    return plane
     end
 
   def land(plane)
@@ -27,20 +29,6 @@ class Airport
 
   def two_planes(plane)
     return @landed.include?(plane)
-  end
-
-end
-
-class Plane
-
-  attr_accessor :in_airport
-
-  def initialize
-    @in_airport = false
-  end
-
-  def landing?
-    @in_airport
   end
 
 end

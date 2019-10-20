@@ -7,7 +7,7 @@ describe Airport do
       it 'shows plane has left the airport' do
         plane = Plane.new
         subject.land plane
-        expect(subject.take_off(plane)).to eq 'This plane has left the airport'
+        expect(subject.take_off(plane)).to eq plane
       end
 
       it 'should raise an error if there are no planes to take off' do
@@ -37,13 +37,5 @@ describe Airport do
       it 'has a default capacity' do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
-  end
-end
-
-describe Plane do
-  describe '#landing?' do
-    it 'gives plane status' do
-      expect(subject.landing?).to eq subject.in_airport
-    end
   end
 end
