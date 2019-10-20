@@ -49,4 +49,8 @@ describe Airport do
     end
     expect { airport.land(plane) }.to raise_error "cannot land the plane: airport at capacity!"
   end
+
+  it 'overwrite default capacity' do
+    expect(subject.capacity=30).to eq 30
+  end
 end
