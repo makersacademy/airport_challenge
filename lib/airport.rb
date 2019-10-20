@@ -9,13 +9,17 @@ attr_reader :plane
   end
 
   def land(plane)
-    fail "airport full" if @planes.count > 1
+    fail "airport full" if @planes.count >= 1
     @planes << plane
   end
 
   def takeoff
     fail "Airport is empty" if @planes.empty?
     @planes.pop
+  end
+
+  def report
+    return @planes
   end
 
 

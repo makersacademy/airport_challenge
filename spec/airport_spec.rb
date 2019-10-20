@@ -21,7 +21,6 @@ describe Airport do
     it "raises an error when airport is full" do
       #20.times { subject.land(Plane.new) }
       subject.land(Plane.new)
-      subject.land(Plane.new)
       expect { subject.land(Plane.new) }.to raise_error "airport full"
     end
 
@@ -36,6 +35,14 @@ describe Airport do
 
     end
 
+  end
+
+  context "testing report method" do
+    it "shows the current planes in the airport" do
+      current_plane = Plane.new
+      subject.land(current_plane)
+      expect(subject.report).to eq ([current_plane])
+    end
   end
 
 end
