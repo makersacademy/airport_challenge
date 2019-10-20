@@ -5,8 +5,12 @@ class Airport
   end
 
   def take_off
-    Plane.new
-    "Plane has left airport."
+    if weather == stormy
+      "Can't take off during storms."
+    else
+      Plane.new
+      "Plane has left airport."
+    end
   end
 
 end
