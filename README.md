@@ -1,11 +1,11 @@
-### Read Me - Airport Challenge
+# Read Me - Airport Challenge
 
-# Approach
+## Approach
 * Implement each story, looking for simplest step to increase complexity
 * Create plan for story, looking for edge cases or missing steps not documented. Ensure tests cover them.
 * I did not manage to implement the final two stories! 
 
-# How to run
+## How to run
 
 * **Plane** is designed to track the flying state, which airport it is currently in and handle errors around flying status.
 * **Airport** tracks planes in a specific airport, and the local weather. It will handle errors around weather state.
