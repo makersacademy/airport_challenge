@@ -7,20 +7,24 @@ class Airport
 
   attr_reader :planes
 
-  def initialize(weather: Weather.new)
+  def initialize(weather = Weather.new, capacity = DEFAULTCAPACITY)
     @planes = []
-    @capacity = 1
     @weather = weather
+    @capacity = capacity
   end
 
   def land(plane)
-    raise "cannot land in stormy weather" if @weather.stormy?
-    
+    raise "Cannot land in stormy weather" if @weather.stormy?
+    raise "Airport is full" if @planes.length >= @capacity
+
     @planes << plane
     plane.land
   end
 
   def takeoff(plane)
+    raise "Cannot take off in stormy weather" if @weather.stormy?
+    raise "Airport is full" if @planes.length >= @capacity
+
     @planes.pop # change so you can control which plane?
     plane.takeoff
   end
@@ -28,5 +32,6 @@ class Airport
   private
 
   attr_reader :stormy
+  DEFAULTCAPACITY = 1
 
 end
