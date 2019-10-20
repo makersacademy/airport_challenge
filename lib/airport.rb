@@ -16,18 +16,6 @@ require_relative 'plane'
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
 
-class Airport
-  attr_accessor :hangar, :stormy, :capacity
-
-  def initialize
-    @hangar = []
-    @capacity = 1
-    # @stormy = true if rand[10] == 9 
-  end
-  
-end
-
-
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when the airport is full 
@@ -35,3 +23,14 @@ end
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
+
+class Airport
+  attr_accessor :hangar, :stormy, :capacity
+
+  def initialize(capacity = 2)
+    @hangar = []
+    @capacity = capacity
+    # @stormy = true if rand[10] == 9 
+  end
+  
+end
