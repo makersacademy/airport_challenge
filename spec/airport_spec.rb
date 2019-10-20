@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   let(:plane) { Plane.new }
@@ -22,15 +23,29 @@ describe Airport do
   context 'take off' do
 
     it 'expects plane to not be in airport' do
+      allow(airport).to receive(:weather) { "sunny" }
       airport.land(plane)
       airport.takeoff(plane)
       expect(airport.landed_planes).not_to include(plane)
     end
 
     it 'plane takes off' do
+      allow(airport).to receive(:weather) { "sunny" }
       expect(airport.takeoff(plane)).to eq("Plane safely taken off.")
     end
     
+  end
+
+  context 'stormy weather' do
+
+    describe 'take off' do
+      it 'prevents take off' do
+        plane = Plane.new
+        allow(airport).to receive(:weather) { "stormy" }
+        expect { airport.takeoff(plane) }.to raise_error("To stormy to take off.")
+      end
+    end
+
   end
 
 end
