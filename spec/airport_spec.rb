@@ -54,5 +54,10 @@ describe Airport do
     allow(plane).to receive(:takeoff)
     allow(weather).to receive(:stormy?).and_return false
   end
-  
+  context "capacity tests"
+  it "prevents landing when the airport is full" do
+    full_airport = Airport.new(weather, 1)
+    full_airport.land(plane)
+    expect { full_airport.land(plane) }.to raise_error(RuntimeError, "Airport is full")
+  end
 end

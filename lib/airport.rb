@@ -23,7 +23,6 @@ class Airport
 
   def takeoff(plane)
     raise "Cannot take off in stormy weather" if @weather.stormy?
-    raise "Airport is full" if @planes.length >= @capacity
 
     @planes.pop # change so you can control which plane?
     plane.takeoff
