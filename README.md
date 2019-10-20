@@ -81,7 +81,7 @@ Monday morning:
 Tools used:
 --------------
 1. **rspec**
-2. **rubocop**
+2. **rubocop** (no offences)
 3. **SimpleCov**
 
 **References Used:**
