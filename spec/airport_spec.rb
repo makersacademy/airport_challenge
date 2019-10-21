@@ -56,7 +56,7 @@ describe Airport do
       an_airport.takeoff(a_plane)
       expect(an_airport.planes).not_to include a_plane
       expect(a_plane.airport).to eq ""
-      p an_airport.planes
+    
     end
 
     it "raise an error if taking off a plane while stormy" do
