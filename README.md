@@ -1,4 +1,4 @@
-Airport Challenge - Weekend Challenge (Makers Academy Week 1)
+Airport Challenge - Makers Academy Weekend Challenge 1
 =================
 
 ```
@@ -10,5 +10,22 @@ Airport Challenge - Weekend Challenge (Makers Academy Week 1)
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
+
+```
+
+## Using this program
+
+This challenge was set as our first independent weekend challenge at Makers Academy. It allowed me to practice interpreting user stories into code using test driven development practices practiced using pair programming in the week. This challenge allowed me to test and build upon my ruby skills and become more comfortable with OOP, SRP and encapsulation.
+
+
+
+```
+irb
+require './lib/airport.rb'
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+plane.landed?
+airport.take_off(plane)
 
 ```
