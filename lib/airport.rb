@@ -7,4 +7,8 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
+  def land(plane)
+    @planes << plane
+  end
 end
