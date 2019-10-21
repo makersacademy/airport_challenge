@@ -3,7 +3,6 @@ require 'plane.rb'
 
 describe Airport do
   subject(:airport) { described_class.new(20) }
-  let(:plane) { double :plane }
 
   describe '#land' do
     it 'instructs a plane to land' do
@@ -41,7 +40,7 @@ describe Airport do
     expect { airport.take_off(plane) }.to raise_error "cannot take off: weather is stormy!"
   end
 
-  it 'does not allow landing when at capacity' do
+  it 'raises an error when asked to land at max capacity' do
     allow(airport).to receive(:stormy?).and_return false
     plane = Plane.new
     20.times do
@@ -51,6 +50,6 @@ describe Airport do
   end
 
   it 'overwrite default capacity' do
-    expect(subject.capacity=30).to eq 30
+    expect(subject.capacity = 30).to eq 30
   end
 end
