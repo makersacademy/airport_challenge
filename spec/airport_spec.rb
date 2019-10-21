@@ -10,5 +10,9 @@ describe Airport do
   end
 
   it "stores an array of planes landed at the airport" do
+    airliner = Plane.new
+    airport = Airport.new
+    airport.land(airliner)
+    expect(airport.planes).to eq([airliner])
   end
 end
