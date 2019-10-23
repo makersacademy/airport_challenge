@@ -46,19 +46,19 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 As an air traffic controller 
 To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
 I want to prevent landing when the airport is full 
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
