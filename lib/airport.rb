@@ -7,9 +7,10 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @planes_landed = []
+    @weather = weather
   end
 
   def land(plane)
@@ -22,7 +23,7 @@ class Airport
 
   def take_off(plane)
     fail 'Weather is stormy' unless sunny?
-    
+
     @planes_landed.pop
     plane.left_airport
 
@@ -35,6 +36,6 @@ class Airport
   end
 
   def sunny?
-    Weather.new.sunny
+    @weather.sunny
   end
 end
