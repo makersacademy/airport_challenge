@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,25 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+---------
+#Sara Rancati - 19 October 2019
+##My approach to solving the challenge:
+---------
+
+1) I started from the first user story, and tried to identify the 'objects' and the 'messages'.
+2) I set up the workspace with the first spec file.
+3) I wrote the first unit test: this is a simple test to verify that instances of the class Plane respond to the method '#land'. Test failed.
+4) In my code file, I have created a class called 'Plane' and within this class I have defined a method called 'land' that accepts one argument.
+5) Moving to the second user story. For this task I will need another method 'take_off' that will also accept one argument (airport). I will also need a method that confirms that the plane has left the airport (left_airport?) and a status associated with it (flying). Feature test.
+6) I wrote a unit test for the above: after calling the method left_airport, I'd expect subject to be_flying. Test failed.
+7) In my code, I created the method take_off(airport), and the method left_airport. Within left_airport I have set a variable 'flying' = true. I also added a method flying? that returns the variable 'flying'. Unit test passed. Feature test.
+8) At this point I realised that the methods 'land' and 'take_off' would be more suited in a different class ('Airport') rather than 'Plane'. I created a new Airport class in a different file, and adjusted my unit tests accordingly. First commit.
+9) The third user story introduces a different object (weather). I created a file for this new class and a spec file. I created a unit test for the Weather class - the weather_forecast method should return true or false. Test failed.
+10) The value of the weather object could be either 'sunny' or 'stormy', so I implemented that in my code (an array with booleans and a .sample method).
+11) An error should be raised when takeoff is called and the weather is not sunny. I wrote a rspec test for this. Test failed. I added the exception under the take_off method.
+12) Given that the weather selection is random, I had to modify the test to predict what the weather would be (using a stub).
+13) For the fourth user story, I repeated the previous step for the method land. Second commit.
+14) For the fifth user story, I had to test that landing was not possible if airport is full. For this I had to introduce a capacity variable in the Airport class (part of initialize). I wrote a spec test to raise error if trying to land and airport is full. Test failed. I introduced an array to store the planes that have landed. The airport will be full if the length of the array is bigger than the set capacity.
+15) For the sixth user story I have introduced a constant for the default capacity and set that has the default value when initializing. Third commit.
+16) I refactored the code and checked indentation. Ready to commit and send a pull request.
