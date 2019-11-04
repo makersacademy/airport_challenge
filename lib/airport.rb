@@ -1,6 +1,6 @@
 class Airport
  def initialize
-   @allplanes = ["Initial Plane"]
+   @allplanes = []
  end
  def planes
    @allplanes
@@ -11,6 +11,7 @@ class Airport
  end
 
  def plane_take_off
-   @allplanes.shift
+   @allplanes.slice!(0)
+   @allplanes
  end
 end
