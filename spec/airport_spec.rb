@@ -17,7 +17,8 @@ end
 
 it 'responds to the method takeoff' do
   airport = Airport.new
-  airport.takeoff
+  plane = Plane.new
+  airport.takeoff(plane)
   expect(airport).to respond_to(:takeoff)
 end
 
@@ -34,6 +35,8 @@ it 'expects a plane to takeoff and no longer be at the airport' do
   airport.takeoff(plane)
   expect(airport.planes.include?(plane)).to eq(false)
 end
+
+
 
 
 
