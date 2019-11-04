@@ -22,11 +22,11 @@ describe Plane do
   #   expect(plane).to respond_to(:take_off)
   # end
 
-  it 'can respond to confirm' do
-    plane = Plane.new
-    plane.land
-    plane.take_off
-    expect(plane.take_off).to respond_to(:confirm)
-  end
+  # it 'can respond to confirm' do
+  #   plane = Plane.new
+  #   plane.land
+  #   plane.take_off
+  #   expect(plane.take_off).to respond_to(:confirm)
+  # end
 
 end
