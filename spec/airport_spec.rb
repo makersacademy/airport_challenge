@@ -1,3 +1,4 @@
+require "./lib/airport.rb"
 describe Airport do
   it 'makes an instance of the airport class' do
     airport = Airport.new
