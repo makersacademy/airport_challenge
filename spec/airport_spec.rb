@@ -11,21 +11,21 @@ end
 it 'responds to the method land' do
   airport = Airport.new
   plane = Plane.new
-  airport.land(plane)
+  allow(airport).to receive(:stormy) { false }
   expect(airport).to respond_to(:land)
 end
 
 it 'responds to the method takeoff' do
   airport = Airport.new
   plane = Plane.new
-  airport.takeoff(plane)
-  airport.stub(:stormy?) {:false}
+  allow(airport).to receive(:stormy?) { false }
   expect(airport).to respond_to(:takeoff)
 end
 
 it 'expects a plane to land at the airport and then be in the airport' do
   airport = Airport.new
   plane = Plane.new
+  allow(airport).to receive(:stormy?) { false }
   airport.land(plane)
   expect(airport.planes.include?(plane)).to eq(true)
 end
@@ -33,8 +33,8 @@ end
 it 'expects a plane to takeoff and no longer be at the airport' do
   airport = Airport.new
   plane = Plane.new
+  allow(airport).to receive(:stormy?) { false }
   airport.takeoff(plane)
-  airport.stub(:stormy?) { :false }
   expect(airport.planes.include?(plane)).to eq(false)
 end
 
@@ -47,7 +47,9 @@ it 'raises an error if the airport is full and you try to land' do
 airport = Airport.new
 plane = Plane.new
 plane2 = Plane.new
+allow(airport).to receive(:stormy?) { false }
 airport.land(plane2)
+allow(airport).to receive(:stormy?) { false }
 expect{airport.land(plane)}.to raise_error 'Airport is full'
 end
 
@@ -74,14 +76,16 @@ end
 it 'should not let a plane take off if stormy' do
 airport = Airport.new
 plane = Plane.new
-airport.stub(:stormy?) { :true }
+allow(airport).to receive(:stormy?) { true }
 expect{airport.takeoff(plane)}.to raise_error 'Cannot take-off while stormy'
 end
 
 it 'should not let a plane land if stormy' do
   airport = Airport.new
   plane = Plane.new
-  airport.stub(:stormy?) { :true }
+  allow(airport).to receive(:stormy?) { true }
   expect{airport.land(plane)}.to raise_error 'Cannot land while stormy'
 end
+
+
 end

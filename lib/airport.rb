@@ -8,8 +8,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport is full' if full?
     fail 'Cannot land while stormy' if stormy?
+    fail 'Airport is full' if full?
     @planes << plane
   end
 
