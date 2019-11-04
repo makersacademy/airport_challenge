@@ -26,7 +26,7 @@ describe Airport do
 
   it "should prevent landing when the aiport is full" do
     airport = Airport.new
-    expect { (DEFAULT_AIRPORT_CAPACITY + 1).times{ airport.land(Plane.new) } }.to raise_error "Airport is full"
+    expect { (Airport::DEFAULT_AIRPORT_CAPACITY + 1).times{ airport.land(Plane.new) } }.to raise_error "Airport is full"
   end
 
 end

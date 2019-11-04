@@ -2,6 +2,8 @@ require './lib/plane'
 
 class Airport
 
+  DEFAULT_AIRPORT_CAPACITY = 10
+
   attr_reader :planes
 
   def initialize
@@ -9,7 +11,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Airport is full" if @planes.size >= 1
+    raise "Airport is full" if @planes.size >= DEFAULT_AIRPORT_CAPACITY
     @planes << plane
   end
 
