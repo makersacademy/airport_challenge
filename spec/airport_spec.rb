@@ -42,10 +42,4 @@ it 'responds to the method full' do
 end
 
 
-
-
-
-
-
-
 end

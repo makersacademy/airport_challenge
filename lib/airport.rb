@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    
     @planes << plane
   end
 
@@ -14,5 +15,8 @@ class Airport
     @planes.delete(plane)
   end
 
+  def full?
+    true
+  end
 
 end
