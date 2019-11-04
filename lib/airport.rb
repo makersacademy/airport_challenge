@@ -13,9 +13,11 @@ class Airport
 
     fail 'Airport is full' if full?
 
-    fail 'Plane already landed' if @planes.include?(plane) == true
-    
+    fail 'Plane already landed' if plane.landed == true
+
     @planes << plane
+    plane.landed = true
+
   end
 
   def takeoff(plane)
@@ -24,6 +26,7 @@ class Airport
     fail 'Plane not at this airport' if @planes.include?(plane) == false
 
     @planes.delete(plane)
+    plane.landed = false
   end
 
   def full?

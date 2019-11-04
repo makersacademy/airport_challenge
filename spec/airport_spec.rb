@@ -20,7 +20,7 @@ describe Airport do
 
   it 'expects a plane to land at the airport and then be in the airport' do
     airport = Airport.new
-    plane = Plane.new
+    plane = Plane.new(false)
     allow(airport).to receive(:stormy?) { false }
     airport.land(plane)
     expect(airport.planes.include?(plane)).to eq(true)
@@ -28,7 +28,7 @@ describe Airport do
 
   it 'expects a plane to takeoff and no longer be at the airport' do
     airport = Airport.new
-    plane = Plane.new
+    plane = Plane.new(false)
     allow(airport).to receive(:stormy?) { false }
     airport.land(plane)
     airport.takeoff(plane)
@@ -43,7 +43,7 @@ describe Airport do
   it 'raises an error if the airport is full and you try to land' do
     airport = Airport.new(20)
     allow(airport).to receive(:stormy?) { false }
-    expect { 21.times { airport.land(Plane.new) } }.to raise_error 'Airport is full'
+    expect { 21.times { airport.land(Plane.new(false)) } }.to raise_error 'Airport is full'
   end
 
   it 'has a default capacity in this case set to 20' do
@@ -89,7 +89,7 @@ describe Airport do
 
   it 'should not allow planes to land if they are already landed' do
     airport = Airport.new
-    plane = Plane.new
+    plane = Plane.new(false)
     allow(airport).to receive(:stormy?) { false }
     airport.land(plane)
     expect { airport.land(plane) }.to raise_error 'Plane already landed'
