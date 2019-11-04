@@ -14,6 +14,60 @@ Airport Challenge
 ```
 Stories Completed
 -----------------
+First feature test in irb:
+
+Admins-MacBook-Air:airport_challenge student$ irb
+2.2.3 :001 > airport=Airport.new
+NameError: uninitialized constant Airport
+	from (irb):1
+	from /Users/student/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+
+# Need to create airport_spec.rb in spec folder and write test:
+
+NameError:
+  uninitialized constant Airport
+# ./spec/airport_spec.rb:3:in `<top (required)>'
+No examples found.
+
+# Need to create the Classs in airport.rb
+
+Admins-MacBook-Air:airport_challenge student$ irb
+2.6.0 :001 > class Airport
+2.6.0 :002?>   end
+ => nil
+2.6.0 :003 > airport = Airport.new
+ => #<Airport:0x00007fb4fb98b428>
+2.6.0 :004 >
+
+# rspec on unit test gives error:
+
+1) Airport should respond to #land
+    Failure/Error: it { is_expected.to respond_to :land }
+      expected #<Airport:0x00007fbf592f2180> to respond to :land
+    # ./spec/airport_spec.rb:4:in `block (2 levels) in <top (required)>'
+
+# Feature test in irb:
+
+Admins-MacBook-Air:airport_challenge student$ irb -r './lib/airport'
+2.6.0 :001 > airport = Airport.new
+ => #<Airport:0x00007fe07b1e10c8>
+2.6.0 :002 > airport.land
+
+NoMethodError (undefined method `land' for #<Airport:0x00007fe07b1e10c8>)
+
+#  Define the method 'land' in lib file
+
+    class Airport
+      def land
+      end
+    end
+
+# rspec result:
+
+    Airport
+      should respond to #land
+
+    1 example, 0 failures
 
 
 
