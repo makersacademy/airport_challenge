@@ -15,4 +15,8 @@ describe Airport do
   it "expects that error raised when landing attempted at full airport" do
     expect{ 2.times { subject.land(Plane.new) } }.to raise_error(RuntimeError)
   end
+
+  it "expects that new airport with no arguments passed has default capacity" do
+    expect(subject.capacity).to eq(subject::DEFAULT_CAPACITY)
+  end
 end
