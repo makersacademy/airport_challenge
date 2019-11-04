@@ -34,6 +34,7 @@ it 'expects a plane to takeoff and no longer be at the airport' do
   airport = Airport.new
   plane = Plane.new
   allow(airport).to receive(:stormy?) { false }
+  airport.land(plane)
   airport.takeoff(plane)
   expect(airport.planes.include?(plane)).to eq(false)
 end
