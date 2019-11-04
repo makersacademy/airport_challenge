@@ -36,6 +36,11 @@ it 'expects a plane to takeoff and no longer be at the airport' do
   expect(airport.planes.include?(plane)).to eq(false)
 end
 
+it 'responds to the method full' do
+  airport = Airport.new
+  expect(airport).to respond_to(:full?)
+end
+
 
 
 

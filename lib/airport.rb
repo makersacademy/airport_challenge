@@ -1,3 +1,4 @@
+require './lib/plane.rb'
 class Airport
   attr_reader :planes
 
@@ -12,4 +13,6 @@ class Airport
   def takeoff(plane)
     @planes.delete(plane)
   end
+
+
 end
