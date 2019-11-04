@@ -12,8 +12,9 @@ describe Airport do
 
   it "should show a plane that has landed" do
     airport = Airport.new
-    airport.land(Plane.new)
-    expect(airport.planes).to eq plane
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.planes).to eq [plane]
   end
 
 end
