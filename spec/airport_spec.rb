@@ -34,7 +34,7 @@ it 'expects a plane to takeoff and no longer be at the airport' do
   airport = Airport.new
   plane = Plane.new
   airport.takeoff(plane)
-  airport.stub(:stormy?) { false }
+  airport.stub(:stormy?) {false}
   expect(airport.planes.include?(plane)).to eq(false)
 end
 
@@ -76,5 +76,12 @@ airport = Airport.new
 plane = Plane.new
 airport.stub(:stormy?) { true }
 expect{airport.takeoff(plane)}.to raise_error 'Cannot take-off while stormy'
+end
+
+it 'should not let a plane land if stormy' do
+  airport = Airport.new
+  plane = Plane.new
+  airport.stub(:stormy?) {true}
+  expect{airport.land(plane)}.to raise_error 'Cannot land while stormy'
 end
 end
