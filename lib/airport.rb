@@ -7,11 +7,12 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
+    @planes = []
   end
 
   def land(plane)
-    if @plane == nil
-      @plane = plane
+    if @planes.length < @capacity
+      @planes.push(plane)
     else
       raise RuntimeError, "Airport full"
     end
