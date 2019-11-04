@@ -6,16 +6,4 @@ describe Plane do
   plane = Plane.new
   expect(plane).to be_instance_of(Plane)
 end
-
-  it 'responds to the method land' do
-    plane = Plane.new
-    plane.land
-    expect(plane).to respond_to(:land)
-  end
-
-  it 'responds to the method takeoff' do
-    plane = Plane.new
-    plane.takeoff
-    expect(plane).to respond_to(:takeoff)
-  end
 end

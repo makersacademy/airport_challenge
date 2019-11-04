@@ -1,2 +1,10 @@
 class Airport
-end 
+
+
+  def land(plane)
+    
+  end
+
+  def takeoff
+  end
+end
