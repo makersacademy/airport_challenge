@@ -16,6 +16,7 @@ describe Plane do
   # end
 
   it {is_expected.to respond_to(:take_off)}
+
   # it 'can respond to take off' do
   #   plane = Plane.new
   #   expect(plane).to respond_to(:take_off)
