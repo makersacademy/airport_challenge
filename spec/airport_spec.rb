@@ -66,7 +66,13 @@ end
 
  it 'should tell us whether it is stormy or not' do
  airport = Airport.new
- expect(airport.stormy?).to eq(true || false)
+ expect(airport.stormy?).to eq(true)| eq(false)
 end
 
+ it 'should not let a plane take off if stormy' do
+ airport = Airport.new
+ airport.stormy? == true
+ plane = Plane.new
+ expect{airport.takeoff(plane)}.to raise_error 'Cannot take-off while stormy'
+end
 end

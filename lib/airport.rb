@@ -17,12 +17,13 @@ class Airport
   end
 
   def full?
-if @planes.length > 0
-  return true
+    if @planes.length > 0
+      return true
+    end
   end
-end
 
-def stormy?
-end
+  def stormy?
+  rand(1..5) == 5 ? (true) : (false)
+  end
 
 end
