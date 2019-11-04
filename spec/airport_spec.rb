@@ -87,5 +87,10 @@ it 'should not let a plane land if stormy' do
   expect{airport.land(plane)}.to raise_error 'Cannot land while stormy'
 end
 
-
+it 'should not allow takeoff from an airport it is not in' do
+  airport = Airport.new
+  plane = Plane.new
+  allow(airport).to receive(:stormy?) { false }
+  expect{airport.takeoff(plane)}.to raise_error 'Plane not at this airport'
+end
 end
