@@ -14,7 +14,7 @@ describe Airport do
     subject.take_off(plane)
     expect(subject).to respond_to :take_off
   end
-  #
+
   # it 'confirms that plane is no longer in the airport' do
   #   plane = Plane.new
   #   subject.take_off(airport)
