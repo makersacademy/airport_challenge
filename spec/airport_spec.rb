@@ -17,4 +17,10 @@ describe Airport do
     expect(airport.planes).to eq [plane]
   end
 
+  it "should confirm a plane is no longer in the airport after take off" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq []
+  end
 end
