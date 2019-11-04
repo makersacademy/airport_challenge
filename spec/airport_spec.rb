@@ -1,5 +1,7 @@
 require './lib/airport.rb'
 
+
+
 describe Airport do
   it 'expects airport to be an instance of airport class' do
   airport = Airport.new
@@ -18,4 +20,17 @@ it 'responds to the method takeoff' do
   airport.takeoff
   expect(airport).to respond_to(:takeoff)
 end
+
+it 'expects a plane to land at the airport and then be in the airport' do
+  airport = Airport.new
+  plane = Plane.new
+  airport.land(plane)
+  expect(airport.planes.include?(plane)).to eq(true)
+end
+
+
+
+
+
+
 end
