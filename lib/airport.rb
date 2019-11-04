@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Airport is full" if @planes.size >= 1
     @planes << plane
   end
 
