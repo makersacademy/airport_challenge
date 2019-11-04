@@ -13,8 +13,9 @@ class Airport
   end
 
   def takeoff(plane)
+    fail 'Cannot take-off while stormy' if stormy?
     @planes.delete(plane)
-  end
+end
 
   def full?
     if @planes.length > 0
@@ -23,7 +24,7 @@ class Airport
   end
 
   def stormy?
-  rand(1..5) == 5 ? (true) : (false)
+  rand(1..5) == 3 ? true : false
   end
 
 end
