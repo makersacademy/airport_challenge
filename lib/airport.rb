@@ -1,15 +1,16 @@
 class Airport
- # def initialize
- #   @planes = [Plane.new]
- # end
+ def initialize
+   @allplanes = ["Initial Plane"]
+ end
+ def planes
+   @allplanes
+ end
 
  def plane_land
-
+   @allplanes << Plane.new
  end
 
  def plane_take_off
-
+   @allplanes.shift
  end
 end
-# Airport.new
-# puts @planes

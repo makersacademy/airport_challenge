@@ -9,13 +9,12 @@ describe Airport do
   it 'instructs a plane to take off' do
     is_expected.to respond_to :plane_take_off
   end
-  it 'knows number of planes in an airport' do
-    airport = Airport.new
-    expect (planes.lenght). to equal(1)
-  end
-
-
-  # it 'confirms a plane is no longer in the Airport' do
-  #   expect airport.plane_take_off
+  # it 'knows number of planes in an airport' do
+  #   airport = Airport.new
+  #   expect(airport.planes.length).to equal(1)
   # end
+  it 'confirms a plane is no longer in the Airport' do
+    airport = Airport.new
+    expect (airport.plane_take_off.legth).to equal(0)
+  end
 end
