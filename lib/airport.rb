@@ -22,4 +22,7 @@ if @planes.length > 0
   end
 end
 
+def stormy?
+end
+
 end

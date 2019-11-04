@@ -61,8 +61,12 @@ end
 
  it 'has a method that tells us whether it is stormy or not' do
   airport = Airport.new
-  expect(airport).to respond_to(:stormy)
+  expect(airport).to respond_to(:stormy?)
  end
 
+ it 'should tell us whether it is stormy or not' do
+ airport = Airport.new
+ expect(airport.stormy?).to eq(true || false)
+end
 
 end
