@@ -15,10 +15,10 @@ describe Airport do
   #   expect(airport).to respond_to(:plane_lands)
   # end
 
-  it 'can land a plane' do
-    plane = subject.plane_lands
-    expect(plane).to be_landed
-  end
+  # it 'can land a plane' do
+  #   plane = subject.plane_lands
+  #   expect(plane).to be_landed
+  # end
 
   it {is_expected.to respond_to(:plane_takes_off)}
 
@@ -26,5 +26,11 @@ describe Airport do
   #   airport = Airport.new
   #   expect(airport).to respond_to(:plane_takes_off)
   # end
+
+  it 'can confirm plane has taken off' do
+    airport = Airport.new
+    airport.plane_takes_off
+    expect(airport.plane_takes_off).to respond_to(take_off_confirmed)
+  end
 
 end

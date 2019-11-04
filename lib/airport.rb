@@ -1,3 +1,4 @@
+require_relative 'plane'
 class Airport
   def plane_lands
   end
