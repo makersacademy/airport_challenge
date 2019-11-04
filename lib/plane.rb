@@ -1,5 +1,5 @@
 class Plane
- def land
-   #plane.land
+ def plane
+   plane.land
  end
 end

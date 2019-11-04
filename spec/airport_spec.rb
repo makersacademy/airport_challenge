@@ -12,6 +12,10 @@ require "plane.rb"
   expect(plane).respond_to?(:land)
    end
 end
+
+
+
+
  #it 'can respond to a plane to land' do
   # expect(plane).to respond_to(:land)
 #end
