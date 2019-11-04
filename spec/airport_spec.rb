@@ -48,4 +48,11 @@ plane2 = Plane.new
 airport.land(plane2)
 expect{airport.land(plane)}.to raise_error 'Airport is full'
 end
+
+it 'has a default capacity in this case set to 20' do
+  airport = Airport.new
+  expect(airport.capacity).to eq(20)
+end
+
+
 end
