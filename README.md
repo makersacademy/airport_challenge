@@ -13,6 +13,14 @@ Airport Challenge
 
 ```
 ""😀Stories Completed😀""
+1.1 USER STORY 1 :
+
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+NOUNS: AIR TRAFFIC CONTROLLER, PASSENGERS, DESTINATION, PLANE, AIRPORT
+VERBS : Can_Get_Passengers, To_A_Destination, Instruct_A_Plane, To_Land
 
 
 Instructions
