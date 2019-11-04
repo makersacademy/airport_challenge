@@ -14,6 +14,16 @@ Airport Challenge
 ```
 Stories completed :-)
 
+2.6.3 :007 > class Airport
+2.6.3 :008?>   end
+ => nil
+2.6.3 :009 > airport = Airport.new
+2.6.3 :012 > class Plane
+2.6.3 :013?>   end
+ => nil
+2.6.3 :014 > plane = Plane.new
+ => #<Plane:0x00007fef180b4730> 
+
 Instructions
 
 ---------
