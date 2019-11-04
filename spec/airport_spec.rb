@@ -29,4 +29,15 @@ describe Airport do
     expect { (Airport::DEFAULT_AIRPORT_CAPACITY + 1).times{ airport.land(Plane.new) } }.to raise_error "Airport is full"
   end
 
+  it "defaults to a capacity equal to the default airport capacity" do
+    airport = Airport.new
+    expect(airport.capacity).to DEFAULT_AIRPORT_CAPACITY
+  end
+
+  it "should allow the user to specify a different capacity" do
+    capacity = 15
+    airport = Airport.new(15)
+    expect(airport.capacity).to eq capacity
+  end
+
 end
