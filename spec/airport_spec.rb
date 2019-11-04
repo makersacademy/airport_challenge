@@ -28,6 +28,13 @@ it 'expects a plane to land at the airport and then be in the airport' do
   expect(airport.planes.include?(plane)).to eq(true)
 end
 
+it 'expects a plane to takeoff and no longer be at the airport' do
+  airport = Airport.new
+  plane = Plane.new
+  airport.takeoff(plane)
+  expect(airport.planes.include?(plane)).to eq(false)
+end
+
 
 
 
