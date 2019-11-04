@@ -13,27 +13,11 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+
 
 ```
 As an air traffic controller 
@@ -61,30 +45,140 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+## Usage:
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Each Airport instance will have a capacity of 40 by default, as well as a 30% chance of stormy weather.
+Passing in a value for capacity on the creation of new Airport instances will override this value.
 
-Please create separate files for every class, module and test suite.
+Planes can land and take off from airports allowing for Airport capacity and weather conditions
+```
+require_relative 'airport'
+require_relative 'plane'
 
-In code review we'll be hoping to see:
+# Create objects
+Heathrow = Airport.new(100)
+boeing_747 = Plane.new
+boeing_737 = Plane.new
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+# Get flying status
+puts boeing_747.flying # => true
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+boeing_737.land(Heathrow)
+boeing_747.land(Heathrow)
+puts boeing_747.airport # => <airport ID>
 
-**BONUS**
+puts Heathrow.hangar # => <Plane:0x00007fc738826890> , <Plane:0x00007fc738826840>
+puts boeing_747.flying # => false
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+boeing_747.land(Heathrow) # => Plane already in airport! (RuntimeError)
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Heathrow.allow_take_off(boeing_737)
+puts Heathrow.hangar # => <Plane:0x00007fc738826890>
+puts Heathrow.stormy? # => true or false
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+```
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+Upon landing, planes are stored in a hangar, here represented by an array. The status of each plane (What airport is it in? Is it flying?) is appropriately changed to reflect the airport ID of the airport it is stored in and whether it is flying or not.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Planes will not be permitted to land if the weather is stormy or if the hangar is over capacity. Trying to receive a plane that is already in the hangar will throw an error.
+
+### Each Plane instance can allow planes to take off
+
+```
+boeing_747.take_off(Heathrow)
+
+puts Heathrow.hangar # => []
+puts boeing_747.flying # => true
+puts boeing_747.airport # => ""
+```
+
+If the weather is not stormy, planes can leave the airport. When a plane leaves the airport it is also removed from the hangar. The plane's flying status will set to true and its airport attribute will be an empty string to denote that it no longer is at an airport.
+
+# My approach to Solving this challenge.
+
+## Plane Class:
+
+### Take off and Landing
+
+Planes are not permitted to take off if the weather is stormy. It is not possible to take off from an airport in which that plane is not stored in and no plane can take off if it is already flying.
+
+Planes cannot land if the weather is stormy and an error will be thrown if you try to land a plane that is already on the ground or if the hangar is full.
+
+```
+  def take_off(airport)
+    fail "Can't take off due to stormy weather!" if airport.stormy?
+    fail "This plane is already flying" if flying?
+    fail "This plane is not at this airport" unless @airport == airport.airport_id
+
+    airport.hangar.delete(self)
+    change_status("", true)
+    return airport
+  end
+
+  def land(airport)
+    fail "Can't land due to stormy weather!" if airport.stormy?
+    fail "Can't land, hangar is full!" if airport.full?
+    fail "Plane already in airport!" if airport.in_airport?(self)
+    
+    airport.hangar << self
+    change_status(airport.airport_id, false)
+    return airport
+  end
+```
+## Attributes
+
+Each Plane instance has a few attributes:
+
+* Flying Status (flying is either true or false)
+* Airport (Which airport it is in)
+
+The `change_status` method changes the flight status upon landing and take off 
+
+```
+  def initialize
+    @flying = true
+    @airport = ""
+  end
+
+  def flying?
+    return @flying
+  end
+
+  def change_status(airport_id, flying_status)
+    @airport = airport_id
+    @flying = flying_status
+  end
+
+```
+
+## Airport Class:
+### The initialize method sets up some important parameters:
+
+```
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @hangar = []
+    @stormy = rand(9) <= 2
+    @full = false
+    @capacity = capacity
+    @airport_id = object_id
+  end
+```
+
+### Attributes
+
+It is possible to check if a plane is being stored at the airport, to check if the weather is stormy and if the hangar is full.
+
+```
+  def in_airport?(plane)
+    return @hangar.include?(plane)
+  end
+
+  def stormy?
+    return @stormy
+  end
+
+  def full?
+    @full = (@hangar.length >= capacity)
+  end
+```
