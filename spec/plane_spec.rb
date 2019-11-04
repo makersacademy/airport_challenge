@@ -14,6 +14,4 @@ describe Plane do
     plane = Plane.new
     expect(plane.land_plane).to eql("land")
   end
-
-
 end
