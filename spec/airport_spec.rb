@@ -8,11 +8,18 @@ describe Airport do
   #   expect(airport).to be_kind_of(Airport)
   # end
 
-  it {is_expected.to respond_to(:land_plane)}
+  it {is_expected.to respond_to(:plane_lands)}
 
-  # it 'can respond to land_plane' do
+  # it 'can respond to plane lands' do
   #   airport = Airport.new
-  #   expect(airport).to respond_to(:land_plane)
+  #   expect(airport).to respond_to(:plane_lands)
+  # end
+
+  it {is_expected.to respond_to(:plane_takes_off)}
+
+  # it 'can respond to plane takes off' do
+  #   airport = Airport.new
+  #   expect(airport).to respond_to(:plane_takes_off)
   # end
 
 end
