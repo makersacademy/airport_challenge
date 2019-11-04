@@ -59,4 +59,10 @@ end
    expect(airport.capacity).to eq(30)
  end
 
+ it 'has a method that tells us whether it is stormy or not' do
+  airport = Airport.new
+  expect(airport).to respond_to(:stormy)
+ end
+
+
 end
