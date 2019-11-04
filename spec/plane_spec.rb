@@ -10,9 +10,15 @@ describe Plane do
 
   it {is_expected.to respond_to(:land)}
 
-  # it 'responds to land' do
+  # it 'can respond to land' do
   #   plane = Plane.new
   #   expect(plane).to respond_to(:land)
+  # end
+
+  it {is_expected.to respond_to(:take_off)}
+  # it 'can respond to take off' do
+  #   plane = Plane.new
+  #   expect(plane).to respond_to(:take_off)
   # end
 
 end
