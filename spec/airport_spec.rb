@@ -9,4 +9,9 @@ describe Plane do
     plane = Plane.new
     expect(plane).to respond_to(:land_plane)
   end
+
+  it 'lands plane' do
+    plane = Plane.new
+    expect(plane.land_plane).to eql(land)
+  end
 end
