@@ -6,7 +6,12 @@ describe Airport do
   end
 end
 
-it 'can receive planes'do
-plane = Plane.new
-expect(airport.plane).to include plane
+#instruct a plane to land at an airport
+describe Airport do
+ it {is_expected.to respond_to(:land).with(1). argument}
 end
+
+#instruct a plane to take off from an airport
+describe Airport do
+  it {is_expected.to respond_to(:takeoff).with(1). argument}
+end 
