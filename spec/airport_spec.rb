@@ -19,4 +19,10 @@ describe Airport do
   it "expects that new airport with no arguments passed has default capacity" do
     expect(subject.capacity).to eq(subject::DEFAULT_CAPACITY)
   end
+
+  it "expects that capacity can be overridden by passing argument when initialising airport" do
+    custom_capacity = 5
+    airport = Airport.new(custom_capacity)
+    expect(airport.capacity).to eq(custom_capacity)
+  end
 end
