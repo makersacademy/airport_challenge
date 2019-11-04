@@ -1,8 +1,22 @@
 require 'airport'
 
 describe Airport do
-  it 'creates an instance of Airports' do
+  it 'responds to land_at_airport' do
     airport = Airport.new
-    expect(airport).to be_kind_of(Airport)
+    plane = Plane.new
+    subject.land_at_airport(plane)
+    expect(subject).to respond_to :land_at_airport
   end
+
+  # it 'responds to take_off' do
+  #   plane = Plane.new
+  #   expect(plane).to respond_to :take_off
+  # end
+  #
+  # it 'confirms that plane is no longer in the airport' do
+  #   plane = Plane.new
+  #   subject.take_off(airport)
+  #   expect(subject.take_off).to eq airport
+  # end
+
 end
