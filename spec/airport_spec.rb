@@ -15,6 +15,11 @@ describe Airport do
   #   expect(airport).to respond_to(:plane_lands)
   # end
 
+  it 'can land a plane' do
+    plane = subject.plane_lands
+    expect(plane).to be_landed
+  end
+
   it {is_expected.to respond_to(:plane_takes_off)}
 
   # it 'can respond to plane takes off' do
