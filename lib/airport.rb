@@ -7,7 +7,7 @@ class Airport
   end
 
   def land(plane)
-
+    fail 'Airport is full' if full?
     @planes << plane
   end
 
@@ -16,7 +16,9 @@ class Airport
   end
 
   def full?
-    true
+if @planes.length > 0
+  return true
   end
+end
 
 end
