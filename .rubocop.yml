@@ -35,6 +35,7 @@
 # Sometimes beginner devs interpret line or block length restrictions as a
 # reason to make things so abbreviated as to be unreadable. These messages are
 # designed to make you write more readable code - not less.
+require: rubocop-rails
 
 Metrics/LineLength:
   Max: 100
