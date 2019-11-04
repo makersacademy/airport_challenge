@@ -8,11 +8,11 @@ describe Plane do
   #   expect(plane).to be_kind_of(Plane)
   # end
 
-  it {is_expected.to respond_to(land)}
+  it {is_expected.to respond_to(:land)}
 
   # it 'responds to land' do
   #   plane = Plane.new
-  #   expect(plane.land).to respond_to(land)
+  #   expect(plane).to respond_to(:land)
   # end
 
 end
