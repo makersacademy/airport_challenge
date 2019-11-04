@@ -20,7 +20,7 @@ class Airport
 end
 
   def full?
-    if @planes.length > 0
+    if @planes.length == @capacity
       return true
     end
   end

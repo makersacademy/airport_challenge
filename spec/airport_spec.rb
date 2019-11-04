@@ -45,13 +45,9 @@ it 'responds to the method full' do
 end
 
 it 'raises an error if the airport is full and you try to land' do
-airport = Airport.new
-plane = Plane.new
-plane2 = Plane.new
+airport = Airport.new(20)
 allow(airport).to receive(:stormy?) { false }
-airport.land(plane2)
-allow(airport).to receive(:stormy?) { false }
-expect{airport.land(plane)}.to raise_error 'Airport is full'
+expect{21.times {airport.land(Plane.new)}}.to raise_error 'Airport is full'
 end
 
 it 'has a default capacity in this case set to 20' do
@@ -93,5 +89,13 @@ it 'should not allow takeoff from an airport it is not in' do
   plane = Plane.new
   allow(airport).to receive(:stormy?) { false }
   expect{airport.takeoff(plane)}.to raise_error 'Plane not at this airport'
+end
+
+it 'should not allow planes to land if they are already landed' do
+  airport = Airport.new
+  plane = Plane.new
+  allow(airport).to receive(:stormy?) { false }
+  airport.land(plane)
+  expect{airport.land(plane)}.to raise_error 'Plane already landed'
 end
 end
