@@ -13,6 +13,6 @@ class Airport
   end
 
   def take_off(plane)
-
+    @planes[1..-1]
   end
 end
