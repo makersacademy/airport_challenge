@@ -42,4 +42,13 @@ it 'responds to the method full' do
 end
 
 
+it 'raises an error if the airport is full and you try to land' do
+airport = Airport.new
+plane = Plane.new
+plane2 = Plane.new
+airport.land(plane2)
+airport.land(plane)
+
+expect(airport.land(plane)).to raise_error('Airport is full')
+end
 end
