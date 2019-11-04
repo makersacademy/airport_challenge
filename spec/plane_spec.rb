@@ -1,4 +1,4 @@
-require "./lib/airport.rb"
+require "./lib/plane.rb"
 describe Plane do
   it 'makes an instance of the plane class' do
     plane = Plane.new
@@ -12,6 +12,8 @@ describe Plane do
 
   it 'lands plane' do
     plane = Plane.new
-    expect(plane.land_plane).to eql(land)
+    expect(plane.land_plane).to eql("land")
   end
+
+
 end
