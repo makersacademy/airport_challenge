@@ -11,7 +11,24 @@ Airport Challenge
                 `---~~\___________/------------`````
                 =  ===(_________)
 
-stories completed 
+stories completed
+
+user story 1:
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+$ irb -r './lib/airport'
+2.6.0 :001 > airport = Airport.new
+ => #<Airport:0x00007fa06b85bca0>
+2.6.0 :002 > airport.lane_plane
+Traceback (most recent call last):
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1
+.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):2
+NoMethodError (undefined method `lane_plane' for #<Airport:0x00007fa06b85bca0>)
 ```
 
 Instructions
