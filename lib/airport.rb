@@ -13,10 +13,13 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
+    
     @planes << plane
   end
 
   def take_off(plane)
+    raise "Plane not in airport" unless @planes.include?(plane)
+
     @planes -= [plane]
   end
 
