@@ -3,8 +3,7 @@ require './lib/plane.rb'
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_reader :capacity
-  attr_accessor :planes
+  attr_reader :capacity, :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -21,7 +20,7 @@ class Airport
 
   def takeoff(plane)
     if @planes.include?(plane)
-      @planes -= plane
+      @planes -= [plane]
     else
       raise RuntimeError, "Plane #{plane} not at airport"
     end
