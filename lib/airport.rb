@@ -5,8 +5,11 @@ class Airport
  def planes
    @allplanes
  end
-
+ def capacity
+   capacity = 10
+ end
  def plane_land
+   fail 'Airport Full' if @allplanes.count >= capacity
    @allplanes << Plane.new
  end
 
