@@ -46,4 +46,9 @@ describe Airport do
     expect { airport.take_off(plane) }.to raise_error "Plane not in airport"
   end
 
+  it "should not allow the same plane to land twice" do
+    airport = Airport.new
+    plane = Plane.new
+    expect { 2.times { airport.land(plane) } }.to raise_error "Plane already in the airport"
+  end
 end

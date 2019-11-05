@@ -13,7 +13,7 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
-    
+
     @planes << plane
   end
 
