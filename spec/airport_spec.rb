@@ -32,10 +32,4 @@ describe Airport do
     subject.land(plane)
     expect(subject.planes).to eq([plane])
   end
-
-  it "allows user to confirm plane is no longer at airport after takeoff" do
-    plane = Plane.new
-    subject.land(plane)
-    expect(plane.at_airport).to eq(true)
-  end
 end
