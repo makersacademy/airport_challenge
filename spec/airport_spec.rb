@@ -13,7 +13,7 @@ it 'is expected to respond to :airplanes' do
   expect(airport).to respond_to :planes
 end
 
-end
+
 
 # it 'has a specific capacity of planes' do
 #   airport = Airport.new
@@ -25,12 +25,13 @@ end
 #end
 
 #respond to method land_plane
-# it 'responds to land plane' do
-#
-
+it 'responds to land plane' do
+expect :plane.to respond_to(land_plane)
+end
 #allow a plane to land
 
 #respond to method takeoff_plane
 
 
 #respond to the array of airplanes
+end
