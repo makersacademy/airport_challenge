@@ -26,4 +26,16 @@ describe Airport do
     plane = Plane.new
     expect{ subject.takeoff(plane) }.to raise_error(RuntimeError)
   end
+
+  it "expects that plane is stored in planes array when land method called" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.planes).to eq([plane])
+  end
+
+  it "allows user to confirm plane is no longer at airport after takeoff" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.at_airport).to eq(true)
+  end
 end
