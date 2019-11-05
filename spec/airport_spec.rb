@@ -32,4 +32,11 @@ describe Airport do
     subject.land(plane)
     expect(subject.planes).to eq([plane])
   end
+
+  it "expects that plane no longer exists in airport once taken off" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(subject.planes.include?(plane)).to eq(false)
+  end
 end
