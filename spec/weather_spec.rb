@@ -8,6 +8,6 @@ describe Weather do
 
   it "should usually be sunny but sometimes stormy" do
     weather = Weather.new
-    expect(weather.status).to eq "sunny" || "stormy"
+    expect(["stormy", "sunny"]).to include(weather.status)
   end
 end
