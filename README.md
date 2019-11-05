@@ -32,22 +32,11 @@ Stories Completed
  # RSpec Test_05
  "Airport
   should respond to #land_plane
-
 Plane
   should respond to #landed?
-
 Finished in 0.00178 seconds (files took 0.13178 seconds to load)
 2 examples, 0 failures
-
-
 COVERAGE:  84.62% -- 11/13 lines in 5 files
-
-+----------+----------------+-------+--------+---------+
-| coverage | file           | lines | missed | missing |
-+----------+----------------+-------+--------+---------+
-|  66.67%  | lib/plane.rb   | 3     | 1      | 3       |
-|  75.00%  | lib/airport.rb | 4     | 1      | 5       |
-+----------+----------------+-------+--------+---------+
 3 file(s) with 100% coverage not shown"
 
 
