@@ -18,7 +18,11 @@ class Airport
     end
   end
 
-  def takeoff
-    Plane.new
+  def takeoff(plane)
+    if @planes.include?(plane)
+      @planes -= plane
+    else
+      raise RuntimeError, "Plane #{plane} not at airport"
+    end
   end
 end
