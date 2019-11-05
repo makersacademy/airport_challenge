@@ -6,7 +6,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
-  it { is_expected.to respond_to(:takeoff) }
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   it "expects that takeoff method returns plane object" do
     expect(subject.takeoff).to be_instance_of(Plane)
@@ -24,5 +24,10 @@ describe Airport do
     custom_capacity = 5
     airport = Airport.new(custom_capacity)
     expect(airport.capacity).to eq(custom_capacity)
+  end
+
+  it "returns error when plane tries to takeoff from airport it's not at" do
+    plane = Plane.new
+    expect{ subject.takeoff(plane) }.to raise_error(RuntimeError)
   end
 end
