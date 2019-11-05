@@ -11,10 +11,10 @@ class Airport
   end
 
   def land(plane)
-    if @planes.length < @capacity
-      @planes.push(plane)
-    else
+    if full?
       raise RuntimeError, "Airport full"
+    else
+      @planes.push(plane)
     end
   end
 
@@ -24,5 +24,11 @@ class Airport
     else
       raise RuntimeError, "Plane #{plane} not at airport"
     end
+  end
+
+  private
+
+  def full?
+    @planes.length >= @capacity
   end
 end
