@@ -51,4 +51,10 @@ describe Airport do
     plane = Plane.new
     expect { 2.times { airport.land(plane) } }.to raise_error "Plane already in the airport"
   end
+
+  it "should not allow planes to land if the weather is stormy"
+  airport = Airport.new
+  plane = Plane.new
+  weather = Weather.new
+  expect 
 end
