@@ -1,6 +1,7 @@
 require './docs/airport'
 
 describe Airport do
+let (:plane) {double :plane}
 
 it 'creates an instance of airport class' do
   airport = Airport.new
@@ -9,7 +10,7 @@ end
 
 it 'is expected to respond to :airplanes' do
   airport = Airport.new
-  expect(airport).to respond_to(:airplanes)
+  expect(airport).to respond_to :planes
 end
 
 end
@@ -21,6 +22,7 @@ end
 # it 'has a default capacity that can be overwritten' do
 # plane_cap = Airport.new(20)
 #expect(plane_cap.capacity).to eq 20
+#end
 
 #respond to method land_plane
 # it 'responds to land plane' do
