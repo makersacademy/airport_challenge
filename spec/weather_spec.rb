@@ -5,4 +5,9 @@ describe Weather do
     weather = Weather.new
     expect(weather).to be_instance_of(Weather)
   end
+
+  it "should usually be sunny but sometimes stormy" do
+    weather = Weather.new
+    expect(weather.status).to eq "sunny" || "stormy"
+  end
 end
