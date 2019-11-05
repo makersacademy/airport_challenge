@@ -15,9 +15,10 @@ Airport Challenge
 Stories Completed
 -----------------
 
-# STORY 1 - Test: I want to instruct a plane to land at an airport
+STORY 1 - Test: I want to instruct a plane to land at an airport
 
-# IRB Test_05
+IRB Test_05
+
 "2.6.3 :001 > require './lib/airport'
  => true
 2.6.3 :002 > airport = Airport.new
@@ -29,7 +30,8 @@ Stories Completed
 2.6.3 :005 > airport = plane.landed?
  => true"
  
- # RSpec Test_05
+ RSpec Test_05
+ 
  "Airport
   should respond to #land_plane
 Plane
@@ -40,9 +42,10 @@ COVERAGE:  84.62% -- 11/13 lines in 5 files
 3 file(s) with 100% coverage not shown"
 
 
-# Story 2 - Test: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Story 2 - Test: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-# IRB Test_03
+IRB Test_03
+
 "2.6.3 :001 > require './lib/airport'
  => true
 2.6.3 :002 > airport = Airport.new
