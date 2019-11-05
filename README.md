@@ -17,6 +17,20 @@ Stories Completed
 
 STORY 1 - Test: I want to instruct a plane to land at an airport
 
+IRB Test_02
+
+2.6.3 :001 > require './lib/airport'
+ => true
+2.6.3 :002 > airport = Airport.new
+ => #<Airport:0x00007feb2f02fea0>
+2.6.3 :003 > plane = Plane.new
+Traceback (most recent call last):
+        4: from /Users/lealle/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/lealle/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/lealle/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):3
+NameError (uninitialized constant Plane)
+
 IRB Test_05
 
 "2.6.3 :001 > require './lib/airport'
