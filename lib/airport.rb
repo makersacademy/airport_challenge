@@ -1,5 +1,3 @@
-require './lib/plane'
-
 class Airport
 
   DEFAULT_AIRPORT_CAPACITY = 10
