@@ -13,7 +13,6 @@ describe Airport do
 
   it 'can instruct a plane to take off' do
     testplane = Plane.new
-    subject.planes
     subject.planes << testplane
     subject.take_off_plane(testplane)
     expect(subject.planes).not_to include(testplane)
