@@ -23,6 +23,7 @@ class Airport
 
   def take_off(plane)
     raise "Plane not in airport" unless present?(plane)
+    raise "Plane can't take off in storm." if stormy?
 
     @planes -= [plane]
   end
