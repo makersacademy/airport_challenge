@@ -36,8 +36,6 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-Stories Started
-
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
@@ -45,7 +43,6 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
-
 
 Instructions
 ---------
