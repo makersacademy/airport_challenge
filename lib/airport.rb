@@ -1,3 +1,6 @@
+require './lib/plane'
+require './lib/weather'
+
 class Airport
 
   DEFAULT_AIRPORT_CAPACITY = 10
@@ -7,11 +10,13 @@ class Airport
   def initialize(capacity = DEFAULT_AIRPORT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
     raise "Airport is full" if full?
     raise "Plane already in the airport" if present?(plane)
+    raise "Plane can't land in storm." if stormy?
 
     @planes << plane
   end
@@ -23,6 +28,10 @@ class Airport
   end
 
   private
+
+  def stormy?
+    @weather.status == "stormy"
+  end
 
   def full?
     @planes.size >= @capacity

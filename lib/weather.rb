@@ -5,4 +5,5 @@ class Weather
   def initialize
     @status = ["sunny", "sunny", "sunny", "sunny", "stormy"].sample
   end
+
 end

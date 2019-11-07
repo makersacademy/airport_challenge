@@ -3,11 +3,11 @@ require './lib/airport'
 describe Airport do
 
   let(:plane) { double :plane }
-  let(:weather) {double :weather}
 
   before do
     allow(plane).to receive(:land)
     allow(plane).to receive(:take_off)
+    allow(subject).to receive(:stormy?).and_return(false)
   end
 
   it "makes an instance of the Airport class" do
@@ -52,12 +52,13 @@ describe Airport do
   end
 
   it "should not allow a plane to land if the weather is stormy" do
-    allow(weather).to receive(:stormy?).and_return(true)
+    allow(subject).to receive(:stormy?).and_return(true)
     expect {subject.land(plane)}.to raise_error "Plane can't land in storm."
   end
 
   it "should not allow a plane to take off if the weather is stormy" do
-
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect {subject.take_off(plane)}.to raise_error "Plane can't take off in storm."
   end
 
   # it "should not allow planes to land if the weather is stormy"
