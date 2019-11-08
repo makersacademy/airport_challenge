@@ -18,6 +18,11 @@ describe Airport do
     expect(subject.planes).not_to include(testplane)
   end
 
-
+  it 'will not land a plane if the airport is full' do
+    for i in 1..Airport::MAX_CAPACITY do
+      subject.planes << testplane
+    end
+    expect(subject.land_plane(testplane)).to raise_error "Cannot land plane: Airport full"
+  end
 
 end
