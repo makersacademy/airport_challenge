@@ -23,7 +23,7 @@ describe Airport do
       subject.planes << testplane
     end
     errortext = "Cannot land plane: Airport full"
-    expect{ subject.land_plane(testplane) }.to raise_error(errortext)
+    expect { subject.land_plane(testplane) }.to raise_error(errortext)
   end
 
   it 'has a default capacity which can be overridden by passing an integer' do
@@ -32,4 +32,9 @@ describe Airport do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     expect(airport2.capacity).to eq 5
   end
+
+  it 'prevents takeoff when weather is stormy' do
+    
+  end
+
 end
