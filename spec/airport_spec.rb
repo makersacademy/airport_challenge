@@ -22,7 +22,8 @@ describe Airport do
     for i in 1..Airport::MAX_CAPACITY do
       subject.planes << testplane
     end
-    expect(subject.land_plane(testplane)).to raise_error "Cannot land plane: Airport full"
+    errortext = "Cannot land plane: Airport full"
+    expect{ subject.land_plane(testplane) }.to raise_error(errortext)
   end
 
 end
