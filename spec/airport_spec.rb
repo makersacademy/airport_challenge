@@ -19,7 +19,7 @@ describe Airport do
   end
 
   it 'will not land a plane if the airport is full' do
-    for i in 1..Airport::MAX_CAPACITY do
+    for i in 1..subject.capacity do
       subject.planes << testplane
     end
     errortext = "Cannot land plane: Airport full"
