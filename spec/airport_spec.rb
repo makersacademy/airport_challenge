@@ -26,4 +26,10 @@ describe Airport do
     expect{ subject.land_plane(testplane) }.to raise_error(errortext)
   end
 
+  it 'has a default capacity which can be overridden by passing an integer' do
+    airport = Airport.new()
+    airport2 = Airport.new(5)
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(airport2.capacity).to eq 5
+  end
 end
