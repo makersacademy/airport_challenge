@@ -1,21 +1,31 @@
 require 'airport'
 describe Airport do
   subject { described_class.new }
-# instruct a plane to land at an airport
+  # As an air traffic controller
+  # So I can get passengers to a destination
+  # I want to instruct a plane to land at an airport
 it 'instructs a plane to land' do
  expect(subject).to respond_to(:land).with(1). argument
 end
+  # As an air traffic controller
+  # So I can get passengers on the way to their destination
+  # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+it 'instructs a plane to take_off' do
+ expect(subject).to respond_to(:take_off).with(1). argument
 end
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when the airport is full
 #
-# #instruct a plane to take off from an airport
-# describe Airport do
-#   it {is_expected.to respond_to(:takeoff).with(1). argument}
-# end
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
 #
-# #landing cant be done when the airport is full. We need to have a count for this.
-# #does not accept planes and raise and error .
-# describe Airport do
-#   it "doesnot accept planes and raise an error when full" do
-#     expect {airport.land(plane)}.to raise_error('Airport is full,the plane cannot land.')
-#   end
-# end
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
+# 
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when weather is stormy
+end
