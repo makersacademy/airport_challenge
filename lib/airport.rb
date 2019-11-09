@@ -1,4 +1,5 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 10
@@ -10,8 +11,9 @@ class Airport
     @planes = []
   end
 
-  def land_plane(plane)
+  def land_plane(plane, weather)
     raise "Cannot land plane: Airport full" if @planes.count >= @capacity
+    raise "Cannot take off: Weather is stormy" if weather.getweather == "stormy"
 
     @planes << plane
   end
