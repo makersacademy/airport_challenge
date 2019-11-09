@@ -7,11 +7,12 @@ describe Weather do
   it 'returns stormy weather approximately one day in every 10' do
     storeweather = []
     10000.times do
-      storeweather << subject.getweather
+      storeweather << Weather.new.getweather
     end
     sunny = storeweather.count("sunny")
     stormy = storeweather.count("stormy")
     percentage = stormy.to_f / sunny.to_f
+    puts "  percentage was #{percentage}"
     expect(percentage).to be_within(0.05).of(0.1)
   end
 end

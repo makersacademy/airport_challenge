@@ -4,6 +4,7 @@ require './lib/plane.rb'
 describe Airport do
 
   let(:testplane) { double :Plane }
+  let(:testweather) { double :Weather}
 
   it { is_expected.to be_instance_of(Airport) }
 
@@ -34,7 +35,9 @@ describe Airport do
   end
 
   it 'prevents takeoff when weather is stormy' do
-    
+    allow(testweather).to receive(:getweather) { "stormy" }
+    errortext = "Cannot take off: Weather is stormy"
+    expect(subject.take_off_plane(testplane, testweather)).to raise_error(errortext)
   end
 
 end
