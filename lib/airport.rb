@@ -13,7 +13,7 @@ class Airport
 
   def land_plane(plane, weather)
     raise "Cannot land plane: Airport full" if @planes.count >= @capacity
-    raise "Cannot take off: Weather is stormy" if weather.getweather == "stormy"
+    raise "Cannot land plane: Weather is stormy" if weather.getweather == "stormy"
 
     @planes << plane
   end

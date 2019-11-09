@@ -9,7 +9,8 @@ describe Airport do
   it { is_expected.to be_instance_of(Airport) }
 
   it 'can instruct a plane to land' do
-    subject.land_plane(testplane)
+    allow(testweather).to receive(:getweather) { "sunny" }
+    subject.land_plane(testplane, testweather)
     expect(subject.planes).to include(testplane)
   end
 
@@ -21,11 +22,12 @@ describe Airport do
   end
 
   it 'will not land a plane if the airport is full' do
+    allow(testweather).to receive(:getweather) { "sunny" }
     for i in 1..subject.capacity do
       subject.planes << testplane
     end
     errortext = "Cannot land plane: Airport full"
-    expect { subject.land_plane(testplane) }.to raise_error(errortext)
+    expect { subject.land_plane(testplane, testweather) }.to raise_error(errortext)
   end
 
   it 'has a default capacity which can be overridden by passing an integer' do
@@ -43,7 +45,7 @@ describe Airport do
 
   it 'prevents landing when weather is stormy' do
     allow(testweather).to receive(:getweather) { "stormy" }
-    errortext = "Cannot land: Weather is stormy"
+    errortext = "Cannot land plane: Weather is stormy"
     expect { subject.land_plane(testplane, testweather) } .to raise_error(errortext)
   end
 
