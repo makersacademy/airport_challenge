@@ -15,6 +15,7 @@ class Airport
     raise "Cannot land plane: Airport full" if @planes.count >= @capacity
     raise "Cannot land plane: Weather is stormy" if weather.getweather == "stormy"
 
+    plane.in_air = false
     @planes << plane
   end
 
@@ -22,5 +23,6 @@ class Airport
     raise "Cannot take off: Weather is stormy" if weather.getweather == "stormy"
 
     @planes.delete(plane)
+    plane.in_air = true
   end
 end
