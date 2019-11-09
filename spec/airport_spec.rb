@@ -13,9 +13,10 @@ describe Airport do
     expect(subject.planes).to include(testplane)
   end
 
-  it 'can instruct a plane to take off' do
+  it 'can instruct a plane to take off if weather is sunny' do
+    allow(testweather).to receive(:getweather) { "sunny" }
     subject.planes << testplane
-    subject.take_off_plane(testplane)
+    subject.take_off_plane(testplane, testweather)
     expect(subject.planes).not_to include(testplane)
   end
 
@@ -37,7 +38,7 @@ describe Airport do
   it 'prevents takeoff when weather is stormy' do
     allow(testweather).to receive(:getweather) { "stormy" }
     errortext = "Cannot take off: Weather is stormy"
-    expect(subject.take_off_plane(testplane, testweather)).to raise_error(errortext)
+    expect { subject.take_off_plane(testplane, testweather) } .to raise_error(errortext)
   end
 
 end

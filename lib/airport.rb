@@ -16,7 +16,9 @@ class Airport
     @planes << plane
   end
 
-  def take_off_plane(plane)
+  def take_off_plane(plane, weather)
+    raise "Cannot take off: Weather is stormy" if weather.getweather == "stormy"
+
     @planes.delete(plane)
   end
 end
