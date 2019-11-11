@@ -10,12 +10,14 @@ describe Airport do
 
   it 'can instruct a plane to land' do
     allow(testweather).to receive(:getweather) { "sunny" }
+    allow(testplane).to receive(:land)
     subject.land_plane(testplane, testweather)
     expect(subject.planes).to include(testplane)
   end
 
   it 'can instruct a plane to take off if weather is sunny' do
     allow(testweather).to receive(:getweather) { "sunny" }
+    allow(testplane).to receive(:takeoff)
     subject.planes << testplane
     subject.take_off_plane(testplane, testweather)
     expect(subject.planes).not_to include(testplane)
