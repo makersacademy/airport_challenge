@@ -1,41 +1,7 @@
 Airport Challenge
 =================
 
-Testing
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+My first weekend challenge was to create a simple application that allowed users to create airports and planes, advise those planes to land and take off all whilst accounting for a the weather. The user stories were as follows-
 
 ```
 As an air traffic controller 
@@ -62,6 +28,116 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+The application is fully tested using Rspec and can be easily run from the terminal.
+
+### Screenshots
+
+<img src="images/plane_class.png?" width="400px">
+
+A screenshot of the plane class - notice how the plane class holds the 'land' method
+
+<img src="images/weather_class.png?" width="400px">
+
+An weather class with an SRP - return a random weather variable
+
+<img src="images/tests.png?" width="400px">
+
+The test spec for the airport class
+
+<img src="images/14_passing_tests.png?" width="400px">
+
+14/14 passing tests
+
+<img src="images/passing_tests.png?" width="400px">
+
+
+Technologies Used
+-----
+
+* Ruby
+  * I built my application with Ruby - using the command line to allow users to build their own airports and planes
+* Rspec
+  * My testing framework was rspec - my final test suite had 14/14 passing tests
+
+A Sample of the IRB
+-----
+
+```
+2.5.0 :001 > require './lib/takeaway.rb'
+2.5.0 :002 > takeaway = Takeaway.new
+
+2.5.0 :003 > takeaway.list_of_options
+Please enter 'display_menu' to see the menu
+Please enter 'choose(meal, quantity)' in order to order a meal
+Please enter 'show_basket' to see your current basket
+Please enter 'show_total' to see your total
+Please enter 'checkout' to place your order
+
+2.5.0 :004 > takeaway.display_menu
+1. Daniels's Delicious Chicken £12
+2. Eduard's Enviable Eggs £19
+3. Mark's Marvellous Lasagne £8
+4. Gabriel's Godly Fries £25
+5. Maria's Majestic Meatballs £24
+6. Rafaela's Round Halloumi £39
+7. Sayem's Saucy Fishcakes £22
+8. Valeria's Value Milkshake £16
+
+2.5.0 :005 > takeaway.choose(2,3)
+ => [{"Eduard's Enviable Eggs"=>3}] 
+
+2.5.0 :006 > takeaway.choose(5,4)
+ => [{"Eduard's Enviable Eggs"=>3}, {"Maria's Majestic Meatballs"=>4}] 
+
+2.5.0 :007 > takeaway.show_basket
+Eduard's Enviable Eggs, Quantity: 3
+Maria's Majestic Meatballs, Quantity: 4
+
+2.5.0 :008 > takeaway.show_total
+Your total is £153
+
+2.5.0 :009 > takeaway.checkout(+7725776655)
+```
+
+Installation
+-----
+
+* Git clone the project into your own local repository
+* Run bundle install in order to download the relevant gems
+* Run irb in your local repo in order to start the application
+* Add the following in the first line of IRB
+```
+2.5.0 :001 > require './lib/takeaway.rb'
+```
+
+Tests
+-----
+
+After bundle install has been run you will be able to run rspec to test the application. Just run rspec in your terminal to do so.
+
+Instructions
+---------
+
+* Challenge time: rest of the day and weekend, until Monday 9am
+* Feel free to use google, your notes, books, etc. but work on your own
+* If you refer to the solution of another coach or student, please put a link to that in your README
+* If you have a partial solution, **still check in a partial solution**
+* You must submit a pull request to this repo with your code by 9am Monday morning
+
+Steps
+-------
+
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundle` (if you don't have bundle already)
+3. When the installation completes, run `bundle`
+4. Complete the following task:
+
+Task
+-----
+
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
