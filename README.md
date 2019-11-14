@@ -66,16 +66,22 @@ A Sample of the IRB
 2.6.0 :001 > require './lib/airport.rb'
 2.6.0 :002 > require './lib/plane.rb'
 2.6.0 :003 > require './lib/weather.rb'
+
 2.6.0 :004 > gatwick = Airport.new
  => #<Airport:0x00007f9aaa079af8 @capacity=20, @plane_array=[]> 
+
 2.6.0 :005 > virgin = Plane.new
  => #<Plane:0x00007f9aaa0aa568 @has_landed=false> 
+
 2.6.0 :006 > easyjet.land(gatwick, Weather.new)
  => [#<Plane:0x00007f9aab845a10 @has_landed=true>] 
+
 2.6.0 :007 > gatwick.takeoff(easyjet, Weather.new)
  => #<Plane:0x00007f9aab845a10 @has_landed=false> 
+
 2.6.0 :025 > gatwick.takeoff(easyjet, Weather.new)
 RuntimeError (Sorry - this plane is not at the airport)
+
 2.6.0 :035 > easyjet.land(gatwick, Weather.new)
 RuntimeError (Sorry - poor weather) # The application gives this error 1/10 times as per the Weather class
 ```
@@ -93,7 +99,6 @@ Installation
 2.5.0 :001 > require './lib/takeaway.rb'
 2.6.0 :002 > require './lib/plane.rb'
 2.6.0 :003 > require './lib/weather.rb'
-
 ```
 
 Tests
