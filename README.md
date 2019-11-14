@@ -29,6 +29,8 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+The application has 3 classes - a Plane class that allows you to land planes, a Airport class that allows you to takeoff and a Weather class that generates a random number between 1 and 10 every time it is instantiated. This then determines the weather and whether the plane is able to land or take off. 
+
 The application is fully tested using Rspec and can be easily run from the terminal.
 
 ### Screenshots
@@ -49,9 +51,6 @@ The test spec for the airport class
 
 14/14 passing tests
 
-<img src="images/passing_tests.png?" width="400px">
-
-
 Technologies Used
 -----
 
@@ -64,41 +63,23 @@ A Sample of the IRB
 -----
 
 ```
-2.5.0 :001 > require './lib/takeaway.rb'
-2.5.0 :002 > takeaway = Takeaway.new
-
-2.5.0 :003 > takeaway.list_of_options
-Please enter 'display_menu' to see the menu
-Please enter 'choose(meal, quantity)' in order to order a meal
-Please enter 'show_basket' to see your current basket
-Please enter 'show_total' to see your total
-Please enter 'checkout' to place your order
-
-2.5.0 :004 > takeaway.display_menu
-1. Daniels's Delicious Chicken £12
-2. Eduard's Enviable Eggs £19
-3. Mark's Marvellous Lasagne £8
-4. Gabriel's Godly Fries £25
-5. Maria's Majestic Meatballs £24
-6. Rafaela's Round Halloumi £39
-7. Sayem's Saucy Fishcakes £22
-8. Valeria's Value Milkshake £16
-
-2.5.0 :005 > takeaway.choose(2,3)
- => [{"Eduard's Enviable Eggs"=>3}] 
-
-2.5.0 :006 > takeaway.choose(5,4)
- => [{"Eduard's Enviable Eggs"=>3}, {"Maria's Majestic Meatballs"=>4}] 
-
-2.5.0 :007 > takeaway.show_basket
-Eduard's Enviable Eggs, Quantity: 3
-Maria's Majestic Meatballs, Quantity: 4
-
-2.5.0 :008 > takeaway.show_total
-Your total is £153
-
-2.5.0 :009 > takeaway.checkout(+7725776655)
+2.6.0 :001 > require './lib/airport.rb'
+2.6.0 :002 > require './lib/plane.rb'
+2.6.0 :003 > require './lib/weather.rb'
+2.6.0 :004 > gatwick = Airport.new
+ => #<Airport:0x00007f9aaa079af8 @capacity=20, @plane_array=[]> 
+2.6.0 :005 > virgin = Plane.new
+ => #<Plane:0x00007f9aaa0aa568 @has_landed=false> 
+2.6.0 :006 > easyjet.land(gatwick, Weather.new)
+ => [#<Plane:0x00007f9aab845a10 @has_landed=true>] 
+2.6.0 :007 > gatwick.takeoff(easyjet, Weather.new)
+ => #<Plane:0x00007f9aab845a10 @has_landed=false> 
+2.6.0 :025 > gatwick.takeoff(easyjet, Weather.new)
+RuntimeError (Sorry - this plane is not at the airport)
+2.6.0 :035 > easyjet.land(gatwick, Weather.new)
+RuntimeError (Sorry - poor weather) # The application gives this error 1/10 times as per the Weather class
 ```
+
 
 Installation
 -----
@@ -106,9 +87,13 @@ Installation
 * Git clone the project into your own local repository
 * Run bundle install in order to download the relevant gems
 * Run irb in your local repo in order to start the application
-* Add the following in the first line of IRB
+* Add the following into you IRB IRB
+
 ```
 2.5.0 :001 > require './lib/takeaway.rb'
+2.6.0 :002 > require './lib/plane.rb'
+2.6.0 :003 > require './lib/weather.rb'
+
 ```
 
 Tests
