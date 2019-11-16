@@ -2,12 +2,17 @@ require "airport"
 
 describe Airport do
 
+  it "has a default capacity" do
+    airport = Airport.new
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe "#land" do
 
     it "should be able to land one plane" do
       airport = Airport.new
       plane = Plane.new
-      expect(airport.land(plane)).to eq airport.planes
+      expect(airport.land(plane)).to eq plane
     end
 
     it "should raise an error when the airport is full" do
