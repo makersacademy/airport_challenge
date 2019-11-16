@@ -17,7 +17,7 @@ class Plane
   end
 
   def land
-    raise Errors::CURRENTLY_GROUNDED unless airborne || !accounted_for
+    raise Errors::CURRENTLY_GROUNDED unless airborne or !accounted_for
 
     @airborne = false
     @accounted_for = true

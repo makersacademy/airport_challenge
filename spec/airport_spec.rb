@@ -17,11 +17,7 @@ RSpec.describe Airport do
     test_airport.weather = clear_day.weather_report
   end
 
-  it "should harbour planes" do
-    expect(subject.hangar).to all be_an_instance_of Plane
-  end
-
-  it "should not harbour things which aren't planes" do
+  it "should only harbour planes" do
     expect { test_airport.harbour_plane("Not a plane") }.to raise_error Errors::NOT_A_PLANE
   end
 

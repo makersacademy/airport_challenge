@@ -6,12 +6,15 @@ RSpec.describe Plane do
   before(:each) do
     test_plane.accounted_for = true
   end
-  
+
   it "should have an airport" do
-    expect(subject.accounted_for).to be(true).or be false
     expect { subject.take_off }.to raise_error Errors::NO_AIRPORT
   end
 
+  it "should be accounted for once at an airport" do
+    expect(subject.accounted_for).to be(true).or be false
+  end
+  
   context "airbrone status" do
     it "should be airborne after takeoff" do
       test_plane.take_off
