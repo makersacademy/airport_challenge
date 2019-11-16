@@ -90,3 +90,5 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 ##Solution so far##
+I first described the classes Airport and Plane, testing that airport and plane were instances of their respective class.
+Then I expect the plane to respond to a method land (write the test, then make it pass), and to a method take_off (same here).
