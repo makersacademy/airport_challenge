@@ -14,7 +14,8 @@ describe Airport do
     it "should be able to take off a plane" do
       airport = Airport.new
       plane = Plane.new
-      expect(airport.take_off(plane)).to eq plane
+      airport.land(plane)
+      expect(airport.take_off).to eq plane
     end
   end
 
