@@ -1,5 +1,4 @@
 class Airport
-  attr_reader :plane
   attr_accessor :capacity
 
   DEFAULT_CAPACITY = 1
@@ -19,6 +18,16 @@ class Airport
   end
 
   def take_off(plane)
-    "Plane has taken off"
+    if self.weather == "stormy"
+      raise "Weather is stormy, cannot takeoff"
+    else
+      "Plane has taken off"
+    end
   end
+
+  def weather # Weather has a 20% chance to be stormy
+    n = rand(5)
+    n == 0 ? "stormy" : "sunny"
+  end
+
 end

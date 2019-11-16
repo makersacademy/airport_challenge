@@ -11,12 +11,12 @@ describe Airport do
       expect(airport.land(plane)).to eq "Plane has been landed"
     end
 
+    # This test now obsolete due to later initialize test ?
     it "should not land when the airport is full" do
       airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       plane = Plane.new
-      airport.land(plane)
-      plane_2 = Plane.new
-      expect{ airport.land(plane_2) }.to raise_error "That airport is full, cannot land"
+      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
@@ -26,7 +26,15 @@ describe Airport do
     it "should have the plane take off from the airport" do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:weather) { "sunny" }
       expect(airport.take_off(plane)).to eq "Plane has taken off"
+    end
+
+    it "should prevent takeoff when the weather is stormy" do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:weather) { "stormy" }
+      expect{ airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
     end
 
   end
@@ -37,7 +45,7 @@ describe Airport do
       airport = Airport.new
       Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
     it "should override default airport capacity upon creation" do
@@ -57,7 +65,7 @@ describe Airport do
       airport.capacity = 5
       5.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
