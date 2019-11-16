@@ -17,7 +17,8 @@ describe Airport do
     end
 
     it "should have a default capacity of 20 planes if 20 is entered as an argument" do
-      expect(Airport::DEFAULT_CAPACITY).to eq(10)
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq(20)
     end
   end
   
