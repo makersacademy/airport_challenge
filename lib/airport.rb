@@ -1,7 +1,7 @@
 class Airport
   attr_accessor :capacity
 
-  DEFAULT_CAPACITY = 2
+  DEFAULT_CAPACITY = 1
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -9,29 +9,24 @@ class Airport
   end
 
   def land(plane)
-    if @counter >= @capacity
-      raise "That airport is full, cannot land"
-    else
-      if self.weather == "stormy"
-        raise "Weather is stormy, cannot land"
-      else
-        @counter += 1
-        "Plane has been landed"
-      end
-    end
+    fail "That airport is full, cannot land" if @counter >= @capacity
+
+    fail "Weather is stormy, cannot land" if weather == "stormy"
+
+    @counter += 1
+    "Plane has been landed"
   end
 
   def take_off(plane)
-    if self.weather == "stormy"
-      raise "Weather is stormy, cannot takeoff"
-    else
-      "Plane has taken off"
-    end
+    fail "Weather is stormy, cannot takeoff" if weather == "stormy"
+
+    "Plane has taken off"
   end
 
-  def weather # Weather has a 20% chance to be stormy
+# Weather has a 20% chance to be stormy
+  def weather
     n = rand(5)
-    n == 0 ? "stormy" : "sunny"
+    n.zero? ? "stormy" : "sunny"
   end
 
 end

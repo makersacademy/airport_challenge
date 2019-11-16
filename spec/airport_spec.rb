@@ -18,14 +18,14 @@ describe Airport do
       allow(airport).to receive(:weather) { "sunny" }
       Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
     it "should prevent landing when the weather is stormy" do
       airport = Airport.new
       plane = Plane.new
       allow(airport).to receive(:weather) { "stormy" }
-      expect{ airport.land(plane) }.to raise_error "Weather is stormy, cannot land"
+      expect { airport.land(plane) }.to raise_error "Weather is stormy, cannot land"
     end
 
   end
@@ -43,7 +43,7 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       allow(airport).to receive(:weather) { "stormy" }
-      expect{ airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
+      expect { airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
     end
 
   end
@@ -55,7 +55,7 @@ describe Airport do
       allow(airport).to receive(:weather) { "sunny" }
       Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
     it "should override default airport capacity upon creation" do
@@ -64,7 +64,7 @@ describe Airport do
       allow(airport).to receive(:weather) { "sunny" }
       override_capacity.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
@@ -77,7 +77,7 @@ describe Airport do
       allow(airport).to receive(:weather) { "sunny" }
       5.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
