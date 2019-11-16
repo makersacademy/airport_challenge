@@ -23,10 +23,18 @@ describe Airport do
     end
   end
 
-  describe "#takeoff(plane)" do
-    it "returns :successful when a plane takes off from the airport" do
-      plane = Plane.new
-      expect(subject.takeoff(plane)).to eq :successful
+  describe "#takeoff(plane, weather)" do
+    it "returns :successful when a plane takes off from the airport in good weather" do
+      plane = double(:plane)
+      weather = double(:weather, stormy?: false)
+      expect(subject.takeoff(plane, weather)).to eq :successful
+    end
+
+    it "returns :cannot_take_off when the weather is stormy" do
+      plane = double(:plane)
+      weather = double(:weather, stormy?: true)
+      # allow(weather).to receive(:weather_forecast).and_return(2)
+      expect(subject.takeoff(plane, weather)).to eq :cannot_take_off
     end
   end
 

@@ -17,8 +17,13 @@ class Airport
     end
   end
 
-  def takeoff(plane)
-    :successful
+  def takeoff(plane, weather)
+    if weather.stormy?
+      :cannot_take_off
+    else
+      @planes_held.delete(plane)
+      :successful
+    end
   end
 
   def full?
