@@ -12,8 +12,17 @@ RSpec.describe Airport do
     expect(subject).to respond_to(:commission_flight).with(1).arguments
   end
   
-  it "should have a maximum capacity" do
-    expect(subject).to respond_to(:capacity)
+  context "#capacity" do
+    it "should have a maximum capacity of 100 planes" do
+      expect(subject).to respond_to(:capacity)
+    end
+
+    it "should be able to be overwritten" do
+      custom_airport = Airport.new(600)
+
+      expect(test_airport.capacity).to eq(100)
+      expect(custom_airport.capacity).to eq(600)
+    end
   end
 
   context "when harbouring planes" do
