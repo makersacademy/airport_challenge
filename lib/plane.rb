@@ -11,7 +11,7 @@ class Plane
 
   def take_off
     raise InvalidStateError, "Can't take off in the air" if flying?
-    return false if @airport.weather_report == "stormy"
+    return false unless @airport.take_off_slot self
 
     @airport = nil
     true

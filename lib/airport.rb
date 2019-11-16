@@ -9,15 +9,21 @@ class Airport
   end
 
   def count
-    check_planes
     @planes.size
   end
 
   def accept plane
-    return false if @planes.size >= @capacity
-    return false if weather_report == "stormy"
+    return false if full?
+    return false if stormy?
 
     @planes << plane
+    true
+  end
+
+  def take_off_slot plane
+    return false if stormy?
+
+    @planes.delete plane
     true
   end
 
@@ -27,7 +33,11 @@ class Airport
 
   private
 
-  def check_planes
-    @planes.delete_if { |plane| plane.flying? }
+  def full?
+    @planes.size >= @capacity
+  end
+
+  def stormy?
+    weather_report == "stormy"
   end
 end

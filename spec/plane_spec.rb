@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:paris) { double(:airport, name: "Paris", accept: true, weather_report: "sunny") }
+  let(:paris) { double(:airport, name: "Paris", accept: true, take_off_slot: true) }
   describe "#location" do
     it "should return 'In the air' if it hasn't landed anywhere" do
       expect(subject.location).to eq Plane::FLYING
@@ -46,6 +46,12 @@ describe Plane do
         .to raise_error InvalidStateError, "Can't take off in the air"
     end
 
+    it "should ask the airport if there is a slot for it to take off" do
+      subject.land_at paris
+      expect(paris).to receive(:take_off_slot).at_least(1).times.with(subject)
+      subject.take_off
+    end
+
     it "should put the plane in the air if landed" do
       subject.land_at paris
       subject.take_off
@@ -58,14 +64,14 @@ describe Plane do
     end
 
     it "should stay on the ground if there's bad weather at the airport" do
-      allow(paris).to receive(:weather_report).and_return("stormy")
+      allow(paris).to receive(:take_off_slot).and_return(false)
       subject.land_at paris
       subject.take_off
       expect(subject.location).to eq paris.name
     end
 
     it "should return false if it doesn't take off" do
-      allow(paris).to receive(:weather_report).and_return("stormy")
+      allow(paris).to receive(:take_off_slot).and_return(false)
       subject.land_at paris
       expect(subject.take_off).to eq false
     end

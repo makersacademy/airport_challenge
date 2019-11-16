@@ -34,7 +34,7 @@ describe Airport do
     
     it "should be zero if the plane has taken off" do
       subject.accept plane
-      allow(plane).to receive(:flying?).and_return(true)
+      subject.take_off_slot plane
       expect(subject.count).to eq 0
     end
 
@@ -47,7 +47,7 @@ describe Airport do
     it "should be 1 if two planes have landed and one takes off" do
       subject.accept plane
       subject.accept plane2
-      allow(plane).to receive(:flying?).and_return(true)
+      subject.take_off_slot plane2
       expect(subject.count).to eq 1
     end
   end
@@ -91,6 +91,17 @@ describe Airport do
       airport = Airport.new "LAX"
       weather = Array.new(50) { airport.weather_report }
       expect(weather.uniq.size).to eq 2
+    end
+  end
+
+  describe "#take_off_slot" do
+    it "should return true if it's sunny" do
+      expect(subject.take_off_slot plane).to eq true
+    end
+
+    it "should return false if it's stormy" do
+      allow(subject).to receive(:weather_report).and_return("stormy")
+      expect(subject.take_off_slot plane).to eq false
     end
   end
 end
