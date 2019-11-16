@@ -8,8 +8,8 @@ class Airport
     @planes_held = []
   end
 
-  def land(plane)
-    if full?
+  def land(plane, weather)
+    if full? || weather.stormy?
       :cannot_land_plane
     else
       @planes_held << plane
