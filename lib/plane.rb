@@ -7,6 +7,7 @@ class Plane
   end
 
   def land_at airport
+    airport.accept self
     @location = airport.name
   end
 

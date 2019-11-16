@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:paris) { double(:airport, name: "Paris") }
+  let(:paris) { double(:airport, name: "Paris", accept: true) }
   describe "#location" do
     it "should return 'In the air' if it hasn't landed anywhere" do
       expect(subject.location).to eq Plane::FLYING_STRING
@@ -10,6 +10,13 @@ describe Plane do
     it "should return 'Paris' if it is landed at Paris airport" do
       subject.land_at paris
       expect(subject.location).to eq paris.name
+    end
+  end
+
+  describe "#land_at" do
+    it "should check if the airport can accept it" do
+      expect(paris).to receive(:accept).at_least(1).times.with(subject)
+      subject.land_at paris
     end
   end
 

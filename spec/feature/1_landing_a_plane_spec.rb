@@ -6,6 +6,7 @@ context "Plane landing and take off" do
     given_an_airport_called_paris_and_a_plane
     when_the_plane_lands_at_paris
     then_the_planes_location_is_paris
+    and_paris_has_one_plane
   end
 
   specify "landing and taking off again from an airport" do
@@ -27,6 +28,10 @@ context "Plane landing and take off" do
 
   def then_the_planes_location_is_paris
     expect(@plane.location).to eq "Paris"
+  end
+
+  def and_paris_has_one_plane
+    expect(@paris.count).to eq 1
   end
 
   def and_then_takes_off
