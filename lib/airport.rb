@@ -1,4 +1,5 @@
 require 'weather'
+require 'plane'
 
 class Airport
   include Weather
@@ -11,6 +12,7 @@ class Airport
   end
 
   def harbour_plane(plane)
+    raise Errors::NOT_A_PLANE unless plane.is_a? Plane
     raise Errors::STORMY_WEATHER_ON_LANDING if @weather == "stormy"
     raise Errors::AT_CAPACITY if @hangar.length == @capacity
 

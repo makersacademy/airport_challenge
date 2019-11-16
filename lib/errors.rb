@@ -8,4 +8,5 @@ class Errors
   NOT_AT_AIRPORT = "Target plane is not at this airport"
   STORMY_WEATHER_ON_TAKEOFF = "Takeoff forbidden due to bad weather conditions"
   STORMY_WEATHER_ON_LANDING = "Landing forbidden due to bad weather conditions"
+  NOT_A_PLANE = "Foreign object attempting to land at airport"
 end

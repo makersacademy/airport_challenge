@@ -25,6 +25,10 @@ RSpec.describe Airport do
     expect(subject.hangar).to all be_an_instance_of Plane
   end
 
+  it "should not harbour things which aren't planes" do
+    expect { test_airport.harbour_plane("Not a plane") }.to raise_error Errors::NOT_A_PLANE
+  end
+
   it "should commission flights" do
     expect(subject).to respond_to(:commission_flight).with(1).arguments
   end
@@ -99,6 +103,10 @@ RSpec.describe Airport do
 
   context "#hangar" do
     it "should not contain airborne planes" do
+      test_plane.airborne = true
+      test_airport.harbour_plane(test_plane)
+      
+      expect(test_airport.hangar).not_to all_be_grounded_planes
       expect(subject.hangar).to all_be_grounded_planes
     end
   end
