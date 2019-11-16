@@ -6,6 +6,7 @@ class Airport
   end
 
   def take_off
+    fail "The airport is empty" if !@plane
     @plane
   end
 
