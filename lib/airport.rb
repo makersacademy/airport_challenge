@@ -3,7 +3,7 @@ class Airport
 
   CAPACITY = 1
 
-  def initialize
+  def initialize(capacity = CAPACITY)
     @counter = 0
   end
 

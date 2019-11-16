@@ -18,7 +18,7 @@ describe Airport do
       plane_2 = Plane.new
       expect(airport.land(plane_2)).to eq "That airport is full, cannot land"
     end
-    
+
   end
 
   describe "#take_off" do
@@ -27,6 +27,17 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       expect(airport.take_off(plane)).to eq "Plane has taken off"
+    end
+
+  end
+
+  describe "initialize" do
+
+    it "should set default airport CAPACITY" do
+      airport = Airport.new
+      Airport::CAPACITY.times { airport.land(Plane.new) }
+      plane = Plane.new
+      expect(airport.land(plane)).to eq "That airport is full, cannot land"
     end
 
   end
