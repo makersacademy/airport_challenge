@@ -9,7 +9,8 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, is_stormy)
+    fail "The weather is stormy" if is_stormy
     fail "The airport is full" if full?
 
     @planes.push(plane).last
