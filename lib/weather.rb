@@ -1,6 +1,6 @@
 module Weather
   def weather_report
-    stormy_day ? "stormy" : "clear"
+    stormy_day ? :stormy : :clear
   end
 
   private

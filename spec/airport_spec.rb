@@ -10,8 +10,8 @@ end
 RSpec.describe Airport do
   let(:test_plane) { Plane.new }
   let(:test_airport) { Airport.new }
-  let(:clear_day) { double("weather", weather_report: "clear") }
-  let(:stormy_day) { double("weather", weather_report: "stormy") }
+  let(:clear_day) { double("weather", weather_report: :clear) }
+  let(:stormy_day) { double("weather", weather_report: :stormy) }
 
   before(:each) do
     test_airport.weather = clear_day.weather_report
@@ -37,7 +37,7 @@ RSpec.describe Airport do
 
   context "hangar capacity" do
     it "should have a default value of 100" do
-      expect(test_airport.capacity).to be 100
+      expect(test_airport.capacity).to be Airport::DEFAULT_CAPACITY
     end
 
     it "should be able to be overwritten" do
@@ -47,29 +47,22 @@ RSpec.describe Airport do
     end
   end
 
-  context "for weather conditions" do
-    it "should be able to monitor the weather" do
-      expect(["stormy", "clear"]).to include(subject.weather)
+  context "in stormy weather" do
+    it "should not allow planes to take off" do
+      expect {
+        test_airport.harbour_plane(test_plane)
+        test_airport.weather = stormy_day.weather_report
+        test_airport.commission_flight(test_plane)
+      }.to raise_error Errors::STORMY_WEATHER_ON_TAKEOFF
     end
 
-    context "in stormy weather" do
-      it "should not allow planes to take off" do
-        expect {
-          test_airport.harbour_plane(test_plane)
-          test_airport.weather = stormy_day.weather_report
-          test_airport.commission_flight(test_plane)
-        }.to raise_error Errors::STORMY_WEATHER_ON_TAKEOFF
-      end
-
-      it "should not allow planes to land" do
-        expect {
-          # weather becomes stormy in mid-air:
-          test_airport.harbour_plane(test_plane)
-          test_airport.commission_flight(test_plane)
-          test_airport.weather = stormy_day.weather_report
-          test_airport.harbour_plane(test_plane)
-        }.to raise_error Errors::STORMY_WEATHER_ON_LANDING
-      end
+    it "should not allow planes to land" do
+      expect {
+        test_airport.harbour_plane(test_plane)
+        test_airport.commission_flight(test_plane)
+        test_airport.weather = stormy_day.weather_report
+        test_airport.harbour_plane(test_plane)
+      }.to raise_error Errors::STORMY_WEATHER_ON_LANDING
     end
   end
 

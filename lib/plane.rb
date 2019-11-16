@@ -9,18 +9,18 @@ class Plane
   end
 
   def take_off
-    raise Errors::NO_AIRPORT unless @accounted_for
-    raise Errors::CURRENTLY_AIRBORNE if @airborne 
+    raise Errors::NO_AIRPORT unless accounted_for
+    raise Errors::CURRENTLY_AIRBORNE if airborne 
 
-    puts "plane has taken off"
     @airborne = true
+    "plane has taken off"
   end
 
   def land
-    raise Errors::CURRENTLY_GROUNDED unless @airborne || !@accounted_for
+    raise Errors::CURRENTLY_GROUNDED unless airborne || !accounted_for
 
-    puts "plane has landed"
     @airborne = false
     @accounted_for = true
+    "plane has landed"
   end
 end

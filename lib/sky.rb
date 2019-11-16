@@ -1,7 +1,7 @@
 require 'plane'
 
 class Sky
-  attr_accessor :planes_in_transit
+  attr_reader :planes_in_transit
 
   def initialize
     @planes_in_transit = []
