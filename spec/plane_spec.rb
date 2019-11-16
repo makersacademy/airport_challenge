@@ -10,7 +10,7 @@ describe Plane do
 
   it "expect plane to respond to method land" do
     plane = Plane.new
-    plane.land
+    plane.land("London")
     expect(plane).to respond_to(:land)
   end
 
@@ -18,6 +18,37 @@ describe Plane do
     plane = Plane.new
     plane.take_off
     expect(plane).to respond_to(:take_off)
+  end
+
+  describe "#land" do
+    
+    it "expect plane that land to have status landed" do
+      plane = Plane.new
+      plane.land("London")
+      expect(plane.flying).to eq false
+    end
+
+    it "expect plane to land at destination" do
+      plane = Plane.new
+      plane.land("London")
+      expect(plane.location).to eq "London"
+    end
+
+    it "expect to report where the plane landed" do
+      plane = Plane.new
+      expect { plane.land("London") }.to output("Landed at London airport\n").to_stdout
+    end
+
+  end
+
+  describe "#take_off" do
+
+    it "has left the airport and is flying" do
+      plane = Plane.new
+      plane.take_off
+      expect(plane.location).to eq "in flight"
+    end
+
   end
 
 end

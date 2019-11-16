@@ -91,4 +91,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 ##Solution so far##
 I first described the classes Airport and Plane, testing that airport and plane were instances of their respective class.
-Then I expect the plane to respond to a method land (write the test, then make it pass), and to a method take_off (same here).
+Then I want the airport to be able to accept planes and also to allow planes to take off. I expect the plane to respond to a method land (write the test, then make it pass), and to a method take_off (same here).
+I expect that the planes have a status - in flight or landed. I test the behaviour: if I land a plane, I expect its status to be "landed". I use an attr_reader here.
+I also want to have planes that land at their destination, so I'm going to add a parameter to the method: land(destination), and use an attr_reader for :location too. I run my tests, see them fail, write code to make them pass, then I update my previous tests for the method land.
+I would like my planes to let me know that they have landed and where (test).
+If the planes are in flight, I also want to know. I'll use the initialize method to set landed to false and location as flying.
