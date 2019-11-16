@@ -1,25 +1,28 @@
 class Plane
-  FLYING_STRING = "In the air"
-  attr_reader :location
-
-  def initialize
-    @location = FLYING_STRING
-  end
+  FLYING = "In the air"
 
   def land_at airport
     raise InvalidStateError, "Not in the air" unless flying?
+    return false unless airport.accept self
 
-    @location = airport.name if airport.accept self
+    @airport = airport
+    true
   end
 
   def take_off
     raise InvalidStateError, "Can't take off in the air" if flying?
+    return false if @airport.weather_report == "stormy"
 
-    @location = FLYING_STRING
+    @airport = nil
+    true
   end
 
   def flying?
-    @location == FLYING_STRING
+    @airport.nil?
+  end
+
+  def location
+    @airport.nil? ? FLYING : @airport.name
   end
 end
 

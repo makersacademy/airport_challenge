@@ -5,6 +5,8 @@ describe Airport do
   let(:plane2) { double(:plane, flying?: false) }
   subject { Airport.new "Paris" }
 
+  before(:each) { allow(subject).to receive(:weather_report).and_return("sunny") }
+
   it "should have a name" do
     expect(subject.name).to eq "Paris"
   end
@@ -68,8 +70,27 @@ describe Airport do
 
     it "should accept a different number of planes if the capacity isn't default" do
       airport = Airport.new("Valencia", 25)
+      allow(airport).to receive(:weather_report).and_return("sunny")
       25.times { expect(airport.accept plane).to eq true }
       expect(airport.accept plane).to eq false
+    end
+
+    it "shouldn't accept a plane if there's bad weather" do
+      allow(subject).to receive(:weather_report).and_return("stormy")
+      expect(subject.accept plane).to eq false
+    end
+  end
+
+  describe "#weather_report" do
+    it "should return either 'sunny' or 'stormy'" do
+      airport = Airport.new "Sydney"
+      expect(airport.weather_report).to eq("sunny").or eq("stormy")
+    end
+
+    it "shouldn't just return one type of weather all the time" do
+      airport = Airport.new "LAX"
+      weather = Array.new(50) { airport.weather_report }
+      expect(weather.uniq.size).to eq 2
     end
   end
 end

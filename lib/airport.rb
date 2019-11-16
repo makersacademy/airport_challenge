@@ -1,6 +1,7 @@
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :name, :capacity
+
   def initialize name, capacity = DEFAULT_CAPACITY
     @name = name
     @planes = []
@@ -14,9 +15,14 @@ class Airport
 
   def accept plane
     return false if @planes.size >= @capacity
+    return false if weather_report == "stormy"
 
     @planes << plane
     true
+  end
+
+  def weather_report
+    rand(10) < 2 ? "stormy" : "sunny"
   end
 
   private

@@ -19,6 +19,7 @@ context "Plane landing and take off" do
 
   def given_an_airport_called_paris_and_a_plane
     @paris = Airport.new "Paris"
+    allow(@paris).to receive(:weather_report).and_return("sunny")
     @plane = Plane.new
   end
 
@@ -39,7 +40,7 @@ context "Plane landing and take off" do
   end
 
   def then_the_planes_location_is_in_the_air
-    expect(@plane.location).to eq Plane::FLYING_STRING
+    expect(@plane.location).to eq Plane::FLYING
   end
 
   def and_the_airport_no_longer_has_any_planes
