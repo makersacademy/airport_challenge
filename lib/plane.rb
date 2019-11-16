@@ -1,7 +1,7 @@
 require 'errors'
 
 class Plane
-  attr_reader :airborne
+  attr_accessor :airborne
   
   def initialize
     @airborne = false

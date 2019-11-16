@@ -1,6 +1,14 @@
 require 'airport'
 require 'plane'
 
+RSpec::Matchers.define :all_be_grounded_planes do
+  match do |actual|
+    actual.all? { |planes| planes.airborne == false }
+  end
+
+  # supports_block_expectations
+end
+
 RSpec.describe Airport do
   let(:test_plane) { Plane.new }
   let(:test_airport) { Airport.new }
@@ -13,6 +21,8 @@ RSpec.describe Airport do
 
   it "should harbour planes" do
     expect(subject).to respond_to(:harbour_plane).with(1).arguments
+    expect(subject).to respond_to(:hangar)
+    expect(subject.hangar).to all be_an_instance_of Plane
   end
 
   it "should commission flights" do
@@ -74,10 +84,9 @@ RSpec.describe Airport do
     it "should not have the commissioned plane in the airport" do
       test_airport.harbour_plane(test_plane)
       test_airport.harbour_plane(test_plane_2)
-
       test_airport.commission_flight(test_plane)
 
-      expect(test_airport.planes).not_to include(test_plane)
+      expect(test_airport.hangar).not_to include(test_plane)
     end
 
     it "should not be able to commission the same plane while airborne" do
@@ -85,6 +94,12 @@ RSpec.describe Airport do
       test_airport.commission_flight(test_plane)
 
       expect { test_airport.commission_flight(test_plane) }.to raise_error Errors::NOT_AT_AIRPORT
+    end
+  end
+
+  context "#hangar" do
+    it "should not contain airborne planes" do
+      expect(subject.hangar).to all_be_grounded_planes
     end
   end
 end
