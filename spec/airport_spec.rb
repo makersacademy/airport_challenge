@@ -15,12 +15,9 @@ RSpec.describe Airport do
 
   before(:each) do
     test_airport.weather = clear_day.weather_report
-    allow(test_plane).to receive(:take_off)
   end
 
   it "should harbour planes" do
-    expect(subject).to respond_to(:harbour_plane).with(1).arguments
-    expect(subject).to respond_to(:hangar)
     expect(subject.hangar).to all be_an_instance_of Plane
   end
 
@@ -28,32 +25,30 @@ RSpec.describe Airport do
     expect { test_airport.harbour_plane("Not a plane") }.to raise_error Errors::NOT_A_PLANE
   end
 
-  it "should commission flights" do
-    expect(subject).to respond_to(:commission_flight).with(1).arguments
-  end
-
-  it "should send planes to the sky" do
-    expect(subject).to respond_to(:airspace)
+  it "should commission flights to a known airspace" do
     expect(subject.airspace).to be_an_instance_of Sky
   end
-  
-  context "#capacity" do
-    it "should have a maximum capacity of 100 planes" do
-      expect(subject).to respond_to(:capacity)
+
+  context "#hangar" do
+    it "should not contain airborne planes" do
+      expect(subject.hangar).to all_be_grounded_planes
+    end
+  end
+
+  context "hangar capacity" do
+    it "should have a default value of 100" do
+      expect(test_airport.capacity).to be 100
     end
 
     it "should be able to be overwritten" do
       custom_airport = Airport.new(600)
 
-      expect(test_airport.capacity).to be 100
       expect(custom_airport.capacity).to be 600
     end
   end
 
   context "for weather conditions" do
     it "should be able to monitor the weather" do
-      expect(subject).to respond_to :weather_report
-      expect(subject).to respond_to :weather
       expect(["stormy", "clear"]).to include(subject.weather)
     end
 
@@ -102,12 +97,6 @@ RSpec.describe Airport do
       test_airport.commission_flight(test_plane)
 
       expect { test_airport.commission_flight(test_plane) }.to raise_error Errors::NOT_AT_AIRPORT
-    end
-  end
-
-  context "#hangar" do
-    it "should not contain airborne planes" do
-      expect(subject.hangar).to all_be_grounded_planes
     end
   end
 end

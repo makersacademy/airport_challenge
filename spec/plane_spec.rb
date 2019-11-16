@@ -6,17 +6,8 @@ RSpec.describe Plane do
   before(:each) do
     test_plane.accounted_for = true
   end
-
-  it "should be able to take off" do
-    expect(subject).to respond_to(:take_off)
-  end
-
-  it "should be able to land" do
-    expect(subject).to respond_to(:land)
-  end
   
   it "should have an airport" do
-    expect(subject).to respond_to(:accounted_for)
     expect(subject.accounted_for).to be(true).or be false
     expect { subject.take_off }.to raise_error Errors::NO_AIRPORT
   end

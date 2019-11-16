@@ -9,7 +9,6 @@ end
 
 RSpec.describe Sky do
   it "holds planes in transit" do
-    expect(subject).to respond_to :planes_in_transit
     expect(subject.planes_in_transit).to all be_a Plane
   end
 
