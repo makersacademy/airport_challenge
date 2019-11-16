@@ -2,15 +2,15 @@ require 'plane'
 
 describe Plane do
 
-  describe "#takeoff" do
-    it "returns :successful when a plane takes off" do
-      expect(subject.takeoff).to eq :successful
+  describe "#grounded" do
+    it "returns true when a plane is grounded" do
+      expect(subject.grounded).to eq true
     end
   end
 
-  describe "#land" do
-    it "returns :successful when a plane lands" do
-      expect(subject.land).to eq :successful
+  describe "#flying" do
+    it "returns true when a plane is flying" do
+      expect(subject.flying).to eq true
     end
   end
 end

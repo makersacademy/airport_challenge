@@ -1,9 +1,9 @@
 class Plane
-  def takeoff
-    :successful
+  def grounded
+    true
   end
 
-  def land
-    :successful
+  def flying
+    true
   end
 end

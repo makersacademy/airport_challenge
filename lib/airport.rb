@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :planes_held
 
   DEFAULT_CAPACITY = 100
 
@@ -11,6 +11,8 @@ class Airport
   def land(plane, weather)
     if full? || weather.stormy?
       :cannot_land_plane
+    elsif @planes_held.include? plane
+      :plane_already_landed
     else
       @planes_held << plane
       :successful
@@ -25,6 +27,8 @@ class Airport
       :successful
     end
   end
+
+  private
 
   def full?
     @planes_held.length >= @capacity
