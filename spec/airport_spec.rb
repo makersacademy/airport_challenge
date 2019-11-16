@@ -8,9 +8,16 @@ describe Airport do
       expect(subject.land(plane)).to eq :successful
     end
 
-    it "returns :cannot_land_plane if airport is at full capacity" do
-      capacity = Airport::DEFAULT_CAPACITY
+    it "returns :cannot_land_plane if airport is at full capacity when capacity is specified" do
+      capacity = 50
+      airport = Airport.new(capacity)
+      capacity.times { airport.land(Plane.new) }
+      expect(airport.land(Plane.new)).to eq :cannot_land_plane
+    end
+
+    it "returns :cannot_land_plane if airport is at default capacity" do
       airport = Airport.new
+      capacity = Airport::DEFAULT_CAPACITY
       capacity.times { airport.land(Plane.new) }
       expect(airport.land(Plane.new)).to eq :cannot_land_plane
     end
