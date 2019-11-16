@@ -5,17 +5,18 @@ class Airport
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
-    @plane = nil
+    @planes = []
   end
 
   def land_plane(plane)
-    @plane = plane
+    raise RuntimeError if @planes.count >= @capacity
+    @planes << plane
   end
 
   def take_off
-    raise RuntimeError, "No planes at the airport" unless @plane
+    raise RuntimeError, "No planes at the airport" if @planes.count < 1
 
-    @plane = nil
+    @planes.pop
     "Plane has taken-off"
   end
 end

@@ -23,34 +23,36 @@ describe Airport do
   end
   
   describe "#land_plane" do
+
+    let!(:plane) { double(:plane) }
+
     it "should have a land_plane method" do 
       expect(airport).to respond_to(:land_plane).with(1).argument
     end
 
     it "should be able to land a plane" do
-      plane = double(:plane)
-      expect(airport.land_plane(plane)).to eq(plane)
+      expect(airport.land_plane(plane)).to eq([plane])
+    end
+
+    it "should raise an error if trying to land a plane when the airport is at capacity" do
+      expect { 11.times { subject.land_plane(plane) } }.to raise_error RuntimeError
+    end
+
+    it "should be able to land 10 planes if user does not specify a capacity" do
+      expect { 10.times { subject.land_plane(plane) } }.to_not raise_error
     end
   end
 
   describe "#take_off" do
     it "should allow planes to take off" do
       plane = double(:plane)
-      airport.land_plane(plane)
-      expect(airport.take_off).to eq("Plane has taken-off")
+      subject.land_plane(plane)
+      expect(subject.take_off).to eq("Plane has taken-off")
     end
 
     it "should raise an error if instructing a plane to take off when there are no planes to take off" do 
-      expect { airport.take_off }.to raise_error RuntimeError
+      expect { subject.take_off }.to raise_error RuntimeError
     end
   end
 
-    # it "should allow the user to overide the default capacity" do
-    # end
-
-    # it "should be able to land 5 planes if user determined capacity is 5" do
-    # end
-
-    # it "should raise an error if trying to land a plane when the airport is at capacity" do
-    # end
 end
