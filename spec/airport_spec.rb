@@ -55,7 +55,8 @@ describe Airport do
 
       it "should raise an error" do
         airport = Airport.new(1, double(:weather, stormy?: true))
-        expect { airport.take_off }.to raise_error("The weather is stormy")
+        plane = double(:plane)
+        expect { airport.take_off(plane) }.to raise_error("The weather is stormy")
       end
 
     end
@@ -64,14 +65,23 @@ describe Airport do
 
       it "should raise an error when the airport is empty" do
         airport = Airport.new(1, double(:weather, stormy?: false))
-        expect { airport.take_off }.to raise_error("The airport is empty")
+        plane = double(:plane)
+        expect { airport.take_off(plane) }.to raise_error("The airport is empty")
       end
 
       it "should be able to take off a plane when the airport is not empty" do
         airport = Airport.new(1, double(:weather, stormy?: false))
         plane = double(:plane)
         airport.land(plane)
-        expect(airport.take_off).to eq plane
+        expect(airport.take_off(plane)).to eq plane
+      end
+
+      it "should raise an error if the plane has landed in a different airport" do
+        airport = Airport.new(1, double(:weather, stormy?: false))
+        plane1 = double(:plane)
+        plane2 = double(:plane)
+        airport.land(plane1)
+        expect { airport.take_off(plane2) }.to raise_error("Plane not landed in this airport")
       end
 
     end

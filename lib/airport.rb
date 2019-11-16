@@ -17,11 +17,12 @@ class Airport
     @planes.push(plane).last
   end
 
-  def take_off
+  def take_off(plane)
     fail "The weather is stormy" if weather.stormy?
     fail "The airport is empty" if empty?
+    fail "Plane not landed in this airport" unless @planes.include?(plane)
 
-    @planes.pop
+    @planes.delete(plane)
   end
 
   private
