@@ -40,12 +40,24 @@ describe Airport do
       expect{airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
-    it "should override default airport capacity" do
+    it "should override default airport capacity upon creation" do
       override_capacity = 10
       airport = Airport.new(override_capacity)
       override_capacity.times { airport.land(Plane.new) }
       plane = Plane.new
       expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
+    end
+
+  end
+
+  describe "#capacity" do
+
+    it "should override default airport capacity at any point after creation" do
+      airport = Airport.new
+      airport.capacity = 5
+      5.times { airport.land(Plane.new) }
+      plane = Plane.new
+      expect{airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
