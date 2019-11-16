@@ -40,6 +40,14 @@ describe Airport do
       expect(airport.land(plane)).to eq "That airport is full, cannot land"
     end
 
+    it "should override default airport CAPACITY" do
+      override_capacity = 10
+      airport = Airport.new(override_capacity)
+      override_capacity.times { airport.land(Plane.new) }
+      plane = Plane.new
+      expect(airport.land(plane)).to eq "That airport is full, cannot land"
+    end
+
   end
 
 end
