@@ -9,14 +9,25 @@ class Airport
   end
 
   def land_plane(plane)
-    raise RuntimeError if @planes.count >= @capacity
+    raise RuntimeError if full?
     @planes << plane
   end
 
   def take_off
-    raise RuntimeError, "No planes at the airport" if @planes.count < 1
+    raise RuntimeError, "No planes at the airport" if empty?
 
     @planes.pop
     "Plane has taken-off"
   end
+
+  private
+
+  def full?
+    @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.count < 1
+  end
+
 end

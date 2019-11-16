@@ -27,11 +27,11 @@ describe Airport do
     let!(:plane) { double(:plane) }
 
     it "should have a land_plane method" do 
-      expect(airport).to respond_to(:land_plane).with(1).argument
+      expect(subject).to respond_to(:land_plane).with(1).argument
     end
 
     it "should be able to land a plane" do
-      expect(airport.land_plane(plane)).to eq([plane])
+      expect(subject.land_plane(plane)).to eq([plane])
     end
 
     it "should raise an error if trying to land a plane when the airport is at capacity" do
