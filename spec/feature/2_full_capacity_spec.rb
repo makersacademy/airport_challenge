@@ -4,7 +4,15 @@ require 'plane'
 context "Testing airport capacity" do
   specify "Trying to land too many planes should keep planes in the air" do
     given_an_airport_at_full_capacity
-    when_another_plane_tries_land
+    when_another_plane_tries_to_land
+    then_it_should_not_be_successful_and_stay_in_the_air
+  end
+
+  specify "Airports can be created with custom capacity" do
+    given_an_airport_with_capacity_of_30
+    when_i_try_to_land_30_planes
+    then_they_are_all_landed
+    when_another_plane_tries_to_land
     then_it_should_not_be_successful_and_stay_in_the_air
   end
 
@@ -13,7 +21,7 @@ context "Testing airport capacity" do
     Airport::DEFAULT_CAPACITY.times { Plane.new.land_at @airport }
   end
 
-  def when_another_plane_tries_land
+  def when_another_plane_tries_to_land
     @other_plane = Plane.new
     @other_plane.land_at @airport
   end
@@ -21,5 +29,19 @@ context "Testing airport capacity" do
   def then_it_should_not_be_successful_and_stay_in_the_air
     expect(@airport.count).to eq Airport::DEFAULT_CAPACITY
     expect(@other_plane.location).to eq Plane::FLYING_STRING
+  end
+
+  def given_an_airport_with_capacity_of_30
+    @airport = Airport.new("Heathrow", 30)
+  end
+
+  def when_i_try_to_land_30_planes
+    @planes = Array.new(30) { Plane.new }
+    @planes.each { |plane| plane.land_at @airport }
+  end
+
+  def then_they_are_all_landed
+    expect(@airport.count).to eq 30
+    @planes.each { |plane| expect(plane.location).to eq "Heathrow" }
   end
 end
