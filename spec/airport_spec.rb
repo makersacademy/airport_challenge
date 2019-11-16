@@ -7,6 +7,17 @@ describe Airport do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  describe "#initialize" do
+
+    it "can override the instance variable capacity" do
+      airport = Airport.new(50)
+      plane = Plane.new
+      50.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error("The airport is full")
+    end
+
+  end
+
   describe "#land" do
 
     it "should be able to land one plane" do
