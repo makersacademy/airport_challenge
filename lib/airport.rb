@@ -1,9 +1,13 @@
+require 'weather'
+
 class Airport
-  attr_reader :planes, :capacity
+  include Weather
+  attr_accessor :planes, :capacity, :weather
 
   def initialize(capacity = 100)
     @planes = [] 
     @capacity = capacity
+    @weather = weather_report
   end
 
   def harbour_plane(plane)
@@ -14,6 +18,7 @@ class Airport
 
   def commission_flight(plane)
     raise Errors::NOT_AT_AIRPORT unless @planes.include? plane
+    raise Errors::STORMY_WEATHER if @weather == "stormy"
 
     @planes.delete(plane)
   end

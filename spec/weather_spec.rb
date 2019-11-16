@@ -1,10 +1,10 @@
 require 'weather'
 
-class WeatherModule
+class WeatherDummy
   include Weather
 end
 
-RSpec.describe WeatherModule do
+RSpec.describe WeatherDummy do
   it "should report the weather" do
     expect(subject).to respond_to(:weather_report)
   end
