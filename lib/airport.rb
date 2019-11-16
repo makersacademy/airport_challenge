@@ -1,4 +1,5 @@
 class Airport
+
   DEFAULT_CAPACITY = 50
 
   attr_reader :capacity
@@ -10,11 +11,14 @@ class Airport
 
   def land(plane)
     fail "The airport is full" if full?
+
     @planes.push(plane).last
   end
 
-  def take_off
+  def take_off(is_stormy)
+    fail "The weather is stormy" if is_stormy
     fail "The airport is empty" if empty?
+
     @planes.pop
   end
 
@@ -29,4 +33,5 @@ class Airport
   def empty?
     @planes.empty?
   end
+
 end

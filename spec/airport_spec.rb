@@ -37,16 +37,24 @@ describe Airport do
 
   describe "#take_off" do
 
-    it "should be able to take off a plane" do
+    it "should raise an error when the weather is stormy" do
       airport = Airport.new
-      plane = double(:plane)
-      airport.land(plane)
-      expect(airport.take_off).to eq plane
+      weather = double(:weather, is_stormy?: true)
+      expect { airport.take_off(weather.is_stormy?) }.to raise_error("The weather is stormy")
     end
 
     it "should raise an error when the airport is empty" do
       airport = Airport.new
-      expect { airport.take_off }.to raise_error("The airport is empty")
+      weather = double(:weather, is_stormy?: false)
+      expect { airport.take_off(weather.is_stormy?) }.to raise_error("The airport is empty")
+    end
+
+    it "should be able to take off a plane when the wether is not stormy and airport not empty" do
+      airport = Airport.new
+      plane = double(:plane)
+      weather = double(:weather, is_stormy?: false)
+      airport.land(plane)
+      expect(airport.take_off(weather.is_stormy?)).to eq plane
     end
 
   end
