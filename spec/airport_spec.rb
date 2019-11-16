@@ -4,8 +4,12 @@ require 'plane'
 RSpec.describe Airport do
   let(:test_plane) { Plane.new }
   let(:test_airport) { Airport.new }
-  let(:clear_weather) { double("weather", weather_report: "clear") }
-  let(:stormy_weather) { double("weather", weather_report: "stormy") }
+  let(:clear_day) { double("weather", weather_report: "clear") }
+  let(:stormy_day) { double("weather", weather_report: "stormy") }
+
+  before(:each) do
+    test_airport.weather = clear_day.weather_report
+  end
 
   it "should harbour planes" do
     expect(subject).to respond_to(:harbour_plane).with(1).arguments
@@ -36,12 +40,22 @@ RSpec.describe Airport do
     end
 
     context "in stormy weather" do
-      it "should not be able to take off" do
+      it "should not allow planes to take off" do
         expect {
-          test_airport.weather = stormy_weather.weather_report
+          test_airport.harbour_plane(test_plane)
+          test_airport.weather = stormy_day.weather_report
+          test_airport.commission_flight(test_plane)
+        }.to raise_error Errors::STORMY_WEATHER_ON_TAKEOFF
+      end
+
+      it "should not allow planes to land" do
+        expect {
+          # weather becomes stormy in mid-air:
           test_airport.harbour_plane(test_plane)
           test_airport.commission_flight(test_plane)
-        }.to raise_error Errors::STORMY_WEATHER
+          test_airport.weather = stormy_day.weather_report
+          test_airport.harbour_plane(test_plane)
+        }.to raise_error Errors::STORMY_WEATHER_ON_LANDING
       end
     end
   end
@@ -56,10 +70,6 @@ RSpec.describe Airport do
 
   context "after commissioning a flight" do
     let(:test_plane_2) { Plane.new }
-    
-    before(:each) do
-      test_airport.weather = clear_weather.weather_report
-    end
     
     it "should not have the commissioned plane in the airport" do
       test_airport.harbour_plane(test_plane)
