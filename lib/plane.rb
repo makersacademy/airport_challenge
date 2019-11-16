@@ -1,9 +1,20 @@
 class Plane
+
+  def initialize
+    @grounded = false # when first created, plane is available to land.
+  end
+
   def grounded
-    true
+    @grounded = true
+    :grounded
   end
 
   def flying
-    true
+    @grounded = false
+    :flying
+  end
+
+  def available_to_land?
+    @grounded == false
   end
 end
