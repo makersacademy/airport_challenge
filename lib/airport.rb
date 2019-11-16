@@ -19,4 +19,8 @@ class Airport
     true
   end
 
+  def weather
+    
+  end
+
 end
