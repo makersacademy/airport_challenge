@@ -1,7 +1,8 @@
 class Weather
+  OUTCOMES = [:sunny, :sunny, :sunny, :stormy]
 
   def stormy?
-    rand(10) > 7
+    OUTCOMES.sample == :stormy
   end
 
 end
