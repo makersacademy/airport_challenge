@@ -17,8 +17,9 @@ context "Testing airport capacity" do
   end
 
   def given_an_airport_at_full_capacity
-    @airport = Airport.new "Birmingham"
-    allow(@airport).to receive(:weather_report).and_return("sunny")
+    @weather = Weather.new
+    allow(@weather).to receive(:stormy?).and_return(false)
+    @airport = Airport.new "Birmingham", weather: @weather
     Airport::DEFAULT_CAPACITY.times { Plane.new.land_at @airport }
   end
 
@@ -33,8 +34,9 @@ context "Testing airport capacity" do
   end
 
   def given_an_airport_with_capacity_of_30
-    @airport = Airport.new("Heathrow", 30)
-    allow(@airport).to receive(:weather_report).and_return("sunny")
+    @weather = Weather.new
+    allow(@weather).to receive(:stormy?).and_return(false)
+    @airport = Airport.new("Heathrow", capacity: 30, weather: @weather)
   end
 
   def when_i_try_to_land_30_planes

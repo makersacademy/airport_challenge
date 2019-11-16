@@ -1,11 +1,14 @@
+require 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :name, :capacity
 
-  def initialize name, capacity = DEFAULT_CAPACITY
+  def initialize(name, opts = {})
     @name = name
     @planes = []
-    @capacity = capacity
+    @capacity = opts[:capacity] || DEFAULT_CAPACITY
+    @weather = opts[:weather] || Weather.new
   end
 
   def count
@@ -14,30 +17,22 @@ class Airport
 
   def accept plane
     return false if full?
-    return false if stormy?
+    return false if @weather.stormy?
 
     @planes << plane
     true
   end
 
   def take_off_slot plane
-    return false if stormy?
+    return false if @weather.stormy?
 
     @planes.delete plane
     true
-  end
-
-  def weather_report
-    rand(10) < 2 ? "stormy" : "sunny"
   end
 
   private
 
   def full?
     @planes.size >= @capacity
-  end
-
-  def stormy?
-    weather_report == "stormy"
   end
 end

@@ -12,11 +12,12 @@ context "Landing and taking off in bad weather" do
   end
 
   def given_an_airport_with_1_plane_landed_in_bad_weather
-    @airport = Airport.new "Prague"
-    allow(@airport).to receive(:weather_report).and_return("sunny")
+    @weather = Weather.new
+    allow(@weather).to receive(:stormy?).and_return(false)
+    @airport = Airport.new "Prague", weather: @weather
     @plane = Plane.new
     @plane.land_at @airport
-    allow(@airport).to receive(:weather_report).and_return("stormy")
+    allow(@weather).to receive(:stormy?).and_return(true)
   end
 
   def when_another_plane_tries_to_land

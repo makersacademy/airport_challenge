@@ -18,8 +18,9 @@ context "Plane landing and take off" do
   end
 
   def given_an_airport_called_paris_and_a_plane
-    @paris = Airport.new "Paris"
-    allow(@paris).to receive(:weather_report).and_return("sunny")
+    @weather = Weather.new
+    allow(@weather).to receive(:stormy?).and_return(false)
+    @paris = Airport.new "Paris", weather: @weather
     @plane = Plane.new
   end
 

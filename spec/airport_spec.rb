@@ -3,7 +3,13 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane, flying?: false) }
   let(:plane2) { double(:plane, flying?: false) }
-  subject { Airport.new "Paris" }
+  let(:weather) { double(:weather, stormy?: false) }
+
+  def bad_weather
+    allow(weather).to receive(:stormy?).and_return(true)
+  end
+
+  subject { Airport.new("Paris", weather: weather) }
 
   before(:each) { allow(subject).to receive(:weather_report).and_return("sunny") }
 
@@ -17,7 +23,7 @@ describe Airport do
 
   describe "#new" do
     it "should accept an optional argument for custom capacity of 30" do
-      airport = Airport.new("Barcelona", 30)
+      airport = Airport.new("Barcelona", capacity: 30)
       expect(airport.capacity).to eq 30
     end
   end
@@ -69,28 +75,14 @@ describe Airport do
     end
 
     it "should accept a different number of planes if the capacity isn't default" do
-      airport = Airport.new("Valencia", 25)
-      allow(airport).to receive(:weather_report).and_return("sunny")
+      airport = Airport.new("Valencia", capacity: 25, weather: weather)
       25.times { expect(airport.accept plane).to eq true }
       expect(airport.accept plane).to eq false
     end
 
     it "shouldn't accept a plane if there's bad weather" do
-      allow(subject).to receive(:weather_report).and_return("stormy")
+      bad_weather
       expect(subject.accept plane).to eq false
-    end
-  end
-
-  describe "#weather_report" do
-    it "should return either 'sunny' or 'stormy'" do
-      airport = Airport.new "Sydney"
-      expect(airport.weather_report).to eq("sunny").or eq("stormy")
-    end
-
-    it "shouldn't just return one type of weather all the time" do
-      airport = Airport.new "LAX"
-      weather = Array.new(50) { airport.weather_report }
-      expect(weather.uniq.size).to eq 2
     end
   end
 
@@ -100,7 +92,7 @@ describe Airport do
     end
 
     it "should return false if it's stormy" do
-      allow(subject).to receive(:weather_report).and_return("stormy")
+      bad_weather
       expect(subject.take_off_slot plane).to eq false
     end
   end
