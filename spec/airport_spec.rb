@@ -9,6 +9,10 @@ describe Airport do
     expect(subject.name).to eq "Paris"
   end
 
+  it "should have a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe "#count" do
     it "should be zero if no planes have landed" do
       expect(subject.count).to eq 0
@@ -36,6 +40,19 @@ describe Airport do
       subject.accept plane2
       allow(plane).to receive(:flying?).and_return(true)
       expect(subject.count).to eq 1
+    end
+  end
+
+  describe "#accept" do
+    it "should return false if the airport is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.accept(plane) }
+      expect(subject.accept(plane)).to be false
+    end
+
+    it "planes shouldn't be added to the airport if it is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.accept(plane) }
+      subject.accept plane
+      expect(subject.count).to eq Airport::DEFAULT_CAPACITY
     end
   end
 end

@@ -18,6 +18,17 @@ describe Plane do
       expect(paris).to receive(:accept).at_least(1).times.with(subject)
       subject.land_at paris
     end
+
+    it "should stay in the air if the airport can't accept it" do
+      allow(paris).to receive(:accept).and_return(false)
+      subject.land_at paris
+      expect(subject.location).to eq Plane::FLYING_STRING
+    end
+
+    it "should raise an error if it is already landed" do
+      subject.land_at paris
+      expect { subject.land_at paris }.to raise_error InvalidStateError, "Not in the air"
+    end
   end
 
   describe "#take_off" do

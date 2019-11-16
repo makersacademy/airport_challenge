@@ -1,8 +1,10 @@
 class Airport
-  attr_reader :name
+  DEFAULT_CAPACITY = 20
+  attr_reader :name, :capacity
   def initialize name
     @name = name
     @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def count
@@ -11,6 +13,8 @@ class Airport
   end
 
   def accept plane
+    return false if @planes.size >= @capacity
+
     @planes << plane
   end
 

@@ -7,12 +7,14 @@ class Plane
   end
 
   def land_at airport
-    airport.accept self
-    @location = airport.name
+    raise InvalidStateError, "Not in the air" unless flying?
+
+    @location = airport.name if airport.accept self
   end
 
   def take_off
     raise InvalidStateError, "Can't take off in the air" if flying?
+
     @location = FLYING_STRING
   end
 
