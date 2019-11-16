@@ -16,7 +16,7 @@ describe Airport do
       plane = Plane.new
       airport.land(plane)
       plane_2 = Plane.new
-      expect(airport.land(plane_2)).to eq "That airport is full, cannot land"
+      expect{ airport.land(plane_2) }.to raise_error "That airport is full, cannot land"
     end
 
   end
@@ -33,19 +33,19 @@ describe Airport do
 
   describe "initialize" do
 
-    it "should set default airport CAPACITY" do
+    it "should set default airport capcity" do
       airport = Airport.new
-      Airport::CAPACITY.times { airport.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect(airport.land(plane)).to eq "That airport is full, cannot land"
+      expect{airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
-    it "should override default airport CAPACITY" do
+    it "should override default airport capacity" do
       override_capacity = 10
       airport = Airport.new(override_capacity)
       override_capacity.times { airport.land(Plane.new) }
       plane = Plane.new
-      expect(airport.land(plane)).to eq "That airport is full, cannot land"
+      expect{ airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end

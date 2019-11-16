@@ -1,15 +1,16 @@
 class Airport
   attr_reader :plane
 
-  CAPACITY = 1
+  DEFAULT_CAPACITY = 1
 
-  def initialize(capacity = CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @counter = 0
   end
 
   def land(plane)
-    if @counter >= CAPACITY
-      "That airport is full, cannot land"
+    if @counter >= @capacity
+      raise "That airport is full, cannot land"
     else
       @counter += 1
       "Plane has been landed"
