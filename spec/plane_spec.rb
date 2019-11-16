@@ -23,14 +23,18 @@ describe Plane do
       expect(subject.land_at paris).to eq true
     end
 
+    def bad_weather_at airport
+      allow(airport).to receive(:accept).and_return(false)
+    end
+
     it "should stay in the air if the airport can't accept it" do
-      allow(paris).to receive(:accept).and_return(false)
+      bad_weather_at paris
       subject.land_at paris
       expect(subject.location).to eq Plane::FLYING
     end
 
     it "should return false if it can't land" do
-      allow(paris).to receive(:accept).and_return(false)
+      bad_weather_at paris
       expect(subject.land_at paris).to eq false
     end
 
@@ -41,38 +45,38 @@ describe Plane do
   end
 
   describe "#take_off" do
+    before(:each) { subject.land_at paris }
     it "should raise an error if the plane hasn't landed yet" do
-      expect { subject.take_off }
+      expect { Plane.new.take_off }
         .to raise_error InvalidStateError, "Can't take off in the air"
     end
 
     it "should ask the airport if there is a slot for it to take off" do
-      subject.land_at paris
       expect(paris).to receive(:take_off_slot).at_least(1).times.with(subject)
       subject.take_off
     end
 
     it "should put the plane in the air if landed" do
-      subject.land_at paris
       subject.take_off
       expect(subject.location).to eq Plane::FLYING
     end
     
     it "should return true if it successfully takes off" do
-      subject.land_at paris
       expect(subject.take_off).to eq true
     end
 
+    def bad_weather_at airport
+      allow(airport).to receive(:take_off_slot).and_return(false)
+    end
+
     it "should stay on the ground if there's bad weather at the airport" do
-      allow(paris).to receive(:take_off_slot).and_return(false)
-      subject.land_at paris
+      bad_weather_at paris
       subject.take_off
       expect(subject.location).to eq paris.name
     end
 
     it "should return false if it doesn't take off" do
-      allow(paris).to receive(:take_off_slot).and_return(false)
-      subject.land_at paris
+      bad_weather_at paris
       expect(subject.take_off).to eq false
     end
   end
