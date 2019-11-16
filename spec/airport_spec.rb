@@ -25,7 +25,7 @@ describe Airport do
   describe "＃take_off" do
     #A plane to take off
     it "should instuct a plane to take off" do
-    expect(subject).to respond_to(:take_off)
+    expect(subject.take_off(Plane.new)).to eq(subject.planes)
     end
   
     #Confirm the takeoff
@@ -33,7 +33,10 @@ describe Airport do
     expect(subject.takeoff?).to eq(true)
     end
 
-
+    #Raise error when it is stormy
+    it "should prevent takeoff when weather is stormy" do
+    expect { subject.take_off(plane) }.to raise_error ("Cannot take off because of the storm") if subject.weather == "stormy"
+    end
   end
 
   describe "#weather" do

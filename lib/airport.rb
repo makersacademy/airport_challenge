@@ -14,7 +14,10 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
+    fail "Cannot take off because of the storm" if @weather == "stormy"
+    @planes.pop
+    @planes
   end
 
   def takeoff?
@@ -22,9 +25,8 @@ class Airport
   end
 
   def weather
-    @weather = rand(1..10)
-    "sunny" if @weather >= 3
-    "stormy" if @weather <= 3
+    weather_report = rand(1..10)
+    @weather == "stormy" if weather_report <= 3
   end
 
 end
