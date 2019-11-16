@@ -17,10 +17,9 @@ describe Airport do
     end
 
     #Raise error when it is stormy
-
-
-
-
+    it "should prevent landing when weather is stormy" do
+    expect { subject.land(Plane.new) }.to raise_error ("Cannot land because of the storm") if subject.weather == "stormy"
+    end
   end
 
   describe "＃take_off" do
@@ -33,12 +32,14 @@ describe Airport do
     it "should confirm if the plane has taken off" do
     expect(subject.takeoff?).to eq(true)
     end
+
+
   end
 
   describe "#weather" do
     #Generate a random weather
     it "should tell us the weather" do
-    expect(subject).to respond_to(:weather)
+    expect(subject.weather).to eq(subject.weather)
     end
   end
 end
