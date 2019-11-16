@@ -5,8 +5,6 @@ RSpec::Matchers.define :all_be_grounded_planes do
   match do |actual|
     actual.all? { |planes| planes.airborne == false }
   end
-
-  # supports_block_expectations
 end
 
 RSpec.describe Airport do
@@ -17,6 +15,7 @@ RSpec.describe Airport do
 
   before(:each) do
     test_airport.weather = clear_day.weather_report
+    allow(test_plane).to receive(:take_off)
   end
 
   it "should harbour planes" do
@@ -32,6 +31,11 @@ RSpec.describe Airport do
   it "should commission flights" do
     expect(subject).to respond_to(:commission_flight).with(1).arguments
   end
+
+  it "should send planes to the sky" do
+    expect(subject).to respond_to(:airspace)
+    expect(subject.airspace).to be_an_instance_of Sky
+  end
   
   context "#capacity" do
     it "should have a maximum capacity of 100 planes" do
@@ -41,8 +45,8 @@ RSpec.describe Airport do
     it "should be able to be overwritten" do
       custom_airport = Airport.new(600)
 
-      expect(test_airport.capacity).to eq(100)
-      expect(custom_airport.capacity).to eq(600)
+      expect(test_airport.capacity).to be 100
+      expect(custom_airport.capacity).to be 600
     end
   end
 
@@ -76,7 +80,7 @@ RSpec.describe Airport do
 
   context "when harbouring planes" do
     it "should deny landing if airport is full" do
-      100.times { test_airport.harbour_plane(test_plane) }
+      100.times { test_airport.harbour_plane(Plane.new) }
 
       expect { test_airport.harbour_plane(test_plane) }.to raise_error Errors::AT_CAPACITY
     end
@@ -103,10 +107,6 @@ RSpec.describe Airport do
 
   context "#hangar" do
     it "should not contain airborne planes" do
-      test_plane.airborne = true
-      test_airport.harbour_plane(test_plane)
-      
-      expect(test_airport.hangar).not_to all_be_grounded_planes
       expect(subject.hangar).to all_be_grounded_planes
     end
   end

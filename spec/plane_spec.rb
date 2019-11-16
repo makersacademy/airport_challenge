@@ -11,15 +11,23 @@ RSpec.describe Plane do
     expect(subject).to respond_to(:land)
   end
   
+  it "should have an airport" do
+    expect(subject).to respond_to(:accounted_for)
+    expect(subject.accounted_for).to be(true).or be false
+    
+  end
+
   context "airbrone status" do
     it "should be airborne after takeoff" do
       test_plane.take_off
+      
       expect(test_plane.airborne).to be true
     end
 
     it "should not be airborne after landing" do
       test_plane.take_off
       test_plane.land
+
       expect(test_plane.airborne).to be false
     end
   end
@@ -35,7 +43,9 @@ RSpec.describe Plane do
 
   context "when grounded" do
     it "should not be able to land" do
-      expect { subject.land }.to raise_error Errors::CURRENTLY_GROUNDED
+      test_plane.accounted_for = true
+      
+      expect { test_plane.land }.to raise_error Errors::CURRENTLY_GROUNDED
     end
   end
 end

@@ -7,6 +7,6 @@ module Weather
 
   def stormy_day
     chance = rand(10)
-    chance < 2 ? true : false
+    chance < 2
   end
 end
