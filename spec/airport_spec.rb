@@ -9,11 +9,18 @@
 require 'airport'
 
 describe Airport do
-
-  # it "should have a default capacity of 10 planes" do
-  #   expect(Airport).to eq(10)
-  # end
   airport = Airport.new
+
+  describe "initialize" do 
+    it "should have a default capacity of 10 planes if no argument is entered" do
+      expect(Airport::DEFAULT_CAPACITY).to eq(10)
+    end
+
+    it "should have a default capacity of 20 planes if 20 is entered as an argument" do
+      expect(Airport::DEFAULT_CAPACITY).to eq(10)
+    end
+  end
+  
   describe "#land_plane" do
     it "should have a land_plane method" do 
       expect(airport).to respond_to(:land_plane).with(1).argument

@@ -1,6 +1,8 @@
 require_relative "plane.rb"
 class Airport
 
+  DEFAULT_CAPACITY=10
+
   def initialize
     @plane = nil
   end
@@ -15,5 +17,4 @@ class Airport
     @plane = nil
     "Plane has taken-off"
   end
-
 end
