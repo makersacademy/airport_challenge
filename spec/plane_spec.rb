@@ -2,6 +2,10 @@ require 'plane'
 
 RSpec.describe Plane do
   let(:test_plane) { Plane.new }
+  
+  before(:each) do
+    test_plane.accounted_for = true
+  end
 
   it "should be able to take off" do
     expect(subject).to respond_to(:take_off)
@@ -14,7 +18,7 @@ RSpec.describe Plane do
   it "should have an airport" do
     expect(subject).to respond_to(:accounted_for)
     expect(subject.accounted_for).to be(true).or be false
-    
+    expect { subject.take_off }.to raise_error Errors::NO_AIRPORT
   end
 
   context "airbrone status" do
@@ -34,10 +38,9 @@ RSpec.describe Plane do
 
   context "when airbourne" do
     it "should not be able to take off" do
-      plane = Plane.new
-      plane.take_off
+      test_plane.take_off
 
-      expect { plane.take_off }.to raise_error Errors::CURRENTLY_AIRBORNE
+      expect { test_plane.take_off }.to raise_error Errors::CURRENTLY_AIRBORNE
     end
   end
 

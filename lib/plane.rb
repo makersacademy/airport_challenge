@@ -9,6 +9,7 @@ class Plane
   end
 
   def take_off
+    raise Errors::NO_AIRPORT unless @accounted_for
     raise Errors::CURRENTLY_AIRBORNE if @airborne 
 
     puts "plane has taken off"
