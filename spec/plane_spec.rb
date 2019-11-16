@@ -14,4 +14,10 @@ describe Plane do
     expect(plane).to respond_to(:land)
   end
 
+  it "expect plane to respond to method take_off" do
+    plane = Plane.new
+    plane.take_off
+    expect(plane).to respond_to(:take_off)
+  end
+
 end

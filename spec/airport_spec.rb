@@ -8,7 +8,6 @@ describe Airport do
     expect(airport).to be_instance_of(Airport)
   end
 
-
   # next
 
 end
