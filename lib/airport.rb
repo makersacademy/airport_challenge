@@ -9,12 +9,22 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full" if @planes.length == @capacity
+    fail "The airport is full" if full?
     @planes.push(plane)
   end
 
   def take_off
-    fail "The airport is empty" if @planes == []
+    fail "The airport is empty" if empty?
     @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.count == @capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 end
