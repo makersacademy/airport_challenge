@@ -22,6 +22,8 @@ class Airport
   def takeoff(plane, weather)
     if weather.stormy?
       :cannot_take_off
+    elsif !@planes_held.include? plane
+      :plane_already_flying
     else
       @planes_held.delete(plane)
       :successful

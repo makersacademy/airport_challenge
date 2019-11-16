@@ -57,7 +57,16 @@ describe Airport do
       it "returns :successful when a plane takes off from the airport" do
         plane = double(:plane)
         weather = double(:weather, stormy?: false)
+        subject.land(plane, weather)
         expect(subject.takeoff(plane, weather)).to eq :successful
+      end
+
+      it "returns :plane_already_flying when plane has already taken off" do
+        plane = double(:plane)
+        weather = double(:weather, stormy?: false)
+        subject.land(plane, weather)
+        subject.takeoff(plane, weather)
+        expect(subject.takeoff(plane, weather)).to eq :plane_already_flying
       end
     end
 
