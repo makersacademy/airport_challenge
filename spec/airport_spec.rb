@@ -42,7 +42,7 @@ describe Airport do
   describe "#weather" do
     #Generate a random weather
     it "should tell us the weather" do
-    expect(subject.weather).to eq(subject.weather)
+    expect(subject).to respond_to(:weather)
     end
   end
 end
