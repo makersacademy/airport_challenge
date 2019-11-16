@@ -1,5 +1,11 @@
 class Weather
+  attr_reader :weather_forecast
+
+  def initialize
+    @weather_forecast = rand(10)
+  end
+
   def stormy?
-    true
+    @weather_forecast <= 2
   end
 end
