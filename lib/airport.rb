@@ -16,7 +16,7 @@ class Airport
 
     raise "There is currently a storm no landings at this time" if stormy?
 
-    raise "This plane has already landed" if !plane.flying?
+    # raise "This plane has already landed" if !plane.flying?
 
     @planes << plane
   end
