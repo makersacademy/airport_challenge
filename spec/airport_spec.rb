@@ -43,12 +43,12 @@ describe Airport do
       plane = Plane.new
       allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.take_off(plane)).to eq plane
     end
 
     it "gives an error if there's no planes in the airport" do
       allow(subject).to receive(:stormy?) { false }
-      expect { subject.take_off }.to raise_error("There are currently no planes ready for take off")
+      expect { subject.take_off(Plane.new) }.to raise_error("There are currently no planes ready for take off")
     end
 
   end
@@ -63,11 +63,11 @@ describe Airport do
   end
 
   describe "#multi_take_off" do
-    it "makes 2 take offs when 2 is passed as an argument" do
+    it "makes all planes in an array take off when  an array of planes is passed as an argument" do
       allow(subject).to receive(:stormy?) { false }
       plane_1, plane_2 = Plane.new, Plane.new
       subject.multi_land([plane_1, plane_2])
-      subject.multi_take_off(2)
+      subject.multi_take_off([plane_1, plane_2])
       expect(subject.planes).to eq []
     end
   end
@@ -81,9 +81,10 @@ describe Airport do
 
     it "doent take off when the weather is stormy" do
       allow(subject).to receive(:stormy?) { false }
-      subject.land(Plane.new)
+      plane = Plane.new
+      subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.take_off }.to raise_error("There is currently a storm no take offs at this time")
+      expect { subject.take_off(plane) }.to raise_error("There is currently a storm no take offs at this time")
     end
   
   end

@@ -29,17 +29,17 @@ class Airport
     }
   end
 
-  def take_off
+  def take_off(plane)
     raise "There are currently no planes ready for take off" if empty?
 
     raise "There is currently a storm no take offs at this time" if stormy?
 
-    @planes.pop
+    @planes.delete(plane)
   end
 
-  def multi_take_off(num)
-    num.times {
-      take_off
+  def multi_take_off(planes)
+    planes.each { |plane|
+      take_off(plane)
     }
   end
 
