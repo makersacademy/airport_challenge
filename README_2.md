@@ -31,23 +31,32 @@ $ irb
 2.6.0 :001 > airport = Airport.new(150)
  => #<Airport:0x00007f8ef512bbd8 @capacity=150, @planes_held=[],
  @weather=#<Weather:0x00007f8ef512b930>>
+
 2.6.0 :002 > plane = Plane.new
  => #<Plane:0x00007f8ef40fd748 @grounded=false>
+
 2.6.0 :003 > airport.land(plane)
  => [#<Plane:0x00007f8ef40fd748 @grounded=true>]
+
 2.6.0 :004 > plane2 = Plane.new
  => #<Plane:0x00007f8ef4117d78 @grounded=false>
+
 2.6.0 :005 > airport.land(plane2)
  => [#<Plane:0x00007f8ef40fd748 @grounded=true>, #<Plane:0x00007f8ef4117d78
  @grounded=true>]
+
 2.6.0 :006 > airport.takeoff(plane)
 => #<Plane:0x00007f8ef40fd748 @grounded=false>
+
 2.6.0 :007 > airport.land(plane2)
 RuntimeError (Plane has already landed)
+
 2.6.0 :008 > airport.takeoff(plane)
 RuntimeError (Plane is not at airport)
+
 2.6.0 :009 > airport.land(Plane.new)
 RuntimeError (Adverse weather conditions)
+
 2.6.0 :010 > 150.times { airport.land(Plane.new) }
 RuntimeError (Airport capacity has been reached)
 ```  
