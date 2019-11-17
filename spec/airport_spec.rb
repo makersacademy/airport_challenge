@@ -1,7 +1,10 @@
 require 'airport'
 require 'plane'
+require 'weather'
 describe Airport do
-  
+  let(:sunny) { double(:weather, stormy?: false) }
+  let(:stormy) { double(:weather, stormy?: true) }
+
   it "Airports should have a default capacioty if none is set" do
     london = Airport.new
     expect(london.capacity).to eq 10
@@ -33,24 +36,29 @@ describe Airport do
   
   describe 'land' do
     
+    it "should not allow plane to land when weather is stormy" do
+      london = Airport.new
+      expect { london.land(Plane.new, stormy) }.to raise_error "Stormy weather! Cant land"
+    end
+    
     it "should let flying planes to land at airport" do
       london = Airport.new
       london.create_plane(plane = Plane.new)
-      london.takeoff(plane)
-      expect(london.land(plane)).to eq plane
+      london.takeoff(plane, sunny)
+      expect(london.land(plane, sunny)).to eq plane
     end
     
     it "should not allow planes to land when airport is full" do
       london = Airport.new
       plane = Plane.new
       Airport::DEFAULT_CAPACITY.times { london.create_plane(Plane.new) }
-      expect { london.land(plane) }.to raise_error "Airport is full"
+      expect { london.land(plane, sunny) }.to raise_error "Airport is full"
     end
     
     it "should not allow plane to land if it is already at an airport" do
       london = Airport.new
       london.create_plane(plane = Plane.new)
-      expect { london.land(plane) }.to raise_error "Plane is already at airport"
+      expect { london.land(plane, sunny) }.to raise_error "Plane is already at airport"
     end
     
   end
@@ -60,28 +68,34 @@ describe Airport do
     it "should allow a plane to take off from an airport" do
       london = Airport.new
       london.create_plane(plane = Plane.new)
-      london.takeoff(plane)
+      london.takeoff(plane, sunny)
       expect(london.planes).to eq []
     end
     
     it "should confirm that plane has taken off" do
       london = Airport.new
       london.create_plane(plane = Plane.new)
-      expect(london.takeoff(plane)).to eq "Plane flew away"
+      expect(london.takeoff(plane, sunny)).to eq "Plane flew away"
+    end
+    
+    it "should not allow plane to take off when weather is stormy" do
+      london = Airport.new
+      london.create_plane(plane = Plane.new)
+      expect { london.takeoff(plane, stormy) }.to raise_error "Stormy weather! Cant take off now"
     end
     
     it "should give you an error if you are trying to take off a plane that is already flying" do
       london = Airport.new
       london.create_plane(plane = Plane.new)
-      london.takeoff(plane)
-      expect { london.takeoff(plane) }.to raise_error "This plane is already flying"
+      london.takeoff(plane, sunny)
+      expect { london.takeoff(plane, sunny) }.to raise_error "This plane is already flying"
     end
     
     it "should give you an error when you are trying to take off a plane that is in a different airport" do
       london = Airport.new
       barcelona = Airport.new
       barcelona.create_plane(plane = Plane.new)
-      expect { london.takeoff(plane) }.to raise_error "No such plane in this airport"
+      expect { london.takeoff(plane, sunny) }.to raise_error "No such plane in this airport"
     end
   end
   

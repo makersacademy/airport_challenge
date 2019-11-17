@@ -1,4 +1,5 @@
 require './lib/plane'
+require './lib/weather'
 class Airport
   attr_reader :capacity, :planes, :plane
   DEFAULT_CAPACITY = 10
@@ -17,7 +18,8 @@ class Airport
     return @plane
   end
   
-  def land(plane)
+  def land(plane, weather)
+    raise("Stormy weather! Cant land") if weather.stormy? == true
     raise("Airport is full") if @planes.size >= @capacity
     raise("Plane is already at airport") unless $flying_planes.include?(plane)
     
@@ -25,7 +27,8 @@ class Airport
     $flying_planes.delete_at($flying_planes.index(plane))
   end
   
-  def takeoff(plane)
+  def takeoff(plane, weather)
+    raise("Stormy weather! Cant take off now") if weather.stormy? == true
     raise("This plane is already flying") if $flying_planes.include?(plane)
     raise("No such plane in this airport") unless @planes.include?(plane)
     
