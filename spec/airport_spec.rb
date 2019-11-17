@@ -1,7 +1,7 @@
 # prevent landing when the weather is stormy - done
-# raises error if trying to take off plane that isnt in the airport
-# plane can only take off from the airport they are in
+# raises error if trying to take off plane that isnt in the airport - done
 # raise error if trying to take off when the plane is already flying
+# raise an error if trying to land if in flight
 
 # things that could be improved upon
 # Capacity dependent on the size of the aircraft
@@ -55,16 +55,32 @@ describe Airport do
 
     it "should allow planes to take off" do
       subject.land_plane(plane, fair_weather)
-      expect(subject.take_off(fair_weather)).to eq("Plane has taken-off")
+      expect(subject.take_off(plane, fair_weather)).to eq("Plane has taken-off")
     end
 
     it "should raise an error if instructing a plane to take off when there are no planes to take off" do 
-      expect { subject.take_off(fair_weather) }.to raise_error "No planes at the airport"
+      expect { subject.take_off(plane, fair_weather) }.to raise_error "No planes at the airport"
     end
 
     it "should prevent take off if the weather is stormy" do
       subject.land_plane(plane, fair_weather)
-      expect { subject.take_off(stormy_weather) }.to raise_error "Plane cannot take off due stormy weather"
+      expect { subject.take_off(plane, stormy_weather) }.to raise_error "Plane cannot take off due stormy weather"
+    end
+
+    it "should raise an error if trying to take off a plane that isn't at the airport" do
+      plane1 = double(:plane1)
+      plane2 = double(:plane2)
+      subject.land_plane(plane1, fair_weather)
+      expect { subject.take_off(plane2, fair_weather) }.to raise_error "Cannot take off, Plane not at specified airport"
+    end
+  end
+
+  describe "#contains_plane?" do 
+
+    it "should return false after a plane has taken off" do 
+      subject.land_plane(plane, fair_weather)
+      subject.take_off(plane, fair_weather)
+      expect(subject.contains_plane?(plane)).to eq false
     end
   end
 end

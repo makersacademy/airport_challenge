@@ -17,14 +17,20 @@ class Airport
     @planes << plane
   end
 
-  def take_off(weather)
+  def take_off(plane, weather)
     no_planes_message = "No planes at the airport"
     stormy_message = "Plane cannot take off due stormy weather"
+    invalid_plane_message = "Cannot take off, Plane not at specified airport"
     raise RuntimeError, no_planes_message if empty?
+    raise RuntimeError, invalid_plane_message unless contains_plane?(plane)
     raise RuntimeError, stormy_message if weather.stormy?
-
-    @planes.pop
+    
+    @planes.delete(plane)
     "Plane has taken-off"
+  end
+
+  def contains_plane?(plane)
+    @planes.include?(plane)
   end
 
   private
@@ -36,5 +42,4 @@ class Airport
   def empty?
     @planes.count < 1
   end
-
 end
