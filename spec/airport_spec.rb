@@ -2,66 +2,87 @@ require 'airport'
 require 'plane'
 describe Airport do
   
-  it "should have a default capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to eq 10
+  it "Airports should have a default capacioty if none is set" do
+    london = Airport.new
+    expect(london.capacity).to eq 10
   end
   
-  it "should be possible to initialize with different capacities" do
-    airport = Airport.new 30
-    expect(airport.capacity).to eq 30
+  it "Should allow to set different capacity than default" do
+    london = Airport.new 30
+    expect(london.capacity).to eq 30
+  end
+  
+  describe 'create_plane' do
+    
+    it "should create a plane" do
+      expect(subject.create_plane(plane = Plane.new)).to eq plane
+    end
+    
+    it "should creater a plane at airport" do
+      london = Airport.new
+      london.create_plane(plane = Plane.new)
+      expect(london.planes).to eq [plane]
+    end
+    
+    it "should not allow to make any more planes if airport is full" do
+      expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.create_plane(Plane.new) } }.to raise_error "Airport is full"
+    end
+
+    
   end
   
   describe 'land' do
     
-    it "should raise and error when trying to land a plane thats already docked in some airport" do
+    it "should let flying planes to land at airport" do
       london = Airport.new
-      barcelona = Airport.new
-      plane1 = Plane.new
-      london.land(plane1)
-      expect{ barcelona.land(plane1) }.to raise_error "This plane already landed somewhere"
+      london.create_plane(plane = Plane.new)
+      london.takeoff(plane)
+      expect(london.land(plane)).to eq [plane]
     end
     
-    it "should prevent landing at full airport" do
-      expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.land(Plane.new) } }.to raise_error "Airport is full"
-    end
-    
-    it "should let the plane land if there is space" do
+    it "should not allow planes to land when airport is full" do
+      london = Airport.new
       plane = Plane.new
-      expect(subject.land(plane)).to eq [plane]
-    end 
+      (Airport::DEFAULT_CAPACITY).times { london.create_plane(Plane.new) }
+      expect { london.land(plane) }.to raise_error "Airport is full"
+    end
+    
+    it "should not allow plane to land if it is already at an airport" do
+      london = Airport.new
+      london.create_plane(plane = Plane.new)
+      expect{ london.land(plane) }.to raise_error "This plane is already at airport"
+    end
+    
   end
   
   describe 'takeoff' do
     
-    it "should raise an error when trying to take off with a plane thats already flying" do
+    it "should allow a plane to take off from an airport" do
       london = Airport.new
-      plane1 = Plane.new
-      london.land(plane1)
-      london.takeoff(plane1)
-      expect { london.takeoff(plane1) }.to raise_error "This plane is already flying"
+      london.create_plane(plane = Plane.new)
+      london.takeoff(plane)
+      expect(london.planes).to eq []
     end
     
-    it "should raise an error when trying to take of with a plane that is not docked in this airport" do
+    it "should confirm that plane has taken off" do
       london = Airport.new
-      plane1 = Plane.new
-      expect { london.takeoff(plane1) }.to raise_error "No such plane in this airport"
+      london.create_plane(plane = Plane.new)
+      expect(london.takeoff(plane)).to eq "Plane flew away"
     end
     
-    it "should let the plane to take off and confirm its gone" do
-      airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      expect(airport.takeoff(plane)).to eq "Plane flew away"
+    it "should give you an error if you are trying to take off a plane that is already flying" do
+      london = Airport.new
+      london.create_plane(plane = Plane.new)
+      london.takeoff(plane)
+      expect { london.takeoff(plane) }.to raise_error "This plane is already flying"
     end
     
-    it "its checking if the plane is flying" do
-      airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      airport.takeoff(plane)
-      expect(airport.flying_planes).to eq [plane]
+    it "should give you an error when you are trying to take off a plane that is in a different airport" do
+      london = Airport.new
+      barcelona = Airport.new
+      barcelona.create_plane(plane = Plane.new)
+      expect { london.takeoff(plane) }.to raise_error "No such plane in this airport"
     end
-    
   end
+  
 end

@@ -1,6 +1,6 @@
 require 'plane'
 class Airport
-  attr_reader :capacity, :planes, :flying_planes
+  attr_reader :capacity, :planes, :flying_planes, :plane
   DEFAULT_CAPACITY = 10
   
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -9,9 +9,17 @@ class Airport
     @flying_planes = []
   end
   
+  def create_plane(plane)
+    raise("Airport is full") if @planes.size >= @capacity
+    
+    @plane = plane
+    @planes << @plane
+    return @plane
+  end
+  
   def land(plane)
-    #raise("This plane already landed somewhere") unless @flying_planes.include?(plane)
-    raise("Airport is full") if @planes.size == @capacity
+    raise("Airport is full") if @planes.size >= @capacity
+    raise("This plane is already at airport") unless @flying_planes.include?(plane)
     
     @planes << plane
   end
