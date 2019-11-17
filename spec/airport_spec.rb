@@ -86,7 +86,7 @@ describe Airport do
 
       it "should be able to take off a plane" do
         airport = Airport.new(1, double(:weather, stormy?: false))
-        plane = double(:plane, landed?: false, land: true)
+        plane = double(:plane, landed?: false, land: true, take_off: false)
         airport.land(plane)
         expect(airport.take_off(plane)).to eq plane
       end

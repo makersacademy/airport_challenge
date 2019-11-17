@@ -25,6 +25,7 @@ class Airport
     fail "The airport is empty" if empty?
     fail "Plane not landed in this airport" unless landed_here?(plane)
 
+    plane.take_off
     @planes.delete(plane)
   end
 

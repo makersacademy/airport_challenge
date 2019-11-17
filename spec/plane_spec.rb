@@ -20,4 +20,13 @@ describe Plane do
 
   end
 
+  describe "#take_off" do
+
+    it "should return false" do
+      plane = Plane.new
+      expect(plane.take_off).to eq false
+    end
+
+  end
+
 end
