@@ -19,7 +19,8 @@ class Airport
   
   def land(plane)
     raise("Airport is full") if @planes.size >= @capacity
-    raise("This plane is already at airport") unless $flying_planes.include?(plane)
+    raise("Plane is already at airport") unless $flying_planes.include?(plane)
+    
     @planes << $flying_planes.slice($flying_planes.index(plane))
     $flying_planes.delete_at($flying_planes.index(plane))
   end
@@ -27,6 +28,7 @@ class Airport
   def takeoff(plane)
     raise("This plane is already flying") if $flying_planes.include?(plane)
     raise("No such plane in this airport") unless @planes.include?(plane)
+    
     $flying_planes << @planes.slice(@planes.index(plane))
     @planes.delete_at(@planes.index(plane))
     "Plane flew away" if $flying_planes.include?(plane)
