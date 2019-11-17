@@ -13,14 +13,17 @@ class Airport
   def land(plane)
     fail "The weather is stormy" if weather.stormy?
     fail "The airport is full" if full?
+    fail "Plane already landed" if plane.landed?
 
-    @planes.push(plane).last
+    plane.land(self)
+    @planes.push(plane)
+    plane
   end
 
   def take_off(plane)
     fail "The weather is stormy" if weather.stormy?
     fail "The airport is empty" if empty?
-    fail "Plane not landed in this airport" unless @planes.include?(plane)
+    fail "Plane not landed in this airport" unless landed_here?(plane)
 
     @planes.delete(plane)
   end
@@ -35,6 +38,10 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def landed_here?(plane)
+    @planes.include?(plane)
   end
 
 end
