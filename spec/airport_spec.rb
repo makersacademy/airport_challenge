@@ -59,6 +59,15 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error "That plane is in a different airport"
     end
 
+    it "should prevent takeoff if the plane is already flying" do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:weather) { "sunny" }
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) }.to raise_error "That plane is in flight"
+    end
+
   end
 
   describe "initialize" do

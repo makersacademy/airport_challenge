@@ -1,5 +1,6 @@
 class Airport
   attr_accessor :capacity
+  attr_reader :planes
 
   DEFAULT_CAPACITY = 1
 
@@ -13,15 +14,20 @@ class Airport
 
     fail "Weather is stormy, cannot land" if weather == "stormy"
 
+    plane.land
     @planes << plane
     "Plane has been landed"
   end
 
   def take_off(plane)
+    fail "That plane is in flight" if plane.flying?
+
     fail "That plane is in a different airport" unless @planes.include?(plane)
 
     fail "Weather is stormy, cannot takeoff" if weather == "stormy"
 
+    plane.take_off
+    @planes.delete(plane)
     "Plane has taken off"
   end
 
