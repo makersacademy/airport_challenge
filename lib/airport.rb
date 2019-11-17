@@ -1,12 +1,15 @@
 require 'plane'
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capcacity
 
   def initialize(capcacity = 5)
-    @planes = Array.new(capcacity)
+    @capcacity = capcacity
+    @planes = []
   end
-  def land(plane) 
+  def land(plane)
+    fail 'WARNING airport is full, no space to land' if @planes.size == @capcacity 
+    @planes << plane
     'Plane has landed safely!'
   end
   def takeOff(plane)
