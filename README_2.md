@@ -130,3 +130,9 @@ With all this in place, I attempted to write a feature test which simulates a fl
     # and safely land at its destination.
 
 The feature test can be seen in <code>spec/features/flights_spec.rb</code>
+
+------------------------
+
+#### Test Coverage: 100%
+#### Tests Passing: 100%
+#### Rubocop (Easy Mode): 100%
