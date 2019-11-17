@@ -1,7 +1,12 @@
 require 'plane'
 
 class Airport
-  def land(plane)
+  attr_reader :planes
+
+  def initialize(capcacity = 5)
+    @planes = Array.new(capcacity)
+  end
+  def land(plane) 
     'Plane has landed safely!'
   end
   def takeOff(plane)
