@@ -25,7 +25,7 @@ describe Airport do
     end
     
     it "should not allow to make any more planes if airport is full" do
-      expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.create_plane(Plane.new) } }.to raise_error "Airport is full"
+      expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.create_plane(plane = Plane.new) } }.to raise_error "Airport is full"
     end
 
     
@@ -37,7 +37,7 @@ describe Airport do
       london = Airport.new
       london.create_plane(plane = Plane.new)
       london.takeoff(plane)
-      expect(london.land(plane)).to eq [plane]
+      expect(london.land(plane)).to eq plane
     end
     
     it "should not allow planes to land when airport is full" do
