@@ -13,22 +13,72 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+Solution
+--------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+An example with two planes and an airport in Paris:
 
-Steps
--------
+```
+╰─$ irb
+2.6.0 :001 > paris = Airport.new "Paris"
+ => #<Airport:0x000055e04003b120 @name="Paris", @planes=[], @capacity=20, @weather=#<Weather:0x000055e04003aba8>>
+2.6.0 :002 > plane_1 = Plane.new
+ => #<Plane:0x000055e03fc19218>
+2.6.0 :003 > plane_1.land_at paris
+ => true
+2.6.0 :004 > plane_1.location
+ => "Paris"
+2.6.0 :005 > plane_2 = Plane.new
+ => #<Plane:0x000055e03fe33c10>
+2.6.0 :006 > plane_2.location
+ => "In the air"
+2.6.0 :007 > plane_2.flying?
+ => true
+2.6.0 :008 > paris.count
+ => 1
+2.6.0 :009 > plane_2.land_at paris
+ => false
+2.6.0 :010 > plane_2.land_at paris
+ => false
+2.6.0 :011 > plane_2.land_at paris
+ => true
+2.6.0 :012 > paris.count
+ => 2
+2.6.0 :013 > plane_1.take_off
+ => true
+2.6.0 :014 > plane_1.location
+ => "In the air"
+2.6.0 :015 > paris.count
+ => 1
+```
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+My solution consists of 3 classes: an Airport class, a Plane class and a Weather class. Each class is 
+responsible for its own business. The Plane controls it's landing, take off and tracks its own location.
+The Airport holds a collection of planes and gives permission to planes to land and take off
+depending on reports from the Weather class which just says whether it is stormy or not. In the example
+you can see that `plane_2` failed to land twice due to weather before it was finally successful.
+
+Planes are the ones responsible for taking off and landing as they are the ones actully doing the
+action (∴ usage is more intuitive). It must however ask the Airport (traffic controllers) for permission
+and tests are in place to ensure Plane does call the correct methods to seek permission.
+
+Depending whether it provides permission or not, the Airport then manages its internal storage of planes
+so that it can maintain a record of the number of planes and not go over capacity. Given the current
+interface of the Airport class this storage of planes isn't strictly necessary as it doesn't do anything
+with them and it could be refactored out in favour of just maintaining a count of the planes since the
+planes themselves track their current location. I am in two minds about whether it would be best practice
+to remove the array now as it is a little superfluous, or it would be best to leave it as future
+features (queues, scheduling) would certainly just mean reimplementing it.
+
+Weather class at the minute is rather bare bones and self explanatory.
+
+Further development that I would maybe consider would be:
+ - Adding more depth to the weather approximation (weather doesn't just randomly flick from sunny to stormy)
+ - Adding scheduling or queues for take off and landing at airports
+ - further to scheduling at airports, adding journey time between airports could be considered for planes
+
+**NB** A couple of feature tests are in the spec directory under their own directory although
+I would say they leave a little to be desired as far as readability goes.
 
 Task
 -----
