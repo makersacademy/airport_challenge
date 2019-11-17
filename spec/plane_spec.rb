@@ -4,7 +4,7 @@ describe Plane do
 
   let(:fair_weather) { double(:fair_weather, stormy?: false) }
   let(:stormy_weather) { double(:stormy_weather, stormy?: true) }
-  let(:airport_name) { double(:airport_name) }
+  let(:airport_name) { double(:airport_name, planes: []) }
 
   describe "initialize" do 
     

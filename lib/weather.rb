@@ -1,6 +1,8 @@
 class Weather
+
   def stormy?
-    true if 1..100.to_a.sample == 1
+    range = 1..100
+    true if range.to_a.sample == 1
   end
 end
  
