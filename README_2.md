@@ -1,5 +1,17 @@
 # Airport Challenge
 
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
+
 The aim was to build a small program based on the following user stories:
 
 ```
@@ -82,11 +94,39 @@ I used mocks and doubles to isolate all the Unit Tests from eachother, though I 
 <code>Airport</code> spec to test that everything in the hangar was infact a plane.  <code>Errors::NOT_A_PLANE</code> will be raised 
 whenever a foreign object attempted to land on the airport hangar.<br/><br/>
 
+#### Results
+
 Using a test driven approach, I was able to achieve all the logic above.  The <code>Plane</code> class was responsible for taking off and 
 landing, as well as knowing its registration status via the <code>@accounted_for</code> attribute on each instance, set to <code>true</code> 
 upon its first official arrival at any airport.<br/><br/>
 
 I had already decided on using a <code>@capacity</code> instance variable on the <code>Airport</code> class, eventually deciding on 
-storing the functionality of the <code>Weather</code> module on an instance variable also.  All an airport is responsible for is commissioning 
-flights and harbouring planes, which kept the class structure lean and considerably easier to understand than anticipated.  The plane needed a 
-hangar to manage its fleet, so the <code>@hangar</code> took the form of an array – a straightforward solution to achieving expected behaviour.
+storing the functionality of the <code>Weather</code> module on an instance variable also.  All an airport is responsible for is commissioning flights and harbouring planes, which kept the class structure lean and considerably easier to understand than anticipated.  The plane needed a hangar to manage its fleet, so the <code>@hangar</code> took the form of an array – a straightforward solution to achieving expected behaviour.
+
+--------------------
+
+### Feature Test
+#### <code>class Sky</code>
+I wanted to write a test which simulated the journey a plane would take from one airport to another.  Attempting a feature test made me realise the need for a space to store planes which were in mid-flight, an airspace between the start and endpoints of its journey.  I decided to tackle this issue by adding one more simple class, <code>Sky</code>, whose sole purpose is to hold planes in transit between airports.<br/><br/>
+
+When trying to implement this new class, I realised any two airports would need to keep track of the same airspace for planes to successfully complete a journey between them.  After outlining the problem with tests in the <code>Airport</code> spec, my solution was to include one more instance variable on an airport instance, <code>@airspace</code> – this allows airports to be instantiated with knowledge of a particular airspace, share existing airspaces (instances of <code>Sky.new</code> saved to variables), and anticipate inbound planes.
+
+Another test I realised needed to be in place for this new class was one which ensures all planes in the sky were in fact airborne. I defined a matcher to this effect:
+
+    RSpec::Matchers.define :all_be_airborne_planes do
+      match do |actual|
+        actual.all? { |planes| planes.airborne == true }
+      end
+    end
+    
+which worked well, and mirrored my <code>all_be_grounded_planes</code> matcher for the <code>Airport</code> class (a similar check was needed.)<br/><br/>
+
+#### 'Given, When, Then..'
+With all this in place, I attempted to write a feature test which simulates a flight between the Gatwick and Schiphol airports.  I used 'Given', 'When', 'Then' syntax in comments to structure the test:
+
+    # given a plane is signed off to travel,
+    # when a plane takes off,
+    # then it should travel through the sky,
+    # and safely land at its destination.
+
+The feature test can be seen in <code>spec/features/flights_spec.rb</code>
