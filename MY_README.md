@@ -1,4 +1,4 @@
-# Airport Challenge
+Airport Challenge
 =================
 
 ```
@@ -13,12 +13,12 @@
 
 ```
 
-## Description
+Description
 ---------
 
 This is the weekend challenge at the end of my first week at Makers Academy, a 16-week software developer bootcamp. For all the instructions, please refer to the main [README](https://github.com/AndreaDiotallevi/airport_challenge/blob/master/README.md).
 
-## My approach explanation to solve the challenge
+My approach explanation to solve the challenge
 -----
 
 ### User story 1:
@@ -86,6 +86,29 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 ```
+
+**Feature test:**
+
+```
+airport = Airport.new
+=> airport
+plane = Plane.new
+=> plane
+airport.land(plane)
+=> plane
+plane_2 = Plane.new
+=> plane_2
+airport.land(plane_2)
+=> RuntimeError (Cannot land as the airport is full)
+
+```
+
+**Domain model:**
+
+**Objects** | **Messages**
+----------- | ---
+Airport     | full? (private method)
+Plane       | 
 
 ### User story 4:
 
