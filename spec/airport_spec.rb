@@ -41,9 +41,9 @@ describe Airport do
       let(:weather) { double(:weather, stormy?: false) }
       let(:airport) { Airport.new(1, weather) }
 
-      it "should be able to land one plane" do
+      it "should be able to land one plane and confirm it is now in the airport" do
         plane = double(:plane, landed?: false, land: true)
-        expect(airport.land(plane)).to eq plane
+        expect(airport.land(plane)).to eq airport
       end
 
       it "should raise an error if the airport is full" do
@@ -81,10 +81,10 @@ describe Airport do
       let(:weather) { double(:weather, stormy?: false) }
       let(:airport) { Airport.new(1, weather) }
 
-      it "should be able to take off a plane" do
+      it "should be able to take off a plane and confirm it is no longer in the airport" do
         plane = double(:plane, landed?: false, land: true, take_off: false, inside?: true)
         airport.land(plane)
-        expect(airport.take_off(plane)).to eq plane
+        expect(airport.take_off(plane)).to eq airport
       end
 
       it "should raise an error if the plane has not landed in this airport" do

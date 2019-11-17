@@ -17,7 +17,7 @@ class Airport
 
     plane.land
     @planes.push(plane)
-    plane
+    self
   end
 
   def take_off(plane)
@@ -26,6 +26,7 @@ class Airport
 
     plane.take_off
     @planes.delete(plane)
+    self
   end
 
   private

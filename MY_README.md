@@ -44,7 +44,7 @@ airport = Airport.new
 plane = Plane.new
 => plane
 airport.land(plane)
-=> plane
+=> airport
 ```
 
 ### User story 2:
@@ -70,11 +70,11 @@ airport = Airport.new
 plane = Plane.new
 => plane
 airport.land(plane)
-=> plane
+=> airport
 plane.landed?
 => true
 airport.take_off(plane)
-=> plane
+=> airport
 plane.landed?
 => false
 ```
@@ -101,7 +101,7 @@ airport = Airport.new
 plane = Plane.new
 => plane
 airport.land(plane)
-=> plane
+=> airport
 plane_2 = Plane.new
 => plane_2
 airport.land(plane_2)
@@ -197,14 +197,14 @@ Airport
     when the weather is stormy
       should raise an error
     when the weather is not stormy
-      should be able to land one plane
+      should be able to land one plane and confirm that it is now in the airport
       should raise an error if the airport is full
       should raise an error if the plane has already landed
   #take_off
     when the weather is stormy
       should raise an error
     when the weather is not stormy
-      should be able to take off a plane
+      should be able to take off a plane and confirm it is no longer in the airport
       should raise an error if the plane has not landed in this airport
 
 Plane
