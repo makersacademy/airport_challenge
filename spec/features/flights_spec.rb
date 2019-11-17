@@ -8,7 +8,7 @@ RSpec.describe 'Flights' do
   let(:schiphol_airport) { Airport.new(160, the_sky) }
   let(:clear_day) { double(:weather, weather_report: :clear) }
   let(:stormy_day) { double(:weather, weather_report: :stormy) }
-  
+
   context 'a successful journey' do
     it 'should include a successful take off' do
       # given a plane is signed off to travel,
@@ -33,10 +33,10 @@ RSpec.describe 'Flights' do
       gatwick_airport.commission_flight plane_a
       schiphol_airport.weather = clear_day.weather_report
 
-      # when it approaches its destination
+      # when it approaches its destination,
       schiphol_airport.harbour_plane(plane_a)
 
-      # it should land safely on the runway
+      # it should land safely on the runway.
       expect(plane_a.airborne).to be false
       expect(schiphol_airport.hangar).to include plane_a
       expect(the_sky.planes_in_transit).not_to include plane_a

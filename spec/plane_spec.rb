@@ -30,7 +30,7 @@ RSpec.describe Plane do
     end
   end
 
-  context 'when airbourne' do
+  context 'when airborne' do
     it 'should not be able to take off' do
       test_plane.take_off
 
