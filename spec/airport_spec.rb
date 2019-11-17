@@ -17,7 +17,8 @@ describe Airport do
         airport.land(plane)
       end
       plane = double(:plane, landed?: false)
-      expect { airport.land(plane) }.to raise_error("The airport is full")
+      message = "Cannot land as the airport is full"
+      expect { airport.land(plane) }.to raise_error(message)
     end
 
   end
@@ -30,7 +31,8 @@ describe Airport do
 
       it "should raise an error" do
         plane = double(:plane)
-        expect { airport.land(plane) }.to raise_error("The weather is stormy")
+        message = "Cannot land due to stormy weather"
+        expect { airport.land(plane) }.to raise_error(message)
       end
 
     end
@@ -47,12 +49,14 @@ describe Airport do
       it "should raise an error if the airport is full" do
         plane = double(:plane, landed?: false, land: true)
         airport.land(plane)
-        expect { airport.land(plane) }.to raise_error("The airport is full")
+        message = "Cannot land as the airport is full"
+        expect { airport.land(plane) }.to raise_error(message)
       end
 
       it "should raise an error if the plane has already landed" do
         plane = double(:plane, landed?: true)
-        expect { airport.land(plane) }.to raise_error("Plane already landed")
+        message = "Cannot land as the plane has already landed"
+        expect { airport.land(plane) }.to raise_error(message)
       end
 
     end
@@ -67,7 +71,8 @@ describe Airport do
 
       it "should raise an error" do
         plane = double(:plane)
-        expect { airport.take_off(plane) }.to raise_error("The weather is stormy")
+        message = "Cannot take off due to stormy weather"
+        expect { airport.take_off(plane) }.to raise_error(message)
       end
 
     end
@@ -77,22 +82,15 @@ describe Airport do
       let(:airport) { Airport.new(1, weather) }
 
       it "should be able to take off a plane" do
-        plane = double(:plane, landed?: false, land: true, take_off: false)
+        plane = double(:plane, landed?: false, land: true, take_off: false, inside?: true)
         airport.land(plane)
         expect(airport.take_off(plane)).to eq plane
       end
 
-      it "should raise an error if the airport is empty" do
-        plane = double(:plane)
-        expect { airport.take_off(plane) }.to raise_error("The airport is empty")
-      end
-
       it "should raise an error if the plane has not landed in this airport" do
-        plane = double(:plane, landed?: false, land: true)
-        airport.land(plane)
-        # First two lines included to avoid raising the error "The airport is empty"
-        different_plane = double(:plane)
-        expect { airport.take_off(different_plane) }.to raise_error("Plane not landed in this airport")
+        plane = double(:plane, inside?: false)
+        message = "Cannot take off as plane not landed here"
+        expect { airport.take_off(plane) }.to raise_error(message)
       end
 
     end

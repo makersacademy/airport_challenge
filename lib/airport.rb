@@ -11,19 +11,18 @@ class Airport
   end
 
   def land(plane)
-    fail "The weather is stormy" if weather.stormy?
-    fail "The airport is full" if full?
-    fail "Plane already landed" if plane.landed?
+    fail "Cannot land due to stormy weather" if weather.stormy?
+    fail "Cannot land as the airport is full" if full?
+    fail "Cannot land as the plane has already landed" if plane.landed?
 
-    plane.land
+    plane.land(self)
     @planes.push(plane)
     plane
   end
 
   def take_off(plane)
-    fail "The weather is stormy" if weather.stormy?
-    fail "The airport is empty" if empty?
-    fail "Plane not landed in this airport" unless landed_here?(plane)
+    fail "Cannot take off due to stormy weather" if weather.stormy?
+    fail "Cannot take off as plane not landed here" unless plane.inside?(self)
 
     plane.take_off
     @planes.delete(plane)
@@ -31,18 +30,10 @@ class Airport
 
   private
 
-  attr_reader :planes, :weather
+  attr_reader :weather, :planes
 
   def full?
     @planes.count >= @capacity
-  end
-
-  def empty?
-    @planes.empty?
-  end
-
-  def landed_here?(plane)
-    @planes.include?(plane)
   end
 
 end
