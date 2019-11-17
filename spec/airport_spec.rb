@@ -28,6 +28,14 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error "Weather is stormy, cannot land"
     end
 
+    it "should not land when the plane is already landed" do
+      airport = Airport.new
+      allow(airport).to receive(:weather) { "sunny" }
+      plane = Plane.new
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error "That plane is already on land"
+    end
+
   end
 
   describe "#take_off" do
