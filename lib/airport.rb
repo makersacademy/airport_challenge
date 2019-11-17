@@ -2,13 +2,18 @@ require "./lib/planes"
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  DEFALTCAPACITY = 20
+
+  def initialize(capacity = DEFALTCAPACITY)
+    @capacity = capacity
     @planes = []
   end
 
   def land(plane)
+    raise "There is no space avaliable!" if @planes.count >= capacity
+    
     @planes << plane
   end
 
