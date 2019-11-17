@@ -8,18 +8,12 @@ class Plane
     @landed
   end
 
-  def land(airport)
-    @airport = airport
+  def land
     @landed = true
   end
 
   def take_off
-    @airport = nil
     @landed = false
-  end
-
-  def inside?(airport)
-    @airport == airport
   end
 
 end

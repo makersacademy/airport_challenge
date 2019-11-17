@@ -89,7 +89,7 @@ describe Airport do
 
       it "should raise an error if the plane has not landed in this airport" do
         plane = double(:plane, inside?: false)
-        message = "Cannot take off as plane not landed here"
+        message = "Cannot take off as plane not landed"
         expect { airport.take_off(plane) }.to raise_error(message)
       end
 

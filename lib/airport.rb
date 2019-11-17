@@ -15,14 +15,14 @@ class Airport
     fail "Cannot land as the airport is full" if full?
     fail "Cannot land as the plane has already landed" if plane.landed?
 
-    plane.land(self)
+    plane.land
     @planes.push(plane)
     plane
   end
 
   def take_off(plane)
     fail "Cannot take off due to stormy weather" if weather.stormy?
-    fail "Cannot take off as plane not landed here" unless plane.inside?(self)
+    fail "Cannot take off as plane not landed" unless @planes.include?(plane)
 
     plane.take_off
     @planes.delete(plane)
