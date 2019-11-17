@@ -1,5 +1,6 @@
 require_relative "plane.rb"
 require_relative "weather.rb"
+require_relative "errors.rb"
 
 class Airport
   attr_reader :capacity, :planes
@@ -38,18 +39,13 @@ class Airport
   end
 
   def take_off_checks(plane, weather)
-    no_planes_message = "No planes at the airport"
-    stormy_message = "Plane cannot take off due stormy weather"
-    invalid_plane_message = "Cannot take off, Plane not at specified airport"
-    raise RuntimeError, no_planes_message if empty?
-    raise RuntimeError, invalid_plane_message unless contains_plane?(plane)
-    raise RuntimeError, stormy_message if weather.stormy?
+    raise RuntimeError, Errors.new(0).message if empty?
+    raise RuntimeError, Errors.new(2).message unless contains_plane?(plane)
+    raise RuntimeError, Errors.new(1).message if weather.stormy?
   end
 
   def landing_checks(_plane, weather)
-    full_message = "Plane cannot land as the Airport is full"
-    stormy_message = "Plane cannot land as the conditions are stormy"
-    raise RuntimeError, full_message if full?
-    raise RuntimeError, stormy_message if weather.stormy?
+    raise RuntimeError, Errors.new(3).message if full?
+    raise RuntimeError, Errors.new(4).message if weather.stormy?
   end
 end

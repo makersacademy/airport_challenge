@@ -49,6 +49,11 @@ describe Airport do
     it "should prevent landing if the weather is stormy" do
       expect { subject.land_plane(plane, stormy_weather) }.to raise_error "Plane cannot land as the conditions are stormy"
     end
+
+    # it "should raise an error if attempting to land when not in flight" do 
+
+    # end
+
   end
 
   describe "#take_off" do
@@ -73,6 +78,8 @@ describe Airport do
       subject.land_plane(plane1, fair_weather)
       expect { subject.take_off(plane2, fair_weather) }.to raise_error "Cannot take off, Plane not at specified airport"
     end
+
+    # it "should raise an error if "
   end
 
   describe "#contains_plane?" do 
