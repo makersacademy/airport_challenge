@@ -1,5 +1,4 @@
-require 'plane'
-require 'weather'
+require_relative 'plane'
 
 class Airport
   attr_reader :planes, :capcacity
@@ -17,7 +16,6 @@ class Airport
     'Plane has taken off safely!'
   end
   def stormy?
-    weather = Weather.new
-    weather.stormy
+    rand() > 0.9 ? true : false
   end
 end
