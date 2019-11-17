@@ -21,11 +21,11 @@ RSpec.describe 'Flights' do
 
     expect(plane_a.airborne).to be true
 
-    # then it should be in the sky,
+    # then it should travel through the sky,
     expect(the_sky.planes_in_transit).to include(plane_a)
     expect(gatwick_airport.hangar).not_to include(plane_a)
 
-    # and be able to land at its destination.
+    # and safely land at its destination.
     schiphol_airport.harbour_plane(plane_a)
 
     expect(plane_a.airborne).to be false
