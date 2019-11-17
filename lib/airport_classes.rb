@@ -1,11 +1,16 @@
 class Airport
-  attr_accessor :runway
-  def initialize
+  attr_reader :runway, :capacity
+  def initialize(capacity = 10)
     @runway = []
+    @capacity = capacity
   end
 
   def land(plane)
-    @runway << plane
+    if @runway.length == @capacity
+      puts "Airport is full, sorry. Plane must turn back."
+    else
+      @runway << plane
+    end
   end
 
   def takeoff(plane)

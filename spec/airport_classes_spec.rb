@@ -17,4 +17,12 @@ describe Airport do
     expect(your_airport.runway).not_to include(your_plane)
     expect(your_plane).to be_an_instance_of(Plane)
   end
+
+  it "Should prevent landing when full" do
+    full_airport = Airport.new
+    extra_plane = Plane.new
+    10.times { full_airport.land(Plane.new) }
+    full_airport.land(extra_plane)
+    expect(full_airport.runway).not_to include(extra_plane)
+  end
 end
