@@ -92,7 +92,6 @@ I want to prevent landing when the airport is full
 **Objects** | **Messages**
 ----------- | ---
 Airport     | full? (private method)
-Plane       | 
 
 **Feature test:**
 
@@ -140,6 +139,23 @@ airport.land(Plane.new)
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+```
+
+**Domain model:**
+
+**Objects** | **Messages**
+----------- | ---
+Airport     | take_off(plane)
+Plane       |
+Weather     | stormy?
+
+**Feature test:**
+
+```
+airport = Airport.new
+=> airport
+airport.take_off(Plane.new)
+=> RuntimeError (Cannot take off due to stormy weather)
 ```
 
 ### User story 6:
