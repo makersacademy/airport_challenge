@@ -7,3 +7,4 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+rough_feature_test
