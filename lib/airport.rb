@@ -15,7 +15,7 @@ class Airport
     fail "The airport is full" if full?
     fail "Plane already landed" if plane.landed?
 
-    plane.land(self)
+    plane.land
     @planes.push(plane)
     plane
   end
