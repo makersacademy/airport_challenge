@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 class Airport
   attr_reader :planes, :capcacity
@@ -8,11 +9,15 @@ class Airport
     @planes = []
   end
   def land(plane)
-    fail 'WARNING airport is full, no space to land' if @planes.size == @capcacity 
+    fail 'WARNING airport is full, no space to land' if @planes.size == @capcacity
     @planes << plane
     'Plane has landed safely!'
   end
-  def takeOff(plane)
+  def take_off(plane)
     'Plane has taken off safely!'
+  end
+  def stormy?
+    weather = Weather.new
+    weather.stormy
   end
 end
