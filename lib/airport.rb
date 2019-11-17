@@ -21,6 +21,7 @@ class Airport
   def take_off(plane, weather)
     take_off_checks(plane, weather)
 
+    plane.take_off
     @planes.delete(plane)
     "Plane has taken-off"
   end
@@ -40,6 +41,7 @@ class Airport
   end
 
   def take_off_checks(plane, weather)
+    raise RuntimeError, Errors.new(6).message if plane.in_flight?
     raise RuntimeError, Errors.new(0).message if empty?
     raise RuntimeError, Errors.new(2).message unless contains_plane?(plane)
     raise RuntimeError, Errors.new(1).message if weather.stormy?

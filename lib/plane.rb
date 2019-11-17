@@ -1,6 +1,6 @@
 class Plane
 
-  attr_reader :location
+  attr_reader :location 
 
   def initialize(location)
     @location = location

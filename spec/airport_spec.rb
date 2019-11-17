@@ -1,13 +1,3 @@
-# prevent landing when the weather is stormy - done
-# raises error if trying to take off plane that isnt in the airport - done
-# raise error if trying to take off when the plane is already flying - done
-# raise an error if trying to land when not in flight
-# factor out error messages - done
-
-# things that could be improved upon
-# Capacity dependent on the size of the aircraft
-# whether the aircraft is reported broken
-
 require 'airport'
 
 describe Airport do
@@ -60,8 +50,9 @@ describe Airport do
   describe "#take_off" do
 
     it "should allow planes to take off" do
-      subject.land_plane(plane_in_flight, fair_weather)
-      expect(subject.take_off(plane_in_flight, fair_weather)).to eq("Plane has taken-off")
+      airport1 = Airport.new
+      plane1 = Plane.new(airport1)
+      expect(airport1.take_off(plane1, fair_weather)).to eq("Plane has taken-off")
     end
 
     it "should raise an error if instructing a plane to take off when there are no planes to take off" do 
@@ -69,31 +60,31 @@ describe Airport do
     end
 
     it "should prevent take off if the weather is stormy" do
-      plane1 = double(:plane1, in_flight?: true, land: false, take_off: nil)
-      subject.land_plane(plane1, fair_weather)
-      expect { subject.take_off(plane1, stormy_weather) }.to raise_error "Plane cannot take off due stormy weather"
+      airport1 = Airport.new
+      plane1 = Plane.new(airport1)
+      expect { airport1.take_off(plane1, stormy_weather) }.to raise_error "Plane cannot take off due stormy weather"
     end
 
     it "should raise an error if trying to take off a plane that isn't at the airport" do
-      plane1 = double(:plane1, in_flight?: true, land: false, take_off: nil)
-      plane2 = double(:plane2, in_flight?: true, land: false, take_off: nil)
       airport1 = Airport.new
       airport2 = Airport.new
-      airport1.land_plane(plane1, fair_weather)
-      airport2.land_plane(plane2, fair_weather)
+      plane1 = Plane.new(airport1)
+      plane2 = Plane.new(airport2)
       expect { airport1.take_off(plane2, fair_weather) }.to raise_error "Cannot take off, Plane not at specified airport"
     end
 
-    # it "should raise an error if try"
+    it "should raise an error if trying to take-off when already in flight" do
+      expect { subject.take_off(plane_in_flight, fair_weather) }.to raise_error "Plane already in flight"
+    end
   end
 
   describe "#contains_plane?" do 
 
     it "should return false after a plane has taken off" do 
-      plane1 = double(:plane1, in_flight?: true, land: false, take_off: nil)
-      subject.land_plane(plane1, fair_weather)
-      subject.take_off(plane1, fair_weather)
-      expect(subject.contains_plane?(plane1)).to eq false
+      airport1 = Airport.new
+      plane1 = Plane.new(airport1)
+      airport1.take_off(plane1, fair_weather)
+      expect(airport1.contains_plane?(plane1)).to eq false
     end
   end
 end

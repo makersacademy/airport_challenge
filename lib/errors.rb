@@ -6,7 +6,8 @@ class Errors
   "Cannot take off, Plane not at specified airport",
   "Plane cannot land as the Airport is full",
   "Plane cannot land as the conditions are stormy",
-  "Plane already on the ground"
+  "Plane already on the ground",
+  "Plane already in flight"
   ]
 
   def initialize(code)
