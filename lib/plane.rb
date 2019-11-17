@@ -13,7 +13,7 @@ class Plane
     raise Errors::CURRENTLY_AIRBORNE if airborne 
 
     @airborne = true
-    "plane has taken off"
+    'plane has taken off'
   end
 
   def land
@@ -21,6 +21,6 @@ class Plane
 
     @airborne = false
     @accounted_for = true
-    "plane has landed"
+    'plane has landed'
   end
 end

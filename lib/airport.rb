@@ -23,7 +23,7 @@ class Airport
 
     plane.land
     hangar.push plane
-    airspace.planes_in_transit.delete(plane)
+    airspace.planes_in_transit.delete plane
   end
 
   def commission_flight(plane)
@@ -31,7 +31,7 @@ class Airport
     raise Errors::STORMY_WEATHER_ON_TAKEOFF if weather == :stormy
 
     plane.take_off
-    airspace.planes_in_transit.push(plane)
-    hangar.delete(plane)
+    airspace.planes_in_transit.push plane
+    hangar.delete plane
   end
 end

@@ -1,5 +1,3 @@
-require 'plane'
-
 class Sky
   attr_reader :planes_in_transit
 
