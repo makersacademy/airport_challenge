@@ -21,7 +21,7 @@ This is the weekend challenge at the end of my first week at Makers Academy, a 1
 My approach explanation to solve the challenge
 -----
 
-#### User story 1:
+## User story 1:
 
 ```
 As an air traffic controller 
@@ -40,14 +40,14 @@ Plane       |
 
 ```
 airport = Airport.new
+=> airport
 plane = Plane.new
+=> plane
 airport.land(plane)
 => plane
 ```
 
-
-
-#### User story 2:
+## User story 2:
 
 ```
 As an air traffic controller 
@@ -55,7 +55,7 @@ So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
-#### User story 3:
+## User story 3:
 
 ```
 As an air traffic controller 
@@ -63,7 +63,7 @@ To ensure safety
 I want to prevent landing when the airport is full 
 ```
 
-#### User story 4:
+## User story 4:
 
 ```
 As the system designer
@@ -71,7 +71,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-#### User story 5:
+## User story 5:
 
 ```
 As an air traffic controller 
@@ -79,7 +79,7 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 ```
 
-#### User story 6:
+## User story 6:
 
 ```
 As an air traffic controller 
