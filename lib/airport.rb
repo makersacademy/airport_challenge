@@ -9,15 +9,16 @@ class Airport
 
   end
 
-  def land_plane(plane)
-    raise RuntimeError if full?
+  def land_plane(plane, weather)
+    raise RuntimeError, "Plane cannot land as the Airport is full" if full?
+    raise RuntimeError, "Plane cannot land as the conditions are stormy" if weather.stormy?
 
     @planes << plane
   end
 
   def take_off(weather)
     raise RuntimeError, "No planes at the airport" if empty?
-    raise "Plane cannot take off due stormy weather" if weather.stormy?
+    raise RuntimeError, "Plane cannot take off due stormy weather" if weather.stormy?
 
     @planes.pop
     "Plane has taken-off"
