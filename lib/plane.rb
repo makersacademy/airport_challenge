@@ -1,6 +1,6 @@
 class Plane
-  def initialize
-    @in_flight = false
+  def initialize(in_flight)
+    @in_flight = in_flight
   end
 
   def land
