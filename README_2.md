@@ -125,9 +125,12 @@ which worked well, and mirrored my <code>all_be_grounded_planes</code> matcher f
 With all this in place, I attempted to write a feature test which simulates a flight between the Gatwick and Schiphol airports.  I used 'Given', 'When', 'Then' syntax in comments to structure the test:
 
     # given a plane is signed off to travel,
-    # when a plane takes off,
-    # then it should travel through the sky,
-    # and safely land at its destination.
+    # when a commissioned flight is ready to depart,
+    # then it should take off successfully.
+    
+    # given a plane is cleared for descent,
+    # when it approaches its destination,
+    # it should land safely on the runway.
 
 The feature test can be seen in <code>spec/features/flights_spec.rb</code>
 
@@ -135,4 +138,4 @@ The feature test can be seen in <code>spec/features/flights_spec.rb</code>
 
 #### Test Coverage: 100%
 #### Tests Passing: 100%
-#### Rubocop (Easy Mode): 100%
+#### Rubocop (Non-Strict): 100%
