@@ -219,3 +219,76 @@ Weather
   #stormy?
     should return a boolean
 ```
+
+Full implementation in `irb`
+---------
+
+```
+$ irb
+2.6.0 :001 > require "./lib/airport"
+ => true
+2.6.0 :002 > require "./lib/plane"
+ => true 
+2.6.0 :003 > require "./lib/weather"
+ => true
+2.6.0 :004 > airport = Airport.new
+ => #<Airport:0x00007fcb1a13ca58 @capacity=50, @weather=#<Weather:0x00007fcb1a13ca30>, @planes=[]> 
+2.6.0 :005 > plane = Plane.new
+ => #<Plane:0x00007fcb1a8705b8 @landed=false> 
+2.6.0 :006 > airport.land(plane)
+Traceback (most recent call last):
+        5: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):9
+        1: from /Users/student/Code/makersacademy/airport_challenge/lib/airport.rb:14:in `land'
+RuntimeError (Cannot land due to stormy weather)
+2.6.0 :007 > airport.land(plane)
+ => #<Airport:0x00007fcb1a13ca58 @capacity=50, @weather=#<Weather:0x00007fcb1a13ca30>, @planes=[#<Plane:0x00007fcb1a8705b8 @landed=true>]> 
+2.6.0 :008 > airport.take_off(plane)
+Traceback (most recent call last):
+        5: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):25
+        1: from /Users/student/Code/makersacademy/airport_challenge/lib/airport.rb:24:in `take_off'
+RuntimeError (Cannot take off due to stormy weather)
+2.6.0 :009 > airport.take_off(plane)
+ => #<Airport:0x00007fcb1a13ca58 @capacity=50, @weather=#<Weather:0x00007fcb1a13ca30>, @planes=[]>
+2.6.0 :010 > airport.land(plane)
+ => #<Airport:0x00007fcb1a13ca58 @capacity=50, @weather=#<Weather:0x00007fcb1a13ca30>, @planes=[#<Plane:0x00007fcb1a8705b8 @landed=true> 
+2.6.0 :011 > airport.land(plane)
+Traceback (most recent call last):
+        6: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        5: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):31
+        2: from (irb):31:in `rescue in irb_binding'
+        1: from /Users/student/Code/makersacademy/airport_challenge/lib/airport.rb:16:in `land'
+RuntimeError (Cannot land as the plane has already landed)
+2.6.0 :012 > plane_2 = Plane.new
+ => #<Plane:0x00007fcb1a126550 @landed=false>
+2.6.0 :013 > airport.take_off(plane_2)
+Traceback (most recent call last):
+        6: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        5: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):59
+        2: from (irb):59:in `rescue in irb_binding'
+        1: from /Users/student/Code/makersacademy/airport_challenge/lib/airport.rb:25:in `take_off'
+RuntimeError (Cannot take off as plane not landed)
+2.6.0 :014 > airport_2 = Airport.new
+ => #<Airport:0x00007fcb1a871da0 @capacity=50, @weather=#<Weather:0x00007fcb1a871d28>, @planes=[]> 
+2.6.0 :015 > plane_4 = Plane.new
+ => #<Plane:0x00007fcb1a900078 @landed=false> 
+2.6.0 :016 > airport_2.land(plane_4)
+ => #<Airport:0x00007fcb1a8b0d20 @capacity=1, @weather=#<Weather:0x00007fcb1a8b0cf8>, @planes=[#<Plane:0x00007fcb1a900078 @landed=true>]> 
+2.6.0 :017 > airport_2.land(Plane.new)
+Traceback (most recent call last):
+        6: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        5: from /Users/student/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):71
+        2: from (irb):71:in `rescue in irb_binding'
+        1: from /Users/student/Code/makersacademy/airport_challenge/lib/airport.rb:15:in `land'
+RuntimeError (Cannot land as the airport is full)
