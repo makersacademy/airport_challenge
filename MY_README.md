@@ -87,6 +87,13 @@ To ensure safety
 I want to prevent landing when the airport is full 
 ```
 
+**Domain model:**
+
+**Objects** | **Messages**
+----------- | ---
+Airport     | full? (private method)
+Plane       | 
+
 **Feature test:**
 
 ```
@@ -100,15 +107,7 @@ plane_2 = Plane.new
 => plane_2
 airport.land(plane_2)
 => RuntimeError (Cannot land as the airport is full)
-
 ```
-
-**Domain model:**
-
-**Objects** | **Messages**
------------ | ---
-Airport     | full? (private method)
-Plane       | 
 
 ### User story 4:
 
@@ -116,6 +115,23 @@ Plane       |
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
+
+**Domain model:**
+
+**Objects** | **Instance Variables** | **Constants**
+----------- | ---------------------- | ---
+Airport     | capacity               | DEFAULT_CAPACITY = 50
+
+**Feature test:**
+
+```
+airport = Airport.new(10)
+=> airport
+10.times { airport.land(Plane.new) }
+=> 10
+airport.land(Plane.new)
+=> RuntimeError (Cannot land as the airport is full)
 ```
 
 ### User story 5:
