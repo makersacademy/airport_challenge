@@ -10,20 +10,11 @@ class Airport
       fail "Airport is full"  
     end 
 
-    unless plane.in_flight? 
-      fail "Plane already at the airport"
-    end
-
     plane.land
     @plane_counter += 1
-    
   end
 
   def take_off_plane(plane)
-    if plane.in_flight?
-      fail "Plane already departed"
-    end
-    
     plane.take_off
     @plane_counter -= 1
   end

@@ -26,12 +26,12 @@ describe Plane do
 
   it "should not be able to land more than once" do
     plane = Plane.new(false)
-    expect { plane.land }.to raise_error "Plane already landed"
+    expect { plane.land }.to raise_error("Plane already landed")
   end
 
   it "should not be able to take off more than once" do
     plane = Plane.new(true)
-    expect { plane.take_off }.to raise_error "Plane already departed"
+    expect { plane.take_off }.to raise_error("Plane already departed")
   end
 
 end

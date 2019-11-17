@@ -44,19 +44,6 @@ describe Airport do
     airport.take_off_plane(plane)
   end
 
-  it "should not allow the same plane to land twice" do
-    plane = Plane.new(true)
-    airport = Airport.new(2)
-    airport.land_plane(plane)
-    expect { airport.land_plane(plane) }.to raise_error("Plane already at the airport")
-  end
-
-  it "should not allow the same plane to take off twice" do
-    plane = Plane.new(true)
-    airport = Airport.new(1)
-    expect { airport.take_off_plane(plane) }.to raise_error("Plane already departed")
-  end
-
   it "should keep track of the local weather" do
     airport = Airport.new(1)
     expect(airport).to respond_to(:weather)
