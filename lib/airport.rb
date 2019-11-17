@@ -19,7 +19,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..10) >= 2
+    rand(1..10) >= 8
   end
 
   private 
@@ -27,11 +27,16 @@ class Airport
   attr_reader :plane 
 
   def denied_landing
-    raise "Abort landing. Full airport." if @planes_collected.size == @capacity
-    # raise "Abort to land!. Storm hapenning." if stormy?
+    raise "Abort landing: Airport is full." if full
+    raise "Abort to land: Storm hapenning." if stormy?
   end
 
   def denied_take_off
-    raise "No planes to take off. Airport is empty." if @planes_collected.empty?
+    raise "Abort to take off: Storm hapenning." if stormy?
+    raise "No planes to take off: Airport is empty." if @planes_collected.empty?
+  end
+
+  def full
+    @planes_collected.size == @capacity
   end
 end
