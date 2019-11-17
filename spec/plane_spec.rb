@@ -24,6 +24,22 @@ describe Plane do
     end
   end
 
+  describe "#take_off" do
+    it "should give the location of the plane when requested" do 
+      plane1 = Plane.new(airport_name)
+      plane1.take_off
+      expect(plane1::in_flight?).to eq(true)
+    end
+  end
+
+  describe "#land" do
+    it "should give the location of the plane when requested" do 
+      plane1 = Plane.new(airport_name)
+      plane1.land
+      expect(plane1::in_flight?).to eq(false)
+    end
+  end
+
   # describe "#in_flight?" do
 
   #   it "should change to true when taking off from an airport" do
