@@ -1,4 +1,3 @@
-require 'airport'
 $flying_planes = []
 class Plane
   

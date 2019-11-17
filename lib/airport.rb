@@ -1,4 +1,4 @@
-require 'plane'
+require './lib/plane'
 class Airport
   attr_reader :capacity, :planes, :plane
   DEFAULT_CAPACITY = 10
