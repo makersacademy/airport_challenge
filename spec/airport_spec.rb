@@ -12,17 +12,8 @@ describe Airport do
       
     end
 
-    it "gives an error message if capacity set to 1 and we try and land a 2nd plane" do
-      plane1 = Plane.new
-      plane2 = Plane.new
-      airport = Airport.new(1)
-      allow(airport).to receive(:weather_conditions) { 6 }
-      airport.land(plane1)      
-      expect{ airport.land(plane2) }.to raise_error ("Airport full, plane cannot land yet")
-    end
-
     it "gives an error message if capacity set to 20 and we try and land a 21st plane" do
-      airport = Airport.new(20)
+      airport = Airport.new(airport, 20)
       allow(airport).to receive(:weather_conditions) { 6 }
       expect{ 21.times {airport.land(Plane.new)} }.to raise_error ("Airport full, plane cannot land yet")
     end
@@ -32,6 +23,14 @@ describe Airport do
       allow(subject).to receive(:weather_conditions) { 9 }
       expect { subject.land(plane) }.to raise_error ("It is too stormy to take off or land right now")
     end
+
+    it "raises error if plane landed at other airport already" do
+      airport1 = Airport.new(airport1)
+      airport2 = Airport.new(airport2)
+      plane = Plane.new
+      airport1.land(plane)
+      expect { airport2.land(plane) }.to raise_error ("Plane already landed at another airport")
+    end 
 
   end
 

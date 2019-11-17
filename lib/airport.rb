@@ -2,11 +2,14 @@ require "./lib/plane.rb"
 
 class Airport
   
-  attr_accessor :capacity
+  attr_accessor :capacity, :airport_name
 
   DEFAULT_CAPACITY = 30
 
-  def initialize( capacity = DEFAULT_CAPACITY )
+  DEFAULT_NAME = :airport
+
+  def initialize( airport_name = DEFAULT_NAME, capacity = DEFAULT_CAPACITY )
+    @airport_name = airport_name
     @capacity = capacity
     @planes_at_airport = []
   end
@@ -15,6 +18,7 @@ class Airport
     storm_warning
     raise "Airport full, plane cannot land yet" if full?
     raise "Plane already landed" if @planes_at_airport.include?(plane)
+    plane.land_at(@airport_name)
     @planes_at_airport << plane
   end
 
