@@ -5,19 +5,21 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @counter = 0
+    @planes = []
   end
 
   def land(plane)
-    fail "That airport is full, cannot land" if @counter >= @capacity
+    fail "That airport is full, cannot land" if @planes.length >= @capacity
 
     fail "Weather is stormy, cannot land" if weather == "stormy"
 
-    @counter += 1
+    @planes << plane
     "Plane has been landed"
   end
 
   def take_off(plane)
+    fail "That plane is in a different airport" unless @planes.include?(plane)
+
     fail "Weather is stormy, cannot takeoff" if weather == "stormy"
 
     "Plane has taken off"

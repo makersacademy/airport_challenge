@@ -36,21 +36,34 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       allow(airport).to receive(:weather) { "sunny" }
+      airport.land(plane)
       expect(airport.take_off(plane)).to eq "Plane has taken off"
     end
 
     it "should prevent takeoff when the weather is stormy" do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:weather) { "sunny" }
+      airport.land(plane)
       allow(airport).to receive(:weather) { "stormy" }
       expect { airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
+    end
+
+    it "should prevent takeoff if the plane is not in the airport" do
+      airport = Airport.new
+      airport_2 = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:weather) { "sunny" }
+      allow(airport_2).to receive(:weather) { "sunny" }
+      airport_2.land(plane)
+      expect { airport.take_off(plane) }.to raise_error "That plane is in a different airport"
     end
 
   end
 
   describe "initialize" do
 
-    it "should set default airport capcity" do
+    it "should set default airport capacity" do
       airport = Airport.new
       allow(airport).to receive(:weather) { "sunny" }
       Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
