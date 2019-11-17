@@ -11,16 +11,15 @@ class Airport
   end
 
   def to_land(plane)
-    @planes_collected << plane if !denied_landing
+    @planes_collected << plane unless denied_landing
   end
 
   def take_off
-    @planes_collected.pop if !denied_take_off
+    @planes_collected.pop unless denied_take_off
   end
 
   def stormy?
-    return storm = true if rand(1..10) >= 8
-    take_off
+    rand(1..10) >= 2
   end
 
   private 
@@ -28,10 +27,11 @@ class Airport
   attr_reader :plane 
 
   def denied_landing
-    raise "No authorization to land. Airport is full!" if @planes_collected.size == @capacity
+    raise "Abort landing. Full airport." if @planes_collected.size == @capacity
+    # raise "Abort to land!. Storm hapenning." if stormy?
   end
 
   def denied_take_off
-    raise "0 planes available to take off" if @planes_collected.empty?
+    raise "No planes to take off. Airport is empty." if @planes_collected.empty?
   end
 end
