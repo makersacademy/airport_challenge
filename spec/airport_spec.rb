@@ -51,6 +51,12 @@ describe Airport do
       expect { subject.take_off(Plane.new) }.to raise_error("There are currently no planes ready for take off")
     end
 
+    it "gives an error if you try to get an absent plane to take off" do
+      allow(subject).to receive(:stormy?) { false }
+      plane_1, plane_2 = Plane.new, Plane.new
+      subject.land(plane_1)
+      expect { subject.take_off(plane_2) }.to raise_error("This plane is not in this airport")
+    end
   end
 
   describe "#multi_land" do

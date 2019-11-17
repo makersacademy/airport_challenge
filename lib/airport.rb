@@ -16,7 +16,7 @@ class Airport
 
     raise "There is currently a storm no landings at this time" if stormy?
 
-    raise "This plane has already landed" if @planes.include?(plane)
+    raise "This plane has already landed" if present?(plane)
 
     # raise "This plane has already landed" if !plane.flying?
 
@@ -33,6 +33,8 @@ class Airport
     raise "There are currently no planes ready for take off" if empty?
 
     raise "There is currently a storm no take offs at this time" if stormy?
+
+    raise "This plane is not in this airport" if !present?(plane)
 
     @planes.delete(plane)
   end
@@ -55,6 +57,10 @@ class Airport
 
   def full?
     @planes.count >= capacity
+  end
+
+  def present?(plane)
+    @planes.include?(plane)
   end
 
 end
