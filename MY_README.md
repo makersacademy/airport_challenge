@@ -184,3 +184,36 @@ plane = Plane.new
 airport.land(plane)
 => RuntimeError (Cannot land due to stormy weather)
 ```
+
+RSpec tests tree
+---------
+
+**Airport**
+  has a default capacity
+  *#initialize*
+    should be able to override the instance variable capacity
+  *#land*
+    when the weather is stormy
+      should raise an error
+    when the weather is not stormy
+      should be able to land one plane
+      should raise an error if the airport is full
+      should raise an error if the plane has already landed
+  *#take_off*
+    when the weather is stormy
+      should raise an error
+    when the weather is not stormy
+      should be able to take off a plane
+      should raise an error if the plane has not landed in this airport
+
+**Plane**
+  *#landed?*
+    should return a boolean
+  *#land*
+    should return true
+  *#take_off*
+    should return false
+
+**Weather**
+  *#stormy?*
+    should return a boolean
