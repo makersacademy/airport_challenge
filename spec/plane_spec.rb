@@ -9,4 +9,12 @@ describe Plane do
     expect(plane.airport).not_to be_an_instance_of(Airport)
   end
 
+  it "should be in an airport if landed" do
+    plane = Plane.new
+    airport = Airport.new
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land(plane)
+    expect(plane.airport).to be_an_instance_of(Airport)
+  end
+
 end
