@@ -6,19 +6,22 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-
   end
 
   def land_plane(plane, weather)
-    raise RuntimeError, "Plane cannot land as the Airport is full" if full?
-    raise RuntimeError, "Plane cannot land as the conditions are stormy" if weather.stormy?
+    full_message = "Plane cannot land as the Airport is full"
+    stormy_message = "Plane cannot land as the conditions are stormy"
+    raise RuntimeError, full_message if full?
+    raise RuntimeError, stormy_message if weather.stormy?
 
     @planes << plane
   end
 
   def take_off(weather)
-    raise RuntimeError, "No planes at the airport" if empty?
-    raise RuntimeError, "Plane cannot take off due stormy weather" if weather.stormy?
+    no_planes_message = "No planes at the airport"
+    stormy_message = "Plane cannot take off due stormy weather"
+    raise RuntimeError, no_planes_message if empty?
+    raise RuntimeError, stormy_message if weather.stormy?
 
     @planes.pop
     "Plane has taken-off"

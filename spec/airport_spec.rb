@@ -3,11 +3,10 @@
 # plane can only take off from the airport they are in
 # raise error if trying to take off when the plane is already flying
 
-
 # things that could be improved upon
 # Capacity dependent on the size of the aircraft
 # whether the aircraft is reported broken
-
+# factor out error messages
 
 require 'airport'
 
@@ -48,7 +47,7 @@ describe Airport do
     end
 
     it "should prevent landing if the weather is stormy" do
-      expect { subject.land_plane(plane, stormy_weather)}.to raise_error "Plane cannot land as the conditions are stormy"
+      expect { subject.land_plane(plane, stormy_weather) }.to raise_error "Plane cannot land as the conditions are stormy"
     end
   end
 
