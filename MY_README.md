@@ -29,6 +29,24 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
+**Domain model:**
+
+**Objects** | **Messages**
+----------- | ---
+Airport     | land(plane)
+Plane       |
+
+**Feature test:**
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+=> plane
+```
+
+
+
 #### User story 2:
 
 ```
