@@ -24,7 +24,7 @@ intervals
 2. Towards the end, I had difficulty refactoring the tests, getting to grips
 with doubles, stubs and other methods in RSpec, but managed to complete it  
 
-## Features
+## Features  
 
 ```
 $ irb
@@ -50,7 +50,7 @@ RuntimeError (Plane is not at airport)
 RuntimeError (Adverse weather conditions)
 2.6.0 :010 > 150.times { airport.land(Plane.new) }
 RuntimeError (Airport capacity has been reached)
-```
+```  
 
 ## Code style
 
