@@ -6,7 +6,7 @@ describe Airport do
 
   context '#defaults' do
     it 'has a default capacity' do
-      allow(airport).to receive(:stormy?).and_return false 
+      allow(airport).to receive(:stormy?).and_return(false)
       described_class::DEFAULT_CAPACITY.times { airport.to_land(plane) }
       expect { airport.to_land(plane) }.to raise_error "Airport is full: Take off some planes."
     end
