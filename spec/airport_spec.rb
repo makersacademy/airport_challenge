@@ -28,7 +28,7 @@ require './lib/plane'
     it "Prevent take off when weather is stormy." do
       airport = Airport.new
       allow(airport.weather).to receive(:generate) { "Stormy weather!" }
-      expect { airport.take_off }.to raise_error("There's a storm. You can't fly off.")
+      expect { airport.take_off }.to raise_error("There's a storm. No flying.")
     end
 
     it "Prevent landing when weather is stormy" do
