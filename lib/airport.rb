@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  DEFAULT_CAPACITY = 2
+  DEFAULT_CAPACITY = 20
 
   attr_accessor :capacity
 
@@ -27,13 +27,13 @@ class Airport
   attr_reader :plane 
 
   def denied_landing
-    raise "Abort landing: Airport is full." if full
-    raise "Abort to land: Storm hapenning." if stormy?
+    raise "Storm hapenning: Please try again later." if stormy?
+    raise "Airport is full: Take off some planes." if full
   end
 
   def denied_take_off
-    raise "Abort to take off: Storm hapenning." if stormy?
-    raise "No planes to take off: Airport is empty." if @planes_collected.empty?
+    raise "Storm hapenning: Please try again later." if stormy?
+    raise "Airport is empty: Insert a plane." if @planes_collected.empty?
   end
 
   def full
