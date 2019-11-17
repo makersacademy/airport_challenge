@@ -14,7 +14,7 @@ class Airport
 
     fail "Weather is stormy, cannot land" if weather == "stormy"
 
-    plane.land
+    plane.land(self)
     @planes << plane
     "Plane has been landed"
   end
