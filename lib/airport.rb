@@ -16,9 +16,17 @@ class Airport
 
     raise "There is currently a storm no landings at this time" if stormy?
 
+    raise "This plane has already landed" if @planes.include?(plane)
+
     # raise "This plane has already landed" if !plane.flying?
 
     @planes << plane
+  end
+
+  def multi_land(planes)
+    planes.each { |plane|
+      land(plane)
+    }
   end
 
   def take_off
@@ -27,6 +35,12 @@ class Airport
     raise "There is currently a storm no take offs at this time" if stormy?
 
     @planes.pop
+  end
+
+  def multi_take_off(num)
+    num.times {
+      take_off
+    }
   end
 
   private

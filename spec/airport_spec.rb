@@ -28,21 +28,11 @@ describe Airport do
       expect { 16.times { airport.land(Plane.new) } }.to raise_error("There is no space avaliable!")
     end
 
-  end
-
-  describe "#initialize" do
-  
-    it "should have no planes when initilized" do
-      expect(subject.planes).to eq []
-    end
-
-    it "should have space for 20 planes when no argument is given" do
-      expect(subject::capacity).to eq 20
-    end
-
-    it "should have space for 30 planes when an argument of 30 is given" do
-      airport = Airport.new(30)
-      expect(airport::capacity).to eq 30
+    it "gives an error if you try to land the same plane twice" do
+      plane = Plane.new
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("This plane has already landed")
     end
 
   end
@@ -63,6 +53,25 @@ describe Airport do
 
   end
 
+  describe "#multi_land" do
+    it "makes multiple landings when an array of planes is passed" do
+      allow(subject).to receive(:stormy?) { false }
+      plane_1, plane_2 = Plane.new, Plane.new
+      subject.multi_land([plane_1, plane_2])
+      expect(subject.planes).to eq [plane_1, plane_2]
+    end
+  end
+
+  describe "#multi_take_off" do
+    it "makes 2 take offs when 2 is passed as an argument" do
+      allow(subject).to receive(:stormy?) { false }
+      plane_1, plane_2 = Plane.new, Plane.new
+      subject.multi_land([plane_1, plane_2])
+      subject.multi_take_off(2)
+      expect(subject.planes).to eq []
+    end
+  end
+
   describe "#stormy?" do
 
     it "doent land when the weather is stormy" do
@@ -78,4 +87,22 @@ describe Airport do
     end
   
   end
+
+  describe "#initialize" do
+  
+    it "should have no planes when initilized" do
+      expect(subject.planes).to eq []
+    end
+
+    it "should have space for 20 planes when no argument is given" do
+      expect(subject::capacity).to eq 20
+    end
+
+    it "should have space for 30 planes when an argument of 30 is given" do
+      airport = Airport.new(30)
+      expect(airport::capacity).to eq 30
+    end
+
+  end
+
 end
