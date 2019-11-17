@@ -1,10 +1,5 @@
-# test to 
+# raises error if trying to take off plane that isnt in the airport
 
-# As an air traffic controller 
-# So I can get passengers to a destination 
-# I want to instruct a plane to land at an airport
-
-# Airport --> Land Plane
 
 require 'airport'
 
@@ -43,16 +38,25 @@ describe Airport do
     end
   end
 
+  let(:fair_weather) { double(:fair_weather, stormy?: false) }
+  let(:stormy_weather) { double(:stormy_weather, stormy?: true) }
+
   describe "#take_off" do
+
     it "should allow planes to take off" do
       plane = double(:plane)
       subject.land_plane(plane)
-      expect(subject.take_off).to eq("Plane has taken-off")
+      expect(subject.take_off(fair_weather)).to eq("Plane has taken-off")
     end
 
     it "should raise an error if instructing a plane to take off when there are no planes to take off" do 
-      expect { subject.take_off }.to raise_error RuntimeError
+      expect { subject.take_off(fair_weather) }.to raise_error RuntimeError
+    end
+
+    it "should prevent take off if the weather is stormy" do
+      plane = double(:plane)
+      subject.land_plane(plane)
+      expect { subject.take_off(stormy_weather) }.to raise_error "Plane cannot take off due stormy weather"
     end
   end
-
 end
