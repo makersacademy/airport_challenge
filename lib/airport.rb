@@ -1,8 +1,10 @@
+require 'plane'
+
 class Airport
-  def land
+  def land(plane)
     'Plane has landed safely!'
   end
-  def takeOff
+  def takeOff(plane)
     'Plane has taken off safely!'
   end
 end
