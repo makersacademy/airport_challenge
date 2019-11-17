@@ -188,56 +188,34 @@ airport.land(plane)
 RSpec tests tree
 ---------
 
-**Airport**
-
+```
+Airport
   has a default capacity
-
-  *#initialize*
-
+  #initialize
     should be able to override the instance variable capacity
-
-  *#land*
-
+  #land
     when the weather is stormy
-
       should raise an error
-
     when the weather is not stormy
-
       should be able to land one plane
-
       should raise an error if the airport is full
-
       should raise an error if the plane has already landed
-
-  *#take_off*
-
+  #take_off
     when the weather is stormy
-
       should raise an error
-
     when the weather is not stormy
-
       should be able to take off a plane
-
       should raise an error if the plane has not landed in this airport
 
-**Plane**
-
-  *#landed?*
-
+Plane
+  #landed?
     should return a boolean
-
-  *#land*
-
+  #land
     should return true
-
-  *#take_off*
-
+  #take_off
     should return false
 
-**Weather**
-
-  *#stormy?*
-  
+Weather
+  #stormy?
     should return a boolean
+    ```
