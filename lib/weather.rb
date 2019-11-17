@@ -1,4 +1,4 @@
-class Weather
+module Weather
   def weather(probability)
     if rand(100) < probability
       @weather = "stormy"
