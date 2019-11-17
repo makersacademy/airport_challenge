@@ -1,26 +1,30 @@
 class Airport
   
   def initialize(capacity)
-    @plane_counter = 0
     @capacity = capacity
+    @ramp = []
   end
 
   def land_plane(plane)
-    if @plane_counter == @capacity
+    if parked_planes_count == @capacity
       fail "Airport is full"  
     end 
 
     plane.land
-    @plane_counter += 1
+    @ramp << plane
   end
 
   def take_off_plane(plane)
+    unless @ramp.include?(plane)
+      fail "Plane never landed here in the first place"
+    end
+
     plane.take_off
-    @plane_counter -= 1
+    @ramp.delete(plane)
   end
 
   def parked_planes_count
-    @plane_counter
+    @ramp.length
   end
 
   def weather

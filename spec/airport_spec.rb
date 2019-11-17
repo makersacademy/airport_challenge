@@ -10,8 +10,9 @@ describe Airport do
   end
 
   it "should allow planes to take off" do
-    plane = Plane.new(false)
+    plane = Plane.new(true)
     airport = Airport.new(1)
+    airport.land_plane(plane)
     airport.take_off_plane(plane)
     expect(plane.in_flight?).to eq true
   end
@@ -39,9 +40,16 @@ describe Airport do
   end
 
   it "should allow a landed plane to take off" do
+    plane = Plane.new(true)
+    airport = Airport.new(1)
+    airport.land_plane(plane)
+    airport.take_off_plane(plane)
+  end
+
+  it "should raise an error message if a plane that didn't land at this airport tries to take off" do
     plane = Plane.new(false)
     airport = Airport.new(1)
-    airport.take_off_plane(plane)
+    expect { airport.take_off_plane(plane) }.to raise_error("Plane never landed here in the first place")
   end
 
   it "should keep track of the local weather" do
