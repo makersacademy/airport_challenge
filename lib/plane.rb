@@ -1,20 +1,19 @@
 class Plane
+  attr_reader :grounded
 
   def initialize
     @grounded = false # when first created, plane is available to land.
   end
 
-  def grounded
+  def land(_airport)
     @grounded = true
-    :grounded
   end
 
-  def flying
+  def takeoff(_airport)
     @grounded = false
-    :flying
   end
 
-  def available_to_land?
-    @grounded == false
+  def grounded?
+    @grounded == true
   end
 end

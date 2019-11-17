@@ -1,39 +1,45 @@
 class Airport
-  attr_reader :capacity, :planes_held
-
-  DEFAULT_CAPACITY = 100
+  attr_reader :planes_held
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes_held = []
+    @weather = Weather.new
   end
 
-  def land(plane, weather)
-    if full? || weather.stormy?
-      :cannot_land_plane
-    elsif @planes_held.include? plane
-      :plane_already_landed
-    else
-      @planes_held << plane
-      :successful
-    end
+  def land(plane)
+    raise "Plane has already landed" if contains?(plane) || plane.grounded?
+    raise "Airport capacity has been reached" if full?
+    raise "Adverse weather conditions" if stormy?
+
+    plane.land(self)
+    planes_held << plane
   end
 
-  def takeoff(plane, weather)
-    if weather.stormy?
-      :cannot_take_off
-    elsif !@planes_held.include? plane
-      :plane_already_flying
-    else
-      @planes_held.delete(plane)
-      :successful
-    end
+  def takeoff(plane)
+    raise "Plane is not at airport" unless contains?(plane)
+    raise "Adverse weather conditions" if stormy?
+
+    plane.takeoff(self)
+    planes_held.delete(plane)
   end
 
   private
 
+  attr_reader :weather, :capacity
+
+  DEFAULT_CAPACITY = 100
+
   def full?
-    @planes_held.length >= @capacity
+    planes_held.length >= capacity
+  end
+
+  def contains?(plane)
+    planes_held.include? plane
+  end
+
+  def stormy?
+    weather.stormy?
   end
 
 end

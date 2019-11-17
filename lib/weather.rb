@@ -1,11 +1,15 @@
 class Weather
-  attr_reader :weather_forecast
-
-  def initialize
-    @weather_forecast = rand(10)
-  end
 
   def stormy?
-    @weather_forecast <= 2
+    current_forecast == :stormy
   end
+
+  private
+
+  FORECASTS = [:stormy, :sunny, :sunny, :sunny]
+
+  def current_forecast
+    FORECASTS.sample
+  end
+
 end

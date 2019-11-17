@@ -2,21 +2,26 @@ require 'plane'
 
 describe Plane do
 
-  describe "#grounded" do
-    it "returns :grounded when a plane is grounded" do
-      expect(subject.grounded).to eq :grounded
+  let(:airport) { double :airport }
+
+  describe "#land(airport)" do
+    it "has landed at an airport" do
+      subject.land(:airport)
+      expect(subject.grounded).to eq true
     end
   end
 
-  describe "#flying" do
-    it "returns :flying when a plane is flying" do
-      expect(subject.flying).to eq :flying
+  describe "#takeoff(airport)" do
+    it "has taken off from an airport" do
+      subject.takeoff(:airport)
+      expect(subject.grounded).to eq false
     end
   end
 
-  describe "#available_to_land?" do
-    it "returns true if the plane is flying" do
-      expect(subject.available_to_land?).to eq true
+  describe "#grounded?" do
+    it "returns true if the plane is grounded" do
+      subject.land(:airport)
+      expect(subject.grounded?).to eq true
     end
   end
 end
