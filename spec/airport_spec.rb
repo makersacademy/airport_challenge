@@ -88,10 +88,11 @@ describe Airport do
       end
 
       it "should raise an error if the plane has not landed in this airport" do
-        plane1 = double(:plane, landed?: false, land: true)
-        airport.land(plane1)
-        plane2 = double(:plane, landed?: true)
-        expect { airport.take_off(plane2) }.to raise_error("Plane not landed in this airport")
+        plane = double(:plane, landed?: false, land: true)
+        airport.land(plane)
+        # First two lines included to avoid raising the error "The airport is empty"
+        different_plane = double(:plane)
+        expect { airport.take_off(different_plane) }.to raise_error("Plane not landed in this airport")
       end
 
     end
