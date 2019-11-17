@@ -166,3 +166,21 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+**Domain model:**
+
+**Objects** | **Messages**
+----------- | ---
+Airport     | land(plane)
+Plane       |
+Weather     | stormy?
+
+**Feature test:**
+
+```
+airport = Airport.new
+=> airport
+plane = Plane.new
+=> plane
+airport.land(plane)
+=> RuntimeError (Cannot land due to stormy weather)
+```
