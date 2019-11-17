@@ -1,1 +1,1 @@
-require "plane.rb"
+require "plane"
