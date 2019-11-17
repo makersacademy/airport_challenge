@@ -1,6 +1,7 @@
+require './lib/weather.rb'
+
 class Airport
   attr_accessor :capacity
-  attr_reader :planes
 
   DEFAULT_CAPACITY = 1
 
@@ -12,9 +13,9 @@ class Airport
   def land(plane)
     fail "That plane is already on land" unless plane.flying?
 
-    fail "That airport is full, cannot land" if @planes.length >= @capacity
+    fail "That airport is full, cannot land" if @planes.length >= capacity
 
-    fail "Weather is stormy, cannot land" if weather == "stormy"
+    fail "Weather is stormy, cannot land" if Weather.stormy?
 
     plane.land(self)
     @planes << plane
@@ -26,17 +27,15 @@ class Airport
 
     fail "That plane is in a different airport" unless @planes.include?(plane)
 
-    fail "Weather is stormy, cannot takeoff" if weather == "stormy"
+    fail "Weather is stormy, cannot takeoff" if Weather.stormy?
 
     plane.take_off
     @planes.delete(plane)
     "Plane has taken off"
   end
 
-# Weather has a 20% chance to be stormy
-  def weather
-    n = rand(5)
-    n.zero? ? "stormy" : "sunny"
-  end
+  private
+
+  attr_reader :planes
 
 end

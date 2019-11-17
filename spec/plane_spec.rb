@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Plane do
 
@@ -12,7 +13,7 @@ describe Plane do
   it "should be in an airport if landed" do
     plane = Plane.new
     airport = Airport.new
-    allow(airport).to receive(:weather) { "sunny" }
+    allow(Weather).to receive(:stormy?).and_return(false)
     airport.land(plane)
     expect(plane.airport).to be_an_instance_of(Airport)
   end
