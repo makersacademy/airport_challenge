@@ -2,7 +2,7 @@ class Plane
 
   attr_reader :airborn
 
-  def initialize(airborn=false)
+  def initialize(airborn = false)
     @airborn = airborn
   end
 
@@ -13,6 +13,4 @@ class Plane
   def landed
     @airborn = false
   end 
-
-
 end

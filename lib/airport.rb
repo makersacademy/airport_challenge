@@ -5,10 +5,10 @@ class Airport
 
   DEFAULT_CAPACITY = 5
 
-  attr_reader :hanger
+  attr_accessor :hanger
   attr_reader :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
     @weather = Weather.new
@@ -16,15 +16,20 @@ class Airport
 
   def land(plane)
     raise 'Hanger full, abort landing!' if hanger_full?
-    raise 'That plane is already here' if has_landed?(plane)
+
+    raise 'That plane is already here' if landed?(plane)
+
     raise 'Stormy weather, abort landing!' if stormy?
+
     plane.landed
     @hanger << plane
   end
 
   def take_off(plane)
-    raise "That plane isn't here" unless has_landed?(plane)
+    raise "That plane isn't here" unless landed?(plane)
+
     raise "Stormy weather, cannot take off" if stormy?
+
     plane.in_the_air
     hanger.delete(plane)
   end 
@@ -35,7 +40,7 @@ class Airport
     @hanger.count >= @capacity
   end
 
-  def has_landed?(plane)
+  def landed?(plane)
     hanger.include?(plane)
   end
 
@@ -43,4 +48,4 @@ class Airport
     @weather.stormy?
   end 
 
-end 
+end

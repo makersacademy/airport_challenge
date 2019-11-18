@@ -2,21 +2,18 @@ require 'airport'
 require 'plane'
 require 'weather_spec'
 
-
 describe Airport do 
 
-  let (:airport) {Airport.new}
-  let (:airport_with_plane) { Airport.new(hanger: [plane]) }
-  let (:plane) {Plane.new}
+  let(:airport) { Airport.new }
+  let(:airport_with_plane) { Airport.new(hanger: [plane]) }
+  let(:plane) { Plane.new }
  
-  
-
   describe '#initialize' do 
   
     it "uses a given capacity and so returns a hanger count over the default capacity of 5" do
       airport = Airport.new(10)
       allow(airport).to receive(:stormy?).and_return(false)
-      6.times { airport.land(Plane.new)}
+      6.times { airport.land(Plane.new) }
       expect(airport.hanger.count).to eq(6)
     end
 
@@ -25,7 +22,6 @@ describe Airport do
     end
 
   end
-
 
   describe '#land' do
   
@@ -62,4 +58,4 @@ describe Airport do
     end 
  
   end 
-end 
+end
