@@ -39,6 +39,7 @@ class Airport
   end
 
   def take_off
+    raise "Plane not functioning" if Plane.new.working? == false
     @planes.pop
     "Plane has left the airport"
   end
