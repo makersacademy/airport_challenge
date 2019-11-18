@@ -21,7 +21,7 @@ describe Plane do
   end
 
   describe "#land" do
-    
+
     it "expect plane that land to have status landed" do
       plane = Plane.new
       plane.land("London")
@@ -47,6 +47,12 @@ describe Plane do
       plane = Plane.new
       plane.take_off
       expect(plane.location).to eq "in flight"
+    end
+
+    it "reports the plane has left the airport" do
+      plane = Plane.new
+      plane.take_off
+      expect { plane.take_off }.to output("The plane has left the airport.\n").to_stdout
     end
 
   end

@@ -3,8 +3,8 @@ class Plane
   attr_reader :flying, :location
 
   def initialize
-    @flying = true
-    @location = "in flight"
+    @flying = false
+    @location = "initialized"
   end
 
   def land(destination)
@@ -14,7 +14,9 @@ class Plane
   end
 
   def take_off
-    puts @location
+    @flying = true
+    @location = "in flight"
+    puts "The plane has left the airport."
   end
 
 end
