@@ -63,7 +63,7 @@ RSpec.describe Airport do
 
   context 'when harbouring planes' do
     it 'should deny landing if airport is full' do
-      100.times { test_airport.harbour_plane(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { test_airport.harbour_plane(Plane.new) }
 
       expect { test_airport.harbour_plane(test_plane) }.to raise_error Errors::AT_CAPACITY
     end
