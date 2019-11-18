@@ -1,9 +1,10 @@
 require_relative 'airport'
 
 class Plane
-  attr_reader :status, :location
+  attr_reader :status, :location #:id
 
   def initialize(status = 'grounded', *location)
+    #@id = id
     @status = status
     status == 'grounded' ? @location = location : @location = 'Not at airport'
   end
