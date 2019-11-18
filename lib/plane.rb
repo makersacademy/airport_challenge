@@ -5,7 +5,7 @@ class Plane
 
   def initialize(status = 'grounded', *location)
     @status = status
-    @location = location
+    status == 'grounded' ? @location = location : @location = 'Not at airport'
   end
 
   def land(airport)
@@ -18,13 +18,13 @@ class Plane
     airport.planes << self
     'Plane has landed safely!'
   end
-  
+
   def take_off(airport)
     fail "Can't take off when the plane is already flying" if @status == 'flying'
 
     fail 'WARNING too stormy to take off, abort take off' if airport.stormy == true
 
-    @location = 'Not at aiport'
+    @location = 'Not at airport'
     'Plane has taken off safely!'
   end
 end
