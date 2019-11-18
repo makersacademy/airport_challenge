@@ -12,19 +12,14 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def check_to_land
-    if weather.stormy?
-      raise "Weather is stormy, cannot land"
-    else
-      land(Plane.new)
-    end
+    raise "Weather is stormy, cannot land" if weather.stormy?
+    land(Plane.new)
   end
 
   def check_to_take_off
-    if weather.stormy?
-      raise "Weather is stormy, cannot take off"
-    else
-      take_off
-    end
+    raise "Plane not functioning" if plane.working? == false
+    raise "Weather is stormy, cannot take off" if weather.stormy?
+    take_off
   end
 
   def land(plane)
@@ -35,7 +30,6 @@ class Airport
   end
 
   def take_off
-    raise "Plane not functioning" if Plane.new.working? == false
     @planes.pop
     "Plane has left the airport"
   end

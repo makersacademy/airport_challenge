@@ -1,6 +1,5 @@
 class Weather
 
-
   def stormy?
     forecast == :stormy
   end
