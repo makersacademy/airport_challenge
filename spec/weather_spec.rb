@@ -7,14 +7,10 @@ describe Weather do
 
   describe '#stormy?' do 
 	
-	   it "randomly sets the weather to stormy" do
-		    allow(weather).to receive(:stormy?).and_return(true)
-      expect(weather.stormy?).to eq(true)
+	   it "sets the weather to stormy or not" do
+		  expect(weather.stormy?).to be(true).or be(false)
 	   end 
 		
-	   it "randomly sets the weather to not stormy" do
-		    allow(weather).to receive(:stormy?).and_return(false)
-	     expect(weather.stormy?).to eq(false)
-	   end
-  end
+	end
+	
 end 
