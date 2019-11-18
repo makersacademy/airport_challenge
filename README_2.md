@@ -69,8 +69,7 @@ instance of a plane would need this logic to prevent the situation where <code>l
 
 Weather did not need to be complex; in order to fulfil the needs of the user stories, an airport would simply need to know whether it was 
 safe to fly.  I decided on a <code>weather_report</code> method, which would have a slight chance of returning <code>'stormy'</code> but 
-would otherwise report <code>'clear'</code>.  Only an airport would need to know this information, as it decides whether a plane is cleared to land, 
-so I figured Weather could work perfectly as a module for the <code>Airport</code> class.
+would otherwise report <code>'clear'</code>.  Only an airport would need to know this information, as it decides whether a plane is cleared to land, so I figured <code>Weather</code> could work perfectly as a module for the <code>Airport</code> class.
 
 ---------------------
 
@@ -92,7 +91,7 @@ After creating files for each class (and their relative specs), the aim was to c
 <br/>
 I used mocks and doubles to isolate all the Unit Tests from eachother, though I included the <code>Plane</code> class in the 
 <code>Airport</code> spec to test that everything in the hangar was infact a plane.  <code>Errors::NOT_A_PLANE</code> will be raised 
-whenever a foreign object attempted to land on the airport hangar.<br/><br/>
+whenever a foreign object attempts to land on the airport hangar.<br/><br/>
 
 #### Results
 
@@ -130,7 +129,7 @@ With all this in place, I attempted to write a feature test which simulates a fl
     
     # given a plane is cleared for descent,
     # when it approaches its destination,
-    # it should land safely on the runway.
+    # then it should land safely on the runway.
 
 The feature test can be seen in <code>spec/features/flights_spec.rb</code>
 
