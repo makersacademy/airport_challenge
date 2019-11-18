@@ -6,6 +6,8 @@ end
 
 =begin
 
+#Jade's alternative solution:
+
 class Weather
 
   def stormy?
