@@ -7,7 +7,7 @@ describe Weather do
     end
 
     it "returns true if the weather is stormy" do
-      allow(subject).to receive(:current_forecast) { :stormy }
+      srand(2) # seed the number
       expect(subject.stormy?).to eq true
     end
   end

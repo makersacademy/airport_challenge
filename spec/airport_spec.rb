@@ -2,19 +2,21 @@ require 'airport'
 
 describe Airport do
 
+  subject(:airport) { Airport.new(weather) }
   let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   before do
     allow(plane).to receive(:land)
     allow(plane).to receive(:takeoff)
     allow(plane).to receive(:grounded?) { false }
-    allow(subject).to receive(:stormy?) { false }
+    allow(weather).to receive(:stormy?) { false }
   end
 
   describe "#land(plane)" do
 
     it "raises an error if the weather is stormy" do
-      allow(subject).to receive(:stormy?) { true }
+      allow(weather).to receive(:stormy?) { true }
       message = "Adverse weather conditions"
       expect { subject.land(plane) }.to raise_error message
     end
@@ -45,7 +47,7 @@ describe Airport do
     end
 
     it "raises an error when the weather is stormy" do
-      allow(subject).to receive(:stormy?) { true }
+      allow(weather).to receive(:stormy?) { true }
       message = "Adverse weather conditions"
       expect { subject.takeoff(plane) }.to raise_error message
     end

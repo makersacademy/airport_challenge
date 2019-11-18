@@ -73,13 +73,15 @@ RuntimeError (Airport capacity has been reached)
 
 ## Getting started
 
+**BUNDLE INSTALL??**
+
 This programme is used in the terminal.
 
 Require files "plane.rb", "airport.rb" and "weather.rb" in irb in the terminal.
 
 ## Running the tests
 
-You can run tests by running "rspec" in airport_challenge file.
+You can run tests by running "rspec" in the terminal in the airport_challenge directory.
 
 #### Test coverage
 - Checks planes can be landed

@@ -1,10 +1,13 @@
 class Airport
   attr_reader :planes_held
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  DEFAULT_CAPACITY = 100
+  # I'd throw that up top its up to preference
+
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes_held = []
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
@@ -27,8 +30,6 @@ class Airport
   private
 
   attr_reader :weather, :capacity
-
-  DEFAULT_CAPACITY = 100
 
   def full?
     planes_held.length >= capacity
