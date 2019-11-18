@@ -2,113 +2,120 @@ require 'airport'
 require 'plane'
 require 'weather'
 
+# look at "should override default airport capacity upon creation"  (line ~70)
+
 describe Airport do
 
-  describe "#land" do
+  let(:plane) { double(:plane) }
 
-    it "should land the plane at the airport" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      expect(airport.land(plane)).to eq "Plane has been landed"
+  let(:weather) { double(:weather) }
+
+  subject(:airport) { described_class.new(weather: weather) }
+
+  context "in sunny weather" do
+    before(:each) do
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
     end
 
-    # This test now obsolete due to later initialize test ?
-    it "should not land when the airport is full" do
-      airport = Airport.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      plane = Plane.new
-      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
+    describe "#land" do
+
+      it "should land the plane at the airport" do
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:flying?).and_return(true)
+        expect(airport.land(plane)).to eq "Plane has been landed"
+      end
+
+      it "should not land when the plane is already landed" do
+        allow(plane).to receive(:flying?).and_return(false)
+        expect { airport.land(plane) }.to raise_error "That plane is already on land"
+      end
+
     end
 
-    it "should prevent landing when the weather is stormy" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(true)
-      expect { airport.land(plane) }.to raise_error "Weather is stormy, cannot land"
+    describe "#take_off" do
+
+      it "should have the plane take off from the airport" do
+        allow(plane).to receive(:flying?).and_return(true, false)
+        airport.land(plane)
+        expect(airport.take_off(plane)).to eq "Plane has taken off"
+      end
+
+      it "should prevent takeoff if the plane is not in the airport" do
+        airport_2 = Airport.new(weather: weather)
+        allow(plane).to receive(:flying?).and_return(true, false)
+        airport_2.land(plane)
+        expect { airport.take_off(plane) }.to raise_error "That plane is in a different airport"
+      end
+
+      it "should prevent takeoff if the plane is already flying" do
+        allow(plane).to receive(:flying?).and_return(true)
+        expect { airport.take_off(plane) }.to raise_error "That plane is in flight"
+      end
+
     end
 
-    it "should not land when the plane is already landed" do
-      airport = Airport.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      plane = Plane.new
-      airport.land(plane)
-      expect { airport.land(plane) }.to raise_error "That plane is already on land"
+    describe "initialize" do
+
+      it "should set default airport capacity" do
+        allow(plane).to receive(:flying?).and_return(true)
+        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      end
+
+      it "should override default airport capacity upon creation" do
+        allow(plane).to receive(:flying?).and_return(true)
+        override_capacity = 10
+        # subject(:airport) { described_class.new(capacity: override_capacity, weather: weather) }
+        airport = Airport.new(capacity: override_capacity, weather: weather)
+        override_capacity.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      end
+
     end
 
-  end
+    describe "#capacity" do
 
-  describe "#take_off" do
+      it "should override default airport capacity at any point after creation" do
+        allow(plane).to receive(:flying?).and_return(true)
+        airport.capacity = 5
+        5.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      end
 
-    it "should have the plane take off from the airport" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      airport.land(plane)
-      expect(airport.take_off(plane)).to eq "Plane has taken off"
-    end
-
-    it "should prevent takeoff when the weather is stormy" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(false, true)
-      airport.land(plane)
-      expect { airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
-    end
-
-    it "should prevent takeoff if the plane is not in the airport" do
-      airport = Airport.new
-      airport_2 = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      airport_2.land(plane)
-      expect { airport.take_off(plane) }.to raise_error "That plane is in a different airport"
-    end
-
-    it "should prevent takeoff if the plane is already flying" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      airport.land(plane)
-      airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error "That plane is in flight"
-    end
-
-  end
-
-  describe "initialize" do
-
-    it "should set default airport capacity" do
-      airport = Airport.new
-      allow(Weather).to receive(:stormy?).and_return(false)
-      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      plane = Plane.new
-      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
-    end
-
-    it "should override default airport capacity upon creation" do
-      override_capacity = 10
-      airport = Airport.new(override_capacity)
-      allow(Weather).to receive(:stormy?).and_return(false)
-      override_capacity.times { airport.land(Plane.new) }
-      plane = Plane.new
-      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
     end
 
   end
 
-  describe "#capacity" do
+  context "in stormy weather" do
+      before(:each) do
+        allow(weather).to receive(:stormy?).and_return(true)
+        allow(plane).to receive(:land)
+        allow(plane).to receive(:take_off)
+        allow(plane).to receive(:flying?)
+      end
 
-    it "should override default airport capacity at any point after creation" do
-      airport = Airport.new
-      airport.capacity = 5
-      allow(Weather).to receive(:stormy?).and_return(false)
-      5.times { airport.land(Plane.new) }
-      plane = Plane.new
-      expect { airport.land(plane) }.to raise_error "That airport is full, cannot land"
+      describe "#land" do
+
+        it "should prevent landing when the weather is stormy" do
+          allow(plane).to receive(:flying?).and_return(true)
+          expect { airport.land(plane) }.to raise_error "Weather is stormy, cannot land"
+        end
+
+      end
+
+      describe "#take_off" do
+
+        it "should prevent takeoff when the weather is stormy" do
+          allow(weather).to receive(:stormy?).and_return(false, true)
+          allow(plane).to receive(:flying?).and_return(true, false)
+          airport.land(plane)
+          expect { airport.take_off(plane) }.to raise_error "Weather is stormy, cannot takeoff"
+        end
+
+      end
+
     end
-
-  end
 
 end

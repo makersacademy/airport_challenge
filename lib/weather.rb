@@ -1,6 +1,6 @@
 class Weather
 
-  def self.stormy?
+  def stormy?
     random_outlook == :stormy
   end
 
