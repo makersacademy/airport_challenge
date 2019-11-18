@@ -2,7 +2,6 @@ class Airport
   attr_reader :planes_held
 
   DEFAULT_CAPACITY = 100
-  # I'd throw that up top its up to preference
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @capacity = capacity

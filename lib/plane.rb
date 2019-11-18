@@ -1,5 +1,4 @@
 class Plane
-  attr_reader :grounded
 
   def land(_airport)
     @grounded = true
