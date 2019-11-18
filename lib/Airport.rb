@@ -26,7 +26,6 @@ class Airport
   def check_to_take_off
     if weather == 1
       raise "Weather is stormy, cannot take off"
-      false
     else
       take_off
     end
