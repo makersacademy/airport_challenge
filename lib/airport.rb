@@ -9,4 +9,7 @@ class Airport
     @capacity = capacity
     @planes = []
   end
+  # def stormy(boolean)
+  #   @stormy = boolean
+  # end
 end
