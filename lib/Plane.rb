@@ -1,7 +1,11 @@
 class Plane
 
   def working?
-    true
+    if rand(30) == 1
+      false
+    else
+      true
+    end
   end
 
 end
