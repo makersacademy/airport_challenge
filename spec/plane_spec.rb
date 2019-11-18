@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  # let (:airport) { double :airport }
+  # let(:airport) { double :airport }
   describe '#land' do
     airport = Airport.new
     airport.stormy = false
@@ -20,7 +20,7 @@ describe Plane do
       # end
       it 'should raise an error when its grounded' do
         plane = Plane.new
-        expect{ plane.land airport }.to raise_error("Can't land when plane is already grounded")
+        expect { plane.land airport }.to raise_error("Can't land when plane is already grounded")
       end
     end
     context 'when it is stormy' do
@@ -29,12 +29,12 @@ describe Plane do
         airport = Airport.new
         airport.stormy = true
         plane = Plane.new('flying')
-        expect{ plane.land airport }.to raise_error("WARNING stormy weather at airport abort landing")
+        expect { plane.land airport }.to raise_error("WARNING stormy weather at airport abort landing")
       end
     end
   end
   describe '#take_off' do
-    let (:airport) { double :airport }
+    let(:airport) { double :airport }
     context 'When it is not stormy' do
       it 'should let user know that the plane has taken off if not stormy' do
         airport = Airport.new
@@ -48,11 +48,11 @@ describe Plane do
     end
     context 'when it is stormy' do
       it 'should not let the plane take off if it is stormy' do
-        allow(airport).to receive(:stormy) {true}
+        allow(airport).to receive(:stormy) { true }
         # airport.stormy(true)
         # airport = Airport.new
         # airport.stormy = true
-        expect{ subject.take_off airport }.to raise_error('WARNING too stormy to take off, abort take off')
+        expect { subject.take_off airport }.to raise_error('WARNING too stormy to take off, abort take off')
       end
     end
   end
