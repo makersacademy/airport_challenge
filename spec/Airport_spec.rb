@@ -3,6 +3,10 @@ require "Airport"
 
 describe Airport do
 
+  subject(:airport) { Airport.new(weather) }
+  let(:plane) { double :plane }
+  let(:weather) { double :weather }
+
   describe '#take_off' do
     it 'checks if Airport responds to the take_off method' do
       expect(subject).to respond_to(:take_off)
@@ -35,14 +39,14 @@ describe Airport do
   describe '#check_to_land' do
     it 'throws error if weather is too stormy to land' do
       plane = Plane.new
-      allow(subject).to receive(:weather) { 1 }
+      allow(weather).to receive(:stormy?) { true }
       expect { subject.check_to_land }.to raise_error ("Weather is stormy, cannot land")
     end
   end
 
   describe '#check_to_take_off' do
     it 'throws error if weather is stormy' do
-      allow(subject).to receive(:weather) { 1 }
+      allow(weather).to receive(:stormy?) { true }
       expect { subject.check_to_take_off }.to raise_error("Weather is stormy, cannot take off")
     end
 

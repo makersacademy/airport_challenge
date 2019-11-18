@@ -12,9 +12,8 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def check_to_land
-    if weather == 1
+    if weather.stormy?
       raise "Weather is stormy, cannot land"
-      false
     else
       land(Plane.new)
     end
