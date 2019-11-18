@@ -8,6 +8,7 @@ describe Airport do
   let (:airport) {Airport.new}
   let (:airport_with_plane) { Airport.new(hanger: [plane]) }
   let (:plane) {Plane.new}
+ 
   
 
   describe '#initialize' do 

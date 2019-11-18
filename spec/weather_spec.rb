@@ -1,12 +1,16 @@
+require 'spec_helper'
 require 'weather'
 
-class Place; include Weather; end
 
-shared_examples "a place" do
+describe Weather do 
 
-	it "has a weather" do
-		place = Place.new
-		expect(place.stormy?.nil?).to be false
+	let(:weather) {Weather.new}
+
+	describe '#stormy?' do 
+		it "randomly sets the weather to stormy" do
+			allow(weather).to receive(:stormy?).and_return(true)
+	    expect(weather.stormy?).to eq(true)
+	  end 
 	end
-
-end
+	
+end 

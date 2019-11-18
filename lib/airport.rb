@@ -3,8 +3,6 @@ require_relative 'weather'
 
 class Airport
 
-  include Weather
-
   DEFAULT_CAPACITY = 5
 
   attr_reader :hanger
@@ -13,6 +11,7 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -39,5 +38,9 @@ class Airport
   def has_landed?(plane)
     hanger.include?(plane)
   end
+
+  def stormy?
+    @weather.stormy?
+  end 
 
 end 
