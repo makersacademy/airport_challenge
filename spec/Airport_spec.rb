@@ -46,10 +46,12 @@ describe Airport do
       expect { subject.check_to_take_off }.to raise_error("Weather is stormy, cannot take off")
     end
 
+    # let(:plane) { Plane.new }
+    # before { allow(plane).to receive(:working?).and_return(false) }
     # it 'throws error if plane is not working' do
-    #    plane = Plane.new
-    #    allow(plane).to receive(:working?) { false }
-    #    expect { subject.check_to_take_off }.to raise_error("Plane not functioning")
+    #    expect {
+    #      plane.working?
+    #    }.to raise_error("Plane not functioning")
     # end
   end
 

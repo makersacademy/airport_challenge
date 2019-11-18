@@ -2,17 +2,14 @@ require_relative 'Plane'
 
 class Airport
   attr_accessor :planes
-  attr_accessor :weather
+  attr_reader :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     @planes = []
+    @weather = weather
   end
 
   DEFAULT_CAPACITY = 20
-
-  def weather
-    rand(5)
-  end
 
   def check_to_land
     if weather == 1
@@ -24,7 +21,7 @@ class Airport
   end
 
   def check_to_take_off
-    if weather == 1
+    if weather.stormy?
       raise "Weather is stormy, cannot take off"
     else
       take_off
