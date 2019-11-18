@@ -53,11 +53,29 @@ The code guards against the following edge cases
 Getting Started
 ----------------
 
-To start, enter irb as follows
+Enter irb as follows:
 
 ```
 $ irb -r './airport_irb_import.rb' 
 ```
+
+To start using the program, an airport must be defined. The default capacity of an airport is 10 planes, this can be over-ridden using an integer passed to an argument when initializing the Airport. For example, an Airport with a capacity of 20 planes is given below:
+
+```
+2.6.0 :001 >  
+2.6.0 :002 > jfk = Airport.new(20)
+ => #<Airport:0x00007ff9999738b8 @capacity=20, @planes=[]> 
+2.6.0 :003 > 
+```
+
+
+Impovements
+-------------
+
+Although the original set of user stories have been addressed, there are a number of improvements that could be made to the software:
+
+Althought 
+
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
