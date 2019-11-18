@@ -10,14 +10,15 @@ end
 
 class Weather
 
-  def stormy?
-    forecast == :stormy
-  end
+FORECASTS = [:stormy, :sunny, :sunny, :sunny]
 
-  FORECASTS = [:stormy, :sunny, :sunny, :sunny]
-
-  def current_forecast
+  def forecast
     FORECASTS.sample
   end
+
+   def stormy?
+    forecast == :stormy
+  end
+end
 
 =end
