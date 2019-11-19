@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 20
 
-  attr_accessor :capacity
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes_collected = []
@@ -23,8 +23,6 @@ class Airport
   end
 
   private 
-
-  attr_reader :plane 
 
   def denied_landing
     raise "Storm hapenning: Please try again later." if stormy?
