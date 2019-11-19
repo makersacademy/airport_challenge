@@ -50,33 +50,20 @@ The first step was to isolate all the nouns and verbs which would prove useful w
 | <code>Plane</code>           | <code>take off</code> <code>land</code>                                           |
 | <code>Weather</code>         | <code>stormy</code>                                                   |
 
-Eventually I decided to break down <code>'instruct'</code> into two actions: <code>'commission_flight'</code> and <code>'harbour_plane'</code>, 
-to best reflect real-world intent.  After implementation I found these names contributed to the readability of the code.<br/><br/>
+Eventually I decided to break down <code>'instruct'</code> into two actions: <code>'commission_flight'</code> and <code>'harbour_plane'</code>, to best reflect real-world intent.  After implementation I found these names contributed to the readability of the code.<br/><br/>
 
-The verb <code>'prevent'</code> appeared regularly in the user stories, which gave me the idea to create an <code>Errors</code> class 
-(given the single responsibility of holding error messages as strings), and <code>'confirm'</code> seemed to insinuate the use of a 
-boolean at some stage.<br/><br/>
+The verb <code>'prevent'</code> appeared regularly in the user stories, which gave me the idea to create an <code>Errors</code> class (given the single responsibility of holding error messages as strings), and <code>'confirm'</code> seemed to insinuate the use of a boolean at some stage.<br/><br/>
 
-The adjectives <code>'default'</code> and <code>'overridden'</code> appear in the context of an airport having a capacity; an airport 
-should not be able to accept any more planes if there is no space on the hangar. I realised this meant that each <code>Airport</code> 
-instance would need an attribute <code>@capacity</code> with a default assignment.  Perhaps the default could be 100, the average 
-aircraft capacity of a decently sized airport?<br/><br/>
+The adjectives <code>'default'</code> and <code>'overridden'</code> appear in the context of an airport having a capacity; an airport should not be able to accept any more planes if there is no space on the hangar. I realised this meant that each <code>Airport</code> instance would need an attribute <code>@capacity</code> with a default assignment.  Perhaps the default could be 100, the average aircraft capacity of a decently sized airport?<br/><br/>
 
-I needed to consider how an Air Traffic Controller (ATC) could verify whether a plane was present on the airport hangar, as well as 
-verify when a plane is airborne.  I decided that giving each plane an instance variable <code>@airborne</code> would suffice, as each 
-instance of a plane would need this logic to prevent the situation where <code>land</code> is called on a plane while grounded, or 
-<code>take_off</code> while a plane is in mid-flight.<br/><br/>
+I needed to consider how an Air Traffic Controller (ATC) could verify whether a plane was present on the airport hangar, as well as verify when a plane is airborne.  I decided that giving each plane an instance variable <code>@airborne</code> would suffice, as each instance of a plane would need this logic to prevent the situation where <code>land</code> is called on a plane while grounded, or <code>take_off</code> while a plane is in mid-flight.<br/><br/>
 
-Weather did not need to be complex; in order to fulfil the needs of the user stories, an airport would simply need to know whether it was 
-safe to fly.  I decided on a <code>weather_report</code> method, which would have a slight chance of returning <code>'stormy'</code> but 
-would otherwise report <code>'clear'</code>.  Only an airport would need to know this information, as it decides whether a plane is cleared to land, so I figured <code>Weather</code> could work perfectly as a module for the <code>Airport</code> class.
+Weather did not need to be complex; in order to fulfil the needs of the user stories, an airport would simply need to know whether it was safe to fly.  I decided on a <code>weather_report</code> method, which would have a slight chance of returning <code>'stormy'</code> but would otherwise report <code>'clear'</code>.  Only an airport would need to know this information, as it decides whether a plane is cleared to land, so I figured <code>Weather</code> could work perfectly as a module for the <code>Airport</code> class.
 
 ---------------------
 
 ### Unit Testing
-The next step was to begin to write tests for classes.  By this point I was aware I needed <code>Airport</code>, <code>Plane</code> and 
-<code>Errors</code> classes, as well as a <code>Weather</code> module.  Some of my earlier 'it-statements' checked for the existence of 
-methods on a class, but as the testing progressed I was able to remove them, as their purpose was accounted for in the wording of other 
+The next step was to begin to write tests for classes.  By this point I was aware I needed <code>Airport</code>, <code>Plane</code> and <code>Errors</code> classes, as well as a <code>Weather</code> module.  Some of my earlier 'it-statements' checked for the existence of methods on a class, but as the testing progressed I was able to remove them, as their purpose was accounted for in the wording of other 
 tests.<br/><br/>
 
 After creating files for each class (and their relative specs), the aim was to check for the following logic:<br/><br/>
@@ -90,17 +77,13 @@ After creating files for each class (and their relative specs), the aim was to c
 
 <br/>
 I used mocks and doubles to isolate all the Unit Tests from eachother, though I included the <code>Plane</code> class in the 
-<code>Airport</code> spec to test that everything in the hangar was infact a plane.  <code>Errors::NOT_A_PLANE</code> will be raised 
-whenever a foreign object attempts to land on the airport hangar.<br/><br/>
+<code>Airport</code> spec to test that everything in the hangar was infact a plane.  <code>Errors::NOT_A_PLANE</code> will be raised whenever a foreign object attempts to land on the airport hangar.<br/><br/>
 
 #### Results
 
-Using a test driven approach, I was able to achieve all the logic above.  The <code>Plane</code> class was responsible for taking off and 
-landing, as well as knowing its registration status via the <code>@accounted_for</code> attribute on each instance, set to <code>true</code> 
-upon its first official arrival at any airport.<br/><br/>
+Using a test driven approach, I was able to achieve all the logic above.  The <code>Plane</code> class was responsible for taking off and landing, as well as knowing its registration status via the <code>@accounted_for</code> attribute on each instance, set to <code>true</code> upon its first official arrival at any airport.<br/><br/>
 
-I had already decided on using a <code>@capacity</code> instance variable on the <code>Airport</code> class, eventually deciding on 
-storing the functionality of the <code>Weather</code> module on an instance variable also.  All an airport is responsible for is commissioning flights and harbouring planes, which kept the class structure lean and considerably easier to understand than anticipated.  The plane needed a hangar to manage its fleet, so the <code>@hangar</code> took the form of an array – a straightforward solution to achieving expected behaviour.
+I had already decided on using a <code>@capacity</code> instance variable on the <code>Airport</code> class, eventually deciding on storing the functionality of the <code>Weather</code> module on an instance variable also.  All an airport is responsible for is commissioning flights and harbouring planes, which kept the class structure lean and considerably easier to understand than anticipated.  The plane needed a hangar to manage its fleet, so the <code>@hangar</code> took the form of an array – a straightforward solution to achieving expected behaviour.
 
 --------------------
 
