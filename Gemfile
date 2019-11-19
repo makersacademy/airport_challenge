@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gem 'rake'
 gem 'rubocop', '0.71.0'

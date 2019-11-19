@@ -36,7 +36,7 @@ RSpec.describe 'Flights' do
       # when it approaches its destination,
       schiphol_airport.harbour_plane(plane_a)
 
-      # it should land safely on the runway.
+      # then it should land safely on the runway.
       expect(plane_a.airborne).to be false
       expect(schiphol_airport.hangar).to include plane_a
       expect(the_sky.planes_in_transit).not_to include plane_a
