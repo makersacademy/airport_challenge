@@ -68,15 +68,15 @@ Reviewers will potentially be using this code review rubric. Referring to this r
 ### Code Quality
 
 #### Rspec
-![Rspec Coverage](images/rspec.png)
+![Rspec Coverage](work/images/rspec.png)
 
 #### Rubocop
-![Rubocop](images/rspec.png)
+![Rubocop](work/images/rspec.png)
 
 ======================================
 
 ## Feature Test ##
-![](images/Screenshot%202019-09-23%20at%2012.43.05%20AM.png)
-![](images/Screenshot%202019-09-23%20at%2012.49.45%20AM.png)
-![](images/Screenshot%202019-09-23%20at%2012.51.18%20AM.png)
+![](work/images/Screenshot%202019-09-23%20at%2012.43.05%20AM.png)
+![](work/images/Screenshot%202019-09-23%20at%2012.49.45%20AM.png)
+![](work/images/Screenshot%202019-09-23%20at%2012.51.18%20AM.png)
 
