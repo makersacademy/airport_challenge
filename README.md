@@ -58,7 +58,7 @@ In code review we'll be hoping to see:
 > git clone git@github.com:DanielleInkster/airport_challenge.git
 > bundle install
 > irb
-> require './work/lib/airport.rb'
+> require './lib/airport.rb'
 ```
 ### How to Run Tests
 ```bash
