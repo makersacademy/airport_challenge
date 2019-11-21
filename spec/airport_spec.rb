@@ -18,14 +18,14 @@ describe Airport do
       allow(plane).to receive(:flying).and_return true
       allow(subject).to receive(:stormy?).and_return true
       message = "No landing: Bad weather!"
-      expect { subject.land(plane) }.to raise_error message
+      expect { subject.land(plane) }.to raise_error(message)
     end
 
     it 'prevents taking off when weather is stormy' do
       allow(plane).to receive(:flying).and_return false
       allow(subject).to receive(:stormy?).and_return true
       message = "No taking off: Bad weather!"
-      expect { subject.takeoff(plane) }.to raise_error 
+      expect { subject.takeoff(plane) }.to raise_error(message) 
     end
   end
 
