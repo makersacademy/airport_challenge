@@ -72,7 +72,7 @@ In code review we'll be hoping to see:
 ![Rspec Coverage](work/images/rspec.png)
 
 #### Rubocop
-![Rubocop](work/images/rspec.png)
+![Rubocop](work/images/rubocop.png)
 
 ======================================
 
