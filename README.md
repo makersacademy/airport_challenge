@@ -39,10 +39,11 @@ Please create separate files for every class, module and test suite.
 
 In code review we'll be hoping to see:
 
-All tests passing
-High Test coverage (>95% is good)
-The code is elegant: every class has a clear responsibility, methods are short etc.
-Reviewers will potentially be using this code review rubric. Referring to this rubric in advance will make the challenge somewhat easier. You should be the judge of how much challenge you want this weekend.
+* All tests passing
+* High Test coverage (>95% is good)
+* The code is elegant: every class has a clear responsibility, methods are short etc.
+* Reviewers will potentially be using this code review rubric. Referring to this rubric in advance will make the challenge somewhat easier. You should be the judge of how much challenge you want this weekend.
+
 ======================================
 
 ## Technologies
