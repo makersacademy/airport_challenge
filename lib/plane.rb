@@ -3,8 +3,6 @@ class Plane
 
   def initialize
     @flying = true
-    # we assume upon creation the plane is in flight, alternatively could have
-    # a default airport the planes are stored in upon creation
     @airport = nil
   end
 
