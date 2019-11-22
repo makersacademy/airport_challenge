@@ -16,7 +16,7 @@ Airport Challenge
 Solution
 --------
 
-For simplicitys sake, we assume upon creation the plane is in flight, alternatively could have a default airport the planes are stored in upon creation
+For simplicity's sake, we assume upon creation the plane is in flight, alternatively could have a default airport the planes are stored in upon creation
 
 ```
 2.6.0 :001 > airport = Airport.new
