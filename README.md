@@ -174,5 +174,5 @@ I was able to put in some manual fixes to account for this but had run out of ti
 
 The result of this final commit (So far....) is a new appreciation and enjoyment of TDD, I went in to these last two weeks having never heard of TDD (Test Driven Development), or RGF (Red, Green, Refactor) but I don't think I will be forgetting those terms anytime soon!
 
-This final commit is my refactoring and learning on this challenge up.
+This final commit is my refactoring and learning on this challenge up to now.
 -----
