@@ -39,7 +39,34 @@ Completed User Story 2 - plane takes off and leaves the airport.
  => [#<Plane:0x00007fa153097710>]
 2.6.3 :005 > my_airport.take_off(plane)
  => "In the air"
-2.6.3 :006 > 
+2.6.3 :006 >
+
+Completed user story 3
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fa3690838b0 @planes_airport=[], @capacity=20>
+
+
+Completed user story 4
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new(1)
+ => #<Airport:0x00007fc6c7886900 @planes_airport=[], @capacity=1>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fc6c78a98d8>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => [#<Plane:0x00007fc6c78a98d8>]
+2.6.3 :005 > plane = Plane.new
+ => #<Plane:0x00007fc6c78d93f8>
+2.6.3 :006 > my_airport.land_plane(plane)
+Traceback (most recent call last):
+        5: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        4: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        3: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):6
+        1: from /Users/christymasterson/Documents/GitHub/airport_challenge/lib/airport.rb:13:in `land_plane'
+RuntimeError (The airport is full)
 
 Instructions
 ---------

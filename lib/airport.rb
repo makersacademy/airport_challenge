@@ -15,6 +15,7 @@ DEFAULT_CAPACITY = 20
   end
 
   def take_off(plane)
+  fail 'It is too stormy to take off' if weather == "stormy"
   planes_airport.pop
   "In the air"
   end
