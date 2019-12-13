@@ -1,3 +1,5 @@
+require 'airport'
+
 describe Airport do
   it 'can cereate an instance of an airport' do
     ap = Airport.new
