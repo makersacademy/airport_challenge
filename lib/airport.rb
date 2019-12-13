@@ -1,12 +1,13 @@
 class Airport
-  attr_reader :runway
+  attr_reader :runway, :capacity
 
    def initialize
      @runway = []
+     @capacity = 2
   end
 
   def land(plane)
-    # fail 'Airport full'
+    fail 'Airport full' if @runway.count >= capacity
     @runway << plane
   end
 

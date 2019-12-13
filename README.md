@@ -42,7 +42,10 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
-* 
+* Ran a feature test to identify what tests and methods I would need to write.
+* To simplify the process I started by writing a test to just throw an error when the land method was called.
+* After passing this, I then refactored the test and method to only throw an error when the set capacity has been reached.
+* Finally ran a feature test to ensure code was working as expected.
 
 Instructions
 ---------
