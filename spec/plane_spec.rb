@@ -10,8 +10,9 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
-  # it 'confirms plane it out of airport' do
-  #   subject.out
-  #   expect(subject).to be_out
-  # end
+  it 'confirms plane it out of airport' do
+    subject.take_off
+    subject.out?
+    expect(subject).to be_out
+  end
 end
