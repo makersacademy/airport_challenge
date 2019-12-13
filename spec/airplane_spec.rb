@@ -22,4 +22,12 @@ describe Airplane do
     gatwick.land_plane("1")
     expect { airbus.land_at(gatwick) }.to raise_error
   end
+
+  it "takesoff from an airport" do
+    airbus = Airplane.new
+    gatwick = Airport.new
+    airbus.land_at(gatwick)
+    airbus.takeoff
+    expect(airbus.location).to eq "sky"
+  end
 end

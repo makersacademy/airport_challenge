@@ -21,4 +21,11 @@ describe Airport do
     gatwick.land_plane("1")
     expect { gatwick.land_plane("2") }.to raise_error
   end
+
+  it "no longer has a plane when it is dipatched" do
+    gatwick = Airport.new
+    gatwick.land_plane("1")
+    gatwick.dispatch_plane("1")
+    expect(gatwick.planes).not_to include("1")
+  end
 end
