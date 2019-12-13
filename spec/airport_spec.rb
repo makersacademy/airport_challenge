@@ -11,18 +11,25 @@ describe Airport do
 
   it 'lands a plane' do
     my_plane = Plane.new
-    expect(subject.land_plane(my_plane)).to eq my_plane
+    expect(subject.land_plane(my_plane)).to eq [my_plane]
   end
 
   it 'landed plane is at the airport' do
-    my_plane = Plane.new
-    subject.land_plane(my_plane)
-    expect(planes_airport).to include my plane
+    plane = Plane.new
+    subject.land_plane(plane)
+    expect(subject.planes_airport).to include(plane)
   end
 
   it { is_expected.to respond_to :take_off }
 
-  it 'Confirms the plane is no longer in the airport, gives message "In the air"' do
+  it 'plane leaves the airport when it takes off' do
+  plane = Plane.new
+  subject.land_plane(plane)
+  subject.take_off(plane)
+  expect(subject.planes_airport).not_to include(plane)
+  end
+
+  it 'When plane takes off it gives message "In the air"' do
   my_plane = Plane.new
   expect(subject.take_off(my_plane)).to eq "In the air"
   end
