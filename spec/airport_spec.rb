@@ -36,10 +36,26 @@ describe Airport do
     expect(Airport).to respond_to(:new).with(1).argument
   end
 
-  it 'prevents take off when weather is stormy' do
+  #it 'checks weather before allowing planes to land or take off' do
+  #  air = Airport.new
+  #  plane = Plane.new
+  #  air.land_plane(plane)
+  #  expect(air).to receive(:stormy?)
+  #end
+
+  it 'prevents takeoff when weather is stormy' do
+    air = Airport.new
+    plane = Plane.new
+
+    allows airport to receive stormy .to raise_error("Stormy weather, no takeoff!")
   end
 
-  it 'prevents landing when weather is story' do 
-  end
+  #it 'prevents landing when weather is story' do 
+  #  air = Airport.new
+  #  plane = Plane.new
+#
+  #  allows airport to receive stormy .to raise_error("Storm weather, no landing!")
+  #end
 
+  
 end

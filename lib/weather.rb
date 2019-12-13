@@ -1,7 +1,7 @@
 module Weather
 
-  def stormy?
-  #rand
-  end
+  #def stormy?
+  # [false, false, false, false, false, true, true].sample
+  #end
   
 end
