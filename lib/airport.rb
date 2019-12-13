@@ -1,3 +1,5 @@
+require 'plane'
+
 class Airport
   attr_accessor :capacity
   attr_reader :runway
@@ -25,7 +27,4 @@ class Airport
   def empty?
     @runway.empty?
   end
-end
-
-class Plane
 end
