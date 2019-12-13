@@ -32,4 +32,12 @@ describe Airport do
     expect(airport_name).to respond_to(:take_off).with(1).argument
   end
 
+  it 'will allow the method take_off to takeoff the plane' do
+    airport_name = Airport.new
+    plane = Plane.new
+    expect(airport_name.take_off(plane)).to eq plane
+  end
+
+  
+
 end

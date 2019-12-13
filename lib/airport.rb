@@ -4,7 +4,7 @@ class Airport
     return plane
   end
 
-    def take_off
+    def take_off(plane)
     end
 
 end
