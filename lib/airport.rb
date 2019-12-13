@@ -14,11 +14,13 @@ class Airport
 
   def land_plane(plane)
     fail "Hangar Full" if full?
+    fail "Stormy weather, no landing !" if stormy?
     
     @hangar << plane
   end
 
   def take_off(plane)
+    fail "Stormy weather, no takeoff !"
     @hangar.delete(plane)
   end
 
