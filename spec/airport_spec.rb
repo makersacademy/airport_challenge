@@ -28,4 +28,10 @@ describe Airport do
     expect(airport.landed_planes).not_to include ("Cathay Pacific")
   end
 
+  it "raises error when airport is at full capacity" do
+    airport = Airport.new
+    20.times {airport.land("Cathay Pacific")}
+    expect {airport.land("Cathay Pacific")}.to raise_error("Landing not possible, the airport is at full capacity.")
+  end
+
 end
