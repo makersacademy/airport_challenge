@@ -3,14 +3,18 @@ require './lib/plane.rb'
 class Airport
 attr_reader :airport, :plane
 
+  def initialize
+    @location = []
+  end
+
   def airport?
-   true
+    true
   end
 
   def land_plane(plane)
-    if @plane == "runway_free"
-    end
+    @location.push(plane).join"You are in the air"
   end
+
 
   def take_off_plane(plane)
     @plane = nil
@@ -18,11 +22,9 @@ attr_reader :airport, :plane
   end
 
   def plane
-    @plane = Plane.new
+    @plane
   end
-
 end
-
 
 
   # def runway(land_plane, take_off)

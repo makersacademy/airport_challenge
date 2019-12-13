@@ -29,5 +29,9 @@ describe Airport do
   expect(subject.take_off_plane Plane.new).to eq nil
   end
 
+  it 'prevent landing when airport is full' do
+    20.times { subject.airport_full Plane.new }
+  expect(subject.airport_full Plane.new).to raise_error 'Airport is full'
+  end
 
 end
