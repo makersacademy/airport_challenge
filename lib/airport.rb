@@ -1,4 +1,8 @@
+require_relative "weather.rb"
+
 class Airport
+  include Weather
+
   attr_reader :hangar, :DEFAULT_CAPACITY
   
   DEFAULT_CAPACITY = 10
@@ -25,18 +29,6 @@ class Airport
  private
   def full?
     @hangar.length >= @DEFAULT_CAPACITY
-  end
-  
-end
-
-class Plane
-  #status landed or air
-end
-
-module Weather
-
-  def stormy?
-  #rand
   end
   
 end

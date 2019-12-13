@@ -1,4 +1,6 @@
 require 'airport.rb'
+require 'plane.rb'
+require 'weather.rb'
 
 describe Airport do
   it 'expects a class which creates instances' do
