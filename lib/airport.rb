@@ -1,3 +1,3 @@
-class Airport
+class AirPort
 
 end

@@ -1,4 +1,4 @@
-
+require 'airport.rb'
 
 describe AirPort do
   it 'defines the class AirPort' do
