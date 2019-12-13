@@ -11,6 +11,12 @@ describe Airport do
       airport = Airport.new
       expect(airport).to respond_to(:land).with(1).argument
     end
+
+    it 'returns a landed plane' do
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport.land(plane)).to eq(plane)
+    end
   end
 end
 
