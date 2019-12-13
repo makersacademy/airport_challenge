@@ -14,4 +14,11 @@ describe Airport do
     expect(Airport.new).to respond_to(:take_off).with(1).argument
   end
 
+  it 'saves the landed plane' do
+    airport = Airport.new
+    plane = Plane.new
+    expect (airport.land(plane)).to eq plane
+  end
+
+
 end

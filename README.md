@@ -184,29 +184,11 @@ Created the method  and set a default value of true
 Refactor
 Nothing to refactor yet
 
-4. I want the airport to confirm that plane is still there if it didn't take take_off
-plane = Plane.new
-airport = Airport.new
-plane.land(airport)
-airport.plane_gone?
-Expected answer FALSE
-Carmen-Alina-Craciun-MBP:airport_challenge carmen-alinacraciun$ irb
-2.6.3 :001 > require './lib/plane.rb'
- => true
-2.6.3 :002 > require './lib/airport.rb'
- => true
-2.6.3 :003 > plane = Plane.new
- => #<Plane:0x00007fd5c51ed9b0>
-2.6.3 :004 > airport = Airport.new
- => #<Airport:0x00007fd5c780d0c8>
-2.6.3 :005 > plane.land(airport)
- => nil
-2.6.3 :006 > airport.plane_gone?
- => true
+Realised that I thought the problem the other way around. I swap functionalities and tests between classes.
+
+4. I want airport to store the landed plane. Currently when plane is landed value is nil.
 
 
-RED
-I will write a unit test to replicate the error
 
 
 
