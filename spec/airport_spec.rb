@@ -21,4 +21,11 @@ describe Airport do
     expect(Airport.new).to respond_to(:take_off)
   end
 
+  it "confirms that a plane has taken off from the airport" do
+    airport = Airport.new
+    airport.land("Cathay Pacific")
+    airport.take_off("Cathay Pacific")
+    expect(airport.landed_planes).not_to include ("Cathay Pacific")
+  end
+
 end
