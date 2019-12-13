@@ -40,9 +40,7 @@ describe Airport.new do
 
   it 'airport capacity' do
     airport = Airport.new
-    expect(capacity).to eq (4)
-
-
+    expect(subject.capacity).to eq 4
   end
 
 
