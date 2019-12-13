@@ -150,6 +150,35 @@ Realised he doesn't know where to take the airport from. So I decide to create a
 
 RED
 I will write a unit test to replicate the error
+GREEN
+Write minimum amount of code to pass the test
+Refactor
+Nothing to refactor yet
+
+3. I want the airport to confirm that plane is not there any more
+plane = Plane.new
+airport = Airport.new
+plane.take_off(airport)
+airport.plane_gone?
+
+irb error
+2.6.3 :009 > plane = Plane.new
+ => #<Plane:0x00007ffdc0088e30>
+2.6.3 :010 > airport = Airport.new
+ => #<Airport:0x00007ffdbd834010>
+2.6.3 :011 > plane.take_off(airport)
+ => nil
+2.6.3 :012 > airport.plane_gone?
+Traceback (most recent call last):
+        4: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):12
+NoMethodError (undefined method `plane_gone?' for #<Airport:0x00007ffdbd834010>)
+2.6.3 :013 >
+
+RED
+I will write a unit test to replicate the error
 
 
 
