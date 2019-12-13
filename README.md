@@ -1,3 +1,11 @@
+Eoin,
+
+I have completed the user stories but I have not checked I have completed all the tasks thoroughly at the bottom of the task sheet and I haven't completed the bonus. I hope this is ok.
+
+Thank you.
+Natasha.
+
+
 Airport Challenge
 =================
 
