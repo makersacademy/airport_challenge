@@ -11,6 +11,7 @@
 # To ensure safety
 # I want to prevent landing when the airport is full
 class Airport
+  DEFAULT_CAPACITY = 10
   attr_reader :plane
   def initialize
     @planes = []
@@ -35,7 +36,7 @@ class Airport
 
   private
   def full?
-    @planes.count >= 10
+    @planes.count >= DEFAULT_CAPACITY
   end
 
   def empty?

@@ -96,4 +96,4 @@ User story 2 - Refactored the plane.land test removing plane = airport.release_p
 
 User story 3 - Refactored test as methods takeoff and landing not needed in Plane class as they are in the Airport class. These methods have been been removed from Plane class and methods "release_plane" and "runway" have been renamed in the test and code to "takeoff" and "landing"
 
-User story 4 - updated @plane attribute to @planes = []. Also updated test as code now contains an array. Also refactored code to include a private method for whether the airport is 'full?' or 'empty?'.
+User story 4 - updated @plane attribute to @planes = []. Also updated test as code now contains an array. Also refactored code to include a private method for whether the airport is 'full?' or 'empty?'. Initially set capacity at 10 and then refactored test and code, adding 'DEFAULT_CAPACITY' to remove the magic number (in this case 10).

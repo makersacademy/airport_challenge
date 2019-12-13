@@ -50,5 +50,11 @@ describe Airport do
       end
       expect { airport.landing Plane.new }.to raise_error 'Airport is full!'
     end
+
+    it 'has a default capacity' do
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
   end
 end
