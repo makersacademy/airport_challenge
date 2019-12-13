@@ -2,7 +2,8 @@ require 'airport'
 
 describe Airport do
   it 'creating a new instance of airport' do
-  expect subject.to be_a Airport
+    airport = Airport.new
+  expect(airport).to be_a Airport
   end
 end
 
