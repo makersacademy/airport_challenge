@@ -5,10 +5,18 @@ describe Airport do
     airport = Airport.new
   expect(airport).to be_a Airport
   end
-end
 
-describe Airport do
+  it 'so an airport can be an airport method' do
+    airport = Airport.new
+  expect(airport).to respond_to :airport?
+  end
+
+  it 'making sure airport exists' do
+   expect(Airport.new.airport?).to be true
+  end
+
   it 'landing the plane at the airport' do
-  expect subject.to respond_to :land_plane
+    airport = Airport.new
+  expect(airport).to respond_to :runway.with(2).arguments
   end
 end
