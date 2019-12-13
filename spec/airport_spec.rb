@@ -16,12 +16,6 @@ describe Airport do
     expect(airport_name).to respond_to(:land).with(1).argument
   end
 
-  it 'will allow the method land to land the plane' do
-    airport_name = Airport.new
-    plane = Plane.new
-    expect(airport_name.land(plane)).to eq plane
-  end
-
   it 'will make Airport instance to respond to the take off method' do
     airport_name = Airport.new
     expect(airport_name).to respond_to(:take_off)
@@ -43,4 +37,10 @@ describe Airport do
     plane = Plane.new
     expect(airport_name.land(plane)).to include(plane)
   end
+
+  it 'will check the availability of the plane at the airport'
+  airport_name = Airport.new
+  plane = Plane.new
+  expect(airport_name.take_off(plane)). to raise_error 'plane is no longer in the airport'
+
 end
