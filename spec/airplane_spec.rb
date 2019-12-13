@@ -9,4 +9,9 @@ describe Airplane do
     airbus = Airplane.new
     expect(airbus).to respond_to(:land_at)
   end
+
+  it "allows for the plane to takeoff" do
+    airbus = Airplane.new
+    expect(airbus).to respond_to(:takeoff)
+  end
 end

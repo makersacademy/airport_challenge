@@ -9,4 +9,9 @@ describe Airport do
     gatwick = Airport.new
     expect(gatwick).to respond_to(:land_plane)
   end
+
+  it "allows for a plane to takeoff" do
+    gatwick = Airport.new
+    expect(gatwick).to respond_to(:dispatch_plane)
+  end
 end
