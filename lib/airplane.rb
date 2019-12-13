@@ -1,6 +1,6 @@
 class Airplane
   def working?
-    true
+    @working = true
   end
 
 end
