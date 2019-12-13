@@ -18,6 +18,13 @@ describe Airport do
       expect(airport.land(plane)).to eq([plane])
     end
   end
+
+  describe '#take_off' do
+    it 'has a take off method' do
+      airport = Airport.new
+      expect(airport).to respond_to(:take_off)
+    end
+  end
 end
 
 describe Plane do

@@ -26,6 +26,13 @@ I want to instruct a plane to land at an airport
 * After each failing test I wrote the corresponding code to pass the tests.
 * After writing a simple method to land the plane, I refactored the code so each plane would be stored in the runway array.
 * I then ran the tests again to ensure the code passed, and did a final feature test to ensure the code was working as intended.
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+* 
+
 Instructions
 ---------
 
