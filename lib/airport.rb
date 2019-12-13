@@ -1,11 +1,16 @@
 class LHRairport
-def land_plane
-end
+  def initialize
+    @airplanes = []
 
-def depart_plane
-Airplane.new
-# fail 'Airport is full' unless @airplane
-  # @airplane
+    def land_plane(airplane)
+      fail 'Airport is full' if full?
+      @airplanes << airplane
+    end
 end
-
+    def depart_plane
+      Airplane.new
+    end
+    def full?
+      @airplanes.count >= 10
+    end
 end
