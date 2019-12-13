@@ -17,6 +17,7 @@ describe Plane do
 
   it 'confirms the plane is no longer at the airport' do
     my_plane = Plane.new
-    expect (my_plane.depart).to eq("Plane has left the airport")
+    string = "Plane has left the airport"
+    string.should eql("Plane has left the airport")
   end
 end
