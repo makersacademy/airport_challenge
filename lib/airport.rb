@@ -12,8 +12,9 @@ class Airport
     @planes.push(plane_id)
   end
 
-  def dispatch_plane
+  def dispatch_plane(plane_id)
     raise("Airport empty") if @planes.empty?
-    @planes.pop
+    @planes.delete(plane_id)
+    return plane_id
   end
 end
