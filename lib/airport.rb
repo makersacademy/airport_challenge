@@ -11,9 +11,10 @@
 # I want to prevent landing when the airport is full
 class Airport
   def release_plane
-
   end
 end
 
 class Plane
+  def land
+  end
 end
