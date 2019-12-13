@@ -13,6 +13,7 @@ class Airport
   attr_reader :plane
 
   def release_plane
+    fail 'The plane has left the airport' unless @plane
     @plane
   end
 
@@ -28,7 +29,7 @@ end
 class Plane
   def land
   end
-  
+
   def takeoff
   end
 end

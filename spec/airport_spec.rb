@@ -14,7 +14,7 @@ describe Airport do
       expect(airport.release_plane).to eq plane
     end
   end
-  
+
   describe '#release_plane' do
     it 'raises error when plane is no longer in the airport' do
       airport = Airport.new
@@ -50,5 +50,13 @@ describe Airport do
     airport = Airport.new
     airport.runway(plane)
     expect(airport.plane).to eq plane
+  end
+
+  describe '#runway' do
+    it 'raises an error when the airport is full' do
+      airport = Airport.new
+      plane = Plane.new
+      expect { airport.runway(plane) }.to raise_error 'Airport is full!'
+    end
   end
 end
