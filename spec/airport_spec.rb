@@ -27,16 +27,16 @@ describe Airport do
 
   describe 'takeoff' do
 
-    # TDD step 5
-    it 'prevents takeoff of plane when weather is stormy' do
-      expect { subject.take_off Airplane.new, 'stormy' }.to raise_error 'Cannot takeoff plane due to stormy weather'
-    end
-
     # TDD step 2
     it 'instructs plane to take off and confirms not at airport' do
       allow(airplane).to receive(:land).and_return(true)
       subject.take_off(airplane, weather)
       expect(subject.airplanes).not_to include(airplane)
+    end
+
+    # TDD step 5
+    it 'prevents takeoff of plane when weather is stormy' do
+      expect { subject.take_off Airplane.new, 'stormy' }.to raise_error 'Cannot takeoff plane due to stormy weather'
     end
   end
 
