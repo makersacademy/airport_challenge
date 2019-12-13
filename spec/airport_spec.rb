@@ -29,11 +29,22 @@ describe Airport do
     expect(my_airport.airport.length).to eq 0
   end
 
-  it 'confirms plane taken off' do
+  describe '#take_off' do
+    it 'confirms plane taken off' do
     my_airport = Airport.new
     plane = Plane.new
     my_airport.land(plane)
     my_airport.take_off(plane)
     expect { my_airport.take_off(plane) }.to raise_error('Plane has already taken off')
+    end
+  end
+
+  describe '#land' do
+    it 'is full' do
+      my_airport = Airport.new
+      plane = Plane.new
+      my_airport.land(plane)
+      expect { my_airport.land(plane) }.to raise_error('Airport full')
+      end
     end
 end
