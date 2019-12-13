@@ -9,5 +9,4 @@ group :test do
   gem 'simplecov-console', require: false
 end
 
-
 gem 'rubocop-rails'
