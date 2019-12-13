@@ -14,5 +14,7 @@ describe Airport do
       expect(plane).to be_an_instance_of(Plane)
     end
 
-
+    it 'is expected to respodn to take off with 1 arguement' do
+      expect(subject).to respond_to(:takeoff).with(1).argument
+    end
 end
