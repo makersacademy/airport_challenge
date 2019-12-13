@@ -13,5 +13,12 @@ describe Airport do
         expect(subject.take_off).to be true
       end
     end
+    context 'Airport allows plane to take off' do
+      it 'removes the instance of plane from Airport' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.hanger).not_to include(plane)
+      end
+    end
   end
 end
