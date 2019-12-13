@@ -202,3 +202,4 @@ weather.stormy? (returning true)
 p.take_off
 error message "Too stormy for take off."
 
+ -- abandon idea of a class Weather; create as variable in Plane class instead -- 
