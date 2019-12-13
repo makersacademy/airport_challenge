@@ -22,7 +22,7 @@ class Airport
   def landing(plane)
     fail 'Airport is full!' if @planes
 
-    @planes = planes
+    @planes = plane
   end
 
   def plane
