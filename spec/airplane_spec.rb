@@ -1,5 +1,8 @@
 require 'airplane'
 
 describe Airplane do
-  it { is_expected.to respond_to :working?}
+  it 'returns it is working' do
+    subject.working?
+    expect(subject).to be_working
+  end
 end
