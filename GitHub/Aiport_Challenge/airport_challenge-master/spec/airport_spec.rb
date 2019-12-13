@@ -39,18 +39,28 @@ describe Airport.new do
     expect(subject.confirm_left(plane)).to eq ("plane has taken off")
   end
 
-  it 'airport capacity' do
-    airport = Airport.new
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACTITY
-  end
+  # it 'airport capacity' do
+  #   airport = Airport.new
+  #   expect(subject.capacity).to eq Airport::DEFAULT_CAPACTITY
+  # end
 
-
-  describe '#land_plane' do
-    it 'raises an error when airport is full'do
-      Airport::DEFAULT_CAPACTITY.times { subject.land_plane Plane.new }
-      expect { subject.land_plane Plane.new }.to raise_error 'Airport full'
-    end
-  end
+ describe 'intialization' do
+   subject {Airport.new}
+   let(:plane) {Plane.new}
+   it 'defaults capacity' do
+     described_class::DEFAULT_CAPACTITY.times do
+       subject.land_plane(plane)
+     end
+     expect{ subject.land_plane(plane) }.to raise_error 'Airport Full'
+   end
+ end
+  # 
+  # describe '#land_plane' do
+  #   it 'raises an error when airport is full'do
+  #     Airport::DEFAULT_CAPACTITY.times { subject.land_plane Plane.new }
+  #     expect { subject.land_plane Plane.new }.to raise_error 'Airport full'
+  #   end
+  # end
 
 
 

@@ -3,7 +3,7 @@ require_relative 'plane'
 
 DEFAULT_CAPACTITY = 4
 
-attr_reader :airp, :capacity
+attr_accessor :airp, :capacity
 
 def initialize(capacity = DEFAULT_CAPACTITY)
   @capactity = capacity
