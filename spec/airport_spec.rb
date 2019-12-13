@@ -10,10 +10,12 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  # it 'keeps landed planes in an array' do
-  #   p1, p2 = Plane.new, Plane.new
-  #   expect(planes_at_airport).to include(p1, p2)
-  # end
+  it 'keeps landed planes in an array' do
+    p1, p2 = Plane.new, Plane.new
+    subject.land(p1)
+    subject.land(p2)
+    expect(subject.planes_at_airport).to include(p1, p2)
+  end
 
   describe '#initialize' do
     it 'creates an instance with an empty array' do
@@ -24,7 +26,7 @@ describe Airport do
   describe '#land' do
     let(:p) {Plane.new}
     it 'returns a plane when plane is landed' do
-      expect(subject.land(p)).to eq p
+      expect(subject.land(p)).to include(p)
     end
 
   end

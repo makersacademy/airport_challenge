@@ -131,5 +131,28 @@ User Story 3
 
  3.3 Try landing another plane in airport (feature test in irb) -- resets the plane, the first one lost => need a data structure (array) to allow to keep multiple objects => create unit test to  allow to store multiple planes (need an instance variable planes_at_airport to return an array of planes => no code written to pass this test yet as need further steps -- see below)
 
- 3.4 The above also means need to instantiate this array when initializing an airport instance to allow for capacity to receive planes => create another unit test to check has an empty array
+ 3.4 The above also means need to instantiate this array when initializing an airport instance to allow for capacity to receive planes => create another unit test to check has an empty array => write code
+
+ 3.5 confirm in irb working as expected
+ 2.6.3 :001 > require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>     attr_reader :planes_at_airport
+2.6.3 :005?>   
+2.6.3 :006?>     def initialize
+2.6.3 :007?>         @planes_at_airport = []
+2.6.3 :008?>       end
+2.6.3 :009?>   
+2.6.3 :010?>   
+2.6.3 :011?>     def land(plane)
+2.6.3 :012?>         @plane = plane
+2.6.3 :013?>       end
+2.6.3 :014?>   
+2.6.3 :015?>   end
+ => :land 
+2.6.3 :016 > a = Airport.new
+ => #<Airport:0x00007fab8b8a03e8 @planes_at_airport=[]> 
+
+ 3.6 Now runnuing unit test to see if landed planes end up in array (they don't) => adjust land method (and previous "land" method test to accomodate for array)
 
