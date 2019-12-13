@@ -6,8 +6,8 @@ class Airport
     plane
   end
 
-  def take_off
-
+  def take_off(plane)
+  "In the air"
   end
 
 end
