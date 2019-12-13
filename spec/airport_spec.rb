@@ -30,8 +30,8 @@ describe Airport do
   end
 
   it 'prevent landing when airport is full' do
-    20.times { subject.airport_full Plane.new }
-  expect(subject.airport_full Plane.new).to raise_error 'Airport is full'
+    200.times { subject.land_plane Plane.new }
+  expect(subject.land_plane Plane.new).to raise_error "Airport is full"
   end
 
 end

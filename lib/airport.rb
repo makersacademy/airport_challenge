@@ -4,7 +4,9 @@ class Airport
 attr_reader :airport, :plane
 
   def initialize
-    @location = []
+    @plane = 20
+    @location = ["You are now grounded","Your plane is in the air"]
+    @airport_safety = []
   end
 
   def airport?
@@ -12,18 +14,20 @@ attr_reader :airport, :plane
   end
 
   def land_plane(plane)
-    @location.push(plane).join"You are in the air"
+    fail "Airport is full" if @airport_safety.count >= 200
+    @airport_safety.push(plane)
+    puts @location[0]
   end
 
 
   def take_off_plane(plane)
-    @plane = nil
-    puts "no longer in the airport!"
+    puts @location[1]
   end
 
   def plane
     @plane
   end
+
 end
 
 
