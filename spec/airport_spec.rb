@@ -9,8 +9,11 @@ describe Airport do
     expect(Airport.new).to respond_to(:land_plane)
   end
 
-  it 'can respond to message take_off' do
-    expect(Airport.new).to respond_to(:take_off)
+  it 'allows plane to take off in response to take_off' do
+    air = Airport.new
+    plane = Plane.new
+    air.land_plane(plane)
+    expect(air.take_off(plane)).to be_a(Plane)
   end
 
   it 'can confirm if plane is no longer in the airport' do
@@ -26,10 +29,9 @@ describe Airport do
   end
 
   it 'prevents landing when airport is full' do
-    ds = DockingStation.new(5)
-    5.times {ds.dock_plane(Plane.new)}
-    expect{ds.dock_plane(Plane.new)}.to raise_error("Hangar Full")
+    air = Airport.new(5)
+    5.times { air.land_plane(Plane.new) }
+    expect{ air.land_plane(Plane.new) }.to raise_error("Hangar Full")
   end
-
 
 end
