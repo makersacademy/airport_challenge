@@ -6,8 +6,15 @@
 require 'airport'
 
 describe Airport.new do
-  airport = Airport.new
+
   it 'creates an instance of Airport' do
+    airport = Airport.new
     expect(airport).to be_kind_of(Airport)
   end
+
+  it 'receives a plane' do
+    airport = Airport.new
+    expect(airport).to respond_to(:receive_plane)
+  end
+
 end
