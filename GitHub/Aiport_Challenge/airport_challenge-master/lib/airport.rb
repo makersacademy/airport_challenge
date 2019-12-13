@@ -25,9 +25,9 @@ end
 
 def confirm_left(plane)
   if @airp.include?(plane)
-    '#{plane} has taken off'
-  else
-    '#{plane} has not taken off'
+   'plane has not taken off'
+ else
+    'plane has taken off'
     end
   end
 end
