@@ -5,4 +5,7 @@ def receive_plane
   Plane.new
 end
 
+def release_plane
+end
+
 end

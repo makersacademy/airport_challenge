@@ -32,7 +32,14 @@ Steps
 
 Stories Completed:
 ------
+User story 1: I want to instruct a plane to land at an airport.
 
+I created two seperate specs, plane and airport and then feature tested both in irb to confirm there was no class. From here I made tests to make them exsist seperately on their own. Once those failed I made them as classes in their respective files. After having those rspec tests pass, I could make tests for the landing and receiving of the plane.
+
+User story 2:
+
+
+User story 3:
 
 Task
 -----
