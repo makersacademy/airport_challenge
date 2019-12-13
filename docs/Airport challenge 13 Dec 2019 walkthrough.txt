@@ -1,0 +1,40 @@
+Airport challenge 13 Dec 2019
+
+1. Translate user story into class structure. "I want to instruct a plane to land at an airport" => Class Plane, Class Airport (objects) + land (message => method)
+
+1a. Running dfeature test in irb:
+plane = Plane.new
+Traceback (most recent call last):
+        ...
+NameError (uninitialized constant Plane)
+2.6.3 :002 > airport = Airport.new
+Traceback (most recent call last):
+        ...
+NameError (uninitialized constant Airport)
+2.6.3 :003 > airport.land(plane)
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `land' for nil:NilClass) 
+
+1b. Replicating feature tests in rspec as unit tests
+
+1c. Wrtiting code
+
+1d. Trying to pass feature test 'land' after creating plane and airport instances
+require './lib/plane.rb'
+ => true 
+2.6.3 :009 > 
+2.6.3 :010 > class Airport
+2.6.3 :011?>   end
+ => nil 
+2.6.3 :012 > pl = Plane.new
+ => #<Plane:0x00007fbb4c97d6f0> 
+2.6.3 :013 > air = Airport.new
+ => #<Airport:0x00007fbb4c9bec90> 
+2.6.3 :014 > air.land(pl)
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `land' for #<Airport:0x00007fbb4c9bec90>)
+
+1e. Replicate in unit test for Airport; write code
+

@@ -1,3 +1,5 @@
+require 'plane.rb'
+
 describe Plane do
   it 'creates an instance of a plane' do
     pl = Plane.new
