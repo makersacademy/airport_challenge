@@ -13,7 +13,7 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-Domain model for US_1
+Domain model
 
 Objects            | Messages
 Traffic controller | instruct
@@ -83,6 +83,7 @@ Traceback (most recent call last):
         2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
         1: from (irb):4
 NameError (undefined local variable or method `airport' for main:Object)
+
 RED
 I will update an existing unit test to include this new feature
 GREEN
@@ -90,7 +91,48 @@ Write minimum amount of code to pass the test
 Refactor
 Nothing to refactor yet
 
+#### User story 2
 
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+Domain model
+
+Objects            | Messages
+Traffic controller |
+Plane              | take off
+Airport            | confirm plane is not there any more
+
+Diagram
+Plane <-- take off --> Airport
+Airport <-- confirm not longer there --> Plane
+
+Feature test
+1. First, I want to be able to instruct the plane to take off from an airport
+plane = Plane.new
+plane.take_off(airport)
+
+irb error
+2.6.3 :001 > require './lib/plane.rb'
+ => true
+2.6.3 :002 > plane = Plane.new
+ => #<Plane:0x00007fa5a6877fa0>
+2.6.3 :003 > plane.take_off(airport)
+Traceback (most recent call last):
+        4: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):3
+NameError (undefined local variable or method `airport' for main:Object)
+2.6.3 :004 >
+
+RED
+I will write a unit test to replicate the error
+GREEN
+Write minimum amount of code to pass the test
+Refactor
+Nothing to refactor yet
 
 
 
