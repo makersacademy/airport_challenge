@@ -4,7 +4,7 @@ require './lib/weather'
 describe Airport do
 
   let(:airport) { Airport.new }
-
+  let(:plane) {Plane.new}
 
   context 'Has a default capacity' do
     it 'chamnges the capcity to 20' do
@@ -24,26 +24,21 @@ describe Airport do
       end
 
       it 'but prevents landing in bad weather' do
-        airport = Airport.new
         allow(airport).to receive(:good_weather?).and_return(false)
-        plane = Plane.new
-        expect{airport.land_plane(plane)}.to raise_error "Bad Weather, cannot LAND"
+        expect {airport.land_plane(plane)}.to raise_error "Bad Weather, cannot LAND"
       end
 
       it 'removes the instance of plane from Airport' do
-        airport = Airport.new
         allow(airport).to receive(:good_weather?).and_return(true)
-        plane = Plane.new
         airport.land_plane(plane)
         airport.take_off(plane)
         expect(airport.hanger).not_to include(plane)
       end
 
       it 'rejects landing a plane if at capacity' do
-        airport = Airport.new
         allow(airport).to receive(:good_weather?).and_return(true)
-        10.times {airport.land_plane(Plane.new)}
-        expect {airport.land_plane(Plane.new)}.to raise_error "Landing rejected, over capacity"
+        10.times {airport.land_plane(plane)}
+        expect {airport.land_plane(plane)}.to raise_error "Landing rejected, over capacity"
       end
     end
   end

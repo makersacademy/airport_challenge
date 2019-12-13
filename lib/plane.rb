@@ -1,8 +1,9 @@
 class Plane
 
   attr_reader :is_flying
-
-  @is_flying = false
+  def initialize
+    @is_flying = false
+  end
 
   def landed?(hanger = true)
     hanger ? @is_flying = false : @is_flying = true

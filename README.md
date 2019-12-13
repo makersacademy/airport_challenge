@@ -143,4 +143,25 @@ Failures:
 
 To fix this and satisfy the first user story, we will implicityly allow land_plane to return true, we dont need to store the plane or do anything else with it at this stage because the user story specifically asks us to instruct the plane to land without any further requirements for the plane to be stored for later use.
 
-After instructing the airport to return true if the 
+After instructing the airport to return true if the plane has landed, we are now able to pass all of the test.
+
+For the next user story, I will will continue to use this same approch to completing the challange and as I go will refactor the code and tests to be as concise as possible.
+
+------
+
+The second user story asks that an ATC wants to ensure passengers start their journy, to do this, the ATC needs to instruct the plane to take off and confirm that it has indeed left the hanger.
+
+We will need a way to store this plane in the airport, the plane itself will need to have a flag to show if it is docked or in the air. This will also require us to refactor some of the other tests to account for the fact we now need to store planes and pop them from the array once they have left.
+
+------
+
+The third user story asks that if the airport is full, planes will be denied takeoff. For this we will add a test to only allow planes to land if there is space, or reject the landing if at capcity.
+
+The code will need to be refactored to take in to account that we are setting a defult capacity on the airport and that it fould raise an exception if the airport is full. This means we need to keep track of the planes that are docked, and compare this against the capcity and only raise the expception if the plane tries to land.
+
+
+-----
+The fourth user story requires that prevent planes from landing if there is bad weather, we will need a way to create random weather when a plane is docking, we will do this by creating a Weather class and allowing it to randomly decide the current weather. We will start to run in to random test fails at this point due to the random weather, to get around this we may need to look at creating stubs that can stand in for the weather to ensure consitent tests results.
+
+-----
+
