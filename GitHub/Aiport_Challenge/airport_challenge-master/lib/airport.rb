@@ -1,7 +1,7 @@
 class Airport
 require_relative 'plane'
 
-def receive_plane
+def receive_plane(plane)
   Plane.new
 end
 
