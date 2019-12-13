@@ -7,4 +7,6 @@ describe Airport do
   expect(my_airport).to be_instance_of Airport
   end
 
+  it { is_expected.to respond_to :land_plane }
+
 end
