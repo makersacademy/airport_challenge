@@ -11,6 +11,7 @@
 # I want to prevent landing when the airport is full
 class Airport
   def release_plane
+    Plane.new
   end
 end
 

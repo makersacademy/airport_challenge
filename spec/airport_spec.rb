@@ -15,6 +15,12 @@ describe Airport do
     airport = Airport.new
     plane = airport.release_plane
     expect(plane).to respond_to(:land)
+  end
+
+  it "sees planes on the runway" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(airport).to respond_to(:runway).with(1).argument
 
   end
 end
