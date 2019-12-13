@@ -95,3 +95,52 @@ describe Airport do
   end
 end
 ```
+
+My next task will be to get a pass on these tests with as litle code as possible to return the expected TRUE value. As it currently stans, Rspec is complaining it is unable to find the Airport class. This is not suprising at this stage as the class has not been created, albeit the class file does exist.
+
+After creating the Airport class, we are able to pass the initial test and we now get another error, an unitialised constant. It appears rubny does not yet know what a plane is, so it is reporting that
+
+```ruby
+Failures:
+
+  1) Airport returns true if plan lands
+     Failure/Error: plane = Plane.new
+
+     NameError:
+       uninitialized constant Plane
+     # ./spec/airport_spec.rb:5:in `block (2 levels) in <top (required)>'
+```
+
+To fix this error, we will need to create a new plane class and allow access to this class from within the airport class to so the airport can allow the plane to land
+
+By creating the plane class and allowing the airport class access to this we are now able to move to the next error
+
+```ruby
+Failures:
+
+  1) Airport returns true if plan lands
+     Failure/Error: expect(subject.land_plane).to be true
+
+     NoMethodError:
+       undefined method `land_plane' for #<Airport:0x00007fb35e07dac8>
+     # ./spec/airport_spec.rb:6:in `block (2 levels) in <top (required)>'
+```
+
+This is telling us that the airport does not yet know how to land a plane so is unable to return the required bool to statisfy this test, to fix this we will need to create a land plane method at the port to return true if a plane was able to land
+
+As expected, the test fails again, this is because while we have a method of landing the plane, the airport is not returning the expected value
+
+```ruby
+Failures:
+
+  1) Airport returns true if plan lands
+     Failure/Error: expect(subject.land_plane).to be true
+
+       expected true
+            got nil
+     # ./spec/airport_spec.rb:6:in `block (2 levels) in <top (required)>'
+```
+
+To fix this and satisfy the first user story, we will implicityly allow land_plane to return true, we dont need to store the plane or do anything else with it at this stage because the user story specifically asks us to instruct the plane to land without any further requirements for the plane to be stored for later use.
+
+After instructing the airport to return true if the 
