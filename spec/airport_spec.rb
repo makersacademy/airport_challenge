@@ -32,21 +32,20 @@ describe Airport do
   it "sees planes" do
     plane = Plane.new
     airport = Airport.new
-    expect(airport.landing(plane)).to eq plane
+    expect(airport.landing(plane)).to eq [plane]
   end
 
   it "returns landed planes" do
     plane = Plane.new
     airport = Airport.new
     airport.landing(plane)
-    expect(airport.plane).to eq plane
+    expect(airport.plane).to eq [plane]
   end
 
   describe '#landing' do
     it 'raises an error when the airport is full' do
       airport = Airport.new
       plane = Plane.new
-      airport.landing(Plane.new)
       10.times { airport.landing Plane.new }
       expect { airport.landing Plane.new }.to raise_error 'Airport is full!'
     end

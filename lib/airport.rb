@@ -12,21 +12,34 @@
 # I want to prevent landing when the airport is full
 class Airport
   attr_reader :plane
+  def initialize
+    @planes = []
+
+  end
 
   def takeoff
-    fail 'The plane has left the airport' unless @planes
+    fail 'The plane has left the airport' if empty?
 
-    @planes
+    @planes.pop
   end
 
   def landing(plane)
-    fail 'Airport is full!' if @planes
+    fail 'Airport is full!' if full?
 
-    @planes = plane
+    @planes << plane
   end
 
   def plane
     @planes
+  end
+
+  private
+  def full?
+    @planes.count >= 10
+  end
+
+  def empty?
+    @planes.empty?
   end
 end
 
