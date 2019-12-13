@@ -55,11 +55,24 @@ describe Airport do
     #   expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     # end
 
-    it 'allows default capacity to be overriden' do
-      airport = Airport.new(30)
-      expect(airport.capacity).to eq 30
+    # it 'allows default capacity to be overriden' do
+    #   airport = Airport.new(30)
+    #   expect(airport.capacity).to eq 30
+    # end
+
+    # it "prevents takeoff when the weather is stormy" do
+    #     airport = Airport.new
+    #     plane = Plane.new
+    #     airport.land(plane)
+    #     weather_double = double(:weather, select: "stormy")
+    #     expect { airport.takeoff(plane) }.to raise_error "Weather is stormy"
+    # end
+
+    it "prevents landing when the weather is stormy" do
+        airport = Airport.new
+        plane = Plane.new
+        weather_double = double(:weather, select: "stormy")
+        expect { airport.land(plane) }.to raise_error "Weather is stormy"
     end
-
-
 
 end
