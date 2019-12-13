@@ -1,10 +1,12 @@
 class Airport
 require_relative 'plane'
 
+DEFAULT_CAPACTITY = 4
+
 attr_reader :airp, :capacity
 
-def initialize
-  #@capactity = 4
+def initialize(capacity = DEFAULT_CAPACTITY)
+  @capactity = capacity
   @airp = []
 end
 
@@ -34,7 +36,7 @@ def confirm_left(plane)
   end
 
 def full?
-  @airp.count >= 4
+  @airp.count >= DEFAULT_CAPACTITY
 end
 
 

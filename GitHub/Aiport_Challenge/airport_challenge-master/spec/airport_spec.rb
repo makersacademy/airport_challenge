@@ -39,18 +39,20 @@ describe Airport.new do
     expect(subject.confirm_left(plane)).to eq ("plane has taken off")
   end
 
+  it 'airport capacity' do
+    airport = Airport.new
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACTITY
+  end
+
 
   describe '#land_plane' do
     it 'raises an error when airport is full'do
-      4.times { subject.land_plane Plane.new }
+      Airport::DEFAULT_CAPACTITY.times { subject.land_plane Plane.new }
       expect { subject.land_plane Plane.new }.to raise_error 'Airport full'
     end
   end
 
-  # it 'airport capacity' do
-  #   airport = Airport.new
-  #   expect(subject.capacity).to eq 4
-  # end
+
 
   # it 'raise error to prevent landing when airport is full' do
   #   airport = Airport.new
