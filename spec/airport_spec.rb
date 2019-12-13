@@ -12,4 +12,10 @@ describe Airport do
     plane.take_off(airport)
     expect(airport.plane_gone?).to be true
   end
+
+  it 'confirms plane is not gone' do
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.plane_gone?).to be false
+  end
 end
