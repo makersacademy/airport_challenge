@@ -30,8 +30,14 @@ describe Airport do
 
   it "raises error when airport is at full capacity" do
     airport = Airport.new
-    20.times {airport.land("Cathay Pacific")}
-    expect {airport.land("Cathay Pacific")}.to raise_error("Landing not possible, the airport is at full capacity.")
+    20.times { airport.land("Cathay Pacific") }
+    expect { airport.land("Cathay Pacific") }.to raise_error("Landing not possible, the airport is at full capacity.")
+  end
+
+  it "allows default capacity to be overriden" do
+    airport = Airport.new(30)
+    30.times { airport.land("Cathay Pacific") }
+    expect(airport.landed_planes.count).to eq 30
   end
 
 end
