@@ -31,4 +31,10 @@ def confirm_left(plane)
     'plane has taken off'
     end
   end
+
+def full?
+  plane.count >= @capacity
+end
+
+
 end
