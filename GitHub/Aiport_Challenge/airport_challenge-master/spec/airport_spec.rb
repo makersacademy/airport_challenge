@@ -30,6 +30,13 @@ describe Airport.new do
     expect(subject.airp).to eq []
   end
 
+  it 'confirm plane is not in airport' do
+    plane = Plane.new
+    subject.land_plane(plane)
+    subject.plane_take_off(plane)
+    expect(subject.airp).to be_empty
+  end
+
 
   # it 'counts planes on ground' do
   #   airport = Airport.new
