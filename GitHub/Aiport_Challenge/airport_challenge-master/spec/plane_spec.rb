@@ -18,4 +18,9 @@ describe Plane do
     expect(plane).to respond_to(:land_plane)
   end
 
+  # it 'is the plane flying' do
+  #   plane = Plane.new
+  #   expect(plane.).to eq ''
+  # end
+
 end
