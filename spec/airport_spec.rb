@@ -9,7 +9,7 @@ describe Airport do
   describe '#land' do
     it 'has a land plane method' do
       airport = Airport.new
-      expect(airport).to respond_to(:land)
+      expect(airport).to respond_to(:land).with(1).argument
     end
   end
 end
