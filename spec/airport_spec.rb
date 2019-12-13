@@ -27,7 +27,7 @@ describe Airport do
         expect { airport.land_plane(plane) }.to raise_error "Bad Weather, cannot LAND"
       end
 
-      it 'raises an error at capacity' do
+      it 'raises an over capacity error' do
         allow(airport).to receive(:good_weather?).and_return(true)
         10.times { airport.land_plane(plane) }
         expect { airport.land_plane(plane) }.to raise_error "Landing rejected, over capacity"
@@ -40,7 +40,7 @@ describe Airport do
       it 'responds to taking off' do
         expect(subject).to respond_to(:take_off)
       end
-      it 'removes the instance of plane from Airport' do
+      it 'removes the instance of plane from the hanger' do
         allow(airport).to receive(:good_weather?).and_return(true)
         airport.land_plane(plane)
         airport.take_off(plane)
