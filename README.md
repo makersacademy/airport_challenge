@@ -19,7 +19,13 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
-
+* Started by identifying the last line as the most important for this user story.
+* Ran a feature test so I could think what classes and methods I would need.
+* By doing this I worked out I would need plane and airport classes, along with a method to land the plane.
+* Then I created tests to identify both the classes, the land method and to test if the method lands a plane.
+* After each failing test I wrote the corresponding code to pass the tests.
+* After writing a simple method to land the plane, I refactored the code so each plane would be stored in the runway array.
+* I then ran the tests again to ensure the code passed, and did a final feature test to ensure the code was working as intended.
 Instructions
 ---------
 

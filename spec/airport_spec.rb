@@ -15,7 +15,7 @@ describe Airport do
     it 'returns a landed plane' do
       airport = Airport.new
       plane = Plane.new
-      expect(airport.land(plane)).to eq(plane)
+      expect(airport.land(plane)).to eq([plane])
     end
   end
 end
