@@ -9,9 +9,10 @@ describe Airport do
       expect(subject).to respond_to(:takeoff)
     end
 
-    it 'when a plane lands a new instance of plane is created at airport' do
-      airport =Airport.new
-      plane = Plane.new
-      expect(airport.land).to eq plane
+    it 'creates a new instance of plane when plane lands at the airport' do
+      plane = subject.land
+      expect(plane).to be_an_instance_of(Plane)
     end
+
+
 end
