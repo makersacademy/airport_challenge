@@ -6,13 +6,17 @@ describe Airport do
     expect(airport).to be_a(Airport)
   end
 
-  it 'lets out a plane' do
-    airport = Airport.new
-    expect(airport).to respond_to(:release_plane)
+  describe '#release_plane' do
+    it 'lets out a plane' do
+      plane = Plane.new
+      airport = Airport.new
+      expect(airport.release_plane).to eq plane
+    end
   end
 
   it "releases planes that land" do
     airport = Airport.new
+    plane = Plane.new
     plane = airport.release_plane
     expect(plane).to respond_to(:land)
   end
@@ -32,6 +36,7 @@ describe Airport do
   it "returns runway planes" do
     plane = Plane.new
     airport = Airport.new
+    airport.runway(plane)
     expect(airport.plane).to eq plane
   end
 end

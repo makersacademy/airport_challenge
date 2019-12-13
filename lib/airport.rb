@@ -10,17 +10,19 @@
 # To ensure safety
 # I want to prevent landing when the airport is full
 class Airport
+  attr_reader :plane
+
   def release_plane
     Plane.new
   end
 
   def runway(plane)
-    plane
+    @plane = plane
   end
 
   def plane
+    @plane
   end
-
 end
 
 class Plane
