@@ -43,7 +43,9 @@ verbs: instruct, take off, no longer(availability)
 | airport         | take off                 |
 | airport         | plane no longer available|
 
-
+To track the availability of plane, we need a space to store it and then find out whether it is available or not?
+I think, an array is a better place to store plane and track its availability. For this functionality I will create an array which is accessible to instances of a class
+and can be used within methods of a class.
 
 
 
