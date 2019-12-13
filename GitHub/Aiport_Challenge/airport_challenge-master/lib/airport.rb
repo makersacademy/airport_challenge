@@ -24,7 +24,7 @@ def remove_plane(plane)
 end
 
 def confirm_left(plane)
-  if @airp.exclude?(plane)
+  if @airp.include?(plane)
     '#{plane} has taken off'
   else
     '#{plane} has not taken off'

@@ -30,12 +30,12 @@ describe Airport.new do
     expect(subject.airp).to eq []
   end
 
-  it 'confirm plane is not in airport' do
+  it 'confirm plane is in airport' do
     airport = Airport.new
     plane = Plane.new
     subject.land_plane(plane)
     subject.plane_take_off(plane)
-    expect(subject.confirm_left(plane)).to eq '#{plane} has taken off'
+    expect(subject.confirm_left(plane)).to eq '#{plane} has not taken off'
   end
 
 
