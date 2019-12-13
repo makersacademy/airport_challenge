@@ -40,4 +40,11 @@ describe Airport do
     expect(airport.landed_planes.count).to eq 30
   end
 
+  it "prevents take off when wheather is stormy" do
+    airport = Airport.new
+    airport.land("Cathay Pacific")
+    allow(airport).to receive(:check_weather) {"stormy"}
+    expect(airport.take_off("Cathay Pacific")).to raise_error("Take off not possible due to stormy weather.")
+  end
+
 end
