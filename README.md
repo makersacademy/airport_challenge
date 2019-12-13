@@ -90,7 +90,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-README - refactoring
+README - Refactoring
 Refactored the plane.land test removing plane = airport. release_plane, after refactoring  the test to nest describe block for the "release_plane" method
 
 Refactored test as methods takeoff and landing not needed in Plane class as they are in the Airport class. These methods have been been removed from Plane class and methods "release_plane" and "runway" have been renamed in the test and code to "takeoff" and "landing"

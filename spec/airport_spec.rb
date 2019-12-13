@@ -7,7 +7,7 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it 'lets out a plane' do
+    it 'plane takes off' do
       airport = Airport.new
       plane = Plane.new
       airport.landing(plane)
@@ -23,7 +23,7 @@ describe Airport do
     end
   end
 
-  it "sees planes on the runway" do
+  it "sees planes landing" do
     plane = Plane.new
     airport = Airport.new
     expect(airport).to respond_to(:landing).with(1).argument
@@ -35,14 +35,14 @@ describe Airport do
     expect(airport.landing(plane)).to eq plane
   end
 
-  it "returns runway planes" do
+  it "returns landed planes" do
     plane = Plane.new
     airport = Airport.new
     airport.landing(plane)
     expect(airport.plane).to eq plane
   end
 
-  describe '#runway' do
+  describe '#landing' do
     it 'raises an error when the airport is full' do
       airport = Airport.new
       plane = Plane.new
