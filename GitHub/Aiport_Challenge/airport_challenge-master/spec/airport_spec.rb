@@ -48,13 +48,13 @@ describe Airport.new do
    subject {Airport.new}
    let(:plane) {Plane.new}
    it 'defaults capacity' do
-     described_class::DEFAULT_CAPACTITY.times do
+     Airport::DEFAULT_CAPACTITY.times do
        subject.land_plane(plane)
      end
      expect{ subject.land_plane(plane) }.to raise_error 'Airport Full'
    end
  end
-  # 
+  #
   # describe '#land_plane' do
   #   it 'raises an error when airport is full'do
   #     Airport::DEFAULT_CAPACTITY.times { subject.land_plane Plane.new }
