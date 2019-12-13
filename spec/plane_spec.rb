@@ -5,4 +5,8 @@ describe Plane do
     plane = Plane.new
     expect(plane).to respond_to(:land)
   end
+  it 'takes off' do
+    plane = Plane.new
+    expect(plane).to respond_to(:takeoff)
+  end
 end

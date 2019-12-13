@@ -14,8 +14,14 @@ describe Airport do
       expect(airport.release_plane).to eq plane
     end
   end
-
-
+  
+  describe '#release_plane' do
+    it 'raises error when plane is no longer in the airport' do
+      airport = Airport.new
+      plane = Plane.new
+      expect { airport.release_plane }.to raise_error 'The plane has left the airport'
+    end
+  end
 
   it "releases planes that land" do
     plane = Plane.new
