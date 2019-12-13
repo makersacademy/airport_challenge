@@ -1,0 +1,205 @@
+Airport challenge 13 Dec 2019
+
+User Story 1
+1. Translate user story into class structure. "I want to instruct a plane to land at an airport" => Class Plane, Class Airport (objects) + land (message => method)
+
+1a. Running dfeature test in irb:
+plane = Plane.new
+Traceback (most recent call last):
+        ...
+NameError (uninitialized constant Plane)
+2.6.3 :002 > airport = Airport.new
+Traceback (most recent call last):
+        ...
+NameError (uninitialized constant Airport)
+2.6.3 :003 > airport.land(plane)
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `land' for nil:NilClass) 
+
+1b. Replicating feature tests in rspec as unit tests
+
+1c. Wrtiting code
+
+1d. Trying to pass feature test 'land' after creating plane and airport instances
+require './lib/plane.rb'
+ => true 
+2.6.3 :009 > 
+2.6.3 :010 > class Airport
+2.6.3 :011?>   end
+ => nil 
+2.6.3 :012 > pl = Plane.new
+ => #<Plane:0x00007fbb4c97d6f0> 
+2.6.3 :013 > air = Airport.new
+ => #<Airport:0x00007fbb4c9bec90> 
+2.6.3 :014 > air.land(pl)
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `land' for #<Airport:0x00007fbb4c9bec90>)
+
+1e. Replicate in unit test for Airport; write code
+
+1f. Test in irb
+require './lib/plane.rb'
+ => true 
+2.6.3 :014 > 
+2.6.3 :015 > class Airport
+2.6.3 :016?>   
+2.6.3 :017?>     def land
+2.6.3 :018?>       end
+2.6.3 :019?>   end
+ => :land 
+2.6.3 :020 > 
+2.6.3 :021 > a = Airport.new
+ => #<Airport:0x00007fea43036eb8> 
+2.6.3 :022 > p = Plane.new
+ => #<Plane:0x00007fea43045738> 
+2.6.3 :023 > a.land(p)
+Traceback (most recent call last):
+        ...
+ArgumentError (wrong number of arguments (given 1, expected 0))
+
+1g. Adjust unit test and code to receive an argument
+
+1h. Test in irb that code works
+
+
+User Story 2
+2. Translate "I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport" into messages (methods) "take off" and "out" (for plane).
+
+2a. Run feature rtests in irb
+> p.take_off
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `take_off' for #<Plane:0x00007fea419a64a0>)
+2.6.3 :037 > p.out
+Traceback (most recent call last):
+        ...
+NoMethodError (undefined method `out' for #<Plane:0x00007fea419a64a0>)
+
+2c. Write unit tests
+
+2d. Write code
+
+2e. run irb to check if working
+require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>   
+2.6.3 :005?>     def land(plane)
+2.6.3 :006?>       end
+2.6.3 :007?>   
+2.6.3 :008?>     def take_off(plane)
+2.6.3 :009?>       end
+2.6.3 :010?>     
+2.6.3 :011?>   end
+ => :take_off 
+2.6.3 :012 > a = Airport.new
+ => #<Airport:0x00007f7f7b0576c8> 
+2.6.3 :013 > p = Plane.new
+ => #<Plane:0x00007f7f7b067e38> 
+2.6.3 :014 > p.take_off
+ => true 
+2.6.3 :015 > p.out?
+ => true 
+
+
+User Story 3
+3. Translate user story "I want to prevent landing when the airport is full" into modifying "land" method, to allow for capacity to accept planes and checking when the capacity is full. First need, to modify "land" method to see that the plane is at airport when landed (at the moment returns nil, need rto return plane).
+
+3a. Update unit test for airport land method to see that it returns a plane, not nil.
+
+3b. Write code and confirm in irb
+2.6.3 :001 > require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>   
+2.6.3 :005?>     def land(plane)
+2.6.3 :006?>         @plane = plane
+2.6.3 :007?>       end
+2.6.3 :008?>   
+2.6.3 :009?>   end
+ => :land 
+2.6.3 :010 > a = Airport.new
+ => #<Airport:0x00007fd80a809a78> 
+2.6.3 :011 > p = Plane.new
+ => #<Plane:0x00007fd809086770> 
+2.6.3 :012 > a.land(p)
+ => #<Plane:0x00007fd809086770> 
+
+ 3c. Try landing another plane in airport (feature test in irb) -- resets the plane, the first one lost => need a data structure (array) to allow to keep multiple objects => create unit test to  allow to store multiple planes (need an instance variable planes_at_airport to return an array of planes => no code written to pass this test yet as need further steps -- see below)
+
+ 3d. The above also means need to instantiate this array when initializing an airport instance to allow for capacity to receive planes => create another unit test to check has an empty array => write code
+
+ 3e. confirm in irb working as expected
+ 2.6.3 :001 > require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>     attr_reader :planes_at_airport
+2.6.3 :005?>   
+2.6.3 :006?>     def initialize
+2.6.3 :007?>         @planes_at_airport = []
+2.6.3 :008?>       end
+2.6.3 :009?>   
+2.6.3 :010?>   
+2.6.3 :011?>     def land(plane)
+2.6.3 :012?>         @plane = plane
+2.6.3 :013?>       end
+2.6.3 :014?>   
+2.6.3 :015?>   end
+ => :land 
+2.6.3 :016 > a = Airport.new
+ => #<Airport:0x00007fab8b8a03e8 @planes_at_airport=[]> 
+
+ 3f. Now runnuing unit test to see if landed planes end up in array (they don't) => adjust land method (and previous "land" method test to accomodate for array)
+
+ 3g. Introduce capacity and unit test for expected error message if full.
+
+ 3h. Try landing more planes than capacity in irb (no stoppign at the moment)
+ 2.6.3 :001 > require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>     attr_reader :planes_at_airport
+2.6.3 :005?>     attr_reader :capacity
+2.6.3 :006?>   
+2.6.3 :007?>     def initialize(capacity = 0)
+2.6.3 :008?>         @capacity = capacity
+2.6.3 :009?>         @planes_at_airport = []
+2.6.3 :010?>       end
+2.6.3 :011?>   
+2.6.3 :012?>   
+2.6.3 :013?>     def land(plane)
+2.6.3 :014?>         @planes_at_airport << plane
+2.6.3 :015?>       end
+2.6.3 :016?>   
+2.6.3 :017?>   end
+ => :land 
+2.6.3 :018 > a = Airport.new
+ => #<Airport:0x00007f95d5121728 @capacity=0, @planes_at_airport=[]> 
+2.6.3 :019 > p = Plane.new
+ => #<Plane:0x00007f95d484c490> 
+2.6.3 :020 > a.land(p)
+ => [#<Plane:0x00007f95d484c490>] 
+
+ 3i. Create unit test for error when trying to excede capacity => adjust code
+
+
+ Usewr Story 4
+ 4. I had to introduce default capacity during user story 3 testing to allow for all previous tests to still pass (as previously no arguments were required during initializing a new airport instance).
+
+ 4a. Introduce test for default capacity. To adjust code to create default capacity as constant and to adjust all code and tests accordingly
+
+
+User Story 5
+5. To translate "I want to prevent takeoff when weather is stormy" in to creating a new Weather class (returning "stormy" as true or false). Output in irb should be:
+p = Plane.new
+weather = Weather.new
+weather.stormy? (returning true)
+p.take_off
+error message "Too stormy for take off."
+
+ -- abandon idea of a class Weather; create as variable in Plane class instead -- 
