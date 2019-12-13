@@ -20,6 +20,6 @@ describe Airplane do
     airbus = Airplane.new
     gatwick = Airport.new
     gatwick.land_plane("1")
-    expect{airbus.land_at("gatwick")}.to raise_error
+    expect { airbus.land_at(gatwick) }.to raise_error
   end
 end
