@@ -17,7 +17,14 @@ describe Airport do
   it 'saves the landed plane' do
     airport = Airport.new
     plane = Plane.new
-    expect (airport.land(plane)).to eq plane
+    expect(airport.land(plane)).to eq plane
+  end
+
+  it 'decreases the planes that take off' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq 0
   end
 
 
