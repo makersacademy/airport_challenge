@@ -1,6 +1,13 @@
 require './lib/airport'
 
 describe Airport do
+
+  context 'Has a default capacity' do
+    it 'chamnges the capcity to 20' do
+    airport = Airport.new(100)
+    expect(airport).to_not eq Airport::DEFAULT_CAPACITY
+    end
+  end
   context 'allows plane to land' do
     it 'returns true if plane lands' do
       plane = Plane.new
@@ -22,7 +29,7 @@ describe Airport do
 
       it 'rejects landing a plane if at capacity' do
         10.times {subject.land_plane(Plane.new)}
-        expect {subject.land_plane(Plane.new)}.to raise_error "Landing reject, over capacity"
+        expect {subject.land_plane(Plane.new)}.to raise_error "Landing rejected, over capacity"
       end
     end
   end

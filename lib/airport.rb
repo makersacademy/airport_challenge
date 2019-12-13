@@ -11,6 +11,7 @@ class Airport
   end
 
   def land_plane(plane)
+    raise "Landing rejected, over capacity" if full?
     @hanger.push(plane)
     true
   end
@@ -19,4 +20,11 @@ class Airport
     @hanger.delete(plane)
     true
   end
+
+  private
+
+  def full?
+    @hanger.count >= @capacity
+  end
+
 end
