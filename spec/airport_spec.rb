@@ -18,7 +18,7 @@ describe Airport do
 
   it "prevents a plane from landing in a full airport" do
     gatwick = Airport.new
-    gatwick.land_plane("1")
+    10.times { gatwick.land_plane(Airplane.new) }
     expect { gatwick.land_plane("2") }.to raise_error
   end
 

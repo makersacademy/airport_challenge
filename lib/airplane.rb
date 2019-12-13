@@ -2,7 +2,7 @@ class Airplane
   attr_reader :location
 
   def land_at(airport)
-    raise("Airport is full") if airport.planes.count == 1
+    raise("Airport is full") if airport.planes.count == airport.capacity
     @location = airport
   end
 

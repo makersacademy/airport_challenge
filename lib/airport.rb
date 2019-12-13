@@ -1,12 +1,13 @@
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  def initialize(cap = 10)
+    @capacity = cap
     @planes = Array.new
   end
 
   def land_plane(plane_id)
-    raise("Airport at maximum capacity") if @planes.count == 1
+    raise("Airport at maximum capacity") if @planes.count == @capacity
 
     @planes.push(plane_id)
   end
