@@ -194,4 +194,11 @@ User Story 3
  4a. Introduce test for default capacity. To adjust code to create default capacity as constant and to adjust all code and tests accordingly
 
 
+User Story 5
+5. To translate "I want to prevent takeoff when weather is stormy" in to creating a new Weather class (returning "stormy" as true or false). Output in irb should be:
+p = Plane.new
+weather = Weather.new
+weather.stormy? (returning true)
+p.take_off
+error message "Too stormy for take off."
 
