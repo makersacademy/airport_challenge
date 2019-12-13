@@ -13,4 +13,7 @@ describe Airport do
     expect(Airport.new).to respond_to(:take_off)
   end
 
+  it 'can show user if plane has taken off' do
+    expect(Airport.new).to respond_to(:hangar)
+  end
 end
