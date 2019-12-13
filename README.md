@@ -164,9 +164,9 @@ The code will need to be refactored to take into account that we are setting a d
 The fourth user story requires that prevent planes from landing if there is bad weather, we will need a way to create random weather when a plane is docking, we will do this by creating a Weather class and allowing it to randomly decide the current weather. We will start to run in to random test fails at this point due to the random weather, to get around this we may need to look at creating stubs that can stand in for the weather to ensure consistent test results.
 
 -----
-#### The fith user story
+#### Random can be unpredictable at times......
 
-Random can be unpredictable at times......
+
 
 By the end of the deadline I thought I had completed the challenge but the random weather did what you would expect, create random weather which resulted in unpredictable test results.
 
