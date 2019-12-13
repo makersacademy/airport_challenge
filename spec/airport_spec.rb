@@ -20,4 +20,9 @@ describe Plane do
     string = "Plane has left the airport"
     string.should eql("Plane has left the airport")
   end
+
+  it 'raises an error when airport is full' do
+    my_plane = Plane.new
+    expect { subject.land }.to raise_error 'Do not land, the airport is full!'
+  end
 end
