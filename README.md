@@ -51,7 +51,10 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-* 
+* Wrote a feature test to identify tests I would need to run to set a default capacity, and then be able to override it.
+* Worked out I would need three test - to identify a capacity method, to check for the default capacity and to override this default.
+* After writing each failing test, I rewrote the methods so the code would pass. Then, I ran the code in Pry to ensure it was working as intended.
+* I also refactored the code to adhere to DRY principles.
 
 Instructions
 ---------

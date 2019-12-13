@@ -1,19 +1,29 @@
 class Airport
-  attr_reader :runway, :capacity
+  attr_accessor :capacity
+  attr_reader :runway
+  DEFAULT_CAPACITY = 20
 
-   def initialize
+   def initialize(capacity = DEFAULT_CAPACITY)
      @runway = []
-     @capacity = 20
+     @capacity = capacity
   end
 
   def land(plane)
-    fail 'Airport full' if @runway.count >= capacity
+    fail 'Airport full' if full?
     @runway << plane
   end
 
   def take_off
-    fail 'No planes at airport' if @runway.empty? == true
+    fail 'No planes at airport' if empty?
     @runway.pop
+  end
+
+  def full?
+    @runway.count >= capacity
+  end
+
+  def empty?
+    @runway.empty?
   end
 end
 

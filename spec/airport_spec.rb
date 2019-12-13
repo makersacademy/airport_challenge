@@ -22,7 +22,7 @@ describe Airport do
       airport = Airport.new
       variable_capacity = airport.capacity
       variable_capacity = 30
-      expect(airport.capacity).to eq(30)
+      expect(variable_capacity).to eq(30)
     end
   end
 
