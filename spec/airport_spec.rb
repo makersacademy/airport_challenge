@@ -46,7 +46,7 @@ describe Airport do
     it 'raises an error when the airport is full' do
       airport = Airport.new
       plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times do airport.landing Plane.new
+      Airport.capacity.times do airport.landing Plane.new
       end
       expect { airport.landing Plane.new }.to raise_error 'Airport is full!'
     end
@@ -55,6 +55,17 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    describe 'initialization' do
+      subject { Airport.new }
+      let(:planes) { Plane.new }
+      it 'defaults capacity' do
+        airport = Airport.new
+        Airport::DEFAULT_CAPACITY.times do
+          airport.landing(plane)
+        end
+        expect { airport.landing(plane) }.to raise_error 'Airport is full!'
+      end
     end
   end
 end
