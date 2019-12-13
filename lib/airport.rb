@@ -13,17 +13,19 @@ class Airport
     @capacity = capacity
   end
 
-  def land(airplane, weather = 'normal')
+  def land(airplane, weather = 'sunny')
     @weather = weather
-    fail 'Cannot land plane due to stormy weather' if stormy?
+    stormy?
+    fail 'Cannot land plane due to stormy weather' if weather == 'stormy'
     fail 'Airport is full' if full?
 
     airplanes << airplane
   end
 
-  def take_off(airplane, weather = 'normal')
+  def take_off(airplane, weather = 'sunny')
     @weather = weather
-    fail 'Cannot takeoff plane due to stormy weather' if stormy?
+    stormy?
+    fail 'Cannot takeoff plane due to stormy weather' if weather == 'stormy'
     return airplane if check_plane(airplane) == airplane
 
     puts "#{airplane} is no longer at airport"
@@ -32,18 +34,24 @@ class Airport
   private
 
   def check_plane(airplane)
-    airplanes.each_with_index do |check, index|
-      next unless check == airplane
 
-      airplanes.delete_at(index)
+    airplanes.each_with_index do |test, column|
+      next unless test == airplane
+
+      airplanes.delete_at(column)
     end
   end
 
   def full?
     airplanes.count >= capacity
   end
+end
 
-  def stormy?
+def stormy?
+  weather_choice = rand(1..2)
+  if weather_choice == 1
+    weather == 'sunny'
+  elsif weather_choice == 2
     weather == 'stormy'
   end
 end
