@@ -21,7 +21,7 @@ describe Airport do
   end
 
   it 'raises an error if the plane tries to land and the airport is full' do
-    capacity.times do
+    subject.capacity.times do
       subject.land_plane(Plane.new)
     end
     expect { subject.land_plane Plane.new }.to raise_error 'The airport is full'
