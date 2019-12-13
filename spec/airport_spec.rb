@@ -1,6 +1,10 @@
 require './lib/airport'
+require './lib/weather'
 
 describe Airport do
+
+  let(:airport) { Airport.new }
+
 
   context 'Has a default capacity' do
     it 'chamnges the capcity to 20' do
@@ -10,33 +14,36 @@ describe Airport do
   end
 
   context 'allows plane to land' do
-    it 'returns true if plane lands' do
-      plane = Plane.new
-      expect(subject.land_plane(plane)).to be true
+    it 'returns true' do
+      expect(subject).to respond_to(:land_plane)
     end
 
     context 'allows plane to take off' do
-      it 'returns true after takeoff' do
-        plane = Plane.new
-        expect(subject.take_off(plane)).to be true
+      it 'returns true' do
+        expect(subject).to respond_to(:land_plane)
       end
 
-      it 'prevents landing in bad weather' do
-        weather = Weather.new
+      it 'but prevents landing in bad weather' do
+        airport = Airport.new
+        allow(airport).to receive(:good_weather?).and_return(false)
         plane = Plane.new
-        expect{subject.land_plane(plane)}.to raise_error "Bad Weather, cannot take off"
+        expect{airport.land_plane(plane)}.to raise_error "Bad Weather, cannot LAND"
       end
 
       it 'removes the instance of plane from Airport' do
+        airport = Airport.new
+        allow(airport).to receive(:good_weather?).and_return(true)
         plane = Plane.new
-        subject.land_plane(plane)
-        subject.take_off(plane)
-        expect(subject.hanger).not_to include(plane)
+        airport.land_plane(plane)
+        airport.take_off(plane)
+        expect(airport.hanger).not_to include(plane)
       end
 
       it 'rejects landing a plane if at capacity' do
-        10.times {subject.land_plane(Plane.new)}
-        expect {subject.land_plane(Plane.new)}.to raise_error "Landing rejected, over capacity"
+        airport = Airport.new
+        allow(airport).to receive(:good_weather?).and_return(true)
+        10.times {airport.land_plane(Plane.new)}
+        expect {airport.land_plane(Plane.new)}.to raise_error "Landing rejected, over capacity"
       end
     end
   end
