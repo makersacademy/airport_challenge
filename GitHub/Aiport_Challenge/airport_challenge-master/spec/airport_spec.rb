@@ -20,13 +20,13 @@ describe Airport.new do
 
   it 'releases plane for take off' do
     airport = Airport.new
-    expect(airport).to respond_to(:plane_take_off)
+    expect(airport).to respond_to(:plane_take_off).with(1).argument
   end
 
-  it 'counts planes on ground' do
-    airport = Airport.new
-    expect(land_plane).to change(plane.count).by(1)
-  end
+  # it 'counts planes on ground' do
+  #   airport = Airport.new
+  #   expect(airport.land_plane).to change(airport.plane_count).by(1)
+  # end
 
   # it { is_expected.to respond_to(:plane) }
 
