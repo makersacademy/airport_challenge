@@ -17,6 +17,16 @@ describe Airport do
 
   it 'landing the plane at the airport' do
     airport = Airport.new
-  expect(airport).to respond_to :runway.with(2).arguments
+  expect(airport).to respond_to(:land_plane).with(1).argument
   end
+
+  it 'taking off the plane at the airport' do
+    airport = Airport.new
+  expect(airport).to respond_to(:take_off_plane).with(1).argument
+  end
+
+  it 'release no bikes when none available' do
+   expect { subject.take_off_plane }.to raise_error 'No Plane, as Plane has taken off!'
+  end
+
 end
