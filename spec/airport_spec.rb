@@ -30,18 +30,36 @@ describe Airport do
     #   airport.takeoff(plane)
     #   expect(airport.land).to eq plane
 
-    it 'makes sure that after a plane has landed and taken off, an error is raised to
-    say no planes available'do
-      airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      airport.takeoff(plane)
-      expect{ airport.takeoff(plane) }.to raise_error "The plane is no longer at the airport"
+    # it 'makes sure that after a plane has landed and taken off, an error is raised to
+    # say no planes available'do
+    #   airport = Airport.new
+    #   plane = Plane.new
+    #   airport.land(plane)
+    #   airport.takeoff(plane)
+    #   expect{ airport.takeoff(plane) }.to raise_error "The plane is no longer at the airport"
+    # end
+    #
+    # it 'prevents landing when the airport is full' do
+    #   airport = Airport.new
+    #   airport.land(Plane.new)
+    #   expect{ airport.land(Plane.new) }.to raise_error "Airport is full"
+    # end
+
+    # it 'sets default capacity to 10 planes' do
+    #   airport = Airport.new
+    #   expect(airport.capacity).to eq 10
+    # end
+
+    # it 'sets default capacity to DEFAULT_CAPACITY' do
+    #   airport = Airport.new
+    #   expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    # end
+
+    it 'allows default capacity to be overriden' do
+      airport = Airport.new(30)
+      expect(airport.capacity).to eq 30
     end
 
-    it 'prevents landing when the airport is full' do
-      airport = Airport.new
-      airport.land(Plane.new)
-      expect{ airport.land(Plane.new) }.to raise_error "Airport is full"
-    end
-    end
+
+
+end
