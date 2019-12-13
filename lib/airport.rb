@@ -13,6 +13,9 @@ class Airport
   def release_plane
     Plane.new
   end
+
+  def runway(planes)
+  end
 end
 
 class Plane

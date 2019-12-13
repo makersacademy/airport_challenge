@@ -21,6 +21,11 @@ describe Airport do
     plane = Plane.new
     airport = Airport.new
     expect(airport).to respond_to(:runway).with(1).argument
+  end
 
+  it "sees planes" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(airport).to respond_to(:plane)
   end
 end
