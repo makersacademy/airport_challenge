@@ -24,7 +24,7 @@ Diagram
 Plane <-- land --> an Airport
 
 Feature test
-First, I want to be able to create a plane
+1. I want to be able to create a plane
 plane = Plane.new
 
 irb error
@@ -36,11 +36,33 @@ Traceback (most recent call last):
         1: from (irb):1
 NameError (uninitialized constant Plane)
 
-
 RED
 I will write an unit test that replicates the error
 GREEN
 Write minimum amount of code to pass the test
+Refactor
+Nothing to refactor yet
+
+2. I want to be able to instruct the plane to land to a certain airport
+plane = Plane.new
+plan.land(airport)
+
+irb error
+2.6.3 :003 > require './lib/plane.rb'
+ => true
+ 2.6.3 :006 > my_plane = Plane.new
+ => #<Plane:0x00007fcfa211b718>
+2.6.3 :007 > my_plane.land
+Traceback (most recent call last):
+        4: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):7
+NoMethodError (undefined method `land' for #<Plane:0x00007fcfa211b718>)
+
+RED
+I will write an unit test that replicates the error
+
 
 
 
