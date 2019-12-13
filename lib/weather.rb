@@ -1,7 +1,11 @@
 class Weather
 
   def stormy?
-    # bad_conbditions_generator?
+    if bad_conbditions_generator > 8
+      true
+    else
+      false
+    end
   end
 
   def bad_conbditions_generator

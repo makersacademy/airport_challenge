@@ -11,10 +11,8 @@ describe Plane do
   end
 
   it 'confirms plane is out of airport' do
-    # weather = double(:weather)
-    # allow(weather).to receive(:stormy?).and_return(false)
     allow(subject).to receive(:take_off).and_return(true)
-    subject.out?
+    allow(subject).to receive(:out?).and_return(true)
     expect(subject).to be_out
   end
 

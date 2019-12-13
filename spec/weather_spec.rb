@@ -6,6 +6,6 @@ describe Weather do
   end
   it 'can check weather conditions' do
     allow(subject).to receive(:bad_conbditions_generator) {3}
-    expect(subject.stormy?).to be true
+    expect(subject.stormy?).to be false
   end
 end
