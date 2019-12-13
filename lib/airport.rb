@@ -3,6 +3,9 @@ def land_plane
 end
 
 def depart_plane
-end 
+Airplane.new
+# fail 'Airport is full' unless @airplane
+  # @airplane
+end
 
 end
