@@ -16,6 +16,8 @@ Stories completed
 
 1
 2
+completing user story 3
+
 
 Instructions
 ---------
