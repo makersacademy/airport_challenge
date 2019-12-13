@@ -15,6 +15,7 @@ Airport Challenge
 Stories completed
 
 1
+2
 
 Instructions
 ---------
