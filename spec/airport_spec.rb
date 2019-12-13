@@ -27,5 +27,11 @@ describe Airport do
     expect(airport.take_off(plane)).to eq 0
   end
 
-
+  it 'confirms plane taken off' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    airport.take_off(plane)
+    expect { airport.take_off(plane) }.to raise_error('Plane has already taken off')
+    end
 end

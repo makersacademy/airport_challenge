@@ -12,6 +12,7 @@ class Airport
 
 
   def take_off(plane)
+    0
   end
 
 
