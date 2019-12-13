@@ -11,10 +11,14 @@ describe Airport do
     expect(Airport.new).to respond_to(:land)
   end
 
-  it "should include a plane that has landed in a list of landed planes" do
+  it "includes a plane that has landed in a list of landed planes" do
     airport = Airport.new
     airport.land("Cathay Pacific")
     expect(airport.landed_planes).to include ("Cathay Pacific")
+  end
+
+  it "has a method to instruct a plane to take off" do
+    expect(Airport.new).to respond_to(:take_off)
   end
 
 end
