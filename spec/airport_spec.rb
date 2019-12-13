@@ -28,4 +28,10 @@ describe Airport do
     airport = Airport.new
     expect(airport.runway(plane)).to eq plane
   end
+
+  it "returns runway planes" do
+    plane = Plane.new
+    airport = Airport.new
+    expect(airport.plane).to eq plane
+  end
 end

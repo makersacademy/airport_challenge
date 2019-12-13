@@ -15,6 +15,7 @@ class Airport
   end
 
   def runway(plane)
+    plane
   end
 
   def plane
