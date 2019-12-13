@@ -14,19 +14,19 @@ class Airport
   attr_reader :plane
 
   def takeoff
-    fail 'The plane has left the airport' unless @plane
+    fail 'The plane has left the airport' unless @planes
 
-    @plane
+    @planes
   end
 
   def landing(plane)
-    fail 'Airport is full!' if @plane
+    fail 'Airport is full!' if @planes
 
-    @plane = plane
+    @planes = planes
   end
 
   def plane
-    @plane
+    @planes
   end
 end
 
