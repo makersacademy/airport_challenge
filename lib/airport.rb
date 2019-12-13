@@ -2,7 +2,12 @@ require_relative 'plane'
 
 class Airport
 
-  def land_plane
+  def initialize
+    @landed_planes = []
+  end
+
+  def land_plane(plane)
+    @landed_planes.push(plane)
     true
   end
 
