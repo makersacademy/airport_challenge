@@ -1,3 +1,5 @@
+require './lib/weather.rb'
+
 class Plane
 
   def take_off

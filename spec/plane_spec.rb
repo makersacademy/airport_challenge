@@ -19,6 +19,6 @@ describe Plane do
   it 'prevents planes from taking off in stormy weather' do
     weather = Weather.new
     weather.stormy? == true
-    expect { subject.take_off }.to raise_error "Too stormy to kate off."
+    expect { subject.take_off }.to raise_error "Too stormy to take off."
   end
 end
