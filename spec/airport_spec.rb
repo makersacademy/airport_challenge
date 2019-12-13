@@ -25,6 +25,9 @@ describe Airport do
       a = Airport.new(10)
       expect(a.capacity).to eq 10
     end
+    it 'has default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
   end
 
   describe '#land' do

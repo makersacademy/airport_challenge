@@ -185,4 +185,13 @@ User Story 3
 2.6.3 :020 > a.land(p)
  => [#<Plane:0x00007f95d484c490>] 
 
+ 3i. Create unit test for error when trying to excede capacity => adjust code
+
+
+ Usewr Story 4
+ 4. I had to introduce default capacity during user story 3 testing to allow for all previous tests to still pass (as previously no arguments were required during initializing a new airport instance).
+
+ 4a. Introduce test for default capacity. To adjust code to create default capacity as constant and to adjust all code and tests accordingly
+
+
 
