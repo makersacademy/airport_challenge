@@ -25,8 +25,9 @@ describe Airport do
   expect(airport).to respond_to(:take_off_plane).with(1).argument
   end
 
-  it 'release no bikes when none available' do
-   expect { subject.take_off_plane }.to raise_error 'No Plane, as Plane has taken off!'
+  it 'taking off the plane at the airport' do
+  expect(subject.take_off_plane Plane.new).to eq nil
   end
+
 
 end
