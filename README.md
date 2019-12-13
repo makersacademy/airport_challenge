@@ -46,6 +46,12 @@ I want to prevent landing when the airport is full
 * To simplify the process I started by writing a test to just throw an error when the land method was called.
 * After passing this, I then refactored the test and method to only throw an error when the set capacity has been reached.
 * Finally ran a feature test to ensure code was working as expected.
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+* 
 
 Instructions
 ---------

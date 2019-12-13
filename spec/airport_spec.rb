@@ -6,6 +6,13 @@ describe Airport do
     expect(airport).to be_a_kind_of Airport
   end
 
+  describe '#capacity' do
+    it 'sets default capacity to 20' do
+      airport = Airport.new
+      expect(airport.capacity).to eq(20)
+    end
+  end
+
   describe '#land' do
     it 'has a land plane method' do
       airport = Airport.new
