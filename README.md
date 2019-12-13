@@ -15,8 +15,31 @@ Airport Challenge
 
 
 # Stories Completed #
+Completed User Story 1 - landing a plane returns the plane.
 
+<➜  airport_challenge git:(master) ✗ irb
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fefb0099370>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fefb1057780>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => #<Plane:0x00007fefb1057780>
 
+Completed User Story 2 - plane takes off and leaves the airport.
+
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fa15193ad10 @planes_airport=[]>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fa153097710>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => [#<Plane:0x00007fa153097710>]
+2.6.3 :005 > my_airport.take_off(plane)
+ => "In the air"
+2.6.3 :006 > 
 
 Instructions
 ---------
