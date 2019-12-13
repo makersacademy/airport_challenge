@@ -23,4 +23,11 @@ describe Airport do
       subject.takeoff(plane)
       expect(subject.plane).to eq plane
     end
+
+    it 'makes sure that the plane that lands is the one that takes off' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.takeoff(plane)
+      expect(airport.land).to eq plane
+    end
 end
