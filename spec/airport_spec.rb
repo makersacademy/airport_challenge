@@ -9,4 +9,8 @@ describe Airport do
     expect(Airport.new).to respond_to(:land_plane)
   end
 
+  it 'can respond to message take_off' do
+    expect(Airport.new).to respond_to(:take_off)
+  end
+
 end
