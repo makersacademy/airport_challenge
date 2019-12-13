@@ -134,6 +134,26 @@ Write minimum amount of code to pass the test
 Refactor
 Nothing to refactor yet
 
+2. When I tested in irb my code so far, I received an error
+NameError (undefined local variable or method `airport' for main:Object)
+2.6.3 :004 > plane = Plane.new
+ => #<Plane:0x00007ffe370f8240>
+2.6.3 :005 > airport = Airport.mew
+Traceback (most recent call last):
+        4: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):5
+NameError (uninitialized constant Airport)
+
+Realised he doesn't know where to take the airport from. So I decide to create a separate spec for airport and test if it creates an airport
+
+RED
+I will write a unit test to replicate the error
+
+
+
+
 
 
 
