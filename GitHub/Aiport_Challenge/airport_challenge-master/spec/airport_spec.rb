@@ -6,6 +6,7 @@
 require 'airport'
 
 describe Airport.new do
+  airport = Airport.new
   it 'creates an instance of Airport' do
     expect(airport).to be_kind_of(Airport)
   end
