@@ -8,7 +8,7 @@ describe Airport do
 
   it 'will make Airport instance to respond to the land method' do
     airport_name = Airport.new
-    expect(airport_name). to respond_to(:land)
+    expect(airport_name).to respond_to(:land)
   end
 
   it 'will respond to the method land with  1 argument ' do
@@ -19,7 +19,12 @@ describe Airport do
   it 'will allow the method land to land a plane' do
     airport_name = Airport.new
     plane = Plane.new
-    expect(airport_name.land(plane)). to eq plane
+    expect(airport_name.land(plane)).to eq plane
+  end
+
+  it 'will make Airport instance to respond to the take off method' do
+    airport_name = Airport.new
+    expect(airport_name).to respond_to(:take_off)
   end
 
 end

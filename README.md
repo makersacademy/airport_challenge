@@ -16,9 +16,9 @@ Airport Challenge
 Stories Completed
 ------------------
 
-1st story:
+1st user story:
 
-Converting user stories into domain models
+Converting user story into domain model
 
 nouns: traffic controller or user, passengers, plane, airport
 verbs: instruct, land
@@ -31,6 +31,19 @@ verbs: instruct, land
 
 
 user <-> plane <-> airport <-> user
+
+2nd user story:
+nouns: user, passengers, plane, airport
+verbs: instruct, take off, no longer(availability)
+
+| Objects         | Messages                 |    
+| ----------------:------------------------- |
+| user            |                          |  
+| plane           | instruction to take off  |
+| airport         | take off                 |
+| airport         | plane no longer available|
+
+
 
 
 
