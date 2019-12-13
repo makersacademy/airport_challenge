@@ -8,6 +8,12 @@ describe Airport do
     end 
   end 
 
+  describe '#capacity' do
+    it 'has a capacity of 10' do
+        expect(subject.capacity).to eq 10
+    end
+  end 
+
   describe '#land' do
     it 'can land a plane at the airport' do
       plane = Plane.new
