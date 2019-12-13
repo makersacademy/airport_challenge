@@ -14,7 +14,6 @@ class Airport
 
   def land_plane(plane)
     if full?
-      
       raise "Landing rejected, over capacity"
     elsif !good_weather?
       raise "Bad Weather, cannot LAND"
@@ -26,7 +25,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Stormy times, take off denied" unless good_weather?
+    raise "Stormy times, take off denied" if !good_weather?
     plane.landed?(false)
     @hanger.delete(plane)
     true

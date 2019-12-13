@@ -6,6 +6,7 @@ describe Airport do
   let(:larger_airport) { Airport.new(200) }
   let(:plane) { Plane.new }
 
+
   it 'has a default capacity' do
     expect(airport.capacity).to eq 10
   end
@@ -46,9 +47,9 @@ describe Airport do
         expect(airport.hanger).not_to include(plane)
       end
       it 'raises an error in stormy times' do
+        airport.land_plane(plane)
         allow(airport).to receive(:good_weather?).and_return(false)
-        10.times { airport.land_plane(plane) }
-        expect { airport.land_plane(plane) }.to raise_error "Stormy times, take off denied"
+        expect { airport.take_off(plane) }.to raise_error "Stormy times, take off denied"
       end
     end
   end
