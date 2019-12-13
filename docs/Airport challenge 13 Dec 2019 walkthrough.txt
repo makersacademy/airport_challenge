@@ -1,5 +1,6 @@
 Airport challenge 13 Dec 2019
 
+User Story 1
 1. Translate user story into class structure. "I want to instruct a plane to land at an airport" => Class Plane, Class Airport (objects) + land (message => method)
 
 1a. Running dfeature test in irb:
@@ -37,4 +38,29 @@ Traceback (most recent call last):
 NoMethodError (undefined method `land' for #<Airport:0x00007fbb4c9bec90>)
 
 1e. Replicate in unit test for Airport; write code
+
+1f. Test in irb
+require './lib/plane.rb'
+ => true 
+2.6.3 :014 > 
+2.6.3 :015 > class Airport
+2.6.3 :016?>   
+2.6.3 :017?>     def land
+2.6.3 :018?>       end
+2.6.3 :019?>   end
+ => :land 
+2.6.3 :020 > 
+2.6.3 :021 > a = Airport.new
+ => #<Airport:0x00007fea43036eb8> 
+2.6.3 :022 > p = Plane.new
+ => #<Plane:0x00007fea43045738> 
+2.6.3 :023 > a.land(p)
+Traceback (most recent call last):
+        ...
+ArgumentError (wrong number of arguments (given 1, expected 0))
+
+1g. Adjust unit test and code to receive an argument
+
+User Story 2
+2.
 
