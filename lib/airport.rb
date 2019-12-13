@@ -2,6 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 class Airport
   attr_reader :hanger
+  attr_accessor :capacity
   include(Weather)
   DEFAULT_CAPACITY = 10
 
