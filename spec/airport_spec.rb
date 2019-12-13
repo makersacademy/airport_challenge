@@ -66,4 +66,11 @@ describe Airport do
       expect(airport.runway).to eq([])
     end
   end
+
+  describe '#stormy?' do
+    it 'has a stromy? method' do
+      airport = Airport.new
+      expect(airport).to respond_to(:stormy?)
+    end
+  end
 end
