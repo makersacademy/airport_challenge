@@ -9,7 +9,7 @@ class Airport
 
 
   def land(plane)
-    @plane = plane
+    @planes_at_airport << plane
   end
 
 end

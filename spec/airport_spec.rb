@@ -21,6 +21,10 @@ describe Airport do
     it 'creates an instance with an empty array' do
       expect(subject.planes_at_airport).to be_a Array
     end
+    it 'takes capacity argument at the start' do
+      a = Airport.new(10)
+      expect(a.capacity).to eq 10
+    end
   end
 
   describe '#land' do
