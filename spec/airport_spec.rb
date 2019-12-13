@@ -41,11 +41,11 @@ describe Airport do
     expect(subject.take_off(my_plane)).to eq "In the air"
   end
 
-  it 'Planes can not take off if the weather is stormy' do
-    plane = Plane.new
-    weather = "stormy"
-    expect { subject.take_off(plane) }.to raise_error 'It is too stormy to take off'
-  end
-
+#Started test driving for step 5:
+  # it 'Planes can not take off if the weather is stormy' do
+  #   plane = Plane.new
+  #   weather = "stormy"
+  #   expect { subject.take_off(plane) }.to raise_error 'It is too stormy to take off'
+  # end
 
 end
