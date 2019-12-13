@@ -28,4 +28,14 @@ describe Airport do
     gatwick.dispatch_plane
     expect(gatwick.planes).not_to include("1")
   end
+
+  it "sets capacity to 10 as default" do
+    gatwick = Airport.new
+    expect(gatwick.capacity).to eq 10
+  end
+
+  it "allows for capacity to be set" do
+    gatwick = Airport.new(15)
+    expect(gatwick.capacity).to eq 15
+  end
 end
