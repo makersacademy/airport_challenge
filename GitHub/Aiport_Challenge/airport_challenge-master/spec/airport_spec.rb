@@ -31,10 +31,11 @@ describe Airport.new do
   end
 
   it 'confirm plane is not in airport' do
+    airport = Airport.new
     plane = Plane.new
     subject.land_plane(plane)
     subject.plane_take_off(plane)
-    expect(subject.airp).to be_empty
+    expect(subject.confirm_left(plane)).to eq '#{plane} has taken off'
   end
 
 

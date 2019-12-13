@@ -23,4 +23,11 @@ def remove_plane(plane)
   @airp.pop
 end
 
+def confirm_left(plane)
+  if @airp.exclude?(plane)
+    '#{plane} has taken off'
+  else
+    '#{plane} has not taken off'
+    end
+  end
 end
