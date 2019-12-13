@@ -4,4 +4,8 @@ class Airport
 
   end
 
+  def depart
+
+  end
+
 end

@@ -14,4 +14,8 @@ describe Airport do
     my_airport = Airport.new
     expect(Airport.new).to respond_to(:depart)
   end
+
+  it 'confirms the plane is no longer at the airport' do
+    expect { subject.depart }.to raise_error 'Plane has left the airport'
+  end
 end
