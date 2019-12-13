@@ -55,6 +55,14 @@ I would like a default airport capacity that can be overridden as appropriate
 * Worked out I would need three test - to identify a capacity method, to check for the default capacity and to override this default.
 * After writing each failing test, I rewrote the methods so the code would pass. Then, I ran the code in Pry to ensure it was working as intended.
 * I also refactored the code to adhere to DRY principles.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+* Part way through this user story.
+* Wrote tests for weather and stormy methods.
+* Passes tests but code not correctly implemented.
 
 Instructions
 ---------

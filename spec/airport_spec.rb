@@ -67,8 +67,22 @@ describe Airport do
     end
   end
 
+  describe '#weather?' do
+    it 'has a weather? method' do
+      airport = Airport.new
+      expect(airport).to respond_to(:weather?)
+    end
+
+    it 'stops plane from taking off if stormy' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(subject).to be_weather
+    end
+  end
+
   describe '#stormy?' do
-    it 'has a stromy? method' do
+    it 'has a stormy? method' do
       airport = Airport.new
       expect(airport).to respond_to(:stormy?)
     end

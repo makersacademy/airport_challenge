@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 class Airport
   attr_accessor :capacity
-  attr_reader :runway
+  attr_reader :runway, :stormy
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -12,7 +12,7 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if full?
-    
+
     @runway << plane
   end
 
@@ -28,5 +28,13 @@ class Airport
 
   def empty?
     @runway.empty?
+  end
+
+  def weather?
+    @stormy = true
+  end
+
+  def stormy?
+    @stormy
   end
 end
