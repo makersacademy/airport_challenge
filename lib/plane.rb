@@ -4,20 +4,18 @@ class Plane
     @planes = []
   end
 
-attr_reader :plane, :stormy
+  attr_reader :plane
 
   def land
   end
 
   def takeoff
-  end
-
-  def stormy_weather
     fail 'planes cannot takeoff' if stormy?
+    @planes.pop
   end
 
   def stormy?
     false
-   end
-
+  end
+  
 end
