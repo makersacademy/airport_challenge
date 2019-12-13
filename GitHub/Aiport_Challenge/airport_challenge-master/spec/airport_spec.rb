@@ -17,4 +17,9 @@ describe Airport.new do
     expect(airport).to respond_to(:receive_plane)
   end
 
+  it 'releases plane for take off' do
+    airport = Airport.new
+    expect(airport).to respond_to(:release_plane)
+  end
+
 end
