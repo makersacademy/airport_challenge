@@ -1,0 +1,10 @@
+Need:
+  Airplane
+  Airport
+    accepts a plane (landing)
+    removes plane (takeoff)
+    has a maximum capacity of planes
+      can be set
+    can tell weather
+    prevents landing in stormy weather
+    prevents takeoff in stormy weather
