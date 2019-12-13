@@ -21,4 +21,15 @@ describe Airport do
     expect(air.plane_check(plane)).to eq(false)
   end
 
+  it 'allows capacity to be specified' do
+    expect(Airport).to respond_to(:new).with(1).argument
+  end
+
+  it 'prevents landing when airport is full' do
+    ds = DockingStation.new(5)
+    5.times {ds.dock_plane(Plane.new)}
+    expect{ds.dock_plane(Plane.new)}.to raise_error("Hangar Full")
+  end
+
+
 end
