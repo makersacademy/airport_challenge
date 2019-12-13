@@ -1,3 +1,3 @@
-class AirPort
+  class AirPort
 
-end
+  end
