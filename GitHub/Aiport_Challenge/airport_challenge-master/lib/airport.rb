@@ -1,17 +1,27 @@
 class Airport
 require_relative 'plane'
 
-# def initialize
-#   @land_plane += 1
-#   @plane_count = 0
-# end
+attr_reader :airp
 
-def land_plane(plane)
-plane
+def initialize
+  @airp = []
+  
 end
 
-def plane_take_off
+def land_plane(plane)
+  add_plane(plane)
+end
 
+def plane_take_off(plane)
+  remove_plane(plane)
+end
+
+def add_plane(plane)
+  @airp << plane
+end
+
+def remove_plane(plane)
+  @airp.pop
 end
 
 # def plane_count

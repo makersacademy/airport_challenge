@@ -18,10 +18,17 @@ describe Airport.new do
     expect(airport).to respond_to(:land_plane).with(1).argument
   end
 
-  it 'releases plane for take off' do
+  it 'airport releases plane for take off' do
     airport = Airport.new
     expect(airport).to respond_to(:plane_take_off).with(1).argument
   end
+
+  it 'plane takes off' do
+    subject.land_plane(plane)
+    subject.plane_take_off(plane)
+    expect(subject.airp).to eq []
+  end
+
 
   # it 'counts planes on ground' do
   #   airport = Airport.new
