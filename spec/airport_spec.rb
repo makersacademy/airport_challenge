@@ -16,4 +16,12 @@ describe Airport do
     subject.take_off(airplane)
     expect(subject.airplanes).not_to include(airplane)
   end
+
+  #TDD step 3 + 4 (But this is on ruby file)
+  describe 'land' do
+    it 'raises an error when full' do
+      subject.capacity.times { subject.land Airplane.new }
+      expect { subject.land Airplane.new }.to raise_error 'Airport is full'
+    end
+  end
 end
