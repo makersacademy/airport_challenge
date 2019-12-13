@@ -24,6 +24,11 @@ describe Airport do
       airport = Airport.new
       expect(airport).to respond_to(:take_off)
     end
+
+    it 'allows plane to take off' do
+      airport = Airport.new
+      expect(airport.take_off).to raise_error 'No plane at airport'
+    end
   end
 end
 
