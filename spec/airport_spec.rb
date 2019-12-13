@@ -7,9 +7,15 @@ describe Airport do
   end
 
   describe '#capacity' do
+    it 'has a capacity method' do
+      airport = Airport.new
+      expect(airport).to respond_to(:capacity)
+    end
+
     it 'sets default capacity to 20' do
       airport = Airport.new
-      expect(airport.capacity).to eq(20)
+      default_capacity = airport.capacity
+      expect(default_capacity).to eq(20)
     end
   end
 
