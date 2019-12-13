@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
   airplane = Airplane.new
+  weather = 'normal'
 
   #TDD Step 1
   it 'instructs plane to land at airport' do
@@ -13,14 +14,8 @@ describe Airport do
   #TDD step 2
   it 'instructs plane to take off and confirms not at airport' do
     allow(airplane).to receive(:land).and_return(true)
-    subject.take_off(airplane)
+    subject.take_off(airplane, weather)
     expect(subject.airplanes).not_to include(airplane)
-  end
-
-  #TDD step 5
-  it 'prevents takeoff of plane when weather is stormy' do
-    subject.stormy = true
-    expect{subject.take_off(airplane)}.to raise_error 'Cannot takeoff plane due to stormy weather'
   end
 
   #TDD step 3 + 4 (But this is on ruby file)
@@ -30,4 +25,12 @@ describe Airport do
       expect { subject.land Airplane.new }.to raise_error 'Airport is full'
     end
   end
+
+  #TDD step 5
+  describe 'takeoff' do
+    it 'prevents takeoff of plane when weather is stormy' do
+      expect { subject.take_off Airplane.new, 'stormy' }.to raise_error 'Cannot takeoff plane due to stormy weather'
+    end
+  end
+
 end
