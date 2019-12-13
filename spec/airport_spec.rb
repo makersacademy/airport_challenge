@@ -10,4 +10,11 @@ describe Airport do
     airport_name = Airport.new
     expect(airport_name). to respond_to(:land)
   end
+
+  it 'will allow the method land to land a plane' do
+    airport_name = Airport.new
+    plane = Plane.new
+    expect(airport_name.land). to eq plane
+  end
+
 end

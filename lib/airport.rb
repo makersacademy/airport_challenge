@@ -4,3 +4,6 @@ class Airport
   end
 
 end
+
+class Plane
+end
