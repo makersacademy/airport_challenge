@@ -16,4 +16,10 @@ describe Airport do
 
   it { is_expected.to respond_to :take_off }
 
+  it 'Confirms the plane is no longer in the airport, gives message "In the air"' do
+  my_plane = Plane.new
+  expect(subject.take_off(my_plane)).to eq "In the air"
+  end
+
+
 end
