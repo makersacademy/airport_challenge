@@ -37,6 +37,12 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 * Refactored the code after passing tests to pop planes from the runway array when calling the take off method.
 * Revisiting the user story, I realised I'd need a test to confirm the a plane was no longer at the airport after take off.
 * Confirmed code was working correctly by doing a final feature test.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+* 
 
 Instructions
 ---------
