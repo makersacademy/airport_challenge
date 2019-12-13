@@ -32,7 +32,9 @@ describe Airport do
     it 'returns a plane when plane is landed' do
       expect(subject.land(p)).to include(p)
     end
-
+    it 'raise an error trying to land in full airport' do
+      expect { subject.land(p) }.to raise_error "Airport full."
+    end
   end
 
 end

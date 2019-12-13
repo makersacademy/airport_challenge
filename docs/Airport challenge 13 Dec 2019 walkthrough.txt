@@ -158,3 +158,31 @@ User Story 3
 
  3g. Introduce capacity and unit test for expected error message if full.
 
+ 3h. Try landing more planes than capacity in irb (no stoppign at the moment)
+ 2.6.3 :001 > require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>     attr_reader :planes_at_airport
+2.6.3 :005?>     attr_reader :capacity
+2.6.3 :006?>   
+2.6.3 :007?>     def initialize(capacity = 0)
+2.6.3 :008?>         @capacity = capacity
+2.6.3 :009?>         @planes_at_airport = []
+2.6.3 :010?>       end
+2.6.3 :011?>   
+2.6.3 :012?>   
+2.6.3 :013?>     def land(plane)
+2.6.3 :014?>         @planes_at_airport << plane
+2.6.3 :015?>       end
+2.6.3 :016?>   
+2.6.3 :017?>   end
+ => :land 
+2.6.3 :018 > a = Airport.new
+ => #<Airport:0x00007f95d5121728 @capacity=0, @planes_at_airport=[]> 
+2.6.3 :019 > p = Plane.new
+ => #<Plane:0x00007f95d484c490> 
+2.6.3 :020 > a.land(p)
+ => [#<Plane:0x00007f95d484c490>] 
+
+
