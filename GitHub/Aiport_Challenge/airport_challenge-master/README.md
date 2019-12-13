@@ -13,6 +13,25 @@ Airport Challenge
 
 ```
 
+
+Stories Completed:
+------
+User story 1: I want to instruct a plane to land at an airport.
+
+I created two seperate specs, plane and airport and then feature tested both in irb to confirm there was no class. From here I made tests to make them exsist seperately on their own. Once those failed I made them as classes in their respective files. After having those rspec tests pass, I could make tests for the landing and receiving of the plane.
+
+User story 2: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+While doing this user story I realised that I needed to refactor my code as what I had would not work with the plan for taking off a plane. It also made me realise that I did not store my plane when I had done user story, just landed it. You will see a lot of different commits that show different tests being tried and then me not knowing how to commit them to code. I looked at testing the adding and deleting with number of arguments. I think I also got a bit sloppy in my typing as found was making errors for typing things wrong.
+
+
+
+User story 3:
+
+
+
+
+
 Instructions
 ---------
 
@@ -36,7 +55,7 @@ User story 1: I want to instruct a plane to land at an airport.
 
 I created two seperate specs, plane and airport and then feature tested both in irb to confirm there was no class. From here I made tests to make them exsist seperately on their own. Once those failed I made them as classes in their respective files. After having those rspec tests pass, I could make tests for the landing and receiving of the plane.
 
-User story 2:
+User story 2: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 
 User story 3:

@@ -38,6 +38,13 @@ describe Airport.new do
     expect(subject.confirm_left(plane)).to eq 'plane has taken off'
   end
 
+  it 'airport capacity' do
+    airport = Airport.new
+    expect(capacity).to eq (4)
+
+
+  end
+
 
   # it 'counts planes on ground' do
   #   airport = Airport.new
