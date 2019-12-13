@@ -1,15 +1,16 @@
 class Airport
 require_relative 'plane'
 
-def receive_plane(plane)
-  Plane.new
+def land_plane(plane)
+plane
 end
 
-def release_plane
+def plane_take_off
 
 end
 
-def plane
-end 
+# def plane
+#   Plane.new
+# end
 
 end

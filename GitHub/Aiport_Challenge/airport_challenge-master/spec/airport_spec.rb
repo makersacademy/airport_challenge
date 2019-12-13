@@ -14,14 +14,14 @@ describe Airport.new do
 
   it 'receives a plane' do
     airport = Airport.new
-    expect(airport).to respond_to(:receive_plane).with(1).argument
+    expect(airport).to respond_to(:land_plane).with(1).argument
   end
 
   it 'releases plane for take off' do
     airport = Airport.new
-    expect(airport).to respond_to(:release_plane)
+    expect(airport).to respond_to(:plane_take_off)
   end
 
-  it { is_expected.to respond_to(:plane) }
+  # it { is_expected.to respond_to(:plane) }
 
 end
