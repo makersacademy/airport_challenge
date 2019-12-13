@@ -6,4 +6,7 @@ describe AirPort do
     air_port = AirPort.new
     expect(air_port).to be_instance_of AirPort
    end
+
+def
+
 end
