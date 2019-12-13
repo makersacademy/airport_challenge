@@ -7,6 +7,6 @@ attr_reader :landed_planes
   end
 
   def land(plane)
-
+    @landed_planes.push(plane)
   end
 end
