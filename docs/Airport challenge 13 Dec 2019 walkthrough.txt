@@ -129,5 +129,7 @@ User Story 3
 2.6.3 :012 > a.land(p)
  => #<Plane:0x00007fd809086770> 
 
- 3.3 Try landing another plane in airport (feature test in irb) -- resets the plane, the first one lost => need a data structure (array) to allow to keep multiple objects => create unit test to  allow to store multiple planes (need an instance variable planes_at_airport to return an array of planes)
+ 3.3 Try landing another plane in airport (feature test in irb) -- resets the plane, the first one lost => need a data structure (array) to allow to keep multiple objects => create unit test to  allow to store multiple planes (need an instance variable planes_at_airport to return an array of planes => no code written to pass this test yet as need further steps -- see below)
+
+ 3.4 The above also means need to instantiate this array when initializing an airport instance to allow for capacity to receive planes => create another unit test to check has an empty array
 
