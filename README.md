@@ -68,6 +68,9 @@ Traceback (most recent call last):
         1: from /Users/christymasterson/Documents/GitHub/airport_challenge/lib/airport.rb:13:in `land_plane'
 RuntimeError (The airport is full)
 
+Working on User story 5
+
+
 Instructions
 ---------
 
