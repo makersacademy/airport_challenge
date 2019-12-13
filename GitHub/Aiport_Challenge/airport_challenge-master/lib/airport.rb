@@ -6,7 +6,7 @@ DEFAULT_CAPACTITY = 4
 attr_accessor :airp, :capacity
 
 def initialize(capacity = DEFAULT_CAPACTITY)
-  @capactity = capacity
+  @capacity = capacity
   @airp = []
 end
 
@@ -36,7 +36,7 @@ def confirm_left(plane)
   end
 
 def full?
-  @airp.count >= DEFAULT_CAPACTITY
+  airp.count >= capacity
 end
 
 

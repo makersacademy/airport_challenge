@@ -51,7 +51,7 @@ describe Airport.new do
      Airport::DEFAULT_CAPACTITY.times do
        subject.land_plane(plane)
      end
-     expect{ subject.land_plane(plane) }.to raise_error 'Airport Full'
+     expect{ subject.land_plane(plane) }.to raise_error 'Airport full'
    end
  end
   #
