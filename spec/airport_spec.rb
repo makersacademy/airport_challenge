@@ -17,6 +17,13 @@ describe Airport do
       default_capacity = airport.capacity
       expect(default_capacity).to eq(20)
     end
+
+    it 'has a variable capacity' do
+      airport = Airport.new
+      variable_capacity = airport.capacity
+      variable_capacity = 30
+      expect(airport.capacity).to eq(30)
+    end
   end
 
   describe '#land' do
