@@ -5,4 +5,13 @@ describe Plane do
     pl = Plane.new
     expect(pl).to be_a Plane
   end
+
+  it 'responds to take off method for plane' do
+    expect(subject).to respond_to(:take_off)
+  end
+
+  # it 'confirms plane it out of airport' do
+  #   subject.out
+  #   expect(subject).to be_out
+  # end
 end
