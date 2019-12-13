@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    # fail 'Airport full'
     @runway << plane
   end
 
