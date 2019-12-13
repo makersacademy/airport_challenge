@@ -12,6 +12,57 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Stories Completed
+---------
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+```
+* Started by identifying the last line as the most important for this user story.
+* Ran a feature test so I could think what classes and methods I would need.
+* By doing this I worked out I would need plane and airport classes, along with a method to land the plane.
+* Then I created tests to identify both the classes, the land method and to test if the method lands a plane.
+* After each failing test I wrote the corresponding code to pass the tests.
+* After writing a simple method to land the plane, I refactored the code so each plane would be stored in the runway array.
+* I then ran the tests again to ensure the code passed, and did a final feature test to ensure the code was working as intended.
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+* Same process as with the first user story - identified the last line as most important.
+* Do a feature test helped me work out would need a take off method
+* To ensure the take off method would work, I wrote a test to raise an error if there were no planes available for take off.
+* Refactored the code after passing tests to pop planes from the runway array when calling the take off method.
+* Revisiting the user story, I realised I'd need a test to confirm the a plane was no longer at the airport after take off.
+* Confirmed code was working correctly by doing a final feature test.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+* Ran a feature test to identify what tests and methods I would need to write.
+* To simplify the process I started by writing a test to just throw an error when the land method was called.
+* After passing this, I then refactored the test and method to only throw an error when the set capacity has been reached.
+* Finally ran a feature test to ensure code was working as expected.
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+* Wrote a feature test to identify tests I would need to run to set a default capacity, and then be able to override it.
+* Worked out I would need three test - to identify a capacity method, to check for the default capacity and to override this default.
+* After writing each failing test, I rewrote the methods so the code would pass. Then, I ran the code in Pry to ensure it was working as intended.
+* I also refactored the code to adhere to DRY principles.
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+* Part way through this user story.
+* Wrote tests for weather and stormy methods.
+* Passes tests but code not correctly implemented.
 
 Instructions
 ---------
@@ -36,29 +87,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -73,7 +124,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
