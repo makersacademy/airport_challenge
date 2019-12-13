@@ -4,5 +4,8 @@ class Plane
     @take_off = true
   end
 
-  
+  def out?
+    @take_off
+  end
+
 end

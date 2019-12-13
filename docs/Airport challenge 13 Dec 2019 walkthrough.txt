@@ -81,3 +81,32 @@ NoMethodError (undefined method `out' for #<Plane:0x00007fea419a64a0>)
 
 2d. Write code
 
+2e. run irb to check if working
+require './lib/plane.rb'
+ => true 
+2.6.3 :002 > 
+2.6.3 :003 > class Airport
+2.6.3 :004?>   
+2.6.3 :005?>     def land(plane)
+2.6.3 :006?>       end
+2.6.3 :007?>   
+2.6.3 :008?>     def take_off(plane)
+2.6.3 :009?>       end
+2.6.3 :010?>     
+2.6.3 :011?>   end
+ => :take_off 
+2.6.3 :012 > a = Airport.new
+ => #<Airport:0x00007f7f7b0576c8> 
+2.6.3 :013 > p = Plane.new
+ => #<Plane:0x00007f7f7b067e38> 
+2.6.3 :014 > p.take_off
+ => true 
+2.6.3 :015 > p.out?
+ => true 
+
+
+User Story 3
+3. Translate user story "I want to prevent landing when the airport is full" into modifying "land" method, to allow for capacity to accept planes and checking when the capacity is full. First need, to modify "land" method to see that the plane is at airport when landed (at the moment returns nil, need rto return plane).
+
+3.1 Update unit test for airport land method to see that it returns a plane, not nil.
+

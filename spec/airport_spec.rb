@@ -10,4 +10,11 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
+  describe '#land' do
+    let(:p) {Plane.new}
+    it 'returns a plane when plane is landed' do
+      expect(subject.land(p)).to eq p
+    end
+  end
+
 end
