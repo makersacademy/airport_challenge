@@ -25,9 +25,17 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
 
-    it 'allows plane to take off' do
+    it 'raises error if no planes available to take off' do
       airport = Airport.new
-      expect(airport.take_off).to raise_error 'No plane at airport'
+      expect { airport.take_off }.to raise_error 'No planes at airport'
+    end
+
+    it 'confirms plane takes off from airport' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      airport.take_off
+      expect(airport.runway).to eq([])
     end
   end
 end
