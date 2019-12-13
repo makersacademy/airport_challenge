@@ -13,7 +13,7 @@ class Airport
   attr_reader :plane
 
   def release_plane
-    Plane.new
+    @plane
   end
 
   def runway(plane)
