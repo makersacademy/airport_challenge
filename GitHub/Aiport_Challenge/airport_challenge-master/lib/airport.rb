@@ -5,7 +5,6 @@ attr_reader :airp
 
 def initialize
   @airp = []
-  
 end
 
 def land_plane(plane)
@@ -23,13 +22,5 @@ end
 def remove_plane(plane)
   @airp.pop
 end
-
-# def plane_count
-#   @plane_count
-# end
-
-# def plane
-#   Plane.new
-# end
 
 end

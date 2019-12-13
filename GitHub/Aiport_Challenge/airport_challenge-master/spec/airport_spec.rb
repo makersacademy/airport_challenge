@@ -24,6 +24,7 @@ describe Airport.new do
   end
 
   it 'plane takes off' do
+    plane = Plane.new
     subject.land_plane(plane)
     subject.plane_take_off(plane)
     expect(subject.airp).to eq []
