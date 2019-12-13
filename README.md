@@ -31,7 +31,12 @@ As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
-* 
+* Same process as with the first user story - identified the last line as most important.
+* Do a feature test helped me work out would need a take off method
+* To ensure the take off method would work, I wrote a test to raise an error if there were no planes available for take off.
+* Refactored the code after passing tests to pop planes from the runway array when calling the take off method.
+* Revisiting the user story, I realised I'd need a test to confirm the a plane was no longer at the airport after take off.
+* Confirmed code was working correctly by doing a final feature test.
 
 Instructions
 ---------
