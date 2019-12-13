@@ -22,4 +22,6 @@ describe Airport.new do
     expect(airport).to respond_to(:release_plane)
   end
 
+  it { is_expected.to respond_to(:plane) }
+
 end

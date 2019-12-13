@@ -6,7 +6,7 @@ def receive_plane(plane)
 end
 
 def release_plane
-  plane
+  
 end
 
 end
