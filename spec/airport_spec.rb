@@ -26,6 +26,6 @@ describe Airport do
   it "sees planes" do
     plane = Plane.new
     airport = Airport.new
-    expect(airport).to respond_to(:plane)
+    expect(airport.runway(plane)).to eq plane
   end
 end

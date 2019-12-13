@@ -14,8 +14,12 @@ class Airport
     Plane.new
   end
 
-  def runway(planes)
+  def runway(plane)
   end
+
+  def plane
+  end
+
 end
 
 class Plane
