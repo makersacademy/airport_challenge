@@ -8,6 +8,7 @@ describe Airport do
     expect(airport).to_not eq Airport::DEFAULT_CAPACITY
     end
   end
+
   context 'allows plane to land' do
     it 'returns true if plane lands' do
       plane = Plane.new
@@ -18,6 +19,12 @@ describe Airport do
       it 'returns true after takeoff' do
         plane = Plane.new
         expect(subject.take_off(plane)).to be true
+      end
+
+      it 'prevents landing in bad weather' do
+        weather = Weather.new
+        plane = Plane.new
+        expect{subject.land_plane(plane)}.to raise_error "Bad Weather, cannot take off"
       end
 
       it 'removes the instance of plane from Airport' do
