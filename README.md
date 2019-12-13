@@ -51,7 +51,14 @@ Process: Developed a test which creates an airport object with a capacity of 30 
 maximum capacity is 20). After this I needed to refactor the code as a few of the tests now broke
 as the initialize method wasn't able to receive an argument.
 
-
+Currently working on 5)
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+Process: adding a new test which checks the weather, and using a mock to make it return 'stormy'
+for the purposes of running this test. Then expecting an error when trying to take off. This broke
+some of the earlier tests so needed to fix those by adding stubs/mocks. I was able to fix them but
+cannot figure out why this test does not pass and now I am running out of time!
 
 Instructions
 ---------
