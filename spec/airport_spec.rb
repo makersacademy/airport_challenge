@@ -32,8 +32,10 @@ describe Airport do
     it 'returns a plane when plane is landed' do
       expect(subject.land(p)).to include(p)
     end
-    it 'raise an error trying to land in full airport' do
-      expect { subject.land(p) }.to raise_error "Airport full."
+    it 'raises an error trying to land in full airport' do
+      a = Airport.new
+      a.capacity.times { a.land(Plane.new) }
+      expect { a.land(p) }.to raise_error "Airport full."
     end
   end
 
