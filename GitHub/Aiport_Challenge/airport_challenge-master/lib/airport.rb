@@ -9,7 +9,7 @@ def initialize
 end
 
 def land_plane(plane)
-  fail 'Airport full' if @airp.count >= 4
+  fail 'Airport full' if full?
   add_plane(plane)
 end
 
@@ -33,9 +33,9 @@ def confirm_left(plane)
     end
   end
 
-# def full?
-#   plane.count >= @capacity
-# end
+def full?
+  @airp.count >= 4
+end
 
 
 end
