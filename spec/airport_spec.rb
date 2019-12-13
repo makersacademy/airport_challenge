@@ -34,8 +34,14 @@ describe Airport do
     say no planes available'do
       airport = Airport.new
       plane = Plane.new
+      airport.land(plane)
       airport.takeoff(plane)
-      airport.land
       expect{ airport.takeoff(plane) }.to raise_error "The plane is no longer at the airport"
+    end
+
+    it 'prevents landing when the airport is full' do
+      airport = Airport.new
+      airport.land(Plane.new)
+      expect{ airport.land(Plane.new) }.to raise_error "Airport is full"
     end
     end
