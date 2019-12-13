@@ -36,7 +36,6 @@ class Airport
       next unless check == airplane
 
       airplanes.delete_at(index)
-      return airplane
     end
   end
 
