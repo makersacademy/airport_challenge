@@ -1,6 +1,6 @@
 class Airport
 
-attr_reader :landed_planes
+  attr_reader :landed_planes
 
   def initialize
     @landed_planes = []
@@ -8,5 +8,9 @@ attr_reader :landed_planes
 
   def land(plane)
     @landed_planes.push(plane)
+  end
+
+  def take_off(plane)
+    @landed_planes.delete(plane)
   end
 end
