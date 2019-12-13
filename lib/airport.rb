@@ -3,4 +3,8 @@ class Airport
     plane
   end 
 
+  def take_off(plane)
+    "Plane is airborne"
+  end 
+
 end 
