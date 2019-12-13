@@ -1,5 +1,7 @@
 Need:
   Airplane
+    can takeoff
+    can land
   Airport
     accepts a plane (landing)
     removes plane (takeoff)

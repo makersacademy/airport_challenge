@@ -1,4 +1,5 @@
 require "airport"
+require "airplane"
 
 describe Airport do
   it "allows for an airport to be made" do
@@ -13,5 +14,11 @@ describe Airport do
   it "allows for a plane to takeoff" do
     gatwick = Airport.new
     expect(gatwick).to respond_to(:dispatch_plane)
+  end
+
+  it "prevents a plane from landing in a full airport" do
+    gatwick = Airport.new
+    gatwick.land_plane("1")
+    expect{gatwick.land_plane("2")}.to raise_error
   end
 end
