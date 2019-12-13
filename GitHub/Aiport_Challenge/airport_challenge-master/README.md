@@ -58,7 +58,10 @@ I created two seperate specs, plane and airport and then feature tested both in 
 User story 2: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 
-User story 3:
+User story 3: want to prevent landing when the airport is full
+
+Tried a few different techniques, including using capacity but then went for raise error if 4.times. Closer to what we used for Boris Bikes
+
 
 Task
 -----

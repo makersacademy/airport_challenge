@@ -38,10 +38,10 @@ describe Airport.new do
     expect(subject.confirm_left(plane)).to eq ("plane has taken off")
   end
 
-  it 'airport capacity' do
-    airport = Airport.new
-    expect(subject.capacity).to eq 4
-  end
+  # it 'airport capacity' do
+  #   airport = Airport.new
+  #   expect(subject.capacity).to eq 4
+  # end
 
   describe '#land_plane' do
     it 'raises an error when airport is full'do

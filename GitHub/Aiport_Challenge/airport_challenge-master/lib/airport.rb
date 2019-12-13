@@ -4,11 +4,12 @@ require_relative 'plane'
 attr_reader :airp, :capacity
 
 def initialize
-  @capacity = 4
+  #@capactity = 4
   @airp = []
 end
 
 def land_plane(plane)
+  fail 'Airport full' if @airp.count >= 4
   add_plane(plane)
 end
 
@@ -32,9 +33,9 @@ def confirm_left(plane)
     end
   end
 
-def full?
-  plane.count >= @capacity
-end
+# def full?
+#   plane.count >= @capacity
+# end
 
 
 end
