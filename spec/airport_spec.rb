@@ -17,6 +17,12 @@ describe Airport do
     expect(subject.airplanes).not_to include(airplane)
   end
 
+  #TDD step 5
+  it 'prevents takeoff of plane when weather is stormy' do
+    subject.stormy = true
+    expect{subject.take_off(airplane)}.to raise_error 'Cannot takeoff plane due to stormy weather'
+  end
+
   #TDD step 3 + 4 (But this is on ruby file)
   describe 'land' do
     it 'raises an error when full' do
