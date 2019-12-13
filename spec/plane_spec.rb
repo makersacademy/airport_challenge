@@ -7,6 +7,6 @@ describe Plane do
   end
 
   it 'can land a plane' do
-    expect(Plane.new).to respond_to(:land)
+    expect(Plane.new).to respond_to(:land).with(1).argument
   end
 end

@@ -45,7 +45,7 @@ Nothing to refactor yet
 
 2. I want to be able to instruct the plane to land to a certain airport
 plane = Plane.new
-plan.land(airport)
+plan.land
 
 irb error
 2.6.3 :003 > require './lib/plane.rb'
@@ -62,8 +62,33 @@ NoMethodError (undefined method `land' for #<Plane:0x00007fcfa211b718>)
 
 RED
 I will write an unit test that replicates the error
+GREEN
+Write minimum amount of code to pass the test
+Refactor
+Nothing to refactor yet
 
+3. I want plane to land to a given airport
+plane = Plane.new
+plane.land(airport)
 
+irb error
+2.6.3 :002 > require './lib/plane.rb'
+ => true
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fa4de8299e0>
+2.6.3 :004 > plane.land(airport)
+Traceback (most recent call last):
+        4: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/carmen-alinacraciun/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):4
+NameError (undefined local variable or method `airport' for main:Object)
+RED
+I will update an existing unit test to include this new feature
+GREEN
+Write minimum amount of code to pass the test
+Refactor
+Nothing to refactor yet
 
 
 
