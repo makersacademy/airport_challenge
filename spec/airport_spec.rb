@@ -1,11 +1,18 @@
 require 'airport'
 
 describe Airport do
+
+  describe '#initialize' do
+    it 'initializes with an empty array' do
+        expect(subject.hangar).to eq []
+    end 
+  end 
+
   describe '#land' do
     it 'can land a plane at the airport' do
       plane = Plane.new
       expect(subject.land(plane)).to eq plane
-    end 
+    end
   end 
 
   describe '#take_off' do
