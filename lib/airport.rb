@@ -4,7 +4,9 @@ class Airport
 
   attr_accessor :dock, :capacity
 
-  def initialize(capacity)
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @dock = []
   end
