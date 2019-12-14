@@ -23,3 +23,8 @@
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
+
+# Edge cases
+
+# A plane that has taken off cannot take off again
+# A plan that has landed cannot land again
