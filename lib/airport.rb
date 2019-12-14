@@ -2,13 +2,14 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_accessor :capacity
+  attr_accessor :capacity, :storm
   attr_reader :apron
   DEFAULT_CAPACITY = 2
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @apron = []
+    @storm = Weather.new.stormy?
   end
 
   def land(plane)
@@ -18,6 +19,7 @@ class Airport
 
   def takeoff(plane)
     raise 'This plane is not in the apron!' unless landed?(plane)
+    raise 'The storm prevent the takeoff!' if @storm
     @apron.delete(plane)
   end
 

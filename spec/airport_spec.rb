@@ -3,6 +3,11 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane) }
   let(:plane_second) { double(:plane) }
+  let(:weather) { double(:weather, :stormy? => true) }
+
+  before(:each) do
+    subject.storm = false
+  end
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -47,6 +52,12 @@ describe Airport do
 
     it 'Raise an error if the desired plane is not in the apron' do
       expect { subject.takeoff(plane) }.to raise_error('This plane is not in the apron!')
+    end
+
+    it 'In stormy weather should raise an error' do
+      subject.land(plane)
+      subject.storm = true
+      expect { subject.takeoff(plane) }.to raise_error('The storm prevent the takeoff!')
     end
   end
 end
