@@ -2,8 +2,8 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-    attr_reader :hangar
-    attr_accessor :capacity
+  attr_reader :hangar
+  attr_accessor :capacity
 
   CAPACITY = 10 
   DEFAULT_CAPACITY = 20 
@@ -16,11 +16,15 @@ class Airport
   def land(plane)
     fail "Unable to land as the airport is at full capacity" if airport_full?
     fail "Unable to land due to stormy weather conditions" if stormy?
+    fail "Plane has already landed" if plane.grounded == true
+
     @hangar.push(plane)
   end 
 
   def take_off(plane)
     fail "Plane is unable to take off due to stormy weather conditions" if stormy?
+    fail "Plane has already taken off!" if plane.airborne == true
+    
     @hangar.delete(plane)
     "Plane is airborne"
   end 
@@ -34,6 +38,4 @@ class Airport
   def stormy?
     return true if @stormy == true # from weather class
   end 
-
-
 end 
