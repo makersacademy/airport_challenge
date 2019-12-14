@@ -6,7 +6,7 @@ attr_reader :planes
   end
 
   def land(plane)
-    @planes << plane
+    @planes.empty? ? @planes << plane : raise('Airport is full!')
   end
 
   def take_off(plane)
