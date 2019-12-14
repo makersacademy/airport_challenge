@@ -2,14 +2,18 @@ require_relative 'plane'
 
 class Airport
 
-attr_accessor :landing_area
+attr_accessor :dock
 
   def initialize
-    @landing_area = []
+    @dock = []
   end
 
   def land(plane)
-    @landing_area << plane
+    @dock << plane
   end
 
+  def take_off(plane)
+    @dock.delete(plane)
+  end
+  
 end
