@@ -3,6 +3,7 @@ require_relative "plane.rb"
 class Airport
 
   def initiailze
+    @hanger = []
   end
 
   def land_plane(plane)
