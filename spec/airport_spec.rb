@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:plane) }
-  let(:plane_second) { double(:plane) }
+  let(:plane) { double(:plane, :landed? => false, :landing => true) }
+  let(:plane_second) { double(:plane, :landed? => false, :landing => true) }
   let(:weather) { double(:weather, :stormy? => true) }
 
   before(:each) do
@@ -38,6 +38,11 @@ describe Airport do
     it 'In stormy weather raise an error' do
       subject.storm = true
       expect { subject.land(plane) }.to raise_error('The storm prevent the landing!')
+    end
+
+    it "A landed plane can't land again" do
+      allow(plane).to receive(:landed?) { true }
+      expect { subject.land(plane) }.to raise_error('This plane is currently landed!')
     end
   end
 
