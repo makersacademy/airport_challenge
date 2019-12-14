@@ -1,6 +1,6 @@
 # Reflection
 
-# i have addressed the six user stories and two edge cases
+# I have addressed the six user stories and two edge cases
 # I have used mocking to account for stormy and sunny weather
 # SRP has been adhered to by extracting code from the land and 
 # take_off methods into private methods.
