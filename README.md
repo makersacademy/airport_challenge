@@ -1,3 +1,29 @@
+
+Airport Challenge:
+
+1) 'Airport' to create 'airports'
+2) 'Plane' to create 'planes'
+3) A 'plane' to 'land' at an 'airport' + add to 'airport'
+4) A 'plane' to 'take_off' + remove from 'airport'
+5) Give 'airports' "DEFAULT_CAPACITY", overwritten                (attr_accessor)
+6) Prevent 'plane' 'land' if 'airports' 'full?'
+7) Create 'weather' to set sunny/stormy (random number generator)
+8) Prevent 'plane' 'land' if 'weather' "stormy"
+9) Prevent 'plane' 'land' if 'weather' "stormy"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Airport Challenge
 =================
 
