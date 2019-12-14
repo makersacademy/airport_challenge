@@ -11,12 +11,19 @@ class Airport
   end 
 
   def land(plane)
-    fail "Unable to land as the airport is at full capacity" if @hangar.length >= CAPACITY # need to refactor to private method to adhere to SRP 
+    fail "Unable to land as the airport is at full capacity" if airport_full?
     @hangar.push(plane)
   end 
 
   def take_off(plane)
     "Plane is airborne"
   end 
+
+  private
+
+  def airport_full?
+    hangar.length >= CAPACITY 
+  end 
+
 
 end 
