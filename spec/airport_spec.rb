@@ -47,6 +47,7 @@ describe Airport do
         expect(airport.hanger).not_to include(plane)
       end
       it 'raises an error in stormy times' do
+        allow(airport).to receive(:good_weather?).and_return(true)
         airport.land_plane(plane)
         allow(airport).to receive(:good_weather?).and_return(false)
         expect { airport.take_off(plane) }.to raise_error "Stormy times, take off denied"
