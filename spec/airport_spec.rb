@@ -12,6 +12,11 @@ describe Airport do
     it 'has a capacity of 10' do
         expect(subject.capacity).to eq 10
     end
+
+    it 'has a default capacity that can be overwritten as appropriate' do
+        airport = Airport.new(Airport::DEFAULT_CAPACITY)
+        expect(airport.capacity).to eq 20
+    end 
   end 
 
   describe '#land' do
