@@ -2,8 +2,18 @@ require "Airport.rb"
 
 describe Airport do
 
-  it{ is expected.to respond_to(land_plane).with(1).argument }
+
+
+  it{ is_expected.to respond_to(:land_plane).with(1).argument }
 end
+
+
+  # it { is_expected.to respond_to :dock }
+  # it { is_expected.to respond_to(:dock).with(1).argument } 
+
+
+
+
 
 #   it 'lands plane interacts' do
 #     plane = Plane.new
