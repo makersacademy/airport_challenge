@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-attr_accessor :dock, :capacity
+  attr_accessor :dock, :capacity
 
   def initialize(capacity)
     @capacity = capacity
@@ -11,6 +11,7 @@ attr_accessor :dock, :capacity
 
   def land(plane)
     raise "Airport dock is full" if full?
+
     @dock << plane
   end
 
@@ -19,7 +20,8 @@ attr_accessor :dock, :capacity
   end
   
   def confirm_take_off(plane)
-    !@dock.include?(plane) ? (puts "Successful takeoff of plane: #{plane}") : (puts "#{plane} still in dock")
+    !@dock.include?(plane) ? "Successful takeoff of plane: #{plane}" :
+     "#{plane} still in dock"
   end
 
   private
@@ -27,6 +29,5 @@ attr_accessor :dock, :capacity
   def full? 
     @dock.length >= @capacity
   end
-
 
 end
