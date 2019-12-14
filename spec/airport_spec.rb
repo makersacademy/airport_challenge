@@ -1,4 +1,6 @@
 require 'airport'
+require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -37,6 +39,12 @@ describe Airport do
         plane = Plane.new
         expect(subject.take_off(plane)).to eq "Plane is airborne"
     end
+
+    it 'prevents a plane from taking off if the weather is stormy' do
+        allow(subject).to receive(:stormy?).and_return true # setting weather to stormy
+        plane = Plane.new
+        expect { subject.take_off(plane) }.to raise_error "Plane is unable to take off due to stormy weather conditions"
+    end 
   end 
 
 
