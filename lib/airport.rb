@@ -16,6 +16,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise 'This plane is not in the apron!' unless landed?(plane)
     @apron.delete(plane)
   end
 
@@ -23,5 +24,9 @@ class Airport
 
   def full?
     @apron.size >= DEFAULT_CAPACITY
+  end
+
+  def landed?(plane)
+    @apron.include?(plane)
   end
 end

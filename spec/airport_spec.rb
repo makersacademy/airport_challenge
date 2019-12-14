@@ -25,7 +25,7 @@ describe Airport do
       expect(subject.apron).to include plane
     end
 
-    it 'Should raise an error if the apron is full' do
+    it 'Raise an error if the apron is full' do
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error('The airport is full!')
     end
@@ -43,6 +43,10 @@ describe Airport do
       subject.land(plane_second)
       subject.takeoff(plane)
       expect(subject.apron).to be_any
+    end
+
+    it 'Raise an error if the desired plane is not in the apron' do
+      expect { subject.takeoff(plane) }.to raise_error('This plane is not in the apron!')
     end
   end
 end
