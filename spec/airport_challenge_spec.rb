@@ -28,9 +28,11 @@ describe Airport do
   end
 
   it 'raise error if landing a plane to full airport' do
-    plane = Plane.new
-    subject.land(plane)
-    plane_2 = Plane.new
-    expect {subject.land(plane_2)}.to raise_error('Airport is full!')
+    expect {(Airport::DEFAULT_CAPACITY + 1).times {subject.land(Plane.new)}}.to raise_error('Airport is full!')
+  end
+
+  it 'accepts DEFAULT_CAPACITY of planes' do
+    Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}
+    expect(subject.planes.count).to eq Airport::DEFAULT_CAPACITY
   end
 end
