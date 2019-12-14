@@ -2,14 +2,14 @@ require "Airport.rb"
 
 describe Airport do
 
-
-
   it{ is_expected.to respond_to(:land_plane).with(1).argument }
+
+  it 'It lands a plane' do
+    plane = Plane.new
+    expect(subject.land_plane(plane)).to eq plane
+  end
+
 end
-
-
-  # it { is_expected.to respond_to :dock }
-  # it { is_expected.to respond_to(:dock).with(1).argument } 
 
 
 
