@@ -23,19 +23,28 @@ describe Airport do
 
   describe '#land' do
     it 'can land a plane at the airport' do
+      allow(subject).to receive(:stormy?).and_return false
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'prevents a plane from landing when the airport is full' do
+        allow(subject).to receive(:stormy?).and_return false 
         plane = Plane.new
         Airport::CAPACITY.times { subject.land(plane) }
         expect { subject.land(plane) }.to raise_error "Unable to land as the airport is at full capacity"
+    end 
+
+    it 'prevents a plane from landing when the weather is stormy' do
+        allow(subject).to receive(:stormy?).and_return true # sets weather to stormy
+        plane = Plane.new
+        expect { subject.land(plane) }.to raise_error "Unable to land due to stormy weather conditions"
     end 
   end 
 
   describe '#take_off' do
     it 'allows a plane to take off and confirms that it is in the air' do
+        allow(subject).to receive(:stormy?).and_return false
         plane = Plane.new
         expect(subject.take_off(plane)).to eq "Plane is airborne"
     end
