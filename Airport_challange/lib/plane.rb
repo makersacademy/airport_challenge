@@ -1,4 +1,8 @@
 class Plane
-  def plane
+  attr_reader :plane
+
+  def initialize
+    @plane = plane
   end
+
 end
