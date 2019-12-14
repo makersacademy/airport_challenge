@@ -34,6 +34,11 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error('The airport is full!')
     end
+
+    it 'In stormy weather raise an error' do
+      subject.storm = true
+      expect { subject.land(plane) }.to raise_error('The storm prevent the landing!')
+    end
   end
 
   describe '#takeoff' do
@@ -54,7 +59,7 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error('This plane is not in the apron!')
     end
 
-    it 'In stormy weather should raise an error' do
+    it 'In stormy weather raise an error' do
       subject.land(plane)
       subject.storm = true
       expect { subject.takeoff(plane) }.to raise_error('The storm prevent the takeoff!')
