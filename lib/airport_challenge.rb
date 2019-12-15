@@ -23,7 +23,6 @@ class Airport
   end
 
   def take_off
-    fail "It is stormy" if @weather == 'stormy'
     @plane = 0
   end
 
