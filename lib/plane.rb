@@ -16,6 +16,7 @@ class Plane
   end
 
   def cleared_for_take_off(airport)
+    raise('Plane already in flight!') if @in_flight == true
     airport.plane_departed(self)
     @in_flight = true
   end

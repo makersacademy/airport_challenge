@@ -33,4 +33,9 @@ describe Plane do
     expect{subject.cleared_to_land(heathrow)}.to raise_error("Plane already landed!")
   end
 
+  it 'Planes do not take off if they are are in flight' do
+    heathrow = double('Airport')
+    expect{subject.cleared_for_take_off(heathrow)}.to raise_error("Plane already in flight!")
+  end
+
 end
