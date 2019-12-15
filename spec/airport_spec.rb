@@ -10,6 +10,9 @@ describe Airport do
         expect {subject.takeoff}.to raise_error 'planes cannot takeoff'
       end
 
+      it 'raises an error if stormy weather' do
+        expect {subject.land}.to raise_error 'planes cannot land'
+      end
   
     
 end

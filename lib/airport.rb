@@ -10,6 +10,7 @@ class Airport
   attr_reader :plane
 
   def land
+    fail 'planes cannot land' if stormy?
    
   end
 
