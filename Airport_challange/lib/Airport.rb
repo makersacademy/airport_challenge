@@ -3,11 +3,16 @@ require "plane.rb"
 class Airport
 
   attr_reader :hanger
-  def initialize
+
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    # @capcaity = capacity
     @hanger = []
   end
 
-  def land(plane)
+  def land_plane(plane)
+    fail "Cannot land, Airport full" if full?
     @hanger << plane
   end
 
@@ -25,6 +30,10 @@ class Airport
     else 
       raise "The Plane is grounded"
     end
+  end
+
+  def full?
+    @hanger.count >= DEFAULT_CAPACITY
   end
 
 end

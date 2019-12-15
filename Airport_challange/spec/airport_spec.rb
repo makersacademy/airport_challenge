@@ -4,11 +4,11 @@ require 'Airport.rb'
 
 
 describe Airport do
-  it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :land_plane }
 
   it 'test that planes is not empty' do
     plane_1 = Plane.new
-    subject.land(plane_1)
+    subject.land_plane(plane_1)
     expect(subject.hanger_check.include? plane_1).to eq true
   end
 
@@ -24,11 +24,24 @@ describe Airport do
     expect(subject.air_traffic_controller(plane_3)).to eq "The plane has taken off"
   end
 
-  it 'Test for capacity of airport set to 20 planes' do
-    Airport::Default_capacity.times {subject(Bike.new)}
-    expect {subject.land_plane(Plane.new)}.to raise_error "Cannot land, Airport full"
+  describe 'Initialization' do
+    subject{Airport.new}
+    let(:plane) {Plane.new}
+    it 'Default_capacity' do
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land_plane(plane)
+      end
+      expect{subject.land_plane(plane)}.to raise_error "Cannot land, Airport full"
+    end
   end
 end
+
+  # it 'Test for capacity of airport set to 20 planes' do
+  #   plane_4 = Plane.new
+  #   Airport::DEFAULT_CAPACITY.times {plane_4}
+  #   expect {subject.land_plane(plane_4)}.to raise_error "Cannot land, Airport full"
+  # end
+
 
   # it 'checks capacity of hanger and return '
 
