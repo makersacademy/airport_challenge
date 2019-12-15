@@ -96,7 +96,7 @@ Create diagram for major processes:
 List out required messages between objects from diagram:
 * good_weather?(airport): air_traffic_controller --> weather
 * iata_code: weather --> airport
-* airport_full?: air_traffic_controller --> airport
+* airport_at_capacity?: air_traffic_controller --> airport
 * cleared_to_land(airport): air_traffic_controller --> plane
 * land_plane: plane --> airport
 * plane_departure_ready?(plane): air_traffic_controller --> airport
@@ -107,3 +107,5 @@ List out required messages between objects from diagram:
 Create RSpec for basic object functions and implement TDD:
 * weather.good_weather?(airport)
 * airport.iata_code
+* airport.airport_at_capacity?
+* plane.cleared_to_land(airport)
