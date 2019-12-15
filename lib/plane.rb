@@ -1,4 +1,5 @@
 class Plane
-  def land_plane
+  def initialize
+    @plane = []
   end
 end

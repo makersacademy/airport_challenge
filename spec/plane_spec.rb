@@ -1,5 +1,9 @@
 require 'plane'
 
 describe Plane do
-  it { is_expected.to respond_to :land_plane }
+  describe '#initialize' do
+    it 'should respond to default values' do
+    end
+  end
+ 
 end
