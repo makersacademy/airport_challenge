@@ -1,8 +1,8 @@
 class Airport
-  attr_reader :iata_code
+  attr_reader :iata_code, :planes
   AVAILABLE_AIRPORTS = [:LHR, :LTN, :LGW]
 
-  def initialize(iata_code, capacity = 20)
+  def initialize(iata_code = 'LHR', capacity = 20)
     if AVAILABLE_AIRPORTS.include?(iata_code.to_sym)
       @iata_code = iata_code.to_sym
     else

@@ -2,7 +2,12 @@ require 'airport'
 
 describe Airport do
   it 'Responds to iata_code with relevant code' do
-    heathrow = Airport.new('LHR')
+    heathrow = Airport.new('LTN')
+    expect(heathrow.iata_code).to eq :LTN
+  end
+
+  it 'initializes with default airport code' do
+    heathrow = Airport.new()
     expect(heathrow.iata_code).to eq :LHR
   end
 
@@ -22,5 +27,12 @@ describe Airport do
     plane = double("plane")
     2.times{heathrow.land_plane(plane)}
     expect(heathrow.airport_at_capacity?).to eq false
+  end
+
+  it 'Allows planes to be landed' do
+    heathrow = Airport.new('LHR')
+    plane = double("plane")
+    heathrow.land_plane(plane)
+    expect(heathrow.planes).to eq [plane]
   end
 end
