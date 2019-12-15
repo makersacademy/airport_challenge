@@ -115,3 +115,7 @@ Create RSpec for basic object functions and implement TDD:
 * airport.plane_departure_ready?(plane)
 * plane.cleared_for_takeoff(airport)
 * airport.plane_departed(plane)
+
+Create RSpec for controller (AirTrafficController) and implement TDD:
+* air_traffic_controller.land_plane(airport, plane)
+  - planes do not land if bad weather
