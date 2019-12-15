@@ -1,20 +1,40 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
-  it { is_expected.to respond_to :land }
-  
-  describe '#land' do
-    it "should return a plane" do
-      plane = @plane
-      expect(subject.land(plane)).to eq [plane]
+  it "has a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  describe 'plane' do
+    it "returns landed planes" do
+      expect(subject.plane).to eq @planes
     end
   end
 
-  describe '#take_off' do
-    it "lets a plane take off" do
+  it { is_expected.to respond_to :send_plane }
+
+  describe 'lands' do
+    it "lands a plane" do
       plane = Plane.new
-      expect(subject.take_off(plane)).to_not eq plane.at_airport?
+      expect(subject.land(plane)).to eq [plane]
+    end
+
+    it "raises an error when airport is full" do
+      subject.capacity.times do
+      subject.land double :planes
+      end
+      expect { subject.land double :planes }.to raise_error "Full capacity"
+    end
+  end
+  
+  describe '#send_plane' do
+    it "sends plane currently on the ground flying" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.send_plane).to eq plane
+    end
+
+    it "raises an error when no planes are in airport" do
+      expect { subject.send_plane}.to raise_error "No planes"
     end
   end
 end
