@@ -1,18 +1,53 @@
-require "Airport.rb"
+
+
+require 'Airport.rb'
+
 
 describe Airport do
+  it { is_expected.to respond_to :land }
 
-  context 'it test Plane attribute is taken in Airport class' do
-    it { is_expected.to respond_to(:plane)}
+  it 'test that planes is not empty' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.hanger_check.include? plane).to eq true
   end
 
-  it 'land_plane takes instance on plane when called' do
-    plane_1 = Plane.new
-    expect(subject.land_plane(plane_1)).to eq plane_1
-  end
 end
 
 
+
+# require "Airport.rb"
+
+# describe Airport do
+
+#   context 'it test Plane attribute is taken in Airport class' do
+#     it { is_expected.to respond_to :land_plane}
+#   end
+
+#   it 'land_plane takes instance on plane when called' do
+#     plane_1 = Plane.new
+#     expect(subject.land_plane(plane_1)).to eq plane_1
+#   end
+
+#   it 'when plane_land called that Hanger holds plane' do
+#     plane_2 = Plane.new
+#     subject.land_plane(plane_2)
+#     expect(subject.hanger_check.include? plane_2).to eq true 
+#   end
+
+# end
+
+
+  # it 'when plane_land called that Hanger holds plane' do
+  #   plane_2 = Plane.new
+  #   subject.land_plane(plane_2)
+  #   expect(subject.hanger_check.include? plane_2).to eq true 
+  # end
+
+  # it 'when plane_land called that Hanger holds plane' do
+  #   plane_2 = Plane.new
+  #   subject.land_plane(plane_2)
+  #   expect(subject.land_plane(@hanger)).not_be empty 
 
   # it 'Test when instructed plan_land, plane_land hold plane' do
   #   plane_1 = Plane.new
