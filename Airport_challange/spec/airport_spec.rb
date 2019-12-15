@@ -4,21 +4,31 @@ describe Airport do
 
   it{ is_expected.to respond_to(:land_plane).with(1).argument }
 
-  it 'Test that land_plane adds plane to Hanger' do
-    plane = Plane.new
-    subject.land_plane(plane) 
-    expect(subject.land_plane(@hanger)).not_to be_empty
-    # expect(subject.hanger.include? plane).to eq true
-  end
+
+
+end
+
+
+
+
+  # it 'Test that land_plane adds plane to Hanger' do
+  #   plane_1 = Plane.new
+  #   subject.land_plane(plane_1) 
+  #   expect(subject.land_plane(@hanger)).not_to be_empty
+  #   # expect(subject.hanger.include? plane).to eq true
+  # end
+
+  # it 'Test that when a plane takes off the Hanger has removed plane' do
+  #   plane_1 = Plane.new
+  #   subject.land_plane(plane_1)
+  #   subject.take_off(plane_1)
+  #   expect(subject.)
 
   # it "test that when plane lands Hanger takes bike" do
   #   plane_1 = Plane.new
   #   plane_1.land_plane
   #   expect(@hanger).not_to be_empty
   # end
-
-end
-
 
 
 
