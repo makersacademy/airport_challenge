@@ -38,14 +38,10 @@ class Airport
     @storm
   end
 
-  def landed?(plane)
-    plane.landed?
-  end
-
   def land_error(plane)
     raise 'The storm prevent the landing!' if storm?
     raise 'The airport is full!' if full?
-    raise 'This plane is currently landed!' if landed?(plane)
+    raise 'This plane is currently landed!' if plane.landed?
   end
 
   def takeoff_error(plane)
