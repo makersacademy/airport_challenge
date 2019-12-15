@@ -2,10 +2,25 @@ require_relative "plane.rb"
 
 class Airport
 
+  attr_reader :hanger
 
-  def land_plane(plane)
-    plane
+  def initiailze
+
   end
+    
+  def land_plane(plane)
+    @hanger = []
+    @hanger << plane
+  end
+
+  def controler_confirm
+    if !@hanger.include? plane
+      "Plane has taken off"
+    else
+      raise "Plane was not allowed to take off"
+    end
+  end
+
 end
 
 

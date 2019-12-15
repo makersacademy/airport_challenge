@@ -7,7 +7,8 @@ describe Airport do
   it 'Test that land_plane adds plane to Hanger' do
     plane = Plane.new
     subject.land_plane(plane) 
-    expect(subject.hanger.include? plane).to eq true
+    expect(subject.land_plane(@hanger)).not_to be_empty
+    # expect(subject.hanger.include? plane).to eq true
   end
 
   # it "test that when plane lands Hanger takes bike" do
