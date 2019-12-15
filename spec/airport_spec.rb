@@ -2,11 +2,10 @@ require 'airport'
 
 describe Airport do
 
-  # let(:plane) { double('plane') }
+  let(:plane) { Plane.new }
   # plane = double('plane')
   # allow(plane).to receive :flying
  
-  
   describe '#initialization' do
     it { expect(subject).to be_an_instance_of Airport }
 
@@ -18,20 +17,15 @@ describe Airport do
 
   describe '#land' do
    
-    
     it 'allows a plane to land in the dock' do
-      plane = double('plane')
-  allow(plane).to receive :flying
       subject.sunny = true
       subject.land(plane)
       expect(subject.dock).to include plane
     end
 
     it 'raises an error when the dock is full & tests for default capacity being 10' do
-      plane = double('plane')
-      allow(plane).to receive :flying
       subject.sunny = true
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error 'Airport dock is full'
     end
 
@@ -44,16 +38,14 @@ describe Airport do
 
   describe '#take_off' do
     it 'allows a plane to take off' do
-      plane = double('plane')
-      allow(plane).to receive :flying
+      plane.flying = false
       subject.sunny = true
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.dock).to eq []
     end
+
     it 'raises error when weather is stormy' do
-      plane = double('plane')
-      allow(plane).to receive :flying
       subject.sunny = false
       expect{subject.land(plane)}.to raise_error 'Weather is stormy, abort!!!'
     end
@@ -61,8 +53,6 @@ describe Airport do
 
   describe '#confirm_take_off' do
     it 'responds if a plane has taken off or not' do 
-      plane = double('plane')
-      allow(plane).to receive (:flying)
       subject.sunny = true
       subject.land(plane)
       expect(subject.confirm_take_off(plane)).to match /still in dock/
