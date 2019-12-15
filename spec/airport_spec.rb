@@ -26,7 +26,7 @@ describe Airport do
     end
 
     it 'Raise an error if the apron is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      subject.capacity.times { subject.land(plane) }
       message = 'The airport is full!'
       expect { subject.land(plane) }.to raise_error(message)
     end

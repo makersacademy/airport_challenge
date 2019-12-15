@@ -6,6 +6,6 @@ class Weather
   end
 
   def stormy?
-    @weather <= 3
+    weather <= 3
   end
 end

@@ -15,27 +15,27 @@ class Airport
   def land(plane)
     land_error(plane)
     plane.landing
-    @apron << plane
+    apron << plane
   end
 
   def takeoff(plane)
     takeoff_error(plane)
     plane.taking_off
-    @apron.delete(plane)
+    apron.delete(plane)
   end
 
   private
 
   def full?
-    @apron.size >= DEFAULT_CAPACITY
+    apron.size >= capacity
   end
 
   def parked?(plane)
-    @apron.include?(plane)
+    apron.include?(plane)
   end
 
   def storm?
-    @storm
+    storm
   end
 
   def land_error(plane)
