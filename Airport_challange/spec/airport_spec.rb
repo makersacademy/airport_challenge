@@ -2,9 +2,9 @@ require "Airport.rb"
 
 describe Airport do
 
-  comment 'it test Plane attribute is taken in Airport class'
-
-  it { is_expected.to respond_to(:plane)}
+  context 'it test Plane attribute is taken in Airport class' do
+    it { is_expected.to respond_to(:plane)}
+  end
 end
 
 
