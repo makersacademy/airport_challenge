@@ -10,4 +10,10 @@ describe Airport do
     end
   end
 
+  describe '#depart_plane' do
+    it "departs a plane" do
+      plane = Plane.new
+      expect(subject.depart_plane(plane)).to eq plane
+    end
+  end
 end

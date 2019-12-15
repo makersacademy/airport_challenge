@@ -6,4 +6,8 @@ class Airport
   def receive_plane(plane)
     @plane = plane
   end
+  
+  def depart_plane(plane)
+    @plane = plane
+  end
 end
