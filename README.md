@@ -1,6 +1,16 @@
 Airport Challenge
 =================
+Approach
+---------
+- Used User Stories to develop tests (using Rspec) to drive the development of code.
+- The program is made up of and Airport class, Plane class, and Weather module.
+- A user can initiate instances of Airports and Planes, set capacities of Airports, instruct Planes to land in Airports, instruct Planes to take off from Airports they reside in, confirm if Take Off has happend, 
+- The program will not allow Planes to land or take off if the Weather is stormy (using a probability of 1/5 that it is stormy).
+- The program will not allow Planes to take off if they are flying, land if they are already landed, take-off from Airports where they are not located.
+- The program has an Airport Default Capacity of 5.
 
+
+---------
 ```
         ______
         _\____\___
