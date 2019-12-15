@@ -58,6 +58,7 @@ Extract scope:
 * No scope defined for number of airports, so will assume three airports (London, Luton, Gatwick)
 * No scope defined for number of planes or airlines, so will assume generic plane with unlimited avaliablity for initalization
 * No scope for flightpaths or times, so will assume once a plane has departed it can immediately land again
+* Assume any plane which is landed is immediately available for departure
 
 
 List out required objects from client requirements:
@@ -110,3 +111,4 @@ Create RSpec for basic object functions and implement TDD:
 * airport.airport_at_capacity?
 * plane.cleared_to_land(airport)
 * airport.land_plane(plane)
+* airport.plane_departure_ready?(plane)

@@ -7,8 +7,7 @@ describe Airport do
   end
 
   it 'initializes with default airport code' do
-    heathrow = Airport.new()
-    expect(heathrow.iata_code).to eq :LHR
+    expect(subject.iata_code).to eq :LHR
   end
 
   it 'Doesnt allow non-available airports to be initialized' do
@@ -23,16 +22,21 @@ describe Airport do
   end
 
   it 'Responds with false if airport has spaces' do
-    heathrow = Airport.new('LHR')
     plane = double("plane")
-    2.times{heathrow.land_plane(plane)}
-    expect(heathrow.airport_at_capacity?).to eq false
+    2.times{subject.land_plane(plane)}
+    expect(subject.airport_at_capacity?).to eq false
   end
 
   it 'Allows planes to be landed' do
-    heathrow = Airport.new('LHR')
     plane = double("plane")
-    heathrow.land_plane(plane)
-    expect(heathrow.planes).to eq [plane]
+    subject.land_plane(plane)
+    expect(subject.planes).to eq [plane]
+  end
+
+  it 'Checks whether a plane is available to depart' do
+    plane = double("plane")
+    expect(subject.plane_ready_to_depart?(plane)).to eq false
+    subject.land_plane(plane)
+    expect(subject.plane_ready_to_depart?(plane)).to eq true
   end
 end
