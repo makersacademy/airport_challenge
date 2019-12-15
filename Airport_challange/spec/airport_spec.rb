@@ -30,6 +30,14 @@ describe Airport do
       expect {subject.land_plane(Plane.new)}.to raise_error "Cannot land, Airport full"
     end
   end
+  context "Weather check, if weather is < 7 weather is good" do
+    describe "#weather" do
+      it "return true is weather is < 7" do
+        weather_check = Plane.new(weather: 5)
+        expect(weather_check.weather?).to eq (ture)
+      end
+    end
+  end
 
 end
 
