@@ -1,6 +1,11 @@
 
 Airport Challenge:
 
+
+Completed so far:
+
+I first started to dissect the user story to make several points that i would first write the test for, and then write the code to satisfy it. 
+
 1) 'Airport' to create 'airports'
 2) 'Plane' to create 'planes'
 
@@ -24,17 +29,20 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 6) Give 'airports' "DEFAULT_CAPACITY", overwritten                (attr_accessor)
 
-
-
 7) Create 'weather' to set sunny/stormy (random number generator)
-8) Prevent 'plane' 'land' if 'weather' "stormy"
-9) Prevent 'plane' 'land' if 'weather' "stormy"
 
 
 
+What i would have continued on:
+
+I am afraid i got stuck with the stormy weather user stories. I made the user stories but could not find a way in time to stop the stormy weather interfearing with the 'airport full test', it would always intervene. 
+
+I did try a stub test to stop this on line 19 in the airport_spec file, but this did not seem to work. I got extremley stuck on this point and could nto find a way past it, thus wasting further time. 
+
+I read after about implementing doubles, however when i tried to insert these into my code, it did not work and i could not fix it in time. 
 
 
-
+For the next few points, i would have again used similar methods for the land class to implement, and raise errors if it was too stormy to take off. 
 
 
 
@@ -42,10 +50,12 @@ I would like a default airport capacity that can be overridden as appropriate
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+8) Prevent 'plane' 'take_off' if 'weather' "stormy"
 
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+9) Prevent 'plane' 'land' if 'weather' "stormy"
 
 
 
