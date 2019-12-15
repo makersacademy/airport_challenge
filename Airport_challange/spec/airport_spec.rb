@@ -7,9 +7,15 @@ describe Airport do
   it { is_expected.to respond_to :land }
 
   it 'test that planes is not empty' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.hanger_check.include? plane).to eq true
+    plane_1 = Plane.new
+    subject.land(plane_1)
+    expect(subject.hanger_check.include? plane_1).to eq true
+  end
+
+  it 'Test that plane is empty when take_off' do
+    plane_2 = Plane.new
+    subject.take_off(plane_2)
+    expect(subject.hanger_check.include? plane_2).to eq false 
   end
 
 end
