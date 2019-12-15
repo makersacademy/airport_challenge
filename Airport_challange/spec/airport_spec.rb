@@ -1,7 +1,17 @@
 require "Airport.rb"
 
+describe Airport do
+
+  comment 'it test Plane attribute is taken in Airport class'
+
+  it { is_expected.to respond_to(:plane)}
+end
 
 
+
+  # it 'Test when instructed plan_land, plane_land hold plane' do
+  #   plane_1 = Plane.new
+  #   expect(subject)
 
 
 
