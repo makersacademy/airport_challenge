@@ -3,8 +3,12 @@ require "airport"
 describe Airport do
 
   it "expects Airport to make working airports" do
-    airport = Airport.new(10)
+    airport = Airport.new(:capacity)
     expect(airport).to eq airport
+  end
+
+  it "has a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe "#land" do
@@ -13,9 +17,9 @@ describe Airport do
     end
     
     it "airport not allow landing when is full" do
-      airport = Airport.new(10)
+      airport = Airport.new(:capacity)
       plane = Plane.new
-      10.times do
+      subject.capacity.times do
         airport.land(plane)
       end
       expect { airport.land(plane) }.to raise_error "Error, airport full!"
@@ -25,7 +29,7 @@ describe Airport do
  
   describe "#take_off" do
     it "airport to take_off a plane" do
-      expect(Airport.new(10)).to respond_to(:take_off).with(1).argument
+      expect(Airport.new(:capacity)).to respond_to(:take_off).with(1).argument
     end
   end
   

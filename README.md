@@ -14,13 +14,16 @@ So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 4) A 'plane' to 'take_off' + remove from 'airport'
 
-
-5) Give 'airports' "DEFAULT_CAPACITY", overwritten                (attr_accessor)
-
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
-6) Prevent 'plane' 'land' if 'airports' are full.
+5) Prevent 'plane' 'land' if 'airports' are full.
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+6) Give 'airports' "DEFAULT_CAPACITY", overwritten                (attr_accessor)
+
 
 
 7) Create 'weather' to set sunny/stormy (random number generator)
@@ -34,9 +37,7 @@ I want to prevent landing when the airport is full
 
 
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+
 
 As an air traffic controller 
 To ensure safety 
