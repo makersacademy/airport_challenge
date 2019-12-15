@@ -4,11 +4,11 @@ class Airport
   attr_reader :iata_code, :planes
 
   def initialize(iata_code = 'LHR', capacity = 20)
-    if AirTrafficController::AVAILABLE_AIRPORTS.include?(iata_code.to_sym)
-      @iata_code = iata_code.to_sym
-    else
+    unless AirTrafficController::AVAILABLE_AIRPORTS.include?(iata_code.to_sym)
       raise("Airport not available, please enter allowed airport code.\nThe following airports are available: #{AirTrafficController::AVAILABLE_AIRPORTS.join(', ')}")
     end
+
+    @iata_code = iata_code.to_sym
     @capacity = capacity
     @planes = []
   end

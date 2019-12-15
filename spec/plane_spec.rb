@@ -14,13 +14,13 @@ describe Plane do
     expect(heathrow.planes).to eq [heathrow_plane]
   end
 
-  it 'lands after being cleared to land' do
+  it 'Lands after being cleared to land' do
     heathrow = double("heathrow", :land_plane => nil)
     subject.cleared_to_land(heathrow)
     expect(subject.in_flight).to eq false
   end
 
-  it 'plane takes off and is in flight after being cleared for take off' do
+  it 'Plane takes off and is in flight after being cleared for take off' do
     heathrow = double("heathrow", :land_plane => nil, :plane_departed => nil)
     subject.cleared_to_land(heathrow)
     subject.cleared_for_take_off(heathrow)
@@ -30,12 +30,12 @@ describe Plane do
   it 'Planes do not land if they are are not in flight' do
     heathrow = double('Airport', :land_plane => nil)
     subject.cleared_to_land(heathrow)
-    expect{subject.cleared_to_land(heathrow)}.to raise_error("Plane already landed!")
+    expect { subject.cleared_to_land(heathrow) }.to raise_error("Plane already landed!")
   end
 
   it 'Planes do not take off if they are are in flight' do
     heathrow = double('Airport')
-    expect{subject.cleared_for_take_off(heathrow)}.to raise_error("Plane already in flight!")
+    expect { subject.cleared_for_take_off(heathrow) }.to raise_error("Plane already in flight!")
   end
 
 end
