@@ -6,7 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=(DEFAULT_CAPACITY))
+  def initialize(capacity=DEFAULT_CAPACITY)
     @capcaity = capacity
     @hanger = []
     # @weather = weather
@@ -38,8 +38,14 @@ class Airport
     end
   end
 
+  private
+
   def full?
     @hanger.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+    @hanger.empty?
   end
 
 

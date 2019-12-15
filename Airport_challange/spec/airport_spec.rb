@@ -17,7 +17,7 @@ describe Airport do
     subject.take_off(plane_2)
     expect(subject.hanger_check.include? plane_2).to eq false 
   end
-
+# 
   it 'return statment when plane takes off or lands' do
     plane_3 = Plane.new
     subject.take_off(plane_3)
@@ -37,8 +37,8 @@ describe Airport do
 
   describe '#land_plane' do
     it 'raised error and print statement when no planes' do
-      subject.capacity.times {subject.land_plane(Plane.new)}
-      expects {subject.land_plane(Plane.new)}.to raise_error "Cannot take off, No plane available"
+      Airport::DEFAULT_CAPACITY.times {subject.land_plane(Plane.new)}
+      expect {subject.land_plane(Plane.new)}.to raise_error "Cannot land, Hanger full"
     end
   end
 
