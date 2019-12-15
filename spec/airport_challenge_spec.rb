@@ -3,10 +3,12 @@ require './docs/airport'
 require './docs/weather'
 
 describe Airport do
-  before { allow(Weather).to receive(:stormy?) { false } }
   let(:plane) { double :plane }
-  before {allow(plane).to receive(:landed).and_return(false)}
-  before {allow(plane).to receive(:land).and_return(false)}
+  before { allow(Weather).to receive(:stormy?) { false } }
+  before { allow(plane).to receive(:landed).and_return(false) }
+  before { allow(plane).to receive(:land).and_return(false) }
+  before { allow(plane).to receive(:flying?).and_return(true) }
+  before { allow(plane).to receive(:take_off).and_return(false) }
   
   describe '#land' do
 
@@ -27,6 +29,7 @@ describe Airport do
     it 'raise error if landing a plane that is already landed' do
       allow(plane).to receive(:landed).and_return(true)
       allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:flying?).and_return(false)
       expect { subject.land(plane) }.to raise_error('Plane is already landed')
     end
   end
@@ -66,6 +69,7 @@ describe Airport do
     it 'raise error if confirming take off & plane is still at airport' do
       allow(plane).to receive(:land).and_return(true)
       allow(plane).to receive(:landed).and_return(true)
+      allow(plane).to receive(:flying?).and_return(true)
       expect { subject.confirm_take_off(plane) }.to raise_error('Plane has not taken off.')
     end
 
@@ -78,11 +82,9 @@ describe Airport do
   it 'sets DEFAULT_CAPACITY if no capacity argument passed' do
     allow(plane).to receive(:landed).and_return(false)
     allow(plane).to receive(:land).and_return(false)
-
+    allow(plane).to receive(:flying?).and_return(true)
     subject.capacity.times { subject.land(plane) }
     expect(subject.planes.count).to eq Airport::DEFAULT_CAPACITY
   end
   
 end
-
-

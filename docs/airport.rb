@@ -25,6 +25,7 @@ class Airport
     fail 'Plane is flying, cannot take off' if plane.flying?
 
     fail 'Weather is stormy, cannot take off' if Weather.stormy?
+    
     plane.take_off
     @planes.delete(plane)
 
