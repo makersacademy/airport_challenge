@@ -100,3 +100,5 @@ Step 1
 
 Step 2
 ---------
+Translate user stories into code
+-> created instance variable (planes(bikes)) which is an array - then created a method land_plane(plane) which when called shovels plane into planes array 
