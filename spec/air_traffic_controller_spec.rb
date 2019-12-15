@@ -34,8 +34,7 @@ describe AirTrafficController do
 
   it 'Planes do not depart if they are not in the airport' do
     a380 = double('a380')
-    boeing777 = double('boeing777')
-    heathrow = double('Airport', :iata_code => :LHR, :planes => [boeing777])
+    heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => false)
     srand(4)
     expect{subject.tell_plane_to_depart(heathrow, a380)}.to raise_error("Plane not at airport!")
   end
