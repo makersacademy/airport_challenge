@@ -24,17 +24,25 @@ describe Airport do
     expect(subject.air_traffic_controller(plane_3)).to eq "The plane has taken off"
   end
 
-  describe 'Initialization' do
-    subject{Airport.new}
-    let(:plane) {Plane.new}
-    it 'Default_capacity' do
-      Airport::DEFAULT_CAPACITY.times do
-        subject.land_plane(plane)
-      end
-      expect{subject.land_plane(plane)}.to raise_error "Cannot land, Airport full"
+  describe '#land_plane' do
+    it "raised error statement when @hanger full" do
+      Airport::DEFAULT_CAPACITY.times {subject.land_plane(Plane.new)}
+      expect {subject.land_plane(Plane.new)}.to raise_error "Cannot land, Airport full"
     end
   end
+
 end
+
+  # describe 'Initialization' do
+  #   subject{Airport.new}
+  #   let(:plane) {Plane.new}
+  #   it 'Default_capacity' do
+  #     Airport::DEFAULT_CAPACITY.times do
+  #       subject.land_plane(plane)
+  #     end
+  #     expect{subject.land_plane(plane)}.to raise_error "Cannot land, Airport full"
+  #   end
+  # end
 
   # it 'Test for capacity of airport set to 20 planes' do
   #   plane_4 = Plane.new
