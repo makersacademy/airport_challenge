@@ -11,7 +11,8 @@ class Airport
     end
 
     def land(plane)
-        raise "Airport is full" if full?
+        raise "Cannot land plane due to stormy weather" if weather == "stormy"
+        raise "Cannot land because airport is full" if full?
         @planes << plane
     end
 
@@ -25,8 +26,11 @@ class Airport
     end
 
     def weather
-        num = rand(1..5)
-        return "stormy" if num == 1
+        return "stormy" if rand_number == 1
         return "sunny"
+    end
+
+    def rand_number
+        rand(1..5)
     end
 end
