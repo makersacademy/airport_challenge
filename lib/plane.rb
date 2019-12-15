@@ -12,5 +12,3 @@ class Plane
         @landed 
     end
 end
-
-plane = Plane.new

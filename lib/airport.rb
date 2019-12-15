@@ -1,7 +1,7 @@
 require 'plane'
 
 class Airport
-    attr_reader :capacity
+    attr_reader :capacity, :planes
 
     DEFAULT_CAPACITY = 20
 
@@ -18,6 +18,7 @@ class Airport
 
     def take_off(plane)
         raise "Cannot take off due to stormy weather" if weather == "stormy"
+        raise "I'm already flying" if !@planes.include?(plane) 
         @planes.pop
     end
 

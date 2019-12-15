@@ -33,5 +33,12 @@ describe Airport do
             allow(subject).to receive(:rand_number).and_return(1)
             expect { subject.take_off(plane) }.to raise_error "Cannot take off due to stormy weather"
         end
+
+        it 'plane can only take off if on ground' do
+            allow(subject).to receive(:rand_number).and_return(2)
+            subject.land(plane)
+            subject.take_off(plane)
+            expect { subject.take_off(plane) }.to raise_error "I'm already flying"
+        end
     end
 end
