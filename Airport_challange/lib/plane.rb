@@ -1,10 +1,10 @@
 class Plane
-#   def plane
-#   end
-# end
-
-
+  def plane
+  end
 end
+
+
+
 
 
   # attr_reader :plane
