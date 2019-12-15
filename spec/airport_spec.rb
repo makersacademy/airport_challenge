@@ -16,4 +16,11 @@ describe Airport do
     2.times{heathrow.land_plane(plane)}
     expect(heathrow.airport_at_capacity?).to eq true
   end
+
+  it 'Responds with false if airport has spaces' do
+    heathrow = Airport.new('LHR')
+    plane = double("plane")
+    2.times{heathrow.land_plane(plane)}
+    expect(heathrow.airport_at_capacity?).to eq false
+  end
 end
