@@ -1,5 +1,5 @@
 # Airport Challenge
-=================
+---------
 
 ```
         ______
@@ -67,7 +67,7 @@ List out required objects from client requirements:
 * Weather
 
 
-List out required non-generic messages between objects:
+List out required controller messages:
 * AirTrafficController -> Plane (Land at airport)
   - providing plane is in the air
   - if weather is not stormy
@@ -81,6 +81,7 @@ List out required attributes of each non-controller object:
 * AirTrafficController
 * Airport
   - Array to store planes with set capacity
+  - Airport IATA code
 * Plane
   - Flight status
 * Weather
@@ -90,6 +91,17 @@ List out required attributes of each non-controller object:
 Create diagram for major processes:
 * air_traffic_controller.land_plane(airport, plane) add link to image
 * air_traffic_controller.depart_plane(airport, plane) add link to image
+
+
+List out required messages between objects from diagram:
+* good_weather?(airport): air_traffic_controller --> weather
+* iata_code: weather --> airport
+* airport_full?: air_traffic_controller --> airport
+* cleared_to_land(airport): air_traffic_controller --> plane
+* land_plane: plane --> airport
+* plane_departure_ready?(plane): air_traffic_controller --> airport
+* cleared_for_takeoff(airport): air_traffic_controller --> plane
+* plane_departed: plane --> airport
 
 
 Create RSpec for basic object functions and implement TDD:
