@@ -12,13 +12,19 @@ describe Airport do
 
         it 'prevents planes from landing if airport full' do
             allow(subject).to receive(:rand_number).and_return(5)
-            subject.capacity.times { subject.land(plane) }
+            subject.capacity.times { subject.land(Plane.new) }
             expect { subject.land(plane) }.to raise_error "Cannot land because airport is full"
         end
 
         it 'prevent planes from landing if weather is stormy' do
             allow(subject).to receive(:rand_number).and_return(1)
             expect { subject.land(plane) }.to raise_error "Cannot land plane due to stormy weather"
+        end
+
+        it 'plane cannot land if already landed' do
+            allow(subject).to receive(:rand_number).and_return(5)
+            subject.land(plane)
+            expect {subject.land(plane) }.to raise_error "I'm already landed"
         end
     end
 
@@ -38,6 +44,11 @@ describe Airport do
             allow(subject).to receive(:rand_number).and_return(2)
             subject.land(plane)
             subject.take_off(plane)
+            expect { subject.take_off(plane) }.to raise_error "I'm already flying"
+        end
+
+        it 'plane can only take off if at airport' do
+            allow(subject).to receive(:rand_number).and_return(2)
             expect { subject.take_off(plane) }.to raise_error "I'm already flying"
         end
     end
