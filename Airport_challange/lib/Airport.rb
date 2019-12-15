@@ -11,7 +11,9 @@ class Airport
     @hanger << plane
   end
 
-
+  def take_off(plane)
+    @hanger.delete(plane)
+  end
 
   def hanger_check 
     @hanger
