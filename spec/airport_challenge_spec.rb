@@ -1,6 +1,6 @@
-require './docs/plane'
-require './docs/airport'
-require './docs/weather'
+require './lib/plane'
+require './lib/airport'
+require './lib/weather'
 
 describe Airport do
   let(:plane) { double :plane }
