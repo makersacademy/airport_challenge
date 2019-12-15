@@ -5,30 +5,70 @@ require './docs/weather'
 describe Airport do
   before { allow(Weather).to receive(:stormy?) { false } }
   let(:plane) { double :plane }
+  before {allow(plane).to receive(:landed).and_return(false)}
+  before {allow(plane).to receive(:land).and_return(false)}
+  
+  describe '#land' do
 
-  it 'instruct plane to land at airport' do
-    subject.land(plane)
-    expect(subject.planes.include? plane).to eq true
+    it 'instruct plane to land at airport' do
+      subject.land(plane)
+      expect(subject.planes.include? plane).to eq true
+    end
+
+    it 'raise error if landing a plane to full airport' do
+      expect { (subject.capacity + 1).times { subject.land(plane) } }.to raise_error('Airport is full!')
+    end
+
+    it 'raise error if landing a plane & weather is stormy' do
+      allow(Weather).to receive(:stormy?) { true }
+      expect { subject.land(plane) } .to raise_error('Weather is stormy, cannot land')
+    end
+
+    it 'raise error if landing a plane that is already landed' do
+      allow(plane).to receive(:landed).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
+      expect { subject.land(plane) }.to raise_error('Plane is already landed')
+    end
   end
 
-  it 'instruct plane to take off from airport' do
-    subject.take_off(plane)
-    expect(subject.planes.include? plane).to eq false
+  describe '#take_off' do
+    before { allow(plane).to receive(:landed).and_return(true) }
+    before { allow(plane).to receive(:land).and_return(true) }
+    before { allow(plane).to receive(:flying?).and_return(false) }
+
+    it 'instruct plane to take off from airport' do
+      subject.take_off(plane)
+      expect(subject.planes.include? plane).to eq false
+    end
+
+    it 'raise error if a plane is taking off & weather is stormy' do
+      allow(Weather).to receive(:stormy?) { true }
+      expect { subject.take_off(plane) }.to raise_error('Weather is stormy, cannot take off')
+    end
+
+    it 'raise error if plane is flying' do
+      allow(plane).to receive(:flying?) { true }
+      expect { subject.take_off(plane) }.to raise_error('Plane is flying, cannot take off')
+    end
+
+    it 'confirm plane that has taken off is no longer in airport' do
+      subject.take_off(plane)
+      expect(subject.planes.include? plane).to eq false
+    end
+
   end
 
-  it 'confirm plane that has taken off is no longer in airport' do
-    subject.land(plane)
-    subject.take_off(plane)
-    expect(subject.confirm_take_off(plane)).to eq 'Plane has taken off.'
-  end
+  describe '#confirm_take_off' do
+    it 'confrims take off' do
+      expect(subject.confirm_take_off(plane)).to eq 'Plane has taken off.'
+    end
 
-  it 'raise error if confirming take off and plane is still at airport' do
-    subject.land(plane)
-    expect { subject.confirm_take_off(plane) }.to raise_error('Plane has not taken off.')
-  end
+    it 'raise error if confirming take off & plane is still at airport' do
+      allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:landed).and_return(true)
+      expect { subject.confirm_take_off(plane) }.to raise_error('Plane has not taken off.')
+    end
 
-  it 'raise error if landing a plane to full airport' do
-    expect { (subject.capacity + 1).times { subject.land(plane) } }.to raise_error('Airport is full!')
   end
 
   it 'accepts capacity argument' do
@@ -36,27 +76,13 @@ describe Airport do
   end
 
   it 'sets DEFAULT_CAPACITY if no capacity argument passed' do
+    allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:land).and_return(false)
+
     subject.capacity.times { subject.land(plane) }
     expect(subject.planes.count).to eq Airport::DEFAULT_CAPACITY
-  end
-
-  it 'raise error if landing a plane & weather is stormy' do
-    allow(Weather).to receive(:stormy?) { true }
-    expect { subject.land(plane) } .to raise_error('Weather is stormy, cannot land')
-  end
-
-  it 'raise error if a plane is taking off & weather is stormy' do
-    allow(Weather).to receive(:stormy?) { true }
-    expect { subject.take_off(plane) }.to raise_error('Weather is stormy, cannot take off')
   end
   
 end
 
-describe Weather do
-  it { is_expected.to respond_to :stormy? }
 
-  it 'returns false when weather is not stormy' do
-    allow(Weather).to receive(:stormy?) { false }
-    expect(subject.stormy?).to eq false
-  end
-end
