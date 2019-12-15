@@ -1,12 +1,13 @@
+require 'air_traffic_controller'
+
 class Airport
   attr_reader :iata_code, :planes
-  AVAILABLE_AIRPORTS = [:LHR, :LTN, :LGW]
 
   def initialize(iata_code = 'LHR', capacity = 20)
-    if AVAILABLE_AIRPORTS.include?(iata_code.to_sym)
+    if AirTrafficController::AVAILABLE_AIRPORTS.include?(iata_code.to_sym)
       @iata_code = iata_code.to_sym
     else
-      raise("Airport not available, please enter allowed airport code.\nThe following airports are available: #{AVAILABLE_AIRPORTS.join(', ')}")
+      raise("Airport not available, please enter allowed airport code.\nThe following airports are available: #{AirTrafficController::AVAILABLE_AIRPORTS.join(', ')}")
     end
     @capacity = capacity
     @planes = []

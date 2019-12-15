@@ -116,6 +116,7 @@ Create RSpec for basic object functions and implement TDD:
 * plane.cleared_for_takeoff(airport)
 * airport.plane_departed(plane)
 
+
 Create RSpec for controller (AirTrafficController) and implement TDD:
 * air_traffic_controller.tell_plane_to_land(airport, plane)
   - planes do not land if bad weather
@@ -127,3 +128,9 @@ Create RSpec for controller (AirTrafficController) and implement TDD:
   - planes do not depart if they are not in the airport
   - planes depart if weather is good and they are ready to depart
   - planes do not take off if already in flight (part of plane spec)
+* add log of air traffic controller actions and verify using rspec
+
+Refactor
+* Cleanup
+* Rubocop
+* Have available airports based in airtraffic controller

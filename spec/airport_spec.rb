@@ -1,4 +1,5 @@
 require 'airport'
+require 'air_traffic_controller'
 
 describe Airport do
   it 'Responds to iata_code with relevant code' do
@@ -11,7 +12,7 @@ describe Airport do
   end
 
   it 'Doesnt allow non-available airports to be initialized' do
-    expect{Airport.new('ABC')}.to raise_error("Airport not available, please enter allowed airport code.\nThe following airports are available: #{Airport::AVAILABLE_AIRPORTS.join(', ')}")
+    expect{Airport.new('ABC')}.to raise_error("Airport not available, please enter allowed airport code.\nThe following airports are available: #{AirTrafficController::AVAILABLE_AIRPORTS.join(', ')}")
   end
 
   it 'Responds with true if airport is full' do

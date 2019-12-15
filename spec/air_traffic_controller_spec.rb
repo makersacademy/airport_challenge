@@ -1,6 +1,5 @@
 require 'air_traffic_controller'
 
-
 describe AirTrafficController do
   it 'Planes do not land if there is bad weather at airport' do
     a380 = double('a380')
@@ -48,6 +47,19 @@ describe AirTrafficController do
     expect(heathrow.planes).to eq []
     expect(a380.in_flight).to eq true
   end
+
+  it 'Logs take offs and landings' do
+    srand(4)
+    a380 = double('a380', :in_flight => true, :cleared_to_land => nil)
+    heathrow = double('Airport', :iata_code => :LHR, :airport_at_capacity? => false)
+    subject.tell_plane_to_land(heathrow, a380)
+    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => false)
+    heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => true, :planes => [a380])
+    subject.tell_plane_to_depart(heathrow, a380)
+    log = File.read("./logs/log_#{subject.object_id}.txt").split("\n")[-2, 2]
+    expect(log).to eq ["#{Time.now} - #{a380} cleared for landing at #{heathrow}", "#{Time.now} - #{a380} cleared for take off from #{heathrow}"]
+  end
+
 
 
 end

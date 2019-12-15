@@ -1,6 +1,5 @@
 class Plane
   attr_reader :in_flight
-  AVAILABLE_AIRPORTS = [:LHR, :LTN, :LGW]
 
   def initialize(airport = nil)
     @in_flight = true
