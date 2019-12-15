@@ -1,28 +1,19 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
-  airport = Airport.new
 
-  def initialize(capacity: 20)
-    @capacity = capacity
+attr_reader :plane, :hangar
+
+  def initialize
+    @hangar = []
   end
 
   def land(plane)
-    airport = Airport.new
-    fail "Can't land, stormy" unless airport.clear?
-    @plane
+    plane
+    hangar.push(plane)
   end
 
-  def full
-    fail "Can't land, airport full" unless hangar != @plane
+  def take_off(plane)
+    
   end
-
-  def hangar
-    @plane
-  end
-
-  def clear?
-    false
-  end
-
 end

@@ -1,10 +1,10 @@
+require_relative 'airport'
+
 class Plane
-  def in_airport?
-    true
+  def initialize
+    @plane
   end
-  
-  def take_off(plane)
-    plane.in_airport?
-    return false
+  def at_airport?
+    true
   end
 end
