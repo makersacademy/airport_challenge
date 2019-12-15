@@ -27,4 +27,10 @@ describe Plane do
     expect(subject.in_flight).to eq true
   end
 
+  it 'Planes do not land if they are are not in flight' do
+    heathrow = double('Airport', :land_plane => nil)
+    subject.cleared_to_land(heathrow)
+    expect{subject.cleared_to_land(heathrow)}.to raise_error("Plane already landed!")
+  end
+
 end

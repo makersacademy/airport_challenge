@@ -121,6 +121,7 @@ Create RSpec for controller (AirTrafficController) and implement TDD:
   - planes do not land if bad weather
   - planes do not land if airport is at capacity
   - planes land if no bad weather and airport has capacity
+  - planes do not land if they are already landed (part of plane spec)
 * air_traffic_controller.tell_plane_to_depart(airport, plane)
   - planes do not depart if there is bad weather
-  - 
+  - planes do not depart if they are not in the airport

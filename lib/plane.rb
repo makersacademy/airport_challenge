@@ -10,6 +10,7 @@ class Plane
   end
 
   def cleared_to_land(airport)
+    raise('Plane already landed!') if @in_flight == false
     airport.land_plane(self)
     @in_flight = false
   end
