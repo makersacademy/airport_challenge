@@ -59,11 +59,13 @@ Extract scope:
 * No scope defined for number of planes or airlines, so will assume generic plane with unlimited avaliablity for initalization
 * No scope for flightpaths or times, so will assume once a plane has departed it can immediately land again
 
+
 List out required objects from client requirements:
 * AirTrafficController
 * Airport
 * Plane
 * Weather
+
 
 List out required non-generic messages between objects:
 * AirTrafficController -> Plane (Land at airport)
@@ -74,6 +76,7 @@ List out required non-generic messages between objects:
   - if plane is in the airport
   - if weather is not stormy
 
+
 List out required attributes of each non-controller object:
 * AirTrafficController
 * Airport
@@ -83,9 +86,11 @@ List out required attributes of each non-controller object:
 * Weather
   - Weather status at specific airport
 
+
 Create diagram for major processes:
 * air_traffic_controller.land_plane(airport, plane) add link to image
 * air_traffic_controller.depart_plane(airport, plane) add link to image
+
 
 Create RSpec for basic object functions and implement TDD:
 * weather.good_weather?(airport)
