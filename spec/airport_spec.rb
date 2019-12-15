@@ -10,8 +10,8 @@ describe Airport do
     end
 
     it 'raises an error when full' do
-      subject.receive_plane(Plane.new)
-      expect { subject.receive_plane Plane.new }.to raise_error 'airport full'
+      20.times { subject.receive_plane Plane.new }
+      expect { subject.receive_plane(plane) }.to raise_error 'airport full'
     end
   end
 
