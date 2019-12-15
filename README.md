@@ -106,4 +106,4 @@ Step 2
 Translate user stories into code
 -> created instance variable (planes(bikes)) which is an array - then created a method land_plane(plane) which when called shovels plane into planes array
 -> Airport can command aircraft to land, also confirms it has landed.
-airport.land_plane plane  
+airport.land_plane aircraft 
