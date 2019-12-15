@@ -12,9 +12,20 @@ describe Airport do
     expect(subject.land_plane(plane_1)).to eq plane_1
   end
 
-  # it 'Test that Land_plane returns plane '
-
+  it 'It tests that Take_off can take a instance variable' do
+    plane_1 = Plane.new
+    expect(subject.take_off(plane_1)).to eq plane_1
+  end
+  
 end
+
+
+  # it 'Test that Land_plane hold instance plane' do 
+  #   plane_1 = Plane.new
+  #   plane_1.land_plane(plane_1)
+  #   expect(subject.land_plane(plane_1)).to eq plane_1
+  # end
+
 
 
 
