@@ -1,5 +1,5 @@
 # Airport Challenge
----------
+======
 
 ```
         ______
@@ -60,78 +60,78 @@ Extract scope:
 * Assumes planes will be initialized by default in flight, however gives option to initialize in airport
 * No scope for flightpaths or times, so will assume once a plane has departed it can immediately land again
 * Assume any plane which is landed is immediately available for departure
-
+------
 
 List out required objects from client requirements:
-    * AirTrafficController
-    * Airport
-    * Plane
-    * Weather
-
+* AirTrafficController
+* Airport
+* Plane
+* Weather
+------
 
 List out required controller messages:
-    * AirTrafficController -> Plane (Land at airport)
-        - providing plane is in the air
-        - if weather is not stormy
-        - if airport not full
-    * AirTrafficController -> Plane (Take off from airport)
-        - if plane is in the airport
-        - if weather is not stormy
-
+* AirTrafficController -> Plane (Land at airport)
+  - providing plane is in the air
+  - if weather is not stormy
+  - if airport not full
+* AirTrafficController -> Plane (Take off from airport)
+  - if plane is in the airport
+  - if weather is not stormy
+------
 
 List out required attributes of each non-controller object:
-    * AirTrafficController
-    * Airport
-        - Array to store planes with set capacity
-        - Airport IATA code
-    * Plane
-        - Flight status
-    * Weather
-        - Weather status at specific airport
-
+* AirTrafficController
+* Airport
+  - Array to store planes with set capacity
+  - Airport IATA code
+* Plane
+  - Flight status
+* Weather
+  - Weather status at specific airport
+------
 
 Create diagram for major processes:
-    * air_traffic_controller.tell_plane_to_land(airport, plane) add link to image
-    * air_traffic_controller.tell_plane_to_depart(airport, plane) add link to image
-
+* air_traffic_controller.tell_plane_to_land(airport, plane) add link to image
+* air_traffic_controller.tell_plane_to_depart(airport, plane) add link to image
+------
 
 List out required messages between objects from diagram:
-    * good_weather?(airport): air_traffic_controller --> weather
-    * iata_code: weather --> airport
-    * airport_at_capacity?: air_traffic_controller --> airport
-    * cleared_to_land(airport): air_traffic_controller --> plane
-    * land_plane(plane): plane --> airport
-    * plane_departure_ready?(plane): air_traffic_controller --> airport
-    * cleared_for_takeoff(airport): air_traffic_controller --> plane
-    * plane_departed: plane --> airport
-
+* good_weather?(airport): air_traffic_controller --> weather
+* iata_code: weather --> airport
+* airport_at_capacity?: air_traffic_controller --> airport
+* cleared_to_land(airport): air_traffic_controller --> plane
+* land_plane(plane): plane --> airport
+* plane_departure_ready?(plane): air_traffic_controller --> airport
+* cleared_for_takeoff(airport): air_traffic_controller --> plane
+* plane_departed: plane --> airport
+------
 
 Create RSpec for basic object functions and implement TDD:
-    * weather.good_weather?(airport)
-    * airport.iata_code
-    * airport.airport_at_capacity?
-    * plane.cleared_to_land(airport)
-    * airport.land_plane(plane)
-    * airport.plane_departure_ready?(plane)
-    * plane.cleared_for_takeoff(airport)
-    * airport.plane_departed(plane)
-
+* weather.good_weather?(airport)
+* airport.iata_code
+* airport.airport_at_capacity?
+* plane.cleared_to_land(airport)
+* airport.land_plane(plane)
+* airport.plane_departure_ready?(plane)
+* plane.cleared_for_takeoff(airport)
+* airport.plane_departed(plane)
+------
 
 Create RSpec for controller (AirTrafficController) and implement TDD:
-    * air_traffic_controller.tell_plane_to_land(airport, plane)
-        - planes do not land if bad weather
-        - planes do not land if airport is at capacity
-        - planes land if no bad weather and airport has capacity
-        - planes do not land if they are already landed (part of plane spec)
-    * air_traffic_controller.tell_plane_to_depart(airport, plane)
-        - planes do not depart if there is bad weather
-        - planes do not depart if they are not in the airport
-        - planes depart if weather is good and they are ready to depart
-        - planes do not take off if already in flight (part of plane spec)
-    * add log of air traffic controller actions and verify using rspec
-
+* air_traffic_controller.tell_plane_to_land(airport, plane)
+  - planes do not land if bad weather
+  - planes do not land if airport is at capacity
+  - planes land if no bad weather and airport has capacity
+  - planes do not land if they are already landed (part of plane spec)
+* air_traffic_controller.tell_plane_to_depart(airport, plane)
+  - planes do not depart if there is bad weather
+  - planes do not depart if they are not in the airport
+  - planes depart if weather is good and they are ready to depart
+  - planes do not take off if already in flight (part of plane spec)
+* add log of air traffic controller actions and verify using rspec
+------
 
 Refactor
-    * Cleanup
-    * Rubocop
-    * Have available airports based in airtraffic controller
+* Cleanup
+* Rubocop
+* Have available airports based in airtraffic controller
