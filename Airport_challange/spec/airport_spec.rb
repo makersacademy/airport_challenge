@@ -1,23 +1,34 @@
 require "Airport.rb"
 
-describe Airport do
-
-  it { is_expected.to respond_to(:plane) }
-
-  it{ is_expected.to respond_to(:land_plane).with(1).argument }
 
 
-  it 'It tests that land_plane can take variable plane' do
-    plane_1 = Plane.new
-    expect(subject.land_plane(plane_1)).to eq plane_1
-  end
 
-  it 'It tests that Take_off can take a instance variable' do
-    plane_1 = Plane.new
-    expect(subject.take_off(plane_1)).to eq plane_1
-  end
-  
-end
+
+
+
+# describe Airport do
+
+#   it { is_expected.to respond_to(:plane) }
+
+#   it{ is_expected.to respond_to(:land_plane).with(1).argument }
+
+
+#   it 'It tests that land_plane can take variable plane' do
+#     plane_1 = Plane.new
+#     expect(subject.land_plane(plane_1)).to eq plane_1
+#   end
+
+#   it 'It tests that Take_off can take a instance variable' do
+#     plane_1 = Plane.new
+#     expect(subject.take_off(plane_1)).to eq plane_1
+#   end
+
+#   it 'Test when land_plane then Hanger is not empty' do
+#     plane_1 = Plane
+#     plane_1.land_plane(plane_1)
+#     expect(subject.hanger)
+
+# end
 
 
   # it 'Test that Land_plane hold instance plane' do 
