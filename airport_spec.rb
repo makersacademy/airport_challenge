@@ -1,0 +1,2 @@
+require 'airport'
+describe Airport 
