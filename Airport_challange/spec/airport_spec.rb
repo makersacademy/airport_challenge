@@ -2,12 +2,17 @@ require "Airport.rb"
 
 describe Airport do
 
+  it { is_expected.to respond_to(:plane) }
+
   it{ is_expected.to respond_to(:land_plane).with(1).argument }
+
 
   it 'It tests that land_plane can take variable plane' do
     plane_1 = Plane.new
     expect(subject.land_plane(plane_1)).to eq plane_1
   end
+
+  # it 'Test that Land_plane returns plane '
 
 end
 
