@@ -1,6 +1,5 @@
 class Plane
   attr_reader :model
-  attr_accessor :landed
 
   def initialize(model)
     @model = model

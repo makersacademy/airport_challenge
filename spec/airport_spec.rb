@@ -8,10 +8,6 @@ describe Airport do
     subject.storm = false
   end
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-
-  it { is_expected.to respond_to(:takeoff).with(1).argument }
-
   describe '#initialize' do
     it 'Creating an Airport should set the default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -31,17 +27,20 @@ describe Airport do
 
     it 'Raise an error if the apron is full' do
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error('The airport is full!')
+      message = 'The airport is full!'
+      expect { subject.land(plane) }.to raise_error(message)
     end
 
     it 'In stormy weather raise an error' do
       subject.storm = true
-      expect { subject.land(plane) }.to raise_error('The storm prevent the landing!')
+      message = 'The storm prevent the landing!'
+      expect { subject.land(plane) }.to raise_error(message)
     end
 
     it "A landed plane can't land again" do
       allow(plane).to receive(:landed?) { true }
-      expect { subject.land(plane) }.to raise_error('This plane is currently landed!')
+      message = 'This plane is currently landed!'
+      expect { subject.land(plane) }.to raise_error(message)
     end
   end
 
@@ -60,13 +59,15 @@ describe Airport do
     end
 
     it 'Raise an error if the desired plane is not in the apron' do
-      expect { subject.takeoff(plane) }.to raise_error('This plane is not in the apron!')
+      message = 'This plane is not in the apron!'
+      expect { subject.takeoff(plane) }.to raise_error(message)
     end
 
     it 'In stormy weather raise an error' do
       subject.land(plane)
       subject.storm = true
-      expect { subject.takeoff(plane) }.to raise_error('The storm prevent the takeoff!')
+      message = 'The storm prevent the takeoff!'
+      expect { subject.takeoff(plane) }.to raise_error(message)
     end
 
     it 'After take off the plane should not have a landed status' do
