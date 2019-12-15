@@ -13,16 +13,14 @@ class Airport
   end
 
   def land(plane)
-    raise 'The storm prevent the landing!' if storm?
-    raise 'The airport is full!' if full?
-    raise 'This plane is currently landed!' if landed?(plane)
+    land_error(plane)
     plane.landing
     @apron << plane
   end
 
   def takeoff(plane)
-    raise 'This plane is not in the apron!' unless parked?(plane)
-    raise 'The storm prevent the takeoff!' if storm?
+    takeoff_error(plane)
+    plane.taking_off
     @apron.delete(plane)
   end
 
@@ -44,5 +42,14 @@ class Airport
     plane.landed?
   end
 
+  def land_error(plane)
+    raise 'The storm prevent the landing!' if storm?
+    raise 'The airport is full!' if full?
+    raise 'This plane is currently landed!' if landed?(plane)
+  end
 
+  def takeoff_error(plane)
+    raise 'This plane is not in the apron!' unless parked?(plane)
+    raise 'The storm prevent the takeoff!' if storm?
+  end
 end

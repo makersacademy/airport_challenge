@@ -15,4 +15,8 @@ class Plane
     @landed = true
   end
 
+  def taking_off
+    @landed = false
+  end
+
 end

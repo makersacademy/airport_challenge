@@ -17,4 +17,10 @@ describe Plane do
     plane.landing
     expect(plane).to be_landed
   end
+
+  it 'Taking off change the plane status' do
+    plane.landing
+    plane.taking_off
+    expect(plane).not_to be_landed
+  end
 end

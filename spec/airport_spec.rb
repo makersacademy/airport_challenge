@@ -1,9 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:plane, :landed? => false, :landing => true) }
+  let(:plane) { double(:plane, :landed? => false, :landing => true, :taking_off => true) }
   let(:plane_second) { double(:plane, :landed? => false, :landing => true) }
-  let(:weather) { double(:weather, :stormy? => true) }
 
   before(:each) do
     subject.storm = false
@@ -68,6 +67,13 @@ describe Airport do
       subject.land(plane)
       subject.storm = true
       expect { subject.takeoff(plane) }.to raise_error('The storm prevent the takeoff!')
+    end
+
+    it 'After take off the plane should not have a landed status' do
+      aereo = Plane.new("WWW")
+      subject.land(aereo)
+      subject.takeoff(aereo)
+      expect(aereo).not_to be_landed
     end
   end
 end
