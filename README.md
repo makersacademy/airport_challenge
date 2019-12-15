@@ -13,7 +13,7 @@
 
 ```
 
-##Client Requirements
+## Client Requirements
 ---------
 
 We have a request from a client to write the software to control the flow of planes at an airport:
@@ -67,21 +67,21 @@ List out required objects from client requirements:
 
 List out required non-generic messages between objects:
 * AirTrafficController -> Plane (Land at airport)
- * providing plane is in the air
- * if weather is not stormy
- * if airport not full
+  - providing plane is in the air
+  - if weather is not stormy
+  - if airport not full
 * AirTrafficController -> Plane (Take off from airport)
- * if plane is in the airport
- * if weather is not stormy
+  - if plane is in the airport
+  - if weather is not stormy
 
 List out required attributes of each non-controller object:
 * AirTrafficController
 * Airport
- * Array to store planes with set capacity
+  - Array to store planes with set capacity
 * Plane
- * Flight status
+  - Flight status
 * Weather
- * Weather status at specific airport
+  - Weather status at specific airport
 
 Create diagram for major processes:
 * air_traffic_controller.land_plane(airport, plane) add link to image
@@ -89,4 +89,4 @@ Create diagram for major processes:
 
 Create RSpec for basic object functions and implement TDD:
 * weather.good_weather?(airport)
-* 
+*
