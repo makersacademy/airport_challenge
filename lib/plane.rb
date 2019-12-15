@@ -14,4 +14,9 @@ class Plane
     @in_flight = false
   end
 
+  def cleared_for_take_off(airport)
+    airport.plane_departed(self)
+    @in_flight = true
+  end
+
 end

@@ -112,4 +112,5 @@ Create RSpec for basic object functions and implement TDD:
 * plane.cleared_to_land(airport)
 * airport.land_plane(plane)
 * airport.plane_departure_ready?(plane)
-*
+* plane.cleared_for_takeoff(airport)
+* 

@@ -15,9 +15,16 @@ describe Plane do
   end
 
   it 'lands after being cleared to land' do
-    heathrow = double("heathrow", :land_plane => true)
+    heathrow = double("heathrow", :land_plane => nil)
     subject.cleared_to_land(heathrow)
     expect(subject.in_flight).to eq false
+  end
+
+  it 'plane takes off and is in flight after being cleared for take off' do
+    heathrow = double("heathrow", :land_plane => nil, :plane_departed => nil)
+    subject.cleared_to_land(heathrow)
+    subject.cleared_for_take_off(heathrow)
+    expect(subject.in_flight).to eq true
   end
 
 end
