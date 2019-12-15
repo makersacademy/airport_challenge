@@ -4,10 +4,16 @@ describe Airport do
 
   it{ is_expected.to respond_to(:land_plane).with(1).argument }
 
-  it 'It lands a plane' do
-    plane = Plane.new
-    expect(subject.land_plane(plane)).to eq plane
-  end
+  # it 'Test that lands a plane' do
+  #   plane = Plane.new
+  #   expect(subject.land_plane(plane)).to eq plane
+  # end
+
+  # it "test that when plane lands Hanger takes bike" do
+  #   plane_1 = Plane.new
+  #   plane_1.land_plane
+  #   expect(@hanger).not_to be_empty
+  # end
 
 end
 
