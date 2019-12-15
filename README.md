@@ -91,8 +91,8 @@ List out required attributes of each non-controller object:
 ------
 
 Create diagram for major processes:
-* air_traffic_controller.tell_plane_to_land(airport, plane) add link to image
-* air_traffic_controller.tell_plane_to_depart(airport, plane) add link to image
+* air_traffic_controller.tell_plane_to_land(airport, plane) [image](https://github.com/cpcwood/airport_challenge-1/blob/master/process_diagrams/depart_plane.jpeg)
+* air_traffic_controller.tell_plane_to_depart(airport, plane) [image](https://github.com/cpcwood/airport_challenge-1/blob/master/process_diagrams/land_plane.jpeg)
 ------
 
 List out required messages between objects from diagram:
