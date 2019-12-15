@@ -1,7 +1,7 @@
-# class Plane
-#   def plane
-#   end
-# end
+class Plane
+  def plane
+  end
+end
 
 
 
