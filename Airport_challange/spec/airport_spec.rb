@@ -5,6 +5,11 @@ describe Airport do
   context 'it test Plane attribute is taken in Airport class' do
     it { is_expected.to respond_to(:plane)}
   end
+
+  it 'land_plane takes instance on plane when called' do
+    plane_1 = Plane.new
+    expect(subject.land_plane(plane_1)).to eq plane_1
+  end
 end
 
 
