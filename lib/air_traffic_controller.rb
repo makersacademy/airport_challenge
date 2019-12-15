@@ -15,7 +15,10 @@ class AirTrafficController
 
   def tell_plane_to_depart(airport, plane)
     raise("Bad weather at #{airport.iata_code}, plane cannot take off!") if @weather.good_weather?(airport) == false
+    unless airport.planes.include?(plane)
+      raise("Plane not at airport!")
+    end
   end
 
-  
+
 end

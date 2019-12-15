@@ -3,22 +3,22 @@ require 'air_traffic_controller'
 
 describe AirTrafficController do
   it 'Planes do not land if there is bad weather at airport' do
-    a380 = double('Plane')
-    heathrow = double('Airport', :iata_code => :LHR)
+    a380 = double('a380')
+    heathrow = double('heathrow', :iata_code => :LHR)
     srand(2)
     expect{subject.tell_plane_to_land(heathrow, a380)}.to raise_error("Bad weather at LHR, cannot land plane!")
   end
 
   it 'Planes do not land if airport is at capacity' do
-    a380 = double('Plane')
-    heathrow = double('Airport', :iata_code => :LHR, :airport_at_capacity? => true)
+    a380 = double('a380')
+    heathrow = double('heathrow', :iata_code => :LHR, :airport_at_capacity? => true)
     srand(4)
     expect{subject.tell_plane_to_land(heathrow, a380)}.to raise_error("LHR at capacity, cannot land plane!")
   end
 
   it 'Planes land if no bad weather and airport has capacity' do
-    a380 = double('Plane', :cleared_to_land => nil, :in_flight => false)
-    heathrow = double('Airport', :iata_code => :LHR, :airport_at_capacity? => false, :planes => [a380])
+    a380 = double('a380', :cleared_to_land => nil, :in_flight => false)
+    heathrow = double('heathrow', :iata_code => :LHR, :airport_at_capacity? => false, :planes => [a380])
     srand(4)
     subject.tell_plane_to_land(heathrow, a380)
     expect(heathrow.planes).to eq [a380]
@@ -26,10 +26,18 @@ describe AirTrafficController do
   end
 
   it 'Planes do not depart if there is bad weather at airport' do
-    a380 = double('Plane')
-    heathrow = double('Airport', :iata_code => :LHR)
+    a380 = double('a380')
+    heathrow = double('heathrow', :iata_code => :LHR)
     srand(2)
     expect{subject.tell_plane_to_depart(heathrow, a380)}.to raise_error("Bad weather at LHR, plane cannot take off!")
+  end
+
+  it 'Planes do not depart if they are not in the airport' do
+    a380 = double('a380')
+    boeing777 = double('boeing777')
+    heathrow = double('Airport', :iata_code => :LHR, :planes => [boeing777])
+    srand(4)
+    expect{subject.tell_plane_to_depart(heathrow, a380)}.to raise_error("Plane not at airport!")
   end
 
 end
