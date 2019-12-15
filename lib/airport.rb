@@ -24,8 +24,8 @@ class Airport
     return @planes.include?(plane)
   end
 
-  # def plane_departed(plane)
-  #   @planes.delete(plane)
-  # end
+  def plane_departed(plane)
+    @planes.delete(plane)
+  end
 
 end

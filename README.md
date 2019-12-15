@@ -57,6 +57,7 @@ Extract scope:
 * Single random variable of weather in determining ability to land
 * No scope defined for number of airports, so will assume three airports (London, Luton, Gatwick)
 * No scope defined for number of planes or airlines, so will assume generic plane with unlimited avaliablity for initalization
+* Assumes planes will be initialized by default in flight, however gives option to initialize in airport
 * No scope for flightpaths or times, so will assume once a plane has departed it can immediately land again
 * Assume any plane which is landed is immediately available for departure
 
@@ -113,4 +114,4 @@ Create RSpec for basic object functions and implement TDD:
 * airport.land_plane(plane)
 * airport.plane_departure_ready?(plane)
 * plane.cleared_for_takeoff(airport)
-* 
+* airport.plane_departed(plane)

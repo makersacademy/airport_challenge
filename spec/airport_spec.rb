@@ -39,4 +39,12 @@ describe Airport do
     subject.land_plane(plane)
     expect(subject.plane_departure_ready?(plane)).to eq true
   end
+
+  it 'Checks plane has departed after recieving call from plane' do
+    plane = double("plane", :in_flight? => true)
+    subject.land_plane(plane)
+    subject.plane_departed(plane)
+    expect(subject.planes.include?(plane)).to eq false
+    expect(plane.in_flight?).to eq true
+  end
 end
