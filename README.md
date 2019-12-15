@@ -106,4 +106,15 @@ Step 2
 Translate user stories into code
 -> created instance variable (planes(bikes)) which is an array - then created a method land_plane(plane) which when called shovels plane into planes array
 -> Airport can command aircraft to land, also confirms it has landed.
-airport.land_plane aircraft 
+airport.land_plane aircraft
+airport.fly_be_free
+
+Step 3
+_________
+airport now can have max cap
+fatport = Airport.new(50)
+
+-> changed error list to be a hash but still have same no method error - this makes no sense as ive used the same syntax for a similar statement above with no issue.
+also getting same issue with capacity thinking its a method very confused
+moved on to next steps as this ate my time
+-> 
