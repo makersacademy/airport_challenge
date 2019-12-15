@@ -95,10 +95,15 @@ step by step how to
 Step 1
 --------
 -> named my Classes
+airport = Airport.new
+aircraft = Aircraft.new
+weather = Weather.new  
 -> created basic spec tests
 (I'm going to be using the Boris Bikes Challenge as a template for this one - this is for practical application of the weeks code into the weekends code - its unlikely I fully finish this weekend task but makersacademy said that this was ok)
 
 Step 2
 ---------
 Translate user stories into code
--> created instance variable (planes(bikes)) which is an array - then created a method land_plane(plane) which when called shovels plane into planes array 
+-> created instance variable (planes(bikes)) which is an array - then created a method land_plane(plane) which when called shovels plane into planes array
+-> Airport can command aircraft to land, also confirms it has landed.
+airport.land_plane plane  
