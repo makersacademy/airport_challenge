@@ -18,9 +18,14 @@ describe Airport do
     expect(subject.hanger_check.include? plane_2).to eq false 
   end
 
+  it 'return statment when plane takes off or lands' do
+    plane_3 = Plane.new
+    subject.take_off(plane_3)
+    expect(subject.air_traffic_controller(plane)).to eq "The plane has taken of"
+  end
 end
 
-
+  # it 'checks capacity of hanger and return '
 
 # require "Airport.rb"
 
