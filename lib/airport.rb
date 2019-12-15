@@ -12,14 +12,15 @@ class Airport
     @capacity = capacity
   end
   
-  
   def land(plane)
     fail "Full capacity" if full?
+
     @planes << plane
   end
 
   def send_plane
     fail "No planes" if empty?
+
     @planes.pop
   end
 
@@ -32,5 +33,4 @@ class Airport
     @planes.count >= @capacity
   end
   
-
 end
