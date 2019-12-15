@@ -47,7 +47,7 @@ describe Airport do
 
     it 'raises error when weather is stormy' do
       subject.sunny = false
-      expect{subject.land(plane)}.to raise_error 'Weather is stormy, abort!!!'
+      expect { subject.land(plane) }.to raise_error 'Weather is stormy, abort!!!'
     end
   end
 

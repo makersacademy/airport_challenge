@@ -9,11 +9,11 @@ describe Plane do
 
   describe '#landing at airport' do
     it 'changes the flying status to false' do
-    airport2 = Airport.new
-    airport2.sunny = true
-    airport2.land(subject)
-    expect(subject.flying).to be false
-  end
+      airport2 = Airport.new
+      airport2.sunny = true
+      airport2.land(subject)
+      expect(subject.flying).to be false
+    end
   end
 
 end
