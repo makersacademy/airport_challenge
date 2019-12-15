@@ -25,6 +25,13 @@ describe AirTrafficController do
     expect(a380.in_flight).to eq false
   end
 
+  it 'Planes do not depart if there is bad weather at airport' do
+    a380 = double('Plane')
+    heathrow = double('Airport', :iata_code => :LHR)
+    srand(2)
+    expect{subject.tell_plane_to_depart(heathrow, a380)}.to raise_error("Bad weather at LHR, plane cannot take off!")
+  end
+
 end
 
 # require 'airport'

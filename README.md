@@ -91,8 +91,8 @@ List out required attributes of each non-controller object:
 
 
 Create diagram for major processes:
-* air_traffic_controller.land_plane(airport, plane) add link to image
-* air_traffic_controller.depart_plane(airport, plane) add link to image
+* air_traffic_controller.tell_plane_to_land(airport, plane) add link to image
+* air_traffic_controller.tell_plane_to_depart(airport, plane) add link to image
 
 
 List out required messages between objects from diagram:
@@ -117,8 +117,10 @@ Create RSpec for basic object functions and implement TDD:
 * airport.plane_departed(plane)
 
 Create RSpec for controller (AirTrafficController) and implement TDD:
-* air_traffic_controller.land_plane(airport, plane)
+* air_traffic_controller.tell_plane_to_land(airport, plane)
   - planes do not land if bad weather
   - planes do not land if airport is at capacity
   - planes land if no bad weather and airport has capacity
+* air_traffic_controller.tell_plane_to_depart(airport, plane)
+  - planes do not depart if there is bad weather
   - 
