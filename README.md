@@ -14,9 +14,9 @@ Airport Challenge
 ```
 Stories completed
 
-1
-2
-completing user story 3
+user story 1
+user story 2
+user story 3
 
 
 Instructions
