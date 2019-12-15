@@ -35,6 +35,8 @@ class Airport
     !@planes.include? plane
   end
 
+  private
+  
   def full?
     @planes.count == @capacity
   end
