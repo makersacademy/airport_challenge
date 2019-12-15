@@ -33,10 +33,10 @@ describe Airport do
     expect(subject.planes).to eq [plane]
   end
 
-  it 'Checks whether a plane is available to depart' do
+  it 'Checks whether a plane is departure ready' do
     plane = double("plane")
-    expect(subject.plane_ready_to_depart?(plane)).to eq false
+    expect(subject.plane_departure_ready?(plane)).to eq false
     subject.land_plane(plane)
-    expect(subject.plane_ready_to_depart?(plane)).to eq true
+    expect(subject.plane_departure_ready?(plane)).to eq true
   end
 end

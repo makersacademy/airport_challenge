@@ -20,7 +20,7 @@ class Airport
     @planes << plane
   end
 
-  def plane_ready_to_depart?(plane)
+  def plane_departure_ready?(plane)
     return @planes.include?(plane)
   end
 
