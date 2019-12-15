@@ -23,6 +23,11 @@ describe Airport do
     subject.take_off(plane_3)
     expect(subject.air_traffic_controller(plane_3)).to eq "The plane has taken off"
   end
+
+  it 'Test for capacity of airport set to 20 planes' do
+    Airport::Default_capacity.times {subject(Bike.new)}
+    expect {subject.land_plane(Plane.new)}.to raise_error "Cannot land, Airport full"
+  end
 end
 
   # it 'checks capacity of hanger and return '
