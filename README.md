@@ -125,5 +125,5 @@ Create RSpec for controller (AirTrafficController) and implement TDD:
 * air_traffic_controller.tell_plane_to_depart(airport, plane)
   - planes do not depart if there is bad weather
   - planes do not depart if they are not in the airport
-  - 
+  - planes depart if weather is good and they are ready to depart
   - planes do not take off if already in flight (part of plane spec)

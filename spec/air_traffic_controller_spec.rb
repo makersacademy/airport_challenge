@@ -39,9 +39,15 @@ describe AirTrafficController do
     expect{subject.tell_plane_to_depart(heathrow, a380)}.to raise_error("Plane not at airport!")
   end
 
-end
+  it 'Planes depart if weather is good and they are ready to depart' do
+    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => true)
+    heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => true, :planes => [])
+    srand(4)
+    subject.tell_plane_to_depart(heathrow, a380)
+    a380 = double('a380', :in_flight => true)
+    expect(heathrow.planes).to eq []
+    expect(a380.in_flight).to eq true
+  end
 
-# require 'airport'
-# require 'plane'
-# a380 = Plane.new
-# heathrow = Airport.new('LHR')
+
+end
