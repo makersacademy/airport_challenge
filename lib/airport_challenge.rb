@@ -11,8 +11,13 @@ class Airport
     @planes = []
   end
 
-  def land
-    @plane = Plane.new
+  def plane
+    Plane.new
+  end 
+
+  def land(plane)
+    fail "The airport is full." if full?()
+    @planes << plane
   end
 
   def take_off
