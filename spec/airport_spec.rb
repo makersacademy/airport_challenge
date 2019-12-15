@@ -4,6 +4,16 @@ describe Airport do
 
     let (:plane) { double :plane }
 
+    it 'allow user to set airport capacity' do
+        airport = Airport.new(25)
+        expect(airport.capacity).to eq 25
+    end
+
+    it 'use DEFAULT CAPACITY if none given' do
+        airport = Airport.new
+        expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
     describe '#land' do
         it 'allow plane to land at aiport' do
             allow(subject).to receive(:rand_number).and_return(4)
