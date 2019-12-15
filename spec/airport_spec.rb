@@ -7,21 +7,26 @@ describe Airport do
     expect(airport).to eq airport
   end
 
-  it "airport to land a plane" do
-    expect(Airport.new(10)).to respond_to(:land).with(1).argument
-  end
-
-  it "airport to take_off a plane" do
-    expect(Airport.new(10)).to respond_to(:take_off).with(1).argument
-  end
-
-  it "airport not allow landing when is full" do
-    airport = Airport.new(10)
-    plane = Plane.new
-    10.times do
-      airport.land(plane)
+  describe "#land" do
+    it "airport to land a plane" do
+      expect(Airport.new(10)).to respond_to(:land).with(1).argument
     end
-    expect { airport.land(plane) }.to raise_error "Error, airport full!"
+    
+    it "airport not allow landing when is full" do
+      airport = Airport.new(10)
+      plane = Plane.new
+      10.times do
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error "Error, airport full!"
+    end
   end
 
+ 
+  describe "#take_off" do
+    it "airport to take_off a plane" do
+      expect(Airport.new(10)).to respond_to(:take_off).with(1).argument
+    end
+  end
+  
 end

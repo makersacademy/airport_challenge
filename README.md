@@ -3,26 +3,36 @@ Airport Challenge:
 
 1) 'Airport' to create 'airports'
 2) 'Plane' to create 'planes'
+
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
 3) A 'plane' to 'land' at an 'airport' + add to 'airport'
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 4) A 'plane' to 'take_off' + remove from 'airport'
+
+
 5) Give 'airports' "DEFAULT_CAPACITY", overwritten                (attr_accessor)
-6) Prevent 'plane' 'land' if 'airports' 'full?'
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+6) Prevent 'plane' 'land' if 'airports' are full.
+
+
 7) Create 'weather' to set sunny/stormy (random number generator)
 8) Prevent 'plane' 'land' if 'weather' "stormy"
 9) Prevent 'plane' 'land' if 'weather' "stormy"
 
 
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+
+
+
 
 As the system designer
 So that the software can be used for many different airports
