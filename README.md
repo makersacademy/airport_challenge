@@ -106,4 +106,4 @@ List out required messages between objects from diagram:
 
 Create RSpec for basic object functions and implement TDD:
 * weather.good_weather?(airport)
-*
+* airport.iata_code

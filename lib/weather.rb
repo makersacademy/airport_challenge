@@ -1,10 +1,8 @@
 class Weather
-  def initialize
-    @airports = [:LHR, :LTN, :LGW]
-  end
+  AVAILABLE_AIRPORTS = [:LHR, :LTN, :LGW]
 
   def good_weather?(airport)
     code = airport.iata_code
-    return rand(@airports.length) == @airports.index(code)
+    return rand(AVAILABLE_AIRPORTS.length) == AVAILABLE_AIRPORTS.index(code)
   end
 end
