@@ -21,7 +21,7 @@ describe Airport do
   it 'return statment when plane takes off or lands' do
     plane_3 = Plane.new
     subject.take_off(plane_3)
-    expect(subject.air_traffic_controller(plane)).to eq "The plane has taken of"
+    expect(subject.air_traffic_controller(plane_3)).to eq "The plane has taken off"
   end
 end
 

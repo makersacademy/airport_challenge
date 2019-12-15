@@ -19,6 +19,14 @@ class Airport
     @hanger
   end
 
+  def air_traffic_controller(plane)
+    if !@hanger.include? plane
+      "The plane has taken off"
+    else 
+      raise "The Plane is grounded"
+    end
+  end
+
 end
 
 
