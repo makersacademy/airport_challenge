@@ -1,10 +1,12 @@
 require 'plane.rb'
+require 'weather.rb'
 
 class Airport
   AirportCapacity = 50
 
   attr_accessor :plane
   attr_accessor :capacity
+
 
   def initialize(capacity = AirportCapacity)
     @capacity = capacity
@@ -13,7 +15,7 @@ class Airport
 
   def plane
     Plane.new
-  end 
+  end
 
   def land(plane)
     fail "The airport is full." if full?()
@@ -21,6 +23,7 @@ class Airport
   end
 
   def take_off
+    fail "It is stormy" if @weather == 'stormy'
     @plane = 0
   end
 

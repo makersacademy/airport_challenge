@@ -1,5 +1,6 @@
 require 'airport_challenge.rb'
 
+
 describe Airport do
 
   describe '#capacity' do
