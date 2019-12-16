@@ -13,12 +13,35 @@ Airport Challenge
 
 ```
 Stories completed
+-------------
 
-user story 1
-user story 2
-user story 3
-user story 4
+User story 1
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+```
 
+User story 2
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
+User story 3
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+
+User story 4
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
 
 Instructions
 ---------
