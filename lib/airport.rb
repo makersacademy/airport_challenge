@@ -6,7 +6,7 @@ class Airport
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
     @planes = []
   end
 
@@ -29,6 +29,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..10) > 8
+    rand(1..10) > 9
   end
 end
