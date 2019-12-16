@@ -30,4 +30,17 @@ describe Airplane do
     airbus.takeoff
     expect(airbus.location).to eq "sky"
   end
+
+  it "wont land in stormy weather" do
+    airbus = Airplane.new
+    gatwick = Airport.new
+    expect { airbus.land_at(gatwick, "stormy") }.to raise_error
+  end
+
+  it "wont takeoff in stormy weather" do
+    airbus = Airplane.new
+    gatwick = Airport.new
+    airbus.land_at(gatwick)
+    expect { airbus.takeoff("stormy") }.to raise_error
+  end
 end

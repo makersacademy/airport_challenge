@@ -39,4 +39,15 @@ describe Airport do
     gatwick = Airport.new(15)
     expect(gatwick.capacity).to eq 15
   end
+
+  it "does not allow take in stormy weather" do
+    gatwick = Airport.new
+    gatwick.land_plane("1")
+    expect(gatwick.dispatch_plane("1", "stormy")).to raise_error
+  end
+
+  it "does not allow landing in stormy weather" do
+    gatwick = Airport.new
+    expect(gatwick.land_plane("1", "stormy")).to raise_error
+  end
 end

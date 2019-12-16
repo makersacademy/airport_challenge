@@ -14,6 +14,7 @@ class Airport
 
   def dispatch_plane(plane_id)
     raise("Airport empty") if @planes.empty?
+    
     @planes.delete(plane_id)
     return plane_id
   end
