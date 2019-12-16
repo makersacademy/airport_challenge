@@ -1,0 +1,3 @@
+class AirPlane
+
+end
