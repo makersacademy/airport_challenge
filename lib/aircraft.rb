@@ -1,0 +1,2 @@
+class Aircraft 
+end
