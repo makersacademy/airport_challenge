@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-    subject(:airport) {described_class.new(:capacity)}
+    # subject(:airport) {Airport.new(:capacity)}
     # it {is_expected.to respond_to('land')}
 
   describe "#land" do
@@ -31,18 +31,20 @@ describe Airport do
         it "allows planes to take off" do
         plane = Plane.new
         airport = Airport.new
+        weather = double("weather", :todays_weather => false)
         airport.land(plane)
-        airport.take_off(plane)
+        airport.take_off(plane, weather)
         expect(airport.airport).to eq []
         end
 
         it "doesnt allow a plane to take off if its stormy" do
             plane = Plane.new
             airport = Airport.new
+            weather = double("weather", :todays_weather => true)
             # p "hello"
             # p airport
             airport.land(plane)
-            expect(airport.take_off(plane)).to raise_error "Error weather too stormy"
+            expect{airport.take_off(plane, weather)}.to raise_error "Error weather too stormy"
         end
     end
 

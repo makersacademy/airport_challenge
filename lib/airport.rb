@@ -10,7 +10,6 @@ DEFAULT_CAPACITY = 20
   def initialize(capacity=DEFAULT_CAPACITY)
     @airport = []
     @capacity = capacity
-    @storm = true
   end
     
   def land(plane)
@@ -18,8 +17,8 @@ DEFAULT_CAPACITY = 20
     @airport << plane
   end
 
-  def take_off(plane)
-    fail "Error weather too stormy" if stormy?
+  def take_off(plane, weather)
+    fail "Error weather too stormy" if weather.todays_weather 
 
     @airport.delete(plane)
   end
@@ -28,10 +27,5 @@ DEFAULT_CAPACITY = 20
 
   def full?
     @airport.length >= @capacity
-  end
-
-  def stormy?
-    rand(5) == 0 ? @stormy == true : @stormy == false
-    return true if  @storm == true
   end
 end
