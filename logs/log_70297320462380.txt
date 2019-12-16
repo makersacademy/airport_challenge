@@ -1,2 +1,0 @@
-2019-12-15 21:35:48 +0000 - #[Double "a380"] cleared for landing at #[Double "Airport"]
-2019-12-15 21:35:48 +0000 - #[Double "a380"] cleared for take off from #[Double "Airport"]

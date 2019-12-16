@@ -1,4 +1,4 @@
-require 'air_traffic_controller'
+require_relative 'air_traffic_controller'
 
 class Weather
   def good_weather?(airport)
