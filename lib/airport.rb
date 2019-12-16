@@ -23,6 +23,15 @@ class Airport
     true
   end
 
+  def max(plane)
+    fail 'Airport full' if full?
+    @planes << plane
+  end
 
+
+  private
+  def max?
+    @planes.count >= DEFAULT_CAPACITY
+  end
 
 end 

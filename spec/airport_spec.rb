@@ -14,6 +14,14 @@ describe Airport do
         expect {subject.land}.to raise_error 'planes cannot land'
       end
   
-    
+    describe '#max' do
+      it 'raises an error when full' do
+        Airport::DEFAULT_CAPACITY.times do
+          subject.max Plane.new
+        end
+        expect { subject.max Plane.new }.to raise_error 'Airport full'
+      end
+    end
+
 end
 
