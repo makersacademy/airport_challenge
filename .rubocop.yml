@@ -36,6 +36,9 @@
 # reason to make things so abbreviated as to be unreadable. These messages are
 # designed to make you write more readable code - not less.
 
+
+require: rubocop-rails
+
 Metrics/LineLength:
   Max: 100
 
