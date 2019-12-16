@@ -1,13 +1,10 @@
-# require_relative 'airplane'
-
-
 class Airport
   attr_reader :planes
   attr_accessor :capacity
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
   end
@@ -15,9 +12,8 @@ class Airport
   def land(plane, stormy)
     raise "No Space" if @planes if full?
     raise "Cannot land when stormy" if stormy == true
-    plane.flying = false
-    @planes << plane
 
+    @planes << plane
 
   end
 
@@ -38,13 +34,5 @@ class Airport
   def empty?
     @planes.empty?
   end
-#
-#   def broken_bikes_array
-#     @bikes.select {|bike| bike if bike.broken? }
-#   end
-#
-#   def working_bikes_array
-#     @bikes.reject {|bike| bike if bike.broken? }
-#   end
-#
+
 end
