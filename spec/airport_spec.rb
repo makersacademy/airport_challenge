@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+    subject(:airport) {described_class.new(:capacity)}
     # it {is_expected.to respond_to('land')}
 
   describe "#land" do
@@ -44,6 +45,7 @@ describe Airport do
             expect(airport.take_off(plane)).to raise_error "Error weather too stormy"
         end
     end
+
 
     it "allows capacity to be set" do
         airport = Airport.new(50)

@@ -19,7 +19,7 @@ DEFAULT_CAPACITY = 20
   end
 
   def take_off(plane)
-    fail "Error weather too stormy" if stormy
+    fail "Error weather too stormy" if stormy?
 
     @airport.delete(plane)
   end
@@ -30,7 +30,8 @@ DEFAULT_CAPACITY = 20
     @airport.length >= @capacity
   end
 
-  def stormy
-    fail "Error weather too stormy" if @storm == true
+  def stormy?
+    rand(5) == 0 ? @stormy == true : @stormy == false
+    return true if  @storm == true
   end
 end
