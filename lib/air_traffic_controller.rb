@@ -1,4 +1,6 @@
 require_relative 'weather'
+require_relative 'airport'
+require_relative 'plane'
 
 class AirTrafficController
   attr_reader :weather
