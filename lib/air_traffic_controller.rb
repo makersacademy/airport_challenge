@@ -13,7 +13,7 @@ class AirTrafficController
   def tell_plane_to_land(args)
     airport = args[:airport]
     plane = args[:plane]
-    raise("Bad weather at #{airport.iata_code}, cannot land plane!") if weather.good_weather?(airport) == false
+    weather_check(airport, 'land')
 
     raise("#{airport.iata_code} at capacity, cannot land plane!") if airport.airport_at_capacity? == true
 
@@ -24,7 +24,7 @@ class AirTrafficController
   def tell_plane_to_depart(args)
     airport = args[:airport]
     plane = args[:plane]
-    raise("Bad weather at #{airport.iata_code}, plane cannot take off!") if weather.good_weather?(airport) == false
+    weather_check(airport, 'take off')
 
     raise("Plane not at airport!") if airport.plane_departure_ready?(plane) == false
 
@@ -37,4 +37,9 @@ class AirTrafficController
   def log_action(airport, plane, action)
     File.open("./logs/log.txt", 'a') { |line| line.write "#{Time.now} - User: #{object_id} - Action: Flight #{plane.flight_id} cleared for #{action} #{airport.iata_code}\n" }
   end
+
+  def weather_check(airport, action)
+    raise("Bad weather at #{airport.iata_code}, plane cannot #{action}!") if weather.good_weather? == false
+  end
+
 end

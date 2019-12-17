@@ -96,7 +96,7 @@ Create diagram for major processes:
 ------
 
 List out required messages between objects from diagram:
-* good_weather?(airport): air_traffic_controller --> weather
+* good_weather?: air_traffic_controller --> weather
 * iata_code: weather --> airport
 * airport_at_capacity?: air_traffic_controller --> airport
 * cleared_to_land(airport): air_traffic_controller --> plane
@@ -107,7 +107,7 @@ List out required messages between objects from diagram:
 ------
 
 Create RSpec for basic object functions and implement TDD:
-* weather.good_weather?(airport)
+* weather.good_weather?
 * airport.iata_code
 * airport.airport_at_capacity?
 * plane.cleared_to_land(airport)
@@ -137,4 +137,5 @@ Refactor
 * Have available airports based in airtraffic controller
 * Modify logging to return flight ID and airport iata code
 * Refactor class initialize methods to take hash as input if required (OOD)
-* Create basic example log file, then exclude new using .gitignore
+* Create basic example run file and log file, then exclude any new logs using .gitignore
+* Remove good_weather? reliance on airport, since adds no benefit, option to add realtime api in future

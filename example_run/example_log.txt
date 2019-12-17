@@ -1,0 +1,5 @@
+2019-12-17 12:03:57 +0000 - User: 70157510927520 - Action: Flight CW118 cleared for take off from LHR
+2019-12-17 12:03:57 +0000 - User: 70157510927520 - Action: Flight CW118 cleared for landing at LTN
+2019-12-17 12:03:57 +0000 - User: 70157510927520 - Action: Flight CW921 cleared for take off from LTN
+2019-12-17 12:03:57 +0000 - User: 70157510927520 - Action: Flight CW024 cleared for landing at LGW
+2019-12-17 12:03:57 +0000 - User: 70157510927520 - Action: Flight CW921 cleared for landing at LHR
