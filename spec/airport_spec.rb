@@ -26,8 +26,8 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
-    it 'should show if airport is empty' do
-      expect { subject.take_off }.to raise_error("Airport is empty")
+    it 'should show if airport is empty' do      
+        expect { subject.take_off }.to raise_error("Airport is empty")
 
     end
   end
