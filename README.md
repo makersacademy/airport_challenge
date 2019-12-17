@@ -52,7 +52,7 @@ I want to prevent landing when weather is stormy
 ## Approach
 ---------
 
-Extract scope:
+#### Extract scope:
 * Simple program to organise the landing and taking off of planes from a air traffic controllers point of view
 * Single random variable of weather in determining ability to land
 * No scope defined for number of airports, so will assume three airports (London, Luton, Gatwick)
@@ -62,14 +62,14 @@ Extract scope:
 * Assume any plane which is landed is immediately available for departure
 ------
 
-List out required objects from client requirements:
+#### List out required objects from client requirements:
 * AirTrafficController
 * Airport
 * Plane
 * Weather
 ------
 
-List out required controller messages:
+#### List out required controller messages:
 * AirTrafficController -> Plane (Land at airport)
   - providing plane is in the air
   - if weather is not stormy
@@ -79,7 +79,7 @@ List out required controller messages:
   - if weather is not stormy
 ------
 
-List out required attributes of each non-controller object:
+#### List out required attributes of each non-controller object:
 * AirTrafficController
 * Airport
   - Array to store planes with set capacity
@@ -90,12 +90,12 @@ List out required attributes of each non-controller object:
   - Weather status at specific airport
 ------
 
-Create diagram for major processes:
+#### Create diagram for major processes:
 * air_traffic_controller.tell_plane_to_land(airport, plane) [image](https://github.com/cpcwood/airport_challenge-1/blob/master/process_diagrams/depart_plane.jpeg)
 * air_traffic_controller.tell_plane_to_depart(airport, plane) [image](https://github.com/cpcwood/airport_challenge-1/blob/master/process_diagrams/land_plane.jpeg)
 ------
 
-List out required messages between objects from diagram:
+#### List out required messages between objects from diagram:
 * good_weather?: air_traffic_controller --> weather
 * iata_code: weather --> airport
 * airport_at_capacity?: air_traffic_controller --> airport
@@ -106,7 +106,7 @@ List out required messages between objects from diagram:
 * plane_departed: plane --> airport
 ------
 
-Create RSpec for basic object functions and implement TDD:
+#### Create RSpec for basic object functions and implement TDD:
 * weather.good_weather?
 * airport.iata_code
 * airport.airport_at_capacity?
@@ -117,7 +117,7 @@ Create RSpec for basic object functions and implement TDD:
 * airport.plane_departed(plane)
 ------
 
-Create RSpec for controller (AirTrafficController) and implement TDD:
+#### Create RSpec for controller (AirTrafficController) and implement TDD:
 * air_traffic_controller.tell_plane_to_land(airport, plane)
   - planes do not land if bad weather
   - planes do not land if airport is at capacity
@@ -131,7 +131,7 @@ Create RSpec for controller (AirTrafficController) and implement TDD:
 * add log of air traffic controller actions and verify using rspec
 ------
 
-Refactor
+#### Refactor:
 * Cleanup
 * Rubocop
 * Have available airports based in airtraffic controller
@@ -139,3 +139,13 @@ Refactor
 * Refactor class initialize methods to take hash as input if required (OOD)
 * Create basic example run file and log file, then exclude any new logs using .gitignore
 * Remove good_weather? reliance on airport, since adds no benefit, option to add realtime api in future
+* Add some controller methods to private
+------
+
+#### Reflect
+* Total time spent on project: 7-8hrs
+* First weekend challenege of Makers so the client requirements wern't too extrenuous
+*  Process of extracting scope then creating sequence diagrams worked well for draft designing the program objects and messages
+* Definitely had some mission creep from the client requirements due to curiosity, e.g. adding in log file, number of airports, flight ID etc. In the future only design program to client requirements, then add in extras after if curious
+* Need to create process for object-oritented design, so that principles are included in the first draft of the program instead of refactored in after
+* RSpec went well although could have known more matchers to give more specific results and also require a type of RSpec test for running full program functionality
