@@ -16,7 +16,7 @@ class AirTrafficController
     raise("#{airport.iata_code} at capacity, cannot land plane!") if airport.airport_at_capacity? == true
 
     plane.cleared_to_land(airport)
-    log_action("#{plane} cleared for landing at #{airport.iata_code}")
+    log_action(airport, plane, 'landing at')
   end
 
   def tell_plane_to_depart(airport, plane)
@@ -25,10 +25,10 @@ class AirTrafficController
     raise("Plane not at airport!") if airport.plane_departure_ready?(plane) == false
 
     plane.cleared_for_take_off(airport)
-    log_action("#{plane} cleared for take off from #{airport.iata_code}")
+    log_action(airport, plane, 'take off from')
   end
 
-  def log_action(action)
-    File.open("./logs/log.txt", 'a') { |line| line.write "#{Time.now} - User: #{object_id} - Action: #{action}\n" }
+  def log_action(airport, plane, action)
+    File.open("./logs/log.txt", 'a') { |line| line.write "#{Time.now} - User: #{object_id} - Action: Flight #{plane.flight_id} cleared for #{action} #{airport.iata_code}\n" }
   end
 end

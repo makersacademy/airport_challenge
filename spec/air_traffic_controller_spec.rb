@@ -16,7 +16,7 @@ describe AirTrafficController do
   end
 
   it 'Planes land if no bad weather and airport has capacity' do
-    a380 = double('a380', :cleared_to_land => nil, :in_flight => false)
+    a380 = double('a380', :cleared_to_land => nil, :in_flight => false, :flight_id => 1)
     heathrow = double('heathrow', :iata_code => :LHR, :airport_at_capacity? => false, :planes => [a380])
     srand(4)
     subject.tell_plane_to_land(heathrow, a380)
@@ -39,7 +39,7 @@ describe AirTrafficController do
   end
 
   it 'Planes depart if weather is good and they are ready to depart' do
-    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => true)
+    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => true, :flight_id => 1)
     heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => true, :planes => [])
     srand(4)
     subject.tell_plane_to_depart(heathrow, a380)
@@ -50,13 +50,18 @@ describe AirTrafficController do
 
   it 'Logs take offs and landings' do
     srand(4)
-    a380 = double('a380', :in_flight => true, :cleared_to_land => nil)
+    a380 = double('a380', :in_flight => true, :cleared_to_land => nil, :flight_id => 1)
+
     heathrow = double('Airport', :iata_code => :LHR, :airport_at_capacity? => false)
     subject.tell_plane_to_land(heathrow, a380)
-    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => false)
+    a380 = double('a380', :cleared_for_take_off => nil, :in_flight => false, :flight_id => 1)
+
     heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => true, :planes => [a380])
     subject.tell_plane_to_depart(heathrow, a380)
+    p a380.flight_id
+
     log = File.read("./logs/log.txt").split("\n")[-2, 2]
-    expect(log).to eq ["#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for landing at #{heathrow.iata_code}", "#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for take off from #{heathrow.iata_code}"]
+
+    expect(log).to eq ["#{Time.now} - User: #{subject.object_id} - Action: Flight #{a380.flight_id} cleared for landing at #{heathrow.iata_code}", "#{Time.now} - User: #{subject.object_id} - Action: Flight #{a380.flight_id} cleared for take off from #{heathrow.iata_code}"]
   end
 end
