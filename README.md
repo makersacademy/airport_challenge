@@ -135,3 +135,6 @@ Refactor
 * Cleanup
 * Rubocop
 * Have available airports based in airtraffic controller
+* Modify logging to return flight ID and airport iata code
+* Refactor class initialize methods to take hash as input if required (OOD)
+* Create basic example log file, then exclude new using .gitignore
