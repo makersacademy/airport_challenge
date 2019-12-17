@@ -1,17 +1,31 @@
 require 'plane'
 
 describe Plane do
+
+  before(:each) { Plane.class_variable_set :@@next_flight_id, 1 }
+
   it 'default initialization is in flight' do
-    default_plane = Plane.new()
+    default_plane = Plane.new
     expect(default_plane.in_flight).to eq true
   end
 
   it 'can be initialized in an airport' do
     heathrow = double("heathrow", :land_plane => nil)
-    heathrow_plane = Plane.new(heathrow)
+    heathrow_plane = Plane.new({:airport => heathrow})
     expect(heathrow_plane.in_flight).to eq false
     heathrow = double("heathrow", :planes => [heathrow_plane])
     expect(heathrow.planes).to eq [heathrow_plane]
+  end
+
+  it 'is initialized with default flight number' do
+    default_plane = Plane.new
+    expect(default_plane.flight_id).to eq 1
+  end
+
+  it 'The second default plane initialized has default flight number of 2' do
+    Plane.new
+    default_plane2 = Plane.new
+    expect(default_plane2.flight_id).to eq 2
   end
 
   it 'Lands after being cleared to land' do

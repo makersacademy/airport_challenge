@@ -1,5 +1,3 @@
-require_relative 'air_traffic_controller'
-
 class Weather
   def good_weather?(airport)
     code = airport.iata_code
