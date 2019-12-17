@@ -1,9 +1,12 @@
 class Plane
-  attr_reader :in_flight
+  attr_reader :in_flight, :flight_id
+  @@next_flight_id = 1
 
-  def initialize(airport = '')
+  def initialize(args = {})
     @in_flight = true
-    cleared_to_land(airport) if airport != ''
+    @flight_id = args[:flight_id] || @@next_flight_id
+    @@next_flight_id += 1 if args[:flight_id] == nil
+    cleared_to_land(args[:airport]) if args[:airport] != nil
   end
 
   def cleared_to_land(airport)

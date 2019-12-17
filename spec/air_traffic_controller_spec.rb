@@ -57,6 +57,6 @@ describe AirTrafficController do
     heathrow = double('Airport', :iata_code => :LHR, :plane_departure_ready? => true, :planes => [a380])
     subject.tell_plane_to_depart(heathrow, a380)
     log = File.read("./logs/log.txt").split("\n")[-2, 2]
-    expect(log).to eq ["#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for landing at #{heathrow}", "#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for take off from #{heathrow}"]
+    expect(log).to eq ["#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for landing at #{heathrow.iata_code}", "#{Time.now} - User: #{subject.object_id} - Action: #{a380} cleared for take off from #{heathrow.iata_code}"]
   end
 end

@@ -1,5 +1,3 @@
-require_relative 'air_traffic_controller'
-
 class Airport
   attr_reader :iata_code, :planes
 
