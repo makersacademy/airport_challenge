@@ -32,7 +32,7 @@ class Airport
   private
 
   def full?
-    @planes_at_airport.size >= @capacity ? true : false
+    @planes_at_airport.size >= @capacity 
   end
 
   def weather_conditions
