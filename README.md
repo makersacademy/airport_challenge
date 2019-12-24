@@ -42,7 +42,7 @@ I want to prevent landing when weather is stormy
 
 - Fork this repository and clone it to your local sytem
 - Go to the directory in your terminal
-- Run `irb -r './lib/dockking_station.rb'` in your terminal, and then explore the app.
+- Run `irb -r './lib/docking_station.rb'` in your terminal, and then explore the app.
 
 ## Tests
 
