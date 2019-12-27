@@ -16,7 +16,7 @@ Airport Challenge
 Description
 ---------
 
-This is the weekend challenge at the end of my first week at Makers Academy, a 16-week software developer bootcamp. For all the instructions, please refer to the main [instructions](https://github.com/AndreaDiotallevi/airport_challenge/blob/master/INSTRUCTIONS.md).
+This is the weekend challenge at the end of my first week at Makers Academy, a 16-week software developer bootcamp. For the main instructions, please refer [here](https://github.com/AndreaDiotallevi/airport_challenge/blob/master/INSTRUCTIONS.md).
 
 My approach explanation to solve the challenge
 -----
