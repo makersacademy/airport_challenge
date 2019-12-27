@@ -18,6 +18,19 @@ Description
 
 This is the weekend challenge at the end of my first week at Makers Academy, a 16-week software developer bootcamp. For the main instructions, please refer [here](https://github.com/AndreaDiotallevi/airport_challenge/blob/master/INSTRUCTIONS.md).
 
+Prerequisites
+-------
+
+* Clone this repository into your machine with ```git clone```
+* Change into the new repository
+* Open ```irb``` in the terminal
+
+How to run tests
+-------
+
+* Run ```bundle``` to install all the dependencies
+* Run ```rspec``` in the terminal to run the tests
+
 My approach explanation to solve the challenge
 -----
 
