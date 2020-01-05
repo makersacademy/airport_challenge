@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 require 'weather'
 
 describe Airport do
@@ -9,6 +10,7 @@ describe Airport do
     context 'when weather is sunny' do
       before do
         allow(airport).to receive(:stormy?).and_return false
+        allow(plane).to receive(:landing)
       end
 
       it 'has plane after landing' do
@@ -46,6 +48,8 @@ describe Airport do
     context 'when weather is sunny' do
       before do
         allow(airport).to receive(:stormy?).and_return false
+        allow(plane).to receive(:landing)
+        allow(plane).to receive(:taking_off)
       end
 
       it 'does not have plane after take off' do
