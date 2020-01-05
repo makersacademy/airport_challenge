@@ -29,7 +29,7 @@ $ irb
  => #<Airport:0x00007f86d68b7ae0 @capacity=20, @planes=[]>
 
 2.6.0 :003 > plane = Plane.new
- => #<Plane:0x00007f86d68a7230 @inAir=true>
+ => #<Plane:0x00007f86d68a7230 @in_air=true>
 
 2.6.0 :004 > city_airport.land(plane)
 RuntimeError (Cannot land due to stormy weather)
@@ -41,12 +41,12 @@ RuntimeError (Plane not in airport)
 => #<Airport:0x00007fa0730d11a8 @capacity=10, @planes=[]>
 
 2.6.0 :007 > heathrow.land(plane)
-=> #<Plane:0x00007f86d68a7230 @inAir=false>
+=> #<Plane:0x00007f86d68a7230 @in_air=false>
 
 ```
 My Approach
 -----------
-* **Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation. 
+* **Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation.
 * **Plane** class handles flying status and associated edge cases.
 * **Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny.
 

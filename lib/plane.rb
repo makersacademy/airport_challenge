@@ -3,23 +3,25 @@ class Plane
   attr_reader :taking_off, :landing
 
   def initialize
-    @inAir = true
+    @in_air = true
   end
 
   def taking_off
     raise "Plane cannot take off, already in air!" if flying?
-    @inAir = true
+
+    @in_air = true
   end
 
   def landing
-    raise "Plane cannot land again" if !flying?
-    @inAir = false
+    raise "Plane cannot land again" unless flying?
+
+    @in_air = false
   end
 
   private
 
   def flying?
-    @inAir
+    @in_air
   end
 
 end
