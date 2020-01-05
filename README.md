@@ -22,33 +22,33 @@ Usage
 ```
 $ irb
 
-2.6.0 :001 > require './lib/plane.rb'
+2.6.0 :001 > require './lib/airport.rb'
  => true
 
-2.6.0 :002 > require './lib/airport.rb'
- => true
-
-2.6.0 :003 > require './lib/weather.rb'
- => true
-
-2.6.0 :004 > city_airport = Airport.new(20)
+2.6.0 :002 > city_airport = Airport.new(20)
  => #<Airport:0x00007f86d68b7ae0 @capacity=20, @planes=[]>
 
-2.6.0 :005 > plane = Plane.new
- => #<Plane:0x00007f86d68a7230 @flying=true>
+2.6.0 :003 > plane = Plane.new
+ => #<Plane:0x00007f86d68a7230 @inAir=true>
 
-2.6.0 :006 > city_airport.land(plane)
+2.6.0 :004 > city_airport.land(plane)
 RuntimeError (Cannot land due to stormy weather)
 
-2.6.0 :007 > city_airport.take_off(plane)
+2.6.0 :005 > city_airport.take_off(plane)
 RuntimeError (Plane not in airport)
+
+2.6.0 :006 > heathrow = Airport.new
+=> #<Airport:0x00007fa0730d11a8 @capacity=10, @planes=[]>
+
+2.6.0 :007 > heathrow.land(plane)
+=> #<Plane:0x00007f86d68a7230 @inAir=false>
 
 ```
 My Approach
 -----------
-* **Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation
-* **Plane** class handles flying status
-* **Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny
+* **Airport** class handles landing and taking off of planes. It has a default capacity of 10 planes which can be overridden at initialisation. 
+* **Plane** class handles flying status and associated edge cases.
+* **Weather** class generates a random weather outlook: 1/3 of the time it is stormy and 2/3 sunny.
 
 1. Implement user stories in Task section below using test driven development
 2. Keep separate files for every class and test suite
@@ -56,14 +56,6 @@ My Approach
 4. Adhere to SRP and encapsulation principles (to the best of my ability)
 5. Run Rubocop before every commit, tidying as I go
 6. Once satisfied minimum user requirements, refactor to defend against edge cases
-
-* At last commit, all 12 tests passed and test coverage was 98.08%
-
-Comments
----------
-* Resources used were Stack Overflow, Ruby docs and Relish
-
-* If I had more time I would have refactored the Plane and Airport classes to make **Plane** more responsible for handling the edge cases.
 
 Task
 -----
