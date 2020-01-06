@@ -6,6 +6,8 @@ describe Airport do # No open close quotes for Airport!
     # Create a double for the planes and weather
     let(:plane) {double :plane, :landed= => false, landed?: false}
     let(:weather) {double :weather, :good= => true, good?: true}
+    subject { described_class.new(Airport::DEFAULT_CAPACITY, weather) }
+
 
     # Respond to a method called land.
     it { is_expected.to respond_to :land }
@@ -18,6 +20,7 @@ describe Airport do # No open close quotes for Airport!
 
     # Check if there's no planes initially in the airport
     it 'checks to make sure there is no plane in the airport' do
+        p subject
         expect(subject.planes).to eq []
     end
 
@@ -51,13 +54,11 @@ describe Airport do # No open close quotes for Airport!
         subject.land(plane)
         allow(plane).to receive(:landed){true}
         # allow(weather).to receive(:sunny){false}
-        subject.weather = false
         expect { subject.take_off(plane) }.to raise_error 'Bad weather no take off'
     end
 
     # prevent landing if the weather is stormy
     it 'prevents landing if the weather is stormy' do
-        subject.weather = false
         expect { subject.land(plane) }.to raise_error 'Bad weather no landing'
     end
 end

@@ -7,22 +7,26 @@ class Airport
 
     DEFAULT_CAPACITY = 20
     
-    def initialize(capacity = DEFAULT_CAPACITY)
+    def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
         @capacity = capacity
         @planes = []
-        weather = Weather.new
-        @weather = weather.good
+        @weather = weather
     end
 
     def land(plane)
         fail 'Airport is full' if planes.count == capacity
-        fail 'Bad weather no landing' if @weather == false
+        fail 'Bad weather no landing' unless weather.good?
         @planes << plane
     end
 
     def take_off(plane)
-        fail 'Bad weather no take off' if @weather == false
+        fail 'Bad weather no take off' unless @weather.good?
         @planes.pop
+    end
+
+    def check(plane)
+
+
     end
 
 end
