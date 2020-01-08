@@ -20,7 +20,7 @@ First week end challenge of Makers academy.
 ```
 Open your terminal/command line.
 Clone the repository with: git clone https://github.com/LeoRoma/airport_challenge.git
-Go into the folder: cd bank-tech-test
+Go into the folder: cd airport_challenge
 Bundle install.
 ```
 
