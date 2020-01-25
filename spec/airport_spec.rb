@@ -29,12 +29,19 @@ describe Airport do
   end
 
     describe '#tell_to_takeoff' do
-      it 'accepts a single plane' do
+      it 'accepts a single plane' do 
         plane = Planes.new
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         expect { subject.tell_to_takeoff(plane) }.not_to raise_error
       end
-      it 'confirms that the plane is no longer at the airport' do
+      it 'raises an error if the weather is stormy' do
         plane = Planes.new
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+        expect { subject.tell_to_takeoff(plane) }.to raise_error RuntimeError, "Can't take off; stormy weather."
+      end
+      it 'if takeoff successfull, confirms that the plane is no longer at the airport' do
+        plane = Planes.new
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         expect(subject.tell_to_takeoff(plane)).to eq(0)
       end
     end
