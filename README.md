@@ -89,6 +89,13 @@ The airport can instruct a plane to take off as long as the weather is sunny. Th
 airport.tell_to_takeoff(plane)
 ```
 
+## Testing
+
+You can run the associated tests using Rspec:
+```ruby
+rspec
+```
+
 ## Tech Stack
 
 Technologies used:
