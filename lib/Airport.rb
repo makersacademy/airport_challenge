@@ -10,8 +10,12 @@ class Airport
     def land(plane)
         fail "Airport full: cannot land" if full?
         @planes << plane
-
         plane.land
+    end
+
+    def take_off(plane)
+        @planes.delete plane
+        plane.take_off
     end
 
     def full?
