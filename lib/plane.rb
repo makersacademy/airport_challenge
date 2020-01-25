@@ -1,4 +1,4 @@
-require_relative 'Airport'
+require_relative 'airport'
 
 class Plane
     attr_reader :location
@@ -7,7 +7,7 @@ class Plane
         @location = :grounded
     end
     
-    def land(airport)
+    def land
         @location = :grounded
     end
 

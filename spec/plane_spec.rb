@@ -4,7 +4,7 @@ describe Plane do
     let (:airport) {Airport.new} 
     describe '#land' do
         it 'lands at an airport' do
-            expect(subject.land(airport)).to eq :grounded
+            expect(subject.land).to eq :grounded
         end
     end
 
