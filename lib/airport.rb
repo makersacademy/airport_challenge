@@ -27,11 +27,11 @@ class Airport
     @planes.delete(plane)
   end
 
-  private
-
   def stormy?
-    Weather.new.stormy?
+    Weather.stormy?
   end
+
+  private
 
   def empty?
     @planes.empty?
