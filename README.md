@@ -1,19 +1,7 @@
 Airport Challenge
 =================
 
-![learntofly](https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjkrP-a7p_nAhVKBGMBHf0fBLkQjRx6BAgBEAQ&url=https%3A%2F%2Fconsequenceofsound.net%2F2015%2F07%2Ffoo-fighters-to-visit-cesena-italy%2F&psig=AOvVaw2Ypc7hr9leqikw65uaX8xU&ust=1580079810114694)
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
+![learntofly](learntofly.png)
 
 About
 ---------
