@@ -16,10 +16,11 @@ Practice app created with Ruby 2.6.0
 
 ## Table of contents
 
-*[Introduction](#introduction)
-*[Technologies](#technologies)
-*
-*
+* [Introduction](#introduction)
+* [Technologies](#technologies)
+* [Launch](#launch)
+* [Project Status](#project-status)
+* [Sources](#sources)
 
 ## Introduction
 
