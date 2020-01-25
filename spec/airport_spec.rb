@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 # this is for the landing_plane method in airport.rb
@@ -6,6 +7,6 @@ describe Airport do
 
   it "land a plane" do
     plane = subject.land
-    expect(plane).to landing?
+    expect(plane).to be_landing
   end
 end
