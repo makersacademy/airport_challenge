@@ -1,5 +1,5 @@
 class Weather
-  def weather
-    "sunny"
+  def stormy?
+    rand < 0.1
   end
 end

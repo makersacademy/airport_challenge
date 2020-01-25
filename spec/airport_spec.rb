@@ -2,12 +2,17 @@ require 'airport'
 
 describe Airport do
   context "initialize" do
-    it 'default capacity' do
+    it 'defaults capacity at 20 in the absence of a given argument' do
+      allow(subject).to receive(:stormy?) { false }
+      expect(subject.capacity).to eq 20
       described_class::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport full")
     end
+
     it 'allows capacity to be overriden' do
       airport = Airport.new(30)
+      allow(airport).to receive(:stormy?) { false }
+      expect(airport.capacity).to eq 30
       described_class::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.not_to raise_error
     end
@@ -18,35 +23,44 @@ describe Airport do
       expect(subject).to respond_to(:land)
     end
     it 'accepts a landing plane' do
-      subject.land(plane)  
-      expect(subject.planes).to include(plane)
+      allow(subject).to receive(:stormy?) { false }
+      expect { subject.land(plane) }.not_to raise_error   
     end
     it 'prevents landing when airport is full' do
+      allow(subject).to receive(:stormy?) { false }
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
     it 'prevents planes that are landed from landing again' do
+      allow(subject).to receive(:stormy?) { false }  
       subject.land(plane)
-      expect { subject.land(plane) }.to raise_error("Plane already landed")
+      expect { subject.land(plane) }.to raise_error("Plane already in airport")
+    end
+    it 'prevents landings when stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(plane) }.to raise_error("No landings permitted when stormy")
     end
   end
-  context '#take_off' do
-    it 'responds to a take off method' do
-      expect(subject).to respond_to(:take_off)
-    end
+  context '#take_off(plane)' do
+    let(:plane) { Plane.new }
     it 'tells a plane to take off' do
-      subject.land(Plane.new)
-      expect(subject.take_off).to be_an_instance_of(Plane)
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
+    end
+    it 'confirms a plane is no longer in the airport after take off' do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes.include?(plane)).to eq false
     end
     it 'raises an error if there are no planes' do
-      expect { subject.take_off }.to raise_error("No planes")
+      allow(subject).to receive(:stormy?) { false }
+      expect { subject.take_off(plane) }.to raise_error("No planes")
     end
-  end
-  context '#in?(plane)' do
-    it 'confirms a plane is no longer in the airport after take off' do
-      subject.land(Plane.new)
-      plane = subject.take_off
-      expect(subject.in?(plane)).to eq false
+    it 'prevents takeoff when stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.take_off(plane) }.to raise_error("No takeoffs permitted when stormy")
     end
   end
 end

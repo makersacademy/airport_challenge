@@ -1,3 +1,6 @@
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
   attr_reader :planes, :capacity
 
@@ -9,24 +12,25 @@ class Airport
   end
   
   def land(plane)
-    raise "Plane already landed" if @planes.include?(plane)
-
+    raise "No landings permitted when stormy" if stormy?
+    raise "Plane already in airport" if @planes.include?(plane)
     raise "Airport full" if full?
 
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
+    raise "No takeoffs permitted when stormy" if stormy?
     raise "No planes" if empty?
     
-    @planes.pop
-  end
-
-  def in?(plane)
-    @planes.include?(plane)
+    @planes.delete(plane)
   end
 
   private
+
+  def stormy?
+    Weather.new.stormy?
+  end
 
   def empty?
     @planes.empty?
