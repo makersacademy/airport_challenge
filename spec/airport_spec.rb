@@ -18,26 +18,38 @@ describe Airport do
 
     it 'stores a plane when landed' do
         plane = Plane.new
-        subject.land(plane)
-        expect(subject.plane).to eq([plane])
+        expect(subject.land(plane)).to eq([plane])
     end
 
     it 'removes a plane when landed' do
         plane = Plane.new
         subject.land(plane)
-        subject.take_off(plane)
-        expect(subject.plane).to eq([])
+        expect(subject.take_off(plane)).to eq(plane)
     end
+
+
+    it 'has a deafult capacity' do 
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end 
 
     describe '#land' do 
         it 'raises an error to stop landing when airport is full' do
-            Airport::DEFAULT_CAPACITY.times do 
-                subject.land Plane.new
-            end
-            expect {subject.land Plane.new}.to raise_error "No space to land"
+                subject.capacity.times {subject.land Plane.new}
+                 expect {subject.land Plane.new}.to raise_error "No space to land"
         end
     end
 
+    describe 'initialization' do
+        subject {Airport.new}
+        let (:plane) {Plane.new}
+        it 'defaults capacity' do
+            described_class::DEFAULT_CAPACITY.times do
+                subject.land(plane)
+            end
+            expect {subject.land(plane)}.to raise_error 'No space to land'
+        end
+    end
+    
 
 end 
 
