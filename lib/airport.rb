@@ -1,5 +1,5 @@
-class Airport 
-    def land 
-        'land'
-    end 
+require_relative 'plane'
+
+class Airport
+
 end 
