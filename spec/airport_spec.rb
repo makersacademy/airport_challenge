@@ -19,22 +19,23 @@ describe Airport do
     it 'stores a plane when landed' do
         plane = Plane.new
         subject.land(plane)
-        expect(subject.plane).to eq(plane)
+        expect(subject.plane).to eq([plane])
     end
 
     it 'removes a plane when landed' do
         plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
-        expect(subject.plane).to eq(nil)
+        expect(subject.plane).to eq([])
     end
 
     describe '#land' do 
         it 'raises an error to stop landing when airport is full' do
-            subject.land(Plane.new)
+            2.times {subject.land Plane.new}
             expect {subject.land Plane.new}.to raise_error "No space to land"
         end
     end
+
 
 end 
 
