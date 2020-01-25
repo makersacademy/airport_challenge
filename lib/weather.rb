@@ -1,5 +1,5 @@
 class Weather
-  def output_weather
-    ["sunny", "stormy"].sample
+  def stormy?
+    [true, false].sample
   end
 end
