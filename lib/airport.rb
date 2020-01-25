@@ -5,4 +5,7 @@ class Airport
   def planes_in_airport
     Plane.new
   end
+  def land
+    
+  end
 end
