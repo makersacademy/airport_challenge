@@ -21,7 +21,7 @@ class Airport
     end
 
     def full?
-        @planes.count >= 10  ? true : false
+        @planes.count >= @capacity  ? true : false
     end
 
     def in_airport?(plane)
