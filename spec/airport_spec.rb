@@ -8,12 +8,36 @@ describe Airport do
 
 # my third test - checks if the class Airport responds to the method land_plane
     it 'responds to land_plane' do
-        expect(subject).to respond_to :land_plane
+        expect(subject).to respond_to :land
     end 
-# one line syntax is it {is_expected.to respond_to :land_plane}
-    it 'lands a plane' do 
-        plane = Plane.new
-        expect(subject.land_plane(plane)).to eq true
-    end 
+# one line syntax: it {is_expected.to respond_to :land}
 
-end
+    it { should respond_to(:land).with(1).argument } 
+
+    it  { should respond_to(:take_off).with(1).argument }
+
+    it 'stores a plane when landed' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.plane).to eq(plane)
+    end
+
+    it 'removes a plane when landed' do
+        plane = Plane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.plane).to eq(nil)
+    end
+
+    describe '#land' do 
+        it 'raises an error to stop landing when airport is full' do
+            subject.land(Plane.new)
+            expect {subject.land Plane.new}.to raise_error "No space to land"
+        end
+    end
+
+end 
+
+
+# I would like a default airport capacity that can be overridden as appropriate
+    
