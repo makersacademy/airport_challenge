@@ -1,11 +1,12 @@
 require 'plane'
 
 describe Plane do
-#   it 'checks Plane class exists' do
-#     expect(Plane).to be_truthy
-#     end
 
-  it 'returns true to land method' do
-    expect(Plane.new.land).to be_truthy
+  it 'returns a plane' do
+    expect(Plane.new).to be_truthy
     end
 end
+
+# As an air traffic controller 
+# So I can get passengers to a destination 
+# I want to instruct a plane to land at an airport

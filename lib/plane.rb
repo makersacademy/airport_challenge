@@ -1,5 +1,3 @@
 class Plane
-    def land
-        return true
-    end
+    "I am a plane"
 end
