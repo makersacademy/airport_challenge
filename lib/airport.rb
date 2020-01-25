@@ -1,10 +1,16 @@
 require_relative 'plane'
 
 class Airport
-
-    def initialize
+    attr_accessor :airport_capacity
+    
+    def initialize(capacity = 10)
         @plane_storage = []
+        @airport_capacity = capacity
     end 
+
+    # def change_airport_capacity(number)
+    #     @airport_capacity = number
+    # end 
 
     def land(plane)
         fail 'no space available' if full?
@@ -20,7 +26,7 @@ class Airport
     end 
 
     def full?
-        @plane_storage.count >= 10 
+        @plane_storage.count >= @airport_capacity
     end
 
 end 

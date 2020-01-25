@@ -1,6 +1,8 @@
 require 'airport' 
 
 describe Airport do 
+    let(:capacity) { Airport.new.airport_capacity }
+
     it 'should let plane land' do 
     plane = Plane.new
     airport = Airport.new
@@ -12,11 +14,10 @@ describe Airport do
         subject.land(plane)
         expect(subject.take_off).to eq []
     end 
-
-    describe '#land' do 
-        it 'should prevent planes for landing when airport is full' do 
-            10.times {subject.land Plane.new }
-            expect { subject.land Plane.new }.to raise_error 'no space available'
-        end 
+    
+    it 'should prevent planes for landing when airport is full' do 
+        capacity.times {subject.land Plane.new }
+        expect { subject.land Plane.new }.to raise_error 'no space available'
     end 
+
 end 
