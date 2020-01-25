@@ -7,13 +7,20 @@ describe Airport do
   
     describe '#tell_to_land' do
       it 'accepts a single plane' do
+        # line to set weather as sunny
         plane = Planes.new
         expect { subject.tell_to_land(plane) }.not_to raise_error
       end
       it 'raises an error if airport is full' do
+        # line to set weather as sunny
         plane = Planes.new
         subject.tell_to_land(plane)
-        expect { subject.tell_to_land(plane) }.to raise_error RuntimeError
+        expect { subject.tell_to_land(plane) }.to raise_error RuntimeError, "Can't land; airport's full."
+      end
+      it 'raises an error if the weather is stormy' do
+        # line to set weather as stormy
+        plane = Planes.new
+        expect { subject.tell_to_land(plane) }.to raise_error RuntimeError, "Can't land; stormy weather."
       end
     end
 

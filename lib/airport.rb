@@ -1,17 +1,17 @@
 require_relative 'plane'
+require_relative 'weather'
 class Airport
 
-  def initialize(capacity=1)
+  def initialize(capacity = 1)
     @capacity = capacity
     @parked_planes = []
   end
 
   def tell_to_land(plane)
-    if @parked_planes.size == @capacity
-      raise "Can't land, because airport is full. Capacity is #{@capacity}, and there are #{@parked_planes.size} parked planes."
-    else
+    raise "Can't land; airport's full." unless @parked_planes.size < @capacity
+    raise "Can't land; stormy weather." unless Weather.new.output_weather == "sunny"
+
     @parked_planes << plane
-    end
   end
 
   def tell_to_takeoff(plane)
