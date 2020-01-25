@@ -7,6 +7,7 @@ class Airport
     end 
 
     def land(plane)
+        fail 'no space available' if full?
         @plane_storage << plane
     end 
 
@@ -15,7 +16,11 @@ class Airport
     end 
 
     def take_off
-        @plane_storage.pop
-        @plane_storage
+        @plane_storage.drop(1)
     end 
+
+    def full?
+        @plane_storage.count >= 10 
+    end
+
 end 
