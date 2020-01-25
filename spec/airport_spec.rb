@@ -11,5 +11,9 @@ describe Airport do
         expect(subject).to respond_to :land_plane
     end 
 # one line syntax is it {is_expected.to respond_to :land_plane}
+    it 'lands a plane' do 
+        plane = Plane.new
+        expect(subject.land_plane(plane)).to eq true
+    end 
 
-end 
+end
