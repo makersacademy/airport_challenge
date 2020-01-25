@@ -54,6 +54,11 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes.include?(plane)).to eq false
     end
+    it 'ensures planes only take off from airports they are in' do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      expect { subject.take_off(Plane.new) }.to raise_error("Plane not in airport")
+    end
     it 'raises an error if there are no planes' do
       allow(subject).to receive(:stormy?) { false }
       expect { subject.take_off(plane) }.to raise_error("No planes")
