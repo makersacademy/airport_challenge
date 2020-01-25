@@ -1,8 +1,8 @@
 # airport challenge app
-require_relative 'weather'
+require_relative 'plane'
 
 class Airport
   def land
-    Weather.new
+    Plane.new
   end
 end
