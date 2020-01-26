@@ -37,7 +37,7 @@ RSpec.describe Airport do
         expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
       end
     end
-    context "weather is stormy?" do
+    context "when weather is stormy?" do
       it "and expects error to be raised" do
         plane = Plane.new
         allow(subject).to receive(:stormy?).and_return(true)
@@ -90,6 +90,14 @@ RSpec.describe Airport do
       it "if plane is not in planes array" do
         plane = Plane.new
         expect {subject.take_off(plane)}.to raise_error("Plane not at airport, cannot take off")
+      end
+    end
+    context "when weather is stormy?" do
+      it "and expects error to be raised" do
+        plane = Plane.new
+        subject.land(plane)
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect {subject.take_off(plane)}.to raise_error("Weather is stormy, cannot take off")
       end
     end
   end
