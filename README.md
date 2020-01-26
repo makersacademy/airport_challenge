@@ -46,10 +46,15 @@ Work in progress:
 * "airport_spec.rb" created
 * "airport.rb" created
 * 1 test and one method added
+* "plane_spec.rb" created
+* "plane.rb" created
+* Method 'land_plane' returning a plane
+* End of first story  
+* 
 * Project is in a GREEN state passing rspec and rubocop
 
 ## Sources
 
 This was was created following a tutorial from Makers (the best place to learn how code well).  
 [Github tutorial link](https://github.com/makersacademy/airport_challenge)  
-I have used the Boris-bikes challenge instructions to help me getting through most the steps, in some cases use the walkthrough to get past sections i was struggling with.
+I have used the Boris-bikes challenge instructions to help me getting through this challenge, in some cases use the walkthrough to get past sections I was struggling with.  
