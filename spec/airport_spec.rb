@@ -30,5 +30,8 @@ RSpec.describe Airport do
     context "exists" do
       it { is_expected.to respond_to(:take_off)}
     end
+    context "can take one argument" do
+      it { is_expected.to respond_to(:take_off).with(1).argument }
+    end
   end
 end
