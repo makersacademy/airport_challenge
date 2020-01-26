@@ -5,12 +5,12 @@ class Airport
  # attr_accessor so everyone can access to this var
   def initialize(capacity)
     @capacity = capacity
-    @all_landed = 0
+    @planes = []
   end
 
   def land_plane(plane)
-    raise "can not land .FULL" if @all_landed >= @capacity
-    @all_landed += 1
+    raise "cannot land: airport full" if @planes.length >= @capacity
+    @planes << plane
   end
 
   def take_off_plane(plane)
