@@ -11,23 +11,20 @@ class Plane
   end
 
   def land
+    p @current_weather
     fail 'Plane cannot take off if already flying' if @current_location == ["flying"]
-    fail 'Plane cannot take off if it is stormy' if stormy? == true
+    fail 'Plane cannot take off if it is stormy' if @current_weather == "Storm"
     p "TODO: plane to land"
   end
 
-  def stormy?
+  def stormy
     weather = Weather.new
-    @currrent_weather = weather.generate_weather
-    if @currrent_weather == "Storm"
-      true
-    else
-      false
-    end
+    @current_weather = weather.generate_weather
   end
 
 # Plane.new.status("flying") test
-# test_flight = Plane.new
-
+ #test_flight = Plane.new
+ #p test_flight.stormy?
+ #p test_flight.land
 end
 
