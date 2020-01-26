@@ -46,5 +46,12 @@ RSpec.describe Airport do
         expect(subject.planes).not_to include(plane)
       end
     end
+    context "returns error" do
+      it "if plane is already landed and in planes array" do
+        plane = Plane.new
+        subject.land(plane)
+        expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
+      end
+    end
   end
 end

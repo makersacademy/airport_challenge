@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    return raise("Plane has already landed at airport") if @planes.include?(plane)
     @planes.push(plane)
   end
   def take_off(plane)
