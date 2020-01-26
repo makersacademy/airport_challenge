@@ -15,4 +15,9 @@ describe Plane do
     expect(subject.land(airport)).to eq('landing')
   end
 
+  it 'planes should only land at airports' do
+    airport = 'not an airport'
+    expect{subject.land(airport)}.to raise_error('invalid airport')
+  end
+
 end
