@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   plane = Plane.new
@@ -8,3 +7,4 @@ describe Airport do
       expect(subject.land(Plane)).to be
     end
   end
+end
