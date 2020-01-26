@@ -1,6 +1,6 @@
 class Weather
-    def stormy?
+  def stormy?
     return rand(1..5) > 3
-    end
+  end
 #  p Weather.new.stormy?
 end
