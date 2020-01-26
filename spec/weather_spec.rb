@@ -20,6 +20,7 @@ describe Weather do
   it 'returns true or false' do
     expect(subject.stormy?).to be(true).or be(false)
   end
+
 end 
 
-#  I want to prevent takeoff when weather is stormy 
+#  I want to prevent landing when weather is stormy 

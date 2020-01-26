@@ -11,13 +11,14 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def land(plane, weather)
+    fail "weather is stormy, do not land" if weather.stormy?
     fail "No space to land" if full?
 
     terminal << plane
   end 
 
-  def take_off(plane, weather)
+  def take_off(weather)
     fail "weather is stormy, unable to take off" if weather.stormy?
 
     terminal.pop

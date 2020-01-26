@@ -12,20 +12,21 @@ describe Airport do
   end 
 # one line syntax: it {is_expected.to respond_to :land}
 
-  it { should respond_to(:land).with(1).argument } 
+  it { should respond_to(:land).with(2).arguments } 
 
-  it { should respond_to(:take_off).with(2).argument }
+  it { should respond_to(:take_off).with(1).arguments }
 
   it 'stores a plane when landed' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq([plane])
+    sunny_weather = double(Weather, stormy?: false)
+    expect(subject.land(plane, sunny_weather)).to eq([plane])
   end
 
   it 'removes a plane when landed' do
     plane = Plane.new
-    weather = double(Weather, stormy?: false)
-    subject.land(plane)
-    expect(subject.take_off(plane, weather)).to eq(plane)
+    sunny_weather = double(Weather, stormy?: false)
+    subject.land(plane, sunny_weather)
+    expect(subject.take_off(sunny_weather)).to eq(plane)
   end
 
   it 'has a deafult capacity' do 
@@ -34,40 +35,63 @@ describe Airport do
 
   describe '#land' do 
     it 'raises an error to stop landing when airport is full' do
-      subject.capacity.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error "No space to land"
+      sunny_weather = double(subject, stormy?: false)
+      subject.capacity.times { subject.land(Plane.new, sunny_weather) }
+      expect { subject.land(Plane.new, sunny_weather) }.to raise_error "No space to land"
     end
   end
 
   describe 'initialization' do
     subject { Airport.new }
     let(:plane) { Plane.new }
+    
     it 'defaults capacity' do
+      sunny_weather = double(subject, stormy?: false)
       described_class::DEFAULT_CAPACITY.times do
-        subject.land(plane)
+        subject.land(plane, sunny_weather)
       end
-      expect { subject.land(plane) }.to raise_error 'No space to land'
+
+      expect { subject.land(plane, sunny_weather) }.to raise_error 'No space to land'
     end
   end
 
-  describe '#take off' do
+  describe '#take_off' do
     it 'stops take off when weather is stormy' do
+      sunny_weather = double(subject, stormy?: false)
       plane = Plane.new
-      weather = double(subject, stormy?: true)
-      expect { subject.take_off(plane, weather) }.to raise_error "weather is stormy, unable to take off"
+      subject.land(plane, sunny_weather)  
+
+      stormy_weather = double(subject, stormy?: true)
+      expect { subject.take_off(stormy_weather) }.to raise_error "weather is stormy, unable to take off"
     end
     
      # above created a double; fake weather that was stormy 
 
     it 'allows takes off when weather is sunny' do
       plane = Plane.new
-      weather = double(subject, stormy?: false)
-      subject.land(plane)
-      expect(subject.take_off(plane, weather)).to eq(plane)
+      
+      # land plane in good weather
+      sunny_weather = double(subject, stormy?: false)
+      subject.land(plane, sunny_weather)
+
+      expect(subject.take_off(sunny_weather)).to eq(plane)
     end
   end
 
+  describe "#land" do
+    it 'prevents landing when weather is stormy' do
+      plane = Plane.new
+      stormy_weather = double(subject, stormy?: true)
+      expect { subject.land(plane, stormy_weather) }.to raise_error "weather is stormy, do not land"
+    end
+
+    it 'allows landing when weather is sunny' do
+      plane = Plane.new
+      sunny_weather = double(subject, stormy?: false)
+      subject.land(plane, sunny_weather)
+      expect(subject.take_off(sunny_weather)).to eq(plane)
+    end
+  end
 end 
 
-# dont take off if weather = stormy
- 
+# dont land if weather = stormy
