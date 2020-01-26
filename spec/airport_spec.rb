@@ -20,6 +20,11 @@ RSpec.describe Airport do
         expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
       end
     end
+    context "Capacity" do
+      it 'has a default capacity' do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+    end
   end
   describe "planes method" do
     context "exists" do
