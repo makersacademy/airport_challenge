@@ -5,6 +5,8 @@ class Plane
   attr_reader :current_weather
   def take_off
     fail 'Plane cannot take off if it is stormy' if @current_weather == "Storm"
+    fail 'Plane cannot take off if already flying' if @current_location == ["flying"]
+    @current_location = "flying"
   end
 
   def status(*location)
@@ -12,9 +14,10 @@ class Plane
   end
 
   def land
-    fail 'Plane cannot land if already flying' if @current_location == ["flying"]
+    fail 'Plane cannot land if already landed' if @current_location == ["Airport"]
     fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
-    p "TODO: plane to land"
+    p "TODO: plane to land, location to change"
+    @current_location = "flying"
   end
 
   def stormy
