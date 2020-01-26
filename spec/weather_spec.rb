@@ -7,14 +7,19 @@ describe Weather do
 
     it { is_expected.to respond_to :stormy? }
 
-    it 'checks if weather equals stormy' do 
-        expect(subject.stormy?).to eq true
+    it 'checks if weather is stormy' do
+        weather = double(subject, stormy?: true)
+        expect(weather.stormy?).to eq true
     end
 
     it 'checks if weather is sunny' do 
-        expect(subject.stormy?).to eq false
+        weather = double(subject, stormy?: false)
+        expect(weather.stormy?).to eq false
     end 
-
+    
+    it 'returns true or false' do
+        expect(subject.stormy?).to be(true).or be(false)
+    end
 end 
 
 
