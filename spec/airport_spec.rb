@@ -33,5 +33,13 @@ RSpec.describe Airport do
     context "can take one argument" do
       it { is_expected.to respond_to(:take_off).with(1).argument }
     end
+    context "removes #plane from plane attribute" do
+      it "and returns nil" do
+        plane = Plane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.plane).to eq nil
+      end
+    end
   end
 end
