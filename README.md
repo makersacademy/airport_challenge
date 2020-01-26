@@ -7,20 +7,20 @@ I created this application for my first weekend challenge at [Makers Academy](ht
 
 ## Instructions
 
-#### Install: ####
+#### Install ####
 
 1. Fork this repo, and clone to your local machine
 2. Run the command gem install bundle (if you don't have bundle already)
 3. When the installation completes, run bundle
 
-#### Run: ####
+#### Run ####
 
 ```Shell
 $ irb
 > require './lib/airport.rb'
 ```
 
-#### Create an airport: ####
+#### Create an airport ####
 
 You can create an airport with a default capacity of 10, or specify your own capacity:
 
@@ -29,7 +29,7 @@ You can create an airport with a default capacity of 10, or specify your own cap
 > big_airport = Airport.new(20) # => @capacity = 20
 ```
 
-#### Add and instruct planes: ####
+#### Add and instruct planes ####
 
 By default, new planes are not in your airport, so you will need to 'land' them before you can instruct them to take-off:
 
