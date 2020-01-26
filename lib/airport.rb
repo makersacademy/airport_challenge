@@ -4,4 +4,7 @@ class Airport
   def land(plane)
     plane
   end
+  def plane
+    Plane.new
+  end
 end

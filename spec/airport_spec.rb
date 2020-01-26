@@ -14,4 +14,9 @@ RSpec.describe Airport do
       end
     end
   end
+  describe "plane method" do
+    it "return landed plane name" do
+      expect(subject.plane).to be_truthy
+    end 
+  end
 end
