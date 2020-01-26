@@ -12,6 +12,7 @@ class Airport
     @planes.push(plane)
   end
   def take_off(plane)
+    return raise("Plane not at airport, cannot take off") unless @planes.include?(plane)
     @planes.delete(plane)
   end
 end

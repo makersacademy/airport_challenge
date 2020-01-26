@@ -13,6 +13,13 @@ RSpec.describe Airport do
         expect(subject.land(plane)).to include(plane)
       end
     end
+    context "returns error" do
+      it "if plane is already landed and in planes array" do
+        plane = Plane.new
+        subject.land(plane)
+        expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
+      end
+    end
   end
   describe "planes method" do
     context "exists" do
@@ -47,10 +54,9 @@ RSpec.describe Airport do
       end
     end
     context "returns error" do
-      it "if plane is already landed and in planes array" do
+      it "if plane is not in planes array" do
         plane = Plane.new
-        subject.land(plane)
-        expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
+        expect {subject.take_off(plane)}.to raise_error("Plane not at airport, cannot take off")
       end
     end
   end
