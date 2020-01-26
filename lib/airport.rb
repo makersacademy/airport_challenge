@@ -2,16 +2,11 @@
 require_relative 'plane'
 
 class Airport
-  
-  def plane
-    @plane
-  end
+ # attr_accessor so everyone can access to this var
+  def land_plane(plane)
 
-  def land_plane
-    Plane.new
   end
 
   def take_off_plane(plane)
-    @plane = plane
   end
 end
