@@ -11,21 +11,11 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
-  it 'returns landed plane' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.plane).to eq plane
-  end
-
-  describe '#take_off' do
-    it 'tells plane to take off' do
+  describe '#land' do
+    it 'raises an error if airport is full' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.take_off).to eq plane
-    end
-
-    it 'raises an error when there are no planes in the airport' do
-      expect { subject.take_off }.to raise_error 'No planes in airport'
+      expect { subject.land(plane) }.to raise_error "Airport full"
     end
   end
 end
