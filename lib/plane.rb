@@ -10,7 +10,9 @@ class Plane
 
   def land(airport)
     raise('invalid airport') unless airport.is_a? Airport
+    raise('plane already on land') unless location == 'sky'
     raise('airport is full') if airport.capacity == airport.num_of_planes
+    raise('stormy weather') if airport.weather == 'stormy'
 
     airport.add_plane
     self.location = airport
@@ -20,7 +22,7 @@ class Plane
   def take_off(airport)
     raise('invalid take off location') unless location == airport
     raise('plane already in the air') if location == 'sky'
-    raise('take off not possible - stormy weather') if airport.weather == 'stormy'
+    raise('stormy weather') if airport.weather == 'stormy'
 
     airport.minus_plane
     self.location = 'sky'

@@ -51,11 +51,24 @@ describe Plane do
     expect { subject.land(airport) }.to raise_error('airport is full')
   end
 
+  it 'Planes can not land if not in sky' do
+    airport = Airport.new
+    plane = Plane.new(airport)
+    allow(airport).to receive(:weather) { 'sunny' }
+    expect { plane.land(airport) }.to raise_error('plane already on land')
+  end
+
   it 'Plane.take_off should raise_error if weather is stormy' do
     airport = Airport.new
     allow(airport).to receive(:weather) { 'stormy' }
     plane = Plane.new(airport)
-    expect { plane.take_off(airport) }.to raise_error('take off not possible - stormy weather')
+    expect { plane.take_off(airport) }.to raise_error('stormy weather')
+  end
+
+  it 'Plane.landing should raise_error if weather is stormy' do
+    airport = Airport.new
+    allow(airport).to receive(:weather) { 'stormy' }
+    expect { subject.land(airport) }.to raise_error('stormy weather')
   end
 
 end
