@@ -16,13 +16,13 @@ RSpec.describe Airport do
   end
   describe "plane method" do
     context "exists" do
-      it { is_expected.to respond_to(:plane)}
+      it { is_expected.to respond_to(:planes)}
     end
     context "after #plane has been landed" do
       it "to return landed plane" do
         plane = Plane.new
         subject.land(plane)
-        expect(subject.plane).to eq plane
+        expect(subject.planes).to eq plane
       end
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe Airport do
         plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
-        expect(subject.plane).to eq nil
+        expect(subject.planes).to eq nil
       end
     end
   end
