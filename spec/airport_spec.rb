@@ -26,4 +26,9 @@ RSpec.describe Airport do
       end
     end
   end
+  describe "take_off method" do
+    context "exists" do
+      it { is_expected.to respond_to(:take_off)}
+    end
+  end
 end
