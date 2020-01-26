@@ -15,8 +15,15 @@ RSpec.describe Airport do
     end
   end
   describe "plane method" do
-    it "to return a plane object" do
-      expect(subject.plane).to be_a(Plane)
+    context "exists" do
+      it { is_expected.to respond_to(:plane)}
+    end
+    context "after #plane has been landed" do
+      it "to return landed plane" do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.plane).to eq plane
+      end
     end
   end
 end
