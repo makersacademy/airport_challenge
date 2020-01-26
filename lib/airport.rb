@@ -11,6 +11,6 @@ class Airport
     @planes.push(plane)
   end
   def take_off(plane)
-    @planes = nil
+    @planes.delete(plane)
   end
 end
