@@ -38,16 +38,17 @@ describe Plane do
 # if plane lands, change location to airport
 
 # TAKEOFF
-# if plane tries to take off but isn't flying, error message returned - TODO get error to work, test okay
+# if plane tries to take off but isn't flying, error message returned
+it "if plane tries to take off but isn't flying" do
+  flight = Plane.new
+  flight.status("flying")
+  expect { flight.take_off}. to raise_error('Plane cannot take off if already flying')
+end
 
 # if plane tries to take off but weather is stormy, error mesage returned - TODO test, feature ok
 
 # if plane takes off, change location to flying TODO - get this test to work, feature ok
-  it "if plane tries to take off but isn't flying" do
-    flight = Plane.new
-    flight.status("flying")
-    expect { flight.take_off}. to raise_error('Plane cannot take off if already flying')
-  end
+
 =begin
 it "takes off, change location to flying" do
   flight = Plane.new

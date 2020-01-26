@@ -17,7 +17,7 @@ class Plane
     fail 'Plane cannot land if already landed' if @current_location == ["Airport"]
     fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
     p "TODO: plane to land, location to change"
-    @current_location = "flying"
+    @current_location = "Airport"
   end
 
   def stormy
