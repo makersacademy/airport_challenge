@@ -10,11 +10,12 @@ class Airport
     def land(airplane)
         fail "Can't land, weather is stormy!" if Weather.stormy?
 
-
         fail "Hangar is full!" unless @hangar.count < @capacity
 
+        fail "This plane is already in a hangar!" if airplane.landed?
+
         @hangar << airplane
-        return @hangar.last
+        @hangar.last
     end
 
     def takeoff(plane)
