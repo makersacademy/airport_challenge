@@ -66,7 +66,7 @@ describe Airport do
     
     it 'raises an error if there are no planes' do
       subject.take_off(plane)  
-      expect { subject.take_off(Plane.new) }.to raise_error("No planes")
+      expect { subject.take_off(Plane.new) }.to raise_error("No planes in airport")
     end
     
     it 'prevents takeoff when stormy' do
