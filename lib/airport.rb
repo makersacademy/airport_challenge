@@ -11,6 +11,7 @@ class Airport
   end
 
   def land(plane)
+    return raise("Airport is full") if full?
     return raise("Plane has already landed at airport") if @planes.include?(plane)
     @planes.push(plane)
   end
@@ -18,4 +19,9 @@ class Airport
     return raise("Plane not at airport, cannot take off") unless @planes.include?(plane)
     @planes.delete(plane)
   end
+  
+  def full?
+    @planes.count >= capacity
+  end
+
 end
