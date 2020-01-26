@@ -1,5 +1,13 @@
 class Plane
-  def initialiaze(status)
-    # status grounded OR flying ?
+  def initialize
+    @flying = true
+  end
+  
+  def flying?
+    @flying = true
+  end
+
+  def grounded?
+    @flying = false
   end
 end
