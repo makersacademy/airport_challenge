@@ -4,7 +4,7 @@ describe Plane do
 # plane has a status of flying or in an airport
 
   it { is_expected.to respond_to(:take_off) }
-  it { is_expected.to respond_to(:location) }
+  it { is_expected.to respond_to(:status).with(1).argument }
   it { is_expected.to respond_to(:land) }
     # LANDING
 # if plane tries to land but if not flying, error message returned

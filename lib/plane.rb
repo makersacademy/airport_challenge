@@ -3,7 +3,8 @@ class Plane
   def take_off
   end
 
-  def location
+  def status(current_location)
+    current_location
   end
 
   def land
