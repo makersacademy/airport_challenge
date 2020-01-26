@@ -3,7 +3,7 @@ Airport Challenge
 
 ![learntofly](learntofly.png)
 
-About
+The task
 ---------
 
 This programme is based on the Makers Academy Weekend 1 challenge [(click here for original README.md)](ORIGINAL_README.md).
@@ -38,7 +38,10 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-In order the complete this task, I used the following techniques, processes and resources:
+Process
+-------
+
+In order the complete this task, I used the following steps, techniques, processes and resources:
 - TDD: using the RED - GREEN - REFACTOR style, and rspec
 - A random number generator to set the weather in the production code, and a stub to override random weather to ensure consistent test behaviour in the test code (https://www.relishapp.com/rspec/rspec-mocks/docs).
 - Consideration of edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; and planes that are landed cannot land again and must be in an airport.
