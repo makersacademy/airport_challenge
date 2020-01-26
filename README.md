@@ -104,4 +104,3 @@ Technologies used:
 - Rspec for testing
 - Simplecov and Coveralls for assessing test coverage
 - Rubocop to maintain styling
-- Travis CI for continuous integration
