@@ -23,7 +23,7 @@ describe Airport do
     it 'has a count override' do
         airport = Airport.new(1)
         airport.land Plane.new 
-        expect{ airport.land Plane.new}.to raise_error("Airport Full")
-    end        
-end
+        expect { airport.land Plane.new }.to raise_error("Airport Full")
+    end     
 
+end
