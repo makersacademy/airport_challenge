@@ -14,12 +14,11 @@ describe Airport do
     it 'removes plane from storage when taking off' do 
         plane = Plane.new
         subject.land(plane)
-        stormy = false
         expect(subject.take_off).to eq []
     end 
     
     it 'should prevent planes for landing when airport is full' do 
-        capacity.times {subject.land Plane.new }
+        capacity.times { subject.land Plane.new }
         expect { subject.land Plane.new }.to raise_error 'no space available'
     end 
 

@@ -12,6 +12,7 @@ class Airport
     def land(plane)
         # fail 'too stormy to land' if @weather.stormy?
         fail 'no space available' if full?
+        
         @plane_storage << plane
     end 
 
@@ -21,6 +22,7 @@ class Airport
 
     def take_off
         fail 'too stormy to takeoff' if @weather.stormy?
+
         @plane_storage.drop(1)
     end 
 
