@@ -1,5 +1,19 @@
 require "airport.rb"
 RSpec.describe Airport do
+  describe 'initialization' do
+    subject {Airport.new}
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(Plane.new)
+      end
+      expect{ subject.land Plane.new }.to raise_error("Airport is full")
+    end
+    it 'has a variable capacity' do
+      airport = Airport.new(50)
+      50.times { airport.land Plane.new }
+      expect{ airport.land Plane.new }.to raise_error("Airport is full")
+    end
+  end
   describe "land method" do
     context "exists" do
       it { is_expected.to respond_to(:land)}
