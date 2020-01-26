@@ -8,6 +8,12 @@ describe Plane do
   it { is_expected.to respond_to(:land) }
     # LANDING
 # if plane tries to land but if not flying, error message returned
+  it "plane can be flying or in Airport" do
+      flight = Plane.new
+      expect(subject.status("flying")).to eq "flying"
+      expect(subject.status("Airport")).to eq "Airport"
+  end
+  
 
 # if plane ties to land but it's stormy, error message returned
 
