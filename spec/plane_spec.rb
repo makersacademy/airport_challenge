@@ -1,10 +1,12 @@
 require './lib/plane.rb'
-# plane has a status of flying or in an airport
-describe Plane do
-    it { is_expected.to respond_to(:take_off) }
-end
 
-# LANDING
+describe Plane do
+# plane has a status of flying or in an airport
+
+  it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:location) }
+  it { is_expected.to respond_to(:land) }
+    # LANDING
 # if plane tries to land but if not flying, error message returned
 
 # if plane ties to land but it's stormy, error message returned
@@ -19,3 +21,4 @@ end
 # if plane tries to take off but weather is stormy, error mesage returned
 
 # if plane takes off, change location to flying
+end
