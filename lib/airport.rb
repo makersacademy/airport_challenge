@@ -3,14 +3,11 @@ require_relative 'weather'
 class Airport
     attr_accessor :airport_capacity
     
-    def initialize(capacity = 10)
+    def initialize(capacity = 10, weather = Weather.new)
         @plane_storage = []
         @airport_capacity = capacity
+        @weather = weather
     end 
-
-    # def change_airport_capacity(number)
-    #     @airport_capacity = number
-    # end 
 
     def land(plane)
         fail 'no space available' if full?
@@ -22,6 +19,7 @@ class Airport
     end 
 
     def take_off
+        fail 'too stormy to takeoff' if @weather.stormy?
         @plane_storage.drop(1)
     end 
 
