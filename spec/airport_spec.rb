@@ -22,4 +22,12 @@ describe Airport do
     subject.land(plane1)
     expect(subject.landed?(plane1)).to eq true
   end
+  it "check if the airport respond to realese plane" do
+    expect(subject).to respond_to :release_plane
+  end
+  it "check if plane is rlease" do
+    plane1= subject.create_plane
+    subject.release_plane(plane1)
+    expect(subject.landed?(plane1)).to eq false
+  end
 end

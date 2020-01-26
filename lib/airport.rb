@@ -20,4 +20,8 @@ class Airport
     else false
     end
   end
+
+  def release_plane(plane)
+    @landed.delete(plane)
+  end
 end
