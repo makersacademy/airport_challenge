@@ -6,13 +6,15 @@ require_relative  '../lib/plane'
 describe Airport do
 
      it 'plane lands' do
+        # airport = Airport.new
+        # expect airport.hanger.length == 1
         plane = Plane.new
-        expect(subject.land(plane)).to eq [plane]
+        expect(subject.land(plane)).to include plane
     end
 
     it 'plane takes off' do
         plane = Plane.new
-        expect(subject.take_off(plane)).to eq nil
+        expect(subject.take_off(plane)).not_to include plane
     end
 
     it 'raises error when hanger full' do
@@ -25,5 +27,11 @@ describe Airport do
         airport.land Plane.new 
         expect { airport.land Plane.new }.to raise_error("Airport Full")
     end     
+
+    # it "prevents take off when weather is stormy" do
+    #     airport = Airport.new
+    #     airport.land Plane.new
+    #     expect { aiport.take_off(plane)
+    # end
 
 end

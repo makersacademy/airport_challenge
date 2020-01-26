@@ -14,7 +14,8 @@ class Airport
 
     def take_off(plane)
         plane.take_off
-        @hanger = nil
+        @hanger.pop
+        return @hanger
     end
 
     def hanger_full?
