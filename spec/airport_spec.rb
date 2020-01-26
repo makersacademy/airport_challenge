@@ -1,5 +1,8 @@
 require "airport.rb"
 RSpec.describe Airport do
+  before(:each) do 
+    allow(Weather).to receive(:stormy?) { false }
+  end
   describe 'initialization' do
     subject {Airport.new}
     it 'defaults capacity' do
@@ -32,6 +35,13 @@ RSpec.describe Airport do
         plane = Plane.new
         subject.land(plane)
         expect {subject.land(plane)}.to raise_error("Plane has already landed at airport")
+      end
+    end
+    context "weather is stormy?" do
+      it "and expects error to be raised" do
+        plane = Plane.new
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect {subject.land(plane)}.to raise_error("Weather is stormy, cannot land")
       end
     end
     context "Capacity" do
