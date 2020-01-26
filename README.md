@@ -7,41 +7,43 @@ I created this application for my first weekend challenge at [Makers Academy](ht
 
 ## Instructions
 
-1. Install:
+#### Install: ####
 
-    1. Fork this repo, and clone to your local machine
-    2. Run the command gem install bundle (if you don't have bundle already)
-    3. When the installation completes, run bundle
+1. Fork this repo, and clone to your local machine
+2. Run the command gem install bundle (if you don't have bundle already)
+3. When the installation completes, run bundle
 
-2. Run:
+#### Run: ####
 
-    ```Shell
-    $ irb
-    > require './lib/airport.rb'
-    ```
+```Shell
+$ irb
+> require './lib/airport.rb'
+```
 
-3. Create an airport:
+#### Create an airport: ####
 
-    You can create an airport with a default capacity of 10, or specify your own capacity:
+You can create an airport with a default capacity of 10, or specify your own capacity:
 
-    ```Shell
-    > airport = Airport.new # => @capacity = 10
-    > big_airport = Airport.new(20) # => @capacity = 20
-    ```
-4. Add and instruct planes:
+```Shell
+> airport = Airport.new # => @capacity = 10
+> big_airport = Airport.new(20) # => @capacity = 20
+```
 
-    By default, new planes are not in your airport, so you will need to 'land' them before you can instruct them to take-off:
+#### Add and instruct planes: ####
 
-    ```Shell
-    > plane1 = Plane.new
-    > plane2 = Plane.new
-    > airport.land(plane1) # => :grounded
-    > airport.take_off(plane1) # => :airborne
-    > airport.land(plane2) # => :grounded
-    ```
-5. Wait out the storm
+By default, new planes are not in your airport, so you will need to 'land' them before you can instruct them to take-off:
 
-    You might encounter problems landing and taking off if weather is stormy - but this is rare and you should be able to take-off/land soon enough!
+```Shell
+> plane1 = Plane.new
+> plane2 = Plane.new
+> airport.land(plane1) # => :grounded
+> airport.take_off(plane1) # => :airborne
+> airport.land(plane2) # => :grounded
+```
+
+#### Wait out the storm ####
+
+You might encounter problems landing and taking off if weather is stormy - but this is rare and you should be able to take-off/land soon enough!
 
 ## User requirements
 
