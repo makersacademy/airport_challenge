@@ -10,7 +10,7 @@ RSpec.describe Airport do
     context "takes plane as argument" do
       it "and returns plane" do
         plane = Plane.new
-        expect(subject.land(plane)).to eq plane
+        expect(subject.land(plane)).to include(plane)
       end
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe Airport do
       it "to return landed plane" do
         plane = Plane.new
         subject.land(plane)
-        expect(subject.planes).to eq plane
+        expect(subject.planes).to include(plane)
       end
     end
     context "should return" do

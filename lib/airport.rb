@@ -8,7 +8,7 @@ class Airport
   end
 
   def land(plane)
-    @planes = plane
+    @planes.push(plane)
   end
   def take_off(plane)
     @planes = nil
