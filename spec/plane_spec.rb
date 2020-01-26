@@ -18,7 +18,7 @@ describe Plane do
   it "#if plane tries to land but if not flying, error message returned" do
     flight = Plane.new
     flight.status("flying")
-    expect { flight.land }. to raise_error('Plane cannot take off if already flying')
+    expect { flight.land }. to raise_error('Plane cannot land if already flying')
   end
 =begin 
   CAN"T GET DOUBLES AND THIS TEST TO WORK BUT FEATURE IS FINE
@@ -29,7 +29,7 @@ describe Plane do
     # allow(generator).to receive(:rand)
 
     #allow(flight.land).to receive(:current_weather)
-    expect { flight.land }. to raise_error('Plane cannot take off if it is stormy')
+    expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
   end
 =end
 
@@ -38,9 +38,9 @@ describe Plane do
 # if plane lands, change location to airport
 
 # TAKEOFF
-# if plane tries to take off but isn't flying, error message returned
+# if plane tries to take off but isn't flying, error message returned - TODO get error to work, test okay
 
-# if plane tries to take off but weather is stormy, error mesage returned
+# if plane tries to take off but weather is stormy, error mesage returned - TODO test, feature ok
 
 # if plane takes off, change location to flying
 end
