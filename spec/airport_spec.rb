@@ -2,7 +2,9 @@ require 'airport'
 
 describe Airport do
     let (:plane) {Plane.new}
-
+    before do
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+    end
     describe '#new' do
         it 'has a default capacity of 10' do
             airport = Airport.new
@@ -30,12 +32,18 @@ describe Airport do
             expect(subject.planes).to include plane
         end
 
+        context 'when stormy' do
+            it 'plane cannot land' do 
+                allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+                expect { subject.land(plane) }.to raise_error "Too stormy for landing"
+            end
+        end
+
     end
 
     describe '#take_off' do
         before do
             subject.land(plane)
-            allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         end
 
         it 'lets a plane take off' do
@@ -51,16 +59,23 @@ describe Airport do
             subject.take_off(plane)
             expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
         end
+
+        context 'when stormy' do
+            it 'plane cannot take off' do
+                allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+                expect { subject.take_off(plane) }.to raise_error "Too stormy for take-off"
+            end
+        end
     end
 
     context 'when stormy' do
         before do
             subject.land(plane)
-            allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
-        end
-        it 'plane cannot take off' do
-            expect { subject.take_off(plane) }.to raise_error "Too stormy for take-off"
-        end
+           
+        end   
+        
+        
+        
     end
     
 end
