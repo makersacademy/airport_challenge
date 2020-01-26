@@ -51,7 +51,7 @@ Work in progress:
 * Method 'land_plane' returning a plane
 * End of first story  
 * 
-* Project is in a GREEN state passing rspec and rubocop
+* Project is in a RED state passing not passing rspec
 
 ## Sources
 
