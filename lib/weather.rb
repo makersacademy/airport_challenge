@@ -1,4 +1,5 @@
 class Weather 
     def stormy?
-    end 
-end 
+        rand(1..100) >= 75
+    end
+end
