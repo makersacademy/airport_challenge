@@ -23,11 +23,18 @@ describe Airport do
     expect(subject.landed?(plane1)).to eq true
   end
   it "check if the airport respond to realese plane" do
-    expect(subject).to respond_to :release_plane
+    expect(subject).to respond_to :take_off
   end
   it "check if plane is rlease" do
     plane1= subject.create_plane
     subject.release_plane(plane1)
     expect(subject.landed?(plane1)).to eq false
+  end
+
+  describe '#landed' do
+  it 'raises an error when full' do
+      subject.capacity.times { create_plane Plane.new }
+      expect { create_plane Plane.new }.to raise_error('Airport is full')
+    end
   end
 end
