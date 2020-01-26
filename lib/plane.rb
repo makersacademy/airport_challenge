@@ -1,6 +1,6 @@
 # making plane for my airports
 class Plane
-  def landing?
+  def landed?
     true
   end
 end
