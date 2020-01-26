@@ -7,7 +7,7 @@ describe Plane do
   it { is_expected.to respond_to(:status).with(1).argument }
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:stormy?) }
-  
+
     # LANDING
 # if plane tries to land but if not flying, error message returned
   it "#plane can be flying or in Airport" do
@@ -21,9 +21,13 @@ describe Plane do
     expect {flight.land}. to raise_error('Plane cannot take off if already flying')
   end
 
-  #it "#if plane ties to land but it's stormy, error message returned" do
-      
-  #end
+  it "#if plane ties to land but it's stormy, error message returned" do
+    flight = Plane.new
+    generator = Weather.new
+    allow(generator).to receive(:rand).and_return(1)
+    # allow(flight).to receive(stormy?).and_return(true)
+    expect {flight.land}. to raise_error('Plane cannot take off if it is stormy')
+  end
 
 # if plane tries to land but airport is full, error message returned
 

@@ -6,5 +6,6 @@ class Weather
     else      
       @current_weather = "Not Storm"
     end
+    @current_weather
   end
 end
