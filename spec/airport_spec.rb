@@ -46,16 +46,21 @@ describe Airport do
       allow(Weather).to receive(:stormy?) { true }
       expect { airport.takeoff(plane) }.to raise_error("Can't take off, weather is stormy!")
     end
-  context 'The airport capacity' do
-    it 'should have a default hangar capacity of 20' do
-      expect(Airport::DEFAULT_CAPACITY).to eq 20
-    end
 
-    it 'should take the argument provided and make it the default capacity' do
-      test_port = Airport.new(15)
-      expect(test_port.capacity).to eq(15)
+    it 'should not allow a plane to leave if the plane is not in a hangar' do
+      airport.hangar << plane
+      allow(Weather).to receive(:stormy?) { false }
+      expect { airport.takeoff(plane) }.to raise_error("Can't take off, plane not in hangar!")
     end
-  end
-  
+    context 'The airport capacity' do
+      it 'should have a default hangar capacity of 20' do
+        expect(Airport::DEFAULT_CAPACITY).to eq 20
+      end
+
+      it 'should take the argument provided and make it the default capacity' do
+        test_port = Airport.new(15)
+        expect(test_port.capacity).to eq(15)
+      end
+    end
   end
 end
