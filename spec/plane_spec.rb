@@ -24,10 +24,10 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
-  it 'Planes should take off from airports' do
+  it 'Planes should take off from airports and return new location (sky)' do
     airport = Airport.new
     plane = Plane.new(airport)
-    expect(plane.take_off(airport)).to eq('taken off')
+    expect(plane.take_off(airport)).to eq('sky')
   end
 
   it 'Planes should only take off from the airport they are at' do
@@ -40,6 +40,12 @@ describe Plane do
   it 'Planes can not take off if they are already in the sky' do
     plane = Plane.new
     expect { plane.take_off('sky') }.to raise_error('plane already in the air')
+  end
+
+  it 'Planes can not land if the airport is full' do
+    plane = Plane.new
+    airport = Airport.new(0)
+    expect { plane.land(airport) }.to raise_error('airport is full')
   end
 
 end
