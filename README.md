@@ -1,3 +1,5 @@
+Partial Solution 
+
 Airport Challenge
 =================
 
