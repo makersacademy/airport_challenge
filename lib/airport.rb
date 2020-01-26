@@ -12,13 +12,15 @@ class Airport
   def land(plane)
     raise "Cannot land while weather is stormy" if stormy?
     raise "Plane capacity is full" if full?
+
     @planes << plane
   end
 
   def take_off
-    if planes.length > 0
-    raise "Cannot take off while weather is stormy" if stormy?
-    @planes.pop
+    if planes.length.positive?
+      raise "Cannot take off while weather is stormy" if stormy?
+      
+      @planes.pop
     else
       raise "There are no planes"
     end
