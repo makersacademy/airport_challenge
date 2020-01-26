@@ -1,5 +1,28 @@
 Airport Challenge
 =================
+README - new/added
+
+Approach - started by creating plane and airport classes. Then added unit tests for functionality and when through the cycle. Finally looked for and wrote tests and then modified the code to deal with edge cases.
+
+Improvements - reduce repetition especially by creating specific errors i.e encapsulate errors in expectations class
+
+How to use
+% irb
+2.6.0 :001 > require './lib/plane.rb'
+ => true
+2.6.0 :002 > require './lib/airport.rb'
+ => false
+2.6.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fe7b38f9830 @location="sky">
+2.6.0 :004 > airport = Airport.new
+ => #<Airport:0x00007fe7b404a350 @capacity=10, @num_of_planes=0>
+2.6.0 :005 > plane.land(airport)
+ => "landing"
+2.6.0 :006 > plane.take_off(airport)
+ => "sky" 
+
+
+
 
 ```
         ______
@@ -36,29 +59,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -73,7 +96,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
