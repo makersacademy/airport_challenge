@@ -48,13 +48,13 @@ Approach
 Based on the user stories I broke down the problem into the following steps. Before each step I created a unit test, ran Rspec to recieve a test fail, updated my code, ran rspec to recieve a pass and then refactored any code if need be.
 
 Story 1
-	1. Create airport class
-	2. Create plane class
-	3. Create land method with 1 argument (Plane)
-	4. Update land method to a return plane
-	5. Make a method plane to return a plane
-	6. Store plane name from land method
-	7. Create attribute for airport to store 1 plane
+1. Create airport class
+2. Create plane class
+3. Create land method with 1 argument (Plane)
+4. Update land method to a return plane
+5. Make a method plane to return a plane
+6. Store plane name from land method
+7. Create attribute for airport to store 1 plane
 Story 2
 	1. Create take off method with 1 argument (plane)
 	2. Take off method accepts 1 argument (plane)
