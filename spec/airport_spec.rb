@@ -14,7 +14,7 @@ describe Airport do
 
     it { should respond_to(:land).with(1).argument } 
 
-    it  { should respond_to(:take_off).with(1).argument }
+    it  { should respond_to(:take_off).with(2).argument }
 
     it 'stores a plane when landed' do
         plane = Plane.new
@@ -23,8 +23,9 @@ describe Airport do
 
     it 'removes a plane when landed' do
         plane = Plane.new
+        weather = double(Weather, stormy?: false)
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq(plane)
+        expect(subject.take_off(plane, weather)).to eq(plane)
     end
 
 
@@ -49,10 +50,25 @@ describe Airport do
             expect {subject.land(plane)}.to raise_error 'No space to land'
         end
     end
+
+    describe '#take off' do
+        it 'stops take off when weather is stormy' do
+            plane = Plane.new
+            weather = double(subject, stormy?: true)
+            expect {subject.take_off(plane, weather)}.to raise_error "weather is stormy, unable to take off"
+        end
     
+     #above created a double; fake weather that was stormy 
+
+        it 'allows takes off when weather is sunny' do
+            plane = Plane.new
+            weather = double(subject, stormy?: false)
+            subject.land(plane)
+            expect(subject.take_off(plane, weather)).to eq(plane)
+        end
+    end
 
 end 
 
-
-# I would like a default airport capacity that can be overridden as appropriate
+# dont take off if weather = stormy 
     

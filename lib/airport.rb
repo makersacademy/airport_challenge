@@ -1,4 +1,5 @@
-require_relative 'plane'
+
+require_relative 'weather'
 
 class Airport
 
@@ -16,8 +17,9 @@ class Airport
        terminal << plane
     end 
 
-    def take_off(plane)
-        terminal.pop
+    def take_off(plane, weather)
+      fail "weather is stormy, unable to take off" if weather.stormy?
+      terminal.pop
     end 
 
     private
@@ -27,7 +29,7 @@ class Airport
         terminal.count >= DEFAULT_CAPACITY
     end 
 
-    def empty?
-        terminal.empty?
-    end
+    # def empty?
+    #     terminal.empty?
+    # end
 end 
