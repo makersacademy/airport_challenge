@@ -1,5 +1,5 @@
 class Weather
-    def stormy?
-        true unless rand > 0.4
+    def self.stormy?
+        rand > 0.4
     end
 end

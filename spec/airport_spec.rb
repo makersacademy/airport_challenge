@@ -8,25 +8,38 @@ describe Airport do
     end
     it 'should land a plane' do
       plane = Plane.new
+      allow(Weather).to receive(:stormy?) { false }
       airport.land(plane)
       expect(airport.hangar.last).to eq plane
     end
     it 'should not allow a plane to land if the hangar is full' do
+      allow(Weather).to receive(:stormy?) { false }
       airport.capacity.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error("Hangar is full!")
+    end
+    it 'should not allow a plane to land if the weather is stormy' do
+      allow(Weather).to receive(:stormy?) { true }
+      expect { airport.land(Plane.new) }.to raise_error("Can't land, weather is stormy!")
     end
 
   end
   describe '#takeoff' do
     plane = Plane.new
     it 'should show the plane leaving the hangar' do
+      allow(Weather).to receive(:stormy?) { false }
       airport.land(plane)
       expect(airport.takeoff(plane)).to eq(plane)
     end
     it 'should remove the plane from the hangar' do
+      allow(Weather).to receive(:stormy?) { false }
       airport.land(plane)
       airport.takeoff(plane)
       expect(airport.hangar).to eq []
+    end
+    it 'should not allow a plane to leave if the weather is stormy' do
+      airport.hangar << plane
+      allow(Weather).to receive(:stormy?) { true }
+      expect { airport.takeoff(plane) }.to raise_error("Can't take off, weather is stormy!")
     end
   context 'The airport capacity' do
     it 'should have a default hangar capacity of 20' do
