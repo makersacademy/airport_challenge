@@ -37,4 +37,9 @@ describe Plane do
     expect { plane.take_off(airport_2) }.to raise_error('invalid take off location')
   end
 
+  it 'Planes can not take off if they are already in the sky' do
+    plane = Plane.new
+    expect { plane.take_off('sky') }.to raise_error('plane already in the air')
+  end
+
 end
