@@ -14,7 +14,7 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error(RuntimeError, "Airport is full")
     end
     it 'raises error when stormy' do
-      subject.stormy = true
+      # subject.stormy = true
       expect { subject.land(plane) }.to raise_error(RuntimeError, "Weather is stormy")
     end
   end
@@ -24,7 +24,7 @@ describe Airport do
       expect(subject.takeoff(plane)).to eq("#{plane} has left")
     end
     it 'raises error when stormy' do
-      subject.stormy = true
+      # subject.stormy = true
       expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "Weather is stormy")
     end
   end

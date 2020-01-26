@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   DEFAULT_CAPACITY = 1
-  attr_accessor :capacity, :stormy
+  attr_accessor :capacity
   attr_reader :planes
   
   def initialize(capacity = DEFAULT_CAPACITY) 
@@ -25,7 +25,7 @@ class Airport
   end
 
   def stormy?
-    stormy
+    rand(2).zero?
   end
 
   private
