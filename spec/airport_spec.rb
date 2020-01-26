@@ -18,16 +18,13 @@ describe Airport do
     end
 
     describe '#land' do
-        it 'lets a plane land' do
-            expect(subject.land(plane)).to eq :grounded
-        end
 
         it 'raises an error if airport is full' do
             10.times { subject.land(Plane.new) }
             expect { subject.land(plane) }.to raise_error "Airport full: cannot land"
         end
 
-        it 'plane must be in airport when landed' do
+        it 'plane now in airport' do
             subject.land(plane)
             expect(subject.planes).to include plane
         end
@@ -55,7 +52,7 @@ describe Airport do
             expect(subject.planes).not_to include plane
         end
 
-        it 'cannot take off it is not in the airport' do
+        it 'cannot be in airport' do
             subject.take_off(plane)
             expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
         end
@@ -68,14 +65,5 @@ describe Airport do
         end
     end
 
-    context 'when stormy' do
-        before do
-            subject.land(plane)
-           
-        end   
-        
-        
-        
-    end
     
 end

@@ -2,10 +2,6 @@
 
 class Plane
     attr_reader :location
-
-    def initialize
-        @location = nil
-    end
     
     def land
         fail "Plane already grounded" if grounded?
@@ -18,11 +14,11 @@ class Plane
     end
 
     def flying?
-        @location == :airborne ? true : false
+        @location == :airborne
     end
 
     def grounded?
-        @location == :grounded ? true : false
+        @location == :grounded
     end
 
 end
