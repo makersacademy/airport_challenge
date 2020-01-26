@@ -14,7 +14,7 @@ RSpec.describe Airport do
       end
     end
   end
-  describe "plane method" do
+  describe "planes method" do
     context "exists" do
       it { is_expected.to respond_to(:planes)}
     end
@@ -23,6 +23,11 @@ RSpec.describe Airport do
         plane = Plane.new
         subject.land(plane)
         expect(subject.planes).to eq plane
+      end
+    end
+    context "should return" do
+      it "an array" do
+        expect(subject.planes).to be_a(Array)
       end
     end
   end
