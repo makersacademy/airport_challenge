@@ -47,7 +47,7 @@ I want to prevent landing when weather is stormy
 The Approach
 -----
 Test-Driven Development led the way on this project, following the `RED-GREEN-REFACTOR` protocol. This meant that tests were written first, then code was written to meet the bare minimum the test was requiring. If necessary, refactoring was done afterward. To ensure this was done properly, I maintained a high test coverage to make sure there weren't areas I wasn't testing. For the tests themselves, the Ruby RSpec library was used, which provides extensive syntax to write intelligent tests.
------
+
 How to Use
 -----
 1. Fork and clone the repository
