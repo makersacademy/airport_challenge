@@ -51,3 +51,8 @@ Your code should defend against [edge cases](http://programmers.stackexchange.co
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
 Please create separate files for every class, module and test suite.
+
+Update
+````
+Started on the first two user stories. Will continue on with rest of the challenge.
+````
