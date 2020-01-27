@@ -93,7 +93,7 @@ airport.tell_to_takeoff(plane)
 
 Technologies used:
 
-- Ruby 2.4.0
+- Ruby 2.6.0
 - Rspec for testing
 - Simplecov and Coveralls for assessing test coverage
 - Rubocop to maintain styling
