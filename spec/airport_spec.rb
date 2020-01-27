@@ -16,7 +16,6 @@ describe Airport do
 
   it "checks if plane has taken off" do
     plane = subject.take_off
-    expect(plane).to respond_to(:plane_flying?)
     expect(plane.plane_flying?).to eq "Flying"
   end
 
