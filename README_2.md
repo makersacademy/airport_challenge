@@ -73,10 +73,10 @@ RuntimeError (Airport capacity has been reached)
 
 ## Getting started
 
-**BUNDLE INSTALL??**
+Fork and clone this repository.  
+Run "bundle install" in your terminal.  
 
-This programme is used in the terminal.
-
+This programme is used in the terminal.  
 Require files "plane.rb", "airport.rb" and "weather.rb" in irb in the terminal.
 
 ## Running the tests
@@ -95,7 +95,7 @@ You can run tests by running "rspec" in the terminal in the airport_challenge di
 - Raises error if trying to land a plane that is already held at the airport
 - Raises error if trying to land a plane in stormy weather
 - Raises error if a plane tries to take off in stormy weather
-- Raises error if a planes tries to take off from an airport where it is not
+- Raises error if a plane tries to take off from an airport where it is not
 held
 
 ## Versioning
