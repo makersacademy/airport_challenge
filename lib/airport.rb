@@ -1,7 +1,8 @@
 require_relative 'plane'
 class Airport
-  def landing
-    return Plane.new
+  def landing(plane)
+    fail "The airport is full" if @plane
+    @plane = plane
   end
 
   def takeoff
