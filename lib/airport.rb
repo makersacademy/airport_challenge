@@ -15,7 +15,7 @@ class Airport
     @parked_planes << plane
   end
 
-  def tell_to_takeoff(_plane)
+  def tell_to_takeoff
     fail "Can't take off; stormy weather." if @weather.stormy?
 
     @parked_planes.pop
