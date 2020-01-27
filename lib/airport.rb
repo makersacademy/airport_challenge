@@ -24,7 +24,7 @@ class Airport
     @planes_at_airport[0]
   end
 
-  def plane_take_off(*)
+  def plane_take_off(_plane)
     test_flight = Plane.new
     @current_location = test_flight.take_off
     fail "plane can't take off" if @current_location != "flying"
