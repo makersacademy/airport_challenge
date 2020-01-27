@@ -18,7 +18,7 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times do
       subject.plane_land Airport.new
     end
-    expect {subject.plane_land Airport.new}.to raise_error('Cannot add another plane: Capacity full')
+    expect { subject.plane_land Airport.new }.to raise_error('Cannot add another plane: Capacity full')
   end
 
 # planes can be added if they land
@@ -35,6 +35,6 @@ describe Airport do
   end
   it '#raises an error when there are no planes at airport' do 
     plane = Airport.new
-    expect {subject.plane_take_off(plane)}.to raise_error('No planes at airport')
+    expect { subject.plane_take_off(plane) }.to raise_error('No planes at airport')
   end
 end

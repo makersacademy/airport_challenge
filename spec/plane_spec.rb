@@ -18,7 +18,7 @@ describe Plane do
   it "#if plane tries to land but is not flying, error message returned" do
     flight = Plane.new
     flight.status("Airport")
-    expect { flight.land }. to raise_error('Plane cannot land if already landed')
+    expect { flight.land }. to raise_error('Plane already landed')
   end
 =begin 
   CAN"T GET DOUBLES AND THIS TEST TO WORK BUT FEATURE IS FINE
@@ -39,11 +39,11 @@ describe Plane do
 
 # TAKEOFF
 # if plane tries to take off but isn't flying, error message returned
-it "if plane tries to take off but isn't flying" do
-  flight = Plane.new
-  flight.status("flying")
-  expect { flight.take_off}. to raise_error('Plane cannot take off if already flying')
-end
+  it "if plane tries to take off but isn't flying" do
+    flight = Plane.new
+    flight.status("flying")
+    expect { flight.take_off }. to raise_error('Plane already flying')
+  end
 
 # if plane tries to take off but weather is stormy, error mesage returned - TODO test, feature ok
 
