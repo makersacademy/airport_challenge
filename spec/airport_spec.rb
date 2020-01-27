@@ -1,8 +1,11 @@
 require "airport.rb"
 RSpec.describe Airport do
+  # create dummy value of Weather class to always respond false to all tests
   before(:each) do 
     allow(Weather).to receive(:stormy?) { false }
   end
+ 
+  # Test the intializastion method
   describe 'initialization' do
     subject { Airport.new }
     it 'defaults capacity' do
@@ -17,6 +20,8 @@ RSpec.describe Airport do
       expect { airport.land Plane.new }.to raise_error("Airport is full")
     end
   end
+
+  # Test the land method
   describe "land method" do
     context "exists" do
       it { is_expected.to respond_to(:land) }
@@ -44,6 +49,8 @@ RSpec.describe Airport do
         expect { subject.land(plane) }.to raise_error("Weather is stormy, cannot land")
       end
     end
+    
+    # test the capacity of airport
     context "Capacity" do
       it 'has a default capacity' do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -54,6 +61,8 @@ RSpec.describe Airport do
       end
     end
   end
+
+  # Tests planes method
   describe "planes method" do
     context "exists" do
       it { is_expected.to respond_to(:planes) }
@@ -71,6 +80,8 @@ RSpec.describe Airport do
       end
     end
   end
+
+  # test take take_off method
   describe "take_off method" do
     context "exists" do
       it { is_expected.to respond_to(:take_off) }
