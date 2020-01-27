@@ -9,6 +9,9 @@ describe Airport do
   end
 
 # capacity can be changed
+  it "capacity can be changed" do
+    expect(subject.capacity(5)).to eq 5
+  end
 
 # airport can tell if full or not
   it '#raises an error when full' do 

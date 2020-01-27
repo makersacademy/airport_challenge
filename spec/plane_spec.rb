@@ -33,9 +33,9 @@ describe Plane do
   end
 =end
 
-# if plane tries to land but airport is full, error message returned
+# if plane tries to land but airport is full, error message returned - in Airport
 
-# if plane lands, change location to airport
+# if plane lands, change location to airport - TODO: write test for this
 
 # TAKEOFF
 # if plane tries to take off but isn't flying, error message returned
