@@ -3,13 +3,6 @@ require 'airport.rb'
 
 describe Plane do
 
-  it 'There should be planes' do
-  end
-
-  it 'Plane should respond to land' do
-    expect(subject).to respond_to(:land)
-  end
-
   it 'Planes should land at airports' do
     airport = Airport.new
     allow(airport).to receive(:weather) { 'sunny' }
@@ -19,10 +12,6 @@ describe Plane do
   it 'Planes should only land at airports' do
     airport = 'not an airport'
     expect { subject.land(airport) }.to raise_error('invalid airport')
-  end
-
-  it 'Planes should respond to take_off' do
-    expect(subject).to respond_to(:take_off)
   end
 
   it 'Planes should take off from airports and return new location (sky)' do

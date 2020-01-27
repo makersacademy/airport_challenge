@@ -3,9 +3,6 @@ require 'plane.rb'
 
 describe Airport do
 
-  it 'There should be airports' do
-  end
-
   it 'Landing a plane should result in num_of_plane increase by 1' do
     allow(subject).to receive(:weather) { 'sunny' }
     plane = Plane.new

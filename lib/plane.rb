@@ -5,7 +5,7 @@ class Plane
   attr_reader :location
 
   def initialize(location = 'sky')
-    @location = location
+    self.location = location
   end
 
   def land(airport)
