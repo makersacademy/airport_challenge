@@ -1,5 +1,5 @@
 class Plane
-  def gone?
+  def taken_off?
     true
   end
 end

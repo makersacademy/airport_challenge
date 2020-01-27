@@ -14,9 +14,9 @@ describe Airport do
 
   it { should respond_to(:takeoff) }
 
-  it 'it expect a plane to be gone after take off' do
+  it 'it expect a plane to be taken_off after take off' do
     plane = subject.takeoff
-    expect(plane).to be_gone
+    expect(plane).to be_taken_off
   end
 
 end
