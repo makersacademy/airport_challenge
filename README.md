@@ -36,7 +36,7 @@ _tba_
 `Rspec`
 
 ###### week 2 @ Makers Academy
-second weekend exercise, in progress
+first weekend exercise, in progress
 
 ###### Collaborators
-[Myrtle](https://github.com/Mrtly) on solo challenge 
+just [Myrtle](https://github.com/Mrtly), solo challenge 
