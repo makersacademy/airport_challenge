@@ -1,37 +1,27 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
 
-  def initialize(capacity = 10)
-    @capacity = capacity # default capacity that can be overridden 
-    @landed_planes = []
-    @weather = Weather.new
-  end
-  
-  def land(plane)
-    fail 'Plane already landed' if plane.landed? # do not land if grounded
-    fail 'no space here sorry' if nospace? # do not land if capacity >= 10
-    # do not land if stormy
-    # raise 'no landing in stormy weather' if @weather.stormy? 
-    
-    @landed_planes << plane # add plane to airport array
-    plane.set_landed # set plane to landed state
-    p 'this plane landed yay clap clap' # this is for the feature test
-    p 'planes in our airport now: ' 
-    p @landed_planes.size
+  def initialize(capacity = 20)
+    @capacity = capacity
+    @planes = []
   end
 
+  def land(plane)
+    raise 'cannot land when airport full' if full?
+    raise 'cannot land plane when stormy' if stormy?
+    @planes << plane
+end
+
   def take_off(plane)
-    # do not take off if bad weather
-    
-    @landed_planes.pop # plane takes off, remove from airport array
-    p 'this plane took off, bye'
-    p 'planes in our airport now: ' 
-    p @landed_planes.size
-  end 
-     
-  def nospace?
-    @landed_planes.size >= @capacity
+  end
+
+  private
+  def full?
+    @planes.length >= @capacity
+  end
+
+  def stormy?
+    rand(1..5) > 3
   end
 end

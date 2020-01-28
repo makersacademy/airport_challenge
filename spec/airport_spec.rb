@@ -1,36 +1,43 @@
 require 'airport'
 require 'plane'
 require 'spec_helper'
-require 'weather'
- 
+
 describe Airport do
+  subject(:airport) { described_class.new }
+  let(:plane) { double :plane }
+
   describe '#land' do
-    it 'lands a plane' do 
-      expect(Airport.new.land(Plane.new)).to eq 1
-    end 
+    
+      context 'when not stormy' do
+        before do
+          allow(airport).to receive(:stormy?).and_return false
+        end
+        it 'instructs a plane to land' do
+          expect(airport).to respond_to(:land).with(1).argument
+        end
+          context 'when full' do
+            it 'raises error' do
+            20.times{ airport.land(:plane) }
+            expect { airport.land(:plane) }.to raise_error 'cannot land when airport full'
+            end
+          end
+      end
 
-    it 'raises error when airport full' do
-      10.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error 'no space here sorry'
-    end
-
-    it 'raises error when plane has already landed' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      allow(plane).to receive(:landed?).and_return(true)
-      expect { airport.land(plane) }.to raise_error "Plane already landed"
-    end
-  #   it 'does not allow landing in storm' do
-  #     plane = Plane.new
-  #     airport = Airport.new
-  #     allow(@weather).to receive(:stormy?).and_return true
-  #     expect { airport.land(plane) }.to raise_error 'no landing in stormy weather'
-  #   end
+      context 'when stormy' do
+        it 'raises error if asked to land' do
+          allow(airport).to receive(:stormy?).and_return true
+          expect { airport.land(plane) }.to raise_error 'cannot land plane when stormy'
+        end
+      end
   end
-  it 'removes plane from landed_planes when it takes off' do 
-    subject.land(Plane.new)
-    expect(subject.take_off(Plane.new)).to eq 0
-  end 
+
+  describe '#take_off' do
+    it 'instructs a plane to take off' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+     end
+  end   
+  
+  
+
 end
  
