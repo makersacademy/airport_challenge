@@ -1,8 +1,9 @@
 require_relative "plane"
 
 class Airport
-  def initialize(capacity = 20)
+  def initialize(capacity = 20, weather_report)
     @capacity = capacity
+    @weather_report = weather_report
     @planes = []
   end
 
@@ -13,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "cannot take off when stormy" if stormy?
   end
 
   private
@@ -22,6 +24,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..5) > 3
+    @weather_report.stormy?
   end
 end
