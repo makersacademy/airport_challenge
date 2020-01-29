@@ -13,27 +13,10 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+This is the first weekend challenge of the Makers Academy course, this task built upon what we had learnt about RSpec this week on our course and use the TDD process to design the software. We were given a set of user stories to translate into requirements for the program. The requirements included the airport being able to tell planes to take off and land. If there were issues with the weather or the capacity of the airport having been reached already, then the planes were not allowed to take off or land. The user stories on which we designed the software are show below:
 
 ```
 As an air traffic controller 
@@ -60,31 +43,69 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+The Approach
+-------------
+The Test-Driven Development software development process, where you use the `RED-GREEN-REFACTOR` code writing process is used. The test must be written before any code is written and a failure must be recieved from the testing library (RSpec in this case). Then the most basic and naive code is written to fufill the test so that it passes (GREEN) and then following this the code is refactored to increase conciseness. In this coding challenge I have aimed to 100 % test coverage so that all lines of code have been tested to mximise my confidnence in the code.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+How to use
+----------
+1. Fork and clone the repository
+2. Navigate into the parent file that contains spec and lib folders
+3. To run the softeware in the Interactive Ruby Shell `irb -r './lib/airport.rb'`
+4. Start by initializing a new airport `airport = Airport.new(Airport_Capacity)`
+5. Initialize a plane to land or take off at an airport of you choice. `plane = Plane.new`
+6. Then land and take_off airplanes to you hearts content using the methods `.land(plane)` `.take_off(plane)` on a airport of your choosing!
+7. Happy flying, just watch out for the weather!
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Planning
+--------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Based on the user stories I broke down the problem into the following steps. Before each step I created a unit test, ran Rspec to recieve a test fail, updated my code, ran rspec to recieve a pass and then refactored any code if need be.
 
-Please create separate files for every class, module and test suite.
+Story 1
+1. Create airport class
+2. Create plane class
+3. Create land method with 1 argument (Plane)
+4. Update land method to a return plane
+5. Make a method plane to return a plane
+6. Store plane name from land method
+7. Create attribute for airport to store 1 plane
 
-In code review we'll be hoping to see:
+Story 2
+1. Create take off method with 1 argument (plane)
+2. Take off method accepts 1 argument (plane)
+3. Update attribute when plane takes off
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Story 3
+1. Update plane attribute to planes
+2. Initialize an array for planes
+3. Update test and land definition to allow array to push
+4. Update test and take-off definition to remove plane from array
+5. Updated so plane cannot land if it is already in airport array
+6. Updated take_off method to raise error if plane not in planes array
+7. Define Constant CAPACITY = Default value
+8. Create full? Method to raise error if airport full
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Story 4
+1. Create an initialize method for airport to pass in airport capacity
 
-**BONUS**
+Story 5
+1. Create weather class
+2. Define method for stormy?
+3. Define method to return a value of true or false
+4. Create weather attribute
+5. Add if statement to check weather in previously defined methods before allowing plane to take-off
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Story 6
+1. Update methods for landing to include if statement referencing stormy?
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Diagram
+---------
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+I created an image of the logical flow for the land and take off methods when I was planning how to design the program. I came up with these control flows which then help me plan each step.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+![flow diagram](https://raw.githubusercontent.com/DavidStewartLDN/airport_challenge/master/airport_challenge.jpg)
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Contributors
+-----------------------------
+Jason Wong's design for weather patterns was used for inspiration to control the `Weather.stormy?` method due to issues using my original code design.
