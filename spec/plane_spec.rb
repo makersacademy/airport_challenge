@@ -20,18 +20,13 @@ describe Plane do
     flight.status("Airport")
     expect { flight.land }. to raise_error('Plane already landed')
   end
-=begin 
-  CAN"T GET DOUBLES AND THIS TEST TO WORK BUT FEATURE IS FINE
+
+  # CAN"T GET DOUBLES AND THIS TEST TO WORK BUT FEATURE IS FINE
   it "#if plane ties to land but it's stormy, error message returned" do
     flight = Plane.new
-    rain = Weather.new
-    #generator = Weather.new
-    # allow(generator).to receive(:rand)
-
-    #allow(flight.land).to receive(:current_weather)
+    allow(flight).to receive(:stormy).and_return("Stormy")
     expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
   end
-=end
 
 # if plane tries to land but airport is full, error message returned - in Airport
 

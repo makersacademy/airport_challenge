@@ -10,24 +10,15 @@ describe Weather do
     expect(generator.generate_weather).to eq("Storm")
   end
 
-  it "give 80% chance of no storm w/ rand 2" do
+  it "give 80% chance of no storm w/ rand 0, 2-5" do
     generator = Weather.new
     allow(generator).to receive(:rand).and_return(2)
     expect(generator.generate_weather).to eq("Not Storm")
-  end
-  it "give 80% chance of no storm w/ rand 3" do
-    generator = Weather.new
     allow(generator).to receive(:rand).and_return(3)
     expect(generator.generate_weather).to eq("Not Storm")
-  end  
-  it "give 80% chance of no storm w/ rand 4" do
-    generator = Weather.new
     allow(generator).to receive(:rand).and_return(4)
     expect(generator.generate_weather).to eq("Not Storm")
-  end  
-  it "give 80% chance of no storm w/ rand 5" do
-    generator = Weather.new
-    allow(generator).to receive(:rand).and_return(5)
+    allow(generator).to receive(:rand).and_return(0)
     expect(generator.generate_weather).to eq("Not Storm")
   end
 end
