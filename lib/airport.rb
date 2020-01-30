@@ -1,7 +1,9 @@
 require_relative "plane"
 
 class Airport
-  def initialize(capacity = 20, weather_report)
+  DEFAULT_CAPACITY = 20
+
+  def initialize(weather_report, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @weather_report = weather_report
     @planes = []
@@ -15,6 +17,8 @@ class Airport
 
   def take_off(plane)
     raise "cannot take off when stormy" if stormy?
+    raise "plane not at this airport" unless @planes.include?(plane)
+    plane
   end
 
   private
