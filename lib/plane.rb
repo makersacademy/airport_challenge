@@ -1,14 +1,15 @@
-require './lib/weather.rb'
+require './lib/weather'
 
 class Plane   
   attr_reader :current_location
   attr_reader :current_weather
 
   def initialize
-    @current_weather = "Not Storm"
+    @current_weather
   end
   
   def take_off
+    Plane.new.stormy(Weather.new)
     fail 'Plane cannot take off if it is stormy' if @current_weather == "Storm"
     
     fail 'Plane already flying' if @current_location == ["flying"]
@@ -21,7 +22,7 @@ class Plane
   end
 
   def land
-    # stormy must be run before land or take off to change current location
+    Plane.new.stormy(Weather.new)
     fail 'Plane already landed' if @current_location == ["Airport"]
 
     fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
@@ -30,10 +31,7 @@ class Plane
   end
 
   def stormy(weather) 
-    # TODO - ensure variable passed is weather.new ~ does work in feature test
     @current_weather = weather.generate_weather
   end
-
-  # def generate_weather
 
 end

@@ -1,7 +1,5 @@
-require './lib/weather.rb'
-# check that test runs
+require 'weather'
 
-# run weather 20 times and check both storm and non stormy
 describe Weather do
   it { is_expected.to respond_to(:generate_weather) }
   it "give 20% chance of a storm" do

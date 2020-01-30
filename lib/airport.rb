@@ -1,4 +1,5 @@
-require './lib/plane.rb'
+require './lib/plane'
+require './lib/weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -10,7 +11,6 @@ class Airport
 
   def capacity(given_capacity = DEFAULT_CAPACITY)
     @capacity = given_capacity
-    # TODO: not sure capacity actually changeable
   end
 
   def plane_land(plane)
@@ -24,14 +24,16 @@ class Airport
     @planes_at_airport[0]
   end
 
-  def plane_take_off(_plane)
+  def plane_take_off(plane)
     test_flight = Plane.new
     @current_location = test_flight.take_off
     fail "plane can't take off" if @current_location != "flying"
 
     fail 'No planes at airport' if empty? == true
-  
-    @planes_at_airport.pop 
+
+    # caution - this will delete all planes that match the given variable - use unique plane names
+    @planes_at_airport.delete(plane)
+    @planes_at_airport
   end
 
   def empty?
@@ -39,8 +41,6 @@ class Airport
   end
 
   def full?
-    p @planes_at_airport.count
-    p @capacity
     @planes_at_airport.count >= @capacity
   end 
 
