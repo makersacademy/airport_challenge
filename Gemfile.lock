@@ -24,7 +24,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    rubocop (0.71.0)
+    rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -50,7 +50,7 @@ PLATFORMS
 
 DEPENDENCIES
   rspec
-  rubocop (= 0.71.0)
+  rubocop (= 0.72.0)
   simplecov
   simplecov-console
 
