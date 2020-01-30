@@ -6,7 +6,7 @@ describe Plane do
   it { is_expected.to respond_to(:take_off) }
   it { is_expected.to respond_to(:status).with(1).argument }
   it { is_expected.to respond_to(:land) }
-  it { is_expected.to respond_to(:stormy) }
+  it { is_expected.to respond_to(:stormy).with(1).argument }
 
     # LANDING
 # if plane tries to land but if not flying, error message returned
@@ -21,12 +21,28 @@ describe Plane do
     expect { flight.land }. to raise_error('Plane already landed')
   end
 
-  # CAN"T GET DOUBLES AND THIS TEST TO WORK BUT FEATURE IS FINE
+  # Feature not okay yet
   it "#if plane ties to land but it's stormy, error message returned" do
     flight = Plane.new
-    allow(flight).to receive(:stormy).and_return("Stormy")
-    expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
+    weather = double("weather")
+    expect(weather).to receive(:generate_weather).and_return("Storm")
+    expect(flight.land).to raise_error('Plane cannot land if it is stormy')
   end
+
+  it "#stormy returns a storm" do
+    flight = Plane.new
+    weather = double("weather")
+    expect(weather).to receive(:generate_weather).and_return("Storm")
+    expect(flight.stormy(weather)).to eq ("Storm")
+  end
+
+  it "#stormy returns not a storm" do
+    flight = Plane.new
+    weather = double("weather")
+    expect(weather).to receive(:generate_weather).and_return("Not Storm")
+    expect(flight.stormy(weather)).to eq ("Not Storm")
+  end
+
 
 # if plane tries to land but airport is full, error message returned - in Airport
 
