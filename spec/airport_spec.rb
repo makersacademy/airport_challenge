@@ -30,7 +30,7 @@ describe Airport do
   it '#plane takes off and is removed' do
     plane = Airport.new
     subject.plane_land(plane)
-    expect(subject.plane_take_off(plane)).to eq plane
+    expect(subject.plane_take_off(plane)).to eq []
   end
   it '#raises an error when there are no planes at airport' do 
     plane = Airport.new

@@ -31,7 +31,7 @@ class Test
 
   def test_three
     # User story 3
-    #should over capacity throw error
+    # should over capacity throw error
     airport = Airport.new
     airport.capacity()
     21.times do
