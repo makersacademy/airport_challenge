@@ -21,7 +21,7 @@ class Plane
   end
 
   def land
-    #logic error - current_weather not checked before running
+    # stormy must be run before land or take off to change current location
     fail 'Plane already landed' if @current_location == ["Airport"]
 
     fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
@@ -30,10 +30,10 @@ class Plane
   end
 
   def stormy(weather) 
-    #TODO - ensure variable passed is weather.new ~ does work in feature test
+    # TODO - ensure variable passed is weather.new ~ does work in feature test
     @current_weather = weather.generate_weather
   end
 
-  #def generate_weather
+  # def generate_weather
 
 end

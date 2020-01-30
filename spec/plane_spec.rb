@@ -8,54 +8,54 @@ describe Plane do
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:stormy).with(1).argument }
 
-    # LANDING
+  describe "#landing" do
 # if plane tries to land but if not flying, error message returned
-  it "#plane can be flying or in Airport" do
-    expect(subject.status("flying")).to eq ["flying"]
-    expect(subject.status("Airport")).to eq ["Airport"]
+    it "#plane can be flying or in Airport" do
+      expect(subject.status("flying")).to eq ["flying"]
+      expect(subject.status("Airport")).to eq ["Airport"]
+    end
+    
+    it "#if plane tries to land but is not flying, error message returned" do
+      flight = Plane.new
+      flight.status("Airport")
+      expect { flight.land }. to raise_error('Plane already landed')
+    end
+    it "#if plane ties to land but it's stormy, error message returned" do
+      flight = Plane.new
+      weather = double("weather")
+      allow(weather).to receive(:generate_weather).and_return("Storm")
+      flight.stormy(weather)
+      expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
+    end
   end
-  
-  it "#if plane tries to land but is not flying, error message returned" do
-    flight = Plane.new
-    flight.status("Airport")
-    expect { flight.land }. to raise_error('Plane already landed')
-  end
+  describe "#stormy" do
+    it "#stormy returns a storm" do
+      flight = Plane.new
+      weather = double("weather")
+      allow(weather).to receive(:generate_weather).and_return("Storm")
+      expect(flight.stormy(weather)).to eq "Storm"
+    end
 
-  # Feature not okay yet
-  it "#if plane ties to land but it's stormy, error message returned" do
-    flight = Plane.new
-    weather = double("weather")
-    expect(weather).to receive(:generate_weather).and_return("Storm")
-    expect(flight.land).to raise_error('Plane cannot land if it is stormy')
+    it "#stormy returns not a storm" do
+      flight = Plane.new
+      weather = double("weather")
+      allow(weather).to receive(:generate_weather).and_return("Not Storm")
+      expect(flight.stormy(weather)).to eq "Not Storm"
+    end
   end
-
-  it "#stormy returns a storm" do
-    flight = Plane.new
-    weather = double("weather")
-    expect(weather).to receive(:generate_weather).and_return("Storm")
-    expect(flight.stormy(weather)).to eq ("Storm")
-  end
-
-  it "#stormy returns not a storm" do
-    flight = Plane.new
-    weather = double("weather")
-    expect(weather).to receive(:generate_weather).and_return("Not Storm")
-    expect(flight.stormy(weather)).to eq ("Not Storm")
-  end
-
 
 # if plane tries to land but airport is full, error message returned - in Airport
 
 # if plane lands, change location to airport - TODO: write test for this
-
+  describe "#takeoff" do
 # TAKEOFF
 # if plane tries to take off but isn't flying, error message returned
-  it "if plane tries to take off but isn't flying" do
-    flight = Plane.new
-    flight.status("flying")
-    expect { flight.take_off }. to raise_error('Plane already flying')
+    it "if plane tries to take off but isn't flying" do
+      flight = Plane.new
+      flight.status("flying")
+      expect { flight.take_off }. to raise_error('Plane already flying')
+    end
   end
-
 # if plane tries to take off but weather is stormy, error mesage returned - TODO test, feature ok
 
 # if plane takes off, change location to flying TODO - get this test to work, feature ok
