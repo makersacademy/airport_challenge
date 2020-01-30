@@ -1,8 +1,14 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:plane_land) }
-  it { is_expected.to respond_to(:capacity) }
+  
+  let(:weather) { double :weather } 
+  #subject { [1,2,3] }
+  subject { Airport.new(weather) }
+  describe "#initialize" do 
+    it { is_expected.to respond_to(:plane_land).with(1).argument }
+    it { is_expected.to respond_to(:capacity) }
+  end
 
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -13,9 +19,13 @@ describe Airport do
     expect(subject.capacity(7)).to eq 7
   end
 
-  it '#raises an error when full' do 
-    plane = Airport.new
+  let(:plane) { Airport.new(weather) }
+  
+  it '#raises an error when full' do
     plane.capacity
+    flight = Plane.new
+    allow(weather).to receive(:generate_weather).and_return("Not Storm")
+    flight.stormy(weather)
     Airport::DEFAULT_CAPACITY.times do
       subject.plane_land(plane)
     end
@@ -23,17 +33,14 @@ describe Airport do
   end
 
   it '#plane lands and is added' do
-    plane = Airport.new
     expect(subject.plane_land(plane)).to eq plane
   end
 
   it '#plane takes off and is removed' do
-    plane = Airport.new
     subject.plane_land(plane)
     expect(subject.plane_take_off(plane)).to eq []
   end
   it '#raises an error when there are no planes at airport' do 
-    plane = Airport.new
     expect { subject.plane_take_off(plane) }.to raise_error('No planes at airport')
   end
 end

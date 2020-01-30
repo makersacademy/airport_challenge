@@ -4,9 +4,10 @@ require './lib/weather'
 class Airport
   DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(weather)
     @capacity = DEFAULT_CAPACITY
     @planes_at_airport = []
+    @weather = weather
   end
 
   def capacity(given_capacity = DEFAULT_CAPACITY)
@@ -15,7 +16,7 @@ class Airport
 
   def plane_land(plane)
     test_flight = Plane.new
-    @current_location = test_flight.land
+    @current_location = test_flight.land(@weather)
     fail "plane cannot land" if @current_location != "Airport"
 
     fail 'Cannot add another plane: Capacity full' if full? == true
@@ -26,7 +27,7 @@ class Airport
 
   def plane_take_off(plane)
     test_flight = Plane.new
-    @current_location = test_flight.take_off
+    @current_location = test_flight.take_off(@weather)
     fail "plane can't take off" if @current_location != "flying"
 
     fail 'No planes at airport' if empty? == true

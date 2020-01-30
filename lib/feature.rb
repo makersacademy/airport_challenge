@@ -7,6 +7,10 @@ class Test
   def test_one
     # User story 1
     # returns "plane 1"
+    flight = Plane.new
+    weather = double("weather")
+    allow(weather).to receive(:generate_weather).and_return("Storm")
+    flight.stormy(weather)
     airport = Airport.new
     airport.plane_land("plane1")
   end
@@ -45,14 +49,32 @@ class Test
     airport = Airport.new
     airport.capacity(7)
     8.times do
-    airport.plane_land("plane1")
+      airport.plane_land("plane1")
     end
   end
 
+  def test_five
+    # User story 5
+    # should see occasional errors in landing due to Storm
+    airport = Airport.new
+    airport.plane_land("plane1")
+  end
+
+  def test_six
+    # User story 6
+    # should see occasional errors in take_off due to Storm
+    # careful with take off, can remove plane with same name
+    airport = Airport.new
+    10.times do
+      airport.plane_land("plane1")
+      airport.plane_take_off("plane1")
+    end
+  end
 end
 test = Test.new
-# test.test_one
+p test.test_one
 # test.test_two
-p test.test_two_b
+# test.test_two_b
 # test.test_three
 # test.test_four
+# test.test_five
