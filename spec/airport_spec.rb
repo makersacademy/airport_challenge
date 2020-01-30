@@ -11,14 +11,17 @@ describe Airport do
 # capacity can be changed
   it "capacity can be changed" do
     expect(subject.capacity(5)).to eq 5
+    expect(subject.capacity(7)).to eq 7
   end
 
 # airport can tell if full or not
   it '#raises an error when full' do 
+    plane = Airport.new
+    plane.capacity
     Airport::DEFAULT_CAPACITY.times do
-      subject.plane_land Airport.new
+      subject.plane_land(plane)
     end
-    expect { subject.plane_land Airport.new }.to raise_error('Cannot add another plane: Capacity full')
+    expect { subject.plane_land(plane) }.to raise_error('Cannot add another plane: Capacity full')
   end
 
 # planes can be added if they land

@@ -4,7 +4,7 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize
-    @capacity
+    @capacity = DEFAULT_CAPACITY
     @planes_at_airport = []
   end
 
@@ -39,7 +39,9 @@ class Airport
   end
 
   def full?
-    @planes_at_airport.count >= DEFAULT_CAPACITY
+    p @planes_at_airport.count
+    p @capacity
+    @planes_at_airport.count >= @capacity
   end 
 
 end

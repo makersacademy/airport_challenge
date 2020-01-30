@@ -20,6 +20,7 @@ describe Plane do
       flight.status("Airport")
       expect { flight.land }. to raise_error('Plane already landed')
     end
+
     it "#if plane ties to land but it's stormy, error message returned" do
       flight = Plane.new
       weather = double("weather")
@@ -28,6 +29,7 @@ describe Plane do
       expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
     end
   end
+
   describe "#stormy" do
     it "#stormy returns a storm" do
       flight = Plane.new
