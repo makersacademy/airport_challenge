@@ -13,6 +13,55 @@ Airport Challenge
 
 ```
 
+***
+
+My learnings this week:
+
+Learning a new language - Ruby to Javascript
+
+Learning objectives:
+Describe a process for learning a new language
+Follow an effective process for learning a new language
+Test drive a simple front-end web app with Javascript
+
+Tools used:
+W3 schools - tutorials and exercises
+Codecademy -  Introduction to Javascript
+https://www.codeproject.com/articles/1118021/jasmine-testing-javascript
+
+
+Topics covered:
+Arithmetic (operators to use this)
+Assignments
+Variables
+Data types
+Functions
+Objects
+Events
+Strings
+String Methods
+Arrays
+loops
+
+
+What I feel I have some confidence on:
+-Writing up the tests, the structure of them.
+-Basic syntax.
+
+What needs more work / can confuse me:
+-Debugging test errors, I find it hard to figure out the exact problem from them.
+-The fact javascript has multiple ways of doing one thing, makes it hard to deduce which is the best or most effective technique.
+
+
+I worked through the JS topics in W3 schools and then did the tests and quizzes at the end of each chapter. I liked doing it this way because I could immediately test what I had been reading and walking through. However the lack of interaction while reading through the chapters meant retention was not as strong as when Codeacademy was used. Codeacademy allowed for interactive lessons that gave me a chance to try out what was being learnt and what I had seen in W3 schools.
+
+During the pairing challenge through the week I got to part way through making the thermostat.
+During Friday challenge, having already done the airport challenge, I tried to redo this with less reliance on the walkthrough. This did mean I have only managed to complete 1 user story.
+
+
+
+***
+
 Instructions
 ---------
 
@@ -36,29 +85,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -73,7 +122,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
