@@ -90,7 +90,10 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 ***Stories Completed(JavaScript)***
-User story 1 -
+User story 1 - User story 1 complete. I initially tried to create the function airport.land(plane) which seemed to be working until the point where I had to push the plane into the array, so I refactored my tests to follow the walkthrough more closely and have the land function in the Plane class. 
+
+User story 2 -
+
 
 
 **Stories completed(Ruby)**
