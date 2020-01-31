@@ -1,15 +1,15 @@
 'use strict'
-class Plane{
-  constructor(){
+class Plane {
+  constructor() {
     this._location;
   };
 
-  land(airport){
-      airport.clearForLanding(this)
-      this._location = airport
-    };
+  land(airport) {
+    airport.clearForLanding(this)
+    this._location = airport
+  };
 
-    takeoff(airport){
-      this._location.clearForTakeoff()
-    };
+  takeoff(airport) {
+    this._location.clearForTakeoff()
+  };
 };
