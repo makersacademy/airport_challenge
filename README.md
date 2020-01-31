@@ -2,6 +2,11 @@
 
 Implementation of a software to control the flow of planes at an airport in JavaScript.
 
+#### User story 4 - completed
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
 #### User story 3 - completed
 As an air traffic controller
 To ensure safety
