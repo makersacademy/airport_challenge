@@ -18,4 +18,14 @@ describe('Feature Test:', function() {
     plane.takeoff(airport);
     expect(airport.planes()).not.toContain(plane);
   });
+  describe('when the airport is full', function() {
+    it('planes cannot be instructed to land', function() {
+      for(var i = 0; i < 9; i++) {
+        plane.land(airport);
+      }
+      plane.land(airport);
+      expect(function(){ airport.clearForLanding(plane); }).toThrowError('Cannot land plane. The airport is full.');
+      expect(airport.planes().length).toEqual(10)
+    });
+  });
 });

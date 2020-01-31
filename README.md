@@ -2,6 +2,11 @@
 
 Implementation of a software to control the flow of planes at an airport in JavaScript.
 
+#### User story 3
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full (10 planes)
+
 #### User story 2 - completed
 As an air traffic controller
 So I can get passengers on the way to their destination
