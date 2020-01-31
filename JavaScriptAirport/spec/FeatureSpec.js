@@ -15,5 +15,14 @@ describe('Feature Test', function (){
     plane.land(airport);
     plane.takeoff(airport);
     expect(airport.planes()).not.toContain(plane);
-  })
+  });
+
+  it('stops planes from taking off when weather is stormy', function(){
+    plane.land(airport);
+    spyOn(airport, 'isStormy').and.returnValue(true);
+    expect(function(){
+      plane.takeoff();
+    }).toThrowError('Takeoff prohibited due to storm conditions');
+    expect(airport.planes()).toContain(plane);
+  });
 });

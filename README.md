@@ -94,6 +94,11 @@ User story 1 - User story 1 complete. I initially tried to create the function a
 
 User story 2 and 3 - User story 2 and 3 complete . I implemented the same method for takeoff as I did for landing in User story 1 but in the plane class included 'this_location' which was assigned to 'airport' I also added some more tests for an error to be raised when the airport was full and when it was empty.
 
+User story 4 - capacity - had already begun this in user story 3  but refactored code and test to include DEFAULT_CAPACITY to get rid of the magic number.
+
+User story 5 -
+
+
 
 
 **Stories completed(Ruby)**

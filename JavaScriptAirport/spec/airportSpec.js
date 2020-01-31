@@ -43,4 +43,7 @@ describe('Airport', function(){
       }).toThrowError("Airport Empty!");
     });
   });
+  it('checks for storm conditions', function(){
+    expect(airport.isStormy()).toBeFalsy();
+  });
 });
