@@ -2,6 +2,11 @@
 
 Implementation of a software to control the flow of planes at an airport in JavaScript.
 
+#### User story 5
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
 #### User story 4 - completed
 As the system designer
 So that the software can be used for many different airports

@@ -28,4 +28,13 @@ describe('Feature Test:', function() {
       expect(airport.planes().length).toEqual(10)
     });
   });
+  describe('under stormy conditions', function() {
+
+    it('planes cannot takeoff ', function(){
+      plane.land(airport);
+      spyOn(airport, 'isStormy').and.returnValue(true);
+      expect(function(){ plane.takeoff();}).toThrowError('Cannot takeoff during storm');
+      expect(airport.planes()).toContain(plane);
+    });
+  });
 });
