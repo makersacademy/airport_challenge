@@ -36,5 +36,11 @@ describe('Airport', function(){
         airport.clearForLanding(plane);
       }).toThrowError("Airport Full!");
     });
+
+    it('raises an error if empty', function(){
+      expect(function(){
+        airport.clearForTakeoff(plane);
+      }).toThrowError("Airport Empty!");
+    });
   });
 });

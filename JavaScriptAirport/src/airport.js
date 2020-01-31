@@ -10,6 +10,9 @@ class Airport{
   };
 
   clearForLanding(plane) {
+    if(this._runway.length  == this.capacity){
+        throw new Error("Airport Full!");
+      }
     this._runway.push(plane);
   };
   clearForTakeoff(plane){
