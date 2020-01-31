@@ -1,8 +1,8 @@
 'use strict'
 
 describe('Feature Test', function() {
-  var plane
-  var airport
+  var plane;
+  var airport;
 
   beforeEach(function() {
     plane = new Plane;
@@ -12,6 +12,6 @@ describe('Feature Test', function() {
 
   it('instructs planes to land at airport', function() {
     plane.land(airport);
-    expect(airport.planes()).toContain(plane)
+    expect(airport.planes()).toContain(plane);
   });
 });
