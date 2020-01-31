@@ -28,5 +28,13 @@ describe('Airport', function(){
     it('sets default capacity', function(){
       expect(airport.capacity).toEqual(20)
     });
+
+    it('raises an error if full', function(){
+      airport.capacity = 1;
+      airport.clearForLanding(plane);
+      expect(function(){
+        airport.clearForLanding(plane);
+      }).toThrowError("Airport Full!");
+    });
   });
 });

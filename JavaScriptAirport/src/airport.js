@@ -1,8 +1,9 @@
 'use strict'
 class Airport{
   constructor(){
-    this._runway = []
-  }
+    this._runway = [];
+    this.capacity = 20;
+  };
 
   planes(){
     return this._runway;
