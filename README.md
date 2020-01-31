@@ -2,6 +2,11 @@
 
 Implementation of a software to control the flow of planes at an airport in JavaScript.
 
+#### User story 2
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport.
+
 ##### User story 1 - completed
 As an air traffic controller
 So I can get passengers to a destination
