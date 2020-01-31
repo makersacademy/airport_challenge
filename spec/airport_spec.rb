@@ -2,8 +2,7 @@ require 'airport'
 
 describe Airport do
   
-  let(:weather) { double :weather } 
-  #subject { [1,2,3] }
+  let(:weather) { double :weather }
   subject { Airport.new(weather) }
   describe "#initialize" do 
     it { is_expected.to respond_to(:plane_land).with(1).argument }
@@ -33,14 +32,23 @@ describe Airport do
   end
 
   it '#plane lands and is added' do
-    expect(subject.plane_land(plane)).to eq plane
+    flight = Plane.new
+    allow(weather).to receive(:generate_weather).and_return("Not Storm")
+    flight.stormy(weather)
+    expect(subject.plane_land(:plane)).to eq :plane
   end
 
   it '#plane takes off and is removed' do
+    flight = Plane.new
+    allow(weather).to receive(:generate_weather).and_return("Not Storm")
+    flight.stormy(weather)
     subject.plane_land(plane)
     expect(subject.plane_take_off(plane)).to eq []
   end
   it '#raises an error when there are no planes at airport' do 
+    flight = Plane.new
+    allow(weather).to receive(:generate_weather).and_return("Not Storm")
+    flight.stormy(weather)
     expect { subject.plane_take_off(plane) }.to raise_error('No planes at airport')
   end
 end

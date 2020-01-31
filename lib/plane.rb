@@ -9,7 +9,6 @@ class Plane
   end
   
   def take_off(weather)
-    #Below line needs some editing not to break all tests
     @current_weather = stormy(weather)
     fail 'Plane cannot take off if it is stormy' if @current_weather == "Storm"
     
@@ -23,12 +22,10 @@ class Plane
   end
 
   def land(weather)
-    #Below line needs some editing not to break all tests
     @current_weather = stormy(weather)
+    fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
 
     fail 'Plane already landed' if @current_location == ["Airport"]
-
-    fail 'Plane cannot land if it is stormy' if @current_weather == "Storm"
 
     @current_location = "Airport"
   end

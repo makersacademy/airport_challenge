@@ -32,7 +32,8 @@ class Airport
 
     fail 'No planes at airport' if empty? == true
 
-    # caution - this will delete all planes that match the given variable - use unique plane names
+    # caution - this will delete all planes that match the given variable
+    # use unique plane names
     @planes_at_airport.delete(plane)
     @planes_at_airport
   end

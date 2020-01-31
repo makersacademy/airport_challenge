@@ -39,7 +39,7 @@ class Test
     airport = Airport.new
     airport.capacity()
     21.times do
-    airport.plane_land("plane1")
+      airport.plane_land("plane1")
     end
   end
 

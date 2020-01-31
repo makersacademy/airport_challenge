@@ -15,8 +15,11 @@ describe Plane do
     
     it "#if plane tries to land but is not flying, error message returned" do
       flight = Plane.new
+      weather = double(weather)
+      allow(weather).to receive(:generate_weather).and_return("Not Storm")
+      flight.stormy(weather)
       flight.status("Airport")
-      expect { flight.land }. to raise_error('Plane already landed')
+      expect { flight.land(weather) }. to raise_error('Plane already landed')
     end
 
     it "#if plane ties to land but it's stormy, error message returned" do
@@ -24,7 +27,7 @@ describe Plane do
       weather = double("weather")
       allow(weather).to receive(:generate_weather).and_return("Storm")
       flight.stormy(weather)
-      expect { flight.land }. to raise_error('Plane cannot land if it is stormy')
+      expect { flight.land(weather) }. to raise_error('Plane cannot land if it is stormy')
     end
   end
 
@@ -50,15 +53,17 @@ describe Plane do
   describe "#takeoff" do
     it "if plane tries to take off but isn't flying" do
       flight = Plane.new
+      weather = double("weather")
+      allow(weather).to receive(:generate_weather).and_return("Not Storm")
       flight.status("flying")
-      expect { flight.take_off }. to raise_error('Plane already flying')
+      expect { flight.take_off(weather) }. to raise_error('Plane already flying')
     end
     it "#if plane ties to take off but it's stormy, error message returned" do
       flight = Plane.new
       weather = double("weather")
       allow(weather).to receive(:generate_weather).and_return("Storm")
       flight.stormy(weather)
-      expect { flight.take_off }. to raise_error('Plane cannot take off if it is stormy')
+      expect { flight.take_off(weather) }. to raise_error('Plane cannot take off if it is stormy')
     end
   end
 
