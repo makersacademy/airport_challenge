@@ -26,7 +26,7 @@ describe('Airport', function(){
     });
 
     it('sets default capacity', function(){
-      expect(airport.capacity).toEqual(20)
+      expect(airport.DEFAULT_CAPACITY).toEqual(20)
     });
 
     it('raises an error if full', function(){
