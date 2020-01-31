@@ -13,4 +13,20 @@ describe('Airport', function(){
     airport.clearForLanding(plane);
     expect(airport.planes()).toEqual([plane]);
   });
+
+  it('can clear planes for takeoff', function(){
+    airport.clearForLanding(plane);
+    airport.clearForTakeoff(plane);
+    expect(airport.planes()).toEqual([]);
+  });
+
+  describe('capacity', function(){
+    it('responds to capacity', function(){
+      expect(airport.capacity).not.toBeUndefined();
+    });
+
+    it('sets default capacity', function(){
+      expect(airport.capacity).toEqual(20)
+    });
+  });
 });

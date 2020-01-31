@@ -9,6 +9,9 @@ class Airport{
   };
 
   clearForLanding(plane) {
-    this._runway.push(plane)
+    this._runway.push(plane);
   };
+  clearForTakeoff(plane){
+    this._runway.pop(plane);
+  }
 };
