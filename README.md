@@ -89,11 +89,15 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
-**Stories completed**
+***Stories Completed(JavaScript)***
+User story 1 -
+
+
+**Stories completed(Ruby)**
 
 README - Refactoring
 User story 2 - Refactored the plane.land test removing plane = airport.release_plane, after refactoring the test. Nested describe block for the "release_plane" method
 
 User story 3 - Refactored test as methods takeoff and landing not needed in Plane class as they are in the Airport class. These methods have been been removed from Plane class and methods "release_plane" and "runway" have been renamed in the test and code to "takeoff" and "landing"
 
-User story 4 - updated @plane attribute to @planes = []. Also updated test as code now contains an array. Also refactored code to include a private method for whether the airport is 'full?' or 'empty?'. Initially set capacity at 10 and then refactored test and code, adding 'DEFAULT_CAPACITY' to remove the magic number (in this case 10).Refactored again using attr_reader create a 'capacity' method and used 'initialize' to set initial value as "DEFAULT_CAPACITY"
+User story 4 - updated @plane attribute to @planes = []. Also updated test as code now contains an array. Also refactored code to include a private method for whether the airport is 'full?' or 'empty?'. Initially set capacity at 10 and then refactored test and code, adding 'DEFAULT_CAPACITY' to remove the magic number (in this case 10).Refactored again using attr_reader create a 'capacity' method and used 'initialize' to set initial value as "DEFAULT_CAPACITY". In the process of completing this story.
