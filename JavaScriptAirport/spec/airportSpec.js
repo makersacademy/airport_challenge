@@ -55,5 +55,12 @@ describe('Airport', function(){
          airport.clearForTakeoff(plane);
         }).toThrowError('Takeoff prohibited due to storm conditions');
     });
+
+    it('does not clear planes for landing when stormy', function(){
+      spyOn(airport,'isStormy').and.returnValue(true);
+      expect(function(){
+         airport.clearForLanding(plane);
+       }).toThrowError('Landing prohibited due to storm conditions');
+    });
   });
 });

@@ -11,9 +11,12 @@ class Airport{
   };
 
   clearForLanding(plane) {
+    if(this.isStormy()){
+      throw new Error('Landing prohibited due to storm conditions');
+    };
     if(this._runway.length  == this.capacity){
         throw new Error("Airport Full!");
-      }
+      };
     this._runway.push(plane);
   };
 
