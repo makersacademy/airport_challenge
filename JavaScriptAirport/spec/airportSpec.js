@@ -4,16 +4,13 @@ describe('Airport', function(){
   var plane;
   beforeEach(function(){
     airport = new Airport();
-    plane = jasmine.createSpyObj('plane', ['clearForLanding']);
-  });
-  it('allows plane to land at airport', function() {
-    expect(airport.land).not.toBeUndefined()
-  });
-  it('planes can land at airport', function(){
-    airport.land(plane);
-    expect(plane.clearForLanding).toHaveBeenCalledWith(airport);
+    plane = jasmine.createSpy('plane',['land']);
   });
   it('has no planes by default', function(){
     expect(airport.planes()).toEqual([]);
+  });
+  it('can clear planes for landing', function(){
+    airport.clearForLanding(plane);
+    expect(airport.planes()).toEqual([plane]);
   });
 });
