@@ -1,8 +1,13 @@
 'use strict';
 
 describe('Feature Test:', function() {
-  var plane = new Plane();
-  var airport = new Airport();
+  var airport;
+  var plane;
+
+  beforeEach(function(){
+    airport = new Airport();
+    plane = new Plane();
+  });
 
   it('planes can be instructed to land at an airport', function() {
     plane.land(airport);
