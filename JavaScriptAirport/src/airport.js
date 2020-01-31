@@ -21,5 +21,9 @@ class Airport{
     throw new Error("Airport Empty!");
   }
     this._runway.pop(plane);
+  };
+
+  isStormy(){
+    return false;
   }
 };
