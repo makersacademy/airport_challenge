@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Plane', function() {
-  const plane;
+  var plane;
 
   beforeEach(function() {
     plane = new Plane();

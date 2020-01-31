@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Feature Test:', function() {
-  const plane;
-  const airport;
+  var plane;
+  var airport;
 
   beforeEach(function() {
     plane = new Plane();
