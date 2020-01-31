@@ -1,7 +1,12 @@
 'use strict'
 class Airport{
 
-land(){
-  
-}
-}
+  land(){
+
+  };
+
+  planes(){
+    return [];
+  };
+
+};

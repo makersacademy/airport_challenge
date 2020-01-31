@@ -4,10 +4,10 @@ describe('Airport', function(){
   beforeEach(function(){
     airport = new Airport();
   });
-  it('can allow planes to land', function(){
+  it('can land at airport', function() {
     expect(airport.land).not.toBeUndefined()
   });
   it('has no planes by default', function(){
-    expect(airport.plane()).toEqual([]);
+    expect(airport.planes()).toEqual([]);
   });
 });
