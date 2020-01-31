@@ -27,7 +27,10 @@ Followed the walkthrough for FizzBuzz (JS), googling anything new.
 
 Completed User Stories
 ---------
-
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+(Followed the walkthrough and making notes where something doesn't make sense)
 
 
 Instructions
