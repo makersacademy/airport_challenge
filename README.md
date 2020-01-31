@@ -1,4 +1,13 @@
 Airport Challenge
+
+How I learnt JS
+=================
+Codeacademy course - 'Intro to Javascript'
+Google Doc 'Cheat Sheet' - Started to note down basic syntax and its meaning.
+
+
+
+
 =================
 
 ```
