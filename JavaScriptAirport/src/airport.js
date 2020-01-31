@@ -16,13 +16,17 @@ class Airport{
       }
     this._runway.push(plane);
   };
-  clearForTakeoff(plane){
-    if(this._runway.length == 0){
-    throw new Error("Airport Empty!");
-  }
-    this._runway.pop(plane);
-  };
 
+  clearForTakeoff(plane){
+    if(this.isStormy()){
+      throw new Error('Takeoff prohibited due to storm conditions');
+    };
+    if(this._runway.length == 0){
+      throw new Error("Airport Empty!");
+    };
+
+    this._runway.pop(plane);
+  }
   isStormy(){
     return false;
   }

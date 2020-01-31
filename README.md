@@ -96,7 +96,7 @@ User story 2 and 3 - User story 2 and 3 complete . I implemented the same method
 
 User story 4 - capacity - had already begun this in user story 3  but refactored code and test to include DEFAULT_CAPACITY to get rid of the magic number.
 
-User story 5 -
+User story 5 - User story 5 completed. to pass the test,  I created a 'isStormy' function that returned false by default and created a guard clause within the 'clearForTakeoff' function that would through the error when isStormy was true. I also refactored my capacity test to have 'capacity' = 'DEFAULT_CAPACITY'.
 
 
 

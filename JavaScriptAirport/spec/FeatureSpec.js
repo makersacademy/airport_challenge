@@ -21,7 +21,7 @@ describe('Feature Test', function (){
     plane.land(airport);
     spyOn(airport, 'isStormy').and.returnValue(true);
     expect(function(){
-      plane.takeoff();
+      plane.takeoff(airport);
     }).toThrowError('Takeoff prohibited due to storm conditions');
     expect(airport.planes()).toContain(plane);
   });

@@ -26,7 +26,7 @@ describe('Airport', function(){
     });
 
     it('sets default capacity', function(){
-      expect(airport.DEFAULT_CAPACITY).toEqual(20)
+      expect(airport.capacity).toEqual(airport.DEFAULT_CAPACITY);
     });
 
     it('raises an error if full', function(){
@@ -43,7 +43,17 @@ describe('Airport', function(){
       }).toThrowError("Airport Empty!");
     });
   });
+
   it('checks for storm conditions', function(){
     expect(airport.isStormy()).toBeFalsy();
+  });
+
+  describe('under stormy conditions',function(){
+    it('does not clear planes for takeoff when stormy', function(){
+      spyOn(airport,'isStormy').and.returnValue(true);
+      expect(function(){
+         airport.clearForTakeoff(plane);
+        }).toThrowError('Takeoff prohibited due to storm conditions');
+    });
   });
 });
