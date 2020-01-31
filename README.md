@@ -1,35 +1,47 @@
-### Airport.js
+## Airport.js
 
 Implementation of a software to control the flow of planes at an airport in JavaScript.
 
-#### User story 5
+#### User stories
+##### * 5 - completed
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 
-#### User story 4 - completed
+##### * 4 - completed
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-#### User story 3 - completed
+##### * 3 - completed
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full (10 planes)
 
-#### User story 2 - completed
+##### * 2 - completed
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport.
 
-##### User story 1 - completed
+##### * 1 - completed
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
+#### How to download and run the tests
+* fork project at https://github.com/makersacademy/airport_challenge
+* git clone
+* cd airport-challenge
+* install Jasmine standalone
+* open SpecRunner.html
 
+## Learning a new language
+* To organise and document my progress in learning a new programming language, I've created this Trello board https://trello.com/b/jFAwtx17 *
+* For practising, I've translated FizzBuzz and Airport from ruby to JavaScript
+* For evaluating my ability to apply what I've learnt during this week, I've TDD-ed Thermostat.
+____________________________________________________
 
-### Project
+### Ruby Project
 A software to control the flow of planes at an airport.
 
 ### Programming language
