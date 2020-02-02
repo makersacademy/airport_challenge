@@ -4,21 +4,33 @@ require './lib/weather.rb'
 
 class Test
 
-  def test_one
+  def test_one_with_random_weather
     # User story 1
-    # returns "plane 1"
-    flight = Plane.new
-    weather = double("weather")
-    allow(weather).to receive(:generate_weather).and_return("Storm")
-    flight.stormy(weather)
-    airport = Airport.new
+    # returns "plane 1" 
+    # or error that plane cannot land due to storm
+    airport = Airport.new(Weather.new)
     airport.plane_land("plane1")
   end
 
-  def test_two
+  def test_one_with_good_weather
+    # User story 1
+    # returns "plane 1" 
+    airport = Airport.new(weather)
+    airport.plane_land("plane1")
+  end
+
+  def test_one_with_stormy_weather
+    # User story 1
+    # returns error that plane cannot land due to storm
+    airport = Airport.new(Weather.new)
+    airport.plane_land("plane1")
+  end
+
+  def test_two_with_random_weather
     # User story 2
-    # returns blank array of planes
-    airport = Airport.new
+    # returns blank array of planes or 
+    # erros that plane cannot land/take off due to storm
+    airport = Airport.new(Weather.new)
     airport.plane_land("plane1")
     airport.plane_take_off("plane1")
   end
@@ -72,7 +84,9 @@ class Test
   end
 end
 test = Test.new
-p test.test_one
+# test.test_one_with_random_weather
+test.test_one_with_good_weather
+# test.test_one_with_stormy_weather
 # test.test_two
 # test.test_two_b
 # test.test_three

@@ -24,7 +24,7 @@ describe Plane do
 
     it "#if plane ties to land but it's stormy, error message returned" do
       flight = Plane.new
-      weather = double("weather")
+      weather = double("Weather.new")
       allow(weather).to receive(:generate_weather).and_return("Storm")
       flight.stormy(weather)
       expect { flight.land(weather) }. to raise_error('Plane cannot land if it is stormy')

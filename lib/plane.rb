@@ -30,7 +30,7 @@ class Plane
     @current_location = "Airport"
   end
 
-  def stormy(weather) 
+  def stormy(weather)
     @current_weather = weather.generate_weather
   end
 
