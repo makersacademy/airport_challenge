@@ -1,24 +1,26 @@
 # require_relative 'airport'
 
 class Plane
-    attr_reader :location
-    
-    def land
-        fail "Plane already grounded" if grounded?
-        @location = :grounded
-    end
+  attr_reader :location
 
-    def take_off
-        fail "Plane already airborne" if flying?
-        @location = :airborne
-    end
+  def land
+    fail "Plane already grounded" if grounded?
 
-    def flying?
-        @location == :airborne
-    end
+    @location = :grounded
+  end
 
-    def grounded?
-        @location == :grounded
-    end
+  def take_off
+    fail "Plane already airborne" if flying?
+
+    @location = :airborne
+  end
+
+  def flying?
+    @location == :airborne
+  end
+
+  def grounded?
+    @location == :grounded
+  end
 
 end
