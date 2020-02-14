@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 20
@@ -11,15 +13,21 @@ class Airport
   end
 
   def land(plane)
-    raise "cannot land the plane: airport at capacity!" if full?
-    raise "cannot land the plane: weather is stormy!" if stormy?
-    @planes << plane
+    fail "cannot land plane: plane already grounded!" unless plane.airborne
+    fail "cannot land the plane: weather is stormy!" if stormy?
+    fail "cannot land the plane: airport at capacity!" if full?
+    plane.landed
+    @planes.push(plane)
   end
 
   def take_off(plane)
-    raise "cannot take off: weather is stormy!" if stormy?
-    @planes
+    fail "cannot take off: plane already in flight!" if plane.airborne
+    fail "cannot take off: weather is stormy!" if stormy?
+    plane.in_flight
+    @planes.pop
   end
+
+  private
 
   def stormy?
     rand(1..6) > 4
