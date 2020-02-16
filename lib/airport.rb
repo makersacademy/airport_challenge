@@ -1,4 +1,4 @@
-require_relative 'plane' 
+require_relative 'plane'
 
 class Airport
 
@@ -13,7 +13,6 @@ class Airport
   end
 
   def land(plane)
-    fail "cannot land plane: plane already grounded!" unless plane.airborne
     fail "cannot land the plane: weather is stormy!" if stormy?
     fail "cannot land the plane: airport at capacity!" if full?
     plane.landed
@@ -21,17 +20,16 @@ class Airport
   end
 
   def take_off(plane)
-    fail "cannot take off: plane already in flight!" if plane.airborne
     fail "cannot take off: weather is stormy!" if stormy?
     plane.in_flight
     @planes.pop
   end
 
-  private
-
   def stormy?
     rand(1..6) > 4
   end
+
+  private
 
   def full?
     @planes.length >= @capacity

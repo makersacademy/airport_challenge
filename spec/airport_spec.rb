@@ -15,10 +15,6 @@ describe Airport do
       plane.in_flight
       expect(airport.land(plane)).to include(plane)
     end
-
-    it 'raises an error when plane is already grounded' do
-      expect { airport.land(plane) }.to raise_error "cannot land plane: plane already grounded!"
-    end
   end
 
   describe '#take_off' do
@@ -32,14 +28,19 @@ describe Airport do
       airport.land(plane)
       expect(airport.take_off(plane)).to eq(plane)
     end
-
-    it 'raises an error when plane is already in_flight' do
-      plane.in_flight
-      expect { airport.take_off(plane) }.to raise_error "cannot take off: plane already in flight!"
-    end
   end
 
   describe '#stormy' do
+    it 'stormy returns true' do
+      allow(airport).to receive(:stormy?).and_return true
+      expect(airport.stormy?).to eq(true)
+    end
+
+    it 'stormy returns false' do
+      allow(airport).to receive(:stormy?).and_return false
+      expect(airport.stormy?).to eq(false)
+    end
+
     it 'raises an error when asked to land a plane when stormy' do
       allow(airport).to receive(:stormy?).and_return true
       plane.in_flight
@@ -56,8 +57,6 @@ describe Airport do
     it 'raises an error when asked to land at max capacity' do
       allow(airport).to receive(:stormy?).and_return false
       subject.capacity = 1
-      plane.in_flight
-      plane2.in_flight
       airport.land(plane)
       expect { airport.land(plane2) }.to raise_error "cannot land the plane: airport at capacity!"
     end
