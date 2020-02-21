@@ -1,3 +1,4 @@
+require_relative 'plane'
 class Airport
   attr_reader :airport
   def initialize(amount_of_planes = 0)
