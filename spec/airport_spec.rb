@@ -6,6 +6,11 @@ describe Airport do
  it 'lands a flying plane' do
   plane = subject.land
   expect(plane).to be_landed
+  # the airport needs to land a flying plane, the plane needs to land, i expect the plane to be landing.
+end
+ it 'instructs a plane to take off' do
+  plane = subject.take_off
+  expect(plane).to be_flying
+  # the airport needs to tell the plane to fly, tells it take_off, i expect the plane to be flying.
  end
 end
-# the airport needs to land a flying plane, the plane needs to land, i expect the plane to be landing.
