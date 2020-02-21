@@ -1,5 +1,4 @@
 require_relative 'plane'
-
 class Airport
   attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 50
@@ -10,12 +9,20 @@ class Airport
 
   def land(plane)
     fail "The airport is full" if full?
+    fail "It is too stormy to land" if weather == "stormy"
+
     @plane = plane
     @planes << @plane
   end
 
   def take_off
+    fail "It is too stormy to take off" if weather == "stormy"
+
     @planes.pop
+  end
+
+  def weather
+    "stormy"
   end
 
   private
