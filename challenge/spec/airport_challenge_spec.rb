@@ -6,14 +6,18 @@ describe 'Airport' do
     expect(subject).to be_a Airport
   end
 
-  describe 'land' do
+  it 'can have override capacity' do
+    subject = Airport.new(30)
+    expect(subject.amount_of_planes).to eq(30)
+end
+
+  describe '#land' do
     it 'can land a plane' do
       subject = Airport.new
       plane = Plane.new
       subject.land(plane)
       expect(subject).to respond_to(:land)
     end
-  end
 
   describe 'take off' do
     it 'can take off and confirm there is no longer in the airport' do
@@ -22,5 +26,5 @@ describe 'Airport' do
       expect(subject).to respond_to(:take_off)
     end
   end
-
+end
 end
