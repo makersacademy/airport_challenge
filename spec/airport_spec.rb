@@ -1,7 +1,6 @@
 require_relative '../lib/airport'
 describe Airport do
   context "landing planes" do
-    it { is_expected.to respond_to(:land).with(1).argument }
 
     it "plane is in the airport once it has landed" do
       plane = Plane.new
@@ -19,7 +18,6 @@ describe Airport do
   end
 
   context "planes taking off" do
-    it { is_expected.to respond_to(:take_off) }
 
     it "plane is no longer in the airport after take off" do
       plane = Plane.new
