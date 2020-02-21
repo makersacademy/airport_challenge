@@ -58,21 +58,21 @@ describe Airport do
     end
   end
 
-    context "checking the weather" do
-      it "can generate a number" do
-        expect(subject.generate_number).to be_between(0,9)
-      end
+  context "checking the weather" do
+    it "can generate a number" do
+      expect(subject.generate_number).to be_between(0, 9)
+    end
+    
+    it "can return sunny or stormy" do
+      expect(subject.weather).to eq('stormy').or(eq('sunny'))
+    end
+    
+    it "knows when it is stormy" do
+      allow(subject).to receive(:weather) { 1 }.and_return "stormy"
+    end
 
-      it "can return sunny or stormy" do
-        expect(subject.weather).to eq('stormy').or(eq('sunny'))
-      end
-
-      it "knows when it is stormy" do
-        allow(subject).to receive(:weather) {1}.and_return "stormy"
-      end
-
-      it "knows when it is sunny" do
-        allow(subject).to receive(:weather) {3}.and_return "sunny"
-      end
+    it "knows when it is sunny" do
+      allow(subject).to receive(:weather) { 3 }.and_return "sunny"
+    end
   end
 end

@@ -1,8 +1,8 @@
 require_relative '../lib/airport'
 
-airport = Airport.new
-plane = Plane.new
-#airport.land(plane)
+# airport = Airport.new
+# plane = Plane.new
+# airport.land(plane)
 
 # test to see if the weather generator works for taking off
 # airport.land(plane)
