@@ -9,6 +9,12 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
+
+    it "cannot land when the airport is full" do
+      plane = Plane.new
+      50.times{subject.land(plane)}
+      expect(subject.land(plane)).to raise_error "The airport is full"
+    end
   end
 
   context "planes taking off" do
