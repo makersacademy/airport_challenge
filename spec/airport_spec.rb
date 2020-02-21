@@ -12,6 +12,7 @@ describe Airport do
     #arrange = there is an airport, there is a plane, a plane has landed at the airport
     airport = Airport.new
     plane = Plane.new
+    airport.stormy? == false
     airport.land(plane)
     #act/assert
     expect(airport.take_off(plane)).to eq(0)
@@ -20,6 +21,7 @@ describe Airport do
     #arrange = there is an airport, #capacity planes have landed
     airport = Airport.new
     plane = Plane.new
+    airport.stormy? == false
     airport.capacity.times {airport.land(plane)}
     #act/assert
     expect{airport.land(plane)}.to raise_error("This airport is full, you can't land here!")
@@ -28,6 +30,7 @@ describe Airport do
     #arrange = there is an airport, there is a plane, no planes have landed at the airport
     airport = Airport.new
     plane = Plane.new
+    airport.stormy? == false
     expect{airport.take_off(plane)}.to raise_error("There are no planes to take off!")
   end
   it "allows airport to be created with over-writeable default capacity" do
@@ -43,7 +46,12 @@ describe Airport do
     #act/assert
     expect(airport.stormy?).to be(true).or be(false)
   end
-  # it "doesn't allow planes to take off if weather is stormy" do
-  # expect{airport.take_off(plane)}.to raise_error("Weather is stormy, you cannot take off or land")
-  # end
+  it "doesn't allow planes to land if weather is stormy" do
+    #arrange
+    airport = Airport.new
+    plane = Plane.new
+    airport.stormy? == true
+    #act / assert
+    expect{airport.land(plane)}.to raise_error("Weather is stormy, you cannot land here")
+  end
 end
