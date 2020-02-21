@@ -1,14 +1,15 @@
 require "airport"
 describe Airport do
+  #I have assumed that an airport is created with no planes
   it "allows plane to land" do
-    #we have an airport, we have a plane
+    #there is an airport, there is a plane
     airport = Airport.new
     plane = Plane.new
     #act/assert
     expect(airport.land(plane)).to eq(1)
   end
   it "allows plane to take off" do
-    #arrange = we have an airport, we have a plane, we have landed a plane
+    #arrange = there is an airport, there is a plane, a plane has landed at the airport
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
@@ -16,7 +17,7 @@ describe Airport do
     expect(airport.take_off(plane)).to eq(0)
   end
   it "doesn't allow plane to land if airport is full" do
-    #arrange = we have an airport, we have landed #capacity planes
+    #arrange = there is an airport, #capacity planes have landed
     airport = Airport.new
     plane = Plane.new
     airport.capacity.times {airport.land(plane)}
@@ -24,7 +25,7 @@ describe Airport do
     expect{airport.land(plane)}.to raise_error("This airport is full, you can't land here!")
   end
   it "doesn't allow plane to take off if plane doesn't exist" do
-    #arrange = we have an airport, we have a plane, we haven't landed it
+    #arrange = there is an airport, there is a plane, no planes have landed at the airport
     airport = Airport.new
     plane = Plane.new
     expect{airport.take_off(plane)}.to raise_error("There are no planes to take off!")
@@ -35,4 +36,14 @@ describe Airport do
     #act/assert
     expect(airport.capacity).to eq(7)
   end
+  it "allows for a weather condition to be created" do
+    #arrange
+    airport = Airport.new
+    plane = Plane.new
+    #act/assert
+    expect(airport.stormy?).to be(true).or be(false)
   end
+  # it "doesn't allow planes to take off if weather is stormy" do
+  # expect{airport.take_off(plane)}.to raise_error("Weather is stormy, you cannot take off or land")
+  # end
+end

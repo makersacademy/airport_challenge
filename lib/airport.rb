@@ -18,6 +18,12 @@ class Airport
     end
     @plane -=1
   end
+  def stormy?
+    if rand(3) == 0
+      return true
+    end
+    return false
+  end
 
 private
   def full?
@@ -32,6 +38,7 @@ private
     end
     return false
   end
+
 end
 
 class Plane
