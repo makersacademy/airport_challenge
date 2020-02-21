@@ -40,7 +40,7 @@ class Airport
   # but I tested all code in repl.it and it works there, and I tested the below with
   # just "return true" and "return false", and the correct tests seemed to pass/fail each time
   def stormy?
-    if rand(3).zero?
+    if rand(10).zero?
       return true
     end
 

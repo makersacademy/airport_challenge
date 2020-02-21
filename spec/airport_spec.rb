@@ -24,6 +24,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.stormy? == false
+    airport.land(plane)
     expect { airport.take_off(plane) }.to raise_error("There are no planes to take off!")
   end
   it "allows airport to be created with over-writeable default capacity" do
@@ -43,6 +44,7 @@ describe Airport do
   it "doesn't allow planes to take off if weather is stormy" do
     airport = Airport.new
     plane = Plane.new
+    airport.land(plane)
     airport.stormy? == true
     expect { airport.take_off(plane) }.to raise_error("Weather is stormy, you cannot take off")
   end
