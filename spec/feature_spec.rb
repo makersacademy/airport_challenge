@@ -6,5 +6,5 @@ airport.land(plane)
 puts airport.planes
 airport.take_off
 puts airport.planes
-50.times {airport.land(plane)}
+
 puts airport.land(plane)
