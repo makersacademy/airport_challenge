@@ -1,5 +1,9 @@
 require_relative 'airport'
 class Plane
+  def initialize
+    @flying = true
+  end
+
   def stops_flying
     @flying = false
   end

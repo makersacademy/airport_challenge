@@ -1,7 +1,6 @@
 require_relative '../lib/airport'
 describe Airport do
   context "landing planes" do
-
     it "plane is in the airport once it has landed" do
       plane = Plane.new
       allow(subject).to receive(:weather) { "sunny" }
@@ -10,15 +9,24 @@ describe Airport do
     end
 
     it "cannot land when the airport is full" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.capacity.times { 
+        plane = Plane.new
+        subject.land(plane) 
+      }
+      plane = Plane.new
+      expect { subject.land(plane) }.to raise_error "The airport is full"
+    end
+
+    it "cannot land when it has already landed" do
       plane = Plane.new
       allow(subject).to receive(:weather) { "sunny" }
-      subject.capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error "The airport is full"
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "This plane is already in the airport"
     end
   end
 
   context "planes taking off" do
-
     it "plane is no longer in the airport after take off" do
       plane = Plane.new
       allow(subject).to receive(:weather) { "sunny" }
@@ -27,13 +35,21 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
-    it "plane cannot take off while flying" do
+    it "plane cannot take off when they have already taken off" do
       plane_1 = Plane.new
       plane_2 = Plane.new
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane_1)
       subject.land(plane_2)
-      subject.take_off
+      subject.take_off(plane_2)
+      expect{subject.take_off(plane_2)}.to raise_error "This plane is already flying"
+    end
+
+    it "planes that haven't landed cannot take off" do
+      allow(subject).to receive(:weather) { "sunny" }
+      plane_1 = Plane.new
+      plane_2 = Plane.new
+      subject.land(plane_1)
       expect{subject.take_off(plane_2)}.to raise_error "This plane is already flying"
     end
 
@@ -82,8 +98,7 @@ describe Airport do
     end
   end
 
-  context "checking the weather" do
-    
+  context "checking the weather" do  
     it "can generate a number" do
       expect(subject.generate_number).to be_between(0, 9)
     end
