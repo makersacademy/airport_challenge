@@ -1,8 +1,8 @@
 
 class Plane
 	
-	# def taken_off?
-	# 	true
-	# end
+	def taken_off?
+		true
+	end
 
 end
