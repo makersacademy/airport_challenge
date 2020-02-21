@@ -19,6 +19,12 @@ end
       expect(subject).to respond_to(:land)
     end
 
+    it 'can tell air traffic controller that airport is full' do
+      subject = Airport.new
+      subject.amount_of_planes.times{subject.land double :plane}
+      expect {subject.land double (:plane) }.to raise_error(RuntimeError, "Airport is FULL!")
+    end
+
   describe 'take off' do
     it 'can take off and confirm there is no longer in the airport' do
       subject = Airport.new

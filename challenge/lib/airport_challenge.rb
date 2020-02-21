@@ -2,7 +2,9 @@ require_relative 'plane'
 #Require relative plane is necessary as instances of plane will put into the airport
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :airport, :plane, :amount_of_planes
+  #USER_STORY4: As a system designer, I would like a default airport capacity that can be overridden as appropriate
+  #Adding a constant for capacity and putting it in the argument initialize to value of a variable means its able to be overriden easily. e.g subject = Airport.new(20)
+  attr_accessor :airport, :plane, :amount_of_planes
   #attribute readers allows us to call for instances variables outside the class.
   def initialize(amount_of_planes = DEFAULT_CAPACITY)
     @airport = []
@@ -13,6 +15,11 @@ class Airport
     #This method will push the instance of Plane and push it
     #into the array airport. You can see if this plane is in there by typing
     #subject.airport
+    if @airport.count == amount_of_planes
+      #USER_STORY3: As an air traffic controller, I want to prevent landing when the airport is full
+      #This raises an error if the Airport has reached capacity.
+      raise 'Airport is FULL!'
+    end
     @airport.push(plane)
     @plane = plane
   end
