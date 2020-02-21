@@ -5,9 +5,9 @@ class Airport
 
 	end
 
-	# def plane_take_off
+	def plane_take_off
 
-	# end
+	end
 
 
 
