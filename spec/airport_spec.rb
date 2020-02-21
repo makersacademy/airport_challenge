@@ -31,6 +31,13 @@ describe Airport do
     plane = Plane.new
     expect(subject.store(plane)).to eq plane
   end
+
+  it 'allows stored planes' do
+    plane = Plane.new
+    subject.store(plane)
+    expect(subject.plane).to eq plane
+  end
+
 end
 
 

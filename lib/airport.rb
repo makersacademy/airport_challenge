@@ -2,6 +2,8 @@ require_relative 'plane'
 
 class Airport
 
+  attr_reader :plane
+
 
 # def initialize
 #   @airport = []
@@ -12,11 +14,12 @@ class Airport
 
 
   def store(plane)
-    plane
+    @plane = plane
   end
   #
-  def plane
-  end
+  # def plane
+  #   @plane
+  # end
 
 
 
