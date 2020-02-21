@@ -8,10 +8,12 @@ class Airport
 	end
 
 	def fly_plane(plane)
-		if !is_stormy?
+		if !has_plane?(plane)
+			raise StandardError, "This plane is at a different airport"
+		elsif !is_stormy? 
 			plane.takes_off
 			@planes.delete_if { |landed_plane| landed_plane == plane }
-			puts "Plane #{plane} has taken off"
+			"Plane #{plane} has taken off"
 		end
 	end
 
@@ -25,5 +27,8 @@ class Airport
 	end
 	def is_full?
 		true if @planes.length == DEFAULT_CAPACITY
+	end
+	def has_plane?(plane)
+		true if @planes.include? plane
 	end
 end
