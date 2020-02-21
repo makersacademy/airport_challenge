@@ -31,6 +31,10 @@ end
       subject.take_off
       expect(subject).to respond_to(:take_off)
     end
+    it 'can prevent take off if windy' do
+      subject.report_storm
+      expect {subject.land double (:plane) }.to raise_error(RuntimeError, "To ensure safety of the passengers, we won't take off due to the stormy weather")
+    end
+    end
   end
-end
 end
