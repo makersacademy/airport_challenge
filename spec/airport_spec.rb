@@ -27,4 +27,16 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
   end
+
+  context "plane capacity" do
+    it "has a default capacity of 50" do
+      airport = Airport.new
+      expect(airport.capacity).to eq 50
+    end
+
+    it "can take a new capacity" do
+      airport = Airport.new(80)
+      expect(airport.capacity).to eq 80
+    end
+  end
 end
