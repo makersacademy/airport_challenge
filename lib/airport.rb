@@ -60,7 +60,7 @@ private
     if @plane.zero?
       return true
     end
-    
+
     return false
   end
 end

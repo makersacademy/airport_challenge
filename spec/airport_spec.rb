@@ -3,6 +3,7 @@ describe Airport do
   it "allows plane to land" do
     airport = Airport.new
     plane = Plane.new
+    airport.stormy? == false
     expect(airport.land(plane)).to eq(1)
   end
   it "allows plane to take off" do
