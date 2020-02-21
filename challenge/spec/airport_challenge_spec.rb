@@ -7,3 +7,7 @@ it 'can create an instance of class Airport' do
   expect(jfk_airport).to be_a Airport
 end
 end
+
+describe '#land plane' do
+it {is_expected.to respond_to(:land)}
+end
