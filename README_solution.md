@@ -13,8 +13,10 @@ Classes
       - take_off
         When take_off is called, first the method will check if it is stormy.
         If it's not, the plane will take off and leave the airport.
+      - generate_number
+      - weather
     Private methods
-      The methods full?, weather, and generate_number have been defined as private methods, as they're necessary to run the airport, but do not need to be called by users.
+      The method full? has been defined as a private method, as it'snecessary to run the airport, but do not need to be called by users.
   - Plane
     
       

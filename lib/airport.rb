@@ -12,6 +12,7 @@ class Airport
     fail "It is too stormy to land" if weather == "stormy"
 
     @plane = plane
+    @plane.stops_flying
     @planes << @plane
   end
 
@@ -19,11 +20,6 @@ class Airport
     fail "It is too stormy to take off" if weather == "stormy"
 
     @planes.pop
-  end
-
-  private
-  def full?
-    @planes.count >= DEFAULT_CAPACITY
   end
 
   def generate_number
@@ -37,4 +33,10 @@ class Airport
       "sunny"
     end
   end
+
+  private
+  def full?
+    @planes.count >= DEFAULT_CAPACITY
+  end
+
 end
