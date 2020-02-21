@@ -26,7 +26,10 @@ describe Plane do
 # To ensure safety 
 # I want to prevent landing when the airport is full 
 
-	it 'will prevent landing when the airport is full' do
-		
+	it 'will prevent landing when the airport is full, by raising an error' do
+		plane = Plane.new
+		airport = Airport.new
+		plane.land(airport)
+		expect { plane.land(airport) }.to raise_error 'this airport is full!'
 	end
 end
