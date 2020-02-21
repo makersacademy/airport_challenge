@@ -32,4 +32,20 @@ describe Plane do
 		plane.land(airport)
 		expect { plane.land(airport) }.to raise_error 'this airport is full!'
 	end
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+
+	it 'can change airport capacity' do
+		plane = Plane.new
+		airport = Airport.new
+		expect(airport.change_capacity(20)).to eq 20
+	end
+
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent takeoff when weather is stormy 
+
+	
 end
