@@ -21,6 +21,7 @@ class Airport
     fail "It is too stormy to take off" if weather == "stormy"
     fail "There are no planes here" if @planes.empty?
     fail "This plane is already flying" if plane.flying?
+    
     @planes.delete(plane)
     plane.starts_flying
   end

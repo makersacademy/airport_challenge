@@ -42,7 +42,7 @@ describe Airport do
       subject.land(plane_1)
       subject.land(plane_2)
       subject.take_off(plane_2)
-      expect{subject.take_off(plane_2)}.to raise_error "This plane is already flying"
+      expect { subject.take_off(plane_2) }.to raise_error "This plane is already flying"
     end
 
     it "planes that haven't landed cannot take off" do
@@ -50,7 +50,7 @@ describe Airport do
       plane_1 = Plane.new
       plane_2 = Plane.new
       subject.land(plane_1)
-      expect{subject.take_off(plane_2)}.to raise_error "This plane is already flying"
+      expect { subject.take_off(plane_2) }.to raise_error "This plane is already flying"
     end
 
     it "multiple planes can take off in different orders" do
@@ -66,7 +66,7 @@ describe Airport do
 
     it "plane cannot take off if there are no planes" do
       allow(subject).to receive(:weather) { "sunny" }
-      expect{subject.take_off}.to raise_error "There are no planes here"
+      expect { subject.take_off }.to raise_error "There are no planes here"
     end
   end
 
