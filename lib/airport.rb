@@ -18,7 +18,7 @@ class Airport
 
   def take_off
     fail "It is too stormy to take off" if weather == "stormy"
-
+    fail "This plane is already flying" if @plane.flying?
     @planes.pop
     @plane.starts_flying
   end

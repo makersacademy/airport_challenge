@@ -28,6 +28,14 @@ describe Airport do
       subject.take_off
       expect(subject.planes).not_to include(plane)
     end
+
+    it "plane cannot take off while flying" do
+      plane = Plane.new
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      subject.take_off
+      expect{subject.take_off}.to raise_error "This plane is already flying"
+    end
   end
 
   context "plane capacity" do
