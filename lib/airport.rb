@@ -9,7 +9,7 @@ class Airport
 
 	def fly_plane(plane)
 		if !has_plane?(plane)
-			raise StandardError, "This plane is at a different airport"
+			raise StandardError, "This plane is not at the airport"
 		elsif !is_stormy? 
 			plane.takes_off
 			@planes.delete_if { |landed_plane| landed_plane == plane }
@@ -18,7 +18,11 @@ class Airport
 	end
 
 	def land_plane(plane)
-		if !is_stormy? && !is_full? then @planes << plane end
+		if is_full?
+			raise StandardError, 'No parking space available'
+		elsif !is_stormy? 
+		  @planes << plane 
+		end
 	end
 
 	private 

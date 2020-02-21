@@ -19,12 +19,18 @@ describe Airport do
 	end
 	it "prevents plane to take off when stormy" do
 	end
-	it "prevents plane to take off when it's at a different airport" do
+	it "prevents plane to take off when not at the different airport" do
 		plane = double("Plane", :landed => true)
 		airport = Airport.new
-		expect { airport.fly_plane(plane) }.to raise_error(StandardError, 'This plane is at a different airport')
+		expect { airport.fly_plane(plane) }.to raise_error(StandardError, 'This plane is not at the airport')
 	end
 	it "prevents plane to land when full" do 
+		airport = Airport.new
+		20.times do 
+			plane = double("Plane", :landed => true)
+			airport.land_plane(plane)
+		end
+		expect { airport.land_plane(Plane.new) }.to raise_error(StandardError, 'No parking space available')
 	end
 	it "prevents plane to land when stormy" do 
 	end
