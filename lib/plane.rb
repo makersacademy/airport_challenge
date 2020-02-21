@@ -4,6 +4,10 @@ class Plane
     @flying = false
   end
 
+  def starts_flying
+    @flying = true
+  end
+
   def flying?
     @flying
   end

@@ -20,6 +20,7 @@ class Airport
     fail "It is too stormy to take off" if weather == "stormy"
 
     @planes.pop
+    @plane.starts_flying
   end
 
   def generate_number
