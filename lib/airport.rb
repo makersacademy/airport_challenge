@@ -21,8 +21,6 @@ class Airport
     @planes.pop
   end
 
-  
-
   private
   def full?
     @planes.count >= DEFAULT_CAPACITY
@@ -31,7 +29,7 @@ class Airport
   def generate_number
     rand(10)
   end
-  
+
   def weather
     if self.generate_number <= 1
       "stormy"
