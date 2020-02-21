@@ -1,25 +1,26 @@
 require 'airport_challenge'
 
 describe 'Airport' do
-it 'can create an instance of class Airport' do
-  jfk_airport = Airport.new
-  expect(jfk_airport).to be_a Airport
-end
-
-describe 'land' do
-  it 'can land a plane' do
-    jfk_airport = Airport.new
-    plane = Plane.new
-    jfk_airport.land(plane)
-  expect(jfk_airport).to respond_to(:land)
+  it 'can create an instance of class Airport' do
+    subject = Airport.new
+    expect(subject).to be_a Airport
   end
-end
 
-describe 'take off' do
-  it 'can take off and confirm there is no longer in the airport' do
-    heathrow_airport = Airport.new
-    heathrow_airport.take_off
-    expect(heathrow_airport).to respond_to(:take_off)
+  describe 'land' do
+    it 'can land a plane' do
+      subject = Airport.new
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject).to respond_to(:land)
+    end
   end
-end
+
+  describe 'take off' do
+    it 'can take off and confirm there is no longer in the airport' do
+      subject = Airport.new
+      subject.take_off
+      expect(subject).to respond_to(:take_off)
+    end
+  end
+
 end

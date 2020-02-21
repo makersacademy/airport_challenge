@@ -7,11 +7,12 @@ class Airport
   end
 
   def land(plane)
-@airport.push(plane)
-@plane = plane
+    @airport.push(plane)
+    @plane = plane
   end
 
   def take_off
     @airport.pop
+    return "Plane has taken off and no longer in the airport"
   end
 end
