@@ -22,15 +22,14 @@ class Airport
   end
 
   def generate_number
-    @number = rand(11)
+    rand(10)
   end
 
   def weather
-    self.generate_number
-    if @number <= 2
-    "stormy"
+    if self.generate_number <= 1
+      "stormy"
     else
-    "sunny"
+      "sunny"
     end
   end
 
