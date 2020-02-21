@@ -12,10 +12,11 @@ describe Airport do
     10.times do
       airport.land(plane)
     end
-    expect { airport.land(:plane) }.to raise_error 'Airport is full'
+    expect { airport.land(plane) }.to raise_error 'Airport is full'
   end
 end
 
-
+describe '#take_off' do
   it { is_expected.to respond_to(:take_off).with(1).argument }
+end
 end

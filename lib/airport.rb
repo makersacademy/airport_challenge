@@ -4,6 +4,7 @@ def initialize(capacity)
   @capacity = capacity
   @planes = []
 end
+
  def land(plane)
    raise 'Airport is full' if full?
    @planes << plane
