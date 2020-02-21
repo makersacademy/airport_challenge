@@ -14,5 +14,4 @@ describe Airport do
     end
     expect { subject.land(Plane.new) }.to raise_error
   end
-
 end
