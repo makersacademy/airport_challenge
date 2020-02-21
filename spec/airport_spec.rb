@@ -31,7 +31,7 @@ describe Airport do
   context "plane capacity" do
     it "has a default capacity of 50" do
       airport = Airport.new
-      expect(airport.capacity).to eq 50
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it "can take a new capacity" do
