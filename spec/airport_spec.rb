@@ -16,7 +16,8 @@ describe Airport do
         allow(plane).to receive(:stops_flying)
         subject.land(plane) 
       }
-      plane = Plane.new
+      plane = double(plane)
+      allow(plane).to receive(:stops_flying)
       expect { subject.land(plane) }.to raise_error "The airport is full"
     end
 
