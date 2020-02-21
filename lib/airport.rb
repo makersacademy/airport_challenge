@@ -21,8 +21,17 @@ class Airport
     @planes.pop
   end
 
+  def generate_number
+    @number = rand(11)
+  end
+
   def weather
+    self.generate_number
+    if @number <= 2
     "stormy"
+    else
+    "sunny"
+    end
   end
 
   private
