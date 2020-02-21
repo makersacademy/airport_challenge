@@ -18,7 +18,7 @@ Classes<br/>
       Generate number is used in the weather method, and returns a random number from 0-9, inclusive<br/>
      - weather<br/>
       The weather method uses the generate_number method to determine whether it is stormy (0-1), or sunny (2-9)<br/>
-  Private methods<br/>
+      Private methods<br/>
       The method full? has been defined as a private method, as it's necessary to run the airport, but does not need to be called by users.<br/>
   - Plane<br/>
     When a plane is created, it is already flying<br/>
