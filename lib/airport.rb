@@ -1,9 +1,24 @@
 require_relative 'plane'
 
 class Airport
+
+
+# def initialize
+#   @airport = []
+  #
   def land
-    # Plane.new
+    Plane.new
   end
+
+
+  def store(plane)
+    plane
+  end
+  #
+  def plane
+  end
+
+
 
   def take_off
     Plane.new
