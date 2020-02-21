@@ -28,12 +28,16 @@ end
   describe 'take off' do
     it 'can take off and confirm there is no longer in the airport' do
       subject = Airport.new
+      subject.storm = false
       subject.take_off
       expect(subject).to respond_to(:take_off)
     end
     it 'can prevent take off if windy' do
-      subject.report_storm
-      expect {subject.land double (:plane) }.to raise_error(RuntimeError, "To ensure safety of the passengers, we won't take off due to the stormy weather")
+      jfk = Airport.new
+      plane = double(:plane)
+      jfk.land(plane)
+      jfk.report_storm
+      expect { jfk.take_off }.to raise_error(RuntimeError, "There is a storm, we wont take off to ensure safety of passengers!")
     end
     end
   end
