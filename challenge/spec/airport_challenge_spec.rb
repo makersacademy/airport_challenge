@@ -9,7 +9,8 @@ end
 describe 'land' do
   it 'can land a plane' do
     jfk_airport = Airport.new
-    jfk_airport.land
+    plane = Plane.new
+    jfk_airport.land(plane)
   expect(jfk_airport).to respond_to(:land)
   end
 end
