@@ -1,9 +1,6 @@
-=begin
-I needed quite a bit of help from Tatsiana setting up the environment,
-managed to install new version of ruby ok but needed to update bundler too
-which I didn't pick up from the error message
-got there in the end though :-
-=end
+# I needed quite a bit of help from Tatsiana setting up the environment,
+# managed to install new version of ruby ok but needed to update bundler too
+# which I didn't pick up from the error message
 class Airport
   DEFAULT_CAPACITY = 5
   attr_reader :plane
