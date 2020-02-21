@@ -10,7 +10,9 @@ attr_accessor :capacity, :plane, :planes_in_the_airport
   end
 
   # User story 1 : the controller can instruct planes to land
+  # User story 3 : prevent landing when capacity has reached
   def land(plane)
+    fail "The airport has reached landing capacity" if @planes_in_the_airport.length >= @capacity
     @planes_in_the_airport << plane
     @plane = plane
   end 
@@ -20,7 +22,6 @@ attr_accessor :capacity, :plane, :planes_in_the_airport
     @planes_in_the_airport.pop
   end 
 
-  
 #   def take_off(plane)
 #     raise 'This plane has taken off' unless @airport.include?(plane)
 #     @airport.delete(plane)
