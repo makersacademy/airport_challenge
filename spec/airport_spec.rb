@@ -25,6 +25,13 @@ RSpec.describe Airport do
       subject.land(plane)
       expect(subject.take_off).to eq plane
     end 
+
+    it 'confirms the plan has taken off' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off 
+      expect(subject.planes_in_the_airport).not_to include(plane)
+    end 
   
     # it 'confirms the airport is no longer there after taking off' do
     #   plane = Plane.new 
