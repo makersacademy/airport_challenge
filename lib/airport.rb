@@ -1,4 +1,5 @@
 class Airport
+  attr_reader :planes
   CAPACITY = 5
   
   def initialize
@@ -16,8 +17,14 @@ class Airport
   end
 
   def take_off(plane)
-    "The plane has taken off"
+    @planes.count > 0 ? "The plane has taken off" : (fail "no planes to take off")
   end
+
+  private
+  def stormy?
+    rand(6) == 5
+  end
+
 end
 
 class Plane
