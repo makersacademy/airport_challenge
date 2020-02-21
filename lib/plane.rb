@@ -8,5 +8,5 @@ class Plane
   def flying?
     # will return true, when i expect the plane to be flying
     true
-  end
+    end
 end
