@@ -16,11 +16,12 @@ class Airport
     @planes << @plane
   end
 
-  def take_off
+  def take_off(plane = @plane)
     fail "It is too stormy to take off" if weather == "stormy"
-    fail "This plane is already flying" if @plane.flying?
-    @planes.pop
-    @plane.starts_flying
+    fail "There are no planes here" if @planes.empty?
+    fail "This plane is already flying" if plane.flying?
+    @planes.delete(plane)
+    plane.starts_flying
   end
 
   def generate_number

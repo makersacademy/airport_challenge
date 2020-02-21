@@ -30,11 +30,29 @@ describe Airport do
     end
 
     it "plane cannot take off while flying" do
-      plane = Plane.new
+      plane_1 = Plane.new
+      plane_2 = Plane.new
       allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
+      subject.land(plane_1)
+      subject.land(plane_2)
       subject.take_off
-      expect{subject.take_off}.to raise_error "This plane is already flying"
+      expect{subject.take_off(plane_2)}.to raise_error "This plane is already flying"
+    end
+
+    it "multiple planes can take off in different orders" do
+      plane_1 = Plane.new
+      plane_2 = Plane.new
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane_1)
+      subject.land(plane_2)
+      subject.take_off(plane_1)
+      subject.take_off(plane_2)
+      expect(subject.planes).to eq []
+    end
+
+    it "plane cannot take off if there are no planes" do
+      allow(subject).to receive(:weather) { "sunny" }
+      expect{subject.take_off}.to raise_error "There are no planes here"
     end
   end
 
