@@ -2,8 +2,9 @@ require_relative '../lib/airport'
 describe Airport do
   context "landing planes" do
     it "plane is in the airport once it has landed" do
-      plane = Plane.new
+      plane = double("plane")
       allow(subject).to receive(:weather) { "sunny" }
+      allow(plane).to receive(:stops_flying)
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
@@ -11,7 +12,8 @@ describe Airport do
     it "cannot land when the airport is full" do
       allow(subject).to receive(:weather) { "sunny" }
       subject.capacity.times { 
-        plane = Plane.new
+        plane = double(plane)
+        allow(plane).to receive(:stops_flying)
         subject.land(plane) 
       }
       plane = Plane.new
@@ -19,7 +21,8 @@ describe Airport do
     end
 
     it "cannot land when it has already landed" do
-      plane = Plane.new
+      plane = double(plane)
+      allow(plane).to receive(:stops_flying)
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error "This plane is already in the airport"
@@ -84,13 +87,15 @@ describe Airport do
 
   context "weather is stormy" do
     it "cannot land if the weather is stormy" do
-      plane = Plane.new
+      plane = double("plane")
+      allow(plane).to receive_message_chain(:stops_flying, :flying, :starts_flying)
       allow(subject).to receive(:weather) { "stormy" }
       expect { subject.land(plane) }.to raise_error "It is too stormy to land"
     end
 
     it "cannot take off if the weather is stormy" do
-      plane = Plane.new
+      plane = double("plane")
+      allow(plane).to receive_message_chain(:stops_flying, :flying, :starts_flying)
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane)
       allow(subject).to receive(:weather) { "stormy" }
