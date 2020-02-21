@@ -19,7 +19,7 @@ describe Airport do
     #arrange = we have an airport, we have landed #capacity planes
     airport = Airport.new
     plane = Plane.new
-    20.times {airport.land(plane)}
+    airport.capacity.times {airport.land(plane)}
     #act/assert
     expect{airport.land(plane)}.to raise_error("This airport is full, you can't land here!")
   end
@@ -29,4 +29,10 @@ describe Airport do
     plane = Plane.new
     expect{airport.take_off(plane)}.to raise_error("There are no planes to take off!")
   end
-end
+  it "allows airport to be created with over-writeable default capacity" do
+    #arrange
+    airport = Airport.new(7)
+    #act/assert
+    expect(airport.capacity).to eq(7)
+  end
+  end

@@ -1,6 +1,10 @@
 class Airport
-  def initialize
+  DEFAULT_CAPACITY = 5
+  attr_reader :plane
+  attr_accessor :capacity
+  def initialize(capacity = DEFAULT_CAPACITY)
     @plane = 0
+    @capacity = capacity
   end
   def land(plane)
     if full?
@@ -17,7 +21,7 @@ class Airport
 
 private
   def full?
-    if @plane == 20
+    if @plane == capacity
       return true
     end
       return false
