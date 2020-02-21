@@ -1,6 +1,6 @@
 require './lib/airport.rb'
 
-describe Plane do
+describe Airport do
 
 # As an air traffic controller 
 # So I can get passengers to a destination 
@@ -9,7 +9,7 @@ describe Plane do
   it 'lands a plane' do
     airport = Airport.new
     plane = Plane.new
-    expect(plane.land(airport)).to eq airport
+    expect(airport.land(plane)).to eq plane
 	end
 
 # As an air traffic controller 
@@ -19,7 +19,7 @@ describe Plane do
 	it 'it takes off a plane, with confirmation that it is no longer in the airport' do
 		plane = Plane.new
 		airport = Airport.new
-		expect(plane.take_off(airport)).to eq 'The plane has taken off and is no longer in the airport'
+		expect(airport.take_off(plane)).to eq 'The plane has taken off and is no longer in the airport'
 	end
 
 # As an air traffic controller 
@@ -29,8 +29,8 @@ describe Plane do
 	it 'will prevent landing when the airport is full, by raising an error' do
 		plane = Plane.new
 		airport = Airport.new
-		plane.land(airport)
-		expect { plane.land(airport) }.to raise_error 'this airport is full!'
+		airport.land(plane)
+		expect { airport.land(plane) }.to raise_error 'this airport is full!'
 	end
 
 # As the system designer

@@ -8,16 +8,23 @@ class Airport
 	def change_capacity(num)
 		@capacity = num
 	end
+
+	def land(plane)
+		fail 'this airport is full!' if @plane
+		@plane = plane
+	end
+
+	def take_off(plane)
+		'The plane has taken off and is no longer in the airport'
+	end
 end
 
 class Plane
-	
-	def land(airport)
-		fail 'this airport is full!' if @airport
-		@airport = airport
-	end
 
-	def take_off(airport)
-		'The plane has taken off and is no longer in the airport'
+end
+
+class Weather
+	def initialize
+		@weather = ['sunny', 'stormy']
 	end
 end
