@@ -30,6 +30,9 @@ class Airport
       #This raises an error if the Airport has reached capacity.
       raise 'Airport is FULL!'
     end
+    if @storm
+      raise 'There is a storm, we wont take off to ensure safety of passengers!'
+    end
     @airport.push(plane)
     @plane = plane
   end
@@ -37,6 +40,7 @@ class Airport
 #USER_STORY2: As an air traffic controller I want to instruct a plane to take off from an airport,
 #confirm that it is no longer in the airport
   def take_off
+    #USER_STORY4: I want to prevent landing when weather is stormy 
     if @storm
       raise 'There is a storm, we wont take off to ensure safety of passengers!'
     end

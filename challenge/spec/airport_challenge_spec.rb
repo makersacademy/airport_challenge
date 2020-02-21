@@ -19,6 +19,13 @@ end
       expect(subject).to respond_to(:land)
     end
 
+    it 'can prevent take off if windy' do
+      jfk = Airport.new
+      plane = double(:plane)
+      jfk.report_storm
+      expect { jfk.land(plane) }.to raise_error(RuntimeError, "There is a storm, we wont take off to ensure safety of passengers!")
+    end
+
     it 'can tell air traffic controller that airport is full' do
       subject = Airport.new
       subject.amount_of_planes.times{subject.land double :plane}
