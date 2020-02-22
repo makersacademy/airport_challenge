@@ -46,12 +46,13 @@ describe Airport do
   end
 
   context 'bad weather conditions ' do
-    it 'stops planes from taking off' do
+    before(:each) do
       @airport.it_stormy?
+    end
+    it 'stops planes from taking off' do
       expect { @airport.take_off(@plane) }.to raise_error("Bad weather, no taking off")
     end
     it 'stops planes from landing' do
-      @airport.it_stormy?
       expect { @airport.land(@plane) }.to raise_error("Bad weather, no landing")
     end
   end
