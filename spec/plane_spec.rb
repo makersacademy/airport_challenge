@@ -14,6 +14,14 @@ describe Plane do
       subject.take_off(airport)
       expect(subject.location).to eq("in the air")
     end
+
+    it "Prevents from taking off from airport when a plane is at the different airport" do
+      airport1 = Airport.new("Airport1")
+      airport2 = Airport.new("Airport2")
+      subject.take_off(airport1)
+      subject.land(airport1)
+      expect(subject.take_off(airport2)).to eq("Cannot take off as the plane is at the different airport")
+    end
   end
 
   describe "#land" do
@@ -32,7 +40,7 @@ describe Plane do
     end
 
     it "Prevents from landing when airport is full" do
-      #airport = double("airport", :name => "Heathrow", :full? => true)
+      # airport = double("airport", :name => "Heathrow", :full? => true)
       airport = Airport.new
       if airport.full?
         expect(subject.land(airport)).to eq("Cannot land as the airport is full")
