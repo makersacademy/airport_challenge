@@ -71,4 +71,23 @@ Results of the feature test:
 feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f82d80fef30> (NoMethodError)
 ```
 
-The next unit tests will now test that the method doesn't raise this error and that the method empty lets the controller see if the plane is still there or not. 
+The next unit tests will now test that the method doesn't raise this error and that the method empty lets the controller see if the plane is in the airport.
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+Feature test
+
+```
+airport = Airport.new
+plane = Plane.new
+plane2 = Plane.new
+plane2.land
+```
+
+This should throw an error and stops the second plane from landing. Getting the plane object to throw the error was more difficult than anticipated as the require pathways were not recognising an initialized airport to perform the empty? function upon - which was the logical basis for the raised error.
+
+Initializing the airport in the plane class itself will cause more issues down the line, but it was the most simple code required to pass the test and throw the needed error.
