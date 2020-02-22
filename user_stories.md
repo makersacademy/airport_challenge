@@ -52,3 +52,19 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 # (prevent landing) : weather constraint
+
+
+## Edge Cases
+- planes can only take off from airports they are in
+- planes that are already flying cannot take off
+- planes that are already flying cannot be in an airports
+- planes that are landed cannot land again
+- planes that are landed must be in an airport
+
+
+## Things to change / update
+- Sort out all the rubocop offenses
+- Make specific planes take off (rather than just the last in the array)
+- Create README.md (use this file as a reference)
+- Update spec file to incorporate 'context' to group tests into blocks. Also make good use of before too (understand better how to use 'let' and 'subject')
+- Work out how to write test better: plane can't land when aiport is at capacity (would rather it didn't use .land in test setup)
