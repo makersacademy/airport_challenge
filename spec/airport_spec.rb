@@ -11,9 +11,14 @@ describe Airport do
   it "should have a default capacity of 20" do
     expect(subject).to have_attributes(capacity: 20)
   end
+
+  it "should be able to change the default capacity" do
+    airport = Airport.new(10)
+    expect(airport).to have_attributes(capacity: 10) 
+  end
   
   describe '#land' do
-
+    # airport responds to land method with 1 plane 
     it { is_expected.to respond_to(:land).with(1).argument }
     
     it "puts a plane in the hanger once it has landed" do
@@ -33,6 +38,17 @@ describe Airport do
     end
 
   end
+
+  describe '#full' do
+    # airport responds to full method
+    it { is_expected.not_to respond_to(:full?) }
+
+    it "will not allow a plane to land if the hanger is full" do
+      20.times {subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("airport full")
+    end
+  end  
+
 
 end
 
