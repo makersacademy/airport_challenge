@@ -12,13 +12,7 @@ describe Airport do
       expect(gatwick.capacity).to eq(10)
     end
   end
-  describe "#land" do
-    it "Adds the plane to the list of planes at the airport" do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.planes).to include(plane)
-    end
-  end
+
   describe "#take_off" do
     it "Removes the plane from the list of planes at the airport" do
       plane = Plane.new
@@ -26,6 +20,15 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
   end
+
+  describe "#land" do
+    it "Adds the plane to the list of planes at the airport" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes).to include(plane)
+    end
+  end
+
   describe "#full?" do
     it "Returns true if airport is full" do
       plane = Plane.new

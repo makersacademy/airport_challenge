@@ -12,4 +12,10 @@ class Plane
     @location = "in the air"
     @status = "flying"
   end
+
+  def land(airport)
+    @location = airport
+    @status = "landed"
+  end
+
 end
