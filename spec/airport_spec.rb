@@ -27,10 +27,15 @@ describe Airport do
     end
   end
   describe "#full?" do
-    it "Return true if airport is full" do
+    it "Returns true if airport is full" do
       plane = Plane.new
       subject.capacity.times {subject.land(plane)}
       expect(subject.full?).to be true
+    end
+    it "Returns false if airport is not full" do
+      plane = Plane.new
+      (subject.capacity - 1).times {subject.land(plane)}
+      expect(subject.full?).to be false
     end
   end
 end
