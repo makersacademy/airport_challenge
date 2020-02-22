@@ -19,4 +19,18 @@ describe Airport do
       expect(subject.planes).to include(plane)
     end
   end
+  describe "#take_off" do
+    it "Removes the plane from the list of planes at the airport" do
+      plane = Plane.new
+      subject.take_off(plane)
+      expect(subject.planes).not_to include(plane)
+    end
+  end
+  describe "#full?" do
+    it "Return true if airport is full" do
+      plane = Plane.new
+      subject.capacity.times {subject.land(plane)}
+      expect(subject.full?).to be true
+    end
+  end
 end
