@@ -22,13 +22,21 @@ User Story 1 - Feature Test
 ```
 airport = Airport.new
 plane = Plane.new
-airport.land(plane)
+airport.land(plane) # should return plane
 ```
 User Story 2
 ```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+User Story 2 - Feature Test
+```
+airport = Airport.new
+plane = Plane.new
+airport.take_off # should return nil
+airport.land(plane)
+airport.take_off # should return "Plane has left the airport"
 ```
 User Story 3
 ```
