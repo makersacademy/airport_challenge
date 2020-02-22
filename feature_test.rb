@@ -3,4 +3,5 @@ require "./lib/plane"
 
 airport = Airport.new()
 plane = Plane.new
-5.times { airport.land(plane) }
+weather = airport.is_it_stormy?
+airport.take_off(plane)

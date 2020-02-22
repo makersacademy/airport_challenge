@@ -93,7 +93,7 @@ plane2 = Plane.new
 plane2.land
 ```
 
-This should throw an error and stops the second plane from landing. Getting the plane object to throw the error was more difficult than anticipated as the require pathways were not recognising an initialized airport to perform the empty? function upon - which was the logical basis for the raised error.
+This should throw an error and stops the second plane from landing. Getting the plane object to throw the error was more difficult than anticipated as the require pathways were not recognising an initialized airport to perform the empty? function - which was the logical basis for the raised error.
 
 Initializing the airport in the plane class itself will cause more issues down the line, but it was the most simple code required to pass the test and throw the needed error.
 
@@ -114,28 +114,38 @@ airport = Airport.new(20)
 puts airport: :capacity
 ```
 
-This will test state and not behaviour so isn't the best option.
+This will test state and not behaviour. As a designer for the system you should be able to see your software being used in multiple airports with varying capacities for the amount of planes. The easiest way to see if it can be adapted is by how many planes are able to take off and land as an extension of the controllers role, allowing planes to take off and to land.
+
+The land and take off functions should be updated to let the airport count the number of planes it stores. This will be reflected in the new feature tests and be updated in the current unit tests.
 
 ```
 airport = Airport.new(10)
 plane = Plane.new
 10.times { airport.land(plane) }
 ```
-The capacity has been set to 10 so this should not throw any errors
+The capacity of this airport has been set to 10 so this should not throw any errors
 
 ```
 airport = Airport.new()
 plane = Plane.new
-10.times{ airport.land(plane) }
+10.times { airport.land(plane) }
 ```
-This should give us an error because too many planes are being landed and so the airport is full.
+This should give us an error because too many planes are being landed and so the airport is full. Our earlier test for empty or full should now take over.
 
 This feature test should pass:
 
 ```
 airport = Airport.new()
 plane = Plane.new
-5.times{ airport.land(plane) }
+5.times { airport.land(plane) }
+```
+
+This one should not:
+
+```
+airport = Airport.new(3)
+plane = Plane.new
+5.times { airport.land(plane) }
 ```
 
 ####Result is:
@@ -149,5 +159,29 @@ Traceback (most recent call last):
 /Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:13:in `land': The airport is full (RuntimeError)
 
 ```
+I then refactored my tests to avoid repeating the "airport is full error". Other unit tests were updated to respond to the updated methods land and take_off being used by the airport class and taking plane as a parameter.
 
-I refactored my tests to avoid repeating the "airport is full error". Other unit tests were updated to respond to the updated methods land and take_off being used by the airport class and taking plane as a parameter.
+####User Story
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+
+####Feature test
+
+```
+airport = Airport.new()
+plane = Plane.new
+weather = is_it_stormy?
+airport.take_off(plane)
+```
+This should give us an error and stop the plane from leaving.
+
+```
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+feature_test.rb:6:in `<main>': undefined method `is_it_stormy?' for main:Object (NoMethodError)
+Makerss-Air:airport_challenge student$
+```

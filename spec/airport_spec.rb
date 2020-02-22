@@ -15,6 +15,10 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument }
   end
 
+  describe '#is_it_stormy' do
+    it { is_expected.to respond_to(:is_it_stormy?) }
+  end
+
   describe '#empty' do
     it 'lets the controller check that a plane has left the airport' do
       @airport.take_off(@plane)
@@ -38,6 +42,13 @@ describe Airport do
   context 'default capacity for the airport is selected when a new value is not supplied' do
     it 'sets to default capacity' do
       expect { 10.times { @airport.land(@plane) } }.to raise_error("The airport is full")
+    end
+  end
+
+  context 'bad weather conditions' do
+    it 'stops planes from taking off' do
+      @airport.is_it_stormy?
+      expect { @airport.take_off(@plane) }.to raise_error("Bad weather, no taking off")
     end
   end
 end

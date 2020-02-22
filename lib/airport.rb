@@ -17,10 +17,17 @@ class Airport
 
 # lets planes take off
   def take_off(*)
+    fail "Bad weather, no taking off" if @stormy == true
+
+    @no_of_planes -= 1
   end
 
 # checks to see if there are planes in the airport
   def empty?
     true
+  end
+
+  def is_it_stormy?
+    @stormy = true
   end
 end
