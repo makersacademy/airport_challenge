@@ -10,5 +10,9 @@ describe Plane do
     subject.landed
     expect(subject).to have_attributes(location: :airport)
   end
+  it "when plane takes off to change location to sky" do
+    subject.flying
+    expect(subject).to have_attributes(location: :sky)
+  end
 
 end
