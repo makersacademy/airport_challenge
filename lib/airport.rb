@@ -24,7 +24,7 @@ class Airport
     # not passing SRP atm
     raise "There are no planes in the airport!" if @planes.size.zero?
     raise "It is unsafe to take off due to stormy conditions" if @weather.stormy?
-    
+
     plane = @planes.pop
     "#{plane} is no longer in the airport"
   end
