@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   
@@ -9,16 +10,17 @@ class Airport
   def initialize(capacity=CAPACITY)
     @hanger = []
     @capacity = capacity
+    @weather = Weather.new
   end
   
   def land(plane)
-    raise "airport full" if full?
-    raise "It's too stormy to land" if stormy?
+    raise "Airport full" if full?
+    raise "It's too stormy to land" if @weather.stormy?
     plane.flying? ? (@hanger << plane; plane.landed) : "Plane is already in the hanger"
   end
 
   def takeoff
-    raise "It's too stormy to take off" if stormy?
+    raise "It's too stormy to take off" if @weather.stormy?
     raise "The hanger is empty" if @hanger.empty?
     @hanger.pop.flying && "A plane has left the airport"
   end
@@ -28,9 +30,7 @@ class Airport
   def full?
     @hanger.length >= @capacity
   end
-
-  def stormy?
-    rand(0..100) > 90
-  end
+  
+  attr_reader :weather
   
 end
