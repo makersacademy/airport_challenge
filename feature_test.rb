@@ -1,7 +1,6 @@
 require "./lib/airport"
 require "./lib/plane"
 
-airport = Airport.new
+airport = Airport.new(10)
 plane = Plane.new
-plane2 = Plane.new
-plane2.land
+10.times{ airport.land(plane) }

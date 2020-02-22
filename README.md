@@ -25,12 +25,14 @@ ruby feature_test.rb
 
 ##User stories addressed:
 
+####User story
+
 ```
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
-Feature test:
+####Feature test
 
 ```
 airport = Airport.new
@@ -40,13 +42,14 @@ plane.land
 
 To test this behaviour in my unit test I checked to see if the plane.land command would raise an error.
 
+####User Story
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
-Feature test
+####Feature test
 
 ```
 airport = Airport.new
@@ -65,7 +68,7 @@ airport.empty?
 ```
 This should return the value true as the plane is no longer there. I think this second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
 
-Results of the feature test:
+###Results of the feature test:
 
 ```
 feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f82d80fef30> (NoMethodError)
@@ -79,7 +82,7 @@ To ensure safety
 I want to prevent landing when the airport is full
 ```
 
-Feature test
+###Feature test
 
 ```
 airport = Airport.new
@@ -91,3 +94,34 @@ plane2.land
 This should throw an error and stops the second plane from landing. Getting the plane object to throw the error was more difficult than anticipated as the require pathways were not recognising an initialized airport to perform the empty? function upon - which was the logical basis for the raised error.
 
 Initializing the airport in the plane class itself will cause more issues down the line, but it was the most simple code required to pass the test and throw the needed error.
+
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+###Feature tests
+
+The default capacity for the airport will be 5 planes.
+
+```
+airport = Airport.new(20)
+puts airport: :capacity
+```
+
+This will test state and not behaviour so isn't the best option.
+
+```
+airport = Airport.new(10)
+plane = Plane.new
+10.times(plane.land)
+```
+The capacity has been set to 10 so this should not throw any errors
+
+```
+airport = Airport.new()
+plane = Plane.new
+10.times(plane.land)
+```
+This should give us an error because too many planes are being landed and so the airport is full.
