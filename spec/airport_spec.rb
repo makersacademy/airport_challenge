@@ -2,7 +2,7 @@ require 'airport'
 require 'weather'
 
 shared_context "common" do
-  let(:plane) {Plane.new}
+  let(:plane) { Plane.new }
 end
 
 describe Airport do
@@ -10,8 +10,8 @@ describe Airport do
   include_context "common"
   before { allow(subject).to receive(:stormy?) { false } }
 
-  it "should have a default capacity of 20" do
-    expect(subject).to have_attributes(capacity: 20)
+  it "should have a default capacity of 1" do
+    expect(subject).to have_attributes(capacity: 1)
   end
 
   it "should be able to change the default capacity" do
@@ -24,11 +24,11 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     
     it "puts a plane in the hanger once it has landed" do
-      expect{subject.land(plane)}.to change{subject.hanger.length}.by(1)
+      expect { subject.land(plane) }.to change { subject.hanger.length }.by(1)
     end
     it "raises an error if the weather is too stormy to land" do
       allow(subject).to receive(:stormy?) { true }
-      expect{subject.land(plane)}.to raise_error("It's too stormy to land")
+      expect { subject.land(plane) }.to raise_error("It's too stormy to land")
     end
     it "raises an error if the plane has already landed" do
       allow(plane).to receive(:flying?) { false }
@@ -40,7 +40,7 @@ describe Airport do
 
     it "removes a plane in the hanger when it takes off" do
       subject.land(plane)
-      expect{subject.takeoff}.to change{subject.hanger.length}.by(-1)
+      expect { subject.takeoff }.to change { subject.hanger.length }.by(-1)
     end
     it "gives a message confirming the plane has left" do
       subject.land(plane)
@@ -49,22 +49,22 @@ describe Airport do
     it "raises an error if the weather is too stormy to takeoff" do
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
-      expect{subject.takeoff}.to raise_error("It's too stormy to take off")
+      expect { subject.takeoff }.to raise_error("It's too stormy to take off")
     end
     it "raises an error if there are no planes in the hanger" do 
-      expect{subject.takeoff}.to raise_error("The hanger is empty")
+      expect { subject.takeoff }.to raise_error("The hanger is empty")
     end
   end
 
   describe '#full' do
     # airport responds to private full method
-    it { is_expected.not_to respond_to(:full?) }
+    it { is_expected.not_to respond_to :full? }
 
     it "will not allow a plane to land if the hanger is full" do
-      20.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error("Airport full")
+      qantas = Plane.new
+      subject.land(qantas)
+      expect { subject.land(plane) }.to raise_error("Airport full")
     end
   end  
 
 end
-
