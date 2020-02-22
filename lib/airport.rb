@@ -19,8 +19,14 @@ class Airport
   def take_off
     # not passing SRP atm
     raise "There are no planes in the airport!" if @planes.size == 0
+    raise "It is unsafe to take off due to stormy conditions" if weather? == 'stormy'
     plane = @planes.pop
     "#{plane} is no longer in the airport"
+  end
+
+  def weather?
+    return 'stormy' if rand(10) > 8
+    'sunny'
   end
 
 end

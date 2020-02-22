@@ -26,11 +26,21 @@ describe Airport do
     it { is_expected.to respond_to(:take_off) }
     it "confirms that plane is no longer in the airport" do
       subject.land(Plane.new)
+      allow(subject).to receive(:weather?) { 'sunny' }
       expect(subject.take_off).to match(/is no longer in the airport/)
     end
     it "will return an error if there are no planes in the airport" do
       expect { subject.take_off }.to raise_error "There are no planes in the airport!"
     end
+    it "will return an error in stormy conditions" do
+      subject.land(Plane.new)
+      allow(subject).to receive(:weather?) { 'stormy' }
+      expect {subject.take_off}.to raise_error "It is unsafe to take off due to stormy conditions"
+    end
+  end
+
+  describe '#weather?' do
+    it { is_expected.to respond_to(:weather?) }
   end
 
 end
