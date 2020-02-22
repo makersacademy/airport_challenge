@@ -16,7 +16,7 @@ class Plane
 
   def land(airport)
     return "Cannot land as the airport is full" if airport.full?
-    
+    return "Cannot land as the plane is already on the airport" if @status == "landed"
     @location = airport.name
     @status = "landed"
     airport.land(self)

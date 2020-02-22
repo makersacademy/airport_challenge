@@ -38,5 +38,10 @@ describe Plane do
         expect(subject.land(airport)).to eq("Cannot land as the airport is full")
       end
     end
+    it "Prevents from landing when plane is already on the airport" do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject.land(airport)).to eq("Cannot land as the plane is already on the airport")
+    end
   end
 end
