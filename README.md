@@ -185,3 +185,21 @@ Traceback (most recent call last):
 feature_test.rb:6:in `<main>': undefined method `is_it_stormy?' for main:Object (NoMethodError)
 Makerss-Air:airport_challenge student$
 ```
+
+Yes, great. Now more tests. Until we get this:
+
+```
+airport = Airport.new()
+plane = Plane.new
+airport.is_it_stormy?
+airport.take_off(plane)
+```
+
+```
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+	1: from feature_test.rb:7:in `<main>'
+/Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:20:in `take_off': Bad weather, no taking off (RuntimeError)
+Makerss-Air:airport_challenge student$
+
+```
