@@ -2,10 +2,12 @@ class Airport
 
   DEFAULT_VALUE = 5
   attr_accessor :capacity
+  attr_accessor :stormy
 
   def initialize(capacity = DEFAULT_VALUE)
     @capacity = capacity
     @no_of_planes = 0
+    @stormy = stormy
   end
 
 # lands planes
@@ -31,11 +33,10 @@ class Airport
 
 # finds out if it is stormy
   def it_stormy?
-    @stormy = true
+    @stormy = rand(3) == 1
   end
 
 # stops planes from taking off in bad weather
-
   def stops_planes
     fail "Bad weather, no landing" if @stormy == true
   end

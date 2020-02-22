@@ -15,8 +15,14 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument }
   end
 
-  describe '#is_it_stormy' do
+  describe '#it_stormy' do
     it { is_expected.to respond_to(:it_stormy?) }
+  end
+
+  context '#it_stormy creates sunny conditions' do
+    it 'lets sunny conditions be observed' do
+      allow(@airport).to receive (:it_stormy) { false }
+    end
   end
 
   describe '#empty' do
@@ -35,7 +41,7 @@ describe Airport do
   context 'capactity for the airport is modified' do
     it 'lets the controller set the capacity' do
       airport = Airport.new(10)
-      expect { 10.times { airport.land(@plane) } }.not_to raise_error("The airport is full")
+      expect { 10.times { airport.land(@plane) } }.not_to raise_error
     end
   end
 
@@ -45,14 +51,13 @@ describe Airport do
     end
   end
 
-  context 'bad weather conditions ' do
-    before(:each) do
-      @airport.it_stormy?
-    end
+  describe 'bad weather conditions' do
     it 'stops planes from taking off' do
+      allow(@airport).to receive(:it_stormy?).and_return true
       expect { @airport.take_off(@plane) }.to raise_error("Bad weather, no taking off")
     end
     it 'stops planes from landing' do
+      allow(@airport).to receive(:it_stormy?).and_return true
       expect { @airport.land(@plane) }.to raise_error("Bad weather, no landing")
     end
   end
