@@ -14,13 +14,13 @@ class Airport
   def land(plane)
     raise "airport full" if full?
     raise "It's too stormy to land" if stormy?
-    @hanger << plane; plane.landed
+    plane.flying? ? (@hanger << plane; plane.landed) : "Plane is already in the hanger"
   end
 
   def takeoff
     raise "It's too stormy to take off" if stormy?
     raise "The hanger is empty" if @hanger.empty?
-    @hanger.pop.flying && (puts "A plane has left the airport\n")
+    @hanger.pop.flying && "A plane has left the airport"
   end
 
   private
