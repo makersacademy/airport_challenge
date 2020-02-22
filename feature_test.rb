@@ -3,5 +3,5 @@ require "./lib/plane"
 
 airport = Airport.new
 plane = Plane.new
-plane.take_off
-airport.empty?
+plane2 = Plane.new
+plane2.land
