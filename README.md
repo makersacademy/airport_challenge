@@ -12,7 +12,7 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-User Story 1
+### User Story 1
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -24,7 +24,7 @@ airport = Airport.new
 plane = Plane.new
 airport.land(plane) # should return plane
 ```
-User Story 2
+### User Story 2
 ```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
@@ -38,11 +38,18 @@ airport.take_off # should return nil
 airport.land(plane)
 airport.take_off # should return "Plane has left the airport"
 ```
-User Story 3
+### User Story 3
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
+```
+User Story 3 - Feature Test
+```
+irport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.land(plane) # should throw error "Airport full"
 ```
 User Story 4
 ```
