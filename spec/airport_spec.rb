@@ -29,6 +29,10 @@ describe Airport do
       allow(subject).to receive(:stormy?) { true }
       expect{subject.land(plane)}.to raise_error("It's too stormy to land")
     end
+    it "raises an error if the plane has already landed" do
+      allow(plane).to receive(:flying?) { false }
+      expect(subject.land(plane)).to eq "Plane is already in the hanger"
+    end
   end
 
   describe '#takeoff' do
@@ -39,7 +43,7 @@ describe Airport do
     end
     it "gives a message confirming the plane has left" do
       subject.land(plane)
-      expect{subject.takeoff}.to output("A plane has left the airport\n").to_stdout
+      expect(subject.takeoff).to eq "A plane has left the airport"
     end
     it "raises an error if the weather is too stormy to takeoff" do
       subject.land(plane)
