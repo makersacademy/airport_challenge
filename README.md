@@ -5,17 +5,17 @@ A ruby program created to simulate the flow of planes to and from an airport wit
 
 ###To run tests
 
-Clone or download the repository and then run the following for unit or for feature tests.
+Clone or download the repository and then run the following for unit or feature tests.
 
 ##To run unit tests with RSpec
 
-Navigate to the parent directory of spec and lib and then run:
+Navigate to the parent directory and run:
 
 ```
 rspec
 ```
 
-###To run feature tests
+###To run feature test
 
 Navigate to the same file location and run
 
@@ -68,7 +68,7 @@ airport.empty?
 ```
 This should return the value true as the plane is no longer there. I think this second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
 
-###Results of the feature test:
+####Results of the feature test:
 
 ```
 feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f82d80fef30> (NoMethodError)
@@ -76,13 +76,15 @@ feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f8
 
 The next unit tests will now test that the method doesn't raise this error and that the method empty lets the controller see if the plane is in the airport.
 
+####User Story
+
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
 
-###Feature test
+####Feature test
 
 ```
 airport = Airport.new
@@ -95,13 +97,15 @@ This should throw an error and stops the second plane from landing. Getting the 
 
 Initializing the airport in the plane class itself will cause more issues down the line, but it was the most simple code required to pass the test and throw the needed error.
 
+####User story
+
 ```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-###Feature tests
+####Feature tests
 
 The default capacity for the airport will be 5 planes.
 
@@ -115,13 +119,35 @@ This will test state and not behaviour so isn't the best option.
 ```
 airport = Airport.new(10)
 plane = Plane.new
-10.times(plane.land)
+10.times { airport.land(plane) }
 ```
 The capacity has been set to 10 so this should not throw any errors
 
 ```
 airport = Airport.new()
 plane = Plane.new
-10.times(plane.land)
+10.times{ airport.land(plane) }
 ```
 This should give us an error because too many planes are being landed and so the airport is full.
+
+This feature test should pass:
+
+```
+airport = Airport.new()
+plane = Plane.new
+5.times{ airport.land(plane) }
+```
+
+####Result is:
+
+```
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+	3: from feature_test.rb:6:in `<main>'
+	2: from feature_test.rb:6:in `times'
+	1: from feature_test.rb:6:in `block in <main>'
+/Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:13:in `land': The airport is full (RuntimeError)
+
+```
+
+I refactored my tests to avoid repeating the "airport is full error". Other unit tests were updated to respond to the updated methods land and take_off being used by the airport class and taking plane as a parameter.
