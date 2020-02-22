@@ -5,8 +5,9 @@ shared_context "common" do
 end
 
 describe Airport do
-  
+
   include_context "common"
+  before { allow(subject).to receive(:stormy?) { false } }
 
   it "should have a default capacity of 20" do
     expect(subject).to have_attributes(capacity: 20)
@@ -22,7 +23,6 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     
     it "puts a plane in the hanger once it has landed" do
-      allow(subject).to receive(:stormy?) { false }
       expect{subject.land(plane)}.to change{subject.hanger.length}.by(1)
     end
     it "raises an error if the weather is too stormy to land" do
@@ -46,7 +46,9 @@ describe Airport do
       allow(subject).to receive(:stormy?) { true }
       expect{subject.takeoff}.to raise_error("It's too stormy to take off")
     end
-
+    it "raises an error if there are no planes in the hanger" do 
+      expect{subject.takeoff}.to raise_error("The hanger is empty")
+    end
   end
 
   describe '#full' do
@@ -54,7 +56,6 @@ describe Airport do
     it { is_expected.not_to respond_to(:full?) }
 
     it "will not allow a plane to land if the hanger is full" do
-      allow(subject).to receive(:stormy?) { false }
       20.times {subject.land(plane)}
       expect{subject.land(plane)}.to raise_error("airport full")
     end
@@ -63,7 +64,6 @@ describe Airport do
   describe '#stormy' do
   # airport responds to private stormy method
   it { is_expected.not_to respond_to(:stormy?) }
-
   end
 
 end
