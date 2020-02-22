@@ -17,8 +17,10 @@ class Airport
   end
 
   def take_off
-    "#{@planes[-1]} is no longer in the airport"
-    @planes.pop
+    # not passing SRP atm
+    raise "There are no planes in the airport!" if @planes.size == 0
+    plane = @planes.pop
+    "#{plane} is no longer in the airport"
   end
 
 end
