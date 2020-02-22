@@ -19,10 +19,9 @@ class Airport
 
   def takeoff
     raise "It's too stormy to take off" if stormy?
+    raise "The hanger is empty" if @hanger.empty?
     @hanger.pop.flying && (puts "A plane has left the airport\n")
-
   end
-
 
   private
 
