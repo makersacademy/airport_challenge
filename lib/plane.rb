@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Plane
     
-attr_reader :location
+attr_reader :location 
 
 def initialize
   @location = :sky
@@ -10,7 +10,7 @@ def initialize
 end
 
 def flying?
-  
+  @location = :sky
 end
 
 def landed
