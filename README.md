@@ -241,3 +241,42 @@ Now that all of the user stories are catered to I want to expand my unit and fea
 >You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 >Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+
+###Weather tests
+
+```
+airport = Airport.new()
+plane = Plane.new
+airport.it_stormy?
+airport.land(plane)
+
+airport = Airport.new()
+plane = Plane.new
+airport.it_stormy?
+airport.take_off(plane)
+
+```
+###Results show errors firing:
+
+```
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+	2: from feature_test.rb:7:in `<main>'
+	1: from /Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:17:in `land'
+/Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:41:in `stops_planes': Bad weather, no landing (RuntimeError)
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+	2: from feature_test.rb:7:in `<main>'
+	1: from /Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:17:in `land'
+/Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:41:in `stops_planes': Bad weather, no landing (RuntimeError)
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Makerss-Air:airport_challenge student$ ruby feature_test.rb
+Traceback (most recent call last):
+	1: from feature_test.rb:12:in `<main>'
+/Users/student/Documents/projects/airplane_challenge/airport_challenge/lib/airport.rb:24:in `take_off': Bad weather, no taking off (RuntimeError)
+Makerss-Air:airport_challenge student$
+
+```
+
+Tests currently not able to apply or limit the random weather conditions to properly set the test conditions.

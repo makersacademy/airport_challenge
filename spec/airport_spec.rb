@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -21,7 +22,7 @@ describe Airport do
 
   context '#it_stormy creates sunny conditions' do
     it 'lets sunny conditions be observed' do
-      allow(@airport).to receive (:it_stormy) { false }
+      allow(@airport).to receive(:it_stormy) { false }
     end
   end
 
