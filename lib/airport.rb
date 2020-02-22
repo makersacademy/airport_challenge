@@ -12,6 +12,8 @@ class Airport
   def land(*)
     fail "The airport is full" if @capacity == @no_of_planes
 
+    stops_planes
+
     @no_of_planes += 1
   end
 
@@ -27,7 +29,14 @@ class Airport
     true
   end
 
+# finds out if it is stormy
   def is_it_stormy?
     @stormy = true
+  end
+
+# stops planes from taking off in bad weather
+
+  def stops_planes
+    fail "Bad weather, no landing" if @stormy == true
   end
 end

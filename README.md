@@ -203,3 +203,20 @@ Traceback (most recent call last):
 Makerss-Air:airport_challenge student$
 
 ```
+
+####User Story
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+####Feature test
+
+```
+airport = Airport.new()
+plane = Plane.new
+airport.is_it_stormy?
+airport.land(plane)
+```
