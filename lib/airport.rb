@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
   
@@ -12,6 +12,7 @@ class Airport
   end
   
   def land(plane)
+    raise "airport full" if full?
     @hanger << plane
   end
 
@@ -20,6 +21,11 @@ class Airport
   end
 
 
+  private
+  
+  def full?
+    @hanger.length >= @capacity ? true : false
+  end
 
   
 end
