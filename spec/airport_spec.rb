@@ -22,7 +22,12 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     
     it "puts a plane in the hanger once it has landed" do
+      allow(subject).to receive(:stormy?) { false }
       expect{subject.land(plane)}.to change{subject.hanger.length}.by(1)
+    end
+    it "raises an error if the weather is too stormy to land" do
+      allow(subject).to receive(:stormy?) { true }
+      expect{subject.land(plane)}.to raise_error("It's too stormy to land")
     end
   end
 
@@ -36,19 +41,30 @@ describe Airport do
       subject.land(plane)
       expect{subject.takeoff}.to output("A plane has left the airport\n").to_stdout
     end
+    it "raises an error if the weather is too stormy to takeoff" do
+      subject.land(plane)
+      allow(subject).to receive(:stormy?) { true }
+      expect{subject.takeoff}.to raise_error("It's too stormy to take off")
+    end
 
   end
 
   describe '#full' do
-    # airport responds to full method
+    # airport responds to private full method
     it { is_expected.not_to respond_to(:full?) }
 
     it "will not allow a plane to land if the hanger is full" do
+      allow(subject).to receive(:stormy?) { false }
       20.times {subject.land(plane)}
       expect{subject.land(plane)}.to raise_error("airport full")
     end
   end  
 
+  describe '#stormy' do
+  # airport responds to private stormy method
+  it { is_expected.not_to respond_to(:stormy?) }
+
+  end
 
 end
 
