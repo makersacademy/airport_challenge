@@ -28,7 +28,15 @@ describe Plane do
       airport = Airport.new
       subject.take_off(airport)
       subject.land(airport)
-      expect(subject.location).to eq(airport)
+      expect(subject.location).to eq(airport.name)
+    end
+
+    it "Prevents from landing when airport is full" do
+      #airport = double("airport", :name => "Heathrow", :full? => true)
+      airport = Airport.new
+      if airport.full?
+        expect(subject.land(airport)).to eq("Cannot land as the airport is full")
+      end
     end
   end
 end

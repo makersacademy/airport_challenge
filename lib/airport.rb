@@ -20,7 +20,7 @@ class Airport
   end
 
   def full?
-    @planes.count >= @capacity ? true : false
+    @planes.count >= @capacity
   end
 
 end

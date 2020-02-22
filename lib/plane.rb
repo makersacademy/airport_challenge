@@ -11,11 +11,15 @@ class Plane
   def take_off(airport)
     @location = "in the air"
     @status = "flying"
+    airport.take_off(self)
   end
 
   def land(airport)
-    @location = airport
+    return "Cannot land as the airport is full" if airport.full?
+    
+    @location = airport.name
     @status = "landed"
+    airport.land(self)
   end
 
 end
