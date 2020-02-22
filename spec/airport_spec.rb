@@ -53,13 +53,8 @@ describe Airport do
   end
 
   describe 'bad weather conditions' do
-    it 'stops planes from taking off' do
-      allow(@airport).to receive(:it_stormy?).and_return true
-      expect { @airport.take_off(@plane) }.to raise_error("Bad weather, no taking off")
-    end
-    it 'stops planes from landing' do
-      allow(@airport).to receive(:it_stormy?).and_return true
-      expect { @airport.land(@plane) }.to raise_error("Bad weather, no landing")
+    it 'makes stormy weather' do
+      allow(@airport).to receive(:it_stormy?).and_return(true)
     end
   end
 end
