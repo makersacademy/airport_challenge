@@ -1,6 +1,5 @@
 require 'airport'
 
-
 describe Airport do
 
   before(:each) do
@@ -11,6 +10,19 @@ describe Airport do
   describe '#land' do
     it 'lets a plane land' do
       expect {@plane.land}.not_to raise_error
+    end
+  end
+
+  describe '#take_off' do
+    it 'lets a plane take off from the airport' do
+      expect {@plane.take_off}.not_to raise_error
+    end
+  end
+
+  describe '#empty' do
+    it 'lets the controller check that a plane has left the airport' do
+      @plane.take_off
+      expect(@airport).to be_empty
     end
   end
 end

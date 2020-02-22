@@ -1,6 +1,7 @@
 require "./lib/airport"
 require "./lib/plane"
 
-plane = Plane.new
 airport = Airport.new
-plane.land
+plane = Plane.new
+plane.take_off
+airport.empty?
