@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 shared_context "common" do
   let(:plane) {Plane.new}
@@ -61,14 +62,9 @@ describe Airport do
 
     it "will not allow a plane to land if the hanger is full" do
       20.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error("airport full")
+      expect{subject.land(plane)}.to raise_error("Airport full")
     end
   end  
-
-  describe '#stormy' do
-  # airport responds to private stormy method
-  it { is_expected.not_to respond_to(:stormy?) }
-  end
 
 end
 
