@@ -16,7 +16,7 @@ describe Airport do
   end
 
   describe '#is_it_stormy' do
-    it { is_expected.to respond_to(:is_it_stormy?) }
+    it { is_expected.to respond_to(:it_stormy?) }
   end
 
   describe '#empty' do
@@ -47,12 +47,12 @@ describe Airport do
 
   context 'bad weather conditions ' do
     it 'stops planes from taking off' do
-      @airport.is_it_stormy?
+      @airport.it_stormy?
       expect { @airport.take_off(@plane) }.to raise_error("Bad weather, no taking off")
     end
     it 'stops planes from landing' do
-      @airport.is_it_stormy?
+      @airport.it_stormy?
       expect { @airport.land(@plane) }.to raise_error("Bad weather, no landing")
     end
-    end
+  end
 end

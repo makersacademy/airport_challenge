@@ -30,7 +30,7 @@ class Airport
   end
 
 # finds out if it is stormy
-  def is_it_stormy?
+  def it_stormy?
     @stormy = true
   end
 
