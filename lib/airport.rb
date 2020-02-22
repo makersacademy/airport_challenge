@@ -6,8 +6,12 @@ class Airport
 
   def initialize(name = "airport", capacity = 20)
     @name = name
-    @planes = planes
+    @planes = []
     @capacity = capacity
+  end
+
+  def land(plane)
+    @planes << plane
   end
 
 end
