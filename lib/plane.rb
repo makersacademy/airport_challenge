@@ -2,22 +2,25 @@ require_relative 'airport'
 
 class Plane
     
-attr_reader :location
+  attr_reader :location, :status
 
-def initialize
-  @location = :sky
-end
+  def initialize
+    @location = :sky
+    @status = :flying
+  end
 
-def flying?
-  @location == :sky
-end
+  def flying?
+    @status == :flying
+  end
 
-def landed
-  @location = :airport
-end
+  def landed
+    @location = :airport
+    @status = :landed
+  end
 
-def flying
-  @location = :sky
-end
+  def flying
+    @location = :sky
+    @status = :flying
+  end
 
 end

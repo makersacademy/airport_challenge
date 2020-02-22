@@ -5,9 +5,9 @@ class Airport
   
   attr_reader :hanger, :capacity
   
-  CAPACITY = 20
+  CAPACITY = 1
 
-  def initialize(capacity=CAPACITY)
+  def initialize(capacity = CAPACITY)
     @hanger = []
     @capacity = capacity
     @weather = Weather.new
@@ -15,13 +15,15 @@ class Airport
   
   def land(plane)
     raise "Airport full" if full?
-    raise "It's too stormy to land" if @weather.stormy?
+    raise "It's too stormy to land" if stormy?
+
     plane.flying? ? (@hanger << plane; plane.landed) : "Plane is already in the hanger"
   end
 
   def takeoff
-    raise "It's too stormy to take off" if @weather.stormy?
+    raise "It's too stormy to take off" if stormy?
     raise "The hanger is empty" if @hanger.empty?
+
     @hanger.pop.flying && "A plane has left the airport"
   end
 
