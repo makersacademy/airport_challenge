@@ -1,3 +1,5 @@
+require 'weather'
+
 class Weather
   def stormy?
     rand(10) > 8
