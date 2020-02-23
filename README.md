@@ -279,6 +279,12 @@ Makerss-Air:airport_challenge student$
 
 ```
 
-Tests currently not able to apply or limit the random weather conditions to properly set the test conditions.
+Unit tests at first were not able to limit the random weather conditions to properly set the test conditions.
 
-Fixed this issue with the use of a double stub and controlling the messages it could receive. 
+Fixed this issue with the use of a double stub and controlling the messages it could receive.
+
+###Future additions
+
+To make the code more robust weather conditions could be set up as an external class to apply the DRY principle. The plane class would also need to be tested to make sure that a plane knowns when it is flying and when it is in the airport to meet the second part of the edge case conditions.
+
+To be continued....
