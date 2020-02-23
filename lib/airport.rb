@@ -20,8 +20,9 @@ class Airport
     plane.flying? ? (@hanger << plane; plane.landed) : "Plane is already in the hanger"
   end
 
-  def takeoff
+  def takeoff(plane)
     raise "It's too stormy to take off" if stormy?
+    raise "Plane is already flying" unless plane.landed
     raise "The hanger is empty" if @hanger.empty?
 
     @hanger.pop.flying && "A plane has left the airport"
