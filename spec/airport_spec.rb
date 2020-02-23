@@ -1,18 +1,20 @@
   require "airport"
   
-  describe Airport do
-  let (:plane) {double :airplane, :landed= => false, landed?: false}
+describe Airport do
+let (:airplane) {double :airplane, :landed= => false, landed?: false}
 
   it "there are no planes" do
     expect(subject.planes).to eq []
   end
 
-  it "land a plane and take off" do
+  it "land a plane and take off if there are no storms" do
     airplane = Airplane.new
+    subject.storms = false
     allow(airplane).to receive(:landed).and_return(false)
     subject.land_plane(airplane)
+    subject.storms = true
     allow(airplane).to receive(:landed). and_return(true)
-    expect(subject.takeoff_plane(airplane)).to eq airplane
+    expect(subject.takeoff_plane(airplane)).to raise_error("There is a storm coming Mr. Wayne")
   end
 end
 
