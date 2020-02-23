@@ -53,7 +53,7 @@ I want to prevent landing when weather is stormy
 4. When the installation completes, run `bundle`
 5. This software runs in irb
 
-**Example run-through
+**Example run-through**
 ```
 >> irb
 2.6.5 :001 > require './airport.rb'
