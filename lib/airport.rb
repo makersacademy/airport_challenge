@@ -12,17 +12,31 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full" if @planes.count >= @capacity
+    fail "plane already at airport" if @planes.include?(plane)
+    fail "The airport is full" if full?
     @planes << plane
   end
 
   def take_off(plane)
-    @planes.count > 0 ? "The plane has taken off" : (fail "no planes to take off")
+    if @planes.any?
+      @planes.pop
+      "The plane has taken off"
+    else
+      fail "no planes to take off"
+    end
   end
 
   private
-  def stormy?
-    rand(6) == 5
+  def full?
+    @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.count == 0
+  end
+
+  def add_plane(plane)
+    @planes << plane
   end
 
 end
