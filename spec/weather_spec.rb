@@ -1,10 +1,12 @@
 require 'weather'
 
 describe Weather do
-
-  it { is_expected.to respond_to(:stormy?) }
-
+  
   describe "#stormy?" do
+    it "is a boolean" do
+      expect(subject.stormy?).to match(boolean)
+    end
+
     context 'weather is good' do
       it 'returns false' do 
         allow(subject).to receive(:stormy?) { false }

@@ -1,9 +1,12 @@
 class Weather
 
   def stormy?
-    conditions = ["clear", "clear", "clear", "stormy"]
-    condition = conditions.sample
-    condition == 'stormy'
+    random_condition == 'stormy'
   end
 
+  private
+  
+  def random_condition
+    ["clear", "clear", "clear", "stormy"].sample
+  end
 end
