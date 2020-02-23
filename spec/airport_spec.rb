@@ -11,7 +11,7 @@ describe Airport do
   before { allow(subject).to receive(:stormy?) { false } }
 
   it "should have a default capacity of 1" do
-    expect(subject).to have_attributes(capacity: 1)
+    expect(subject).to have_attributes(capacity: 20)
   end
 
   it "should be able to change the default capacity" do
@@ -20,8 +20,6 @@ describe Airport do
   end
   
   describe '#land' do
-    # airport responds to land method with 1 plane 
-    it { is_expected.to respond_to(:land).with(1).argument }
     
     it "puts a plane in the hanger once it has landed" do
       expect { subject.land(plane) }.to change { subject.hanger.length }.by(1)
@@ -60,10 +58,11 @@ describe Airport do
     # airport responds to private full method
     it { is_expected.not_to respond_to :full? }
 
-    it "will not allow a plane to land if the hanger is full" do
-      qantas = Plane.new
-      subject.land(qantas)
-      expect { subject.land(plane) }.to raise_error("Airport full")
+    it 'fails when the airport is full' do
+      allow(plane).to receive(:landed).and_return(false)
+      20.times { subject.land(plane) }
+      error = 'Airport full'
+      expect { subject.land(double :plane) }.to raise_error error
     end
   end  
 
