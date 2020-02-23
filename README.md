@@ -1,5 +1,4 @@
 # Airport Challenge
-=================
 Makers weekend challenge (week 1)
 
 ## Aim
@@ -9,6 +8,7 @@ To write software to control the flow of planes at an airport.
 * Planes can land and take off provided that the weather is sunny.
 * If the weather is stormy the planes cannot take off.
 * Planes cannot land if the airport is full.
+
 **Edge cases**
 * Ensuring that planes can only take off from airports they are in.
 * Planes that are already flying cannot take off and/or be in an airport
@@ -42,8 +42,6 @@ I want to prevent landing when weather is stormy
 ```
 
 ## Installation instructions
--------
-
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle`
 3. When the installation completes, run `bundle`
