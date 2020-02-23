@@ -16,7 +16,7 @@ class Airport
 
   def take_off
     fail "No planes in airport" if empty?
-    
+
     planes.pop
   end
 
@@ -25,7 +25,7 @@ class Airport
   attr_reader :planes
 
   def full?
-    planes.count >= DEFAULT_CAPACITY
+    planes.count >= capacity
   end
 
   def empty?

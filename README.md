@@ -51,11 +51,17 @@ plane = Plane.new
 airport.land(plane)
 airport.land(plane) # should throw error "Airport full"
 ```
-User Story 4
+### User Story 4
 ```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
+User Story 4 - Feature Test
+```
+airport = Airport.new
+airport.capacity # returns default set at 100
+airport.capacity = 50 # allow system designer to override default capacity
 ```
 User Story 5
 ```
