@@ -26,6 +26,7 @@ class Airport
 	end
 
 	def plane_take_off
+		fail "Abort: Bad weather conditions!" if stormy?
 		Plane.new
 
 	end
@@ -36,8 +37,8 @@ class Airport
 		rand(1...8) >= 5
 	end
 
-	def full?
-		planes.count >= capacity
-	end
+	# def full?
+	# 	planes.count >= capacity
+	# end
 
 end
