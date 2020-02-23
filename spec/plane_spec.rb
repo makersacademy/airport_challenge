@@ -15,7 +15,7 @@ require 'weather'
      it 'lands the plane' do
        plane = Plane.new
        plane.land
-       expect(plane.flying).to  false
+       expect(plane.flying).to eq false
      end
 
      it 'lands 1 plane in an airport' do
