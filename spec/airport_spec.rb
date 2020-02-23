@@ -11,13 +11,13 @@ describe Airport do
   end
 
   it "confirms that a plane has #take_off" do
-    allow(subject).to receive(:storm?) { false } # overrides storm true
+    allow(subject).to receive(:storm?).and_return false # overrides storm true
     subject.land(Plane.new)
     expect { subject.take_off }.to output("Plane has taken off").to_stdout
   end
 
   it "raises error if #land and airport is full" do
-    allow(subject).to receive(:storm?) { false } # overrides storm true
+    allow(subject).to receive(:storm?) { false } # different syntax
 
     Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error("Airport is full")
@@ -29,7 +29,7 @@ describe Airport do
   end
 
   it "defines weather to randomly be #storm?" do
-    expect(subject).to receive(:rand).and_return(7)
+    allow(subject).to receive(:rand).and_return(7) # Makes rand return 7
     expect(subject.storm?).to eq true
   end
 
