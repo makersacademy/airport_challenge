@@ -1,19 +1,35 @@
 class Airport
+  DEFAULT_CAPACITY = 100
 
-  attr_reader :plane
+  attr_accessor :capacity
 
   def initialize
-    @plane = []
+    @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
-    fail "Airport full" if @plane.count >= 100
+    fail "Airport full" if full?
     
-    @plane << plane
+    planes << plane
   end
 
   def take_off
-    return "Plane has left the airport" unless @plane.empty?
+    fail "No planes in airport" if empty?
+    
+    planes.pop
+  end
+
+  private
+
+  attr_reader :planes
+
+  def full?
+    planes.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+    planes.empty?
   end
 
 end
