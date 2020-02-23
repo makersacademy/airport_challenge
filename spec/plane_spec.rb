@@ -10,4 +10,11 @@ describe Plane do
     end
   end
 
+  it { is_expected.to respond_to(:take_off) } 
+
+  describe '#take_off' do
+    it 'allows plane to take off' do
+      expect(subject.take_off).to eq(:flying)
+    end
+  end
 end

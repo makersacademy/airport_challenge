@@ -8,8 +8,7 @@ class Plane
     @location = :landed
   end
 
-  def landed
-    @location == :landed
+  def take_off
+    @location = :flying
   end
-
 end
