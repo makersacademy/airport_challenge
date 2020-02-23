@@ -16,6 +16,10 @@ let (:airplane) {double :airplane, :landed= => false, landed?: false}
     allow(airplane).to receive(:landed). and_return(true)
     expect(subject.takeoff_plane(airplane)).to raise_error("There is a storm coming Mr. Wayne")
   end
+
+  it "airport is full" do
+    expect{ subject.land_plane(airplane) == MAX_CAPACITY }.to raise_error("Airport is full")
+  end
 end
 
 describe Airplane do
