@@ -5,7 +5,7 @@ class Airport
   
   attr_reader :hanger, :capacity
   
-  CAPACITY = 1
+  CAPACITY = 20
 
   def initialize(capacity = CAPACITY)
     @hanger = []
@@ -30,9 +30,9 @@ class Airport
   private
 
   def full?
-    @hanger.length >= @capacity
+    @hanger.length == @capacity
   end
-  
+
   attr_reader :weather
   
 end
