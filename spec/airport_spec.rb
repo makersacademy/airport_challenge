@@ -13,7 +13,6 @@ describe Airport do
   it "should have a default capacity of 1" do
     expect(subject).to have_attributes(capacity: 20)
   end
-
   it "should be able to change the default capacity" do
     airport = Airport.new(10)
     expect(airport).to have_attributes(capacity: 10) 
@@ -45,7 +44,6 @@ describe Airport do
       expect(subject.takeoff).to eq "A plane has left the airport"
     end
     it "raises an error if the weather is too stormy to takeoff" do
-      subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.takeoff }.to raise_error("It's too stormy to take off")
     end
