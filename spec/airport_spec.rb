@@ -52,7 +52,7 @@ describe Airport do
     end
   end
 
-  describe 'bad weather conditions' do
+  context 'bad weather conditions' do
     before(:each) do
       @obj = double()
     end
@@ -62,7 +62,7 @@ describe Airport do
     end
     it 'blocks taking off' do
       allow(@obj).to receive(:it_stormy?).and_return(true)
-      allow(@obj).to receive(:take_off).and_return("Bad weather, no landing")
+      allow(@obj).to receive(:take_off).and_return("Bad weather, no taking off")
     end
   end
 end
