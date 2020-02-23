@@ -18,21 +18,45 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Airport full"
     end
 
-    it "raises error when weather is stormy" do
-      allow_any_instance_of(Weather).to receive(:stormy?) { true }
-      expect { subject.land(plane) }.to raise_error "Bad weather, cannot land"
+    context "weather condition" do
+      it "allows plane to land in clear weather" do
+        expect { subject.land(plane) }.not_to raise_error
+      end
+
+      it "raises error when weather is stormy" do
+        allow_any_instance_of(Weather).to receive(:stormy?) { true }
+        expect { subject.land(plane) }.to raise_error "Bad weather, cannot land"
+      end
     end
+    
   end
 
   describe "#take_off" do
-    it "returns error if no planes in airport" do
-      expect { subject.take_off }.to raise_error "No planes in airport"
+
+    before do
+      subject.land(plane)
+    end
+
+    it "returns error if plane left airport" do
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
     end
 
     it "returns plane" do
-      subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.take_off(plane)).to eq plane
     end
+
+    context "weather condition" do
+      it "allows plane to take off in clear weather" do
+        expect { subject.take_off(plane) }.not_to raise_error
+      end
+
+      it "raises error when weather is stormy" do
+        allow_any_instance_of(Weather).to receive(:stormy?) { true }
+        expect { subject.take_off(plane) }.to raise_error "Bad weather, cannot take off"
+      end
+    end
+
   end
 
   describe 'initialization' do

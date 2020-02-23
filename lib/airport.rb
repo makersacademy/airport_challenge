@@ -19,10 +19,11 @@ class Airport
     planes << plane
   end
 
-  def take_off
-    fail "No planes in airport" if empty?
+  def take_off(plane)
+    fail "Bad weather, cannot take off" if stormy?
+    fail "Plane not in airport" unless planes.include?(plane)
 
-    planes.pop
+    planes.delete(plane)
   end
 
   private
@@ -31,10 +32,6 @@ class Airport
 
   def full?
     planes.count >= capacity
-  end
-
-  def empty?
-    planes.empty?
   end
 
   def stormy?
