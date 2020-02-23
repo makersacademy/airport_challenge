@@ -12,11 +12,12 @@ class Airport
 
   def take_off(plane)
     @planes.delete(plane)
-    return "Plane successfully took off from airport"
+    return "Plane successfully took off from the airport"
   end
 
   def land(plane)
     @planes << plane
+    return "Plane successfully landed on the airport"
   end
 
   def full?

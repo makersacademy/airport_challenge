@@ -25,11 +25,11 @@ describe Plane do
   end
 
   describe "#land" do
-    it "Changes plane's status to 'landed'" do
+    it "Changes plane's status to 'on the ground'" do
       airport = Airport.new
       subject.take_off(airport)
       subject.land(airport)
-      expect(subject.status).to eq("landed")
+      expect(subject.status).to eq("on the ground")
     end
 
     it "Changes plane's location to the appropriate airport" do
