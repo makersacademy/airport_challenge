@@ -51,6 +51,33 @@ I want to prevent landing when weather is stormy
 2. Fork this repo, and clone to your local machine
 3. Run the command `gem install bundle`
 4. When the installation completes, run `bundle`
+5. This software runs in irb
+
+**Example run-through
+```
+>> irb
+2.6.5 :001 > require './airport.rb'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007f880110b040 @hanger=[], @capacity=20, @weather=#<Weather:0x00007f880110afa0>> 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007f8801112638 @location=:sky, @status=:flying> 
+2.6.5 :004 > airport.land(plane)
+ => :landed 
+2.6.5 :005 > airport.land(plane)
+ => "Plane is already in the hanger" 
+2.6.5 :006 > plane = Plane.new
+ => #<Plane:0x00007f8802037d20 @location=:sky, @status=:flying> 
+2.6.5 :007 > airport.land(plane)
+ => :landed 
+2.6.5 :008 > p airport.hanger
+[#<Plane:0x00007f8801112638 @location=:airport, @status=:landed>, #<Plane:0x00007f8802037d20 @location=:airport, @status=:landed>]
+ => [#<Plane:0x00007f8801112638 @location=:airport, @status=:landed>, #<Plane:0x00007f8802037d20 @location=:airport, @status=:landed>] 
+2.6.5 :009 > airport.takeoff
+ => "A plane has left the airport" 
+2.6.5 :010 > airport.takeoff
+ => "A plane has left the airport" 
+``` 
 
 ## Known bugs
 
