@@ -27,8 +27,12 @@ RSpec.describe Airport do
       subject.capacity.times { subject.land Plane.new}
       expect{subject.land Plane.new}.to raise_error "The airport has reached landing capacity"
     end 
-    
 
+    it 'prevents landing when stormy' do
+      plane = double(:plane)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{subject.land(plane)}.to raise_error 'Cannot land when weather is stormy'
+    end 
   end 
 
   describe '#take_off' do 

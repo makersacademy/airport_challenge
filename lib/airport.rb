@@ -12,7 +12,8 @@ attr_accessor :capacity, :plane, :planes_in_the_airport, :stormy
   # User story 1 : the controller can instruct planes to land
   # User story 3 : prevent landing when capacity has reached
   def land(plane)
-    fail "The airport has reached landing capacity" if @planes_in_the_airport.length >= @capacity
+    fail 'The airport has reached landing capacity' if @planes_in_the_airport.length >= @capacity
+    fail 'Cannot land when weather is stormy' if stormy?
     @planes_in_the_airport << plane
     @plane = plane
   end 
@@ -22,10 +23,13 @@ attr_accessor :capacity, :plane, :planes_in_the_airport, :stormy
     fail 'Cannot take off when weather is stormy' if stormy?
     @planes_in_the_airport.pop
   end 
-  # User 5 & 6 : prevent landing and taking off when stormy
+  
+  # User story 5 & 6 : prevent landing and taking off when stormy
+  # Using random number generator to assign a random number to weather
+  # in this case there is 5% (1/20) of the chance to be stormy, whick will prevent landing and taking off
   def stormy?
-    generator = rand(1..10)
-    if generator == 10
+    weather = rand(1..20)
+    if weather == 17
       @stormy = true
     else
       @sunny = false
