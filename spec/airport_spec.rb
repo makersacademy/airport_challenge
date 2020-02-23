@@ -1,6 +1,5 @@
 require 'airport'
 require 'plane'
-require 'weather'
 
 describe Airport do
 
@@ -8,7 +7,15 @@ describe Airport do
 
   let(:airport) { described_class.new }
   let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
+
+
+  it "starts with no planes in it" do
+    expect(subject.plane_count).to eq 0
+  end
+
+  before do
+    allow(airport).to receive(:stormy?) {false}
+  end
 
   context '#land_plane'
 
@@ -20,12 +27,14 @@ describe Airport do
     end
 
     it "raises an error if airport is full" do
-      10.times {airport.land_plane(plane)}
-      expect{airport.land_plane(plane)}.to raise_error("There is no space!")
+      Airport::DEFAULT_CAPACITY.times {airport.land_plane(plane)}
+      expect{airport.land_plane(plane)}.to raise_error("Airport full, there is no space!")
     end
 
     it "raises an error if weather is stormy" do
-      expect{airport.land_plane(plane)}.to raise_error("Too stormy to land!") if weather.stormy?
+      expect(airport).to receive(:stormy?).and_return(true)
+      plane.land?
+      expect{airport.land_plane(plane)}.to raise_error("Too stormy to land!")
     end
 
 
@@ -39,9 +48,14 @@ describe Airport do
     end
 
     it "raises and error if there are no planes" do
-      expect{airport.take_off(plane)}.to raise_error "There are no planes!"
+      expect{airport.take_off(plane)}.to raise_error "Airport empty, there are no planes!"
     end
 
-    
+    it "raises an error if weather is stormy" do
+      expect(airport).to receive(:stormy?).and_return(true)
+      plane.take_off
+      expect{airport.take_off(plane)}.to raise_error("Too stormy to take off!")
+    end
+
 
 end

@@ -1,15 +1,22 @@
 require_relative 'plane'
 
-# DEFAULT_CAPACITY = 10
-
 class Airport
-  def initialize(capacity = 10)
+
+  attr_reader :planes
+  attr_accessor :capacity
+
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = stormy?
   end
 
   def land_plane(plane)
-    raise "There is no space!" if full?
+    raise "Airport full, there is no space!" if full?
+    raise "Too stormy to land!" if stormy?
+    plane.land?
     @planes << plane
   end
 
@@ -18,22 +25,24 @@ class Airport
   end
 
   def take_off(plane)
-  raise "There are no planes!" if empty?
+    raise "Too stormy to take off!" if stormy?
+    raise "Airport empty, there are no planes!" if empty?
+    plane.take_off
     @planes.delete(plane)
+  end
+
+  def stormy?
+    rand(1..10) > 8
   end
 
   private
 
   def full?
-    if @planes.count >= 10
-      return true
-    end
+    @planes.count == @capacity
   end
 
   def empty?
-    if @planes.count == 0
-      return true
-    end
+    @planes.count == 0
   end
 
 end
