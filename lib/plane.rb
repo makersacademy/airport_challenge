@@ -1,4 +1,4 @@
-class Airplane
+class Plane
   attr_accessor :landed
 
   def initialize(status = true)
