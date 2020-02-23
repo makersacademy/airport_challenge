@@ -119,7 +119,7 @@ end
 
 If i run rspec i will obtain an error
 
-ailures:
+Failures:
 
   1) Airport is expected to respond to #land with 1 argument
      Failure/Error: it { is_expected.to respond_to(:land).with(1).argument }
@@ -128,3 +128,33 @@ ailures:
 
 Finished in 0.01087 seconds (files took 0.13604 seconds to load)
 1 example, 1 failure
+
+This error is telling me that there is one Airport object, expected to respond to the land method with 1 argument, and that is not hapening at the moment.
+
+To resolve that now i will implement the code in airport.rb and in plane.rb
+
+- aiport.rb
+  def land(plane)
+    Plane.new
+  end
+
+- plane.rb
+
+  class Plane
+  end
+
+  With those to implementations and using require_relative 'plane' in airport.rb i should pass the unit test at this moment. (It should, and it does.)
+
+## STEP 3
+
+Now i have a program who recognise an airport and planes, and nicely enough ,an airport where it is possible to land, which is a convenient feature for an airport.
+
+The next user story is this:
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+From that story i extract the conclusion that the client not only needs planes to land, the airport board of directors are a little picky and they want also the planes to take off.
+The relevant verb in this story is 'takeoff' , and the nouns are still Airport and Plane. There is another element, the client want to confirm that the plane which just have taken off is no longer in the airport.
+The approach i am gonna take is to create some storage element, like an hangar. That Hangar, could be coded in the form of an array, where i can check if the plane is in the hangar or not.
