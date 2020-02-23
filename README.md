@@ -1,13 +1,13 @@
-Airport Challenge
+Airport Challenge (work in progress)
 =================
 
 A ruby program created to simulate the flow of planes to and from an airport with planes taking off or landing in good weather.
 
-###To run tests
+## To run tests
 
 Clone or download the repository and then run the following for unit or feature tests.
 
-##To run unit tests with RSpec
+## To run unit tests with RSpec
 
 Navigate to the parent directory and run:
 
@@ -15,7 +15,7 @@ Navigate to the parent directory and run:
 rspec
 ```
 
-###To run feature test
+## To run feature test
 
 Navigate to the same file location and run
 
@@ -23,16 +23,16 @@ Navigate to the same file location and run
 ruby feature_test.rb
 ```
 
-##User stories addressed:
+## User stories addressed:
 
-####User story
+#### User story
 
 ```
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
-####Feature test
+#### Feature test
 
 ```
 airport = Airport.new
@@ -42,14 +42,14 @@ plane.land
 
 To test this behaviour in my unit test I checked to see if the plane.land command would raise an error.
 
-####User Story
+#### User Story
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
-####Feature test
+#### Feature test
 
 ```
 airport = Airport.new
@@ -66,17 +66,17 @@ plane = Plane.new
 plane.take_off
 airport.empty?
 ```
-This should return the value true as the plane is no longer there. I think this second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
+This should return the value true as the plane is no longer there. This second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
 
-####Results of the feature test:
+#### Results of the feature test:
 
 ```
 feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f82d80fef30> (NoMethodError)
 ```
 
-The next unit tests will now test that the method doesn't raise this error and that the method empty lets the controller see if the plane is in the airport.
+The next unit tests will now test that the method doesn't raise this error and that the method empty? lets the controller see if the plane is in the airport.
 
-####User Story
+#### User Story
 
 ```
 As an air traffic controller
@@ -84,7 +84,7 @@ To ensure safety
 I want to prevent landing when the airport is full
 ```
 
-####Feature test
+#### Feature test
 
 ```
 airport = Airport.new
@@ -97,7 +97,7 @@ This should throw an error and stops the second plane from landing. Getting the 
 
 Initializing the airport in the plane class itself will cause more issues down the line, but it was the most simple code required to pass the test and throw the needed error.
 
-####User story
+#### User story
 
 ```
 As the system designer
@@ -105,7 +105,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-####Feature tests
+#### Feature tests
 
 The default capacity for the airport will be 5 planes.
 
@@ -140,6 +140,8 @@ plane = Plane.new
 5.times { airport.land(plane) }
 ```
 
+And it does. 
+
 This one should not:
 
 ```
@@ -148,7 +150,7 @@ plane = Plane.new
 5.times { airport.land(plane) }
 ```
 
-####Result is:
+#### Result is:
 
 ```
 Makerss-Air:airport_challenge student$ ruby feature_test.rb
@@ -161,7 +163,7 @@ Traceback (most recent call last):
 ```
 I then refactored my tests to avoid repeating the "airport is full error". Other unit tests were updated to respond to the updated methods land and take_off being used by the airport class and taking plane as a parameter.
 
-####User Story
+#### User Story
 
 ```
 As an air traffic controller
@@ -169,7 +171,7 @@ To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 
-####Feature test
+#### Feature test
 
 ```
 airport = Airport.new()
@@ -204,7 +206,7 @@ Makerss-Air:airport_challenge student$
 
 ```
 
-####User Story
+#### User Story
 
 ```
 As an air traffic controller
@@ -212,7 +214,7 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-####Feature test
+#### Feature test
 
 ```
 airport = Airport.new()
@@ -221,9 +223,9 @@ airport.is_it_stormy?
 airport.land(plane)
 ```
 
-To maintain the DRY principle I created a new method that would be called during landing to stop planes when the weather is bad.
+To maintain the DRY principle I created a new method that would be called during landing to stop planes when the weather is bad...but changed it later during refactoring. Having the 2 exceptions in the one method keeps it contained according to the SRP. Land should let planes land, take-off lets them take-off so the errors should be kept here and not put in a new method. 
 
-####Results from feature test:
+#### Results from feature test:
 
 ```
 Makerss-Air:airport_challenge student$ ruby feature_test.rb
@@ -234,15 +236,15 @@ Traceback (most recent call last):
 Makerss-Air:airport_challenge student$
 ```
 
-##Updating exceptions
+## Updating exceptions
 
-Now that all of the user stories are catered to I want to expand my unit and feature tests to ensure that the weather conditions can be changed. Meeting the conditions of these specifications:
+Now that all of the user stories have been applied and the code refactored I want to expand my unit and feature tests to ensure that the weather conditions can be changed. Meeting the conditions of these specifications:
 
 >You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 >Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-###Weather tests
+### Weather tests
 
 ```
 airport = Airport.new()
@@ -256,7 +258,7 @@ airport.it_stormy?
 airport.take_off(plane)
 
 ```
-###Results show errors firing:
+### Feature test shows errors firing:
 
 ```
 Makerss-Air:airport_challenge student$ ruby feature_test.rb
@@ -283,8 +285,8 @@ Unit tests at first were not able to limit the random weather conditions to prop
 
 Fixed this issue with the use of a double stub and controlling the messages it could receive.
 
-###Future additions
+### Future additions
 
-To make the code more robust weather conditions could be set up as an external class to apply the DRY principle. The plane class would also need to be tested to make sure that a plane knowns when it is flying and when it is in the airport to meet the second part of the edge case conditions.
+To make the code more robust weather conditions could be set up as an external class to apply the DRY principle. The plane class would also need to be tested to make sure that a plane knowns when it is flying and when it is in the airport to meet the second part of the edge case conditions. A storing array within the plane class could also ensure that individual planes are being stored rather than just counted, which is what the code is currently doing. 
 
 To be continued....
