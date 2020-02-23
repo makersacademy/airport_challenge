@@ -67,15 +67,21 @@ or
 
 airport = Airport.new(50)
 ```
-User Story 5
+### User Story 5
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 ```
-User Story 6
+### User Story 6
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+```
+User Story 6 - Feature Test
+```
+airport = Airport.new 
+plane = Plane.new
+airport.land(plane) # if weather condition is stormy, then should return error message 'Bad weather, cannot take off'
 ```
