@@ -1,8 +1,8 @@
 require_relative 'plane'
 require_relative 'weather'
 
-class Airport
-  
+class Airport 
+
   attr_reader :hanger, :capacity
   
   CAPACITY = 20
@@ -30,7 +30,7 @@ class Airport
   private
 
   def full?
-    @hanger.length == @capacity
+    @hanger.length >= @capacity
   end
 
   attr_reader :weather
