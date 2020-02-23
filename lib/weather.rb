@@ -1,9 +1,9 @@
-#class WeatherReport
+# class WeatherReport
 
-  def current_weather
+  def current_weather(airport)
     # 0 - 5 where 0 is stormy, 1 - 5 is sunny
-    weather = rand(6)
-    weather.zero? ? "stormy" : "sunny"
+    current_weather = rand(6)
+    current_weather.zero? ? "stormy" : "sunny"
   end
 
-#ßend
+# end

@@ -41,4 +41,5 @@ describe Airport do
       expect(subject.full?).to be false
     end
   end
+
 end
