@@ -42,4 +42,10 @@ describe Airport do
     end
   end
 
+  describe "#weather" do
+    it "Returns weather conditions on the airport" do
+      weather_report = double("weather_report", :current_weather => "sunny")
+      expect(subject.weather(weather_report)).to eq("sunny")
+    end
+  end
 end

@@ -1,5 +1,4 @@
 require_relative "weather"
-
 class Airport
 
   attr_reader :name
@@ -24,6 +23,12 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def weather(weather_report)
+    # argument weather_report passed as the parameter being the result of calling
+    # current_weather(airport) method on WeatherReport instance whats given us random weather
+    weather_report.current_weather(self)
   end
 
 end
