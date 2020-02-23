@@ -1,7 +1,12 @@
 # Airport Challenge
 Makers weekend challenge (week 1)
 
-## Aim
+**Tech used**:
+Ruby
+Rspec
+Rubocop
+
+## Project aim
 To write software to control the flow of planes at an airport.
 
 ### Additional aims
@@ -10,9 +15,9 @@ To write software to control the flow of planes at an airport.
 * Planes cannot land if the airport is full.
 
 **Edge cases**
+* Planes that are landed cannot land again and must be in an airport.
 * Ensuring that planes can only take off from airports they are in.
-* Planes that are already flying cannot take off and/or be in an airport
-* Planes that are landed cannot land again and must be in an airport
+* Planes that are already flying cannot take off and/or be in an airport.
 
 **User Stories**
 ```
@@ -42,7 +47,11 @@ I want to prevent landing when weather is stormy
 ```
 
 ## Installation instructions
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle`
-3. When the installation completes, run `bundle`
+1. Requires Ruby. Instructions to install are [here](https://www.ruby-lang.org/en/documentation/installation/).
+2. Fork this repo, and clone to your local machine
+3. Run the command `gem install bundle`
+4. When the installation completes, run `bundle`
 
+## Known bugs
+
+* Second and third edge cases untested/uncoded yet
