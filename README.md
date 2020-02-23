@@ -9,7 +9,7 @@ Rubocop
 ## Project aim
 To write software to control the flow of planes at an airport.
 
-### Additional aims
+### Primary aims
 * Planes can land and take off provided that the weather is sunny.
 * If the weather is stormy the planes cannot take off.
 * Planes cannot land if the airport is full.
