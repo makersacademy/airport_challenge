@@ -1,8 +1,10 @@
 class Airport
-	DEFAULT_CAPACITY = 1
-
-	def initialize
-		@capacity = DEFAULT_CAPACITY
+	DEFAULT_CAPACITY = 5
+	attr_reader :planes, :capacity, :weather
+	def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+		@capacity = capacity
+		@planes = []
+		@weather = weather
 	end
 
 	def change_capacity(num)
@@ -10,12 +12,20 @@ class Airport
 	end
 
 	def land(plane)
-		fail 'this airport is full!' if @plane
-		@plane = plane
+		fail 'this airport is full!' if @planes.length >= @capacity
+		fail 'You cant land! The weather is stormy!' if @weather.stormy?
+		fail 'This plane has already landed.' if @planes.include? plane
+		@planes << plane
+		@planes[-1]
 	end
 
 	def take_off(plane)
-		'The plane has taken off and is no longer in the airport'
+		fail 'This plane is already flying.' unless @planes.include? plane
+		fail 'You cant take off! The weather is stormy!' if @weather.stormy?
+		if @planes.include? plane
+			@planes.pop
+			'The plane has taken off and is no longer in the airport' 
+		end
 	end
 end
 
@@ -24,7 +34,8 @@ class Plane
 end
 
 class Weather
-	def initialize
-		@weather = ['sunny', 'stormy']
+	def stormy?
+		rand(6) == 5
 	end
 end
+
