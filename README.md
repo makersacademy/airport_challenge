@@ -29,7 +29,7 @@ irb -r ./lib/airport.rb
 ```
 heathrow = Airport.new(100)
 ```
-This creates an airport called Heathrow with a capacity of 100 planes. If no capacity is set the default
+This creates an airport with a capacity of 100 planes. If no capacity is set the default
 capacity of the airport will be 10.
 
 3. Create some planes:
@@ -50,5 +50,5 @@ heathrow.take_off(boeing_747)
 heathrow.take_off(airbus_A340)
 ```
 
-At times the weather, the weather will be stormy. During these conditions no planes will be able
+At times the weather will be stormy. During these conditions no planes will be able
 to land or take off from the airport.
