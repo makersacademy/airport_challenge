@@ -62,6 +62,10 @@ User Story 4 - Feature Test
 airport = Airport.new
 airport.capacity # returns default set at 100
 airport.capacity = 50 # allow system designer to override default capacity
+
+or 
+
+airport = Airport.new(50)
 ```
 User Story 5
 ```

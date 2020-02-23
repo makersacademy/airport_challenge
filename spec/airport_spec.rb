@@ -43,6 +43,14 @@ describe Airport do
       end
       expect { subject.land(plane) }.to raise_error 'Airport full'
     end
+
+    it 'has variable capacity' do
+      airport = Airport.new(20)
+      20.times do
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error 'Airport full'
+    end
   end
 
 end
