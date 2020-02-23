@@ -2,23 +2,29 @@ require_relative "plane"
 
 class Airport
 
-  attr_reader :plane
+  MAX_CAPACITY = 20
+
+  attr_reader :planes
   attr_accessor :capacity
 
-  def initialize(capacity = 20)
-    @plane = []
+  def initialize(capacity = MAX_CAPACITY)
+    @planes = []
     @capacity = capacity 
   end
 
-  def land_plane(plane)
-    fail "We have too many planes captain!" if plane.length == capacity
-    plane.landed = true
+  def land_plane(airplane)
+    fail "We have too many planes captain!" if planes.length == capacity
+    fail "We have an airplane" if airplane.landed
+    airplane.landed = true
+    planes << airplane
   end
 
-  def takeoff_plane(plane)
+  def takeoff_plane(airplane)
+    fail "Plane has already left" unless airplane.landed
   end
 
-  def check_planes(plane)
+  def check_planes(airplane)
+    
   end
 
 end
