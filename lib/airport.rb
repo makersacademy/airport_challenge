@@ -13,25 +13,25 @@ class Airport
   end
 
   def land(plane)
-    # not passing SRP atm
-    raise "Airport has reached capacity: Cannot land plane" if @planes.size == @capacity
+    raise "Airport has reached capacity: Cannot land plane" if at_capacity?
     raise "It is unsafe to land due to stormy conditions" if @weather.stormy?
+    raise "This plane is already in the airport!" if @planes.include? plane
 
     @planes.push(plane)
   end
 
-  def take_off
-    # not passing SRP atm
+  def take_off(plane)
     raise "There are no planes in the airport!" if @planes.size.zero?
     raise "It is unsafe to take off due to stormy conditions" if @weather.stormy?
+    raise "This plane is not in the airport" unless @planes.include? plane
 
-    plane = @planes.pop
+    @planes.delete plane
     "#{plane} is no longer in the airport"
   end
 
-  # def weather?
-  #   return 'stormy' if rand(10) > 8
-  #   'sunny'
-  # end
+  private
+  def at_capacity?
+    @planes.size == @capacity
+  end
 
 end

@@ -28,23 +28,35 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.land @plane }.to raise_error "It is unsafe to land due to stormy conditions"
     end
+    it "prevents landing if plane is already in airport" do
+      subject.instance_variable_set(:@planes, [@plane])
+      expect { subject.land @plane }.to raise_error "This plane is already in the airport!"
+    end
   end
 
   describe '#take_off' do
 
     before(:each) { subject.instance_variable_set(:@planes, [@plane]) }
 
-    it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+    it "plane is not in airport once it has taken off" do
+      subject.instance_variable_set(:@planes, [Plane.new, @plane, Plane.new])
+      subject.take_off(@plane)
+      expect(subject.planes).not_to include @plane
+    end
     it "confirms that plane is no longer in the airport" do
-      expect(subject.take_off).to match(/is no longer in the airport/)
+      expect(subject.take_off(@plane)).to match(/is no longer in the airport/)
     end
     it "will return an error if there are no planes in the airport" do
       subject.instance_variable_set(:@planes, [])
-      expect { subject.take_off }.to raise_error "There are no planes in the airport!"
+      expect { subject.take_off(@plane) }.to raise_error "There are no planes in the airport!"
     end
     it "will return an error in stormy conditions" do
       allow(subject.weather).to receive(:stormy?) { true }
-      expect { subject.take_off }.to raise_error "It is unsafe to take off due to stormy conditions"
+      expect { subject.take_off(@plane) }.to raise_error "It is unsafe to take off due to stormy conditions"
+    end
+    it "will return an error if plane is not in the airport" do
+      expect { subject.take_off(Plane.new) }.to raise_error "This plane is not in the airport"
     end
   end
 
