@@ -37,18 +37,22 @@ describe Airport do
 
     it "removes a plane in the hanger when it takes off" do
       subject.land(plane)
-      expect { subject.takeoff }.to change { subject.hanger.length }.by(-1)
+      expect { subject.takeoff(plane) }.to change { subject.hanger.length }.by(-1)
     end
     it "gives a message confirming the plane has left" do
       subject.land(plane)
-      expect(subject.takeoff).to eq "A plane has left the airport"
+      expect(subject.takeoff(plane)).to eq "A plane has left the airport"
     end
     it "raises an error if the weather is too stormy to takeoff" do
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.takeoff }.to raise_error("It's too stormy to take off")
+      expect { subject.takeoff(plane) }.to raise_error("It's too stormy to take off")
     end
     it "raises an error if there are no planes in the hanger" do 
-      expect { subject.takeoff }.to raise_error("The hanger is empty")
+      expect { subject.takeoff(plane) }.to raise_error("The hanger is empty")
+    end
+    it "raises error if plane tries to takeoff but is already flying" do
+      allow(plane).to receive(:landed).and_return(false)
+      expect { subject.takeoff(plane) }.to raise_error("Plane is already flying")
     end
   end
 
