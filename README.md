@@ -20,7 +20,7 @@ and take off.
 
 Quick Start
 -------
-1. Launch application into irb session:
+1. Launch application into irb:
 ```
 irb -r ./lib/airport.rb
 ```
@@ -35,7 +35,7 @@ capacity of the airport will be 10.
 3. Create some planes:
 ```
 boeing_747 = Plane.new
-airbus_A340 = Plane.new
+airbus_A380 = Plane.new
 ```
 
 4. Instruct the planes to land in your airport
