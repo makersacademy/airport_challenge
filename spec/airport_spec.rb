@@ -14,7 +14,7 @@ describe Airport do
     end
 
     it "raises error when airport full" do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error "Airport full"
     end
 
@@ -62,7 +62,7 @@ describe Airport do
   describe 'initialization' do
     it 'defaults capacity' do
       described_class::DEFAULT_CAPACITY.times do
-        subject.land(plane)
+        subject.land(Plane.new)
       end
       expect { subject.land(plane) }.to raise_error 'Airport full'
     end
@@ -74,7 +74,7 @@ describe Airport do
     it 'has variable capacity' do
       airport = Airport.new(20)
       20.times do
-        airport.land(plane)
+        airport.land(Plane.new)
       end
       expect { airport.land(plane) }.to raise_error 'Airport full'
     end

@@ -62,9 +62,7 @@ User Story 4 - Feature Test
 airport = Airport.new
 airport.capacity # returns default set at 100
 airport.capacity = 50 # allow system designer to override default capacity
-
 or 
-
 airport = Airport.new(50)
 ```
 ### User Story 5
@@ -72,6 +70,12 @@ airport = Airport.new(50)
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+```
+User Story 5 - Feature Test
+```
+airport = Airport.new 
+plane = Plane.new
+airport.take_off(plane) # if weather condition is stormy, then should return error message 'Bad weather, cannot take off'
 ```
 ### User Story 6
 ```
@@ -83,5 +87,5 @@ User Story 6 - Feature Test
 ```
 airport = Airport.new 
 plane = Plane.new
-airport.land(plane) # if weather condition is stormy, then should return error message 'Bad weather, cannot take off'
+airport.land(plane) # if weather condition is stormy, then should return error message 'Bad weather, cannot land'
 ```
