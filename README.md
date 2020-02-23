@@ -2,8 +2,8 @@
 Makers weekend challenge (week 1)
 
 **Tech used**:
-Ruby
-Rspec
+Ruby, 
+Rspec, 
 Rubocop
 
 ## Project aim
