@@ -1,40 +1,25 @@
-Airport Challenge
-=================
+# Airport Challenge
+Makers weekend challenge (week 1)
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+**Tech used**:
+Ruby, 
+Rspec, 
+Rubocop
 
-```
+## Project aim
+To write software to control the flow of planes at an airport.
 
-Instructions
----------
+### Primary aims
+* Planes can land and take off provided that the weather is sunny.
+* If the weather is stormy the planes cannot take off.
+* Planes cannot land if the airport is full.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+**Edge cases**
+* Planes that are landed cannot land again and must be in an airport.
+* Ensuring that planes can only take off from airports they are in.
+* Planes that are already flying cannot take off and/or be in an airport.
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
+**User Stories**
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -61,30 +46,64 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Installation instructions
+1. Requires Ruby. Instructions to install are [here](https://www.ruby-lang.org/en/documentation/installation/).
+2. Fork this repo, and clone to your local machine
+3. Run the command `gem install bundle`
+4. When the installation completes, run `bundle`
+5. This software runs in irb
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+**Example run-through**
+```
+>> irb
+2.6.5 :001 > require './airport.rb'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007f880110b040 @hanger=[], @capacity=20, @weather=#<Weather:0x00007f880110afa0>> 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007f8801112638 @location=:sky, @status=:flying> 
+2.6.5 :004 > airport.land(plane)
+ => :landed 
+2.6.5 :005 > airport.land(plane)
+ => "Plane is already in the hanger" 
+2.6.5 :006 > plane = Plane.new
+ => #<Plane:0x00007f8802037d20 @location=:sky, @status=:flying> 
+2.6.5 :007 > airport.land(plane)
+ => :landed 
+2.6.5 :008 > p airport.hanger
+[#<Plane:0x00007f8801112638 @location=:airport, @status=:landed>, #<Plane:0x00007f8802037d20 @location=:airport, @status=:landed>]
+ => [#<Plane:0x00007f8801112638 @location=:airport, @status=:landed>, #<Plane:0x00007f8802037d20 @location=:airport, @status=:landed>] 
+2.6.5 :009 > airport.takeoff
+ => "A plane has left the airport" 
+2.6.5 :010 > airport.takeoff
+ => "A plane has left the airport" 
+``` 
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## Known bugs
 
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* All tests pass however for the software to run properly in irb line 18 and line 24 in `airport.rb` need to be changed from:
+```
+line 18 - raise "It's too stormy to land" if stormy?
+line 24 - raise "It's too stormy to take off" if stormy?
+```
+to:
+```
+line 18 - raise "It's too stormy to take off" if @weather.stormy?
+line 24 - raise "It's too stormy to take off" if @weather.stormy?
+```
+I believe I've written the tests wrong in these two places - specifically at `(:stormy?)`:
+```
+describe '#land' do
+  it "raises an error if the weather is too stormy to land" do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(plane) }.to raise_error("It's too stormy to land")
+  end
+end
+describe '#takeoff' do
+  it "raises an error if the weather is too stormy to takeoff" do
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.takeoff }.to raise_error("It's too stormy to take off")
+  end
+end
+```
+If I can change these tests to take into account `@weather.stormy?` it should pass all tests and run in irb without a problem.
