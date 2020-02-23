@@ -42,6 +42,10 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
     end
 
+    it "returns error is not in this airport" do
+      expect { subject.take_off(Plane.new) }.to raise_error "Plane not in airport"
+    end
+
     it "returns plane" do
       expect(subject.take_off(plane)).to eq plane
     end
