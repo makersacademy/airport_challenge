@@ -3,11 +3,11 @@ require_relative 'plane'
 
 class Airport
   CAPACITY = 3
-  attr_accessor :planes
-  attr_accessor :capacity
+  attr_accessor :planes, :weather, :capacity
   def initialize
     @planes = []
     @capacity = CAPACITY
+    @weather = weather
   end
 
   def land(plane, weather)
