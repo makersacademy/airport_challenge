@@ -81,4 +81,28 @@ I want to prevent landing when weather is stormy
 
 ## Known bugs
 
-* Second and third edge cases untested/uncoded yet
+* Tests pass however for the software to run properly in irb line 18 and line 24 in `airport.rb` need to be changed from:
+```
+line 18 - raise "It's too stormy to land" if stormy?
+line 24 - raise "It's too stormy to take off" if stormy?
+```
+to:
+```
+line 18 - raise "It's too stormy to take off" if @weather.stormy?
+line 24 - raise "It's too stormy to take off" if @weather.stormy?
+```
+I believe I've written the tests wrong in these two places - specifically at `(:stormy?)`:
+```
+describe '#land' do
+  it "raises an error if the weather is too stormy to land" do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(plane) }.to raise_error("It's too stormy to land")
+  end
+end
+describe '#takeoff' do
+  it "raises an error if the weather is too stormy to takeoff" do
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.takeoff }.to raise_error("It's too stormy to take off")
+  end
+end
+```
