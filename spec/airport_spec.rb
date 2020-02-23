@@ -5,7 +5,12 @@ describe Airport do
   let (:plane) { Plane.new }  
 
   it 'accepts capacity argument' do
-    expect(Airport.new(25).capacity).to eq 25
+    expect(Airport.new(100).capacity).to eq 100
+  end
+
+  it 'weather stormy or not' do
+    allow(subject).to receive(:random_states) { :stormy }
+    expect(subject.stormy?).to eq true
   end
 
   it 'airport capcacity check' do
@@ -17,12 +22,12 @@ describe Airport do
   end  
 
   describe '#TakeOff' do
-    it 'instruct to takeoff' do
+    it 'does not allow plane to take off' do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error 'Weather is stormy,cannot takeoff'
     end
 
-    it 'takeoff success' do
+    it 'takeoff successful' do
       allow(subject).to receive(:stormy?) { false }
       subject.take_off(plane)
       expect(plane.state).to eq(:flying)
@@ -33,7 +38,7 @@ describe Airport do
       plane.state = :flying
       expect { subject.take_off(plane) }.to raise_error 'plane already flying'
     end
-    it 'take off plane from airpoet updating planes present at airport' do
+    it 'take off plane from airport updating planes present at airport' do
       allow(subject).to receive(:stormy?) { false }
       plane.state = :flying
       subject.land(plane) 
@@ -44,22 +49,22 @@ describe Airport do
   
 
   describe '#Land' do
-    it 'land failed due to weather' do
+    it 'does not allow plane to land' do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error 'Weather is stormy,cannot land'
     end
-    it 'land success' do
+    it 'landing successful' do
       allow(subject).to receive(:stormy?) { false }
       plane.state = :flying
       subject.land(plane)
       expect(plane.state).to eq(:landed)
     end
-    it 'land failure due to plane state' do
+    it 'landing failure due to plane state' do
       allow(subject).to receive(:stormy?) { false }
       plane.state = :landed
       expect { subject.land(plane) }.to raise_error 'plane already landed'
     end
-    it 'land plane at airport adding to planes present at airport' do
+    it 'landing plane at airport adding planes present at airport' do
       allow(subject).to receive(:stormy?) { false }
       plane.state = :flying
       subject.land(plane)

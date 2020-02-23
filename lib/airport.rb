@@ -1,9 +1,6 @@
 require 'weather'
 require 'plane'
 class Airport
-    private
-    attr_reader :weather
-    public
     attr_accessor :planes
     attr_accessor :capacity
     include Weather

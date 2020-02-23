@@ -1,10 +1,8 @@
 require './lib/plane'
-# require'./lib/airport'
-# require'./spec/spec_helper'
 
 describe 'Plane' do
     subject {Plane.new}
-  it 'check already landed' do
+  it 'check  already landed' do
     expect{subject.land}.to raise_error 'plane already landed'
   end
   it 'check state to land' do
