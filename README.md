@@ -81,7 +81,7 @@ I want to prevent landing when weather is stormy
 
 ## Known bugs
 
-* Tests pass however for the software to run properly in irb line 18 and line 24 in `airport.rb` need to be changed from:
+* All tests pass however for the software to run properly in irb line 18 and line 24 in `airport.rb` need to be changed from:
 ```
 line 18 - raise "It's too stormy to land" if stormy?
 line 24 - raise "It's too stormy to take off" if stormy?
@@ -106,3 +106,4 @@ describe '#takeoff' do
   end
 end
 ```
+If I can change these tests to take into account `@weather.stormy?` it should pass all tests and run in irb without a problem.
