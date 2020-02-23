@@ -21,10 +21,17 @@ class Airport
 
   def takeoff_plane(airplane)
     fail "Plane has already left" unless airplane.landed
+    return airplane if check_planes(airplane) == airplane
+    fail "Plane ain't here"
   end
 
   def check_planes(airplane)
-    
+    planes.each_with_index do | check, index |
+      next unless check == airplane
+      planes.delete_at(index)
+      airplane.landed = false
+      return airplane
+    end
   end
 
 end
