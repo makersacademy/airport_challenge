@@ -51,7 +51,7 @@ I want to prevent landing when weather is stormy
 2. Fork this repo, and clone to your local machine
 3. Run the command `gem install bundle`
 4. When the installation completes, run `bundle`
-5. This software runs in irb
+5. This software runs in irb (note the known bug below before running the program in irb)
 
 **Example run-through**
 ```
@@ -107,3 +107,7 @@ describe '#takeoff' do
 end
 ```
 If I can change these tests to take into account `@weather.stormy?` it should pass all tests and run in irb without a problem.
+
+## Further updating
+* I would change the takeoff method to delete planes at their index position rather than removing only the last plane to enter the hanger.
+* I would allow the planes to have specific inputted names to allow for easier identification when in the hanger, flying and taking off eg: `plane = Plane.new("Qantas")`.
