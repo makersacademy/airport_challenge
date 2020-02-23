@@ -1,4 +1,4 @@
-class WeatherReport
+#class WeatherReport
 
   def current_weather
     # 0 - 5 where 0 is stormy, 1 - 5 is sunny
@@ -6,4 +6,4 @@ class WeatherReport
     weather.zero? ? "stormy" : "sunny"
   end
 
-end
+#ßend
