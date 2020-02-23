@@ -2,6 +2,5 @@ require '/Users/isabelleben/Projects/weekend-challenges/week1/airport_challenge/
 require '/Users/isabelleben/Projects/weekend-challenges/week1/airport_challenge/lib/plane.rb'
 
 airport = Airport.new
-plane = Plane.new
 
-p airport.take_off
+p plane = airport.take_off

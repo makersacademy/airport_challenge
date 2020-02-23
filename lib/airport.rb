@@ -1,8 +1,19 @@
+require_relative 'plane'
+
 class Airport
-  def land_plane(plane)
-    plane
+  def initialize
+    @planes = []
   end
 
-  def take_off
-  end  
+  def land_plane(plane)
+    @planes << plane
+  end
+
+  def plane_count
+    @planes.count
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)  
+  end
 end
