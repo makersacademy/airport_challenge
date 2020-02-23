@@ -5,7 +5,7 @@ require 'weather'
    let(:plane) { Plane.new }
    let(:airport) { Airport.new }
    context '#land' do
-     it { is_expected.to respond_to (:land) }
+     it { is_expected.to respond_to :land }
 
      it 'plane starts on the ground' do
        plane = Plane.new
@@ -15,7 +15,7 @@ require 'weather'
      it 'lands the plane' do
        plane = Plane.new
        plane.land
-       expect(plane.flying).to include false
+       expect(plane.flying).to  false
      end
 
      it 'lands 1 plane in an airport' do
