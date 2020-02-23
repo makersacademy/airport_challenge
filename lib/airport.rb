@@ -1,3 +1,6 @@
+require_relative './plane.rb'
+require_relative './weather.rb'
+
 class Airport
 	DEFAULT_CAPACITY = 5
 	attr_reader :planes, :capacity, :weather
@@ -15,27 +18,19 @@ class Airport
 		fail 'this airport is full!' if @planes.length >= @capacity
 		fail 'You cant land! The weather is stormy!' if @weather.stormy?
 		fail 'This plane has already landed.' if @planes.include? plane
+
 		@planes << plane
 		@planes[-1]
 	end
 
 	def take_off(plane)
 		fail 'This plane is already flying.' unless @planes.include? plane
+
 		fail 'You cant take off! The weather is stormy!' if @weather.stormy?
-		if @planes.include? plane
-			@planes.pop
-			'The plane has taken off and is no longer in the airport' 
-		end
+
+		@planes.delete(plane) if @planes.include? plane
+			  
+		'The plane is no longer in the airport' 
+
 	end
 end
-
-class Plane
-
-end
-
-class Weather
-	def stormy?
-		rand(6) == 5
-	end
-end
-
