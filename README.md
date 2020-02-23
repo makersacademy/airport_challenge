@@ -280,3 +280,5 @@ Makerss-Air:airport_challenge student$
 ```
 
 Tests currently not able to apply or limit the random weather conditions to properly set the test conditions.
+
+Fixed this issue with the use of a double stub and controlling the messages it could receive. 
