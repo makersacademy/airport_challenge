@@ -17,8 +17,20 @@ it "records - plane landed" do
 	expect(subject.plane).to eq plane
 end
 
-context "allows plane to take off" do
-it { is_expected.to respond_to :plane_take_off }
+describe "#plane_take_off" do 
+
+it "does not allow plane take off in stormy weather conditions" do
+	plane = double(:plane, stormy?: true)
+	subject.plane_land plane 
+	expect { subject.plane_take_off }.to raise_error "Abort: Bad weather conditions!"
+end
+
+# it "permits take off in clear weather conditions" do
+# 	plane = double(:plane, stormy?: false)
+# 	subject.plane_land plane
+#  	expect(subject.plane_take_off).to eq plane
+# end
+
 end
 
 end
