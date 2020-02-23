@@ -1,6 +1,5 @@
 require_relative 'plane'
 
-
 class Airport
 
   DEFAULT_CAPACITY = 10
@@ -13,7 +12,7 @@ class Airport
   end
 
   def land(plane)
-
+    fail 'Aiport is closed for landing due to the storm' if storm?
     fail 'Airport is full' if full?
 
     @planes << plane
@@ -21,7 +20,7 @@ class Airport
   end
 
   def takeoff
-
+    fail 'Airport closed for take off due to the storm' if storm?
 
     @planes.pop
 
@@ -30,9 +29,8 @@ class Airport
 
   def storm?
     storm = rand(1..10)
-    if storm == 4
-      return true
-    end
+    true if storm == 4
+
   end
 
   private
