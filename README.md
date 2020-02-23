@@ -1,4 +1,4 @@
-Airport Challenge
+Airport Challenge (work in progress)
 =================
 
 A ruby program created to simulate the flow of planes to and from an airport with planes taking off or landing in good weather.
@@ -66,7 +66,7 @@ plane = Plane.new
 plane.take_off
 airport.empty?
 ```
-This should return the value true as the plane is no longer there. I think this second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
+This should return the value true as the plane is no longer there. This second feature test is more robust than the first because it speaks directly to the user specifications, giving the controller the ability to look and check if the plane is there. The first test does test behaviour but does not directly address the check functionality that we want out airport to have.
 
 ####Results of the feature test:
 
@@ -74,7 +74,7 @@ This should return the value true as the plane is no longer there. I think this 
 feature_test.rb:6:in `<main>': undefined method `take_off' for #<Plane:0x00007f82d80fef30> (NoMethodError)
 ```
 
-The next unit tests will now test that the method doesn't raise this error and that the method empty lets the controller see if the plane is in the airport.
+The next unit tests will now test that the method doesn't raise this error and that the method empty? lets the controller see if the plane is in the airport.
 
 ####User Story
 
@@ -139,6 +139,8 @@ airport = Airport.new()
 plane = Plane.new
 5.times { airport.land(plane) }
 ```
+
+And it does. 
 
 This one should not:
 
@@ -221,7 +223,7 @@ airport.is_it_stormy?
 airport.land(plane)
 ```
 
-To maintain the DRY principle I created a new method that would be called during landing to stop planes when the weather is bad.
+To maintain the DRY principle I created a new method that would be called during landing to stop planes when the weather is bad...but changed it later during refactoring. Having the 2 exceptions in the one method keeps it contained according to the SRP. Land should let planes land, take-off lets them take-off so the errors should be kept here and not put in a new method. 
 
 ####Results from feature test:
 
@@ -236,7 +238,7 @@ Makerss-Air:airport_challenge student$
 
 ##Updating exceptions
 
-Now that all of the user stories are catered to I want to expand my unit and feature tests to ensure that the weather conditions can be changed. Meeting the conditions of these specifications:
+Now that all of the user stories have been applied and the code refactored I want to expand my unit and feature tests to ensure that the weather conditions can be changed. Meeting the conditions of these specifications:
 
 >You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
@@ -285,6 +287,6 @@ Fixed this issue with the use of a double stub and controlling the messages it c
 
 ###Future additions
 
-To make the code more robust weather conditions could be set up as an external class to apply the DRY principle. The plane class would also need to be tested to make sure that a plane knowns when it is flying and when it is in the airport to meet the second part of the edge case conditions.
+To make the code more robust weather conditions could be set up as an external class to apply the DRY principle. The plane class would also need to be tested to make sure that a plane knowns when it is flying and when it is in the airport to meet the second part of the edge case conditions. A storing array within the plane class could also ensure that individual planes are being stored rather than just counted, which is what the code is currently doing. 
 
 To be continued....
