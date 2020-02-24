@@ -15,12 +15,12 @@ describe Airport do
 
     it 'doesnt land if its stormy' do
       weather = double(:weather, stormy?: true)
-      expect { airport.land(plane, weather) }.to raise_error 'cannot land while stormy'
+      expect { airport.land(plane, weather) }.to raise_error 'weather is stormy, cannot land'
     end
 
     it 'doesnt land if airport is full' do
       Airport::CAPACITY.times { airport.land(Plane.new, weather) }
-      expect { airport.land(plane, weather) }.to raise_error 'airport full'
+      expect { airport.land(plane, weather) }.to raise_error 'airport full, none can land'
     end
 
     it 'cannot land twice' do
