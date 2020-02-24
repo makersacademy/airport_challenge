@@ -14,7 +14,46 @@ end
 end
 describe Airport do
   it "prevents landing when airport is full" do
-    airport.Airport.new
-    expect(plane.land)to raise_error
+    airport = Airport.new
+    airport.capacity.times{ airport.land Plane.new }
+    #aiport.land they need to be called together because times is not associated
+    #with any of the classes
+    expect{ airport.land Plane.new }.to raise_error "airport is fullzzzz"
+    #have to call the method next to expect as well
+ end
 end
-#  expect {subject.release_bike}.to raise_error 'no bikes available'
+
+describe 'initilization' do
+  it 'has a variable capacity' do
+    airport = Airport.new(5)
+5.times { airport.land Plane.new }
+expect { airport.land Plane.new }.to raise_error "airport is fullzzzz"
+  end
+end
+
+
+describe Airport do
+  let (:plane) {Plane.new}
+  it 'defaults capacity' do
+    airport = Airport.new
+    described_class::DEFAULT_CAPACITY.times do
+      airport.land("plane")
+      end
+      expect{ airport.land("plane") }.to raise_error "airport is fullzzzz"
+    end
+end
+
+#As an air traffic controller
+#To ensure safety
+#I want to prevent takeoff when weather is stormy
+describe Airport do
+  it 'generates stormy weather' do
+    airport = Airport.new
+    allow(airport).to receive(:rand).and_return(5)
+    expect(airport.random).to eq"stormy"
+  end
+end
+
+#describe Airport do
+  #it 'stops the plane from taking off is the weather is stormy' do
+  #
