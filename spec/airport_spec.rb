@@ -9,7 +9,6 @@ end
 describe Airport do
 
   include_context "common"
-  # before { allow(subject.weather).to receive(:stormy?) { false } }
 
   it "should have a default capacity of 1" do
     expect(subject).to have_attributes(capacity: 20)
