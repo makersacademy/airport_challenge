@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport 
 
-  attr_reader :hanger, :capacity
+  attr_reader :hanger, :capacity, :weather
   
   CAPACITY = 20
 
@@ -15,13 +15,13 @@ class Airport
   
   def land(plane)
     raise "Airport full" if full?
-    raise "It's too stormy to land" if stormy?
+    raise "It's too stormy to land" if @weather.stormy?
 
     plane.flying? ? (@hanger << plane; plane.landed) : "Plane is already in the hanger"
   end
 
   def takeoff(plane)
-    raise "It's too stormy to take off" if stormy?
+    raise "It's too stormy to take off" if @weather.stormy?
     raise "Plane is already flying" unless plane.landed
     raise "The hanger is empty" if @hanger.empty?
 
@@ -33,7 +33,5 @@ class Airport
   def full?
     @hanger.length >= @capacity
   end
-
-  attr_reader :weather
   
 end
