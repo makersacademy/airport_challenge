@@ -16,9 +16,9 @@ def weather_random
   rand(10)
 end
 
-def weather_land
+def weather_land (plane)
   raise "Too stormy" if weather_ran <= 20
-  land (plane)
+  land(plane)
 end
 
 def land(plane)
