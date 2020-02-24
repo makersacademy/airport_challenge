@@ -3,12 +3,13 @@ require 'weather'
 
 shared_context "common" do
   let(:plane) { Plane.new }
+  before { allow(subject.weather).to receive(:stormy?) { false } }
 end
 
 describe Airport do
 
   include_context "common"
-  before { allow(subject).to receive(:stormy?) { false } }
+  # before { allow(subject.weather).to receive(:stormy?) { false } }
 
   it "should have a default capacity of 1" do
     expect(subject).to have_attributes(capacity: 20)
@@ -24,7 +25,7 @@ describe Airport do
       expect { subject.land(plane) }.to change { subject.hanger.length }.by(1)
     end
     it "raises an error if the weather is too stormy to land" do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error("It's too stormy to land")
     end
     it "raises an error if the plane has already landed" do
@@ -44,7 +45,7 @@ describe Airport do
       expect(subject.takeoff(plane)).to eq "A plane has left the airport"
     end
     it "raises an error if the weather is too stormy to takeoff" do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.takeoff(plane) }.to raise_error("It's too stormy to take off")
     end
     it "raises an error if there are no planes in the hanger" do 
