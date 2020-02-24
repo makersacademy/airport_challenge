@@ -12,15 +12,17 @@ describe Airport do
 
   it "confirms that a plane has #take_off" do
     allow(subject).to receive(:storm?).and_return false # overrides storm true
-    subject.land(Plane.new)
+    plane = double("plane") # Creates a double of plane (independent from Plane class)
+    subject.land(plane)
     expect { subject.take_off }.to output("Plane has taken off").to_stdout
   end
 
   it "raises error if #land and airport is full" do
     allow(subject).to receive(:storm?) { false } # different syntax
-
-    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error("Airport is full")
+    
+    plane = double("plane")
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error("Airport is full")
   end
 
   it "raises an error if #take_off and airport is empty" do
@@ -42,6 +44,7 @@ describe Airport do
   it "raises an error if #land and #storm?" do
     allow(subject).to receive(:full?) { false }
     allow(subject).to receive(:storm?) { true }
-    expect { subject.land(Plane.new) }.to raise_error("There is a storm")
+    plane = double("plane")
+    expect { subject.land(plane) }.to raise_error("There is a storm")
   end
 end
