@@ -2,7 +2,7 @@
 require_relative 'plane'
 
 class Airport 
-DEFAULT_CAPACITY = 2
+DEFAULT_CAPACITY = 17
 attr_accessor :capacity, :plane, :planes_in_the_airport
   # User story 4 : archtect can override the default capacity 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -20,6 +20,7 @@ attr_accessor :capacity, :plane, :planes_in_the_airport
   end 
 
   # User story 2 : the controller can instruct planes to take off and confirm it is taken off
+  # to simplify the problem, assume that the one landed last will take off first although it is not necessarily realistic
   def take_off
     fail 'Cannot take off when weather is stormy' if stormy?
     @planes_in_the_airport.pop
