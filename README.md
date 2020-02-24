@@ -51,7 +51,7 @@ I want to prevent landing when weather is stormy
 2. Fork this repo, and clone to your local machine
 3. Run the command `gem install bundle`
 4. When the installation completes, run `bundle`
-5. This software runs in irb (note the known bug below before running the program in irb)
+5. This software runs in irb
 
 **Example run-through**
 ```
@@ -78,35 +78,6 @@ I want to prevent landing when weather is stormy
 2.6.5 :010 > airport.takeoff
  => "A plane has left the airport" 
 ``` 
-
-## Known bugs
-
-* All tests pass however for the software to run properly in irb line 18 and line 24 in `airport.rb` need to be changed from:
-```
-line 18 - raise "It's too stormy to land" if stormy?
-line 24 - raise "It's too stormy to take off" if stormy?
-```
-to:
-```
-line 18 - raise "It's too stormy to take off" if @weather.stormy?
-line 24 - raise "It's too stormy to take off" if @weather.stormy?
-```
-I believe I've written the tests wrong in these two places - specifically at `(:stormy?)`:
-```
-describe '#land' do
-  it "raises an error if the weather is too stormy to land" do
-      allow(subject).to receive(:stormy?) { true }
-      expect { subject.land(plane) }.to raise_error("It's too stormy to land")
-  end
-end
-describe '#takeoff' do
-  it "raises an error if the weather is too stormy to takeoff" do
-    allow(subject).to receive(:stormy?) { true }
-    expect { subject.takeoff }.to raise_error("It's too stormy to take off")
-  end
-end
-```
-If I can change these tests to take into account `@weather.stormy?` it should pass all tests and run in irb without a problem.
 
 ## Further updating
 * I would change the takeoff method to delete planes at their index position rather than removing only the last plane to enter the hanger.
