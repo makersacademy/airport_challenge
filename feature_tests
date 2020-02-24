@@ -1,11 +1,9 @@
 require '~/projects/airport_challenge/lib/airport.rb'
-require '~/projects/airport_challenge/lib/plane.rb'
 
 airport = Airport.new
-plane = Plane.new
 
-airport.land_plane(plane)
-airport.instance_variable_get(:@planes_at_airport)
-airport.take_off(plane)
-airport.instance_variable_get(:@planes_at_airport)
-airport.set_capacity(10)
+airport.land_plane(airport.instance_variable_get(:@fleet)[1])
+airport.instance_variable_get(:@parked_planes)
+airport.take_off(airport.instance_variable_get(:@fleet)[1])
+airport.instance_variable_get(:@parked_planes)
+airport.set_capacity(20)

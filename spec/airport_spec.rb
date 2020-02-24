@@ -14,7 +14,7 @@ describe Airport do
         expect{airport.land_plane(airport.instance_variable_get(:@fleet)[0])}.not_to raise_error
     end
 
-    it '"land_plane" changes the location of the plane to the airport' do
+    it '"land_plane" changes the location of the plane to airport' do
         allow(airport).to receive(:weather){ "sun" }
         airport.instance_variable_get(:@fleet)[0].instance_variable_set(:@location, "air")
         airport.land_plane(airport.instance_variable_get(:@fleet)[0])
@@ -69,5 +69,11 @@ describe Airport do
         expect(airport.instance_variable_get(:@fleet)[2].instance_variable_get(:@location)).to eq "airport"
     end
 
+    it '"parked_planes" returns 1 when there is one plane with the "airport" location assigned' do
+        airport.instance_variable_get(:@fleet)[0].instance_variable_set(:@location, "airport")
+        airport.instance_variable_get(:@fleet)[1].instance_variable_set(:@location, "air")
+        airport.instance_variable_get(:@fleet)[2].instance_variable_set(:@location, "air")
+        expect(airport.parked_planes).to eq 1
+    end
 
 end
