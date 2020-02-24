@@ -36,20 +36,26 @@ class Airport
         current_weather = weather
         planes_at_airport = parked_planes
 
-        if current_weather == "storm"
-            false
-        else
-            if planes_at_airport >= @airport_capacity
-                false
-            else
-                if plane.location == "airport"
-                    false
-                else
-                    plane.instance_variable_set(:@location, "airport")
-                    true
-                end
-            end
-        end
+        fail "unacceptable weather" if current_weather == "storm"
+        fail "airport full" if planes_at_airport >= @airport_capacity
+        fail "plane in wrong location" if plane.location == "airport"
+
+        plane.instance_variable_set(:@location, "airport")
+
+        # if current_weather == "storm"
+        #     false
+        # else
+        #     if planes_at_airport >= @airport_capacity
+        #         false
+        #     else
+        #         if plane.location == "airport"
+        #             false
+        #         else
+        #             plane.instance_variable_set(:@location, "airport")
+        #             true
+        #         end
+        #     end
+        # end
 
     end
     

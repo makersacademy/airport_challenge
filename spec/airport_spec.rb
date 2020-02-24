@@ -32,7 +32,7 @@ describe Airport do
         airport.instance_variable_get(:@fleet)[0].instance_variable_set(:@location, "airport")
         airport.instance_variable_get(:@fleet)[1].instance_variable_set(:@location, "airport")
         airport.instance_variable_get(:@fleet)[2].instance_variable_set(:@location, "air")
-        expect(airport.land_plane(airport.instance_variable_get(:@fleet)[3])).to eq false
+        expect{airport.land_plane(airport.instance_variable_get(:@fleet)[2])}.to raise_error
     end
 
     it '"set_capacity" value changes to 10' do
@@ -47,7 +47,7 @@ describe Airport do
     it '"land_plane" returns false if weather is stormy' do
         allow(airport).to receive(:weather){ "storm" }
         airport.instance_variable_get(:@fleet)[2].instance_variable_set(:@location, "air")
-        expect(airport.land_plane(airport.instance_variable_get(:@fleet)[2])).to eq false
+        expect{airport.land_plane(airport.instance_variable_get(:@fleet)[2])}.to raise_error
     end
 
     it '"take_off" returns false if weather is stormy' do
