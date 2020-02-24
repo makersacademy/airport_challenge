@@ -15,7 +15,7 @@ class Airport
 	end
 
 	def land(plane)
-		fail 'this airport is full!' if @planes.length >= @capacity
+		fail 'this airport is full!' if full?
 		fail 'You cant land! The weather is stormy!' if @weather.stormy?
 		fail 'This plane has already landed.' if @planes.include? plane
 
@@ -30,7 +30,11 @@ class Airport
 
 		@planes.delete(plane) if @planes.include? plane
 			  
-		'The plane is no longer in the airport' 
+		'The plane has taken off and is no longer in the airport' 
 
+	end
+
+	def full?
+		@planes.length >= @capacity
 	end
 end

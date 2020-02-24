@@ -29,7 +29,7 @@ let (:plane) { Plane.new }
 	it 'takes off a plane, with confirmation that it is no longer in the airport' do
 		allow(subject.weather).to receive(:stormy?).and_return(false)
 		subject.land(plane)
-		expect(subject.take_off(plane)).to eq 'The plane is no longer in the airport'
+		expect(subject.take_off(plane)).to eq 'The plane has taken off and is no longer in the airport'
 		expect(subject.planes.include? plane).to eq false
 	end
 
