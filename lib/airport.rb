@@ -8,7 +8,7 @@ class Airport
   def initialize(weather= Weather.new)
     @planes = Array.new
     @capacity = CAPACITY
-    @weather = Weather.new
+    @weather = weather
   end
 
   def capacity(num)
@@ -27,7 +27,7 @@ class Airport
     fail "Too stormy" if @weather.stormy?
     fail "no planes to take off " unless @planes.any?
       
-    @planes.pop
+    @planes.delete(plane)
     "The plane has taken off"
   end
 
