@@ -3,16 +3,13 @@ require_relative 'weather'
 
 class Airport
   attr_reader :planes, :weather
+  attr_accessor :capacity
   CAPACITY = 5
   
-  def initialize(weather= Weather.new)
+  def initialize
     @planes = Array.new
     @capacity = CAPACITY
-    @weather = weather
-  end
-
-  def capacity(num)
-    @capacity = num
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -35,4 +32,5 @@ class Airport
   def full?
     @planes.count >= @capacity
   end
+
 end
