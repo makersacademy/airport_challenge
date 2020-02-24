@@ -17,12 +17,12 @@ describe Airport do
   end
 
   describe '#it_stormy' do
-    it { is_expected.to respond_to(:it_stormy?) }
+    it { is_expected.to respond_to(:stormy?) }
   end
 
   context '#it_stormy creates sunny conditions' do
     it 'lets sunny conditions be observed' do
-      allow(@airport).to receive(:it_stormy) { false }
+      allow(@airport).to receive(:stormy) { false }
     end
   end
 
@@ -57,11 +57,11 @@ describe Airport do
       @obj = double()
     end
     it 'blocks landing' do
-      allow(@obj).to receive(:it_stormy?).and_return(true)
+      allow(@obj).to receive(:stormy?).and_return(true)
       allow(@obj).to receive(:land).and_return("Bad weather, no landing")
     end
     it 'blocks taking off' do
-      allow(@obj).to receive(:it_stormy?).and_return(true)
+      allow(@obj).to receive(:stormy?).and_return(true)
       allow(@obj).to receive(:take_off).and_return("Bad weather, no taking off")
     end
   end

@@ -32,7 +32,7 @@ class Airport
   end
 
 # finds out if it is stormy
-  def it_stormy?
+  def stormy?
     @stormy = rand(3) == 1
   end
 end
