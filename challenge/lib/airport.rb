@@ -12,14 +12,16 @@ def initialize(capacity=DEFAULT_CAPACITY)
  @plane = []
 end
 
-def weather_random
-  rand(10)
+#def weather_random
+#  rand(1..8)
+#end
+
+def weather_land
+  raise "Too stormy" if stormy?
+ land(plane)
+
 end
 
-def weather_land (plane)
-  raise "Too stormy" if weather_ran <= 20
-  land(plane)
-end
 
 def land(plane)
   fail "airport is fullzzzz" if full?
@@ -32,5 +34,9 @@ private
 attr_reader :plane
 def full?
   plane.count >= @capacity
+ end
+
+ def stormy?
+   rand(1..8)>=5
  end
 end

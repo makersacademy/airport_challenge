@@ -49,8 +49,9 @@ end
 describe Airport do
   it 'generates stormy weather' do
     airport = Airport.new
-    allow{ (airport).to receive.weather_land }.and_return(5)
-    expect{ airport.weather_land("plane") }.to raise_error(RuntimeError)
+    plane = double(:plane, stormy?: true)
+    #allow{ (airport).to receive.weather_land }.and_return(5)
+    expect{ airport.weather_land }.to raise_error "Too stormy" 
   end
 end
 
