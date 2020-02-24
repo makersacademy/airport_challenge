@@ -88,3 +88,37 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+**TASKS COMPLETED**
+As an air traffic controller 
+I want to instruct a plane to land at an airport
+So I can get passengers to a destination 
+**DONE. An instance of plane is stored into an array called hanger. the array will store an instance which includes all sorts of flight details. the unique identifier will be the flight number.**
+
+As an air traffic controller 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+So I can get passengers on the way to their destination
+**DONE. I wrote the logic to take off a unique plane from the airport based on the flight number. A puts has also been placed to display a message from the pilot upon take off.**
+
+As an air traffic controller 
+I want to prevent landing when the airport is full 
+To ensure safety 
+**DONE. #is_full? returns a boolean depending on the capacity. A check is performed at the start of #land_plane to check if airport is full. if its full, an error is raised. **
+
+As the system designer
+I would like a default airport capacity that can be overridden as appropriate
+So that the software can be used for many different airports
+**DONE. a default capacity has been passed as a keyword argument. Initially included a magic number but changed that to a constant DEFAULT_CAPACITY**
+
+As an air traffic controller 
+I want to prevent takeoff when weather is stormy 
+To ensure safety 
+**DONE. takeoff prevented if stormy.**
+
+As an air traffic controller 
+I want to prevent landing when weather is stormy 
+To ensure safety
+**DONE. landing prevented if stormy.**
+
+**very fun challenge**
+
