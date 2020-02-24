@@ -82,3 +82,4 @@ I want to prevent landing when weather is stormy
 ## Further updating
 * I would change the takeoff method to delete planes at their index position rather than removing only the last plane to enter the hanger.
 * I would allow the planes to have specific inputted names to allow for easier identification when in the hanger, flying and taking off eg: `plane = Plane.new("Qantas")`.
+* If I was to add more airports I'd probably create a hash for the airports that the hangers and planes would then populate.
