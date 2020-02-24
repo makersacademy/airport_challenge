@@ -27,7 +27,7 @@ require 'weather'
    end
 
    context '#take_off' do
-     it 'takes_off' do
+     it 'takes_off from the airport' do
        plane = Plane.new
        plane.take_off
        expect(plane.flying).to eq true
