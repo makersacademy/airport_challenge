@@ -1,9 +1,11 @@
-require_relative 'airport'
-
 class Weather
-
+  
   def stormy?
-    rand(0..100) > 90
+    random_weather == :stormy
+  end
+
+  def random_weather
+    rand(0..100) > 90 ? :stormy : :fine
   end
 
 end
