@@ -1,5 +1,4 @@
-# Title of project
-AIRPORT CHALLENGE
+# AIRPORT CHALLENGE
 
 ## Getting started
 To clone the project repo
