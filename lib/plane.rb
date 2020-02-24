@@ -1,12 +1,22 @@
 class Plane
-  attr_accessor :landed
+  attr_accessor :status
 
-  def initialize(status = true)
-    @landed = status
+  def land
+    fail "We have a plane" if landed?
+    @status = :landed
   end
 
   def landed?
-    landed
+    @status = :landed
+  end
+
+  def take_off
+    fail "Shes gone boss" if flying?
+    @status = :flying
+  end
+
+  def flying?
+    @status = :flying
   end
 
 end
