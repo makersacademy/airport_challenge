@@ -13,5 +13,6 @@ describe Weather do
     allow_any_instance_of(Weather).to receive(:rand).and_return(50)
     expect(subject.stormy?).to eq false
   end
+  # it { expect((true, false)).to include(subject.stormy?) }
 
 end
