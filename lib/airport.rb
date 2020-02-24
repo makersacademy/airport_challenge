@@ -26,8 +26,8 @@ class Airport
 	end
 
 	def plane_take_off
-		fail "Abort: Bad weather conditions!" if stormy?
-		Plane.new
+		fail "Abort: Bad weather conditions!" if stormy? 
+		plane
 
 	end
 
