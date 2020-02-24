@@ -2,22 +2,38 @@ require_relative "plane"
 require_relative "weather"
 
 class Airport
-  attr_reader :plane
+  MAX_CAPACITY = 20
   attr_accessor :capacity, :weather
 
-  def initialize
+  def initialize(capacity = MAX_CAPACITY)
     @capacity = 20
-    @plane = []
+    @planes = []
     @weather = Weather.new
   end
 
-  def release_plane
-    fail 'No planes bitches!' unless @plane
-    @plane
+  def land(plane)
+    fail "Airport is chock full of planes" if full?
+    fail "Weather is too turbulant to land" if stormy?
+    plane.land
+    planes << plane
   end
 
-  def dock(plane)
-    fail 'Full' if @plane
-    @plane = plane
+  def take_off(plane)
+    fail "No planes left" unless planes.include?(plane)
+    fail "Weather is too turbulant to take off" if stormy?
+    plane.take_off
+    planes.delete(plane)
+  end
+
+  private
+
+  attr_reader :plane
+
+  def full?
+    planes.count == capacity
+  end
+
+  def stormy?
+    weather.stormy?
   end
 end
