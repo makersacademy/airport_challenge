@@ -5,7 +5,7 @@
 require_relative './plane.rb'
 class Airport
 attr_reader :capacity
-DEFAULT_CAPACITY = 3
+DEFAULT_CAPACITY = 10
 #this is where defauly capacity goes
 def initialize(capacity=DEFAULT_CAPACITY)
  @capacity = capacity
@@ -17,16 +17,22 @@ end
 #end
 
 def weather_land
-  raise "Too stormy" if stormy?
- land(plane)
+  raise "Too stormy!" if stormy?
+  plane
 
+end
+
+def weather_takeoff
+  raise "Too stormy to take off" if stormy?
+  plane
+ return "Plane can take off"
 end
 
 
 def land(plane)
   fail "airport is fullzzzz" if full?
   @plane << plane
-  plane = plane
+  #plane = plane
  return "plane has landed"
 end
 
@@ -37,6 +43,6 @@ def full?
  end
 
  def stormy?
-   rand(1..8)>=5
+   rand(1..8)>=2
  end
 end
