@@ -16,10 +16,6 @@ class Airport
     @storm = true
   end
 
-  def storm?
-    true
-  end
-
 #USER_STORY1: As an air traffic controller, I want to instruct a plane to land at an airport
   def land(plane)
     #This method will push the instance of Plane and push it
