@@ -3,7 +3,7 @@ require_relative "plane"
 
 class Airport
 
-	attr_reader :planes
+	attr_reader :plane
 	attr_accessor :capacity
 
 
@@ -12,11 +12,6 @@ class Airport
 	def initialize
 		@planes = []
 		@capacity = capacity
-
-	end
-
-	def plane
-		@plane
 
 	end
 
@@ -34,7 +29,7 @@ class Airport
 
 	private
 	def stormy?
-		rand(1...8) >= 5
+		rand(1..8) >= 5
 	end
 
 	# def full?

@@ -19,16 +19,17 @@ end
 
 describe "#plane_take_off" do 
 
+	it "permits take off in clear weather conditions" do
+	plane = double(:plane, stormy?: false, taken_off?: true)
+	subject.plane_land plane
+ 	expect(subject.plane_take_off).to eq plane
+ 	# puts "Take off confirmed"
+end
+
 it "does not allow plane take off in stormy weather conditions" do
 	plane = double(:plane, stormy?: true)
 	subject.plane_land plane
 	expect { subject.plane_take_off }.to raise_error "Abort: Bad weather conditions!"
-end
-
-it "permits take off in clear weather conditions" do
-	plane = double(:plane, stormy?: false)
-	subject.plane_land plane
- 	expect(subject.plane_take_off).to eq plane
 end
 
 end
