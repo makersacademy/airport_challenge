@@ -3,7 +3,7 @@ require_relative "plane"
 
 class Airport
 
-	attr_reader :plane
+	attr_reader :plane, :airport
 	attr_accessor :capacity
 
 
