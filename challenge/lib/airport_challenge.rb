@@ -21,7 +21,7 @@ class Airport
     #This method will push the instance of Plane and push it
     #into the array airport. You can see if this plane is in there by typing
     #subject.airport
-    if @airport.count == amount_of_planes
+    if full?
       #USER_STORY3: As an air traffic controller, I want to prevent landing when the airport is full
       #This raises an error if the Airport has reached capacity.
       raise 'Airport is FULL!'
@@ -45,5 +45,10 @@ class Airport
     #This method returns a  string confirms the instance of Plane has left
     #airport array
   end
-
 end
+
+private
+
+def full?
+   @airport.count == amount_of_planes
+ end
