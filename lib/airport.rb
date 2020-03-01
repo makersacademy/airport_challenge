@@ -1,7 +1,7 @@
 require_relative 'plane'
 require_relative 'weather_tower'
 class Airport
-  attr_accessor :runway, :capacity, :tower
+  attr_accessor :runway, :capacity
   DEFAULT_CAPACITY = 30
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -15,8 +15,8 @@ class Airport
     @runway
   end
 
-  def request_weather_report(tower = @tower)
-    if tower.safe_to_fly?
+  def request_weather_report
+    if @tower.safe_to_fly?
       "The tower says: Skies are all clear"
       @green_light = true
     else
@@ -33,7 +33,7 @@ class Airport
       @runway << plane
       plane.change_status
     else
-      fail "Cannot land in current weather conditions"
+      "Cannot land in current weather conditions"
     end
   end
 
@@ -44,7 +44,7 @@ class Airport
       @runway.delete(plane)
       plane.change_status
     else
-      fail "Cannot take off in current weather conditions"
+      "Cannot take off in current weather conditions"
     end
   end
 

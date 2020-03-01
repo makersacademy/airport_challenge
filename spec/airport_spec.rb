@@ -11,8 +11,8 @@ describe Airport do
 
   describe 'Tests for clear weather' do
     before(:each) do
-      allow(tower).to receive(:safe_to_fly?).and_return(true)
-      airport.request_weather_report(tower)
+      allow(airport).to receive(:weather_ok?).and_return(true)
+      airport.request_weather_report
     end
     it 'should be able to land planes' do
       airport.land(airplane)
@@ -40,7 +40,8 @@ describe Airport do
 
     it 'should allow users to set a new airport capacity' do
       subject = Airport.new(capacity = 0)
-      subject.request_weather_report(tower)
+      allow(subject).to receive(:weather_ok?).and_return(true)
+      subject.request_weather_report
       expect { subject.land(airplane) }.to raise_error 'Cannot land when airport is full'
     end
   end
@@ -48,17 +49,17 @@ describe Airport do
   describe 'Tests for stormy weather' do
 
     before(:each) do
-      allow(stormtower).to receive(:safe_to_fly?).and_return(false)
-      airport.request_weather_report(stormtower)
+      allow(airport).to receive(:weather_ok?).and_return(false)
+      airport.request_weather_report
     end
 
     it 'should prevent planes from landing when stormy' do
-      expect { airport.land(airplane) }.to raise_error 'Cannot land in current weather conditions'
+      expect(airport.land(airplane)).to eq 'Cannot land in current weather conditions'
     end
 
     it 'should prevent planes from taking off when stormy' do
       airport.runway << groundplane
-      expect { airport.take_off(groundplane) }.to raise_error 'Cannot take off in current weather conditions'
+      expect(airport.take_off(groundplane)).to eq 'Cannot take off in current weather conditions'
     end
   end
 
