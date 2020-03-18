@@ -7,3 +7,5 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+# Local cache of Rubocop remote config
+.rubocop-*
