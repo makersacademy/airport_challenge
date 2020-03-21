@@ -9,16 +9,18 @@ class Airport
   end
 
   def land(plane)
+    fail 'Plane already landed' if plane_landed?(plane)
     fail 'Airport full' if full?
     fail 'Weather stormy' if weather_stormy?
 
     @planes << plane
+    plane.landed
     true
   end
 
   def take_off(plane)
-    fail 'Weather stormy' if weather_stormy?
     fail 'Plane not in airport' unless @planes.include? plane 
+    fail 'Weather stormy' if weather_stormy?
 
     true
   end
@@ -31,6 +33,10 @@ class Airport
 
   def weather_stormy?
     Weather.new.stormy?
+  end
+
+  def plane_landed?(plane)
+    plane.landed?
   end
 
 end
