@@ -17,4 +17,12 @@ describe '#land(plane)' do
 
   end
 
+  context 'Airport can #take_off planes' do
+
+    it 'Airport responds to #take_off' do
+      expect(airport).to respond_to(:take_off)
+    end
+
+  end
+
 end
