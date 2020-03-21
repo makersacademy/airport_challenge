@@ -53,9 +53,7 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 Approach
 --------
-### User story
-
-User story 1
+### User story 1
 
 ```
 As an air traffic controller 
@@ -63,7 +61,7 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-####Feature - instruct plane to land at an airport
+#### Feature - instruct plane to land at an airport
 
 Exercise feature using irb:
 
@@ -75,4 +73,26 @@ Exercise feature using irb:
 2.6.5 :003 > plane.land("Heathrow")
  => nil 
 2.6.5 :004 > 
+```
+
+### User Story 2
+
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
+#### Feature - instruct plane to take off from an airport and confirm it is no longer at the airport
+
+Exercise feature using irb:
+
+```bash
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x00007ffa3c09b5f8> 
+2.6.5 :003 > plane.take_off
+ => "No longer in the airport" 
+2.6.5 :004 > 	
 ```
