@@ -75,7 +75,7 @@ Exercise feature using irb:
 2.6.5 :004 > 
 ```
 
-### User Story 2
+### User story 2
 
 ```
 As an air traffic controller 
@@ -96,3 +96,19 @@ Exercise feature using irb:
  => "No longer in the airport" 
 2.6.5 :004 > 	
 ```
+
+### User story 3
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+```
+
+#### Feature - if the airport is full, it should prevent planes from landing
+
+airport = Airport.new
+airport.full = true
+airport.full? = true
+plane = Plane.new
+plane.land(airport) => raise error
