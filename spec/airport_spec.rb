@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
   let(:boeing) { Plane.new }
+  let(:learjet) { Plane.new }
 
   context '#land' do
     it 'responds' do
@@ -20,6 +21,10 @@ describe Airport do
     it 'stores the landed plane in the hangar' do
       subject.land(boeing)
       expect(subject.hangar).to be boeing
+    end
+    it 'raises error if @hanger is occupied' do
+      subject.land(boeing)
+      expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
   end
 
