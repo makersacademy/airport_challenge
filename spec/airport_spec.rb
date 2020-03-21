@@ -74,20 +74,24 @@ describe Airport do
 
   context 'stormy weather' do
     it '#land will raise error' do
-      subject.stub(:stormy?) { true }
+      allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
     end
     it '#take_off will raise error' do
       subject.land(boeing)
-      subject.stub(:stormy?) { true }
+      allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off(boeing) }.to raise_error 'Cannot take off. Weather is stormy.'
     end
   end
 
   context '#stormy?' do
-    it 'returns false when over 0.8' do
-      allow(Kernel).to receive(:rand).and_return(0.9)
+    it 'returns true when over 0.8' do
+      allow_any_instance_of(Object).to receive(:rand).and_return(0.9)
       expect(random_weather_airport.stormy?).to be
+    end
+    it 'returns false when under 0.8' do
+      allow_any_instance_of(Object).to receive(:rand).and_return(0.5)
+      expect(random_weather_airport.stormy?).to be_falsey
     end
   end
 
