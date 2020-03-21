@@ -52,7 +52,7 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
     it 'returns a Plane object' do
-      boeing.lands
+      subject.land(boeing)
       expect(subject.take_off(boeing)).to be_instance_of(Plane)
     end
     it 'returns the same Plane object that was passed in to confirm take off' do
@@ -72,6 +72,10 @@ describe Airport do
     end
     it 'planes already in flight cannot take off, raises error' do
       expect { subject.take_off(boeing) }.to raise_error 'Cannot take off planes that are already in flight'
+    end
+    it 'plane must exist in @hanger to take off' do
+      learjet.lands
+      expect { subject.take_off(learjet) }.to raise_error 'This plane is not in the hangar.'
     end
   end
 
