@@ -1,11 +1,19 @@
 require 'airport'
 
 describe Airport do
-  #subject { Plane.new } 
 
-  it { is_expected.to respond_to :land }
+  let(:jumbo) { Plane.new } 
+ 
+  context '#landing' do
 
-  it "expects one argument" do
-    expect(subject).to respond_to(:land).with(1).argument
+    it { is_expected.to respond_to :land }
+
+    it "expects one argument" do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+
+    it "return Plane object" do
+      expect(subject.land(jumbo)).to be_an_instance_of(Plane)
+    end
   end
 end
