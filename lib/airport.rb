@@ -19,10 +19,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'Cannot take off planes that are already in flight' if in_flight?(plane)
-    raise 'Cannot take off. Weather is stormy.' if stormy?
-    raise 'This plane is not in the hangar.' unless in_hangar?(plane)
-
+    preflight_checks(plane)
     taxi(plane)
     plane.takes_off
     plane
@@ -33,6 +30,12 @@ class Airport
   end
 
   private
+
+  def preflight_checks(plane)
+    raise 'Cannot take off planes that are already in flight' if in_flight?(plane)
+    raise 'Cannot take off. Weather is stormy.' if stormy?
+    raise 'This plane is not in the hangar.' unless in_hangar?(plane)
+  end
 
   def in_flight?(plane)
     plane.flying?
