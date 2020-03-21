@@ -35,7 +35,7 @@ describe Airport do
     end
     it 'marks the plane as not flying' do
       subject.land(boeing)
-      expect(boeing).to_not be_flying?
+      expect(boeing).to_not be_flying
     end
   end
 

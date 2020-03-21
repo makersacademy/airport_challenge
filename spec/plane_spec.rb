@@ -8,7 +8,7 @@ describe Plane do
     end
     it 'updates @flying to false' do
       subject.lands
-      expect(subject).to_not be_flying?
+      expect(subject).to_not be_flying
     end
   end
 end
