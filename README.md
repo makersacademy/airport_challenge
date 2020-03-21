@@ -164,4 +164,29 @@ Exercise feature using irb:
 ```
 As an air traffic controller 
 To ensure safety 
-I want to prevent takeoff when weather is stormy ```
+I want to prevent takeoff when weather is stormy 
+```
+
+#### Feature - planes cannot take off when the weather is stormy
+
+Exercise feature using irb:
+
+```
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x00007f9908051d08 @landed=false, @current_airport=nil> 
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007f9907134f28 @capacity=10, @planes_landed=0> 
+2.6.5 :004 > plane.land(airport)
+ => true 
+2.6.5 :005 > plane.take_off(Weather.current_weather)
+Traceback (most recent call last):
+        5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/student/projects/airport_challenge/lib/plane.rb:21:in `take_off'
+RuntimeError (Unable to take off, stormy weather)
+2.6.5 :006 > 
+```

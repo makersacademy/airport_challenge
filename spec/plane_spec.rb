@@ -22,6 +22,9 @@ describe Plane do
 
   let(:airborne_plane) { Plane.new }
 
+  let (:stormy_weather) { double(:weather, :current_weather => Weather::STORMY )}
+  let (:clear_weather) { double(:weather, :current_weather => Weather::CLEAR )}
+
   context 'landing' do
     it 'can be instructed to land at an airport' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -42,15 +45,19 @@ describe Plane do
 
   context 'taking off' do
     it 'can be instructed to take off from an airport' do
-      expect(subject).to respond_to(:take_off)
+      expect(subject).to respond_to(:take_off).with(1).argument
     end
 
     it 'confirms it is no longer in the airport after it has taken off' do
-      expect(landed_plane.take_off).to eq "No longer in the airport"
+      expect(landed_plane.take_off(clear_weather.current_weather)).to eq "No longer in the airport"
     end
 
     it 'will not take off if it is has not landed' do
-      expect { airborne_plane.take_off }.to raise_error 'Unable to take off, plane is not landed'
+      expect { airborne_plane.take_off(clear_weather.current_weather) }.to raise_error 'Unable to take off, plane is not landed'
+    end
+
+    it 'will not take off if the weather is stormy' do
+      expect { landed_plane.take_off(stormy_weather.current_weather) }.to raise_error 'Unable to take off, stormy weather'
     end
   end
 end
