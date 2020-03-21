@@ -9,11 +9,11 @@ describe Airport do
     expect(subject.take_off).to be_instance_of(Plane)
   end
 
-  it "Airport responds to #plane_left_hangar" do
-    expect(subject).to respond_to(:plane_left_hangar)
-  end
+  #it "Airport responds to #plane_left_hangar" do
+  #  expect(subject).to respond_to(:plane_left_hangar)
+  #end
 
-  it "Airport confirms #plane_left_hangar" do
-    expect(subject.plane_left_hangar).to eq("Plane has left the airport")
-  end
+  #it "Airport confirms #plane_left_hangar" do
+  #  expect(subject.plane_left_hangar).to eq("Plane has left the airport")
+  #end
 end
