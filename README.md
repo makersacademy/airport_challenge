@@ -190,3 +190,33 @@ Traceback (most recent call last):
 RuntimeError (Unable to take off, stormy weather)
 2.6.5 :006 > 
 ```
+
+### User story 6
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
+
+#### Feature - planes cannot land when the weather is stormy
+
+Exercise feature using irb:
+
+```
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fc90995e6b8 @capacity=10, @planes_landed=0> 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fc9088806e8 @landed=false, @current_airport=nil> 
+2.6.5 :004 > plane.land(airport, Weather.current_weather)
+Traceback (most recent call last):
+        5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):4
+        1: from /Users/student/projects/airport_challenge/lib/plane.rb:13:in `land'
+RuntimeError (Unable to land, stormy weather)
+2.6.5 :005 > 
+```

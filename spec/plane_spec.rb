@@ -6,7 +6,7 @@ describe Plane do
 
     10.times do
       plane = Plane.new
-      plane.land(airport)
+      plane.land(airport, clear_weather)
     end
 
     airport
@@ -16,7 +16,7 @@ describe Plane do
 
   let(:landed_plane) do
     plane = Plane.new
-    plane.land(empty_airport)
+    plane.land(empty_airport, clear_weather )
     plane
   end
 
@@ -27,19 +27,23 @@ describe Plane do
 
   context 'landing' do
     it 'can be instructed to land at an airport' do
-      expect(subject).to respond_to(:land).with(1).argument
+      expect(subject).to respond_to(:land).with(2).argument
     end
 
     it 'will not land if the airport is full' do
-      expect { airborne_plane.land(full_airport) }.to raise_error 'Unable to land, airport is full'
+      expect { airborne_plane.land(full_airport, clear_weather.current_weather) }.to raise_error 'Unable to land, airport is full'
     end
 
     it 'will land if there is space at the airport' do
-      expect { airborne_plane.land(empty_airport) }.not_to raise_error
+      expect { airborne_plane.land(empty_airport, clear_weather.current_weather) }.not_to raise_error
     end
 
     it 'will not land if it has already landed' do
-      expect { landed_plane.land(empty_airport) }.to raise_error 'Unable to land, plane has already landed'
+      expect { landed_plane.land(empty_airport, clear_weather.current_weather) }.to raise_error 'Unable to land, plane has already landed'
+    end
+
+    it 'will not land if the weather is stormy' do
+      expect { airborne_plane.land(empty_airport, stormy_weather.current_weather) }.to raise_error 'Unable to land, stormy weather'
     end
   end
 

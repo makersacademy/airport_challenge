@@ -13,7 +13,7 @@ describe Airport do
 
     Airport::DEFAULT_CAPACITY.times do
       plane = Plane.new
-      plane.land(airport)
+      plane.land(airport, clear_weather)
     end
 
     airport
@@ -24,11 +24,14 @@ describe Airport do
 
     (Airport::DEFAULT_CAPACITY - 1).times do
       plane = Plane.new
-      plane.land(airport)
+      plane.land(airport, clear_weather)
     end
 
     airport
   end
+
+  let (:clear_weather) { double(:weather, :current_weather => Weather::CLEAR )}
+
 
   context 'capacity' do
     it 'has a default capacity' do

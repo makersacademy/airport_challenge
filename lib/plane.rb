@@ -7,9 +7,10 @@ class Plane
     @current_airport = nil
   end
 
-  def land(airport)
+  def land(airport, current_weather)
     raise 'Unable to land, airport is full' if airport.full?
     raise 'Unable to land, plane has already landed' if landed?
+    raise 'Unable to land, stormy weather' if current_weather == Weather::STORMY
 
     @current_airport = airport
     @current_airport.land_plane
