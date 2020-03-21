@@ -14,17 +14,14 @@ describe Airport do
     expect(subject).to respond_to(:land)
   end
 
-  it 'land returns the string "plane"' do
-    expect(subject.land(Plane)).to eq "plane"
+  it "gives error if the airport is full" do
+    expect{subject.land(Plane)}.to raise_error("Airport full, cannot land")
   end
+#commented this out to make it raise error
+=begin
+  it '#land returns an instance of Plane' do
+    expect(subject.land(Plane)).to eq(Plane)
+  end
+=end
 
-
-
-  #it "Airport responds to #plane_left_hangar" do
-  #  expect(subject).to respond_to(:plane_left_hangar)
-  #end
-
-  #it "Airport confirms #plane_left_hangar" do
-  #  expect(subject.plane_left_hangar).to eq("Plane has left the airport")
-  #end
 end
