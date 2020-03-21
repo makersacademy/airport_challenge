@@ -61,4 +61,12 @@ describe Airport do
     expect { subject.take_off(Plane.new) }.to raise_error 'Plane not in airport'
   end
 
+  it 'Plane is removed from the airport on #take_off' do
+    allow_any_instance_of(Weather).to receive_messages(stormy?: false)
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect { subject.take_off(plane) }.to raise_error 'Plane not in airport'
+  end
+
 end

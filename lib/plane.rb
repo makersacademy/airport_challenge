@@ -13,4 +13,8 @@ class Plane
     @status = 'landed'
   end
 
+  def left_airport
+    @status = 'flying'
+  end
+
 end

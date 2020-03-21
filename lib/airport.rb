@@ -22,6 +22,8 @@ class Airport
     fail 'Plane not in airport' unless @planes.include? plane 
     fail 'Weather stormy' if weather_stormy?
 
+    @planes.delete(plane)
+    plane.left_airport
     true
   end
 
