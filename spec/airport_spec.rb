@@ -15,6 +15,11 @@ describe '#land(plane)' do
       expect(airport.land).to be_instance_of(Plane)
     end
 
+    it "Plane  won't land if airport is full" do
+      airport.land
+      expect { airport.land }.to raise_error 'Airport Full'
+    end
+
   end
 
   context 'Airport can #take_off planes' do

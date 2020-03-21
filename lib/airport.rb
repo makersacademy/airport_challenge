@@ -9,6 +9,8 @@ class Airport
   end
 
   def land
+    fail "Airport Full" if @planes.length == 1
+
     @planes << Plane.new
     @planes.last
   end
