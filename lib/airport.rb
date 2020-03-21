@@ -2,8 +2,9 @@ require_relative 'plane'
 
 class Airport
   DEFAULT_CAPACITY = 50
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -18,7 +19,7 @@ class Airport
   end
 
   def full?
-    @planes.count >= DEFAULT_CAPACITY
+    @planes.count >= @capacity
   end
 
 end
