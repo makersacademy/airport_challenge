@@ -44,7 +44,11 @@ describe Plane do
     end
 
     it 'confirms it is no longer in the airport after it has taken off' do
-      expect(subject.take_off).to eq "No longer in the airport"
+      expect(landed_plane.take_off).to eq "No longer in the airport"
+    end
+
+    it 'will not take off if it is has not landed' do
+      expect { subject.take_off }.to raise_error 'Unable to take off, plane is not landed'
     end
   end
 end
