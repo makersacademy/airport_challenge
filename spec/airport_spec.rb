@@ -15,7 +15,7 @@ describe Airport do
   end
 
   it 'land returns the string "plane"' do
-    expect(subject.land).to eq "plane"
+    expect(subject.land(Plane)).to eq "plane"
   end
 
 
