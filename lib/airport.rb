@@ -29,4 +29,8 @@ class Airport
   
   end
 
+  def check_weather
+  
+  end
+
 end
