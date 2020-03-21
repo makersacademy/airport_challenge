@@ -36,8 +36,8 @@ We have a request from a client to write the software to control the flow of pla
 |---|---|
 | Air Traffic Controller |  |
 | System Designer |  |
-| Airport | **land(plane)** - only if Airport is not full, weather is not stormy, and plane is flying <br>**take_off(plane)** - confirms it is no longer in airport, only if weather is not stormy, and plane is not flying <br>**stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
-| Plane | **@flying** - boolean describing if plane is in flight |
+| Airport | **#land(plane)** - only if Airport is not full, weather is not stormy, and plane is flying <br>**#take_off(plane)** - confirms it is no longer in airport, only if weather is not stormy, and plane is not flying <br>**#stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
+| Plane | **#lands** - updates @in_flight to false <br> **#takes_off** - updates @in_flight to true <br><br>  **@in_flight** - boolean describing if plane is in flight |
 
 ## Requirements
 
@@ -51,16 +51,11 @@ Defend against edge cases:
 - Planes that are already flying cannot take off and/or be in an airport
 - Planes that are landed cannot land again and must be in an airport
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-
 In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 

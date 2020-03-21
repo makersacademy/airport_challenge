@@ -4,8 +4,9 @@ describe Airport do
 
   let(:boeing) { Plane.new }
   let(:learjet) { Plane.new }
+  let(:airbus) { Plane.new }
   
-  context "sunny weather" do
+  context "in sunny weather" do
     before { allow(subject).to receive(:stormy?).and_return(false) }
     let(:large_airport) { Airport.new(15) }
     before { allow(large_airport).to receive(:stormy?).and_return(false) }
@@ -29,7 +30,7 @@ describe Airport do
       end
       it 'raises error if @hanger is full' do
         Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-        expect { subject.land(learjet) }.to raise_error 'Hangar full.'
+        expect { subject.land(boeing) }.to raise_error 'Hangar full.'
       end
       it 'marks the plane as not in flight' do
         subject.land(boeing)
@@ -84,7 +85,8 @@ describe Airport do
       it 'returns landed planes' do
         subject.land(boeing)
         subject.land(learjet)
-        expect(subject.hangar).to include(boeing, learjet)
+        subject.land(airbus)
+        expect(subject.hangar).to include(boeing, learjet, airbus)
       end
     end
     
@@ -101,12 +103,13 @@ describe Airport do
     
   end
   
-  context 'stormy weather' do
+  context 'in stormy weather' do
     it '#land will raise error' do
       allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
+      expect { subject.land(boeing) }.to raise_error 'Cannot land. Weather is stormy.'
     end
     it '#take_off will raise error' do
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.land(boeing)
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.take_off(boeing) }.to raise_error 'Cannot take off. Weather is stormy.'
@@ -126,4 +129,17 @@ describe Airport do
     end
   end
 
+  context 'Feature test:' do
+    it 'Land 3 planes, learjet takes off, boeing takes off to another airport, learjet returns but storm prevents landing' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.land(boeing)
+      subject.land(learjet)
+      subject.land(airbus)
+      subject.take_off(boeing)
+      subject.take_off(learjet)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
+      expect(subject.hangar).to include(airbus)
+    end
+  end
 end
