@@ -52,6 +52,10 @@ describe Airport do
     it 'returns the same Plane object that was passed in to confirm take off' do
       expect(subject.take_off(boeing)).to be boeing
     end
+    it 'marks the plane as flying' do
+      subject.take_off(boeing)
+      expect(boeing).to be_flying
+    end
   end
 
   context '@hangar' do
