@@ -12,9 +12,10 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+This repository contains my solution to the Airport Challenge, given at the end of week 1 at Makers Academy.
 
 Task
------
+----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
@@ -51,8 +52,37 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
+Getting started
+---------------
+
+```bash
+# clone the repository to your local machine with either
+
+# if you're using ssh
+git clone git@github.com:PhilipVigus/airport_challenge.git
+
+# if you're using https
+git clone https://github.com/PhilipVigus/airport_challenge.git
+
+# Dependencies
+# The repository requires bundle, which can be installed with
+gem install bundle
+
+# then run bundle from the root project directory to install other dependencies
+bundle
+```
+
+Running tests
+-------------
+
+```bash
+# Runs the full test suite from the root project directory
+rspec
+```
+
 Implementation of features
---------
+--------------------------
+
 ### User story 1
 
 ```
@@ -233,3 +263,24 @@ Traceback (most recent call last):
 RuntimeError (Unable to land, stormy weather)
 2.6.5 :005 > 
 ```
+
+Design decisions and challenges
+----------
+
+I found this exercise extremely rewarding to complete. Parts of it were relatively simple, but there were a number of areas I found very challenging.
+
+#### The Weather class
+
+I initially decided to make the current_weather method a Class method, which made things complicated for me when I came to testing features that relied on mocking the method to guarantee certain weather conditions. I ended up spending a great deal of time trying to work out the correct syntax, but never quite got to the bottom of what I was doing wrong. 
+
+I eventually decided that a simpler solution was to change the method to a normal instance method. This made the testing syntax significantly easier to write and read. I still think that having it as a Class method is more elegant from the point of view of users of the code, as it removes the need to instantiate an instance of Weather to use it, and I will continue exploring why I was having problems to see if I can fix it at a later date.
+
+#### How the Plane and Airport class interact
+
+I found it challenging to code the interaction between the Plane and Airport classes when planes land and take off. Both of those methods act on Plane, but Airport needs to be notified so that it can update its record of how many planes are currently landed. The solution I have works, but it feels a little clunky and out-of-place. I'm also a little unhappy with the names for the methods, notify_that_plane_has_landed and notify_that_plane_has_left, but after trying half a dozen alternatives, these are the best I could come up with.
+
+#### The tests
+
+Removing dependencies between individual test spec files and other classes was extremely challenging. This was largely because I was unfamiliar with the syntax. Once I'd worked out what I was doing though, it was relatively straightforward.
+
+With the tests on the Weather class, I feel that in order to test it properly, it needs to do more. The main test there is to check that only one of two results can return from the current_weather method. At present this method is exercised 1000 times, but I'm still not sure this is enough given the random nature of its implementation. Increasing the number slows the test down, and I guess its a balance between test speed and confidence.
