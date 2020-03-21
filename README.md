@@ -36,7 +36,7 @@ We have a request from a client to write the software to control the flow of pla
 |---|---|
 | Air Traffic Controller |  |
 | System Designer |  |
-| Airport | **land(plane)** - only if Airport is not full and weather is not stormy <br>**take_off(plane)** - confirms it is no longer in airport, only if stormy? returns false <br>**stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
+| Airport | **land(plane)** - only if Airport is not full, weather is not stormy, and plane is flying <br>**take_off(plane)** - confirms it is no longer in airport, only if weather is not stormy, and plane is not flying <br>**stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
 | Plane | **@flying** - boolean describing if plane is in flight |
 
 ## Requirements
