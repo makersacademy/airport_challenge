@@ -20,9 +20,11 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Cannot take off planes that are already in flight' if plane.flying?
     raise 'Cannot take off. Weather is stormy.' if stormy?
 
     @hangar.delete(plane)
+    plane.takes_off
     plane
   end
 

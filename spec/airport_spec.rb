@@ -44,6 +44,7 @@ describe Airport do
   end
 
   context '#take_off' do
+
     it 'responds' do
       expect(subject).to respond_to :take_off
     end
@@ -51,12 +52,15 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
     it 'returns a Plane object' do
+      boeing.lands
       expect(subject.take_off(boeing)).to be_instance_of(Plane)
     end
     it 'returns the same Plane object that was passed in to confirm take off' do
+      subject.land(boeing)
       expect(subject.take_off(boeing)).to be boeing
     end
     it 'marks the plane as flying' do
+      subject.land(boeing)
       subject.take_off(boeing)
       expect(boeing).to be_flying
     end
@@ -65,6 +69,9 @@ describe Airport do
       subject.land(learjet)
       subject.take_off(boeing)
       expect(subject.hangar).to_not include boeing
+    end
+    it 'planes already in flight cannot take off, raises error' do
+      expect { subject.take_off(boeing) }.to raise_error 'Cannot take off planes that are already in flight'
     end
   end
 
@@ -80,7 +87,7 @@ describe Airport do
   end
 
   context '@capacity' do
-    it 'when not set, default is 5, landing more than 5 will raise error' do
+    it 'when not set, DEFAULT_CAPACITY is used, landing more than DEFAULT_CAPACITY will raise error' do
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
