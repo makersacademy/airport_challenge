@@ -26,7 +26,7 @@ class Airport
   private
 
   def landing_checks(plane)
-    raise 'Cannot land planes that are not in flight' unless in_flight?(plane)
+    raise 'Cannot land planes that are not in flight.' unless in_flight?(plane)
     raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if hangar_full?
   end
@@ -39,7 +39,7 @@ class Airport
   def preflight_checks(plane)
     raise 'This plane is not in the hangar.' unless in_hangar?(plane)
     raise 'Cannot take off. Weather is stormy.' if stormy?
-    raise 'Cannot take off planes that are already in flight' if in_flight?(plane)
+    raise 'Cannot take off planes that are already in flight.' if in_flight?(plane)
   end
 
   def take_off_sequence(plane)

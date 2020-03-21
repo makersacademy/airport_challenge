@@ -37,8 +37,8 @@ describe Airport do
         expect(boeing).to_not be_flying
       end
       it 'planes not in flight cannot be landed, raises error' do
-        boeing.lands
-        expect { subject.land(boeing) }.to raise_error 'Cannot land planes that are not in flight'
+        subject.land(boeing)
+        expect { subject.land(boeing) }.to raise_error 'Cannot land planes that are not in flight.'
       end
     end
     
@@ -70,7 +70,7 @@ describe Airport do
         expect(subject.hangar).to_not include boeing
       end
       it 'planes already in flight cannot take off, raises error' do
-        expect { subject.take_off(boeing) }.to raise_error 'Cannot take off planes that are already in flight'
+        expect { subject.take_off(boeing) }.to raise_error 'Cannot take off planes that are already in flight.'
       end
       it 'plane must exist in @hanger to take off' do
         learjet.lands
