@@ -1,6 +1,12 @@
 require 'airport'
 
 describe Airport do
+  let(:clear_weather) do
+    weather = Weather.new
+    allow(weather).to receive(:current_weather) { Weather::CLEAR }
+    weather
+  end
+
   let(:standard_airport) { Airport.new }
 
   let(:large_airport) do 
@@ -29,9 +35,6 @@ describe Airport do
 
     airport
   end
-
-  let (:clear_weather) { double(:weather, :current_weather => Weather::CLEAR )}
-
 
   context 'capacity' do
     it 'has a default capacity' do
