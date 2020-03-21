@@ -48,6 +48,11 @@ describe Airport do
     it 'responds' do
       expect(subject).to respond_to :hangar
     end
+    it 'returns landed planes' do
+      subject.land(boeing)
+      subject.land(learjet)
+      expect(subject.hangar).to include(boeing, learjet)
+    end
   end
 
   context '@capacity' do
