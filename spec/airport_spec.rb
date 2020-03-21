@@ -16,11 +16,11 @@ describe Airport do
     expect(subject.take_off(plane)).to eq true
   end
 
-  it 'instructs plane to take off' do
+  it 'instructs plane to #take_off' do
     expect(subject).to respond_to :take_off
   end
 
-  it 'prevents landing if airport is full at DEFAULT_CAPACITY' do
+  it 'prevents #land if airport is full at DEFAULT_CAPACITY' do
     Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error 'Airport full'
   end
@@ -31,7 +31,7 @@ describe Airport do
     expect(airport.land(Plane.new)).to eq true
   end
 
-  it 'prevents landing if airport is full at an overriden capacity' do
+  it 'prevents #land if airport is full at overriden capacity' do
     airport = Airport.new(100)
     100.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error 'Airport full'
