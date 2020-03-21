@@ -19,5 +19,9 @@ describe Airport do
     end
   end
 
-  context ''
+  context '#take_off' do
+    it 'responds' do
+      expect(subject).to respond_to :take_off
+    end
+  end
 end
