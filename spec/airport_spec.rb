@@ -20,4 +20,10 @@ describe Airport do
       expect(subject.land(jumbo)).to eq(jumbo)
     end
   end
+
+  context '# take off' do
+  
+    it { is_expected.to respond_to :take_off }
+
+  end
 end
