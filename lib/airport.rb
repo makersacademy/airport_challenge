@@ -7,7 +7,7 @@ class Airport
     @capacity = capacity
   end
 
-  attr_reader :hangar, :weather, :capacity
+  attr_reader :hangar
 
   def land(plane)
     landing_checks(plane)

@@ -96,7 +96,7 @@ describe Airport do
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
     it 'when set to 15, landing more than 15 will raise error' do
-      large_airport.capacity.times { large_airport.land(Plane.new) }
+      15.times { large_airport.land(Plane.new) }
       expect { large_airport.land(learjet) }.to raise_error 'Hangar full.'
     end
   end
