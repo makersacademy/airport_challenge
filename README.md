@@ -53,8 +53,26 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 Approach
 --------
-User story 1
-Nouns:- plane, airport
-Verbs:- land
+### User story
 
-Feature:- plane.land(airport)
+User story 1
+
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
+
+####Feature - instruct plane to land at an airport
+
+Exercise feature using irb:
+
+```bash
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x00007fb1760cd328> 
+2.6.5 :003 > plane.land("Heathrow")
+ => nil 
+2.6.5 :004 > 
+```
