@@ -15,4 +15,8 @@ class Airport
   def land_plane
     @planes_landed += 1
   end
+
+  def launch_plane
+    @planes_landed -= 1
+  end
 end

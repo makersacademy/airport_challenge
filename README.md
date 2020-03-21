@@ -158,3 +158,10 @@ Exercise feature using irb:
  => 20 
 2.6.5 :006 > 
 ```
+
+### User story 5
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy ```
