@@ -30,6 +30,8 @@ describe Airport do
     it 'returns a Plane object' do
       expect(subject.take_off(boeing)).to be_instance_of(Plane)
     end
-
+    it 'returns the same Plane object that was passed in to confirm take off' do
+      expect(subject.take_off(boeing)).to be boeing
+    end
   end
 end
