@@ -3,7 +3,7 @@ require 'plane.rb'
 class Airport
   
   def land(plane)
-    Plane.new
+    plane
   end
 
 end
