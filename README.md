@@ -107,8 +107,51 @@ I want to prevent landing when the airport is full
 
 #### Feature - if the airport is full, it should prevent planes from landing
 
-airport = Airport.new
-airport.full = true
-airport.full? = true
-plane = Plane.new
-plane.land(airport) => raise error
+Exercise feature using irb:
+
+```bash
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fcf9e0c8990> 
+2.6.5 :003 > airport.full = true
+ => true 
+2.6.5 :004 > plane = Plane.new
+ => #<Plane:0x00007fcf9e040ab8> 
+2.6.5 :005 > plane.land(airport)
+Traceback (most recent call last):
+        5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/student/projects/airport_challenge/lib/plane.rb:5:in `land'
+RuntimeError (Unable to land, airport is full)
+2.6.5 :006 > 
+```
+
+### User story 4
+
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate`
+
+```
+
+#### Feature - aiports have a default capacity that can be overriden
+
+Exercise feature using irb:
+
+```bash
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007feffa094b00 @capacity=10> 
+2.6.5 :003 > airport.capacity
+ => 10 
+2.6.5 :004 > airport = Airport.new(20)
+ => #<Airport:0x00007feff98f6470 @capacity=20> 
+2.6.5 :005 > airport.capacity
+ => 20 
+2.6.5 :006 > 
+```
