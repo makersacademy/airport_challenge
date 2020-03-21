@@ -7,7 +7,7 @@ describe Airport do
   let(:boeing) { Plane.new }
   let(:learjet) { Plane.new }
   
-  let(:random_weather_airport) {Airport.new}
+  let(:random_weather_airport) { Airport.new }
 
   let(:large_airport) { Airport.new(15) }
   before { allow(large_airport).to receive(:stormy?).and_return(false) }
@@ -30,10 +30,10 @@ describe Airport do
       expect(subject.hangar).to include boeing
     end
     it 'raises error if @hanger is full' do
-      5.times {subject.land(Plane.new)}
+      5.times { subject.land(Plane.new) }
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
-    it 'marks the plane as not flying' do
+    it 'marks the plane as not in flight' do
       subject.land(boeing)
       expect(boeing).to_not be_flying
     end
@@ -55,6 +55,12 @@ describe Airport do
     it 'marks the plane as flying' do
       subject.take_off(boeing)
       expect(boeing).to be_flying
+    end
+    it 'removes the taken off plane from @hangar' do
+      subject.land(boeing)
+      subject.land(learjet)
+      subject.take_off(boeing)
+      expect(subject.hangar).to_not include boeing
     end
   end
 

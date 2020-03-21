@@ -13,7 +13,7 @@ class Airport
     
     raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if @hangar.size == @capacity
-    
+
     plane.lands
     @hangar << plane
     plane
@@ -21,7 +21,8 @@ class Airport
 
   def take_off(plane)
     raise 'Cannot take off. Weather is stormy.' if stormy?
-
+    
+    @hangar.delete(plane)
     plane
   end
 
