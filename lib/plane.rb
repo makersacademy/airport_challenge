@@ -4,7 +4,7 @@ class Plane
   def initialize(status = DEFAULT_STATUS)
     @status = status
   end
-
+  
   def landed?
     @status == 'landed'
   end
