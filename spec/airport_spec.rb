@@ -9,9 +9,6 @@ describe Airport do
 
   let(:large_airport) { Airport.new(15) }
   before { allow(large_airport).to receive(:stormy?).and_return(false) }
-  
-  let(:stormy_airport) { Airport.new }
-  before { allow(stormy_airport).to receive(:stormy?).and_return(true) }
 
   context '#land' do
     it 'responds' do
@@ -73,9 +70,15 @@ describe Airport do
     end
   end
 
-  context '@weather is Stormy' do
+  context 'stormy weather' do
     it '#land will raise error' do
-      expect { stormy_airport.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
+    end
+    it '#take_off will raise error' do
+      subject.land(boeing)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.take_off(boeing) }.to raise_error 'Cannot take off. Weather is stormy.'
     end
   end
 
