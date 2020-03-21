@@ -334,3 +334,12 @@ I abstracted out the following parts of methods to their own methods in order to
 | land(plane) | raise 'Cannot land planes that are not in flight' unless in_flight?<br>in_flight?<br>raise 'Cannot land. Weather is stormy.' if stormy?<br>raise 'Hangar full.' if hangar_full? | landing_checks(plane) |
 | take_off(plane) | remove(plane)	<br>plane.takes_off<br>plane | take_off_sequence(plane) |
 | land(plane) | plane.lands<br>store(plane) | landing_sequence(plane) |
+
+
+### Reflections
+
+There is probably more I need to learn and practice about RSpec, in particular more about mocking and doubles.
+
+I tried my best to follow TDD practices, however I need more practice and perhaps some coaching on what order to write feature tests and unit tests.
+
+I feel I have adhered to OO principles quite well.
