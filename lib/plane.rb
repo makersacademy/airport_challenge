@@ -13,7 +13,7 @@ class Plane
     raise 'Unable to land, stormy weather' if weather.current_weather == Weather::STORMY
 
     @current_airport = airport
-    @current_airport.land_plane
+    @current_airport.notify_that_plane_has_landed
     @landed = true
   end
 
@@ -21,7 +21,7 @@ class Plane
     raise 'Unable to take off, plane is not landed' unless landed?
     raise 'Unable to take off, stormy weather' if weather.current_weather == Weather::STORMY
 
-    @current_airport.launch_plane
+    @current_airport.notify_that_plane_has_left
     @landed = false
     "No longer in the airport"
   end

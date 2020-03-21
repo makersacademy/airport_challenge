@@ -1,5 +1,5 @@
 class Airport
-  attr_accessor :capacity
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 10
 
@@ -12,11 +12,11 @@ class Airport
     @planes_landed == @capacity
   end
 
-  def land_plane
+  def notify_that_plane_has_landed
     @planes_landed += 1
   end
 
-  def launch_plane
+  def notify_that_plane_has_left
     @planes_landed -= 1
   end
 end

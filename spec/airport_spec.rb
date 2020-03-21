@@ -12,7 +12,7 @@ describe Airport do
     airport = Airport.new
 
     Airport::DEFAULT_CAPACITY.times do
-      airport.land_plane
+      airport.notify_that_plane_has_landed
     end
 
     airport
@@ -22,7 +22,7 @@ describe Airport do
     airport = Airport.new
 
     (Airport::DEFAULT_CAPACITY - 1).times do
-      airport.land_plane
+      airport.notify_that_plane_has_landed
     end
 
     airport

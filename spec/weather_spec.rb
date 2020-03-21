@@ -6,6 +6,8 @@ describe Weather do
   end
 
   it 'should tell you it is either stormy or clear' do
-    expect(subject.current_weather).to eq(Weather::STORMY).or eq(Weather::CLEAR)
+    1000.times do
+      expect(subject.current_weather).to eq(Weather::STORMY).or eq(Weather::CLEAR)
+    end
   end
 end
