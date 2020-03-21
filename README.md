@@ -51,7 +51,7 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
-Approach
+Implementation of features
 --------
 ### User story 1
 
@@ -69,10 +69,13 @@ Exercise feature using irb:
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > plane = Plane.new
- => #<Plane:0x00007fb1760cd328> 
-2.6.5 :003 > plane.land("Heathrow")
- => nil 
-2.6.5 :004 > 
+ => #<Plane:0x00007ffab090d5c8 @landed=false, @current_airport=nil> 
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007ffab08f5518 @capacity=10, @planes_landed=0> 
+2.6.5 :004 > weather = Weather.new
+ => #<Weather:0x00007ffab08318c0> 
+2.6.5 :005 > plane.land(airport, weather)
+ => true 
 ```
 
 ### User story 2
@@ -91,10 +94,15 @@ Exercise feature using irb:
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > plane = Plane.new
- => #<Plane:0x00007ffa3c09b5f8> 
-2.6.5 :003 > plane.take_off
- => "No longer in the airport" 
-2.6.5 :004 > 	
+ => #<Plane:0x00007fb89d88be60 @landed=false, @current_airport=nil> 
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007fb89d860b20 @capacity=10, @planes_landed=0> 
+2.6.5 :004 > weather = Weather.new
+ => #<Weather:0x00007fb89e031480> 
+2.6.5 :005 > plane.land(airport, weather)
+ => true 
+2.6.5 :006 > plane.take_off(weather)
+ => "No longer in the airport"  
 ```
 
 ### User story 3
@@ -113,23 +121,25 @@ Exercise feature using irb:
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > airport = Airport.new
- => #<Airport:0x00007f9e4b86c158 @capacity=10, @planes_landed=0> 
-2.6.5 :003 > 10.times do
-2.6.5 :004 >     plane = Plane.new
-2.6.5 :005?>   plane.land(airport)
-2.6.5 :006?>   end
+ => #<Airport:0x00007fa098888250 @capacity=10, @planes_landed=0> 
+2.6.5 :003 > weather = Weather.new
+ => #<Weather:0x00007fa09702ff78> 
+2.6.5 :004 > 10.times do
+2.6.5 :005 >     plane = Plane.new
+2.6.5 :006?>   plane.land(airport, weather)
+2.6.5 :007?>   end
  => 10 
-2.6.5 :007 > plane = Plane.new
- => #<Plane:0x00007f9e4c0d7ab8> 
-2.6.5 :008 > plane.land(airport)
+2.6.5 :008 > plane = Plane.new
+ => #<Plane:0x00007fa09890a070 @landed=false, @current_airport=nil> 
+2.6.5 :009 > plane.land(airport, weather)
 Traceback (most recent call last):
-        5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
-        4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
-        3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
-        2: from (irb):8
-        1: from /Users/student/projects/airport_challenge/lib/plane.rb:5:in `land'
+        6: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        4: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):10
+        2: from (irb):10:in `rescue in irb_binding'
+        1: from /Users/student/projects/airport_challenge/lib/plane.rb:11:in `land'
 RuntimeError (Unable to land, airport is full)
-2.6.5 :009 > 
 ```
 
 ### User story 4
@@ -156,7 +166,6 @@ Exercise feature using irb:
  => #<Airport:0x00007feff98f6470 @capacity=20> 
 2.6.5 :005 > airport.capacity
  => 20 
-2.6.5 :006 > 
 ```
 
 ### User story 5
@@ -178,9 +187,11 @@ Exercise feature using irb:
  => #<Plane:0x00007f9908051d08 @landed=false, @current_airport=nil> 
 2.6.5 :003 > airport = Airport.new
  => #<Airport:0x00007f9907134f28 @capacity=10, @planes_landed=0> 
-2.6.5 :004 > plane.land(airport)
+ 2.6.5 :004 > weather = Weather.new
+ => #<Weather:0x00007f9d820cf160> 
+ 2.6.5 :005 > plane.land(airport, weather)
  => true 
-2.6.5 :005 > plane.take_off(Weather.current_weather)
+2.6.5 :006 > plane.take_off(weather)
 Traceback (most recent call last):
         5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
         4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
@@ -207,15 +218,17 @@ Exercise feature using irb:
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > airport = Airport.new
- => #<Airport:0x00007fc90995e6b8 @capacity=10, @planes_landed=0> 
+ => #<Airport:0x00007f9d928ed3c0 @capacity=10, @planes_landed=0> 
 2.6.5 :003 > plane = Plane.new
- => #<Plane:0x00007fc9088806e8 @landed=false, @current_airport=nil> 
-2.6.5 :004 > plane.land(airport, Weather.current_weather)
+ => #<Plane:0x00007f9d930ede08 @landed=false, @current_airport=nil> 
+2.6.5 :004 > weather = Weather.new
+ => #<Weather:0x00007f9d930cf160> 
+2.6.5 :005 > plane.land(airport, weather)
 Traceback (most recent call last):
         5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
         4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
         3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
-        2: from (irb):4
+        2: from (irb):5
         1: from /Users/student/projects/airport_challenge/lib/plane.rb:13:in `land'
 RuntimeError (Unable to land, stormy weather)
 2.6.5 :005 > 
