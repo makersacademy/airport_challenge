@@ -113,20 +113,23 @@ Exercise feature using irb:
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > airport = Airport.new
- => #<Airport:0x00007fcf9e0c8990> 
-2.6.5 :003 > airport.full = true
- => true 
-2.6.5 :004 > plane = Plane.new
- => #<Plane:0x00007fcf9e040ab8> 
-2.6.5 :005 > plane.land(airport)
+ => #<Airport:0x00007f9e4b86c158 @capacity=10, @planes_landed=0> 
+2.6.5 :003 > 10.times do
+2.6.5 :004 >     plane = Plane.new
+2.6.5 :005?>   plane.land(airport)
+2.6.5 :006?>   end
+ => 10 
+2.6.5 :007 > plane = Plane.new
+ => #<Plane:0x00007f9e4c0d7ab8> 
+2.6.5 :008 > plane.land(airport)
 Traceback (most recent call last):
         5: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
         4: from /Users/student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
         3: from /Users/student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
-        2: from (irb):5
+        2: from (irb):8
         1: from /Users/student/projects/airport_challenge/lib/plane.rb:5:in `land'
 RuntimeError (Unable to land, airport is full)
-2.6.5 :006 > 
+2.6.5 :009 > 
 ```
 
 ### User story 4

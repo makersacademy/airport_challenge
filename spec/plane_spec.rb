@@ -3,7 +3,12 @@ require 'plane'
 describe Plane do
   let(:full_airport) do 
     airport = Airport.new 
-    airport.full = true
+
+    10.times do
+      plane = Plane.new
+      plane.land(airport)
+    end
+    
     airport
   end
 
@@ -11,10 +16,10 @@ describe Plane do
     it 'can be instructed to land at an airport' do
       expect(subject).to respond_to(:land).with(1).argument
     end
-  end
 
-  it 'will not land if the airport is full' do
-    expect { subject.land(full_airport) }.to raise_error 'Unable to land, airport is full'
+    it 'will not land if the airport is full' do
+      expect { subject.land(full_airport) }.to raise_error 'Unable to land, airport is full'
+    end
   end
 
   context 'taking off' do
