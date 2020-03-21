@@ -1,5 +1,4 @@
 class Airport
-  attr_writer :full
   attr_accessor :capacity
 
   DEFAULT_CAPACITY = 10
