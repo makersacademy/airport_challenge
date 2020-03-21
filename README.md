@@ -30,16 +30,7 @@ We have a request from a client to write the software to control the flow of pla
 > To ensure safety  
 > I want to prevent landing when weather is stormy 
 
-## Domain Model
-
-| **Objects** | **Messages** |
-|---|---|
-| Air Traffic Controller |  |
-| System Designer |  |
-| Airport | **#land(plane)** - only if Airport is not full, weather is not stormy, and plane is flying <br>**#take_off(plane)** - confirms it is no longer in airport, only if weather is not stormy, and plane is not flying <br>**#stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
-| Plane | **#lands** - updates @in_flight to false <br> **#takes_off** - updates @in_flight to true <br><br>  **@in_flight** - boolean describing if plane is in flight |
-
-## Requirements
+## Technical Requirements
 
 Separate files for every class, module and test suite.
 
@@ -51,20 +42,93 @@ Defend against edge cases:
 - Planes that are already flying cannot take off and/or be in an airport
 - Planes that are landed cannot land again and must be in an airport
 
-In code review we'll be hoping to see:
+## Domain Model
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+| **Objects** | **Messages** |
+|---|---|
+| Air Traffic Controller |  |
+| System Designer |  |
+| Airport | **#land(plane)** - only if Airport is not full, weather is not stormy, and plane is flying <br>**#take_off(plane)** - confirms it is no longer in airport, only if weather is not stormy, and plane is not flying <br>**#stormy?** - 0.2 chance to return true, otherwise false <br><br>**@capacity** - capacity of @hangar, defaults to 5 <br>**@hangar** - array for storing planes  |
+| Plane | **#lands** - updates @in_flight to false <br> **#takes_off** - updates @in_flight to true <br><br>  **@in_flight** - boolean describing if plane is in flight |
 
-**BONUS**
+## Instructions
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+### Enter REPL
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+- Enter your REPL of choice, I use IRB.  
+  From terminal in the main directory: 
+  
+  ```ruby
+  irb
+  ```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+- Load in airport.rb:
+  
+  ```ruby
+  require './lib/airport.rb'
+  ```
 
-* **Submit a pull request early.**
+### Instantiate objects
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+- Instantiate a Plane: 
+  ```ruby
+  my_plane = Plane.new
+  ```
+
+- Instantiate an Airport: 
+  ```ruby
+  my_airport = Airport.new
+  ```
+
+- The default parameter for an airport's hangar capacity is 5. If you would like to set a custom capacity pass a number as an argument when instantiating:
+  ```ruby
+  large_airport = Airport.new(15)
+  ```
+
+
+### Landing at an Airport
+
+- Land your plane at your airport with the Airport land method: 
+  ```ruby
+  my_airport.land(my_plane)
+  ```
+
+- You may find that the weather is stormy at the airport, in which case you will receive an error:
+  
+  > RuntimeError (Cannot land. Weather is stormy.)  
+
+  Keep trying, it won't be stormy every time you try to take off.
+
+- You will only be able to land if there is space in the hangar for your plane. If the hangar is full you will receive an error:
+
+  > RuntimeError (Hangar full.)
+
+  Another plane will have to take off before you can land.
+
+- You won't be able to land if your plane is currently landed:
+  ```ruby
+  my_airport.land(landed_plane)
+  ```
+
+  > RuntimeError (Cannot land planes that are not in flight.)
+
+### Taking off from an an Airport
+
+- Take off in your plane from airport with the Airport land method: 
+  ```ruby
+  my_airport.take_off(my_plane)
+  ```
+
+- You may find that the weather is stormy at the airport, in which case you will receive an error:
+  
+  > RuntimeError (Cannot take off. Weather is stormy.)  
+
+  As with landing, keep trying, it won't be stormy every time you try to take off.
+
+- You won't be able to take off from an airport in a plane that doesn't exist in that airport's hangar.
+  ```
+  my_airport.take_off(plane_landed_elsewhere)
+  ```
+
+  > RuntimeError (This plane is not in the hangar.)
+
