@@ -16,6 +16,8 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Weather stormy' if weather_stormy?
+
     true
   end
 
@@ -23,6 +25,10 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def weather_stormy?
+    Weather.new.stormy?
   end
 
 end
