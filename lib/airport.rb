@@ -17,9 +17,7 @@ class Airport
 
   def take_off(plane)
     preflight_checks(plane)
-    taxi(plane)
-    plane.takes_off
-    plane
+    take_off_sequence(plane)
   end
   
   def stormy?
@@ -40,6 +38,11 @@ class Airport
     raise 'This plane is not in the hangar.' unless in_hangar?(plane)
   end
 
+  def take_off_sequence(plane)
+    plane.takes_off
+    taxi(plane)
+  end
+
   def in_flight?(plane)
     plane.flying?
   end
@@ -55,6 +58,7 @@ class Airport
 
   def taxi(plane)
     @hangar.delete(plane)
+    plane
   end
 
   def in_hangar?(plane)
