@@ -14,6 +14,12 @@ describe Plane do
 
   let(:empty_airport) { Airport.new }
 
+  let(:landed_plane) do
+    plane = Plane.new
+    plane.land(empty_airport)
+    plane
+  end
+
   context 'landing' do
     it 'can be instructed to land at an airport' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -25,6 +31,10 @@ describe Plane do
 
     it 'will land if there is space at the airport' do
       expect { subject.land(empty_airport) }.not_to raise_error
+    end
+
+    it 'will not land if it has already landed' do
+      expect { landed_plane.land(empty_airport) }.to raise_error 'Unable to land, plane has already landed'
     end
   end
 
