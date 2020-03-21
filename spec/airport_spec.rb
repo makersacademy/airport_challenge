@@ -20,9 +20,9 @@ describe Airport do
       expect(subject.land(jumbo)).to eq(jumbo)
     end
 
-    it "stores plane in hanger on landing" do
-        expect(subject.store(jumbo)).to contain_exactly( an_object_having_attributes(jumbo))
-     end
+    #it "stores plane in hanger on landing" do
+     #   expect(subject.store(jumbo)).to contain_exactly( an_object_having_attributes(jumbo))
+     #end
   end
 
   context '# take_off' do
