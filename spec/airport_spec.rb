@@ -1,11 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:clear_weather) do
-    weather = Weather.new
-    allow(weather).to receive(:current_weather) { Weather::CLEAR }
-    weather
-  end
+  let(:clear_weather) { double(:weather, :current_weather => Weather::CLEAR) }
 
   let(:standard_airport) { Airport.new }
 
