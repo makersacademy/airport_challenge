@@ -8,4 +8,12 @@ describe Airport do
   it "when #take_off is called on Airport, it creates a new plane" do
     expect(subject.take_off).to be_instance_of(Plane)
   end
+
+  it "Airport responds to #plane_left_hangar" do
+    expect(subject).to respond_to(:plane_left_hangar)
+  end
+
+  it "Airport confirms #plane_left_hangar" do
+    expect(subject.plane_left_hangar).to eq("Plane has left the airport")
+  end
 end
