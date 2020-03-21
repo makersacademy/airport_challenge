@@ -40,4 +40,14 @@ describe '#land(plane)' do
 
   end
 
+  context 'Given a Capacity' do
+
+    it "Plane  won't land if above capacity" do
+      new_airport = Airport.new(72)
+      72.times { new_airport.land }
+      expect { new_airport.land }.to raise_error 'Airport Full'
+    end
+
+  end
+
 end
