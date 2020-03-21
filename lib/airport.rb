@@ -25,8 +25,8 @@ class Airport
     @planes
   end
 
-  def check_weather
-    
+  def stormy?
+  
   end
 
 end

@@ -50,10 +50,10 @@ describe 'Airport' do
 
   end
 
-  context '#check_weather' do
+  context '#stormy?' do
 
-    it 'Airport responds to #check_weather' do
-      expect(airport).to respond_to(:check_weather)
+    it 'Airport responds to #stormy?' do
+      expect(airport).to respond_to(:stormy?)
     end
 
   end
