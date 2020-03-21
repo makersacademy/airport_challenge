@@ -5,8 +5,7 @@ describe Weather do
     expect(subject).to respond_to(:current_weather)  
   end
 
-  it 'tells you when it is stormy' do
-    allow(subject).to receive(:current_weather).and_return(:stormy)
-    expect(subject.current_weather).to eq(:stormy)
+  it 'should tell you it is either stormy or clear' do
+    expect(subject.current_weather).to eq(:stormy).or eq(:clear)
   end
 end
