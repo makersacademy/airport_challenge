@@ -4,6 +4,7 @@ describe Airport do
 
   let(:boeing) { Plane.new }
   let(:learjet) { Plane.new }
+  let(:large_airport) { Airport.new(15) }
 
   context '#land' do
     it 'responds' do
@@ -20,10 +21,10 @@ describe Airport do
     end
     it 'stores the landed plane in the hangar' do
       subject.land(boeing)
-      expect(subject.hangar).to be boeing
+      expect(subject.hangar).to include boeing
     end
-    it 'raises error if @hanger is occupied' do
-      subject.land(boeing)
+    it 'raises error if @hanger is full' do
+      5.times {subject.land(Plane.new)}
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
   end
@@ -40,6 +41,19 @@ describe Airport do
     end
     it 'returns the same Plane object that was passed in to confirm take off' do
       expect(subject.take_off(boeing)).to be boeing
+    end
+  end
+
+  context '@hangar' do
+    it 'responds' do
+      expect(subject).to respond_to :hangar
+    end
+  end
+
+  context '@capacity' do
+    it 'when not set, default is 5, landing more than 5 will raise error' do
+      5.times { subject.land(Plane.new) }
+      expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
   end
 
