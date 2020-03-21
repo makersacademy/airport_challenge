@@ -44,7 +44,7 @@ class Airport
 
   def take_off_sequence(plane)
     plane.takes_off
-    taxi(plane)
+    remove(plane)
   end
 
   def in_flight?(plane)
@@ -60,7 +60,7 @@ class Airport
     plane
   end
 
-  def taxi(plane)
+  def remove(plane)
     @hangar.delete(plane)
     plane
   end
