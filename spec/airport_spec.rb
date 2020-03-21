@@ -72,12 +72,12 @@ describe Airport do
 
   context 'stormy weather' do
     it '#land will raise error' do
-      allow(subject).to receive(:stormy?).and_return(true)
+      subject.stub(:stormy?) { true }
       expect { subject.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
     end
     it '#take_off will raise error' do
       subject.land(boeing)
-      allow(subject).to receive(:stormy?).and_return(true)
+      subject.stub(:stormy?) { true }
       expect { subject.take_off(boeing) }.to raise_error 'Cannot take off. Weather is stormy.'
     end
   end
