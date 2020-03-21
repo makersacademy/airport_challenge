@@ -23,6 +23,10 @@ describe '#land(plane)' do
       expect(airport).to respond_to(:take_off)
     end
 
+    it 'Plane leaves in airport' do
+      expect(airport.take_off).to_not be_instance_of(Plane)
+    end
+
   end
 
 end
