@@ -6,6 +6,8 @@ describe Airport do
   
   let(:boeing) { Plane.new }
   let(:learjet) { Plane.new }
+  
+  let(:random_weather_airport) {Airport.new}
 
   let(:large_airport) { Airport.new(15) }
   before { allow(large_airport).to receive(:stormy?).and_return(false) }
@@ -79,6 +81,13 @@ describe Airport do
       subject.land(boeing)
       subject.stub(:stormy?) { true }
       expect { subject.take_off(boeing) }.to raise_error 'Cannot take off. Weather is stormy.'
+    end
+  end
+
+  context '#stormy?' do
+    it 'returns false when over 0.8' do
+      allow(Kernel).to receive(:rand).and_return(0.9)
+      expect(random_weather_airport.stormy?).to be
     end
   end
 
