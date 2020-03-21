@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if full?
+    fail 'Weather stormy' if weather_stormy?
 
     @planes << plane
     true
