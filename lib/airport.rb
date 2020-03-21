@@ -23,7 +23,7 @@ class Airport
     raise 'Cannot take off. Weather is stormy.' if stormy?
     raise 'This plane is not in the hangar.' unless in_hangar?(plane)
 
-    @hangar.delete(plane)
+    taxi(plane)
     plane.takes_off
     plane
   end
@@ -45,6 +45,10 @@ class Airport
   def store(plane)
     @hangar << plane
     plane
+  end
+
+  def taxi(plane)
+    @hangar.delete(plane)
   end
 
   def in_hangar?(plane)
