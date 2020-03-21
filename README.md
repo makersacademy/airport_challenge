@@ -126,7 +126,7 @@ Defend against edge cases:
   As with landing, keep trying, it won't be stormy every time you try to take off.
 
 - You won't be able to take off from an airport in a plane that doesn't exist in that airport's hangar.
-  ```
+  ```ruby
   my_airport.take_off(plane_landed_elsewhere)
   ```
 
