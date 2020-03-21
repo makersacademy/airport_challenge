@@ -20,17 +20,19 @@ describe Plane do
     plane
   end
 
+  let(:airborne_plane) { Plane.new }
+
   context 'landing' do
     it 'can be instructed to land at an airport' do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
     it 'will not land if the airport is full' do
-      expect { subject.land(full_airport) }.to raise_error 'Unable to land, airport is full'
+      expect { airborne_plane.land(full_airport) }.to raise_error 'Unable to land, airport is full'
     end
 
     it 'will land if there is space at the airport' do
-      expect { subject.land(empty_airport) }.not_to raise_error
+      expect { airborne_plane.land(empty_airport) }.not_to raise_error
     end
 
     it 'will not land if it has already landed' do
@@ -48,7 +50,7 @@ describe Plane do
     end
 
     it 'will not take off if it is has not landed' do
-      expect { subject.take_off }.to raise_error 'Unable to take off, plane is not landed'
+      expect { airborne_plane.take_off }.to raise_error 'Unable to take off, plane is not landed'
     end
   end
 end
