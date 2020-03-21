@@ -8,9 +8,11 @@ describe Plane do
       plane = Plane.new
       plane.land(airport)
     end
-    
+
     airport
   end
+
+  let(:empty_airport) { Airport.new }
 
   context 'landing' do
     it 'can be instructed to land at an airport' do
@@ -19,6 +21,10 @@ describe Plane do
 
     it 'will not land if the airport is full' do
       expect { subject.land(full_airport) }.to raise_error 'Unable to land, airport is full'
+    end
+
+    it 'will land if there is space at the airport' do
+      expect { subject.land(empty_airport) }.not_to raise_error
     end
   end
 
