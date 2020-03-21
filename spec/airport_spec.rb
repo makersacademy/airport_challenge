@@ -12,8 +12,12 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it "return Plane object" do
+    it "return a Plane object" do
       expect(subject.land(jumbo)).to be_an_instance_of(Plane)
+    end
+
+    it "lands the plane" do
+      expect(subject.land(jumbo)).to eq(jumbo)
     end
   end
 end
