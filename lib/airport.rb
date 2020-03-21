@@ -10,10 +10,7 @@ class Airport
   attr_reader :hangar, :weather, :capacity
 
   def land(plane)
-    raise 'Cannot land planes that are not in flight' unless in_flight?(plane)
-    raise 'Cannot land. Weather is stormy.' if stormy?
-    raise 'Hangar full.' if hangar_full?
-
+    landing_checks(plane)
     plane.lands
     store(plane)
   end
@@ -30,6 +27,12 @@ class Airport
   end
 
   private
+
+  def landing_checks(plane)
+    raise 'Cannot land planes that are not in flight' unless in_flight?(plane)
+    raise 'Cannot land. Weather is stormy.' if stormy?
+    raise 'Hangar full.' if hangar_full?
+  end
 
   def preflight_checks(plane)
     raise 'Cannot take off planes that are already in flight' if in_flight?(plane)
