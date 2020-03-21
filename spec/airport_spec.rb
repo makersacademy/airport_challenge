@@ -12,10 +12,9 @@ describe '#land(plane)' do
     end
 
     it 'Plane lands in airport' do
-      expect(airport.land.to be_instance_of(Plane)
+      expect(airport.land).to be_instance_of(Plane)
     end
 
   end
 
 end
-
