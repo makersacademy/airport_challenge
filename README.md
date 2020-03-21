@@ -39,5 +39,5 @@ I want to prevent landing when weather is stormy
 |air_traffic_controller| |
 |passenger| |
 |destination| |
-|plane|land(airport), take_off|
+|plane|land(airport), take_off(airport)|
 |airport| |
