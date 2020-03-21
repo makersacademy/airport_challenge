@@ -1,6 +1,6 @@
 require 'airport'
 
-describe '#land(plane)' do
+describe 'Airport' do
 
   subject(:airport) { Airport.new }
   let(:plane) { Plane.new }
@@ -50,4 +50,11 @@ describe '#land(plane)' do
 
   end
 
+  context '#stormy?' do
+
+    it 'Airport responds to #stormy?' do
+      expect(airport).to respond_to(:stormy?)
+    end
+
+  end
 end
