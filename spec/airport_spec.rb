@@ -37,6 +37,10 @@ describe Airport do
       subject.land(boeing)
       expect(boeing).to_not be_flying
     end
+    it 'planes not in flight cannot be landed, raises error' do
+      boeing.lands
+      expect { subject.land(boeing) }.to raise_error 'Cannot land planes that are not in flight'
+    end
   end
 
   context '#take_off' do

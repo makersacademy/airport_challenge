@@ -10,7 +10,7 @@ class Airport
   attr_reader :hangar, :weather, :capacity
 
   def land(plane)
-    
+    raise 'Cannot land planes that are not in flight' unless plane.flying?
     raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if @hangar.size == @capacity
 
@@ -21,7 +21,7 @@ class Airport
 
   def take_off(plane)
     raise 'Cannot take off. Weather is stormy.' if stormy?
-    
+
     @hangar.delete(plane)
     plane
   end
