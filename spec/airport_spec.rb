@@ -33,6 +33,10 @@ describe Airport do
       5.times {subject.land(Plane.new)}
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
+    it 'marks the plane as not flying' do
+      subject.land(boeing)
+      expect(boeing).to_not be_flying?
+    end
   end
 
   context '#take_off' do
