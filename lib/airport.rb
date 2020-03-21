@@ -37,9 +37,9 @@ class Airport
   end
 
   def preflight_checks(plane)
+    raise 'Cannot take off planes that are already in flight.' if in_flight?(plane)
     raise 'This plane is not in the hangar.' unless in_hangar?(plane)
     raise 'Cannot take off. Weather is stormy.' if stormy?
-    raise 'Cannot take off planes that are already in flight.' if in_flight?(plane)
   end
 
   def take_off_sequence(plane)
