@@ -35,6 +35,7 @@ We have a request from a client to write the software to control the flow of pla
 Separate files for every class, module and test suite.
 
 Use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy).  
+
 Use a stub to override random weather to ensure consistent test behaviour.
 
 Defend against edge cases:
@@ -134,9 +135,22 @@ Defend against edge cases:
 
 ## Development Journal
 
+### Development approach
+
+I approached this project using Test Driven Development strategies:
+- Only write the most basic test you need to fail.
+- Only write production code to pass a failing test.
+- Only write the most basic production code to pass the test.
+
+I approached this project with object oriented programming in mind:
+- Objects should encapsulate methods that are related to one another in purpose.
+- Methods should have a single responsibility, so they do not do too much, and are concise.
+
+In order to keep code clear and readable, I used rubocop for linting. 
+
 ### Domain model
 
-- Wrote a domain model based on user stories to better understand user stories and map out basic classes and methods.
+In order to create an object oriented plan, I wrote a domain model based on user stories to better understand user stories and map out classes and methods (objects and messages).
 
 ### User story 1
 
@@ -302,6 +316,8 @@ _Also, planes aren't in the hangar can't take off from that airport._
 
 - Wrote a test for the take_off method to raise an error when attempting to take off with a plane that is not in it's hangar.
 - Added a third guard clause to the take_off method to check if the plane is included in the hangar array. Test passes.
+
+_Finally, I wrote a feature test that emulates 3 planes landing, one taking off again for another airport, another taking off intending to return, but is unable to land due to stormy weather._
 
 ### Refactoring for SRP
 
