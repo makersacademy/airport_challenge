@@ -17,7 +17,10 @@ describe Airport do
     it 'returns the same Plane object that was passed in' do
       expect(subject.land(boeing)).to be boeing
     end
-
+    it 'stores the landed plane in the hangar' do
+      subject.land(boeing)
+      expect(subject.hangar).to be boeing
+    end
   end
 
   context '#take_off' do
@@ -34,4 +37,5 @@ describe Airport do
       expect(subject.take_off(boeing)).to be boeing
     end
   end
+
 end
