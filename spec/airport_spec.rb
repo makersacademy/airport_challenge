@@ -1,8 +1,6 @@
 require 'airport'
 
 describe Airport do
-  let(:clear_weather) { double(:weather, :current_weather => Weather::CLEAR) }
-
   let(:standard_airport) { Airport.new }
 
   let(:large_airport) do 
@@ -14,8 +12,7 @@ describe Airport do
     airport = Airport.new
 
     Airport::DEFAULT_CAPACITY.times do
-      plane = Plane.new
-      plane.land(airport, clear_weather)
+      airport.land_plane
     end
 
     airport
@@ -25,8 +22,7 @@ describe Airport do
     airport = Airport.new
 
     (Airport::DEFAULT_CAPACITY - 1).times do
-      plane = Plane.new
-      plane.land(airport, clear_weather)
+      airport.land_plane
     end
 
     airport
