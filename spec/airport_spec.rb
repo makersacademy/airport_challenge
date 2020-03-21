@@ -17,6 +17,7 @@ describe Airport do
     it 'returns the same Plane object that was passed in' do
       expect(subject.land(boeing)).to be boeing
     end
+
   end
 
   context '#take_off' do
@@ -26,5 +27,9 @@ describe Airport do
     it 'expects one argument' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
+    it 'returns a Plane object' do
+      expect(subject.take_off(boeing)).to be_instance_of(Plane)
+    end
+
   end
 end
