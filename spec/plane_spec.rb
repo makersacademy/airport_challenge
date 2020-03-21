@@ -2,30 +2,13 @@ require 'plane'
 
 describe Plane do
 
-  let(:clear_weather) do
-    weather = Weather.new
-    allow(weather).to receive(:current_weather) { Weather::CLEAR }
-    weather
-  end
+  let(:clear_weather) { double(:clear_weather, :current_weather => Weather::CLEAR) }
 
-  let(:stormy_weather) do
-    weather = Weather.new
-    allow(weather).to receive(:current_weather) { Weather::STORMY }
-    weather
-  end
+  let(:stormy_weather) { double(:clear_weather, :current_weather => Weather::STORMY) }
 
-  let(:full_airport) do 
-    airport = Airport.new 
+  let(:full_airport) { double(:airport, :full? => true) }
 
-    10.times do
-      plane = Plane.new
-      plane.land(airport, clear_weather)
-    end
-
-    airport
-  end
-
-  let(:empty_airport) { Airport.new }
+  let(:empty_airport) { double(:airport_empty, :full? => false, :land_plane => true, :launch_plane => true)}
 
   let(:landed_plane) do
     plane = Plane.new
