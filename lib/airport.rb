@@ -7,9 +7,11 @@ class Airport
     @capacity = capacity
   end
 
-  attr_reader :hangar
+  attr_reader :hangar, :weather, :capacity
 
   def land(plane)
+    
+    raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if @hangar.size == @capacity
 
     @hangar << plane
@@ -18,5 +20,11 @@ class Airport
 
   def take_off(plane)
     plane
+  end
+
+  private
+
+  def stormy?
+    rand > 0.8
   end
 end

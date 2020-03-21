@@ -2,9 +2,16 @@ require 'airport'
 
 describe Airport do
 
+  before { allow(subject).to receive(:stormy?).and_return(false) }
+  
   let(:boeing) { Plane.new }
   let(:learjet) { Plane.new }
+
   let(:large_airport) { Airport.new(15) }
+  before { allow(large_airport).to receive(:stormy?).and_return(false) }
+  
+  let(:stormy_airport) { Airport.new }
+  before { allow(stormy_airport).to receive(:stormy?).and_return(true) }
 
   context '#land' do
     it 'responds' do
@@ -57,12 +64,18 @@ describe Airport do
 
   context '@capacity' do
     it 'when not set, default is 5, landing more than 5 will raise error' do
-      5.times { subject.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(learjet) }.to raise_error 'Hangar full.'
     end
     it 'when set to 15, landing more than 15 will raise error' do
-      15.times { large_airport.land(Plane.new) }
+      large_airport.capacity.times { large_airport.land(Plane.new) }
       expect { large_airport.land(learjet) }.to raise_error 'Hangar full.'
+    end
+  end
+
+  context '@weather is Stormy' do
+    it '#land will raise error' do
+      expect { stormy_airport.land(learjet) }.to raise_error 'Cannot land. Weather is stormy.'
     end
   end
 
