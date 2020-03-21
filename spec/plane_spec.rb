@@ -1,8 +1,20 @@
 require 'plane'
 
 describe Plane do
-  it 'can be instructed to land at an airport' do
-    expect(subject).to respond_to(:land).with(1).argument
+  let(:full_airport) do 
+    airport = Airport.new 
+    airport.full = true
+    airport
+  end
+
+  context 'landing' do
+    it 'can be instructed to land at an airport' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+  end
+
+  it 'will not land if the airport is full' do
+    expect { subject.land(full_airport) }.to raise_error 'Unable to land, airport is full'
   end
 
   context 'taking off' do
