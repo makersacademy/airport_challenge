@@ -15,16 +15,14 @@ class Airport
 
     @planes << plane
     plane.landed
-    true
   end
 
   def take_off(plane)
-    fail 'Plane not in airport' unless @planes.include? plane 
+    fail 'Plane not in airport' unless @planes.include? plane
     fail 'Weather stormy' if weather_stormy?
 
     @planes.delete(plane)
     plane.left_airport
-    true
   end
 
   private

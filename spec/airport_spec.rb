@@ -5,7 +5,7 @@ describe Airport do
   it 'instructs plane to land and confirms landing if weather is clear' do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
     plane = Plane.new
-    expect(subject.land(plane)).to eq true
+    expect(subject.land(plane)).to eq 'landed'
   end
 
   it 'instructs plane to land' do
@@ -16,7 +16,7 @@ describe Airport do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
     plane = Plane.new
     subject.land(plane)
-    expect(subject.take_off(plane)).to eq true
+    expect(subject.take_off(plane)).to eq 'flying'
   end
 
   it 'instructs plane to #take_off' do
@@ -33,7 +33,7 @@ describe Airport do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
     airport = Airport.new(100)
     99.times { airport.land(Plane.new) }
-    expect(airport.land(Plane.new)).to eq true
+    expect(airport.land(Plane.new)).to eq 'landed'
   end
 
   it 'prevents #land if airport is full at overriden capacity' do
