@@ -27,6 +27,12 @@ describe '#land(plane)' do
       expect(airport).to respond_to(:view_planes)
     end
 
+    it '#view_plane confirms #take_off' do
+      landed_plane = airport.land
+      airport.take_off
+      expect(airport.view_planes).to_not be([landed_plane])
+    end
+
   end
 
 end
