@@ -13,7 +13,8 @@ class Airport
     
     raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if @hangar.size == @capacity
-
+    
+    plane.lands
     @hangar << plane
     plane
   end
