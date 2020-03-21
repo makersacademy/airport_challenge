@@ -11,8 +11,7 @@ class Airport
 
   def land(plane)
     landing_checks(plane)
-    plane.lands
-    store(plane)
+    landing_sequence(plane)
   end
 
   def take_off(plane)
@@ -30,6 +29,11 @@ class Airport
     raise 'Cannot land planes that are not in flight' unless in_flight?(plane)
     raise 'Cannot land. Weather is stormy.' if stormy?
     raise 'Hangar full.' if hangar_full?
+  end
+
+  def landing_sequence(plane)
+    plane.lands
+    store(plane)
   end
 
   def preflight_checks(plane)
