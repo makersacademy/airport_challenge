@@ -15,8 +15,7 @@ class Airport
     raise 'Hangar full.' if hangar_full?
 
     plane.lands
-    @hangar << plane
-    plane
+    store(plane)
   end
 
   def take_off(plane)
@@ -37,6 +36,11 @@ class Airport
 
   def hangar_full?
     @hangar.size == @capacity
+  end
+
+  def store(plane)
+    @hangar << plane
+    plane
   end
 
   def in_hangar?(plane)
