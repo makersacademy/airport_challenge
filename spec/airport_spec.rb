@@ -21,9 +21,16 @@ describe Airport do
     end
   end
 
-  context '# take off' do
+  context '# take_off' do
   
     it { is_expected.to respond_to :take_off }
 
+    it "take_off expects one argument" do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
+
+    it "a plane object takes off" do
+      expect(subject.take_off(jumbo)).to eq(jumbo)
+    end
   end
 end
