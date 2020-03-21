@@ -8,7 +8,7 @@ describe Plane do
 
   let(:full_airport) { double(:airport, :full? => true) }
 
-  let(:empty_airport) { double(:airport_empty, :full? => false, :land_plane => true, :launch_plane => true)}
+  let(:empty_airport) { double(:airport_empty, :full? => false, :land_plane => true, :launch_plane => true) }
 
   let(:landed_plane) do
     plane = Plane.new
