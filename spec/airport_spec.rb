@@ -17,15 +17,16 @@ describe '#land(plane)' do
 
   end
 
-<<<<<<< HEAD
   context 'Airport can #take_off planes' do
 
     it 'Airport responds to #take_off' do
       expect(airport).to respond_to(:take_off)
     end
 
+    it 'Airport responds to #view_planes' do
+      expect(airport).to respond_to(:view_planes)
+    end
+
   end
 
-=======
->>>>>>> parent of 332159d... Airport responds to #take_off
 end
