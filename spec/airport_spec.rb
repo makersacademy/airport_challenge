@@ -5,9 +5,9 @@ describe '#land(plane)' do
   subject(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
-  context 'Airport can #land(plane)' do
+  context 'Airport can #land planes' do
 
-    it 'Airport responds to land(plane)' do
+    it 'Airport responds to #land' do
       expect(airport).to respond_to(:land)
     end
 
@@ -16,5 +16,6 @@ describe '#land(plane)' do
     end
 
   end
+
 end
 
