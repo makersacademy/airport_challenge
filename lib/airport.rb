@@ -9,6 +9,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @storm = false
   end
 
   def land
@@ -21,7 +22,7 @@ class Airport
 
   def take_off
     fail "Bad weather" if @storm
-    
+
     @planes.pop
   end
 
@@ -32,4 +33,11 @@ class Airport
   def stormy
     @storm = true
   end
+
+  def check_weather
+    weather = rand(5)
+    puts weather
+    @storm = true if weather.zero?
+  end
+
 end

@@ -58,18 +58,22 @@ describe 'Airport' do
         expect(airport).to respond_to(:stormy)
       end
   
-    end
+      it 'cannt #take_off if stormy' do
+        stormy_airport = Airport.new
+        stormy_airport.stormy
+        expect { stormy_airport.take_off }.to raise_error "Bad weather"
+      end
+  
+      it 'cannt #land if stormy' do
+        stormy_airport = Airport.new
+        stormy_airport.stormy
+        expect { stormy_airport.land }.to raise_error "Bad weather"
+      end
 
-    it 'cannt #take_off if stormy' do
-      stormy_airport = Airport.new
-      stormy_airport.stormy
-      expect { stormy_airport.take_off }.to raise_error "Bad weather"
-    end
-
-    it 'cannt #land if stormy' do
-      stormy_airport = Airport.new
-      stormy_airport.stormy
-      expect { stormy_airport.land }.to raise_error "Bad weather"
+      it 'Airport responds to #check_weather' do
+        expect(airport).to respond_to(:check_weather)
+      end
+  
     end
 
   end
