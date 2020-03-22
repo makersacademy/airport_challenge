@@ -5,25 +5,18 @@ class Airport
   attr_reader :capacity
   self::MAX_PLANES = 10
 
-  def initialize#(capacity)
+  def initialize
     @num_planes = []
-    @capacity = MAX_PLANES #capacity
+    @capacity = MAX_PLANES
   end
 
   def take_off
-    fail "No planes available to fly" if @num_planes.empty? #removed unless
-    #the return below is not currently tested, how can I do this?
+    fail "No planes available to fly" if @num_planes.empty?
     @num_planes.pop
   end
 
   def land(plane)
     fail "Aiport full, cannot land!" if @num_planes.count >= MAX_PLANES
-    @num_planes.push(plane) # =plane
+    @num_planes.push(plane)
   end
-
-
-  #technically below is the attribute reader
-  #def plane
-  #  @plane
-  #end
 end
