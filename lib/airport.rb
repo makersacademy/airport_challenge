@@ -4,9 +4,9 @@ class Airport
   attr_reader :plane
 
   def take_off
-    #have done this as a puts but wonder if I should put this in it's own method?
-    puts "Plane has left the airport"
-    Plane.new
+    fail "No planes available to fly" unless @plane
+    #the return below is not currently tested, how can I do this?
+    @plane
   end
 
   def land(plane)
@@ -20,10 +20,3 @@ class Airport
   #  @plane
   #end
 end
-=begin
-    hangar = "empty"
-    if hangar == "full"
-      raise "Airport full, cannot land"
-    # end
-    end
-=end

@@ -4,9 +4,15 @@ describe Airport do
   it "Airport responds to #take_off" do
     expect(subject).to respond_to(:take_off)
   end
+  # think i don't need this now as the take_off raise error now superseeds this.
+  #it "when #take_off is called on Airport, it creates a new plane" do
+  #  expect(subject.take_off).to be_instance_of(Plane)
+  #end
 
-  it "when #take_off is called on Airport, it creates a new plane" do
-    expect(subject.take_off).to be_instance_of(Plane)
+  describe "#take_off" do
+    it "raises error when no planes are available" do
+      expect{subject.take_off}.to raise_error("No planes available to fly")
+    end
   end
 
   it "responds to #land with one argument" do
