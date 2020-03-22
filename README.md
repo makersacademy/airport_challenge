@@ -40,4 +40,4 @@ I want to prevent landing when weather is stormy
 |passenger| |
 |destination| |
 |plane|land(airport), take_off(airport)|
-|airport| |
+|airport|land(plane), take_off(plane), confirm?(plane)|
