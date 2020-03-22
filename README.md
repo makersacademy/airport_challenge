@@ -34,10 +34,10 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
-|Objects|Messages|
-|-|-|
-|air_traffic_controller| |
-|passenger| |
-|destination| |
-|plane|land(airport), take_off(airport)|
-|airport|land(plane), take_off(plane), confirm?(plane)|
+|Objects|Messages|Variables|
+|-|-|-|
+|air_traffic_controller| | |
+|passenger| | |
+|destination| | |
+|plane|land(airport), take_off(airport)| |
+|airport|land(plane), take_off(plane), confirm?(plane)|planes |
