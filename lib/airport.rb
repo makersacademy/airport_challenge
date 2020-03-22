@@ -17,6 +17,10 @@ class Airport
     @capacity = capacity
   end
 
+  def plane_in_hanger?(plane)
+    @hanger.include?(plane)
+  end
+
   def land(plane)
     fail "Airport is full" unless @hanger.count < @capacity
    

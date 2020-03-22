@@ -28,6 +28,16 @@ describe Airport do
       5.times { city.land(jumbo) }
       expect { city.land(jumbo) }.to raise_error "Airport is full"
     end
+
+    it "is a plane at the airport" do
+      subject.store(jumbo)
+      expect(subject.plane_in_hanger?(jumbo)).to eq true
+    end
+
+    it "plane can not land if already at airport" do
+      subject.store(jumbo)
+      expect(subject.plane_in_hanger?(jumbo)).to eq true
+    end
   end
 
   context '#take_off' do
