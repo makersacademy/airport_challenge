@@ -16,6 +16,9 @@ class Airport
     fail "No space to land" if full?
 
     terminal << plane
+
+    p terminal 
+    p @terminal
   end 
 
   def take_off(weather)
