@@ -32,12 +32,20 @@ describe Airport do
       end
     end
 
-    context "airport at capacity" do
-      before { 10.times { airport.land(plane2) } }
+    context "airport at default capacity" do
+      before { Airport::DEFAULT_CAPACITY.times { airport.land(plane2) } }
 
       it "raise_error, Cannot land - airport at capacity!" do
         expect { airport.land(plane) }.to raise_error("Cannot land - airport at capacity!")
-        p airport.planes
+      end
+    end
+
+    context "airport at non-default capacity" do
+      let(:airport_72) { Airport.new(72) }
+      before { 72.times { airport_72.land(plane2) } }
+
+      it "raise_error, Cannot land - airport at capacity!" do
+        expect { airport_72.land(plane) }.to raise_error("Cannot land - airport at capacity!")
       end
     end
   end

@@ -41,3 +41,4 @@ I want to prevent landing when weather is stormy
 |destination| | |
 |plane|land(airport), take_off(airport)| |
 |airport|land(plane), take_off(plane), plane_at_airport?(plane)|planes |
+|weather|is_stormy?| |
