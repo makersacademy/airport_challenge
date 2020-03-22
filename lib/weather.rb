@@ -4,7 +4,7 @@ class Weather
   STORMY = :stormy
   CLEAR = :clear
 
-  def current_weather
+  def self.now
     rand <= CHANCE_OF_STORM ? :stormy : :clear
   end
 end

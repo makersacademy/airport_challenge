@@ -16,7 +16,7 @@ class Airport
     @planes_landed += 1
   end
 
-  def notify_that_plane_has_left
+  def notify_that_plane_has_taken_off
     @planes_landed -= 1
   end
 end
