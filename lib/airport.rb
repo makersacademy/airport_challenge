@@ -2,9 +2,10 @@ require './lib/plane'
 
 class Airport
   attr_reader :num_planes
-
-  def initialize
+  MAX_PLANES = 3
+  def initialize#(capacity = 3)
     @num_planes = []
+    #@capacity = capacity
   end
 
   def take_off
@@ -14,7 +15,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Aiport full, cannot land!" if @num_planes.count >= 3
+    fail "Aiport full, cannot land!" if @num_planes.count >= MAX_PLANES
     @num_planes.push(plane) # =plane
   end
 
