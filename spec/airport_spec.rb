@@ -60,9 +60,50 @@ describe Airport do
     end
   end
 
+# ------------------------------------------------------------------------------
   describe "#plane_at_airport?" do
     it "check responds to #plane_at_airport?" do
       expect(airport).to respond_to(:plane_at_airport?).with(1).argument
     end
+
+    context "with plane" do
+      before { airport.planes.push(plane) }
+
+      context "No other planes" do
+        it "Check if plane at airport" do
+          expect(airport.plane_at_airport?(plane)).to be true
+        end
+      end
+
+      context "With other planes" do
+        before { airport.planes.unshift(plane2) }
+        before { airport.planes.push(plane3) }
+
+        it "Check if plane at airport" do
+          expect(airport.plane_at_airport?(plane)).to be true
+        end
+      end
+    end
+
+    context "without plane" do
+      context "No other planes" do
+        it "check if plane at airport" do
+          expect(airport.plane_at_airport?(plane)).to be false
+        end
+      end
+
+      context "With other planes" do
+        before { airport.planes.unshift(plane2) }
+        before { airport.planes.push(plane3) }
+
+        it "Check if plane at airport" do
+          airport.land(plane2)
+          airport.land(plane3)
+          expect(airport.plane_at_airport?(plane)).to be false
+        end
+      end
+    end
   end
+
+# ------------------------------------------------------------------------------
 end

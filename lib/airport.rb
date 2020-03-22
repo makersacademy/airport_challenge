@@ -16,7 +16,8 @@ class Airport
     @planes = @new_planes
   end
 
-  def plane_at_airport?(plane)
-
+  def plane_at_airport?(check_plane)
+    @planes.each { |plane| return true if plane == check_plane }
+    false
   end
 end
