@@ -1,6 +1,85 @@
 Airport Challenge
 =================
 
+
+How I approached the challenge
+-----------------------------
+
+1. First I built a basic domain model.
+
+Objects | Messages | Private Messages
+-------|--------|----------
+Airport | land <br/> take_off <br/> capacity | full? <br/> landing_safe? <br/> can_take_off?
+Plane   | status
+Weather | stormy?
+
+I decided to send the #land and #take_off messages from within the Airport class and use the Plane class as the parameter so that I could easily insert the Plane class instances into an array within the Airport class, as this would reflect real life, where planes would be placed within airports and not the other way around.
+
+
+
+2. I constructed a diagram.
+
+This diagram describes the flow of the program, starting from the airport and then making a request to either land or take off a plane.
+
+ ![diagram](./images/codediagram.jpg)
+
+3. I wrote feature and unit tests for the program.
+4. I wrote the simplest program possible to pass the tests.
+5. I refactored my code.
+6. I returned back to step 3
+7. I spent some time focused on further refactoring my code and finished this README file.
+
+How to use my program via irb
+--------------------------
+### Land and take off plane
+1. Require airport.rb
+2. Create airport
+3. Create plane
+4. Land plane
+5. Shows plane in airport with status 'landed'
+6. Take off plane
+7. Shows airport is now missing plane
+8. Shows plane status is now 'flying'
+```
+2.6.5 :001 > require './lib/airport.rb'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fd0da884cc8 @planes=[], @capacity=50, @weather=#<Weather:0x00007fd0da884ae8>> 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fd0db066900> 
+2.6.5 :004 > airport.land(plane)
+ => :landed 
+2.6.5 :005 > airport
+ => #<Airport:0x00007fd0da884cc8 @planes=[#<Plane:0x00007fd0db066900 @status=:landed>], @capacity=50, @weather=#<Weather:0x00007fd0da884ae8>> 
+2.6.5 :006 > airport.take_off(plane)
+ => :flying 
+2.6.5 :007 > airport
+ => #<Airport:0x00007fd0da884cc8 @planes=[], @capacity=50, @weather=#<Weather:0x00007fd0da884ae8>> 
+2.6.5 :008 > plane
+```
+### Set airport capacity
+1. Require airport.rb
+2. Create airport
+3. Set capacity
+4. Shows airport with new capacity
+```
+2.6.5 :001 > require './lib/airport.rb'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fb064147e60 @planes=[], @capacity=50, @weather=#<Weather:0x00007fb064147e10>> 
+2.6.5 :003 > airport.capacity = 20
+ => 20 
+2.6.5 :004 > airport
+ => #<Airport:0x00007fb064147e60 @planes=[], @capacity=20, @weather=#<Weather:0x00007fb064147e10>> 
+```
+Enjoy using my airport program! <br/>
+Instructions to create your own are below.
+<br/>
+<br/>
+
+
+--------------------------
+
 ```
         ______
         _\____\___
@@ -12,7 +91,6 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-
 Instructions
 ---------
 

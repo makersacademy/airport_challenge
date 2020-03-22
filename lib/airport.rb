@@ -15,7 +15,7 @@ class Airport
   end
 
   def land(plane)
-    check_landing_conditions(plane)
+    landing_safe?(plane)
     land_plane(plane)
   end
 
@@ -44,7 +44,7 @@ class Airport
     plane.status = :landed
   end
 
-  def check_landing_conditions(plane)
+  def landing_safe?(plane)
     fail 'Plane already landed' if plane.status == :landed
     fail 'Airport full' if full?
     fail 'Weather stormy' if weather.stormy?

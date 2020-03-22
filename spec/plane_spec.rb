@@ -17,10 +17,9 @@ describe Plane do
       end
 
       it 'cannot #land if already landed' do
-        plane = Plane.new
         airport = Airport.new
-        airport.land(plane)
-        expect { airport.land(plane) }.to raise_error 'Plane already landed'
+        airport.land(subject)
+        expect { airport.land(subject) }.to raise_error 'Plane already landed'
       end
 
     end
