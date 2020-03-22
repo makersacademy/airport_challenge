@@ -6,7 +6,7 @@ class Airport
 
   def initialize
     @planes = []
-    @weather = "stormy"
+    #@weather = "sunny"
   end
 
   def landing(plane)
@@ -23,9 +23,13 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.delete(plane)
-    puts "plane gone"
-    @planes
+    if stormy? == true
+      @planes
+    else
+      @planes.delete(plane)
+      puts "plane gone"
+      @planes
+    end
   end
 
   def stormy?

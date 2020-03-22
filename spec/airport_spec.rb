@@ -10,12 +10,11 @@ describe Airport do
       expect(airport).to respond_to(:landing).with(1).argument
     end
 
-    #it "airport stores plane that has landed" do
-    #  expect(airport.landing(plane)).to include(plane)
-    #end
+  it "airport stores plane that has landed" do
+    expect(airport.landing(plane)).to include(plane)
+  end
 
   it "airport prevent plane from landing in airport (@plane array) if the weather is stormy" do
-
     allow(airport). to receive(:stormy?) {true}
     expect(airport.landing(plane)).not_to include(plane)
   end
@@ -32,9 +31,16 @@ end
       expect(airport.take_off(plane)).not_to include(plane)
     end
     it "outputs message to confirm plane is no longer in airport (@planes)" do
-    expect{airport.take_off(plane)}. to output("plane gone\n").to_stdout
+      expect{airport.take_off(plane)}. to output("plane gone\n").to_stdout
+    end
+    it "airport prevent plane from taking off from airport (@plane array) if the weather is stormy" do
+      airport.landing(plane)
+      allow(airport). to receive(:stormy?) {true}
+      expect(airport.take_off(plane)).to include(plane)
+    end
   end
-end
+
+
 
   describe "#stormy" do
     it "returns true if weather is 'stormy' " do
