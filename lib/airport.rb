@@ -6,7 +6,7 @@ class Airport
 
   def initialize
     @planes = []
-    @stormy = 'stormy'
+    @weather
   end
 
   def landing(plane)
