@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @planes = []
+    @stormy = 'stormy'
   end
 
   def landing(plane)
@@ -23,4 +24,9 @@ class Airport
     @planes
   end
 
+  def stormy?
+    if @stormy == "stormy"
+      true
+    end
+  end
 end

@@ -16,7 +16,7 @@ describe Airport do
   end
 
   describe "#take_off" do
-    it "responds to take_off " do
+    it "responds to take_off with one argument " do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
     it "Plane is no longer in airport (@planes)" do
@@ -26,7 +26,12 @@ describe Airport do
     it "outputs message to confirm plane is no longer in airport (@planes)" do
     expect{airport.take_off(plane)}. to output("plane gone\n").to_stdout
   end
-
 end
+
+  describe "#stormy" do
+    it "returns true if weather is 'stormy' " do
+      expect(airport).to be_stormy
+    end
+  end
 
 end
