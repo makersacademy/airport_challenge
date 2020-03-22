@@ -20,12 +20,13 @@ describe Airport do
       expect(subject.land(jumbo)).to eq(jumbo)
     end
 
-    #it "stores plane in hanger on landing" do
-     #   expect(subject.store(jumbo)).to contain_exactly( an_object_having_attributes(jumbo))
-     #end
+    it "stores plane in hanger on landing" do
+      @hanger = subject.store(jumbo)
+      expect(@hanger).to include(jumbo)
+    end
   end
 
-  context '# take_off' do
+  context '#take_off' do
   
     it { is_expected.to respond_to :take_off }
 
@@ -34,11 +35,10 @@ describe Airport do
     end
 
     it "a plane takes off" do
-      expect(subject.take_off(jumbo)).to eq(jumbo)
+      expect(subject.take_off(jumbo)).to eq "Plane takes off!"
     end
 
     it "plane no longer at airport" do
-        
       expect([@hanger]).not_to include(jumbo)
     end 
   end
