@@ -4,8 +4,9 @@ class Airport
 
   attr_reader :planes
 
-  def initialize
+  def initialize capacity= 2
     @planes = []
+    @capacity = capacity
     #@weather = "sunny"
   end
 

@@ -5,6 +5,12 @@ describe Airport do
   let(:plane) {Plane.new}
   #let(:plane) {Plane.new}
 
+  it "an Airport instance will have an attribute of capacity set to a default" do
+    Airport = Struct.new(:capacity)
+    airport = Airport.new(2)
+    expect(airport).to have_attributes(:capacity => 2)
+  end
+
   describe "#landing" do
     it "responds with 1 argument to landing" do
       expect(airport).to respond_to(:landing).with(1).argument
