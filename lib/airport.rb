@@ -6,14 +6,14 @@ class Airport
 
   def initialize
     @planes = []
-    @weather
+    @weather = "stormy"
   end
 
   def landing(plane)
     if stormy? == true
-      @planes.push(plane)
       @planes
     else
+      @planes.push(plane)
       @planes
     end
   end
@@ -29,7 +29,7 @@ class Airport
   end
 
   def stormy?
-    if @stormy == "stormy"
+    if @weather == "stormy"
       true
     end
   end

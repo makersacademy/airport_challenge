@@ -16,7 +16,7 @@ describe Airport do
 
   it "airport prevent plane from landing in airport (@plane array) if the weather is stormy" do
 
-    allow(airport). to receive(:stormy?) {"stormy"}
+    allow(airport). to receive(:stormy?) {true}
     expect(airport.landing(plane)).not_to include(plane)
   end
 end
