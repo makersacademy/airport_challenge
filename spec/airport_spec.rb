@@ -9,6 +9,19 @@ describe Airport do
   #  expect(subject.take_off).to be_instance_of(Plane)
   #end
 
+    it "has a default capacity" do
+      expect(subject.capacity).to eq Airport::MAX_PLANES
+    end
+
+  #describe 'initialize' do
+  #  it "airport capacity can vary" do
+  #    heathrow = Airport.new(20)
+  #    20.times { heathrow.land(Plane.new)}
+  #    expect { heathrow.land(Plane.new)}.to raise_error('Aiport full, cannot land!')
+  #  end
+  #end
+
+
   describe "#take_off" do
     it "raises error when no planes are available" do
       expect{subject.take_off}.to raise_error("No planes available to fly")
