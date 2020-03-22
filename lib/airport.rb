@@ -2,10 +2,13 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+
   DEFAULT_CAPACITY = 50
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -22,10 +25,6 @@ class Airport
 
   def full?
     @planes.count >= @capacity
-  end
-
-  def weather_stormy?
-    Weather.new.stormy?
   end
 
   def plane_in_airport?(plane)
@@ -45,12 +44,12 @@ class Airport
   def check_landing_conditions(plane)
     fail 'Plane already landed' if plane.landed?
     fail 'Airport full' if full?
-    fail 'Weather stormy' if weather_stormy?
+    fail 'Weather stormy' if @weather.stormy?
   end
 
   def can_take_off?(plane)
     fail 'Plane not in airport' unless plane_in_airport?(plane)
-    fail 'Weather stormy' if weather_stormy?
+    fail 'Weather stormy' if @weather.stormy?
   end
 
 end
