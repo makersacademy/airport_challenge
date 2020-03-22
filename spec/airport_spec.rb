@@ -9,19 +9,30 @@ describe Airport do
     expect(subject.take_off).to be_instance_of(Plane)
   end
 
-  it "airport responds to #land" do
-    expect(subject).to respond_to(:land)
+  it "responds to #land with one argument" do
+     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  #it "gives error if the airport is full" do
-  #  expect{subject.land(Plane)}.to raise_error("Airport full, cannot land")
-  #end
 
-  it "gives error if the airport is full" do
-    expect{subject.hangar_full}.to raise_error("Airport full, cannot land")
+  # are the three below tests all necessary?
+  it "lands a aeroplane" do
+    expect(subject.land(Plane)).to eq Plane
   end
 
-  it '#land returns an instance of Plane' do
-    expect(subject.land(Plane)).to eq(Plane)
+  it "returns the landed plane" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.plane).to eq plane
+  end
+
+  describe '#land' do
+    it 'raises an error when full' do
+      subject.land(Plane.new)
+      expect {subject.land(Plane.new)}.to raise_error "Aiport full, cannot land!"
+    end
+  end
+
+  it "repsonds to #plane" do
+    expect(subject).to respond_to(:plane)
   end
 end

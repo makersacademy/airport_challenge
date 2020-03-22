@@ -9,21 +9,17 @@ class Airport
     Plane.new
   end
 
-  def hangar_full
-    raise "Airport full, cannot land"
-  end
-
-
   def land(plane)
-    #hangar = "full"
-    #if hangar == "full"
-    #  hangar_full()
-    #else
-      @plane = plane
-      @plane
-    end
+    fail "Aiport full, cannot land!" if @plane
+    @plane = plane
   end
-#end
+
+
+  #technically below is the attribute reader
+  #def plane
+  #  @plane
+  #end
+end
 =begin
     hangar = "empty"
     if hangar == "full"
