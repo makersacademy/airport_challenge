@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-
+  
+  subject(:city) { Airport.new(5) }
   let(:jumbo) { Plane.new } 
  
   context '#landing' do
@@ -12,17 +13,19 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it "return a Plane object" do
-      expect(subject.land(jumbo)).to be_an_instance_of(Plane)
-    end
-
     it "lands the plane" do
-      expect(subject.land(jumbo)).to eq(jumbo)
+      @hanger = []
+      expect(subject.land(jumbo)).to be subject.store(jumbo)
     end
 
     it "stores plane in hanger on landing" do
       @hanger = subject.store(jumbo)
       expect(@hanger).to include(jumbo)
+    end
+
+    it "raises error if airport is full" do
+      5.times { city.land(jumbo) }
+      expect { city.land(jumbo) }.to raise_error "Airport is full"
     end
   end
 

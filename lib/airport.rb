@@ -1,12 +1,15 @@
 require_relative 'plane'
 
 class Airport
-  def initialize
+  def initialize(capacity)
     @hanger = []
+    @capacity = capacity 
   end
 
   def land(plane)
-    plane  
+    fail "Airport is full" unless @hanger.count < @capacity
+   
+    store(plane)
   end
 
   def store(plane)
