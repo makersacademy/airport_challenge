@@ -60,10 +60,16 @@ describe 'Airport' do
   
     end
 
-    it 'cannt take off if stormy' do
+    it 'cannt #take_off if stormy' do
       stormy_airport = Airport.new
       stormy_airport.stormy
       expect { stormy_airport.take_off }.to raise_error "Bad weather"
+    end
+
+    it 'cannt #land if stormy' do
+      stormy_airport = Airport.new
+      stormy_airport.stormy
+      expect { stormy_airport.land }.to raise_error "Bad weather"
     end
 
   end

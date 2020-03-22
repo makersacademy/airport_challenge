@@ -6,7 +6,6 @@ class Airport
   attr_reader :storm
   DEFAULT_CAPACITY = 1
 
-
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
@@ -14,13 +13,15 @@ class Airport
 
   def land
     fail "Airport Full" if @planes.length >= @capacity
-    
+    fail "Bad weather" if @storm
+
     @planes << Plane.new
     @planes.last
   end
 
   def take_off
     fail "Bad weather" if @storm
+    
     @planes.pop
   end
 
