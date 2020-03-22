@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   
-  subject(:city) { Airport.new(5) }
+  subject(:city) { Airport.new }
   let(:jumbo) { Plane.new } 
  
   context '#landing' do
@@ -24,6 +24,7 @@ describe Airport do
     end
 
     it "raises error if airport is full" do
+      subject.change_capacity(5)
       5.times { city.land(jumbo) }
       expect { city.land(jumbo) }.to raise_error "Airport is full"
     end
@@ -44,5 +45,17 @@ describe Airport do
     it "plane no longer at airport" do
       expect([@hanger]).not_to include(jumbo)
     end 
+  end
+
+  context '#set_capacity' do
+
+    it "initial capacity is DEFAULT_CAPACITY" do
+      
+      expect(subject.collect_capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    
+    it "overrides DEFAULT_CAPACITY" do
+      expect(subject.change_capacity(20)).to eq 20
+    end
   end
 end

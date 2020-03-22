@@ -1,9 +1,20 @@
 require_relative 'plane'
 
 class Airport
-  def initialize(capacity)
+
+  DEFAULT_CAPACITY = 10
+
+  def initialize
     @hanger = []
-    @capacity = capacity 
+    @capacity = DEFAULT_CAPACITY
+  end
+
+  def collect_capacity
+    @capacity
+  end
+
+  def change_capacity(capacity)
+    @capacity = capacity
   end
 
   def land(plane)
