@@ -10,8 +10,12 @@ class Airport
   end
 
   def landing(plane)
-    @planes.push(plane)
-    @planes
+    if stormy? == true
+      @planes.push(plane)
+      @planes
+    else
+      @planes
+    end
   end
 
   def look_at_planes
@@ -29,4 +33,5 @@ class Airport
       true
     end
   end
+
 end
