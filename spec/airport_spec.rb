@@ -12,10 +12,12 @@ describe 'Airport' do
     end
 
     it 'Plane lands in airport' do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport.land).to be_instance_of(Plane)
     end
 
     it "Plane  won't land if airport is full" do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land
       expect { airport.land }.to raise_error 'Airport Full'
     end
@@ -33,6 +35,7 @@ describe 'Airport' do
     end
 
     it '#view_plane confirms #take_off' do
+      allow(airport).to receive(:stormy?).and_return false
       landed_plane = airport.land
       airport.take_off
       expect(airport.view_planes).to_not be([landed_plane])
@@ -44,6 +47,7 @@ describe 'Airport' do
 
     it "Plane  won't land if above capacity" do
       new_airport = Airport.new(72)
+      allow(new_airport).to receive(:stormy?).and_return false
       72.times { new_airport.land }
       expect { new_airport.land }.to raise_error 'Airport Full'
     end
@@ -52,28 +56,22 @@ describe 'Airport' do
 
   context 'Assess weather' do
 
-    context '#stormy' do
+    context '#stormy?' do
 
-      it 'Airport responds to #stormy' do
-        expect(airport).to respond_to(:stormy)
+      it 'Airport responds to #stormy?' do
+        expect(airport).to respond_to(:stormy?)
       end
-  
+
       it 'cannt #take_off if stormy' do
-        stormy_airport = Airport.new
-        stormy_airport.stormy
-        expect { stormy_airport.take_off }.to raise_error "Bad weather"
-      end
-  
-      it 'cannt #land if stormy' do
-        stormy_airport = Airport.new
-        stormy_airport.stormy
-        expect { stormy_airport.land }.to raise_error "Bad weather"
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.take_off }.to raise_error "Bad weather"
       end
 
-      it 'Airport responds to #check_weather' do
-        expect(airport).to respond_to(:check_weather)
+      it 'cannt #land if stormy' do
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.land }.to raise_error "Bad weather"
       end
-  
+
     end
 
   end
