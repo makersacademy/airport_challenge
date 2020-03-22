@@ -15,4 +15,8 @@ class Airport
 
     @planes = @new_planes
   end
+
+  def plane_at_airport?(plane)
+
+  end
 end

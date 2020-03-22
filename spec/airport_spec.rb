@@ -58,6 +58,11 @@ describe Airport do
       airport.land(plane3)
       expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
     end
+  end
 
+  describe "#plane_at_airport?" do
+    it "check responds to #plane_at_airport?" do
+      expect(airport).to respond_to(:plane_at_airport?).with(1).argument
+    end
   end
 end
