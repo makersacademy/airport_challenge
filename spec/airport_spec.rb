@@ -7,22 +7,23 @@ describe Airport do
   let(:plane3) { double :plane3 }
 
   describe ".new" do
-    it "check creates planes array" do
+    it "@plane = [], creates planes array" do
       expect(airport.planes).to eq([])
     end
   end
 
+# ------------------------------------------------------------------------------
   describe "#land" do
-    it "check responds to #land(plane)" do
+    it "responds to #land(plane)" do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it "check #land(plane) adds plane to @planes" do
+    it "@plane = [plane], plane lands at airport" do
       airport.land(plane)
       expect(airport.planes).to eq([plane])
     end
 
-    it "check #land(plane) adds multiple planes to @planes" do
+    it "@plane = [plane2, plane, plane3], many planes land at airport" do
       airport.land(plane2)
       airport.land(plane)
       airport.land(plane3)
@@ -30,39 +31,55 @@ describe Airport do
     end
   end
 
+# ------------------------------------------------------------------------------
   describe "#take_off" do
-    it "check responds to #take_off(plane)" do
+    it "responds to #take_off(plane)" do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
 
-    it "check #take_off(plane) removes plane from simple @planes" do
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.planes).to eq([])
+    context "with plane" do
+      before { airport.planes.push(plane) }
+
+      context "No other planes" do
+        it "@planes = [], plane has taken off" do
+          airport.take_off(plane)
+          expect(airport.planes).to eq([])
+        end
+      end
+
+      context "With other planes" do
+        before { airport.planes.unshift(plane2) }
+        before { airport.planes.push(plane3) }
+
+        it "@planes = [plane2, plane3], plane has taken off" do
+          airport.take_off(plane)
+          expect(airport.planes).to eq([plane2, plane3])
+        end
+      end
     end
 
-    it "check #take_off(plane) removes plane from complicated @planes" do
-      airport.land(plane2)
-      airport.land(plane)
-      airport.land(plane3)
-      airport.take_off(plane)
-      expect(airport.planes).to eq([plane2, plane3])
-    end
+    context "without plane" do
 
-    it "Check plane cant take off if no plane at airport" do
-      expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
-    end
+      context "No other planes" do
+        it "raise_error, Plane not at airport!" do
+          expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
+        end
+      end
 
-    it "Check plane cant take off if only other planes at airport" do
-      airport.land(plane2)
-      airport.land(plane3)
-      expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
+      context "With other planes" do
+        before { airport.planes.unshift(plane2) }
+        before { airport.planes.push(plane3) }
+
+        it "raise_error, Plane not at airport!" do
+          expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
+        end
+      end
     end
   end
 
 # ------------------------------------------------------------------------------
   describe "#plane_at_airport?" do
-    it "check responds to #plane_at_airport?" do
+    it "responds to #plane_at_airport?" do
       expect(airport).to respond_to(:plane_at_airport?).with(1).argument
     end
 
@@ -70,7 +87,7 @@ describe Airport do
       before { airport.planes.push(plane) }
 
       context "No other planes" do
-        it "Check if plane at airport" do
+        it "true, plane is at airport" do
           expect(airport.plane_at_airport?(plane)).to be true
         end
       end
@@ -79,7 +96,7 @@ describe Airport do
         before { airport.planes.unshift(plane2) }
         before { airport.planes.push(plane3) }
 
-        it "Check if plane at airport" do
+        it "true, plane is at airport" do
           expect(airport.plane_at_airport?(plane)).to be true
         end
       end
@@ -87,7 +104,7 @@ describe Airport do
 
     context "without plane" do
       context "No other planes" do
-        it "check if plane at airport" do
+        it "false, plane is not at airport" do
           expect(airport.plane_at_airport?(plane)).to be false
         end
       end
@@ -96,7 +113,7 @@ describe Airport do
         before { airport.planes.unshift(plane2) }
         before { airport.planes.push(plane3) }
 
-        it "Check if plane at airport" do
+        it "false, plane is not at airport" do
           airport.land(plane2)
           airport.land(plane3)
           expect(airport.plane_at_airport?(plane)).to be false
