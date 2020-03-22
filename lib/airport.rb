@@ -2,7 +2,7 @@ require './lib/plane'
 
 class Airport
   attr_reader :num_planes
-  MAX_PLANES = 3
+  self::MAX_PLANES = 3
   def initialize#(capacity = 3)
     @num_planes = []
     #@capacity = capacity

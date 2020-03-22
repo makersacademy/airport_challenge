@@ -34,8 +34,7 @@ describe Airport do
 
   describe '#land' do
     it 'raises an error when full' do
-      #adding 10 times to the below
-      3.times {subject.land(Plane.new)}
+      Airport::MAX_PLANES.times {subject.land(Plane.new)}
       expect {subject.land(Plane.new)}.to raise_error "Aiport full, cannot land!"
     end
   end
