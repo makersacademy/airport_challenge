@@ -5,7 +5,7 @@ describe Airport do
   it 'instructs plane to land and confirms landing if weather is clear' do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
     plane = Plane.new
-    expect(subject.land(plane)).to eq 'landed'
+    expect(subject.land(plane)).to eq :landed
   end
 
   it 'instructs plane to land' do
@@ -16,7 +16,7 @@ describe Airport do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
     plane = Plane.new
     subject.land(plane)
-    expect(subject.take_off(plane)).to eq 'flying'
+    expect(subject.take_off(plane)).to eq :flying
   end
 
   it 'instructs plane to #take_off' do
@@ -31,16 +31,16 @@ describe Airport do
 
   it 'DEFAULT_CAPACITY can be overriden' do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
-    airport = Airport.new(100)
-    99.times { airport.land(Plane.new) }
-    expect(airport.land(Plane.new)).to eq 'landed'
+    subject.capacity = 100
+    99.times { subject.land(Plane.new) }
+    expect(subject.land(Plane.new)).to eq :landed
   end
 
   it 'prevents #land if airport is full at overriden capacity' do
     allow_any_instance_of(Weather).to receive_messages(stormy?: false)
-    airport = Airport.new(100)
-    100.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error 'Airport full'
+    subject.capacity = 100
+    100.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error 'Airport full'
   end
 
   it 'prevents #take_off if weather is stormy' do
@@ -67,6 +67,16 @@ describe Airport do
     subject.land(plane)
     subject.take_off(plane)
     expect { subject.take_off(plane) }.to raise_error 'Plane not in airport'
+  end
+
+  it 'Removes the correct plane on #take_off' do
+    allow_any_instance_of(Weather).to receive_messages(stormy?: false)
+    plane = Plane.new
+    plane1 = Plane.new
+    subject.land(plane)
+    subject.land(plane1)
+    subject.take_off(plane)
+    expect(subject.planes).to include plane1
   end
 
 end

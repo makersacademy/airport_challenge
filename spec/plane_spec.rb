@@ -11,20 +11,7 @@ describe Plane do
   end
 
   it 'status can be changed to landed' do
-    expect(subject.landed).to eq 'landed'
-  end
-
-  it '#landed method works' do
-    expect(subject).to respond_to :landed
-  end
-
-  it '#landed? returns false if plane is flying' do
-    expect(subject.landed?).to eq false
-  end
-
-  it '#landed? returns true if plane is landed' do
-    subject.landed
-    expect(subject.landed?).to eq true
+    expect(subject.status = :landed).to eq :landed
   end
 
   it 'plane status changed to flying on #take_off' do
@@ -32,11 +19,7 @@ describe Plane do
     airport = Airport.new
     airport.land(subject)
     airport.take_off(subject)
-    expect(subject.landed?).to eq false
-  end
-
-  it '#left_airport changes status to flying' do
-    expect(subject.left_airport).to eq 'flying'
+    expect(subject.status).to eq :flying
   end
 
 end
