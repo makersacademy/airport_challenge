@@ -5,10 +5,12 @@ class Airport
   end
 
   def land(plane)
-
+    @planes << plane
   end
 
-  def take_off(plane)
-
+  def take_off(off_plane)
+    @new_planes = []
+    @planes.each { |plane| @new_planes << plane if plane != off_plane }
+    @planes = @new_planes
   end
 end

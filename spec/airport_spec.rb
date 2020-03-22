@@ -1,27 +1,52 @@
 require './lib/airport'
 
 describe Airport do
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
+  let(:plane2) { double :plane2 }
+  let(:plane3) { double :plane3 }
+
   describe ".new" do
     it "check creates planes array" do
-      airport = Airport.new
       expect(airport.planes).to eq([])
     end
   end
 
   describe "#land" do
     it "check responds to #land(plane)" do
-      expect(Airport.new).to respond_to(:land).with(1).argument
+      expect(airport).to respond_to(:land).with(1).argument
     end
 
-#    it "check #land(plane) asdds plane to @planes" do
-#      Airport.new.land(Plane.new)
-#      expect(Airport.new.planes).to eq([Plane.new])
-#    end
+    it "check #land(plane) adds plane to @planes" do
+      airport.land(plane)
+      expect(airport.planes).to eq([plane])
+    end
+
+    it "check #land(plane) adds multiple planes to @planes" do
+      airport.land(plane2)
+      airport.land(plane)
+      airport.land(plane3)
+      expect(airport.planes).to eq([plane2, plane, plane3])
+    end
   end
 
   describe "#take_off" do
     it "check responds to #take_off(plane)" do
-      expect(Airport.new).to respond_to(:take_off).with(1).argument
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
+
+    it "check #take_off(plane) removes plane from simple @planes" do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).to eq([])
+    end
+
+    it "check #take_off(plane) removes plane from complicated @planes" do
+      airport.land(plane2)
+      airport.land(plane)
+      airport.land(plane3)
+      airport.take_off(plane)
+      expect(airport.planes).to eq([plane2, plane3])
     end
   end
 end
