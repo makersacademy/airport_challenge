@@ -56,6 +56,7 @@ How to use my program via irb
 2.6.5 :007 > airport
  => #<Airport:0x00007fd0da884cc8 @planes=[], @capacity=50, @weather=#<Weather:0x00007fd0da884ae8>> 
 2.6.5 :008 > plane
+ => #<Plane:0x00007fd0db066900 @status=:flying> 
 ```
 ### Set airport capacity
 1. Require airport.rb
