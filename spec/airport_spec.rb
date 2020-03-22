@@ -50,14 +50,20 @@ describe 'Airport' do
 
   end
 
-  context 'Assess weather?' do
+  context 'Assess weather' do
 
-    it 'Airport responds to #stormy?' do
-      expect(airport).to respond_to(:stormy?)
+    context '#stormy' do
+
+      it 'Airport responds to #stormy' do
+        expect(airport).to respond_to(:stormy)
+      end
+  
     end
 
-    it 'Airport responds to #check_weather' do
-      expect(airport).to respond_to(:check_weather)
+    it 'cannt take off if stormy' do
+      stormy_airport = Airport.new
+      stormy_airport.stormy
+      expect { stormy_airport.take_off }.to raise_error "Bad weather"
     end
 
   end
