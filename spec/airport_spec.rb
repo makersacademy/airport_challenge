@@ -8,8 +8,11 @@ describe Airport do
     it "airport responds to plane_landing" do
       expect(airport).to respond_to :plane_landing
     end
-    it "plane lands at airport" do
-       expect(airport.plane_landing).to be_an_instance_of(Plane)
+    #it "plane lands at airport" do
+       #expect(airport.plane_landing).to be_an_instance_of(Plane)
+    #end
+    it "responds with 1 argument" do
+      expect(airport).to respond_to(:plane_landing).with(1).argument
     end
   end
 
