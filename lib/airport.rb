@@ -5,6 +5,7 @@ class Airport
 
   attr_reader :planes, :capacity, :weather
   attr_writer :capacity
+
   DEFAULT_CAPACITY = 50
 
   def initialize
