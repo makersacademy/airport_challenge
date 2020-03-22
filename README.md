@@ -54,7 +54,7 @@ Airport | tell_to_land(plane), tell_to_takeoff(plane)
 
 
 ## Interface
-The expected interface for this airport to use is `irb` or `pry`. The following notes and accompanying code explain how to interact with the program.
+The expected interface for this airport to use is IRB. The following notes and accompanying code explain how to interact with the program.
 
 Getting started:
 ```ruby
@@ -100,7 +100,7 @@ rspec
 
 Technologies used:
 
-- Ruby 2.6.0
+- Ruby
 - Rspec for testing
-- Simplecov and Coveralls for assessing test coverage
-- Rubocop to maintain styling
+- Simplecov for assessing test coverage
+- Rubocop for linting
