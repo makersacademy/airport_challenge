@@ -48,5 +48,9 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.planes).to eq([plane2, plane3])
     end
+
+    it "Check plan cant take off if not at airport" do
+      expect { airport.take_off(plane) }.to raise_error("Plane not at airport!")
+    end
   end
 end
