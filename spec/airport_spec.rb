@@ -5,16 +5,28 @@ describe Airport do
   let(:plane) {Plane.new}
   #let(:plane) {Plane.new}
 
-  describe "#plane_landing" do
-    it "responds with 1 argument" do
-      expect(airport).to respond_to(:plane_landing).with(1).argument
+  describe "#landing" do
+    it "responds with 1 argument to landing" do
+      expect(airport).to respond_to(:landing).with(1).argument
     end
 
     it "airport stores plane that has landed" do
-      airport.plane_landing(plane)
-      expect(airport.look_at_planes).to include(plane)
+      expect(airport.landing(plane)).to include(plane)
     end
   end
 
+  describe "#take_off" do
+    it "responds to take_off " do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
+    it "Plane is no longer in airport (@planes)" do
+      airport.landing(plane)
+      expect(airport.take_off(plane)).not_to include(plane)
+    end
+    it "outputs message to confirm plane is no longer in airport (@planes)" do
+    expect{airport.take_off(plane)}. to output("plane gone\n").to_stdout
+  end
+
+end
 
 end
