@@ -204,7 +204,7 @@ I want to prevent takeoff when weather is stormy
 
 Exercise feature using irb:
 
-```
+```bash
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > plane = Plane.new
@@ -236,7 +236,7 @@ I want to prevent landing when weather is stormy
 
 Exercise feature using irb:
 
-```
+```bash
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > airport = Airport.new
@@ -254,6 +254,36 @@ RuntimeError (Unable to land, stormy weather)
 2.6.5 :005 > 
 ```
 
+
+### User story 7
+
+```
+As an air traffic controller
+To make my job easier and quicker
+I want to be able to direct multiple planes to land and take off
+```
+
+#### Feature - an air traffic controller can direct multiple planes at once
+
+Exercise feature using irb:
+
+```bash
+2.6.5 :001 > require './lib/air_traffic_controller.rb'
+ => true 
+2.6.5 :002 > atc = AirTrafficController.new
+ => #<AirTrafficController:0x00007faca607d500> 
+2.6.5 :003 > plane1 = Plane.new
+ => #<Plane:0x00007faca6825c80 @landed=false, @current_airport=nil> 
+2.6.5 :004 > plane2 = Plane.new
+ => #<Plane:0x00007faca6827468 @landed=false, @current_airport=nil> 
+2.6.5 :005 > airport = Airport.new
+ => #<Airport:0x00007faca68cb158 @capacity=10, @planes_landed=0> 
+2.6.5 :006 > atc.direct_planes([[plane1, airport], [plane2, airport]])
+ => "All planes successfully directed" 
+2.6.5 :007 > atc.direct_planes([[plane1], [plane2]])
+ => "All planes successfully directed"
+```
+ 
 Design decisions and challenges
 ----------
 
@@ -265,9 +295,15 @@ I had a lot of trouble with the seemingly simple Weather class. I initially deci
 
 In the end I had something of a eureka moment with it, and finally realised what was wrong with the syntax. I've been able to make the 'now' method a class method of Weather, so it can be queried with Weather.now. This removes the need to pass instances of Weather around, and cleans up the code significantly.
 
-#### How the Plane and Airport class interact
+#### How the Plane and Airport classes interact
 
 I found it challenging to code the interaction between the Plane and Airport classes when planes land and take off. Both of those methods act on Plane, but Airport needs to be notified so that it can update its record of how many planes are currently landed. The solution I have works, but it feels a little clunky and out-of-place. I'm also a little unhappy with the names for the methods, notify\_that\_plane\_has\_landed and notify\_that\_plane\_has\_taken\_off, but after trying half a dozen alternatives, these are the best I could come up with.
+
+#### The AirTrafficController class
+
+This class came about as a way of implementing the bonus feature. I decided on this approach, imagining the class as representing some kind of user interface between the user and program that allowed them to select and direct multiple planes. In this way the direct method represents an action the user takes when operating the user interface.
+
+Given more time, I would refactor out a Direction class, containing a direction type, plane and (optional) airport. An array of instances of this would be passed into the direct method instead of the array of arrays that is currently used. Doing this would encapsulate the arrays of planes and airports that are currently passed into the method into a more meaningful class.
 
 #### The tests
 

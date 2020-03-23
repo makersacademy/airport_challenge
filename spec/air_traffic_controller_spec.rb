@@ -2,7 +2,7 @@ require 'air_traffic_controller'
 
 describe AirTrafficController do
   let(:set_weather_to_clear) { allow(Weather).to receive(:now).and_return(Weather::CLEAR) }
-  
+
   let(:landed_plane) do
     dbl = double(:plane1, :take_off => 'No longer at airport')
     allow(dbl).to receive(:land).and_raise('Unable to land, plane has already landed')
