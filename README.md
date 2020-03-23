@@ -13,78 +13,82 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+MAKERS ACADEMY Weekend 1 Challenge - Airports.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+In this weekend's challenge we are taking the following user stories and translating these stories into domain models in order to determine what objects and methods we're testing.
 
-Steps
--------
+    As an air traffic controller
+    So I can get passengers to a destination
+    I want to instruct a plane to land at an airport
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+    As an air traffic controller
+    So I can get passengers on the way to their destination
+    I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-Task
------
+    As an air traffic controller
+    To ensure safety
+    I want to prevent landing when the airport is full
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+    As the system designer
+    So that the software can be used for many different airports
+    I would like a default airport capacity that can be overridden as appropriate
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+    As an air traffic controller
+    To ensure safety
+    I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+    As an air traffic controller
+    To ensure safety
+    I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+Domain model:
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+Objects : Airport, Plane
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+Methods(airport): land, launch
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
+now from reviewing the User stories I've split them up into three sections, takeoff/landing (stories 1 and 2), capacity (stories 3 and 4) and weather (stories 5 and 6)
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+These are the requirements outlined in the user stories:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+1. Should be able to land a plane at an airport.x
+2. Should be able to launch a plane from an airport.x
+3. Plane should no longer be in airport after taking off.x
+4. Plane should not be able to land at full airport.x
+5. Airport should have default capacity.x
+6. Airport should allow default capacity to be overwritten.
+7. Airport should not allow plane to launch in stormy weather.
+8. Airport should not allow plane to land in stormy weather.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
+After writing the test and code to meet these requirements I realised I'd basically written a single class which did a bunch of things, so I started breaking down each method into individual parts and really thinking about where they should sit, in the end I decided to have the airport still performing the landing and launching of planes, the planes would track if they were in the air or not and the airport would initiate and store a new instance of a weather class, which would be sunny 2/3rds of the time unless a weather argument is passed at the point of instantiation.
 
-In code review we'll be hoping to see:
+After writing the above I realised that my tests had not been isolated! NIGHTARE! In refactoring the tests to work without any dependencies on other classes I ended up encountering some difficulty with how I had been storing the weather in the airport, every time I tried to separate out weather I get issues with trying to call Weather.new and Rspec was letting me know that that was an uninitialized constant. I spent a long time looking at instance_double, class double, mock_model, spies and stubs and various different possible solutions however I did not have much success in implementing them, they all failed to solve the problem that I was encountering. I'm sure that this is a failure on my part, however as time was marching on I decided to cut my losses and instead of rewriting my tests to pass my code I would come up with a way of forcing the weather behaviour in the tests and refactor my code to work with these new tests. the end result of this was a predicate method which calls a method from the Weather class - now there's no need to instantiate weather at any time - the downside to this is that I have to dictate how the weather behaves in every test, which means that it makes it almost impossible to test if this method works without solving the problem that the method was implemented to avoid - doubling/mocking classes in such a way that I don't encounter the uninitialized constant error.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Current Status:
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+At this point I have code that behaves as I'd like in 108 lines of code, 19 Rspec examples,  test coverage of 98.81%, 3 different classes/spec files with isolated testing and the only line of my code that doesn't get tested is the 'stormy?' predicate method which has behaviour defined by an external class as outlined in the paragraph above.
 
-**BONUS**
+additional tests not listed above:
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Airport:
+- should not land a plnae that isn't in the air
+- should not launch a plane that isn't in the airport
+- should not land the same plane twice without launching it inbetween.
+- should not launch a plane that isn't on the ground
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Plane:
+- should update airborne status with landing
+- should update airborne status with takeoff
+- should be able to confirm if it is airborne or not
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+Weather:
+- should be sunny more often than stormy
 
-* **Submit a pull request early.**
+  I considered two other tests:
+   - airport should not land other airports
+   - airport should not land a plane that is in another airport
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+    I am not writing the first test as I do not know how to write that test for the airport class in isolation from the plane class - mocking and doubling has really been highlighted as weakpoint of mine.
+
+    The second test has made me wonder about my edge cases - I don't feel like it's necessary as any time I land a plane I'm changing the airborne status - it's possible for me to write an example where I push the plane into one airport and land it in another, but I don't know how I would actually implement code that would cause the plane to be able to track whether it had been stored in another object,
