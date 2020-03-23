@@ -33,11 +33,6 @@ describe Airport do
       subject.store(jumbo)
       expect(subject.plane_in_hanger?(jumbo)).to eq true
     end
-
-    it "plane can not land if already at airport" do
-      subject.store(jumbo)
-      expect(subject.plane_in_hanger?(jumbo)).to eq true
-    end
   end
 
   context '#take_off' do
@@ -60,7 +55,6 @@ describe Airport do
   context '#set_capacity' do
 
     it "initial capacity is DEFAULT_CAPACITY" do
-      
       expect(subject.collect_capacity).to eq Airport::DEFAULT_CAPACITY
     end
     

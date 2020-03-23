@@ -23,7 +23,7 @@ class Airport
 
   def land(plane)
     fail "Airport is full" unless @hanger.count < @capacity
-   
+
     store(plane)
   end
 
@@ -31,7 +31,7 @@ class Airport
     @hanger << plane 
   end
 
-  def take_off(_plane)
+  def take_off(plane)
     "Plane takes off!"
   end
 
