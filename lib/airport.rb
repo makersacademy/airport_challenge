@@ -4,19 +4,28 @@ class Airport
 
   attr_reader :planes
 
-  def initialize capacity= 2
+  def initialize (capacity= 2)
     @planes = []
     @capacity = capacity
     #@weather = "sunny"
   end
 
   def landing(plane)
-    if stormy? == true
+
+    if @planes.include?(plane)
+      @planes
+      fail  "plane is aleady landed"
+    end
+
+    if stormy? == true || full?
       @planes
     else
       @planes.push(plane)
+      puts "plane taken off"
       @planes
     end
+
+
   end
 
   def look_at_planes
@@ -35,6 +44,12 @@ class Airport
 
   def stormy?
     if @weather == "stormy"
+      true
+    end
+  end
+
+  def full?
+    if @planes.size >= @capacity
       true
     end
   end

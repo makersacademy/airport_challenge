@@ -3,12 +3,14 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {Plane.new}
+  let(:qantas) {Plane.new}
+  let(:singapore) {Plane.new}
   #let(:plane) {Plane.new}
 
   it "an Airport instance will have an attribute of capacity set to a default" do
     Airport = Struct.new(:capacity)
-    airport = Airport.new(2)
-    expect(airport).to have_attributes(:capacity => 2)
+    airport = Airport.new(20)
+    expect(airport).to have_attributes(:capacity => 20)
   end
 
   describe "#landing" do
@@ -22,9 +24,25 @@ describe Airport do
 
   it "airport prevent plane from landing in airport (@plane array) if the weather is stormy" do
     allow(airport). to receive(:stormy?) {true}
-    expect(airport.landing(plane)).not_to include(plane)
+    expect(airport.landing(qantas)).not_to include(qantas)
   end
+
+  it "airport prevent plane from landing in airport (@plane array) if full" do
+    airport.landing(Plane.new)
+    airport.landing(Plane.new)
+    expect(airport.landing(singapore)).not_to include(singapore)
+  end
+
+  it "airport won't let planes land if they are already in airport" do
+    airport.landing(singapore)
+    expect { airport.landing(singapore) }.to raise_error "plane is aleady landed"
+  end
+
 end
+
+    #allow(airport). to receive(:) {true}
+    #expect(airport.landing(plane)).not_to include(plane)
+
 
 
 
@@ -44,14 +62,23 @@ end
       allow(airport). to receive(:stormy?) {true}
       expect(airport.take_off(plane)).to include(plane)
     end
-  end
 
+  end
 
 
   describe "#stormy" do
     it "returns true if weather is 'stormy' " do
       allow(airport). to receive(:stormy?) {"stormy"}
       expect(airport).to be_stormy
+    end
+  end
+
+  describe "#full?" do
+
+    it "returns true if airport is full" do
+      airport.landing(Plane.new)
+      airport.landing(Plane.new)
+      expect(airport).to be_full
     end
   end
 
