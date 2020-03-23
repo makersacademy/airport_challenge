@@ -8,7 +8,7 @@ describe Weather do
       good = 0
       bad = 0
       1_000.times do
-        third_runway = weather.climate
+        third_runway = Weather.climate
         if third_runway == :stormy
           bad += 1
         else

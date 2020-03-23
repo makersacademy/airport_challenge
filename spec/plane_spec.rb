@@ -16,7 +16,7 @@ describe Plane do
       expect(plane.send(:airborne?)).to eq(true).or eq(false)
     end
     it ' plane should be able to confirm if it is docked in airport or not' do
-      expect(plane.send(:docked?)).to eq(true) or eq(false)
+      expect(plane.send(:docked?)).to eq(true).or eq(false)
     end
   end
 end
