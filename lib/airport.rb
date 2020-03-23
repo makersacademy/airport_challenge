@@ -4,17 +4,17 @@ class Airport
 
   attr_reader :planes
 
-  def initialize (capacity= 2, weather)
+  def initialize (capacity= 2)
     @planes = []
     @capacity = capacity
-    @weather = weather
+    #@weather = "sunny"
   end
 
   def landing(plane)
 
     if @planes.include?(plane)
       @planes
-      fail "plane is aleady landed"
+      error "plane is aleady landed"
     end
 
     if stormy? == true || full?
