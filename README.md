@@ -13,22 +13,8 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+Week 1 Makers Academy weekend project. 
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
@@ -88,3 +74,25 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+## Status and remaining steps
+
+For this challenge, I completed user story 4. The steps I was working on at the end of this task was to ensure planes only took off from airports they were in and landed into airports they weren't and were flying when not in either. 
+
+Having been able to confirm whether a plane is at the airport, my next steps would be:
+- :land raise_error when trying to land if already at the airport (@hanger = [plane])
+- :take_off raise_error when plane not in the airport (@hanger = [])
+- :flying? within Plane class. Still to establish how to do this. 
+
+
+## Reflections
+---
+
+Whilst being unable to complete this task, my understanding of TDD has increased significantly. After user story 1, and some peaking at [Harry's](https://github.com/hturnbull93/airport_challenge) initial steps to see if I was on the right track, it became clear to me I needed to step back and take some time to read more about TDD and Rspec as my understanding of these was not enough to continue, I was going no where!
+
+My break down of the user story into the steps needed to ensure this was testing correctly and my code was building to meet its requirements, was not enough and the steps in my plan were too big (I was not thinking about it in terms of testing). Going forward my plan for each user story became far more substantial, and this make a big difference in building the tests and ultimately allowed me to complete 4 of the user stories. 
+
+Rspec syntax, which matcher to and how the tests allow us to build and test the code, whilst still a long was from having 'got it' I feel I have a much better understanding on from doing this task. 
+
