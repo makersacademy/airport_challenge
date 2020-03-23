@@ -11,8 +11,13 @@ class AirTrafficController
             direction[0].take_off
           end
           directions_processed += 1
-        rescue
-          return 'No planes were successfully directed'
+        rescue RuntimeError => e
+          if directions_processed == 0
+            return "No planes were successfully directed. Plane #{directions_processed + 1} failed - #{e.message}"
+
+          else
+            return "#{directions_processed} planes were successfully directed. Plane #{directions_processed + 1} failed - #{e.message}"
+          end
         end
       end
     'All planes successfully directed'
