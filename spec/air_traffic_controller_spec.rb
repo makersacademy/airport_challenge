@@ -30,14 +30,18 @@ describe AirTrafficController do
   end
 
   it 'will report when no planes were successfully directed, giving you the reason why' do
-    expect { subject.direct_planes(no_successful_directions) }.to raise_error 'No planes were successfully directed. Plane 1 failed - Unable to land, plane has already landed'
+    expect { subject.direct_planes(no_successful_directions) }.to raise_error 'No planes directed. Plane 1 failed - Unable to land, plane has already landed'
   end
 
   it 'will report when some planes were successfully directed, giving you the reason why' do
-    expect { subject.direct_planes(some_successful_directions) }.to raise_error '2 planes were successfully directed. Plane 3 failed - Unable to land, plane has already landed'
+    expect { subject.direct_planes(some_successful_directions) }.to raise_error '2 planes directed. Plane 3 failed - Unable to land, plane has already landed'
   end
 
   it 'will report when one planes were successfully directed, giving you the reason why' do
-    expect { subject.direct_planes(one_successful_direction) }.to raise_error '1 plane was successfully directed. Plane 2 failed - Unable to take off, plane is not landed'
+    expect { subject.direct_planes(one_successful_direction) }.to raise_error '1 plane directed. Plane 2 failed - Unable to take off, plane is not landed'
+  end
+
+  it 'warns you when you try to direct 0 planes' do
+    expect { subject.direct_planes([]) }.to raise_error 'Unable to direct planes - no directions were specified'
   end
 end
