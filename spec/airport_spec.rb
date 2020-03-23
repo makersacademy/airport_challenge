@@ -1,14 +1,15 @@
 require 'airport'
 
-describe 'Airport' do
+describe Airport do
 
   subject(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:clear_airport) { allow(airport).to receive(:stormy?).and_return false }
 
   context 'Airport can #land planes' do
 
     it 'Airport responds to #land' do
-      expect(airport).to respond_to(:land)
+      expect(subject).to respond_to(:land)
     end
 
     it 'Plane lands in airport' do
@@ -17,7 +18,8 @@ describe 'Airport' do
     end
 
     it "Plane  won't land if airport is full" do
-      allow(airport).to receive(:stormy?).and_return false
+      #allow(airport).to receive(:stormy?).and_return false
+      clear_airport
       airport.land
       expect { airport.land }.to raise_error 'Airport Full'
     end
