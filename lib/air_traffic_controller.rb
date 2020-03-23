@@ -8,7 +8,7 @@ class AirTrafficController
           direction[1] ? land_plane(direction[0], direction[1]) : take_off_plane(direction[0])
           directions_processed += 1
         rescue RuntimeError => e
-          return get_direction_error_message(directions_processed, e.message)
+          raise get_direction_error_message(directions_processed, e.message)
         end
       end
     'All planes successfully directed'
