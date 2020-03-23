@@ -1,16 +1,15 @@
 require './lib/plane'
 
 class Airport
-  attr_reader :num_planes
-  attr_reader :capacity
-  self::MAX_PLANES = 10
+  attr_reader :num_planes, :capacity
+  MAX_PLANES = 10
 
   def initialize
     @num_planes = []
     @capacity = MAX_PLANES
   end
 
-  def take_off
+  def take_off #(plane) Thomas's suggested refactor
     fail "No planes available to fly" if @num_planes.empty?
     @num_planes.pop
   end
