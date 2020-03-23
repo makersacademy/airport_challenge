@@ -1,5 +1,5 @@
-require 'weather'
-require 'plane'
+require './lib/weather'
+require './lib/plane'
 
 class Airport
   attr_reader :hangar, :weather, :hangar_capacity, :errors
