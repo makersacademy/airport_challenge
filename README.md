@@ -114,15 +114,19 @@ Please see Miro board:  (https://miro.com/app/board/o9J_kux70qo=/)
 |Prevent take_off if weather is 'stormy?'| no effect |connect #'stormy?'  to #'take_off' with conditional |
 |Full: airport responds to 'full?' method |no response - no method | create method|
 |An Airport instance will have an attribute of capacity set to a default| no attribute| set @capacity = capacity and create default |
-|*Prevents landing 'if' Full? | |√ but need to change to raise error |
-|*prevents 'take_off' if Full?||√but need to change to raise error |
-|planes that are already flying cannot land|||
-|Planes that are landed cannot land again and must be in an airport||√|
+|* 1. Prevents landing 'if' Full? | |√ but need to change to raise error |
+|* 2.  prevents 'take_off' if Full?||√but need to change to raise error |
+|* 3. planes that are already flying cannot land|||
+|* 4. Planes that are landed cannot land again and must be in an airport||√|
 
 
-To complete:
-* raise an error if full? or stormy? - having difficulty with raising an error for this
-* planes that are already flying cannot land
+To change:
+
+* In relation to the user stories "As an air traffic controller, To ensure safety
+I want to prevent takeoff/landing when weather is stormy/ full" I have ensured that the @ plane array which is storing the planes does not change. However it would be better to raise an error instead (see the table at the bottom 1 + 2). (I had a lot of difficulty with raising errors - it seemed to cause the rspec file to faill all the tests). 
+
+* An error should also be raised for the edge cases (see table bottom 3 + 4)
+
 * weather should be a class that returns a randomised output
     def get_weather
     ['sunny', 'cloudy', 'stormy'].sample
@@ -132,4 +136,4 @@ To complete:
 * 3. test for randomised output
 * weather class needs to be incorporated into Airport class
 * test to see if Weather.new will create an instance of weather
-* test it works with 'stormy?' 'landing' & 'full' method 
+* test it works with 'stormy?' 'landing' & 'full' method
