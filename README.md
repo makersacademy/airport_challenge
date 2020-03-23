@@ -121,8 +121,15 @@ Please see Miro board:  (https://miro.com/app/board/o9J_kux70qo=/)
 
 
 To complete:
-* raise an error if full? or stormy?
-* having difficulty with raising an error
-* need to
-
-*
+* raise an error if full? or stormy? - having difficulty with raising an error for this
+* planes that are already flying cannot land
+* weather should be a class that returns a randomised output
+    def get_weather
+    ['sunny', 'cloudy', 'stormy'].sample
+    end
+* 1. test: for Weather class
+* 2. test: for get_weather method
+* 3. test for randomised output
+* weather class needs to be incorporated into Airport class
+* test to see if Weather.new will create an instance of weather
+* test it works with 'stormy?' 'landing' & 'full' method 
