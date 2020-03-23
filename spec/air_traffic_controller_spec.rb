@@ -44,4 +44,16 @@ describe AirTrafficController do
     directions = [[plane_1, nil], [plane_4, airport], [plane_2, airport]]
     expect(subject.direct_planes(directions)).to eq('2 planes were successfully directed. Plane 3 failed - Unable to land, plane has already landed')
   end
+
+  it 'will report when one planes were successfully directed, giving you the reason why' do
+    set_weather_to_clear
+    airport = Airport.new
+    plane_1 = Plane.new
+    plane_1.land(airport)
+    plane_2 = Plane.new
+    plane_2.land(airport)
+    plane_4 = Plane.new
+    directions = [[plane_1, nil], [plane_4, nil], [plane_2, airport]]
+    expect(subject.direct_planes(directions)).to eq('1 plane was successfully directed. Plane 2 failed - Unable to take off, plane is not landed')
+  end
 end
