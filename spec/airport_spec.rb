@@ -57,25 +57,7 @@ describe Airport do
       subject.land(plane_1)
       expect { subject.take_off(plane_2) }.to raise_error("This plane is not in this airport")
     end
-  end
 
-  describe "#multi_land" do
-    it "makes multiple landings when an array of planes is passed" do
-      allow(subject).to receive(:stormy?) { false }
-      plane_1, plane_2 = Plane.new, Plane.new
-      subject.multi_land([plane_1, plane_2])
-      expect(subject.planes).to eq [plane_1, plane_2]
-    end
-  end
-
-  describe "#multi_take_off" do
-    it "makes all planes in an array take off when  an array of planes is passed as an argument" do
-      allow(subject).to receive(:stormy?) { false }
-      plane_1, plane_2 = Plane.new, Plane.new
-      subject.multi_land([plane_1, plane_2])
-      subject.multi_take_off([plane_1, plane_2])
-      expect(subject.planes).to eq []
-    end
   end
 
   describe "#stormy?" do

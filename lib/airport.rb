@@ -13,36 +13,20 @@ class Airport
 
   def land(plane)
     raise "There is no space avaliable!" if full?
-
     raise "There is currently a storm no landings at this time" if stormy?
-
     raise "This plane has already landed" if present?(plane)
-
-    # raise "This plane has already landed" if !plane.flying?
 
     @planes << plane
   end
 
-  def multi_land(planes)
-    planes.each { |plane|
-      land(plane)
-    }
-  end
-
   def take_off(plane)
-    raise "There are currently no planes ready for take off" if empty?
+    raise "There are currently no planes ready for take off" if empty? #same as if the plane is not at the airport; repeatable
 
     raise "There is currently a storm no take offs at this time" if stormy?
 
     raise "This plane is not in this airport" if !present?(plane)
 
     @planes.delete(plane)
-  end
-
-  def multi_take_off(planes)
-    planes.each { |plane|
-      take_off(plane)
-    }
   end
 
   private
