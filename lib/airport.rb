@@ -20,11 +20,9 @@ class Airport
   end
 
   def take_off(plane)
-    raise "There are currently no planes ready for take off" if empty? #same as if the plane is not at the airport; repeatable
-
+    raise "There are currently no planes ready for take off" if empty?
     raise "There is currently a storm no take offs at this time" if stormy?
-
-    raise "This plane is not in this airport" if !present?(plane)
+    raise "This plane is not in this airport" unless present?(plane)
 
     @planes.delete(plane)
   end

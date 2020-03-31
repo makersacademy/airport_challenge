@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    true
+    rand(100) <= 95
   end
 
 end
