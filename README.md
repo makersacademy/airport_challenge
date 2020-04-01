@@ -46,10 +46,6 @@ I want to prevent landing when weather is stormy
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
 ## Code style
 
 - OOD
@@ -103,6 +99,10 @@ You can run tests by running "rspec" in airport file.
 
 ### Airport Class
 
+- #initialize
+  - should have no planes when initilized
+  - should have space for 20 planes when no argument is given
+  - should have space for 30 planes when an argument of 30 is given
 - #land
   - should store the plane in the airport
   - gives an error if capacity is full
@@ -110,7 +110,27 @@ You can run tests by running "rspec" in airport file.
   - gives an error if capacity 15 when an argument of 15 is passed
   - gives an error if you try to land the same plane twice
   - gives an error if you try to land during a storm
+- #take_off
+  - should return the plane that has left
+  - gives an error if there's no planes in the airport
+  - gives an error if you try to get an absent plane to take off
+  - gives an error if you try to land during a storm
 
+### Plane Class
+
+- #landed?
+  - should return true after land is called
+  - should not be landed on creation
+- #land
+  - should change landed instance variable true
+- #take_off
+  - should change landed instance variable false
+
+### Weather Class
+
+- #stormy?
+  - returns true when srand 1 is run
+  - returns false when srand 5 is run
 
 ## Versioning
 
