@@ -36,7 +36,7 @@ describe Airport do
 
     it 'gives an error if you try to land during a storm' do
       allow(@weather).to receive(:stormy?) { true }
-      expect { subject.land(@plane, @weather) }.to raise_error("There is currently a storm no landings at this time")
+      expect { subject.land(@plane, @weather) }.to raise_error("You cannot land there is currently a storm")
     end
 
   end
@@ -61,7 +61,7 @@ describe Airport do
     it 'gives an error if you try to land during a storm' do
       subject.land(@plane, @weather)
       allow(@weather).to receive(:stormy?) { true }
-      expect { subject.take_off(@plane, @weather) }.to raise_error("There is currently a storm no take offs at this time")
+      expect { subject.take_off(@plane, @weather) }.to raise_error("You cannot take off there is currently a storm")
     end
   end
 
