@@ -34,6 +34,11 @@ describe Airport do
       expect { subject.land(@plane, @weather) }.to raise_error("This plane has already landed")
     end
 
+    it 'gives an error if you try to land during a storm' do
+      allow(@weather).to receive(:stormy?) { true }
+      expect { subject.land(@plane, @weather) }.to raise_error("There is currently a storm no landings at this time")
+    end
+
   end
 
   describe "#take_off" do
@@ -53,6 +58,11 @@ describe Airport do
       expect { subject.take_off(plane_2, @weather) }.to raise_error("This plane is not in this airport")
     end
 
+    it 'gives an error if you try to land during a storm' do
+      subject.land(@plane, @weather)
+      allow(@weather).to receive(:stormy?) { true }
+      expect { subject.take_off(@plane, @weather) }.to raise_error("There is currently a storm no take offs at this time")
+    end
   end
 
   describe "#initialize" do

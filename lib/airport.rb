@@ -23,8 +23,8 @@ class Airport
 
   def take_off(plane, weather = Weather.new)
     raise "There are currently no planes ready for take off" if empty?
-    raise "There is currently a storm no take offs at this time" if weather.stormy?
     raise "This plane is not in this airport" unless plane.landed?
+    raise "There is currently a storm no take offs at this time" if weather.stormy?
 
     plane.take_off
     @planes.delete(plane)
