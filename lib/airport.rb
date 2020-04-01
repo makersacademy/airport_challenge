@@ -12,27 +12,25 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather = Weather.new)
     raise "There is no space avaliable!" if full?
-    raise "There is currently a storm no landings at this time" if stormy?
-    raise "This plane has already landed" if present?(plane)
+    raise "This plane has already landed" if plane.landed?
+    raise "There is currently a storm no landings at this time" if weather.stormy?
 
+    plane.land
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(plane, weather = Weather.new)
     raise "There are currently no planes ready for take off" if empty?
-    raise "There is currently a storm no take offs at this time" if stormy?
-    raise "This plane is not in this airport" unless present?(plane)
+    raise "There is currently a storm no take offs at this time" if weather.stormy?
+    raise "This plane is not in this airport" unless plane.landed?
 
+    plane.take_off
     @planes.delete(plane)
   end
 
   private
-
-  def stormy?
-    rand(100) <= 95
-  end
 
   def empty?
     @planes.count < 1
@@ -40,10 +38,6 @@ class Airport
 
   def full?
     @planes.count >= capacity
-  end
-
-  def present?(plane)
-    @planes.include?(plane)
   end
 
 end

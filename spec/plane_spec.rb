@@ -21,4 +21,11 @@ describe Plane do
       expect(plane.land).to eq true
     end
   end
+
+  describe '#take_off' do
+    it 'should change landed instance variable false' do
+      plane = Plane.new
+      expect(plane.take_off).to eq false
+    end
+  end
 end
