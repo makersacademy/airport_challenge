@@ -1,9 +1,7 @@
-require_relative "plane"
-
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_accessor :capacity
+  attr_accessor :capacity, :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -19,7 +17,7 @@ class Airport
   end
 
   def take_off(plane)
-    # @planes.pop
+    @planes.pop
   end
 
   private

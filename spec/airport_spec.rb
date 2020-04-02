@@ -1,7 +1,6 @@
 require "airport"
 
 describe Airport do
-  # subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
   it "expects Airport to make working airports" do
@@ -50,16 +49,11 @@ describe Airport do
   end
 
   describe "#take_off" do
+
     it "airport to take_off a plane" do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
-
-    # it 'confirms plane is not in airport after take off' do
-    #     plane = Plane.new 
-    #     subject.take_off(plane)
-    #     expect([planes].include? plane).to eq false
-    # end
-
+    
   end
 
 end
