@@ -35,17 +35,17 @@ describe Airport do
 
     it "gives an error if capacity is full" do
       airport = Airport.new
-      expect { 21.times { airport.land(Plane.new, @weather) } }.to raise_error("There is no space avaliable!")
+      expect { 21.times { airport.land(@plane, @weather) } }.to raise_error("There is no space avaliable!")
     end
 
     it "gives an error if capacity 25 when an argument of 25 is passed" do
       airport = Airport.new(25)
-      expect { 26.times { airport.land(Plane.new, @weather) } }.to raise_error("There is no space avaliable!")
+      expect { 26.times { airport.land(@plane, @weather) } }.to raise_error("There is no space avaliable!")
     end
 
     it "gives an error if capacity 15 when an argument of 15 is passed" do
       airport = Airport.new(15)
-      expect { 16.times { airport.land(Plane.new, @weather) } }.to raise_error("There is no space avaliable!")
+      expect { 16.times { airport.land(@plane, @weather) } }.to raise_error("There is no space avaliable!")
     end
 
     it "gives an error if you try to land the same plane twice" do
