@@ -7,3 +7,11 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+
+coverage
+.rspec
+.rubocop.yml.ruby-version
+.travis.yml
+Gemfile.lock
+LICENSE
+Rakefile
