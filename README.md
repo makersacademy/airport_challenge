@@ -89,11 +89,11 @@ $ cd airport-challenge
 
 #### To Start
 
-- Run "ruby  airport.rb" file in terminal.
+- Run irb and require "./lib/airport.rb", "./lib/plane.rb" and "./lib/weather.rb" files in terminal.
 
 ## Running the tests
 
-You can run tests by running "rspec" in airport file.
+You can run tests by running "rspec" in airport-challenge file.
 
 ### Tests 
 
