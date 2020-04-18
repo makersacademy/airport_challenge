@@ -6,7 +6,7 @@ describe Airport do
     expect(subject).to respond_to(:full?)
   end
   
-  it respons to capacity? do
+  it 'responds to capacity?' do
     expect(subject).to respond_to(:capacity?)
   end
   
