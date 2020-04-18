@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_accessor :capacity
+  attr_writer :capacity
 
   DEFAULT_CAPACITY = 2
 
@@ -23,6 +23,10 @@ class Airport
 
   def full?
     @parked_planes.size >= @capacity 
+  end
+
+  def stormy?
+    ["sunny", "cloudy", "rainy", "stormy"].sample == "stormy" ? true : false
   end
 
 end

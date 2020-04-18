@@ -28,4 +28,11 @@ describe Airport do
     expect(subject.capacity = 20 ).to eq 20
   end
 
+  # I want to prevent takeoff when weather is stormy
+  it 'should prevent take off if #stormy?' do
+    # allow(subject).to receive(:stormy?) { true }
+    subject.stub(:stormy?) { true }
+    expect(subject.stormy?).to eq true
+  end
+
 end
