@@ -22,4 +22,13 @@ describe Airport do
     expect(subject).to respond_to(:park).with(1).argument
   end
 
+  #test 5 park method returns a plane
+  it "should park plane and return the plane object" do
+    plane = Plane.new
+    subject.park(plane)
+    expect(subject.park(plane)).to eq plane
+  end
+
+  #it should respond to the method plane, for returning parked planes
+
 end

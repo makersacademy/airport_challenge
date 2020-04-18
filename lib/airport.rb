@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   def land(plane)
   end
@@ -10,5 +12,8 @@ class Airport
   end
 
   def park(plane)
+    @plane = plane
   end
+
+  
 end
