@@ -4,4 +4,11 @@ class Airport
 
   def take_off(plane)
   end
+
+  def sunny?
+    true
+  end
+
+  def park(plane)
+  end
 end

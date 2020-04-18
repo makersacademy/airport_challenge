@@ -12,4 +12,14 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
+  #test 3, it should check is weather is sunny
+  it "should check the weather" do
+    expect(subject.sunny?).to be true
+  end
+
+  #test 4 it should respond to the method 'park'
+  it "should park the plane" do
+    expect(subject).to respond_to(:park).with(1).argument
+  end
+
 end
