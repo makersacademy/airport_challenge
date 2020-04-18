@@ -39,17 +39,17 @@
 
 ## Object-Messages Table
 
-| ```Object```     | ```Message``` |
-|               --:|:--            |
-| ```ATC```        | ```instruct(thing)``` |
-| ```ATC```        | ```confirm(thing)``` |
-| ```Plane```      | ```land(airport, allow)``` |
-| ```Plane```      | ```takeoff(airport, allow)``` |
-| ```Plane```      | ```in_airport?(airport)``` |
-| ```Airport```    | ```full?``` |
-| ```Airport```    | ```set_capacity(capacity)``` |
-| ```SD```         | ```set_capacity(airport)``` |
-| ```Weather```    | ```stormy?``` |
+| ```Status```                  | ```Object```     | ```Message``` |
+|:--:                           |               --:|:--            |
+| :negative_squared_cross_mark: | ```ATC```        | ```instruct(thing)``` |
+| :negative_squared_cross_mark: | ```ATC```        | ```confirm(thing)``` |
+| :negative_squared_cross_mark: | ```Plane```      | ```land(airport, allow)``` |
+| :negative_squared_cross_mark: | ```Plane```      | ```takeoff(airport, allow)``` |
+| :negative_squared_cross_mark: | ```Plane```      | ```in_airport?(airport)``` |
+| :negative_squared_cross_mark: | ```Airport```    | ```full?``` |
+| :negative_squared_cross_mark: | ```Airport```    | ```set_capacity(capacity)``` |
+| :negative_squared_cross_mark: | ```SD```         | ```set_capacity(airport)``` |
+| :white_check_mark:            | ```Weather```    | ```stormy?``` |
 
 ## Feature Tests
 
