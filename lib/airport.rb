@@ -1,3 +1,4 @@
+require_relative 'plane'
 
 class Airport
 
@@ -5,6 +6,7 @@ class Airport
   end
 
   def take_off(plane)
+    'Plane has left the airport'
   end
-  
+
 end
