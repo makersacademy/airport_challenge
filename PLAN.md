@@ -27,14 +27,42 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+## Object Domain Model
+
 | Object | Message |
 | ---   | --- |
 | Plane | land |
 | | take_off  |
 | | flying? |
-| Aiport | docked?(plane)    |
+| Aiport | dock(plane) |
+| | depart
+| |docked?(plane)    |
 | | full? |
 | | DEFAULT_CAPACITY |
-| | request_depart |
-| | request_land |
 | WeatherReport | check_weather |
+
+[ Airport ] --(dock(plane))--> [ Self ] --(Land)--> [ Plane ]
+
+[ Airport ] --(depart)--> [ Self ] --(take_off)--> [ Plane ]
+                                   --(delete(Plane))--> [ @planes ]
+
+[ Airport ] --(docked?(plane))--> [ Self ] 
+
+[ Airport ] --(full?(plane))--> [ Self ]
+
+## Tests
+
+#### Airport
+- dock
+  - [ ] Responds to dock with 1 argument
+  - [ ] Adds a plane to @planes
+  - [ ] Changes a plane's state to be !flying?
+
+#### Plane
+
+- land
+  - [ ] Responds to land
+  - [ ] Changes flying? to be false
+- take_off
+  - [ ] Responds to take_off
+  - [ ] Changes flying? to be true
