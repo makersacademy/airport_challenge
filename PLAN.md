@@ -59,8 +59,8 @@ I want to prevent landing when weather is stormy
   - [x] Removes a plane from @planes
 - docked?(plane)
   - [x] Responds to docked? with 1 argument
-  - [ ] Returns true if plane IS in dock
-  - [ ] Returns false if plane IS NOT in dock
+  - [x] Returns true if plane IS in dock
+  - [x] Returns false if plane IS NOT in dock
 
 #### Plane
 - land_at(airport)
@@ -72,7 +72,7 @@ I want to prevent landing when weather is stormy
   - [x] Responds to depart
   - [x] Changes flying? to be true
   - [x] Call undock method on airport
-  - [ ] Does not depart if aiport and @port do not match
+  - [ ] Does not depart if airport and @port do not match
 - port
   - [ ] Responds to port
 - flying?
