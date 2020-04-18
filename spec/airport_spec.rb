@@ -41,5 +41,4 @@ describe Airport do
     expect(airport.capacity?).to be_an(Integer) 
   end
 
-
 end
