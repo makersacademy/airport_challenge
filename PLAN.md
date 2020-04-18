@@ -38,6 +38,7 @@ I want to prevent landing when weather is stormy
 | Aiport | dock(plane) |
 | | undock(plane) |
 | |docked?(plane)    |
+| | capacity |
 | | full? |
 | | DEFAULT_CAPACITY |
 | WeatherReport | check_weather |
@@ -61,6 +62,14 @@ I want to prevent landing when weather is stormy
   - [x] Responds to docked? with 1 argument
   - [x] Returns true if plane IS in dock
   - [x] Returns false if plane IS NOT in dock
+- full?
+  - [ ] Responds to full?
+  - [ ] Returns a boolean
+  - [ ] Returns true when airport is at maximum capacity
+  - [ ] Returns false if airport is under capacity
+- capacity
+  - [ ] Responds to capacity
+  - [ ] Returns and integer
 
 #### Plane
 - land_at(airport)
@@ -76,7 +85,7 @@ I want to prevent landing when weather is stormy
   - [x] Cannot depart from a different airport than the one it is in
   - [x] Cannot depart while already flying
 - port
-  - [ ] Responds to port
+  - [x] Responds to port
 - flying?
   - [x] It responds to flying
   - [x] It returns a bool
