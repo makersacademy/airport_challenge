@@ -51,16 +51,17 @@ describe Airport do
   end
   
   describe "#undock" do
-    it "removes a plane from its list of planes" do
-      srand(14)
-      plane = Plane.new
-      subject.dock(plane)
-      subject.undock(plane)
-      expect(subject.planes).to_not include(plane)
+    context "it is sunny" do
+      include_context 'sunny'
+      it "removes a plane from its list of planes" do
+        plane = Plane.new
+        subject.dock(plane)
+        subject.undock(plane)
+        expect(subject.planes).to_not include(plane)
+      end
     end
-    
+      
     it "raises an error if it is stormy" do
-      srand(14)
       storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
       subject = described_class.new
       plane = Plane.new
@@ -75,10 +76,13 @@ describe Airport do
       expect(subject.docked?(Plane.new)).to be false
     end
     
-    it "returns true if a plane IS docked" do
-      plane = Plane.new
-      subject.dock(plane)
-      expect(subject.docked?(plane)).to be true
+    context "it is sunny" do
+      include_context 'sunny'
+      it "returns true if a plane IS docked" do
+        plane = Plane.new
+        subject.dock(plane)
+        expect(subject.docked?(plane)).to be true
+      end
     end
   end
   
@@ -97,11 +101,14 @@ describe Airport do
       expect(subject.full?).to be(false)
     end
     
-    it "returns true when airport is full" do
-      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
-      subject.instance_variable_set(:@weather_reporter, sun_reporter)
-      10.times { subject.dock(Plane.new) }
-      expect(subject.full?).to be true
+    context "it is sunny" do
+      include_context 'sunny'
+      it "returns true when airport is full" do
+        sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+        subject.instance_variable_set(:@weather_reporter, sun_reporter)
+        10.times { subject.dock(Plane.new) }
+        expect(subject.full?).to be true
+      end
     end
   end
 end
