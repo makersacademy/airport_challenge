@@ -1,5 +1,6 @@
 class Airport
-  attr_reader :planes, :capacity, :weather_reporter
+  attr_reader :planes, :capacity
+  attr_accessor :weather_reporter
   
   DEFAULT_CAPACITY = 10
   
@@ -10,6 +11,7 @@ class Airport
   end
   
   def dock(plane)
+    raise "It's too stormy to land." if @weather_reporter.check_weather == "Stormy"
     @planes << plane
   end
   

@@ -21,6 +21,7 @@ describe Plane do
   
   describe "#land_at" do
     it "changes flying? to be false" do
+      srand(14)
       expect { subject.land_at(Airport.new) }
       .to change(subject, :flying?).to be false
     end
@@ -32,6 +33,7 @@ describe Plane do
     end
     
     it "sets port to match airport that it landed at" do
+      srand(14)
       airport = Airport.new
       subject.land_at(airport)
       expect(subject.port).to eq(airport)
@@ -44,6 +46,8 @@ describe Plane do
     
     it "raises an error when try to land at an airport that is full" do
       airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.weather_reporter = sun_reporter
       10.times { airport.dock(Plane.new) }
       expect { subject.land_at(airport) }.to raise_error('That airport is full.')
     end
@@ -51,6 +55,7 @@ describe Plane do
   
   describe "#depart" do
     it "changes flying? to be true" do
+      srand(14)
       subject.land_at(Airport.new)
       expect { subject.depart }
       .to change(subject, :flying?).to be true

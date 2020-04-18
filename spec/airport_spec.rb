@@ -30,9 +30,17 @@ describe Airport do
   
   describe "#dock" do
     it "adds a plane to its list of planes" do
+      srand(14)
       plane = Plane.new
       expect { subject.dock(plane) }
       .to change(subject, :planes).to include(plane)
+    end
+    
+    it "raises an error if its stormy" do
+      storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
+      subject = described_class.new(10, storm_reporter)
+      plane = Plane.new
+      expect { subject.dock(plane) }.to raise_error("It's too stormy to land.")
     end
   end
   
@@ -46,10 +54,12 @@ describe Airport do
     end
     
     it "raises an error if it is stormy" do
+      srand(14)
       storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
-      subject = described_class.new(10, storm_reporter)
+      subject = described_class.new
       plane = Plane.new
       subject.dock(plane)
+      subject.weather_reporter = storm_reporter
       expect { subject.undock(plane) }.to raise_error("It's too stormy to take off.")
     end
   end
@@ -82,6 +92,8 @@ describe Airport do
     end
     
     it "returns true when airport is full" do
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      subject.weather_reporter = sun_reporter
       10.times { subject.dock(Plane.new) }
       expect(subject.full?).to be true
     end
