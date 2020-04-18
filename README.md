@@ -78,7 +78,7 @@
 | :white_check_mark:            | ```Airport```    | ```capacity``` |
 | :negative_squared_cross_mark: | ```Airport```    | ```enter(plane)``` |
 | :negative_squared_cross_mark: | ```Airport```    | ```exit(plane)``` |
-| :negative_squared_cross_mark: | ```SD```         | ```set_capacity(airport)``` |
+| :negative_squared_cross_mark: | ```SD```         | ```capacity(airport, capacity)``` |
 | :white_check_mark:            | ```Weather```    | ```enter(plane)``` |
 | :negative_squared_cross_mark: | ```Air```        | ```exit(plane)``` |
 
