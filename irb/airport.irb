@@ -1,8 +1,11 @@
 require './lib/airport.rb'
+require './lib/plane.rb'
 
 airport = Airport.new
 
+planes = Array.new(10){Plane.new}
+
 airport.full?
 airport.capacity
-airport.capacity = 10
+airport.capacity = 2
 airport.capacity
