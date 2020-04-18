@@ -8,6 +8,7 @@ class Plane
   
   def land_at(airport)
     raise 'This plane is already landed.' if @state == false
+    raise 'That airport is full.' if airport.full?
     @state = false
     @port = airport
     airport.dock(self)

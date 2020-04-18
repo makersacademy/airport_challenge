@@ -65,8 +65,8 @@ I want to prevent landing when weather is stormy
 - full?
   - [x] Responds to full?
   - [x] Returns a boolean
-  - [ ] Returns true when airport is at maximum capacity
-  - [ ] Returns false if airport is under capacity
+  - [x] Returns true when airport is at maximum capacity
+  - [x] Returns false if airport is under capacity
 - capacity
   - [x] Responds to capacity
   - [x] Returns and integer
@@ -78,7 +78,8 @@ I want to prevent landing when weather is stormy
   - [x] Changes @state to be false
   - [x] Changes @port to be an instance equal to aiport
   - [x] Call dock method on airport
-  - [ ] Cannot land when it has already landed
+  - [x] Cannot land when it has already landed
+  - [ ] Cannot land if the airport is full
 - depart
   - [x] Responds to depart
   - [x] Changes flying? to be true
