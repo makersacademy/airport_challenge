@@ -10,11 +10,11 @@ describe Airport do
     expect(subject).to respond_to(:capacity)
   end
   
-  it 'responds to enter' do
+  it 'responds to enter(Plane)' do
     expect(subject).to respond_to(:enter).with(1).argument
   end
   
-  it 'responds to exit' do
+  it 'responds to exit(Plane)' do
     expect(subject).to respond_to(:exit).with(1).argument
   end
 
