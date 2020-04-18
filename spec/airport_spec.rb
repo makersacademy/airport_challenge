@@ -8,6 +8,10 @@ describe Airport do
   it { is_expected.to respond_to(:capacity) }
   it { is_expected.to respond_to(:full?) }
   
+  it "has a default capacity" do
+    expect(subject.capacity).to eq(described_class::DEFAULT_CAPACITY)
+  end
+  
   describe "#planes" do
     it "returns an Array" do
       expect(subject.planes).to be_a_kind_of(Array)
