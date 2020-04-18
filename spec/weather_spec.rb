@@ -11,4 +11,16 @@ describe Weather do
     expect(weather.stormy?).to eq(true).or eq(false)
   end
 
+  it 'returns true when forced' do
+    weather = Weather.new
+    allow(weather).to receive(:storm-probability) { 0 }
+    expect(weather.stormy?).to eq(true)
+  end
+
+  it 'returns false when forced' do
+    weather = Weather.new
+    allow(weather).to receive(:storm-probability) { 1 }
+    expect(weather.stormy?).to eq(false)
+  end
+
 end
