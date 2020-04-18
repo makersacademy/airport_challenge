@@ -14,6 +14,6 @@ class Airport
   end
   
   def docked?(plane)
-    false
+    @planes.include?(plane)
   end
 end

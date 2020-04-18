@@ -33,5 +33,11 @@ describe Airport do
     it "returns false if plane is NOT docked" do
       expect(subject.docked?(Plane.new)).to be false
     end
+    
+    it "returns true if a plane IS docked" do
+      plane = Plane.new
+      subject.dock(plane)
+      expect(subject.docked?(plane)).to be true
+    end
   end
 end
