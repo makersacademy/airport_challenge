@@ -5,6 +5,7 @@ class Plane
   end
   
   def land_at(airport)
+    @state = false
   end
   
   def depart_from(airport)

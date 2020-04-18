@@ -19,7 +19,11 @@ describe Plane do
   end
   
   describe "#land_at" do
-    
+    it "changes flying? to be false" do
+      subject.depart_from(Airport.new)
+      expect { subject.land_at(Airport.new) }
+      .to change(subject, :flying?).to be false
+    end
   end
   
   describe "#depart_from" do
