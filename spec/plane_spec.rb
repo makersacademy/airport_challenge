@@ -1,19 +1,19 @@
 require './lib/plane'
 require './lib/airport'
+require './lib/weather'
 
 describe Plane do
+  weather_no_storm = Weather.new(0)
+  airport = Airport.new(weather_no_storm)
+  plane = Plane.new
 
   it 'lands at airport' do
-    airport = Airport.new
-    subject.land_at_airport(airport)
-    expect(airport.planes[0]).to eq(subject)
+    plane.land_at_airport(airport)
+    expect(airport.planes[0]).to eq(plane)
   end
 
   it 'leaves airport' do
-    airport = Airport.new
-    airport.planes << subject
-    subject.leave_airport(airport)
+    plane.leave_airport(airport)
     expect(airport.planes.empty?).to eq(true)
   end
-
 end
