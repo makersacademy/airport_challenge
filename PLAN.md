@@ -32,7 +32,7 @@ I want to prevent landing when weather is stormy
 | Object | Message |
 | ---   | --- |
 | Plane | land_at(airport) |
-| | depart_from(airport)  |
+| | depart  |
 | | flying? |
 | | port |
 | Aiport | dock(plane) |
@@ -66,10 +66,10 @@ I want to prevent landing when weather is stormy
 - land_at(airport)
   - [x] Responds to land_at with 1 argument
   - [x] Changes @state to be false
-  - [ ] Changes @port to be an instance equal to aiport
+  - [x] Changes @port to be an instance equal to aiport
   - [x] Call dock method on airport
 - depart_from(airport)
-  - [x] Responds to depart_from with 1 argument
+  - [x] Responds to depart
   - [x] Changes flying? to be true
   - [ ] Call undock method on airport
   - [ ] Does not depart if aiport and @port do not match

@@ -4,7 +4,7 @@ describe Plane do
   
   it { is_expected.to respond_to(:land_at).with(1).argument }
   it { is_expected.to respond_to(:flying?) }
-  it { is_expected.to respond_to(:depart_from).with(1).argument }
+  it { is_expected.to respond_to(:depart) }
   it { is_expected.to respond_to(:port) }
   
   describe "#flying?" do
@@ -38,10 +38,10 @@ describe Plane do
     end
   end
   
-  describe "#depart_from" do
+  describe "#depart" do
     it "changes flying? to be true" do
       subject.land_at(Airport.new)
-      expect { subject.depart_from(Airport.new) }
+      expect { subject.depart }
       .to change(subject, :flying?).to be true
     end
   end

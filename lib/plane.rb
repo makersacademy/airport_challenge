@@ -12,7 +12,7 @@ class Plane
     airport.dock(self)
   end
   
-  def depart_from(airport)
+  def depart
     @state = true
   end
   
