@@ -25,4 +25,15 @@ describe Airport do
     plane = subject.take_off(Plane.new)
     expect(subject.land(plane)).to eq plane
   end
+
+  it 'Airport returns a flying plane' do
+    plane = subject.take_off(Plane.new)
+    expect(subject.flying_plane).to eq plane
+  end
+
+  it 'Airport returns a stationary plane' do
+    plane = subject.take_off(Plane.new)
+    subject.land(plane)
+    expect(subject.stationary_plane).to eq plane
+  end
 end
