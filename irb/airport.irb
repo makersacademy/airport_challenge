@@ -10,6 +10,7 @@ airport.capacity
 airport.capacity = 2
 airport.capacity
 airport.capacity = -4
+airport.capacity
 
 airport.full?
 airport.enter(planes[0])

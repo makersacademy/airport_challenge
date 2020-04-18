@@ -52,4 +52,10 @@ describe Airport do
     expect(airport.capacity).to be_an(Integer) 
   end
 
+  it 'check .capacity=num sets capacity' do
+    airport = Airport.new
+    capacity = 200
+    expect(airport.capacity=capacity).to eq capacity
+  end
+
 end
