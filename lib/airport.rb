@@ -1,4 +1,5 @@
 class Airport
+  attr_accessor :capacity
   
   def initialize
     @capacity = 5
@@ -8,11 +9,4 @@ class Airport
     false
   end
   
-  def capacity
-    @capacity
-  end
-  
-  def capacity=(capacity)
-    @capacity = capacity
-  end
 end
