@@ -14,28 +14,56 @@
 
 ## Objects
 
-* Air Traffic Controller (ATC)
+* Air Traffic Controller (Atc)
 * Passengers
 * Plane
 * Airport
 * Destination
 * Safety
-* System Designer (SD)
+* System Designer (Sd)
 * Software
 * Airports
 * Weather
+* Air
 
 ## Actions
 
-* ATC get Passengers to Destination
-* ATC get Passenters on way to Destination
-* ATC instruct Plane to land at Airport
-* ATC instruct Plane to takeoff at Airport
-* ATC confim Plane not in airport at Airport
-* ATC prevent landing when Airport is full to ensure Safety
-* SD overide default Airport capacity for different Airports
-* ATC prevent takeoff when Weather is stormy to ensure Safety
-* ATC prevent landing when Weather is stormy to ensure Safety
+* Atc get Passengers to Destination
+* Atc get Passenters on way to Destination
+* Atc instruct Plane to land at Airport
+* Atc instruct Plane to takeoff at Airport
+* Atc confim Plane not in airport at Airport
+* Atc prevent landing when Airport is full to ensure Safety
+* Sd overide default Airport capacity for different Airports
+* Atc prevent takeoff when Weather is stormy to ensure Safety
+* Atc prevent landing when Weather is stormy to ensure Safety
+
+## Assumptions
+
+* There can only be one Atc
+* There can only be one Sd
+* There can only be one Air
+* There can be multiple Planes
+* There can be multiple Airports
+* Atc owns the Air, Planes, Airpots and Sd
+* Planes can either be in the Air, or in an Airport
+* Atc decides where the planes go
+* Atc can ask Planes to land at an Airport and will receive a message confirming if this was successful or not
+* Atc can ask Planes to takeoff from an Airport and will recieve a message confirming if this was successful or not
+* Atc can ask an Airport if a Plane is there
+* Atc can ask the Air if a Plane is there
+* Planes are created in the Air (for simplicity) 
+* There can be more than one Plane at an Airport
+* Airports have a maximum capacity of Planes
+* Planes can't land if the Airport is at capacity
+* Airports can't go over capacity
+* Airport capacity must be a positive integer
+* There can only be one Weather at an Airport
+* The Weather is stormy 1 time out of 10
+* Planes can't land at an Airport if the Weather is stormy
+* Planes can't takeoff from an Airport if the Weather is stormy
+* The Sd can increase or decrease the capacity of an Airport, provided it remains a positive integer
+
 
 ## Object-Messages Table
 
