@@ -9,4 +9,10 @@ class Airport
     false
   end
   
+  def enter
+  end
+  
+  def exit
+  end
+  
 end
