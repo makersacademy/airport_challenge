@@ -6,13 +6,13 @@ describe Airport do
     expect(subject).to respond_to(:full?)
   end
   
-  it 'responds to capacity?' do
-    expect(subject).to respond_to(:capacity?)
+  it 'responds to capacity' do
+    expect(subject).to respond_to(:capacity)
   end
   
   it 'check for @capacity instance variable' do
     airport = Airport.new
-    expect(airport.instance_variable_get(:@capacity)).to be_an(Integer)
+    expect(airport.instance_variable_get(:@capacity))
   end
   
   it 'responds to capacity(number)' do
@@ -36,14 +36,14 @@ describe Airport do
     expect(airport.full?).to eq(false)
   end
 
-  it '.capacity? returns positive number' do
+  it '.capacity returns positive number' do
     airport = Airport.new
-    expect(airport.capacity?).to be >= 0 
+    expect(airport.capacity).to be >= 0 
   end
 
-  it '.capacity? returns integer' do
+  it '.capacity returns integer' do
     airport = Airport.new
-    expect(airport.capacity?).to be_an(Integer) 
+    expect(airport.capacity).to be_an(Integer) 
   end
 
 end
