@@ -4,5 +4,5 @@ airport = Airport.new
 
 airport.full?
 airport.capacity
-airport.capacity(10)
+airport.capacity = 10
 airport.capacity
