@@ -3,4 +3,4 @@ require './lib/airport.rb'
 airport = Airport.new
 
 airport.full?
-airport.set_capacity(10)
+airport.capacity(10)
