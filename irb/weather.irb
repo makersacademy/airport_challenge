@@ -1,0 +1,5 @@
+require './lib/weather'
+
+weather = Weather.new
+
+weather.stormy?
