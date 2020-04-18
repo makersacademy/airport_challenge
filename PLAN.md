@@ -34,6 +34,7 @@ I want to prevent landing when weather is stormy
 | Plane | land_at(airport) |
 | | depart_from(airport)  |
 | | flying? |
+| | port |
 | Aiport | dock(plane) |
 | | undock(plane) |
 | |docked?(plane)    |
@@ -60,10 +61,16 @@ I want to prevent landing when weather is stormy
 
 #### Plane
 - land_at(airport)
-  - [ ] Responds to land_at with 1 argument
+  - [x] Responds to land_at with 1 argument
   - [ ] Changes flying? to be false
+  - [ ] Changes @port to be an instance equal to aiport
   - [ ] Call dock method on airport
 - depart_from(airport)
   - [ ] Responds to depart_from with 1 argument
   - [ ] Changes flying? to be true
   - [ ] Call undock method on aiport
+  - [ ] Does not depart if aiport and @port do not match
+- port
+  - [ ] Responds to port
+- flying?
+  
