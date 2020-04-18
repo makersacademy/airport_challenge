@@ -1,0 +1,6 @@
+require './lib/airport'
+
+airport = Airport.new
+
+airport.full?
+airport.set_capacity(10)
