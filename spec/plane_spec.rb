@@ -7,7 +7,13 @@ describe Plane do
   
   describe "#flying?" do
     it "returns a bool" do
-      expect(subject.flying?).to be true or be false
+      expect(subject.flying?).to be(true).or be(false)
+    end
+    
+    context "when first created" do
+      it "returns false" do
+        expect(subject.flying?).to be false
+      end
     end
   end
 end
