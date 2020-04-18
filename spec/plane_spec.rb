@@ -5,6 +5,7 @@ describe Plane do
   it { is_expected.to respond_to(:land_at).with(1).argument }
   it { is_expected.to respond_to(:flying?) }
   it { is_expected.to respond_to(:depart_from).with(1).argument }
+  it { is_expected.to respond_to(:port) }
   
   describe "#flying?" do
     it "returns a bool" do

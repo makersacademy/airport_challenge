@@ -1,5 +1,7 @@
 class Plane
   
+  attr_reader :port
+  
   def initialize
     @state = true
   end
