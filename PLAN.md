@@ -68,8 +68,9 @@ I want to prevent landing when weather is stormy
   - [ ] Returns true when airport is at maximum capacity
   - [ ] Returns false if airport is under capacity
 - capacity
-  - [ ] Responds to capacity
-  - [ ] Returns and integer
+  - [x] Responds to capacity
+  - [x] Returns and integer
+  - [ ] Capacity can't be less than 1
 
 #### Plane
 - land_at(airport)

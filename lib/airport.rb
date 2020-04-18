@@ -17,4 +17,7 @@ class Airport
   def docked?(plane)
     @planes.include?(plane)
   end
+  
+  def full?
+  end
 end
