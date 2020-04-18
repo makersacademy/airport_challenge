@@ -31,38 +31,39 @@ I want to prevent landing when weather is stormy
 
 | Object | Message |
 | ---   | --- |
-| Plane | land |
-| | take_off  |
+| Plane | land_at(airport) |
+| | depart_from(airport)  |
 | | flying? |
 | Aiport | dock(plane) |
-| | depart
+| | undock(plane) |
 | |docked?(plane)    |
 | | full? |
 | | DEFAULT_CAPACITY |
 | WeatherReport | check_weather |
 
-[ Airport ] --(dock(plane))--> [ Self ] --(Land)--> [ Plane ]
-
-[ Airport ] --(depart)--> [ Self ] --(take_off)--> [ Plane ]
-                                   --(delete(Plane))--> [ @planes ]
-
-[ Airport ] --(docked?(plane))--> [ Self ] 
-
-[ Airport ] --(full?(plane))--> [ Self ]
+[ Plane ] --(land_at(aiport)) --> [ Self ] --(dock(self))--> [ Airport ]
+                                           --(to false)--> @flying?
 
 ## Tests
 
 #### Airport
-- dock
+- dock(plane)
   - [ ] Responds to dock with 1 argument
   - [ ] Adds a plane to @planes
-  - [ ] Changes a plane's state to be !flying?
+- undock(plane)
+  - [ ] Responds to undock with 1 argument
+  - [ ] Removes a plane from @planes
+- docked?(plane)
+  - [ ] Responds to docked? with 1 argument
+  - [ ] Returns true if plane IS in dock
+  - [ ] Returns false if plane IS NOT in dock
 
 #### Plane
-
-- land
-  - [ ] Responds to land
+- land_at(airport)
+  - [ ] Responds to land_at with 1 argument
   - [ ] Changes flying? to be false
-- take_off
-  - [ ] Responds to take_off
+  - [ ] Call dock method on airport
+- depart_from(airport)
+  - [ ] Responds to depart_from with 1 argument
   - [ ] Changes flying? to be true
+  - [ ] Call undock method on aiport
