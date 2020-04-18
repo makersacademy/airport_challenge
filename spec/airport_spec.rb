@@ -31,6 +31,9 @@ describe Airport do
     expect(airport.full?).to eq(false)
   end
 
-  
+  it 'returns positive number' do
+    airport = Airport.new
+    expect(airport.capacity?).to be >= 0 
+  end
 
 end
