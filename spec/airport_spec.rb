@@ -4,6 +4,17 @@ describe Airport do
   subject { described_class.new 10 }
   let(:plane) { double(:plane) }
 
+  describe '#initialize' do
+    # As the system designer
+    # So that the software can be used for many different airports
+    # I would like a default airport capacity that can be overridden as appropriate
+    it 'has a default capacity argument value' do
+      subject = described_class.new
+      described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'Airport is full!'
+    end
+  end
+
   describe '#land' do
     # As an air traffic controller
     # So I can get passengers to a destination
