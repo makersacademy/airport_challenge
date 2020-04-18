@@ -1,7 +1,7 @@
 require 'airport'
 
 shared_context 'sunny' do
-  let(:airport) do
+  let(:subject) do
     port = Airport.new
     sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny") 
     port.instance_variable_set(:@weather_reporter, sun_reporter)
@@ -37,8 +37,8 @@ describe Airport do
       include_context 'sunny'
       it "adds a plane to its list of planes" do
         plane = Plane.new
-        expect { airport.dock(plane) }
-        .to change(airport, :planes).to include(plane)
+        expect { subject.dock(plane) }
+        .to change(subject, :planes).to include(plane)
       end
     end
     
