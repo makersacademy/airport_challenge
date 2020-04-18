@@ -1,5 +1,14 @@
 require 'airport'
 
+shared_context 'sunny' do
+  let(:airport) do
+    port = Airport.new
+    sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny") 
+    port.instance_variable_set(:@weather_reporter, sun_reporter)
+    port
+  end
+end
+
 describe Airport do
   it { is_expected.to respond_to(:planes) }
   it { is_expected.to respond_to(:dock).with(1).argument }
@@ -24,11 +33,13 @@ describe Airport do
   end
   
   describe "#dock" do
-    it "adds a plane to its list of planes" do
-      srand(14)
-      plane = Plane.new
-      expect { subject.dock(plane) }
-      .to change(subject, :planes).to include(plane)
+    context "it is sunny" do
+      include_context 'sunny'
+      it "adds a plane to its list of planes" do
+        plane = Plane.new
+        expect { airport.dock(plane) }
+        .to change(airport, :planes).to include(plane)
+      end
     end
     
     it "raises an error if its stormy" do
