@@ -10,6 +10,10 @@ describe Airport do
     expect(subject).to respond_to(:capacity?)
   end
   
+  it 'should persists @capacity' do
+    expect(assigns(:capacity)).to be_persisted
+  end
+  
   it 'responds to capacity(number)' do
     expect(subject).to respond_to(:capacity).with(1).argument
   end
