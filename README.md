@@ -1,3 +1,48 @@
+Airport Challenge - will-head
+=============================
+
+```
+        ______
+        _\____\___
+=  = ==(____WH____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
+
+Objects
+-------
+
+* Air Traffic Controller (ATC)
+* Passengers
+* Plane
+* Airport
+* Destination
+* Safety
+* System Designer (SD)
+* Software
+* Airports
+* Weather
+
+Actions
+-------
+* ATC get Passengers to Destination
+* ATC get Passenters on way to Destination
+* ATC instruct Plane to land at Airport
+* ATC instruct Plane to takeoff at Airport
+* ATC confim Plane not in airport at Airport
+* ATC prevent landing when Airport is full to ensure Safety
+* SD overide default Airport capacity for different Airports
+* ATC prevent takeoff when Weather is stormy to ensure Safety
+* ATC prevent landing when Weather is stormy to ensure Safety
+
+
+Original README.md
+==================
+
 Airport Challenge
 =================
 
