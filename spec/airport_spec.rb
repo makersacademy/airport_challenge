@@ -12,6 +12,11 @@ describe Airport do
     expect(subject.capacity).to eq(described_class::DEFAULT_CAPACITY)
   end
   
+  it "can have its default capacity overwritten" do
+    subject = described_class.new(20)
+    expect(subject.capacity).to eq(20)
+  end
+  
   describe "#planes" do
     it "returns an Array" do
       expect(subject.planes).to be_a_kind_of(Array)
