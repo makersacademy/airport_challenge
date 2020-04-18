@@ -1,40 +1,6 @@
-Airport Challenge
-=================
+# Aiport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
+User Stories:
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -61,30 +27,84 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Object Domain Model
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+This is the object domain model derived from the above user stories.
+I chose to model the system as having the controllers of the system direct planes to land and
+take off. This naturally removes the need for error handling for things like planes taking off from
+airports that they are not docked in.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+The WeatherReporter object is stored as a private instance variable inside the
+Airport class. It generates weather using a the `rand` function. However, this could have been
+modelled with a fourth weather object which simulates weather and which the reporter reads from.
+However, because of time constraints I chose not to use this option.
 
-Please create separate files for every class, module and test suite.
+| Object | Message |
+| ---   | --- |
+| Plane | land_at(airport) |
+| | depart  |
+| | flying? |
+| | port |
+| Aiport | dock(plane) |
+| | undock(plane) |
+| |docked?(plane)    |
+| | capacity |
+| | full? |
+| | DEFAULT_CAPACITY |
+| WeatherReporter | check_weather |
 
-In code review we'll be hoping to see:
+## Tests
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+#### Airport
+- planes
+  - [x] Responds to planes
+  - [x] @planes is an instance of an Array
+- dock(plane)
+  - [x] Responds to dock with 1 argument
+  - [x] Adds a plane to @planes
+  - [x] Raises an error when its stormy
+- undock(plane)
+  - [x] Responds to undock with 1 argument
+  - [x] Removes a plane from @planes
+  - [x] Raises an error when its stormy
+- docked?(plane)
+  - [x] Responds to docked? with 1 argument
+  - [x] Returns true if plane IS in dock
+  - [x] Returns false if plane IS NOT in dock
+- full?
+  - [x] Responds to full?
+  - [x] Returns a boolean
+  - [x] Returns true when airport is at maximum capacity
+  - [x] Returns false if airport is under capacity
+- capacity
+  - [x] Responds to capacity
+  - [x] Returns and integer
+  - [ ] Capacity can't be less than 1
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+#### Plane
+- land_at(airport)
+  - [x] Responds to land_at with 1 argument
+  - [x] Changes @state to be false
+  - [x] Changes @port to be an instance equal to aiport
+  - [x] Call dock method on airport
+  - [x] Cannot land when it has already landed
+  - [x] Cannot land if the airport is full
+- depart
+  - [x] Responds to depart
+  - [x] Changes flying? to be true
+  - [x] Call undock method on airport
+  - [x] Cannot depart from a different airport than the one it is in
+  - [x] Cannot depart while already flying
+- port
+  - [x] Responds to port
+- flying?
+  - [x] It responds to flying
+  - [x] It returns a bool
+  - [x] It starts as not flying
 
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+### WeatherReporter
+- check_weather
+  - [x] Responds to check_weather
+  - [x] Returns a String
+  - [x] Returns Sunny when the Weather is sunny
+  - [x] Returns Stormy when the Weather is stormy
