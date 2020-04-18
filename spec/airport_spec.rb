@@ -11,7 +11,7 @@ describe Airport do
     end
 
     it 'stores a plane after landing' do
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to include plane
     end
   end
 # As an air traffic controller
@@ -24,7 +24,8 @@ describe Airport do
     end
 
     it 'confirms that a plane is no longer at the airport after take_off' do
-
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
     end
   end
 
