@@ -68,12 +68,13 @@ I want to prevent landing when weather is stormy
   - [x] Changes @state to be false
   - [x] Changes @port to be an instance equal to aiport
   - [x] Call dock method on airport
+  - [ ] Cannot land when it has already landed
 - depart
   - [x] Responds to depart
   - [x] Changes flying? to be true
   - [x] Call undock method on airport
   - [x] Cannot depart from a different airport than the one it is in
-  - [ ] Cannot depart while already flying
+  - [x] Cannot depart while already flying
 - port
   - [ ] Responds to port
 - flying?
