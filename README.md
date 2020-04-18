@@ -69,8 +69,8 @@
 
 | ```Status```                  | ```Object```     | ```Message``` |
 |:--:                           |               --:|:--            |
-| :negative_squared_cross_mark: | ```ATC```        | ```instruct(thing)``` |
-| :negative_squared_cross_mark: | ```ATC```        | ```confirm(thing)``` |
+| :negative_squared_cross_mark: | ```Atc```        | ```instruct(thing)``` |
+| :negative_squared_cross_mark: | ```Atc```        | ```confirm(thing)``` |
 | :negative_squared_cross_mark: | ```Plane```      | ```land(airport, allow)``` |
 | :negative_squared_cross_mark: | ```Plane```      | ```takeoff(airport, allow)``` |
 | :negative_squared_cross_mark: | ```Plane```      | ```in_airport?(airport)``` |
@@ -78,9 +78,10 @@
 | :white_check_mark:            | ```Airport```    | ```capacity``` |
 | :negative_squared_cross_mark: | ```Airport```    | ```enter(plane)``` |
 | :negative_squared_cross_mark: | ```Airport```    | ```exit(plane)``` |
-| :negative_squared_cross_mark: | ```SD```         | ```capacity(airport, capacity)``` |
+| :white_check_mark:            | ```Sd```         | ```capacity(airport, capacity)``` |
 | :white_check_mark:            | ```Weather```    | ```enter(plane)``` |
-| :negative_squared_cross_mark: | ```Air```        | ```exit(plane)``` |
+| :negative_squared_cross_mark: | ```Air```        | ```add(plane)``` |
+| :negative_squared_cross_mark: | ```Air```        | ```delete(plane)``` |
 
 ## Feature Tests
 
