@@ -16,8 +16,8 @@ class Plane
   
   def depart
     raise 'Plane is already airborne.' if @state
-    @state = true
     @port.undock(self)
+    @state = true
     @port = nil
   end
   

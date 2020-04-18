@@ -7,6 +7,7 @@ describe Airport do
   it { is_expected.to respond_to(:docked?).with(1).argument }
   it { is_expected.to respond_to(:capacity) }
   it { is_expected.to respond_to(:full?) }
+  it { is_expected.to respond_to(:weather_reporter) }
   
   it "has a default capacity" do
     expect(subject.capacity).to eq(described_class::DEFAULT_CAPACITY)
@@ -15,6 +16,10 @@ describe Airport do
   it "can have its default capacity overwritten" do
     subject = described_class.new(20)
     expect(subject.capacity).to eq(20)
+  end
+  
+  it "has a weather_report of the WeatherReporter class" do
+    expect(subject.weather_reporter).to be_a_kind_of(WeatherReporter)
   end
   
   describe "#planes" do
@@ -37,6 +42,10 @@ describe Airport do
       subject.dock(plane)
       subject.undock(plane)
       expect(subject.planes).to_not include(plane)
+    end
+    
+    it "raises an error if it is stormy" do
+      
     end
   end
   

@@ -1,11 +1,12 @@
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather_reporter
   
   DEFAULT_CAPACITY = 10
   
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather_reporter = WeatherReporter.new
   end
   
   def dock(plane)
