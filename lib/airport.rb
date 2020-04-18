@@ -19,6 +19,6 @@ class Airport
   end
   
   def full?
-    true
+    false
   end
 end

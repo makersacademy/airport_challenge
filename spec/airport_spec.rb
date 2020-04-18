@@ -53,5 +53,9 @@ describe Airport do
     it "returns a bool" do
       expect(subject.full?).to be(true).or be(false)
     end
+    
+    it "returns false when the airport is under capacity" do
+      expect(subject.full?).to be(false)
+    end
   end
 end

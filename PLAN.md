@@ -63,8 +63,8 @@ I want to prevent landing when weather is stormy
   - [x] Returns true if plane IS in dock
   - [x] Returns false if plane IS NOT in dock
 - full?
-  - [ ] Responds to full?
-  - [ ] Returns a boolean
+  - [x] Responds to full?
+  - [x] Returns a boolean
   - [ ] Returns true when airport is at maximum capacity
   - [ ] Returns false if airport is under capacity
 - capacity
