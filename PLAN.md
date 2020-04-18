@@ -41,7 +41,7 @@ I want to prevent landing when weather is stormy
 | | capacity |
 | | full? |
 | | DEFAULT_CAPACITY |
-| WeatherReport | check_weather |
+| WeatherReporter | check_weather |
 
 [ Plane ] --(land_at(aiport)) --> [ Self ] --(dock(self))--> [ Airport ]
                                            --(to false)--> @flying?
@@ -92,3 +92,10 @@ I want to prevent landing when weather is stormy
   - [x] It responds to flying
   - [x] It returns a bool
   - [x] It starts as not flying
+
+### WeatherReporter
+- check_weather
+  - [ ] Responds to check_weather
+  - [ ] Returns a String
+  - [ ] Returns Sunny when the Weather is sunny
+  - [ ] Returns Stormy when the Weather is stormy
