@@ -6,8 +6,8 @@ class Weather
     @storm_probability = probablity
   end
 
-  def is_stormy?
-    @storm_probability > chance ? is_stormy_message : false
+  def stormy?
+    @storm_probability > chance ? stormy_message : false
   end
 
   private
@@ -15,7 +15,7 @@ class Weather
     rand(1..100)
   end
 
-  def is_stormy_message
+  def stormy_message
     fail "Weather is stormy"
   end
 end
