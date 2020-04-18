@@ -50,6 +50,13 @@ describe Airport do
       subject.land(plane)
       expect(subject.take_off).to eq plane
     end
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent takeoff when weather is stormy
+    it 'prevents take off when the weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return true
+      expect { subject.take_off }.to raise_error 'Take off is cancelled due to bad weather!'
+    end
   end
 
 
