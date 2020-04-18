@@ -38,7 +38,7 @@ describe Airport do
     
     it "raises an error if its stormy" do
       storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
-      subject = described_class.new(10, storm_reporter)
+      subject.instance_variable_set(:@weather_reporter, storm_reporter)
       plane = Plane.new
       expect { subject.dock(plane) }.to raise_error("It's too stormy to land.")
     end

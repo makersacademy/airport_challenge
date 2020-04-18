@@ -55,9 +55,11 @@ I want to prevent landing when weather is stormy
 - dock(plane)
   - [x] Responds to dock with 1 argument
   - [x] Adds a plane to @planes
+  - [x] Raises an error when its stormy
 - undock(plane)
   - [x] Responds to undock with 1 argument
   - [x] Removes a plane from @planes
+  - [x] Raises an error when its stormy
 - docked?(plane)
   - [x] Responds to docked? with 1 argument
   - [x] Returns true if plane IS in dock
@@ -79,7 +81,7 @@ I want to prevent landing when weather is stormy
   - [x] Changes @port to be an instance equal to aiport
   - [x] Call dock method on airport
   - [x] Cannot land when it has already landed
-  - [ ] Cannot land if the airport is full
+  - [x] Cannot land if the airport is full
 - depart
   - [x] Responds to depart
   - [x] Changes flying? to be true
@@ -96,6 +98,6 @@ I want to prevent landing when weather is stormy
 ### WeatherReporter
 - check_weather
   - [x] Responds to check_weather
-  - [ ] Returns a String
-  - [ ] Returns Sunny when the Weather is sunny
-  - [ ] Returns Stormy when the Weather is stormy
+  - [x] Returns a String
+  - [x] Returns Sunny when the Weather is sunny
+  - [x] Returns Stormy when the Weather is stormy
