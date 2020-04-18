@@ -1,0 +1,3 @@
+require './lib/sd.rb'
+
+sd = Sd.new
