@@ -1,7 +1,7 @@
 class Sd
 
   def capacity(airport, capacity)
-    10
+    airport.capacity = capacity
   end
 
 end
