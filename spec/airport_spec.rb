@@ -11,4 +11,16 @@ describe Airport do
     expect(airport.full?).to eq(true).or eq(false)
   end
 
+  it 'returns true when forced' do
+    airport = Airport.new
+    allow(airport).to receive(:full?) { true }
+    expect(airport.full?).to eq(true)
+  end
+
+  it 'returns false when forced' do
+    airport = Airport.new
+    allow(airport).to receive(:full?) { false }
+    expect(airport.full?).to eq(false)
+  end
+
 end
