@@ -6,6 +6,7 @@ airport = Airport.new
 airport.is_full?
 weather = Weather.new
 
+weather.is_stormy?
 plane = Plane.new
 
 airport.take_off(plane)
