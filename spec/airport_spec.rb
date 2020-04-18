@@ -5,13 +5,12 @@ describe Airport do
   # As an air traffic controller
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport
-
   describe '#land' do
     it 'instructs a plane to land' do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it 'lands a plane' do
+    it 'stores a plane after landing' do
       expect(subject.land(plane)).to eq plane
     end
   end
@@ -25,7 +24,6 @@ describe Airport do
     end
 
     it 'confirms that a plane is no longer at the airport after take_off' do
-      # plane = double(:plane)
 
     end
   end
