@@ -71,7 +71,7 @@ I want to prevent landing when weather is stormy
 - depart_from(airport)
   - [x] Responds to depart
   - [x] Changes flying? to be true
-  - [ ] Call undock method on airport
+  - [x] Call undock method on airport
   - [ ] Does not depart if aiport and @port do not match
 - port
   - [ ] Responds to port

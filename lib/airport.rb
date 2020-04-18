@@ -12,4 +12,7 @@ class Airport
   def undock(plane)
     @planes.delete(plane)
   end
+  
+  def docked?(plane)
+  end
 end
