@@ -7,7 +7,8 @@ class Plane
   def land_at(airport)
   end
   
-  def depart_from(aiport)
+  def depart_from(airport)
+    @state = true
   end
   
   def flying?
