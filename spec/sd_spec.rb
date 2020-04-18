@@ -10,8 +10,9 @@ describe Sd do
   it '.capacity returns postive integer' do
     sd = Sd.new
     airport = Airport.new
-    expect(sd.capacity(airport, 10)).to be_an(Integer)
-    expect(sd.capacity(airport, 10)).to be >= 0 
+    capacity = 10
+    expect(sd.capacity(airport, capacity)).to be_an(Integer)
+    expect(sd.capacity(airport, capacity)).to be >= 0 
   end
 
 end
