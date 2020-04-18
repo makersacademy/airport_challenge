@@ -11,11 +11,11 @@ describe Airport do
   end
   
   it 'responds to enter' do
-    expect(subject).to respond_to(:enter)
+    expect(subject).to respond_to(:enter).with(1).argument
   end
   
   it 'responds to exit' do
-    expect(subject).to respond_to(:exit)
+    expect(subject).to respond_to(:exit).with(1).argument
   end
 
   it 'check for @capacity instance variable' do
