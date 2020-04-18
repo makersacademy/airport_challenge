@@ -51,5 +51,9 @@ describe Plane do
       subject.depart
       expect(airport.planes).to_not include(subject)
     end
+    
+    it "raises an error if already flying" do
+      expect { subject.depart }.to raise_error('Plane is already airborne.')
+    end
   end
 end
