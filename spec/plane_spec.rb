@@ -47,7 +47,7 @@ describe Plane do
     it "raises an error when try to land at an airport that is full" do
       airport = Airport.new
       sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
-      airport.weather_reporter = sun_reporter
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
       10.times { airport.dock(Plane.new) }
       expect { subject.land_at(airport) }.to raise_error('That airport is full.')
     end
