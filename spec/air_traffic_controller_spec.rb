@@ -30,9 +30,9 @@ describe Plane do
     expect(subject.stationary).to eq true
   end
 
-  it 'Take off method returns message' do
+  it 'Take off method returns message incl. airport info' do
     plane = Plane.new
-    expect(subject.take_off(plane)).to eq "#{plane} has taken off"
+    expect(subject.take_off(plane)).to eq "#{plane} has taken off from #{plane.airport}"
   end
 
   it 'Confirm plane is set to flying when it has taken off' do
@@ -64,6 +64,12 @@ describe Plane do
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error("This plane (#{plane}) has already landed")
   end
+
+  it 'Plane is initialized with an airport' do
+    plane = Plane.new
+    expect(plane.airport).to eq plane.airport
+  end
+
 end
 
 describe Airport do

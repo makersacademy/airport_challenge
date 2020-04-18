@@ -1,9 +1,12 @@
+require_relative 'air_traffic_controller'
+
 class Plane
-  attr_reader :flying, :stationary
+  attr_reader :flying, :stationary, :airport
 
   def initialize
     @flying = ""
     @stationary = ""
+    @airport = Airport.new
   end
 
   def take_off(plane = Plane.new)
@@ -11,7 +14,7 @@ class Plane
 
     @flying = true
     @stationary = false
-    "#{plane} has taken off"
+    "#{plane} has taken off from #{plane.airport}"
   end
 
   def land(plane)
