@@ -30,6 +30,12 @@ describe Plane do
       subject.land_at(airport)
       expect(airport.planes).to include(subject)
     end
+    
+    it "sets port to match airport that it landed at" do
+      airport = Airport.new
+      subject.land_at(airport)
+      expect(subject.port).to eq(airport)
+    end
   end
   
   describe "#depart_from" do

@@ -8,6 +8,7 @@ class Plane
   
   def land_at(airport)
     @state = false
+    @port = airport
     airport.dock(self)
   end
   
