@@ -18,4 +18,13 @@ describe Airport do
       .to change(subject, :planes).to include(plane)
     end
   end
+  
+  describe "#undock" do
+    it "removes a plane from its list of planes" do
+      plane = Plane.new
+      subject.dock(plane)
+      subject.undock(plane)
+      expect(subject.planes).to_not include(plane)
+    end
+  end
 end

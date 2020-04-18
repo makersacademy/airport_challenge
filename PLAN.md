@@ -55,7 +55,7 @@ I want to prevent landing when weather is stormy
   - [x] Responds to dock with 1 argument
   - [x] Adds a plane to @planes
 - undock(plane)
-  - [ ] Responds to undock with 1 argument
+  - [x] Responds to undock with 1 argument
   - [ ] Removes a plane from @planes
 - docked?(plane)
   - [ ] Responds to docked? with 1 argument
