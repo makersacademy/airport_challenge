@@ -1,5 +1,4 @@
-Airport Challenge - will-head
-=============================
+# Airport Challenge - will-head
 
 ```
         ______
@@ -13,8 +12,7 @@ Airport Challenge - will-head
 
 ```
 
-Objects
--------
+## Objects
 
 * Air Traffic Controller (ATC)
 * Passengers
@@ -27,8 +25,8 @@ Objects
 * Airports
 * Weather
 
-Actions
--------
+## Actions
+
 * ATC get Passengers to Destination
 * ATC get Passenters on way to Destination
 * ATC instruct Plane to land at Airport
@@ -38,6 +36,46 @@ Actions
 * SD overide default Airport capacity for different Airports
 * ATC prevent takeoff when Weather is stormy to ensure Safety
 * ATC prevent landing when Weather is stormy to ensure Safety
+
+## Object-Messages Table
+
+| ```Object```     | ```Message``` |
+|               --:|:--            |
+| ```ATC```        | ```instruct(thing)``` |
+| ```ATC```        | ```confirm(thing)``` |
+| ```Plane```      | ```land(airport, allow)``` |
+| ```Plane```      | ```takeoff(airport, allow)``` |
+| ```Plane```      | ```in_airport?(airport)``` |
+| ```Airport```    | ```full?``` |
+| ```Airport```    | ```set_capacity(capacity)``` |
+| ```SD```         | ```set_capacity(airport)``` |
+| ```Weather```    | ```stormy?``` |
+
+## Feature Tests
+
+### Weather
+
+require './lib/weather'
+
+weather = Weather.new
+
+weather.stormy?
+
+### Plane
+require './lib/plane'
+require './lib/airport'
+
+airport = Airport.new
+
+plane = Plane.new
+
+plane.in_airport?(airport)
+
+plane.land(airport, true)
+
+plane.land(airport, false)
+
+
 
 
 Original README.md
