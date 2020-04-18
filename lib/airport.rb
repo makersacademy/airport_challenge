@@ -3,7 +3,7 @@ class Airport
     false
   end
   
-  def set_capacity(to)
+  def capacity(to)
     to
   end
 end
