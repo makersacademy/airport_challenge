@@ -61,6 +61,15 @@ weather = Weather.new
 
 weather.stormy?
 
+### Airport
+
+require './lib/airport'
+
+airport = Airport.new
+
+airport.full?
+airport.set_capacity(10)
+
 ### Plane
 require './lib/plane'
 require './lib/airport'
