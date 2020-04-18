@@ -15,10 +15,6 @@ describe Airport do
     expect(airport.instance_variable_get(:@capacity))
   end
   
-  it 'responds to capacity(number)' do
-    expect(subject).to respond_to(:capacity).with(1).argument
-  end
-
   it '.full? returns true or false' do
     airport = Airport.new
     expect(airport.full?).to eq(true).or eq(false)

@@ -1,4 +1,5 @@
 class Airport
+  
   def initialize
     @capacity = 5
   end
@@ -7,7 +8,7 @@ class Airport
     false
   end
   
-  def capacity?
+  def capacity
     @capacity
   end
   
