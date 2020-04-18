@@ -24,8 +24,4 @@ class Plane
     @flying = false
     "#{plane} has landed"
   end
-
-  def confirm_status(plane)
-    "plane is flying"
-  end
 end

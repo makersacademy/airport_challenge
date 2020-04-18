@@ -2,15 +2,6 @@ require 'air_traffic_controller'
 require 'plane'
 
 describe Plane do
-  it 'Plane responds to confirm_status method with one argument' do
-    expect(subject).to respond_to(:confirm_status).with(1).argument
-  end
-
-  it 'confirm_status to return whether plane is flying' do
-    plane = subject.take_off(Plane.new)
-    expect(subject.confirm_status(plane)).to eq "plane is flying"
-  end
-
   it 'Plane responds to land method with one argument' do
     expect(subject).to respond_to(:land).with(1).argument
   end
