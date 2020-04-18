@@ -4,7 +4,7 @@ class Airport
   end
   
   def capacity?
-    0.0
+    0
   end
   
   def capacity(to)
