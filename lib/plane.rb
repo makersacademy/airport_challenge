@@ -1,7 +1,7 @@
 class Plane
   
   def initialize
-    @state = false
+    @state = true
   end
   
   def land_at(airport)

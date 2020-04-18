@@ -12,8 +12,8 @@ describe Plane do
     end
     
     context "when first created" do
-      it "returns false" do
-        expect(subject.flying?).to be false
+      it "returns true" do
+        expect(subject.flying?).to be true
       end
     end
   end
