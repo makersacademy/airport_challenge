@@ -62,7 +62,7 @@ I want to prevent landing when weather is stormy
 #### Plane
 - land_at(airport)
   - [x] Responds to land_at with 1 argument
-  - [ ] Changes @state to be false
+  - [x] Changes @state to be false
   - [ ] Changes @port to be an instance equal to aiport
   - [ ] Call dock method on airport
 - depart_from(airport)
