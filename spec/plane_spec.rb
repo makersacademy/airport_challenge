@@ -23,6 +23,12 @@ describe Plane do
       expect { subject.land_at(Airport.new) }
       .to change(subject, :flying?).to be false
     end
+    
+    it "gets added to airports list of planes when landing" do
+      airport = Airport.new
+      subject.land_at(airport)
+      expect(airport.planes).to include(subject)
+    end
   end
   
   describe "#depart_from" do

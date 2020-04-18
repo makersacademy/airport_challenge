@@ -50,10 +50,10 @@ I want to prevent landing when weather is stormy
 #### Airport
 - planes
   - [x] Responds to planes
-  - [ ] @planes is an instance of an Array
+  - [x] @planes is an instance of an Array
 - dock(plane)
   - [x] Responds to dock with 1 argument
-  - [ ] Adds a plane to @planes
+  - [x] Adds a plane to @planes
 - undock(plane)
   - [ ] Responds to undock with 1 argument
   - [ ] Removes a plane from @planes
