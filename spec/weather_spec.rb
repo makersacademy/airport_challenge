@@ -13,13 +13,13 @@ describe Weather do
 
   it 'returns true when forced' do
     weather = Weather.new
-    allow(weather).to receive(:storm-probability) { 0 }
+    allow(weather).to receive(:stormy?) { true }
     expect(weather.stormy?).to eq(true)
   end
 
   it 'returns false when forced' do
     weather = Weather.new
-    allow(weather).to receive(:storm-probability) { 1 }
+    allow(weather).to receive(:storm?) { false }
     expect(weather.stormy?).to eq(false)
   end
 
