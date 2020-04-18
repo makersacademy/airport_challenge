@@ -29,11 +29,12 @@ describe Airport do
     # As an air traffic controller
     # To ensure safety
     # I want to prevent landing when the airport is full
-    context 'when airport is full'
+    context 'when airport is full' do
       it 'prevents landing' do
         10.times { subject.land(plane) }
         expect { subject.land(double :plane) }.to raise_error 'Airport is full!'
       end
+    end
   end
 
   describe '#take_off' do
