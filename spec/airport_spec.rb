@@ -62,10 +62,16 @@ describe Airport do
     end
       
     it "raises an error if it is stormy" do
+      # create WeatherReporter mocks that only return sunny or stormy
       storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
-      subject = described_class.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      
+      # ensure that weather is sunny while plane is docked
+      subject.instance_variable_set(:@weather_reporter, sun_reporter)
       plane = Plane.new
       subject.dock(plane)
+      
+      # ensure that weather is stormy while testing error raising for storms
       subject.instance_variable_set(:@weather_reporter, storm_reporter)
       expect { subject.undock(plane) }.to raise_error("It's too stormy to take off.")
     end

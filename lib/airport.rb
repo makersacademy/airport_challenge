@@ -11,11 +11,13 @@ class Airport
   
   def dock(plane)
     raise "It's too stormy to land." if @weather_reporter.check_weather == "Stormy"
+    
     @planes << plane
   end
   
   def undock(plane)
     raise "It's too stormy to take off." if @weather_reporter.check_weather == "Stormy"
+    
     @planes.delete(plane)
   end
   
@@ -25,6 +27,7 @@ class Airport
   
   def full?
     return true if @planes.length >= capacity
+    
     false
   end
 end
