@@ -57,5 +57,10 @@ describe Airport do
     it "returns false when the airport is under capacity" do
       expect(subject.full?).to be(false)
     end
+    
+    it "returns true when airport is full" do
+      10.times { subject.dock(Plane.new) }
+      expect(subject.full?).to be true
+    end
   end
 end
