@@ -12,17 +12,24 @@ class Airport
 
   def land(plane)
     fail "Airport is full" if full?
+    fail "No landing allowd due storm" if stormy?
     @parked_planes << plane
     # @parked_planes << plane unless @parked_planes.include? plane
   end
 
   def take_off
-    fail "Elvis has left the bulding" if @parked_planes
+    fail "No flights allowd due storm" if stormy?
+    fail "No planes at the airport" if empty?
     @parked_planes.shift
+    print "Elvis has left the bulding"
   end
 
   def full?
     @parked_planes.size >= @capacity 
+  end
+
+  def empty?
+    @parked_planes.empty?
   end
 
   def stormy?
