@@ -5,6 +5,10 @@ describe Airport do
   it 'responds to full?' do
     expect(subject).to respond_to(:full?)
   end
+  
+  it 'responds to set_capacity(number)' do
+    expect(subject).to respond_to(:set_capacity).with(1).argument
+  end
 
   it 'returns true or false' do
     airport = Airport.new
@@ -22,5 +26,7 @@ describe Airport do
     allow(airport).to receive(:full?) { false }
     expect(airport.full?).to eq(false)
   end
+
+  
 
 end
