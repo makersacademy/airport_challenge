@@ -2,4 +2,6 @@ require './lib/weather'
 
 weather = Weather.new
 
-weather.stormy?
+10.times.map { weather.stormy? }
+
+1000000.times.reduce(0) { |t,_| t + (weather.stormy? ? 1 : 0) }/1000000.0
