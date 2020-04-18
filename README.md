@@ -45,12 +45,18 @@ However, because of time constraints I chose not to use this option.
 | | depart  |
 | | flying? |
 | | @port |
+
+| Object | Message |
+| ---   | --- |
 | Aiport | dock(plane) |
 | | undock(plane) |
 | |docked?(plane)    |
 | | @capacity |
 | | full? |
 | | ::DEFAULT_CAPACITY |
+
+| Object | Message |
+| ---   | --- |
 | WeatherReporter | check_weather |
 
 ## Tests
