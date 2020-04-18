@@ -1,0 +1,6 @@
+clear
+echo -e "-- Running rspec --\n"
+rspec
+echo -e "-- Running rubocop --\n"
+rubocop
+echo -e "\n-- Finished --\n"
