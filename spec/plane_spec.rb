@@ -21,26 +21,34 @@ describe Plane do
   
   describe "#land_at" do
     it "changes flying? to be false" do
-      srand(14)
-      expect { subject.land_at(Airport.new) }
+      airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
+      expect { subject.land_at(airport) }
       .to change(subject, :flying?).to be false
     end
     
     it "gets added to airports list of planes when landing" do
       airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
       subject.land_at(airport)
       expect(airport.planes).to include(subject)
     end
     
     it "sets port to match airport that it landed at" do
-      srand(14)
       airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
       subject.land_at(airport)
       expect(subject.port).to eq(airport)
     end
     
     it "raises an error if it has already landed" do
-      subject.land_at(Airport.new)
+      airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
+      subject.land_at(airport)
       expect { subject.land_at(Airport.new) }.to raise_error('This plane is already landed.')
     end
     
@@ -55,15 +63,18 @@ describe Plane do
   
   describe "#depart" do
     it "changes flying? to be true" do
-      srand(14)
-      subject.land_at(Airport.new)
+      airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
+      subject.land_at(airport)
       expect { subject.depart }
       .to change(subject, :flying?).to be true
     end
     
     it "gets removed from the list of planes at the airport" do
-      srand(14)
       airport = Airport.new
+      sun_reporter = instance_double(WeatherReporter, :check_weather => "Sunny")
+      airport.instance_variable_set(:@weather_reporter, sun_reporter)
       subject.land_at(airport)
       subject.depart
       expect(airport.planes).to_not include(subject)
