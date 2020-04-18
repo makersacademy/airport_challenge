@@ -52,6 +52,18 @@ describe Plane do
     subject.land(plane)
     expect(subject.flying).to eq false
   end
+
+  it 'Raise error to take off plane if it has already taken off' do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect { subject.take_off(plane) }.to raise_error("This plane (#{plane}) has already taken off")
+  end
+
+  it 'Raise error to land plane if plane has already landed' do
+    plane = Plane.new
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error("This plane (#{plane}) has already landed")
+  end
 end
 
 describe Airport do
