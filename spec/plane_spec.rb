@@ -57,6 +57,7 @@ describe Plane do
     end
     
     it "gets removed from the list of planes at the airport" do
+      srand(14)
       airport = Airport.new
       subject.land_at(airport)
       subject.depart

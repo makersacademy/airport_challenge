@@ -38,6 +38,7 @@ describe Airport do
   
   describe "#undock" do
     it "removes a plane from its list of planes" do
+      srand(14)
       plane = Plane.new
       subject.dock(plane)
       subject.undock(plane)
@@ -45,7 +46,11 @@ describe Airport do
     end
     
     it "raises an error if it is stormy" do
-      
+      storm_reporter = instance_double(WeatherReporter, :check_weather => "Stormy")
+      subject = described_class.new(10, storm_reporter)
+      plane = Plane.new
+      subject.dock(plane)
+      expect { subject.undock(plane) }.to raise_error("It's too stormy to take off.")
     end
   end
   

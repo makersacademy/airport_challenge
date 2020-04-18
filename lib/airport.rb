@@ -14,6 +14,7 @@ class Airport
   end
   
   def undock(plane)
+    raise "It's too stormy to take off." if @weather_reporter.check_weather == "Stormy"
     @planes.delete(plane)
   end
   
