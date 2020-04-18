@@ -54,8 +54,9 @@ describe Airport do
 
   it 'check .capacity=num sets capacity' do
     airport = Airport.new
-    capacity = 200
-    expect(airport.capacity=capacity).to eq capacity
+    new_capacity = 200
+    airport.capacity = new_capacity
+    expect(airport.capacity).to eq new_capacity
   end
 
 end
