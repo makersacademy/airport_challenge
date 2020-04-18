@@ -14,5 +14,6 @@ class Airport
   end
   
   def docked?(plane)
+    false
   end
 end

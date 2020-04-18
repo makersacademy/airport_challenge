@@ -28,4 +28,10 @@ describe Airport do
       expect(subject.planes).to_not include(plane)
     end
   end
+  
+  describe "#docked" do
+    it "returns false if plane is NOT docked" do
+      expect(subject.docked?(Plane.new)).to be false
+    end
+  end
 end
