@@ -43,9 +43,6 @@ I want to prevent landing when weather is stormy
 | | DEFAULT_CAPACITY |
 | WeatherReporter | check_weather |
 
-[ Plane ] --(land_at(aiport)) --> [ Self ] --(dock(self))--> [ Airport ]
-                                           --(to false)--> @flying?
-
 ## Tests
 
 #### Airport
