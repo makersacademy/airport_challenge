@@ -9,10 +9,10 @@ class Airport
     false
   end
   
-  def enter
+  def enter(plane)
   end
   
-  def exit
+  def exit(plane)
   end
   
 end
