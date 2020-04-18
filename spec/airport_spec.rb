@@ -9,4 +9,12 @@ describe Airport do
       expect(subject.planes).to be_a_kind_of(Array)
     end
   end
+  
+  describe "#dock" do
+    it "adds a plane to its list of planes" do
+      plane = Plane.new
+      expect { subject.dock(plane) }
+      .to change(subject, :planes).to include(plane)
+    end
+  end
 end

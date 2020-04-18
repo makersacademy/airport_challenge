@@ -52,7 +52,7 @@ I want to prevent landing when weather is stormy
   - [x] Responds to planes
   - [ ] @planes is an instance of an Array
 - dock(plane)
-  - [ ] Responds to dock with 1 argument
+  - [x] Responds to dock with 1 argument
   - [ ] Adds a plane to @planes
 - undock(plane)
   - [ ] Responds to undock with 1 argument

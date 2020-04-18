@@ -6,5 +6,6 @@ class Airport
   end
   
   def dock(plane)
+    @planes << plane
   end
 end
