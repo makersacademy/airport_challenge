@@ -14,24 +14,24 @@ describe Airport do
     expect(subject).to respond_to(:capacity).with(1).argument
   end
 
-  it 'returns true or false' do
+  it '.full? returns true or false' do
     airport = Airport.new
     expect(airport.full?).to eq(true).or eq(false)
   end
 
-  it 'returns true when forced' do
+  it '.full? returns true when forced' do
     airport = Airport.new
     allow(airport).to receive(:full?) { true }
     expect(airport.full?).to eq(true)
   end
 
-  it 'returns false when forced' do
+  it '.full? returns false when forced' do
     airport = Airport.new
     allow(airport).to receive(:full?) { false }
     expect(airport.full?).to eq(false)
   end
 
-  it 'returns positive number' do
+  it '.capacity? returns positive number' do
     airport = Airport.new
     expect(airport.capacity?).to be >= 0 
   end
