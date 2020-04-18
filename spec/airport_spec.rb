@@ -10,6 +10,14 @@ describe Airport do
     expect(subject).to respond_to(:capacity)
   end
   
+  it 'responds to enter' do
+    expect(subject).to respond_to(:enter)
+  end
+  
+  it 'responds to exit' do
+    expect(subject).to respond_to(:exit)
+  end
+
   it 'check for @capacity instance variable' do
     airport = Airport.new
     expect(airport.instance_variable_get(:@capacity))
