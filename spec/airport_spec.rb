@@ -41,4 +41,10 @@ describe Airport do
       expect(subject.docked?(plane)).to be true
     end
   end
+  
+  describe "#capacity" do
+    it "returns an Integer" do
+      expect(subject.capacity).to be_a_kind_of(Integer)
+    end
+  end
 end

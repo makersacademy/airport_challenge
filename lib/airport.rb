@@ -3,6 +3,7 @@ class Airport
   
   def initialize
     @planes = []
+    @capacity = 10
   end
   
   def dock(plane)
