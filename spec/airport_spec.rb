@@ -10,8 +10,9 @@ describe Airport do
     expect(subject).to respond_to(:capacity?)
   end
   
-  it 'should persists @capacity' do
-    expect(assigns(:capacity)).to be_persisted
+  it 'check for @capacity instance variable' do
+    airport = Airport.new
+    expect(airport.instance_variable_get(:@capacity)).to be_an(Integer)
   end
   
   it 'responds to capacity(number)' do
