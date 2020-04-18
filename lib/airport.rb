@@ -3,10 +3,10 @@ class Airport
   
   DEFAULT_CAPACITY = 10
   
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather_reporter = WeatherReporter.new)
     @planes = []
     @capacity = capacity
-    @weather_reporter = WeatherReporter.new
+    @weather_reporter = weather_reporter
   end
   
   def dock(plane)
