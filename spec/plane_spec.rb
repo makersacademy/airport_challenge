@@ -16,4 +16,8 @@ describe Plane do
       end
     end
   end
+  
+  describe "#land_at" do
+    
+  end
 end
