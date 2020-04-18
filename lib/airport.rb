@@ -19,5 +19,6 @@ class Airport
   end
   
   def full?
+    true
   end
 end

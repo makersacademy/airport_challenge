@@ -48,4 +48,10 @@ describe Airport do
       expect(subject.capacity).to be_a_kind_of(Integer)
     end
   end
+  
+  describe "#full" do
+    it "returns a bool" do
+      expect(subject.full?).to be(true).or be(false)
+    end
+  end
 end
