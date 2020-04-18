@@ -6,4 +6,6 @@ describe Airport do
     expect(subject).to respond_to :is_full?      
   end
     
+#   it { is_expected.to respond_to :land }
+  
 end
