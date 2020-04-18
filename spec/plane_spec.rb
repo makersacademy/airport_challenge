@@ -44,5 +44,12 @@ describe Plane do
       expect { subject.depart }
       .to change(subject, :flying?).to be true
     end
+    
+    it "gets removed from the list of planes at the airport" do
+      airport = Airport.new
+      subject.land_at(airport)
+      subject.depart
+      expect(airport.planes).to_not include(subject)
+    end
   end
 end

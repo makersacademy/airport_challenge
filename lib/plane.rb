@@ -14,6 +14,7 @@ class Plane
   
   def depart
     @state = true
+    @port.undock(self)
   end
   
   def flying?
