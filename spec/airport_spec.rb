@@ -40,13 +40,9 @@ describe Airport do
     expect(airport.full?).to eq(false)
   end
 
-  it '.capacity returns positive number' do
+  it '.capacity returns positive integer' do
     airport = Airport.new
     expect(airport.capacity).to be >= 0 
-  end
-
-  it '.capacity returns integer' do
-    airport = Airport.new
     expect(airport.capacity).to be_an(Integer) 
   end
 
