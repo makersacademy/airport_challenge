@@ -73,4 +73,4 @@ I want to prevent landing when weather is stormy
 - port
   - [ ] Responds to port
 - flying?
-  
+  - [ ] It responds to flying
