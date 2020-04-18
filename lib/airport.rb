@@ -8,15 +8,11 @@ class Airport
   end
 
   def is_full?
-    if @planes.count == @capacity
-      error_message
-    else
-      false
-    end
+    @planes.count == @capacity ? airport_full_message : false
   end
 
   private
-  def error_message
+  def airport_full_message
     fail "Airport is full"
   end
 end
