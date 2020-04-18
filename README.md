@@ -47,9 +47,12 @@
 | :negative_squared_cross_mark: | ```Plane```      | ```takeoff(airport, allow)``` |
 | :negative_squared_cross_mark: | ```Plane```      | ```in_airport?(airport)``` |
 | :negative_squared_cross_mark: | ```Airport```    | ```full?``` |
-| :negative_squared_cross_mark: | ```Airport```    | ```set_capacity(capacity)``` |
+| :white_check_mark:            | ```Airport```    | ```capacity``` |
+| :negative_squared_cross_mark: | ```Airport```    | ```enter(plane)``` |
+| :negative_squared_cross_mark: | ```Airport```    | ```exit(plane)``` |
 | :negative_squared_cross_mark: | ```SD```         | ```set_capacity(airport)``` |
-| :white_check_mark:            | ```Weather```    | ```stormy?``` |
+| :white_check_mark:            | ```Weather```    | ```enter(plane)``` |
+| :negative_squared_cross_mark: | ```Air```        | ```exit(plane)``` |
 
 ## Feature Tests
 
