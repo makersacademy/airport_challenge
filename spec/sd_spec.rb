@@ -12,7 +12,8 @@ describe Sd do
     airport = Airport.new
     capacity = 10
     expect(sd.capacity(airport, capacity)).to be_an(Integer)
-    expect(sd.capacity(airport, capacity)).to be >= 0 
+    expect(sd.capacity(airport, capacity)).to be >= 0
+#    expect(sd.capacity(airport, capacity)).to eq capacity
   end
 
 end

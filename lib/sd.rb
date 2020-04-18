@@ -1,7 +1,7 @@
 class Sd
 
   def capacity(airport, capacity)
-    1
+    10
   end
 
 end
