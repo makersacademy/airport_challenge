@@ -12,3 +12,4 @@ plane = Plane.new
 airport.take_off(plane)
 airport.land(plane)
 
+p airport.plane
