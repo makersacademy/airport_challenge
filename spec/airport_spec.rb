@@ -7,7 +7,7 @@ describe Airport do
   end
   
   it 'responds to capacity(number)' do
-    expect(subject).to respond_to(:set_capacity).with(1).argument
+    expect(subject).to respond_to(:capacity).with(1).argument
   end
 
   it 'returns true or false' do
