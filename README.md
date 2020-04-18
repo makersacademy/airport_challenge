@@ -44,13 +44,13 @@ However, because of time constraints I chose not to use this option.
 | Plane | land_at(airport) |
 | | depart  |
 | | flying? |
-| | port |
+| | @port |
 | Aiport | dock(plane) |
 | | undock(plane) |
 | |docked?(plane)    |
-| | capacity |
+| | @capacity |
 | | full? |
-| | DEFAULT_CAPACITY |
+| | ::DEFAULT_CAPACITY |
 | WeatherReporter | check_weather |
 
 ## Tests
