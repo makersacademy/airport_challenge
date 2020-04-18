@@ -1,3 +1,11 @@
+#!/bin/bash
+
+# Usage: tdd.feature-test [object-name]
+
+USAGE='usage:\ttdd.test'
+
+# TODO Logic needs to add case to print USAGE
+
 clear
 echo -e "-- Running rspec --\n"
 rspec
