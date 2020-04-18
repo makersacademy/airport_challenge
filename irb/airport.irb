@@ -9,3 +9,17 @@ airport.full?
 airport.capacity
 airport.capacity = 2
 airport.capacity
+
+airport.full?
+airport.enter(planes[0])
+airport.full?
+airport.enter(planes[1])
+airport.full?
+airport.enter(planes[2])
+airport.full?
+airport.exit(planes[2])
+airport.full?
+airport.exit(planes[1])
+airport.full?
+airport.exit(planes[0])
+airport.full?
