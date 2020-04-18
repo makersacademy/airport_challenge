@@ -22,6 +22,12 @@ describe Airport do
     airport = Airport.new
     expect(airport.instance_variable_get(:@capacity))
   end
+
+  it 'check @capacity instance variable is positive integer' do
+    airport = Airport.new
+    airport.capacity = -1
+    expect(airport.instance_variable_get(:@capacity)).to be >= 0
+  end
   
   it '.full? returns true or false' do
     airport = Airport.new
