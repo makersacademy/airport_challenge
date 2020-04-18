@@ -4,4 +4,4 @@ require './lib/airport.rb'
 sd = Sd.new
 airport = Airport.new
 
-sd.capacity(airport, number)
+sd.capacity(airport, capacity)
