@@ -23,4 +23,9 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error message
   end
 
+  # I would like a default airport capacity that can be overridden as appropriate
+  it 'should change default capacity to 20 when its passed in' do
+    expect(subject.capacity = 20 ).to eq 20
+  end
+
 end
