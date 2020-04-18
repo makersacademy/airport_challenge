@@ -8,4 +8,7 @@ class Airport
   def dock(plane)
     @planes << plane
   end
+  
+  def undock(plane)
+  end
 end
