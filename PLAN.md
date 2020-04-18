@@ -95,7 +95,7 @@ I want to prevent landing when weather is stormy
 
 ### WeatherReporter
 - check_weather
-  - [ ] Responds to check_weather
+  - [x] Responds to check_weather
   - [ ] Returns a String
   - [ ] Returns Sunny when the Weather is sunny
   - [ ] Returns Stormy when the Weather is stormy
