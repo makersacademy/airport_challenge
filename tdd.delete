@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Usage: tdd.delete object-name
+
+# Result: deletes following files for object-name: ./spec/object-name_spec.rb, ./lib/object-name.rb, ./irb/object-name.rb
+
+USAGE='usage:\ttdd.delete object-name'
+
+if [[ ! "$1" ]] ; then
+	echo -e $USAGE
+	exit 1
+else
+	OBJECT_NAME="$1"
+fi
+
+if [[ "$2" ]] ; then
+	echo -e $USAGE
+	exit 1
+fi
+
+IRB_FILE="./irb/$OBJECT_NAME.irb"
+SPEC_FILE="./spec/"$OBJECT_NAME"_spec.rb"
+LIB_FILE="./lib/$OBJECT_NAME.rb"
+
+echo "The following files will be deleted:"
+echo $IRB_FILE
+echo $SPEC_FILE
+echo $LIB_FILE
+
+read -r -p "Are you sure? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+  if [[ -f $IRB_FILE ]] ; then
+    rm -rf $IRB_FILE
+  fi
+  if [[ -f $SPEC_FILE ]] ; then
+    rm -rf $SPEC_FILE
+  fi
+  if [[ -f $LIB_FILE ]] ; then
+    rm -rf $LIB_FILE
+  fi
+else
+    exit
+fi

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Usage: tdd.add object-name
+
+# Result: creates the following boilerplate files for object-name: ./spec/object-name_spec.rb, ./lib/object-name.rb, ./irb/object-name.rb
+
+USAGE='usage:\ttdd.add object-name'
+
+if [[ ! "$1" ]] ; then
+	echo -e $USAGE
+	exit 1
+else
+	OBJECT_NAME="$1"
+fi
+
+if [[ "$2" ]] ; then
+	echo -e $USAGE
+	exit 1
+fi
+
+IRB_FILE="./irb/$OBJECT_NAME.irb"
+SPEC_FILE="./spec/"$OBJECT_NAME"_spec.rb"
+LIB_FILE="./lib/$OBJECT_NAME.rb"
+CLASS_NAME="$(tr '[:lower:]' '[:upper:]' <<< ${OBJECT_NAME:0:1})${OBJECT_NAME:1}"
+#echo $CLASS_NAME
+
+# TODO: report *which* files exist
+if [[ -f $IRB_FILE ]] || [[ -f $SPEC_FILE ]] || [[ -f $LIB_FILE ]] ; then
+  echo -e "tdd.add: $OBJECT_NAME already exists"
+  exit 1
+fi
+
+touch $IRB_FILE
+echo -e "require '$LIB_FILE'\n\n$OBJECT_NAME = $CLASS_NAME.new" >> $IRB_FILE
+touch $SPEC_FILE
+echo -e "require '$OBJECT_NAME'\n\ndescribe $CLASS_NAME do\n\nend" >> $SPEC_FILE
+touch $LIB_FILE
+echo -e "class $CLASS_NAME\n\nend" >> $LIB_FILE
