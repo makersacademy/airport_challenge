@@ -1,11 +1,12 @@
 class Airport
   attr_reader :planes
 
-  def initialize
+  def initialize(capacity)
     @planes = []
   end
 
   def land(plane)
+    raise 'Airport is full!' if @planes.count == 10
     @planes << plane
   end
 
