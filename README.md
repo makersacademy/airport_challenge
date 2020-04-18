@@ -69,6 +69,7 @@ airport = Airport.new
 
 airport.full?
 airport.set_capacity(10)
+airport.capacity?
 
 ### Plane
 require './lib/plane'
