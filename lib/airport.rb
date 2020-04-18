@@ -8,9 +8,10 @@ class Airport
   end
   
   def capacity?
-    0
+    @capacity
   end
   
   def capacity(to)
+    @capacity = to
   end
 end
