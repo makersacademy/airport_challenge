@@ -1,5 +1,5 @@
 class Airport
-  attr_accessor :capacity
+  attr_reader :capacity
   
   def initialize
     @capacity = 5
@@ -9,6 +9,10 @@ class Airport
     false
   end
   
+  def capacity=(capacity)
+    @capacity = capacity if capacity >= 0
+  end
+
   def enter(plane)
   end
   
