@@ -8,7 +8,9 @@ class Airport
   end
 
   def instruct_plane_to_land(plane)
-    @planes << plane unless full?
+    raise "Unable to land as Airport is full." if @planes.length >= @capacity
+    raise "Weather too stormy to land." if stormy?
+    @planes << plane
   end 
 
   def instruct_plane_to_takeoff(plane)
@@ -17,10 +19,6 @@ class Airport
   end 
 
   private
-
-  def full?
-    fail "Unable to land as Airport is full." if @planes.length >= @capacity
-  end 
 
   def stormy? 
     rand(1..100) > 80 
