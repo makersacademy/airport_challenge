@@ -30,6 +30,22 @@ world.add(airports[0])
 
 world.view
 
+world.add(airports[1])
+
+world.view
+
+world.del(1)
+
+world.view
+
+world.del(planes[1])
+
+world.view
+
+world.del(airports[1])
+
+world.view
+
 world.land(planes[0],airports[0])
 
 world.view

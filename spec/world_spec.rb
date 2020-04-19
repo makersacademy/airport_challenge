@@ -32,11 +32,15 @@ describe World do
   end
 
   it 'responds to add' do
-    expect(subject).to respond_to(:add).with(1).arguments
+    expect(subject).to respond_to(:add).with(1).argument
+  end
+  
+  it 'responds to del' do
+    expect(subject).to respond_to(:del).with(1).argument
   end
   
   it 'responds to where_is(object)' do
-    expect(subject).to respond_to(:where_is).with(1).arguments
+    expect(subject).to respond_to(:where_is).with(1).argument
   end
   
   it 'responds to land(plane, airport)' do
@@ -66,6 +70,15 @@ describe World do
     
     plane = Plane.new
     expect(subject.add(plane)).to eq(true)
+  end
+  
+  it '.del returns false if object is not Airport or Plane' do
+    expect(subject.del(1)).to eq(false)
+  end
+  
+  it '.del returns true if object is Airport or Plane' do
+    expect(subject.del(Airport.new)).to eq(true)
+    expect(subject.del(Plane.new)).to eq(true)
   end
   
   it '.add(Plane) puts the Plane in the Air' do
