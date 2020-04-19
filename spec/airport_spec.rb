@@ -2,8 +2,8 @@ require 'airport'
 
 RSpec.describe Airport do
   subject(:airport) { described_class.new(20)}
-  plane = Plane.new
-
+  let(:plane) { double :plane, land: nil, take_off: nil }
+ 
   describe '#land' do
     context 'when not stormy' do 
       it 'instructs plane to land' do
@@ -31,7 +31,9 @@ RSpec.describe Airport do
         allow(subject).to receive(:stormy?).and_return false
       end
       it 'instructs plane to take off' do
-        expect(subject).to respond_to(:take_off).with(1).argument
+        airport.land(plane)
+        expect(plane).to receive(:take_off)
+        airport.take_off(plane)
       end 
       it 'returns the plane that took off' do 
         subject.land(plane)
@@ -57,13 +59,19 @@ RSpec.describe Airport do
     it 'has a default of 20' do
       airport = Airport.new 
       allow(airport).to receive(:stormy?).and_return false
-      20.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error 'Cannot land plane: Airport is at capacity'
-    end
+      20.times do 
+        the_plane = Plane.new
+        airport.land(the_plane)
+      end
+        expect { airport.land(plane) }.to raise_error 'Cannot land plane: Airport is at capacity'
+      end
     it "allows you to change capacity" do
       airport = Airport.new(10)
       allow(airport).to receive(:stormy?).and_return false
-      10.times { airport.land(plane) }
+      10.times do 
+        the_plane = Plane.new
+        airport.land(the_plane)
+      end
       expect { airport.land(plane) }.to raise_error 'Cannot land plane: Airport is at capacity'
     end
   end
