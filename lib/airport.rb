@@ -8,13 +8,19 @@ class Airport
   end
 
   def land(plane)
-    raise 'Airport is full!' if @planes.count == capacity
+    raise 'Airport is full!' if full?
     @planes << plane
   end
 
   def take_off
     raise 'Take off is cancelled due to bad weather!' if stormy?
     @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.count == capacity
   end
 
   def stormy?
