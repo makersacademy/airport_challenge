@@ -30,16 +30,16 @@ RSpec.describe Airport do
       before do 
         allow(subject).to receive(:stormy?).and_return false
       end
-
       it 'instructs plane to take off' do
         expect(subject).to respond_to(:take_off).with(1).argument
       end 
-      it 'confirms plane is no longer at the airport' do 
-        allow(subject.land(plane))
-        expect(subject.take_off(plane)).to eq 'Plane has left the airport'
+      it 'returns the plane that took off' do 
+        subject.land(plane)
+        expect(subject.take_off(plane)).to eq plane
       end
       it 'raises an error if plane is not at this airpoirt' do 
         other_airport = described_class.new
+        allow(other_airport).to receive(:stormy?).and_return false
         other_airport.land(plane)
         expect { subject.take_off(plane) }.to raise_error 'Cannot take off plane: plane not at airport'
       end
@@ -53,12 +53,18 @@ RSpec.describe Airport do
     end  
   end
   
-  describe "#capacity" do 
-    it "allows you to change capacity" do 
-      subject = Airport.new(10)
-      allow(subject).to receive(:stormy?).and_return false
-      10.times { subject.land plane }
-      expect { subject.land plane }.to raise_error 'Cannot land plane: Airport is at capacity'
+  describe "#capacity" do   
+    it 'has a default of 20' do
+      airport = Airport.new 
+      allow(airport).to receive(:stormy?).and_return false
+      20.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Cannot land plane: Airport is at capacity'
+    end
+    it "allows you to change capacity" do
+      airport = Airport.new(10)
+      allow(airport).to receive(:stormy?).and_return false
+      10.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Cannot land plane: Airport is at capacity'
     end
   end
 
