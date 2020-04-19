@@ -40,6 +40,7 @@ describe World do
   end
   
   it '.view returns Array' do
+    # TODO: Check it returns Array of [Air, [Airport], [Plane] ]
     expect(subject.view).to be_an_instance_of(Array)
   end
   

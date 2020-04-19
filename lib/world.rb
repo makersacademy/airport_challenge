@@ -9,11 +9,15 @@ class World
 
   def view
     # TODO: Would be better as a Hash
-    [@air]
+    [@air, @airports, @planes]
   end
   
   def add(object)
     return false unless object.is_a?(Airport) || object.is_a?(Plane)
+
+    if object.is_a?(Plane)
+      return @air.add(object)
+    end
     
     true
   end
