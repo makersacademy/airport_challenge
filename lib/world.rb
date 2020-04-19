@@ -54,5 +54,10 @@ class World
   end
 
   def takeoff(plane, airport)
+    return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
+    return false if where_is(plane) == @air
+    
+    result = airport.del(plane) if air.add(plane)
+    result == plane
   end  
 end

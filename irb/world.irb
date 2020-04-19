@@ -25,6 +25,9 @@ world.view
 world.add(planes[0])
 world.view
 
+world.add(planes[1])
+world.view
+
 airports[0]
 
 world.add(airports[0])
@@ -34,20 +37,13 @@ world.view
 world.land(planes[0], airports[0])
 world.view
 
-"Land plane not in world in airport in world"
-world.land(planes[1], airports[0])
-world.view
 
-"Land plane in world in airport not in world"
-world.land(planes[0], airports[1])
-world.view
-
-"Land plane not in world in airport not in world"
-world.land(planes[1], airports[1])
-world.view
 
 "Take off plane in world in airport"
 world.takeoff(planes[0],airports[0])
+world.view
 
-
+"Take off plane in world in air"
+world.takeoff(planes[1],airports[0])
+world.view
 
