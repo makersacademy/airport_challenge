@@ -1,10 +1,15 @@
+
+
 class Airport 
 
-    def initalize 
+    attr_accessor :planes
+
+    def initialize
         @planes = []
-    end 
+    end
 
     def instruct_plane_to_land(plane)
-    
+        @planes << plane
     end 
 end 
+
