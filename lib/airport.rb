@@ -10,12 +10,22 @@ class Airport
   end
 
   def sunny?
-    arr = [true, true, false]
-    arr.sample
+    # arr = [true, true, false]
+    # arr.sample
+
+    number = rand(1..10)
+    print number
+
+    if number >= 6
+      return true
+    else
+      return false
+    end
   end
 
   def land(plane)
     @plane = plane
+    
   end
 
   def full?
@@ -23,13 +33,19 @@ class Airport
   end
 
  def weather_override
-    print "is it sunny? Type sunny or stormy"
-    input = gets.chomp!
-    if input === "stormy"
-      return false
-    else
-      return true
+
+    loop do 
+      print "The weather today is #{sunny?}"
+      print "Do you want to override? If so, type 1 for Sunny or 2 for Stormy"
+      input = gets.chomp!
+      if input === "1"
+        return true
+      else
+        return false
+      end
+
     end
+
   end
 
 end

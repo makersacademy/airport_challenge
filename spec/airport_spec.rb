@@ -12,9 +12,15 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  #test 3, it should check is weather is sunny
+  #test 3, it should check is weather
   it "should check the weather" do
     expect(subject).to respond_to(:sunny?)
+  end
+
+  it "should randomly return true" do
+    allow(subject).to receive(:rand).and_return(6)
+    expect(subject.sunny?).to eq(true)
+
   end
 
   #test 4 it should respond to the method 'land'
@@ -45,7 +51,7 @@ describe Airport do
     expect(subject).to respond_to(:weather_override)
   end
 
-  #land method should not execute if full is true
   
+
 
 end
