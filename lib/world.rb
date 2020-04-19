@@ -48,6 +48,7 @@ class World
   def land(plane, airport)
     return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
     return false unless where_is(plane) == @air
+    return false if airport.full?
    
     result = air.del(plane) if airport.add(plane)
     result == plane
