@@ -6,4 +6,7 @@ describe Plane do
   end
 
   it { is_expected.to respond_to :take_off }
+
+  it { is_expected.to respond_to :confirm_location }
+
 end
