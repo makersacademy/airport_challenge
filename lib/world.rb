@@ -17,4 +17,8 @@ class World
     false
   end
 
+  def where_is(object)
+    false
+  end
+  
 end

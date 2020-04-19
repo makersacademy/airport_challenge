@@ -22,6 +22,10 @@ describe World do
     expect(subject).to respond_to(:add).with(1).arguments
   end
   
+  it 'responds to where_is(object)' do
+    expect(subject).to respond_to(:where_is).with(1).arguments
+  end
+  
   it '.view returns Array' do
     expect(subject.view).to be_an_instance_of(Array)
   end
@@ -44,6 +48,17 @@ describe World do
     
     plane = Plane.new
     expect(subject.add(plane)).to eq(true)
+  end
+  
+  it '.add(Plane) puts the Plane in the Air' do
+    # TODO: finish
+    plane = Plane.new
+    subject.add(plane)
+  end
+  
+  it '.where_is returns Air, Airport or false' do
+    plane = Plane.new
+    expect(subject.where_is(plane)).to be_an_instance_of(Air).or be_an_instance_of(Airport).or eq(false)
   end
   
 end
