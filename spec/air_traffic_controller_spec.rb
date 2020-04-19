@@ -1,12 +1,12 @@
-require 'air_traffic_controller'
 require 'plane'
+require 'airport'
 
-describe Plane do
-  it 'Plane responds to land method with one argument' do
+describe Airport do
+  it 'Airport responds to land method with one argument' do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it 'Plane responds to take off method with one argument' do
+  it 'Airport responds to take off method with one argument' do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
@@ -15,37 +15,28 @@ describe Plane do
     expect(subject.land(plane)).to eq "#{plane} has landed"
   end
 
-  it 'Confirm plane is set to stationary when it has landed' do
+  it 'Take off method returns message with airport information' do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.stationary).to eq true
+    expect(subject.take_off(plane)).to eq "#{plane} has taken off and is no longer at #{subject}"
   end
 
-  it 'Take off method returns message incl. airport info' do
-    plane = Plane.new
-    expect(subject.take_off(plane)).to eq "#{plane} has taken off from #{plane.airport}"
-  end
-
-  it 'Confirm plane is set to flying when it has taken off' do
-    plane = Plane.new
-    subject.take_off(plane)
-    expect(subject.flying).to eq true
-  end
-
-  it 'Confirm stationary is false when it has taken off' do
-    plane = Plane.new
-    subject.take_off(plane)
-    expect(subject.stationary).to eq false
-  end
-
-  it 'Confirm flying is false when it has landed' do
+  it 'Plane added to airport class - plane array when landed' do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.flying).to eq false
+    expect(subject.plane).to eq [plane]
+  end
+
+  it 'Plane removed from airport class - plane array when it has taken off' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.plane).not_to include(plane)
   end
 
   it 'Raise error to take off plane if it has already taken off' do
     plane = Plane.new
+    subject.land(plane)
     subject.take_off(plane)
     expect { subject.take_off(plane) }.to raise_error("This plane (#{plane}) has already taken off")
   end
@@ -55,13 +46,4 @@ describe Plane do
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error("This plane (#{plane}) has already landed")
   end
-
-  it 'Plane is initialized with an airport' do
-    plane = Plane.new
-    expect(plane.airport).to eq plane.airport
-  end
-
-end
-
-describe Airport do
 end
