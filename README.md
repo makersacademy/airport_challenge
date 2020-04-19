@@ -55,6 +55,6 @@ I want to prevent landing when weather is stormy
 To Do
 -----
 
-* User story 2 : Write test to confirm that the airplane is no longer in the airport.
+* User Story 2 : Write test to confirm that the airplane is no longer in the airport.
 * Defend against all edge cases.
 * Write an RSpec **feature** test that lands and takes off a number of planes.
