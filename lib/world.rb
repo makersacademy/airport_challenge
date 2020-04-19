@@ -19,7 +19,8 @@ class World
       return @air.add(object)
     end
     
-    true
+    @airports.push(object)
+    return @airports.last == object
   end
 
   def where_is(object)
