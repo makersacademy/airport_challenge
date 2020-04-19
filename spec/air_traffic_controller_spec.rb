@@ -21,10 +21,10 @@ describe Airport do
     expect(subject.take_off(plane)).to eq "#{plane} has taken off and is no longer at #{subject}"
   end
 
-  it 'Plane added to airport class - plane array when landed' do
+  it 'Plane added to plane array when landed' do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.plane).to eq [plane]
+    expect(subject.plane[-1]).to eq plane
   end
 
   it 'Plane removed from airport class - plane array when it has taken off' do
@@ -45,5 +45,16 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error("This plane (#{plane}) has already landed")
+  end
+
+  it 'Airport plane array has number of planes that capacity is set at' do
+    airport = Airport.new(20)
+    expect(airport.plane.length).to eq 20
+  end
+
+  it 'Raise error if landing plane when maximum capacity reached (max capacity = 50)' do
+    airport = Airport.new(50)
+    plane = Plane.new
+    expect { airport.land(plane) }.to raise_error "This airport (#{airport}) has reached maximum capacity."
   end
 end
