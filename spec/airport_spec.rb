@@ -17,6 +17,10 @@ describe Airport do
     end
   end
 
+  it "attr_reader" do
+    expect(subject).to respond_to(:planes)
+  end
+
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAP
   end

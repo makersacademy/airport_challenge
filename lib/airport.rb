@@ -3,6 +3,7 @@ require './lib/plane'
 class Airport
   DEFAULT_CAP = 5
   attr_reader :capacity
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAP)
     @capacity = capacity
@@ -22,8 +23,6 @@ class Airport
   end
 
   private
-
-  attr_reader :planes
 
   def full?
     planes.count >= capacity
