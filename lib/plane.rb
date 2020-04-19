@@ -8,7 +8,6 @@ class Plane
   end
   def land(airport)
     fail "To land plane here please take off from current airport" if @current_airport != ""
-
     if airport.capacity == airport.plane_count
       fail "This airport is full"
     else
