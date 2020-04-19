@@ -1,25 +1,25 @@
 require_relative 'plane'
 
 class Airport
-  # def land(plane)
-  # end
+
+  attr_reader :weather_state
 
   def take_off(plane)
-    @plane = nil
-    print "no longer in airport" if sunny? == "sunny"
+    if @weather_state == "sunny"
+      print "no longer in airport"
+      @plane = nil
+    else
+      print "cannot take off as weather is currently #{@weather_state}"
+    end
+
   end
 
   def sunny?
-    # arr = [true, true, false]
-    # arr.sample
-
     number = rand(1..10)
-    print number
-
     if number >= 6
-      return "sunny"
+      @weather_state = "sunny"
     else
-      return "stormy"
+      @weather_state = "stormy"
     end
   end
 
@@ -31,19 +31,19 @@ class Airport
     false
   end
 
- def weather_override_sunny?
+ def weather_override
 
-    loop do 
-      puts "The weather today is #{sunny?}"
-      puts "Do you want to override? If so, type 1 for Sunny or 2 for Stormy"
-      input = gets.chomp!
-      if input === "1"
-        return "sunny"
-      else
-        return "stormy"
-      end
+    # loop do 
+    #   puts "The weather today is #{@weather_state}"
+    #   puts "Type 1 to update weather to sunny or 2 for stormy"
+    #   input = gets.chomp!
+    #   if input === "1"
+    #     return "sunny"
+    #   else
+    #     return "stormy"
+    #   end
 
-    end
+    # end
 
   end
 
