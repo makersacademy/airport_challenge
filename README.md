@@ -13,6 +13,13 @@ Airport Challenge
 
 ```
 
+My process
+---------
+* After some hours trying to solve the challenge I decided to get some help from my mentor. I followed the steps required with support.
+
+* Worked on user stories to comprehend how to implement changes and used irb to feature test posible variables, methods and constants. 
+
+
 Instructions
 ---------
 
@@ -88,3 +95,5 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
