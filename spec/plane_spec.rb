@@ -7,17 +7,24 @@ describe Plane do
     before(:each) do
       @plane = Plane.new
       @airport = Airport.new
+      @plane.land(@airport)
     end
 
     describe 'land' do
       it 'Can land in a airport' do
-        expect(@plane.land(@airport)).to eq("Landed in #{@airport}")
+        expect(@plane.current_airport).to eq(@airport)
       end
     end
 
-  describe 'takeoff' do
-    it 'Can takeoff from a airport' do
-      expect(@plane.takeoff(@airport)).to eq("Departed from #{@airport}")
+    it 'A plane can only land if its not currently assigned to an airport' do
+      airport1 = Airport.new
+      expect{ @plane.land(airport1) }.to raise_error("To land plane here please take off from current airport")
+    end
+
+    describe 'takeoff' do
+      it 'Can takeoff from a airport' do
+        @plane.takeoff
+        expect(@plane.current_airport).to eq("")
       end
     end
   end

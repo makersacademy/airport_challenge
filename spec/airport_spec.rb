@@ -15,7 +15,7 @@ describe Airport do
     end
 
     it 'decrements by one when a plane lands' do
-      @plane.takeoff(@airport)
+      @plane.takeoff
       expect(@airport.plane_count).to eq(0)
     end
   end
