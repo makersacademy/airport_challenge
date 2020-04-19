@@ -4,12 +4,12 @@ class Plane
   def initialize
     @status = 'flying'
   end
-  
-  def flying?
+
+  def flying
     @status = "flying"
   end
 
-  def taxi?
+  def taxi
     @status = "taxi"
   end
 end

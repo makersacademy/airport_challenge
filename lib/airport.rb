@@ -11,13 +11,14 @@ class Airport
     @planes = []
   end
 
-  def takeoff
+  def takeoff(plane)
+    raise 'plane is flying' if plane.status == 'flying'
     raise 'air is stormy' if stormy?
-    raise 'no airplane at airport' if @planes == []
+    raise 'this plane is currently in another airport' unless @planes.include?(plane)
 
-    @planes.each_with_index do |plane, index|
-      plane.flying?
-      return @planes.delete_at(index)
+    @planes.each do |pln|
+      pln.flying
+      return @planes.delete(plane)
     end
   end
 
@@ -26,7 +27,7 @@ class Airport
     raise 'Airport is full now' if @planes.count >= DEFAULT_CAPACITY
     raise 'air is stormy' if stormy?
 
-    plane.taxi?
+    plane.taxi
     @planes << plane
   end
 
