@@ -13,8 +13,9 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     raise 'Take off is cancelled due to bad weather!' if stormy?
+    raise 'Plane not in the airport!' if !@planes.include?(plane)
     @planes.pop
   end
 
@@ -25,7 +26,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    rand(1..10) > 8
   end
 
 end
