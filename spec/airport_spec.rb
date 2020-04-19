@@ -27,18 +27,28 @@ RSpec.describe Airport do
 
   describe '#take_off' do 
     context 'when not stormy' do 
+      before do 
+        allow(subject).to receive(:stormy?).and_return false
+      end
+
       it 'instructs plane to take off' do
         expect(subject).to respond_to(:take_off).with(1).argument
       end 
       it 'confirms plane is no longer at the airport' do 
-        allow(airport).to receive(:stormy?).and_return false
+        allow(subject.land(plane))
         expect(subject.take_off(plane)).to eq 'Plane has left the airport'
       end
+      it 'raises an error if plane is not at this airpoirt' do 
+        other_airport = described_class.new
+        other_airport.land(plane)
+        expect { subject.take_off(plane) }.to raise_error 'Cannot take off plane: plane not at airport'
+      end
     end
+
     context 'when stormy' do
       it 'raise error' do 
-        allow(airport).to receive(:stormy?).and_return true
-        expect { airport.take_off(plane )}.to raise_error "Cannot take off plane: Weather is stormy"
+        allow(subject).to receive(:stormy?).and_return true
+        expect { subject.take_off(plane)}.to raise_error "Cannot take off plane: Weather is stormy"
       end
     end  
   end
