@@ -58,11 +58,3 @@ To Do
 * User story 2 : Write test to confirm that the airplane is no longer in the airport.
 * Defend against all edge cases.
 * Write an RSpec **feature** test that lands and takes off a number of planes.
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
