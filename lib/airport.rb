@@ -13,7 +13,12 @@ class Airport
   end
 
   def take_off
+    raise 'Take off is cancelled due to bad weather!' if stormy?
     @planes.pop
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 
 end
