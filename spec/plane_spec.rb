@@ -1,12 +1,21 @@
 require 'plane'
 
 RSpec.describe Plane do
-  it "provides a plane" do
-    Plane.new
+  describe "plane initializing parameter" do
+    it "provides and names a plane" do
+      plane = described_class.new(:name)
+    end
   end
-  describe '#air_traffic' do
-    it "notifies new plane in air" do
-      expect(subject.air_traffic).to eq("#{@plane} spotted in the air. Notified Air Traffic Control.")
+  describe '#spotted' do
+    it "responds to method 'spotted'" do
+      plane = described_class.new(:name)
+        expect(plane).to respond_to(:spotted)
+    end
+  end
+  describe '#prepare_take_off' do
+    it "responds to method 'prepare_take_off'" do
+      plane = described_class.new(:name)
+        expect(plane).to respond_to(:prepare_take_off)
     end
   end
 end
