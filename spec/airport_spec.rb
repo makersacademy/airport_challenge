@@ -15,4 +15,8 @@ describe Airport do
     expect { subject.land Airplane.new }.to raise_error 'AIRPORT FULL - permission to land denied.'
   end
 
+  it 'Prevents a plane from taking off when there is a storm.' do
+    expect { subject.take_off }.to raise_error 'Storm in progress - all flights are grounded.'
+  end
+
 end

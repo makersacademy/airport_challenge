@@ -2,9 +2,9 @@ require_relative 'Airplane'
 
 class Airport
 
-DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
-attr_reader :capacity
+  attr_reader :capacity
 
   def initialize
     @airplane = []
@@ -18,6 +18,8 @@ attr_reader :capacity
   end
 
   def take_off
+    raise 'Storm in progress - all flights are grounded.' if storm?
+
     @airplane.pop
   end
 
@@ -25,6 +27,10 @@ attr_reader :capacity
 
   def full?
     @airplane.count >= capacity
+  end
+
+  def storm?
+    true
   end
 
 end
