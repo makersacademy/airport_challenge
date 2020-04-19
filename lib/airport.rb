@@ -16,13 +16,15 @@ class Airport
   def land(plane)
     fail "Airport is full" if full?
 
-    "Weather is stormy, don't land!" if weather == 2
+    fail "Weather is stormy, don't land!" if weather == 2
 
     planes << plane
   end
 
   def take_off
     fail "No planes in airport" if empty?
+
+    fail "Weather is stormy, don't take off!" if weather == 2
 
     planes.pop
   end

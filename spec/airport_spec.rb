@@ -51,4 +51,10 @@ describe Airport do
       expect { subject.land Plane.new }.to raise_error("Weather is stormy, don't land!")
     end
   end
+
+  describe 'Not to take off in stormy weather' do
+    it 'raises error' do
+      expect { subject.take_off }.to raise_error("Weather is stormy, don't take off!")
+    end
+  end
 end
