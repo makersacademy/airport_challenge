@@ -6,7 +6,8 @@ class World
   end
 
   def show
-    Array.new
+    # TODO: Would be better as a Hash
+    [@air]
   end
   
   def add(object)
