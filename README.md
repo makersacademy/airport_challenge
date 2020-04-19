@@ -30,6 +30,8 @@ Note: You will notice a file which includes a program that randomises weather. T
 1. Ensuring that takeoff is prevented when the weather is stormy
 2. Ensuring landing is prevented when the weather is stormy
 
+With more time, I would have continued with the draft test I have in my spec file (which is commented out). 
+
 ## Getting started
 
 To run this on your computer, complete the following steps:
