@@ -18,7 +18,7 @@ class World
     if object.is_a?(Plane)
       return @air.add(object)
     end
-    
+
     @airports.push(object)
     return @airports.last == object
   end
@@ -47,8 +47,10 @@ class World
   
   def land(plane, airport)
     return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
-    
-    true
+    return false unless where_is(plane) == @air
+   
+    result = air.del(plane) if airport.add(plane)
+    result == plane
   end
   
 end

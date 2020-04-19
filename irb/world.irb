@@ -16,53 +16,35 @@ world.view
 
 world.air
 
+world.view
+
+"Check landing planes in airports"
+
+world.view
+
 world.add(planes[0])
-
 world.view
 
-world.where_is(planes[0])
-
-world.where_is(planes[1])
-
-world.where_is(1)
-
-world.add(planes[1])
-
-world.view
+airports[0]
 
 world.add(airports[0])
-
 world.view
 
-world.add(airports[1])
-
+"Land plane in world in airport in world"
+world.land(planes[0], airports[0])
 world.view
 
-world.del(1)
-
+"Land plane not in world in airport in world"
+world.land(planes[1], airports[0])
 world.view
 
-world.del(planes[1])
-
+"Land plane in world in airport not in world"
+world.land(planes[0], airports[1])
 world.view
 
-world.del(airports[1])
-
+"Land plane not in world in airport not in world"
+world.land(planes[1], airports[1])
 world.view
 
-world.land(planes[0],airports[0])
 
-world.view
 
-"Checking delete planes and empty airports"
-
-world2 = World.new
-world2.view
-
-world2.add(planes[0])
-world2.add(airports[0])
-world2.view
-
-world2.del(planes[0])
-world2.del(airports[0])
-world2.view
