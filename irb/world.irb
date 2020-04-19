@@ -26,6 +26,10 @@ world.where_is(planes[1])
 
 world.where_is(1)
 
+world.add(planes[1])
+
+world.view
+
 world.add(airports[0])
 
 world.view

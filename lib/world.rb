@@ -25,7 +25,11 @@ class World
   
   def del(object)
     return false unless object.is_a?(Airport) || object.is_a?(Plane)
-     
+    
+    if object.is_a?(Plane)
+      return @air.del(object)
+    end
+    
     true
   end
 
