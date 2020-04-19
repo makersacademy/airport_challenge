@@ -19,9 +19,9 @@ describe Airport do
   end 
 
   it "Removed plane from array when taking off method ran" do
-    airport.instruct_plane_to_land(plane)
-    airport.instruct_plane_to_takeoff(plane)
-    expect(airport.planes).to eq([])
+    plane2 = Plane.new 
+    airport.instruct_plane_to_land(plane2)
+    expect{airport.instruct_plane_to_takeoff(plane2)}.to change {airport.planes.count }.by(-1)
   end 
 
   it "Cannot land plane in full airport" do
@@ -33,4 +33,12 @@ describe Airport do
     airport2 = Airport.new(800)
     expect(airport2.capacity).to eq(800)
   end 
+
+  it "Unable to take off if stormy" do
+    airport.instruct_plane_to_land(plane)
+    allow(airport).to receive(:stormy?).and_return(85)
+    expect{airport.instruct_plane_to_takeoff(plane)}.to raise_error("Weather too stormy to take off.")
+  end 
+
+
 end 
