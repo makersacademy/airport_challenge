@@ -18,46 +18,25 @@ world.air
 
 world.view
 
-"Check landing too many planes"
-
 world.view
+
+world.add(airports[0])
 
 world.add(planes[0])
 world.add(planes[1])
-world.add(planes[2])
-world.add(planes[3])
-world.add(planes[4])
-world.add(planes[5])
 world.view
-
-airports[0]
-
-world.add(airports[0])
-world.view
-
 
 world.land(planes[0], airports[0])
 world.view
-airports[0].full?
 
-world.land(planes[1], airports[0])
+world.land(planes[0], airports[0])
 world.view
-airports[0].full?
 
-world.land(planes[2], airports[0])
+world.takeoff(planes[1], airports[0])
+world.takeoff(planes[2], airports[0])
+world.takeoff(planes[3], airports[0])
+world.takeoff(planes[4], airports[0])
+world.takeoff(planes[5], airports[0])
+world.takeoff(planes[6], airports[0])
+
 world.view
-airports[0].full?
-
-world.land(planes[3], airports[0])
-world.view
-airports[0].full?
-
-world.land(planes[4], airports[0])
-world.view
-airports[0].full?
-
-world.land(planes[5], airports[0])
-world.view
-airports[0].full?
-
-

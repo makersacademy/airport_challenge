@@ -47,8 +47,9 @@ class World
   
   def land(plane, airport)
     return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
-    return false unless where_is(plane) == @air
+#    return false unless where_is(plane) == @air
     return false if airport.full?
+    return :stormy if airport.weather == :stormy
    
     result = air.del(plane) if airport.add(plane)
     result == plane
@@ -56,7 +57,8 @@ class World
 
   def takeoff(plane, airport)
     return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
-    return false if where_is(plane) == @air
+#    return false if where_is(plane) == @air
+    return :stormy if airport.weather == :stormy
     
     result = airport.del(plane) if air.add(plane)
     result == plane
