@@ -1,8 +1,9 @@
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :planes
   
   def initialize
     @capacity = 5
+    @planes = Array.new
   end
 
   def full?
@@ -18,10 +19,15 @@ class Airport
     weather.stormy? ? :stormy : :sunny
   end
 
-  def enter(plane)
+  def add(plane)
+    @planes.push(plane)
+    @planes.last == plane
   end
   
-  def exit(plane)
+  def del(plane)
+    return false unless @planes.include?(plane)
+    
+    @planes.delete(plane)
   end
   
 end
