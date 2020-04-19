@@ -11,7 +11,9 @@ class Air
   end
   
   def del(plane)
-    @planes.last
+    return false unless @planes.include?(plane)
+    
+    @planes.delete(plane)
   end
 
 end

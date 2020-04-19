@@ -14,3 +14,6 @@ air.planes
 
 air.del(planes[1])
 air.planes
+
+air.del(planes[5])
+air.planes
