@@ -1,7 +1,8 @@
 class World
+  attr_reader :air
 
-  def air
-    Air.new
+  def initialize
+    @air = Air.new
   end
 
   def add(object)
