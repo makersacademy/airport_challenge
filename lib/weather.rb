@@ -5,11 +5,7 @@ class WeatherGenerator
     @weather_array = ["sunny", "rainy", "clear", "stormy"]
   end
 
-  def random
-    rand(0..3)
-  end
-
-  def weather
-    @weather_array[self.random]
+  def random_weather
+    @weather_array[rand(0..3)]
   end
 end

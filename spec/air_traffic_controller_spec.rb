@@ -58,22 +58,25 @@ describe Airport do
     plane = Plane.new
     expect { airport.land(plane) }.to raise_error "This airport (#{airport}) has reached maximum capacity."
   end
+
+# Attempted to implement the functionality below but couldn't get the rspec test to match what was running in the airport file and account for the randomisation
+
+#  it 'Raise error if landing plane when stormy' do
+#    airport = Airport.new
+#    plane = Plane.new
+#    airport.weather == "stormy"
+#    expect { airport.land(plane) }.to raise_error "It is stormy so unable to land at this airport"
+#  end
 end
 
 describe WeatherGenerator do
   it 'Weather Generator responds to random method' do
-    expect(subject).to respond_to(:random)
+    expect(subject).to respond_to(:random_weather)
   end
 
-  it 'Random generates random number between 0 and 3' do
+  it 'Random weather method returns string "stormy"' do
     generator = WeatherGenerator.new
     allow(generator).to receive(:rand).and_return(3)
-    expect(generator.random).to eq(3)
-  end
-
-  it 'Weather returns string "stormy"' do
-    generator = WeatherGenerator.new
-    allow(generator).to receive(:rand).and_return(3)
-    expect(generator.weather).to eq "stormy"
+    expect(generator.random_weather).to eq "stormy"
   end
 end
