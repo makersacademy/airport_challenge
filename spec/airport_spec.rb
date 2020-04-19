@@ -5,6 +5,24 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
+
+  context "weather bad for landing" do
+    before { allow(airport).to receive(:stormy?).and_return(true) }
+
+    it 'does not allow plane to take off' do
+      airport.planes << plane
+      expect{airport.instruct_plane_to_land(plane)}.to raise_error 'Weather too stormy to land.'
+    end
+
+    it 'does not allow plan to land' do 
+      expect{airport.instruct_plane_to_land(plane)}.to raise_error 'Weather too stormy to land.'
+    end 
+  end 
+
+  context "weather good" do 
+
+  before { allow(airport).to receive(:stormy?).and_return(false) }
+
   it "Instruct plane to land" do
     expect(airport).to respond_to(:instruct_plane_to_land)
   end
@@ -24,24 +42,14 @@ describe Airport do
     expect{airport.instruct_plane_to_takeoff(plane2)}.to change {airport.planes.count }.by(-1)
   end 
 
-  it "Cannot land plane in full airport" do
-    10.times {airport.instruct_plane_to_land(plane)}
-    expect{airport.instruct_plane_to_land(plane)}.to raise_error("Unable to land as Airport is full.")
-  end 
-
   it "User able to change capacity" do
     airport2 = Airport.new(800)
     expect(airport2.capacity).to eq(800)
   end 
 
-  it "Unable to take off if stormy" do
-    airport.instruct_plane_to_land(plane)
-    allow(airport).to receive(:stormy?).and_return(85)
-    expect{airport.instruct_plane_to_takeoff(plane)}.to raise_error("Weather too stormy to take off.")
-  end 
-
-  it "Unable to land if stormy" do
-    allow(airport).to receive(:stormy?).and_return(85)
-    expect{airport.instruct_plane_to_land(plane)}.to raise_error("Weather too stormy to land.")
-  end 
+  it "Cannot land plane in full airport" do
+    10.times {airport.instruct_plane_to_land(plane)}
+    expect{airport.instruct_plane_to_land(plane)}.to raise_error("Unable to land as Airport is full.")
+  end  
+end 
 end 
