@@ -79,7 +79,7 @@ describe World do
     expect(subject.where_is(1)).to eq(false)
     
     plane = Plane.new
-    expect(subject.where_is(plane)).to be_an_instance_of(Air).or be_an_instance_of(Airport)
+    expect(subject.where_is(plane)).to be_an_instance_of(Air).or be_an_instance_of(Airport).or eq(false)
   end
   
 end

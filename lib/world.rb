@@ -25,7 +25,11 @@ class World
   def where_is(object)
     return false unless object.is_a?(Plane)
     
-    Airport.new
+    if @air.planes.include?(object)
+      return @air
+    end
+    
+    false
   end
   
 end
