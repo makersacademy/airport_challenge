@@ -1,0 +1,84 @@
+As an air traffic controller
+"So I can get passengers to a destination"
+I want to instruct a plane to land at an airport
+
+As an air traffic controller
+"So I can get passengers on the way to their destination"
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+- this will depend on the previous method (has plane prepared to take off)
+
+As an air traffic controller
+"To ensure safety"
+I want to prevent landing when the airport is full
+
+As the system designer
+"So that the software can be used for many different airports"
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller
+"To ensure safety"
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+"To ensure safety"
+I want to prevent landing when weather is stormy
+
+strings are just further info, but could be used as additional strings in the methods
+
+Objects:
+Air_traffic_controller
+passengers
+destination
+plane
+airport
+system_designer
+software
+weather
+
+functions:
+p_land (at airport)
+p_take_off (at airport)
+p_confirm_take_off
+a_is_full? ==== could be a key for initialised variable( is full: yes/no)
+a_default_capacity ==== could also be a key (initialised variable of default_capacity: - this is used to determine whether airport will be full or not
+(airport = full if > 10,000 people)
+a_weather = normal method --- weather could potentially be another class or an instance in plane -
+if @weather = stormy, planes do not take off or land.
+
+#attr_reader weather: @weather
+
+#def initialize
+#  @weather = ["sunny", "sunny", "sunny", "stormy"]
+#end
+
+#def initialize
+#  @weather = ["sunny", "sunny", "sunny", "stormy"]
+#end
+
+#def weather
+#  @weather.sample
+#end
+
+
+separate spec for each separate class
+plane is the centre class (the class that requires all of the other classes) therefore the spec for
+plane should be the biggest.
+
+
+require 'weather'
+
+RSpec.describe Weather do
+  describe '#weather' do
+    it "shows the weather as either 'stormy' or 'sunny'" do
+      weather = described_class.new
+      expect(subject.randomize)
+    end
+  end
+end
+
+expect(airport.full?).to eq("airport is full, plane cannot land")
+
+  def initialize
+    @plane = plane
+    air_traffic
+  end
