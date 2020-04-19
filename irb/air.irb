@@ -4,4 +4,6 @@ require './lib/plane.rb'
 air = Air.new
 planes = Array.new(10){Plane.new}
 
+air.planes
 air.add(planes[0])
+air.planes

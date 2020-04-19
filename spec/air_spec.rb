@@ -7,6 +7,10 @@ describe Air do
     expect(subject).to respond_to(:add).with(1).argument
   end
   
+  it 'responds to planes' do
+    expect(subject).to respond_to(:planes)
+  end
+  
   it '.add(Plane) returns true or false' do
     air = Air.new
     plane = Plane.new

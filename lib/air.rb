@@ -1,4 +1,5 @@
 class Air
+  attr_reader :planes
 
   def initialize
     @planes = Array.new
