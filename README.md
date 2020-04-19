@@ -89,6 +89,20 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
+My approach
+-------
+
+# From User Stories to Domain Model
+- Objects (Airport, Plane, Weather)
+- Messages (land, take_off, is_stormy?)
+- Create a diagram to show how the objects interact with each other
+
+# Feature tests to unit tests to code
+- write code in feature test of what we want to see in the program
+- write unit test and see the same error when running rspec
+- write minimum code to get the unit test pass
+- repeat
+
 My comments
 -------
 
