@@ -10,4 +10,11 @@ describe Airport do
     it 'instructs a plane to take off' do 
         expect(subject).to respond_to(:take_off).with(1).argument 
     end 
+
+    it 'does not allow landind when full' do 
+        10.times do 
+            airport.land(:plane)
+        end 
+        expect { airport.land(:plane)}.to raise_error 'Cannot land plane: airport full'
+    end 
 end 
