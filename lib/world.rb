@@ -18,9 +18,9 @@ class World
   end
 
   def where_is(object)
-    return Airport.new if object.is_a?(Plane)
+    return false unless object.is_a?(Plane)
     
-    false
+    Airport.new
   end
   
 end
