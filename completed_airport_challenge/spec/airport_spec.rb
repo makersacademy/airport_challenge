@@ -1,24 +1,23 @@
 require 'airport'
-
 RSpec.describe Airport do
-    describe "#attr_accessors" do
-      it "should respond to attr_accessor; airport" do
-      data = described_class.new(0,0)
-        expect(data).to respond_to (:airport)
-      end
+  describe "attr_accessors" do
+    it "show attr_accessor" do
+      data = described_class.new(0, 0)
+      expect(data).to respond_to :airport
     end
-    describe "#attr_accessors" do
-      it "should respond to attr_accessor; population" do
-      data = described_class.new(0,0)
-        expect(data).to respond_to (:population)
-      end
+  end
+  describe "#attr_accessors" do
+    it "should respond to attr_accessor; population" do
+      data = described_class.new(0, 0)
+      expect(data).to respond_to :population
     end
-    describe "#attr_accessors" do
-      it "should respond to attr_accessor; capacity" do
-      data = described_class.new(0,0)
-        expect(data).to respond_to (:capacity)
-      end
+  end
+  describe "#attr_accessors" do
+    it "should respond to attr_accessor; capacity" do
+      data = described_class.new(0, 0)
+      expect(data).to respond_to :capacity
     end
+  end
   describe '#airport_full' do
     context 'when population is higher than capacity' do
       it 'returns true' do

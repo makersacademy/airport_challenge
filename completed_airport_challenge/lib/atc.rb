@@ -1,4 +1,3 @@
-#require_relative 'plane'
 module ATC
   def confirm_weather_descent
     print "The weather today is currently "
@@ -21,26 +20,39 @@ module ATC
   end
 
   def land_plane
-   "Permission to land plane has been given. Your final task is to confirm that the plane has landed and the passengers have safetly reached their destination. To do this, please type 'plane.confirm_landing'."
+    puts "Permission to land plane has been given."
+    puts "Your final task is to confirm that the plane has landed."
+    "To do this, please type 'plane.confirm_landing'."
   end
 
   def confirm_landing
-    "The eagle has landed! Another plane is due to take-off. To complete your next task, create a new plane (plane = Plane.new('name') and type plane.prepare_take_off. Alternatively, try to land another plane by doing the same but typing plane.spotted."
+    puts "The eagle has landed! Another plane is due to take-off."
+    puts "To complete your next task, create a new plane and type"
+    puts "plane.prepare_take_off. Alternatively, try to land another plane by"
+    "doing the same but typing plane.spotted."
   end
 
   def take_off_plane
-    "Plane has been prepared for take-off. Your final job is to confirm that the plane is in the sky and the passengers are on route to their destination. Please type 'plane.confirm_take_off'."
+    puts "Plane has been prepared for take-off. Your final job is to confirm"
+    "the plane is in the sky. Please type 'plane.confirm_take_off'."
   end
 
   def confirm_take_off
-    "The eagle is flying! Please make more planes if you would like to keep going. To initiate the plane, activate either 'plane.spotted' and 'plane.prepare_take_off.'"
+    puts "The eagle is flying! Please make more planes if you see fit."
+    "To initiate plane, activate 'plane.spotted' or 'plane.prepare_take_off.'"
   end
 
   def cancel_take_off
-    "plane cannot take off. Plane wil need to wait until data improves. Ascend another plane by typing (plane = Plane.new('name') and plane.prepare_take_off. Alternatively, try to land another plane by typing plane.spotted."
+    puts "plane cannot take off - will need to wait until data improves."
+    puts "Ascend another plane by typing (plane = Plane.new('name') and"
+    puts "plane.prepare_take_off."
+    "Alternatively, try to land another plane by typing plane.spotted."
   end
 
   def cancel_landing
-    "Landing has been cancelled. Plane will need to hover until data improves or land at another airport. Another plane is due to take-off. To complete your next task, create a new plane (plane = Plane.new('name') and type plane.prepare_take_off. Alternatively, try to land another plane by typing plane.spotted."
+    puts "Landing has been cancelled. Another plane is due to take-off."
+    puts "To complete your next task, create a new plane"
+    puts "(plane = Plane.new('name') and type plane.prepare_take_off."
+    "Alternatively, try to land another plane by typing plane.spotted."
   end
 end

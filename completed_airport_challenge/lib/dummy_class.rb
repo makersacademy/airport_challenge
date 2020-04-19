@@ -1,7 +1,5 @@
 require 'atc'
 
-
-class Dummy_Class
+class DummyClass
   include ATC
-
 end
