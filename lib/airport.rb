@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_writer :capacity
+  attr_accessor :capacity, :parked_planes
 
   DEFAULT_CAPACITY = 2
 
@@ -11,15 +11,19 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is full" if full?
-    fail "No landing allowd due storm" if stormy?
-    @parked_planes << plane
-    # @parked_planes << plane unless @parked_planes.include? plane
+    fail "Airport is full" if full? 
+
+    fail "No landing allowd due storm" if stormy? 
+
+    # @parked_planes << plane
+    @parked_planes << plane unless @parked_planes.include? plane
   end
 
   def take_off
     fail "No flights allowd due storm" if stormy?
+
     fail "No planes at the airport" if empty?
+
     @parked_planes.shift
     print "Elvis has left the bulding"
   end
@@ -33,7 +37,7 @@ class Airport
   end
 
   def stormy?
-    ["sunny", "cloudy", "rainy", "stormy"].sample == "stormy" ? true : false
+    ["sunny", "cloudy", "rainy", "stormy"].sample == "stormy"
   end
 
 end
