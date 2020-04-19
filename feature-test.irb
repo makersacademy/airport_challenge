@@ -8,8 +8,6 @@ require './lib/world.rb'
 
 atc = Atc.new
 
-
-
 # Set up world
 world = World.new
 airports = Array.new(2){Airport.new}
@@ -45,6 +43,12 @@ world.add(planes[19])
 #Show world
 world.view
 
+# Environment setup, ready to test User Stories
+
+loop do
+# Press Control-C to continue
+end
+
 # User Story One:
 
 ## Land planes[0] in airports[0]
@@ -54,6 +58,16 @@ world.land(planes[0], airports[0])
 airports[0].in?(planes[0])
 
 world.view
+
+loop do
+# Press Control-C to continue
+end
+
+# End of User Story One:
+
+loop do
+# Press Control-C to continue
+end
 
 # User Story Two:
 
@@ -67,6 +81,12 @@ world.takeoff(planes[0], airports[0])
 airports[0].in?(planes[0])
 
 world.view
+
+# End of User Story Two:
+
+loop do
+# Press Control-C to continue
+end
 
 # User Story Three:
 
@@ -97,6 +117,12 @@ airports[0].full?
 
 world.view
 
+# End of User Story Three:
+
+loop do
+# Press Control-C to continue
+end
+
 #User Story Four:
 
 ## Make System Designer
@@ -105,11 +131,17 @@ sd = Sd.new
 ## Show capacity of airports[1]
 airports[1].capacity
 
-## Sd set capacity of airports[1] to 10
+## Sd set capacity of airports[1] to 20
 sd.capacity(airports[1], 20)
 
 ## Show capacity of airports[1]
 airports[1].capacity
+
+# End of User Story Four:
+
+loop do
+# Press Control-C to continue
+end
 
 #User Story Five & Six:
 
@@ -129,6 +161,10 @@ world.takeoff(planes[4], airports[0])
 airports[0].empty?
 
 world.view
+
+loop do
+# Press Control-C to continue
+end
 
 ## Try and land 20 planes. Stormy 1/10, so some should return :stormy
 airports[1].empty?
@@ -181,6 +217,10 @@ world.land(planes[19], airports[1])
 
 airports[1].full?
 
+loop do
+# Press Control-C to continue
+end
+
 ## Try and take off 20 planes. Stormy 1/10, so some should return :stormy
 
 world.takeoff(planes[0], airports[1])
@@ -205,3 +245,5 @@ world.takeoff(planes[18], airports[1])
 world.takeoff(planes[19], airports[1])
 
 airports[1].empty?
+
+# End of User Story Five & Six:
