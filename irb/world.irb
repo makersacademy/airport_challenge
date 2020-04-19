@@ -12,4 +12,7 @@ sd = Sd.new
 air = Air.new
 airports = Array.new(10){Airport.new}
 planes = Array.new(10){Plane.new}
-world.add(air)
+world.air
+world.add(planes[0])
+world.add(airports[0])
+world.show

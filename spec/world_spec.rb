@@ -10,12 +10,20 @@ describe World do
     expect(subject.instance_variable_get(:@air))
   end
   
+  it 'responds to show' do
+    expect(subject).to respond_to(:show)
+  end
+
   it 'responds to air' do
     expect(subject).to respond_to(:air)
   end
 
   it 'responds to add' do
     expect(subject).to respond_to(:add).with(1).arguments
+  end
+  
+  it ',show returns Array' do
+    expect(subject.show).to be_an_instance_of(Array)
   end
   
   it '.air returns Air' do
