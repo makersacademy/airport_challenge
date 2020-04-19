@@ -89,38 +89,37 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
-My approach
+# My approach
 -------
 
-# From User Stories to Domain Model
+## From User Stories to Domain Model
 - Objects (Airport, Plane, Weather)
 - Messages (land, take_off, is_stormy?)
 - Create a diagram to show how the objects interact with each other
 
-# Feature tests to unit tests to code
+## Feature tests to unit tests to code
 - write code in feature test of what we want to see in the program
 - write unit test and see the same error when running rspec
 - write minimum code to get the unit test pass
 - repeat
 
-My comments
--------
+## My comments
 
-The problem was broken down to the following steps:
+### The problem was broken down to the following steps:
 1. Create folder structure for test files and code files
 2. Create a Domain Model from user stories: objects (Airport, Plane, Weather), and messages (land, take_off, is_stormy?) 
 3. Use feature tests => unit tests => code
 
-What is left to be done:
+### What is left to be done:
 * airport capacity can only be set up at the creation of the instance, it should be possible to update anytime
 * better tests for weather class
 
-What I learnt from the process: 
+### What I learnt from the process: 
 * improving and understanding the TDD process
 * using objects and methods
 * encapsulation and SRP
 
-What I want to improve: 
+### What I want to improve: 
 * understanding and using mock tests: test doubles & method stubs
 * understanding why unit tests do not pass
 * using before and after hooks
