@@ -2,42 +2,55 @@ require 'airport'
 
 RSpec.describe Airport do
   subject(:airport) { described_class.new(20)}
+  plane = Plane.new
 
+  describe '#land' do
+    context 'when not stormy' do 
+      it 'instructs plane to land' do
+        expect(subject).to respond_to(:land).with(1).argument
+      end
+    end
+    context 'when full' do 
+      it 'raises an error' do
+        allow(subject).to receive(:stormy?).and_return false
+        20.times { subject.land plane }
+        expect { subject.land plane }.to raise_error 'Cannot land plane: Airport is at capacity'
+      end
+    end
+    context 'when stormy' do 
+      it 'raises error' do 
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.land(plane)}.to raise_error "Cannot land plane: Weather is stormy"
+      end
+    end
+  end
+
+  describe '#take_off' do 
+    context 'when not stormy' do 
+      it 'instructs plane to take off' do
+        expect(subject).to respond_to(:take_off).with(1).argument
+      end 
+      it 'confirms plane is no longer at the airport' do 
+        allow(airport).to receive(:stormy?).and_return false
+        expect(subject.take_off(plane)).to eq 'Plane has left the airport'
+      end
+    end
+    context 'when stormy' do
+      it 'raise error' do 
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.take_off(plane )}.to raise_error "Cannot take off plane: Weather is stormy"
+      end
+    end  
+  end
+  
   describe "#capacity" do 
     it "allows you to change capacity" do 
       subject = Airport.new(10)
       allow(subject).to receive(:stormy?).and_return false
-      10.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error 'Airport has reached capacity therefore you cannot land'
-    end
-    it 'does not allow planes to land when capacity is reached' do
-      allow(subject).to receive(:stormy?).and_return false
-      20.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error 'Airport has reached capacity therefore you cannot land'
+      10.times { subject.land plane }
+      expect { subject.land plane }.to raise_error 'Cannot land plane: Airport is at capacity'
     end
   end
 
-  describe '#land' do
-  it 'instructs plane to land' do
-    expect(subject).to respond_to(:land).with(1).argument
-  end 
-  it 'when stormy raise error' do 
-    allow(airport).to receive(:stormy?).and_return true
-    expect { airport.land(Plane.new )}.to raise_error "Can't land plane weather is stormy"
-  end
 end
 
-  describe '#take_off' do 
-    it 'instructs plane to take off' do
-      expect(subject).to respond_to(:take_off).with(1).argument
-    end 
-    it 'confirms plane is no longer at the airport' do 
-      allow(airport).to receive(:stormy?).and_return false
-      expect(subject.take_off(Plane.new)).to eq 'Plane has left the airport'
-    end
-    it 'when stormy raise error' do 
-      allow(airport).to receive(:stormy?).and_return true
-      expect { airport.take_off(Plane.new )}.to raise_error "Can't take off plane weather is stormy"
-    end
-  end
-end
