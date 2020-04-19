@@ -9,12 +9,12 @@ class Airport
 
   def land(plane)
     fail "Airport is full" if capacity
-
     @planes << plane
   end
 
   def take_off
-    "Plane has taken off"
+    fail "No planes in airport" if @planes.count == 0
+    @planes.pop
   end
 
   def capacity(full = 1)
