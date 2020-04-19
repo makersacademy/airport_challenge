@@ -11,6 +11,7 @@ class Air
   end
   
   def del(plane)
+    @planes.last
   end
 
 end

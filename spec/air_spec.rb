@@ -26,6 +26,13 @@ describe Air do
     plane = Plane.new
     expect(air.add(plane)).to eq(true).or eq(false)
   end
+  
+  it '.del(Plane) returns Plane or false' do
+    air = Air.new
+    plane = Plane.new
+    air.add(plane)
+    expect(air.del(plane)).to be_an_instance_of(Plane).or eq(false)
+  end
 
   it '.planes returns array' do
     # TODO: check it's an array of planes
