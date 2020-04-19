@@ -1,9 +1,9 @@
 require './docs/airport'
+require './docs/plane'
 
 describe Airport do 
   let(:airport) { Airport.new }
-  let(:plane) { "plane1" }
-  let(:plane2) { "plane2" }
+  let(:plane) { Plane.new }
 
   it "Instruct plane to land" do
     expect(airport).to respond_to(:instruct_plane_to_land)
@@ -23,9 +23,14 @@ describe Airport do
     airport.instruct_plane_to_takeoff(plane)
     expect(airport.planes).to eq([])
   end 
-  
+
   it "Cannot land plane in full airport" do
-    airport.instruct_plane_to_land(plane)
-    expect{airport.instruct_plane_to_land(plane2)}.to raise_error("Unable to land as Airport is full.")
+    10.times {airport.instruct_plane_to_land(plane)}
+    expect{airport.instruct_plane_to_land(plane)}.to raise_error("Unable to land as Airport is full.")
+  end 
+
+  it "User able to change capacity" do
+    airport2 = Airport.new(800)
+    expect(airport2.capacity).to eq(800)
   end 
 end 
