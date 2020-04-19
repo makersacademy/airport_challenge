@@ -5,11 +5,11 @@ describe Airport do
 
   describe 'plane_count' do
     before(:all) do
-     @plane = Plane.new
-     @airport = Airport.new
+      @plane = Plane.new
+      @airport = Airport.new
     end
 
-    it 'increments by one when a plane lands'do
+    it 'increments by one when a plane lands' do
       @plane.land(@airport)
       expect(@airport.plane_count).to eq(1)
     end
@@ -22,9 +22,9 @@ describe Airport do
 
   describe 'capacity' do
     before(:all) do
-     @airport = Airport.new
+      @airport = Airport.new
     end
 
-    it { is_expected.to respond_to :capacity}
-    end
+    it { is_expected.to respond_to :capacity }
   end
+end

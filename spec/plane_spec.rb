@@ -18,11 +18,11 @@ describe Plane do
 
     it 'A plane can only land if its not currently assigned to an airport' do
       airport1 = Airport.new
-      expect{ @plane.land(airport1) }.to raise_error("To land plane here please take off from current airport")
+      expect { @plane.land(airport1) }.to raise_error("To land plane here please take off from current airport")
     end
 
     it 'A plane cannot land in a full airport' do
-      expect{ 5.times { Plane.new.land(@airport) } }.to raise_error("This airport is full")
+      expect { 5.times { Plane.new.land(@airport) } }.to raise_error("This airport is full")
     end
 
     describe 'takeoff' do
