@@ -1,5 +1,4 @@
 require 'airport'
-# require 'plane'
 
 describe Airport do
   subject { described_class.new 10 }
@@ -10,7 +9,9 @@ describe Airport do
       subject = described_class.new
       allow(subject).to receive(:stormy?).and_return false
       allow(subject).to receive(:landed?).and_return false
+
       described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+
       expect { subject.land(plane) }.to raise_error 'Airport is full!'
     end
   end
@@ -33,7 +34,9 @@ describe Airport do
     context 'when airport is full' do
       it 'prevents landing' do
         allow(subject).to receive(:landed?).and_return false
+
         10.times { subject.land(plane) }
+
         expect { subject.land(plane) }.to raise_error 'Airport is full!'
       end
     end
@@ -41,7 +44,9 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents landing' do
         allow(subject).to receive(:stormy?).and_return true
-        expect { subject.land(plane) }.to raise_error 'Landing is cancelled due to bad weather!'
+        error = 'Landing is cancelled due to bad weather!'
+
+        expect { subject.land(plane) }.to raise_error error
       end
     end
   end
@@ -59,14 +64,17 @@ describe Airport do
 
     it 'confirms that a plane is no longer at the airport after take_off' do
       subject.land(plane)
+
       expect(subject.take_off(plane)).to eq plane
     end
 
     context 'when weather is stormy' do
       it 'prevents take off' do
         subject.land(plane)
+        error = 'Take off is cancelled due to bad weather!'
         allow(subject).to receive(:stormy?).and_return true
-        expect { subject.take_off(plane) }.to raise_error 'Take off is cancelled due to bad weather!'
+
+        expect { subject.take_off(plane) }.to raise_error error
       end
     end
   end
@@ -80,13 +88,17 @@ describe Airport do
 
     it 'only planes that are in the airport can take off' do
       subject.land(plane)
+      error = 'Plane not in the airport!'
+
       subject.take_off(plane)
-      expect { subject.take_off(plane) }.to raise_error 'Plane not in the airport!'
+
+      expect { subject.take_off(plane) }.to raise_error error
     end
 
     it 'cannot be in the airport' do
       subject.land(plane)
       flying_plane = subject.take_off(plane)
+
       expect(subject.planes).not_to include flying_plane
     end
   end
@@ -97,8 +109,11 @@ describe Airport do
     end
     it 'can not land the same plane' do
       new_plane = double('Plane')
+      error = 'Plane already landed!'
+
       subject.land(new_plane)
-      expect { subject.land(new_plane) }.to raise_error 'UUUUUUUUPPPPPS!!!!'
+
+      expect { subject.land(new_plane) }.to raise_error error
     end
   end
 

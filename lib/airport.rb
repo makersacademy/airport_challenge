@@ -1,5 +1,3 @@
-# require_relative 'plane'
-
 class Airport
   attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 5
@@ -12,7 +10,7 @@ class Airport
   def land(plane)
     raise 'Airport is full!' if full?
     raise 'Landing is cancelled due to bad weather!' if stormy?
-    raise 'UUUUUUUUPPPPPS!!!!' if landed?(plane)
+    raise 'Plane already landed!' if landed?(plane)
 
     @planes << plane
   end
