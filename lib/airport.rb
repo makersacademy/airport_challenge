@@ -4,9 +4,9 @@ class Airport
   DEFAULT_CAP = 5
   attr_reader :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAP)
+    @capacity = capacity
     @planes = []
-    @capacity = DEFAULT_CAP
   end
 
   def land(plane)

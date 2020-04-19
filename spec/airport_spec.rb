@@ -21,10 +21,14 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAP
   end
 
-  describe 'airport is full' do
-    it 'raises error' do
-      subject.capacity.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error("Airport is full")
+  describe 'initialization' do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAP.times do
+        subject.land(plane)
+      end
+      expect { subject.land(plane) }.to raise_error("Airport is full")
     end
   end
 
