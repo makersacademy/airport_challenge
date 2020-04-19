@@ -9,6 +9,7 @@ describe Airport do
       plane = double(:plane)
       subject = described_class.new
       allow(subject).to receive(:stormy?).and_return false
+      allow(subject).to receive(:landed?).and_return false
       described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport is full!'
     end
@@ -31,6 +32,7 @@ describe Airport do
 
     context 'when airport is full' do
       it 'prevents landing' do
+        allow(subject).to receive(:landed?).and_return false
         10.times { subject.land(plane) }
         expect { subject.land(plane) }.to raise_error 'Airport is full!'
       end
@@ -93,13 +95,10 @@ describe Airport do
     before do
       allow(subject).to receive(:stormy?).and_return false
     end
-    # planes that are landed cannot land again
     it 'can not land the same plane' do
       new_plane = double('Plane')
-      allow(subject).to receive(:landed?).and_return true
       subject.land(new_plane)
-
-      expect(subject.(new_plane)).to be_landed
+      expect { subject.land(new_plane) }.to raise_error 'UUUUUUUUPPPPPS!!!!'
     end
   end
 

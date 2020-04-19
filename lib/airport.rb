@@ -12,7 +12,7 @@ class Airport
   def land(plane)
     raise 'Airport is full!' if full?
     raise 'Landing is cancelled due to bad weather!' if stormy?
-    raise 'UUUUUUUUPPPPPS!!!!' if plane.landed?
+    raise 'UUUUUUUUPPPPPS!!!!' if landed?(plane)
 
     @planes << plane
   end
@@ -34,4 +34,7 @@ class Airport
     rand(1..10) > 8
   end
 
+  def landed?(plane)
+    @planes.include?(plane)
+  end
 end
