@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'Storm in progress - permission to land denied.' if storm?
     raise 'AIRPORT FULL - permission to land denied.' if full?
 
     @airplane << plane
