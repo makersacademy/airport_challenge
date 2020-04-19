@@ -13,9 +13,15 @@ describe Airport do
   end
 
   #randomly create a number and return weather status
-  it "should randomly return true" do
+  it "should randomly return 'sunny'" do
     allow(subject).to receive(:rand).and_return(6)
     expect(subject.sunny?).to eq("sunny")
+
+  end
+
+  it "should randomly return 'stormy'" do
+    allow(subject).to receive(:rand).and_return(3)
+    expect(subject.sunny?).to eq("stormy")
 
   end
 
@@ -44,7 +50,6 @@ describe Airport do
 
   #weather override
   it "should have a weather overide" do
-    expect(subject).to respond_to(:weather_override)
+    expect(subject).to respond_to(:weather_override).with(1).argument
   end
-
 end

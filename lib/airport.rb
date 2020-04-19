@@ -31,19 +31,9 @@ class Airport
     false
   end
 
- def weather_override
+ def weather_override(input)
 
-    # loop do 
-    #   puts "The weather today is #{@weather_state}"
-    #   puts "Type 1 to update weather to sunny or 2 for stormy"
-    #   input = gets.chomp!
-    #   if input === "1"
-    #     return "sunny"
-    #   else
-    #     return "stormy"
-    #   end
-
-    # end
+   @weather_override = input
 
   end
 
