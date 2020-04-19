@@ -89,15 +89,24 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
-My approach
+My comments
 -------
 
-1. Created folder structure for test files and code files
-2. Created a spec file for airport, then airport class, with methods: land(plane) & take_off(plane)
-3. Created a spec file for plane, then plane class, with methods: land(airport) & take_off(airport)
-4. Created a spec file for the weather, then weather class, with is_stormy? method
-5. Used array to store planes in airport
-6. Raise exception when airport is full and plane is about to land
-7. Used default capacity for airport, capacity can only be set up at the creation of the airport instance
-8. Weather instance is created for each airport instance
-9. Raise exception when weather at airport is stormy
+The problem was broken down to the following steps:
+1. Create folder structure for test files and code files
+2. Create a Domain Model from user stories: objects (Airport, Plane, Weather), and messages (land, take_off, is_stormy?) 
+3. Use feature tests => unit tests => code
+
+What is left to be done:
+1. airport capacity can only be set up at the creation of the instance, it should be possible to update anytime
+2. planes to get instructions to land and take off
+3. prevent landing and take off when weather is stormy. Currently no exception is raised when weather is stormy.
+
+What I learnt from the process: 
+1. improving and understanding the TDD process
+2. using objects and methods
+3. encapsulation and SRP
+
+What I want to improve: 
+1. understanding and using mock tests
+2. understanding why unit tests do not pass
