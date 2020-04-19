@@ -1,3 +1,13 @@
 require './lib/atc.rb'
+require './lib/sd.rb'
+require './lib/air.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
+require './lib/plane.rb'
 
 atc = Atc.new
+sd = Sd.new
+air = Air.new
+airports = Array.new(10){Airport.new}
+planes = Array.new(10){Plane.new}
+atc.where_is(planes[0])
