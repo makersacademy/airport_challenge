@@ -12,6 +12,10 @@ class Airport
   def capacity=(capacity)
     @capacity = capacity if capacity >= 0
   end
+  
+  def weather
+    :stormy
+  end
 
   def enter(plane)
   end

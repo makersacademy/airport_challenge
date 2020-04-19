@@ -9,6 +9,11 @@ describe Airport do
   it 'responds to capacity' do
     expect(subject).to respond_to(:capacity)
   end
+
+  it 'responds to capacity' do
+    expect(subject).to respond_to(:weather)
+  end
+
   
   it 'responds to enter(Plane)' do
     expect(subject).to respond_to(:enter).with(1).argument
@@ -57,6 +62,11 @@ describe Airport do
     new_capacity = 200
     airport.capacity = new_capacity
     expect(airport.capacity).to eq new_capacity
+  end
+  
+  it '.weather returns :sunny or :stormy' do
+    airport = Airport.new
+    expect(airport.weather).to eq(:sunny).or eq(:stormy)
   end
 
 end

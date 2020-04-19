@@ -3,7 +3,10 @@ require './lib/plane.rb'
 
 airport = Airport.new
 
+
+
 planes = Array.new(10){Plane.new}
+
 
 airport.full?
 airport.capacity
@@ -25,3 +28,5 @@ airport.exit(planes[1])
 airport.full?
 airport.exit(planes[0])
 airport.full?
+
+airport.weather
