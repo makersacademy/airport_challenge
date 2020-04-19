@@ -9,7 +9,6 @@ require './lib/plane.rb'
 world = World.new
 atc = Atc.new
 sd = Sd.new
-air = Air.new
 airports = Array.new(10){Airport.new}
 planes = Array.new(10){Plane.new}
 
@@ -22,3 +21,4 @@ world.add(planes[0])
 world.view
 
 world.where_is(planes[0])
+world.where_is(1)

@@ -18,6 +18,8 @@ class World
   end
 
   def where_is(object)
+    return Airport.new if object.is_a?(Plane)
+    
     false
   end
   
