@@ -3,7 +3,7 @@ Airport Challenge
 
 ### My approach: ###
 
-To complete this project, I decided to make the classes "Airport" and "Plane," with the module "ATC" which stands for Air Traffic Control.
+To complete this project, I decided to make the classes "Airport" and "Plane," with the module "ATC" which stands for Air Traffic Police.
 
 The majority of my methods were within the module, including; land_plan, confirm_take_off, confirm_weather_descent. The Airplane class was used to confirm airplane capacity/population and the Plane class helped initialise the program.
 
