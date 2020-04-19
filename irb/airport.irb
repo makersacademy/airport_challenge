@@ -17,4 +17,5 @@ airport.planes
 airport.add(planes[2])
 airport.planes
 
-airport.in?(plane)
+airport.in?(planes[0])
+airport.in?(planes[3])

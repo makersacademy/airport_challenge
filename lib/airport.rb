@@ -15,6 +15,7 @@ class Airport
   end
   
   def in?(plane)
+    @planes.include?(plane)
   end
   
   def capacity=(capacity)
