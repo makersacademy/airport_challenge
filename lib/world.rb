@@ -11,10 +11,9 @@ class World
   end
   
   def add(object)
-    return true if object.is_a?(Airport)
-    return true if object.is_a?(Plane)
+    return false unless object.is_a?(Airport) || object.is_a?(Plane)
     
-    false
+    true
   end
 
   def where_is(object)
