@@ -1,3 +1,15 @@
 require './lib/world.rb'
+require './lib/atc.rb'
+require './lib/sd.rb'
+require './lib/air.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
+require './lib/plane.rb'
 
 world = World.new
+atc = Atc.new
+sd = Sd.new
+air = Air.new
+airports = Array.new(10){Airport.new}
+planes = Array.new(10){Plane.new}
+world.add(air)
