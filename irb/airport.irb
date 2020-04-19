@@ -7,6 +7,7 @@ planes = Array.new(10){Plane.new}
 
 airport.weather
 
+airport.empty?
 
 airport.planes
 airport.add(planes[0])
@@ -21,3 +22,5 @@ airport.planes
 
 airport.del(planes[5])
 airport.planes
+
+airport.empty?

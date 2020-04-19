@@ -4,6 +4,10 @@ require 'plane'
 
 describe Airport do
 
+  it 'respons to empty?' do
+    expect(subject).to respond_to(:empty?)
+  end
+  
   it 'responds to full?' do
     expect(subject).to respond_to(:full?)
   end
@@ -45,6 +49,10 @@ describe Airport do
     expect(airport.instance_variable_get(:@capacity)).to be >= 0
   end
   
+  it '.empty? returns true or false' do
+    expect(subject.empty?).to eq(true).or eq(false)
+  end
+
   it '.full? returns true or false' do
     airport = Airport.new
     expect(airport.full?).to eq(true).or eq(false)

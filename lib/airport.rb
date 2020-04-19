@@ -6,6 +6,10 @@ class Airport
     @planes = Array.new
   end
 
+  def empty?
+    false
+  end
+  
   def full?
     false
   end
