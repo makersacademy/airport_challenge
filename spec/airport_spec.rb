@@ -3,15 +3,16 @@ require 'airport'
 RSpec.describe Airport do
   subject(:airport) { described_class.new(20)}
 
+  it "allows you to change capacity" do 
+    subject = Airport.new(10)
+    10.times { subject.land Plane.new }
+    expect { subject.land Plane.new }.to raise_error 'Airport has reached capacity therefore you cannot land'
+  end
+
   it 'does not allow planes to land when capacity is reached' do
     20.times { subject.land Plane.new }
     expect { subject.land Plane.new }.to raise_error 'Airport has reached capacity therefore you cannot land'
   end
-    # 20.times do 
-    #  subject.land(Plane.new)
-    # end
-    #  expect{subject.land(Plane.new)}.to raise_error 'Airport has reached capacity therefore you cannot land'
-    # end
 
   describe '#land' do
   it 'instructs plane to land' do

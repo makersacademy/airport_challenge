@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize(capacity)
+  def initialize(capacity = 20)
     @capacity = capacity
     @planes_landed = []
   end
