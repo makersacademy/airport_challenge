@@ -8,7 +8,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is full" if full
+    fail "Airport is full" if capacity
 
     @planes << plane
   end
@@ -17,7 +17,7 @@ class Airport
     "Plane has taken off"
   end
 
-  def full(f = 1)
-    @planes.count == f
+  def capacity(full = 1)
+    @planes.count == full
   end
 end
