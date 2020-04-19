@@ -19,7 +19,7 @@ class Airport
       x = @capacity - @population
       puts "Airport has an excess capacity of #{x} planes."
       puts "This means that, pending good weather reports, this plane can land."
-      puts "Type 'data.confirm_weather_descent' for the forecast."
+      "Type 'data.confirm_weather_descent' for the forecast."
     end
   end
 end
