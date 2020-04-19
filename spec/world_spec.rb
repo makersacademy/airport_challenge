@@ -27,11 +27,9 @@ describe World do
     expect(subject.add(air)).to eq(true).or eq(false)
   end
   
-  it '.add returns false if object is not Air, Airport or Planes' do
-    expect(subject.add(1)).to eq(false)
-    
+  it '.add returns false if object is not Airport or Planes' do
     air = Air.new
-    expect(subject.add(air)).to eq(true)
+    expect(subject.add(air)).to eq(false)
     
     airport = Airport.new
     expect(subject.add(airport)).to eq(true)
