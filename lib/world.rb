@@ -52,5 +52,7 @@ class World
     result = air.del(plane) if airport.add(plane)
     result == plane
   end
-  
+
+  def takeoff(plane, airport)
+  end  
 end

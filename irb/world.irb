@@ -18,7 +18,7 @@ world.air
 
 world.view
 
-"Check landing planes in airports"
+"Check taking off planes from airports"
 
 world.view
 
@@ -45,6 +45,9 @@ world.view
 "Land plane not in world in airport not in world"
 world.land(planes[1], airports[1])
 world.view
+
+"Take off plane in world in airport"
+world.takeoff(planes[0],airports[0])
 
 
 

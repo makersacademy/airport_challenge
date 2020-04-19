@@ -47,6 +47,10 @@ describe World do
     expect(subject).to respond_to(:land).with(2).arguments
   end
   
+  it 'responds to takeoff(plane, airport)' do
+    expect(subject).to respond_to(:takeoff).with(2).arguments
+  end
+  
   it '.view returns Array' do
     # TODO: Check it returns Array of [Air, [Airport], [Plane] ]
     expect(subject.view).to be_an_instance_of(Array)
