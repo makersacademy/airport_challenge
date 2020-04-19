@@ -14,6 +14,9 @@ class Airport
     @planes.count >= @capacity
   end
   
+  def in?(plane)
+  end
+  
   def capacity=(capacity)
     @capacity = capacity if capacity >= 0
   end

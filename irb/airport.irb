@@ -17,10 +17,4 @@ airport.planes
 airport.add(planes[2])
 airport.planes
 
-airport.del(planes[1])
-airport.planes
-
-airport.del(planes[5])
-airport.planes
-
-airport.empty?
+airport.in?(plane)
