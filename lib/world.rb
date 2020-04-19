@@ -30,7 +30,9 @@ class World
       return @air.del(object)
     end
     
-    true
+    return false unless object.empty?
+
+    @airports.delete(object)
   end
 
   def where_is(object)
