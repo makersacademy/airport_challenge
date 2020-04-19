@@ -18,14 +18,16 @@ world.air
 
 world.view
 
-"Check taking off planes from airports"
+"Check landing too many planes"
 
 world.view
 
 world.add(planes[0])
-world.view
-
 world.add(planes[1])
+world.add(planes[2])
+world.add(planes[3])
+world.add(planes[4])
+world.add(planes[5])
 world.view
 
 airports[0]
@@ -33,17 +35,29 @@ airports[0]
 world.add(airports[0])
 world.view
 
-"Land plane in world in airport in world"
+
 world.land(planes[0], airports[0])
 world.view
+airports[0].full?
 
-
-
-"Take off plane in world in airport"
-world.takeoff(planes[0],airports[0])
+world.land(planes[1], airports[0])
 world.view
+airports[0].full?
 
-"Take off plane in world in air"
-world.takeoff(planes[1],airports[0])
+world.land(planes[2], airports[0])
 world.view
+airports[0].full?
+
+world.land(planes[3], airports[0])
+world.view
+airports[0].full?
+
+world.land(planes[4], airports[0])
+world.view
+airports[0].full?
+
+world.land(planes[5], airports[0])
+world.view
+airports[0].full?
+
 
