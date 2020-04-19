@@ -1,0 +1,3 @@
+require './lib/world.rb'
+
+world = World.new
