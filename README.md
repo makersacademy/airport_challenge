@@ -67,6 +67,36 @@
 
 ## Object-Messages Table
 
+TODO: Update table, incorporate rough notes below:
+
+air.add(plane) = returns true if successful
+plane = air.del(plane) = returns plane if successful
+
+air.add(plane, airport) = returns true if successful
+air.delete(plane, airport) = returns true if successful
+
+planes in air or airport (or bermuda triangle)
+atc.where is plane?
+
+use subject in test and refactor old ones
+
+create world object to hold planes and airports
+
+World has Air on creation
+
+When plane added to world, it's put in the air
+
+Add plane to air
+Add plane to airport
+Del plane from air anytime
+Del plane from airport anytime
+
+Del airport only when empty
+
+
+Land plane in airport
+
+
 | ```Status```                  | ```Object```     | ```Message``` |
 |:--:                           |               --:|:--            |
 | :negative_squared_cross_mark: | ```Atc```        | ```instruct(thing)``` |
