@@ -95,10 +95,11 @@ describe Airport do
     end
     # planes that are landed cannot land again
     it 'can not land the same plane' do
+      new_plane = double('Plane')
       allow(subject).to receive(:landed?).and_return true
       subject.land(new_plane)
 
-      expect(subject.land(new_plane)).to be_landed
+      expect(subject.(new_plane)).to be_landed
     end
   end
 
