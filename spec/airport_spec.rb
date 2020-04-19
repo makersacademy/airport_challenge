@@ -24,19 +24,26 @@ describe Airport do
 
     it 'raise an error when airport is full' do
       allow(airport).to receive(:rand).and_return 0
-      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect { airport.land(plane) } .to raise_error('Airport is full now')
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane = Plane.new) }
+      expect { airport.land(plane) }.to raise_error('Airport is full now')
     end
 
     it 'raise an error when air is stormy' do
       allow(airport).to receive(:rand).and_return 15
-      expect { airport.land(plane) } .to raise_error('air is stormy')
+      expect { airport.land(plane) }.to raise_error('air is stormy')
     end
 
     it 'when plane lands, status:taxi' do
       airport.land(plane)
       expect(plane.status).to eq 'taxi'
     end
+
+    it 'plane which is status taxi cannot land' do
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error('plane is in apron')
+    end
+
+
   end
 
   describe ' #takeoff' do

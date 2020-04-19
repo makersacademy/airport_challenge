@@ -22,6 +22,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'plane is in apron' if plane.status == 'taxi'
     raise 'Airport is full now' if @planes.count >= DEFAULT_CAPACITY
     raise 'air is stormy' if stormy?
 
