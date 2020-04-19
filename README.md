@@ -36,4 +36,4 @@ boeing.take_off(jfk)
 A few things to note:
 * If you instruct a plane to take off or land there is a 1 in 5 chance it won't be able to due to bad weather (and will throw an error message).
 * If you instruct a plane to land it may not be able to if the airport has reached its capacity.
-* You can change both the existing planes in the airport and the capacity of the airport respectively when initialising the Airport class, e.g. `luton = Airport.new("luton", ["boeing", "concord", "airbus"], 20)`
+* You can change both the existing planes in the airport and the capacity of the airport respectively when initialising the Airport class, e.g. `luton = Airport.new("luton", ["boeing", "concord", "airbus"], 20)`.
