@@ -18,13 +18,28 @@ class Airport
   end
 
   def take_off
-    fail 'WARNING! AIRPORT EMPTY!' if current_plane_count == 0
+    fail 'STORMY WEATHER! TAKEOFF NOT ALLOWED!' if stormy?
     @current_plane_count -= 1
+    confirm_takeoff
   end
 
-  def confirm_location
-    puts "Plane can confirm that no longer at airport"
+
+  #---------#
+  private
+
+  def confirm_takeoff
+    "Plane confirms that no longer at airport"
   end
 
+    # def full?
+    #   bikes.count >= DEFAULT_CAPACITY
+    # end
+    #
+
+  def stormy?
+    weather_condition = rand(0..1)
+    "stormy" if weather_condition == 0
+  end
+  #---------#
 
 end

@@ -11,8 +11,6 @@ describe Airport do
 
   it { is_expected.to respond_to :take_off }
 
-  it { is_expected.to respond_to :confirm_location }
-
 
   describe '#initialize' do
     it 'with default capacity' do
@@ -24,9 +22,16 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it "produces warning for zero plane take off cases" do
-    expect { subject.take_off }.to raise_error 'WARNING! AIRPORT EMPTY!'
+    it "prevents takeoff during stormy weather" do
+      allow(subject).to receive(:rand).and_return(0)
+      expect { subject.take_off }.to raise_error 'STORMY WEATHER! TAKEOFF NOT ALLOWED!'
     end
+
+    # THE FOLLOWING TEST FAILS
+    it "plane confirms that left the airport" do
+      expect(subject.take_off).to eq "Plane confirms that no longer at airport"
+    end
+
   end
 
 
