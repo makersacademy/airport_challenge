@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     raise 'Airport has reached capacity therefore you cannot land' if full?
+    raise "Can't land plane weather is stormy" if stormy?
     @planes_landed << plane
   end
 
@@ -17,6 +18,11 @@ class Airport
   end
 
   private 
+
+  def stormy?
+    rand(1..7) > 5
+  end
+
   def full?
     @planes_landed.length >= @capacity
   end
