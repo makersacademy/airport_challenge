@@ -1,15 +1,25 @@
+require_relative 'Airplane'
+
 class Airport
 
   def initialize
-    @plane = []
+    @airplane = []
   end
 
   def land(plane)
-    @plane << plane
+    raise 'AIRPORT FULL - permission to land denied.' if full?
+
+    @airplane << plane
   end
 
   def take_off
-    @plane.pop
+    @airplane.pop
+  end
+
+  private
+
+  def full?
+    @airplane.count >= 20
   end
 
 end
