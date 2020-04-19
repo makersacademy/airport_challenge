@@ -11,16 +11,24 @@ describe Air do
     expect(subject).to respond_to(:planes)
   end
   
+  it 'check for @planes instance variable' do
+    # TODO: This doesn't seem to actually check for the instance variable
+    air = Air.new
+    expect(air.instance_variable_get(:@planes))
+  end
+
   it '.add(Plane) returns true or false' do
     air = Air.new
     plane = Plane.new
     expect(air.add(plane)).to eq(true).or eq(false)
   end
   
-  it 'check for @planes instance variable' do
-    # TODO: This doesn't seem to actually check for the instance variable
+  it '.planes returns array' do
+    # TODO: check it's an array of planes
     air = Air.new
-    expect(air.instance_variable_get(:@planes))
+    plane = Plane.new
+    air.add(plane)
+    expect(air.planes).to be_an_instance_of(Array)
   end
 
 end

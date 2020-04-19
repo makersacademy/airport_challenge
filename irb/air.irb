@@ -7,3 +7,7 @@ planes = Array.new(10){Plane.new}
 air.planes
 air.add(planes[0])
 air.planes
+air.add(planes[1])
+air.planes
+air.add(planes[2])
+air.planes
