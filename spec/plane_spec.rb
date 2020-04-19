@@ -21,6 +21,10 @@ describe Plane do
       expect{ @plane.land(airport1) }.to raise_error("To land plane here please take off from current airport")
     end
 
+    it 'A plane cannot land in a full airport' do
+      expect{ 5.times { Plane.new.land(@airport) } }.to raise_error("This airport is full")
+    end
+
     describe 'takeoff' do
       it 'Can takeoff from a airport' do
         @plane.takeoff

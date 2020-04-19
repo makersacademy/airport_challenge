@@ -7,12 +7,14 @@ class Plane
     @current_airport = ""
   end
   def land(airport)
-    if @current_airport == ""
+    fail "To land plane here please take off from current airport" if @current_airport != ""
+
+    if airport.capacity == airport.plane_count
+      fail "This airport is full"
+    else
       airport.planes << self
       @current_airport = airport
       "Landed in #{airport}"
-    else
-      fail "To land plane here please take off from current airport"
     end
   end
   def takeoff

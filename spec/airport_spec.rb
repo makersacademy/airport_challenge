@@ -19,4 +19,12 @@ describe Airport do
       expect(@airport.plane_count).to eq(0)
     end
   end
-end
+
+  describe 'capacity' do
+    before(:all) do
+     @airport = Airport.new
+    end
+
+    it { is_expected.to respond_to :capacity}
+    end
+  end
