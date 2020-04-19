@@ -2,25 +2,31 @@
 require_relative 'plane'
 class Airport
   attr_accessor :capacity, :weather
-  attr_reader :plane
+  attr_reader :planes
 
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
+    @planes = []
   end
 
   def takeoff
     raise 'air is stormy' if stormy?
+    raise 'no airplane at airport' if @planes == []
 
-    @plane
+    @planes.each_with_index do |plane, index|
+      plane.flying?
+      return @planes.delete_at(index)
+    end
   end
 
   def land(plane)
-    raise 'Airport is full now' if @plane != nil
+    raise 'Airport is full now' if @planes.count >= DEFAULT_CAPACITY
     raise 'air is stormy' if stormy?
 
-    @plane = plane
+    plane.taxi?
+    @planes << plane
   end
 
 private
@@ -34,7 +40,7 @@ private
   end
 
   def stormy?
-    weather
+    randomweather
     @weather == 'stormy'
   end
 end

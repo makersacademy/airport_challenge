@@ -6,7 +6,7 @@ describe Airport do
   let(:plane) { Plane.new }
 
   describe ' #initialize' do
-    it { is_expected.to respond_to :plane }
+    it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :capacity }
     it 'set the default capacity:10' do
       airport = Airport.new(10)
@@ -19,18 +19,23 @@ describe Airport do
 
     it 'is instruct a plane to land' do
       airport.land(plane)
-      expect(airport.plane).to be plane
+      expect(airport.planes[0]).to be plane
     end
 
     it 'raise an error when airport is full' do
-      airport.land(plane)
-      plane1 = Plane.new
-      expect { airport.land(plane1) } .to raise_error('Airport is full now')
+      allow(airport).to receive(:rand).and_return 0
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect { airport.land(plane) } .to raise_error('Airport is full now')
     end
 
     it 'raise an error when air is stormy' do
       allow(airport).to receive(:rand).and_return 15
       expect { airport.land(plane) } .to raise_error('air is stormy')
+    end
+
+    it 'when plane lands, status:taxi' do
+      airport.land(plane)
+      expect(plane.status).to eq 'taxi'
     end
   end
 
@@ -41,10 +46,20 @@ describe Airport do
       airport.land(plane)
       expect(airport.takeoff).to be_flying
     end
+    it 'raise an error when no airplane at airport' do
+      allow(airport).to receive(:rand).and_return 0
+      expect { airport.takeoff } .to raise_error('no airplane at airport')
+    end
 
     it 'raise an error when air is stormy' do
       allow(airport).to receive(:rand).and_return 15
       expect { airport.takeoff } .to raise_error('air is stormy')
+    end
+
+    it 'when plane takes off, status:flying' do
+      airport.land(plane)
+      airport.takeoff
+      expect(plane.status).to eq 'flying'
     end
 
   end
