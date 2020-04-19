@@ -5,6 +5,7 @@
 USAGE='usage:\ttdd.feature-test [object-name]'
 
 # TODO Logic needs to add case to print USAGE
+DEFAULT_TEST="./feature-test.irb"
 
 if [[ "$1" ]] ; then
   TEST_FILE="./irb/$1.irb"
@@ -13,8 +14,11 @@ if [[ "$1" ]] ; then
     exit 1
   fi
 else
-  echo "No test file"
-  TEST_FILE=""
+  if [[  -f $DEFAULT_TEST ]] ; then
+    TEST_FILE=$DEFAULT_TEST
+  else
+    TEST_FILE=""
+  fi
 fi
 
 clear
