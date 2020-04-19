@@ -1,11 +1,15 @@
 class Plane
 
   def land_at_airport(airport)
-    airport.planes << self unless check_conditions(airport)
+    return if check_conditions(airport) || airport.docked?(self)
+
+    airport.planes << self
   end
 
   def leave_airport(airport)
-    airport.planes.delete(self) unless airport.weather.stormy?
+    return if airport.weather.stormy? || airport.not_docked?(self)
+
+    airport.planes.delete(self)
   end
 
   private
