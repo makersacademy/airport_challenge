@@ -12,4 +12,8 @@ describe Airport do
   it "Adds a plane to an array in airport" do
     expect((airport.instruct_plane_to_land(plane)).count).to eq (1)
   end 
+
+  it "Instructs plane to take off" do 
+    expect(airport).to respond_to(:instruct_plane_to_takeoff)
+  end 
 end 
