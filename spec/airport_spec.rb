@@ -1,15 +1,19 @@
 require 'airport'
 
 RSpec.describe Airport do
-  describe '#full' do
+  describe '#airport_full' do
     context 'when population is higher than capacity' do
       it 'returns true' do
-        airport = described_class.new(airport_population: 1, airport_capacity: 0)
-        allow(airport).to receive(:full?) { true }
+        data = described_class.new(2, 1)
+        allow(data).to receive(:airport_full?) { true }
+      end
+      it 'returns true' do
+        data = described_class.new(1, 1)
+        allow(data).to receive(:airport_full?) { false }
       end
       it 'returns false' do
-        airport = described_class.new(airport_population: 0, airport_capacity: 1)
-        allow(airport).to receive(:full?) { false }
+        data = described_class.new(1, 2)
+        allow(data).to receive(:airport_full?) { false }
       end
     end
   end
