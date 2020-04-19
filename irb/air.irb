@@ -1,3 +1,7 @@
 require './lib/air.rb'
+require './lib/plane.rb'
 
 air = Air.new
+planes = Array.new(10){Plane.new}
+
+air.add(planes[0])
