@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 describe Airport do
   it 'Airport responds to land method with one argument' do
@@ -56,5 +57,23 @@ describe Airport do
     airport = Airport.new(50)
     plane = Plane.new
     expect { airport.land(plane) }.to raise_error "This airport (#{airport}) has reached maximum capacity."
+  end
+end
+
+describe WeatherGenerator do
+  it 'Weather Generator responds to random method' do
+    expect(subject).to respond_to(:random)
+  end
+
+  it 'Random generates random number between 0 and 3' do
+    generator = WeatherGenerator.new
+    allow(generator).to receive(:rand).and_return(3)
+    expect(generator.random).to eq(3)
+  end
+
+  it 'Weather returns string "stormy"' do
+    generator = WeatherGenerator.new
+    allow(generator).to receive(:rand).and_return(3)
+    expect(generator.weather).to eq "stormy"
   end
 end
