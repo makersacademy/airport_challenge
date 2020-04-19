@@ -5,21 +5,14 @@ require './lib/weather'
 airport1 = Airport.new(15)
 airport2 = Airport.new(10)
 
+plane1 = Plane.new
+plane2 = Plane.new
 
-# plane1 = Plane.new
-# plane2 = Plane.new
-
-# airport.take_off(plane1)
-# airport.take_off(plane2)
-# airport.land(plane1)
-
-# 10.times { airport.land Plane.new }
-
-p airport1.capacity
-p airport2.capacity
-
-p airport1.weather.is_stormy?
-p airport2.weather.is_stormy?
-
-airport1.capacity = 20
-p airport1.capacity
+puts "Plane1 is landing at Airport1"
+airport1.land(plane1)
+puts "Plane1 is taking off at Airport1"
+airport1.take_off(plane1)
+puts "Plane2 is landing at Airport2"
+airport2.land(plane2)
+puts "Plane1 is taking off at Airport1"
+airport1.take_off(plane1)

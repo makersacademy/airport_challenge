@@ -6,7 +6,7 @@ describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
   
   it "shows planes in airport" do
-    allow(subject).to receive(:is_stormy?) {false}
+    allow(subject).to receive(:is_stormy?) { false }
     plane = Plane.new
     subject.land(plane)
     expect(subject.planes).to eq [plane]
@@ -19,10 +19,10 @@ describe Airport do
   describe "#take_off" do
     
     it "lets plane take off" do
-    allow(subject).to receive(:is_stormy?) {false}
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq plane
+      allow(subject).to receive(:is_stormy?) { false }
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
     end
     
     it "raises error when the weather is stormy" do
@@ -44,13 +44,13 @@ describe Airport do
   describe "#land" do
     
     it "lands planes" do
-      allow(subject).to receive(:is_stormy?) {false}
+      allow(subject).to receive(:is_stormy?) { false }
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end
     
     it "raises error when airport is full" do
-      allow(subject).to receive(:is_stormy?) {false}
+      allow(subject).to receive(:is_stormy?) { false }
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }.to raise_error "Landing not allowed, airport full"
     end

@@ -112,15 +112,16 @@ The problem was broken down to the following steps:
 3. Use feature tests => unit tests => code
 
 What is left to be done:
-1. airport capacity can only be set up at the creation of the instance, it should be possible to update anytime
-2. planes to get instructions to land and take off
-3. prevent landing and take off when weather is stormy. Currently no exception is raised when weather is stormy.
+* airport capacity can only be set up at the creation of the instance, it should be possible to update anytime
+* better tests for weather class
 
 What I learnt from the process: 
-1. improving and understanding the TDD process
-2. using objects and methods
-3. encapsulation and SRP
+* improving and understanding the TDD process
+* using objects and methods
+* encapsulation and SRP
 
 What I want to improve: 
-1. understanding and using mock tests
-2. understanding why unit tests do not pass
+* understanding and using mock tests: test doubles & method stubs
+* understanding why unit tests do not pass
+* using before and after hooks
+* understanding why certain code don't have enough coverage
