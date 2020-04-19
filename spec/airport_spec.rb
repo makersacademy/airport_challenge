@@ -21,6 +21,10 @@ describe Airport do
     expect(subject).to respond_to(:planes)
   end
 
+  it "attr_reader" do
+    expect(subject).to respond_to(:weather)
+  end
+
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAP
   end
@@ -39,6 +43,12 @@ describe Airport do
   describe 'no planes in airport' do
     it 'raises error' do
       expect { subject.take_off }.to raise_error("No planes in airport")
+    end
+  end
+
+  describe 'Not to land in stormy weather' do
+    it 'raises error' do
+      expect { subject.land Plane.new }.to raise_error("Weather is stormy, don't land!")
     end
   end
 end
