@@ -7,7 +7,7 @@ class Airport
   end
 
   def empty?
-    false
+    @planes.count.zero?
   end
   
   def full?
