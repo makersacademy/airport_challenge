@@ -46,7 +46,6 @@ RSpec.describe Airport do
         expect { subject.take_off(plane) }.to raise_error 'Cannot take off plane: plane not at airport'
       end
     end
-
     context 'when stormy' do
       it 'raise error' do 
         allow(subject).to receive(:stormy?).and_return true
@@ -54,6 +53,22 @@ RSpec.describe Airport do
       end
     end  
   end
+
+  describe '#planes' do 
+    before do 
+      allow(subject).to receive(:stormy?).and_return false
+    end
+    it 'returns plane that are at the airport' do
+      airport.land(plane)
+      expect(airport.planes_landed).to include plane
+    end
+    it 'does not return planes that have taken off' do 
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes_landed).not_to include plane
+    end
+  end
+
   
   describe "#capacity" do   
     it 'has a default of 20' do
