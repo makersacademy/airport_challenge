@@ -15,4 +15,4 @@ planes = Array.new(10){Plane.new}
 world.air
 world.add(planes[0])
 world.add(airports[0])
-world.show
+world.view

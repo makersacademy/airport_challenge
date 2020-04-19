@@ -5,7 +5,7 @@ class World
     @air = Air.new
   end
 
-  def show
+  def view
     # TODO: Would be better as a Hash
     [@air]
   end
