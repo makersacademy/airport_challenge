@@ -7,6 +7,7 @@ describe Airport do
   describe '#initialize' do
     it 'has a default capacity argument value' do
       subject = described_class.new
+      allow(subject).to receive(:stormy?).and_return false
       described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport is full!'
     end
@@ -23,8 +24,16 @@ describe Airport do
 
     context 'when airport is full' do
       it 'prevents landing' do
+        allow(subject).to receive(:stormy?).and_return false
         10.times { subject.land(plane) }
         expect { subject.land(double :plane) }.to raise_error 'Airport is full!'
+      end
+    end
+
+    context 'when weather is stormy' do
+      it 'prevents landing' do
+        allow(subject).to receive(:stormy?).and_return true
+        expect {subject.land(plane) }.to raise_error 'Landing is cancelled due to bad weather!'
       end
     end
   end
