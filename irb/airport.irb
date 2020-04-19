@@ -19,3 +19,9 @@ airport.planes
 
 airport.in?(planes[0])
 airport.in?(planes[3])
+
+airport.del(planes[0])
+airport.in?(planes[0])
+
+airport.del(planes[3])
+airport.in?(planes[3])

@@ -33,7 +33,7 @@ class Airport
   end
   
   def del(plane)
-    return false unless @planes.include?(plane)
+    return false unless in?(plane)
     
     @planes.delete(plane)
   end
