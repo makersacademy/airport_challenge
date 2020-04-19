@@ -1,9 +1,10 @@
 require './lib/airport.rb'
+require './lib/weather.rb'
 require './lib/plane.rb'
 
 airport = Airport.new
 
-
+airport.weather
 
 planes = Array.new(10){Plane.new}
 

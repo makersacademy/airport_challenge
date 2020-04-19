@@ -14,7 +14,8 @@ class Airport
   end
   
   def weather
-    :stormy
+    weather = Weather.new
+    weather.stormy? ? :stormy : :sunny
   end
 
   def enter(plane)
