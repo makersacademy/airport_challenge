@@ -33,4 +33,10 @@ class World
     false
   end
   
+  def land(plane, airport)
+    return false unless plane.is_a?(Plane) && airport.is_a?(Airport)
+    
+    true
+  end
+  
 end
