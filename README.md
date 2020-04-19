@@ -88,3 +88,16 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+My approach
+-------
+
+1. Created folder structure for test files and code files
+2. Created a spec file for airport, then airport class, with methods: land(plane) & take_off(plane)
+3. Created a spec file for plane, then plane class, with methods: land(airport) & take_off(airport)
+4. Created a spec file for the weather, then weather class, with is_stormy? method
+5. Used array to store planes in airport
+6. Raise exception when airport is full and plane is about to land
+7. Used default capacity for airport, capacity can only be set up at the creation of the airport instance
+8. Weather instance is created for each airport instance
+9. Raise exception when weather at airport is stormy
