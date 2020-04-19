@@ -3,31 +3,21 @@ require './lib/weather.rb'
 require './lib/plane.rb'
 
 airport = Airport.new
-
-airport.weather
-
 planes = Array.new(10){Plane.new}
 
-
-airport.full?
-airport.capacity
-airport.capacity = 2
-airport.capacity
-airport.capacity = -4
-airport.capacity
-
-airport.full?
-airport.enter(planes[0])
-airport.full?
-airport.enter(planes[1])
-airport.full?
-airport.enter(planes[2])
-airport.full?
-airport.exit(planes[2])
-airport.full?
-airport.exit(planes[1])
-airport.full?
-airport.exit(planes[0])
-airport.full?
-
 airport.weather
+
+
+airport.planes
+airport.add(planes[0])
+airport.planes
+airport.add(planes[1])
+airport.planes
+airport.add(planes[2])
+airport.planes
+
+airport.del(planes[1])
+airport.planes
+
+airport.del(planes[5])
+airport.planes

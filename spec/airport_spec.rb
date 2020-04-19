@@ -1,5 +1,6 @@
 require 'airport'
 require 'weather'
+require 'plane'
 
 describe Airport do
 
@@ -11,19 +12,18 @@ describe Airport do
     expect(subject).to respond_to(:capacity)
   end
 
-  it 'responds to capacity' do
+  it 'responds to weather' do
     expect(subject).to respond_to(:weather)
   end
 
-  
-  it 'responds to enter(Plane)' do
-    expect(subject).to respond_to(:enter).with(1).argument
-  end
-  
-  it 'responds to exit(Plane)' do
-    expect(subject).to respond_to(:exit).with(1).argument
+  it 'responds to add(Plane)' do
+    expect(subject).to respond_to(:add).with(1).argument
   end
 
+  it 'responds to del(Plane)' do
+    expect(subject).to respond_to(:del).with(1).argument
+  end
+  
   it 'check for @capacity instance variable' do
     airport = Airport.new
     expect(airport.instance_variable_get(:@capacity))
