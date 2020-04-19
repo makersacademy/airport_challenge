@@ -30,7 +30,7 @@ class Airport
   end
 
   def storm?
-    true
+    rand(1..8) > 7
   end
 
 end

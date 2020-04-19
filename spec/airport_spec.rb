@@ -10,12 +10,13 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
-  it 'Prevents a plane from Landing when the airport is full.' do
+  it 'Prevents a plane from landing when the airport is full.' do
     subject.capacity.times { subject.land Airplane.new }
     expect { subject.land Airplane.new }.to raise_error 'AIRPORT FULL - permission to land denied.'
   end
 
   it 'Prevents a plane from taking off when there is a storm.' do
+    allow(subject).to receive(:storm?).and_return true
     expect { subject.take_off }.to raise_error 'Storm in progress - all flights are grounded.'
   end
 
