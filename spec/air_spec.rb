@@ -12,4 +12,11 @@ describe Air do
     plane = Plane.new
     expect(air.add(plane)).to eq(true).or eq(false)
   end
+  
+  it 'check for @planes instance variable' do
+    # TODO: This doesn't seem to actually check for the instance variable
+    air = Air.new
+    expect(air.instance_variable_get(:@planes))
+  end
+
 end
