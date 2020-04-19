@@ -6,6 +6,10 @@ describe Air do
   it 'responds to add(Plane)' do
     expect(subject).to respond_to(:add).with(1).argument
   end
+
+  it 'responds to del(Plane)' do
+    expect(subject).to respond_to(:del).with(1).argument
+  end
   
   it 'responds to planes' do
     expect(subject).to respond_to(:planes)
@@ -22,7 +26,7 @@ describe Air do
     plane = Plane.new
     expect(air.add(plane)).to eq(true).or eq(false)
   end
-  
+
   it '.planes returns array' do
     # TODO: check it's an array of planes
     air = Air.new

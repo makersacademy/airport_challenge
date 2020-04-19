@@ -9,5 +9,8 @@ class Air
     @planes.push(plane)
     @planes.last == plane
   end
+  
+  def del(plane)
+  end
 
 end

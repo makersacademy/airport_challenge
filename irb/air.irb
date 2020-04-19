@@ -11,3 +11,6 @@ air.add(planes[1])
 air.planes
 air.add(planes[2])
 air.planes
+
+air.del(planes[1])
+air.planes
