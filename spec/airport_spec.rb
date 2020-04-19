@@ -11,7 +11,7 @@ describe Airport do
   end
 
   it 'Prevents a plane from Landing when the airport is full.' do
-    20.times { subject.land Airplane.new }
+    subject.capacity.times { subject.land Airplane.new }
     expect { subject.land Airplane.new }.to raise_error 'AIRPORT FULL - permission to land denied.'
   end
 
