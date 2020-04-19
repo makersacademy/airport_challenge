@@ -3,6 +3,8 @@ class World
 
   def initialize
     @air = Air.new
+    @planes = Array.new
+    @airports = Array.new
   end
 
   def view

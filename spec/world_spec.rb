@@ -7,9 +7,22 @@ describe World do
 
   it 'check for @air instance variable on creation' do
     # TODO: This doesn't seem to actually check for the instance variable
+    # TODO: Need to check instance is Air
     expect(subject.instance_variable_get(:@air))
   end
   
+  it 'check for @planes instance variable on creation' do
+    # TODO: This doesn't seem to actually check for the instance variable
+    # TODO: Need to check instance is Array of Plane
+    expect(subject.instance_variable_get(:@planes))
+  end
+
+  it 'check for @airports instance variable on creation' do
+    # TODO: This doesn't seem to actually check for the instance variable
+    # TODO: Need to check instance is Array of Airport
+    expect(subject.instance_variable_get(:@airports))
+  end
+
   it 'responds to view' do
     expect(subject).to respond_to(:view)
   end
