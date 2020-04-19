@@ -18,6 +18,8 @@ class Airport
   end
 
   def take_off
+    fail 'WARNING! AIRPORT EMPTY!' if current_plane_count == 0
+    @current_plane_count -= 1
   end
 
   def confirm_location

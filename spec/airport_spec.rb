@@ -23,6 +23,11 @@ describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it "produces warning for zero plane take off cases" do
+    expect { subject.take_off }.to raise_error 'WARNING! AIRPORT EMPTY!'
+    end
+  end
 
 
 end
