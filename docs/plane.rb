@@ -11,9 +11,11 @@ class Plane
   end
 
   def takeoff(airport)
+    @location = "sky"
   end 
 
-  def flying
+  def flying?
+    @location == "sky"
   end 
   
 end 
