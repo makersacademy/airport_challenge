@@ -1,10 +1,9 @@
-Airport Challenge
-=================
+# Airport Challenge - will-head
 
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(____WH____)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -13,78 +12,141 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+## Objects
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* Air Traffic Controller (Atc)
+* Plane
+* Airport
+* System Designer (Sd)
+* Weather
+* Air
+* World
 
-Steps
--------
+## Actions
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+* Atc gets Passengers to Destination
+* Atc gets Passenters on way to Destination
+* Atc instructs Plane to land at Airport
+* Atc instructs Plane to takeoff at Airport
+* Atc confims Plane not in airport at Airport
+* Atc prevents landing when Airport is full to ensure Safety
+* Sd overrides default Airport capacity for different Airports
+* Atc prevents takeoff when Weather is stormy to ensure Safety
+* Atc prevents landing when Weather is stormy to ensure Safety
 
-Task
------
+## Assumptions
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+* There can only be one Atc
+* There can only be one Sd
+* There can only be one Air
+* There can be multiple Planes
+* There can be multiple Airports
+* There is a World that owns the Air
+* Planes and Airports can be put into the World
+* Planes can either be in the Air, or in an Airport
+* Atc decides where the planes go
+* Atc can ask Planes to land at an Airport and will receive a message confirming if this was successful or not
+* Atc can ask Planes to takeoff from an Airport and will recieve a message confirming if this was successful or not
+* Atc can ask an Airport if a Plane is there
+* Atc can ask the Air if a Plane is there
+* Planes go into the Air when they are added to the World (for simplicity) 
+* There can be more than one Plane at an Airport
+* Airports have a maximum capacity of Planes
+* Planes can't land if the Airport is at capacity
+* Airports can't go over capacity
+* Airport capacity must be a positive integer
+* There can only be one Weather at an Airport
+* The Weather is stormy 1 time out of 10
+* Planes can't land at an Airport if the Weather is stormy
+* Planes can't takeoff from an Airport if the Weather is stormy
+* The Sd can increase or decrease the capacity of an Airport, provided it remains a positive integer
 
+## Model
+
+* The Atc can always ask where a Plane is.
+* The World contains the Air.
+* Planes and Airports are created outside, then added to the World.
+* Only Planes and Airports can be added to the World.
+* Planes added to the World will be added to the Air (since the World doesn't have any Airports until they are added).
+* The Air will confirm with true if a Plane was successfully added.
+* The Air will confirm with true if a Plane was successfully deleted.
+* The World can ask the Air if it contains a Plane, otherwise it is assumed it's in an Airport.
+* Airports know if they are empty or full.
+* Airports will confirm with true if a Plane was successfully added.
+* Airports will confirm with true if a Plane was successfully deleted.
+* Airports can only be deleted if they are empty.
+* Airports know if they have a Plane.
+* Airports can't delete Planes they don't have.
+* Planes are simple objects.
+* Planes can only be deleted if they are in the Air.
+* Airports have a default capacity.
+* The Sd can overide the default Airport capacity.
+* Each Airport has its own Weather.
+* The World will return its current state if aksed.
+* The World will only let a Plane land if the Airport has capacity.
+* The World won't let a Plane land if the Airport says the Weather is stormy.
+* The World won't let a Plane takeoff if the Airport says the Weather is stormy.
+
+## Object-Messages Table
+
+| ```Status```                  | ```Object```     | ```Message``` |
+|:--:                           |               --:|:--            |
+| :white_check_mark:            | ```Atc```        | ```new``` |
+| :white_check_mark:            | ```Atc```        | ```where_is(plane])``` |
+| :white_check_mark:            | ```World```      | ```new``` |
+| :white_check_mark:            | ```World```      | ```view``` |
+| :white_check_mark:            | ```World```      | ```add(object)``` |
+| :white_check_mark:            | ```World```      | ```del(object)``` |
+| :white_check_mark:            | ```World```      | ```where_is(object)``` |
+| :white_check_mark:            | ```World```      | ```land(plane, airport)``` |
+| :white_check_mark:            | ```World```      | ```takeoff(plane, airport)``` |
+| :white_check_mark:            | ```Air```        | ```new``` |
+| :white_check_mark:            | ```Air```        | ```add(plane)``` |
+| :white_check_mark:            | ```Air```        | ```del(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```new``` |
+| :white_check_mark:            | ```Airport```    | ```empty?``` |
+| :white_check_mark:            | ```Airport```    | ```full?``` |
+| :white_check_mark:            | ```Airport```    | ```in?(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```capacity=(capacity)``` |
+| :white_check_mark:            | ```Airport```    | ```weather``` |
+| :white_check_mark:            | ```Airport```    | ```add(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```del(plane)``` |
+| :white_check_mark:            | ```Weather```    | ```new``` |
+| :white_check_mark:            | ```Weather```    | ```stormy?``` |
+| :white_check_mark:            | ```Plane```      | ```new``` |
+| :white_check_mark:            | ```Sd```         | ```new``` |
+| :white_check_mark:            | ```Sd```         | ```capacity(airport, capacity)``` |
+
+## Feature Tests
+
+To test all User Stories run script:
+./tdd.feature-test
+
+Script will pause after each story, press Control-C to continue.
+
+To feature test an individual object run:
+./tdd.feature-test object-name
+
+## Unit Tests
+
+To test all Unit Tests and run rubocop, run script:
+./tdd.test
+
+To unit test an individual object run:
+./tdd.test object-name
+
+## Improvements
+
+* Fix all tests commented with TODO:
+* Make add/del methods private
+* Put Atc inside World
+* Give Airports and Planes names
+* Make world.view more friendly, for example:
+``` 
+    There are 5 planes in the Air: A1, A2, A3, A4, A5
+    There are 3 Airports: Heathrow, Stansted and Gatwick
+    Heathrow has 2 Planes: A6, A7
+    Stansted has 0 Planes:
+    Gatwick has 1 Plane: A8
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+  

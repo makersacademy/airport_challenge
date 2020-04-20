@@ -1,0 +1,19 @@
+require './lib/air.rb'
+require './lib/plane.rb'
+
+air = Air.new
+planes = Array.new(10){Plane.new}
+
+air.planes
+air.add(planes[0])
+air.planes
+air.add(planes[1])
+air.planes
+air.add(planes[2])
+air.planes
+
+air.del(planes[1])
+air.planes
+
+air.del(planes[5])
+air.planes

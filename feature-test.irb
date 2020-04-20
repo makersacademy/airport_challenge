@@ -1,0 +1,249 @@
+require './lib/atc.rb'
+require './lib/sd.rb'
+require './lib/air.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
+require './lib/plane.rb'
+require './lib/world.rb'
+
+atc = Atc.new
+
+# Set up world
+world = World.new
+airports = Array.new(2){Airport.new}
+planes = Array.new(20){Plane.new}
+atc.where_is(planes[0], world)
+
+# Add two airports
+world.add(airports[0])
+world.add(airports[1])
+
+# Add twenty planes
+world.add(planes[0])
+world.add(planes[1])
+world.add(planes[2])
+world.add(planes[3])
+world.add(planes[4])
+world.add(planes[5])
+world.add(planes[6])
+world.add(planes[7])
+world.add(planes[8])
+world.add(planes[9])
+world.add(planes[10])
+world.add(planes[11])
+world.add(planes[12])
+world.add(planes[13])
+world.add(planes[14])
+world.add(planes[15])
+world.add(planes[16])
+world.add(planes[17])
+world.add(planes[18])
+world.add(planes[19])
+
+#Show world
+world.view
+
+# Environment setup, ready to test User Stories
+
+loop do
+# Press Control-C to continue
+end
+
+# User Story One:
+
+## Land planes[0] in airports[0]
+world.land(planes[0], airports[0])
+
+## Is planes[0] in airports[0]?
+airports[0].in?(planes[0])
+
+world.view
+
+loop do
+# Press Control-C to continue
+end
+
+# End of User Story One:
+
+loop do
+# Press Control-C to continue
+end
+
+# User Story Two:
+
+## Check planes[0] in airports[0]
+airports[0].in?(planes[0])
+
+## Ask plane[0] to take off from Airports[0]
+world.takeoff(planes[0], airports[0])
+
+## Is planes[0] in airports[0]?
+airports[0].in?(planes[0])
+
+world.view
+
+# End of User Story Two:
+
+loop do
+# Press Control-C to continue
+end
+
+# User Story Three:
+
+## Check airports[0] capacity
+airports[0].capacity
+airports[0].empty?
+airports[0].full?
+
+
+## Land six planes, check full after each
+world.land(planes[0], airports[0])
+airports[0].full?
+
+world.land(planes[1], airports[0])
+airports[0].full?
+
+world.land(planes[2], airports[0])
+airports[0].full?
+
+world.land(planes[3], airports[0])
+airports[0].full?
+
+world.land(planes[4], airports[0])
+airports[0].full?
+
+world.land(planes[5], airports[0])
+airports[0].full?
+
+world.view
+
+# End of User Story Three:
+
+loop do
+# Press Control-C to continue
+end
+
+#User Story Four:
+
+## Make System Designer
+sd = Sd.new
+
+## Show capacity of airports[1]
+airports[1].capacity
+
+## Sd set capacity of airports[1] to 20
+sd.capacity(airports[1], 20)
+
+## Show capacity of airports[1]
+airports[1].capacity
+
+# End of User Story Four:
+
+loop do
+# Press Control-C to continue
+end
+
+#User Story Five & Six:
+
+## Take off the planes we previously landed
+world.takeoff(planes[0], airports[0])
+world.takeoff(planes[1], airports[0])
+world.takeoff(planes[2], airports[0])
+world.takeoff(planes[3], airports[0])
+world.takeoff(planes[4], airports[0])
+airports[0].empty?
+
+world.takeoff(planes[0], airports[0])
+world.takeoff(planes[1], airports[0])
+world.takeoff(planes[2], airports[0])
+world.takeoff(planes[3], airports[0])
+world.takeoff(planes[4], airports[0])
+airports[0].empty?
+
+world.view
+
+loop do
+# Press Control-C to continue
+end
+
+## Try and land 20 planes. Stormy 1/10, so some should return :stormy
+airports[1].empty?
+
+world.land(planes[0], airports[1])
+world.land(planes[1], airports[1])
+world.land(planes[2], airports[1])
+world.land(planes[3], airports[1])
+world.land(planes[4], airports[1])
+world.land(planes[5], airports[1])
+world.land(planes[6], airports[1])
+world.land(planes[7], airports[1])
+world.land(planes[8], airports[1])
+world.land(planes[9], airports[1])
+world.land(planes[10], airports[1])
+world.land(planes[11], airports[1])
+world.land(planes[12], airports[1])
+world.land(planes[13], airports[1])
+world.land(planes[14], airports[1])
+world.land(planes[15], airports[1])
+world.land(planes[16], airports[1])
+world.land(planes[17], airports[1])
+world.land(planes[18], airports[1])
+world.land(planes[19], airports[1])
+
+airports[1].full?
+
+## Try and re-land 20 planes that failed due to bad weather
+
+world.land(planes[0], airports[1])
+world.land(planes[1], airports[1])
+world.land(planes[2], airports[1])
+world.land(planes[3], airports[1])
+world.land(planes[4], airports[1])
+world.land(planes[5], airports[1])
+world.land(planes[6], airports[1])
+world.land(planes[7], airports[1])
+world.land(planes[8], airports[1])
+world.land(planes[9], airports[1])
+world.land(planes[10], airports[1])
+world.land(planes[11], airports[1])
+world.land(planes[12], airports[1])
+world.land(planes[13], airports[1])
+world.land(planes[14], airports[1])
+world.land(planes[15], airports[1])
+world.land(planes[16], airports[1])
+world.land(planes[17], airports[1])
+world.land(planes[18], airports[1])
+world.land(planes[19], airports[1])
+
+airports[1].full?
+
+loop do
+# Press Control-C to continue
+end
+
+## Try and take off 20 planes. Stormy 1/10, so some should return :stormy
+
+world.takeoff(planes[0], airports[1])
+world.takeoff(planes[1], airports[1])
+world.takeoff(planes[2], airports[1])
+world.takeoff(planes[3], airports[1])
+world.takeoff(planes[4], airports[1])
+world.takeoff(planes[5], airports[1])
+world.takeoff(planes[6], airports[1])
+world.takeoff(planes[7], airports[1])
+world.takeoff(planes[8], airports[1])
+world.takeoff(planes[9], airports[1])
+world.takeoff(planes[10], airports[1])
+world.takeoff(planes[11], airports[1])
+world.takeoff(planes[12], airports[1])
+world.takeoff(planes[13], airports[1])
+world.takeoff(planes[14], airports[1])
+world.takeoff(planes[15], airports[1])
+world.takeoff(planes[16], airports[1])
+world.takeoff(planes[17], airports[1])
+world.takeoff(planes[18], airports[1])
+world.takeoff(planes[19], airports[1])
+
+airports[1].empty?
+
+# End of User Story Five & Six:

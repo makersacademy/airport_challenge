@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Usage: tdd.feature-test [object-name]
+
+USAGE='usage:\ttdd.feature-test [object-name]'
+
+# TODO Logic needs to add case to print USAGE
+DEFAULT_TEST="./feature-test.irb"
+
+if [[ "$1" ]] ; then
+  TEST_FILE="./irb/$1.irb"
+  if [[ ! -f $TEST_FILE ]] ; then
+    echo -e "$TEST_FILE not found"
+    exit 1
+  fi
+else
+  if [[  -f $DEFAULT_TEST ]] ; then
+    TEST_FILE=$DEFAULT_TEST
+  else
+    TEST_FILE=""
+  fi
+fi
+
+clear
+if [[ "$TEST_FILE" ]] ; then
+  irb < $TEST_FILE
+else
+  irb
+fi

@@ -1,0 +1,27 @@
+require './lib/airport.rb'
+require './lib/weather.rb'
+require './lib/plane.rb'
+
+airport = Airport.new
+planes = Array.new(10){Plane.new}
+
+airport.weather
+
+airport.empty?
+
+airport.planes
+airport.add(planes[0])
+airport.planes
+airport.add(planes[1])
+airport.planes
+airport.add(planes[2])
+airport.planes
+
+airport.in?(planes[0])
+airport.in?(planes[3])
+
+airport.del(planes[0])
+airport.in?(planes[0])
+
+airport.del(planes[3])
+airport.in?(planes[3])

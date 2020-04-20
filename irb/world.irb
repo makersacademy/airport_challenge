@@ -1,0 +1,42 @@
+require './lib/world.rb'
+require './lib/atc.rb'
+require './lib/sd.rb'
+require './lib/air.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
+require './lib/plane.rb'
+
+world = World.new
+atc = Atc.new
+sd = Sd.new
+airports = Array.new(10){Airport.new}
+planes = Array.new(10){Plane.new}
+
+world.view
+
+world.air
+
+world.view
+
+world.view
+
+world.add(airports[0])
+
+world.add(planes[0])
+world.add(planes[1])
+world.view
+
+world.land(planes[0], airports[0])
+world.view
+
+world.land(planes[0], airports[0])
+world.view
+
+world.takeoff(planes[1], airports[0])
+world.takeoff(planes[2], airports[0])
+world.takeoff(planes[3], airports[0])
+world.takeoff(planes[4], airports[0])
+world.takeoff(planes[5], airports[0])
+world.takeoff(planes[6], airports[0])
+
+world.view

@@ -1,0 +1,9 @@
+require './lib/sd.rb'
+require './lib/airport.rb'
+
+sd = Sd.new
+airport = Airport.new
+
+airport.capacity
+sd.capacity(airport, 10)
+airport.capacity
