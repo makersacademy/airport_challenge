@@ -9,7 +9,7 @@ describe Airport do
     allow(subject).to receive(:is_stormy?) { false }
     plane = Plane.new
     subject.land(plane)
-    expect(subject.planes).to eq [plane]
+    expect(subject.planes).to include plane
   end
   
   it "has a default capacity" do
