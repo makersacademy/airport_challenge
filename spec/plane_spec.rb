@@ -27,6 +27,7 @@ describe Plane do
   end
 
   it "Changes location to Sky when taken off" do
+    plane.location = airport
     plane.takeoff(airport)
     expect(plane.location).to eq("sky")
   end 
@@ -41,10 +42,28 @@ describe Plane do
     expect{plane.land(plane)}.to raise_error "Plane already landed."
   end 
 
-  it "Runs the airport lanind request method" do 
+  it "Runs the airport landing request method" do 
     plane.location = "sky"
     plane.land(airport)
     expect(airport.planes).to include(plane)
+  end 
+
+  it "Raises error if plane already flying" do 
+    plane.location = "sky"
+    expect{plane.takeoff(airport)}.to raise_error "Plane already flying."
+  end 
+
+  it "Raises error if plane not at that airport" do 
+    gatwick = Airport.new 
+    plane.location = gatwick
+    
+    expect { plane.takeoff(airport) }.to raise_error 'The plane is not currently landed at this airport'
+  end 
+
+  it "Runs the airport take off request method" do 
+    plane.location = "sky"
+    plane.land(airport)
+    expect { plane.takeoff(airport) }.to change { airport.planes.count }.by(-1)
   end 
 end 
 
