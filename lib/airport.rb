@@ -12,12 +12,12 @@ class Airport
     @current_plane_count = CURRENT_PLANE_COUNT
   end
 
-  def land
+  def land(plane)
     fail 'WARNING! AIRPORT FULL!' if current_plane_count >= DEFAULT_CAPACITY
     @current_plane_count += 1
   end
 
-  def take_off
+  def take_off(plane)
     fail 'STORMY WEATHER! TAKEOFF NOT ALLOWED!' if stormy?
     @current_plane_count -= 1
     confirm_takeoff
@@ -30,11 +30,6 @@ class Airport
   def confirm_takeoff
     "Plane confirms that no longer at airport"
   end
-
-    # def full?
-    #   bikes.count >= DEFAULT_CAPACITY
-    # end
-    #
 
   def stormy?
     weather_condition = rand(0..1)
