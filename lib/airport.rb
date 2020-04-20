@@ -15,7 +15,6 @@ class Airport
 
     fail "No landing allowd due storm" if stormy? 
 
-    # @parked_planes << plane
     @parked_planes << plane unless @parked_planes.include? plane
   end
 
