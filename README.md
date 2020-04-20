@@ -15,16 +15,12 @@
 ## Objects
 
 * Air Traffic Controller (Atc)
-* Passengers
 * Plane
 * Airport
-* Destination
-* Safety
 * System Designer (Sd)
-* Software
-* Airports
 * Weather
 * Air
+* World
 
 ## Actions
 
@@ -45,14 +41,15 @@
 * There can only be one Air
 * There can be multiple Planes
 * There can be multiple Airports
-* Atc owns the Air, Planes, Airpots and Sd
+* There is a World that owns the Air
+* Planes and Airports can be put into the World
 * Planes can either be in the Air, or in an Airport
 * Atc decides where the planes go
 * Atc can ask Planes to land at an Airport and will receive a message confirming if this was successful or not
 * Atc can ask Planes to takeoff from an Airport and will recieve a message confirming if this was successful or not
 * Atc can ask an Airport if a Plane is there
 * Atc can ask the Air if a Plane is there
-* Planes are created in the Air (for simplicity) 
+* Planes go into the Air when they are added to the World (for simplicity) 
 * There can be more than one Plane at an Airport
 * Airports have a maximum capacity of Planes
 * Planes can't land if the Airport is at capacity
@@ -64,183 +61,91 @@
 * Planes can't takeoff from an Airport if the Weather is stormy
 * The Sd can increase or decrease the capacity of an Airport, provided it remains a positive integer
 
+## Model
+
+The Atc can always ask where a Plane is.
+The World contains the Air.
+Planes and Airports are created outside, then added to the World.
+Only Planes and Airports can be added to the World.
+Planes added to the World will be added to the Air (since the World doesn't have any Airports until they are added).
+The Air will confirm with true if a Plane was successfully added.
+The Air will confirm with true if a Plane was successfully deleted.
+The World can ask the Air if it contains a Plane, otherwise it is assumed it's in an Airport.
+Airports know if they are empty or full.
+Airports will confirm with true if a Plane was successfully added.
+Airports will confirm with true if a Plane was successfully deleted.
+Airports can only be deleted if they are empty.
+Airports know if they have a Plane.
+Airports can't delete Planes they don't have.
+Planes are simple objects.
+Planes can only be deleted if they are in the Air.
+Airports have a default capacity.
+The Sd can overide the default Airport capacity.
+Each Airport has its own Weather.
+The World will return its current state if aksed.
+The World will only let a Plane land if the Airport has capacity.
+The World won't let a Plane land if the Airport says the Weather is stormy.
+The World won't let a Plane takeoff if the Airport says the Weather is stormy.
 
 ## Object-Messages Table
 
-TODO: Update table, incorporate rough notes below:
-
-air.add(plane) = returns true if successful
-plane = air.del(plane) = returns plane if successful
-
-air.add(plane, airport) = returns true if successful
-air.delete(plane, airport) = returns true if successful
-
-planes in air or airport (or bermuda triangle)
-atc.where is plane?
-
-use subject in test and refactor old ones
-
-create world object to hold planes and airports
-
-World has Air on creation
-
-When plane added to world, it's put in the air
-
-Add plane to air
-Add plane to airport
-Del plane from air anytime
-Del plane from airport anytime
-
-Del airport only when empty
-
-
-Land plane in airport
-
-
 | ```Status```                  | ```Object```     | ```Message``` |
 |:--:                           |               --:|:--            |
-| :negative_squared_cross_mark: | ```Atc```        | ```instruct(thing)``` |
-| :negative_squared_cross_mark: | ```Atc```        | ```confirm(thing)``` |
-| :negative_squared_cross_mark: | ```Plane```      | ```land(airport, allow)``` |
-| :negative_squared_cross_mark: | ```Plane```      | ```takeoff(airport, allow)``` |
-| :negative_squared_cross_mark: | ```Plane```      | ```in_airport?(airport)``` |
-| :negative_squared_cross_mark: | ```Airport```    | ```full?``` |
-| :white_check_mark:            | ```Airport```    | ```capacity``` |
-| :negative_squared_cross_mark: | ```Airport```    | ```enter(plane)``` |
-| :negative_squared_cross_mark: | ```Airport```    | ```exit(plane)``` |
-| :negative_squared_cross_mark: | ```Airport```    | ```weather``` |
+| :white_check_mark:            | ```Atc```        | ```new``` |
+| :white_check_mark:            | ```Atc```        | ```where_is(plane])``` |
+| :white_check_mark:            | ```World```      | ```new``` |
+| :white_check_mark:            | ```World```      | ```view``` |
+| :white_check_mark:            | ```World```      | ```add(object)``` |
+| :white_check_mark:            | ```World```      | ```del(object)``` |
+| :white_check_mark:            | ```World```      | ```where_is(object)``` |
+| :white_check_mark:            | ```World```      | ```land(plane, airport)``` |
+| :white_check_mark:            | ```World```      | ```takeoff(plane, airport)``` |
+| :white_check_mark:            | ```Air```        | ```new``` |
+| :white_check_mark:            | ```Air```        | ```add(plane)``` |
+| :white_check_mark:            | ```Air```        | ```del(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```new``` |
+| :white_check_mark:            | ```Airport```    | ```empty?``` |
+| :white_check_mark:            | ```Airport```    | ```full?``` |
+| :white_check_mark:            | ```Airport```    | ```in?(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```capacity=(capacity)``` |
+| :white_check_mark:            | ```Airport```    | ```weather``` |
+| :white_check_mark:            | ```Airport```    | ```add(plane)``` |
+| :white_check_mark:            | ```Airport```    | ```del(plane)``` |
+| :white_check_mark:            | ```Weather```    | ```new``` |
+| :white_check_mark:            | ```Weather```    | ```stormy?``` |
+| :white_check_mark:            | ```Plane```      | ```new``` |
+| :white_check_mark:            | ```Sd```         | ```new``` |
 | :white_check_mark:            | ```Sd```         | ```capacity(airport, capacity)``` |
-| :white_check_mark:            | ```Weather```    | ```enter(plane)``` |
-| :negative_squared_cross_mark: | ```Air```        | ```add(plane)``` |
-| :negative_squared_cross_mark: | ```Air```        | ```delete(plane)``` |
 
 ## Feature Tests
 
-### Weather
+To test all User Stories run script:
+./tdd.feature-test
 
-require './lib/weather'
+Script will pause after each story, press Control-C to continue.
 
-weather = Weather.new
+To feature test an individual object run:
 
-weather.stormy?
+./tdd.feature-test object-name
 
-### Airport
+## Unit Tests
 
-require './lib/airport'
+To test all Unit Tests and run rubocop, run script:
+./tdd.test
 
-airport = Airport.new
+To unit test an individual object run:
+./tdd.test object-name
 
-airport.full?
-airport.set_capacity(10)
-airport.capacity?
+## Improvements
 
-### Plane
-require './lib/plane'
-require './lib/airport'
-
-airport = Airport.new
-
-plane = Plane.new
-
-plane.in_airport?(airport)
-
-plane.land(airport, true)
-
-plane.land(airport, false)
-
-
-
-
-Original README.md
-==================
-
-Airport Challenge
-=================
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* Fix all tests commented with TODO:
+* Make add/del methods private
+* Put Atc inside World
+* Give Airports and Planes names
+* Make world.view more friendly, for example:
+  There are 5 planes in the Air: A1, A2, A3, A4, A5
+  There are 3 Airports: Heathrow, Stansted and Gatwick
+  Heathrow has 2 Planes: A6, A7
+  Stansted has 0 Planes:
+  Gatwick has 1 Plane: A8
+  
