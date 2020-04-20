@@ -18,17 +18,16 @@ class Airport
     raise 'air is stormy' if @weather.stormy?
     raise 'this plane is currently in another airport' unless @planes.include?(plane)
 
-    @planes.each do |pln|
-      pln.flying
-      return @planes.delete(plane)
-    end
+      plane.flying
+      @planes.delete(plane)
+
   end
 
   def land(plane)
     raise 'plane is in apron' if plane.status == 'taxi'
     raise 'Airport is full now' if @planes.count >= DEFAULT_CAPACITY
     raise 'air is stormy' if @weather.stormy?
-    
+
     plane.taxi
     @planes << plane
   end
