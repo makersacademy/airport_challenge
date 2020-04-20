@@ -24,15 +24,15 @@
 
 ## Actions
 
-* Atc get Passengers to Destination
-* Atc get Passenters on way to Destination
-* Atc instruct Plane to land at Airport
-* Atc instruct Plane to takeoff at Airport
-* Atc confim Plane not in airport at Airport
-* Atc prevent landing when Airport is full to ensure Safety
-* Sd overide default Airport capacity for different Airports
-* Atc prevent takeoff when Weather is stormy to ensure Safety
-* Atc prevent landing when Weather is stormy to ensure Safety
+* Atc gets Passengers to Destination
+* Atc gets Passenters on way to Destination
+* Atc instructs Plane to land at Airport
+* Atc instructs Plane to takeoff at Airport
+* Atc confims Plane not in airport at Airport
+* Atc prevents landing when Airport is full to ensure Safety
+* Sd overrides default Airport capacity for different Airports
+* Atc prevents takeoff when Weather is stormy to ensure Safety
+* Atc prevents landing when Weather is stormy to ensure Safety
 
 ## Assumptions
 
@@ -63,29 +63,29 @@
 
 ## Model
 
-The Atc can always ask where a Plane is.
-The World contains the Air.
-Planes and Airports are created outside, then added to the World.
-Only Planes and Airports can be added to the World.
-Planes added to the World will be added to the Air (since the World doesn't have any Airports until they are added).
-The Air will confirm with true if a Plane was successfully added.
-The Air will confirm with true if a Plane was successfully deleted.
-The World can ask the Air if it contains a Plane, otherwise it is assumed it's in an Airport.
-Airports know if they are empty or full.
-Airports will confirm with true if a Plane was successfully added.
-Airports will confirm with true if a Plane was successfully deleted.
-Airports can only be deleted if they are empty.
-Airports know if they have a Plane.
-Airports can't delete Planes they don't have.
-Planes are simple objects.
-Planes can only be deleted if they are in the Air.
-Airports have a default capacity.
-The Sd can overide the default Airport capacity.
-Each Airport has its own Weather.
-The World will return its current state if aksed.
-The World will only let a Plane land if the Airport has capacity.
-The World won't let a Plane land if the Airport says the Weather is stormy.
-The World won't let a Plane takeoff if the Airport says the Weather is stormy.
+* The Atc can always ask where a Plane is.
+* The World contains the Air.
+* Planes and Airports are created outside, then added to the World.
+* Only Planes and Airports can be added to the World.
+* Planes added to the World will be added to the Air (since the World doesn't have any Airports until they are added).
+* The Air will confirm with true if a Plane was successfully added.
+* The Air will confirm with true if a Plane was successfully deleted.
+* The World can ask the Air if it contains a Plane, otherwise it is assumed it's in an Airport.
+* Airports know if they are empty or full.
+* Airports will confirm with true if a Plane was successfully added.
+* Airports will confirm with true if a Plane was successfully deleted.
+* Airports can only be deleted if they are empty.
+* Airports know if they have a Plane.
+* Airports can't delete Planes they don't have.
+* Planes are simple objects.
+* Planes can only be deleted if they are in the Air.
+* Airports have a default capacity.
+* The Sd can overide the default Airport capacity.
+* Each Airport has its own Weather.
+* The World will return its current state if aksed.
+* The World will only let a Plane land if the Airport has capacity.
+* The World won't let a Plane land if the Airport says the Weather is stormy.
+* The World won't let a Plane takeoff if the Airport says the Weather is stormy.
 
 ## Object-Messages Table
 
@@ -125,7 +125,6 @@ To test all User Stories run script:
 Script will pause after each story, press Control-C to continue.
 
 To feature test an individual object run:
-
 ./tdd.feature-test object-name
 
 ## Unit Tests
@@ -143,9 +142,9 @@ To unit test an individual object run:
 * Put Atc inside World
 * Give Airports and Planes names
 * Make world.view more friendly, for example:
-  There are 5 planes in the Air: A1, A2, A3, A4, A5
-  There are 3 Airports: Heathrow, Stansted and Gatwick
-  Heathrow has 2 Planes: A6, A7
-  Stansted has 0 Planes:
-  Gatwick has 1 Plane: A8
+    There are 5 planes in the Air: A1, A2, A3, A4, A5
+    There are 3 Airports: Heathrow, Stansted and Gatwick
+    Heathrow has 2 Planes: A6, A7
+    Stansted has 0 Planes:
+    Gatwick has 1 Plane: A8
   
