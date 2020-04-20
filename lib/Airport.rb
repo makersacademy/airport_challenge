@@ -1,13 +1,14 @@
 
 
 class Airport
-  attr_accessor :capacity, :weather
+  attr_accessor :capacity, :stormy
 
   def land(plane)
-    @weather == "stormy"
+    @stormy == rand(1..10) > 9
   end
+
   def take_off(plane)
-    @weather == "stormy"
+    @stormy == rand(1..10) > 9
   end
   def land_full(plane)
     @capacity == ()
