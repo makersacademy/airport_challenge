@@ -19,6 +19,7 @@ describe Plane do
   end 
 
   it "Assigns airport to plane when landing" do
+    plane.location = "sky"
     plane.land(airport)
     expect(plane.location).to eq (airport)
   end
@@ -32,4 +33,11 @@ describe Plane do
     plane.location = "sky"
     expect(plane.flying?).to eq (true)
   end
+
+  it "Raises error if plane is already landed" do 
+    plane.location = airport
+    expect{plane.land(plane)}.to raise_error "Plane already landed."
+  end 
 end 
+
+
