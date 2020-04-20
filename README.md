@@ -142,9 +142,11 @@ To unit test an individual object run:
 * Put Atc inside World
 * Give Airports and Planes names
 * Make world.view more friendly, for example:
-``` There are 5 planes in the Air: A1, A2, A3, A4, A5
+``` 
+    There are 5 planes in the Air: A1, A2, A3, A4, A5
     There are 3 Airports: Heathrow, Stansted and Gatwick
     Heathrow has 2 Planes: A6, A7
     Stansted has 0 Planes:
-    Gatwick has 1 Plane: A8```
+    Gatwick has 1 Plane: A8
+```
   
