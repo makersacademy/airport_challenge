@@ -1,3 +1,5 @@
+require './docs/airport'
+
 class Plane
 
   attr_accessor :location
@@ -8,6 +10,7 @@ class Plane
 
   def land(airport)
     raise "Plane already landed." if flying? == false 
+    airport.instruct_plane_to_land(self)
     @location = airport
   end
 

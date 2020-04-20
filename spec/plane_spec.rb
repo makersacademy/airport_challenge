@@ -5,6 +5,8 @@ describe Plane do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
+  before { allow(airport).to receive(:stormy?).and_return(false) }
+
 
   it "Plane responds to landing" do 
     expect(plane).to respond_to(:land)
@@ -37,6 +39,12 @@ describe Plane do
   it "Raises error if plane is already landed" do 
     plane.location = airport
     expect{plane.land(plane)}.to raise_error "Plane already landed."
+  end 
+
+  it "Runs the airport lanind request method" do 
+    plane.location = "sky"
+    plane.land(airport)
+    expect(airport.planes).to include(plane)
   end 
 end 
 
