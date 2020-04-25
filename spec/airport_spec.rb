@@ -2,16 +2,42 @@ require 'airport'
 
 describe Airport do 
     subject(:airport) {described_class.new}
+    let(:plane) {double :plane}
 
-    it "instructs a plane to land" do 
-        expect(airport).to respond_to(:land).with(1).argument
+    describe "#land" do 
+
+        it "instructs a plane to land" do 
+            expect(airport).to respond_to(:land).with(1).argument
+        end 
     end 
 
-    it "instructs a plane to take off" do 
-        expect(airport).to respond_to(:take_off).with(1).argument
+    describe "#take_off" do 
+
+        it "instructs a plane to take off" do 
+            expect(airport).to respond_to(:take_off).with(1).argument
+        end 
+
+        it "confirms plane left airport once take_off" do 
+            expect(airport.take_off_info).to eq("Plane have left the airport")
+        end 
     end 
 
-    it "confirms plane left airport once take_off" do 
-        expect(airport.take_off_info).to eq("Plane have left the airport")
+
+    describe "is_full" do 
+        it "prevents landing when airport is full" do 
+            expect(airport).to respond_to(:full?)
+        end 
+
+        it "should raise an error when airport is full" do 
+            50.times {airport.land(plane)}
+            expect {airport.land(plane) }.to raise_error "Airport full, no planes allowed"
+        end 
+
+        # it "should raise an error when airport is at maximum capacity" do 
+        #     maximum_capacity = Airport::MAXIMUM_CAPACITY
+        #     #airport.land(maximum_capacity)
+        #     expect{ airport.land(:plane) }.to raise_error "Airport full, no planes allowed"
+
+        # end 
     end 
 end 
