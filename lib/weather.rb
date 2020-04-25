@@ -1,5 +1,9 @@
 class Weather
   def check
-    rand(1..2)
+    p rand(1..4)
+  end
+
+  def stormy?
+    check == 4 ? true : false
   end
 end
