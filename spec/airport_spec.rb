@@ -24,9 +24,9 @@ describe Airport do
 
 
     describe "is_full" do 
-        it "prevents landing when airport is full" do 
-            expect(airport).to respond_to(:full?)
-        end 
+        # it "prevents landing when airport is full" do 
+        #     expect(airport).to respond_to(:full?)
+        # end 
 
         it "should raise an error when airport is full" do 
             50.times {airport.land(plane)}

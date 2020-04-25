@@ -10,7 +10,7 @@ class Airport
     end 
 
     def land(plane)
-        raise "Airport full, no planes allowed" if @planes.length >= 50
+        raise "Airport full, no planes allowed" if full?
         @planes << plane
     end 
 
@@ -22,7 +22,11 @@ class Airport
         "Plane have left the airport"
     end 
 
+    private 
+
     def full?
+        @planes.length >= 50
+
     end 
 
 end 
