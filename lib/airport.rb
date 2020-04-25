@@ -10,6 +10,7 @@ class Airport
     end 
 
     def land(plane)
+        raise "Landing not allowed, stormy weather" if stormy?
         raise "Airport full, no planes allowed" if full?
         @planes << plane
     end 
@@ -20,6 +21,14 @@ class Airport
 
     def take_off_info
         "Plane have left the airport"
+    end 
+
+    def stormy?
+      if rand(1..8) > 6
+        return true
+       else 
+        false 
+       end
     end 
 
     private 

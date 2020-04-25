@@ -23,21 +23,23 @@ describe Airport do
     end 
 
 
-    describe "is_full" do 
+    describe "is_full?" do 
+        # private method
         # it "prevents landing when airport is full" do 
         #     expect(airport).to respond_to(:full?)
         # end 
 
         it "should raise an error when airport is full" do 
+            allow(airport).to receive(:stormy?).and_return false 
             50.times {airport.land(plane)}
             expect {airport.land(plane) }.to raise_error "Airport full, no planes allowed"
+        end  
+    end 
+
+    describe "is_stormy?" do 
+        it "prevent landing when is stormy" do 
+            allow(airport).to receive(:stormy?).and_return true 
+            expect {airport.land(plane) }.to raise_error "Landing not allowed, stormy weather"
         end 
-
-        # it "should raise an error when airport is at maximum capacity" do 
-        #     maximum_capacity = Airport::MAXIMUM_CAPACITY
-        #     #airport.land(maximum_capacity)
-        #     expect{ airport.land(:plane) }.to raise_error "Airport full, no planes allowed"
-
-        # end 
     end 
 end 
