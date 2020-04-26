@@ -20,6 +20,11 @@ describe Airport do
         it "confirms plane left airport once take_off" do 
             expect(airport.take_off_info).to eq("Plane have left the airport")
         end 
+
+        it "prevents take_off when is stormy" do 
+            allow(airport).to receive(:stormy?).and_return true 
+            expect {airport.take_off(plane) }.to raise_error "Take off not allowed, stormy weather"
+        end 
     end 
 
 
@@ -37,7 +42,7 @@ describe Airport do
     end 
 
     describe "is_stormy?" do 
-        it "prevent landing when is stormy" do 
+        it "prevents landing when is stormy" do 
             allow(airport).to receive(:stormy?).and_return true 
             expect {airport.land(plane) }.to raise_error "Landing not allowed, stormy weather"
         end 
