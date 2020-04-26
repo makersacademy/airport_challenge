@@ -2,7 +2,6 @@ class Airport
     
     attr_reader :current_capacity
 
-    #MAXIMUM_CAPACITY = 100
 
     def initialize
         @current_capacity = 0
