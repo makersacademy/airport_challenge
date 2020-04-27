@@ -2,20 +2,20 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
-  DEFAULT_CAP = 5
   attr_reader :capacity, :planes, :weather
+  DEFAULT_CAP = 5
 
-  def initialize(capacity = DEFAULT_CAP)
+  def initialize(capacity = DEFAULT_CAP, weather = Weather.new)
     @capacity = capacity
     @planes = []
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
 
-    fail "Weather is stormy, don't land!" if @weather.stormy?
-
     fail "Airport is full" if full?
+
+    fail "Weather is stormy, don't land!" if @weather.stormy?
 
     planes << plane
   end

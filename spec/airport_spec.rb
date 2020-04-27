@@ -25,10 +25,6 @@ describe Airport do
     expect(subject).to respond_to(:weather)
   end
 
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAP
-  end
-
   describe 'initialization' do
     subject { Airport.new }
     let(:plane) { Plane.new }

@@ -4,6 +4,6 @@ class Weather
   end
 
   def stormy?
-    check == 4 ? true : false
+    check == 4
   end
 end
