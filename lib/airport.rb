@@ -22,9 +22,9 @@ class Airport
 
   def take_off
 
-    fail "No planes in airport" if empty?
+    fail "Weather is stormy, don't take off!" if @weather.stormy?
 
-    #fail "Weather is stormy, don't take off!" if @weather.stormy?
+    fail "No planes in airport" if empty?
 
     planes.pop
   end
