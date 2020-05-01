@@ -40,5 +40,22 @@ describe Airport do
     # To ensure safety
     # I want to prevent landing when the airport is full
 
-    
+    it "prevents planes landing when the airport is full" do
+      #arrange
+      plane = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      airport = Airport.new
+
+      #act
+      plane.land(airport)
+      plane2.land(airport)
+      plane3.land(airport)
+
+      #assert
+      expect(airport.inventory.length).to be(2)
+
+    end
+
+
 end

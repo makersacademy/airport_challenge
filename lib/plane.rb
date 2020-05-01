@@ -11,7 +11,6 @@ class Plane
     end
   end
 
-
   def take_off(airport)
     airport.inventory = airport.inventory - [self]
     return "your plane has taken off from the airport"
