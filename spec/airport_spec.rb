@@ -17,30 +17,34 @@ describe Airport do
 
   it "instruct a plane to take off and confirm it left" do
     airport = Airport.new
-    expect(Airport.new.take_off).to eq "plane no longer in the airport"
+    expect(subject.take_off).to eq "plane no longer in the airport"
   end
-    # As the system designer
-    # So that the software can be used for many different airports
-    # I would like a default airport capacity that can be overridden as appropriate
-    it "has a default capacity" do
-      airport = Airport.new
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+  it "has a default capacity" do
+    airport = Airport.new
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
+
+  it "prevents landing when airport is full" do
+    subject { Airport.new }
+    10.times do
+      subject.land(Plane.new)
     end
-    # As an air traffic controller
-    # To ensure safety
-    # I want to prevent landing when the airport is full
+    expect{ subject.land(Plane.new) }.to raise_error ('Airport is full')
+  end
 
-   it "prevents landing when airport is full" do
-      subject { Airport.new }
-     10.times do
-       subject.land(Plane.new)
-     end
-     expect{ subject.land(Plane.new) }.to raise_error ('Airport is full')
-   end
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent takeoff when weather is stormy
 
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
-
+  it "prevents takeoff when stormy" do
+    subject { Airport.new }
+    expect{subject.take_off_safe}.to raise_error ('stormy')
+  end
 
 end
