@@ -35,4 +35,23 @@ RSpec.describe do
 
   end
 
+  it 'confirms a plane status has changeds to "airborne" after #take_off' do
+    plane = Plane.new
+    airport = Airport.new
+
+    airport.take_off(plane)
+
+    expect(airport.confirm_take_off(plane)).to eq(true)
+
+  end
+
+  it 'confirms a plane status has changeds to "airborne" after #take_off' do
+    plane = Plane.new
+    airport = Airport.new
+
+    plane.land(airport)
+    airport.take_off(plane)
+
+    expect(airport.inventory.include?(plane)).to eq(false)
+  end
 end

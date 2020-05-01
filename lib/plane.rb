@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Plane
   attr_accessor :status
-  
+
   def initialize
     @status = "landed"
   end
@@ -10,4 +10,5 @@ class Plane
   def land(airport)
     airport.inventory.push(self)
   end
+
 end
