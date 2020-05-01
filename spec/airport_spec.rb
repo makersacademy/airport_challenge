@@ -61,4 +61,17 @@ RSpec.describe do
     expect(airport).to respond_to(:capacity)
   end
 
+  it 'can respond to #modify_capacity' do
+    airport = Airport.new
+
+    expect(airport).to respond_to(:modify_capacity)
+  end
+
+  it 'can modify the airport\'s capacity' do
+    airport = Airport.new
+
+    airport.modify_capacity(100)
+
+    expect(airport.capacity).to eq(100)
+  end
 end
