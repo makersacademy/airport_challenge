@@ -29,4 +29,11 @@ RSpec.describe Plane do
     expect(airport.inventory.size).to eq(1)
   end
 
+  it 'when initalized it sets the plane\'s status to "landed"' do
+    plane = Plane.new
+
+    expect(plane.status).to eq("landed")
+  end
+
+
 end 
