@@ -26,7 +26,7 @@ describe Airport do
   it "prevents landing when the airport is full" do
     subject { Airport.new }
     plane = Plane.new
-    described_class::DEFAULT_CAPACITY.times do
+    Airport::DEFAULT_CAPACITY.times do
     subject.land(plane)
       end
       expect{ subject.land(plane) }.to raise_error 'Airport is full'
