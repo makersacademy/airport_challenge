@@ -32,6 +32,10 @@ describe Airport do
   end
 
   describe '#capacity' do
+    it 'checks airport can check capacity' do
+      expect(airport).to respond_to(:check_capacity)
+    end
+
     it 'can reduce the capacity by 1 when 1 plane lands there' do
       allow(subject).to receive(:check_weather) { false }
       subject.land(222)
@@ -56,6 +60,18 @@ describe Airport do
   end
 
   describe '#check_plane_log' do
+    it 'allows airport to interact with plane log' do
+      expect(airport).to respond_to(:check_plane_log).with(1).argument
+    end
+
+    it 'allows airport to add things to plane log' do
+      expect(airport).to respond_to(:plane_log_add).with(1).argument
+    end
+
+    it 'allows airport to remove things from plane log' do
+      expect(airport).to respond_to(:plane_log_delete).with(1).argument
+    end
+
     it 'can tell you whether a plane is in the airport' do
       subject.plane_log_add(123)
       expect(subject.check_plane_log(123)).to eq(true)
@@ -94,6 +110,10 @@ describe Airport do
   end
 
   describe '#check_weather' do
+    it 'can check the weather' do
+      expect(airport).to respond_to(:check_weather)
+    end
+
     it 'can check whether the weather is stormy' do
       allow(subject).to receive(:check_weather) { true }
       expect(subject.check_weather).to eq(true)
@@ -106,6 +126,10 @@ describe Airport do
   end
 
   describe '#take_off' do
+    it 'instructs a plane to take off' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
+
     it 'does not allow a plane to take off if it is not at the airport' do
       allow(subject).to receive(:check_weather) { false }
       expect(subject.take_off(322)).to eq("This plane is not in this airport, it cannot take off.")
@@ -125,6 +149,10 @@ describe Airport do
   end
 
   describe '#land' do
+    it 'instructs a plane to land' do
+      expect(airport).to respond_to(:land).with(1).argument
+    end
+
     it 'does not allow a plane to land if there is not capacity at airport' do
       test = Airport.new(0, "loughborough")
       allow(test).to receive(:check_weather) { false }
