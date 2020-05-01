@@ -7,7 +7,7 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
-    @weather = "sunny"
+    @weather = ["sunny", "cloudy", "light rain", "little wind", "stormy"].sample()
   end
 
   def land(plane)
@@ -20,10 +20,10 @@ class Airport
   end
 
   def takeoff(plane)
-
     if stormy?()
       fail "Weather is stormy"
     else
+      @hanger.pop
       plane.takingoff
     end
   end
