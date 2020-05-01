@@ -35,4 +35,12 @@ RSpec.describe Plane do
     expect(plane.status).to eq("landed")
   end
 
+  it 'raises error if #land is attempted when airport is at capacity' do
+    airport = Airport.new
+    20.times{Plane.new.land(airport)}
+    plane = Plane.new
+    
+    expect { plane.land(airport) }.to raise_error("The airport is at capacity! You cannot land!")
+  end
+
 end 

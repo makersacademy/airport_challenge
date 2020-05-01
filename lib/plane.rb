@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    return raise "The airport is at capacity! You cannot land!" if airport.inventory.size >= 20
     airport.inventory.push(self)
   end
 

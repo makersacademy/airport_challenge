@@ -41,7 +41,7 @@ RSpec.describe do
 
     airport.take_off(plane)
 
-    expect(airport.confirm_take_off(plane)).to eq(true)
+    expect(airport.confirm_take_off(plane)).to eq("The plane has taken off")
 
   end
 
@@ -53,5 +53,12 @@ RSpec.describe do
     airport.take_off(plane)
 
     expect(airport.inventory.include?(plane)).to eq(false)
+  end 
+  
+  it 'has a maximum capacity' do
+    airport = Airport.new
+
+    expect(airport).to respond_to(:capacity)
   end
+
 end
