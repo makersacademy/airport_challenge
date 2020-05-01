@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 # As an air traffic controller
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport
@@ -31,10 +32,15 @@ describe Airport do
 
    it "prevents landing when airport is full" do
       subject { Airport.new }
-    #  10.times do
-    #    subject.land(Plane.new)
-    #  end
-    #  expect{ subject.land(Plane.new) }.to raise_error ('Airport is full')
-    expect { subject.error}.to raise_error ('Airport is full')
-  end
+     10.times do
+       subject.land(Plane.new)
+     end
+     expect{ subject.land(Plane.new) }.to raise_error ('Airport is full')
+   end
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
+
+
 end
