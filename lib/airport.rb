@@ -1,5 +1,5 @@
 class Airport
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 10
   attr_accessor :capacity
 
     def initialize(capacity=DEFAULT_CAPACITY)
@@ -9,18 +9,16 @@ class Airport
 
     def land(plane)
       return "plane landed"
-      fail 'Airport is full' if full?
+      raise 'Airport is full' if @planes.length >= capacity
       @planes << plane
     end
+
+    def error
+      raise 'Airport is full'
+    end 
 
     def take_off
       return "plane no longer in the airport"
     end
-
-private
-
-def full?
-  @planes.count >= capacity
-end
 
 end
