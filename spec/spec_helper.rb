@@ -1,6 +1,5 @@
 require 'simplecov'
 require 'simplecov-console'
-require 'blank'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
