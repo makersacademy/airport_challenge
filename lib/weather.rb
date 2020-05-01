@@ -1,6 +1,6 @@
 class Weather
   def check
-    p rand(1..4)
+    rand(1..4)
   end
 
   def stormy?
