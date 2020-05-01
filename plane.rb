@@ -1,6 +1,10 @@
 
 class Plane
-  def plane_id
-    return rand(10000)
+  def initialize(plane_id_number)
+    @plane_id_number = plane_id_number
+  end
+
+  def plane_id_number
+    return @plane_id_number
   end
 end

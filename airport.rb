@@ -15,9 +15,15 @@ class Airport
     return weather_today.stormy?
   end
 
-  def invent_plane
-    new_plane = Plane.new
-    return new_plane.plane_id
+  def invent_plane_inside_airport
+    plane = Plane.new(rand(10000))
+    x = plane.plane_id_number
+    @plane_log << x
+  end
+
+  def invent_plane_outside_airport
+    plane = Plane.new(rand(10000))
+    x = plane.plane_id_number
   end
 
   def check_capacity
@@ -27,7 +33,7 @@ class Airport
 
   def plane_log_add(plane_id_number)
     @plane_log << plane_id_number
-    return "This plane has landed at #{@location}."
+    @plane_log
   end
 
   def plane_log_delete(plane_id_number)
