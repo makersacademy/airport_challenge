@@ -44,7 +44,14 @@ describe Airport do
 
   it "prevents takeoff when stormy" do
     subject { Airport.new }
-    expect{subject.take_off_safe}.to raise_error ('stormy')
+    expect{subject.weather_safe}.to raise_error ('stormy')
   end
 
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when weather is stormy
+  it "prevents landing when stormy" do
+    subject { Airport.new }
+    expect{subject.weather_safe}.to raise_error ('stormy')
+  end
 end
