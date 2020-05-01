@@ -8,6 +8,7 @@ class Airport
     @inventory = []
   end
 
+
   def planes_available?
     return raise "There are no planes available" if self.inventory.size < 0
     true

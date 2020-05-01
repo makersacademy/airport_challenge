@@ -2,8 +2,13 @@ require_relative 'airport'
 class Plane
 
   def land(airport)
+    if airport.inventory.length < 2
     airport.inventory.push(self)
-    return "your plane has landed at the airport"
+    p "your plane has landed at the airport"
+
+    else
+      p "This airport has reached it's capacity. Try landing at a different airport"
+    end
   end
 
 
