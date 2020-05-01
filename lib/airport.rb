@@ -1,10 +1,19 @@
-
+require_relative 'plane'
 class Airport
-    attr_reader :planes, :capacity
-    DEFAULT_CAPACITY = 300
+    #attr_reader :planes, :capacity
+    #DEFAULT_CAPACITY = 300
 
-def initialize (capacity =DEFAULT)
-  @planes = []
-  @capacity = capacity
+def initialize
+  @plane = []
+
 end
-end 
+
+def landing(plane)
+    @plane << plane
+  end
+
+  def takeoff
+    @plane.pop
+    "allows plane to departed from the airport"
+  end
+end
