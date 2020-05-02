@@ -15,7 +15,7 @@ class Airport
     end
   end
 
-  def take_off
+  def take_off(plane)
     @planes.pop
     return "plane no longer in the airport"
   end
