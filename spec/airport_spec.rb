@@ -7,9 +7,10 @@ require 'weather'
 
 describe Airport do
   it "instruct a plane to land at an airport" do
-    subject {Airport.new}
+    subject { Airport.new }
     plane = Plane.new
     expect(subject.land(plane)).to eq "plane landed"
+    # expect(subject).to respond_to(:land).with(1)argument
   end
   # As an air traffic controller
   # So I can get passengers on the way to their destination
@@ -17,7 +18,8 @@ describe Airport do
 
   it "instruct a plane to take off and confirm it left" do
     airport = Airport.new
-    expect(subject.take_off).to eq "plane no longer in the airport"
+    expect(subject.take_off(plane)).to eq "plane no longer in the airport"
+    # expect(subject).to respond_to(:take_off).with(1)argument
   end
   # As the system designer
   # So that the software can be used for many different airports
