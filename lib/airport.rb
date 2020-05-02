@@ -10,8 +10,6 @@ class Airport
   def land(plane)
    raise 'Airport is full' if full?
     @planes << plane
-  elsif return "plane landed"
-    end
   end
 
   def take_off(plane)
@@ -23,9 +21,7 @@ class Airport
     raise 'stormy'
   end
 
-private
-
-def full?
+  def full?
   @planes.length >= @capacity
-end 
 end
+end 

@@ -1,17 +1,15 @@
 require 'airport'
-require 'plane'
-require 'weather'
 # As an air traffic controller
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport
 
 describe Airport do
   let(:plane) { double :plane }
-  
+  let(:weather) { double :weather }
+
   it "instruct a plane to land at an airport" do
     subject { Airport.new }
-    expect(subject.land(plane)).to eq "plane landed"
-    # expect(subject).to respond_to(:land).with(1)argument
+    expect(subject).to respond_to(:land)
   end
   # As an air traffic controller
   # So I can get passengers on the way to their destination
@@ -47,7 +45,6 @@ describe Airport do
 
   it "prevents takeoff when stormy" do
     subject { Airport.new }
-    weather = Weather.new 
     expect{subject.weather_safe}.to raise_error ('stormy')
   end
 
