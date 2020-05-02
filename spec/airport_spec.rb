@@ -6,9 +6,10 @@ require 'weather'
 # I want to instruct a plane to land at an airport
 
 describe Airport do
+  let(:plane) { double :plane }
+  
   it "instruct a plane to land at an airport" do
     subject { Airport.new }
-    plane = Plane.new
     expect(subject.land(plane)).to eq "plane landed"
     # expect(subject).to respond_to(:land).with(1)argument
   end
@@ -34,7 +35,6 @@ describe Airport do
 
   it "prevents landing when airport is full" do
     subject { Airport.new }
-    plane = double (:plane)
     10.times do
       subject.land(plane)
     end
