@@ -33,6 +33,7 @@ describe Airport do
 
   it "prevents landing when airport is full" do
     subject { Airport.new }
+    allow(subject).to receive(:stormy?).and_return false
     10.times do
       subject.land(plane)
     end
@@ -45,14 +46,16 @@ describe Airport do
 
   it "prevents takeoff when stormy" do
     subject { Airport.new }
-    expect{subject.weather_safe}.to raise_error ('stormy')
+    allow(subject).to receive(:stormy?).and_return true
+    expect{subject.take_off(plane)}.to raise_error ('Not safe, it is stormy')
   end
 
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when weather is stormy
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when weather is stormy
   it "prevents landing when stormy" do
     subject { Airport.new }
-    expect{subject.weather_safe}.to raise_error ('stormy')
+    allow(subject).to receive(:stormy?).and_return true
+    expect{subject.land(plane)}.to raise_error ('Not safe, it is stormy')
   end
 end
