@@ -34,10 +34,11 @@ describe Airport do
 
   it "prevents landing when airport is full" do
     subject { Airport.new }
+    plane = double (:plane)
     10.times do
-      subject.land(Plane.new)
+      subject.land(plane)
     end
-    expect{ subject.land(Plane.new) }.to raise_error ('Airport is full')
+    expect{ subject.land(plane) }.to raise_error ('Airport is full')
   end
 
   # As an air traffic controller
