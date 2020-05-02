@@ -8,10 +8,9 @@ class Airport
   end
 
   def land(plane)
-    if @planes.length >= capacity
-      raise 'Airport is full'
-    elsif @planes << plane
-      return "plane landed"
+   raise 'Airport is full' if full?
+    @planes << plane
+  elsif return "plane landed"
     end
   end
 
@@ -23,4 +22,10 @@ class Airport
   def weather_safe
     raise 'stormy'
   end
+
+private
+
+def full?
+  @planes.length >= @capacity
+end 
 end
