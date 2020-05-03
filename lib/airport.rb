@@ -7,7 +7,7 @@ class Airport
   attr_accessor :capacity
   attr_reader :landed_planes
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
     check_capacity()
@@ -15,22 +15,25 @@ class Airport
   
   def take_off
     check_capacity()
-    if @avaliable
+    @weather = Weather.new
+    if @avaliable && @weather != "Stormy"
       @landed_planes.pop
+    elsif @avaliable && weather == "Stormy"
+      "Plane cannot takeoff due to stormy weather!"
     end
   end
 
   def land(plane)
     check_capacity()
     if @avaliable && @full
-      fail ("Airport at full capacity!")
+      fail "Airport at full capacity!"
     elsif @full == false
       @landed_planes << plane
       return "Plane landed at airport"
     end
   end
 
-  attr_reader :landed_planes
+  private 
 
   def check_capacity
     if @landed_planes.empty?
@@ -43,5 +46,8 @@ class Airport
       @full = false
       @avaliable = true
     end
+  end
+
+  def check_weather
   end
 end

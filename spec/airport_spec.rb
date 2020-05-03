@@ -27,31 +27,44 @@ describe Airport do
   it "Plane cannot land when airport is full" do
     airport = Airport.new
     plane = Plane.new
-    Airport::DEFAULT_CAPACITY.times{airport.land(plane)}
-    expect{airport.land(plane)}.to raise_error("Airport at full capacity!")
+    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error("Airport at full capacity!")
   end
 
   it "Plane cannot land if airport if full and capacity is changed" do
     airport = Airport.new(30)
     plane = Plane.new
-    airport.capacity.times{airport.land(plane)}
-    expect{airport.land(plane)}.to raise_error("Airport at full capacity!")
+    airport.capacity.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error("Airport at full capacity!")
   end
 
   let(:weather) { double :weather }
   it "Plane cannot takeoff when weather is stormy" do
     airport = Airport.new
-    plane = Plane.new
     allow(weather).to receive(:weather_condition).and_return("Stormy")
     puts weather
-    expect{airport.take_off(plane)}.to raise_error("Plane cannot takeoff due to stormy weather!")
+    expect { airport.take_off }.to raise_error("Plane cannot takeoff due to stormy weather!")
   end
 
   it "Plane cannot land when weather is stormy" do
     airport = Airport.new
     plane = Plane.new
     allow(weather).to receive(:weather_condition).and_return("Stormy")
-    expect{airport.land(plane)}.to raise_error("Plane cannot land due to stormy weather!")
+    expect { airport.land(plane) }.to raise_error("Plane cannot land due to stormy weather!")
   end
 
+  it "Planes can only take off from airports they are in" do
+  end
+  
+  it "Plane cannot takeoff when already flying" do
+  end
+
+  it "Plane cannot be in an airport when already flying" do
+  end
+
+  it "Plane cannot land when already landed" do
+  end
+
+  it "Plane must be in the airport when already landed" do
+  end
 end
