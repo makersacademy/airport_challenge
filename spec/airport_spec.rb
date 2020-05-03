@@ -21,7 +21,7 @@ describe Airport do
     plane = Plane.new
     airport.land(plane)
     airport.take_off
-    expect(landed_planes).to be_empty
+    expect(airport.landed_planes).to be_empty
   end
 
   it "Plane cannot land when airport is full" do
