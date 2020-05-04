@@ -33,7 +33,7 @@ RSpec.describe Airport do
 
     it 'raises an error if asked to take off a plane' do
       allow(subject).to receive(:stormy?).and_return true
-      expect { subject.take_off }.to raise_error 'Taking: to stormy to take off'
+      expect { subject.take_off(plane) }.to raise_error 'Taking: to stormy to take off'
     end
 
   end

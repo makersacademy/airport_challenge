@@ -14,8 +14,9 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off
+  def take_off(plane)
     raise 'Taking: to stormy to take off' if stormy?
+    @plane.pop(plane)
   end
 
   def report_storm
