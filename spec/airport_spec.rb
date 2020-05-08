@@ -1,20 +1,24 @@
 
 require "airport.rb"
+require "weather.rb"
 
 describe Airport do
-
+let(:bad_weather) {double :weather, forecast: 7 }
+let(:good_weather) {double :weather, forecast: 8 }
   describe 'land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    it 'can land a plane and add it to the hangar' do
+    it 'can land a plane and add it to the hangar if not stormy' do
+      airport = Airport.new(Airport::DEFAULT_AIRPORT_CAPACITY, good_weather)
       plane = 'spitfire'
-      subject.land(plane)
-      expect(subject.hangar).to eq ([plane])
+      airport.land(plane)
+      expect(airport.hangar).to eq ([plane])
     end
 
     it 'prevents landing when weather is stormy' do
-      weather_double = double :true
-      expect{ subject.land 'spitfire' weather_double } .to raise_error 'Cannot land: Stormzy'
+      airport = Airport.new(Airport::DEFAULT_AIRPORT_CAPACITY, bad_weather)
+      plane = 'spitfire'
+      expect{ airport.land(plane) }.to raise_error('Cannot land: Stormy')
     end
   end
 
@@ -22,16 +26,20 @@ describe Airport do
     it { is_expected.to respond_to(:takeoff) }
 
     it 'can release a plane from the hanagar' do
-    subject.land('spitfire')
-    subject.takeoff
-    expect(subject.hangar).to eq([])
-  end
+      airport = Airport.new(Airport::DEFAULT_AIRPORT_CAPACITY, good_weather)
+      plane = 'spitfire'
+      airport.land(plane)
+      airport.takeoff
+      expect(airport.hangar).to eq([])
+    end
 
     it 'prevents take off when weather is stormy' do
+      airport = Airport.new(Airport::DEFAULT_AIRPORT_CAPACITY, bad_weather)
+      expect{ airport.takeoff }.to raise_error('Cannot take off: Stormy')
     end
   end
 
-  describe 'hangar' do
+  describe '#hangar' do
     it { is_expected.to respond_to(:hangar) }
 
     it 'confirms that hangar is created as empty array' do
@@ -39,16 +47,17 @@ describe Airport do
     end
   end
 
-  describe 'capacity' do
+  describe '#capacity' do
     it 'returns an error when hangar is full' do
-      Airport::DEFAULT_AIRPORT_CAPACITY.times { subject.land 'spitfire' }
-      expect { subject.land 'spitfire' }.to raise_error 'Airport full'
+      airport = Airport.new(Airport::DEFAULT_AIRPORT_CAPACITY, good_weather)
+      Airport::DEFAULT_AIRPORT_CAPACITY.times { airport.land 'spitfire' }
+      expect{ airport.land 'spitfire' }.to raise_error 'Airport full'
     end
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_AIRPORT_CAPACITY
     end
     it 'has a variable capacity' do
-      airport = Airport.new(99)
+      airport = Airport.new(99, good_weather)
       99.times { airport.land 'spitfire' }
       expect{ airport.land 'spitfire' }.to raise_error 'Airport full'
     end
