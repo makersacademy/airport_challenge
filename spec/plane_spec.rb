@@ -12,7 +12,6 @@ describe Plane do
     it 'confirms it has taken off' do
       airport = Airport.new
       subject.land(airport)
-      # modify with name
       expect { subject.take_off }.to output("[plane is no longer at airport]\n").to_stdout
     end
   end

@@ -86,3 +86,19 @@ airport.capacity
 airport.capacity = 40
 airport.capacity
 => 40 # capacity overridden
+
+=================
+### Story 5
+As an air traffic controller \
+To ensure safety\
+I want to prevent takeoff when weather is stormy\
+
+####Feature test: when stormy\
+airport = Airport.new
+plane = Plane.new
+plane.land
+=> error
+
+####Feature test: when stormy and already landed plane\
+plane.take_off
+=> error

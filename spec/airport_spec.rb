@@ -19,25 +19,13 @@ describe Airport do
     end
   end
 
-  describe '#hangar' do
-    it { is_expected.to respond_to :hangar }
-
-    it 'is expected to return an Array' do
-      expect(subject.hangar).to be_kind_of(Array)
-    end
-
-    it 'is empty by deafult' do
-      expect(subject.hangar).to be_empty
-    end
-  end
-
   describe '#approve_landing' do
     it { is_expected.to respond_to(:approve_landing).with(1).argument }
 
-    it 'takes a plane as an argument and stroes it in the hangar' do
+    it 'takes a plane as an argument and stores it in the hangar' do
       plane = Plane.new
       plane.land(subject)
-      expect(subject.hangar).to include(plane)
+      expect(subject.in_hangar?(plane)).to be_truthy
     end
 
     it 'raises an error when a plane tries to land while hangar is full' do
@@ -45,7 +33,6 @@ describe Airport do
         plane = Plane.new
         plane.land(subject)
       end
-      # modify with name
       plane = Plane.new
       expect { plane.land(subject) }.to raise_error("Airport is at maximum capacity")
     end
@@ -59,7 +46,11 @@ describe Airport do
       plane = Plane.new
       plane.land(subject)
       plane.take_off
-      expect(subject.hangar).not_to include(plane)
+      expect(subject.in_hangar?(plane)).not_to be_truthy
     end
+  end
+
+  context 'when weather is stormy' do
+    
   end
 end
