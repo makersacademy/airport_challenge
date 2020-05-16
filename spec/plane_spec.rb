@@ -1,0 +1,16 @@
+require 'plane'
+
+describe Plane do
+    let(:plane) { Plane.new } 
+    describe "#plane" do
+    it { is_expected.to respond_to :at_airport }
+
+    it "should determine if a plane is at an airport" do
+        expect(plane.at_airport).to eq true
+    end
+
+    it "should tell a plane to land at an airport" do
+      expect(plane).to respond_to(:plane)
+    end
+end
+end
