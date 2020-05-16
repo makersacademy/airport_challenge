@@ -5,6 +5,14 @@ describe Airport do
     expect(subject).to be_instance_of(Airport)
   end
 
+  it 'Should have a defualt capacity' do
+    expect(subject.capacity).to eq(10)
+  end
+
+  it 'Should be able to have a defualt capacity set' do
+    expect(Airport.new(100).capacity).to eq(100)
+  end
+
   describe '#land' do
     it 'Should respond to #land' do
       expect(subject).to respond_to(:land)
