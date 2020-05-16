@@ -4,6 +4,7 @@ describe Airport do
   subject { Airport.new }
 
   let (:plane) { Plane.new }
+  DEFAULT_CAPACITY = 10
 
   before do
     plane.land(subject)
@@ -18,8 +19,14 @@ describe Airport do
   end
 
   it "won't allow landing when aiport is full" do
-    9.times { subject.landing(Plane.new) }
+    (DEFAULT_CAPACITY - 1).times { subject.landing(Plane.new) }
     expect{ subject.landing(Plane.new) }.to raise_error('Airport at capacity')
+  end
+
+  it 'will take a capacity of 20' do
+    bristol = Airport.new(20)
+    (20).times { bristol.landing(Plane.new) }
+    expect{ bristol.landing(Plane.new) }.to raise_error('Airport at capacity')
   end
 
   it 'removes plane from airport when departs' do
