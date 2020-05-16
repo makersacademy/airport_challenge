@@ -9,4 +9,9 @@ class Plane
   def land_at(airport)
     @location = airport
   end
+
+  def takeoff_from(airport)
+    @location = "air"
+  end
+  
 end

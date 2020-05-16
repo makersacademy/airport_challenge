@@ -8,4 +8,11 @@ describe Plane do
       expect(plane.location).to eq("airport")
     end
   end
+  describe '#takeoff_from(airport)' do
+    it "should leave airport and begin flying" do
+      plane.land_at("airport")
+      plane.takeoff_from("airport")
+      expect(plane.location).to eq("air")
+    end
+  end 
 end
