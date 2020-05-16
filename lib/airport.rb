@@ -9,4 +9,8 @@ class Airport
   def take_off
     Plane.new
   end
+
+  def full?
+
+  end
 end
