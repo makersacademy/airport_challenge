@@ -22,12 +22,13 @@ describe Plane do
   describe '#take_off' do
     it 'allows an ATC to instruct a plane to take off' do
       a = Airport.new
-      expect(plane.take_off(a)).to eq('air')
+      4.times { plane.land(a) }
+      plane.take_off(a)
+      expect(a.planes.length).to eq(3)
     end
     it 'plane confirms it is in the air' do
       a = Airport.new
-      expect { plane.take_off(a) }
-      .to output('Liftoff! We have a liftoff!').to_stdout
+      expect(plane.take_off(a)).to eq('Liftoff! We have a liftoff!')
     end
   end
 end

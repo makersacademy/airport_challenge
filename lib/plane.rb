@@ -16,9 +16,9 @@ class Plane
   end
 
   def take_off(airport)
-    airport.planes.pop
-    print 'Liftoff! We have a liftoff!'
     @location = 'air'
+    airport.planes.pop
+    return 'Liftoff! We have a liftoff!'
   end
 
 end
