@@ -10,7 +10,7 @@ class Airport
     @plane = plane
   end
 
-  def confirm_take_off
-    'Plane successfully taken off'
+  def confirm_take_off(plane)
+    "#{plane} successfully taken off"
   end
 end

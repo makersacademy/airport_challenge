@@ -15,6 +15,6 @@ describe Airport do
   end
 
   it 'should confirm plane has taken-off' do
-    expect(subject.confirm_take_off).to eq 'Plane successfully taken off'
+    expect(subject.confirm_take_off(plane)).to eq "#{plane} successfully taken off"
   end
 end
