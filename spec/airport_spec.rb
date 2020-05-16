@@ -15,5 +15,10 @@ describe Airport do
     it "should have default capacity" do
       expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
+    it "should have capacity set when created" do
+      [4, 6, 7, 8, 343].each do |num|
+        expect(Airport.new(num).capacity).to eq(num)
+      end
+    end
   end
 end
