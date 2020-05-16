@@ -30,12 +30,24 @@ describe Airport do
   end
 
   it 'removes plane from airport when departs' do
+    allow(subject).to receive(:rand) { 4 }
     subject.depart(plane)
     expect(subject.instance_variable_get(:@planes)).not_to include(plane)
   end
 
   it 'removes plane from airport when departs and tells user it has left' do
+    allow(subject).to receive(:rand) { 4 }
     expect{ subject.depart(plane) }.to output("#{plane} has left the airport\n").to_stdout
+  end
+
+  it 'when random_number is 4 weather returns sunny' do
+    allow(subject).to receive(:rand) { 4 }
+    expect(subject.weather).to eq('sunny')
+  end
+
+  it 'does not allow depart when stormy' do
+    allow(subject).to receive(:weather) { 'stormy' }
+    expect{ subject.depart(plane) }.to raise_error('DANGER: Storm Forecast')
   end
 
 end

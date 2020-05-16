@@ -17,8 +17,17 @@ class Airport
   end
 
   def depart(plane)
+    fail 'DANGER: Storm Forecast' if weather == 'stormy'
     @planes.delete(plane)
     plane_left_notification(plane)
+  end
+
+  def weather
+    if random_number < 8
+      'sunny'
+    else
+      'stormy'
+    end
   end
 
 private
@@ -28,7 +37,11 @@ private
   end
 
   def full?
-    @planes.count >= @capacity 
+    @planes.count >= @capacity
+  end
+
+  def random_number
+    rand(1..10)
   end
 
 end
