@@ -4,13 +4,24 @@ describe Airport do
   subject { Airport.new }
 
   context 'landing' do
-    it 'airport responds to land method and takes an argument' do
-      expect(subject).to respond_to(:land).with(1).argument
+
+    plane = Plane.new
+
+    before do
+      plane.land(subject)
+    end
+
+    it 'airport responds to landing method and takes an argument' do
+      expect(subject).to respond_to(:landing).with(1).argument
     end
 
     it 'adds the plane to the airport class' do
-      expect(subject.land('plane')).to eq('plane')
-    end 
+      expect(subject.instance_variable_get(:@planes)).to eq(plane)
+    end
+
+  end
+
+  context 'take_off' do
 
   end
 

@@ -2,8 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-  def land(plane)
-    plane
+  attr_reader :planes 
+
+  def landing(plane)
+    @planes = plane
+  end
+
+  def take_off
+    @planes
   end
 
 end
