@@ -12,12 +12,13 @@ class Airport
   end
 
   def landing(plane)
+    weather_check
     fail "Airport at capacity" if full?
     @planes.push(plane)
   end
 
   def depart(plane)
-    fail 'DANGER: Storm Forecast' if weather == 'stormy'
+    weather_check
     @planes.delete(plane)
     plane_left_notification(plane)
   end
@@ -42,6 +43,10 @@ private
 
   def random_number
     rand(1..10)
+  end
+
+  def weather_check
+    fail 'DANGER: Storm Forecast' if weather == 'stormy'
   end
 
 end

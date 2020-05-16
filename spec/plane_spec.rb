@@ -13,4 +13,14 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'does not allow takeoff when stormy' do
+    allow(airport).to receive(:rand) { 9 }
+    expect{ subject.take_off(airport) }.to raise_error('DANGER: Storm Forecast')
+  end
+
+  it 'does not allow land when stormy' do
+    allow(airport).to receive(:rand) { 9 }
+    expect{ subject.land(airport) }.to raise_error('DANGER: Storm Forecast')
+  end
+
 end
