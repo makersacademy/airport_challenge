@@ -14,12 +14,12 @@ describe Airport do
   end
 
   it 'adds the plane to the airport class' do
-    expect(subject.instance_variable_get(:@planes)).to eq(plane)
+    expect(subject.instance_variable_get(:@planes)).to include(plane)
   end
 
   it 'removes plane from airport when departs' do
     subject.depart(plane)
-    expect(subject.instance_variable_get(:@planes)).to eq(nil)
+    expect(subject.instance_variable_get(:@planes)).not_to include(plane)
   end
 
   it 'removes plane from airport when departs and tells user it has left' do

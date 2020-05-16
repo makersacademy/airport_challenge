@@ -4,12 +4,16 @@ class Airport
 
   attr_reader :planes
 
+  def initialize
+    @planes = []
+  end
+
   def landing(plane)
-    @planes = plane
+    @planes.push(plane)
   end
 
   def depart(plane)
-    @planes = nil
+    @planes.delete(plane)
     plane_left_notification(plane)
   end
 
