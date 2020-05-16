@@ -5,14 +5,12 @@ describe Plane do
 
   describe '#land' do
     it 'allows an ATC to instruct a pane to land at an airport' do
-      expect(plane).to respond_to(:land)
       a = Airport.new
       plane.land(a)
       expect(a.planes.length).to eq(1)
     end
     it 'allows an ATC to prevent landing when airport is full' do
-      #Airport::DEFAULT_CAPACITY.times { plane.land(a) }
-      expect { plane.land(Airport.new(cap = 0)) }
+      expect { plane.land(Airport.new(0)) }
       .to raise_error('You cannot land - the airport is full.')
     end
   end
