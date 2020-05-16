@@ -1,19 +1,30 @@
 require_relative '../lib/plane.rb'
 
-describe Plane do
+describe Plane do ## update test when airport class is created
+
   let(:plane) { Plane.new }
+
   describe '#land_at(airport)' do
-    it "should be at the airport it landed at" do ## update test when airport class is created
+    it "should be at the airport it landed at," do
       plane.land_at("airport")
       expect(plane.location).to eq("airport")
     end
-    it "should only be able to land if it is flying,
-     and tell the operator of the problem" do
+    it "and tell the operator that it landed" do
+      expect { plane.land_at("airport").to
+        output("landed at #{airport}\n").to_stdout }
+    end
+    it "should only be able to land if it is flying, " do
       plane.land_at("airportA")
-      expect { plane.land_at("airportB").to output("currently located at airportA so can not land\n").to_stdout }
+      plane.land_at("airportB")
       expect(plane.location).to eq("airportA")
     end
+    it "and tell the operator of the problem" do
+      plane.land_at("airportA")
+      expect { plane.land_at("airportB").to
+        output("currently located at airportA so can not land\n").to_stdout }
+    end
   end
+  
   describe '#takeoff_from(airport)' do
     it "should leave airport and begin flying" do
       plane.land_at("airport")
