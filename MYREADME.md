@@ -69,6 +69,10 @@ Plane | land, take_off
 Airport | plane_in_airport?
 
 ```
-Plane <--- land 
-Plane <--- take_off
+Plane <--- land ---> Airport 
+Plane <--- take_off ---> Airport
 Airport <--- plane_in_airport? ---> true/false
+```
+## From Domain Model to Feature Test
+
+ - Run a feature test for Airport.
