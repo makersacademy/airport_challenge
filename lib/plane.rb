@@ -1,2 +1,8 @@
+require_relative 'airport.rb'
+
 class Plane
-end 
+  
+  def land
+  end
+
+end
