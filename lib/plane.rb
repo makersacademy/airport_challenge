@@ -11,7 +11,12 @@ class Plane
   end
 
   def takeoff_from(airport)
-    @location = "air"
+    @location = "air" if correct_location?(airport)
   end
-  
+
+  private
+  def correct_location?(airport)
+    @location == airport
+  end
+
 end

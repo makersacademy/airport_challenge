@@ -14,5 +14,10 @@ describe Plane do
       plane.takeoff_from("airport")
       expect(plane.location).to eq("air")
     end
-  end 
+    it "shouldn't takeoff from somewhere it is not" do
+      plane.land_at("airportA")
+      plane.takeoff_from("airportB")
+      expect(plane.location).to eq("airportA")
+    end
+  end
 end
