@@ -17,6 +17,9 @@ class Airport
   end
 
   def instruct_take_off(plane)
+    # guard clause for weather
+    
+    plane.take_off
     @hangar.delete(plane)
   end
 

@@ -1,4 +1,4 @@
-require_relative '../lib/airport_challenge'
+require_relative '../lib/airport'
 
 describe Weather do
   let(:subject) { Weather.new }

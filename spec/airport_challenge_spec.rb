@@ -1,4 +1,4 @@
-require_relative '../lib/airport_challenge'
+require_relative '../lib/airport'
 
 describe Airport do
   let(:subject) { Airport.new }
@@ -24,6 +24,7 @@ describe Airport do
   end
 
   it 'should let a plane take-off and confirm plane no longer in hangar' do
+    allow(plane).to receive :take_off
     subject.land(plane)
     subject.instruct_take_off(plane)
     expect(subject.hangar.include?(plane)).to eq(false)
