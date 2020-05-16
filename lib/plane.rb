@@ -20,6 +20,7 @@ class Plane
       @location = "air"
       puts "departed #{airport}"
     else
+      puts "currently located at #{@location} so can not takeoff"
     end
   end
 
