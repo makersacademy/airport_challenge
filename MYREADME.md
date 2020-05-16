@@ -41,6 +41,16 @@ I want to prevent landing when weather is stormy
 
 FIRST 2 USER STORIES
 
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
 **A note of all the nouns(objects) in the user story**
 
 1. plane
@@ -91,3 +101,24 @@ Plane <--- at_airport? --> true/false
  -  Created unit test for the at_airport? method
  -  Defined at_airport? method. 
 ---
+
+NEXT 2 USER STORIES
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+**A note of all the nouns(objects) in the user story**
+
+1. airport
+
+**A note of all the verbs(messages) in the user story**
+ 
+1. capacity
+
