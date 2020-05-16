@@ -4,7 +4,7 @@ describe Airport do
   let(:plane) { Airport.new } 
 
   describe "#airport" do
-    it { is_expected.to respond_to :airport }
+    it { is_expected.to respond_to :hangar }
 
     it "should have a plane take off and confirm it has gone" do
     expect(plane.takeoff).to eq true
