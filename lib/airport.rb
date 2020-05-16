@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :capacity, :planes
+  attr_accessor :capacity, :planes
 
   def initialize(cap = DEFAULT_CAPACITY)
     @planes = []
@@ -10,8 +10,7 @@ class Airport
   DEFAULT_CAPACITY = 100
 
   def at_capacity?
-    false
-    #depends on the length of @planes array
+    @planes.length == DEFAULT_CAPACITY
   end
 
 end
