@@ -6,6 +6,13 @@ describe Airport do
   end
 
   it 'responds to #take_off plane' do 
-    expect(subject).to respond_to(:take_off).with(1).argument
+    expect(subject).to respond_to(:take_off)
+  end
+
+  describe '#take_off' do
+    it 'releases a plane' do
+      plane = subject.take_off 
+      expect(plane).to be_instance_of(Plane)
+    end
   end
 end
