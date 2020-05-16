@@ -11,6 +11,9 @@ describe Airport do
   it 'creates a capacity instance variable' do
     expect(subject.instance_variable_get :@capacity).to eq(20)
   end
+  it 'gives possibility to change the max capacity when the new airport is init' do
+    expect(Airport.new(30).instance_variable_get :@capacity).to eq(30)
+  end
   context 'landing' do
     it 'allows a plane to land' do
       expect(subject).to respond_to(:land).with(1).argument
