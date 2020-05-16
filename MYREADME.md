@@ -120,5 +120,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 **A note of all the verbs(messages) in the user story**
  
-1. capacity
+1. full?
+2. capacity
+
 
