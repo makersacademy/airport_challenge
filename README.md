@@ -9,11 +9,10 @@ I want to instruct a plane to land at an airport
 
 | Object | Message |
 | --- | ----------- |
-| Air traffic controller  | instruct |
+| Air traffic controller  |  |
 | Plane                   | land |
 | Airport                 |      |
 
-Air traffic controller --instruct--> Plane\
 Plane --land--> Airport
 
 Feature test:\
@@ -33,11 +32,10 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 | Object | Message |
 | --- | ----------- |
-| Air traffic controller  | instruct |
+| Air traffic controller  |  |
 | Plane                   | take_off |
 | Airport                 |      |
 
-Air traffic controller --instruct--> Plane\
 Plane --take_off--> Airport
 
 Feature test:\
@@ -45,8 +43,39 @@ plane = Plane.new\
 airport = Airport.new\
 plane.land #plane instructed to land\
 airport.planes #shows that plane has landed\
-=> [plane_object]
-plane.take_off
-=> Confirmation that plane is no longer at airport
+=> [plane_object]\
+plane.take_off\
+=> Confirmation that plane is no longer at airport\
 airport.planes #confirms that plane is no longer at airport\
 => []
+
+=================
+### Story 3
+As an air traffic controller\
+To ensure safety\
+I want to prevent landing when the airport is full
+
+| Object | Message |
+| --- | ----------- |
+| Air traffic controller  | |
+| Plane                   | land |
+| Airport                 |   full?   |
+
+Plane <--land--> Airport <--full?--> true/false
+
+Feature test:\
+
+airport = Airport.new(10) #set a capacity of 10\
+10.times do\
+  plane = Plane.new\
+  plane.land\
+end \
+plane = Plane.new\
+plane.land\
+=> Error message
+
+=================
+### Story 4
+As the system designer\
+So that the software can be used for many different airports\
+I would like a default airport capacity that can be overridden as appropriate

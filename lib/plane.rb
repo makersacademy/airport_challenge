@@ -2,21 +2,20 @@ require_relative 'airport'
 
 class Plane
   def land(airport)
-    airport.recieve_plane(self)
+    airport.approve_landing(self)
     @airport = airport
   end
 
   def take_off
-    @airport.take_off_plane(self)
-    take_off_confirmation
+    @airport.approve_take_off(self)
+    confirm_take_off
+    @airport = ""
   end
 
   private
 
-  def take_off_confirmation
-    return if @airport.planes.include?(self)
-
-    puts "[plane is no longer at airport]"
-    @airport = ""
+  def confirm_take_off
+    # modify with name
+    puts "[plane is no longer at airport]" unless @airport.in_hangar?(self)
   end
 end
