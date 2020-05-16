@@ -2,7 +2,8 @@ require_relative '../lib/plane.rb'
 
 describe Plane do ## update test when airport class is created
 
-  let(:plane) { Plane.new }
+  let(:plane) { plane = Plane.new }
+  let(:planeA) { planeA = Plane.new }
   let(:airportA) { airportA = Airport.new }
   let(:airportB) { airportB = Airport.new }
 
@@ -13,6 +14,11 @@ describe Plane do ## update test when airport class is created
     it "should only be able to land if it is flying, and tell the operator about the problem" do
       plane.land_at(airportA)
       expect { plane.land_at(airportB) }.to output("currently located at #{airportA} so can not land\n").to_stdout
+    end
+    it "should not land at full airports, and tell the operator about the situation" do
+      airportA.capacity = 1
+      plane.land_at(airportA)
+      expect { planeA.land_at(airportA) }.to output("#{airportA} is full\n").to_stdout
     end
   end
 
