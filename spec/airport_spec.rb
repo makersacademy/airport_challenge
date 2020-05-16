@@ -26,6 +26,11 @@ describe Airport do
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error('no space for landing')
     end
+    it 'does not allow a plane to land if the plane is already in the airport' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error('this plane is already in the airport')
+    end
   end
   context 'take-off' do
     it 'allows a plane to take-off' do

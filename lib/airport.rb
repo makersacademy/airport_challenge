@@ -7,6 +7,8 @@ class Airport
   def land(plane)
     raise 'no space for landing' if @planes_in.length == @capacity
 
+    raise 'this plane is already in the airport' if @planes_in.include?(plane)
+
     @planes_in << plane
   end
 
