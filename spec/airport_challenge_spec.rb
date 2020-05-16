@@ -2,19 +2,17 @@ require_relative '../lib/airport_challenge'
 
 describe Airport do
   let(:subject) { Airport.new }
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
 
   it { is_expected.to respond_to :land }
 
   it 'should land a plane' do
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
 
-  it 'should let a plane take-off' do
-    expect(subject.take_off(plane)).to eq plane
-  end
-
-  it 'should confirm plane has taken-off' do
-    expect(subject.confirm_take_off(plane)).to eq "#{plane} successfully taken off"
+  it 'should let a plane take-off and confirm plane no longer in hangar' do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.hangar.include?(plane)).to eq(false)
   end
 end
