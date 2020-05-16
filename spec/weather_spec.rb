@@ -1,7 +1,7 @@
 require_relative '../lib/airport_challenge'
 
 describe Weather do
-  let(:subject) {Weather.new}
+  let(:subject) { Weather.new }
 
   it { is_expected.to respond_to :check_conditions }
 
