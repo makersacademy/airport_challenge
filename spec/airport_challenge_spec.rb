@@ -13,4 +13,8 @@ describe Airport do
   it 'should let a plane take-off' do
     expect(subject.take_off(plane)).to eq plane
   end
+
+  it 'should confirm plane has taken-off' do
+    expect(subject.confirm_take_off).to eq 'Plane successfully taken off'
+  end
 end
