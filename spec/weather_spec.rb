@@ -10,7 +10,7 @@ describe Weather do
   end
 
   it "should give current weather conditions" do
-    expect(subject.current_weather).to eq "sunny"
+    expect(subject.current_weather).to eq "stormy"
   end
   end
 end
