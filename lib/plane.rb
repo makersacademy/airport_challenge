@@ -7,7 +7,12 @@ class Plane
   end
 
   def land_at(airport)
-    @location = airport if correct_location?
+    if correct_location?
+      @location = airport
+      puts "landed at #{airport}"
+    else
+      puts "currently located at #{@location} so can not land"
+    end
   end
 
   def takeoff_from(airport)

@@ -7,9 +7,10 @@ describe Plane do
       plane.land_at("airport")
       expect(plane.location).to eq("airport")
     end
-    it "should only be able to land if it is flying" do
+    it "should only be able to land if it is flying,
+     and tell the operator of the problem" do
       plane.land_at("airportA")
-      plane.land_at("airportB")
+      expect { plane.land_at("airportB").to output("currently located at airportA so can not land\n").to_stdout }
       expect(plane.location).to eq("airportA")
     end
   end
