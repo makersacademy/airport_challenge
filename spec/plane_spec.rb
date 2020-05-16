@@ -27,7 +27,14 @@ describe Plane do
     end
     it 'plane confirms it is in the air' do
       a = Airport.new
+      plane.land(a)
       expect(plane.take_off(a)).to eq('Liftoff! We have a liftoff!')
     end
+  end
+
+  # Defending agaisnt edge cases
+  it 'prevents an airborne plane from taking-off again' do
+    a = Airport.new
+    expect(plane.take_off(a)).to eq(nil)
   end
 end

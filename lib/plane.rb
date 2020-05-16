@@ -17,9 +17,10 @@ class Plane
   end
 
   def take_off(airport)
-    airport.plane_take_off
-    @location = 'air'
-    'Liftoff! We have a liftoff!'
+    if @location == 'airport'
+      airport.plane_take_off
+      @location = 'air'
+      'Liftoff! We have a liftoff!'
+    end
   end
-
 end
