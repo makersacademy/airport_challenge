@@ -16,5 +16,4 @@ describe Airport do
   it 'can be at capacity' do
     expect(airport.at_capacity?).to be(true).or be(false)
   end
-
 end

@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   attr_accessor :capacity, :planes
@@ -13,4 +15,11 @@ class Airport
     @planes.length == DEFAULT_CAPACITY
   end
 
+  def plane_land(plane)
+    @planes << plane
+  end
+
+  def plane_take_off
+    @planes.pop
+  end
 end
