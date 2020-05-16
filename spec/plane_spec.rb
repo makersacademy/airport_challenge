@@ -9,4 +9,10 @@ describe Plane do
       expect(plane.land).to eq('airport')
     end
   end
+
+  describe '#take_off' do
+    it 'allows an ATC to instruct a plane to take off' do
+      expect(plane.take_off).to eq('air')
+    end
+  end
 end
