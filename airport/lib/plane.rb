@@ -7,6 +7,6 @@ class Plane
   end
 
   def take_off(airport)
-    "Plane is no longer in the airport"
+    "Plane is no longer in the #{airport}"
   end
 end
