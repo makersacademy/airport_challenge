@@ -2,14 +2,11 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-ap = Airport.new
+  ap = Airport.new
 
   it "allows a plane to land at the airport" do
-    expect(ap).to respond_to(:land)
+    expect(ap.land("aplane")).to include("aplane")
   end
 
-  it "prevents landing when airport is full" do
-    expect{ap.is_full?}.to raise_error('Airport FULL')
+  it { should respond_to(:land).with(1).argument }
   end
-
-end
