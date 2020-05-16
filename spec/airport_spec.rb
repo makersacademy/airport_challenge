@@ -2,7 +2,7 @@ require './lib/airport.rb'
 
 describe Airport do
 
-  subject (:airport) {Airport.new}
+  subject(:airport) { Airport.new }
 
   it 'exits' do
     airport
