@@ -31,5 +31,11 @@ describe Plane do ## update test when airport class is created
       plane.land_at(airportA)
       expect { plane.takeoff_from(airportB) }.to output("currently located at #{airportA} so can not takeoff\n").to_stdout
     end
+    it "should be removed from the airport's list of planes" do
+      airportA.capacity = 1
+      plane.land_at(airportA)
+      plane.takeoff_from(airportA)
+      expect { planeA.land_at(airportA) }.to output("landed at #{airportA}\n").to_stdout
+    end
   end
 end

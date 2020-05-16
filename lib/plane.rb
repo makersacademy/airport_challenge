@@ -7,8 +7,7 @@ class Plane
   end
 
   def land_at(airport)
-    if correct_location? && airport.landing_ok?
-      airport.landing(self)
+    if correct_location? && airport.landing_ok?(self)
       @location = airport
       puts "landed at #{airport}"
     elsif !correct_location?
@@ -17,7 +16,7 @@ class Plane
   end
 
   def takeoff_from(airport)
-    if correct_location?(airport)
+    if correct_location?(airport) && airport.takeoff_ok?(self)
       @location = "air"
       puts "departed #{airport}"
     else

@@ -11,8 +11,9 @@ class Airport
     @planes = []
   end
 
-  def landing_ok?
+  def landing_ok?(plane)
     if @planes.length < @capacity
+      landing(plane)
       true
     else
       puts "#{self} is full"
@@ -20,7 +21,15 @@ class Airport
     end
   end
 
+  def takeoff_ok?(plane)
+    departing(plane)
+  end
+
   def landing(plane)
     @planes << plane
+  end
+
+  def departing(plane)
+    @planes.delete(plane)
   end
 end
