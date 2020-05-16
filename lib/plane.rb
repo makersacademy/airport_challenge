@@ -6,7 +6,7 @@ class Plane
     @location = 'air'
   end
 
-  attr_accessor :location
+  attr_reader :location
 
   def land(airport)
     fail 'You cannot land - the airport is full.' if airport.at_capacity?
