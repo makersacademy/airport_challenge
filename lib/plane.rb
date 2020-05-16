@@ -13,6 +13,7 @@ class Plane
 
     airport.plane_land(self)
     @location = 'airport'
+    'Plane has now landed'
   end
 
   def take_off(airport)
