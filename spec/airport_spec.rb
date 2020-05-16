@@ -7,5 +7,4 @@ describe Airport do
     ap = Airport.new
     expect(ap).to respond_to(:land)
   end
-
 end

@@ -1,6 +1,7 @@
 class Plane
 
-  def land
+  def take_off
+    return "Departed"
   end
-  
+
 end
