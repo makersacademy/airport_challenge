@@ -5,7 +5,7 @@ describe Airport do
 
   context 'landing' do
 
-    plane = Plane.new
+    let (:plane) { Plane.new }
 
     before do
       plane.land(subject)
