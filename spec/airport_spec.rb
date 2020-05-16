@@ -17,6 +17,11 @@ describe Airport do
     expect(subject.instance_variable_get(:@planes)).to include(plane)
   end
 
+  it "won't allow landing when aiport is full" do
+    9.times { subject.landing(Plane.new) }
+    expect{ subject.landing(Plane.new) }.to raise_error('Airport at capacity')
+  end
+
   it 'removes plane from airport when departs' do
     subject.depart(plane)
     expect(subject.instance_variable_get(:@planes)).not_to include(plane)

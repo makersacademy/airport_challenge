@@ -9,6 +9,7 @@ class Airport
   end
 
   def landing(plane)
+    fail "Airport at capacity" if full?
     @planes.push(plane)
   end
 
@@ -21,6 +22,10 @@ private
 
   def plane_left_notification(plane)
     puts "#{plane} has left the airport"
+  end
+
+  def full?
+    @planes.count > 9
   end
 
 end
