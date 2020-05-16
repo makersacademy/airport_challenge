@@ -8,12 +8,14 @@ class Plane
 
   def land(airport)
     fail "Plane already docked at #{@docked_at}" if landing_check == false
+
     airport.landing(self)
     @docked_at = airport
   end
 
   def take_off(airport)
     fail "Plane not docked at #{airport}" if takeoff_check(airport)
+    
     airport.depart(self)
     @docked_at = ""
   end

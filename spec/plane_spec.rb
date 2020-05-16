@@ -5,6 +5,16 @@ describe Plane do
 
   let (:airport) { Airport.new }
 
+  it 'has no airport when created' do
+    expect(subject.instance_variable_get(:@docked_at)).to be_nil
+  end
+
+  it 'when an docked, it hold the airport its at' do
+    allow(airport).to receive(:rand) { 4 }
+    subject.land(airport)
+    expect(subject.instance_variable_get(:@docked_at)).to eq(airport)
+  end 
+
   it 'responds to land method with one argument' do
     expect(subject).to respond_to(:land)
   end

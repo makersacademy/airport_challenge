@@ -53,13 +53,4 @@ describe Airport do
     expect(subject.weather).to eq('sunny')
   end
 
-  # it 'does not allow depart when stormy' do
-  #   allow(subject).to receive(:rand) { 9 }
-  #   expect{ subject.depart(plane) }.to raise_error('DANGER: Storm Forecast')
-  # end
-  #
-  # it 'does not allow land when stormy' do
-  #   allow(subject).to receive(:rand) { 9 }
-  #   expect{ subject.land(plane) }.to raise_error('DANGER: Storm Forecast')
-  # end
 end

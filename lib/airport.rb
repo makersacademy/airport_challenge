@@ -14,6 +14,7 @@ class Airport
   def landing(plane)
     weather_check
     fail "Airport at capacity" if full?
+    
     @planes.push(plane)
   end
 
