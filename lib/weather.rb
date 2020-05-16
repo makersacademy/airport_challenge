@@ -4,7 +4,8 @@ class Weather
     @number = rand(20)
   end
 
-  def check?
+  def stormy?
+    puts "weather, #{@number}"
     @number != 0
   end
 
