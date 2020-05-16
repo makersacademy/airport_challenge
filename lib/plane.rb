@@ -11,7 +11,8 @@ class Plane
   end
 
   def take_off
+    print 'Liftoff! We have a liftoff!'
     @location = 'air'
-  end 
+  end
 
 end

@@ -14,5 +14,9 @@ describe Plane do
     it 'allows an ATC to instruct a plane to take off' do
       expect(plane.take_off).to eq('air')
     end
+    it 'plane confirms it is in the air' do
+      expect { plane.take_off }
+      .to output('Liftoff! We have a liftoff!').to_stdout
+    end
   end
 end
