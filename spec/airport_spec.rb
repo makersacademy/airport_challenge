@@ -9,4 +9,4 @@ describe Airport do
   end
 
   it { should respond_to(:land).with(1).argument }
-  end
+end

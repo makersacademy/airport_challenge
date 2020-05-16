@@ -1,8 +1,6 @@
 class Airport
 
-DEFAULT_CAPACITY = 5
-
-  attr_reader =  DEFAULT_CAPACITY
+  DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -13,8 +11,7 @@ DEFAULT_CAPACITY = 5
     fail "Airport full" if full
 
     @planes << plane
-    end
-
+  end
 
   def full
     @planes.length >= DEFAULT_CAPACITY
