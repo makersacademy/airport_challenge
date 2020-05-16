@@ -9,7 +9,14 @@ class Airport
   end
 
   def depart(plane)
-    @planes = nil 
+    @planes = nil
+    plane_left_notification(plane)
+  end
+
+private
+
+  def plane_left_notification(plane)
+    puts "#{plane} has left the airport"
   end
 
 end

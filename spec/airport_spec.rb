@@ -22,4 +22,8 @@ describe Airport do
     expect(subject.instance_variable_get(:@planes)).to eq(nil)
   end
 
+  it 'removes plane from airport when departs and tells user it has left' do
+    expect{ subject.depart(plane) }.to output("#{plane} has left the airport\n").to_stdout
+  end
+
 end
