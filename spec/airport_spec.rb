@@ -10,9 +10,14 @@ describe Airport do
       expect(subject).to respond_to(:land)
     end
 
-    let(:plane) {Plane.new}
+    let(:plane) { Plane.new }
     it 'Should #land a plane in the airport' do
-      expect(subject.land(plane)).to eq(plane)
+      expect(subject.land(plane)[0]).to eq(plane)
+    end
+
+    it 'should not let a plane land if airport is full' do
+      10.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error('Airport full')
     end
   end
 
@@ -22,7 +27,7 @@ describe Airport do
     end
 
     it 'Should confirm that a plane as taken off' do
-      expect{ subject.take_off }.to output("Plane has taken off\n").to_stdout
+      expect { subject.take_off }.to output("Plane has taken off\n").to_stdout
     end
   end
 end
