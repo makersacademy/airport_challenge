@@ -73,6 +73,26 @@ Plane <--- land ---> Airport
 Plane <--- take_off ---> Airport
 Airport <--- plane_in_airport? ---> true/false
 ```
-## From Domain Model to Feature Test
+## Airport Object
 
- - Run a feature test for Airport.
+ - Run a feature test to create new Airport object.
+ - Implement unit test for Airport constant
+ - Create Airport Class. 
+
+## Airport message
+ - Run feature test on Airport instant responding to plane_in_airport?
+ - Created unit test for the plane_in_airport? method.
+ - Defined plane_in_airport? method. 
+
+
+## Plane Object
+
+ - Run a feature test to create new plane object.
+ - Implement unit test for Airport constant
+ - Create Airport Class. 
+
+## Plane messages
+ 1. Ran feature test on Plane instant responding to land
+ 2. Created unit test for the land method.
+ 3. Defined land method. 
+ 4. Repeated steps 1-3 for take_off message.
