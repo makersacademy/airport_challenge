@@ -9,6 +9,10 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'responds to #full?' do 
+    expect(subject).to respond_to(:full?)
+  end
+  
   describe '#take_off' do
     it 'releases a plane' do
       plane = subject.take_off 
