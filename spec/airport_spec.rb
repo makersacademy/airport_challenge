@@ -19,6 +19,10 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to match_array([plane])
     end
+    it 'does not allow a plane to land if full capacity is reached' do
+      20.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error('no space for landing')
+    end
   end
   context 'take-off' do
     it 'allows a plane to take-off' do

@@ -5,6 +5,8 @@ class Airport
   end
 
   def land(plane)
+    raise 'no space for landing' if @planes_in.length == @capacity
+
     @planes_in << plane
   end
 
