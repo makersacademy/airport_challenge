@@ -1,6 +1,7 @@
 require_relative './plane'
 
 class Airport
+  DEFAULT_CAPACITY = 20
   attr_reader :hangar
 
   def initialize
@@ -21,7 +22,7 @@ class Airport
   end
 
   def full?
-    @hangar.length == 20
+    @hangar.length == DEFAULT_CAPACITY
   end
 
 end
