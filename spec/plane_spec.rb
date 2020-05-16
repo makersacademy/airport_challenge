@@ -10,8 +10,7 @@ describe Plane do ## update test when airport class is created
       expect(plane.location).to eq("airport")
     end
     it "and tell the operator that it landed" do
-      expect { plane.land_at("airport").to
-        output("landed at #{airport}\n").to_stdout }
+      expect { plane.land_at("airport") }.to output("landed at airport\n").to_stdout
     end
     it "should only be able to land if it is flying, " do
       plane.land_at("airportA")
@@ -20,16 +19,19 @@ describe Plane do ## update test when airport class is created
     end
     it "and tell the operator of the problem" do
       plane.land_at("airportA")
-      expect { plane.land_at("airportB").to
-        output("currently located at airportA so can not land\n").to_stdout }
+      expect { plane.land_at("airportB") }.to output("currently located at airportA so can not land\n").to_stdout
     end
   end
-  
+
   describe '#takeoff_from(airport)' do
-    it "should leave airport and begin flying" do
+    it "should leave airport and begin flying," do
       plane.land_at("airport")
       plane.takeoff_from("airport")
       expect(plane.location).to eq("air")
+    end
+    it "and tell the operator it departed" do
+      plane.land_at("airport")
+      expect { plane.takeoff_from("airport") }.to output("departed airport\n").to_stdout
     end
     it "shouldn't takeoff from somewhere it is not" do
       plane.land_at("airportA")
