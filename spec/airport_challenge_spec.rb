@@ -6,9 +6,16 @@ describe Airport do
 
   it { is_expected.to respond_to :land }
 
+  it 'should take a maximum capacity as an argument' do
+    capacity = 50
+    airport = Airport.new(capacity)
+    capacity.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error('Warning: Hangar full')
+  end
+
   describe '#land' do
     it 'should raise error if @hangar is full' do
-      20.times { subject.land Plane.new }
+      Airport::DEFAULT_CAPACITY.times { subject.land Plane.new }
       expect { subject.land Plane.new }.to raise_error('Warning: Hangar full')
     end
     it 'should land a plane' do
