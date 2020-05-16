@@ -8,6 +8,9 @@ describe Airport do
   it 'creates an array for storing planes' do
     expect(subject.instance_variable_get :@planes_in)
   end
+  it 'creates a capacity instance variable' do
+    expect(subject.instance_variable_get :@capacity).to eq(20)
+  end
   context 'landing' do
     it 'allows a plane to land' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -17,9 +20,7 @@ describe Airport do
       expect(subject.land(plane)).to match_array([plane])
     end
   end
-
   context 'take-off' do
-
     it 'allows a plane to take-off' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
