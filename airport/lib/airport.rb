@@ -1,6 +1,5 @@
 
 class Airport
 
-
-
+  
 end
