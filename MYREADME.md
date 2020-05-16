@@ -66,4 +66,4 @@ Objects  |  Messages
 ---------| ------------
 Controller |  
 Plane | land, take_off
-Airport | 
+Airport | plane_in_airport?
