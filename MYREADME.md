@@ -37,42 +37,38 @@ I want to prevent landing when weather is stormy
 ```
 
 ---
+## Objects & Messages
+
+FIRST 2 USER STORIES
 
 **A note of all the nouns(objects) in the user story**
 
-
-As an air traffic **controller**
-So I can get **passengers** to a **destination**
-I want to instruct a **plane** to land at an **airport**
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
+1. plane
+1. airport
 
 **A note of all the verbs(messages) in the user story**
  
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to **land at an airport**
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to **take off from an airport** and **confirm that it is no longer in the airport**
-
+1. land at an airport
+2. take off from an airport
+3. confirm that it is no longer in the airport
 
 
 Objects  |  Messages
 ---------| ------------
 Controller |  
-Plane | land, take_off
-Airport | plane_in_airport?
+Plane | at_airport?
+Airport | land, take_off, 
+---
+## Domain Model
 
 ```
-Plane <--- land ---> Airport 
-Plane <--- take_off ---> Airport
-Airport <--- plane_in_airport? ---> true/false
+Airport <--- land ---> a plane
+Airport <--- take_off ---> a plane
+Plane <--- at_airport? --> true/false
 ```
+---
+## Feature Test
+
 ## Airport Object
 
  - Run a feature test to create new Airport object.
@@ -80,19 +76,18 @@ Airport <--- plane_in_airport? ---> true/false
  - Create Airport Class. 
 
 ## Airport message
- - Run feature test on Airport instant responding to plane_in_airport?
- - Created unit test for the plane_in_airport? method.
- - Defined plane_in_airport? method. 
+ - Run feature test to land(plane) at Airport
+ - Created unit test for the land method.
+ - Defined lane method within Airport class
 
 
 ## Plane Object
-
- - Run a feature test to create new plane object.
- - Implement unit test for Airport constant
- - Create Airport Class. 
+ - Run a feature test to create new Plane object.
+ - Implement unit test to define Plane constant
+ - Create Plane Class. 
 
 ## Plane messages
- 1. Ran feature test on Plane instant responding to land
- 2. Created unit test for the land method.
- 3. Defined land method. 
- 4. Repeated steps 1-3 for take_off message.
+ -  Run a feature test to check if plane is at airport
+ -  Created unit test for the at_airport? method
+ -  Defined at_airport? method. 
+---
