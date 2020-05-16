@@ -8,4 +8,12 @@ describe Airport do
       expect(Airport).to respond_to(:new).with(0).arguments
     end
   end
+
+  let(:airport) { Airport.new }
+
+  describe '#capacity' do
+    it "should have default capacity" do
+      expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
+  end
 end
