@@ -8,6 +8,7 @@ class Airport
 
   def take_off(plane)
     @plane = plane
+    confirm_take_off(plane)
   end
 
   def confirm_take_off(plane)
