@@ -14,6 +14,8 @@ describe Plane do
   end
 
   it 'does not allow takeoff when stormy' do
+    allow(airport).to receive(:rand) { 4 }
+    subject.land(airport)
     allow(airport).to receive(:rand) { 9 }
     expect{ subject.take_off(airport) }.to raise_error('DANGER: Storm Forecast')
   end
@@ -21,6 +23,18 @@ describe Plane do
   it 'does not allow land when stormy' do
     allow(airport).to receive(:rand) { 9 }
     expect{ subject.land(airport) }.to raise_error('DANGER: Storm Forecast')
+  end
+
+  it 'raises error when trying to take off airport not docked at' do
+    allow(airport).to receive(:rand) { 4 }
+    expect{ subject.take_off(airport) }.to raise_error("Plane not docked at #{airport}")
+  end
+
+  it 'raises error when trying to land but already at an airport' do
+    bristol = Airport.new
+    allow(bristol).to receive(:rand) { 4 }
+    subject.land(bristol)
+    expect{ subject.land(airport) }.to raise_error("Plane already docked at #{bristol}")
   end
 
 end

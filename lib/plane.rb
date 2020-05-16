@@ -2,12 +2,30 @@ require_relative 'airport'
 
 class Plane
 
+  def initialize
+    @docked_at = nil
+  end
+
   def land(airport)
+    fail "Plane already docked at #{@docked_at}" if landing_check == false
     airport.landing(self)
+    @docked_at = airport
   end
 
   def take_off(airport)
+    fail "Plane not docked at #{airport}" if takeoff_check(airport)
     airport.depart(self)
-  end 
+    @docked_at = ""
+  end
+
+private
+
+  def takeoff_check(airport)
+    @docked_at != airport
+  end
+
+  def landing_check
+    @docked_at.nil?
+  end
 
 end
