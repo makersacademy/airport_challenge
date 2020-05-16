@@ -20,5 +20,9 @@ describe Airport do
     it 'Should respond to #take_off' do
       expect(subject).to respond_to(:take_off)
     end
+
+    it 'Should confirm that a plane as taken off' do
+      expect{ subject.take_off }.to output("Plane has taken off\n").to_stdout
+    end
   end
 end

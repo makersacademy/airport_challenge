@@ -7,6 +7,7 @@ class Airport
   end
 
   def take_off
+    puts 'Plane has taken off'
   end
 
 end
