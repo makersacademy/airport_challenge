@@ -15,7 +15,7 @@ I want to instruct a plane to land at an airport
 
 Plane --land--> Airport
 
-Feature test:\
+####Feature test:\
 plane = Plane.new\
 airport = Airport.new\
 airport.planes #shows that airport is empty\
@@ -38,7 +38,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 Plane --take_off--> Airport
 
-Feature test:\
+####Feature test:\
 plane = Plane.new\
 airport = Airport.new\
 plane.land #plane instructed to land\
@@ -63,8 +63,7 @@ I want to prevent landing when the airport is full
 
 Plane <--land--> Airport <--full?--> true/false
 
-Feature test:\
-
+####Feature test:\
 airport = Airport.new(10) #set a capacity of 10\
 10.times do\
   plane = Plane.new\
@@ -79,3 +78,11 @@ plane.land\
 As the system designer\
 So that the software can be used for many different airports\
 I would like a default airport capacity that can be overridden as appropriate
+
+####Feature test:\
+airport = Airport.new
+airport.capacity
+=> 20 # assume a default capacity of 20
+airport.capacity = 40
+airport.capacity
+=> 40 # capacity overridden

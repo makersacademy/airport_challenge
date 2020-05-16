@@ -2,10 +2,20 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  describe '#initialize' do
-    it 'sets hanger capacity' do
-      subject = Airport.new(120) # clean uprubocop
-      expect(subject.capacity).to eq 120
+  describe '#capacity' do
+    it { is_expected.to respond_to :capacity }
+
+    it 'is expected to return an Integer' do
+      expect(subject.capacity).to be_kind_of(Integer)
+    end
+
+    it 'has a default value of 20' do
+      expect(subject.capacity).to eq 20
+    end
+
+    it 'can be overridden' do
+      subject.capacity = 42
+      expect(subject.capacity).to eq 42
     end
   end
 
