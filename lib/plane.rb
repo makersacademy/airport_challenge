@@ -11,9 +11,11 @@ class Plane
   def land(airport)
     fail 'You cannot land - the airport is full.' if airport.at_capacity?
 
-    airport.plane_land(self)
-    @location = 'airport'
-    'Plane has now landed'
+    if @location == 'air'
+      airport.plane_land(self)
+      @location = 'airport'
+      'Plane has now landed'
+    end
   end
 
   def take_off(airport)

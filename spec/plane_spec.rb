@@ -11,9 +11,8 @@ describe Plane do
       expect(a.planes.length).to eq(1)
     end
     it 'allows an ATC to prevent landing when airport is full' do
-      a = Airport.new
-      Airport::DEFAULT_CAPACITY.times { plane.land(a) }
-      expect { plane.land(a) }
+      #Airport::DEFAULT_CAPACITY.times { plane.land(a) }
+      expect { plane.land(Airport.new(cap = 0)) }
       .to raise_error('You cannot land - the airport is full.')
     end
   end
@@ -21,9 +20,9 @@ describe Plane do
   describe '#take_off' do
     it 'allows an ATC to instruct a plane to take off' do
       a = Airport.new
-      4.times { plane.land(a) }
+      plane.land(a)
       plane.take_off(a)
-      expect(a.planes.length).to eq(3)
+      expect(a.planes.length).to eq(0)
     end
     it 'plane confirms it is in the air' do
       a = Airport.new
@@ -36,5 +35,11 @@ describe Plane do
   it 'prevents an airborne plane from taking-off again' do
     a = Airport.new
     expect(plane.take_off(a)).to eq(nil)
+  end
+
+  it 'prevents a grounded plane from landing again' do
+    a = Airport.new
+    plane.land(a)
+    expect(plane.land(a)).to eq(nil)
   end
 end

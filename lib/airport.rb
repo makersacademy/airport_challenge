@@ -12,7 +12,7 @@ class Airport
   DEFAULT_CAPACITY = 100
 
   def at_capacity?
-    @planes.length == DEFAULT_CAPACITY
+    @planes.length == @capacity
   end
 
   def plane_land(plane)
