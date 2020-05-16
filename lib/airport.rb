@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 2
@@ -7,4 +9,4 @@ class Airport
   def initialize(cap = DEFAULT_CAPACITY)
     @capacity = cap
   end
-end 
+end
