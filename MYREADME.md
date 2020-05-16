@@ -67,3 +67,8 @@ Objects  |  Messages
 Controller |  
 Plane | land, take_off
 Airport | plane_in_airport?
+
+```
+Plane <--- land 
+Plane <--- take_off
+Airport <--- plane_in_airport? ---> true/false
