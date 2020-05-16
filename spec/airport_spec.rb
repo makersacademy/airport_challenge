@@ -38,5 +38,9 @@ describe Airport do
       subject.land(plane1)
       expect(subject.take_off(plane)).not_to include(plane)
     end
+    it 'raise an error if take_off is called for a plane that is not in the airport' do
+      plane = Plane.new
+      expect { subject.take_off(plane) }.to raise_error('this plane is not in this airport')
+    end
   end
 end

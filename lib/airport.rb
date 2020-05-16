@@ -11,6 +11,8 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'this plane is not in this airport' if @planes_in.include?(plane) == false
+
     @planes_in.delete(plane)
     return @planes_in
   end
