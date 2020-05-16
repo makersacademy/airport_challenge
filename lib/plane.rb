@@ -16,7 +16,11 @@ class Plane
   end
 
   def takeoff_from(airport)
-    @location = "air" if correct_location?(airport)
+    if correct_location?(airport)
+      @location = "air"
+      puts "departed #{airport}"
+    else
+    end
   end
 
   private
