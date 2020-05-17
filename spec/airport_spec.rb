@@ -16,5 +16,7 @@ describe Airport do
     subject.land(plane)
     expect(subject.takeoff(plane)).not_to include(plane)
   end
-
+  it 'announces which plane has taken off' do
+    expect(subject).to respond_to(:confirm_takeoff)
+  end
 end
