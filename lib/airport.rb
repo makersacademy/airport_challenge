@@ -5,10 +5,6 @@ class Airport
     @capacity = capacity
   end
 
-  def forecast
-    rand(1..20)
-  end
-
   def land(plane)
     if full?
       raise 'no space for landing'
@@ -29,7 +25,7 @@ class Airport
 
   def take_off(plane)
     if forecast == 20
-      raise 'too stormy to take-off' if forecast == 20
+      raise 'too stormy to take-off'
 
     end
 
@@ -48,5 +44,9 @@ class Airport
 
   def plane_already_in?(plane)
     @planes_in.include?(plane)
+  end
+
+  def forecast
+    rand(1..20)
   end
 end

@@ -80,3 +80,9 @@ describe Airport do
     end
   end
 end
+
+describe Plane do
+  it 'generate an instance of the class Plane' do
+    expect(Plane.new).to be_instance_of Plane
+  end
+end
