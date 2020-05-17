@@ -1,12 +1,13 @@
-# require './lib/plane'
+require './lib/plane.rb'
 
 class Airport
 
   attr_reader :airport_hanger
+  attr_accessor :capacity
 
-  def initialize
+  def initialize(capacity = 1)
     @airport_hanger = []
-    @capacity = 1
+    @capacity = capacity
   end
 
   def land(plane)
