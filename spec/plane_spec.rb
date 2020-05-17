@@ -5,14 +5,17 @@ describe Plane do
   let(:airport) { Airport.new }
   let(:plane) { double :plane }
 
-  it "checks whether a plane has departed" do  
-    allow(airport).to receive(:weather) { "sunny" }
+  it { is_expected.to respond_to :flying? }
+
+  it "checks whether a plane is flying" do  
+    allow(subject).to receive(:weather) { "sunny" }
     airport.land(subject)
-    expect(airport.take_off(subject)).to eq true
+    expect(subject.flying?).to eq false
   end
 
   it "should tell a plane to land at an airport" do
-    expect(subject).to respond_to(:plane)
+    expect(subject).to respond_to(:land)
+    
   end
 
   it "should prevent landing if weather is stormy" do
@@ -20,6 +23,7 @@ describe Plane do
   end
 
   it "should prevent take-off if weather is stormy" do 
-    expect { subject.takeoff(plane) }.to raise_error "Weather stormy, unable to take-off"
+    expect { subject.flying? }.to raise_error "Weather stormy, unable to take-off"
   end
+
 end

@@ -4,7 +4,7 @@ describe Weather do
   let(:subject) { Weather.new }
 
   describe "#weather" do
-    it { is_expected.to respond_to :weather }
+    it { is_expected.to respond_to :current_weather }
 
     it "have weather conditions" do
       expect(subject.weather).to eq ["sunny", "sunny", "stormy"]

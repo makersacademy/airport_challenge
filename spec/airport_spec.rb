@@ -7,19 +7,17 @@ describe Airport do
   describe "#airport" do
     it { is_expected.to respond_to :land }
 
-    # it "should determine if a plane is at an airport" do
-    # expect(airport.location(plane)).to eq false
-    # end
+    it 'should allow air traffic controller to set capacity' do 
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
 
     it "should raise an error if airport is full" do
-      capacity = 35
-      airport = Airport.new(capacity)
-      capacity.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error "Airport at capacity"
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "Airport at capacity"
     end
 
     it 'should land a plane' do
-      expect(subject.land(plane)).to eq [plane]
+      expect(subject).to respond_to(:land).with(1).argument
     end
 
     it 'should let a plane take-off and confirm plane no longer in hangar' do

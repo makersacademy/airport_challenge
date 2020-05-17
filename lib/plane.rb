@@ -3,19 +3,17 @@ require 'airport'
 
 class Plane
   attr_accessor :plane
-
-  def location(plane)
-  end
-
+  attr_accessor :flying
+  
   def land(plane)
     fail "Weather stormy, unable to land" if current_weather = "stormy"
 
     @plane = plane
   end
 
-  def takeoff(plane)
+  def flying?
     fail "Weather stormy, unable to take-off" if current_weather = "stormy"
+    land(plane)
 
-    @plane = plane
   end
 end

@@ -1,6 +1,4 @@
 class Weather
-#   attr_reader :weather
-
   def weather 
     weather = ["sunny", "sunny", "stormy"]
     weather
