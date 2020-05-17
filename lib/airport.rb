@@ -31,7 +31,7 @@ class Airport
     false
   end
 
-  private
+  #private
 
   def capacity_ok?
     if @planes.length < @capacity
@@ -43,9 +43,11 @@ class Airport
   end
 
   def weather_stormy?
-    if @weather.stormy? ## rubocop doesn't like this for a style reason...
+    if @weather.stormy? ## rubocop doesn't like this for a style reason... so included lines 49,50
       puts "weather is stormy" # puting this here as i'm treating the weather as weather,
       true                     # and weather can't tell you anything. (the airport would)
+    else
+      false # this else - false doesn't actually add anthing to the code
     end
   end
 

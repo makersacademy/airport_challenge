@@ -45,7 +45,7 @@ Refactor the spec file and code file as needed
 
 Identify methods that were doing too much, creating new methods such that each filled the SRP in my opinion
 Make all inward facing methods private
-Double check with rubocop about any guideline violations, make those changes (apart from the one commented on)
+Double check with rubocop about any guideline violations, make those changes (including adding code to make it happy airport:49-50)
 
 ## Comment about Weather being so empty
 
