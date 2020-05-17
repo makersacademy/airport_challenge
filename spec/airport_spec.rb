@@ -1,6 +1,12 @@
 require 'airport'
 
 describe Airport do
+
+  let(:plane) { Plane.new }
+  let(:clear) { allow(subject).to receive(:weather_check).and_return true }
+  let(:stormy) { allow(subject).to receive(:weather_check).and_return false }
+
+
   it 'Should have an airport class' do
     expect(subject).to be_instance_of(Airport)
   end
@@ -18,19 +24,19 @@ describe Airport do
       expect(subject).to respond_to(:land)
     end
 
-    let(:plane) { Plane.new }
     it 'Should #land a plane in the airport' do
-      expect(subject.land(plane)[0]).to eq(plane)
+      clear
+      expect(subject.land(plane).first).to eq(plane)
     end
 
-    it 'should not let a plane land if airport is full' do
-      allow(subject).to receive(:rand) { 1 }
+    it 'Should not let a plane land if airport is full' do
+      clear
       10.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
 
     it 'Should not let a plane land in a storm,' do
-      allow(subject).to receive(:rand) { 5 }
+      stormy
       expect(subject.land(plane)).to eq("You must wait due to a storm")
     end
   end
@@ -40,13 +46,20 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
+    it 'Should not let a plane take off it there are no planes' do
+      clear
+      expect { subject.take_off(plane) }.to raise_error("No planes in hanger to take off")
+    end
+
     it 'Should confirm that a plane as taken off' do
-      expect(subject.take_off).to eq("Plane has taken off")
+      clear
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq("Plane has taken off")
     end
 
     it 'Should not let a plane takeoff in a storm,' do
-      allow(subject).to receive(:rand) { 5 }
-      expect(subject.take_off).to eq("You must wait due to a storm")
+      stormy
+      expect(subject.take_off(plane)).to eq("You must wait due to a storm")
     end
   end
 
@@ -56,13 +69,9 @@ describe Airport do
     end
 
     it 'Should return a true' do
-      allow(subject).to receive(:rand) { 3 }
+      clear
       expect(subject.weather_check).to eq(true)
-    end
-
-    it 'Should return a false' do
-      allow(subject).to receive(:rand) { 5 }
-      expect(subject.weather_check).to eq(false)
+      expect(subject.weather_check).not_to eq(false)
     end
   end
 end
