@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  DEFAULT_CAPACITY = 2
+  DEFAULT_CAPACITY = 100
 
   attr_accessor :capacity
 

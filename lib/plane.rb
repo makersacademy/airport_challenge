@@ -32,5 +32,5 @@ class Plane
   def location_error_while(operation)
     puts "currently located at #{@location} so can not #{operation}"
   end
-  
+
 end
