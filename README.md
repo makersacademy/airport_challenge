@@ -54,3 +54,40 @@ I want to prevent landing when weather is stormy
 - One of the first tasks I worked on was deciding what the overall architecture of the code might look like.I was initially unsure of whether the `land` and `take_off` methods should be a part of the `Airport` class or `Plane` class. That is to say: should it be the airport that decides to land the plane, or the plane that decides to land at the airport. In terms of code implementation, it would seem to make more sense for the methods to be part of the `Airport` class as what constitutes a take off and landing (the addition and removal of the plane from the `hangar` array) happens entirely within the `Airport` class. However, I instead opted to have the methods be a part of the `Plane` class as, from a user perspective, it did not seem very intuitive for an `airport.land` command to be run. The modification of the `hangar` array is instead done through the airport’s `request_landing` and `request_take_off` methods which are called from within the plane’s `land` and `take_off` methods.
 - A similar issue arose when deciding which tests would take place where. Again, it would make more intuitive sense for “take off” and “land” related tests to take place in the `plane_spec.rb` file; seeing as it is the plane the would be instructed to take off or land. However, for the reasons stated above, a “take off” or “land” test would not be testing the `Plane` class’ ability to take off and land, but rather Rspec’s ability to mimic the behavior of the `Airport` class (assuming all spec files are isolated from each other). Therefore, these tests were placed in the airport_spec file relating to the `request_landing` and `request_take_off` methods.
 - After still coming to grips with the Single-responsibility Principle (SRP), I made an effort to keep each method short and specific, but was still unsure of how much each method should be discretised. I was aware of instances where methods seemed like they could be further divided into smaller and more specific methods, but where doing so also seemed unnecessary and would only add further complexity. Further research and experience will be required to be more comfortable with this concept.
+
+## Usage
+### Creating a Plane and Airport
+```bash
+heathrow = Airport.new
+ => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[], @weather="sunny">
+BA123 = Plane.new
+ => #<Plane:0x00007fa4060343a8 @location="in_flight">
+```
+### Landing and Taking Off a Plane
+```bash
+BA123.land(heathrow)
+ => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[#<Plane:0x00007fa4060343a8 @location=#<Airport:0x00007fa42693d3f8 ...>, @airport=#<Airport:0x00007fa42693d3f8 ...>>], @weather="sunny">
+BA123.take_off
+[plane has taken off from airport]
+ => ""
+ ```
+### Setting Airport Capacity
+```bash
+heathrow
+=> #<Airport:0x00007fb0d401d088 @capacity=20, @hangar=[], @weather="stormy">
+heathrow.capacity = 45
+=> 45
+heathrow
+=> #<Airport:0x00007fb0d401d088 @capacity=45, @hangar=[], @weather="stormy">
+ ```
+### Preventing Plane from Landing at a Full Airport
+```bash
+heathrow.capacity.times { |a_plane| a_plane = Plane.new ; a_plane.land(heathrow) }
+ => 45
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Airport is at maximum capacity)
+```
