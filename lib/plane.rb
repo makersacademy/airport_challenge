@@ -11,7 +11,7 @@ class Plane
       @location = airport
       puts "landed at #{airport}"
     elsif !correct_location?
-      puts "currently located at #{@location} so can not land"
+      location_error_while("land")
     end
   end
 
@@ -20,7 +20,7 @@ class Plane
       @location = "air"
       puts "departed #{airport}"
     elsif !correct_location?(airport)
-      puts "currently located at #{@location} so can not takeoff"
+      location_error_while("takeoff")
     end
   end
 
@@ -29,4 +29,8 @@ class Plane
     @location == location
   end
 
+  def location_error_while(operation)
+    puts "currently located at #{@location} so can not #{operation}"
+  end
+  
 end

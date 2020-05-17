@@ -17,14 +17,21 @@ class Airport
     unless weather_stormy?
       if capacity_ok?
         landing(plane)
-        true
-      else
-        false
+        return true
       end
-    else
-      false
     end
+    false
   end
+
+  def takeoff_ok?(plane)
+    unless weather_stormy?
+      departing(plane)
+      return true
+    end
+    false
+  end
+
+  private
 
   def capacity_ok?
     if @planes.length < @capacity
@@ -39,17 +46,6 @@ class Airport
     if @weather.stormy?
       puts "weather is stormy"
       true
-    else
-      false
-    end
-  end
-
-  def takeoff_ok?(plane)
-    unless weather_stormy?
-      departing(plane)
-      true
-    else
-      false
     end
   end
 
