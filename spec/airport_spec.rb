@@ -34,7 +34,7 @@ describe Airport do
     end
 
     it 'raises an error when hangar is at maximum capacity' do
-      allow(subject).to receive(:in_hangar?).with(plane).and_return(false)   so the same plane can land multiple times
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(false) # so the same plane can land multiple times
       subject.capacity.times { subject.request_landing(plane) }
       expect { subject.request_landing(plane) }.to raise_error("Airport is at maximum capacity")
     end
