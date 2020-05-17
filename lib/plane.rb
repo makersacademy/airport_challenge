@@ -19,7 +19,7 @@ class Plane
     if correct_location?(airport) && airport.takeoff_ok?(self)
       @location = "air"
       puts "departed #{airport}"
-    else
+    elsif !correct_location?(airport)
       puts "currently located at #{@location} so can not takeoff"
     end
   end

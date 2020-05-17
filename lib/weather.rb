@@ -1,11 +1,10 @@
 class Weather
 
-  def initialize
-    @number = rand(20)
-  end
-
   def stormy?
-    @number == 0
+    number = rand(20)
+    number == 0
   end
 
 end
+
+weather = Weather.new

@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -9,20 +10,34 @@ class Airport
   def initialize(cap = DEFAULT_CAPACITY)
     @capacity = cap
     @planes = []
+    @weather = Weather.new
   end
 
   def landing_ok?(plane)
-    if @planes.length < @capacity
-      landing(plane)
+    unless weather_stormy?
+      if @planes.length < @capacity
+        landing(plane)
+        true
+      else
+        puts "#{self} is full"
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def weather_stormy?
+    if @weather.stormy?
+      puts "weather is stormy"
       true
     else
-      puts "#{self} is full"
       false
     end
   end
 
   def takeoff_ok?(plane)
-    departing(plane)
+    departing(plane) unless Weather.new.stormy?
   end
 
   def landing(plane)
