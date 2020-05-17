@@ -113,3 +113,23 @@ Traceback (most recent call last):
         1: ...
 RuntimeError (Weather conditions are too unsafe)
 ```
+### Prevent Take Off and Landing Inconsistencies 
+```
+BA123.land(heathrow)
+ => #<Airport:0x00007ff8e9810828 @capacity=20, @hangar=[#<Plane:0x00007ff9298af258 @location=#<Airport:0x00007ff8e9810828 ...>, @airport=#<Airport:0x00007ff8e9810828 ...>>], @weather="sunny">
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Plane has already landed)
+BA123.take_off
+[plane has taken off from airport]
+ => ""
+BA123.take_off
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Plane is already in flight)
+```
