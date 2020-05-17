@@ -14,8 +14,9 @@ describe Airport do
   end
 
   it 'should not allow a plane to land that has already landed' do
-    subject.land(plane)
-    expect { subject.land(plane) }.to raise_error('Plane already in hangar')
+    airport = Airport.new
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error('Plane already in hangar')
   end
 
   describe '#land' do
