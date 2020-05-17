@@ -40,4 +40,11 @@ describe Plane do
     plane.land(a)
     expect(plane.land(a)).to eq(nil)
   end
+
+  it 'prevents a plane taking off from an airport it is not at' do
+    a = Airport.new
+    b = Airport.new
+    plane.land(a)
+    expect(plane.take_off(b)).to eq(nil)
+  end
 end

@@ -13,16 +13,17 @@ class Plane
 
     return unless @location == 'air'
 
-    airport.plane_land(self)
     @location = 'airport'
+    airport.plane_land(self)
     'Plane has now landed'
   end
 
   def take_off(airport)
     return unless @location == 'airport'
 
-    airport.plane_take_off
+    if airport.plane_take_off(self)
     @location = 'air'
     'Liftoff! We have a liftoff!'
+    end
   end
 end
