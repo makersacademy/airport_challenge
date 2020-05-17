@@ -1,14 +1,11 @@
 class Weather
-  def generate
-    case ramdom_number
-      when 1..80 then 'sunny'
+
+  SUNNY_WEIGHT = 0.8
+
+  def self.generate
+    case rand(1..100)
+      when 1..SUNNY_WEIGHT * 100 then 'sunny'
       else 'stormy'
     end
-  end
-
-  private
-
-  def ramdom_number
-    rand(1..100)
   end
 end

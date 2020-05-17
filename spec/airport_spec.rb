@@ -17,7 +17,7 @@ describe Airport do
     end
 
     it 'can be overridden' do
-      [1,12,123].each do |cap|
+      [1, 12, 123].each do |cap|
         subject.capacity = cap
         expect(subject.capacity).to eq cap
       end
@@ -27,14 +27,19 @@ describe Airport do
   describe '#request_landing' do
     it { is_expected.to respond_to(:request_landing).with(1).argument }
 
-    it 'takes a plane as an argument and stores it in the hangar' do
+    it 'takes a plane as an argument and stores it in hangar' do
       subject.request_landing(plane)
       expect(subject.in_hangar?(plane)).to be_truthy
     end
 
-    it 'raises an error when a plane tries to land while hangar is full' do
+    it 'raises an error when hangar is full' do
       allow(subject).to receive(:max_capacity?).and_return(true)
       expect { subject.request_landing(plane) }.to raise_error("Airport is at maximum capacity")
+    end
+
+    it 'raises an error when plane is already in hangar' do
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(true)
+      expect { subject.request_landing(plane) }.to raise_error("Plane is already in hangar")
     end
   end
 
@@ -44,8 +49,18 @@ describe Airport do
     it { is_expected.to respond_to(:request_take_off).with(1).argument }
 
     it 'takes a plane as an argument and removes it from the hangar' do
+      allow($stdout).to receive(:puts) # suppress console output
       subject.request_take_off(plane)
       expect(subject.in_hangar?(plane)).not_to be_truthy
+    end
+
+    it 'confirms when plane is no longer in hangar' do
+      expect { subject.request_take_off(plane) }.to output("[plane has taken off from airport]\n").to_stdout
+    end
+
+    it 'raises an error when plane is not currently in hangar' do
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(false)
+      expect { subject.request_take_off(plane) }.to raise_error("Plane is not currently in hangar")
     end
   end
 
@@ -54,13 +69,14 @@ describe Airport do
 
     describe '#request_landing' do
       it 'raises an error' do
-        expect { subject.request_landing(plane) }.to raise_error("Weather conditions are too unsafe for landing")
+        expect { subject.request_landing(plane) }.to raise_error("Weather conditions are too unsafe")
       end
     end
 
     describe '#request_take_off' do
       it 'raises an error' do
-        expect { subject.request_take_off(plane) }.to raise_error("Weather conditions are too unsafe for take off")
+        allow(subject).to receive(:in_hangar?).with(plane).and_return(true)
+        expect { subject.request_take_off(plane) }.to raise_error("Weather conditions are too unsafe")
       end
     end
   end

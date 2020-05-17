@@ -102,3 +102,15 @@ plane.land
 ####Feature test: when stormy and already landed plane\
 plane.take_off
 => error
+
+=================
+### Inconsistent states
+
+Planes cannot:
+- take off whilst in flight [DONE]
+- take off from an airport they are not in [IMPLICIT]
+- land while already landed [DONE]
+
+Airports will not accept:
+- take off requests from planes that are not in the hangar
+- landing requests from planes that are in the hangar [DONE]
