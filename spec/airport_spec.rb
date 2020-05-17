@@ -8,8 +8,6 @@ describe Airport do
     expect(subject.land(plane)).to eq plane
   end
 
-  it 'allows planes to take off' do
-    expect(subject).to respond_to :takeoff
-  end
-  end
-  
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
+
+end
