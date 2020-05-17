@@ -141,3 +141,25 @@ airport <---- land(plane) ---> raise error when airport is full
  - Feature test. If capcity length is over a certain value. Airport will raise error to land method.
  - Write unit test for land method to raise error if plane is already landed. Test Failed.
  - Defined full? method in private. Set full? to capacity == 1. Raised error if full?. Test passed.
+---
+ ## User Story 4
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+```
+airport <--- capacity ---> default_value
+```
+
+**Airport capacity should have a default value**
+ - Feature test to add argument into new airport. 
+ - Wrote unit test for Airport to accept argument when created. Test failed.
+ - Define initialize method to accept any argument when being created. Test passed.
+
+
+**Airport capacity should be set once new airport is created**
+- Feature tested for argument on new Airport to equal capacity. Failed.
+- Wrote unit test for Airport
+
