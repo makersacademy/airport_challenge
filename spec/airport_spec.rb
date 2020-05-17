@@ -12,7 +12,9 @@ describe Airport do
     expect(subject.take_off(plane)).to eq(plane)
   end
 
-  it 'responds to #full?' do 
-    expect(subject).to respond_to(:full?)
+  it 'responds to #full?' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.full?).to eq(true)
   end
 end
