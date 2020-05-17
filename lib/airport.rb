@@ -1,6 +1,12 @@
-#require './lib/plane'
+# require './lib/plane'
 
 class Airport
+
+ attr_reader :capacity
+
+  def initialize
+    @capacity
+  end
 
   def land(plane)
     plane
@@ -9,5 +15,5 @@ class Airport
   def take_off(plane)
     plane
   end
+  
 end
-
