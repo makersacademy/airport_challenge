@@ -14,4 +14,12 @@ class Airport
     "#{plane} has departed the airport"
   end
 
+  def full?
+    if @plane.length >= 3
+      true
+    else
+      false
+    end
+  end
+
 end
