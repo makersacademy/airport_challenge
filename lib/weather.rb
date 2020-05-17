@@ -5,8 +5,7 @@ class Weather
   end
 
   def stormy?
-    puts "weather, #{@number}"
-    @number != 0
+    @number == 0
   end
 
 end
