@@ -1,19 +1,21 @@
-require_relative './weather'
-require_relative './airport'
-
 class Plane
 
   def initialize(in_flight = true)
     @in_flight = in_flight
   end
 
+  def land_plane
+    @in_flight = !@in_flight
+  end
+
   def take_off
-    flying?
+    fail 'Cannot take off: already in flight' if flying?
+
     @in_flight = true
   end
 
   def flying?
-    @in_flight = !@in_flight
+    @in_flight
   end
 
 end

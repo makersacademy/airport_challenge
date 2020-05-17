@@ -23,6 +23,13 @@ describe Airport do
     end
   end
 
+  describe '#instruct_take_off' do
+    it 'should not allow planes to take off in stormy weather' do
+    allow(subject).to receive(:weather_check).and_return('stormy')
+    expect { subject.instruct_take_off(plane) }.to raise_error('Warning: stormy weather - all flights grounded')
+    end
+  end
+
   it 'should let a plane take-off and confirm plane no longer in hangar' do
     allow(plane).to receive :take_off
     subject.land(plane)
