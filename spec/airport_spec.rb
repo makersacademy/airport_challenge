@@ -52,6 +52,10 @@ describe Airport do
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error('this plane is not in this airport')
     end
+    it 'does not allow a plane to take-off if the weather is stormy' do
+      allow(subject).to receive(:forecast) { 20 }
+      expect { subject.take_off(Plane.new) }.to raise_error('too stormy to take-off')
+    end 
   end
   context 'forecast' do
     it 'generate a random number between 1 and 20. 20 represents stormy weather' do

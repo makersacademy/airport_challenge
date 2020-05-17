@@ -18,7 +18,7 @@ class Airport
       raise 'too stormy to land' if forecast == 20
 
     end
-    
+
     if @planes_in.include?(plane)
       raise 'this plane is already in the airport' if @planes_in.include?(plane)
 
@@ -27,7 +27,15 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'this plane is not in this airport' if @planes_in.include?(plane) == false
+    if forecast == 20
+      raise 'too stormy to take-off' if forecast == 20
+
+    end
+
+    if @planes_in.include?(plane) == false
+      raise 'this plane is not in this airport'
+
+    end
 
     @planes_in.delete(plane)
     return @planes_in
