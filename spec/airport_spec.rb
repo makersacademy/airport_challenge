@@ -13,4 +13,9 @@ describe Airport do
     expect(subject.land(plane)).to eq plane
   end
 
+  it 'plane takes off from the airport and confirms departure' do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to eq  "#{plane} has departed the airport"
+  end
+
 end
