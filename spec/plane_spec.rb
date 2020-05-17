@@ -2,20 +2,24 @@ require 'plane'
 require 'airport'
 
 describe Plane do
-    let(:plane) { Plane.new } 
-    let(:land) { Airport.new }
-    describe "#plane" do
-    it { is_expected.to respond_to :at_airport }
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
 
-    it "should determine if a plane is at an airport" do
-        expect(plane.at_airport).to eq true
-    end
+  it "checks whether a plane has departed" do  
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land(subject)
+    expect(airport.take_off(subject)).to eq true
+  end
 
-    it "should tell a plane to land at an airport" do
-      expect(plane).to respond_to(:plane)
-    end
-    it "should raise an error if weather is stormy" do
-        expect { plane.plane(land) }.to raise_error "Weather stormy, unable to land"
-        end
-end
+  it "should tell a plane to land at an airport" do
+    expect(subject).to respond_to(:plane)
+  end
+
+  it "should prevent landing if weather is stormy" do
+    expect { subject.land(plane) }.to raise_error "Weather stormy, unable to land"
+  end
+
+  it "should prevent take-off if weather is stormy" do 
+    expect { subject.takeoff(plane) }.to raise_error "Weather stormy, unable to take-off"
+  end
 end
