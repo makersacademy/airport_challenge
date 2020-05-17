@@ -23,6 +23,14 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq(plane)
     end
+
+    it 'raises error if capacity is full' do
+      plane = Plane.new
+      subject.land(plane)
+      plane2 = Plane.new
+      expect { subject.land(plane2) }.to raise_error(StopIteration)
+    end
+
   end
 
   it 'responds to #take_off with 1 argument' do
