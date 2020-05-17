@@ -35,3 +35,24 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+
+## Development Approach 
+
+TEXT TO GO HERE
+
+## Domain Model
+
+Here I will map out the user stories to understand the objects and messages (classes and methods)
+I will need to build out my program.
+
+## User Story 1
+
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
+**There should be a method to land the plane at an Airport**
+ - Feature tested the creation of the airport. Error unintialized constant Airport.
+ - Created unit test for describing Airport class. Error message matches feature test.
+ 
