@@ -3,11 +3,14 @@ require 'airport'
 describe Airport do
   subject { Airport.new }
 
-  let(:plane) { Plane.new }
   DEFAULT_CAPACITY = 10
+  HIGH_CAPACITY = 20
+
+  let(:plane) { Plane.new }
+  let(:high_capacity_airport) { Airport.new(HIGH_CAPACITY) }
 
   before do
-    allow(subject).to receive(:rand) { 4 }
+    allow_any_instance_of(Airport).to receive(:rand) { 4 }
     plane.land(subject)
   end
 
@@ -20,15 +23,13 @@ describe Airport do
   end
 
   it "won't allow landing when aiport is full" do
-    (DEFAULT_CAPACITY - 1).times { subject.landing(Plane.new) }
-    expect { subject.landing(Plane.new) }.to raise_error('Airport at capacity')
+    (DEFAULT_CAPACITY - 1).times { subject.landing(plane) }
+    expect { subject.landing(plane) }.to raise_error('Airport at capacity')
   end
 
   it 'will take a capacity of 20' do
-    bristol = Airport.new(20)
-    allow(bristol).to receive(:rand) { 4 }
-    20.times { bristol.landing(Plane.new) }
-    expect { bristol.landing(Plane.new) }.to raise_error('Airport at capacity')
+    HIGH_CAPACITY.times { high_capacity_airport.landing(plane) }
+    expect { high_capacity_airport.landing(plane) }.to raise_error('Airport at capacity')
   end
 
   it 'removes plane from airport when departs' do
@@ -37,7 +38,7 @@ describe Airport do
   end
 
   it 'removes plane from airport when departs and tells user it has left' do
-    expect { subject.depart(plane) }.to output("#{plane} has left the airport\n").to_stdout
+    expect { subject.depart(plane) }.to output("#{plane} has left the airport\nNo planes now docked #{subject}\n").to_stdout
   end
 
   it 'when random_number is 4 weather returns sunny' do

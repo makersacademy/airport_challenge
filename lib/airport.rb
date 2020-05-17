@@ -2,8 +2,6 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
-
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -36,6 +34,15 @@ private
 
   def plane_left_notification(plane)
     puts "#{plane} has left the airport"
+    docked_planes_notification
+  end
+
+  def docked_planes_notification
+    if @planes.empty?
+      puts "No planes now docked #{self}"
+    else
+      puts "Planes currently docked at #{self}: #{@planes.join(', ')}"
+    end
   end
 
   def full?

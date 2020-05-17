@@ -24,13 +24,13 @@ describe Plane do
   end
 
   it 'responds to take_off method with one argument' do
-    expect(subject).to respond_to(:take_off)
+    expect(subject).to respond_to(:takeoff)
   end
 
   it 'does not allow takeoff when stormy' do
     subject.land(airport)
     allow(airport).to receive(:rand) { 9 }
-    expect { subject.take_off(airport) }.to raise_error('DANGER: Storm Forecast')
+    expect { subject.takeoff(airport) }.to raise_error('DANGER: Storm Forecast')
   end
 
   it 'does not allow land when stormy' do
@@ -39,7 +39,7 @@ describe Plane do
   end
 
   it 'raises error when trying to take off airport not docked at' do
-    expect { subject.take_off(airport) }.to raise_error("Plane not docked at #{airport}")
+    expect { subject.takeoff(airport) }.to raise_error("Plane not docked at #{airport}")
   end
 
   it 'raises error when trying to land but already at an airport' do

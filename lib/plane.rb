@@ -13,11 +13,11 @@ class Plane
     @docked_at = airport
   end
 
-  def take_off(airport)
+  def takeoff(airport)
     fail "Plane not docked at #{airport}" if takeoff_check(airport)
-    
+
     airport.depart(self)
-    @docked_at = ""
+    @docked_at = nil
   end
 
 private
