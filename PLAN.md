@@ -256,4 +256,16 @@ $ irb
 2.6.5 :004 > airport.takeoff(plane)
  => nil
  ```
+ ## Feature tests - .takeoff now shows which plane is to be allowed to take off
+
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007f8aed8e9a48>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007f8aed8fb540>
+2.6.5 :004 > airport.takeoff(plane)
+ => #<Plane:0x00007f8aed8fb540>
+ ```
  
