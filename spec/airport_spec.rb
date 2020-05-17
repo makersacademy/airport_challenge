@@ -30,4 +30,8 @@ describe Airport do
      expect { subject.land plane }.to raise_error('airport full')
    end
 
+   it 'allows the SD to set capacity of airport' do
+    expect(Airport.new(10).instance_variable_get :@capacity).to eq(10)
+   end
+
 end

@@ -297,4 +297,25 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
-## 
+## User stories 4
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+## User stories 5
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+| Objects | Messages |
+|:------:|:------: |
+| weather | stormy?|
+| airport |  take off |
+
+weather <=> stormy? <=> Airport <=> takeoff
+
+## set up rspec file to account for weather
+
+## create a new class for the weather
