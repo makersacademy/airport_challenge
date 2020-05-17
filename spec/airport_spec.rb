@@ -10,7 +10,7 @@ describe Airport do
 
   it 'lands a plane' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect((subject.land(plane)).join).to eq "#{plane}"
   end
 
   it 'plane takes off from the airport and confirms departure' do
