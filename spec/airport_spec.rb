@@ -25,11 +25,12 @@ describe Airport do
   describe '#takeoff_ok' do
     it "should be remove the plane from the airport's list of planes" do
       airport.capacity = 1
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       airport.landing_ok?(plane_a)
       airport.takeoff_ok?(plane_a)
       expect(airport.landing_ok?(plane_b)).to eq(true)
     end
-    xit "shouldn't takeoff when weather is stormy, and tell operator" do
+    it "shouldn't takeoff when weather is stormy, and tell operator" do
       airport.landing_ok?(plane_a)
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect { airport.takeoff_ok?(plane_a) }.to output("weather is stormy\n").to_stdout
@@ -37,9 +38,14 @@ describe Airport do
   end
   describe '#landing_ok?' do
     it "should be false if the airport if full, and tell the operator about the situation" do
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       airport.capacity = 1
       airport.landing_ok?(plane_a)
       expect { airport.landing_ok?(plane_b) }.to output("#{airport} is full\n").to_stdout
+    end
+    it "shouldn't land when weather is stormy, and tell operator" do
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+      expect { airport.landing_ok?(plane_a) }.to output("weather is stormy\n").to_stdout
     end
   end
 end

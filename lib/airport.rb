@@ -37,7 +37,12 @@ class Airport
   end
 
   def takeoff_ok?(plane)
-    departing(plane) unless Weather.new.stormy?
+    unless weather_stormy?
+      departing(plane)
+      true
+    else
+      false
+    end
   end
 
   def landing(plane)

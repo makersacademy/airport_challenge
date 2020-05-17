@@ -6,5 +6,3 @@ class Weather
   end
 
 end
-
-weather = Weather.new
