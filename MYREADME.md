@@ -77,26 +77,27 @@ Airport <--- take_off ---> a plane
 Plane <--- at_airport? --> true/false
 ```
 ---
-## Feature Test
+## RED GREEN REFACTOR
 
-## Airport Object
+### Airport Object
 
  - Run a feature test to create new Airport object.
  - Implement unit test for Airport constant
  - Create Airport Class. 
 
-## Airport message
+### Airport message
  - Run feature test to land(plane) at Airport
  - Created unit test for the land method.
- - Defined lane method within Airport class
+ - Defined land method within Airport class
+ - repeated steps for take_off(plane) method
 
 
-## Plane Object
+### Plane Object
  - Run a feature test to create new Plane object.
  - Implement unit test to define Plane constant
  - Create Plane Class. 
 
-## Plane messages
+### Plane messages
  -  Run a feature test to check if plane is at airport
  -  Created unit test for the at_airport? method
  -  Defined at_airport? method. 
@@ -123,4 +124,8 @@ I would like a default airport capacity that can be overridden as appropriate
 1. full?
 2. capacity
 
-
+```
+airport <---- full? ---> true/false
+airport <-----capacity ----> airport_capacity_value
+```
+ASSUMPTION: Airport is full at the start
