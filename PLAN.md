@@ -134,4 +134,21 @@ $ irb
 2.6.5 :005 > airport.land(plane)
  => nil
  ```
+
+ ## Feature tests - calling .land on aiport object should return a plane object into the airport object - currently returning nil
+
+ ```shell
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > require './lib/plane'
+ => true
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007f807e02d360>
+2.6.5 :004 > plane = Plane.new
+ => #<Plane:0x00007f807e0a5c48>
+2.6.5 :005 > airport.land(plane)
+ => nil
+ ```
+
   
