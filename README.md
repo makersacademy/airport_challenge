@@ -57,14 +57,14 @@ I want to prevent landing when weather is stormy
 
 ## Usage
 ### Creating a Plane and Airport
-```bash
+```
 heathrow = Airport.new
  => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[], @weather="sunny">
 BA123 = Plane.new
  => #<Plane:0x00007fa4060343a8 @location="in_flight">
 ```
 ### Landing and Taking Off a Plane
-```bash
+```
 BA123.land(heathrow)
  => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[#<Plane:0x00007fa4060343a8 @location=#<Airport:0x00007fa42693d3f8 ...>, @airport=#<Airport:0x00007fa42693d3f8 ...>>], @weather="sunny">
 BA123.take_off
@@ -72,16 +72,16 @@ BA123.take_off
  => ""
  ```
 ### Setting Airport Capacity
-```bash
+```
 heathrow
-=> #<Airport:0x00007fb0d401d088 @capacity=20, @hangar=[], @weather="stormy">
+=> #<Airport:0x00007fb0d401d088 @capacity=20, @hangar=[], @weather="sunny">
 heathrow.capacity = 45
 => 45
 heathrow
-=> #<Airport:0x00007fb0d401d088 @capacity=45, @hangar=[], @weather="stormy">
+=> #<Airport:0x00007fb0d401d088 @capacity=45, @hangar=[], @weather="sunny">
  ```
 ### Preventing Plane from Landing at a Full Airport
-```bash
+```
 heathrow.capacity.times { |a_plane| a_plane = Plane.new ; a_plane.land(heathrow) }
  => 45
 BA123.land(heathrow)
@@ -90,4 +90,26 @@ Traceback (most recent call last):
         2: ...
         1: ...
 RuntimeError (Airport is at maximum capacity)
+```
+### Preventing Plane from Landing During Stormy Weather
+```
+heathrow
+ => #<Airport:0x00007ff380898520 @capacity=20, @hangar=[], @weather="stormy">
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Weather conditions are too unsafe)
+```
+### Preventing Plane from Taking Off During Stormy Weather
+```
+heathrow
+=> #<Airport:0x00007ff380881960 @capacity=20, @hangar=[#<Plane:0x00007ff38005c528 @location=#<Airport:0x00007ff380881960 ...>, @airport=#<Airport:0x00007ff380881960 ...>>], @weather="stormy">
+BA123.take_off
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Weather conditions are too unsafe)
 ```
