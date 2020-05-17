@@ -268,4 +268,4 @@ $ irb
 2.6.5 :004 > airport.takeoff(plane)
  => #<Plane:0x00007f8aed8fb540>
  ```
- 
+ ## Feature tests - assuming the airport starts empty, store landed planes into an array to be called on in the takeoff method. 
