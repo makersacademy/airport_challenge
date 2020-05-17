@@ -65,3 +65,22 @@ $ irb
 2.6.5 :003 > airport.land
  => nil
  ```
+
+## Feature tests - create Plane object to .land into Airport class
+
+```shell
+$ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fddaa112dc8>
+2.6.5 :003 > airport.land
+ => nil
+2.6.5 :004 > plane = Plane.new
+Traceback (most recent call last):
+        4: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        3: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        2: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):4
+NameError (uninitialized constant Plane)
+```
