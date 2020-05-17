@@ -12,8 +12,8 @@ describe Airport do
       expect(subject.capacity).to be_kind_of(Integer)
     end
 
-    it 'has a default value of 20' do
-      expect(subject.capacity).to eq 20
+    it 'has a default value' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'can be overridden' do
