@@ -41,8 +41,12 @@ private
     fail "Airport at capacity" if full?
   end
 
+  def the_weather
+    Weather.new.status
+  end
+
   def weather_check
-    fail 'DANGER: Storm Forecast' if Weather.new.status == 'stormy'
+    fail 'DANGER: Storm Forecast' if the_weather == 'stormy'
   end
 
 end
