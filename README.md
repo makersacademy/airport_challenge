@@ -98,8 +98,9 @@ on my Trello board for the challenge at https://trello.com/b/Bf5aD8Al/saturday-1
 
 * I used rubocop to clean up my code and finished with no faults.
 
-* I did not complete the challenge, I ran out of time before satisfying the final user story
-but I'm happy I could have extrapolated what I did for taking off to satisfy this with a little
+* I did not complete the challenge, I ran out of time before satisfying the final user story. The IRB
+runs as below, with a RuntimeError and the expected error message - more work required.
+I'm happy I could have resolved this and used it to satisfy the final user story with a little
 more time.
 
 **The program is run like this**
