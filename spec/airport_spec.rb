@@ -2,8 +2,8 @@ require './lib/airport'
 require './lib/plane'
 
 describe Airport do
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
   it 'exists' do
     expect(airport).to be_instance_of(Airport)
   end
@@ -15,12 +15,12 @@ describe Airport do
       expect(airport.land(plane)).to include(plane)
     end
     it "throws an error if the plane already at the airport" do
-      expect {2.times {airport.land(plane)}}.to raise_error("This plane is already at the airport")
+      expect { 2.times { airport.land(plane) } }.to raise_error("This plane is already at the airport")
     end  
     it "throws an error when the airport is full" do
         plane_2 = Plane.new
         airport.land(plane)
-        expect {airport.land(plane_2)}.to raise_error("The airport is full, wait please")
+        expect { airport.land(plane_2) }.to raise_error("The airport is full, wait please")
     end
   end
   context 'take_off' do
@@ -32,7 +32,7 @@ describe Airport do
       expect(airport.take_off(plane)).not_to include(plane)
     end
     it 'thows an error if the plane has already left or is not at this airport' do
-      expect {2.times {airport.take_off(plane)} }.to raise_error("This plane has already left the airport or doesn't belong to this airport")
+      expect {2.times { airport.take_off(plane) } }.to raise_error("This plane has already left the airport or doesn't belong to this airport")
     end  
   end   
 end

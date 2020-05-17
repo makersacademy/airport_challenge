@@ -1,6 +1,7 @@
 require_relative 'plane'
 
 class Airport
+
   def initialize(capacity = 1)
     @planes = []
     @capacity = capacity
@@ -8,13 +9,14 @@ class Airport
   end
 
   def land(plane)
-    fail "This plane is already at the airport" unless !@planes.include?(plane)
+    fail "This plane is already at the airport" if @planes.include?(plane)
     fail "The airport is full, wait please" unless @planes.length < @capacity
     @planes << plane
   end
 
   def take_off(plane)
     fail "This plane has already left the airport or doesn't belong to this airport" unless @planes.include?(plane)
-    @planes = @planes - [plane]
+    @planes -= [plane]
   end
+  
 end
