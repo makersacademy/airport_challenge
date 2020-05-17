@@ -90,21 +90,23 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-My Initial Set up
+* My Initial Set up
 
-Airport challenge
+* Airport challenge
 
-Domain model from user story
+* Domain model from user story
+
 Objects	(nouns) - class	|  Messages (verbs) - method
-Traffic controller
-Plane					 		land
-Plane 							take_off
-Plane							no_longer_at_airport
-Airport							full?
-Airport							default_airport_capacity
+
+Plane			  land
+Plane 		          take_off
+Plane		          no_longer_at_airport
+Airport			  full?
+Airport			  default_airport_capacity
 Airport      no take off / no lands if		stormy?
 
-Diagram
+*Diagram
+
 Plane <— land —> airport
 Plane <— take_off —> airport 
 Plane  <— no_longer_airport—> airport
