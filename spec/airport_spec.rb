@@ -31,7 +31,12 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error('this plane is already in the airport')
     end
+    it 'does not allow a plane to land if the weather is stormy' do
+      allow(subject).to receive(:forecast) { 20 }
+      expect { subject.land(Plane.new) }.to raise_error('too stormy to land')
+    end
   end
+
   context 'take-off' do
     it 'allows a plane to take-off' do
       expect(subject).to respond_to(:take_off).with(1).argument
@@ -46,6 +51,11 @@ describe Airport do
     it 'raise an error if take_off is called for a plane that is not in the airport' do
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error('this plane is not in this airport')
+    end
+  end
+  context 'forecast' do
+    it 'generate a random number between 1 and 20. 20 represents stormy weather' do
+      expect(subject.forecast).to be_between(1, 20)
     end
   end
 end
