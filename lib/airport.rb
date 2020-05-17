@@ -1,3 +1,5 @@
+#require './lib/plane'
+
 class Airport
 
   def land(plane)
@@ -5,5 +7,7 @@ class Airport
   end
 
   def take_off(plane)
+    plane
   end
 end
+
