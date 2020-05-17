@@ -1,3 +1,4 @@
+require './lib/plane.rb'
 class Airport
   def initialize(capacity = 20)
     @planes_in = []
@@ -9,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    if @planes_in.length == @capacity
+    if full?
       raise 'no space for landing'
 
     end
@@ -19,7 +20,7 @@ class Airport
 
     end
 
-    if @planes_in.include?(plane)
+    if plane_already_in?(plane)
       raise 'this plane is already in the airport' if @planes_in.include?(plane)
 
     end
@@ -32,12 +33,20 @@ class Airport
 
     end
 
-    if @planes_in.include?(plane) == false
+    if plane_already_in?(plane) == false
       raise 'this plane is not in this airport'
 
     end
 
     @planes_in.delete(plane)
     return @planes_in
+  end
+
+  def full?
+    @planes_in.length == @capacity
+  end
+
+  def plane_already_in?(plane)
+    @planes_in.include?(plane)
   end
 end

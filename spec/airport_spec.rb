@@ -14,6 +14,7 @@ describe Airport do
   it 'gives possibility to change the max capacity when the new airport is init' do
     expect(Airport.new(30).instance_variable_get :@capacity).to eq(30)
   end
+
   context 'landing' do
     it 'allows a plane to land' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -55,8 +56,24 @@ describe Airport do
     it 'does not allow a plane to take-off if the weather is stormy' do
       allow(subject).to receive(:forecast) { 20 }
       expect { subject.take_off(Plane.new) }.to raise_error('too stormy to take-off')
-    end 
+    end
   end
+
+  context 'full?' do
+    it 'return true when full capacity is reached' do
+      20.times { subject.land(Plane.new) }
+      expect(subject.full?).to be(true)
+    end
+  end
+
+  context 'plane_already_in?' do
+    it 'return true when a plane is in the airport already' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.plane_already_in?(plane)).to be(true)
+    end
+  end
+
   context 'forecast' do
     it 'generate a random number between 1 and 20. 20 represents stormy weather' do
       expect(subject.forecast).to be_between(1, 20)
