@@ -166,4 +166,36 @@ $ irb
 2.6.5 :005 > airport.land(plane)
  => #<Plane:0x00007fa63f8f8fa8>
  ```
-  
+
+ ## User stories 2
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+ | Objects | Messages |
+ |:------:|:------: |
+ | Airport | check the plane is no longer in the airport|
+ | Plane |  take off    |
+
+ Plane <=> take off <=> Airport <=> confirm the plane has gone
+
+ ## Feature tests - allow a plane to take off from the airport
+
+ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fa5178ddf38>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fa5178ce600>
+2.6.5 :004 > airport.land(plane)
+ => #<Plane:0x00007fa5178ce600>
+2.6.5 :005 > airport.takeoff(plane)
+Traceback (most recent call last):
+        4: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        3: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        2: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):5
+NoMethodError (undefined method `takeoff' for #<Airport:0x00007fa5178ddf38 @plane=#<Plane:0x00007fa5178ce600>>)
+```
