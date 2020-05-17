@@ -11,12 +11,11 @@ describe Airport do
     it 'responds to #land' do
       expect(airport).to respond_to(:land)
     end
-    it 'is waiting at the airport after landing' do
+    it 'welcome the plane at the airport, landing successful' do
       expect(airport.land(plane)).to include(plane)
     end
-    it "throws an error if the plane already in the airport" do
-      airport.land(plane)
-      expect {airport.land(plane)}.to raise_error("This plane is already in the airport")
+    it "throws an error if the plane already at the airport" do
+      expect {2.times {airport.land(plane)}}.to raise_error("This plane is already at the airport")
     end  
   end
   context 'take_off' do
@@ -24,11 +23,11 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
     it 'send the plane to its destination, see you soon!' do
+      airport.land(plane)
       expect(airport.take_off(plane)).not_to include(plane)
     end
     it 'thows an error if the plane has already left' do
-      airport.take_off(plane)
-      expect {airport.take_off(plane)}.to raise_error("This plane has already left the airport")
+      expect {2.times {airport.take_off(plane)} }.to raise_error("This plane has already left the airport")
     end   
   end   
 end

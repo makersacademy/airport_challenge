@@ -6,7 +6,7 @@ class Airport
   end
 
   def land(plane)
-    fail "This plane is already in the airport" unless !@planes.include?(plane)
+    fail "This plane is already at the airport" unless !@planes.include?(plane)
     @planes << plane
   end
 
