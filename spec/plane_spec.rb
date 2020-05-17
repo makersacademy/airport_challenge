@@ -6,7 +6,7 @@ describe Plane do
   end
 
   describe '#in_air' do
-    it 'Should have planes in_air value set as false' do
+    it 'Should have planes in_air value set as true' do
       expect(subject.in_air).to eq true
     end
   end
