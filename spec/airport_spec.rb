@@ -1,4 +1,3 @@
 describe Airport do
 
-
 end
