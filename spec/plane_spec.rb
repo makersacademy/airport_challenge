@@ -1,11 +1,11 @@
 require 'plane'
 
 describe Plane do
-  it 'responds to touch down' do
+  it 'responds to #touch_down' do
     expect(subject).to respond_to :touch_down
   end
 
-  it 'responds to lift off' do
+  it 'responds to #lift_off' do
     expect(subject).to respond_to :lift_off
   end
 
