@@ -15,14 +15,22 @@ class Airport
 
   def landing_ok?(plane)
     unless weather_stormy?
-      if @planes.length < @capacity
+      if capacity_ok?
         landing(plane)
         true
       else
-        puts "#{self} is full"
         false
       end
     else
+      false
+    end
+  end
+
+  def capacity_ok?
+    if @planes.length < @capacity
+      true
+    else
+      puts "#{self} is full"
       false
     end
   end
