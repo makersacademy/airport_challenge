@@ -182,6 +182,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
  ## Feature tests - allow a plane to take off from the airport
 
+```shell
  irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -202,6 +203,7 @@ NoMethodError (undefined method `takeoff' for #<Airport:0x00007fa5178ddf38 @plan
 
 ## Feature tests - created .takeoff method
 
+```shell
 $ irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -214,6 +216,7 @@ $ irb
  ```
  ## Feature tests - .takeoff method needs to take the plane as an argument
 
+```shell
  $ irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -234,6 +237,7 @@ ArgumentError (wrong number of arguments (given 1, expected 0))
 ```
 ## Feature tests - .takeoff now accepts plane as an argument
 
+```shell
 $ irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -246,6 +250,7 @@ $ irb
  ```
  ## Feature tests - .takeoff currently returns nil should return the plane to take off
 
+```shell
  $ irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -258,6 +263,7 @@ $ irb
  ```
  ## Feature tests - .takeoff now shows which plane is to be allowed to take off
 
+```shell
  $ irb
 2.6.5 :001 > require './lib/airport'
  => true
@@ -268,4 +274,18 @@ $ irb
 2.6.5 :004 > airport.takeoff(plane)
  => #<Plane:0x00007f8aed8fb540>
  ```
- ## Feature tests - assuming the airport starts empty, store landed planes into an array to be called on in the takeoff method. 
+ ## - assuming the airport starts empty, store landed planes into an array to be called on in the takeoff method.
+
+ ## Feature tests - planes after landing are now stored in an array
+
+```shell
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fcabe051780 @at_the_airport=[]>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fcabe03afd0>
+2.6.5 :004 > airport.land(plane)
+ => [#<Plane:0x00007fcabe03afd0>]
+ ```
