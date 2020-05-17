@@ -10,15 +10,11 @@ describe Airport do
   let(:plane) { double("Plane") }
 
   before do
-    allow_any_instance_of(Airport).to receive(:the_weather) { "clear" }
+    allow_any_instance_of(Airport).to receive(:the_weather) { :sunny }
     subject.landing(plane)
   end
 
   context 'works with landing method by' do
-
-    it 'airport responds to landing method and takes an argument' do
-      expect(subject).to respond_to(:landing).with(1).argument
-    end
 
     it 'adds the plane to the airport class' do
       expect(subject.instance_variable_get(:@planes)).to include(plane)
@@ -52,7 +48,7 @@ describe Airport do
   context 'weather error checks' do
 
     before do
-      allow(subject).to receive(:the_weather) { "stormy" }
+      allow(subject).to receive(:the_weather) { :stormy }
     end
 
     it 'does not allow depart when stormy' do

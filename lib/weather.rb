@@ -1,9 +1,7 @@
 class Weather
 
-  def status
-    return "stormy" if random_number > 7
-
-    "clear"
+  def forecast
+    random_number > 7
   end
 
   private

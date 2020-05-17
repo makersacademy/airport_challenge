@@ -26,11 +26,11 @@ private
 
   def plane_left_notification(plane)
     puts "#{plane} has left the airport"
-    if @planes.empty?
-      puts "No planes now docked #{self}"
-    else
-      puts "Planes currently docked at #{self}: #{@planes.join(', ')}"
-    end
+    @planes.empty? ? (puts "No planes now docked #{self}") : list_planes_at_airport
+  end
+
+  def list_planes_at_airport
+    puts "Planes currently docked at #{self}: #{@planes.join(', ')}"
   end
 
   def full?
@@ -42,11 +42,11 @@ private
   end
 
   def the_weather
-    Weather.new.status
+    Weather.new.forecast
   end
 
   def weather_check
-    fail 'DANGER: Storm Forecast' if the_weather == 'stormy'
+    fail 'DANGER: Storm Forecast' if the_weather == :stormy
   end
 
 end
