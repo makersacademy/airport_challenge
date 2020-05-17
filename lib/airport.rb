@@ -43,9 +43,9 @@ class Airport
   end
 
   def weather_stormy?
-    if @weather.stormy?
-      puts "weather is stormy"
-      true
+    if @weather.stormy? ## rubocop doesn't like this for a style reason...
+      puts "weather is stormy" # puting this here as i'm treating the weather as weather,
+      true                     # and weather can't tell you anything. (the airport would)
     end
   end
 
