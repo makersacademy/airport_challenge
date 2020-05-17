@@ -80,7 +80,6 @@ Airport <--- land(plane_one) ----> plane_one
   - Updated land method in Airport class to return the value of the argument passed. Test passed.
 ---
   ## User Story 2
-
 ```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
@@ -116,4 +115,29 @@ plane_one <---- at_airport? -----> true / false
  - Feature test at_airport returns nil value.
  - Wrote unit test describing at_airport? return to equal false once plane has taken off. Test failed.
  - Defined false return at_airport? method. Test passed. 
+---
+## User Story 3
 
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+```
+```
+airport <---- land(plane) ---> raise error when airport is full
+```
+
+**Airport should know it's own capacity**
+ - Feature test. Airport should know it's own capacity.
+ - Wrote unit test for Airport objects to respond to capacity. Test failed
+ - Defined capacity method as an attribute with attr_reader. Test passed. 
+
+ **Airport airport should store number of planes in capacity after landing**
+ - Feature test. Capacity method should return landed planes at the airport
+ - Wrote unit test for capacity to return plane which have landed. Test failed.
+ - Rewrote land method to store in landed planes in capacity. Test passed. 
+
+**If the capcacity is full land(plane) should raise an error** 
+ - Feature test. If capcity length is over a certain value. Airport will raise error to land method.
+ - Write unit test for land method to raise error if plane is already landed. Test Failed.
+ - Defined full? method in private. Set full? to capacity == 1. Raised error if full?. Test passed.
