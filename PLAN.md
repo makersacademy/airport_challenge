@@ -212,4 +212,23 @@ $ irb
 2.6.5 :004 > airport.takeoff
  => nil
  ```
- 
+ ## Feature tests - .takeoff method needs to take the plane as an argument
+
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fdeff081a70>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fdeff08b5c0>
+2.6.5 :004 > airport.takeoff
+ => nil
+2.6.5 :005 > airport.takeoff(plane)
+Traceback (most recent call last):
+        5: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/katiemcdonagh/Projects/airport_challenge/lib/airport.rb:11:in `takeoff'
+ArgumentError (wrong number of arguments (given 1, expected 0))
+```
