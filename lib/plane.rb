@@ -6,4 +6,4 @@ class Plane
     airport.land(self)
   end
 
-end 
+end
