@@ -104,7 +104,7 @@ more time.
 
 **The program is run like this**
 
-2.6.5 :001 > require './lib/airport.rb'
+2.6.5 :001 > require './lib/airport.rb'\
  => true
 2.6.5 :002 > heathrow = Airport.new
  => #<Airport:0x00007fae62063340 @planes=[], @capacity=5, @weather=1>
