@@ -8,6 +8,7 @@ class Airport
   def initialize(cap = DEFAULT_CAPACITY)
     @planes = []
     @capacity = cap
+    @weather = Weather.new
   end
 
   DEFAULT_CAPACITY = 100
@@ -24,7 +25,7 @@ class Airport
     @planes.delete(plane)
   end
 
-  def weather_is_bad?(weather)
-    weather.random_weather == 'stormy'
+  def weather_is_bad?
+    @weather.random_weather == 'stormy'
   end
 end
