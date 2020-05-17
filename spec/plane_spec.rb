@@ -10,4 +10,12 @@ describe Plane do
       expect { plane.take_off }.to raise_error 'Plane cannot take off: plane already flying'
       end
     end
+
+    describe '#airport' do
+      it { is_expected.to respond_to :airport }
+
+      it 'raises an error if already flying' do
+        expect { plane.airport }.to raise_error 'Plane cannot be at an airport: plane already flying'
+      end
+    end
   end
