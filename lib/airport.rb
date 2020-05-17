@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize(capacity = 1)
+  def initialize(capacity = 50)
     @planes = []
     @capacity = capacity
 
@@ -18,5 +18,5 @@ class Airport
     fail "This plane has already left the airport or doesn't belong to this airport" unless @planes.include?(plane)
     @planes -= [plane]
   end
-  
+
 end
