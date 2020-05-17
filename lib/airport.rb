@@ -6,11 +6,9 @@ class Airport
   end
 
   def land(plane)
-    if @plane.length < 3
-      @plane.push(plane)
-    else
-      raise "Cannot land, airport is full"
-    end
+    raise "Cannot land, airport is full" unless @plane.length < 3
+
+    @plane.push(plane)
   end
 
   def take_off(plane)
@@ -18,7 +16,7 @@ class Airport
     "#{plane} has departed the airport"
   end
 
-  def has_space?
+  def space?
     @plane.length < 3
   end
 

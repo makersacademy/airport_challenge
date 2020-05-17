@@ -22,14 +22,14 @@ describe Airport do
     subject.land(Plane.new)
     subject.land(Plane.new)
     subject.land(Plane.new)
-    expect(subject.has_space?).to eq false
+    expect(subject.space?).to eq false
   end
 
   it 'prevents landing if airport is full' do
     subject.land(Plane.new)
     subject.land(Plane.new)
     subject.land(Plane.new)
-    expect(subject.land(Plane.new)).to raise_error("Cannot land, airport is full")
+    expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport is full")
   end
 
 end
