@@ -42,6 +42,6 @@ describe Airport do
     allow(subject).to receive(:weather_check) { 'sunny' }
     subject.land(plane)
     subject.instruct_take_off(plane)
-    expect(subject.hangar.include?(plane)).to eq(false)
+    expect(subject.confirm_plane_left(plane)).to eq(false)
   end
 end
