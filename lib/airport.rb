@@ -20,10 +20,13 @@ class Airport
     @plane = plane
     raise 'airport full' if capacity_check
     raise 'too stormy to safely land' if forecast == 5
+
     @at_the_airport.push(plane)
   end
 
   def takeoff(plane)
+    # raise 'too stormy to takeoff' if forecast == 5
+
     @at_the_airport.delete(plane)
   end
 
@@ -36,5 +39,4 @@ class Airport
   def capacity_check
     @at_the_airport.count >= @capacity
   end
-
- end
+end

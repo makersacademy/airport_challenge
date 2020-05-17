@@ -1,11 +1,9 @@
 class Weather
 
   def forecast
-number < 5 ? 'sunny' : 'stormy'
+    number < 5 ? 'sunny' : 'stormy'
   end
-  
 end
-
 private
 
 def number
