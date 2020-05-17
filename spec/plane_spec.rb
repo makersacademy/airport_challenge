@@ -17,4 +17,14 @@ describe Plane do
     expect(plane.take_off).to eq "Plane has departed the airport"
   end
 
+  it 'reports there is no space to land' do
+    airport = Airport.new
+    subject.land(airport)
+    expect(subject.has_space_to_land?).to eq false
+  end
+
+  it 'reports there is space to land' do
+    expect(subject.has_space_to_land?).to eq true
+  end
+
 end
