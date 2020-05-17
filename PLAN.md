@@ -289,7 +289,6 @@ $ irb
 2.6.5 :004 > airport.land(plane)
  => [#<Plane:0x00007fcabe03afd0>]
  ```
-## - create a confirm_takeoff method so ATC can confirm the plane has taken off''
 
 ## User stories 3
 
@@ -297,11 +296,16 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
+As the maximum allowance of planes in an airport is not specified, I will arbitrarily set it at 5.
+I will raise an error if planes try to land, whilst the airport is full.
+
 ## User stories 4
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+I will modify my program to allow the SD to chance the capacity of the airport on initialization of the airport.
 
 ## User stories 5
 
@@ -316,6 +320,18 @@ I want to prevent takeoff when weather is stormy
 
 weather <=> stormy? <=> Airport <=> takeoff
 
-## set up rspec file to account for weather
+I will create a new spec file and class for weather, using a random number generator to select the weather (1-5 inclusive) with only 5 being stormy.
 
-## create a new class for the weather
+when this is established I will raise an error in the takeoff method when the weather is assigned to stormy.
+
+(I didn't manage to finish this user story, the RSpec code and implementation in my airport.rb file is commented out, I tried a few solutions, but couldn't break my block - I will be asking for help on this)
+
+## User stories 6
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+weather <=> stormy? <=> Airport <=> land
+
+I will raise an error in my land method if the weather is stormy, despite being blocked on the fifth user story, I managed to set up tests and code to implement this.
