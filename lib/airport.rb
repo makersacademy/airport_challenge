@@ -2,7 +2,7 @@ require_relative 'plane.rb'
 
 class Airport
 
-  attr_reader :capacity
+  attr_reader :capacity, :hanger
 
   def initialize(capacity = 10)
     @capacity = capacity
@@ -22,8 +22,8 @@ class Airport
   def take_off(plane)
     if !weather_check
       "You must wait due to a storm"
-    elsif hanger_empty
-      raise "No planes in hanger to take off"
+    elsif !hanger_check(plane)
+      raise "this plane is not in the hanger"
     else
       @hanger.delete(plane)
       "Plane has taken off"
@@ -40,7 +40,7 @@ class Airport
     @hanger.count >= @capacity
   end
 
-  def hanger_empty
-    @hanger.count == 0
+  def hanger_check(plane)
+    @hanger.include?(plane)
   end
 end

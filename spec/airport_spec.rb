@@ -26,7 +26,7 @@ describe Airport do
 
     it 'Should #land a plane in the airport' do
       clear
-      expect(subject.land(plane).first).to eq(plane)
+      expect(subject.land(plane)).to include(plane)
     end
 
     it 'Should not let a plane land if airport is full' do
@@ -46,15 +46,16 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
-    it 'Should not let a plane take off it there are no planes' do
+    it 'Should not let a plane take off it not in the hanger' do
       clear
-      expect { subject.take_off(plane) }.to raise_error("No planes in hanger to take off")
+      expect { subject.take_off(plane) }.to raise_error("this plane is not in the hanger")
     end
 
     it 'Should confirm that a plane as taken off' do
       clear
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq("Plane has taken off")
+      subject.take_off(plane)
+      expect(subject.hanger).not_to include(plane)
     end
 
     it 'Should not let a plane takeoff in a storm,' do
