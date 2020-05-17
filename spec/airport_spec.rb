@@ -15,12 +15,13 @@ describe Airport do
       expect(airport.land(plane)).to include(plane)
     end
     it "throws an error if the plane already at the airport" do
-      expect { 2.times { airport.land(plane) } }.to raise_error("This plane is already at the airport")
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("This plane is already at the airport")
     end  
     it "throws an error when the airport is full" do
-        plane_2 = Plane.new
-        airport.land(plane)
-        expect { airport.land(plane_2) }.to raise_error("The airport is full, wait please")
+        airport = Airport.new(@capacity = 50)
+        @capacity.times {airport.land(Plane.new)}
+        expect { airport.land(plane) }.to raise_error("The airport is full, wait please")
     end
   end
   context 'take_off' do
@@ -28,14 +29,15 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
     it 'send the plane to its destination, see you soon!' do
-      airport.land(plane)
-      expect(airport.take_off(plane)).not_to include(plane)
+      expect(airport).to respond_to(:take_off)
     end
-    it 'thows an error if the plane has already left or is not at this airport' do
-      expect {2.times { airport.take_off(plane) } }.to raise_error("This plane has already left the airport or doesn't belong to this airport")
+    it 'the plane has already left' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) } .to raise_error("already gone")
     end  
-    it "throws an error if the weathe is stormy" do
-        weather.stormy?
+    it "throws an error if the weather is stormy" do
+        allow(airport).to receive(:stormy) { 5 }
         expect { airport.take_off(plane) }.to raise_error("Let's wait for the sunshine!")
     end
   end   
