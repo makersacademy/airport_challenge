@@ -105,23 +105,23 @@ more time.
 **The program is run like this**
 
 2.6.5 :001 > require './lib/airport.rb'\
- => true
-2.6.5 :002 > heathrow = Airport.new
- => #<Airport:0x00007fae62063340 @planes=[], @capacity=5, @weather=1>
-2.6.5 :003 > heathrow.land("VN001")
- => ["VN001"]
-2.6.5 :004 > heathrow.land("LG123")
- => ["VN001", "LG123"]
+ => true\
+2.6.5 :002 > heathrow = Airport.new\
+ => #<Airport:0x00007fae62063340 @planes=[], @capacity=5, @weather=1>\
+2.6.5 :003 > heathrow.land("VN001")\
+ => ["VN001"]\
+2.6.5 :004 > heathrow.land("LG123")\
+ => ["VN001", "LG123"]\
 
-2.6.5 :005 > heathrow.storms.take_off("LG123")
-Traceback (most recent call last):
-        5: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
-        4: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
-        3: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required
-)>'
-        2: from (irb):5
-        1: from /Users/nickbutler/Desktop/Makers/airport_challenge/lib/airport.rb:27:in `storms'
-RuntimeError (No take off storms)
-2.6.5 :006 > heathrow.take_off("LG123")
-LG123 has taken off
- => #<Airport:0x00007fae62063340 @planes=["VN001"], @capacity=5, @weather=1>
+2.6.5 :005 > heathrow.storms.take_off("LG123")\
+Traceback (most recent call last):\
+        5: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'\
+        4: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'\
+        3: from /Users/nickbutler/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top\ (required\
+)>'\
+        2: from (irb):5\
+        1: from /Users/nickbutler/Desktop/Makers/airport_challenge/lib/airport.rb:27:in `storms'\
+RuntimeError (No take off storms)\
+2.6.5 :006 > heathrow.take_off("LG123")\
+LG123 has taken off\
+ => #<Airport:0x00007fae62063340 @planes=["VN001"], @capacity=5, @weather=1>\
