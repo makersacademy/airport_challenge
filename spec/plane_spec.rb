@@ -10,4 +10,10 @@ describe Plane do
       expect(subject.in_air).to eq true
     end
   end
+
+  describe '#grounded' do
+    it 'Should return in_air as false' do
+      expect(subject.grounded).to eq(false)
+    end
+  end
 end

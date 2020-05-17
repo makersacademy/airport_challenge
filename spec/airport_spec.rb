@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -26,8 +27,8 @@ describe Airport do
 
     it 'Should not let a plane land if airport is full' do
       clear
-      airport = Airport.new(0)
-      expect { airport.land(plane) }.to raise_error("Airport full")
+      10.times { subject.land(Plane.new) }
+      expect { subject.land(plane) }.to raise_error("Airport full")
     end
 
     it 'Should not let a plane land in a storm,' do
@@ -68,7 +69,6 @@ describe Airport do
     it 'Should return a true' do
       clear
       expect(subject.weather_check).to eq true
-      expect(subject.weather_check).not_to eq false
     end
   end
 end
