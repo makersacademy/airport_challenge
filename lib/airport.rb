@@ -1,5 +1,4 @@
 require_relative 'plane.rb'
-require_relative 'weather.rb'
 
 class Airport
 
@@ -11,23 +10,30 @@ class Airport
   end
 
   def land(plane)
-    raise "Airport full" if capacity_check
-
-    @airport << plane
+    if !weather_check
+      "You must wait due to a storm"
+    elsif capacity_check
+      raise "Airport full"
+    else
+      @airport << plane
+    end
   end
 
   def take_off
-    puts 'Plane has taken off'
+    if !weather_check
+      "You must wait due to a storm"
+    else
+      "Plane has taken off"
+    end
+  end
+
+  def weather_check
+    rand(1..5) < 5
   end
 
   private
 
   def capacity_check
-    @airport.count >= @capacity
+    @airport.length >= @capacity
   end
-
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
-
 end

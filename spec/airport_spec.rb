@@ -24,8 +24,14 @@ describe Airport do
     end
 
     it 'should not let a plane land if airport is full' do
+      allow(subject).to receive(:rand) { 1 }
       10.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error('Airport full')
+      expect { subject.land(plane) }.to raise_error("Airport full")
+    end
+
+    it 'Should not let a plane land in a storm,' do
+      allow(subject).to receive(:rand) { 5 }
+      expect(subject.land(plane)).to eq("You must wait due to a storm")
     end
   end
 
@@ -35,7 +41,28 @@ describe Airport do
     end
 
     it 'Should confirm that a plane as taken off' do
-      expect { subject.take_off }.to output("Plane has taken off\n").to_stdout
+      expect(subject.take_off).to eq("Plane has taken off")
+    end
+
+    it 'Should not let a plane takeoff in a storm,' do
+      allow(subject).to receive(:rand) { 5 }
+      expect(subject.take_off).to eq("You must wait due to a storm")
+    end
+  end
+
+  describe '#weather_check' do
+    it 'Should respond to #weather_check' do
+      expect(subject).to respond_to(:weather_check)
+    end
+
+    it 'Should return a true' do
+      allow(subject).to receive(:rand) { 3 }
+      expect(subject.weather_check).to eq(true)
+    end
+
+    it 'Should return a false' do
+      allow(subject).to receive(:rand) { 5 }
+      expect(subject.weather_check).to eq(false)
     end
   end
 end
