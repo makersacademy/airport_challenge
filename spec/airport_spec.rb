@@ -32,8 +32,9 @@ describe Airport do
       expect(subject.in_hangar?(plane)).to be_truthy
     end
 
-    it 'raises an error when hangar is full' do
-      allow(subject).to receive(:max_capacity?).and_return(true)
+    it 'raises an error when hangar is at maximum capacity' do
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(false)
+      subject.capacity.times { subject.request_landing(plane) }
       expect { subject.request_landing(plane) }.to raise_error("Airport is at maximum capacity")
     end
 
