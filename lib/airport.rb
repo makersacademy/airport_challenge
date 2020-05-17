@@ -12,17 +12,18 @@ class Airport
     @weather = Weather.new
   end
 
-  def approve_landing(plane)
+  def request_landing(plane)
     fail "Airport is at maximum capacity" if max_capacity?
     fail "Weather conditions are too unsafe for landing" if weather_stormy?
 
     @hangar << plane
   end
 
-  def approve_take_off(plane)
+  def request_take_off(plane)
     fail "Weather conditions are too unsafe for take off" if weather_stormy?
 
     @hangar.delete(plane)
+    confirm_take_off(plane)
   end
 
   def in_hangar?(plane)
@@ -30,6 +31,10 @@ class Airport
   end
 
   private
+
+  def confirm_take_off(plane)
+    puts "[plane has taken off from airport]" unless in_hangar?(plane)
+  end
 
   def max_capacity?
     @hangar.count == capacity

@@ -17,32 +17,34 @@ describe Airport do
     end
 
     it 'can be overridden' do
-      subject.capacity = 42
-      expect(subject.capacity).to eq 42
+      [1,12,123].each do |cap|
+        subject.capacity = cap
+        expect(subject.capacity).to eq cap
+      end
     end
   end
 
-  describe '#approve_landing' do
-    it { is_expected.to respond_to(:approve_landing).with(1).argument }
+  describe '#request_landing' do
+    it { is_expected.to respond_to(:request_landing).with(1).argument }
 
     it 'takes a plane as an argument and stores it in the hangar' do
-      subject.approve_landing(plane)
+      subject.request_landing(plane)
       expect(subject.in_hangar?(plane)).to be_truthy
     end
 
     it 'raises an error when a plane tries to land while hangar is full' do
       allow(subject).to receive(:max_capacity?).and_return(true)
-      expect { subject.approve_landing(plane) }.to raise_error("Airport is at maximum capacity")
+      expect { subject.request_landing(plane) }.to raise_error("Airport is at maximum capacity")
     end
   end
 
-  describe '#approve_take_off' do
-    before(:each) { subject.approve_landing(plane) }
+  describe '#request_take_off' do
+    before(:each) { subject.request_landing(plane) }
 
-    it { is_expected.to respond_to(:approve_take_off).with(1).argument }
+    it { is_expected.to respond_to(:request_take_off).with(1).argument }
 
     it 'takes a plane as an argument and removes it from the hangar' do
-      subject.approve_take_off(plane)
+      subject.request_take_off(plane)
       expect(subject.in_hangar?(plane)).not_to be_truthy
     end
   end
@@ -50,15 +52,15 @@ describe Airport do
   context 'when weather is stormy' do
     before(:each) { allow(subject).to receive(:weather_stormy?).and_return(true) }
 
-    describe '#approve_landing' do
+    describe '#request_landing' do
       it 'raises an error' do
-        expect { subject.approve_landing(plane) }.to raise_error("Weather conditions are too unsafe for landing")
+        expect { subject.request_landing(plane) }.to raise_error("Weather conditions are too unsafe for landing")
       end
     end
 
-    describe '#approve_take_off' do
+    describe '#request_take_off' do
       it 'raises an error' do
-        expect { subject.approve_take_off(plane) }.to raise_error("Weather conditions are too unsafe for take off")
+        expect { subject.request_take_off(plane) }.to raise_error("Weather conditions are too unsafe for take off")
       end
     end
   end
