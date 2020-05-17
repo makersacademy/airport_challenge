@@ -151,4 +151,19 @@ $ irb
  => nil
  ```
 
+ ## Feature tests - .land method now returns the created plane object into the airport object
+
+ ```shell
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > require './lib/plane'
+ => true
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007fa63f8f3378>
+2.6.5 :004 > plane = Plane.new
+ => #<Plane:0x00007fa63f8f8fa8>
+2.6.5 :005 > airport.land(plane)
+ => #<Plane:0x00007fa63f8f8fa8>
+ ```
   
