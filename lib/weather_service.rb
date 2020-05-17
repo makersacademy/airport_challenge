@@ -1,5 +1,5 @@
 class WeatherService
   def stormy?
-    false
+    Kernel.rand(1..6) > 4 
   end
 end
