@@ -5,7 +5,7 @@ describe Plane do
 
   it { is_expected.to respond_to :take_off }
 
-  it 'should check whether it is in flight before taking off' do
+  it 'should check if it is in flight before taking off' do
     airport = Airport.new
     airport.land(plane)
     expect(plane.flying?).to eq false
