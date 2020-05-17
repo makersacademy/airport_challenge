@@ -32,4 +32,10 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'can override default capcity with a new capacity' do
+    larger_airport = Airport.new(6)
+    5.times { larger_airport.land(Plane.new) }
+    expect { larger_airport.land(Plane.new) } .not_to raise_error
+  end
+
 end

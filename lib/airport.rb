@@ -3,9 +3,9 @@ require './lib/plane'
 class Airport
   DEFAULT_CAPACITY = 3
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
   def land(plane)
@@ -20,7 +20,7 @@ class Airport
   end
 
   def space?
-    @planes.length < DEFAULT_CAPACITY
+    @planes.length < @capacity
   end
 
   attr_reader :capacity
