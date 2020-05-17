@@ -22,7 +22,7 @@ describe Plane do
     end
 
     it 'raises an error when plane has already landed' do
-      allow(subject).to receive(:located?).with(airport).and_return(true)
+      subject.land(airport)
       expect { subject.land(airport) }.to raise_error("Plane has already landed")
     end
   end
@@ -37,7 +37,6 @@ describe Plane do
     end
 
     it 'raises an error when plane is already in flight' do
-      allow(subject).to receive(:located?).and_return("in_flight")
       expect { subject.take_off }.to raise_error("Plane is already in flight")
     end
   end

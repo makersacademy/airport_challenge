@@ -2,8 +2,9 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
+  let(:Weather) { double :Weather }
 
-  before(:each) { allow(subject).to receive(:weather_stormy?).and_return(false) }
+  before(:each) { allow(Weather).to receive(:generate).and_return('sunny') }
 
   describe '#capacity' do
     it { is_expected.to respond_to :capacity }
@@ -33,13 +34,13 @@ describe Airport do
     end
 
     it 'raises an error when hangar is at maximum capacity' do
-      allow(subject).to receive(:in_hangar?).with(plane).and_return(false)
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(false) # error condition suppressed so the same plane can land multiple times
       subject.capacity.times { subject.request_landing(plane) }
       expect { subject.request_landing(plane) }.to raise_error("Airport is at maximum capacity")
     end
 
     it 'raises an error when plane is already in hangar' do
-      allow(subject).to receive(:in_hangar?).with(plane).and_return(true)
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(true) # error condition suppressed so plane can request to land whilst being in hangar
       expect { subject.request_landing(plane) }.to raise_error("Plane is already in hangar")
     end
   end
@@ -50,7 +51,7 @@ describe Airport do
     it { is_expected.to respond_to(:request_take_off).with(1).argument }
 
     it 'takes a plane as an argument and removes it from the hangar' do
-      allow($stdout).to receive(:puts) # suppress console output
+      allow($stdout).to receive(:puts) # console output suppressed
       subject.request_take_off(plane)
       expect(subject.in_hangar?(plane)).not_to be_truthy
     end
@@ -60,13 +61,13 @@ describe Airport do
     end
 
     it 'raises an error when plane is not currently in hangar' do
-      allow(subject).to receive(:in_hangar?).with(plane).and_return(false)
+      allow(subject).to receive(:in_hangar?).with(plane).and_return(false) # error condition suppressed so plane can request to take off whilst not being in hangar
       expect { subject.request_take_off(plane) }.to raise_error("Plane is not currently in hangar")
     end
   end
 
   context 'when weather is stormy' do
-    before(:each) { allow(subject).to receive(:weather_stormy?).and_return(true) }
+    before(:each) { allow(Weather).to receive(:generate).and_return('stormy') }
 
     describe '#request_landing' do
       it 'raises an error' do
@@ -76,7 +77,7 @@ describe Airport do
 
     describe '#request_take_off' do
       it 'raises an error' do
-        allow(subject).to receive(:in_hangar?).with(plane).and_return(true)
+        allow(subject).to receive(:in_hangar?).with(plane).and_return(true) # error condition suppressed so test can begin with plane alredy in hangar
         expect { subject.request_take_off(plane) }.to raise_error("Weather conditions are too unsafe")
       end
     end
