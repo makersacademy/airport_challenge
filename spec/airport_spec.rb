@@ -9,8 +9,13 @@ describe Airport do
   it 'should take a maximum capacity as an argument' do
     capacity = 50
     airport = Airport.new(capacity)
-    capacity.times { airport.land(plane) }
+    capacity.times { airport.land(Plane.new) }
     expect { airport.land(plane) }.to raise_error('Warning: Hangar full')
+  end
+
+  it 'should not allow a plane to land that has already landed' do
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error('Plane already in hangar')
   end
 
   describe '#land' do
@@ -25,14 +30,15 @@ describe Airport do
 
   describe '#instruct_take_off' do
     it 'should not allow planes to take off in stormy weather' do
-      allow(subject).to receive(:weather_check).and_return('stormy')
+      allow(plane).to receive(:take_off)
+      allow(subject).to receive(:weather_check) { 'stormy' }
       expect { subject.instruct_take_off(plane) }.to raise_error('Stormy weather - all flights grounded')
     end
   end
 
   it 'should let a plane take-off and confirm plane no longer in hangar' do
-    allow(plane).to receive :take_off
-    allow(subject).to receive(:weather_check).and_return('sunny')
+    allow(plane).to receive(:take_off)
+    allow(subject).to receive(:weather_check) { 'sunny' }
     subject.land(plane)
     subject.instruct_take_off(plane)
     expect(subject.hangar.include?(plane)).to eq(false)

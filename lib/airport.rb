@@ -14,16 +14,17 @@ class Airport
 
   def land(plane)
     fail 'Warning: Hangar full' if full?
+    fail 'Plane already in hangar' if @hangar.include?(plane)
 
     @hangar.push(plane)
   end
 
   def weather_check
-    @climate.weather_generator
+    @climate.check_conditions
   end
 
   def instruct_take_off(plane)
-    fail 'Stormy weather - all flights grounded' unless @climate.weather_generator == 'sunny'
+    fail 'Stormy weather - all flights grounded' unless weather_check == 'sunny'
     
     plane.take_off
     @hangar.delete(plane)
