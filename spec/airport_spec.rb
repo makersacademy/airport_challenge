@@ -18,11 +18,11 @@ describe Airport do
     expect(subject.take_off(plane)).to eq "#{plane} has departed the airport"
   end
 
-  it "checks whether airport is full (it contains 3 planes)" do
+  it "checks whether airport has space (contains < 3 planes)" do
     subject.land(Plane.new)
     subject.land(Plane.new)
     subject.land(Plane.new)
-    expect(subject.full?).to eq true
+    expect(subject.has_space?).to eq false
   end
 
 end
