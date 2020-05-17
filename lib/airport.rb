@@ -6,10 +6,12 @@ class Airport
   end
 
   def land(plane)
-    @planes.push(plane)
+    fail "This plane is already in the airport" unless !@planes.include?(plane)
+    @planes << plane
   end
 
   def take_off(plane)
-    @planes - [plane]
+    fail "This plane has already left the airport" unless @planes.include?(plane)
+    @planes = @planes - [plane]
   end
 end
