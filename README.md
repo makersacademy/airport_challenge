@@ -88,3 +88,36 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+My Initial Set up
+
+Airport challenge
+
+Domain model from user story
+Objects	(nouns) - class	|  Messages (verbs) - method
+Traffic controller
+Plane					 		land
+Plane 							take_off
+Plane							no_longer_at_airport
+Airport							full?
+Airport							default_airport_capacity
+Airport      no take off / no lands if		stormy?
+
+Diagram
+Plane <— land —> airport
+Plane <— take_off —> airport 
+Plane  <— no_longer_airport—> airport
+Plane < — full? —> Airport
+Airport <— set_default_capacity --> Integer
+Airport <— stormy? —> yes/no(Boolean)
+
+—————————————————————————————————
+From Domain Model to feature test - for each features
+
+1. Feature Test (IRB from command line) Red Light —> 
+2. Unit Test (_spec file) Red Light —>
+3. Write the instruction on “file_name.rb” for let the Unit Test pass —>
+4. Unit Test Pass Green Light —>
+5. Next Feature.
+
