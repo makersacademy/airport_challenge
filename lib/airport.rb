@@ -7,6 +7,7 @@ class Airport
 
   def land(plane)
     fail "This plane is already at the airport" unless !@planes.include?(plane)
+    fail "The airport is full, wait please" unless @planes.length < 1
     @planes << plane
   end
 

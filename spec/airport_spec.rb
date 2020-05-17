@@ -17,6 +17,11 @@ describe Airport do
     it "throws an error if the plane already at the airport" do
       expect {2.times {airport.land(plane)}}.to raise_error("This plane is already at the airport")
     end  
+    it "throws an error when the airport is full" do
+        plane_2 = Plane.new
+        airport.land(plane)
+        expect {airport.land(plane_2)}.to raise_error("The airport is full, wait please")
+    end
   end
   context 'take_off' do
     it 'responds to #take_off' do
