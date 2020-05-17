@@ -2,8 +2,10 @@ require_relative "plane"
 
 class Airport
 
+  attr_reader :plane
+
   def land(plane)
-    raise "airport is full" if @plane
+    # raise "airport is full" if @plane
     @plane = plane
   end
 
