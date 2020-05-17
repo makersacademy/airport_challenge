@@ -6,7 +6,11 @@ class Airport
   end
 
   def land(plane)
-    @plane.push(plane)
+    if @plane.length < 3
+      @plane.push(plane)
+    else
+      raise "Cannot land, airport is full"
+    end
   end
 
   def take_off(plane)
