@@ -2,18 +2,19 @@
 
 class Airport
 
- attr_reader :capacity
+   attr_reader :capacity
 
   def initialize
-    @capacity
+    @capacity = [] 
   end
 
   def land(plane)
+    @capacity << plane
     plane
   end
 
   def take_off(plane)
-    plane
+    @plane = plane
   end
   
 end
