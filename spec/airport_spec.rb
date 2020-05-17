@@ -10,12 +10,19 @@ describe Airport do
 
   it 'lands a plane' do
     plane = Plane.new
-    expect((subject.land(plane)).join).to eq "#{plane}"
+    expect(subject.land(plane).join).to eq "#{plane}"
   end
 
   it 'plane takes off from the airport and confirms departure' do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "#{plane} has departed the airport"
+  end
+
+  it "checks whether airport is full (it contains 3 planes)" do
+    subject.land(Plane.new)
+    subject.land(Plane.new)
+    subject.land(Plane.new)
+    expect(subject.full?).to eq true
   end
 
 end
