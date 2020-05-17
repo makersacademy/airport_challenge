@@ -6,10 +6,13 @@ class Airport
 
   def initialize
     @at_the_airport = []
+    @capacity = 5
 
   end
 
   def land(plane)
+    @plane = plane
+    raise 'airport full' if capacity_check
     @at_the_airport.push(plane)
   end
 
@@ -19,6 +22,12 @@ class Airport
 
   def confirm_takeoff
   print 'plane has taken off'
+  end
+
+  private
+
+  def capacity_check
+    @at_the_airport.count >= @capacity
   end
 
 end

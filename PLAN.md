@@ -289,4 +289,12 @@ $ irb
 2.6.5 :004 > airport.land(plane)
  => [#<Plane:0x00007fcabe03afd0>]
  ```
-## - create a confirm_takeoff method so ATC can confirm the plane has taken off'
+## - create a confirm_takeoff method so ATC can confirm the plane has taken off''
+
+## User stories 3
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+## 
