@@ -232,3 +232,16 @@ Traceback (most recent call last):
         1: from /Users/katiemcdonagh/Projects/airport_challenge/lib/airport.rb:11:in `takeoff'
 ArgumentError (wrong number of arguments (given 1, expected 0))
 ```
+## Feature tests - .takeoff now accepts plane as an argument
+
+$ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fcf2c0b1a50>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fcf2b1058b8>
+2.6.5 :004 > airport.takeoff(plane)
+ => nil
+ ```
+ 
