@@ -78,3 +78,42 @@ Airport <--- land(plane_one) ----> plane_one
   - Feature test airport.land(plane). Returns nil value.
   - Wrote test to specify the return of plane on airport.land(plane). Test failed
   - Updated land method in Airport class to return the value of the argument passed. Test passed.
+---
+  ## User Story 2
+
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
+```
+Airport <--- take_off(plane_one) ----> plane_one
+plane_one <---- at_airport? -----> true / false
+```
+
+**Airport class should respond to take_off**
+ - Featured tested take_off method on airport. Unidentified method error.
+ - Wrote test for take_off to respond to Airport objects. Test failed
+ - Defined take_off method in Airport class. Test passed.
+
+**Airport should know which plane is taking off specifying it in an argument** 
+ - Featured tested take_off with plane argument. Wrong number of arguments error.
+ - Rewrote unit test for take_off method to expect 1 argument. Test failed.
+ - Defined take_off method to accept 1 argument. Test passed. 
+
+ **Airport should return a plane once it has taken off**
+
+ - Feature tested take_off with argument of Plane object. Returned nil.
+ - Wrote unit test for take_off to expect return of Plane object. Test failed. 
+ - Defined take_off method to return the value of argument. Test passed
+
+ **Plane should confirm it has left the airport**
+
+ - Feature tested at_airport on return take_off value. Error undefined method `at_airport?'.
+ - Wrote test for Plane object to respond to at_airport? Test failed. 
+ - Defined method at_airport? Test passed.
+ - Feature test at_airport returns nil value.
+ - Wrote unit test describing at_airport? return to equal false once plane has taken off. Test failed.
+ - Defined false return at_airport? method. Test passed. 
+
