@@ -34,5 +34,9 @@ describe Airport do
     it 'thows an error if the plane has already left or is not at this airport' do
       expect {2.times { airport.take_off(plane) } }.to raise_error("This plane has already left the airport or doesn't belong to this airport")
     end  
+    it "throws an error if the weathe is stormy" do
+        weather.stormy?
+        expect { airport.take_off(plane) }.to raise_error("Let's wait for the sunshine!")
+    end
   end   
 end
