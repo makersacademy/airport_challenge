@@ -23,9 +23,5 @@ describe Airport do
     it 'should return message that plane has taken off' do
       expect(airport.take_off).to include("Plane has taken off")
     end
-
-    # it 'should confirm plane has departed' do
-    #   expect { airport.take_off }.to raise_error "Airport empty"
-    # end
   end
 end

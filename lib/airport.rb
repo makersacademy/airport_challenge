@@ -4,8 +4,9 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @airport_spaces = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -15,5 +16,6 @@ class Airport
 
   def take_off
    return "Plane has taken off"
+   @airport_spaces.pop
   end
 end
