@@ -14,7 +14,7 @@ I want to instruct a plane to land at an airport
 
 Airport <=> land <=> Plane
 
-## Feature tests - create an Airport object 
+## Feature tests - create an Airport object
 
 ```shell
 2.7.0 :001 > airport = Airport.new
@@ -25,3 +25,15 @@ Traceback (most recent call last):
         1: from (irb):1
 NameError (uninitialized constant Airport)
 ```
+
+## Feature tests - Airport object created
+
+```shell
+Kaites-MacBook-Pro:airport_challenge katiemcdonagh$ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fd12d90f438>
+ ```
+
+ 
