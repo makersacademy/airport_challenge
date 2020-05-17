@@ -2,15 +2,17 @@
 
 class Airport
 
-   attr_reader :capacity
+  attr_reader :airport_hanger
 
   def initialize
-    @capacity = [] 
+    @airport_hanger = []
+    @capacity = 1
   end
 
   def land(plane)
     raise StopIteration if full?
-    @capacity << plane
+
+    @airport_hanger << plane
     plane
   end
 
@@ -20,8 +22,8 @@ class Airport
   
   private
 
-    def full?
-      @capacity.length == 1
-    end
+  def full?
+    @airport_hanger.length == @capacity
+  end
 
 end

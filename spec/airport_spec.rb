@@ -1,21 +1,25 @@
 require 'airport'
 
 describe Airport do
+      
   it 'responds to #land with 1 argument' do 
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it 'has a capacity attribute' do
-    expect(subject).to respond_to(:capacity)
+  it 'has a airport_hanger attribute' do
+    expect(subject).to respond_to(:airport_hanger)
+  end
+
+  it 'responds to #take_off with 1 argument' do
+    expect(subject).to respond_to(:take_off).with(1).argument
   end
   
-  describe '#capacity' do
+  describe '#airport_hanger' do
     it 'returns landed planes' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.capacity[-1]).to eq(plane)
+      expect(subject.airport_hanger[-1]).to eq(plane)
     end
-
   end
 
   describe '#land' do
@@ -24,17 +28,13 @@ describe Airport do
       expect(subject.land(plane)).to eq(plane)
     end
 
-    it 'raises error if capacity is full' do
+    it 'raises error if airport_hanger is full' do
       plane = Plane.new
       subject.land(plane)
       plane2 = Plane.new
       expect { subject.land(plane2) }.to raise_error(StopIteration)
     end
 
-  end
-
-  it 'responds to #take_off with 1 argument' do
-    expect(subject).to respond_to(:take_off).with(1).argument
   end
 
   describe '#take_off' do
