@@ -46,8 +46,10 @@ I want to prevent landing when weather is stormy
 - I have allowed for planes to be able to land at the airport. 
 - I have allowed for planes to be able to take off and confirm they are no longer at the airport.
 - I have allowed alerts to advise if the airport is full.
-- I have allowed for the airports default capacity to be ammended as required.
+- I have allowed for the airports default capacity to be chnanged as required.
 - I have allowed for planes to prevent take off and landing if weather is stormy.
+
+- I broke down the user stories into class structure’s and object messages. Throughout the creation of this program I used RSPEC to test my unit tests and IRB to feature test. I also used [Rubocop](https://github.com/rubocop-hq/rubocop) to tidy up my code.
 
 ## How to run:
 
@@ -59,3 +61,4 @@ irb(main):003:0> plane = Plane.new
 irb(main):004:0> airport.depart(plane)
 #<Plane:0x00007f99a70fe888> departed!
 ```
+
