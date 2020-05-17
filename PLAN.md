@@ -289,3 +289,4 @@ $ irb
 2.6.5 :004 > airport.land(plane)
  => [#<Plane:0x00007fcabe03afd0>]
  ```
+## - add array into takeoff method so planes are removed from array when they take off.

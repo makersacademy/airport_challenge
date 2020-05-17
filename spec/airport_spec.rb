@@ -12,7 +12,7 @@ describe Airport do
 
   it 'allows the plane to takeoff' do
     plane = @Plane
-    expect(subject.takeoff(plane)).to eq plane
+    expect(subject.takeoff(plane)).to match_array([@at_the_airport])
   end
 
 end
