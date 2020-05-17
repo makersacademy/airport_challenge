@@ -17,9 +17,8 @@ describe Airport do
 
   describe '#weather_is_bad?' do
     it 'returns true if there is a storm' do
-      weather = Weather.new
-      allow(weather).to receive(:random_weather) {'stormy'}
-      expect(airport.weather_is_bad?(weather)).to eq(true)
+      allow_any_instance_of(Weather).to receive(:random_weather) { 'stormy' }
+      expect(airport.weather_is_bad?).to eq(true)
     end
   end
 end

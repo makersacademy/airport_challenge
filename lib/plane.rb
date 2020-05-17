@@ -26,9 +26,9 @@ class Plane
 
     return unless @location == 'airport'
 
-    if airport.plane_take_off(self)
+    return unless airport.plane_take_off(self)
+    
     @location = 'air'
     'Liftoff! We have a liftoff!'
-    end
   end
 end
