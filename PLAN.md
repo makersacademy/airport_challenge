@@ -82,5 +82,15 @@ Traceback (most recent call last):
         3: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
         2: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
         1: from (irb):4
-NameError (uninitialized constant Plane)
+NameError (uninitialized constant Plane)'
 ```
+
+## Feature tests - Plane object created
+
+```shell
+irb
+2.6.5 :001 > require './lib/plane'
+ => true
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x00007fcad2072610>
+ ```
