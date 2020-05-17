@@ -15,6 +15,6 @@ class Plane
   private
 
   def confirm_take_off
-    puts "[plane is no longer at airport]" unless @airport.in_hangar?(self)
+    puts "[plane has taken off from airport]" unless @airport.in_hangar?(self)
   end
 end
