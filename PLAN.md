@@ -53,3 +53,15 @@ Traceback (most recent call last):
         1: from (irb):3
 NoMethodError (undefined method `land' for #<Airport:0x00007fc298861340>)
 ```
+
+## Feature tests - .land method created
+
+```shell
+$ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fddaa112dc8>
+2.6.5 :003 > airport.land
+ => nil
+ ```
