@@ -23,7 +23,7 @@ class Airport
   end
 
   def instruct_take_off(plane)
-    fail 'Warning: stormy weather - all flights grounded' unless @climate.weather_generator == 'sunny'
+    fail 'Stormy weather - all flights grounded' unless @climate.weather_generator == 'sunny'
     
     plane.take_off
     @hangar.delete(plane)
