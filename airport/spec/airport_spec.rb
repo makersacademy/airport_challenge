@@ -11,16 +11,16 @@ describe Airport do
       expect(subject.land(plane)).to eq plane
     end
 
-    xit "raise an error when full" do
+    it "raise an error when full" do
       subject.land(Plane.new)
-      expect(subject.land(Plane.new)).to raise_error "airport is full"
+      expect{ subject.land(Plane.new) }.to raise_error "Airport is full"
     end
   end
 
- # test for showing landed plane method for Airport
+ # test for showing landed plane (instance) method for Airport
   it { is_expected.to respond_to :plane}
 
-  it "show landed planes" do
+  it "#plane" do
     plane = Plane.new
     subject.land(plane)
     expect(subject.plane).to eq plane

@@ -5,8 +5,9 @@ class Airport
   attr_reader :plane
 
   def land(plane)
-    # raise "airport is full" if @plane
+    raise "Airport is full" if @plane
     @plane = plane
+
   end
 
   def take_off(plane)
