@@ -27,6 +27,10 @@ class Airport
     fail 'Stormy weather - all flights grounded' unless weather_check == 'sunny'
     
     plane.take_off
+    remove_from_hangar(plane)
+  end
+
+  def remove_from_hangar(plane)
     @hangar.delete(plane)
   end
 
