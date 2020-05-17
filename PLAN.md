@@ -199,3 +199,17 @@ Traceback (most recent call last):
         1: from (irb):5
 NoMethodError (undefined method `takeoff' for #<Airport:0x00007fa5178ddf38 @plane=#<Plane:0x00007fa5178ce600>>)
 ```
+
+## Feature tests - created .takeoff method
+
+$ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fdeff081a70>
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fdeff08b5c0>
+2.6.5 :004 > airport.takeoff
+ => nil
+ ```
+ 
