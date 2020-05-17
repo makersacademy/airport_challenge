@@ -1,6 +1,10 @@
 require 'airport'
 
 describe Airport do
+
+  it 'accepts capacity argument when new airport is created' do
+    expect(Airport).to respond_to(:new).with(1).argument
+  end
       
   it 'responds to #land with 1 argument' do 
     expect(subject).to respond_to(:land).with(1).argument
@@ -30,11 +34,10 @@ describe Airport do
 
     it 'raises error if airport_hanger is full' do
       plane = Plane.new
+      plane1 = Plane.new
       subject.land(plane)
-      plane2 = Plane.new
-      expect { subject.land(plane2) }.to raise_error(StopIteration)
+      expect { subject.land(plane1) }.to raise_error(StopIteration)
     end
-
   end
 
   describe '#take_off' do
