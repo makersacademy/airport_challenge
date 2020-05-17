@@ -2,9 +2,15 @@ require 'airport'
 
 describe Airport do
 
-  # test for a default capacity for the initialize method
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  describe "initialization" do
+    it "can overide default capacity to 50" do
+
+    end
+
+  # test for a 30 default capacity for the initialize method
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
   end
 
   # test for land method for Airport
