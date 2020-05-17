@@ -15,11 +15,7 @@ class Airport
   end
 
   def full?
-    if @plane.length >= 3
-      true
-    else
-      false
-    end
+    @plane.length >= 3 ? true : false
   end
 
 end
