@@ -94,3 +94,27 @@ irb
 2.6.5 :002 > plane = Plane.new
  => #<Plane:0x00007fcad2072610>
  ```
+
+ ## Feature tests - allow .land method to accept a plane object into an airport object
+
+ ```shell
+ $ irb
+2.6.5 :001 > require './lib/airport'
+ => true
+2.6.5 :002 > require './lib/plane'
+ => true
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007f9869853e88>
+2.6.5 :004 > plane = Plane.new
+ => #<Plane:0x00007f98698499d8>
+2.6.5 :005 > airport.land
+ => nil
+2.6.5 :006 > airport.land(plane)
+Traceback (most recent call last):
+        5: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/katiemcdonagh/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):6
+        1: from /Users/katiemcdonagh/Projects/airport_challenge/lib/airport.rb:2:in `land'
+ArgumentError (wrong number of arguments (given 1, expected 0))
+``` 
