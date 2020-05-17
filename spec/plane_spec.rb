@@ -7,7 +7,7 @@ describe Plane do
   let(:bristol) { Airport.new }
 
   before do
-    allow_any_instance_of(Airport).to receive(:rand) { 4 }
+    allow_any_instance_of(Weather).to receive(:rand) { 4 }
   end
 
   it 'has no airport when created' do
@@ -29,12 +29,12 @@ describe Plane do
 
   it 'does not allow takeoff when stormy' do
     subject.land(airport)
-    allow(airport).to receive(:rand) { 9 }
+    allow_any_instance_of(Weather).to receive(:rand) { 9 }
     expect { subject.takeoff(airport) }.to raise_error('DANGER: Storm Forecast')
   end
 
   it 'does not allow land when stormy' do
-    allow(airport).to receive(:rand) { 9 }
+    allow_any_instance_of(Weather).to receive(:rand) { 9 }
     expect { subject.land(airport) }.to raise_error('DANGER: Storm Forecast')
   end
 

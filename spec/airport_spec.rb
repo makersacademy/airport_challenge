@@ -10,7 +10,7 @@ describe Airport do
   let(:high_capacity_airport) { Airport.new(HIGH_CAPACITY) }
 
   before do
-    allow_any_instance_of(Airport).to receive(:rand) { 4 }
+    allow_any_instance_of(Weather).to receive(:rand) { 4 }
     plane.land(subject)
   end
 
@@ -39,10 +39,6 @@ describe Airport do
 
   it 'removes plane from airport when departs and tells user it has left' do
     expect { subject.depart(plane) }.to output("#{plane} has left the airport\nNo planes now docked #{subject}\n").to_stdout
-  end
-
-  it 'when random_number is 4 weather returns sunny' do
-    expect(subject.weather).to eq('sunny')
   end
 
 end

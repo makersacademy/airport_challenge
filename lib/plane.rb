@@ -7,15 +7,13 @@ class Plane
   end
 
   def land(airport)
-    fail "Plane already docked at #{@docked_at}" if landing_check == false
-
+    landing_check
     airport.landing(self)
     @docked_at = airport
   end
 
   def takeoff(airport)
-    fail "Plane not docked at #{airport}" if takeoff_check(airport)
-
+    takeoff_check(airport)
     airport.depart(self)
     @docked_at = nil
   end
@@ -23,11 +21,11 @@ class Plane
 private
 
   def takeoff_check(airport)
-    @docked_at != airport
+    fail "Plane not docked at #{airport}" if @docked_at != airport
   end
 
   def landing_check
-    @docked_at.nil?
+    fail "Plane already docked at #{@docked_at}" if @docked_at.nil? == false
   end
 
 end

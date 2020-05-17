@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -11,8 +12,7 @@ class Airport
 
   def landing(plane)
     weather_check
-    fail "Airport at capacity" if full?
-
+    capacity_check
     @planes.push(plane)
   end
 
@@ -22,22 +22,10 @@ class Airport
     plane_left_notification(plane)
   end
 
-  def weather
-    if random_number < 8
-      'sunny'
-    else
-      'stormy'
-    end
-  end
-
 private
 
   def plane_left_notification(plane)
     puts "#{plane} has left the airport"
-    docked_planes_notification
-  end
-
-  def docked_planes_notification
     if @planes.empty?
       puts "No planes now docked #{self}"
     else
@@ -49,12 +37,12 @@ private
     @planes.count >= @capacity
   end
 
-  def random_number
-    rand(1..10)
+  def capacity_check
+    fail "Airport at capacity" if full?
   end
 
   def weather_check
-    fail 'DANGER: Storm Forecast' if weather == 'stormy'
+    fail 'DANGER: Storm Forecast' if Weather.new.status == 'stormy'
   end
 
 end
