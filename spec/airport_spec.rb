@@ -14,4 +14,12 @@ describe Airport do
   it 'can be at capacity' do
     expect(airport.at_capacity?).to be(true).or be(false)
   end
+
+  describe '#weather_is_bad?' do
+    it 'returns true if there is a storm' do
+      weather = Weather.new
+      allow(weather).to receive(:random_weather) {'stormy'}
+      expect(airport.weather_is_bad?(weather)).to eq(true)
+    end
+  end
 end

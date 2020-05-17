@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -21,5 +22,9 @@ class Airport
 
   def plane_take_off(plane)
     @planes.delete(plane)
+  end
+
+  def weather_is_bad?(weather)
+    weather.random_weather == 'stormy'
   end
 end

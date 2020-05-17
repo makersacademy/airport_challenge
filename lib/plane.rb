@@ -1,4 +1,5 @@
 require_relative './airport'
+require_relative './weather'
 
 class Plane
 
@@ -10,6 +11,7 @@ class Plane
 
   def land(airport)
     fail 'You cannot land - the airport is full.' if airport.at_capacity?
+    return 'You cannot land - the weather is bad' if airport.weather_is_bad?
 
     return unless @location == 'air'
 
@@ -19,6 +21,9 @@ class Plane
   end
 
   def take_off(airport)
+
+    return 'You cannot take off - the weather is bad' if airport.weather_is_bad?
+
     return unless @location == 'airport'
 
     if airport.plane_take_off(self)
