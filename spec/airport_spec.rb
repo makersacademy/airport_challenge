@@ -19,12 +19,12 @@ describe Airport do
   end
 
   it "checks whether airport has space (contains < 3 planes)" do
-    3.times { subject.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect(subject.space?).to eq false
   end
 
   it 'prevents landing if airport is full' do
-    3.times { subject.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error("Cannot land, airport is full")
   end
 

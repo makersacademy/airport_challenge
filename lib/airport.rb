@@ -1,12 +1,14 @@
 require './lib/plane'
 
 class Airport
+  DEFAULT_CAPACITY = 3
+
   def initialize
     @planes = []
   end
 
   def land(plane)
-    raise "Cannot land, airport is full" unless @planes.length < 3
+    raise "Cannot land, airport is full" unless space?
 
     @planes.push(plane)
   end
@@ -17,7 +19,7 @@ class Airport
   end
 
   def space?
-    @planes.length < 3
+    @planes.length < DEFAULT_CAPACITY
   end
 
 end
