@@ -5,6 +5,7 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
@@ -21,5 +22,7 @@ class Airport
   def space?
     @planes.length < DEFAULT_CAPACITY
   end
+
+  attr_reader :capacity
 
 end
