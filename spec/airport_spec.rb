@@ -5,6 +5,10 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
+  it 'has a capacity attribute' do
+    expect(subject).to respond_to(:capacity)
+  end
+
   describe '#land' do
     it 'returns plane after landing' do
       plane = Plane.new
