@@ -52,7 +52,29 @@ As an air traffic controller
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
 ```
-**There should be a method to land the plane at an Airport**
+
+```
+Airport <--- land(plane_one) ----> plane_one
+```
+
+**There should be an Airport which responds to land**
  - Feature tested the creation of the airport. Error unintialized constant Airport.
  - Created unit test for describing Airport class. Error message matches feature test.
- 
+ - Defined the class Airport. Test passed
+ - Wrote test for Airport to respond to land. Test failed.
+ - Defined land method is Airport class. Test Passed.
+
+**There should be a Plane to tell Airport which plane is landing**
+
+ - Feature test the creation of new plane. Error unintialized constant Plane.
+ - Create plane_spec.rb. Describe the Plane object. Test failed.
+ - Create plane.rb. Define Plane class. Require file in plane_spec.rb. Test passed.
+ - Feature test land with argument plane. Error wrong number of arguments for land.
+ - Updated airport_spec.rb to now test for land method with 1 argument. Test failed.
+ - Updated airport.rb land method. Now accepts 1 argument plane. Test passed.
+
+ **Airport should return plane which has landed**
+  
+  - Feature test airport.land(plane). Returns nil value.
+  - Wrote test to specify the return of plane on airport.land(plane). Test failed
+  - Updated land method in Airport class to return the value of the argument passed. Test passed.
