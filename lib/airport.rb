@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise StopIteration if full?
     @capacity << plane
     plane
   end
@@ -17,4 +18,10 @@ class Airport
     @plane = plane
   end
   
+  private
+
+    def full?
+      @capacity.length == 1
+    end
+
 end
