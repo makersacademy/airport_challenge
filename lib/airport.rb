@@ -14,7 +14,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail "This plane has already left the airport" unless @planes.include?(plane)
+    fail "This plane has already left the airport or doesn't belong to this airport" unless @planes.include?(plane)
     @planes = @planes - [plane]
   end
 end

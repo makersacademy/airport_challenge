@@ -31,8 +31,8 @@ describe Airport do
       airport.land(plane)
       expect(airport.take_off(plane)).not_to include(plane)
     end
-    it 'thows an error if the plane has already left' do
-      expect {2.times {airport.take_off(plane)} }.to raise_error("This plane has already left the airport")
-    end   
+    it 'thows an error if the plane has already left or is not at this airport' do
+      expect {2.times {airport.take_off(plane)} }.to raise_error("This plane has already left the airport or doesn't belong to this airport")
+    end  
   end   
 end
