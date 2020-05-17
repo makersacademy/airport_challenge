@@ -34,4 +34,8 @@ describe Airport do
     expect(Airport.new(10).instance_variable_get :@capacity).to eq(10)
    end
 
-end
+   it 'does not allow a plane to land if the weather is stormy' do
+     allow(subject).to receive(:forecast) {5}
+     expect { subject.land(@plane) }.to raise_error('too stormy to safely land')
+   end
+  end
