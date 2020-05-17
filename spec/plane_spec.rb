@@ -3,17 +3,21 @@ require 'plane'
 describe Plane do
   subject { Plane.new }
 
-  let (:airport) { Airport.new }
+  let(:airport) { Airport.new }
+  let(:bristol) { Airport.new }
+
+  before do
+    allow_any_instance_of(Airport).to receive(:rand) { 4 }
+  end
 
   it 'has no airport when created' do
     expect(subject.instance_variable_get(:@docked_at)).to be_nil
   end
 
   it 'when an docked, it hold the airport its at' do
-    allow(airport).to receive(:rand) { 4 }
     subject.land(airport)
     expect(subject.instance_variable_get(:@docked_at)).to eq(airport)
-  end 
+  end
 
   it 'responds to land method with one argument' do
     expect(subject).to respond_to(:land)
@@ -24,27 +28,23 @@ describe Plane do
   end
 
   it 'does not allow takeoff when stormy' do
-    allow(airport).to receive(:rand) { 4 }
     subject.land(airport)
     allow(airport).to receive(:rand) { 9 }
-    expect{ subject.take_off(airport) }.to raise_error('DANGER: Storm Forecast')
+    expect { subject.take_off(airport) }.to raise_error('DANGER: Storm Forecast')
   end
 
   it 'does not allow land when stormy' do
     allow(airport).to receive(:rand) { 9 }
-    expect{ subject.land(airport) }.to raise_error('DANGER: Storm Forecast')
+    expect { subject.land(airport) }.to raise_error('DANGER: Storm Forecast')
   end
 
   it 'raises error when trying to take off airport not docked at' do
-    allow(airport).to receive(:rand) { 4 }
-    expect{ subject.take_off(airport) }.to raise_error("Plane not docked at #{airport}")
+    expect { subject.take_off(airport) }.to raise_error("Plane not docked at #{airport}")
   end
 
   it 'raises error when trying to land but already at an airport' do
-    bristol = Airport.new
-    allow(bristol).to receive(:rand) { 4 }
     subject.land(bristol)
-    expect{ subject.land(airport) }.to raise_error("Plane already docked at #{bristol}")
+    expect { subject.land(airport) }.to raise_error("Plane already docked at #{bristol}")
   end
 
 end
