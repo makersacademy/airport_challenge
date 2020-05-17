@@ -18,7 +18,7 @@ class Airport
   end
 
   def confirm_takeoff
-
+  print 'plane has taken off'
   end
 
 end

@@ -17,6 +17,7 @@ describe Airport do
     expect(subject.takeoff(plane)).not_to include(plane)
   end
   it 'announces which plane has taken off' do
-    expect(subject).to respond_to(:confirm_takeoff)
+    expect { subject.confirm_takeoff }.to output('plane has taken off').to_stdout
   end
+
 end
