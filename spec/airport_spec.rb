@@ -79,6 +79,17 @@ describe Airport do
       expect(subject.forecast).to be_between(1, 20)
     end
   end
+
+  context 'show' do
+    it 'shows the planes that are in the airport' do
+      p1 = Plane.new
+      p2 = Plane.new
+      subject.land(p1)
+      subject.land(p2)
+      expect(subject.show_planes_in).to match_array([p1, p2])
+    end
+  end
+
 end
 
 describe Plane do

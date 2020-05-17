@@ -5,6 +5,10 @@ class Airport
     @capacity = capacity
   end
 
+  def show_planes_in
+    @planes_in
+  end
+
   def land(plane)
     if full?
       raise 'no space for landing'
@@ -35,7 +39,7 @@ class Airport
     end
 
     @planes_in.delete(plane)
-    return @planes_in
+    @planes_in
   end
 
   def full?
