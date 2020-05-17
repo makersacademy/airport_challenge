@@ -10,11 +10,14 @@ class Airport
   end
 
   def land(plane)
-    if !weather_check
-      "You must wait due to a storm"
-    elsif hanger_full
+    if hanger_full
       raise "Airport full"
+    elsif status(plane)
+      raise "This plane is not in the air"
+    elsif !weather_check
+      "You must wait due to a storm"
     else
+      plane.grounded
       @hanger << plane
     end
   end
@@ -42,5 +45,9 @@ class Airport
 
   def hanger_check(plane)
     @hanger.include?(plane)
+  end
+
+  def status(plane)
+    plane.in_air == false
   end
 end
