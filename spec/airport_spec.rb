@@ -50,4 +50,23 @@ describe Airport do
     expect { airport.land(Plane.new) }.to raise_error 'No arrivals due to adverse weather'
   end
 
+  it "Prevents takeoff when plane is already in the air" do
+    good_weather
+    plane = Plane.new
+    expect { airport.takeoff(plane) }.to raise_error 'Plane is already in the air'
+  end
+
+  it "Prevents takeoff when plane is already in the air" do
+    good_weather
+    plane = Plane.new
+    expect { airport.takeoff(plane) }.to raise_error 'Plane is already in the air'
+  end
+
+  it "Prevents landing when plane is already on the ground" do
+    good_weather
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error 'Plane must be flying to land'
+  end
+
 end

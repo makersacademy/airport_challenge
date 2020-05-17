@@ -11,12 +11,13 @@ class Airport
   
   def takeoff(plane)
     raise 'No departures due to adverse weather' if bad_weather?
+    raise 'Plane is already in the air' if plane.flying?
 
     out_hangar_and_takeoff(plane)
   end
 
   def land(plane)
-    landing_possible_checks
+    landing_possible_checks(plane)
     land_and_store(plane)
 
   end
@@ -31,9 +32,10 @@ class Airport
     rand(1..5) > 4
   end
 
-  def landing_possible_checks
+  def landing_possible_checks(plane)
     raise 'Airport is full' if full?
     raise 'No arrivals due to adverse weather' if bad_weather?
+    raise 'Plane must be flying to land' unless plane.flying?
   end
 
   def land_and_store(plane)
@@ -46,7 +48,3 @@ class Airport
     hangar.delete(plane)  
   end
 end
-
-# airport = Airport.new(100)
-# plane = Plane.new
-# airport.land(plane)
