@@ -18,6 +18,10 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
   
+  it 'responds to #stormy?' do
+    expect(subject).to respond_to(:stormy?)
+  end
+
   describe '#airport_hanger' do
     it 'returns landed planes' do
       plane = Plane.new

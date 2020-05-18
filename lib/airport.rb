@@ -20,7 +20,11 @@ class Airport
   def take_off(plane)
     @plane = plane
   end
-  
+
+  def stormy?
+
+  end
+
   private
 
   def full?
