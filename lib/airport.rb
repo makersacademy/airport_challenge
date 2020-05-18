@@ -17,23 +17,18 @@ class Airport
       fail "This plane is already at the airport"
     end
     unless @planes.length < @capacity
-      fail "The airport is full, wait please"
-    end
-    
+      fail "The airport is full, wait please"  
+    end 
+
     @planes << plane
   end
 
   def take_off(plane)
-    unless @planes.include?(plane) && stormy > 4
-      @planes -= [plane]
-    end
-    if !@planes.include?(plane) && stormy < 4
-     fail "already gone"
-    end
-    if stormy > 4
+    if @planes.include?(plane) && stormy < 4
+      @planes -= [plane] 
+    elsif stormy == 5 
       fail "Let's wait for the sunshine!"
+    else fail "already gone"
     end
-    
   end
-
 end

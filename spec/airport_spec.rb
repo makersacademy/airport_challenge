@@ -19,9 +19,9 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error("This plane is already at the airport")
     end  
     it "throws an error when the airport is full" do
-        airport = Airport.new(@capacity = 50)
-        @capacity.times {airport.land(Plane.new)}
-        expect { airport.land(plane) }.to raise_error("The airport is full, wait please")
+      airport = Airport.new(@capacity = 50)
+      @capacity.times { airport.land(Plane.new) }
+      expect { airport.land(plane) }.to raise_error("The airport is full, wait please")
     end
   end
   context 'take_off' do
@@ -37,8 +37,9 @@ describe Airport do
       expect { airport.take_off(plane) } .to raise_error("already gone")
     end  
     it "throws an error if the weather is stormy" do
-        allow(airport).to receive(:stormy) { 5 }
-        expect { airport.take_off(plane) }.to raise_error("Let's wait for the sunshine!")
+      allow(airport).to receive(:stormy) { 5 }
+      expect { airport.take_off(plane) }.to raise_error("Let's wait for the sunshine!")
     end
-  end   
+  end  
+
 end
