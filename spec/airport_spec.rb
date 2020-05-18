@@ -17,4 +17,13 @@ expect(subject).to respond_to(:take_off).with(1).argument
       expect { subject.land Plane.new }.to raise_error 'Airport full'
     end
   end
+
+  # it 'airport capacity that can be overridden' do
+  # expect(subject).to respond_to(:capacity).with(1).argument
+  # end
+
+  it 'airport capacity that can be overridden' do
+  expect(subject).to respond_to(:capacity).with(1).argument
+  end
+
 end
