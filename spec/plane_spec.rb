@@ -30,12 +30,6 @@ describe Plane do
 
   end
 
-  it 'raises error when trying to land but already at an airport' do
-    subject.land(bristol)
-    message = "Plane already docked at #{bristol}"
-    expect { subject.land(airport) }.to raise_error(message)
-  end
-
   context 'works with takeoff method by' do
 
     before do
@@ -45,11 +39,6 @@ describe Plane do
     it 'resets the associated airport to nil' do
       subject.takeoff(bristol)
       expect(subject.instance_variable_get(:@docked_at)).to be_nil
-    end
-
-    it 'raises error when trying to take off airport not docked at' do
-      message = "Plane not docked at #{airport}"
-      expect { subject.takeoff(airport) }.to raise_error(message)
     end
 
   end

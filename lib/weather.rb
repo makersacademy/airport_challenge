@@ -1,7 +1,9 @@
 class Weather
 
   def forecast
-    random_number > 7
+    return :stormy if random_number > 7
+
+    :sunny
   end
 
   private
