@@ -9,5 +9,4 @@ class Plane
   def grounded
     @in_air = false
   end
-
 end
