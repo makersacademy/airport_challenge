@@ -46,7 +46,7 @@ I want to prevent landing when weather is stormy
 
 
 
-Tutorial for first-time flyiers:
+Tutorial for First Time Flyers:
 -----
 
 Good morning, Pilot!
