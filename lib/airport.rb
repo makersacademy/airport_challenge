@@ -1,6 +1,8 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
+  include Weather
   DEFAULT_CAPACITY = 3
 
   def initialize(capacity = DEFAULT_CAPACITY)

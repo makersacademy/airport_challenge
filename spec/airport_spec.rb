@@ -38,4 +38,9 @@ describe Airport do
     expect { larger_airport.land(Plane.new) } .not_to raise_error
   end
 
+  it 'responds to #weather? with either "stormy or "sunny"' do
+    expect(subject.weather?).to eq("stormy").or eq("sunny")
+  end
+    
+
 end
