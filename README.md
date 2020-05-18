@@ -115,11 +115,10 @@ Airport <— set_default_capacity --> Integer
 Airport <— stormy? —> yes/no(Boolean)
 
 —————————————————————————————————
-From Domain Model to feature test - for each features
+     break down by each user story how you approach each problem.
 
 1. Feature Test (IRB from command line) Red Light —> 
 2. Unit Test (_spec file) Red Light —>
 3. Write the instruction on “file_name.rb” for let the Unit Test pass —>
 4. Unit Test Pass Green Light —>
 5. Next Feature.
-
