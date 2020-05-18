@@ -22,6 +22,13 @@ describe Airport do
     expect(subject).to respond_to(:stormy?)
   end
 
+  describe '#stormy?' do 
+    it 'returns false' do
+      allow(subject).to receive(:stormy?) { 3 }
+      expect(subject.stormy?).to eq(3)
+    end
+  end
+
   describe '#airport_hanger' do
     it 'returns landed planes' do
       plane = Plane.new
