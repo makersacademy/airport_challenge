@@ -31,7 +31,7 @@ class Airport
     false
   end
 
-  #private
+  private
 
   def capacity_ok?
     if @planes.length < @capacity
