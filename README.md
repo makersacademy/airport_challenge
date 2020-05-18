@@ -1,41 +1,30 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+## Summary of Challenge
+- Create an airport and plane
+- Instruct the plane to land and take off from the airport and have the airport respectively store and remove the plane from the airport hangar
+- Have the airport have a default capacity value that can be overridden
+- Have an error raised when a plane tries to land in an airport when the hangar is at full capacity
+- Have a weather system that is mostly sunny but occasionally stormy
+- Have an error raised when a plane tries to take off or land when the weather is stormy
+- Have errors raised to prevent inconsistencies such as a plane attempting a take off whilst already in flight
 
-```
+## Approach to Challenge
 
-Instructions
----------
+Broadly speaking the process I went through to solving the challenge was:
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+- For each user story:
+  1. Create a feature test for how the user flow should look when all the code has been correctly implement
+  2. Run the feature test in IRB and take note of the first error that appears
+  3. Create an Rspec unit test around that error and run to failure
+  4. Implement code until unit test passes
+  5. Go back to step 2 and repeat the process until the feature test passes
+- Isolate Rspec files from each other using Doubles
+- Implement Mocks in order to mimic certain conditions (e.g. the weather always being sunny) in order for certain tests to consistently pass
 
-Steps
--------
+## User Stories
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
+```bash
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -60,31 +49,87 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+## Specific Issues I Encountered
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+- One of the first tasks I worked on was deciding what the overall architecture of the code might look like. I was initially unsure of whether the `land` and `take_off` methods should be a part of the `Airport` class or `Plane` class. That is to say: should it be the airport that decides to land the plane, or the plane that decides to land at the airport. In terms of code implementation, it would seem to make more sense for the methods to be part of the `Airport` class as what constitutes a take off and landing (the addition and removal of the plane from the `hangar` array) happens entirely within the `Airport` class. However, I instead opted to have the methods be a part of the `Plane` class as, from a user perspective, it did not seem very intuitive for an `airport.land` command to be run. The modification of the `hangar` array is instead done through the airport’s `request_landing` and `request_take_off` methods which are called from within the plane’s `land` and `take_off` methods.
+- A similar issue arose when deciding which tests would take place where. Again, it would make more intuitive sense for “take off” and “land” related tests to take place in the `plane_spec.rb` file; seeing as it is the plane the would be instructed to take off or land. However, for the reasons stated above, a “take off” or “land” test would not be testing the `Plane` class’ ability to take off and land, but rather Rspec’s ability to mimic the behavior of the `Airport` class (assuming all spec files are isolated from each other). Therefore, these tests were placed in the `airport_spec.rb` file relating to the `request_landing` and `request_take_off` methods.
+- After still coming to grips with the Single-responsibility Principle (SRP), I made an effort to keep each method short and specific, but was still unsure of how much each method should be discretised. I was aware of instances where methods seemed like they could be further divided into smaller and more specific methods, but where doing so also seemed unnecessary and would only add further complexity. Further research and experience will be required to be more comfortable with this concept.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+## Usage
+### Creating a Plane and Airport
+```
+heathrow = Airport.new
+ => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[], @weather="sunny">
+BA123 = Plane.new
+ => #<Plane:0x00007fa4060343a8 @location="in_flight">
+```
+### Landing and Taking Off a Plane
+```
+BA123.land(heathrow)
+ => #<Airport:0x00007fa42693d3f8 @capacity=20, @hangar=[#<Plane:0x00007fa4060343a8 @location=#<Airport:0x00007fa42693d3f8 ...>, @airport=#<Airport:0x00007fa42693d3f8 ...>>], @weather="sunny">
+BA123.take_off
+[plane has taken off from airport]
+ => ""
+ ```
+### Setting Airport Capacity
+```
+heathrow
+=> #<Airport:0x00007fb0d401d088 @capacity=20, @hangar=[], @weather="sunny">
+heathrow.capacity = 45
+=> 45
+heathrow
+=> #<Airport:0x00007fb0d401d088 @capacity=45, @hangar=[], @weather="sunny">
+ ```
+### Preventing Plane from Landing at a Full Airport
+```
+heathrow.capacity.times { |a_plane| a_plane = Plane.new ; a_plane.land(heathrow) }
+ => 45
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Airport is at maximum capacity)
+```
+### Preventing Plane from Landing During Stormy Weather
+```
+heathrow
+ => #<Airport:0x00007ff380898520 @capacity=20, @hangar=[], @weather="stormy">
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Weather conditions are too unsafe)
+```
+### Preventing Plane from Taking Off During Stormy Weather
+```
+heathrow
+=> #<Airport:0x00007ff380881960 @capacity=20, @hangar=[#<Plane:0x00007ff38005c528 @location=#<Airport:0x00007ff380881960 ...>, @airport=#<Airport:0x00007ff380881960 ...>>], @weather="stormy">
+BA123.take_off
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Weather conditions are too unsafe)
+```
+### Preventing Take Off and Landing Inconsistencies 
+```
+BA123.land(heathrow)
+ => #<Airport:0x00007ff8e9810828 @capacity=20, @hangar=[#<Plane:0x00007ff9298af258 @location=#<Airport:0x00007ff8e9810828 ...>, @airport=#<Airport:0x00007ff8e9810828 ...>>], @weather="sunny">
+BA123.land(heathrow)
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Plane has already landed)
+BA123.take_off
+[plane has taken off from airport]
+ => ""
+BA123.take_off
+Traceback (most recent call last):
+        3: ...
+        2: ...
+        1: ...
+RuntimeError (Plane is already in flight)
+```
