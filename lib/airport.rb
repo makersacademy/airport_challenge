@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off(plane)
+    #need to add a clause to prevent take_off with no plane at the airport
     @planes.delete(plane)
     "#{plane} has departed the airport"
   end
