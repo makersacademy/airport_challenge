@@ -13,22 +13,21 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+Solution
+--------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+For simplicity's sake, we assume upon creation the plane is in flight, alternatively could have a default airport the planes are stored in upon creation
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+```
+2.6.0 :001 > airport = Airport.new
+ => #<Airport:0x00007fac2f8e1038 @capacity=1, @planes=[], @weather=#<Weather:0x00007fac2f8e0fe8>>
+2.6.0 :002 > plane = Plane.new
+ => #<Plane:0x00007fac2f8e85e0 @flying=true, @airport=nil>
+2.6.0 :003 > airport.land(plane)
+ => "Plane has been landed"
+2.6.0 :004 > airport.take_off(plane)
+ => "Plane has taken off"
+```
 
 Task
 -----
