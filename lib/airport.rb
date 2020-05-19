@@ -1,4 +1,5 @@
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
 
@@ -7,6 +8,7 @@ class Airport
   def initialize(capacity = 10)
     @capacity = capacity
     @hanger = []
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -34,7 +36,7 @@ class Airport
   end
 
   def weather_check
-    rand(1..5) < 5
+    @weather.check
   end
 
   private
