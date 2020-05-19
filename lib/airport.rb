@@ -1,5 +1,5 @@
-require_relative 'plane.rb'
-require_relative 'weather.rb'
+require_relative 'plane'
+require_relative 'weather.'
 
 class Airport
 
