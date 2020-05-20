@@ -3,7 +3,9 @@ require 'plane'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
+  let(:plane) { double("plane", :in_air => true) } #sets a double with instance variable in_air
+  let(:plane_grounded) { double("plane", :in_air => false) }
+  let(:grounded) { allow(plane).to receive(:grounded) } #allows plane double to use grounded method
   let(:clear) { allow(subject).to receive(:weather_check).and_return true }
   let(:stormy) { allow(subject).to receive(:weather_check).and_return false }
 
@@ -21,13 +23,15 @@ describe Airport do
 
   describe '#land' do
     it 'Should #land a plane in the airport' do
+      grounded
       clear
       expect(subject.land(plane)).to include(plane)
     end
 
     it 'Should not let a plane land if airport is full' do
+      grounded
       clear
-      10.times { subject.land(Plane.new) }
+      10.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
 
@@ -37,8 +41,7 @@ describe Airport do
     end
 
     it 'Should not let a plane land if it is not in the air' do
-      plane.grounded
-      expect { subject.land(plane) }.to raise_error('This plane is not in the air')
+      expect { subject.land(plane_grounded) }.to raise_error('This plane is not in the air')
     end
   end
 
@@ -49,6 +52,7 @@ describe Airport do
     end
 
     it 'Should remove a plane for the hanger on takeoff' do
+      grounded
       clear
       subject.land(plane)
       subject.take_off(plane)
