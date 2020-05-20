@@ -27,7 +27,7 @@ class Airport
   def take_off(plane)
     if !weather_check
       "You must wait due to a storm"
-    elsif !hanger_check(plane)
+    elsif hanger_check(plane)
       raise "this plane is not in the hanger"
     else
       @hanger.delete(plane)
@@ -46,7 +46,7 @@ class Airport
   end
 
   def hanger_check(plane)
-    @hanger.include?(plane)
+    !@hanger.include?(plane)
   end
 
   def status(plane)
