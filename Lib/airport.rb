@@ -23,19 +23,15 @@ class Airport
     @hangar.count
   end
 
-  # private
+  def stormy?
+    rand(1..7) >= 3
+  end
+  
+  private
 
   def full?
     planes_in_hangar == @capacity
   end
-
-  def weather
-    rand(1..7) >= 3 ? "Clear Skies" : "Stormy"
-  end
-
-  def stormy?
-    weather == "Stormy"
-  end 
 
 end
 

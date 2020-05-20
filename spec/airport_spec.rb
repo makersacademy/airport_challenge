@@ -38,10 +38,14 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error "Plane cannot land: weather is stormy"
     end
     
-    it "checks that it can occasionally be stormy" do 
-      allow(Kernel).to receive(:rand).and_return 1
-      # allow(airport).to receive(:stormy?)
-      expect(subject.stormy?).to be true 
+    it "checks that it can be non stormy" do 
+      allow(Kernel).to receive(:rand) { 1 }
+      expect(subject.stormy?).to be false 
+    end
+
+    it "checks it can be stormy occasionally" do 
+      allow(Kernel).to receive(:rand) { 6 }
+      expect(subject.stormy?).to be true
     end
     
     context "it does not allow plane to take_off." do
