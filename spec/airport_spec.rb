@@ -37,7 +37,7 @@ describe Airport do
 
     it 'Should not let a plane land in a storm,' do
       stormy
-      expect(subject.land(plane)).to eq("You must wait due to a storm")
+      expect { subject.land(plane) }.to raise_error("You must wait due to a storm")
     end
 
     it 'Should not let a plane land if it is not in the air' do
@@ -61,7 +61,7 @@ describe Airport do
 
     it 'Should not let a plane takeoff in a storm,' do
       stormy
-      expect(subject.take_off(plane)).to eq("You must wait due to a storm")
+      expect { subject.take_off(plane)}.to raise_error("You must wait due to a storm")
     end
   end
 
