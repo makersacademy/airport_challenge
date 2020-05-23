@@ -13,7 +13,7 @@ class Airport
   end
 
   def land(plane)
-    fail 'Warning: Hangar full' if full?
+    fail 'Warning: Hangar full' if airport_full?
     fail 'Plane already in hangar' if @hangar.include?(plane)
 
     @hangar.push(plane)
@@ -38,7 +38,7 @@ class Airport
     @hangar.include?(plane)
   end
 
-  def full?
+  def airport_full?
     @hangar.length == @capacity
   end
 
