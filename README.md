@@ -59,5 +59,8 @@ I want to prevent landing when weather is stormy
         _ `weather.rb` `weather_spec.rb`
 7. Begin testing first user story
 
-**Domain Model Diagram**
+**Domain Model Diagrams**
 -----
+
+![Responsibilities](https://github.com/Sumner1185/airport_challenge/blob/master/Responsibility_Table.png)
+![Class Diagram](https://github.com/Sumner1185/airport_challenge/blob/master/Class_Diagram.png)
