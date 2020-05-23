@@ -64,3 +64,6 @@ I want to prevent landing when weather is stormy
 
 ![Responsibilities](https://github.com/Sumner1185/airport_challenge/blob/master/Responsibility_Table.png)
 ![Class Diagram](https://github.com/Sumner1185/airport_challenge/blob/master/Class_Diagram.png)
+![Example Flow](https://github.com/Sumner1185/airport_challenge/blob/master/Expected_Flow.png)
+
+The diagrams above show my approach to this exercise in terms of class structure and how I expect that objects will communicate with one another.
