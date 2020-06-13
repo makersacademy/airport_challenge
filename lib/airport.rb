@@ -14,6 +14,12 @@ class Airport
     @planes << plane
   end
 
+  def take_off(_plane)
+    raise "There is a storm: cannot take off." if stormy?
+  end
+
+  private
+
   def full?
     @planes.length >= DEFAULT_CAPACITY
   end
@@ -21,9 +27,4 @@ class Airport
   def stormy?
     true
   end
-
-  def take_off(_plane)
-    raise "There is a storm: cannot take off." if stormy?
-  end
-
 end

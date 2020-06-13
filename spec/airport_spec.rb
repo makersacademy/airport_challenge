@@ -8,7 +8,7 @@ describe Airport do
 
     it 'will not let planes land if full' do
       allow(airport).to receive(:stormy?).and_return false
-      20.times do
+      Airport::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end
       expect { airport.land(plane) }.to raise_error "Airport capacity full."
