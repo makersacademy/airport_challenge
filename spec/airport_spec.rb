@@ -1,17 +1,32 @@
 require "airport"
 describe Airport do
+  let(:airport) { Airport.new }
+  
   describe "initialize" do
-    it "can creates an instance of an airport" do
-      airport = Airport.new
+    it "creates an instance of an airport" do
       expect(airport).to be_an_instance_of(Airport)
     end
   end
   
+  describe "#take_off" do
+    it "takes off waiting planes" do
+      plane = airport.take_off
+      expect(plane).to be_waiting
+    end
+  end
+      
   describe "#land" do
-    it "can land planes" do
-      airport = Airport.new
-      airport.land(1)
-      expect(airport.hangar_report).to eq(1)
+    it "lands flying planes" do
+      plane = Plane.new
+      expect(airport.land(plane)).to eq(plane)
+    end
+  end
+  
+  describe "#hangar_report" do
+    it "returns planes that landed" do
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.hangar_report).to eq plane
     end
   end
     
