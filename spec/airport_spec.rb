@@ -20,7 +20,12 @@ describe Airport do
     end
   end
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
+    it { is_expected.to respond_to(:take_off) }
+
+    it 'will not take off when stormy' do
+      allow(airport).to receive(:stormy?).and_return true
+      expect { airport.take_off(plane) }.to raise_error "There is a storm: cannot take off."
+    end
   end
 
 end
