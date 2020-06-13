@@ -2,12 +2,11 @@ class Plane
 
   def land(airport)
     @airport = airport
-    @airport.dock << self
-    # puts "#{airport.dock}"
+    @airport.dock(self)
   end
 
   def takeoff
-    @airport.dock.delete(self)
+    @airport.docking_bay.delete(self)
   end
 
 end
