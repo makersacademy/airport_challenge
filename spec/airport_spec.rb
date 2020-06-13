@@ -29,6 +29,13 @@ describe Airport do
     end
   end
   
+  describe "#land" do
+    it "raises an error when the airport is full" do
+      airport.land(Plane.new)
+      expect { airport.land Plane.new }.to raise_error "Airport is full"
+    end
+  end
+  
   describe "#hangar_report" do
     it "returns planes that landed" do
       plane = Plane.new
