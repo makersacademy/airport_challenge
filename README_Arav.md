@@ -5,7 +5,7 @@ This programme has been designed to help Air Traffic Controllers manage the move
 This program was produced as part of the weekend challenge for my first week at Makers Academy. The program is meant to enable Air Traffic Controllers and System designers to reduce the need to model planes using paper processes.
 
 ## Framework used
-* Program code is written in `<ruby>`
+* Program code is written in `ruby`
 * Tests are written using `<rspec>`
 
 ## Features
