@@ -1,19 +1,24 @@
 require './lib/airport.rb'
 
-class Plane
-  attr_reader :location
-
-  def initialize
-    @location = nil
+module TakeOff
+  def take_off
+    @location = "in the air"
   end
+end
 
+module Land
   def land(airport)
     @location = airport
     self
   end
+end
 
-  def take_off
-    @location = "in the air"
+class Plane
+  attr_reader :location
+  include TakeOff, Land
+
+  def initialize
+    @location = nil
   end
 
 end
