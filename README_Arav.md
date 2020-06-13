@@ -6,7 +6,7 @@ This program was produced as part of the weekend challenge for my first week at 
 
 ## Framework used
 * Program code is written in `ruby`
-* Tests are written using `<rspec>`
+* Tests are written using `rspec`
 
 ## Features
 The following features were implemented:
@@ -17,10 +17,10 @@ The following features were implemented:
 * During stormy weather both take off and landing is strictly prohibited
 
 ## Installation
-This program is available in `<ruby>`. It requires certain `<gems>` to install the project:
+This program is available in `ruby`. It requires certain `gems` to install the project:
 > gem install bundle
 > bundle
 
 ## How to use?
-The file can be run through `<irb>`. Run the following code in the project working directory:
+The file can be run through `irb`. Run the following code in the project working directory:
 > irb -r ./lib/plane.rb
