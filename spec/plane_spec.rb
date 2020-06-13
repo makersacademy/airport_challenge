@@ -8,7 +8,7 @@ describe Plane do
   # let (:weather) {Weather.new}
 
   describe '#land(airport)' do
-    weather = Weather.new
+    # weather = Weather.new
 
     it 'Will land at an airport' do
       allow(airport).to receive(:weather_is_stormy?) { false }

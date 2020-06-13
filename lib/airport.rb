@@ -2,6 +2,7 @@ require './lib/weather.rb'
 
 class Airport
   attr_accessor :docking_bay
+  attr_reader :capacity
 
   def initialize(capacity = 1)
     @capacity = capacity
