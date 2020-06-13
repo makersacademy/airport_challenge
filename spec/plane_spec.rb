@@ -15,11 +15,11 @@ describe Plane do
       expect { raise Plane.new.land(airport) }.to raise_error(RuntimeError)
     end
 
-    it 'will not land at an airport if the weather is stormy' do
-      weather = Weather.new
-      allow(weather).to receive(:is_stormy?) { true }
-      expect { raise Plane.new.land(airport) }.to raise_error(RuntimeError)
-    end
+    # it 'will not land at an airport if the weather is stormy' do
+    #   weather = Weather.new
+    #   allow(weather).to receive(:is_stormy?) { true }
+    #   expect { raise Plane.new.land(airport) }.to raise_error(RuntimeError)
+    # end
   end
 
   describe '#takeoff' do

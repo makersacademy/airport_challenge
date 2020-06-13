@@ -21,7 +21,7 @@ describe Airport do
 
     it 'can be created with a custom capacity' do
       big_airport = Airport.new(5)
-      allow(weather).to receive(:is_stormy?) { false }
+      # allow(weather).to receive(:is_stormy?) { false }
       5.times { Plane.new.land(big_airport) }
       expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
     end
@@ -29,7 +29,7 @@ describe Airport do
     it 'will not land planes if the capacity is full' do
       #Need to add in a method stub to ensure that planes can always land
       big_airport = Airport.new(5)
-      allow(weather).to receive(:is_stormy?) { false }
+      # allow(weather).to receive(:is_stormy?) { false }
       5.times { Plane.new.land(big_airport) }
       expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
     end
