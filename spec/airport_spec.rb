@@ -10,15 +10,22 @@ describe Airport do
   
   describe "#take_off" do
     it "takes off waiting planes" do
-      plane = airport.take_off
-      expect(plane).to be_waiting
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.take_off).to eq plane
+    end
+  end
+    
+  describe "#take_off" do
+    it "raises an error when there are no waiting planes" do
+      expect { airport.take_off }.to raise_error "No waiting planes"
     end
   end
       
   describe "#land" do
     it "lands flying planes" do
       plane = Plane.new
-      expect(airport.land(plane)).to eq(plane)
+      expect(airport.land(plane)).to eq plane
     end
   end
   
