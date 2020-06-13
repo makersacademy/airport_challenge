@@ -1,17 +1,7 @@
-require './lib/airport.rb'
-
-module TakeOff
-  def take_off
-    @location = "in the air"
-  end
-end
-
-module Land
-  def land(airport)
-    @location = airport
-    self
-  end
-end
+require './lib/airport'
+require './lib/weather'
+require './lib/take_off'
+require './lib/land'
 
 class Plane
   attr_reader :location
