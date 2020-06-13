@@ -1,11 +1,20 @@
+[![Build Status](https://travis-ci.org/cmb84scd/airport_challenge.svg?branch=master)](https://travis-ci.org/cmb84scd/airport_challenge)
+
 #### This is my airport challenge!
 
-This will work in irb and to use you will need to require the airport file. The other files (classes) will work from the airport class.
+To use clone this repo and then do the following:
+```
+run 'bundle install'
+open 'irb'
+require './lib/airport.rb'
+```
 
 For the most part I was happy with this but I had one issue that took me a while to solve. It wasn't raising an error when stormy as expected. I initially wasn't sure why and every so often would go back to it to see if I could work it out. I eventually did and it was when I did repeated rspec tests that I discovered the problem. It was raising an error but not all of the time and this is due to the weather being a random behaviour. So I stubbed the weather behaviour in all the necessary parts of my tests (more than I expected!) and yay, all the tests pass all of the time!
 
 I'm very happy that I kept trying to solve it as I've learnt a lot from doing it.
 
+Edit: 13/6/2020
+I went back to this challenge today as I was unhappy with some of the tests. In a few instances I was testing state rather than behaviour. I went through my tests, deleting as necessary, added some and improved others. I am now much happier with this and I also added Travis!
 
 Airport Challenge
 =================
