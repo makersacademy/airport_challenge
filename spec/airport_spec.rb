@@ -29,7 +29,7 @@ describe Airport do
     
     it 'doesnt let the same plane land twice' do
       subject.land(plane)
-      expect(subject.land(plane)).to raise_error "Plane has already landed"
+      expect(plane.landed?).to raise_error "Plane has already landed"
     end
     
   end

@@ -15,6 +15,15 @@ describe Plane do
       subject.landed?
       expect(subject).not_to be_flying
     end
+    
+    it 'plane should respond to land method' do
+      expect(subject).to respond_to(:landed)
+    end
+  
+    it 'raises an error if plane has already landed' do
+      plane.landed?
+      expect { plane.landed? }.to raise_error "Plane has already landed"
+    end
   end
   
   describe '#taken_off?' do
@@ -22,12 +31,11 @@ describe Plane do
       subject.taken_off?
       expect(subject).to be_flying
     end
-  end
-  
-
-  it 'plane should be able to land' do
-    subject.taken_off?
-    subject.landed?
-    expect(subject).not_to be_flying
+    
+    it 'plane should be able to land' do
+      subject.taken_off?
+      subject.landed?
+      expect(subject).not_to be_flying
+    end
   end
 end

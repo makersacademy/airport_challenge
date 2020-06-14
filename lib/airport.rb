@@ -11,7 +11,7 @@ class Airport
     
   def land(plane)
     airport = Airport.new
-    raise "Plane has already landed" if @hangar.include?(plane)
+    raise "Plane has already landed" if plane.landed?
     raise 'Airport at capacity, no room for more planes' if airport.hangar_full
     @hangar << plane
     
