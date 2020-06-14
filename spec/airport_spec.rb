@@ -40,8 +40,8 @@ describe Airport do
       expect { airport.land(plane) }.not_to raise_error
     end
     
-    it 'raises an error when airport is full (20)/ does not a plane beyond this amount' do
-      20.times { airport.land Plane.new }
+    it 'raises an error when airport is full (DEFAULT_CAPACITY)/ does not land a plane beyond this amount' do
+      Airport:: DEFAULT_CAPACITY.times { airport.land Plane.new }
       expect { airport.land Plane.new }.to raise_error("This airport is full")
     end
       
