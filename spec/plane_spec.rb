@@ -2,11 +2,10 @@ require './lib/plane'
 require './lib/airport.rb'
 
 describe Plane do
-  let (:plane) {Plane.new}
-  let (:airport) {Airport.new}
-
+  let(:plane) { Plane.new } 
+  let(:airport) { Airport.new }
+  
   describe '#land(airport)' do
-
     it 'Will land at an airport' do
       allow(airport).to receive(:weather_is_stormy?) { false }
       plane.land(airport)
@@ -18,7 +17,6 @@ describe Plane do
       airport.docking_bay << plane
       expect { raise plane.land(airport) }.to raise_error(RuntimeError)
     end
-
 
     it 'Will not land at an airport if the airport is full' do
       allow(airport).to receive(:weather_is_stormy?) { false } 
@@ -36,7 +34,6 @@ describe Plane do
       plane.land(airport)
       expect { raise plane.land(airport) }.to raise_error(RuntimeError)
     end
-
   end
 
   describe '#takeoff' do
@@ -51,9 +48,7 @@ describe Plane do
       allow(airport).to receive(:weather_is_stormy?) { false }
       plane.land(airport)
       plane.takeoff
-      expect { raise plane.takeoff}.to raise_error(RuntimeError)
+      expect { raise plane.takeoff }.to raise_error(RuntimeError)
     end
-
   end
-
 end

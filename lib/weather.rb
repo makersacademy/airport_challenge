@@ -1,5 +1,4 @@
 class Weather
-
   def stormy?
     if rand(10) == 1
       true
@@ -7,5 +6,4 @@ class Weather
       false
     end
   end
-
 end

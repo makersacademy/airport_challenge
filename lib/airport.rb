@@ -34,5 +34,4 @@ class Airport
       false
     end
   end
-  
 end
