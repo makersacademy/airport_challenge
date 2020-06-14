@@ -2,14 +2,20 @@ require 'airport'
 
 describe Airport do
   describe 'initialize' do
-    indiport = Airport.new
-
     it 'creates a new airport called indiport' do
-      expect(indiport).to be_an_instance_of(Airport)
+      expect(subject).to be_an_instance_of(Airport)
     end
 
     it 'creates an empty array for the planes to land in' do
-      expect(indiport.planes).to be_empty
+      expect(subject.planes).to be_empty
+    end
+
+    it 'changes the capacity if you provide a capacity' do
+      ap1 = Airport.new(1)
+      p1 = Plane.new
+      ap1.land_plane(p1)
+      p2 = Plane.new
+      expect { ap1.land_plane(p2) }.to raise_error(AirportFullError)
     end
 
   end

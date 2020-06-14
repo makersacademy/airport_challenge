@@ -6,9 +6,9 @@ require_relative 'airport_full_error'
 class Airport
   attr_reader :planes
 
-  def initialize
+  def initialize(capacity = 2)
     @planes = []
-    @capacity = 2
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -21,7 +21,7 @@ class Airport
 
   def take_off(plane)
     raise WrongStateError, 'this plane is already flying' if plane.state == :flying
-    raise WrongAirportError, 'that plane is not at this airport' if !@planes.include?(plane)
+    raise WrongAirportError, 'that plane is not at this airport' unless @planes.include?(plane)
 
     @planes -= [plane]
     plane.change_state(:flying)
