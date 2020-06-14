@@ -76,6 +76,8 @@ describe Airport do
       plane = Plane.new
       plane1 = Plane.new
       airport.land(plane)
+      airport.land(plane1)
+      airport.take_off(plane1)
       expect { airport.take_off(plane1) }.to raise_error("the plane is not in airport")
     end
   end

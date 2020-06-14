@@ -17,9 +17,9 @@ class Airport
   end
   
   def take_off(plane)
-    fail "the plane is not in airport" unless not_present(plane)
+    fail "the plane is not in airport" unless already_present(plane)
     
-    @planes.pop
+    @planes.delete(plane)
   end
   
   private
@@ -29,10 +29,6 @@ class Airport
   end
   
   def already_present(plane)
-    @planes.include?(plane)
-  end
-  
-  def not_present(plane)
     @planes.include?(plane)
   end
 end
