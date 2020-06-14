@@ -9,5 +9,6 @@ class Airport
 
   def land_plane(plane)
     @planes << plane
+    plane.change_state(:landed)
   end
 end

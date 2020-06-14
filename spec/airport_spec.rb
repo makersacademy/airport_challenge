@@ -20,5 +20,11 @@ describe Airport do
       subject.land_plane(plane)
       expect(subject.planes).to include(plane)
     end
+
+    it 'changes the state of the plane to landed' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(plane.state).to eq :landed
+    end
   end
 end
