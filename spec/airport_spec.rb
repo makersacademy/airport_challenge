@@ -31,17 +31,17 @@ describe Airport do
   
   describe "#land" do
     it "raises an error when the airport is full" do
-      airport.land(Plane.new)
+      20.times { airport.land Plane.new }
       expect { airport.land Plane.new }.to raise_error "Airport is full"
     end
   end
   
-  describe "#hangar_report" do
-    it "returns planes that landed" do
+  describe "attribute reader (the former plane method)" do
+    it 'returns the number of planes that landed' do
       plane = Plane.new
       airport.land(plane)
-      expect(airport.hangar_report).to eq plane
+      expect(airport.plane).to eq plane
     end
   end
-    
+  
 end
