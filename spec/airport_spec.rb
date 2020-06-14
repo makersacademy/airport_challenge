@@ -20,8 +20,20 @@ describe Airport do
   end
   
   describe '#take_off' do
-    it 'should allow a plane to take off' do
+    it 'should allow a plane in an airport to take off' do
       expect(airport).to respond_to(:take_off).with(1).argument
+    end
+    it 'should show that plane is no longer in the airport' do
+      plane = Plane.new
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.plane).to be_nil
+    end
+    it 'should not do anything if the plane to take off is not in airport' do
+      plane = Plane.new
+      plane1 = Plane.new
+      airport.land(plane)
+      expect { airport.take_off(plane1) }.to raise_error("the plane is not in airport")
     end
   end
   
