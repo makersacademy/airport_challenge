@@ -1,6 +1,35 @@
 Airport Challenge
 =================
 
+Writing the software to control the flow of planes at an airport.
+
+Approach to solving the problem:
+
+I compared this challenge to the code and tests done earlier in the week for the Boris Bikes challenge, as well as using Google/ my notes.
+I struggled with the "default airport capacity" user story and the edge cases so referred to this work near the end: https://github.com/katebeavis/Airport-Challenge
+
+Where I got to and how I plan to finish:
+
+I got to halfway through user story 4 (default airport capacity, I gave the airport a default capacity but was got stuck trying to make it optionally overridable.
+From this point I would probably look up some Youtube videos for help as I am unsure of how to complete this user story.
+
+irb transcript to start:
+2.6.3 :001 > require './lib/plane'
+ => true 
+2.6.3 :002 > require './lib/airport'
+ => true 
+2.6.3 :003 > airport = Airport.new
+ => #<Airport:0x000000000103e9a8 @hangar=[]> 
+2.6.3 :004 > plane = Plane.new
+ => #<Plane:0x0000000000ffaf28 @flying=true> 
+2.6.3 :005 > airport.land(plane)
+ => false 
+
+
+
+
+
+
 ```
         ______
         _\____\___
