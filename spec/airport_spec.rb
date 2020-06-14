@@ -9,6 +9,12 @@ describe Airport do
     end
   end
   
+  it "has a variable capacity" do
+    airport = Airport.new(50)
+    50.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error "Airport is full"
+  end
+  
   describe "#take_off" do
     it "takes off waiting planes" do
       airport.land(plane)
@@ -30,10 +36,8 @@ describe Airport do
   
   describe "#land" do
     it "raises an error when the airport is full" do
-      Airport::DEFAULT_CAPACITY.times do
-        airport.land Plane.new
-      end
-      expect { airport.land Plane.new }.to raise_error "Airport is full"
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error "Airport is full"
     end
   end
   
