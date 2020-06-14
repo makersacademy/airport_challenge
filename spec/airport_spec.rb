@@ -38,5 +38,11 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
+    it 'changes the state to flying' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      subject.take_off(plane)
+      expect(plane.state).to eq :flying
+    end
   end
 end

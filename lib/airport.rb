@@ -14,5 +14,6 @@ class Airport
 
   def take_off(plane)
     @planes -= [plane]
+    plane.change_state(:flying)
   end
 end
