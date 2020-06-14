@@ -1,6 +1,6 @@
 require './lib/plane'
-# require './lib/airport.rb'
-# require './lib/weather.rb'
+require './lib/airport.rb'
+require './lib/weather.rb'
 
 describe Plane do
   let (:plane) {Plane.new}
@@ -15,6 +15,13 @@ describe Plane do
       plane.land(airport)
       expect(airport.docking_bay).to include(plane)
     end
+
+    it 'Will not land at an airport if it is already landed there' do
+      allow(airport).to receive(:weather_is_stormy?) { false }
+      plane.land(airport)
+      expect { raise plane.land(airport) }.to raise_error(RuntimeError)
+    end
+
 
     it 'Will not land at an airport if the airport is full' do
       allow(airport).to receive(:weather_is_stormy?) { false } 

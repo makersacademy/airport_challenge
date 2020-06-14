@@ -1,11 +1,11 @@
 require './lib/airport.rb'
-# require './lib/plane.rb'
-# require './lib/weather.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Airport do
   let (:plane) { Plane.new }
   let (:airport) {Airport.new} 
-  # let (:weather) {Weather.new}
+  let (:weather) {Weather.new}
 
   describe '#dock' do
     it 'is able to dock a plane' do
@@ -25,31 +25,40 @@ describe Airport do
       expect { raise subject.dock(plane) }.to raise_error(RuntimeError)
     end
 
-
-
   end
 
   describe '#initialize' do
+
     it 'is created with a default capacity of 1' do
-      allow(airport).to receive(:weather_is_stormy?) { false }
-      plane.land(airport)
-      expect { raise Plane.new.land(airport) }.to raise_error(RuntimeError)
+      expect(subject.capacity).to eq(1)
     end
 
     it 'can be created with a custom capacity' do
       big_airport = Airport.new(5)
-      allow(big_airport).to receive(:weather_is_stormy?) { false }
-      5.times { Plane.new.land(big_airport) }
-      expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
+      expect(big_airport.capacity).to eq(5)
     end
 
     it 'will not land planes if the capacity is full' do
-      big_airport = Airport.new(5)
+      big_airport = Airport.new(10)
       allow(big_airport).to receive(:weather_is_stormy?) { false }
-      5.times { Plane.new.land(big_airport) }
+      10.times { Plane.new.land(big_airport) }
       expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
     end
  
+  end
+
+  describe 'weather_is_stormy?' do
+
+    it 'will return false if the weather is not stormy' do
+      allow(airport).to receive(:weather_is_stormy?) { false }
+      expect(airport.weather_is_stormy?).to eq(false)
+    end
+
+    it 'will return true if the weather is stormy' do
+      allow(airport).to receive(:weather_is_stormy?) { true }
+      expect(airport.weather_is_stormy?).to eq(true)
+    end
+
   end
 
 end

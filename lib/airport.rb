@@ -7,6 +7,7 @@ class Airport
   def initialize(capacity = 1)
     @capacity = capacity
     @docking_bay = []
+    @weather = Weather.new
   end
 
   def dock(plane)
@@ -17,8 +18,8 @@ class Airport
   end
 
   def weather_is_stormy?
-    weather = Weather.new
-    if weather.stormy? == true
+    @weather
+    if @weather.stormy? == true
       true
     else 
       false
