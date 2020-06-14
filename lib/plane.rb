@@ -5,14 +5,11 @@ class Plane
     @state = :flying #should only be flying or landed, init as flying
   end
 
-  def land(airport) #is this needed?
-  end
-
   def change_state(new_state) #used in the land_plane airport method
     @state = new_state
   end
 
-  
+
 
 
 end

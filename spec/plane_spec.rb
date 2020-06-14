@@ -1,13 +1,16 @@
 require 'plane'
 
 describe Plane do
-  describe '#land' do
-    it 'responds to land' do
-      expect(subject).to respond_to :land
+  describe '#state' do
+    it 'can only be flying or landed' do
+      expect(subject.state).to eq :flying || :landed
     end
+  end
 
-    it 'takes 1 airport as argument' do
-      expect(subject).to respond_to(:land).with(1).argument
+  describe '#change_state' do
+    it 'changes the state of the plane' do
+      subject.change_state(:landed)
+      expect(subject.state).to eq :landed
     end
   end
 end
