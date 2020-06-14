@@ -20,6 +20,7 @@ describe Airport do
       subject.land_plane(plane)
       expect { subject.land_plane(plane) }.to raise_error(WrongStateError, 'this plane is not flying')
     end
+
     it 'adds the plane to planes array' do
       plane = Plane.new
       subject.land_plane(plane)
@@ -34,6 +35,22 @@ describe Airport do
   end
 
   describe '#take_off' do
+    it 'raises an error if the plane is already flying' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error(WrongStateError, 'this plane is already flying')
+    end
+
+    it 'raises an error if the plane is not in this airport' do
+      plane1, plane2 = Plane.new, Plane.new
+      ap1, ap2 = Airport.new, Airport.new
+
+      ap1.land_plane(plane1)
+      ap2.land_plane(plane2)
+      expect { ap1.take_off(plane2) }.to raise_error(WrongAirportError, 'that plane is not at this airport')
+    end
+
     it 'removes plane from airport' do
       plane = Plane.new
       plane1 = Plane.new
