@@ -11,8 +11,23 @@ describe Airport do
     it 'should have an empty array for planes instance variable' do
       expect(airport.planes).to be_an_instance_of(Array)
     end
+    it 'should have a default airport capacity upon creation unless capacity provided' do
+      airport = Airport.new
+      expect(airport.capacity).to eq Airport:: DEFAULT_CAPACITY
+    end
+    it 'should have a capacity of that provided as an argument when argument provided' do
+      airport = Airport.new(5)
+      expect(airport.capacity).to eq(5)
+    end
   end
   
+  describe '#capacity' do
+    it 'should allow capacity to be overwritten at any point' do
+      airport.capacity = 25
+      expect(airport.capacity).to eq(25)
+    end
+  end
+
   describe '#land' do
     it 'should land a plane' do
       expect(airport).to respond_to(:land).with(1).argument 
@@ -41,7 +56,7 @@ describe Airport do
     end
     
     it 'raises an error when airport is full (DEFAULT_CAPACITY)/ does not land a plane beyond this amount' do
-      Airport:: DEFAULT_CAPACITY.times { airport.land Plane.new }
+      airport.capacity.times { airport.land Plane.new }
       expect { airport.land Plane.new }.to raise_error("This airport is full")
     end
       
