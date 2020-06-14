@@ -15,11 +15,14 @@ class Airport
     if @hangar.count > airport.capacity
       raise 'Airport at capacity, no room for more planes'
     end
-    plane
+    
+    plane.landed?
   end
-  
+    
   def capacity
+    
     DEFAULT_CAPACITY
+    
   end
   
   def take_off(plane)

@@ -14,7 +14,7 @@ describe Airport do
     it 'lands a plane' do
       # airport = Airport.new
       # plane = Plane.new
-      expect(airport.land(plane)).to eq(plane)
+      expect(airport.land(plane)).to eq(plane.landed?)
     end
     
     it 'prevents planes landing when at capacity' do
