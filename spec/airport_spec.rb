@@ -27,4 +27,16 @@ describe Airport do
       expect(plane.state).to eq :landed
     end
   end
+
+  describe '#take_off' do
+    it 'removes plane from airport' do
+      plane = Plane.new
+      plane1 = Plane.new
+      subject.land_plane(plane)
+      subject.land_plane(plane1)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include(plane)
+    end
+
+  end
 end

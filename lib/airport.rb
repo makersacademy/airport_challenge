@@ -11,4 +11,8 @@ class Airport
     @planes << plane
     plane.change_state(:landed)
   end
+
+  def take_off(plane)
+    @planes -= [plane]
+  end
 end
