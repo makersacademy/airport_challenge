@@ -13,4 +13,10 @@ describe 'Airport' do
     end
   end
 
+  describe '#take_off' do
+    it "enables plane to take off" do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
+  end
+
 end
