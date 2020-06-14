@@ -1,16 +1,19 @@
 require_relative 'plane'
 require_relative 'wrong_state_error'
 require_relative 'wrong_airport_error'
+require_relative 'airport_full_error'
 
 class Airport
   attr_reader :planes
 
   def initialize
     @planes = []
+    @capacity = 2
   end
 
   def land_plane(plane)
     raise WrongStateError, 'this plane is not flying' if plane.state == :landed
+    raise AirportFullError, 'this airport is full' if @planes.count >= @capacity
 
     @planes << plane
     plane.change_state(:landed)

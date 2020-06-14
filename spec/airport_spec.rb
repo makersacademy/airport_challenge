@@ -15,6 +15,15 @@ describe Airport do
   end
 
   describe '#land_plane' do
+    it 'raises an error if the airport is full' do
+      p1 = Plane.new
+      subject.land_plane(p1)
+      p2 = Plane.new
+      subject.land_plane(p2)
+      p3 = Plane.new
+      expect { subject.land_plane(p3) }.to raise_error(AirportFullError, 'this airport is full')
+    end
+
     it 'raises an error if the plane is not flying' do
       plane = Plane.new
       subject.land_plane(plane)
