@@ -1,6 +1,8 @@
 # Airport Shmairport #
+As far as I could get over the weekend working on the airport challenge.
 
 ## What's been done: ##
+
 User stories
 - [x] tell a plane it can land at an airport
   - [x] create an airport
@@ -13,24 +15,28 @@ User stories
   - [x] give airport maximum capacity
 - [x] default airport capacity that can be overwritten
   - [x] set airport initialize argument 'capacity' as default and optional
-- [] prevent take-off if the weather is stormy
+- [ ] prevent take-off if the weather is stormy
   - [x] create weather class
   - [x] create function to choose random weather, stormy 1/10 times
-- [] prevent landing if the weather is stormy
+- [ ] prevent landing if the weather is stormy
 
 Edge cases
-- [x] state of plane set to flying on initialize, to be checked before \ntake-off/landing
+- [x] state of plane set to flying on initialize, to be checked before
+take-off/landing
 - [x] check array to make sure plane is in airport before take-off
 
-WIP: Weather error for storms stopping take-off and landing has not been \nsuccessfully implemented yet.\n
-I'm unsure whether the problem is in my use of stub method in the spec file, \nor the raising of the error.
+WIP: Weather error for storms stopping take-off and landing has not been
+successfully implemented yet.
+I'm unsure whether the problem is in my use of stub method in the spec file,
+or the raising of the error.
 
-##Things I'd like to have done:##
+## Things I'd like to have done: ##
+
 - Refactoring methods for SRP, especially `take_off`
 - Got the BadWeatherError to raise
 
 
 ## How to use ##
 
-> irb \n
-> require '*/lib/airport.rb'
+`irb`
+`require '*/lib/airport.rb'`
