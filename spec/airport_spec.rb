@@ -15,6 +15,11 @@ describe Airport do
   end
 
   describe '#land_plane' do
+    it 'raises an error if the plane is not flying' do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect { subject.land_plane(plane) }.to raise_error(WrongStateError, 'this plane is not flying')
+    end
     it 'adds the plane to planes array' do
       plane = Plane.new
       subject.land_plane(plane)
@@ -44,5 +49,6 @@ describe Airport do
       subject.take_off(plane)
       expect(plane.state).to eq :flying
     end
+
   end
 end

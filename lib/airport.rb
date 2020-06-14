@@ -1,13 +1,16 @@
 require_relative 'plane'
+require_relative 'wrong_state_error'
 
 class Airport
   attr_reader :planes
 
   def initialize
-    @planes =[]
+    @planes = []
   end
 
   def land_plane(plane)
+    raise WrongStateError, 'this plane is not flying' if plane.state == :landed
+    
     @planes << plane
     plane.change_state(:landed)
   end
