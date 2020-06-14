@@ -5,13 +5,18 @@ require './lib/weather.rb'
 describe Airport do
   let (:plane) { Plane.new }
   let (:airport) {Airport.new} 
-  let (:weather) {Weather.new}
 
   describe '#dock' do
     it 'is able to dock a plane' do
       allow(subject).to receive(:weather_is_stormy?) { false }
       subject.dock(plane)
       expect(subject.docking_bay).to include(plane)
+    end
+
+    it 'will not dock the same plane twice' do
+      allow(subject).to receive(:weather_is_stormy?) { false }
+      subject.dock(plane)
+      expect { raise subject.dock(plane) }.to raise_error(RuntimeError)
     end
 
     it 'will not dock if the weather is stormy' do
@@ -23,6 +28,13 @@ describe Airport do
       allow(subject).to receive(:weather_is_stormy?) { false }
       subject.dock(Plane.new)
       expect { raise subject.dock(plane) }.to raise_error(RuntimeError)
+    end
+
+    it 'will not land planes if the custom capacity is full' do
+      big_airport = Airport.new(10)
+      allow(big_airport).to receive(:weather_is_stormy?) { false }
+      10.times { Plane.new.land(big_airport) }
+      expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
     end
 
   end
@@ -38,16 +50,10 @@ describe Airport do
       expect(big_airport.capacity).to eq(5)
     end
 
-    it 'will not land planes if the capacity is full' do
-      big_airport = Airport.new(10)
-      allow(big_airport).to receive(:weather_is_stormy?) { false }
-      10.times { Plane.new.land(big_airport) }
-      expect { raise Plane.new.land(big_airport) }.to raise_error(RuntimeError)
-    end
  
   end
 
-  describe 'weather_is_stormy?' do
+  describe '#weather_is_stormy?' do
 
     it 'will return false if the weather is not stormy' do
       allow(airport).to receive(:weather_is_stormy?) { false }
@@ -59,6 +65,19 @@ describe Airport do
       expect(airport.weather_is_stormy?).to eq(true)
     end
 
+  end
+
+  describe '#dock_is_full' do
+    it 'will return false if the dock is not full' do
+      expect(airport.dock_is_full?).to eq(false)
+    end
+
+    it 'will return true if the dock is full' do
+    allow(airport).to receive(:weather_is_stormy?) { false }
+    airport.dock(plane)
+    expect(airport.dock_is_full?).to eq(true)
+    end
+  
   end
 
 end

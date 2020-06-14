@@ -1,14 +1,11 @@
 require './lib/plane'
 require './lib/airport.rb'
-require './lib/weather.rb'
 
 describe Plane do
   let (:plane) {Plane.new}
   let (:airport) {Airport.new}
-  # let (:weather) {Weather.new}
 
   describe '#land(airport)' do
-    # weather = Weather.new
 
     it 'Will land at an airport' do
       allow(airport).to receive(:weather_is_stormy?) { false }
@@ -18,7 +15,7 @@ describe Plane do
 
     it 'Will not land at an airport if it is already landed there' do
       allow(airport).to receive(:weather_is_stormy?) { false }
-      plane.land(airport)
+      airport.docking_bay << plane
       expect { raise plane.land(airport) }.to raise_error(RuntimeError)
     end
 
@@ -29,8 +26,14 @@ describe Plane do
       expect { raise Plane.new.land(airport) }.to raise_error(RuntimeError)
     end
 
-    it 'will not land at an airport if the weather is stormy' do
+    it 'Will not land at an airport if the weather is stormy' do
       allow(airport).to receive(:weather_is_stormy?) { true }
+      expect { raise plane.land(airport) }.to raise_error(RuntimeError)
+    end
+
+    it 'Will not land before takeoff' do
+      allow(airport).to receive(:weather_is_stormy?) { false }
+      plane.land(airport)
       expect { raise plane.land(airport) }.to raise_error(RuntimeError)
     end
 
@@ -43,6 +46,14 @@ describe Plane do
       plane.takeoff
       expect(airport.docking_bay).not_to include(plane)
     end
+
+    it 'Will not take off from an airport if it is already airborne' do
+      allow(airport).to receive(:weather_is_stormy?) { false }
+      plane.land(airport)
+      plane.takeoff
+      expect { raise plane.takeoff}.to raise_error(RuntimeError)
+    end
+
   end
 
 end
