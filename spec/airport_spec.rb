@@ -17,8 +17,6 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane' do
-      # airport = Airport.new
-      # plane = Plane.new
       expect(airport.land(plane)).to eq(plane.landed?)
     end
     
@@ -47,14 +45,11 @@ describe Airport do
   
   describe '#take_off' do
     it 'instructs planes to take off from the airport' do
-     # airport = Airport.new
-     # plane = Plane.new
       airport.land(plane)
       expect(airport.take_off(plane)).to eql(plane.taken_off?)
     end
     
     it 'deletes the plane from the hangar' do
-    # plane = Plane.new
       airport.land(plane)
       expect(@hangar).to eql(nil)
     end
