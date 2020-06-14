@@ -1,6 +1,6 @@
 **Airport Challenge**
 
-*Brief Explanation*
+***Brief Explanation***
 My thinking for this challenge was that I would first create a class called 'Airport' and a class called 'Plane', so that these two objects can interact with each other.
 
 The first step was to get a plane to land at an airport, so I created a method '#land' for the plane, which takes the airport as an argument and docks the plane there. The first thing the method does is check to see if the plane is already landed, and returns an error message if so. The land method tries to call the '#dock(plane)' method in the instance of airport, which will send an error message back if the airport is full, the weather is stormy, or the plane is alredy docked there.
@@ -11,7 +11,7 @@ The next method was to ensure that the airport can be created with a default cap
 
 For the weather, I created another class called Weather, which is instantiated within airport whenever it is created. Weather.stormy? has a 1 in 10 chance of returning 'true', so the airport can check on the weather before telling a plane whether it can land or not.
 
-*Some problems*
+***Some problems***
 I had some problems testing this - it seems that I'm only at 80% test covereage for the weather file. I think I need to make sure that the method will sometimes return 'true' rather than just testing whether it returns 'true' or 'false'. I will try to figure that out!
 
 I am also at not full test covereage for airport.rb. The problem is how I am testing for what 'weather' is returning.
