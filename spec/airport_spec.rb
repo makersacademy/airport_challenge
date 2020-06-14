@@ -22,10 +22,8 @@ describe Airport do
     end
   end
     
-  describe "#take_off" do
-    it "raises an error when there are no waiting planes" do
-      expect { airport.take_off }.to raise_error "No waiting planes"
-    end
+  it "raises an error when there are no waiting planes" do
+    expect { airport.take_off }.to raise_error "No waiting planes"
   end
       
   describe "#land" do
@@ -34,11 +32,9 @@ describe Airport do
     end
   end
   
-  describe "#land" do
-    it "raises an error when the airport is full" do
-      airport.capacity.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error "Airport is full"
-    end
+  it "raises an error when the airport is full" do
+    airport.capacity.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error "Airport is full"
   end
   
   describe "attribute reader (the former plane method)" do
