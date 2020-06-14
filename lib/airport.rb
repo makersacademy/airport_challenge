@@ -10,11 +10,9 @@ class Airport
   end  
     
   def land(plane)
-    airport = Airport.new
-    raise "Plane has already landed" if plane.landed?
-    raise 'Airport at capacity, no room for more planes' if airport.hangar_full
-    @hangar << plane
+    raise 'Airport at capacity, no room for more planes' if @hangar.count > DEFAULT_CAPACITY
     
+    @hangar << plane
     plane.landed?
   end
     
@@ -24,19 +22,10 @@ class Airport
     
   end
   
-  def hangar_full
-    airport = Airport.new
-    @hangar.count > airport.capacity
-  end
-  
   def take_off(plane)
-    #if @hangar.include?(plane)
+    
     @hangar.delete(plane)
     plane.taken_off?
-    #else "no planes"
-    #end
-    # if @hangar.length < 1
-     # "No more planes"
   end
   
   def count_planes

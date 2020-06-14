@@ -22,16 +22,15 @@ describe Airport do
       expect(airport.land(plane)).to eq(plane.landed?)
     end
     
+    it 'adds planes to the hangar' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to change { subject.count_planes }.by(1)
+    end
+    
     it 'prevents planes landing when at capacity' do
-      10.times { airport.land(plane) }
+      11.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error 'Airport at capacity, no room for more planes'
     end
-    
-    it 'doesnt let the same plane land twice' do
-      subject.land(plane)
-      expect(plane.landed?).to raise_error "Plane has already landed"
-    end
-    
   end
   
   describe '#capacity' do

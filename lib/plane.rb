@@ -9,12 +9,11 @@ class Plane
   end
   
   def landed?
-    raise "Plane has already landed" unless @flying
     @flying = false
   end
   
   def taken_off?
-    @flying
+    @flying = true
   end
   
 end
