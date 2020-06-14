@@ -1,6 +1,7 @@
 require "airport"
 describe Airport do
   let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
   
   describe "initialize" do
     it "creates an instance of an airport" do
@@ -10,7 +11,6 @@ describe Airport do
   
   describe "#take_off" do
     it "takes off waiting planes" do
-      plane = Plane.new
       airport.land(plane)
       expect(airport.take_off).to eq plane
     end
@@ -24,7 +24,6 @@ describe Airport do
       
   describe "#land" do
     it "lands flying planes" do
-      plane = Plane.new
       expect(airport.land(plane)).to eq plane
     end
   end
@@ -38,7 +37,6 @@ describe Airport do
   
   describe "attribute reader (the former plane method)" do
     it 'returns the number of planes that landed' do
-      plane = Plane.new
       airport.land(plane)
       expect(airport.plane).to eq plane
     end
