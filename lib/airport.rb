@@ -2,6 +2,7 @@ require_relative 'plane'
 require_relative 'wrong_state_error'
 require_relative 'wrong_airport_error'
 require_relative 'airport_full_error'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes
