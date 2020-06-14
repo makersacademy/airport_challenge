@@ -7,16 +7,39 @@ describe Airport do
     expect(airport).to be_an_instance_of(Airport)
   end
   
+  describe '#initialize' do
+    it 'should have an empty array for planes instance variable' do
+      expect(airport.planes).to be_an_instance_of(Array)
+    end
+  end
+  
   describe '#land' do
     it 'should land a plane' do
       expect(airport).to respond_to(:land).with(1).argument 
     end
-    it 'should return the plane that was just landed' do
+    
+    it 'planes that are landed must be in an airport' do
       plane = Plane.new
-      # expect(airport.land(plane)).to eq(plane) : old test
+      plane1 = Plane.new
       airport.land(plane)
-      expect(airport.plane). to eq plane
+      airport.land(plane1)
+      expect(airport.planes.first).to eq plane
+      expect(airport.planes.last).to eq plane1
     end
+
+    it 'cannot land the same plane twice without take-off in between' do
+      plane = Plane.new
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("Plane already landed")
+    end
+    
+    it 'cannot land the same plane twice without take-off in between' do
+      plane = Plane.new
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.land(plane) }.not_to raise_error
+    end
+    
   end
   
   describe '#take_off' do
@@ -27,7 +50,7 @@ describe Airport do
       plane = Plane.new
       airport.land(plane)
       airport.take_off(plane)
-      expect(airport.plane).to be_nil
+      expect(airport.planes).to be_empty
     end
     it 'should not do anything if the plane to take off is not in airport' do
       plane = Plane.new
@@ -39,7 +62,7 @@ describe Airport do
   
   describe '#plane' do
     it 'should show you a plane that is in the airport' do
-      expect(airport).to respond_to :plane
+      expect(airport).to respond_to :planes
     end
   end
 end

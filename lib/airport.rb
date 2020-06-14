@@ -1,15 +1,19 @@
 class Airport
-  attr_reader :plane
+  attr_reader :planes
+  
+  def initialize
+    @planes = [] 
+  end
+  
   def land(plane)
-    @plane = plane
-    puts plane
+    fail "Plane already landed" if @planes.include?(plane)
+    
+    @planes << plane
   end
   
   def take_off(plane)
-    puts plane
-    puts @plane
-    fail "the plane is not in airport" if plane != @plane
+    fail "the plane is not in airport" unless @planes.include?(plane)
     
-    @plane = nil
+    @planes.pop
   end
 end
