@@ -10,6 +10,11 @@ describe Airport do
     expect(Airport.new).to be_an_instance_of(Airport)
   end
   
+  it "lets planes land" do
+    airport.land(plane)
+    expect { airport.land(plane) }.to change { airport.count_planes }.by(1)
+  end
+
   describe '#land' do
     it 'lands a plane' do
       # airport = Airport.new
@@ -20,6 +25,11 @@ describe Airport do
     it 'prevents planes landing when at capacity' do
       10.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error 'Airport at capacity, no room for more planes'
+    end
+    
+    it 'doesnt let the same plane land twice' do
+      subject.land(plane)
+      expect(subject.land(plane)).to raise_error "Plane has already landed"
     end
     
   end
@@ -41,7 +51,7 @@ describe Airport do
      # airport = Airport.new
      # plane = Plane.new
       airport.land(plane)
-      expect(airport.take_off(plane)).to eql("The plane #{plane} has just taken off")
+      expect(airport.take_off(plane)).to eql(plane.taken_off?)
     end
     
     it 'deletes the plane from the hangar' do
