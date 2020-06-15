@@ -1,90 +1,67 @@
-Airport Challenge
-=================
+**Airport Challenge**
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+***Brief Explanation***
 
-```
+= First, create a new instance of plane with "plane = Plane.new" and a new instance of airport with "airport = Airport.new".
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
+
+= To do this, you can instruct the plane to land at the airport with "plane.land(airport)".
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
+= To do this, land the plane at the airport, and then run "plane.takeoff". You can check that the plane is no longer in the airport's dock with "airport.docking_bay", which will return an array containing the planes currently there.
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
+
+= To do this, land a plane, then try to land another plane. It should return an error when you try to land the second, as the airports are created with a default capacity of 1.
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
+= To do this, create a new instance of airport with "airport = Airport.new(10)" where 10 is the desired capacity.
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 
+= Reading this back now I realise my code doesn't have this feature - there isn't a check to see if the weather is stormy on takeoff,
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+= This check happens automatically - there is a 1 in 10 chance of an error happening if you try to land.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+***Some problems***
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+I had some problems testing this - it seems that I'm only at 80% test covereage for the weather file. I think I need to make sure that the method will sometimes return 'true' rather than just testing whether it returns 'true' or 'false'. I will try to figure that out!
 
-Please create separate files for every class, module and test suite.
+I am also at not full test covereage for airport.rb. The problem is how I am testing for what 'weather' is returning.
 
-In code review we'll be hoping to see:
+I am using this to ensure that the airport.weather_is_stormy? method returns a true or false depending on what conditions I am testing for.
+  allow(subject).to receive(:weather_is_stormy?) { false }
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+I can sometimes get to 100% test covereage if I use 'let' to refer to the instance of weather created within airport, and then tell that method to return true or false, rather than the 'airport.weather_is_stormy?' method.
+  let(:weather) { airport.weather }
+  ...
+  allow(weather).to receive(:is_stormy?) { false }
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+However, my tests do not always pass if I do this, which tells me that the tests are not telling 'weather.stormy?' what to return properly.
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Rubocop also told me that tyhe conditional expression 'if @weather.stormy? == true' could be replaced by '@weather.stormy? == true'. I'm unsure what that means as that would break my if statement.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
