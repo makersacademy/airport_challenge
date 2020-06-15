@@ -16,7 +16,8 @@ class Airport
 
   def takeoff(_plane)
     @safe_to_fly ? (not_empty ? "The plane has taken off" : "There are no planes") : "It's not safe to take off"
-    # @planes.pop
+    # @planes = []
+    # planes.pop
   end
    
   def full
