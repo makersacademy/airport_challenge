@@ -40,6 +40,7 @@ end
       plane1 = Plane.new
       plane2 = Plane.new
       airport.safe_to_fly = true
+      airport.capacity = 1
       airport.land(plane1)
       expect(airport.land(plane2)).to eq("The airport is full")
     end
