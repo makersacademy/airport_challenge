@@ -26,8 +26,9 @@ describe Airport do
     end
     
     it 'prevents planes landing when at capacity' do
-      11.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error 'Airport at capacity, no room for more planes'
+      plane1 = Plane.new
+      airport.capacity.times { subject.land(plane1) }
+      expect { subject.land(plane1) }.to raise_error 'Airport at capacity, no room for more planes'
     end
   end
   
@@ -54,5 +55,4 @@ describe Airport do
       expect(@hangar).to eql(nil)
     end
   end
-    
 end
