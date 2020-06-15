@@ -9,12 +9,12 @@ class Airport
 
   def land(plane)
     fail 'This airport is full' if full?
-    raise 'Plane cant land due to stormy weather' if stormy?
+    raise "Plane can't land due to stormy weather" if stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    raise 'Plane cant take off due to stormy weather' if stormy?
+    raise "Plane can't take off due to stormy weather" if stormy?
     @planes.pop
   end
 
