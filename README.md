@@ -2,15 +2,43 @@
 
 ***Brief Explanation***
 
-My thinking for this challenge was that I would first create a class called 'Airport' and a class called 'Plane', so that these two objects can interact with each other.
+= First, create a new instance of plane with "plane = Plane.new" and a new instance of airport with "airport = Airport.new".
 
-The first step was to get a plane to land at an airport, so I created a method '#land' for the plane, which takes the airport as an argument and docks the plane there. The first thing the method does is check to see if the plane is already landed, and returns an error message if so. The land method tries to call the '#dock(plane)' method in the instance of airport, which will send an error message back if the airport is full, the weather is stormy, or the plane is alredy docked there.
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
 
-For the next step I created '#takeoff' for the plane to ensure that it can leave the airport and that it deletes itself from the dock. The takeoff method also checks to see if the plane is already airborne, in which case it will return an error.
+= To do this, you can instruct the plane to land at the airport with "plane.land(airport)".
 
-The next method was to ensure that the airport can be created with a default capacity, so I made the Airport class instantiate with a default capacity of 1.
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-For the weather, I created another class called Weather, which is instantiated within airport whenever it is created. Weather.stormy? has a 1 in 10 chance of returning 'true', so the airport can check on the weather before telling a plane whether it can land or not.
+= To do this, land the plane at the airport, and then run "plane.takeoff". You can check that the plane is no longer in the airport's dock with "airport.docking_bay", which will return an array containing the planes currently there.
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+= To do this, land a plane, then try to land another plane. It should return an error when you try to land the second, as the airports are created with a default capacity of 1.
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+= To do this, create a new instance of airport with "airport = Airport.new(10)" where 10 is the desired capacity.
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+= Reading this back now I realise my code doesn't have this feature - there isn't a check to see if the weather is stormy on takeoff,
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+= This check happens automatically - there is a 1 in 10 chance of an error happening if you try to land.
 
 ***Some problems***
 
