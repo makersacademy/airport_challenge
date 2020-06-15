@@ -42,14 +42,14 @@ end
       airport.safe_to_fly = true
       airport.capacity = 1
       airport.land(plane1)
-      expect(airport.land(plane2)).to eq("The airport is full")
+      expect{airport.land(plane2)}.to raise_error("The airport is full")
     end
 
     it 'expects a landing to be cancelled if the weather is bad' do
       airport = Airport.new
       plane1 = Plane.new
       airport.safe_to_fly = false
-      expect(airport.land(plane1)).to eq("It's not safe to land")
+      expect{airport.land(plane1)}.to raise_error("It's not safe to take off")
     end
 
   end
@@ -62,7 +62,6 @@ end
       airport.safe_to_fly = true
       airport.land(plane)
       airport.safe_to_fly = true
-      airport.takeoff(plane)
       expect(airport.takeoff(plane)).to eq("The plane has taken off")
     end
 
@@ -72,14 +71,14 @@ end
       airport.safe_to_fly = true
       airport.land(plane1)
       airport.safe_to_fly = false
-      expect(airport.takeoff(plane1)).to eq("It's not safe to take off")
+      expect{airport.takeoff(plane1)}.to raise_error("It's not safe to take off")
     end
 
     it 'expects a takeoff to be cancelled if there are no planes' do
       airport = Airport.new
       plane1 = Plane.new
       airport.safe_to_fly = true
-      expect(airport.takeoff(plane1)).to eq("There are no planes")
+      expect{airport.takeoff(plane1)}.to raise_error("There are no planes")
     end
 
   end

@@ -12,13 +12,18 @@ class Airport
   end
 
   def land(plane)
-    @safe_to_fly ? (full ? "The airport is full" : @planes << plane && "The plane has landed") : "It's not safe to land"
+    fail "It's not safe to take off" unless safe_to_fly == true
+    fail "The airport is full" unless full == false
+    @planes << plane
+    "The plane has landed"
   end
 
-  def takeoff(_plane)
-    @safe_to_fly ? (not_empty ? "The plane has taken off" : "There are no planes") : "It's not safe to take off"
-    # @planes = []
-    # planes.pop
+  def takeoff(plane)
+    fail "It's not safe to take off" unless safe_to_fly == true
+    fail "There are no planes" unless empty == false
+    @planes.delete(plane)
+    "The plane has taken off"
+
   end
 
   private
@@ -27,8 +32,8 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def not_empty
-    @planes != []
+  def empty
+    @planes == []
   end
 
 end
