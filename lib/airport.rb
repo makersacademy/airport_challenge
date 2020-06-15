@@ -20,6 +20,8 @@ class Airport
     # @planes = []
     # planes.pop
   end
+
+  private
    
   def full
     @planes.count >= @capacity
