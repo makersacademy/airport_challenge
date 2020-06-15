@@ -5,7 +5,7 @@ describe 'Airport' do
 
   DEFAULT_CAPACITY = 10
 
-  it 'creates an instance of the Airport class' do
+  it "creates an instance of the Airport class" do
     expect(airport).to be_an_instance_of(Airport)
   end
 
@@ -15,7 +15,7 @@ describe 'Airport' do
     end
     it "raises an error when the airport is full" do
       DEFAULT_CAPACITY.times { airport.land Airport.new }
-      expect { airport.land Airport.new }.to raise_error 'Airport is at full capacity'
+      expect { airport.land airport }.to raise_error 'Airport is at full capacity'
     end
   end
 

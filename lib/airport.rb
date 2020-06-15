@@ -22,6 +22,6 @@ class Airport
   private
 
   def full_capacity?
-    @planes.count >= @capacity
+    @planes.count >= DEFAULT_CAPACITY
   end
 end
