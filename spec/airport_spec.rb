@@ -12,7 +12,7 @@ describe Airport do
       expect(airport.planes).to be_an_instance_of(Array)
     end
     it 'should have a default airport capacity upon creation unless capacity provided' do
-      airport = Airport.new
+      # airport = Airport.new
       expect(airport.capacity).to eq Airport:: DEFAULT_CAPACITY
     end
     it 'should have a capacity of that provided as an argument when argument provided' do
