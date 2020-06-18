@@ -56,6 +56,4 @@ describe Airport do
       expect(airport.inventory.length).to be(2)
 
     end
-
-
 end
