@@ -65,7 +65,7 @@ describe Airport do
       end
     end
     context "when stormy" do
-      it 'should stop a plane landing when weather is stormy' do
+      it 'should stop a plane landing' do
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return true
         expect { airport.land(plane) }.to raise_error("Cannot land plane. Weather is stormy")
@@ -74,24 +74,34 @@ describe Airport do
   end
   
   describe '#take_off' do
-    it 'should allow a plane in an airport to take off' do
-      expect(airport).to respond_to(:take_off).with(1).argument
+    context "when not stormy" do
+      it 'should allow a plane in an airport to take off' do
+        expect(airport).to respond_to(:take_off).with(1).argument
+      end
+      it 'should show that plane is no longer in the airport' do
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.planes).to be_empty
+      end
+      it 'should not do anything if the plane to take off is not in airport' do
+        plane = Plane.new
+        plane1 = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
+        airport.land(plane)
+        airport.land(plane1)
+        airport.take_off(plane1)
+        expect { airport.take_off(plane1) }.to raise_error("the plane is not in airport")
+      end
     end
-    it 'should show that plane is no longer in the airport' do
-      plane = Plane.new
-      allow(airport).to receive(:stormy?).and_return false
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.planes).to be_empty
-    end
-    it 'should not do anything if the plane to take off is not in airport' do
-      plane = Plane.new
-      plane1 = Plane.new
-      allow(airport).to receive(:stormy?).and_return false
-      airport.land(plane)
-      airport.land(plane1)
-      airport.take_off(plane1)
-      expect { airport.take_off(plane1) }.to raise_error("the plane is not in airport")
+    context "when stormy" do
+      it "should not allow take-off" do
+        plane = Plane.new
+        airport.land(plane)
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.take_off(plane) }.to raise_error("cannot take off. Weather is stormy")
+      end
     end
   end
   

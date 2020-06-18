@@ -21,6 +21,8 @@ class Airport
   def take_off(plane)
     fail "the plane is not in airport" unless already_present(plane)
     
+    fail "cannot take off. Weather is stormy" if stormy?
+    
     @planes.delete(plane)
   end
   
