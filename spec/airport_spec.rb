@@ -98,6 +98,7 @@ describe Airport do
     context "when stormy" do
       it "should not allow take-off" do
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
         airport.land(plane)
         allow(airport).to receive(:stormy?).and_return true
         expect { airport.take_off(plane) }.to raise_error("cannot take off. Weather is stormy")

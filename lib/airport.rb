@@ -1,3 +1,4 @@
+require 'weather_status'
 class Airport
   attr_reader :planes
   attr_accessor :capacity
@@ -42,6 +43,6 @@ class Airport
     # this method is all we need. if rand is 1 to 4, evaluates to false
     # and so weather is not stormy and a plane can land!
     # if rand is 5 or 6, evaluates to true, weather is stormy and plane cannat land
-    rand(1..6) > 4
+    Weather_status.stormy?
   end
 end
