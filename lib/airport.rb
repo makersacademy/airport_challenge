@@ -13,6 +13,8 @@ class Airport
     
     fail "This airport is full" if full? 
     
+    raise "Cannot land plane. Weather is stormy" if stormy?
+    
     @planes << plane
   end
   
@@ -30,5 +32,14 @@ class Airport
   
   def already_present(plane)
     @planes.include?(plane)
+  end
+  
+  def stormy?
+    # i want it to be stormy randomly. let's say 1/3 of the time. 
+    # so do a random die role 
+    # this method is all we need. if rand is 1 to 4, evaluates to false
+    # and so weather is not stormy and a plane can land!
+    # if rand is 5 or 6, evaluates to true, weather is stormy and plane cannat land
+    rand(1..6) > 4
   end
 end
