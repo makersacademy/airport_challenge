@@ -3,7 +3,7 @@ require 'weather_status'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:weather_status) { Weather_status.new }
+  let(:weather_status) { Weather_status }
   # subject(:airport) { described_class.new }
   it 'should create an instance of an airport' do
     expect(airport).to be_an_instance_of(Airport)
@@ -33,7 +33,7 @@ describe Airport do
   describe '#land' do
     context "when not stormy" do
       before do
-        allow(weather_status).to receive(:stormy?).and_return false 
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return false 
       end
       it 'should land a plane' do
         expect(airport).to respond_to(:land).with(1).argument 
@@ -69,7 +69,7 @@ describe Airport do
     context "when stormy" do
       it 'should stop a plane landing' do
         plane = Plane.new
-        allow(weather_status).to receive(:stormy?).and_return true
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return true
         expect { airport.land(plane) }.to raise_error("Cannot land plane. Weather is stormy")
       end
     end  
@@ -82,7 +82,7 @@ describe Airport do
       end
       it 'should show that plane is no longer in the airport' do
         plane = Plane.new
-        allow(weather_status).to receive(:stormy?).and_return false
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return false
         airport.land(plane)
         airport.take_off(plane)
         expect(airport.planes).to be_empty
@@ -90,7 +90,7 @@ describe Airport do
       it 'should not do anything if the plane to take off is not in airport' do
         plane = Plane.new
         plane1 = Plane.new
-        allow(weather_status).to receive(:stormy?).and_return false
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return false
         airport.land(plane)
         airport.land(plane1)
         airport.take_off(plane1)
@@ -100,9 +100,9 @@ describe Airport do
     context "when stormy" do
       it "should not allow take-off" do
         plane = Plane.new
-        allow(weather_status).to receive(:stormy?).and_return false
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return false
         airport.land(plane)
-        allow(weather_status).to receive(:stormy?).and_return true
+        allow_any_instance_of(weather_status).to receive(:stormy?).and_return true
         expect { airport.take_off(plane) }.to raise_error("cannot take off. Weather is stormy")
       end
     end
