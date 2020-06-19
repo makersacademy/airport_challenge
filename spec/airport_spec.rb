@@ -96,6 +96,13 @@ describe Airport do
         airport.take_off(plane1)
         expect { airport.take_off(plane1) }.to raise_error("the plane is not in airport")
       end
+      it 'should not do anything if the plane to take off is not in airport' do
+      airport_2 = Airport.new(weather_status)
+      plane = Plane.new
+      allow(weather_status).to receive(:stormy?).and_return false
+      airport_2.land(plane)
+      expect { airport.take_off(plane) }.to raise_error("the plane is not in airport")
+      end
     end
     context "when stormy" do
       it "should not allow take-off" do
