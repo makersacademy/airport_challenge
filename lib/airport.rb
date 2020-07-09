@@ -1,14 +1,11 @@
-require './lib/plane'
-require './lib/weather'
-
 class Airport
   attr_reader :capacity, :planes, :weather
   DEFAULT_CAP = 5
 
-  def initialize(capacity = DEFAULT_CAP, weather = Weather.new)
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAP)
+    @weather = weather
     @capacity = capacity
     @planes = []
-    @weather = weather
   end
 
   def land(plane)

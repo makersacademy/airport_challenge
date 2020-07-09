@@ -1,8 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { Airport.new }
-  let(:plane) { Plane.new }
+  let(:weather) { double('weather')}
+  let(:airport) { Airport.new(weather) }
+  let(:plane) { double('plane') }
 
   it 'has a default capacity' do
     expect(airport.capacity).to eq Airport::DEFAULT_CAP
