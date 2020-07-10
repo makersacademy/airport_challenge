@@ -1,20 +1,33 @@
 [![Build Status](https://travis-ci.org/cmb84scd/airport_challenge.svg?branch=master)](https://travis-ci.org/cmb84scd/airport_challenge)
 
-#### This is my airport challenge!
+## This is my airport challenge!
+This is Makers Academy's week 1 weekend challenge.
 
+### How to use
 To use clone this repo and then do the following:
 ```
 run 'bundle install'
 open 'irb'
 require './lib/airport.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
+weather = Weather.new
+airport = Airport.new(weather)
 ```
 
+### User Stories and requirements
+These are <a href="#userstories">here</a>
+
+### How it went
 For the most part I was happy with this but I had one issue that took me a while to solve. It wasn't raising an error when stormy as expected. I initially wasn't sure why and every so often would go back to it to see if I could work it out. I eventually did and it was when I did repeated rspec tests that I discovered the problem. It was raising an error but not all of the time and this is due to the weather being a random behaviour. So I stubbed the weather behaviour in all the necessary parts of my tests (more than I expected!) and yay, all the tests pass all of the time!
 
 I'm very happy that I kept trying to solve it as I've learnt a lot from doing it.
 
-Edit: 13/6/2020
+##### Edit: 13/6/2020
 I went back to this challenge today as I was unhappy with some of the tests. In a few instances I was testing state rather than behaviour. I went through my tests, deleting as necessary, added some and improved others. I am now much happier with this and I also added Travis!
+
+##### Edit: 10/7/2020
+In working on another project I realised when doing dependency injection, I don't need to require the other file. For example I was originally requiring both the plane and weather files at the top of the airport file. I have now removed these and everything works fine. Just remember to require all files when in IRB and create the weather instance first so that you can inject it into your airport instance!
 
 Airport Challenge
 =================
@@ -30,24 +43,7 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
+<a name="userstories"></a>
 Task
 -----
 
@@ -57,23 +53,28 @@ We have a request from a client to write the software to control the flow of pla
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
-
+```
+```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
+```
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
-
+```
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
-
+```
+```
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
-
+```
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
@@ -102,7 +103,3 @@ Reviewers will potentially be using this [code review rubric](docs/review.md).  
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
