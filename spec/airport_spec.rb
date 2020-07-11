@@ -16,7 +16,7 @@ describe Airport do
     airport = Airport.new
     allow(airport).to receive(:storm?) { false }
     Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-    expect{airport.land(Plane.new)}.to raise_error("Airport is full")
+    expect { airport.land(Plane.new) }.to raise_error("Airport is full")
   end
 
   it 'changes the capacity' do
@@ -28,11 +28,11 @@ describe Airport do
     allow(subject).to receive(:storm?) { false }
     subject.land(Plane.new)
     allow(subject).to receive(:storm?) { true }
-    expect{subject.take_off}.to raise_error("May not take off due to inclement weather")
+    expect { subject.take_off }.to raise_error("May not take off due to inclement weather")
   end
 
   it 'prevents landing in stormy weather' do
     allow(subject).to receive(:storm?) { true }
-    expect{subject.land(Plane.new)}.to raise_error("May not land due to inclement weather")
+    expect { subject.land(Plane.new) }.to raise_error("May not land due to inclement weather")
   end
 end

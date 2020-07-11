@@ -14,13 +14,17 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
+
     raise "May not land due to inclement weather" if storm?
+
     @hangar << plane
   end
 
   def take_off
     raise "Hangar is empty" if empty?
+
     raise "May not take off due to inclement weather" if storm?
+
     @hangar.pop
     "Plane has departed"
   end
@@ -30,8 +34,8 @@ class Airport
   end
 
   def empty?
-    @hangar.count == 0
-  end 
+    @hangar.count.zero?
+  end
 
   def storm?
     @weather == 5 ? @storm = true : @storm = false
