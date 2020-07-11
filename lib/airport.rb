@@ -1,5 +1,6 @@
 class Airport
-  attr_reader :planes, :capacity, :sky
+  attr_reader :capacity, :sky
+  attr_accessor :planes
 
   DEFAULT_CAPACITY = 1
 
@@ -14,6 +15,8 @@ class Airport
   end
 
   def takeoff(plane)
-      @sky << plane
+    @sky << plane
+    @planes.pop
+    "plane has taken off"
   end
 end
