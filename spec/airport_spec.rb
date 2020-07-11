@@ -12,8 +12,13 @@ describe Airport do
 
     describe '#land(plane=Plane.new)' do
         it 'stores a plane in airport array' do
-            airport1 = Airport.new
-            expect(airport1.land).to eq airport1.planes
+            expect(subject.land).to eq subject.planes
+        end
+
+        it 'fails if landing plane not flying' do
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(false)
+            expect { Airport.new.land(plane1) }.to raise_error('Plane is not flying')
         end
     end
 end
