@@ -14,11 +14,11 @@ describe Airport do
   end
   it { is_expected.to respond_to(:full?) }
   it 'initializes with a capacity given by the argument' do
-      airport = Airport.new(30)
-      expect(airport.capacity).to eq 30
+    airport = Airport.new(30)
+    expect(airport.capacity).to eq 30
   end
-  it 'initializes with a default capacity of 2 when no argument given' do
-      airport = Airport.new
-      expect(airport.capacity).to eq 2
+  it 'initializes with a default capacity when no argument given' do
+    airport = Airport.new
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 end
