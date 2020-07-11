@@ -1,3 +1,4 @@
+=begin
 require_relative '../lib/plane'
 
 describe Plane do
@@ -20,3 +21,4 @@ describe Plane do
         expect(airport1.land(plane1).last.flying?).to eq false   
     end
 end
+=end

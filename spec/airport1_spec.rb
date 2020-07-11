@@ -1,3 +1,4 @@
+=begin
 require_relative '../lib/airport.rb'
 
 describe Airport do
@@ -60,3 +61,4 @@ describe Airport do
     # I want to instruct a plane to take off from an airport 
     # and confirm that it is no longer in the airport
 end
+=end
