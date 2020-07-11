@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   describe '#initialize' do
@@ -6,8 +7,18 @@ describe Airport do
       expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'initializes with custom capacity' do
+    it 'initializes with (10) custom capacity' do
       expect(Airport.new(10).capacity).to eq 10
     end
   end
+
+  describe '#land' do
+    it 'instruct plane to land at airport, it lands' do
+      plane = Plane.new
+      air_port = Airport.new
+      air_port.land(plane)
+      expect(air_port.planes).to eq [plane]
+    end
+  end
+
 end
