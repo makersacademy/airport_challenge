@@ -4,5 +4,8 @@ class Airport
 
     def full?
     end
+
+    def stormy?
+    end
     
 end
