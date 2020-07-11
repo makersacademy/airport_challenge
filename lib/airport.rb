@@ -14,6 +14,7 @@ class Airport
 
     def land(plane)
         if plane.flying? && !self.stormy? && !self.full?
+            plane.landed
             @planes << plane 
         else
             raise("A plane cannot be landed")
