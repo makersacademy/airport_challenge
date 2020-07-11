@@ -21,4 +21,13 @@ describe Airport do
     end
   end
 
+  describe '#takeoff' do
+    it 'instruct plane to takeoff' do
+      plane = Plane.new
+      air_port = Airport.new
+      air_port.land(plane)
+      expect(air_port.takeoff(air_port.planes)).to eq air_port.sky
+
+    end
+  end
 end

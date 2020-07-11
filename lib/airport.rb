@@ -14,6 +14,6 @@ class Airport
   end
 
   def takeoff(plane)
-    @sky << plane
+      @sky << plane
   end
 end
