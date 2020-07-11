@@ -1,7 +1,8 @@
 class Airport
-attr_reader :airport
+  attr_reader :airport, :capacity
 
-DEFAULT_CAPACITY = 1
+  DEFAULT_CAPACITY = 1
+
   def initialize(capacity = 1)
     @capacity = capacity
     @airport = []
