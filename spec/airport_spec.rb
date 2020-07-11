@@ -36,4 +36,13 @@ describe Airport do
             expect(Airport::WEATHER_CONDITIONS).to include(airport1.weather)
         end
     end
+
+    describe '#land(plane)' do
+        it 'pushes the Plane object into an array' do
+            plane1 = double("plane1")
+            expect(plane1).to receive(:flying?).and_return(true)
+            allow(Airport::WEATHER_CONDITIONS).to receive(:sample).and_return("false")
+            expect(Airport.new.land(plane1).count).to eq 1 
+        end
+    end
 end

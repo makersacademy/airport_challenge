@@ -9,6 +9,11 @@ class Airport
     def initialize(capacity=DEFAULT_CAPACITY)
         @capacity = capacity
         @weather = WEATHER_CONDITIONS.sample
+        @planes = []
+    end
+
+    def land(plane)
+        plane.flying? && !self.stormy? && !self.full? ? @planes << plane : raise("A plane cannot be landed")
     end
 
     def full?
@@ -17,5 +22,5 @@ class Airport
     def stormy?
         @weather == "stormy" ? true : false
     end
-
+    
 end
