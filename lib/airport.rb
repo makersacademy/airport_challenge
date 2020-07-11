@@ -11,6 +11,7 @@ class Airport
   end
 
   def land(plane)
+    raise "airport is full" if full?
     @planes << plane
   end
 
@@ -18,5 +19,9 @@ class Airport
     @sky << plane
     @planes.pop
     "plane has taken off"
+  end
+
+  def full?
+    @planes.count == @capacity
   end
 end
