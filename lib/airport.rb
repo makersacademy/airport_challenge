@@ -15,8 +15,13 @@ class Airport
         @planes
     end
 
+    def full?
+        planes.count >= @capacity
+    end
+
     def land(plane=Plane.new)
         fail 'Plane is not flying' if plane.flying? == false
+        fail 'Airport is at capacity' if self.full?
         planes << plane
     end
 

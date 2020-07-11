@@ -20,5 +20,12 @@ describe Airport do
             allow(plane1).to receive(:flying?).and_return(false)
             expect { Airport.new.land(plane1) }.to raise_error('Plane is not flying')
         end
+
+        it 'fails if airport at capacity' do
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(true)
+            expect {Airport.new(0).land(plane1) }.to raise_error('Airport is at capacity')
+        end
     end
+
 end
