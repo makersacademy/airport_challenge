@@ -13,7 +13,11 @@ class Airport
     end
 
     def land(plane)
-        plane.flying? && !self.stormy? && !self.full? ? @planes << plane : raise("A plane cannot be landed")
+        if plane.flying? && !self.stormy? && !self.full?
+            @planes << plane 
+        else
+            raise("A plane cannot be landed")
+        end
     end
 
     def full?

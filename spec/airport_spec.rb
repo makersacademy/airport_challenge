@@ -36,13 +36,24 @@ describe Airport do
             expect(Airport::WEATHER_CONDITIONS).to include(airport1.weather)
         end
     end
-
+    # I want to instruct a plane to land at an airport
     describe '#land(plane)' do
         it 'pushes the Plane object into an array' do
             plane1 = double("plane1")
             expect(plane1).to receive(:flying?).and_return(true)
-            allow(Airport::WEATHER_CONDITIONS).to receive(:sample).and_return("false")
+            allow(Airport::WEATHER_CONDITIONS).to receive(:sample).and_return("sunny")
             expect(Airport.new.land(plane1).count).to eq 1 
         end
+
+        it 'plane cannot be landed if weather is stormy' do
+            plane1 = double("plane1")
+            expect(plane1).to receive(:flying?).and_return(true)
+            allow(Airport::WEATHER_CONDITIONS).to receive(:sample).and_return("stormy")
+            expect{Airport.new.land(plane1)}.to raise_error("A plane cannot be landed") 
+        end
     end
+    
+
+    # I want to instruct a plane to take off from an airport 
+    # and confirm that it is no longer in the airport
 end
