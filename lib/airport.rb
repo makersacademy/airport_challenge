@@ -38,6 +38,6 @@ class Airport
   end
 
   def storm?
-    @weather == 5 ? @storm = true : @storm = false
+    @weather == 5
   end
 end
