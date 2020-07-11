@@ -4,7 +4,7 @@ class Airport
     attr_reader :capacity, :weather
 
     DEFAULT_CAPACITY = 100
-    WEATHER_CONDITIONS = ["Sunny", "Stormy"]
+    WEATHER_CONDITIONS = ["sunny", "stormy"]
 
     def initialize(capacity=DEFAULT_CAPACITY)
         @capacity = capacity
@@ -15,6 +15,7 @@ class Airport
     end
 
     def stormy?
+        @weather == "stormy" ? true : false
     end
 
 end
