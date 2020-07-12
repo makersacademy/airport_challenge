@@ -35,6 +35,7 @@ class Airport
     def take_off(plane=Plane.new)
         fail 'Weather conditions do not permit take off' if self.weather == true
         fail 'Plane is flying' if plane.flying? == true
+        fail 'Plane is not at airport' if planes.include?(plane) == false
         plane.taken_off
         planes.delete(plane)
     end
