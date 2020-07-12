@@ -1,26 +1,22 @@
 require 'airport'
 
 describe Airport do
+
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it 'confirms plane no longer in airport' do
     plane = Plane.new
     subject.land(plane)
     expect(subject.take_off(plane)).to eq "#{plane} has departed"
   end
-   # t 'raises an error if plane does not exit in departure airport'
 
-  #  it 'prevents a plane taking off in stormy weather' do
-  #  p subject.weather.forecast('stormy')
-  #  expect { subject.weather.forecast }.to raise_error 'stormy weather'
-
-  # end
   it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'raises an error if the airport is full' do
       expect { 3.times { subject.land(Plane.new) } }.to raise_error 'airport full'
     end
     it 'raises an error if the plane is grounded' do
-      expect { subject.land(Plane.new.land) }.to raise_error 'plane is grounded'
+      plane = Plane.new
+      expect { 2.times { subject.land(plane) } }.to raise_error 'plane already grounded'
     end
   end
   describe '#take_off' do

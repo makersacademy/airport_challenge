@@ -19,6 +19,7 @@ class Airport
     fail 'airport full' if full?
 
     fail 'stormy weather - plane cannot land' if @weather.forecast == 'stormy'
+    fail 'plane already grounded' if planes.include?(plane)
 
     @planes.push(plane)
   end
@@ -26,7 +27,7 @@ class Airport
   def take_off(plane)
     fail 'stormy weather - plane cannot take_off' if @weather.forecast == 'stormy'
     fail 'plane already airbourne' if plane.flying == true
-    fail 'plane not in this airport!' unless self.planes.include?(plane)
+    fail 'plane not in this airport!' unless planes.include?(plane)
 
     plane.depart
     @planes.pop
