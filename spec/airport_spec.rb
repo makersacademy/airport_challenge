@@ -53,4 +53,11 @@ describe Airport do
     airport = Airport.new(10, false)
     expect(airport.land).to eq(false)
   end
+  it "lands multiple planes" do
+    airport = Airport.new(4, false)
+    airport.land
+    airport.land
+    expect{airport.land}.to_not raise_error
+    expect(airport.planes.size).to be(3)
+  end
 end
