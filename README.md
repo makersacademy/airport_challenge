@@ -42,3 +42,5 @@ or airport (flying or landed). I would of done this within the Plane class.
 already generated an array for the planes to live in (making it easy to add
 and remove) but, I would need to use something other than .pop as it isn't
 specific enough.
+
+6.

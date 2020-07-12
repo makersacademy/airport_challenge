@@ -1,16 +1,19 @@
+require 'plane.rb'
 class Airport
   attr_reader :capacity, :sky, :airport
   attr_accessor :planes
 
-  DEFAULT_CAPACITY = 1
+  DEFAULT_CAPACITY = 100
 
-  def initialize(capacity = 1)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
     @sky = []
   end
 
   def land(plane)
+    raise "plane not in flight" unless plane.flying == true
+
     raise "too stormy to land" if stormy?
 
     raise "airport is full" if full?
@@ -22,16 +25,17 @@ class Airport
   def takeoff(plane)
     raise "too stormy to take off" if stormy?
 
-    @planes.pop
+    @planes.delete(plane)
     @sky << plane
     "plane has taken off"
+  end
+
+  def stormy?
+    rand(5) == 1
   end
 
   def full?
     @planes.count >= @capacity
   end
 
-  def stormy?
-    rand(1..5) == 1 ? true : false
-  end
 end
