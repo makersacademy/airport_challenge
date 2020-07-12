@@ -6,9 +6,14 @@ class Airport
 
     DEFAULT_CAPACITY = 100
 
-    def initialize(capacity=DEFAULT_CAPACITY)
+    def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new)
+        @weather = weather.stormy?
         @capacity = capacity
         @planes = []
+    end
+
+    def weather
+        @weather
     end
 
     def planes
@@ -20,6 +25,7 @@ class Airport
     end
 
     def land(plane=Plane.new)
+        fail 'Weather conditions do not permit landing' if self.weather == true
         fail 'Plane is not flying' if plane.flying? == false
         fail 'Airport is at capacity' if self.full?
         planes << plane

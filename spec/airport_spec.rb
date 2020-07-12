@@ -24,7 +24,17 @@ describe Airport do
         it 'fails if airport at capacity' do
             plane1 = double("plane1")
             allow(plane1).to receive(:flying?).and_return(true)
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
             expect {Airport.new(0).land(plane1) }.to raise_error('Airport is at capacity')
+        end
+
+        it 'fails if weather returns true to stormy?' do
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(true)
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(true)
+            expect { Airport.new(1, weather1).land(plane1) }.to raise_error('Weather conditions do not permit landing')
         end
     end
 
