@@ -88,7 +88,25 @@ describe Airport do
             plane1 = Plane.new.taken_off
             expect { airport1.take_off(plane1) }.to raise_error('Plane is flying')
         end
-
     end
 
+    describe '#BONUS TEST' do
+        it 'tests that multiple planes can be landed and then take_off' do
+            weather1 = double("weather1", stormy?: false)
+            airport1 = Airport.new(5, weather1)
+            a = Plane.new.taken_off
+            b = Plane.new.taken_off
+            c = Plane.new.taken_off
+            d = Plane.new.taken_off
+            e = Plane.new.taken_off
+            expect(airport1.land(c).count).to eq 1
+            expect(airport1.land(d).count).to eq 2
+            expect(airport1.land(e).count).to eq 3
+            expect(airport1.land(b).count).to eq 4
+            expect(airport1.take_off(b)).to eq b
+            expect(airport1.take_off(d)).to eq d
+            expect{airport1.take_off(b)}.to raise_error('Plane is flying')
+            expect(airport1.planes).not_to include(d)
+        end
+    end
 end
