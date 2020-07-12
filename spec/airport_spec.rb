@@ -27,73 +27,81 @@ describe Airport do
   end
 
   describe '#land(plane=Plane.new)' do
+    let(:sunny_weather) { double("weather1", stormy?: false) }
+    let(:airport1) { Airport.new(1, sunny_weather) }
+    let(:plane1) { Plane.new }
 
     it 'tests that a plane is stored in airport upon landing' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.taken_off
-      expect(airport1.land(plane1)).to eq airport1.planes
+      # weather1 = double("weather1", stormy?: false)
+      #airport1 = Airport.new(1, sunny_weather)
+      #plane1 = Plane.new.taken_off
+      expect(airport1.land(plane1.taken_off)).to eq airport1.planes
     end
 
     it 'tests an error is raised if a non flying plane tries to land at an airport' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.landed
-      expect { airport1.land(plane1) }.to raise_error('Plane is not flying')
+      #weather1 = double("weather1", stormy?: false)
+      #airport1 = Airport.new(1, sunny_weather)
+      #plane1 = Plane.new.landed
+      expect { airport1.land(plane1.landed) }.to raise_error('Plane is not flying')
     end
 
     it 'tests an error is raised if a plane tries to land if the airport is at capacity' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(0, weather1)
-      plane1 = Plane.new.taken_off
-      expect { airport1.land(plane1) }.to raise_error('Airport is at capacity')
+      #weather1 = double("weather1", stormy?: false)
+      airport1 = Airport.new(0, sunny_weather)
+      #plane1 = Plane.new.taken_off
+      expect { airport1.land(plane1.taken_off) }.to raise_error('Airport is at capacity')
     end
 
     it 'tests that an error is raised if a plane tries to land if weather is stormy?' do
-      weather1 = double("weather1", stormy?: true)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.taken_off
-      expect { airport1.land(plane1) }.to raise_error('Weather conditions do not permit landing')
+      stormy_weather = double("bad_weather", stormy?: true)
+      airport2 = Airport.new(1, stormy_weather)
+      #plane1 = Plane.new.taken_off
+      expect { airport2.land(plane1.taken_off) }.to raise_error('Weather conditions do not permit landing')
     end
   end
 
   describe '#take_off(plane)' do
+    let(:sunny_weather) { double("sunny_weather", stormy?: false) }
+    let(:airport1) { Airport.new(1, sunny_weather) }
+    let(:plane1) { Plane.new }
 
     it 'tests that a plane leaves airport upon take_off' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.taken_off
+      #weather1 = double("weather1", stormy?: false)
+      #airport1 = Airport.new(1, weather1)
+      #plane1 = Plane.new.taken_off
       airport1.land(plane1)
       airport1.take_off(plane1)
       expect(airport1.planes).not_to include(plane1)
     end
 
     it 'tests an error is raised if the take_off plane is not at the airport' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.landed
-      expect { airport1.take_off(plane1) }.to raise_error('Plane is not at airport')
-    end
-
-    it 'tests an error is raised if take_off attempted during stormy weather' do
-      weather1 = double("weather1", stormy?: true)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new
-      expect { airport1.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
+      #weather1 = double("weather1", stormy?: false)
+      #airport1 = Airport.new(1, weather1)
+      #plane1 = Plane.new.landed
+      expect { airport1.take_off(plane1.landed) }.to raise_error('Plane is not at airport')
     end
 
     it 'tests an error is raised if plane tries to take_off while it is already flying' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(1, weather1)
-      plane1 = Plane.new.taken_off
-      expect { airport1.take_off(plane1) }.to raise_error('Plane is flying')
+        #weather1 = double("weather1", stormy?: false)
+        #airport1 = Airport.new(1, weather1)
+        #plane1 = Plane.new.taken_off
+        expect { airport1.take_off(plane1.taken_off) }.to raise_error('Plane is flying')
+      end
+
+    it 'tests an error is raised if take_off attempted during stormy weather' do
+      stormy_weather= double("bad_weather", stormy?: true)
+      airport2 = Airport.new(1, stormy_weather)
+      #plane1 = Plane.new
+      expect { airport2.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
     end
+
+    
   end
 
   describe '#BONUS TEST' do
     it 'tests that multiple planes can be landed and then take_off' do
-      weather1 = double("weather1", stormy?: false)
-      airport1 = Airport.new(5, weather1)
+      sunny_weather = double("sunny_weather", stormy?: false)
+      airport1 = Airport.new(5, sunny_weather)
       a = Plane.new.taken_off
       b = Plane.new.taken_off
       c = Plane.new.taken_off

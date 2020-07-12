@@ -63,7 +63,7 @@ end
 
 Q: Would the above of been better? The idea behind it being to not have the @weather variable for Airport objects to be either true or false, as it is not clear what time means unless you know it is in relation to it being stormy or not. Perhaps changing the name of the Airport instance variable to @storm would make it clearer as what the true/false value refers to? Then again are these meant to be hidden by being made private. I ommitted private methods as my tests do not work with them.
 
-Q: I also attempted the BONUS test and know it is terribly long winded, how could I of improved this? I tried:
+Q: I also attempted the BONUS test and know it is terribly long winded.
 
 ### Example of Code
 #### How to create an airport, a plane and have the plane land and take_off
