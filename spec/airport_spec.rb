@@ -16,7 +16,7 @@ describe Airport do
     expect(subject.planes).not_to include(plane)
   end
   it 'has a default capacity of planes' do
-    (Airport::DEFAULT_CAPACITY).times {subject.land(Plane.new)}
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error "Airport is at maximum capacity"
   end
   it 'has a capacity that can be set when initialized' do

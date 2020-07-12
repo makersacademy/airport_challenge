@@ -6,10 +6,13 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
   def land(plane)
     fail "Airport is at maximum capacity" if full?
+    
     @planes << plane
   end
+
   def takeoff(plane)
     @planes.delete(plane)
     plane
