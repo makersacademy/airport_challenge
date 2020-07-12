@@ -17,9 +17,7 @@ describe Airport do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(1, weather1)
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(true)
-            allow(plane1).to receive(:landed)
+            plane1 = Plane.new.taken_off
             expect(airport1.land(plane1)).to eq airport1.planes
         end
 
@@ -27,8 +25,7 @@ describe Airport do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(1, weather1)
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(false)
+            plane1 = Plane.new.landed
             expect { airport1.land(plane1) }.to raise_error('Plane is not flying')
         end
 
@@ -36,8 +33,7 @@ describe Airport do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(0, weather1)
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(true)
+            plane1 = Plane.new.taken_off
             expect {airport1.land(plane1) }.to raise_error('Airport is at capacity')
         end
 
@@ -45,8 +41,7 @@ describe Airport do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(true)
             airport1 = Airport.new(1, weather1)
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(true)
+            plane1 = Plane.new.taken_off
             expect { airport1.land(plane1) }.to raise_error('Weather conditions do not permit landing')
         end
     end
