@@ -58,7 +58,7 @@ describe Airport do
             expect(airport1.planes).not_to include(plane1)
         end
 
-        it 'tests an error is raised if the take_off plane has not already landed at the airport' do
+        it 'tests an error is raised if the take_off plane is not at the airport' do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(1, weather1)
@@ -73,6 +73,15 @@ describe Airport do
             plane1 = Plane.new
             expect { airport1.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
         end
+
+        it 'tests an error is raised if plane tries to take_off while it is already flying' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
+            plane1 = Plane.new.taken_off
+            expect { airport1.take_off(plane1) }.to raise_error('Plane is flying')
+        end
+
     end
 
 end
