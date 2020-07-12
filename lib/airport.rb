@@ -13,10 +13,10 @@ class Airport
     @sky = []
   end
 
-  def land(aeroplane)
+  def land(aeroplane, weather)
     raise "plane not in flight" unless aeroplane.flying == true
 
-    raise "too stormy to land" if stormy?
+    raise "too stormy to land" if weather.stormy == true
 
     raise "airport is full" if full?
 
@@ -25,10 +25,10 @@ class Airport
     "plane landed"
   end
 
-  def takeoff(aeroplane)
+  def takeoff(aeroplane, weather)
     raise "plane not grounded" if aeroplane.flying == true
 
-    raise "too stormy to take off" if stormy?
+    raise "too stormy to take off" if weather.stormy == true
 
     aeroplane.in_flight
     @planes.delete(aeroplane)
