@@ -48,11 +48,3 @@ class Airport
     @stormy
   end
 end
-
-=begin
-p a = Airport.new
-p b = a.stormy
-p c = a.land
-p a.planes.first
-p a.planes.first.land
-=end
