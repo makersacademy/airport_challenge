@@ -19,4 +19,9 @@ describe Airport do
     (Airport::DEFAULT_CAPACITY).times {subject.land(Plane.new)}
     expect { subject.land(Plane.new) }.to raise_error "Airport is at maximum capacity"
   end
+  it 'has a capacity that can be set when initialized' do
+    airport = Airport.new(30)
+    30.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error "Airport is at maximum capacity"
+  end
 end
