@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :capacity, :weather
+  attr_reader :capacity, :weather, :planes
 
   DEFAULT_CAPACITY = 2
 
@@ -15,7 +15,7 @@ class Airport
 
   def land(plane)
 
-
+    plane.arrive
     fail 'airport full' if full?
 
     fail 'stormy weather - plane cannot land' if @weather.forecast == 'stormy'
@@ -26,7 +26,10 @@ class Airport
   def take_off(plane)
     fail 'stormy weather - plane cannot take_off' if @weather.forecast == 'stormy'
     fail 'plane already airbourne' if plane.flying == true
-    # @planes.pop(plane)
+    fail 'plane not in this airport!' unless self.planes.include?(plane)
+
+    plane.depart
+    @planes.pop
     "#{plane} has departed"
   end
 
