@@ -31,4 +31,8 @@ class Airport
         planes << plane
     end
 
+    def take_off(plane=Plane.new)
+        
+    end
+
 end
