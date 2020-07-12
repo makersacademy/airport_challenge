@@ -35,12 +35,13 @@ what I would do and what is the output) --> build method --> pass tests
 3. After making the method and passing the tests, I would refactor these,
 incorporating test doubles etc.
 
-4. The next stage would be to incorporate whether or not a plane is in the air
-or airport (flying or landed). I would of done this within the Plane class.
+4. The next stage was to incorporate whether or not a plane is in the air
+or airport (flying or landed).
 
-5. Then the final bonus task, would be relatively easy to incorporate as I have
-already generated an array for the planes to live in (making it easy to add
-and remove) but, I would need to use something other than .pop as it isn't
-specific enough.
+5. Next I moved the stormy method into its own weather class, for separation of
+things related.
 
-6.
+6. Then the final bonus task, which I didn't do would be relatively easy to
+incorporate as I have already generated an array for the planes to live in
+(making it easy to add and remove). I also had a default capacity constant set
+up which would of allowed for many planes to be landed.
