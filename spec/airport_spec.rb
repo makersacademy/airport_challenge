@@ -12,29 +12,39 @@ describe Airport do
 
     describe '#land(plane=Plane.new)' do
         it 'stores a plane in airport array' do
-            expect(subject.land).to eq subject.planes
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(true)
+            expect(airport1.land(plane1)).to eq airport1.planes
         end
 
         it 'fails if landing plane not flying' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
             plane1 = double("plane1")
             allow(plane1).to receive(:flying?).and_return(false)
-            expect { Airport.new.land(plane1) }.to raise_error('Plane is not flying')
+            expect { airport1.land(plane1) }.to raise_error('Plane is not flying')
         end
 
         it 'fails if airport at capacity' do
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(true)
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
-            expect {Airport.new(0).land(plane1) }.to raise_error('Airport is at capacity')
+            airport1 = Airport.new(0, weather1)
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(true)
+            expect {airport1.land(plane1) }.to raise_error('Airport is at capacity')
         end
 
         it 'fails if weather returns true to stormy?' do
-            plane1 = double("plane1")
-            allow(plane1).to receive(:flying?).and_return(true)
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(true)
-            expect { Airport.new(1, weather1).land(plane1) }.to raise_error('Weather conditions do not permit landing')
+            airport1 = Airport.new(1, weather1)
+            plane1 = double("plane1")
+            allow(plane1).to receive(:flying?).and_return(true)
+            expect { airport1.land(plane1) }.to raise_error('Weather conditions do not permit landing')
         end
     end
 
