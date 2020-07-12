@@ -15,27 +15,23 @@ describe Airport do
   end
 
   describe '#land' do
+
     it 'instruct plane to land at airport, it lands as weather is not stormy' do
-      plane = Plane.new
-      air_port = Airport.new
-      allow(air_port).to receive(:rand).and_return(5)
-      expect(air_port.land(plane)).to eq "plane landed"
+      plane = double(:plane)
+      allow(subject).to receive(:rand).and_return(5)
+      expect(subject.land(plane)).to eq "plane landed"
     end
 
     it 'instructs plane to land, but its too stormy so it raises error' do
-      plane = Plane.new
-      air_port = Airport.new
-      allow(air_port).to receive(:rand).and_return(1)
-      expect { air_port.land(plane) }.to raise_error("too stormy to land")
+      plane = double(:plane)
+      allow(subject).to receive(:rand).and_return(1)
+      expect { subject.land(plane) }.to raise_error("too stormy to land")
     end
 
     it 'plane does not land when airport is full' do
-      plane = Plane.new
-      air_port = Airport.new
-      allow(air_port).to receive(:rand).and_return(4)
-      air_port.land(plane)
-      plane2 = Plane.new
-      expect { air_port.land(plane2) }.to raise_error("airport is full")
+      plane = double(:plane)
+      airport = double(:airport, stormy?: false, full?: true)
+      expect { airport.land(plane) }.to raise_error("airport is full")
     end
   end
 
