@@ -1,5 +1,3 @@
 class Plane
-  def landing?
-    true 
-  end
+  true
 end

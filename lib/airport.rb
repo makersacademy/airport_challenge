@@ -1,7 +1,7 @@
 class Airport
-  def recieve_plane
-    Plane.new
+  def land(plane)
   end
-  def release(plane)
-  end   
+
+  def take_off(plane)
+  end
 end
