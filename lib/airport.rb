@@ -32,6 +32,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..5) == 1
+    rand(1..5) == 1 ? true : false
   end
 end

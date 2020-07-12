@@ -32,6 +32,7 @@ describe Airport do
     it 'plane does not land when airport is full' do
       plane = Plane.new
       air_port = Airport.new
+      allow(air_port).to receive(:rand).and_return(4)
       air_port.land(plane)
       plane2 = Plane.new
       expect { air_port.land(plane2) }.to raise_error("airport is full")
@@ -42,6 +43,7 @@ describe Airport do
     it 'instruct plane to takeoff, it doesnt as its too stormy, returns error' do
       plane = Plane.new
       air_port = Airport.new
+      allow(air_port).to receive(:rand).and_return(5)
       air_port.land(plane)
       allow(air_port).to receive(:rand).and_return(1)
       expect { air_port.takeoff(air_port.planes) }.to raise_error("too stormy to take off")
@@ -50,6 +52,7 @@ describe Airport do
     it 'instruct plane to takeoff, it takes off' do
       plane = Plane.new
       air_port = Airport.new
+      allow(air_port).to receive(:rand).and_return(5)
       air_port.land(plane)
       allow(air_port).to receive(:rand).and_return(5)
       expect(air_port.takeoff(air_port.planes)).to eq("plane has taken off")
