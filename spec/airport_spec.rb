@@ -30,7 +30,8 @@ describe Airport do
 
     it 'plane does not land when airport is full' do
       plane = double(:plane)
-      airport = double(:airport, stormy?: false, full?: true)
+      airport = Airport.new(0)
+      allow(airport).to receive(:rand).and_return(5)
       expect { airport.land(plane) }.to raise_error("airport is full")
     end
   end
