@@ -117,4 +117,4 @@ I want to prevent landing when weather is stormy
 
 Test: Airport #land(plane=Plane.new) tests that an error is raised if a plane tries to land if weather is stormy?
 ```
-Just matching the tests with the user stories it is very apparent to me I need to definitely improve the specificity of my tests in relation to the user specification. I need to focus on developing how to form the specific test from the user specification.
+Just matching the tests with the user stories it becomes very apparent to me I need to improve the specificity of my tests in relation to the user specification. I need to focus on developing the skill of forming the specific tests from the user specification.
