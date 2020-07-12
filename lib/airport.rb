@@ -20,7 +20,7 @@ class Airport
     planes.count >= capacity
   end
 
-  def land(plane = Plane.new)
+  def land(plane)
     fail 'Weather conditions do not permit landing' if weather == true
     fail 'Plane is not flying' if plane.flying? == false
     fail 'Airport is at capacity' if full?
