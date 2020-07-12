@@ -21,7 +21,7 @@ describe Airport do
             expect(airport1.land(plane1)).to eq airport1.planes
         end
 
-        it 'tests that a non flying plane cannot land at an airport' do
+        it 'tests an error is raised if a non flying plane tries to land at an airport' do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(1, weather1)
@@ -29,7 +29,7 @@ describe Airport do
             expect { airport1.land(plane1) }.to raise_error('Plane is not flying')
         end
 
-        it 'tests that a plane cannot land if the airport is at capacity' do
+        it 'tests an error is raised if a plane tries to land if the airport is at capacity' do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(0, weather1)
@@ -37,7 +37,7 @@ describe Airport do
             expect {airport1.land(plane1) }.to raise_error('Airport is at capacity')
         end
 
-        it 'tests that a plane cannot land if weather is stormy?' do
+        it 'tests that an error is raised if a plane tries to land if weather is stormy?' do
             weather1 = double("weather1")
             allow(weather1).to receive(:stormy?).and_return(true)
             airport1 = Airport.new(1, weather1)
@@ -56,6 +56,14 @@ describe Airport do
             airport1.land(plane1)
             airport1.take_off(plane1)
             expect(airport1.planes).not_to include(plane1)
+        end
+
+        it 'tests an error is raised if the take_off plane has not already landed at the airport' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
+            plane1 = Plane.new.landed
+            expect { airport1.take_off(plane1) }.to raise_error('Plane is not at airport')
         end
     end
 
