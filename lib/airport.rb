@@ -1,4 +1,6 @@
 require 'plane.rb'
+require 'weather.rb'
+
 class Airport
   attr_reader :capacity, :sky, :airport
   attr_accessor :planes
@@ -11,22 +13,26 @@ class Airport
     @sky = []
   end
 
-  def land(plane)
-    raise "plane not in flight" unless plane.flying == true
+  def land(aeroplane)
+    raise "plane not in flight" unless aeroplane.flying == true
 
     raise "too stormy to land" if stormy?
 
     raise "airport is full" if full?
 
-    @planes << plane
+    aeroplane.grounded
+    @planes << aeroplane
     "plane landed"
   end
 
-  def takeoff(plane)
+  def takeoff(aeroplane)
+    raise "plane not grounded" if aeroplane.flying == true
+
     raise "too stormy to take off" if stormy?
 
-    @planes.delete(plane)
-    @sky << plane
+    aeroplane.in_flight
+    @planes.delete(aeroplane)
+    @sky << aeroplane
     "plane has taken off"
   end
 
