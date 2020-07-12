@@ -2,27 +2,27 @@
 
 ## My Approach
 
-1. Create a functional representational diagram using the information in the User Stories (see below)
+1. [x] Create a functional representational diagram using the information in the User Stories (see below)
 
-2. Decide upon Classes and what the responsbilities of the Class should be, limiting their responsbilities as much as possible (**SRP**)
+2. [x] Decide upon Classes and what the responsbilities of the Class should be, limiting their responsbilities as much as possible (using **SRP**)
 
-3. Create a rough idea of what the Class methods need to do and what preconditions will need to be met for them to be enacted, with a focus on edge cases: 
+3. [x] Create a rough idea of what the Class methods need to do and what preconditions will need to be met for them to be enacted, with a focus on edge cases: 
 
-4. Follow TDD principles learnt in Week 1 (**RED, GREEN, REFACTOR philosophy & the 3 A's**) to build the Classes, starting with the simplest Class first
+4. [x] Follow TDD principles learnt in Week 1 (**RED, GREEN, REFACTOR philosophy & the 3 A's**) to build the Classes, starting with the simplest Class first
 
-5. Continue to build until all specifications are met while maintaining 100 Coverage throughout
+5. [x] Continue to build until all specifications are met while maintaining 100 Coverage throughout
 
-6. Draft my APPROACH-README.md
+6. [x] Draft my APPROACH-README.md
 
-7. Attempt Bonus feature test (multiple planes landing and taking off)
+7. [x] Attempt Bonus feature test (multiple planes landing and taking off)
 
-8. Update APPROACH-README.md accordingly
+8. [x] Update APPROACH-README.md accordingly
 
-9. Run RuboCop and remove highlighted deficiencies
+9. [x] Run RuboCop and remove highlighted deficiencies (I realise I could/should of done this before every commit, will add this to my commit process)
 
-10. Update APPROACH-README.md where necessary
+10. [x] Update APPROACH-README.md where necessary
 
-11. Submit pull request (as early as possible)
+11. [x] Submit pull request (as early as possible)
  ---
 
 ### Functional Representational Diagram
@@ -63,7 +63,7 @@ end
 
 Q: Would the above of been better? The idea behind it being to not have the @weather variable for Airport objects to be either true or false, as it is not clear what time means unless you know it is in relation to it being stormy or not. Perhaps changing the name of the Airport instance variable to @storm would make it clearer as what the true/false value refers to? Then again are these meant to be hidden by being made private. I ommitted private methods as my tests do not work with them.
 
-Q: I also attempted the BONUS test and know it is terribly long winded.
+Q: I also attempted the BONUS test and know it is terribly long winded, I couldn't figure out a way to create multiple planes to then use show they can land and take_off, while showing the correct ones have left and no longer at the airport.
 
 ### Example of Code
 #### How to create an airport, a plane and have the plane land and take_off
@@ -81,13 +81,11 @@ $ irb
 ```
 
 
-### User Stories & Relevent Tests ### 
+### User Stories ### 
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
-
-
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
