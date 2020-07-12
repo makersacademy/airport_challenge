@@ -1,10 +1,6 @@
 require_relative '../lib/plane.rb'
 
 describe Plane do
-    describe '#flying?' do
-        it { is_expected.to respond_to :flying?}
-    end
-
     describe '#landed'do
         it "plane object will return false to flying? after it's landed" do
             expect(Plane.new.landed.flying?).to eq false
