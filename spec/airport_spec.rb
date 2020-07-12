@@ -34,7 +34,7 @@ describe Airport do
             allow(weather1).to receive(:stormy?).and_return(false)
             airport1 = Airport.new(0, weather1)
             plane1 = Plane.new.taken_off
-            expect {airport1.land(plane1) }.to raise_error('Airport is at capacity')
+            expect { airport1.land(plane1) }.to raise_error('Airport is at capacity')
         end
 
         it 'tests that an error is raised if a plane tries to land if weather is stormy?' do
@@ -64,6 +64,14 @@ describe Airport do
             airport1 = Airport.new(1, weather1)
             plane1 = Plane.new.landed
             expect { airport1.take_off(plane1) }.to raise_error('Plane is not at airport')
+        end
+
+        it 'tests an error is raised if take_off attempted during stormy weather' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(true)
+            airport1 = Airport.new(1, weather1)
+            plane1 = Plane.new
+            expect { airport1.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
         end
     end
 
