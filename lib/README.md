@@ -8,6 +8,7 @@ In order to land a plane, call the land method on TrafficControl with a new uniq
 
 In order to allow a plane to take off, call the takeoff method on TrafficControl with a unique, already landed plane as an argument.
 
+The weather state is stored in the Weather class, the state of which can be checked by calling the stormy? method on it.
 
 ### This is where I ran into issues. ###
 
