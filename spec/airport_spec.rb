@@ -1,6 +1,7 @@
 require_relative '../lib/airport.rb'
 
 describe Airport do
+
     describe '#capacity' do
 
         it 'capacity has a default value if none provided' do
@@ -8,6 +9,21 @@ describe Airport do
         end
         it 'capacity can be set by user' do
             expect(Airport.new(20).capacity).to eq 20
+        end
+    end
+
+    describe '#checks_for(plane)' do
+
+        it 'tests whether a specific plane is at the airport' do
+            expect(Airport.new.checks_for(Plane.new)).to eq false
+        end
+        it 'tests that true is returned if checked for plane is at the airport' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
+            plane1 = Plane.new.taken_off
+            airport1.land(plane1)
+            expect(airport1.checks_for(plane1)).to eq true
         end
     end
 
