@@ -1,26 +1,22 @@
 require "./lib/plane.rb"
-
+require "./lib/weather.rb"
 class TrafficControl
-  attr_reader :runway
-  attr_accessor :capacity
+  attr_reader :runway, :capacity
   DEFAULT_CAPACITY = 20
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @capacity = capacity
     @runway = []
+    @weather = weather
   end
   
   def land(plane)
-    fail "Runway at maximum capacity" if full?
+    raise "Runway full" if full?
     
     @runway << plane
   end
   
   def takeoff(plane)
     @runway.delete(plane)
-  end
-  
-  def show_runway
-    @runway
   end
   
   def full?
