@@ -67,16 +67,14 @@ describe Airport do
     end
 
     it 'tests an error is raised if plane tries to take_off while it is already flying' do
-        expect { airport1.take_off(plane1.taken_off) }.to raise_error('Plane is flying')
-      end
-
-    it 'tests an error is raised if take_off attempted during stormy weather' do
-      stormy_weather= double("bad_weather", stormy?: true)
-      airport2 = Airport.new(1, stormy_weather)
-      #plane1 = Plane.new
-      expect { airport2.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
+      expect { airport1.take_off(plane1.taken_off) }.to raise_error('Plane is flying')
     end
 
+    it 'tests an error is raised if take_off attempted during stormy weather' do
+      stormy_weather = double("bad_weather", stormy?: true)
+      airport2 = Airport.new(1, stormy_weather)
+      expect { airport2.take_off(plane1) }.to raise_error('Weather conditions do not permit take off')
+    end
     
   end
 
