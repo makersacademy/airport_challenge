@@ -62,7 +62,7 @@ describe Airport do
         end
     end
 
-    describe '#take_off(plane=Plane.new)' do
+    describe '#take_off(plane)' do
 
         it 'tests that a plane leaves airport upon take_off' do
             weather1 = double("weather1")
