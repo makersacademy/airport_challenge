@@ -6,8 +6,7 @@ describe Plane do
   let(:airport_space) { allow(airport).to receive(:full?).and_return false }
   let(:clear) { allow(subject).to receive(:weather_stormy?).and_return false }
   let(:stormy) { allow(subject).to receive(:weather_stormy?).and_return true }
-  
-  it { is_expected.to respond_to :land_plane }
+
   describe '#land_plane' do
     it 'can land a plane and store it at an airport' do
       clear
@@ -31,8 +30,8 @@ describe Plane do
       expect { subject.land_plane(airport) }.to raise_error 'It is too stormy to land'
     end
   end
+  
   describe '#take_off_from' do 
-
     it 'removes plane from airport and confirms it is no longer at airport' do
       airport_space
       subject.land_plane(airport)
@@ -56,6 +55,7 @@ describe Plane do
       expect { subject.take_off_from(airport) }.to raise_error 'It is too stormy to take off'
     end
   end
+  
   describe '#weather_stormy?' do 
     it 'returns true if the weather is stormy' do
       stormy
