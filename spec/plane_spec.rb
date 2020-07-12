@@ -5,15 +5,15 @@ describe Plane do
         it { is_expected.to respond_to :flying?}
     end
 
-    describe '#land'do
-        it 'plane object will return false to flying? after land' do
-            expect(Plane.new.land.flying?).to eq false
+    describe '#landed'do
+        it "plane object will return false to flying? after it's landed" do
+            expect(Plane.new.landed.flying?).to eq false
         end
     end
 
-    describe '#take_off' do
-        it 'plane object will return true to flying? after take_off' do
-            expect(Plane.new.take_off.flying?).to eq true
+    describe '#taken_off' do
+        it "plane object will return true to flying? after it's taken_off" do
+            expect(Plane.new.taken_off.flying?).to eq true
         end
     end
 end

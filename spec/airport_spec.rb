@@ -19,6 +19,7 @@ describe Airport do
             airport1 = Airport.new(1, weather1)
             plane1 = double("plane1")
             allow(plane1).to receive(:flying?).and_return(true)
+            allow(plane1).to receive(:landed)
             expect(airport1.land(plane1)).to eq airport1.planes
         end
 
@@ -47,6 +48,19 @@ describe Airport do
             plane1 = double("plane1")
             allow(plane1).to receive(:flying?).and_return(true)
             expect { airport1.land(plane1) }.to raise_error('Weather conditions do not permit landing')
+        end
+    end
+
+    describe '#take_off(plane=Plane.new)' do
+
+        it 'tests that a plane leaves airport upon take_off' do
+            weather1 = double("weather1")
+            allow(weather1).to receive(:stormy?).and_return(false)
+            airport1 = Airport.new(1, weather1)
+            plane1 = Plane.new.taken_off
+            airport1.land(plane1)
+            airport1.take_off(plane1)
+            expect(airport1.planes).not_to include(plane1)
         end
     end
 

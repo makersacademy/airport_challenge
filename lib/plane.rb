@@ -3,12 +3,12 @@ require_relative 'airport'
 
 class Plane
 
-    def land
+    def landed
         @flying = false
         self
     end
 
-    def take_off
+    def taken_off
         @flying = true
         self
     end

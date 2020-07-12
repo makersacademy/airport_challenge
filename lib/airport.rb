@@ -28,11 +28,15 @@ class Airport
         fail 'Weather conditions do not permit landing' if self.weather == true
         fail 'Plane is not flying' if plane.flying? == false
         fail 'Airport is at capacity' if self.full?
+        plane.landed
         planes << plane
     end
 
     def take_off(plane=Plane.new)
-        
+        fail 'Weather conditions do not permit take off' if self.weather == true
+        fail 'Plane is flying' if plane.flying? == true
+        plane.taken_off
+        planes.delete(plane)
     end
 
 end
