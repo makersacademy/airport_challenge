@@ -47,7 +47,36 @@ end
 
 I then realised I could utilise a seperate Weather class (result in higher cohesion) and thus went about wholescale changes after this [commit](https://github.com/rjkviegas/airport_challenge/commit/e12294e5fc70e3ee4f070fa80114380217f5d5c8).
 
+In hindsight I would of preferred to of coded the Weather class as follow (and I just tried to change it but couldn't get the test in weather_spec.rb to work):
 
+```
+class Weather
+  def initialize
+    rand(1..5) == 1 ? @weather = "stormy' : @weather = "sunny"
+  end
+  
+  def stormy?
+    @weather == "stormy" ? true : false
+  end
+end
+```
+
+Would the above of been better? The idea behind it being to not have the @weather variable for Airport objects to be either true or false, as it is not clear what time means unless you know it is in relation to it being stormy or not. Perhaps changing the name of the Airport instance variable to @storm would make it clearer as what the true/false value refers to? Then again are these meant to be hidden by being made private. I ommitted private methods as my tests do not work with them.
+
+### Example of Code
+#### How to create an airport, plane and have the plane land and take_off
+
+```
+$ irb
+>> airport = Airport.new
+=> #<Airport:0x00007faf6f174618 @capacity=100, @weather=false, @planes=[]>
+>> plane = Plane.new
+=> #<Plane:0x00007faf6f17cb60>
+>> airport.land(plane)
+=> [#<Plane:0x00007faf6f17cb60 @flying=false>]
+>> airport.take_off(plane)
+=> #<Plane:0x00007faf6f17cb60 @flying=true>
+```
 
 
 ### User Stories & Relevent Tests ### 
