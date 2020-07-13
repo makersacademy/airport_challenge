@@ -20,17 +20,20 @@ describe User_story do
 
 # # As an air traffic controller 
 # # To ensure safety 
- it 'does_not land when airport full' do
+ context "when airport is full" do
+  it 'raise_error - does_not land' do
      plane = Plane.new
      airport = Airport.new(40) #fixed capacity
      40.times { airport.land(plane) } # land so the capacity is filled
     expect { airport.land(plane) }.to raise_error "this airport is full"
   end
+end
 
-  it "does noy not allow planes to land when stormy" do
+ context "when is stormy" do
+  it "does not allow planes to land" do
     airport = Airport.new(40)
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return true
-    expect { airport.lannd(plane)) }.to raise_error "stormy weather, cannot land"
+    expect { airport.lannd(plane) }.to raise_error "stormy weather, cannot land"
   end
-# end
+end
