@@ -9,12 +9,18 @@ class Airport
 
   def land(plane)
     fail "Airport is at maximum capacity" if full?
-    
+
+    fail "This plane is grounded" unless plane.flying
+
+    plane.to_ground
     @planes << plane
   end
 
   def takeoff(plane)
+    fail "This plane is flying" if plane.flying
+    
     @planes.delete(plane)
+    plane.to_air
     plane
   end
 
