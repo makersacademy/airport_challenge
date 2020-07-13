@@ -1,11 +1,11 @@
-require 'AirPort'
+require 'Airport'
 
-describe AirPort do
+describe Airport do
 
   it { is_expected.to respond_to :capacity }
 
   it 'Override the capacity' do
-    subject.capacity= 400
+    subject.capacity = 400
     expect(subject.capacity).to eq(400)
   end
 
@@ -18,9 +18,9 @@ describe '#land a plane' do
     expect { subject.land(Plane.new) }.to raise_error('Impossible to land weather stormy!')
   end
 
-  it 'raise Error if AirPort hangar full' do
+  it 'raise Error if Airport hangar full' do
     subject.capacity.times { subject.land Plane.new }
-    expect { subject.land Plane.new }.to raise_error('AirPort reached max capacity!')
+    expect { subject.land Plane.new }.to raise_error('Airport reached max capacity!')
   end
 
   it 'check if plane landing is already in the hangar' do

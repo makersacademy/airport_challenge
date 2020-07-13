@@ -1,6 +1,6 @@
 require_relative 'Plane'
 
-class AirPort
+class Airport
   attr_reader :hangar
   attr_accessor :capacity
 
@@ -11,7 +11,7 @@ class AirPort
 
   def land(plane)
     fail 'Impossible to land weather stormy!' if @weather == 'stormy'
-    fail 'AirPort reached max capacity!' if @hangar.length >= @capacity
+    fail 'Airport reached max capacity!' if @hangar.length >= @capacity
     @hangar << plane
   end
 
