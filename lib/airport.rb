@@ -10,7 +10,6 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @sky = []
   end
 
   def land(aeroplane, weather)
@@ -20,7 +19,7 @@ class Airport
 
     raise "airport is full" if full?
 
-    aeroplane.grounded
+    aeroplane.to_ground
     @planes << aeroplane
     "plane landed"
   end
@@ -30,14 +29,9 @@ class Airport
 
     raise "too stormy to take off" if weather.stormy == true
 
-    aeroplane.in_flight
+    aeroplane.to_air
     @planes.delete(aeroplane)
-    @sky << aeroplane
     "plane has taken off"
-  end
-
-  def stormy?
-    rand(5) == 1
   end
 
   def full?

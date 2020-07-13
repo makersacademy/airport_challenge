@@ -10,11 +10,11 @@ class Plane
     @flying
   end
 
-  def in_flight
+  def to_air
     @flying = true
   end
 
-  def grounded
+  def to_ground
     @flying = false
   end
 end

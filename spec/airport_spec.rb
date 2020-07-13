@@ -18,7 +18,7 @@ describe Airport do
     it 'instruct plane to land at airport, it lands as weather is not stormy' do
       plane = double(:plane, flying: true)
       weather = double(:weather, stormy: false)
-      allow(plane).to receive(:grounded).and_return(false)
+      allow(plane).to receive(:to_ground).and_return(false)
       expect(subject.land(plane, weather)).to eq "plane landed"
     end
 
@@ -53,7 +53,7 @@ describe Airport do
     it 'instruct plane to takeoff, it takes off' do
       plane = double(:plane, flying: false)
       weather = double(:weather, stormy: false)
-      allow(plane).to receive(:in_flight).and_return(false)
+      allow(plane).to receive(:to_air).and_return(false)
       expect(subject.takeoff(plane, weather)).to eq("plane has taken off")
     end
 
