@@ -2,17 +2,17 @@ require 'airport'
 
 describe Plane do
   it 'can land if sunny' do
-    weather = 'sunny'
+    weather = double(:weather => 'sunny')
     expect(subject.land).to eq(true)
   end
 
   it 'can take off if sunny' do
-    weather = 'sunny'
+    weather = double(:weather => 'sunny')
     expect(subject.take_off).to eq(true)
   end
 
   it 'cannot land nor take off if stormy' do
-    weather = 'stormy'
+    weather = double(:weather => 'stormy')
     expect(subject.land).to eq(false)
     expect(subject.take_off).to eq(false)
   end
