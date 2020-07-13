@@ -14,7 +14,7 @@ Airport Challenge
 ```
 
 
-Maker's Academy Week 1 Weekend Challenge
+Maker's Academy Week 1 - Weekend Challenge
 -------
 
 
@@ -50,7 +50,3 @@ I want to prevent landing when weather is stormy
 ```
 
 I used a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests, I used a stub to override random weather to ensure consistent test behaviour.
-
-
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
