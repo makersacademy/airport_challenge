@@ -8,6 +8,7 @@ class AirPort
   end
 
   def land
+    fail 'AirPort reached max capacity!' if @hangar.length >= 200
     @hangar << Plane.new
     'A new plane arrived!'
   end
