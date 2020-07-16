@@ -1,5 +1,25 @@
+
 Airport Challenge
 =================
+
+
+ # Approach #
+
+
+According to the user stories developed Test Driven Development code.
+The program has default capacity of 10.User can set the capacity of Airport.
+There are Airport class,plane Class and Weather module.
+User can instantiate Airport and Plane.
+User can instruct plane to land at the airport if it is flying and weather is not stormy.
+User can confirm that if the instructed plane has landed or not.
+User can instruct plane to takeoff from the Airport if it is present at the airport and weather is not stormy.
+User can confirm that if the instructed plane has done takeoff or not.
+Landing of plane can be stoped if airport is full.
+Weather condition is choosen randomly.
+
+
+
+
 
 ```
         ______
