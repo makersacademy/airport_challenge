@@ -1,0 +1,10 @@
+How to go about this challenge
+1. Fork the Airport challenge repo.
+2. Clone your fork onto your laptop.
+3. Add a heading Stories completed to the README under the plane.
+4. Commit and push to your fork.
+5. Go to your fork on github.com and create a new pull request (this will let me see your repo).
+This is a solo challenge, but feel free to use all of your resources, Google, notes, etc. Please focus on implementing the first three user stories. Anything that you manage to implement after that is stretch material: there is no expectation whatsoever for you to finish all of these user stories.
+The most important part of this challenge is that you commit your code after writing each failing test. The goal of this challenge isn't to complete the user stories, but to practice TDD. Red, Green, Refactor - the commit comes after the Red. If you don't commit your code after writing each failing test, I won't be able to trace your TDD approach. We'll finish up this afternoon around 4pm.
+If you have any questions at all just ask. Have fun! :airplane:
+https://github.com/makersacademy/airport_challenge
