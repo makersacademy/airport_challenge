@@ -13,58 +13,29 @@ Airport Challenge
 
 ```
 
-***
 
-My learnings this week:
+Stories Completed:
+------
+User story 1: I want to instruct a plane to land at an airport.
 
-Learning a new language - Ruby to Javascript
+I created two seperate specs, plane and airport and then feature tested both in irb to confirm there was no class. From here I made tests to make them exsist seperately on their own. Once those failed I made them as classes in their respective files. After having those rspec tests pass, I could make tests for the landing and receiving of the plane.
 
-Learning objectives:
-Describe a process for learning a new language
-Follow an effective process for learning a new language
-Test drive a simple front-end web app with Javascript
+User story 2: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-Tools used:
-W3 schools - tutorials and exercises
-Codecademy -  Introduction to Javascript
-https://www.codeproject.com/articles/1118021/jasmine-testing-javascript
-
-
-Topics covered:
-Arithmetic (operators to use this)
-Assignments
-Variables
-Data types
-Functions
-Objects
-Events
-Strings
-String Methods
-Arrays
-loops
-
-
-What I feel I have some confidence on:
--Writing up the tests, the structure of them.
--Basic syntax.
-
-What needs more work / can confuse me:
--Debugging test errors, I find it hard to figure out the exact problem from them.
--The fact javascript has multiple ways of doing one thing, makes it hard to deduce which is the best or most effective technique.
-
-
-I worked through the JS topics in W3 schools and then did the tests and quizzes at the end of each chapter. I liked doing it this way because I could immediately test what I had been reading and walking through. However the lack of interaction while reading through the chapters meant retention was not as strong as when Codeacademy was used. Codeacademy allowed for interactive lessons that gave me a chance to try out what was being learnt and what I had seen in W3 schools.
-
-During the pairing challenge through the week I got to part way through making the thermostat.
-During Friday challenge, having already done the airport challenge, I tried to redo this with less reliance on the walkthrough. This did mean I have only managed to complete 1 user story.
+While doing this user story I realised that I needed to refactor my code as what I had would not work with the plan for taking off a plane. It also made me realise that I did not store my plane when I had done user story, just landed it. You will see a lot of different commits that show different tests being tried and then me not knowing how to commit them to code. I looked at testing the adding and deleting with number of arguments. I think I also got a bit sloppy in my typing as found was making errors for typing things wrong.
 
 
 
-***
+User story 3:
+
+
+
+
 
 Instructions
 ---------
 
+* Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
@@ -77,6 +48,20 @@ Steps
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 4. Complete the following task:
+
+Stories Completed:
+------
+User story 1: I want to instruct a plane to land at an airport.
+
+I created two seperate specs, plane and airport and then feature tested both in irb to confirm there was no class. From here I made tests to make them exsist seperately on their own. Once those failed I made them as classes in their respective files. After having those rspec tests pass, I could make tests for the landing and receiving of the plane.
+
+User story 2: I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+
+User story 3: want to prevent landing when the airport is full
+
+Tried a few different techniques, including using capacity but then went for raise error if 4.times. Closer to what we used for Boris Bikes
+
 
 Task
 -----
@@ -123,7 +108,7 @@ In code review we'll be hoping to see:
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 
@@ -133,6 +118,6 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**
+* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
