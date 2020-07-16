@@ -1,0 +1,16 @@
+Nouns:
+Passengers, Destination, Plane, Airport, Weather
+Verbs:
+Allow landing, allow take off, confirm plane no longer
+in airport,
+prevent takeoff, prevent landing
+States:
+plane in/out airport, passengers going/stationary,
+weather stormy/calm, airport full/not
+
+
+Plane: arrive, depart
+Weather: randomise
+Airport: receive plane, remove plane, prevent departure,
+prevent arriving
+Passenger: 
