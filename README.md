@@ -1,4 +1,4 @@
-Airport Challenge
+Airport Challenge - Solution so far
 =================
 
 ```
@@ -35,29 +35,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -72,7 +72,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
@@ -87,3 +87,11 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+##Solution so far##
+I first described the classes Airport and Plane, testing that airport and plane were instances of their respective class.
+Then I want the airport to be able to accept planes and also to allow planes to take off. I expect the plane to respond to a method land (write the test, then make it pass), and to a method take_off (same here).
+I expect that the planes have a status - in flight or landed. I test the behaviour: if I land a plane, I expect its status to be "landed". I use an attr_reader here.
+I also want to have planes that land at their destination, so I'm going to add a parameter to the method: land(destination), and use an attr_reader for :location too. I run my tests, see them fail, write code to make them pass, then I update my previous tests for the method land.
+I would like my planes to let me know that they have landed and where (test).
+If the planes are in flight, I also want to know. I'll use the initialize method to set landed to false and location as flying.
