@@ -1,3 +1,9 @@
+This is a programme designed to receive and depart planes from an airport. It should be able to do this as per the user stories below. There were more steps to programme however I did not have enough time to complete them. I need to figure out how to get the capacity of airport running correctly, add weather and edge cases tests and change it so that the capacity can be overwritten.
+I think if I had more time I would be able to finish it.
+
+
+
+
 Airport Challenge
 =================
 
