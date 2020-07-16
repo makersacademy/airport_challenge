@@ -13,6 +13,64 @@ Airport Challenge
 
 ```
 
+
+# Stories Completed #
+Completed User Story 1 - landing a plane returns the plane.
+
+<➜  airport_challenge git:(master) ✗ irb
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fefb0099370>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fefb1057780>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => #<Plane:0x00007fefb1057780>
+
+Completed User Story 2 - plane takes off and leaves the airport.
+
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fa15193ad10 @planes_airport=[]>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fa153097710>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => [#<Plane:0x00007fa153097710>]
+2.6.3 :005 > my_airport.take_off(plane)
+ => "In the air"
+2.6.3 :006 >
+
+Completed user story 3
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new
+ => #<Airport:0x00007fa3690838b0 @planes_airport=[], @capacity=20>
+
+
+Completed user story 4
+2.6.3 :001 > require './lib/airport.rb'
+ => true
+2.6.3 :002 > my_airport = Airport.new(1)
+ => #<Airport:0x00007fc6c7886900 @planes_airport=[], @capacity=1>
+2.6.3 :003 > plane = Plane.new
+ => #<Plane:0x00007fc6c78a98d8>
+2.6.3 :004 > my_airport.land_plane(plane)
+ => [#<Plane:0x00007fc6c78a98d8>]
+2.6.3 :005 > plane = Plane.new
+ => #<Plane:0x00007fc6c78d93f8>
+2.6.3 :006 > my_airport.land_plane(plane)
+Traceback (most recent call last):
+        5: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        4: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        3: from /Users/christymasterson/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):6
+        1: from /Users/christymasterson/Documents/GitHub/airport_challenge/lib/airport.rb:13:in `land_plane'
+RuntimeError (The airport is full)
+
+Working on User story 5
+
+
 Instructions
 ---------
 
@@ -35,29 +93,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -72,7 +130,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
