@@ -5,6 +5,15 @@ describe Plane do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
+=begin
+  context "bad weather test" do 
+    before { allow(airport).to receive(:stormy?).and_return(true) }
+
+    it "does not allow plane to take off when stromy" do 
+=end 
+
+
+
   before { allow(airport).to receive(:stormy?).and_return(false) }
 
 
@@ -56,7 +65,6 @@ describe Plane do
   it "Raises error if plane not at that airport" do 
     gatwick = Airport.new 
     plane.location = gatwick
-    
     expect { plane.takeoff(airport) }.to raise_error 'The plane is not currently landed at this airport'
   end 
 

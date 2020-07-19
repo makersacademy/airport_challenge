@@ -1,4 +1,4 @@
-
+require './docs/weather'
 
 class Airport 
   
@@ -7,16 +7,17 @@ class Airport
   def initialize(capacity = 10)
     @planes = []
     @capacity = capacity
+    @weather_report = Weather.new 
   end
 
-  def instruct_plane_to_land(plane)
+  def dock(plane)
     raise "Unable to land as Airport is full." if full?
     raise "Weather too stormy to land." if stormy?
     
     @planes << plane
   end 
 
-  def instruct_plane_to_takeoff(plane)
+  def undock(plane)
     raise "Weather too stormy to take off." if stormy?
     @planes.delete(plane)
   end 
@@ -28,6 +29,6 @@ class Airport
   end 
 
   def stormy?
-    rand(0..100) > 90
-  end
+    @weather_report.weather_check == "stormy"
+  end 
 end 

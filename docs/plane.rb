@@ -10,14 +10,14 @@ class Plane
 
   def land(airport)
     raise "Plane already landed." if flying? == false 
-    airport.instruct_plane_to_land(self)
+    airport.dock(self)
     @location = airport
   end
 
   def takeoff(airport)
     raise "Plane already flying." if flying? == true  
     raise 'The plane is not currently landed at this airport' if @location != airport
-    airport.instruct_plane_to_takeoff(self)
+    airport.undock(self)
     @location = "sky"
   end 
 
