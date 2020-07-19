@@ -4,10 +4,10 @@ class Airport
   
   attr_accessor :planes, :capacity
 
-  def initialize(capacity = 10)
+  def initialize(capacity = 10, weather = Weather.new )
     @planes = []
     @capacity = capacity
-    @weather_report = Weather.new 
+    @weather_report = weather
   end
 
   def dock(plane)

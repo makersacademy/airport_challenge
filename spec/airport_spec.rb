@@ -49,8 +49,10 @@ describe Airport do
       expect{airport.dock(plane)}.to raise_error("Weather too stormy to land.")
     end 
 
-
-
+    it "Does land plane when stromy" do
+      airport.planes.push(plane)
+      expect{airport.undock(plane)}.to raise_error("Weather too stormy to take off.")
+    end 
   end 
 
 
