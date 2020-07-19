@@ -13,8 +13,8 @@ describe Airport do
       expect(airport).to respond_to(:dock)
     end
 
-   it "Adds a plane to an array in airport when landing method ran" do
-     airport.dock(plane)
+    it "Adds a plane to an array in airport when landing method ran" do
+      airport.dock(plane)
       expect(airport.planes).to eq([plane])
     end 
 
@@ -39,4 +39,21 @@ describe Airport do
       expect{airport.dock(plane)}.to raise_error("Unable to land as Airport is full.")
     end  
   end 
+
+  
+  context "weather bad" do 
+
+    before { allow(airport).to receive(:stormy?).and_return(true) }
+
+    it "Does land plane when stromy" do
+      expect{airport.dock(plane)}.to raise_error("Weather too stormy to land.")
+    end 
+
+
+
+  end 
+
+
+
+
 end 
