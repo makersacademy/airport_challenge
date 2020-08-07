@@ -5,7 +5,12 @@ require 'airport'
 
 describe Airport do
   it "Expects to see planes at airport" do
-    expect(subject.land).to eq []
+    plane = 1
+    expect(subject.land(plane)).to eq nil
+  end
+
+  it "Expects planes to land at airport" do
+    expect(subject.land(plane)).to eq [plane]
   end
 
 end

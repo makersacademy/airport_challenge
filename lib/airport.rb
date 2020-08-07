@@ -4,8 +4,8 @@ class Airport
     @planes = []
   end
 
-  def land
-    @planes = []
+  def land(plane)
+
   end
 
 end
