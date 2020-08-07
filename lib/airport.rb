@@ -1,6 +1,11 @@
 class Airport
 
-  def land_plane
+  def initialize
+    @planes = []
+  end
+
+  def land
+    @planes = []
   end
 
 end

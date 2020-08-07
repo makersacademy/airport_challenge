@@ -4,7 +4,8 @@
 require 'airport'
 
 describe Airport do
-  it "Expects plane to land at an airport" do
-    expect(subject).to respond_to(:land_plane)
+  it "Expects to see planes at airport" do
+    expect(subject.land).to eq []
   end
+
 end
