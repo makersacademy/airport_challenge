@@ -6,7 +6,7 @@ class Airport
     @hanger= []
   end
 
-  def hanger(plane)
+  def land(plane)
     raise "Hanger is full" if self.full?
     @hanger << plane
     @hanger[@hanger.length-1]
