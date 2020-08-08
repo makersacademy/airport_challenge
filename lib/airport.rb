@@ -9,4 +9,10 @@ class Airport
     true
   end
 
+  def land(plane)
+    @hangar << plane
+  end
+
+  
+
 end
