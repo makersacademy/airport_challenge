@@ -45,6 +45,13 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.hangar).to eq []
     end
+
+    it "Raice error if weather is stormy" do 
+      plane = double("plane")
+      subject.land(plane)
+      expect{subject.take_off(plane)}.to raise_error "Bad weather! Taking off is forbidden!"
+    end
+
   end
 
 end
