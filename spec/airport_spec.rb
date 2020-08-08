@@ -24,6 +24,12 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar).to eq [plane] 
     end
+
+    it "Raise error when the airport capacity is full" do 
+      10.times {subject.land(double("plane")) }
+      expect{subject.land(double("Big Plane"))}.to raise_error "Airport is full"
+    end
+
   end 
 
   describe "#take_off" do 
