@@ -51,6 +51,7 @@ describe Airport do
       allow(subject).to receive(:rand).and_return(1)
       expect { subject.land(plane) }.to raise_error "This plane isn't flying"
     end
+
   end 
 
   describe "#take_off" do 

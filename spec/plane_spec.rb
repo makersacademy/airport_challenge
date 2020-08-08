@@ -10,4 +10,11 @@ describe Plane do
       expect(subject.status).to eq false
     end 
   end 
+
+  describe "#location" do
+    it "Tells at wich airport is the plane at the moment" do
+      expect(subject.location).to eq nil
+    end
+  end
+
 end
