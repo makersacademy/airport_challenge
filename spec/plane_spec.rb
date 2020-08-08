@@ -20,7 +20,7 @@ describe Plane do
   describe '#set_as_landed' do
     it 'sets a plane as landed' do
       subject.set_as_landed
-      expect(subject).not_to be_flying
+      expect(subject.flying).not_to be
     end
   end
 end
