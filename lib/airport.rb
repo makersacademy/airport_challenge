@@ -1,8 +1,9 @@
 class Airport
-  attr_accessor :hangar
+  attr_accessor :hangar, :capacity
 
-  def initialize
+  def initialize(capacity = 10)
     @hangar = []
+    @capacity = capacity 
   end
 
   def forecast?
@@ -10,7 +11,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is full" if @hangar.length >= 10
+    fail "Airport is full" if @hangar.length >= @capacity
     @hangar << plane
   end
 
