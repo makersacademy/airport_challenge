@@ -11,7 +11,7 @@ describe Airport do
 
     it 'returns a plane that has landed' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq [plane]
     end
   end
 
@@ -35,7 +35,7 @@ describe Airport do
       subject.takeoff
       final_count = subject.planes.count
 
-      expect(final_count - initial_count).to eq(difference)
+      expect(initial_count - final_count).to eq(difference)
     end
 
   end
