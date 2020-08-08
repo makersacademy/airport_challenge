@@ -4,4 +4,10 @@ describe Airport do
     expect(subject).to be_instance_of Airport
   end
   it { is_expected.to respond_to :land }
+  describe '#land' do
+    it 'returns landed planes' do
+      plane = Plane.new
+      expect(subject.land(plane)).to eq plane
+    end
+  end
 end
