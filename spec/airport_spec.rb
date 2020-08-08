@@ -7,6 +7,10 @@ describe Airport do
 
   it { is_expected.to respond_to :take_off }
 
+  it 'Has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#land' do
     it 'returns landed planes' do
       plane = Plane.new
@@ -15,7 +19,7 @@ describe Airport do
 
     it 'raises an error if the airport is full' do
         20.times { subject.land(Plane.new) }
-      expect(subject.land(Plane.new)).to raise_error 'airport is full'
+      expect { subject.land(Plane.new) }.to raise_error 'airport is full'
     end
   end
 
