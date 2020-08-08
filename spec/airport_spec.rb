@@ -21,17 +21,15 @@ describe Airport do
 
   describe "#forecast" do
     it "Checks the forecast and return true in good weather" do
-      airport = Airport.new
-      allow(airport).to receive(:rand).and_return(1)
-      expect(airport.forecast?).to eq true
+      allow(subject).to receive(:rand).and_return(1)
+      expect(subject.forecast?).to eq true
     end
   end 
 
   describe "#land" do 
     it "lands a plane" do 
-      plane = Plane.new
       allow(subject).to receive(:rand).and_return(1)
-      subject.land(plane)
+      subject.land(Plane.new)
       expect(subject.hangar.count).to eq 1 
     end
 
@@ -56,13 +54,12 @@ describe Airport do
   end 
 
   describe "#take_off" do 
-    it "Tells the plain to take off and confirm it's not at the airport anymore" do
-      airport = Airport.new
-      allow(airport).to receive(:rand).and_return(1)
+    it "Tells the plain to take off" do
+      allow(subject).to receive(:rand).and_return(1)
       plane = Plane.new
       plane.status = "ground"
-      airport.hangar << plane
-      airport.take_off(plane)
+      subject.hangar << plane
+      subject.take_off(plane)
       expect(subject.hangar).to eq []
     end
 
