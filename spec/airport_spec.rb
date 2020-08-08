@@ -22,7 +22,6 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it { is_expected.to respond_to :takeoff }
 
     it 'has a plane take off' do
@@ -31,7 +30,7 @@ describe Airport do
       expect(subject.takeoff).to eq plane
     end
 
-    it 'decreases in count after takeoff' do
+    it 'decreases in count' do
       difference = 1
 
       plane = Plane.new
