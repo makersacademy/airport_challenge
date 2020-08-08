@@ -1,6 +1,8 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { Plane.new }
+
   it 'can create an instance of Airport' do
     airport = Airport.new
     expect(airport).to be_kind_of(Airport)
@@ -16,8 +18,12 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'returns a plane that has landed' do
-      plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
+    end
+
+    it 'raises an error when full' do
+      10.times { subject.land plane }
+      expect { subject.land plane }.to raise_error "Airport is full"
     end
   end
 
@@ -25,7 +31,6 @@ describe Airport do
     it { is_expected.to respond_to :takeoff }
 
     it 'has a plane take off' do
-      plane = Plane.new
       subject.land(plane)
       expect(subject.takeoff).to eq plane
     end
@@ -33,7 +38,6 @@ describe Airport do
     it 'decreases in count' do
       difference = 1
 
-      plane = Plane.new
       subject.land(plane)
       initial_count = subject.planes.count
 
@@ -44,7 +48,6 @@ describe Airport do
     end
 
     it 'changes the plane to flying' do
-      plane = Plane.new
       subject.land(plane)
       expect { subject.takeoff }.to change { plane.flying }.to(true)
     end
