@@ -46,12 +46,11 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Bad weather! Landing is forbidden at this airport at the moment!" 
     end
 
-    it "Rice error if the plain is not in the air" do 
+    it "Raise error if the plain is not in the air" do 
       plane = double("Landend Plane", :status => "ground")
       allow(subject).to receive(:rand).and_return(1)
       expect { subject.land(plane) }.to raise_error "This plane isn't flying"
     end
-
 
   end 
 
@@ -70,10 +69,16 @@ describe Airport do
       expect { subject.take_off("plane") }.to raise_error "Bad weather! Taking off is forbidden!"
     end
 
-    it "Rice error if the plane is already in the air" do 
+    it "Raise error if the plane is already in the air" do 
       allow(subject).to receive(:rand).and_return(1)
       plane = double("Flying plane", :status => "air")
       expect { subject.take_off(plane) }.to raise_error "This plane is already in the air"
+    end
+
+    it "Raise error if you try to take off plane belonging to other airport" do 
+      allow(subject).to receive(:rand).and_return(1)
+      plane = double("Flying plane", :status => "ground", :location => nil)
+      expect { subject.take_off(plane) }.to raise_error "This plane is at #{subject.name} airport"
     end
 
   end
