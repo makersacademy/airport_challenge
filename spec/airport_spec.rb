@@ -18,7 +18,7 @@ describe Airport do
     end
 
     it 'raises an error if the airport is full' do
-        p subject.capacity
+
         subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error 'airport is full'
     end
@@ -36,6 +36,12 @@ describe Airport do
         subject.land(plane)
         subject.take_off
         expect(subject.planes).not_to include plane
+    end
+
+    it 'raises an error if weather is stormy' do
+        plane = Plane.new
+        subject.land(plane)
+        expect { subject.take_off('stormy') }.to raise_error 'too stormy to take off'
     end
   end
 end

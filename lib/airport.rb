@@ -4,6 +4,8 @@ class Airport
     attr_reader :capacity
     DEFAULT_CAPACITY = 50
     def initialize(capacity= DEFAULT_CAPACITY)
+        @condition = self.condition
+        p @condition
         @capacity = capacity
         @planes = []
     end
@@ -13,9 +15,20 @@ class Airport
         @planes[@planes.length - 1]
     end
 
-    def take_off
+    def take_off(condition= 'sunny')
+        @condition = condition
+        fail 'too stormy to take off' if @condition == 'stormy'
        @planes.pop()
     end
+
+    def condition
+        num = rand(4)
+        if num == 0
+          return 'stormy'
+        else
+         return 'sunny'
+        end
+     end
 
     private
     def full?
