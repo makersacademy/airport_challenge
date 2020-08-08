@@ -19,7 +19,7 @@ describe Airport do
   end
 
   describe "#forecast" do
-    it "Checks the forecast" do 
+    it "Checks the forecast and return true in good weather" do 
       expect(subject.forecast?).to eq true
     end
   end 
