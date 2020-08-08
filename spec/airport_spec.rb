@@ -9,8 +9,17 @@ describe Airport do
   end
 
   describe '#initialize' do
-    it 'initializes with an empty array if no arguments provided' do
+    it 'initializes with an empty array' do
       expect(subject.planes).to eq []
+    end
+
+    it 'initializes with a default capacity, if not provided' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'initializes with a capacity if provided' do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20
     end
   end
 
