@@ -9,7 +9,7 @@ describe Airport do
   end
 
   describe '#initialize' do
-    it 'initializes with an empty array' do
+    it 'initializes with an empty planes array' do
       expect(subject.planes).to eq []
     end
 
@@ -75,10 +75,4 @@ describe Airport do
       expect { subject.takeoff }.to raise_error "No planes are at the airport"
     end
   end
-  
-  # I would like a default airport capacity that can be overridden as appropriate
-
-  # I want to prevent takeoff when weather is stormy 
-
-  # I want to prevent landing when weather is stormy 
 end
