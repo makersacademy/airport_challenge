@@ -6,6 +6,12 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
+  describe '#initialize' do
+    it 'initializes with an empty array if no arguments provided' do
+      expect(subject.planes).to eq []
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
