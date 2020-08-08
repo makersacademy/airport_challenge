@@ -20,10 +20,8 @@ class Airport
 
   def take_off(plane)
     fail "Bad weather! Taking off is forbidden!" unless forecast? 
-
-    
+ 
     @hangar.delete(plane) 
-    "#{plane} took off"
 
   end  
 end
