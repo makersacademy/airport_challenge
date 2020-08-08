@@ -44,6 +44,12 @@ describe Airport do
       expect(initial_count - final_count).to eq(difference)
     end
 
+    it 'changes the plane to flying' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.takeoff }.to change { plane.flying }.to(true)
+    end
+
   end
 
   # I want to prevent landing when the airport is full 
