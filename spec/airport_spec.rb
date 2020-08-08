@@ -51,9 +51,8 @@ describe Airport do
     end
 
     it 'raises an error when there are no planes' do
-      expect { subject.takeoff }.to raise_error "No planes at the airport"
+      expect { subject.takeoff }.to raise_error "No planes are at the airport"
     end
-
   end
 
   # I want to prevent landing when the airport is full 

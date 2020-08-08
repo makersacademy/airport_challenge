@@ -12,6 +12,8 @@ class Airport
   end
 
   def takeoff
+    fail "No planes are at the airport" if @planes.empty?
+    
     @planes[-1].set_as_flying
     @planes.pop
   end
