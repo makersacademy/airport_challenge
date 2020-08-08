@@ -29,16 +29,18 @@ describe Airport do
   describe "#land" do 
     it "lands a plain" do 
       plane = double("plane")
+      allow(subject).to receive(:rand).and_return(1)
       subject.land(plane)
       expect(subject.hangar).to eq [plane] 
     end
 
     it "Raise error when the airport capacity is full" do 
+      allow(subject).to receive(:rand).and_return(1)
       10.times { subject.land(double("plane")) }
       expect { subject.land(double("Big Plane")) }.to raise_error "Airport is full"
     end
 
-    it "Raise error when plane try to land in stormy weather"do 
+    it "Raise error when plane try to land in stormy weather" do 
       plane = double("plane")
       allow(subject).to receive(:rand).and_return(0)
       expect { subject.land(plane) }.to raise_error "Bad weather! Landing is forbidden at this airport at the moment!" 
@@ -57,10 +59,8 @@ describe Airport do
     end
 
     it "Raice error if weather is stormy" do 
-      plane = double("plane")
       allow(subject).to receive(:rand).and_return(0)
-      subject.land(plane)
-      expect { subject.take_off(plane) }.to raise_error "Bad weather! Taking off is forbidden!"
+      expect { subject.take_off("plane") }.to raise_error "Bad weather! Taking off is forbidden!"
     end
 
   end
