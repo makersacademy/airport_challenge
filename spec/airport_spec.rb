@@ -17,10 +17,16 @@ describe Airport do
 
   describe '#plane_lands' do
     it 'throws an error when there is no space for a new plane to land' do
-    10.times { subject.plane_lands Plane.new }
-    expect { subject.plane_lands Plane.new }.to raise_error 'Airport is full'
+      10.times { subject.plane_lands Plane.new }
+      expect { subject.plane_lands Plane.new }.to raise_error 'Airport is full'
   end
-end
+    it 'thows an error when the plane is already at the airport' do
+      plane = Plane.new
+      subject.plane_lands(plane)
+      allow(plane).to receive(:at_airport?).and_return(true)
+      expect { subject.plane_lands(plane) }.to raise_error 'Plane is already at the airport'
+    end
+  end
 
   describe '#plane_takes_off' do
     it 'throws an error when there are no planes at the airport' do
