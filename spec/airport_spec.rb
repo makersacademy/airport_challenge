@@ -15,10 +15,16 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'allows a plane to take off so wont be in the airport' do
+    it 'allows a plane to take off' do
         plane = Plane.new
         subject.land(plane)
         expect(subject.take_off).to eq plane
+    end
+
+    it 'plane will not be in the airport' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.planes).not_to include plane
     end
   end
 end
