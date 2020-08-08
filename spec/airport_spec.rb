@@ -17,11 +17,11 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    it 'returns a plane that has landed' do
+    it 'has a plane land' do
       expect(subject.land plane).to eq [plane]
     end
 
-    it 'raises an error when full' do
+    it 'raises an error when the airport is full' do
       10.times { subject.land plane }
       expect { subject.land plane }.to raise_error "Airport is full"
     end
