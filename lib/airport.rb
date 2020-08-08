@@ -17,6 +17,8 @@ class Airport
     
     fail "Bad weather! Landing is forbidden at this airport at the moment!" unless forecast?
     
+    fail "This plane isn't flying" if !plane.status
+
     @hangar << plane
   end
 
