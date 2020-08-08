@@ -10,6 +10,8 @@ class Airport
   def land(plane)
     fail "Airport is full" if @planes.count >= 10
 
+    fail "This plane has already landed" if @planes.include? plane
+
     plane.set_as_landed
     @planes << plane
   end
