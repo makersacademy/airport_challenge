@@ -5,6 +5,7 @@ class Airport
         @planes = []
     end
     def land(plane)
+        
         @planes.push(plane)
         @planes[@planes.length - 1]
     end
