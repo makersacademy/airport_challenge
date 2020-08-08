@@ -59,8 +59,8 @@ describe Airport do
     it "Tells the plain to take off and confirm it's not at the airport anymore" do
       airport = Airport.new
       allow(airport).to receive(:rand).and_return(1)
-      plane = double("plane", :status => "air")
-      airport.land(plane)
+      plane = double("plane", :status => "ground")
+      airport.hangar << plane
       airport.take_off(plane)
       expect(subject.hangar).to eq []
     end

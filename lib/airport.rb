@@ -23,7 +23,9 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Bad weather! Taking off is forbidden!" unless forecast? 
+    fail "Bad weather! Taking off is forbidden!" unless forecast?
+    
+    fail "This plane is already in the air" if plane.status == "air" 
  
     @hangar.delete(plane) 
 
