@@ -6,32 +6,42 @@ class Airport
     @capacity = capacity 
   end
 
+  def land(plane)
+    landing_safety_check(plane)
+    change_plane_status(plane, "ground")
+    @hangar << plane
+  end
+
+  def take_off(plane)
+    take_off_safety_check(plane)
+    @hangar.delete(plane) 
+    change_plane_status(plane, "air")
+  end  
+
   def forecast?
     return false if rand(2).zero?
 
     true
   end
 
-  def land(plane)
+  def landing_safety_check(plane)
     fail "Airport is full" if @hangar.length >= @capacity
-    
-    fail "Bad weather! Landing is forbidden at this airport at the moment!" unless forecast?
-    
+        
     fail "This plane isn't flying" if plane.status == "ground"
 
-    plane.status = "ground"
-    @hangar << plane
+    fail "Bad weather! Landing is forbidden at this airport at the moment!" unless forecast?
   end
 
-  def take_off(plane)
-    fail "Bad weather! Taking off is forbidden!" unless forecast?
-
+  def take_off_safety_check(plane)
     fail "This plane is already in the air" if plane.status == "air" 
 
-    fail "This plane is NOT at this airport" if !@hangar.include?(plane)
- 
-    @hangar.delete(plane) 
-    plane.status = "air"
+    fail "This plane is NOT at this airport" unless @hangar.include?(plane)
 
-  end  
+    fail "Bad weather! Taking off is forbidden!" unless forecast?
+  end
+
+  def change_plane_status(plane, status)
+    plane.status = status
+  end
+
 end

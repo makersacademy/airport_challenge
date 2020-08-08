@@ -1,4 +1,5 @@
 require "airport"
+require "plane"
 
 describe Airport do
 
@@ -27,16 +28,16 @@ describe Airport do
   end 
 
   describe "#land" do 
-    it "lands a plain" do 
-      plane = double("plane", :status => "air")
+    it "lands a plane" do 
+      plane = Plane.new
       allow(subject).to receive(:rand).and_return(1)
       subject.land(plane)
-      expect(subject.hangar).to eq [plane] 
+      expect(subject.hangar.count).to eq 1 
     end
 
     it "Raise error when the airport capacity is full" do 
       allow(subject).to receive(:rand).and_return(1)
-      10.times { subject.land(double("plane", :status => "air")) }
+      10.times { subject.hangar << "A lot of planes" }
       expect { subject.land(double("Big Plane", :status => "air")) }.to raise_error "Airport is full"
     end
 
@@ -58,7 +59,8 @@ describe Airport do
     it "Tells the plain to take off and confirm it's not at the airport anymore" do
       airport = Airport.new
       allow(airport).to receive(:rand).and_return(1)
-      plane = double("plane", :status => "ground")
+      plane = Plane.new
+      plane.status = "ground"
       airport.hangar << plane
       airport.take_off(plane)
       expect(subject.hangar).to eq []
@@ -66,7 +68,9 @@ describe Airport do
 
     it "Raice error if weather is stormy" do 
       allow(subject).to receive(:rand).and_return(0)
-      expect { subject.take_off("plane") }.to raise_error "Bad weather! Taking off is forbidden!"
+      plane = double(:status => "ground")
+      subject.hangar << plane
+      expect { subject.take_off(plane) }.to raise_error "Bad weather! Taking off is forbidden!"
     end
 
     it "Raise error if the plane is already in the air" do 
