@@ -24,6 +24,7 @@ describe Airport do
     it 'plane will not be in the airport' do
         plane = Plane.new
         subject.land(plane)
+        subject.take_off
         expect(subject.planes).not_to include plane
     end
   end
