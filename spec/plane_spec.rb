@@ -6,8 +6,8 @@ describe Plane do
   end
 
   describe "#status" do 
-    it "check the status of the plain and return false if it's landed" do 
-      expect(subject.status).to eq false
+    it "check the status of the plain" do 
+      expect(subject.status).to eq "air"
     end 
   end 
 

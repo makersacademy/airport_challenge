@@ -28,7 +28,7 @@ describe Airport do
 
   describe "#land" do 
     it "lands a plain" do 
-      plane = double("plane", :status => true)
+      plane = double("plane", :status => "air")
       allow(subject).to receive(:rand).and_return(1)
       subject.land(plane)
       expect(subject.hangar).to eq [plane] 
@@ -36,21 +36,22 @@ describe Airport do
 
     it "Raise error when the airport capacity is full" do 
       allow(subject).to receive(:rand).and_return(1)
-      10.times { subject.land(double("plane", :status => true)) }
-      expect { subject.land(double("Big Plane", :status => true)) }.to raise_error "Airport is full"
+      10.times { subject.land(double("plane", :status => "air")) }
+      expect { subject.land(double("Big Plane", :status => "air")) }.to raise_error "Airport is full"
     end
 
     it "Raise error when plane try to land in stormy weather" do 
-      plane = double("plane", :status => true)
+      plane = double("plane", :status => "air")
       allow(subject).to receive(:rand).and_return(0)
       expect { subject.land(plane) }.to raise_error "Bad weather! Landing is forbidden at this airport at the moment!" 
     end
 
     it "Rice error if the plain is not in the air" do 
-      plane = double("Landend Plane", :status => false)
+      plane = double("Landend Plane", :status => "ground")
       allow(subject).to receive(:rand).and_return(1)
       expect { subject.land(plane) }.to raise_error "This plane isn't flying"
     end
+
 
   end 
 
@@ -58,7 +59,7 @@ describe Airport do
     it "Tells the plain to take off and confirm it's not at the airport anymore" do
       airport = Airport.new
       allow(airport).to receive(:rand).and_return(1)
-      plane = double("plane", :status => true)
+      plane = double("plane", :status => "air")
       airport.land(plane)
       airport.take_off(plane)
       expect(subject.hangar).to eq []
@@ -67,6 +68,12 @@ describe Airport do
     it "Raice error if weather is stormy" do 
       allow(subject).to receive(:rand).and_return(0)
       expect { subject.take_off("plane") }.to raise_error "Bad weather! Taking off is forbidden!"
+    end
+
+    it "Rice error if the plane is already in the air" do 
+      allow(subject).to receive(:rand).and_return(1)
+      plane = double("Flying plane", :status => "air")
+      expect { subject.take_off(plane) }.to raise_error "This plane is already in the air"
     end
 
   end
