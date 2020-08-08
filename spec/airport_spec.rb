@@ -25,6 +25,10 @@ describe Airport do
       10.times { subject.land plane }
       expect { subject.land plane }.to raise_error "Airport is full"
     end
+
+    it 'sets a plane as landed' do
+      expect { subject.land plane }.to change { plane.flying }.to false
+    end
   end
 
   describe '#takeoff' do
@@ -56,8 +60,6 @@ describe Airport do
       expect { subject.takeoff }.to raise_error "No planes are at the airport"
     end
   end
-
-  # I want to prevent landing when the airport is full 
   
   # I would like a default airport capacity that can be overridden as appropriate
 
