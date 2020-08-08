@@ -1,4 +1,4 @@
 class Plane
-  def flying
+  def flying?
   end
 end
