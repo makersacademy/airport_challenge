@@ -12,6 +12,7 @@ class Airport
   end
 
   def takeoff
+    @planes[-1].set_as_flying
     @planes.pop
   end
 end

@@ -6,9 +6,9 @@ describe Plane do
     expect(plane).to be_kind_of(Plane)
   end
 
-  describe '#flying' do
-    it { is_expected.to respond_to :flying? }
-
+  it { is_expected.to respond_to :flying? }
+  
+  describe '#set_as_flying' do
     it 'sets a plane as flying' do
       subject.set_as_flying
       expect(subject).to be_flying
