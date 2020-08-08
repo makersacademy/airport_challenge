@@ -10,7 +10,7 @@ describe Plane do
     it { is_expected.to respond_to :flying? }
 
     it 'sets a plane as flying' do
-      subject.flying?
+      subject.set_as_flying
       expect(subject).to be_flying
     end
   end
