@@ -6,13 +6,15 @@ describe Airport do
     expect(subject).to be_instance_of(Airport)
   end
 
-  it "Airport can store plains" do 
-    expect(subject.hangar).to eq []
+  describe "#hangar" do 
+    it "Airport can store plains" do 
+      expect(subject.hangar).to eq []
+    end
   end
 
-  it "Checks the forecast" do 
-    expect(subject.forecast?).to eq true
-  end
-
-
+  describe "#forecast" do
+    it "Checks the forecast" do 
+      expect(subject.forecast?).to eq true
+    end
+  end 
 end
