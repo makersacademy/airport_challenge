@@ -17,4 +17,13 @@ describe Airport do
       expect(subject.forecast?).to eq true
     end
   end 
+
+  describe "#land" do 
+    it "lands a plain" do 
+      plane = double("plane")
+      subject.land(plane)
+      expect(subject.hangar).to eq [plane] 
+    end
+  end 
+
 end
