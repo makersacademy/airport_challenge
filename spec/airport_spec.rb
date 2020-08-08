@@ -6,5 +6,5 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
-  it { is_expected.to respond_to :land_plane }
+  it { is_expected.to respond_to(:land_plane).with(1).argument }
 end
