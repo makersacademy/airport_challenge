@@ -6,6 +6,12 @@ describe Airport do
     expect(subject).to be_instance_of(Airport)
   end
 
+  it "The Airport can extend it's capacity on request" do 
+    airport =  Airport.new
+    airport.capacity = 50
+    expect(airport.capacity).to eq 50
+  end
+
   describe "#hangar" do 
     it "Airport can store plains" do 
       expect(subject.hangar).to eq []
