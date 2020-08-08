@@ -26,4 +26,13 @@ describe Airport do
     end
   end 
 
+  describe "#take_off" do 
+    it "Tells the plain to take off" do
+      plane = double("plane")
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.hangar).to eq []
+    end
+  end
+
 end

@@ -13,6 +13,4 @@ class Airport
     @hangar << plane
   end
 
-  
-
 end
