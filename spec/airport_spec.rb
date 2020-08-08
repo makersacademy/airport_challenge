@@ -29,6 +29,11 @@ describe Airport do
     it 'sets a plane as landed' do
       expect { subject.land plane }.to change { plane.flying }.to false
     end
+
+    it 'raises an error if the plane has already landed' do
+      landed_plane = subject.land plane
+      expect { subject.land landed_plane }.to raise_error "This plane has already landed"
+    end
   end
 
   describe '#takeoff' do
