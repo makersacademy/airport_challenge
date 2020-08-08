@@ -1,9 +1,8 @@
 class Plane
-  attr_accessor :status, :location
+  attr_accessor :status
 
   def initialize 
     @status = "air"
-    @location = nil
   end
  
 end

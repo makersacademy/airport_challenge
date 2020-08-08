@@ -77,8 +77,8 @@ describe Airport do
 
     it "Raise error if you try to take off plane belonging to other airport" do 
       allow(subject).to receive(:rand).and_return(1)
-      plane = double("Flying plane", :status => "ground", :location => nil)
-      expect { subject.take_off(plane) }.to raise_error "This plane is at #{subject.name} airport"
+      plane = double("Flying plane", :status => "ground")
+      expect { subject.take_off(plane) }.to raise_error "This plane is NOT at this airport"
     end
 
   end

@@ -1,8 +1,7 @@
 class Airport
-  attr_accessor :hangar, :capacity, :name
+  attr_accessor :hangar, :capacity
 
-  def initialize(capacity = 10, name = rand(1..1000))
-    @name = name
+  def initialize(capacity = 10)
     @hangar = []
     @capacity = capacity 
   end
@@ -20,6 +19,7 @@ class Airport
     
     fail "This plane isn't flying" if plane.status == "ground"
 
+    plane.status = "ground"
     @hangar << plane
   end
 
@@ -27,8 +27,11 @@ class Airport
     fail "Bad weather! Taking off is forbidden!" unless forecast?
 
     fail "This plane is already in the air" if plane.status == "air" 
+
+    fail "This plane is NOT at this airport" if !@hangar.include?(plane)
  
     @hangar.delete(plane) 
+    plane.status = "air"
 
   end  
 end
