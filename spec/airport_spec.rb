@@ -7,7 +7,7 @@ describe Airport do
   end
 
   it "The Airport can extend it's capacity on request" do 
-    airport =  Airport.new
+    airport = Airport.new
     airport.capacity = 50
     expect(airport.capacity).to eq 50
   end
@@ -19,8 +19,10 @@ describe Airport do
   end
 
   describe "#forecast" do
-    it "Checks the forecast and return true in good weather" do 
-      expect(subject.forecast?).to eq true
+    it "Checks the forecast and return true in good weather" do
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
+      expect(airport.forecast?).to eq true
     end
   end 
 
@@ -32,24 +34,27 @@ describe Airport do
     end
 
     it "Raise error when the airport capacity is full" do 
-      10.times {subject.land(double("plane")) }
-      expect{subject.land(double("Big Plane"))}.to raise_error "Airport is full"
+      10.times { subject.land(double("plane")) }
+      expect { subject.land(double("Big Plane")) }.to raise_error "Airport is full"
     end
 
   end 
 
   describe "#take_off" do 
     it "Tells the plain to take off" do
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
       plane = double("plane")
-      subject.land(plane)
-      subject.take_off(plane)
+      airport.land(plane)
+      airport.take_off(plane)
       expect(subject.hangar).to eq []
     end
 
     it "Raice error if weather is stormy" do 
       plane = double("plane")
+      allow(subject).to receive(:rand).and_return(0)
       subject.land(plane)
-      expect{subject.take_off(plane)}.to raise_error "Bad weather! Taking off is forbidden!"
+      expect { subject.take_off(plane) }.to raise_error "Bad weather! Taking off is forbidden!"
     end
 
   end

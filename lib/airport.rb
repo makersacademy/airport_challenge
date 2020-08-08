@@ -7,16 +7,23 @@ class Airport
   end
 
   def forecast?
+    return false if rand(2).zero?
+
     true
   end
 
   def land(plane)
     fail "Airport is full" if @hangar.length >= @capacity
+
     @hangar << plane
   end
 
   def take_off(plane)
-    @hangar.delete(plane)
-  end
+    fail "Bad weather! Taking off is forbidden!" unless forecast? 
 
+    
+    @hangar.delete(plane) 
+    "#{plane} took off"
+
+  end  
 end
