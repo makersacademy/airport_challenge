@@ -5,4 +5,6 @@ describe Airport do
     airport = Airport.new
     expect(airport).to be_kind_of(Airport)
   end
+
+  it { is_expected.to respond_to :land }
 end
