@@ -16,7 +16,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     subject.land(plane)
-    expect(airport.land(plane)).to eq([])
+    expect(airport.land(plane)).to eq([plane])
   end
 
   it "Expects Airport to respond_to take_off method" do
@@ -27,7 +27,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     subject.take_off(plane)
-    expect(airport.take_off(plane)).to eq(nil)
+    expect(airport.take_off(plane)).to eq(plane)
   end
 
 end
