@@ -6,6 +6,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to :takeoff }
+  it { is_expected.to respond_to :weather_update }
 
   it 'can create an instance of Airport' do
     airport = Airport.new
@@ -35,6 +36,12 @@ describe Airport do
   describe '#stormy?' do
     it 'returns a boolean value' do
       expect(subject.send :stormy?).to be(true).or be(false)
+    end
+  end
+
+  describe '#weather_update' do
+    it 'returns a new state of weather' do
+      expect(subject.weather_update).to be_kind_of Weather
     end
   end
 
