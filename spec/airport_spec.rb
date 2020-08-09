@@ -48,6 +48,11 @@ describe Airport do
       subject.land duplicated_plane
       expect { subject.land duplicated_plane }.to raise_error "This plane has already landed"
     end
+
+    it 'raises an error when the weather is stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land plane }.to raise_error "Unable to land due to stormy landing"
+    end
   end
 
   describe '#takeoff' do
