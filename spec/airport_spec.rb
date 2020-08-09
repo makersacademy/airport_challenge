@@ -22,21 +22,21 @@ it 'instruct a plane to take off from the airport' do
     expect(airport).to respond_to(:take_off).with(1).argument
     end
 
-    
-#   it 'does not allow a plane to land when airport is full' do
-#    I want to prevent landing when the airport is full 
-#     airport = Airport.new
-#     plane = Plane.new
-#     20.times do
-#     airport.land(plane)
-#     end
+# it 'does not allow a plane to land when airport is full' do
+# #    I want to prevent landing when the airport is full 
+# #     airport = Airport.new
+# #     plane = Plane.new
+# #     20.times do
+# #     airport.land(plane)
+# #     end
 
-#     expect{ airport.land(plane) }.to raise_error 'Unable to land, airport capacity full'
-#     #  airport = Airport.new(20)
-#     # airport.capacity.times { airport.land(plane) }
-#     # expect { airport.land(plane) }.to raise_error('Unable to land, airport capacity full')
-#     end
-
+# #     expect{ airport.land(plane) }.to raise_error 'Unable to land, airport capacity full'
+# #     #  airport = Airport.new(20)
+# #     # airport.capacity.times { airport.land(plane) }
+# #     # expect { airport.land(plane) }.to raise_error('Unable to land, airport capacity full')
+# #     end
+#     expect(airport).to respond_to(:report_if_taken_off).with(1).argument
+# end 
 
 # it "prevents plane landing when airport full" do
 #     expect { airport.land(plane) }.to raise_error "Cannot land plane: airport is full"
