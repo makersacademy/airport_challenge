@@ -9,4 +9,7 @@ class Airport
   def take_off
   end
 
+  def plane
+  end
+
 end
