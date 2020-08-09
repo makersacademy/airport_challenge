@@ -17,7 +17,7 @@ describe Airport do
 
   describe '#plane_lands' do
     it 'throws an error when there is no space for a new plane to land' do
-      10.times { subject.plane_lands Plane.new }
+      Airport::DEFAULT_CAPACITY.times { subject.plane_lands Plane.new }
       expect { subject.plane_lands Plane.new }.to raise_error 'Airport is full'
   end
     it 'thows an error when the plane is already at the airport' do
@@ -30,9 +30,21 @@ describe Airport do
 
   describe '#plane_takes_off' do
     it 'throws an error when there are no planes at the airport' do
+      plane = Plane.new
       expect { subject.plane_takes_off }.to raise_error 'There are no planes at the airport'
     end
   end
+
+    # checks if plane is still in the air
+=begin
+    it 'throws an error if the plane has not landed at the airport yet' do
+      plane = Plane.new
+      subject.plane_takes_off(plane)
+      allow(plane).to receive(:at_airport?).and_return(false)
+      expect { subject.plane_takes_off(plane) }.to raise_error 'The plane has not landed at the airport yet'
+    end
+  end
+=end
 
 
 end
