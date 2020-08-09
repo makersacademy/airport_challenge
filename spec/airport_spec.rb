@@ -16,6 +16,10 @@ describe Airport do
     expect(subject.plane_lands(plane)).to eq([plane])
   end
 
+  it 'allows capacity to be altered' do
+    expect(subject.capacity=20).to eq(20)
+  end
+
   describe '#plane_lands' do
     it 'throws an error when there is no space for a new plane to land' do
       Airport::DEFAULT_CAPACITY.times { subject.plane_lands Plane.new }
@@ -34,7 +38,7 @@ describe Airport do
       plane = Plane.new
       weather = Weather.new
       expect { subject.plane_takes_off(weather) }.to raise_error 'There are no planes at the airport'
-    end
+   end
     it 'throws an error when the weather is stormy' do
       plane = Plane.new
       subject.plane_lands(plane)
@@ -44,16 +48,13 @@ describe Airport do
     end
   end
 
-    # checks if plane is still in the air
-=begin
-    it 'throws an error if the plane has not landed at the airport yet' do
-      plane = Plane.new
-      subject.plane_takes_off(plane)
-      allow(plane).to receive(:at_airport?).and_return(false)
-      expect { subject.plane_takes_off(plane) }.to raise_error 'The plane has not landed at the airport yet'
-    end
-  end
-=end
+#  let(:plane2) {double :plane, :at_airport= => true, at_airport?: true}
+#  it "Raise error if plane not at airport and try to takeoff" do
+#    weather = Weather.new
+#    plane = Plane.new
+#    allow(plane2).to receive(:at_airport).and_return(true)
+#    expect{ subject.plane_takes_off(weather) }.to raise_error "Airplane is not at this airport"
+#  end
 
 
 end

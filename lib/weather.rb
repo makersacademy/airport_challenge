@@ -1,5 +1,7 @@
+require_relative 'airport'
+
 class Weather
   def stormy?
-    rand(true, false)
+    @capacity.times { rand(true, false) }
   end
 end
