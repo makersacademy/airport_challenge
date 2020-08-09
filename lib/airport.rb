@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -16,11 +17,11 @@ class Airport
 
   end
 
-  def plane_takes_off
+  def plane_takes_off(weather)
     fail 'There are no planes at the airport' if airport_empty
+    fail 'It is too stormy to take off' if weather.stormy? == true
   #  fail 'The plane has not landed at the airport yet' unless plane.at_airport?
     @planes_at_airport.pop
-    #Plane.new.take_off
   end
 
   def planes_parked
@@ -37,5 +38,6 @@ class Airport
   def airport_empty
     @planes_at_airport.empty?
   end
+
 
 end

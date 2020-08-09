@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it 'lands a plane' do
@@ -19,7 +20,7 @@ describe Airport do
     it 'throws an error when there is no space for a new plane to land' do
       Airport::DEFAULT_CAPACITY.times { subject.plane_lands Plane.new }
       expect { subject.plane_lands Plane.new }.to raise_error 'Airport is full'
-  end
+    end
     it 'thows an error when the plane is already at the airport' do
       plane = Plane.new
       subject.plane_lands(plane)
@@ -31,7 +32,15 @@ describe Airport do
   describe '#plane_takes_off' do
     it 'throws an error when there are no planes at the airport' do
       plane = Plane.new
-      expect { subject.plane_takes_off }.to raise_error 'There are no planes at the airport'
+      weather = Weather.new
+      expect { subject.plane_takes_off(weather) }.to raise_error 'There are no planes at the airport'
+    end
+    it 'throws an error when the weather is stormy' do
+      plane = Plane.new
+      subject.plane_lands(plane)
+      weather = Weather.new
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.plane_takes_off(weather) }.to raise_error 'It is too stormy to take off'
     end
   end
 
