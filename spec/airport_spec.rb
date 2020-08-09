@@ -54,11 +54,13 @@ describe Airport do
     it { is_expected.to respond_to :takeoff }
 
     it 'has a plane take off' do
+      allow(subject).to receive(:stormy?) { false }
       subject.land plane
       expect(subject.takeoff).to eq plane
     end
 
-    it 'decreases in count' do
+    it 'decreases in count after take off' do
+      allow(subject).to receive(:stormy?) { false }
       difference = 1
 
       subject.land plane
@@ -71,6 +73,7 @@ describe Airport do
     end
 
     it 'changes the plane to flying' do
+      allow(subject).to receive(:stormy?) { false }
       subject.land plane
       expect { subject.takeoff }.to change { plane.flying }.to true
     end
@@ -80,7 +83,10 @@ describe Airport do
     end
 
     it 'raises an error when the weather is stormy' do
-      expect { subject.takeoff }.to raise_error "Unable to take off due to stormy weather"
+      airport = Airport.new
+      airport.land plane
+      allow(airport).to receive(:stormy?) { true }
+      expect { airport.takeoff }.to raise_error "Unable to take off due to stormy weather"
     end
   end
 end

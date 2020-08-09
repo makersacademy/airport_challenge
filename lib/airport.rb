@@ -24,6 +24,8 @@ class Airport
   def takeoff
     fail "No planes are at the airport" if empty?
 
+    fail "Unable to take off due to stormy weather" if stormy?
+
     planes[-1].set_as_flying
     planes.pop
   end
@@ -40,5 +42,9 @@ class Airport
 
   def empty?
     planes.empty?
+  end
+
+  def stormy?
+    weather_conditions.weather == "stormy"
   end
 end
