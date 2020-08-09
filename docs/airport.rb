@@ -1,18 +1,29 @@
+
 class Airport
-    attr_reader :plane
-    attr_reader :capacity
+
+attr_reader :planes
+attr_reader :capacity
+DEFAULT_CAPACITY = 20
    
-def intialize(capacity = 20)
+  def intialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @plane = 0
-    end 
+    @planes = []
+  end 
 
-def land(plane)
-    fail "Cannot land plane: airport is full" if @plane
-    @plane = plane
-    end 
+  def land(plane)
+    fail "Cannot land plane: airport is full" if @planes
+    @planes = plane
+  end 
 
-def take_off(plane)
-    end 
+  def take_off(plane)
+  end 
+
+  def full
+    @planes.count >= DEFAULT_CAPACITY
+  end 
+
+  def plane_at_the_airport(plane)
+    @planes.include?(plane)
+  end
 
 end 

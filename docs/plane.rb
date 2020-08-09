@@ -3,14 +3,14 @@ class Plane
     attr_reader :planes_landed
   
     def intialize(plane)
-        @planes_landed = 0
-        end 
+        @planes_landed 
+    end 
 
     def report_if_taken_off
-     @departed = true
+        @departed = true
     end
 
     def departed?(plane)
-    @departed
+        @departed
     end
 end 
