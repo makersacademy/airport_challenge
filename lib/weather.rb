@@ -1,5 +1,6 @@
 class Weather
+  attr_reader :condition
   def initialize
-    rand(1..10)
+    @condition = rand(1..10)
   end
 end
