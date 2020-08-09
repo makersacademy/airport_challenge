@@ -12,6 +12,8 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
 
+    raise "Plane not flying" if plane.at_airport?
+
     plane.landed
     @planes << plane
   end
