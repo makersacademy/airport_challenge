@@ -1,13 +1,16 @@
 class Plane
-  def at_airport?
-    @at_airport
+
+  def initialize
+    @flying = true
   end
 
-  def flying
-    @at_airport = false
+  attr_reader :flying
+
+  def is_flying
+    @flying = true
   end
 
   def landed
-    @at_airport = true
+    @flying = false
   end
 end

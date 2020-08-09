@@ -12,16 +12,18 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
 
-    raise "Plane not flying" if plane.at_airport?
+    raise "Plane not flying" unless plane.flying
 
     plane.landed
     @planes << plane
   end
 
   def take_off(plane)
-    raise "Plane not in airport" unless @planes.include?(plane)
+    raise "Plane not in airport" unless at_airport(plane)
 
-    plane.flying
+    #raise "Plane already flying" if plane.flying?
+
+    plane.is_flying
     @planes.pop
   end
 
@@ -31,5 +33,10 @@ class Airport
   def full?
     @planes.count >= DEFAULT_CAPACITY
   end
+
+  def at_airport(plane)
+    @planes.include?(plane)
+  end
+
 
 end

@@ -7,14 +7,20 @@ describe Plane do
     expect(plane).to be_an_instance_of(Plane)
   end
 
-  describe "#at_airport?" do
-    it { is_expected.to respond_to :at_airport? }
+  describe "#flying" do
+    it { is_expected.to respond_to :flying }
 
-    it "is false when plane has taken off" do
+    it "is true when plane has taken off" do
       airport = Airport.new
       airport.land(subject)
       airport.take_off(subject)
-      expect(subject.at_airport?).to eq false
+      expect(subject.flying).to eq true
+    end
+
+    it "is false when plane has landed" do
+      airport = Airport.new
+      airport.land(subject)
+      expect(subject.flying).to eq false
     end
   end
 
