@@ -12,36 +12,35 @@ describe Airport do
   end
 
   describe '#land' do
+    let(:plane)  { double :plane }
     it 'returns landed planes' do
-      plane = Plane.new
       expect(subject.land(plane)).to eq plane
     end
 
     it 'raises an error if the airport is full' do
 
-        subject.capacity.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error 'airport is full'
+        subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'airport is full'
     end
+
+   
   end
 
   describe '#take_off' do
+    let(:plane)  { double :plane }
     it 'allows a plane to take off' do
-        plane = Plane.new
+        
         subject.land(plane)
         expect(subject.take_off).to eq plane
     end
 
     it 'plane will not be in the airport' do
-        plane = Plane.new
+        
         subject.land(plane)
         subject.take_off
         expect(subject.planes).not_to include plane
     end
 
-    it 'raises an error if weather is stormy' do
-        plane = Plane.new
-        subject.land(plane)
-        expect { subject.take_off('stormy') }.to raise_error 'too stormy to take off'
-    end
+   
   end
 end
