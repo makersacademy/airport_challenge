@@ -10,9 +10,9 @@ class Airport
     end
 
 
-    def land(plane)
+    def land(plane, weather)
         fail 'airport is full' if full?
-        
+        fail 'too stormy to land' if weather.stormy? == true
           @planes.push(plane)
           @planes[@planes.length - 1]
     
@@ -21,9 +21,10 @@ class Airport
     def take_off(weather)
        
        fail 'too stormy to take off' if weather.stormy? == true
-        if weather.stormy?
+        if weather.stormy? == false
           @planes.pop()
         end
+        
     end
 
 

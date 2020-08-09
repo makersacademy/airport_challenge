@@ -13,18 +13,23 @@ describe Airport do
 
   describe '#land' do
     let(:plane)  { double :plane }
-    
+    let(:weather) { double :weather }
     it 'returns landed planes' do
-      expect(subject.land(plane)).to eq plane
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(subject.land(plane, weather)).to eq plane
     end
 
     it 'raises an error if the airport is full' do
-
-        subject.capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'airport is full'
+        allow(weather).to receive(:stormy?).and_return(false)
+        subject.capacity.times { subject.land(plane, weather) }
+      expect { subject.land(plane, weather) }.to raise_error 'airport is full'
     end
-
- 
+   
+    it 'raises an error when stormy' do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane, weather) }.to raise_error 'too stormy to land'
+    end
+   
    
   end
 
@@ -33,20 +38,16 @@ describe Airport do
     let(:weather) { double :weather }
     it 'allows a plane to take off' do
         allow(weather).to receive(:stormy?).and_return(false)
-        subject.land(plane)
+        subject.land(plane, weather)
         expect(subject.take_off(weather)).to eq plane
     end
 
-    it 'plane will not be in the airport' do
-        allow(weather).to receive(:stormy?).and_return(false)
-        subject.land(plane)
-        subject.take_off(weather)
-        expect(subject.planes).not_to include plane
-    end
+    
     
     it 'raises an error when stormy' do
+        allow(weather).to receive(:stormy?).and_return(false)
+        subject.land(plane, weather)
         allow(weather).to receive(:stormy?).and_return(true)
-        subject.land(plane)
         expect { subject.take_off(weather) }.to raise_error 'too stormy to take off'
     end
    
