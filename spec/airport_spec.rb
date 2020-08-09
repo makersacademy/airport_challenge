@@ -16,6 +16,8 @@ describe Airport do
     expect(airport.capacity).to eq 10
   end
 
+  it { is_expected.to respond_to(:weather) }
+
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
