@@ -12,6 +12,12 @@ describe Airport do
 		  expect(subject.land(plane)).to eq [plane]
 		end
 
+		it 'prevention of landing if Airport full' do
+			30.times { subject.land(Plane.new) }
+			expect { subject.land Plane.new }.to raise_errpr 'Airport Full'
+		end
+
+
 
 	end
 
