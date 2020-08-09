@@ -2,10 +2,10 @@ class Weather
   attr_reader :weather
 
   def initialize
-    @weather = rand(1..10)
+    @weather = conditions.sample
   end
 
-  def conditions(_number = 1)
-    ["sunny"]
+  def conditions
+    ["sunny", "sunny", "stormy", "sunny", "sunny", "stormy"]
   end
 end

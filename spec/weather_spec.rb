@@ -10,22 +10,19 @@ describe Weather do
   it { is_expected.to respond_to :conditions }
 
   describe '#initialize' do
-    it 'returns a number between 1 and 10' do
-      expect(subject.weather).to be_between(1, 10)
+    it 'returns a random weather value' do
+      allow(Weather.new).to receive(:condition) { "stormy" }
     end
   end
 
   describe '#condition' do
-    it 'returns a string' do
+    it 'is an array type' do
       expect(subject.conditions).to be_a Array
     end
 
-    it 'returns a weather type' do
-      expect(subject.conditions(1)).to eq ["sunny"]
-    end
-
-    it 'returns the stormy value when given 3' do
-      allow(subject).to receive(:condition).with(3).and_return("stormy")
+    it 'always returns a string type' do
+      index = rand(0..5)
+      expect(subject.conditions[index]).to be_a String
     end
   end
 end

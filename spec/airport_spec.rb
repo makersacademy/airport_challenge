@@ -21,6 +21,10 @@ describe Airport do
       airport = Airport.new(20)
       expect(airport.capacity).to eq 20
     end
+
+    it 'initializes with a weather condition' do
+      expect(subject.weather_conditions). to be_kind_of Weather
+    end
   end
 
   describe '#land' do
