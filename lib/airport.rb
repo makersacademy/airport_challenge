@@ -28,6 +28,8 @@ class Airport
 
     fail "Unable to take off due to stormy weather" if stormy?
 
+    puts "The plane has left the airport"
+
     planes[-1].set_as_flying
     planes.pop
   end
