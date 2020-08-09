@@ -17,7 +17,7 @@ describe Airport do
   end
 
   it 'allows capacity to be altered' do
-    expect(subject.capacity=20).to eq(20)
+    expect(subject.capacity = 20).to eq(20)
   end
 
   describe '#plane_lands' do
@@ -39,24 +39,17 @@ describe Airport do
   end
 
   describe '#plane_takes_off' do
-    it 'throws an error when there are no planes at the airport' do
-      plane = Plane.new
-      expect { subject.plane_takes_off(plane) }.to raise_error 'There are no planes at the airport'
-   end
     it 'throws an error when the weather is stormy' do
       subject.storm = true
       plane = Plane.new
       expect { subject.plane_takes_off(plane) }.to raise_error 'It is too stormy to take off'
     end
+    it 'throws an error when the plane has not landed yet' do
+      plane = Plane.new
+      allow(plane).to receive(:at_airport).and_return(false)
+      subject.plane_lands(plane)
+      expect { subject.plane_takes_off(plane) }.to raise_error 'The plane has already taken off'
+    end
   end
-
-#  let(:plane2) {double :plane, :at_airport= => true, at_airport?: true}
-#  it "Raise error if plane not at airport and try to takeoff" do
-#    weather = Weather.new
-#    plane = Plane.new
-#    allow(plane2).to receive(:at_airport).and_return(true)
-#    expect{ subject.plane_takes_off(weather) }.to raise_error "Airplane is not at this airport"
-#  end
-
 
 end

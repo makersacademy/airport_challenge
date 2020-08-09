@@ -7,11 +7,11 @@ class Airport
 
   attr_accessor :capacity, :storm
 
-  def initialize(capacity=DEFAULT_CAPACITY)
-   @planes_at_airport = []
-   @capacity = capacity
-   weather_today = Weather.new
-   @weather = weather_today.storm
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes_at_airport = []
+    @capacity = capacity
+    weather_today = Weather.new
+    @weather = weather_today.storm
   end
 
   def plane_lands(plane)
@@ -25,7 +25,7 @@ class Airport
 
   def plane_takes_off(plane)
     fail 'It is too stormy to take off' if storm
-    fail 'There are no planes at the airport' if airport_empty
+    fail 'The plane has already taken off' unless plane.at_airport? == true
     @planes_at_airport.pop
   end
 
@@ -40,15 +40,5 @@ class Airport
   def airport_empty
     @planes_at_airport.empty?
   end
-
-#  def check_plane(plane)
-  #  plane.each_with_index do |check,index|
-  #    next unless check == plane
-  #    planes_at_airport.delete_at(index)
-  #    plane.at_airport? == false
-  #    return plane
-  #  end
-#  end
-
 
 end
