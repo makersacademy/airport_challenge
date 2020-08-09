@@ -5,9 +5,6 @@ class Airport
     attr_reader :capacity
     DEFAULT_CAPACITY = 50
     def initialize(capacity= DEFAULT_CAPACITY)
-        @weather = Weather.new
-        
-        
         @capacity = capacity
         @planes = []
     end
@@ -19,9 +16,9 @@ class Airport
         @planes[@planes.length - 1]
     end
 
-    def take_off
-        @weather.condition
-        p @weather.condition
+    def take_off(weather)
+       
+       fail 'too stormy to take off' if weather.stormy? == true
         
        @planes.pop()
     end

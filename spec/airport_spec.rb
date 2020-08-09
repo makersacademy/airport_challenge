@@ -28,19 +28,25 @@ describe Airport do
 
   describe '#take_off' do
     let(:plane)  { double :plane }
+    let(:weather) { double :weather }
     it 'allows a plane to take off' do
-        
+        allow(weather).to receive(:stormy?).and_return(false)
         subject.land(plane)
-        expect(subject.take_off).to eq plane
+        expect(subject.take_off(weather)).to eq plane
     end
 
     it 'plane will not be in the airport' do
-        
+        allow(weather).to receive(:stormy?).and_return(false)
         subject.land(plane)
-        subject.take_off
+        subject.take_off(weather)
         expect(subject.planes).not_to include plane
     end
-
+    
+    it 'raises an error when stormy' do
+        allow(weather).to receive(:stormy?).and_return(true)
+        subject.land(plane)
+        expect { subject.take_off(weather) }.to raise_error 'too stormy to take off'
+    end
    
   end
 end
