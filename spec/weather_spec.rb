@@ -21,7 +21,12 @@ describe Weather do
     end
 
     it 'returns a weather type' do
-      expect(subject.condition).to eq "sunny"
+      expect(subject.condition(1)).to eq 'sunny'
+    end
+
+    it 'returns the stormy value when given 3' do
+      test = double('3')
+      allow(test).to receive(:condition) { 'stormy' }
     end
   end
 end
