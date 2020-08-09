@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :flying
+  attr_reader :flying
 
   def flying?
     @flying = true

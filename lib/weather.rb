@@ -1,11 +1,11 @@
 class Weather
-  attr_reader :generator
+  attr_reader :weather
 
   def initialize
-    @generator = rand(1..10)
+    @weather = rand(1..10)
   end
 
-  def condition
-    "sunny"
+  def conditions(_number = 1)
+    ["sunny"]
   end
 end

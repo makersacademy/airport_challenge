@@ -6,27 +6,26 @@ describe Weather do
     expect(weather).to be_kind_of(Weather)
   end
 
-  it { is_expected.to respond_to :generator }
-  it { is_expected.to respond_to :condition }
+  it { is_expected.to respond_to :weather }
+  it { is_expected.to respond_to :conditions }
 
   describe '#initialize' do
     it 'returns a number between 1 and 10' do
-      expect(subject.generator).to be_between(1, 10)
+      expect(subject.weather).to be_between(1, 10)
     end
   end
 
   describe '#condition' do
     it 'returns a string' do
-      expect(subject.condition).to be_a String
+      expect(subject.conditions).to be_a Array
     end
 
     it 'returns a weather type' do
-      expect(subject.condition(1)).to eq 'sunny'
+      expect(subject.conditions(1)).to eq ["sunny"]
     end
 
     it 'returns the stormy value when given 3' do
-      test = double('3')
-      allow(test).to receive(:condition) { 'stormy' }
+      allow(subject).to receive(:condition).with(3).and_return("stormy")
     end
   end
 end
