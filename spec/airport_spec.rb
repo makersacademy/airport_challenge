@@ -5,7 +5,7 @@ describe Airport do
   let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to :takeoff }
+  it { is_expected.to respond_to :take_off }
   it { is_expected.to respond_to :weather_update }
 
   it 'can create an instance of Airport' do
@@ -81,9 +81,9 @@ describe Airport do
     end
   end
 
-  describe '#takeoff' do
+  describe '#take_off' do
     it 'raises an error when there are no planes' do
-      expect { subject.takeoff }.to raise_error "No planes are at the airport"
+      expect { subject.take_off }.to raise_error "No planes are at the airport"
     end
 
     context 'when the weather is sunny' do
@@ -93,7 +93,7 @@ describe Airport do
 
       it 'has a plane take off' do
         subject.land plane
-        expect(subject.takeoff).to eq plane
+        expect(subject.take_off).to eq plane
       end
   
       it 'decreases in count after take off' do
@@ -102,7 +102,7 @@ describe Airport do
         subject.land plane
         initial_count = subject.planes.count
   
-        subject.takeoff
+        subject.take_off
         final_count = subject.planes.count
   
         expect(initial_count - final_count).to eq difference
@@ -110,7 +110,7 @@ describe Airport do
   
       it 'changes the plane to flying' do
         subject.land plane
-        expect { subject.takeoff }.to change { plane.flying }.to true
+        expect { subject.take_off }.to change { plane.flying }.to true
       end
     end
 
@@ -122,7 +122,7 @@ describe Airport do
       it 'raises an error' do
         subject.land plane
         allow(subject).to receive(:stormy?) { true }
-        expect { subject.takeoff }.to raise_error "Unable to take off due to stormy weather"
+        expect { subject.take_off }.to raise_error "Unable to take off due to stormy weather"
       end
     end
   end

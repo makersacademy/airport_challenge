@@ -23,7 +23,7 @@ class Airport
     planes << plane
   end
 
-  def takeoff
+  def take_off
     fail "No planes are at the airport" if empty?
 
     fail "Unable to take off due to stormy weather" if stormy?
