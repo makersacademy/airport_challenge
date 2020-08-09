@@ -12,9 +12,10 @@ describe Airport do
     expect(subject).to respond_to(:land)
   end
 
-  it "Expects Plane to respond to land" do
+  it "Expects a plane to land at airport" do
     airport = Airport.new
     plane = Plane.new
-    expect(plane).to respond_to(:land)
+    subject.land(plane)
+    expect(airport.land(plane)).to eq(plane)
   end
 end
