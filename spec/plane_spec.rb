@@ -12,6 +12,7 @@ describe Plane do
 
     it "is false when plane has taken off" do
       airport = Airport.new
+      airport.land(subject)
       airport.take_off(subject)
       expect(subject.at_airport?).to eq false
     end
