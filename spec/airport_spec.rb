@@ -1,21 +1,8 @@
 require './docs/airport'
 require './docs/plane'
 
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy 
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy 
-
-
-
 describe Airport do 
+    subject(:airport) { described_class.new }
  # creates an Airport instance 
  it 'makes an instance of the Airport' do
     airport = Airport.new
@@ -25,21 +12,33 @@ describe Airport do
 
 it 'instruct a plane to land at the airport' do
     # I want to instruct a plane to land at an airport
-    airport = Airport.new
-    expect(airport).to respond_to(:land)
+    # airport = Airport.new- replaced with 'subject'
+    expect(airport).to respond_to(:land).with(1).argument
     end
+
 
 it 'instruct a plane to take off from the airport' do
 # I want to instruct a plane to take off from an airport 
-    airport = Airport.new
-    expect(airport).to respond_to(:take_off)
+    expect(airport).to respond_to(:take_off).with(1).argument
     end
 
     
-# it 'raises an exception when airport is full' do
-# # I want to prevent landing when the airport is full 
+#   it 'does not allow a plane to land when airport is full' do
+#    I want to prevent landing when the airport is full 
 #     airport = Airport.new
-#     airport.capacity.times { airport.land(plane) }
-#     expect { airport.land(plane) }.to raise_error('Unable to land, airport capacity full')
+#     plane = Plane.new
+#     20.times do
+#     airport.land(plane)
 #     end
+
+#     expect{ airport.land(plane) }.to raise_error 'Unable to land, airport capacity full'
+#     #  airport = Airport.new(20)
+#     # airport.capacity.times { airport.land(plane) }
+#     # expect { airport.land(plane) }.to raise_error('Unable to land, airport capacity full')
+#     end
+
+
+# it "prevents plane landing when airport full" do
+#     expect { airport.land(plane) }.to raise_error "Cannot land plane: airport is full"
+#   end
 end 

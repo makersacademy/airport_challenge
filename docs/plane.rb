@@ -1,7 +1,7 @@
 class Plane
 
     def report_if_taken_off
-    @departed = true
+     @departed = true
     end
 
     def departed?

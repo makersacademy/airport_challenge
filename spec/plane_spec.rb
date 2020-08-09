@@ -10,4 +10,5 @@ it 'checks whether a plane left the airport after departure' do
     plane = Plane.new
     expect(plane).to respond_to(:departed?)
     end
+
 end
