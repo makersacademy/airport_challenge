@@ -35,7 +35,7 @@ describe Airport do
     end
 
     it 'raises an error when the airport is full' do
-      10.times { subject.land Plane.new }
+      Airport::DEFAULT_CAPACITY.times { subject.land Plane.new }
       expect { subject.land plane }.to raise_error "Airport is full"
     end
 
