@@ -6,11 +6,11 @@ describe Weather do
     expect(weather).to be_kind_of(Weather)
   end
 
-  it { is_expected.to respond_to :condition }
+  it { is_expected.to respond_to :generator }
 
   describe '#initialize' do
     it 'returns a number between 1 and 10' do
-      expect(subject.condition).to be_between(1, 10)
+      expect(subject.generator).to be_between(1, 10)
     end
   end
 end
