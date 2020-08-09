@@ -18,8 +18,8 @@ class Airport
     @planes << plane
   end
 
-  def take_off
-    @planes.last.flying
+  def take_off(plane)
+    plane.flying
     @planes.pop
   end
 
