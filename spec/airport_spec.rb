@@ -11,6 +11,11 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "capacity can be changed" do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
+  end
+
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
