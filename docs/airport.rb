@@ -1,15 +1,15 @@
 class Airport
-    attr_reader :planes_landed
+    attr_reader :plane
     attr_reader :capacity
    
 def intialize(capacity = 20)
     @capacity = capacity
-    @planes_landed = 0
+    @plane = 0
     end 
 
 def land(plane)
-    fail "Cannot land plane: airport is full" if full? @planes_landed > @capacity
-    @planes_landed += 1
+    fail "Cannot land plane: airport is full" if @plane
+    @plane = plane
     end 
 
 def take_off(plane)

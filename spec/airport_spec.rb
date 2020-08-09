@@ -22,6 +22,12 @@ it 'instruct a plane to take off from the airport' do
     expect(airport).to respond_to(:take_off).with(1).argument
     end
 
+it 'raises an error when capacity of planes full' do
+    
+    airport.land(Plane.new)
+    expect { subject.land Plane.new }.to raise_error 'Cannot land plane: airport is full'
+    end
+
 # it 'does not allow a plane to land when airport is full' do
 # #    I want to prevent landing when the airport is full 
 # #     airport = Airport.new
