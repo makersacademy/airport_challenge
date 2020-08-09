@@ -7,6 +7,6 @@ describe Plane do
     expect(plane).to be_an_instance_of(Plane)
   end
 
-  it { is expected.to respond_to :at_airport? }
+  it { is_expected.to respond_to :at_airport? }
 
 end
