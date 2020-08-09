@@ -78,5 +78,9 @@ describe Airport do
     it 'raises an error when there are no planes' do
       expect { subject.takeoff }.to raise_error "No planes are at the airport"
     end
+
+    it 'raises an error when the weather is stormy' do
+      expect { subject.takeoff }.to raise_error "Unable to take off due to stormy weather"
+    end
   end
 end
