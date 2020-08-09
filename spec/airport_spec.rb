@@ -19,6 +19,10 @@ describe Airport do
     expect(airport.land(plane)).to eq([])
   end
 
+  it "Expects Airport to respond_to take_off method" do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
   it "Expects a plane to take off from the airport" do
     airport = Airport.new
     plane = Plane.new
