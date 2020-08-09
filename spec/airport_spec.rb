@@ -41,7 +41,7 @@ describe Airport do
 
   describe '#weather_update' do
     it 'returns a new state of weather' do
-      expect(subject.weather_update).to be_kind_of Weather
+      expect(subject.weather_update).to eq("sunny").or eq("stormy")
     end
   end
 

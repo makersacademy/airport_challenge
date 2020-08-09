@@ -32,6 +32,10 @@ class Airport
     planes.pop
   end
 
+  def weather_update
+    @weather_conditions = Weather.new.weather
+  end
+
   private
 
   def full?
