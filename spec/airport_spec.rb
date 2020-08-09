@@ -59,7 +59,7 @@ describe Airport do
   
       it 'raises an error if the plane has already landed' do
         duplicated_plane = Plane.new
-        subject.land duplicated_plane
+        duplicated_plane.set_as_landed
         expect { subject.land duplicated_plane }.to raise_error "This plane has already landed"
       end
     end
