@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Airport full" if @planes.count >= DEFAULT_CAPACITY
+    raise "Airport full" if full?
     plane.landed
     @planes << plane
   end
@@ -21,5 +21,10 @@ class Airport
   end
 
   attr_reader :planes, :capacity
+
+  private
+  def full?
+    @planes.count >= DEFAULT_CAPACITY
+  end
 
 end
