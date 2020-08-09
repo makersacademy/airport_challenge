@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
 	it { is_expected.to respond_to(:land).with(1).argument }
-	
+
 	it 'capacity has been set' do
 		expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
 	end
@@ -20,10 +20,7 @@ describe Airport do
 			30.times { subject.land(Plane.new) }
 			expect { subject.land Plane.new }.to raise_error 'Airport Full'
 		end
-
-
-
-	end
+  end
 
 	describe 'take_off' do
 
