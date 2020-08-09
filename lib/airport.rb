@@ -7,7 +7,9 @@ class Airport
   end
 
   def land(plane)
+  	fail 'Airport Full' if full?
     @planes << plane
+
   end
 
   def take_off
@@ -16,6 +18,16 @@ class Airport
     puts "#{plane} has left the Airport!"
     plane
   end
+
+
+
+  private
+
+  def full?
+  	@planes.length >= DEFAULT_CAPACITY
+  end
+
+  DEFAULT_CAPACITY = 30
 
 
 end
