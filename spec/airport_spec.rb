@@ -8,8 +8,7 @@ describe Airport do
   end
 
   it "should have a default capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to eq DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe "#land" do
@@ -17,11 +16,11 @@ describe Airport do
 
     it "lands a plane" do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq [plane]
     end
 
     it "should raise error if airport is full" do
-      DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport full")
     end
   end
@@ -37,12 +36,12 @@ describe Airport do
   end
 
   describe "#plane" do
-    it { is_expected.to respond_to(:plane) }
+    it { is_expected.to respond_to(:planes) }
 
-    it "returns plane if at airport" do
+    it "returns planes at airport" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.planes).to eq [plane]
     end
   end
 
