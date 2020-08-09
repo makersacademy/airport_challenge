@@ -3,6 +3,7 @@ require_relative 'plane'
 class Airport
 
   def land(plane)
+    raise "Airport full" if @plane
     @plane = plane
     plane.landed
     @plane
