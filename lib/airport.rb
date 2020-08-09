@@ -21,8 +21,6 @@ class Airport
   def take_off(plane)
     raise "Plane not in airport" unless at_airport(plane)
 
-    #raise "Plane already flying" if plane.flying?
-
     plane.is_flying
     @planes.pop
   end
