@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+
   let(:plane) { Plane.new }
 
   it 'can create an instance of Airport' do
@@ -23,7 +24,18 @@ describe Airport do
     end
 
     it 'initializes with a weather condition' do
-      expect(subject.weather_conditions). to be_kind_of Weather
+      expect(subject.weather_conditions).to be_kind_of Weather
+    end
+
+    it 'returns a string weather condition' do
+      condition = subject.weather_conditions
+      expect(condition.weather).to be_kind_of String
+    end
+  end
+
+  describe '#stormy?' do
+    it 'returns a boolean value' do
+      expect(subject.send :stormy?).to be(true).or be(false)
     end
   end
 
@@ -31,19 +43,23 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'has a plane land' do
+      allow(subject).to receive(:stormy?) { false }
       expect(subject.land plane).to eq [plane]
     end
 
     it 'raises an error when the airport is full' do
+      allow(subject).to receive(:stormy?) { false }
       Airport::DEFAULT_CAPACITY.times { subject.land Plane.new }
       expect { subject.land plane }.to raise_error "Airport is full"
     end
 
     it 'sets a plane as landed' do
+      allow(subject).to receive(:stormy?) { false }
       expect { subject.land plane }.to change { plane.flying }.to false
     end
 
     it 'raises an error if the plane has already landed' do
+      allow(subject).to receive(:stormy?) { false }
       duplicated_plane = Plane.new
       subject.land duplicated_plane
       expect { subject.land duplicated_plane }.to raise_error "This plane has already landed"
@@ -51,7 +67,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.land plane }.to raise_error "Unable to land due to stormy landing"
+      expect { subject.land plane }.to raise_error "Unable to land due to stormy weather"
     end
   end
 
@@ -89,6 +105,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do
       airport = Airport.new
+      allow(airport).to receive(:stormy?) { false }
       airport.land plane
       allow(airport).to receive(:stormy?) { true }
       expect { airport.takeoff }.to raise_error "Unable to take off due to stormy weather"

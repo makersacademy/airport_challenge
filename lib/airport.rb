@@ -17,6 +17,8 @@ class Airport
 
     fail "This plane has already landed" if duplicate? plane
 
+    fail "Unable to land due to stormy weather" if stormy?
+
     plane.set_as_landed
     planes << plane
   end
