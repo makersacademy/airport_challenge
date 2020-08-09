@@ -1,5 +1,5 @@
 class Weather
-  def condition
+  def initialize
     rand(1..10)
   end
 end

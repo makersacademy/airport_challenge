@@ -10,7 +10,7 @@ describe Airport do
 
   describe '#initialize' do
     it 'initializes with an empty planes array' do
-      expect(subject.planes).to eq []
+      expect(subject.planes).to be_empty
     end
 
     it 'initializes with a default capacity, if not provided' do
