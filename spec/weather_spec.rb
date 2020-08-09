@@ -21,7 +21,7 @@ describe Weather do
     end
 
     it 'returns a weather type' do
-      allow(subject.condition).to receive(3) { "sunny" }
+      expect(subject.condition).to eq "sunny"
     end
   end
 end
