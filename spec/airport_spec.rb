@@ -7,4 +7,6 @@ describe Airport do
     expect(airport).to be_an_instance_of(Airport)
   end
 
+  it { is_expected.to respond_to(:land).with(1).argument }
+
 end
