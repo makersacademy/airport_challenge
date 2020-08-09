@@ -26,13 +26,9 @@ describe Airport do
       expect(airport.capacity).to eq 20
     end
 
-    it 'initializes with a weather condition' do
-      expect(subject.weather_conditions).to be_kind_of Weather
-    end
-
     it 'returns a string weather condition' do
       condition = subject.weather_conditions
-      expect(condition.weather).to be_kind_of String
+      expect(condition).to be_kind_of String
     end
   end
 
