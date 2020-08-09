@@ -1,11 +1,16 @@
 
+class Weather
 
-def weather
-	
+  def generate
+    i = rand(1..10)
 
+    if i < 8
+  	  w = "sunny"
+    else
+  	  w = "stormy"
+    end
 
-	sunny = (1..7)
-  stormy = (8-10)
-
+    w
+  end
 
 end
