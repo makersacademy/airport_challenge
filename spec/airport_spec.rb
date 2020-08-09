@@ -19,10 +19,13 @@ describe Airport do
 
 		it 'plane has left the airport' do
 			plane = Plane.new
+			subject.land(plane)
 			expect(subject.take_off).to eq plane
 		end
 
-
+		it 'raises error if no planes available' do
+			expect { subject.take_off }.to raise_error('No planes available')
+		end
 	end
 
 
