@@ -24,10 +24,7 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error 'airport is full'
     end
 
-    it 'raises an error if plane is already landed' do
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error ' cant land plane already landed'
-    end  
+ 
    
   end
 

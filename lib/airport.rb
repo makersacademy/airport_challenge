@@ -13,8 +13,9 @@ class Airport
     def land(plane)
         fail 'airport is full' if full?
         
-        @planes.push(plane)
-        @planes[@planes.length - 1]
+          @planes.push(plane)
+          @planes[@planes.length - 1]
+    
     end
 
     def take_off(weather)
