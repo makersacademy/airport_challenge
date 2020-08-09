@@ -15,7 +15,7 @@ class Airport
   def land(plane)
     fail "Airport is full" if full?
 
-    fail "This plane has already landed" if plane::flying == false
+    fail "This plane has already landed" if landed? plane
 
     fail "Unable to land due to stormy weather" if stormy?
 
@@ -36,6 +36,10 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def landed?(value_to_check)
+    value_to_check::flying == false
   end
 
   def empty?
