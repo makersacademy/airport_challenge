@@ -1,3 +1,5 @@
+require 'plane'
+
 describe Plane do
 
   it "plane exists" do
