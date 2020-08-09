@@ -13,6 +13,7 @@ describe Airport do
 
   describe '#land' do
     let(:plane)  { double :plane }
+    
     it 'returns landed planes' do
       expect(subject.land(plane)).to eq plane
     end
@@ -23,6 +24,10 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error 'airport is full'
     end
 
+    it 'raises an error if plane is already landed' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error ' cant land plane already landed'
+    end  
    
   end
 
