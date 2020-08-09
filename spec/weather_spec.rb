@@ -2,18 +2,18 @@ require 'weather'
 require 'airport'
 
 describe Weather do 
+
+  it { is_expected.to respond_to(:stormy?) } 
   
-  it { is_expected.to respond_to(:generate) } 
+  describe 'stormy?' do
+  	it 'returns sunny' do
+  		expect(Weather.stormy?).to be "sunny"
+  	end
 
-  it 'returns sunny when method is called on class' do
-  	current = Weather.new
-    allow(current).to receive(:generate).and_return("sunny")
+    it 'returns stormy' do
+    	expect(Weather.stormy?).to be "stormy"
+    end
 
-    expect(current.generate).to eq("sunny")
   end
 
-  it 'returns stormy when method is passed integer > 7' do
-  	expect(subject.generate).to eq("stormy")
-  end
- 
 end

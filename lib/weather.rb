@@ -1,14 +1,18 @@
-
 class Weather
+  attr_reader :weather
 
-  def generate
-  	i = rand(1..10)
+  def initialize
+  	@weather = current_conditions
+  end
+
+  def current_conditions
+    i = rand(1..10)
     if i < 8
-  	  w = "sunny"
+  	  return "sunny"
     else
-  	  w = "stormy"
+  	  return "stormy"
     end
-    w
+
   end
 
 end

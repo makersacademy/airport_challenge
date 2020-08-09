@@ -4,26 +4,27 @@ require_relative 'weather'
 class Airport
 
   DEFAULT_CAPACITY = 30
+  attr_reader :planes
   attr_reader :capacity
-  attr_reader :current_conditions
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @current_conditions = Weather.new.generate
+    @weather = Weather.new
 
   end
 
   def land(plane)
   	fail 'Airport Full' if full?
-    @weather = weather
-    fail 'Weather stormy' if current_conditions == "stormy"
+    fail 'Weather is Stormy' if bad_weather? == "stormy"
     @planes << plane
 
   end
 
   def take_off
   	fail 'No planes available' if @planes.count == 0
+    fail 'Weather is Stormy' if bad_weather? == "stormy"
     plane = @planes.pop
     puts "#{plane} has left the Airport!"
     plane
@@ -35,8 +36,8 @@ class Airport
   	@planes.count >= capacity
   end
 
-  def weather
-    current_conditions = @weather
+  def bad_weather?
+    Weather.stormy?
   end 
 
 end
