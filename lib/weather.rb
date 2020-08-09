@@ -1,7 +1,14 @@
 require_relative 'airport'
 
 class Weather
+
+  attr_reader :storm
+
+  def initialize
+     [@storm = true, @storm = false].sample
+  end
+
   def stormy?
-    @capacity.times { rand(true, false) }
+    storm
   end
 end

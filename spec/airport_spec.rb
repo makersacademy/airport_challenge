@@ -31,20 +31,22 @@ describe Airport do
       allow(plane).to receive(:at_airport?).and_return(true)
       expect { subject.plane_lands(plane) }.to raise_error 'Plane is already at the airport'
     end
+    it 'throws an error when the weather is stormy' do
+      subject.storm = true
+      plane = Plane.new
+      expect { subject.plane_lands(plane) }.to raise_error 'It is too stormy to land'
+    end
   end
 
   describe '#plane_takes_off' do
     it 'throws an error when there are no planes at the airport' do
       plane = Plane.new
-      weather = Weather.new
-      expect { subject.plane_takes_off(weather) }.to raise_error 'There are no planes at the airport'
+      expect { subject.plane_takes_off(plane) }.to raise_error 'There are no planes at the airport'
    end
     it 'throws an error when the weather is stormy' do
+      subject.storm = true
       plane = Plane.new
-      subject.plane_lands(plane)
-      weather = Weather.new
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { subject.plane_takes_off(weather) }.to raise_error 'It is too stormy to take off'
+      expect { subject.plane_takes_off(plane) }.to raise_error 'It is too stormy to take off'
     end
   end
 
