@@ -4,11 +4,12 @@ class Airport
   attr_accessor :landed_planes
   attr_accessor :weather
   attr_accessor :airport_capacity
+  DEFAULT_CAPACITY = 20
 
   # sets airport capacity to 20 as default
   # creates @weather set to sunny
   # creates empty array for landed planes
-  def initialize(default_capacity = 20)
+  def initialize(default_capacity = DEFAULT_CAPACITY)
     @landed_planes = []
     @weather = 'sunny'
     @airport_capacity = default_capacity
