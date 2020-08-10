@@ -19,7 +19,9 @@ class Airport
   end  
 
   def forecast?
-    return false if rand(2).zero?
+    weather = ["stormy", "sunny", "cloudy"]
+    
+    return false if weather[rand(3)] == "stormy" 
 
     true
   end
