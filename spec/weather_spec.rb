@@ -17,7 +17,9 @@ describe Weather do
 
     it "return false if forecast is sunny" do
       weather = Weather.new
+      p weather
       allow(weather).to receive(:forecast) { :sunny }
+      p weather
       expect(weather.stormy?).to be false
     end
   end

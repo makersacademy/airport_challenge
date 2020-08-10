@@ -4,12 +4,12 @@ class Weather
     forecast == :stormy
   end
 
-
   private
+
   OUTLOOKS = [:stormy,:fine,:clear,:sunny,:cloudy]
 
   def forecast
-    OUTLOOKS.sample
+    @weather = OUTLOOKS.sample
   end
 
 end

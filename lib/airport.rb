@@ -16,7 +16,7 @@ class Airport
 
     raise "Plane not flying" unless plane.flying
 
-    raise "Too stormy to land" if stormy?
+    #raise "Too stormy to land" if stormy?
 
     plane.landed
     @planes << plane
@@ -25,7 +25,7 @@ class Airport
   def take_off(plane)
     raise "Plane not in airport" unless at_airport(plane)
 
-    raise "Too stormy to take off" if stormy?
+    #raise "Too stormy to take off" if stormy?
 
     plane.is_flying
     @planes.pop
