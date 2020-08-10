@@ -19,14 +19,14 @@ describe Airport do
 		end
 
 		it 'prevention of landing if Airport full' do
-			allow(subject).to receive(:stormy?) { false }
-			30.times { subject.land(Plane.new) }
-			expect { subject.land Plane.new }.to raise_error 'Airport Full'
+		  allow(subject).to receive(:stormy?) { false }
+		  30.times { subject.land(Plane.new) }
+		  expect { subject.land Plane.new }.to raise_error 'Airport Full'
 		end
 
-    it 'error if plane attempting to land during "stormy" conditions' do
-  	  allow(subject).to receive(:stormy?) { true }
-      expect { subject.land Plane.new }.to raise_error "Weather is stormy"
+        it 'error if plane attempting to land during "stormy" conditions' do
+  	      allow(subject).to receive(:stormy?) { true }
+          expect { subject.land Plane.new }.to raise_error "Weather is stormy"
     end
   end
 
@@ -34,21 +34,24 @@ describe Airport do
 
 		it 'plane has left the airport' do
 			plane = Plane.new
+			allow(subject).to receive(:stormy?) { false }
 			subject.land(plane)
 			expect(subject.take_off).to eq plane
 		end
 
 		it 'raises error if no planes available' do
 			plane = Plane.new
+			allow(subject).to receive(:stormy?) { false }
 			expect { subject.take_off }.to raise_error('No planes available')
 		end
 
 		it 'take off raises an error if stormy' do
 			plane = Plane.new
+			allow(subject).to receive(:stormy?) { false }
 			subject.land(plane)
-      allow(subject).to receive(:stormy?) { true }
-      expect { subject.take_off }.to raise_error "Weather is stormy"
-    end
+			allow(subject).to receive(:stormy?) { true }
+            expect { subject.take_off }.to raise_error "Weather is stormy"
+        end
 
 	end
 end

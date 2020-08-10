@@ -1,17 +1,18 @@
 class Weather
-  attr_reader :weather
+  attr_reader :current_conditions
+
 
   def current_conditions
-
+    @condition = ""
     weather_type = ["stormy", "sunny", "sunny", "sunny", "stormy"]
-    @conditions << weather_type.sample
+    @condition = weather_type.sample
     #i = rand(1..10)
     #if i < 8
   	#  return "sunny"
     #else
   	#  return "stormy"
     #end
-    @conditions
+    @condition
 
   end
 
