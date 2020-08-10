@@ -10,6 +10,7 @@ attr_accessor :capacity
   end
 
   def land(plane)
+    fail "Airport is full" if @planes.length >= capacity
     @planes << plane
   end
 
