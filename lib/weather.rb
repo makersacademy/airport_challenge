@@ -4,8 +4,6 @@ class Weather
 
   attr_reader :storm
 
-  attr_accessor :capacity
-
   def initialize
     [@storm = true, @storm = false].sample
   end
@@ -13,4 +11,5 @@ class Weather
   def stormy?
     storm
   end
+  
 end

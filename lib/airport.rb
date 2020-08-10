@@ -18,6 +18,7 @@ class Airport
     fail 'It is too stormy to land' if storm
     fail 'Airport is full' if airport_full
     fail 'Plane is already at the airport' if plane.at_airport? == true
+
     plane.at_airport?
     @planes_at_airport << plane
 
@@ -26,6 +27,7 @@ class Airport
   def plane_takes_off(plane)
     fail 'It is too stormy to take off' if storm
     fail 'The plane has already taken off' unless plane.at_airport? == true
+    
     @planes_at_airport.pop
   end
 
