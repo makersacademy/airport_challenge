@@ -2,8 +2,11 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize
+attr_accessor :capacity
+
+  def initialize(capacity=1)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
