@@ -37,7 +37,7 @@ class Airport
   end
 
   def stormy?
-    @conditions == "stormy"
+    @weather == "stormy"
   end 
 
 end
