@@ -7,7 +7,7 @@ class Airport
   def initialize(capacity = 10)
     @capacity = capacity
     @plane = Array.new(capacity, Plane.new)
-    @weather = ""
+    @weather_generator = WeatherGenerator.new
   end
 
   def take_off(plane)
@@ -21,11 +21,9 @@ class Airport
     raise "This plane (#{plane}) has already landed" if @plane.include?(plane)
     raise "This airport (#{self}) has reached maximum capacity." if @capacity == 50
 
-    # @weather = WeatherGenerator.new.random_weather
-    # p @weather
 
-    # raise "It is stormy so unable to land at this airport" if @weather == "stormy"
-    @plane.push(plane)
+     raise "It is stormy so unable to land at this airport" if @weather_generator.random_weather == "stormy"
+     @plane.push(plane)
     "#{plane} has landed"
   end
 
