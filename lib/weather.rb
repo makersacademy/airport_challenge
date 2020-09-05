@@ -1,5 +1,5 @@
 class Weather
-	def initialize 
-	end 
-
+def stormy?
+	["stormy", "rainy", "sunny", "breezy"].sample == "stormy"
+end 
 end 

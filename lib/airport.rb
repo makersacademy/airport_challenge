@@ -23,6 +23,8 @@ def take_off(plane)
     plane.take_off
 end
 
+private
+
 def full?
     @airport_planes.length >= CAPACITY 
 end 
