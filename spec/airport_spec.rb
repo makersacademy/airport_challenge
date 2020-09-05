@@ -14,8 +14,7 @@ end
     
  it "raises an error when a plane is trying to land at a full airport" do
     airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
+    (Airport::CAPACITY).times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error("The airport is full")
  end 
 

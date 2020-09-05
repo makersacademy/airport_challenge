@@ -1,11 +1,14 @@
 #airport should resond to take off, land and should have a capacity
 #cannot take in flights or let flights to take off if the weather is stormy
-
+require "plane"
+require "weather"
 class Airport
 attr_reader :airport_planes, :capacity
 
-    def initialize (capacity = 1)
-    @capacity = capacity
+CAPACITY =  4
+
+    def initialize 
+    @capacity = CAPACITY
     @airport_planes = []
     end 
 
