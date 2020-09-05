@@ -11,6 +11,8 @@ class Plane
   end
 
   def take_off
+    @current_airport = nil
+    puts "The plane has departed"
   end
 
   private

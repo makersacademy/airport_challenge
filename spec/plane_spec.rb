@@ -7,7 +7,9 @@ I want to instruct a plane to land at an airport
 =end
 
 describe Plane do
-  # it { is_expected.to respond_to(:take_off) }
+
+  # land
+
   it "responds to land with a airport" do
     expect(subject).to respond_to(:land).with(1).argument
   end
@@ -19,7 +21,15 @@ describe Plane do
     end
   end
 
+  # take_off
+
   it "responds to take_off" do
     expect(subject).to respond_to(:take_off)
+  end
+
+  describe "#take_off" do
+    it "Confirms a plane as left the airport" do
+      expect { subject.take_off }.to output("The plane has departed\n").to_stdout
+    end
   end
 end
