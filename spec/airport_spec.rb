@@ -11,7 +11,7 @@ describe Airport do
 
   describe '#clear_landing(plane)' do
 
-    context "when airport has capacity" do
+    context 'when airport has capacity' do
       it { should respond_to(:clear_landing).with(1).argument }
 
       it 'stores the plane that landed' do
@@ -20,18 +20,18 @@ describe Airport do
       end
     end
 
-    context "when airport is full" do
-      # let(:small_airport) { small_airport = Airport.new(3); small_airport.clear_landing(plane) }
-      # 3.times { small_airport.clear_landing(plane) }
+    context 'when airport is full' do
 
-      it 'raises an error on landing request' do
-        small_airport = Airport.new(3)
-        3.times { small_airport.clear_landing(plane) }
-        expect { small_airport.clear_landing(plane) }.to raise_error("Airport is at capacity")
+      before(:context) do
+        capacity = 3
+        @small_airport = Airport.new(capacity)
+        capacity.times { @small_airport.clear_landing(PlaneDouble.new) }
       end
 
-      it 'does not land planes' do
-
+      it "raises error and doesn't store plane" do
+        full_error = "Airport is at capacity"
+        expect { @small_airport.clear_landing(plane) }.to raise_error(full_error)
+        expect(@small_airport.has_plane?(plane)).to eq false
       end
     end
   end
