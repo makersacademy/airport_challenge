@@ -2,6 +2,10 @@
 # a plane should take off
 
 class Plane 
-	def initialize 
+	
+	def land
+	end 
+
+	def take_off
 	end 
 end 
