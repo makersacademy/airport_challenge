@@ -26,27 +26,32 @@ describe Weather do
 
 
 
-    describe "Stormy weather" do
+    describe "Not stormy weather" do
 
 
-        context "Cannot land" do
-            it "If weather is stormy plane cannot land at airport" do
-                airport = Airport.new
-                weather = Weather.new
+        context "Can land" do
+            it "If weather is not stormy plane can land at airport" do
+                airport = Airport.new #default weather is not stormy
                 plane = Plane.new
                 expect {airport.land(plane).to raise_error "Stormy weather cannot land"}
                 
             end
         end
-        context "Cannot takeoff" do
+        context "Can takeoff" do
         end
     end 
 
 
-    describe "Not Stormy weather" do
-        context "Can land" do
+    describe "Stormy weather" do
+        context "Cannot land" do
+            it "If weather is stormy plane cannot land at airport" do
+                airport = Airport.new #default weather is not stormy
+                airport.set_stormy(true)
+                plane = Plane.new
+                expect {airport.land(plane).to raise_error "Stormy weather cannot land"}   
+            end
         end
-        context "Can takeoff" do
+        context "Cannot takeoff" do
         end
     end    
 end
