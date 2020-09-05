@@ -7,8 +7,8 @@ describe Airport do
 
   subject(:airport) { Airport.new }
   let(:plane) { PlaneDouble.new }
-  let(:sunny_weather ) { allow_any_instance_of(Airport).to receive(:rand).and_return(0) }
-  let(:stormy_weather) { allow(subject).to receive(:rand).and_return(9) }
+  let(:sunny_weather ) { allow_any_instance_of(Airport).to receive(:weather).and_return("sunny") }
+  let(:stormy_weather) { allow(subject).to receive(:weather).and_return("stormy") }
 
   # EXPECTED ERROR MESSAGES
   let(:airport_full) { 'Airport is at capacity' }
@@ -92,7 +92,7 @@ describe Airport do
 
       context 'weather is stormy' do
         before do
-          allow(subject).to receive(:rand).and_return(9)
+          stormy_weather
         end
 
         it "raises an error and retains plane at airport" do

@@ -1,5 +1,8 @@
-# require 'plane'
-#
-# describe Plane do
-#   # it has a status
-# end
+require 'plane'
+
+describe Plane do
+  describe '#land' do
+
+  end
+
+end
