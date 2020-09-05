@@ -13,15 +13,23 @@ CAPACITY =  4
     end 
 
 def land(plane)
-    raise "The airport is full" if @airport_planes.length >= @capacity
+    raise "The airport is full" if full?
     plane.land
     @airport_planes << @plane
 end
 
 def take_off(plane)
-    raise "There are no planes!" if @airport_planes.length.zero?
+    raise "There are no planes!" if empty?
     plane.take_off
 end
+
+def full?
+    @airport_planes.length >= CAPACITY 
+end 
+
+def empty?
+    @airport_planes.length.zero?
+end 
 
 end
 
