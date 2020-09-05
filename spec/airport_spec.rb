@@ -19,9 +19,21 @@ describe Airport do
         plane = Plane.new
         plane.land(airport)
         plane.take_off
-
         expect { plane.land(airport) }.not_to raise_error
       end
+    end
+  end
+
+  # capacity
+  describe "the airports capacity" do
+    it "Checks to see if airport capacity is default" do
+      airport = Airport.new
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "Checks to see if airport capacity is the capacity set by system designer" do
+      airport = Airport.new(25)
+      expect(airport.capacity).to eq 25
     end
   end
 end
