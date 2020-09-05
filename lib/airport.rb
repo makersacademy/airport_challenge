@@ -1,6 +1,10 @@
 class Airport
 
   def land(plane)
-    true
+    @planes = [plane]
+  end
+
+  def has_plane?(plane)
+    @planes.include?(plane)
   end
 end
