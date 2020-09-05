@@ -18,7 +18,7 @@ attr_accessor :airplanes, :capacity, :condition
 
     def land(plane)
         fail "You can't land, we're full!" if full?
-        fail "You can't land - the weather is crap!" if self.condition.crap_weather?
+    
         @airplanes << plane
     end
 

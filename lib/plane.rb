@@ -1,7 +1,6 @@
 class Planes
 
-    def land
-        is_it = Weather.new
-        is_it.crap_weather?
+    def land(in_flight = true)
+        in_flight
     end
 end

@@ -23,7 +23,8 @@ describe Airport do
         expect {subject.land Planes.new}.to raise_error "You can't land, we're full!"
     end
 
-    it "raises an error when trying to takeoff if airport is empty" do
-        expect {subject.takeoff}.to raise_error "There are no planes!"
+    it "Checks that DEFAULT_CAPACITY can be overridden." do
+        heathrow = Airport.new(1000)
+        expect(heathrow.capacity).to eq 1000
     end
 end
