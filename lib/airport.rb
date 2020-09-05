@@ -11,12 +11,13 @@ attr_reader :airport_planes, :capacity
 
 def land(plane)
     raise "The airport is full" if @airport_planes.length >= @capacity
+    plane.land
     @airport_planes << @plane
 end
 
-def take_off
+def take_off(plane)
     raise "There are no planes!" if @airport_planes.length.zero?
-    @airport_planes.pop
+    plane.take_off
 end
 
 end
