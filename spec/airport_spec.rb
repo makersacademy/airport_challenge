@@ -26,7 +26,7 @@ describe Airport do
 
       it 'raises an error on landing request' do
         small_airport = Airport.new(3)
-        small_airport.clear_landing(plane)
+        3.times { small_airport.clear_landing(plane) }
         expect { small_airport.clear_landing(plane) }.to raise_error("Airport is at capacity")
       end
 

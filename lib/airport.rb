@@ -2,10 +2,14 @@ class Airport
 
   def initialize(capacity = 20)
     @planes = []
+    @capacity = capacity
+    puts @capacity
   end
 
   def clear_landing(plane)
-    @planes = [plane]
+    raise "Airport is at capacity" if @planes.count == @capacity
+    @planes << plane
+    puts @planes.count
   end
 
   def has_plane?(plane)
