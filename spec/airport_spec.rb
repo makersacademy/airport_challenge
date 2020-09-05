@@ -7,35 +7,31 @@ describe Airport do
 
   subject(:airport) { Airport.new }
   let(:plane) { PlaneDouble.new }
-  # let(:sunny_weather ) { allow(subject).to receive(:rand).and_return(0) }
-  # let(:stormy_weather) { allow(subject).to receive(:rand).and_return(9) }
+  let(:sunny_weather ) { allow_any_instance_of(Airport).to receive(:rand).and_return(0) }
+  let(:stormy_weather) { allow(subject).to receive(:rand).and_return(9) }
 
   # EXPECTED ERROR MESSAGES
   let(:airport_full) { 'Airport is at capacity' }
   let(:plane_not_here) { 'Plane is not at this airport' }
   let(:stormy_error) { 'Weather is stormy and too unsafe' }
 
-
   describe '#clear_landing(plane)' do
+
+    before do
+      sunny_weather
+    end
 
     it { should respond_to(:clear_landing).with(1).argument }
 
     context 'airport has capacity' do
-      context 'weather is sunny' do
-        before do
-          allow(subject).to receive(:rand).and_return(0)
-        end
-
-        it 'stores the plane' do
-          subject.clear_landing(plane)
-
-          expect(subject.has_plane?(plane)).to eq true
-        end
+      it 'stores the plane' do
+        subject.clear_landing(plane)
+        expect(subject.has_plane?(plane)).to eq true
       end
 
       context 'weather is stormy' do
         before do
-          allow(subject).to receive(:rand).and_return(9)
+          stormy_weather
         end
 
         it 'raises an error and retains plane at airport' do
@@ -46,7 +42,6 @@ describe Airport do
 
     context 'airport is full' do
       it "raises error and doesn't store plane" do
-        allow(subject).to receive(:rand).and_return(0)
         Airport::DEFAULT_CAPACITY.times { subject.clear_landing(PlaneDouble.new) }
 
         expect { subject.clear_landing(plane) }.to raise_error(airport_full)
@@ -54,10 +49,9 @@ describe Airport do
       end
 
       context 'capacity lower than the default is set' do
-        it 'limit planes to the lower capacity' do
+        it 'limits planes to the lower capacity' do
           low_capacity = Airport::DEFAULT_CAPACITY / 5
           small_airport = Airport.new(low_capacity)
-          allow(small_airport).to receive(:rand).and_return(0)
 
           # fill airport to capacity
           low_capacity.times { small_airport.clear_landing(plane) }
@@ -68,10 +62,9 @@ describe Airport do
       end
 
       context 'capacity higher than the default is set' do
-        it 'limit planes at the higher capacity' do
+        it 'limits planes at the higher capacity' do
           high_capacity = Airport::DEFAULT_CAPACITY * 2
           large_airport = Airport.new(high_capacity)
-          allow(large_airport).to receive(:rand).and_return(0)
 
           # fill airport to capacity
           high_capacity.times { large_airport.clear_landing(plane) }
@@ -88,20 +81,13 @@ describe Airport do
 
     context 'plane is at the airport' do
       before do
-        # land plane at airport
+        sunny_weather
         subject.clear_landing(plane)
       end
 
-      context 'weather is sunny' do
-        before do
-          allow(subject).to receive(:rand).and_return(0)
-        end
-
-        it 'removes the departed plane' do
-          subject.clear_takeoff(plane)
-
-          expect(subject.has_plane?(plane)).to eq false
-        end
+      it 'removes the departed plane' do
+        subject.clear_takeoff(plane)
+        expect(subject.has_plane?(plane)).to eq false
       end
 
       context 'weather is stormy' do
