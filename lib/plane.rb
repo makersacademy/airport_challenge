@@ -1,5 +1,13 @@
 require_relative "airport"
 
+class Plane
+  def initialize
+  end
+
+  def land
+  end
+end
+
 =begin
 
 class Plane

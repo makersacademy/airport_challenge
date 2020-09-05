@@ -1,6 +1,5 @@
 require "airport"
 require "plane"
-require "weather"
 
 =begin
 describe Airport do
