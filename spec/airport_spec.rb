@@ -1,7 +1,10 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do
+  let(:plane) { Plane.new }
+
   describe "when the airport is full" do
     it "doesn't allow planes to land" do
       airport = Airport.new(5)
@@ -16,11 +19,21 @@ describe Airport do
     describe "and an airplane has taken off" do
       it "is no longer at capacity" do
         airport = Airport.new(1)
-        plane = Plane.new
         plane.land(airport)
+        allow(airport).to receive(:generate_weather) { "sunny" }
         plane.take_off
         expect { plane.land(airport) }.not_to raise_error
       end
+    end
+  end
+
+  # weather
+
+  describe "if the weather is stormy" do
+    it "does not allow planes to take off" do
+      airport = Airport.new(1)
+      allow(airport).to receive(:generate_weather) { "stormy" }
+      expect { airport.request_take_off(plane) }.to raise_error "Weather is stormy, unsuitable for take off"
     end
   end
 

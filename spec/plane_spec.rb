@@ -1,4 +1,6 @@
 require "plane"
+require "airport"
+require "weather"
 
 =begin
 As an air traffic controller 
@@ -7,6 +9,7 @@ I want to instruct a plane to land at an airport
 =end
 
 describe Plane do
+  let(:airport) { Airport.new(1) }
 
   # land
 
@@ -30,12 +33,13 @@ describe Plane do
 
   describe "#take_off" do
     it "Confirms a plane has left the airport" do
-      airport = Airport.new(1)
       subject.land(airport)
+      allow(airport).to receive(:generate_weather) { "sunny" }
       expect { subject.take_off }.to output("The plane has departed\n").to_stdout
     end
 
     it "raises an error if the plane is not at an airport" do
+      allow(airport).to receive(:generate_weather) { "sunny" }
       expect { subject.take_off }.to raise_error "This plane is already in the air"
     end
   end

@@ -1,6 +1,8 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
+  include Weather
   attr_reader :capacity
   DEFAULT_CAPACITY = 10
 
@@ -15,6 +17,7 @@ class Airport
   end
 
   def request_take_off(plane)
+    fail "Weather is stormy, unsuitable for take off" if stormy?
     deleted_plane = @planes.delete(plane)
     fail "Plane was not located at this airport" if deleted_plane.nil?
   end
@@ -24,6 +27,10 @@ class Airport
   def at_capacity?
     @planes.length >= @capacity
   end
+end
+
+def stormy?
+  self.generate_weather == "stormy"
 end
 
 =begin
