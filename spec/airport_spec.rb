@@ -4,23 +4,24 @@ require "weather"
 
 describe Airport do
   let(:plane) { Plane.new }
+  let(:airport) {
+    airport = Airport.new
+    allow(airport).to receive(:generate_weather) { "sunny" }
+    airport
+  }
 
   describe "when the airport is full" do
     it "doesn't allow planes to land" do
-      airport = Airport.new(5)
-      5.times do
+      Airport::DEFAULT_CAPACITY.times do
         plane = Plane.new
         plane.land(airport)
       end
-      plane = Plane.new
       expect { plane.land(airport) }.to raise_error "Airport is at capacity"
     end
 
     describe "and an airplane has taken off" do
       it "is no longer at capacity" do
-        airport = Airport.new(1)
         plane.land(airport)
-        allow(airport).to receive(:generate_weather) { "sunny" }
         plane.take_off
         expect { plane.land(airport) }.not_to raise_error
       end
@@ -31,16 +32,20 @@ describe Airport do
 
   describe "if the weather is stormy" do
     it "does not allow planes to take off" do
-      airport = Airport.new(1)
+      plane.land(airport)
       allow(airport).to receive(:generate_weather) { "stormy" }
       expect { airport.request_take_off(plane) }.to raise_error "Weather is stormy, unsuitable for take off"
+    end
+
+    it "does not allow landing" do
+      allow(airport).to receive(:generate_weather) { "stormy" }
+      expect { airport.request_landing(plane) }.to raise_error "Weather is stormy, unsuitable for landing"
     end
   end
 
   # capacity
   describe "the airports capacity" do
     it "Checks to see if airport capacity is default" do
-      airport = Airport.new
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
@@ -49,34 +54,54 @@ describe Airport do
       expect(airport.capacity).to eq 25
     end
   end
-end
 
-=begin
-describe Airport do
-  it { is_expected.to respond_to(:request_to_land) }
-  it { is_expected.to respond_to(:take_off) }
+  # edge cases
 
-  it "Checks to see if airport capacity is default" do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
-
-  # check if you can have a different capacity
-
-  describe "#take_off" do
-    it "Confirms a plane as left the airport" do
-      expect { subject.take_off }.to output("The plane has departed\n").to_stdout
-    end
-  end
-
-  describe "#land" do
-    it "checks that planes cannot land if airport is at capacity" do
+  describe "if airport is at capacity and stormy" do
+    it "returns airport is at capacity over the current weather" do
       Airport::DEFAULT_CAPACITY.times do
-        subject.land Plane.new
+        plane = Plane.new
+        plane.land(airport)
       end
-      expect { subject.land Plane.new }.to raise_error "The airport is at capacity"
+      allow(airport).to receive(:generate_weather) { "stormy" }
+      expect { plane.land(airport) }.to raise_error "Airport is at capacity"
+    end
+  end
+
+  describe "if it is stormy and plane is not at the airport" do
+    it "returns plane is not located at airport over the current weather" do
+      allow(airport).to receive(:generate_weather) { "stormy" }
+      expect { airport.request_take_off(plane) }.to raise_error "Plane was not located at this airport"
+    end
+  end
+
+  # bonus
+
+  describe "feature test" do
+    it "simulates multiple planes landing and taking off" do
+      # airports
+      gatwick = Airport.new(1)
+      heathrow = Airport.new(2)
+      # planes
+      a380 = Plane.new
+      dreamliner = Plane.new
+      sevenfourseven = Plane.new
+      privatejet = Plane.new
+      allow(heathrow).to receive(:generate_weather) { "sunny" }
+      allow(gatwick).to receive(:generate_weather) { "sunny" }
+      # landings
+      dreamliner.land(heathrow)
+      privatejet.land(gatwick)
+      sevenfourseven.land(heathrow)
+      # taking_off
+      dreamliner.take_off
+      a380.land(heathrow)
+      expect { dreamliner.land(gatwick) }.to raise_error
+      privatejet.take_off
+      a380.take_off
+      expect { privatejet.land(gatwick) }.not_to raise_error
+      allow(heathrow).to receive(:generate_weather) { "stormy" }
+      expect { a380.land(gatwick) }.to raise_error
     end
   end
 end
-
-
-=end
