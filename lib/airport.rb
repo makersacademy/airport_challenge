@@ -1,6 +1,6 @@
 class Airport
 
-  def initialize
+  def initialize(capacity = 20)
     @planes = []
   end
 
