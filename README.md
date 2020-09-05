@@ -13,22 +13,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
@@ -87,3 +71,20 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+My Approach
+---------
+
+**Analysis**
+* Breakdown and understand all requirements / user stories. 
+* User stories should have acceptance criteria in gherkin format.
+
+**Design**
+* Identify the actors and functions needed to fulfil requirements. 
+* Use this to inform the design of classes and methods.
+
+**Implementation**
+* Follow TDD to develop the airport program.
+
+**Test**
+* Create a feature test that covers the scenario of multiple planes landing and taking off from an airport.

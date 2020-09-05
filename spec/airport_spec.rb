@@ -25,5 +25,15 @@ describe Airport do
       subject.takeoff(plane)
       expect(subject.has_plane?(plane)).to eq false
     end
+
+    it 'prevents plane from taking off from an airport it is not at' do
+      plane = PlaneDouble.new
+      heathrow = Airport.new
+      gatwick = Airport.new
+
+      heathrow.land(plane)
+      expect { gatwick.takeoff(plane) }.to raise_error("Plane is not at #{gatwick.name}")
+
+    end
   end
 end
