@@ -7,6 +7,7 @@ class Plane
 
   def land(airport)
     fail "This plane is already landed" if landed?
+    airport.request_landing(self)
     @current_airport = airport
   end
 

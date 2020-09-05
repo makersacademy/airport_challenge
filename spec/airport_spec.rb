@@ -1,6 +1,20 @@
 require "airport"
 require "plane"
 
+describe Airport do
+  describe "when the airport is full" do
+    it "doesn't allow planes to land" do
+      airport = Airport.new(5)
+      5.times do
+        plane = Plane.new
+        plane.land(airport)
+      end
+      plane = Plane.new
+      expect { plane.land(airport) }.to raise_error "Airport is at capacity"
+    end
+  end
+end
+
 =begin
 describe Airport do
   it { is_expected.to respond_to(:request_to_land) }

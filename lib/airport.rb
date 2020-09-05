@@ -1,6 +1,23 @@
 require_relative "plane"
 
 class Airport
+  attr_reader :capacity
+
+  def initialize(capacity)
+    @capacity = capacity
+    @planes = []
+  end
+
+  def request_landing(plane)
+    fail "Airport is at capacity" if at_capacity?
+    @planes << plane
+  end
+
+  private
+
+  def at_capacity?
+    @planes.length >= @capacity
+  end
 end
 
 =begin

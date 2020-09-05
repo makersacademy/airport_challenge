@@ -16,8 +16,9 @@ describe Plane do
 
   describe "#land" do
     it "raises error if plane is already landed at an airport" do
-      subject.land(Airport.new)
-      expect { subject.land Airport.new }.to raise_error "This plane is already landed"
+      airport = Airport.new(5)
+      subject.land(airport)
+      expect { subject.land airport }.to raise_error "This plane is already landed"
     end
   end
 
