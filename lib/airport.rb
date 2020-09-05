@@ -10,7 +10,8 @@ class Airport
   end
 
   def clear_landing(plane)
-    raise "Airport is at capacity" if @planes.count == @capacity
+    raise 'Airport is at capacity' if @planes.count == @capacity
+
     @planes << plane
   end
 
@@ -19,7 +20,21 @@ class Airport
   end
 
   def clear_takeoff(plane)
-    raise "Plane is not at this airport" unless has_plane?(plane)
+    raise 'Plane is not at this airport' unless has_plane?(plane)
+
+    raise 'Weather is stormy and too unsafe' if stormy?
+
     @planes.delete(plane)
   end
+
+  private
+
+  def stormy?
+    weather == "stormy"
+  end
+
+  def weather
+    rand(10) < 8 ? "sunny" : "stormy"
+  end
+
 end
