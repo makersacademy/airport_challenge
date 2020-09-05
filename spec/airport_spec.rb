@@ -6,43 +6,51 @@ end
 
 describe Airport do
 
-  let(:subject) { Airport.new }
+  subject(:airport) { Airport.new }
   let(:plane) { PlaneDouble.new }
+
+  # EXPECTED ERROR MESSAGES
+  @airport_full = 'Airport is at capacity'
+  @plane_not_here = 'Plane is not at this airport'
+  @stormy_weather = 'Weather is stormy and too unsafe'
 
   describe '#clear_landing(plane)' do
 
-    context 'when airport has capacity' do
-      it { should respond_to(:clear_landing).with(1).argument }
+    it { should respond_to(:clear_landing).with(1).argument }
 
-      it 'stores the plane that landed' do
+    context 'when airport has capacity' do
+      it 'stores the plane' do
         subject.clear_landing(plane)
+
         expect(subject.has_plane?(plane)).to eq true
       end
     end
 
-    context 'when airport is full' do
+    context 'airport is full' do
       it "raises error and doesn't store plane" do
         Airport::DEFAULT_CAPACITY.times { subject.clear_landing(PlaneDouble.new) }
-        @full_error = "Airport is at capacity"
 
-        expect { subject.clear_landing(plane) }.to raise_error(@full_error)
+        expect { subject.clear_landing(plane) }.to raise_error(@airport_full)
         expect(subject.has_plane?(plane)).to eq false
       end
-    end
 
-    context 'custom capacity set' do
-      it 'enforces custom capacity lower than the default' do
-        low_capacity = Airport::DEFAULT_CAPACITY / 5
-        small_airport = Airport.new(low_capacity)
-        low_capacity.times { small_airport.clear_landing(plane)}
+      context 'capacity lower than the default is set' do
+        it 'restricts planes to the lower capacity' do
+          low_capacity = Airport::DEFAULT_CAPACITY / 5
+          small_airport = Airport.new(low_capacity)
+          low_capacity.times { small_airport.clear_landing(plane) }
 
-        expect { small_airport.clear_landing(plane) }.to raise_error(@full_error)
+          expect { small_airport.clear_landing(plane) }.to raise_error(@airport_full)
+        end
       end
 
-      it 'allows a capacity higher than the default' do
-        high_capacity = Airport::DEFAULT_CAPACITY * 2
-        big_airport = Airport.new(high_capacity)
-        expect { high_capacity.times { big_airport.clear_landing(plane) } }.not_to raise_error(@full_error)
+      context 'capacity higher than the default is set' do
+        it 'allows plans up to the higher capacity' do
+          high_capacity = Airport::DEFAULT_CAPACITY * 2
+          big_airport = Airport.new(high_capacity)
+
+          expect { high_capacity.times { big_airport.clear_landing(plane) } }.not_to raise_error(@airport_full)
+        end
       end
     end
   end
@@ -50,14 +58,40 @@ describe Airport do
   describe '#clear_takeoff(plane)' do
     it { should respond_to(:clear_takeoff).with(1).argument }
 
-    it 'removes the plan that has taken off' do
-      subject.clear_landing(plane)
-      subject.clear_takeoff(plane)
-      expect(subject.has_plane?(plane)).to eq false
+    context 'plane is at the airport' do
+      before do
+        # land plane at airport
+        subject.clear_landing(plane)
+      end
+
+      context 'weather is not stormy' do
+        before do
+          # stub weather to not be stormy
+        end
+
+        it 'removes the departed plane' do
+          subject.clear_takeoff(plane)
+
+          expect(subject.has_plane?(plane)).to eq false
+        end
+      end
+
+      context 'weather is stormy' do
+        before do
+          # stub weather to be stormy
+        end
+
+        it "raises an error and retains plane at airport" do
+          expect { subject.clear_takeoff(plane) }.to raise_error(@stormy_weather)
+          expect(subject.has_plane?(plane)).to eq true
+        end
+      end
     end
 
-    it 'raises an error when plane is not at the airport' do
-      expect { subject.clear_takeoff(plane) }.to raise_error("Plane is not at this airport")
+    context 'plane is not at the airport' do
+      it 'raises an error' do
+        expect { subject.clear_takeoff(plane) }.to raise_error(@plane_not_here)
+      end
     end
   end
 end
