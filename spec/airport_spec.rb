@@ -7,22 +7,42 @@ describe Airport do
 
   subject(:airport) { Airport.new }
   let(:plane) { PlaneDouble.new }
+  let(:sunny_weather ) { allow(subject).to receive(:rand).and_return(0) }
+  let(:stormy_weather) { allow(subject).to receive(:rand).and_return(9) }
 
   # EXPECTED ERROR MESSAGES
   let(:airport_full) { 'Airport is at capacity' }
   let(:plane_not_here) { 'Plane is not at this airport' }
-  let(:stormy_weather) { 'Weather is stormy and too unsafe' }
+  let(:stormy_error) { 'Weather is stormy and too unsafe' }
+
 
   describe '#clear_landing(plane)' do
 
     it { should respond_to(:clear_landing).with(1).argument }
 
-    context 'when airport has capacity' do
-      it 'stores the plane' do
-        subject.clear_landing(plane)
+    context 'airport has capacity' do
+      context 'weather is sunny' do
+        before do
+          sunny_weather
+        end
 
-        expect(subject.has_plane?(plane)).to eq true
+        it 'stores the plane' do
+          subject.clear_landing(plane)
+
+          expect(subject.has_plane?(plane)).to eq true
+        end
       end
+
+      context 'weather is stormy' do
+        before do
+          stormy_weather
+        end
+
+        it 'raises an error and retains plane at airport' do
+          expect { subject.clear_landing(plane) }.to raise_error(stormy_error)
+        end
+      end
+
     end
 
     context 'airport is full' do
@@ -78,11 +98,11 @@ describe Airport do
 
       context 'weather is stormy' do
         before do
-          allow(subject).to receive(:rand).and_return(9)
+          stormy_weather
         end
 
         it "raises an error and retains plane at airport" do
-          expect { subject.clear_takeoff(plane) }.to raise_error(stormy_weather)
+          expect { subject.clear_takeoff(plane) }.to raise_error(stormy_error)
           expect(subject.has_plane?(plane)).to eq true
         end
       end
