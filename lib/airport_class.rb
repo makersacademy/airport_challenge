@@ -1,6 +1,7 @@
 class Airport
 
   def initialize
+    #Change initialize to accept capacity as argument to allow custom capacity
     @capacity = 3
     @current_planes = []
   end
@@ -21,4 +22,13 @@ class Airport
     true
   end
 
+end
+
+module Weather
+
+  def weather_today
+    weather_conditions = [:sunny, :stormy]
+    weather.sample
+  end
+  
 end
