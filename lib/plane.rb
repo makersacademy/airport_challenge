@@ -12,6 +12,8 @@ class Plane
   end
 
   def take_off
+    fail "This plane is already in the air" if flying?
+    @current_airport.request_take_off(self)
     @current_airport = nil
     puts "The plane has departed"
   end
@@ -20,6 +22,10 @@ class Plane
 
   def landed?
     @current_airport != nil
+  end
+
+  def flying?
+    @current_airport == nil
   end
 end
 

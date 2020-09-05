@@ -12,6 +12,17 @@ describe Airport do
       plane = Plane.new
       expect { plane.land(airport) }.to raise_error "Airport is at capacity"
     end
+
+    describe "and an airplane has taken off" do
+      it "is no longer at capacity" do
+        airport = Airport.new(1)
+        plane = Plane.new
+        plane.land(airport)
+        plane.take_off
+
+        expect { plane.land(airport) }.not_to raise_error
+      end
+    end
   end
 end
 

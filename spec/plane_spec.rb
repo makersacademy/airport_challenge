@@ -29,8 +29,14 @@ describe Plane do
   end
 
   describe "#take_off" do
-    it "Confirms a plane as left the airport" do
+    it "Confirms a plane has left the airport" do
+      airport = Airport.new(1)
+      subject.land(airport)
       expect { subject.take_off }.to output("The plane has departed\n").to_stdout
+    end
+
+    it "raises an error if the plane is not at an airport" do
+      expect { subject.take_off }.to raise_error "This plane is already in the air"
     end
   end
 end

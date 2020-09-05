@@ -13,6 +13,11 @@ class Airport
     @planes << plane
   end
 
+  def request_take_off(plane)
+    deleted_plane = @planes.delete(plane)
+    fail "Plane was not located at this airport" if deleted_plane.nil?
+  end
+
   private
 
   def at_capacity?
