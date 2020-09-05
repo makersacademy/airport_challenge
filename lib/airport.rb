@@ -1,6 +1,10 @@
 class Airport
 
-  def land(plane)
+  def initialize
+    @planes = []
+  end
+
+  def clear_landing(plane)
     @planes = [plane]
   end
 
@@ -8,7 +12,8 @@ class Airport
     @planes.include?(plane)
   end
 
-  def takeoff(plane)
+  def clear_takeoff(plane)
+    raise "Plane is not at this airport" unless has_plane?(plane)
     @planes.delete(plane)
   end
 end
