@@ -21,17 +21,28 @@ describe Airport do
     end
 
     context 'when airport is full' do
+      it "raises error and doesn't store plane" do
+        Airport::DEFAULT_CAPACITY.times { subject.clear_landing(PlaneDouble.new) }
+        @full_error = "Airport is at capacity"
 
-      before(:context) do
-        capacity = 3
-        @small_airport = Airport.new(capacity)
-        capacity.times { @small_airport.clear_landing(PlaneDouble.new) }
+        expect { subject.clear_landing(plane) }.to raise_error(@full_error)
+        expect(subject.has_plane?(plane)).to eq false
+      end
+    end
+
+    context 'custom capacity set' do
+      it 'enforces custom capacity lower than the default' do
+        low_capacity = Airport::DEFAULT_CAPACITY / 5
+        small_airport = Airport.new(low_capacity)
+        low_capacity.times { small_airport.clear_landing(plane)}
+
+        expect { small_airport.clear_landing(plane) }.to raise_error(@full_error)
       end
 
-      it "raises error and doesn't store plane" do
-        full_error = "Airport is at capacity"
-        expect { @small_airport.clear_landing(plane) }.to raise_error(full_error)
-        expect(@small_airport.has_plane?(plane)).to eq false
+      it 'allows a capacity higher than the default' do
+        high_capacity = Airport::DEFAULT_CAPACITY * 2
+        big_airport = Airport.new(high_capacity)
+        expect { high_capacity.times { big_airport.clear_landing(plane) } }.not_to raise_error(@full_error)
       end
     end
   end
