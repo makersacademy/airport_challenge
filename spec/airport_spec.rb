@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do 
-it { is_expected.to respond_to :land_plane }
+it { is_expected.to respond_to :land }
 
 it { is_expected.to respond_to :take_off }
 
@@ -12,6 +12,11 @@ it "raises an error when a plane is trying to take off and its not at the airpor
     expect { airport.take_off }.to raise_error("There are no planes!") 
 end 
     
-    
+ it "raises an error when a plane is trying to land at a full airport" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.land(Plane.new) }.to raise_error("The airport is full")
+ end 
 
 end

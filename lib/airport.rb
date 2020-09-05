@@ -9,7 +9,8 @@ attr_reader :airport_planes, :capacity
     @airport_planes = []
     end 
 
-def land_plane
+def land(plane)
+    raise "The airport is full" if @airport_planes.length >= @capacity
     @airport_planes << @plane
 end
 
