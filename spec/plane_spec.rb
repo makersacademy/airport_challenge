@@ -8,5 +8,8 @@ I want to instruct a plane to land at an airport
 
 describe Plane do
   # it { is_expected.to respond_to(:take_off) }
-  it { is_expected.to respond_to(:land) }
+  it "responds to land with a airport" do
+    airport = Airport.new
+    expect(subject).to respond_to(:land).with(1).argument
+  end
 end

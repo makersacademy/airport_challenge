@@ -4,7 +4,7 @@ class Plane
   def initialize
   end
 
-  def land
+  def land(airport)
   end
 end
 
