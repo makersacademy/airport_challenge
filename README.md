@@ -88,3 +88,12 @@ My Approach
 
 **Test**
 * Create a feature test that covers the scenario of multiple planes landing and taking off from an airport.
+
+Tech Design
+-----------
+
+| Objects 	| Messages                                                                                	| Attributes                                          	|
+|---------	|-----------------------------------------------------------------------------------------	|-----------------------------------------------------	|
+| User    	|                                                                                         	|                                                     	|
+| Plane   	| new                                                                                     	| status ('airborne', 'landed')                       	|
+| Airport 	| new(capacity)<br>land(plane)<br>takeoff(plane)<br>has_plane?(plane)<br>stormy?<br>full? 	| DEFAULT_CAPACITY<br>capacity<br>[planes]<br>weather 	|
