@@ -1,6 +1,10 @@
+require 'weather'
+
 class Airport
 
   attr_reader :DEFAULT_CAPACITY
+
+  include Weather
 
   DEFAULT_CAPACITY = 20
 
@@ -30,10 +34,6 @@ class Airport
   private
 
   def stormy?
-    weather == "stormy"
-  end
-
-  def weather
-    rand(10) < 8 ? "sunny" : "stormy"
+    self.weather == "stormy"
   end
 end
