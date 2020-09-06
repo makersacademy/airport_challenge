@@ -14,11 +14,13 @@ class Airport
 # departing airport
 
   def take_off(plane)
-
+    fail "Take off prohibited in stormy conditions." if storm?
   end
 
   def departed?(plane)
+    @hangar.delete(plane)
     @hangar.include?(plane) ? false : true
+
   end
 
 # landing at aiport
@@ -31,6 +33,12 @@ class Airport
 
   def full?
     @hangar.length >= @capacity
+  end
+
+# weather
+
+  def storm?
+  
   end
 
 end

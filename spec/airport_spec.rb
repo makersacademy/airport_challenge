@@ -33,6 +33,12 @@ describe Airport do
       expect(subject.departed?(plane)).to eq true
     end
 
+    it 'prevents plane taking off if weather is stormy' do
+      plane = Plane.new
+      allow(subject).to receive(:storm?).and_return(true)
+      expect { subject.take_off(plane) }.to raise_error("Take off prohibited in stormy conditions.")
+    end
+
   end
 
   describe 'landing' do
