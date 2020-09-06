@@ -20,13 +20,13 @@ include Weather
 
     def land(plane)
         raise "Stormy weather cannot land" if weather == "Stormy"
-        raise "Plane is landed" if plane.flying? == false
         raise "The airport is full" if full?
+        raise "Plane is landed" if plane.flying? == false
         plane.land
         arrived(plane)
     end
 
-    def take_off
+    def take_off(plane)
         raise "It's stormy" if weather == "Stormy"
         raise "There are no planes" if @planes.empty?
         raise "Plane is flying" if plane.flying? == true
