@@ -9,8 +9,8 @@ describe Airport do
   end
   it "is expected to store landed planes with land_plane" do 
     y = Airport.new
-    y.land_plane 
-    expect(y.parked_planes[0]).to be_an_instance_of(Plane)
+    subject.land_plane 
+    expect(subject.parked_planes[0]).to be_an_instance_of(Plane)
   end
   it "raises an error when capacity is full" do
     expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.land_plane } }.to raise_error "airport is full"
@@ -25,10 +25,10 @@ describe Airport do
   it { is_expected.to respond_to(:take_off) }
 
   it "it is expected to release stored plane with #take_off" do
-    x = Airport.new
-    x.land_plane
-    x.take_off
-    expect(x.parked_planes.empty?).to eq true
+   # x = Airport.new
+    subject.land_plane
+    subject.take_off
+    expect(subject.parked_planes.empty?).to eq true
   end
 
   it { is_expected.to respond_to(:local_weather) }
@@ -50,8 +50,11 @@ describe Airport do
   allow(subject).to receive(:rand) {6}
   expect(subject.set_weather).to eq "sunny"
   end
-end
-=begin
 
+  it "should raise an error when trying to take off in a storm" do
+    allow(subject).to receive(:rand) {9}
+    subject.land_plane
+    expect {subject.take_off}.to raise_error "weather conditions too poor"
+  end
 end
-=end
+
