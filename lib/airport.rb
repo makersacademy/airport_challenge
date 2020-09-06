@@ -20,11 +20,11 @@ class Airport
 
   def land
         
-  	fail "You can't land, we're full!" if full?
+    fail "You can't land, we're full!" if full?
 		
-		fail "Crap weather! Don't land!" if bad_weather
+	  fail "Crap weather! Don't land!" if bad_weather
 		
-		land_plane(Planes.new)
+	  land_plane(Planes.new(false))
   end
 
 private
@@ -37,7 +37,7 @@ private
     @airplanes << plane
   end
 
-	def full?
-  	@airplanes.length >= @capacity
+  def full?
+    @airplanes.length >= @capacity
   end
 end

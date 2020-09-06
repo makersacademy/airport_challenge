@@ -101,9 +101,9 @@
       ],
       "/Users/student/Makers/week1/airport_challenge/lib/plane.rb": [
         1,
-        null,
         1,
         1,
+        44,
         null,
         null
       ],
@@ -119,8 +119,8 @@
         null,
         1,
         1,
-        1,
-        1,
+        null,
+        null,
         null,
         1,
         1,
@@ -141,6 +141,6 @@
         null
       ]
     },
-    "timestamp": 1599382067
+    "timestamp": 1599409772
   }
 }
