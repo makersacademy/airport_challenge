@@ -1,12 +1,9 @@
 require 'plane.rb'
-require 'airport.rb'
-require 'weather.rb'
 
 heathrow = Airport.new
 weather = Weather.new
 
 describe Plane do
-  
   # Landing
   it 'Should respond to #land' do
     expect(subject).to respond_to(:land).with(2).arguments
