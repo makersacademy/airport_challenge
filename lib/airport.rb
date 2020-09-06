@@ -30,7 +30,7 @@ class Airport
     else
       fail "plane is already flying..." if plane[0].landed == false
 
-      @parked_planes.delete(plane)
+      @parked_planes.delete(plane[0])
       plane = plane.pop
       plane.landed = false
       plane

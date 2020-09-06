@@ -46,4 +46,16 @@ describe Plane do
     luton.land_plane(subject)
     expect { luton.take_off(subject) }.not_to raise_error 
   end
+  it "plane that takes off in one airport and lands at another, must not still be in original" do
+    port1 = Airport.new
+    port1.local_weather = "sunny"
+    port2 = Airport.new
+    port2.local_weather = "sunny"
+    port1.land_plane
+    port1.land_plane(subject)
+    port1.land_plane
+    port1.take_off(subject)
+    port2.land_plane(subject)
+    expect(port1.parked_planes.index(subject)).to eq nil
+  end 
 end
