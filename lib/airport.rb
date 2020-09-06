@@ -10,6 +10,7 @@ class Airport
 
   def land_plane(plane)
     fail "There is no space in the hangar" if room_for_plane
+    fail "It is too stormy to land" if @weather == "stormy"
 
     plane_in_hangar(plane) ? "That plane is already in the hangar" : @hangar << plane
   end
