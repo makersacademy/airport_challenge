@@ -15,7 +15,7 @@ class Plane
     fail "This plane is already in the air" if flying?
     @current_airport.request_take_off(self)
     @current_airport = nil
-    return ("The plane has departed")
+    return "The plane has departed"
   end
 
   private
