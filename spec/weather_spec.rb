@@ -20,12 +20,12 @@ describe Weather do
     end
 
     context 'when rand generates a number >= 8' do
-      it "returns 'sunny' for rand of 8" do
+      it "returns 'stormy' for rand of 8" do
         allow(subject).to receive(:rand).and_return(8)
         expect(subject.weather).to eq('stormy')
       end
 
-      it "returns 'sunny' for rand of 9" do
+      it "returns 'stormy' for rand of 9" do
         allow(subject).to receive(:rand).and_return(9)
         expect(subject.weather).to eq('stormy')
       end

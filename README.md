@@ -92,8 +92,8 @@ My Approach
 Tech Design
 -----------
 
-| Objects 	| Messages                                                                                	| Attributes                                          	|
-|---------	|-----------------------------------------------------------------------------------------	|-----------------------------------------------------	|
-| User    	|                                                                                         	|                                                     	|
-| Plane   	| new                                                                                     	| status ('airborne', 'landed')                       	|
-| Airport 	| new(capacity)<br>land(plane)<br>takeoff(plane)<br>has_plane?(plane)<br>stormy?<br>full? 	| DEFAULT_CAPACITY<br>capacity<br>[planes]<br>weather 	|
+| Objects 	| Messages                                                                 	| Attributes                                 	|
+|---------	|--------------------------------------------------------------------------	|--------------------------------------------	|
+| User    	|                                                                          	|                                            	|
+| Plane   	| new                                                                      	| status ('airborne', 'landed')              	|
+| Airport 	| new(capacity) land(plane) takeoff(plane) has_plane?(plane) stormy? full? 	| DEFAULT_CAPACITY capacity [planes] weather 	|

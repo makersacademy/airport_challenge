@@ -6,72 +6,66 @@ end
 describe Airport do
 
   subject(:airport) { Airport.new }
-  let(:plane) { PlaneDouble.new }
-  let(:sunny_weather ) { allow_any_instance_of(Airport).to receive(:weather).and_return("sunny") }
-  let(:stormy_weather) { allow(subject).to receive(:weather).and_return("stormy") }
+  let(:plane)             { PlaneDouble.new }
+  let(:sunny_weather)     { allow_any_instance_of(Airport).to receive(:weather).and_return('sunny') }
+  let(:stormy_weather)    { allow(subject).to receive(:weather).and_return('stormy') }
 
   # EXPECTED ERROR MESSAGES
-  let(:airport_full) { 'Airport is at capacity' }
-  let(:plane_not_here) { 'Plane is not at this airport' }
-  let(:stormy_error) { 'Weather is stormy and too unsafe' }
+  let(:airport_full)      { 'Airport is at capacity' }
+  let(:plane_not_here)    { 'Plane is not at this airport' }
+  let(:stormy_error)      { 'Weather is stormy and too unsafe' }
+
+  def full_airport(capacity)
+    sunny_weather
+    airport = Airport.new(capacity)
+    capacity.times { airport.clear_landing(PlaneDouble.new) }
+    airport
+  end
 
   describe '#clear_landing(plane)' do
-
-    before do
-      sunny_weather
-    end
-
     it { should respond_to(:clear_landing).with(1).argument }
 
     context 'airport has capacity' do
-      it 'stores the plane' do
-        subject.clear_landing(plane)
-        expect(subject.has_plane?(plane)).to eq true
+      context 'weather is sunny' do
+        it 'stores the plane' do
+          sunny_weather
+          subject.clear_landing(plane)
+          expect(subject.has_plane?(plane)).to eq true
+        end
       end
 
       context 'weather is stormy' do
-        before do
-          stormy_weather
-        end
-
         it 'raises an error and retains plane at airport' do
+          stormy_weather
           expect { subject.clear_landing(plane) }.to raise_error(stormy_error)
         end
       end
     end
 
-    context 'airport is full' do
+    context 'airport is full with default capacity' do
       it "raises error and doesn't store plane" do
-        Airport::DEFAULT_CAPACITY.times { subject.clear_landing(PlaneDouble.new) }
+        airport = full_airport(Airport::DEFAULT_CAPACITY)
 
-        expect { subject.clear_landing(plane) }.to raise_error(airport_full)
-        expect(subject.has_plane?(plane)).to eq false
+        expect { airport.clear_landing(plane) }.to raise_error(airport_full)
+        expect(airport.has_plane?(plane)).to eq false
       end
+    end
 
-      context 'capacity lower than the default is set' do
-        it 'limits planes to the lower capacity' do
-          low_capacity = Airport::DEFAULT_CAPACITY / 5
-          small_airport = Airport.new(low_capacity)
+    context 'airport is full with lower capacity set' do
+      it 'limits planes to the lower capacity' do
+        small_airport = full_airport(Airport::DEFAULT_CAPACITY / 5)
 
-          # fill airport to capacity
-          low_capacity.times { small_airport.clear_landing(plane) }
-
-          # request to land one more plane
-          expect { small_airport.clear_landing(plane) }.to raise_error(airport_full)
-        end
+        expect { small_airport.clear_landing(plane) }.to raise_error(airport_full)
+        expect(small_airport.has_plane?(plane)).to eq false
       end
+    end
 
-      context 'capacity higher than the default is set' do
-        it 'limits planes at the higher capacity' do
-          high_capacity = Airport::DEFAULT_CAPACITY * 2
-          large_airport = Airport.new(high_capacity)
+    context 'airport is full with higher capacity set' do
+      it 'limits planes at the higher capacity' do
+        large_airport = full_airport(Airport::DEFAULT_CAPACITY * 2)
 
-          # fill airport to capacity
-          high_capacity.times { large_airport.clear_landing(plane) }
-
-          # request to land one more plane
-          expect { large_airport.clear_landing(plane) }.to raise_error(airport_full)
-        end
+        expect { large_airport.clear_landing(plane) }.to raise_error(airport_full)
+        expect(small_airport.has_plane?(plane)).to eq false
       end
     end
   end
@@ -85,9 +79,15 @@ describe Airport do
         subject.clear_landing(plane)
       end
 
-      it 'removes the departed plane' do
-        subject.clear_takeoff(plane)
-        expect(subject.has_plane?(plane)).to eq false
+      context 'weather is sunny' do
+        before do
+          sunny_weather
+        end
+
+        it 'clears takeoff and releases plane' do
+          subject.clear_takeoff(plane)
+          expect(subject.has_plane?(plane)).to eq false
+        end
       end
 
       context 'weather is stormy' do
@@ -95,7 +95,7 @@ describe Airport do
           stormy_weather
         end
 
-        it "raises an error and retains plane at airport" do
+        it 'raises an error and retains plane at airport' do
           expect { subject.clear_takeoff(plane) }.to raise_error(stormy_error)
           expect(subject.has_plane?(plane)).to eq true
         end
