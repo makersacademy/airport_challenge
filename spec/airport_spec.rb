@@ -3,8 +3,11 @@ require 'plane'
 describe Airport do
   it { is_expected.to respond_to(:land_plane) }
 
-  describe Airport.new.land_plane do
-  it { is_expected.to be_an_instance_of(Array) }
+  #describe Airport.new.land_plane do
+ # it { is_expected.to be_an_instance_of(Array) }
+  it "should have an array of parked planes" do
+    subject.local_weather = "sunny"
+    expect(subject.land_plane).to be_an_instance_of(Array)
   
   end
   it "is expected to store landed planes with land_plane" do 
@@ -14,9 +17,11 @@ describe Airport do
     expect(subject.parked_planes[0]).to be_an_instance_of(Plane)
   end
   it "raises an error when capacity is full" do
+    subject.local_weather = "sunny"
     expect { (Airport::DEFAULT_CAPACITY + 1).times { subject.land_plane } }.to raise_error "airport is full"
   end 
   it "does not raise an error when airport has one space left " do
+    subject.local_weather = "sunny"
     expect { Airport::DEFAULT_CAPACITY.times { subject.land_plane } }.not_to raise_error 
   end
   it "allows you to set the capacity of the aiport" do
