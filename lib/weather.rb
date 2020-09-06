@@ -1,5 +1,5 @@
 class Weather
-     def crap_weather?
-    rand(5) == 0
-    end
+  def crap_weather?
+    rand(5).zero?
+  end
 end
