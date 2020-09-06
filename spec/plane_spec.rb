@@ -40,4 +40,10 @@ describe Plane do
     luton.take_off(subject)
     expect {luton.take_off(subject)}.to raise_error "plane is already flying..."
   end
+  it "doesnt raise an error when the plane isn't already flying" do 
+    luton = Airport.new
+    luton.local_weather = "sunny"
+    luton.land_plane(subject)
+    expect {luton.take_off(subject)}.not_to raise_error 
+  end
 end

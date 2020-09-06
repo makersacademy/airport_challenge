@@ -25,6 +25,7 @@ class Airport
     if plane.length == 0
       @parked_planes.pop 
     else
+      fail "plane is already flying..." if plane[0].landed == false
       @parked_planes.delete(plane)
       plane = plane.pop
       plane.landed = false
