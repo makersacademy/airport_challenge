@@ -38,6 +38,10 @@ describe Weather do
             end
         end
         context "Can takeoff" do
+            it "If weather is not stormy plane can land at airport"
+            airport = Airport.new
+            plane = Plane.new
+            expect {airport.takeoff. to }
         end
     end 
 
