@@ -11,7 +11,7 @@ class Airport
 
   def land_plane(flight_number = Plane.new)
     raise "airport is full" if @parked_planes.length >= @capacity
-
+    raise "weather conditions too poor" if @local_weather == "stormy"
     @parked_planes << flight_number
   end
 
