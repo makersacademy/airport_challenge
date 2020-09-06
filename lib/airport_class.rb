@@ -25,5 +25,9 @@ class Airport
 
   def land(plane)
   end
-  
+
+  def full?
+    @hangar.count >= @capacity ? true : false
+  end
+
 end

@@ -43,6 +43,19 @@ describe Airport do
       expect(subject).to respond_to (:land)
     end
 
+    it 'airport responds to full?' do
+      expect(subject.full?).to eq false
+    end
+
+
+  #  it 'prevents plane landing at airport when hangar is full' do
+  #    airport = Airport.new(1)
+  #    plane = Plane.new
+  #    airport.land(plane)
+  #    expect(subject.land(plane)). to raise_error "Hangar is full. Cannot land."
+  #  end
+
+
   end
 
 end
