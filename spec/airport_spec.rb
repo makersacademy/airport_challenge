@@ -8,6 +8,7 @@ describe Airport do
   describe '#land' do # cannonical way of writing methods (the #land hash is to indicate instance method)
     # 'is expected to respond_to method :land with one argument'
     it 'instructs a plane to land' do
+      allow(airport).to receive(:stormy?).and_return false # this method runs when stormy? is false 
       expect(airport).to respond_to(:land).with(1).argument
     end
       
@@ -18,10 +19,11 @@ describe Airport do
     # even when it relies on a class that is undefined or unavailable
     # plane = double :plane *see let(:plane) { double :plane } -> not a good idea to declare 
     # variable inside a test
+      allow(airport).to receive(:stormy?).and_return false # this method runs when stormy? is false 
         10.times do 
           airport.land(plane) 
         end
-        expect { airport.land(plane) }.to raise_error 'Airport full, no more planes allowed'
+        expect { airport.land(plane) }.to raise_error 'Airport full: no more planes allowed'
       end 
     end
   end
@@ -32,4 +34,10 @@ describe Airport do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
   end 
+
+  it 'raises and error if planes try to land when stormy' do
+    # 'when' is good for for context for documentation when refactoring
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error 'Weather stormy: no landing allowed'
+  end
 end
