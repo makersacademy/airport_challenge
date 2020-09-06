@@ -11,7 +11,8 @@ class Airport
   end
 
   def land(plane)
-    fail "Cannot land anymore plane, airport is full." if @grounded_planes.count >= @capacity 
+    raise "Cannot land anymore plane, airport is full." if @grounded_planes.count >= @capacity 
+    raise 'Weather not suitable for landing' if @weather == "Stormy"
     @grounded_planes << plane
   end
 
@@ -19,4 +20,9 @@ class Airport
     plane
   end
 
+  def weather?
+    @weather = ["Sunny", "Stormy"]
+    @weather[rand(2)]
+  end
+  
 end

@@ -6,7 +6,13 @@ plane = Plane.new
 describe Airport do
     describe "planes landing" do
       it { is_expected.to respond_to(:land).with(1).argument }
-    
+
+        context "adding stormy weather variable"
+          it "checks for current weather"  do
+          airport = Airport.new
+          allow(airport).to receive(weather?).and_return("Stormy") 
+          end
+
         context "adding default airport capacity"
           it "returns the default capacity of an airport" do
           airport = Airport.new
