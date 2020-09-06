@@ -1,5 +1,6 @@
 class Airport
 
+#airport set up
   attr_reader :hangar
   attr_accessor :capacity
 
@@ -9,4 +10,11 @@ class Airport
     @hangar = []
     @capacity = capacity
   end
+
+#departing airport
+
+  def take_off(plane)
+    
+  end
+
 end

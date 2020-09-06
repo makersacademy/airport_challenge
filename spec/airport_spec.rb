@@ -1,19 +1,34 @@
 require 'airport_class'
+require 'plane_class'
 
 describe Airport do
 
-  it 'initialises Aiport with array to store planes' do
-    expect(subject.hangar).to be_an_instance_of(Array)
+  describe 'Airport initialize' do
+
+    it 'initialises Aiport with array to store planes' do
+      expect(subject.hangar).to be_an_instance_of(Array)
+    end
+
+    it 'initialises Airport with custom capacity' do
+      airport = Airport.new(10)
+      expect(airport.capacity).to eq 10
+    end
+
+    it 'initialises Airport with DEFAULT_CAPACITY' do
+      airport = Airport.new
+      expect(airport.capacity).to eq Airport:: DEFAULT_CAPACITY
+    end
+
   end
 
-  it 'initialises Airport with custom capacity' do
-    airport = Airport.new(10)
-    expect(airport.capacity).to eq 10
-  end
+  describe 'take-off and landing' do
 
-  it 'initialises Airport with DEFAULT_CAPACITY' do
-    airport = Airport.new
-    expect(airport.capacity). to eq Airport:: DEFAULT_CAPACITY
+    it 'allows planes to depart airport' do
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport).to respond_to(:take_off)
+    end
+
   end
 
 end
