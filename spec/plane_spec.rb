@@ -32,7 +32,7 @@ describe Plane do
   describe "#take_off" do
     it "Confirms a plane has left the airport" do
       plane.land(airport)
-      expect { plane.take_off }.to output("The plane has departed\n").to_stdout
+      expect(plane.take_off).to eq "The plane has departed"
     end
 
     it "raises an error if the plane is not at an airport" do
