@@ -13,10 +13,17 @@ describe Airport do
     expect { subject.add_plane }.to change { subject.planes.length }.by(1)
   end
 
-  it 'Should prevent landing if the airport is full' do
-    Airport::DEFAULT_CAPACITY.times { subject.add_plane }
-    expect { subject.add_plane }.to raise_error('The hangar is full.')
+  it 'Should increase the number of @plane by 1 using the Plane class #land method' do
+    expect { plane.land(subject) }.to change { subject.planes.length }.by(1)
   end
+
+=begin
+  it 'Should prevent landing if the airport is full' do
+    expect { subject.add_plane }.to raise_error('The hangar is full.')
+    Airport::DEFAULT_CAPACITY.times { subject.add_plane }
+  end
+=end
+
 
   ## Takeoff
   it 'Should allow a plane to #remove_plane' do
@@ -27,13 +34,5 @@ describe Airport do
     subject.add_plane
     expect { subject.remove_plane }.to change { subject.planes.length }.by(-1)
   end
-
-
-
-  ## Full?
-#  it 'Should check if the hangar is full' do
-    
- # end
-
 
 end

@@ -10,7 +10,7 @@ class Airport
   end
 
   def add_plane
-    fail 'The hangar is full.' if full?
+    #fail 'The hangar is full.' if full?
     @planes << "plane" #update to be plane name?
   end
 
