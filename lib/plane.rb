@@ -2,9 +2,8 @@ class Plane
 
   attr_reader :status
 
-  # TODO: Change status to 'landed' later. Set to airborne for now for the sake of testing 'land' method
   def initialize
-    @status = :airborne
+    @status = :landed
   end
 
   def land
@@ -13,9 +12,19 @@ class Plane
     @status = :landed
   end
 
+  def takeoff
+    raise 'Plane is already airborne' if airborne?
+
+    @status = :airborne
+  end
+
   private
 
   def landed?
     @status == :landed
+  end
+
+  def airborne?
+    @status == :airborne
   end
 end
