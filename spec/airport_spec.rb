@@ -27,6 +27,10 @@ describe Airport do
       expect { airport.create_plane }.to change { airport.planes.count }.by(1)
     end
 
+    it 'returns the new plane that was added' do
+      expect(airport.create_plane).to be_an_instance_of(Plane)
+    end
+
     it "raises error and doesn't store plane if airport is full" do
       airport = full_airport(3)
 

@@ -47,6 +47,7 @@ class Airport
 
   def arrive(plane)
     @planes << plane
+    plane
   end
 
   def depart(plane)
