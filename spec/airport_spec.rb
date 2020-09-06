@@ -4,18 +4,32 @@ require 'plane'
 plane = Plane.new
 
 describe Airport do
-    context "planes landing"
-    it { is_expected.to respond_to(:land).with(1).argument }
+    describe "planes landing" do
+      it { is_expected.to respond_to(:land).with(1).argument }
     
-    it "raises an error if landing a plane when airport is full" do
-    subject.land(Plane.new)
-    expect { subject.land(Plane.new) }.to raise_error("Cannot land anymore plane, airport is full.")
+        context "adding default airport capacity"
+          it "returns the default capacity of an airport" do
+          airport = Airport.new
+          expect(airport.capacity).to eq 5
+          end
+
+          it "returns the new capacity manually set for an airport" do
+          airport = Airport.new(3)
+          expect(airport.capacity).to eq 3
+          end
+
+          it "raises an error if landing a plane when airport is full" do
+          airport = Airport.new
+          airport.capacity.times { subject.land(Plane.new) }
+          expect { subject.land(Plane.new) }.to raise_error("Cannot land anymore plane, airport is full.")
+          end
     end
 
-    context "planes taking off"
-      it { is_expected.to respond_to(:land).with(1).argument }
+    describe "planes taking off" do
+      it { is_expected.to respond_to(:take_off).with(1).argument }
     
       it "returns the plane taking off" do
       expect(subject.take_off(plane)).to eq(plane) 
       end
+    end
 end
