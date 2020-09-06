@@ -24,14 +24,13 @@ describe Airport do
   describe 'take-off' do
 
     it 'allows planes to depart airport' do
-      plane = Plane.new
       expect(subject).to respond_to(:take_off)
     end
 
     it 'confirms plane has departed airport' do
       plane = Plane.new
       subject.take_off(plane)
-      expect(subject.has_departed(plane)).to eq true
+      expect(subject.departed?(plane)).to eq true
     end
 
   end
@@ -39,22 +38,20 @@ describe Airport do
   describe 'landing' do
 
     it 'allows plane to land at airport' do
-      plane = Plane.new
-      expect(subject).to respond_to (:land)
+      expect(subject).to respond_to :land
     end
 
     it 'airport responds to full?' do
       expect(subject.full?).to eq false
     end
 
-
-  #  it 'prevents plane landing at airport when hangar is full' do
-  #    airport = Airport.new(1)
-  #    plane = Plane.new
-  #    airport.land(plane)
-  #    expect(subject.land(plane)). to raise_error "Hangar is full. Cannot land."
-  #  end
-
+    it 'prevents plane landing if airport hangar is at capacity' do
+      airport = Airport.new(1)
+      plane = Plane.new
+      plane1 = Plane.new
+      airport.land(plane)
+      expect { airport.land(plane1) }.to raise_error("Landing prohibited. Airport hangar is at capacity.")
+    end
 
   end
 

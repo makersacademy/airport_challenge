@@ -1,6 +1,6 @@
 class Airport
 
-#airport set up
+# airport set up
   attr_reader :hangar
   attr_accessor :capacity
 
@@ -11,23 +11,26 @@ class Airport
     @capacity = capacity
   end
 
-#departing airport
+# departing airport
 
   def take_off(plane)
 
   end
 
-  def has_departed(plane)
+  def departed?(plane)
     @hangar.include?(plane) ? false : true
   end
 
-#landing at aiport
+# landing at aiport
 
   def land(plane)
+    fail "Landing prohibited. Airport hangar is at capacity." if full?
+
+    @hangar << plane
   end
 
   def full?
-    @hangar.count >= @capacity ? true : false
+    @hangar.length >= @capacity
   end
 
 end
