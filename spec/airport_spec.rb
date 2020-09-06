@@ -6,8 +6,14 @@ describe Airport do
     expect(subject.hangar).to be_an_instance_of(Array)
   end
 
-  it 'initialises Airport with capacity that can be set as argument of initialise method' do
-    expect(subject.capacity).to eq 5
+  it 'initialises Airport with custom capacity' do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
+  end
+
+  it 'initialises Airport with DEFAULT_CAPACITY' do
+    airport = Airport.new
+    expect(airport.capacity). to eq Airport:: DEFAULT_CAPACITY
   end
 
 end
