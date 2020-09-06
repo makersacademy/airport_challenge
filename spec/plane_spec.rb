@@ -17,7 +17,7 @@ describe Plane do
   describe '#land' do
     it { should respond_to(:land).with(0).arguments }
 
-    context 'plane is airborne' do
+    context 'when plane is airborne' do
       before do
         plane.takeoff
       end
@@ -31,7 +31,7 @@ describe Plane do
       end
     end
 
-    context 'plane is already landed' do
+    context 'when plane is already landed' do
       it 'raises error and plane status remains landed' do
         expect { plane.land }.to raise_error('Plane is already on the ground')
         expect(plane.status).to eq(:landed)
@@ -40,7 +40,7 @@ describe Plane do
   end
 
   describe '#takeoff' do
-    context 'plane is landed' do
+    context 'when plane is landed' do
       it 'changes plane status to airborne' do
         expect { plane.takeoff }.to change { plane.status }.from(:landed).to(:airborne)
       end
@@ -50,7 +50,7 @@ describe Plane do
       end
     end
 
-    context 'plane is already airborne' do
+    context 'when plane is already airborne' do
       before do
         plane.takeoff
       end

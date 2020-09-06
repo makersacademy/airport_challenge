@@ -23,8 +23,8 @@ describe Airport do
   describe '#clear_landing(plane)' do
     it { should respond_to(:clear_landing).with(1).argument }
 
-    context 'airport has capacity' do
-      context 'weather is sunny' do
+    context 'when airport has capacity' do
+      context 'when weather is sunny' do
         before do
           sunny_weather
         end
@@ -46,7 +46,7 @@ describe Airport do
         end
       end
 
-      context 'weather is stormy' do
+      context 'when weather is stormy' do
         it 'raises an error and retains plane at airport' do
           stormy_weather
           expect { airport.clear_landing(plane) }.to raise_error(stormy_error)
@@ -54,7 +54,7 @@ describe Airport do
       end
     end
 
-    context 'airport is full with default capacity' do
+    context 'when airport is full with default capacity' do
       it "raises error and doesn't store plane" do
         airport = full_airport(Airport::DEFAULT_CAPACITY)
 
@@ -63,7 +63,7 @@ describe Airport do
       end
     end
 
-    context 'airport is full with lower capacity set' do
+    context 'when airport is full with lower capacity set' do
       it 'limits planes to the lower capacity' do
         small_airport = full_airport(Airport::DEFAULT_CAPACITY / 5)
 
@@ -72,7 +72,7 @@ describe Airport do
       end
     end
 
-    context 'airport is full with higher capacity set' do
+    context 'when airport is full with higher capacity set' do
       it 'limits planes at the higher capacity' do
         large_airport = full_airport(Airport::DEFAULT_CAPACITY * 2)
 
@@ -85,13 +85,13 @@ describe Airport do
   describe '#clear_takeoff(plane)' do
     it { should respond_to(:clear_takeoff).with(1).argument }
 
-    context 'plane is at the airport' do
+    context 'when plane is at the airport' do
       before do
         sunny_weather
         airport.clear_landing(plane)
       end
 
-      context 'weather is sunny' do
+      context 'when weather is sunny' do
         before do
           sunny_weather
         end
@@ -101,13 +101,19 @@ describe Airport do
           airport.clear_takeoff(plane)
         end
 
-        it 'clears takeoff and releases plane' do
+        it 'releases plane if plane takes off without error' do
           airport.clear_takeoff(plane)
           expect(airport.has_plane?(plane)).to eq false
         end
+
+        it "doesn't release plane if the plane throws an error" do
+          allow(plane).to receive(:takeoff).and_raise('Plane is already airborne')
+          expect { airport.clear_takeoff(plane) }.to raise_error(RuntimeError)
+          expect { airport.clear_takeoff(plane) rescue nil }.not_to change(airport, :planes)
+        end
       end
 
-      context 'weather is stormy' do
+      context 'when weather is stormy' do
         before do
           stormy_weather
         end
@@ -119,7 +125,7 @@ describe Airport do
       end
     end
 
-    context 'plane is not at the airport' do
+    context 'when plane is not at the airport' do
       it 'raises an error' do
         expect { airport.clear_takeoff(plane) }.to raise_error(plane_not_here)
       end
