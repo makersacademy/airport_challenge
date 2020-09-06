@@ -1,7 +1,9 @@
 require 'airport.rb'
 require 'plane.rb'
+require 'weather'
 
 plane = Plane.new
+weather = Weather.new
 
 describe Airport do
   ## Landing 
@@ -14,16 +16,9 @@ describe Airport do
   end
 
   it 'Should increase the number of @plane by 1 using the Plane class #land method' do
-    expect { plane.land(subject) }.to change { subject.planes.length }.by(1)
+    allow(weather).to receive(:weather_now?) { "sunny" }
+    expect { plane.land(subject, weather) }.to change { subject.planes.length }.by(1)
   end
-
-=begin
-  it 'Should prevent landing if the airport is full' do
-    expect { subject.add_plane }.to raise_error('The hangar is full.')
-    Airport::DEFAULT_CAPACITY.times { subject.add_plane }
-  end
-=end
-
 
   ## Takeoff
   it 'Should allow a plane to #remove_plane' do

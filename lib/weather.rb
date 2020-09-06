@@ -8,5 +8,4 @@ class Weather
   def weather_now?
     @weather.sample
   end
-
 end

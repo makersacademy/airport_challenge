@@ -5,8 +5,7 @@ describe Weather do
     expect(subject).to respond_to(:weather_now?)
   end
 
-  # weather_now?
-  it 'selects a condition from @weather' do
+  it '#weather_now? selects a condition from @weather' do
     expect(subject.weather).to include(subject.weather_now?)
   end
 
