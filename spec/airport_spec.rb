@@ -26,6 +26,11 @@ describe Airport do
     it 'will only allow a plane to land if there is space' do
       expect { (Airport::DEFAULT_CAPACITY + 1).times { gatwick.land_plane(Plane.new) } }.to raise_error "There is no space in the hangar"
     end
+
+    it 'will only allow a plane to land if there is space and the capacity has been changed' do
+      luton = Airport.new(17)
+      expect { 18.times { luton.land_plane(Plane.new) } }.to raise_error "There is no space in the hangar"
+    end
   end
 
   describe 'take_off_plane' do
