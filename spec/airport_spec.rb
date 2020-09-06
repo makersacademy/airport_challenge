@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 describe Airport do
   it { is_expected.to respond_to(:land_plane) }
 
@@ -23,12 +24,19 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
-  it "it is expected to release stored plane with#take_off" do
+  it "it is expected to release stored plane with #take_off" do
     x = Airport.new
     x.land_plane
     x.take_off
     expect(x.parked_planes.empty?).to eq true
   end
 
-end
+  it { is_expected.to respond_to(:local_weather) }
+  
+  it "should have a weather value" do
+    expect(Airport.new.local_weather).not_to eq nil
+  end
 
+  it { is_expected.to respond_to(:set_weather) }
+
+end
