@@ -1,30 +1,58 @@
-require_relative 'weather'
-require_relative 'plane'
+
+require 'plane'
+require 'weather'
+
+
 
 class Airport
-    DEFAULT_CAPACITY = 20
+
+include Weather
+
+    DEFAULT_CAPACITY = 2
     attr_accessor :planes, :capacity, :weather
 
     def initialize(capacity=DEFAULT_CAPACITY)
-    @capacity = capacity
-    @planes = []
-    @weather = Weather.new
+        @capacity = capacity
+        @planes = []
+       
     end
 
 
     def land(plane)
-        raise "The airport is full" if @planes.length >= @capacity
+        raise "Stormy weather cannot land" if weather == "Stormy"
         raise "Plane is landed" if plane.flying? == false
-        raise "Stormy weather cannot land" if @weather.is_stormy? == true
+        raise "The airport is full" if full?
         plane.land
-        @planes << plane
+        arrived(plane)
     end
 
     def take_off
-        raise "Plane is flying" if plane.flying? == true
+        raise "It's stormy" if weather == "Stormy"
         raise "There are no planes" if @planes.empty?
+        raise "Plane is flying" if plane.flying? == true
         plane.takeoff
-        @planes.pop
+        departed(plane)
+    end
+=begin
+    def show_weather
+        print weather
+    end
+
+#method used for printing for debugging
+=end
+
+private
+
+    def arrived(plane)
+        @planes << plane
+    end
+
+    def departed(plane)
+        @planes.delete(plane)
+    end
+
+    def full?
+        @planes.length >= @capacity
     end
 
 

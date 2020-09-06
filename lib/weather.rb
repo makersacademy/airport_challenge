@@ -1,18 +1,29 @@
+module Weather
+
+def weather 
+    rand(2) == 1 ? @weather_condition = "Sunny" : @weather_condition = "Stormy"
+end
+
+end
+
+=begin
 class Weather
 
-    DEFAULT_WEATHER = false
 
 
-    def initialize(state = DEFAULT_WEATHER)
-        @weather_state = state
+    def initialize()
+        @weather_num =  rand(2)
+        @weather_num == 1 ? @weather_condition = "Sunny" : @weather_condition = "Stormy"
 
     end
 
-    def is_stormy?
-        @weather_state
+    def weather_condition?
+        @weather_condition
+
     
     end
 
 
 
 end
+=end 
