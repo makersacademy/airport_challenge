@@ -53,8 +53,14 @@ describe Airport do
 
   it "should raise an error when trying to take off in a storm" do
     allow(subject).to receive(:rand) {9}
-    subject.land_plane
+    subject.parked_planes << Plane.new
     expect {subject.take_off}.to raise_error "weather conditions too poor"
+  end
+
+  it "should allow planes to take off in sunny weather" do
+    allow(subject).to receive(:rand) {2}
+    subject.parked_planes << Plane.new
+    expect {subject.take_off}.not_to raise_error
   end
 end
 
