@@ -41,4 +41,3 @@ I want to prevent landing when weather is stormy
 
 The program limits planes abilites to land and take-off, ensuring that planes can only take off from an airport if they have landed and are present in the airport hangar and that planes cannot land at an airport if they are already present in the airport hangar.
 
-This program has test coverage of 97.50%.
