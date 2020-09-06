@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     raise 'Airport full, no more planes allowed' if full? 
+
     @planes << plane # inserting the plane that landed to the array of planes
 
   end
@@ -15,9 +16,10 @@ class Airport
   def take_off(plane)
   end
 
-  ptivate # no need to call this method outside of the class, so calling 'private' section
+  private # no need to call this method outside of the class, so calling 'private' section
 
-  def full? # creating a 'full?' method with question mark to return either true or false 
+  def full? 
+    # creating a 'full?' method with question mark to return either true or false 
     # this is a predicate method 
     @planes.length >= @capacity
     # asking to raise the message above if the length of the array with planes in it 
