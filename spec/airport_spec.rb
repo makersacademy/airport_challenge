@@ -65,7 +65,7 @@ describe Airport do
         large_airport = full_airport(Airport::DEFAULT_CAPACITY * 2)
 
         expect { large_airport.clear_landing(plane) }.to raise_error(airport_full)
-        expect(small_airport.has_plane?(plane)).to eq false
+        expect(large_airport.has_plane?(plane)).to eq false
       end
     end
   end
