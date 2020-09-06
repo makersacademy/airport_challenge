@@ -1,5 +1,5 @@
 module Weather
-  def self.weather
+  def weather
     rand(10) < 8 ? 'sunny' : 'stormy'
   end
 end

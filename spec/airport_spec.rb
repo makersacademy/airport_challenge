@@ -5,7 +5,7 @@ describe Airport do
   subject(:airport) { Airport.new }
   let(:plane)             { double("Plane", :land => :landed, :takeoff => :airborne) }
   let(:sunny_weather)     { allow_any_instance_of(Airport).to receive(:weather).and_return('sunny') }
-  let(:stormy_weather)    { allow(airport).to receive(:weather).and_return('stormy') }
+  let(:stormy_weather)    { allow_any_instance_of(Airport).to receive(:weather).and_return('stormy') }
 
   # EXPECTED ERROR MESSAGES
   let(:airport_full)      { 'Airport is at capacity' }
@@ -24,6 +24,8 @@ describe Airport do
     it { should respond_to(:create_plane).with(0).arguments }
 
     it 'adds a new plane to the airport if it has capacity' do
+      new_plane = airport.create_plane
+      expect(airport.has_plane?(new_plane)).to eq true
       expect { airport.create_plane }.to change { airport.planes.count }.by(1)
     end
 
@@ -56,6 +58,15 @@ describe Airport do
         it 'stores the plane if plane lands without error' do
           airport.clear_landing(plane)
           expect(airport.has_plane?(plane)).to eq true
+        end
+
+        it 'stores all planes that are currently landed there' do
+          qf1 = double("Plane", :land => :landed, :takeoff => :airborne)
+          ba0016 = double("Plane", :land => :landed, :takeoff => :airborne)
+
+          [qf1, ba0016].each { |plane| airport.clear_landing(plane) }
+          expect(airport.has_plane?(qf1)).to eq true
+          expect(airport.has_plane?(ba0016)).to eq true
         end
 
         it "doesn't store plane if the plane throws an error" do

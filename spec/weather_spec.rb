@@ -1,5 +1,7 @@
 require 'weather'
 
+include Weather
+
 describe Weather do
   describe '#weather' do
     context 'when rand generates a number < 8' do
