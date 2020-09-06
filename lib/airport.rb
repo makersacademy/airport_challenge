@@ -1,6 +1,6 @@
 require 'plane'
 class Airport
-  attr_reader :parked_planes, :capacity, :local_weather
+  attr_accessor :parked_planes, :capacity, :local_weather
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -16,7 +16,8 @@ class Airport
   end
 
   def take_off
-    @parked_planes.pop
+    fail "weather conditions too poor" unless @local_weather == "sunny"
+    @parked_planes.pop 
   end
 
   def set_weather
