@@ -5,7 +5,7 @@ class Airport
 
   include Weather
 
-  attr_reader :DEFAULT_CAPACITY
+  attr_reader :DEFAULT_CAPACITY, :planes
   DEFAULT_CAPACITY = 20
 
 

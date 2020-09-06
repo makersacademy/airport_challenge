@@ -14,8 +14,9 @@ describe Airport do
 
   def full_airport(capacity)
     sunny_weather
+    plane = double("Plane", :land => :landed)
     airport = Airport.new(capacity)
-    capacity.times { airport.clear_landing(double("Plane", :land => :landed)) }
+    capacity.times { airport.clear_landing(plane) }
     airport
   end
 
@@ -33,9 +34,15 @@ describe Airport do
           airport.clear_landing(plane)
         end
 
-        it 'stores the plane' do
+        it 'stores the plane if plane has landed' do
           airport.clear_landing(plane)
           expect(airport.has_plane?(plane)).to eq true
+        end
+
+        it "doesn't store plane if the plane throws an error" do
+          allow(plane).to receive(:land).and_raise('Plane is already landed')
+          expect { airport.clear_landing(plane) }.to raise_error(RuntimeError)
+          expect { airport.clear_landing(plane) rescue nil }.not_to change(airport, :planes)
         end
       end
 
