@@ -2,13 +2,27 @@ require 'plane.rb'
 require 'airport.rb'
 
 heathrow = Airport.new
+paris = Airport.new
 
 describe Plane do
-  it 'Should land at an airport' do
+  ## Taking off
+  
+  it 'Should respond to #land' do
     expect(subject).to respond_to(:land).with(1).argument
-    #expect(subject.land(heathrow)).to eq airport.land_airport
   end
 
+  it 'Should set @location to the name of the airport landed at' do
+    subject.land(heathrow)
+    subject.location.should eq(heathrow)
+  end
+
+  #it 'Should not land if the airport is full' do
+
+  #end
+
+
+
+  ## Landing
   it 'Should respond to #take_off' do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
@@ -26,6 +40,10 @@ describe Plane do
   it 'Should confirm that it is no longer in an airport after takeoff' do
     expect(subject).to respond_to(:location?)
     expect(subject.location?).to eq "The plane is in the air."
+  end
+
+  it 'Should confirm the planes new location after takeoff' do
+    expect(subject.take_off(heathrow)).to eq "The plane is in the air."
   end
 
 end

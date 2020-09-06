@@ -8,7 +8,8 @@ class Plane
   end
 
   def land(airport)
-  
+    
+    @location = airport
   end
 
   def take_off(airport)
