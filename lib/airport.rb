@@ -1,4 +1,5 @@
 require 'weather'
+require 'plane'
 
 class Airport
 
@@ -17,6 +18,7 @@ class Airport
     raise 'Airport is at capacity' if full?
     raise 'Weather is stormy and too unsafe' if stormy?
 
+    plane.land
     arrive(plane)
   end
 
