@@ -13,18 +13,17 @@ class Airport
   def takeoff
     fail "There are no planes!" if @airplanes.empty? 
 		
-		fail "Crap weather! Don't take off!" if bad_weather
+	  fail "Crap weather! Don't take off!" if bad_weather
 		
-		@airplanes.pop
+	  @airplanes.pop
   end
 
   def land
-        
     fail "You can't land, we're full!" if full?
 		
-	  fail "Crap weather! Don't land!" if bad_weather
+    fail "Crap weather! Don't land!" if bad_weather
 		
-	  land_plane(Planes.new(false))
+    land_plane(Planes.new(false))
   end
 
 private
