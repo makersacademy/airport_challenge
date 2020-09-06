@@ -21,4 +21,9 @@ class Airport
     @hangar.include?(plane) ? false : true
   end
 
+#landing at aiport
+
+  def land(plane)
+  end
+  
 end

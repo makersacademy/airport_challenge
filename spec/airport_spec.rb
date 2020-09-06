@@ -21,7 +21,7 @@ describe Airport do
 
   end
 
-  describe 'take-off and landing' do
+  describe 'take-off' do
 
     it 'allows planes to depart airport' do
       plane = Plane.new
@@ -32,6 +32,15 @@ describe Airport do
       plane = Plane.new
       subject.take_off(plane)
       expect(subject.has_departed(plane)).to eq true
+    end
+
+  end
+
+  describe 'landing' do
+
+    it 'allows plane to land at airport' do
+      plane = Plane.new
+      expect(subject).to respond_to (:land)
     end
 
   end
