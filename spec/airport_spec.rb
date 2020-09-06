@@ -1,9 +1,16 @@
 require 'airport'
 
 describe Airport do
+
+  describe '#change_max_capacity' do
+    it 'allows the max capacity to be altered' do
+      subject.change_max_capacity(15)
+      expect(subject.capacity).to eq 15
+    end
+  end
   
   describe '#land' do
-    it 'lands a plane' do
+    it 'lands a plane at an airport' do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end

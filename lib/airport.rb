@@ -26,4 +26,8 @@ class Airport
     end
   end
 
+  def change_max_capacity(max_capacity)
+    @capacity = max_capacity
+  end
+
 end
