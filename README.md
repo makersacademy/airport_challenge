@@ -44,6 +44,7 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-##Notes##
+Approach Method
+---------------
 
-My approach to solving the problem was to build an airport class and a plane class. The main methods required (land_plane and take_off_plane) made more sense being defined in the airport class. I then used three instance variables which were hangar, capacity and weather. To me, it makes sense for each airport to have its own randomly generated weather as an instance variable. I then used instance_variable_set to override the random weather in the tests. Overall, my approach was to read each user story and then build tests for all possible outcomes of the user story. I then used the error messages from each test to make writing the methods easier.
+My approach to solving the problem was to build an airport class and a plane class. The main methods required (land_plane and take_off_plane) made more sense being defined in the airport class. I then used three instance variables which were hangar, capacity and weather. To me, it makes sense for each airport to have its own randomly generated weather as an instance variable, than to have a separate weather class. I then used the instance_variable_set method to override the random weather in the tests. Overall, my approach was to read each user story and then build tests for all possible outcomes of the user story. I then used the error messages from each test to make writing the methods easier.
