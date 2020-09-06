@@ -35,6 +35,8 @@ describe Airport do
     let(:gatwick) { Airport.new(5) }
     let(:boeing747) { Plane.new }
     let(:boeing777) { Plane.new }
+    let(:dublin) { double(Airport, weather: 'stormy') }
+
 
     it 'removes a plane from the hangar' do
       gatwick.land_plane(boeing747)
@@ -49,16 +51,12 @@ describe Airport do
       expect(gatwick.hangar).to eq [boeing777]
     end
 
-   # it 'prevents takeoff when the weather is stormy' do
-     # let(:dublin) { double(Airport, weather: 'stormy') }
-      
-     # dublin.land_plane(boeing747)
-     # dublin.take_off_plane(boeing747)
-    #  expect { }
-    #end
+    it 'prevents takeoff when the weather is stormy' do
+      allow(dublin).to receive(:land_plane)
+      allow(dublin).to receive(:take_off_plane)
+      dublin.land_plane(boeing747)
+      dublin.take_off_plane(boeing747)
+      expect { dublin.take_off_plane(boeing747) }.to raise_error "You cannot take off whilst the weather is stormy"
+    end
   end
-
-  #describe 'weather' do
-   # it 'returns a randomly generated'
-  #end
 end
