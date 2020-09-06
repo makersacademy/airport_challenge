@@ -19,7 +19,7 @@ describe Airport do
     # even when it relies on a class that is undefined or unavailable
     # plane = double :plane *see let(:plane) { double :plane } -> not a good idea to declare 
     # variable inside a test
-      allow(airport).to receive(:stormy?).and_return false # this method runs when stormy? is false 
+        allow(airport).to receive(:stormy?).and_return false # this method runs when stormy? is false 
         10.times do 
           airport.land(plane) 
         end
@@ -32,6 +32,11 @@ describe Airport do
     # 'is expected to respond_to method take_off with one argument'
     it 'instructs a plane to take off' do
       expect(airport).to respond_to(:take_off).with(1).argument
+    end
+    
+    it 'raises and error if planes try to take off when stormy' do
+      allow(airport).to receive(:stormy?).and_return true
+      expect { airport.take_off(plane) }.to raise_error 'Weather stormy: no take off allowed'
     end
   end 
 

@@ -16,6 +16,7 @@ describe 'user_stories' do # US = user story
   it 'plane takes off, airport instructs plane to take off' do
     airport = Airport.new(10) # argument '10' refers to US3
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.take_off(plane) }.not_to raise_error
   end
     # US2 confirm that it is no longer in the airport
@@ -36,14 +37,22 @@ describe 'user_stories' do # US = user story
     expect { airport.land(plane) }.to raise_error 'Airport full: no more planes allowed'
     # when condition 'full' is achieved, planes cannot land and will throw the message 
   end
-    
-    #US6 As an air traffic controller 
-    #US6 To ensure safety 
-    #US6 I want to prevent landing when weather is stormy 
+    # US5 As an air traffic controller 
+    # US5 To ensure safety 
+    # US5 I want to prevent landing when weather is stormy
+    it 'plane not allowed to take off when stormy' do 
+      airport = Airport.new(10)
+      plane = Plane.new
+      allow(airport).to receive(:stormy?).and_return true # if the airport is stormy, no take off allowed = true
+      expect { airport.take_off(plane) }.to raise_error 'Weather stormy: no take off allowed'
+    end
+    # US6 As an air traffic controller 
+    # US6 To ensure safety 
+    # US6 I want to prevent landing when weather is stormy 
   it 'plane not allowed to land when stormy' do 
     airport = Airport.new(10)
     plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return true # if the airport  is stormy, no  landing allowed = true
-    expect{ airport.land(plane) }.to raise_error 'Weather stormy: no landing allowed'
+    allow(airport).to receive(:stormy?).and_return true # if the airport is stormy, no landing allowed = true
+    expect { airport.land(plane) }.to raise_error 'Weather stormy: no landing allowed'
   end
 end

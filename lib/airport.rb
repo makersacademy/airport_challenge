@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Weather stormy: no take off allowed' if stormy?
   end
 
   private # no need to call this method outside of the class, so calling 'private' section
