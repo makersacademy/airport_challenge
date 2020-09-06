@@ -5,6 +5,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:land_plane) }
   it { is_expected.to respond_to(:take_off_plane) }
+  it { is_expected.to respond_to(:weather) }
 
   describe 'land_plane' do
 
@@ -48,8 +49,16 @@ describe Airport do
       expect(gatwick.hangar).to eq [boeing777]
     end
 
-    it 'prevents takeoff when the weather is stormy' do
+   # it 'prevents takeoff when the weather is stormy' do
+     # let(:dublin) { double(Airport, weather: 'stormy') }
       
-    end
+     # dublin.land_plane(boeing747)
+     # dublin.take_off_plane(boeing747)
+    #  expect { }
+    #end
   end
+
+  #describe 'weather' do
+   # it 'returns a randomly generated'
+  #end
 end

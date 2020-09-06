@@ -9,7 +9,7 @@ class Airport
 
   def land_plane(plane)
     fail "There is no space in the hangar" if room_for_plane
-    
+
     @hangar << plane
   end
 
@@ -17,9 +17,14 @@ class Airport
     @hangar.delete(plane)
   end
 
+  def weather
+    rand(6) > 4 ? "stormy" : "fine"
+  end
+
   private
 
   def room_for_plane
     @capacity - @hangar.size < 1
   end
+
 end
