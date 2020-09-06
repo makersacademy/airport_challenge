@@ -5,19 +5,19 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
-    rand(6) > 4 ? @weather = "stormy" : @weather = "sunny"
+    rand(6) > 4 ? @weather = :stormy : @weather = :sunny
   end
 
   def land_plane(plane)
     fail "There is no space in the hangar" if room_for_plane
-    fail "It is too stormy to land" if @weather == "stormy"
+    fail "It is too stormy to land" if @weather == :stormy
 
     plane_in_hangar(plane) ? "That plane is already in the hangar" : @hangar << plane
   end
 
   def take_off_plane(plane)
-    fail "That plane is not in the hangar" if !plane_in_hangar(plane)
-    fail "You cannot take off whilst the weather is stormy" if @weather == "stormy"
+    fail "That plane is not in the hangar" unless plane_in_hangar(plane)
+    fail "You cannot take off whilst the weather is stormy" if @weather == :stormy
 
     @hangar.delete(plane)
   end

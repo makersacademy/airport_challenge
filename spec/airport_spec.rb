@@ -14,7 +14,7 @@ describe Airport do
     let(:dublin) { Airport.new }
 
     before 'a group of tests that have a plane in the hangar and the weather is sunny' do
-      gatwick.instance_variable_set(:@weather, "sunny")
+      gatwick.instance_variable_set(:@weather, :sunny)
       gatwick.land_plane(boeing747)
     end
 
@@ -33,12 +33,12 @@ describe Airport do
 
     it 'will only allow a plane to land if there is space and the capacity has been changed' do
       luton = Airport.new(17)
-      luton.instance_variable_set(:@weather, "sunny")
+      luton.instance_variable_set(:@weather, :sunny)
       expect { 18.times { luton.land_plane(Plane.new) } }.to raise_error "There is no space in the hangar"
     end
 
     it 'raises an error if the weather is stormy' do
-      dublin.instance_variable_set(:@weather, "stormy")
+      dublin.instance_variable_set(:@weather, :stormy)
       expect { dublin.land_plane(boeing747) }.to raise_error "It is too stormy to land"
     end
   end
@@ -51,9 +51,9 @@ describe Airport do
     let(:dublin) { Airport.new(5) }
 
     before 'a group of tests with sunny weather and a plane in the hangar' do
-      gatwick.instance_variable_set(:@weather, "sunny")
+      gatwick.instance_variable_set(:@weather, :sunny)
       gatwick.land_plane(boeing747)
-      dublin.instance_variable_set(:@weather, "sunny")
+      dublin.instance_variable_set(:@weather, :sunny)
     end
 
     it 'removes a plane from the hangar if weather is sunny' do
@@ -73,7 +73,7 @@ describe Airport do
 
     it 'prevents takeoff when the weather is stormy' do
       dublin.land_plane(boeing747)
-      dublin.instance_variable_set(:@weather, "stormy")
+      dublin.instance_variable_set(:@weather, :stormy)
       expect { dublin.take_off_plane(boeing747) }.to raise_error "You cannot take off whilst the weather is stormy"
     end
 
