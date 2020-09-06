@@ -14,7 +14,11 @@ class Airport
 #departing airport
 
   def take_off(plane)
-    
+
+  end
+
+  def has_departed(plane)
+    @hangar.include?(plane) ? false : true
   end
 
 end
