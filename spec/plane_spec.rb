@@ -11,10 +11,6 @@ describe Plane do
   describe '#land(airport)' do
     it { should respond_to(:land).with(0).arguments }
 
-    it 'returns true if the plane is in the air' do
-      expect(subject.land).to eq true
-    end
-
     it "updates plane status to 'landed'" do
       subject.land
       expect(subject.status).to eq(:landed)

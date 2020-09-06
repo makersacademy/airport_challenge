@@ -8,9 +8,14 @@ class Plane
   end
 
   def land
-    raise 'Plane is already on the ground' if @status == :landed
+    raise 'Plane is already on the ground' if landed?
 
     @status = :landed
-    true
+  end
+
+  private
+
+  def landed?
+    @status == :landed
   end
 end
