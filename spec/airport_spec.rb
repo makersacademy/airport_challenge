@@ -1,5 +1,6 @@
 require 'airport_class'
 require 'plane_class'
+require 'weather_module'
 
 describe Airport do
 
@@ -62,7 +63,7 @@ describe Airport do
     it 'prevent plane landing in stormy coniditions' do
       plane = Plane.new
       allow(subject).to receive(:storm?).and_return(true)
-      expect {subject.land(plane) }.to raise_error "Landing prohibited in stormy conditions."
+      expect { subject.land(plane) }.to raise_error "Landing prohibited in stormy conditions."
     end
 
   end

@@ -1,4 +1,8 @@
+require 'weather_module'
+
 class Airport
+
+  include Weather
 
 # airport set up
   attr_reader :hangar
@@ -13,7 +17,7 @@ class Airport
 
 # departing airport
 
-  def take_off(plane)
+  def take_off(_plane)
     fail "Take off prohibited in stormy conditions." if storm?
   end
 
@@ -28,7 +32,7 @@ class Airport
   def land(plane)
     fail "Landing prohibited. Airport hangar is at capacity." if full?
     fail "Landing prohibited in stormy conditions." if storm?
-    
+
     @hangar << plane
   end
 
@@ -39,7 +43,7 @@ class Airport
 # weather
 
   def storm?
-
+    generate_storm
   end
 
 end
