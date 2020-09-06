@@ -21,6 +21,6 @@ class Airport
 
   def set_weather
      random_number = rand(10)
-     random_number > 8 ? "sunny" : "stormy"
+     random_number < 8 ? "sunny" : "stormy"
   end
 end

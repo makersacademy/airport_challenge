@@ -38,5 +38,20 @@ describe Airport do
   end
 
   it { is_expected.to respond_to(:set_weather) }
+#end
+#describe Airport.new do
+  
+  it "#weather should return stormy when rand is stubbed to 9" do
+  allow(subject).to receive(:rand) {9}
+     expect(subject.set_weather).to eq "stormy"
+  end
+
+  it "#weather should return sunny when rand is stubbed to 6" do
+  allow(subject).to receive(:rand) {6}
+  expect(subject.set_weather).to eq "sunny"
+  end
+end
+=begin
 
 end
+=end
