@@ -11,7 +11,9 @@ class Airport
 
   def land_plane(*plane)
     raise "airport is full" if @parked_planes.length >= @capacity
+
     raise "weather conditions too poor" if weather_is_bad
+
     if plane.length < 1
       @parked_planes << Plane.new
     else 
@@ -22,10 +24,12 @@ class Airport
 
   def take_off(*plane)
     fail "weather conditions too poor" if weather_is_bad
-    if plane.length == 0
+
+    if plane.length.zero?
       @parked_planes.pop 
     else
       fail "plane is already flying..." if plane[0].landed == false
+
       @parked_planes.delete(plane)
       plane = plane.pop
       plane.landed = false
@@ -34,8 +38,8 @@ class Airport
   end
 
   def set_weather
-     random_number = rand(10)
-     random_number < 8 ? "sunny" : "stormy"
+    random_number = rand(10)
+    random_number < 8 ? "sunny" : "stormy"
   end
 
   def weather_is_bad

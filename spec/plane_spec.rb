@@ -21,16 +21,16 @@ describe Plane do
     expect(gatwick.take_off(subject)).to eq subject
   end
   it "changes @landed to false when takes off" do
-    laX = Airport.new
-    laX.local_weather = "sunny"
-    laX.land_plane(subject)
-    laX.take_off(subject)
+    la_x = Airport.new
+    la_x.local_weather = "sunny"
+    la_x.land_plane(subject)
+    la_x.take_off(subject)
     expect(subject.landed). to eq false
   end
   it "changes @landed to true when it lands" do 
-    laX = Airport.new
-    laX.local_weather = "sunny"
-    laX.land_plane(subject)
+    la_x = Airport.new
+    la_x.local_weather = "sunny"
+    la_x.land_plane(subject)
     expect(subject.landed).to eq true
   end
   it "can't take off when it is already in the air" do
@@ -38,12 +38,12 @@ describe Plane do
     luton.local_weather = "sunny"
     luton.land_plane(subject)
     luton.take_off(subject)
-    expect {luton.take_off(subject)}.to raise_error "plane is already flying..."
+    expect { luton.take_off(subject) }.to raise_error "plane is already flying..."
   end
   it "doesnt raise an error when the plane isn't already flying" do 
     luton = Airport.new
     luton.local_weather = "sunny"
     luton.land_plane(subject)
-    expect {luton.take_off(subject)}.not_to raise_error 
+    expect { luton.take_off(subject) }.not_to raise_error 
   end
 end

@@ -15,7 +15,6 @@ describe Airport do
   end
   it "is expected to store landed planes with land_plane" do 
     subject.local_weather = "sunny"
-    y = Airport.new
     subject.land_plane 
     expect(subject.parked_planes[0]).to be_an_instance_of(Plane)
   end
@@ -40,43 +39,40 @@ describe Airport do
     expect(subject.parked_planes.empty?).to eq true
   end
 
-
   it "should have a weather value" do
     expect(Airport.new.local_weather).not_to eq nil
   end
   
   it "#weather should return stormy when rand is stubbed to 9" do
-  allow(subject).to receive(:rand) {9}
-     expect(subject.set_weather).to eq "stormy"
+    allow(subject).to receive(:rand) { 9 }
+    expect(subject.set_weather).to eq "stormy"
   end
 
   it "#weather should return sunny when rand is stubbed to 6" do
-  allow(subject).to receive(:rand) {6}
-  expect(subject.set_weather).to eq "sunny"
+    allow(subject).to receive(:rand) { 6 }
+    expect(subject.set_weather).to eq "sunny"
   end
 
   it "should raise an error when trying to take off in a storm" do
     subject.local_weather = "stormy"
     subject.parked_planes << Plane.new
-    expect {subject.take_off}.to raise_error "weather conditions too poor" 
+    expect { subject.take_off }.to raise_error "weather conditions too poor" 
   end
 
   it "should allow planes to take off in sunny weather" do
     subject.local_weather = "sunny"
     subject.parked_planes << Plane.new
-    expect {subject.take_off}.not_to raise_error
+    expect { subject.take_off }.not_to raise_error
     expect(subject.parked_planes.empty?).to eq true
   end
 
   it "should not allow planes to land in a storm" do
     subject.local_weather = "stormy"
-    expect {subject.land_plane}. to raise_error "weather conditions too poor"
-end
+    expect { subject.land_plane }. to raise_error "weather conditions too poor"
+  end
 
   it "should allow planes to land in good weather" do
     subject.local_weather = "sunny"
-    expect {subject.land_plane}.not_to raise_error 
+    expect { subject.land_plane }.not_to raise_error 
   end
 end
-
-
