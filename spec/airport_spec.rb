@@ -59,6 +59,12 @@ describe Airport do
       expect { airport.land(plane1) }.to raise_error("Landing prohibited. Airport hangar is at capacity.")
     end
 
+    it 'prevent plane landing in stormy coniditions' do
+      plane = Plane.new
+      allow(subject).to receive(:storm?).and_return(true)
+      expect {subject.land(plane) }.to raise_error "Landing prohibited in stormy conditions."
+    end
+
   end
 
 end

@@ -27,7 +27,8 @@ class Airport
 
   def land(plane)
     fail "Landing prohibited. Airport hangar is at capacity." if full?
-
+    fail "Landing prohibited in stormy conditions." if storm?
+    
     @hangar << plane
   end
 
@@ -38,7 +39,7 @@ class Airport
 # weather
 
   def storm?
-  
+
   end
 
 end
