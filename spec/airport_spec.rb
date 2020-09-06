@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { Airport.new }
-  let(:plane)             { double("Plane", :land => :landed) }
+  let(:plane)             { double("Plane", :land => :landed, :takeoff => :airborne) }
   let(:sunny_weather)     { allow_any_instance_of(Airport).to receive(:weather).and_return('sunny') }
   let(:stormy_weather)    { allow(airport).to receive(:weather).and_return('stormy') }
 
@@ -14,7 +14,7 @@ describe Airport do
 
   def full_airport(capacity)
     sunny_weather
-    plane = double("Plane", :land => :landed)
+    plane = double("Plane", :land => :landed, :takeoff => :airborne)
     airport = Airport.new(capacity)
     capacity.times { airport.clear_landing(plane) }
     airport
@@ -34,7 +34,7 @@ describe Airport do
           airport.clear_landing(plane)
         end
 
-        it 'stores the plane if plane has landed' do
+        it 'stores the plane if plane lands without error' do
           airport.clear_landing(plane)
           expect(airport.has_plane?(plane)).to eq true
         end
@@ -94,6 +94,11 @@ describe Airport do
       context 'weather is sunny' do
         before do
           sunny_weather
+        end
+
+        it 'sends a request to the plane to takeoff' do
+          expect(plane).to receive(:takeoff).once.with(no_args)
+          airport.clear_takeoff(plane)
         end
 
         it 'clears takeoff and releases plane' do

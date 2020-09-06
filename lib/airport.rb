@@ -26,6 +26,7 @@ class Airport
     raise 'Plane is not at this airport' unless has_plane?(plane)
     raise 'Weather is stormy and too unsafe' if stormy?
 
+    plane.takeoff
     depart(plane)
   end
 
