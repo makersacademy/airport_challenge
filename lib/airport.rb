@@ -11,10 +11,11 @@ class Airport
   def land_plane(plane)
     fail "There is no space in the hangar" if room_for_plane
 
-    @hangar.include?(plane) ? "That plane is already in the hangar" : @hangar << plane
+    plane_in_hangar(plane) ? "That plane is already in the hangar" : @hangar << plane
   end
 
   def take_off_plane(plane)
+    fail "That plane is not in the hangar" if !plane_in_hangar(plane)
     fail "You cannot take off whilst the weather is stormy" if @weather == "stormy"
 
     @hangar.delete(plane)
@@ -26,4 +27,7 @@ class Airport
     @capacity - @hangar.size < 1
   end
 
+  def plane_in_hangar(plane)
+    @hangar.include?(plane)
+  end
 end
