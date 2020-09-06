@@ -1,4 +1,4 @@
-require 'weather_module'
+require_relative 'weather_module'
 
 class Airport
 
@@ -17,14 +17,15 @@ class Airport
 
 # departing airport
 
-  def take_off(_plane)
+  def take_off(plane)
     fail "Take off prohibited in stormy conditions." if storm?
+    fail "Plane is not present in hangar at this airport" unless @hangar.include?(plane)
+
+    @hangar.delete(plane)
   end
 
-  def departed?(plane)
-    @hangar.delete(plane)
-    @hangar.include?(plane) ? false : true
-
+  def at_airport?(plane)
+    @hangar.include?(plane)
   end
 
 # landing at aiport
@@ -32,9 +33,12 @@ class Airport
   def land(plane)
     fail "Landing prohibited. Airport hangar is at capacity." if full?
     fail "Landing prohibited in stormy conditions." if storm?
+    fail "Plane has already landed at this airport" if @hangar.include?(plane)
 
     @hangar << plane
   end
+
+# testing airport hangar capacity
 
   def full?
     @hangar.length >= @capacity
