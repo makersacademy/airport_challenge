@@ -54,13 +54,30 @@ describe Airport do
   it "should raise an error when trying to take off in a storm" do
     allow(subject).to receive(:rand) {9}
     subject.parked_planes << Plane.new
-    expect {subject.take_off}.to raise_error "weather conditions too poor"
+    expect {subject.take_off}.to raise_error "weather conditions too poor" 
+  end
+  it "should not allow the plane to leave after raising weather error" do
+    allow(subject).to receive(:rand) {9}
+    subject.parked_planes << Plane.new
+    subject.take_off
+    expect(subject.parked_planes.empty?).not_to eq true
   end
 
   it "should allow planes to take off in sunny weather" do
     allow(subject).to receive(:rand) {2}
     subject.parked_planes << Plane.new
     expect {subject.take_off}.not_to raise_error
+    expect(subject.parked_planes.empty?).to eq true
+  end
+
+  it "should not allow planes to land in a storm" do
+    allow(subject).to receive(:rand) {9}
+    expect {subject.land_plane}. to raise_error "weather conditions too poor"
+end
+
+  it "should allow planes to land in good weather" do
+    allow(subject).to receive(:rand) {2}
+    expect {subject.land_plane}.not_to raise_error 
   end
 end
 
