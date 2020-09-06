@@ -20,6 +20,21 @@ describe Airport do
     airport
   end
 
+  describe '#create_plane(plane)' do
+    it { should respond_to(:create_plane).with(0).arguments }
+
+    it 'adds a new plane to the airport if it has capacity' do
+      expect { airport.create_plane }.to change { airport.planes.count }.by(1)
+    end
+
+    it "raises error and doesn't store plane if airport is full" do
+      airport = full_airport(3)
+
+      expect { airport.create_plane }.to raise_error(airport_full)
+      expect { airport.create_plane rescue nil }.not_to change(airport, :planes)
+    end
+  end
+
   describe '#clear_landing(plane)' do
     it { should respond_to(:clear_landing).with(1).argument }
 
