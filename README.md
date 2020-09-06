@@ -87,13 +87,24 @@ My Approach
 * Follow TDD to develop the airport program.
 
 **Test**
-* Create a feature test that covers the scenario of multiple planes landing and taking off from an airport.
+* Create a feature test that covers the scenario of multiple planes landing and taking off from an airport,
+covering both sunny and stormy weather conditions
 
 Tech Design
 -----------
 
-| Objects 	| Messages                                                                 	| Attributes                                 	|
-|---------	|--------------------------------------------------------------------------	|--------------------------------------------	|
-| User    	|                                                                          	|                                            	|
-| Plane   	| new                                                                      	| status ('airborne', 'landed')              	|
-| Airport 	| new(capacity) land(plane) takeoff(plane) has_plane?(plane) stormy? full? 	| DEFAULT_CAPACITY capacity [planes] weather 	|
+| Objects 	| Messages             	|
+|---------	|----------------------	|
+| Plane   	| initialize           	|
+|         	| takeoff              	|
+|         	| land                 	|
+| Airport 	| initialize(capacity) 	|
+|         	| create_plane         	|
+|         	| clear_takeoff(plane) 	|
+|         	| clear_landing(plane) 	|
+|         	| depart(plane)     	|
+|         	| arrive(plane)     	|
+|         	| has_plane?(plane)    	|
+|         	| full?                	|
+|         	| stormy?              	|
+| Weather 	| weather              	|

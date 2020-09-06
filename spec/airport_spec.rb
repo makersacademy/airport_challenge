@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  subject(:airport) { Airport.new }
+  subject(:airport)       { Airport.new }
   let(:plane)             { double("Plane", :land => :landed, :takeoff => :airborne) }
   let(:sunny_weather)     { allow_any_instance_of(Airport).to receive(:weather).and_return('sunny') }
   let(:stormy_weather)    { allow_any_instance_of(Airport).to receive(:weather).and_return('stormy') }

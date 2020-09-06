@@ -2,7 +2,6 @@ require 'weather'
 require 'plane'
 
 class Airport
-
   include Weather
 
   attr_reader :DEFAULT_CAPACITY, :planes
@@ -10,7 +9,7 @@ class Airport
 
   AIRPORT_FULL_ERROR = 'Airport is at capacity'
   STORMY_ERROR = 'Weather is stormy and too unsafe'
-  PLANE_NOT_HERE = 'Plane is not at this airport'
+  PLANE_NOT_HERE_ERROR = 'Plane is not at this airport'
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -32,7 +31,7 @@ class Airport
   end
 
   def clear_takeoff(plane)
-    raise PLANE_NOT_HERE unless has_plane?(plane)
+    raise PLANE_NOT_HERE_ERROR unless has_plane?(plane)
     raise STORMY_ERROR if stormy?
 
     plane.takeoff
@@ -60,6 +59,6 @@ class Airport
   end
 
   def stormy?
-    self.weather == 'stormy'
+    weather == 'stormy'
   end
 end

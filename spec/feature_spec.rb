@@ -1,7 +1,6 @@
 require 'airport'
 require 'weather'
 require 'plane'
-require 'airport_spec'
 
 describe 'Airport Challenge' do
 

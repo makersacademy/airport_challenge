@@ -23,7 +23,7 @@ describe Plane do
       end
 
       it 'changes plane status to landed' do
-        expect{ plane.land }.to change { plane.status }.from(:airborne).to(:landed)
+        expect { plane.land }.to change { plane.status }.from(:airborne).to(:landed)
       end
 
       it 'returns :landed' do
