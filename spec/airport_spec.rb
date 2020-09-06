@@ -1,6 +1,6 @@
 require 'airport_class'
 require 'plane_class'
-require 'weather_module'
+require 'number_module'
 
 describe Airport do
 #tests for setting up airport

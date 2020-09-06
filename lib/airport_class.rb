@@ -1,8 +1,8 @@
-require_relative 'weather_module'
+require_relative 'number_module'
 
 class Airport
 
-  include Weather
+  include Number
 
 # airport set up
   attr_reader :hangar
@@ -45,9 +45,9 @@ class Airport
   end
 
 # weather
-
+#this method returns the weather conditions. There is a 20% chance of stormy conditions. Can be altered in number module
   def storm?
-    generate_storm
+    low_false_probability
   end
 
 end
