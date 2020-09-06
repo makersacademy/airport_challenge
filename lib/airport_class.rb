@@ -45,7 +45,7 @@ class Airport
   end
 
 # weather
-#this method returns the weather conditions. There is a 20% chance of stormy conditions. Can be altered in number module
+# determines weather conditions using number module; low probability of storm
   def storm?
     low_false_probability
   end
