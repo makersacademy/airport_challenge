@@ -48,15 +48,4 @@ describe 'Airport Challenge' do
 
     expect(heathrow.has_plane?(@qf1)).to eq true
   end
-
-  it 'allows multiple planes to land at an airport (that has capacity)' do
-    # Both QF1 and BA0016 fly from Sydney to Gatwick
-    [@qf1, @ba0016].each do |plane|
-      sydney.clear_takeoff(plane)
-      gatwick.clear_landing(plane)
-    end
-
-    expect(gatwick.has_plane?(@qf1)).to eq true
-    expect(gatwick.has_plane?(@ba0016)).to eq true
-  end
 end
