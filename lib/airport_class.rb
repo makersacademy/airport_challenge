@@ -47,7 +47,7 @@ class Airport
 # weather
 # determines weather conditions using number module; low probability of storm
   def storm?
-    low_false_probability
+    random_number
   end
 
 end
