@@ -34,10 +34,10 @@ Weahter
 - is a constant and is randomly selected but needs to be stormy sometimes 
 
 This helped me create classes in my head and I then started creating tests to start making methods.
-I first created all of the simple tests that check if subjects respond to methods
-I then moved on to raising errors when airport is empty or full and when plane has already landed or it is already flying
-The hardest part was to raise errors that araise when the weather is stromy as condtions can change
-After I managed to create those conditions in raising of issues I've regrouped all of the tests into -take off and land behaviour
+I first created all of the simple tests that check if subjects respond to methods.
+I then moved on to raising errors when airport is empty or full and when plane has already landed or it is already flying.
+The hardest part was to raise errors that araise when the weather is stromy as condtions can change.
+After I managed to create those conditions in raising of issues I've regrouped all of the tests into -take off and land behaviour.
 
 
 
