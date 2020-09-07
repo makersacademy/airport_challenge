@@ -1,33 +1,21 @@
-require_relative 'plane'
-
 class Airport
-  DEFAULT_CAPACITY = 5
-  attr_reader :planes
-  attr_accessor :capacity
+  attr_reader :capacity, :hangar
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = 5, hangar = [])
     @capacity = capacity
-    @planes = []
+    @hangar = hangar
   end
 
-  def land(plane)
-    if @planes.count >= @capacity
-      fail 'Landing is not currently possible'
-    else
-      @planes << plane
-    end
+  def store_plane(plane)
+    @hangar << plane
+  end
+  
+  def full?
+    @hangar.count >= capacity
   end
 
-  def take_off(plane)
-    if @planes.count == 0
-      fail 'There are no planes available'
-    else
-      @planes.pop
-    end
-  end
-
-  def change_max_capacity(max_capacity)
-    @capacity = max_capacity
+  def empty?
+    @hangar.empty?
   end
 
 end
