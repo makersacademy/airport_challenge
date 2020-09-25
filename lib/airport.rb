@@ -11,11 +11,14 @@ class Airport
   def land(plane)
     fail "No hangar space available" if hangar_full(plane)
     @@hangar << plane
-    @plane = plane
   end
 
   def takeoff(plane)
     @@hangar.pop
+  end
+
+  def checkHangar
+    @@hangar
   end
 
   private
