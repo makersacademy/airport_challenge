@@ -91,7 +91,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 
 ## Progress
-User stories completed up to story 3, 4 tests written and passed 
+User stories completed up to story 4, 6 tests written and passed
+Default capacity hangar at 2 
 
 ## Improvements
 Next user story
