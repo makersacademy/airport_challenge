@@ -16,8 +16,16 @@ describe Airport do
     end
       it "rejects landing if hangar is full" do
         plane = Plane.new
+        plane1 = Plane.new
+        plane2 = Plane.new
         subject.land(plane)
-      expect { subject.land(plane) }.to raise_error("No hangar space available")
+        subject.land(plane1)
+      expect{ subject.land(plane2) }.to raise_error("No hangar space available")
+      end
+      it "throws error if same plane tries to land again while in hangar" do
+        plane = Plane.new
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error("plane already landed")
       end
 end
   describe "#takeoff" do
@@ -28,4 +36,9 @@ end
       expect(subject.checkHangar).to eq([])
     end
 end
+  describe "capacity" do
+    it "allocates the default capacity for the hangar as 4" do
+      expect(subject.capacity).to eq(2)
+    end
+  end
 end
