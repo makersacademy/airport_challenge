@@ -91,10 +91,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 
 ## Progress
-User stories completed up to story 4, 6 tests written and passed
-Default capacity hangar at 2 
+User stories completed up to story 5, 10 tests written and passed
+Default capacity hangar at 2
+Mocking for weather not complete 
 
 ## Improvements
+Mocking for random weather
 Next user story
 
 ## Installation

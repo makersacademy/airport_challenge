@@ -1,6 +1,8 @@
 require './lib/airport'
 
 describe Airport do
+    let(:sunny) {1}
+    let(:stormy) {2}
   subject(:airport) { Airport.new }
 
   describe "Create Airport" do
@@ -29,6 +31,8 @@ describe Airport do
       end
 end
   describe "#takeoff" do
+    let(:weather) { double("weather double", :generate => sunny) }
+
     it "allows the plane to takeoff from the hangar" do
       plane = Plane.new
       subject.land(plane)
@@ -41,4 +45,14 @@ end
       expect(subject.capacity).to eq(2)
     end
   end
+  describe "weather" do
+    let(:weather) { double("weather double", :generate => stormy) }
+
+    it "prevents plane from taking off in stormy weather" do
+      airport = Airport.new([], weather)
+      plane = Plane.new
+      subject.land(plane)
+      expect{ subject.takeoff(plane) }.to raise_error("cannot takeoff due to stormy weather")
+    end
+end
 end
