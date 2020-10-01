@@ -14,12 +14,12 @@ describe Airport do
     expect(@airport.planes).to include @plane
   end
 
-  # it "can let a plane takeoff" do
-  #   # Arrange
-  #   @airport.land(@plane)
-  #   # Act
-  #   @airport.takeoff(@plane)
-  #   # Assert
-  #   expect(@airport.plane).to
-  # end
+  it "can let a plane takeoff" do
+    # Arrange
+    @airport.land(@plane)
+    # Act
+    @airport.takeoff(@plane)
+    # Assert
+    expect(@airport.planes).to_not include @plane
+  end
 end
