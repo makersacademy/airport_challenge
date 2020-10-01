@@ -1,10 +1,23 @@
 class Sky
-  def check_weather
-    random_number = rand(10)
-    if random_number == 1
-      "stormy"
+  attr_reader :weather
+
+  def initialize
+    @weather = generate_weather
+  end
+
+  def change_weather
+    @weather = generate_weather
+  end
+
+  def generate_weather
+    if rand(10) == 1
+      :stormy
     else
-      "sunny"
+      :sunny
     end
+  end
+
+  def stormy?
+    @weather == :stormy
   end
 end

@@ -32,6 +32,8 @@ describe Airport do
   end
 
   # it "won't allow takeoff if weather is stormy" do
-
+  #   # Arrange
+  #   allow(@sky).to receive(:rand) { 1 }
+  #   expect(@airport.takeoff(@plane)).to raise_error "The sky is too stormy too fly."
   # end
 end

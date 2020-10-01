@@ -12,6 +12,8 @@ class Airport
   end
 
   def takeoff(plane)
+    todays_sky = Sky.new
+    #raise "The sky is too stormy to fly." if todays_sky.stormy?
     @planes.delete(plane)
   end
 
