@@ -1,7 +1,11 @@
 class Airport
-  attr_reader :plane
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def land(plane)
-    @plane = plane
+    @planes.push(plane)
   end
 end
