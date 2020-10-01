@@ -5,6 +5,7 @@ describe Airport do
   before(:each) do
     @plane = Plane.new
     @airport = Airport.new
+    @sky = Sky.new
   end
   it "can land a plane" do
     # Act
@@ -24,9 +25,13 @@ describe Airport do
   end
 
   it "won't land a plane if at capacity" do
-    # Arrange
+    # Act
     Airport::CAPACITY.times { @airport.land(Plane.new) }
     # Assert
     expect { @airport.land(Plane.new) }.to raise_error "Airport is full."
   end
+
+  # it "won't allow takeoff if weather is stormy" do
+
+  # end
 end
