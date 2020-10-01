@@ -1,9 +1,10 @@
 class Airport
   CAPACITY = 10
-  attr_reader :planes
+  attr_reader :planes, :sky
 
   def initialize
     @planes = []
+    @sky = Sky.new
   end
 
   def land(plane)
@@ -12,8 +13,7 @@ class Airport
   end
 
   def takeoff(plane)
-    todays_sky = Sky.new
-    #raise "The sky is too stormy to fly." if todays_sky.stormy?
+    raise "The sky is too stormy to fly." if @sky.stormy?
     @planes.delete(plane)
   end
 

@@ -5,7 +5,6 @@ describe Airport do
   before(:each) do
     @plane = Plane.new
     @airport = Airport.new
-    @sky = Sky.new
   end
   it "can land a plane" do
     # Act
@@ -17,6 +16,8 @@ describe Airport do
 
   it "can let a plane takeoff" do
     # Arrange
+    allow(@airport.sky).to receive(:rand) { 5 }
+    @airport.sky.change_weather
     @airport.land(@plane)
     # Act
     @airport.takeoff(@plane)
@@ -31,9 +32,12 @@ describe Airport do
     expect { @airport.land(Plane.new) }.to raise_error "Airport is full."
   end
 
-  # it "won't allow takeoff if weather is stormy" do
-  #   # Arrange
-  #   allow(@sky).to receive(:rand) { 1 }
-  #   expect(@airport.takeoff(@plane)).to raise_error "The sky is too stormy too fly."
-  # end
+  it "won't allow takeoff if weather is stormy" do
+    # Arrange
+    allow(@airport.sky).to receive(:rand) { 1 }
+    # Act
+    @airport.sky.change_weather
+    # Assert
+    expect { @airport.takeoff(@plane) }.to raise_error "The sky is too stormy to fly."
+  end
 end
