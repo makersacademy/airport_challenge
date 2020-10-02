@@ -17,4 +17,8 @@ describe Plane do
     expect(plane.in_air?).to be false
   end
 
+  it "is grounded by default" do
+    expect(plane.in_air?).to be false
+  end
+
 end
