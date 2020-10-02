@@ -8,10 +8,10 @@ class Weather
   end
 
   def weather_outcome
-    if random_number == 100
+    if random_number <= 100
       "Sunny"
     elsif random_number == 101
-      "Stor"
+      "Storm"
     end
   end
 
