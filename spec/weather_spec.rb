@@ -10,5 +10,10 @@ describe Weather do
     expect(weatheroutcome.weather_outcome).to eq("Sunny")
   end
 
+  it 'weather_outcome method outputs correct weather' do
+    weatheroutcome = Weather.new
+    weatheroutcome.stub(:random_number) { 101 }
+    expect(weatheroutcome.weather_outcome).to eq("Storm")
+  end
 
 end
