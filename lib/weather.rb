@@ -1,9 +1,11 @@
 class Weather
 
-  attr_reader :forecast
+  def stormy?
+    forecast == "stormy"
+  end 
 
-  def initialize
-    @forecast = (1..5).to_a.sample == 1 ? "stormy" : "sunny"
+  def forecast
+    (1..5).to_a.sample == 1 ? "stormy" : "sunny"
   end
 
 end

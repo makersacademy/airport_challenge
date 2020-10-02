@@ -7,8 +7,8 @@ class Airport
 
   DEFAULT_CAPACITY = 2
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @weather = Weather.new
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+    @weather = weather
     @planes = []
     @capacity = capacity
   end
@@ -18,14 +18,14 @@ class Airport
     plane.arrive
     fail 'airport full' if full?
 
-    fail 'stormy weather - plane cannot land' if @weather.forecast == 'stormy'
+    fail 'stormy weather - plane cannot land' if @weather.stormy?
     fail 'plane already grounded' if planes.include?(plane)
 
     @planes.push(plane)
   end
 
   def take_off(plane)
-    fail 'stormy weather - plane cannot take_off' if @weather.forecast == 'stormy'
+    fail 'stormy weather - plane cannot take_off' if @weather.stormy?
     fail 'plane already airbourne' if plane.flying == true
     fail 'plane not in this airport!' unless planes.include?(plane)
 
