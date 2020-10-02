@@ -10,7 +10,7 @@ class Airport
   def land(plane)
     raise "Airport full, landing denied." if full?
 
-    raise "Plane already landed" if !plane.in_air?
+    raise "Plane already landed" unless plane.in_air?
 
     plane.grounded
     spaces << plane
