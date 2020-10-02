@@ -1,4 +1,4 @@
-require 'classes'
+require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }

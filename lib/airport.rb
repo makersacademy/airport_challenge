@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   DEFAULT_CAPACITY = 100
   attr_reader :spaces, :capacity
@@ -25,7 +27,7 @@ class Airport
     spaces.delete(plane)
   end
 
-private
+  private
   def full?
     spaces.count == capacity
   end
