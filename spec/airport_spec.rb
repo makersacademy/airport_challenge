@@ -37,4 +37,10 @@ describe Airport do
   it "cannot takeoff a plane if airport empty" do
     expect { airport.takeoff(plane) }.to raise_error("There are no planes to take off")
   end
+
+  it "cannot takeoff a plane that is flying" do
+    airport.land(plane)
+    plane.flying
+    expect { airport.takeoff(plane) }.to raise_error("Plane already flying")
+  end
 end
