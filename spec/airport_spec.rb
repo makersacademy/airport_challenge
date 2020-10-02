@@ -9,6 +9,7 @@ describe Airport do
   end
 
   it "can land a plane" do
+    plane.flying
     airport.land(plane)
     expect(airport.spaces).to include(plane)
   end
@@ -42,5 +43,9 @@ describe Airport do
     airport.land(plane)
     plane.flying
     expect { airport.takeoff(plane) }.to raise_error("Plane already flying")
+  end
+
+  it "cannot land a plane that is grounded" do
+    expect { airport.land(plane) }.to raise_error("Plane already landed")
   end
 end
