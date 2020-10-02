@@ -10,8 +10,6 @@ class Weather
   def weather_outcome
     if random_number == 100
       "Sunny"
-    else
-      "Rain"
     end
   end
 
