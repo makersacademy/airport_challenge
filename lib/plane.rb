@@ -1,4 +1,8 @@
 class Plane
+  def initialize(status = false)
+    @status = status
+  end
+
   def flying
     @status = true
   end
