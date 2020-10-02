@@ -4,7 +4,7 @@ class Weather
   end
 
   def random_number
-    rand(2000000)
+    rand(102)
   end
 
   def weather_outcome
