@@ -11,11 +11,12 @@ describe Airport do
     it 'initializes with a default capacity when no argument given' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-
+  end
+  context 'good weather' do
+    before do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+    end
     describe '#land' do
-      before do
-        allow(subject.weather).to receive(:stormy?).and_return(false)
-      end
       it 'raises an error if the airport is full' do
         expect { 3.times { subject.land(Plane.new) } }.to raise_error 'airport full'
       end
@@ -24,11 +25,7 @@ describe Airport do
         expect { 2.times { subject.land(plane) } }.to raise_error 'plane already grounded'
       end
     end
-
     describe '#take_off' do
-      before do
-        allow(subject.weather).to receive(:stormy?).and_return(false)
-      end
       it 'raises an error if a plane is already flying' do
         expect { subject.take_off(Plane.new) }.to raise_error 'plane already airbourne'
       end
