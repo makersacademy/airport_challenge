@@ -1,0 +1,16 @@
+This is a plan of my airport_challenge program.
+The steps aren't necessarily in order.
+
+1. Classes: plane, airport, weather
+- Plane:
+ -> take_off
+ -> land
+ -> confirm take_off (USE IN_AIR ARRAY)
+ => in_air
+ => in_airport
+- Airport:
+ -> full?
+ => capacity
+- Weather:
+ -> stormy?
+ => RAND & apply set values to stormy
