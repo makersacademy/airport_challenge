@@ -12,4 +12,9 @@ describe Plane do
     expect(plane.in_air?).to be true
   end
 
+  it "can understand that it is grounded" do
+    plane.grounded
+    expect(plane.in_air?).to be false
+  end
+
 end
