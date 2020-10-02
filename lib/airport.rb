@@ -16,6 +16,8 @@ class Airport
   def takeoff(plane)
     raise "There are no planes to take off" if empty?
 
+    raise "Plane already flying" if plane.in_air?
+
     spaces.delete(plane)
   end
 
