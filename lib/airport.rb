@@ -8,4 +8,8 @@ class Airport
   def land(plane)
     spaces << plane
   end
+
+  def takeoff(plane)
+    spaces.delete(plane)
+  end
 end

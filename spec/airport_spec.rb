@@ -16,4 +16,9 @@ describe Airport do
   it "has no planes when created" do
     expect(airport.spaces).to be_empty
   end
+
+  it "can instruct a plane to take off and confirm plane is gone" do
+    airport.takeoff(plane)
+    expect(airport.spaces).not_to include(plane)
+  end
 end
