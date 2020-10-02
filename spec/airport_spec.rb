@@ -22,13 +22,14 @@ describe Airport do
     expect(airport.spaces).not_to include(plane)
   end
 
-  it "has a default capacity" do
-    expect(Airport::DEFAULT_CAPACITY).to exist
-  end
-
   it "cannot land planes if full" do
-    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-    expect{airport.land(plane)}.to raise_error("Airport full, landing denied.")
+    airport.capacity.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error("Airport full, landing denied.")
   end
   
+  it "capacity can be changed" do
+    new_airport = Airport.new(200)
+    200.times { new_airport.land(plane) }
+    expect { new_airport.land(plane) }. to raise_error("Airport full, landing denied.")
+  end
 end
