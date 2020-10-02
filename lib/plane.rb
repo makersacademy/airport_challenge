@@ -1,9 +1,13 @@
 class Plane
   def flying
-    @flying = true
+    @status = true
+  end
+
+  def grounded
+    @status = false
   end
 
   def in_air?
-    @flying
+    @status
   end
 end 
