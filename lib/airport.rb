@@ -14,11 +14,17 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "There are no planes to take off" if empty?
+
     spaces.delete(plane)
   end
 
 private
   def full?
     spaces.count == capacity
+  end
+
+  def empty?
+    spaces.count.zero?
   end
 end

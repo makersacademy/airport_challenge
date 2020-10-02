@@ -18,6 +18,7 @@ describe Airport do
   end
 
   it "can instruct a plane to take off and confirm plane is gone" do
+    airport.land(plane)
     airport.takeoff(plane)
     expect(airport.spaces).not_to include(plane)
   end
@@ -31,5 +32,9 @@ describe Airport do
     new_airport = Airport.new(200)
     200.times { new_airport.land(plane) }
     expect { new_airport.land(plane) }. to raise_error("Airport full, landing denied.")
+  end
+
+  it "cannot takeoff a plane if airport empty" do
+    expect { airport.takeoff(plane) }.to raise_error("There are no planes to take off")
   end
 end
