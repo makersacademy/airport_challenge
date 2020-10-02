@@ -8,6 +8,6 @@ describe Weather do
     expect(weatheroutcome.random_number).to eq(345678)
   end
 
-    it { is_expected.to respond_to :weatheroutcome }
+    it { is_expected.to respond_to :weather_outcome }
 
 end
