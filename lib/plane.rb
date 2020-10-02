@@ -1,5 +1,5 @@
 class Plane
-  def initialize(status = false)
+  def initialize(status = true)
     @status = status
   end
 
