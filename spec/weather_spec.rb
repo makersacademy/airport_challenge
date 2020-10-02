@@ -4,7 +4,10 @@ describe Weather do
 
   it 'random number generator' do
     weatheroutcome = Weather.new
-    expect weatheroutcome.stub(:random_number) { 345678 } == 345678
+    weatheroutcome.stub(:random_number) { 345678 }
+    expect(weatheroutcome.random_number).to eq(345678)
   end
+
+    it { is_expected.to respond_to :weatheroutcome }
 
 end
