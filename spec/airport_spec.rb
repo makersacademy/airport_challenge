@@ -43,5 +43,10 @@ end
     expect(new_airport).to respond_to(:land_plane)
   end
 
+  it 'airport responds to land_plane with two arguments' do
+    new_airport = Airport.new("Hamburg")
+    expect(new_airport).to respond_to(:land_plane).with(2).arguments
+  end
+
 
 end
