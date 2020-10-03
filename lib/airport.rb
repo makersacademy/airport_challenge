@@ -8,6 +8,7 @@ class Airport
   end
 
   def allows_for_landing(plane)
+    @hangar << plane
     @plane = plane
   end
 

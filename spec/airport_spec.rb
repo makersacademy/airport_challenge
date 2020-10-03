@@ -28,4 +28,10 @@ describe Airport do
     expect(subject.hangar).to be_an_instance_of(Array)
   end
 
+  it 'puts plane into a hangar after landing' do
+    airbus747 = Plane.new
+    subject.allows_for_landing(airbus747)
+    expect(subject.hangar).to include(airbus747)
+  end
+
 end

@@ -29,6 +29,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 |Airport        | gives permission to take off|
 |airport        |confirm that plane is no longer at the airport|
 9.Create hangar
+10. Put planes that landed into the hangar
 
 
 
