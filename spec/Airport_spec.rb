@@ -25,4 +25,13 @@ describe Airport do
     allow(subject.sky).to receive(:stormy?).and_return(true)
     expect { subject.takeoff(plane) }.to raise_error "The sky is too stormy to fly."
   end
+
+  it "won't allow landing if weather is stormy" do
+    allow(subject.sky).to receive(:stormy?).and_return(true)
+    expect { subject.land(plane) }.to raise_error "The sky is too stormy to land."
+  end
+
+  it "won't allow a plane to take off if it's not in airport" do
+    expect { subject.takeoff(plane) }.to raise_error "The plane couldn't take off because it is not at the airport."
+  end
 end
