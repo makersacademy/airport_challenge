@@ -7,4 +7,10 @@ class Plane
     airport.hangar.push(self)
 
   end
+
+  def take_off(airport)
+
+    airport.hangar.pop
+
+  end
 end
