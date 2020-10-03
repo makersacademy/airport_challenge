@@ -7,7 +7,13 @@ describe Airports do
     expect(subject.capacity).to eq 20
   end
 
-  it 'responds to full? method' do
-    expect(subject).to respond_to(:full?)
+  describe '#full?' do
+
+    it 'responds to full? method' do
+      expect(subject).to respond_to(:full?)
+    end
+    it 'returns false when not full' do
+      expect(subject.full?).to eq false
+    end
   end
 end
