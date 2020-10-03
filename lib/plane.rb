@@ -19,6 +19,10 @@ class Plane
         true
     end
 
+    def land_at_destination
+        raise 'A landed plane cannot land' if @status == 'landed'
+    end
+
     private
 
     def flying?
