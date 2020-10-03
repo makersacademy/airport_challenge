@@ -14,6 +14,7 @@ class Airport
   def land(plane)
     raise "This airport is full." if @planes.size >= @capacity
 
+    raise "Stormy weather, landing not possible." if weather? >= 7
     @planes << plane
   end
 

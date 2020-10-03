@@ -24,7 +24,7 @@ describe Airport do
 
     it 'should raise error if weather at aiport is stormy' do
       allow(subject).to receive(:weather?).and_return(8)
-      expect { subject.land(Plane.new) }.to raise_error "Stormy weather, take-off not possible."
+      expect { subject.land(Plane.new) }.to raise_error "Stormy weather, landing not possible."
     end
 
   end
@@ -42,6 +42,7 @@ describe Airport do
 
     it 'should raise error if weather at aiport is stormy' do
       airport = Airport.new
+      allow(airport).to receive(:weather?).and_return(2)
       airport.land(Plane.new)
       allow(airport).to receive(:weather?).and_return(8)
       expect { airport.take_off }.to raise_error "Stormy weather, take-off not possible."
