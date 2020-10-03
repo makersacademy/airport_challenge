@@ -19,10 +19,10 @@ Functional representation of that story:
 
 Airport <---- allows plane to land <--- after landing plane goes to hangar
 3. Create an Airport class
-4. Create allows_for_landing methods
+4. Create landing methods
 5. Create plane class
 6. Create method ask_for_permission
-7. Create allows_for_landing
+7. Create landing
 
 8.  New user story:
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
@@ -32,7 +32,7 @@ Functional representation of that story:
 | ------------- | ------------- |
 |Airport        | gives permission to take off|
 |Airport        |confirm that plane is no longer at the airport|
-
+Airport <---- allows plane to take off <--- after take off plane dissapear from hangar
 9. Create hangar
 10. Put planes that landed into the hangar
 11. Check a plane count after take off

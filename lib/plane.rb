@@ -4,4 +4,11 @@ class Plane
     true
   end
 
+  def landing_at(airport)
+    airport.landing(self)
+  end
+
+  def taking_off_from(airport)
+    airport.take_off(self)
+  end
 end

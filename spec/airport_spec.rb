@@ -5,38 +5,47 @@ describe Airport do
   let(:airbus747) { Plane.new }
 
   context 'during landing' do
-    it { is_expected.to respond_to(:allows_for_landing).with(1).argument }
-
     it 'checks for landing permission' do
-      subject.allows_for_landing(airbus747)
+      subject.landing(airbus747)
       expect(airbus747).to be_asking_for_permission
     end
 
+    it 'gives permistion to landing' do
+      expect(subject.giving_permition_for_landing(airbus747)).to eq true
+    end
+
+    it { is_expected.to respond_to(:landing).with(1).argument }
+
     it 'puts plane into a hangar after landing' do
-      subject.allows_for_landing(airbus747)
+      subject.landing(airbus747)
       expect(subject.hangar).to include(airbus747)
     end
+
   end
 
   context 'during take off' do
-    it { is_expected.to respond_to(:allows_for_take_off).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it'checks for take off permission' do
-      subject.allows_for_take_off(airbus747)
+      subject.take_off(airbus747)
       expect(airbus747).to be_asking_for_permission
     end
 
+    it 'gives permistion for take off' do
+      expect(subject.giving_permition_for_take_off(airbus747)).to eq true
+    end
+
     it 'updating hangar count after plane take off' do
-      subject.allows_for_landing(airbus747)
-      subject.allows_for_take_off(airbus747)
+      subject.landing(airbus747)
+      subject.take_off(airbus747)
       expect(subject.hangar.size). to eq 0
     end
 
     it 'allows for take off only planes from the hangar' do
       tupolev102 = Plane.new
-      subject.allows_for_landing(airbus747)
-      subject.allows_for_landing(tupolev102)
-      subject.allows_for_take_off(airbus747)
+      subject.landing(airbus747)
+      subject.landing(tupolev102)
+      subject.take_off(airbus747)
       expect(subject.hangar).not_to include(airbus747)
     end
   end

@@ -7,12 +7,27 @@ class Airport
     @hangar = []
   end
 
-  def allows_for_landing(plane)
+  def landing(plane)
+    return unless giving_permition_for_landing(plane) == true
+
     @hangar << plane
   end
 
-  def allows_for_take_off(plane)
+  def take_off(plane)
+    return unless giving_permition_for_take_off(plane) == true
+
     @hangar.delete(plane)
   end
 
+  def giving_permition_for_landing(plane)
+    return unless plane.asking_for_permission? == true
+
+    true
+  end
+
+  def giving_permition_for_take_off(plane)
+    return unless plane.asking_for_permission? == true
+
+    true
+  end
 end
