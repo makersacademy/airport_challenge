@@ -11,4 +11,11 @@ describe Weather do
     allow_any_instance_of(Weather).to receive(:rand).and_return(rand(11..89))
     expect(subject.weather).to eq 'clear'
   end
+
+  it 'sets weather to stormy when rand <=10 or >=90' do
+    allow_any_instance_of(Weather).to receive(:rand).and_return(rand(10))
+    expect(subject.weather).to eq 'stormy'
+
+    allow_any_instance_of(Weather).to receive(:rand).and_return(rand(90..100))
+  end
 end
