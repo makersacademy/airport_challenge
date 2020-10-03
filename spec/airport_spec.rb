@@ -18,6 +18,8 @@ describe Airport do
   it { is_expected.to respond_to(:allows_for_take_off) }
 
   it'checks for permission' do
+    airbus747 = Plane.new
+    subject.allows_for_landing(airbus747)
     airbus747 = subject.allows_for_take_off
     expect(airbus747).to be_asking_for_permission
   end
@@ -34,4 +36,10 @@ describe Airport do
     expect(subject.hangar).to include(airbus747)
   end
 
+  it 'updating hangar count after plane take off' do
+    airbus747 = Plane.new
+    subject.allows_for_landing(airbus747)
+    subject.allows_for_take_off
+    expect(subject.hangar.size). to eq 0
+  end
 end
