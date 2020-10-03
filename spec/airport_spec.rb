@@ -38,5 +38,20 @@ describe Airport do
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(10)
     expect{ airport.request_take_off(plane) }.to raise_error("DANGER! STORMY WEATHER!")
   end
+  it "raises an error if an airborne plane is asked to take off" do
+    airport = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    allow_any_instance_of(Weather).to receive(:randomizer).and_return(8)
+    airport.request_landing(plane1)
+    expect{ airport.request_take_off(plane2) }.to raise_error("Plane already airborne")
+  end
+  it "raises an error if a plane on the ground is asked to land" do
+    airport = Airport.new
+    plane = Plane.new
+    allow_any_instance_of(Weather).to receive(:randomizer).and_return(8)
+    airport.request_landing(plane)
+    expect{ airport.request_landing(plane) }.to raise_error("Plane already on the ground")
+  end
 
 end

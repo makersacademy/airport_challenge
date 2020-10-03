@@ -14,4 +14,12 @@ describe Plane do
     airport.request_landing(plane)
     expect{airport.request_take_off(plane)}.to output("Flying free!\n").to_stdout
   end
+  it "confirms contains a variable that outputs flight status" do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport = Airport.new
+    airport.request_landing(plane1)
+    expect(plane2.airborne).to eq(true)
+    expect(plane1.airborne).to eq(false)
+  end
 end
