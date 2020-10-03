@@ -22,6 +22,14 @@ Airport <---- allows plane to land
 6. Create method asking_for_landing_permission
 7. Allows plane to land
 
+8.  New user story:
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+| Objects       | Messages      |
+| ------------- | ------------- |
+|Airport        | gives permission to take off|
+|airport        |confirm that plane is no longer at the airport|
+
+
 
 ## Installation
 
