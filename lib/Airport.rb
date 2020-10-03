@@ -7,7 +7,7 @@ def initialize(name)
   @capacity = 5
 end
 
-def capacity_override
+def capacity_override(new_capacity)
 end
 
 end
