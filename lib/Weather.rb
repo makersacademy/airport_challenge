@@ -4,13 +4,13 @@ class Weather
   end
 
   def random_number
-    rand(102)
+    rand(11)
   end
 
   def weather_outcome
-    if random_number <= 100
+    if random_number <= 9
       "Sunny"
-    elsif random_number == 101
+    elsif random_number == 10
       "Storm"
     end
   end

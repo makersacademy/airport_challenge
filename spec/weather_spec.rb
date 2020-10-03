@@ -6,19 +6,19 @@ describe Weather do
 
   it 'weather_outcome method outputs correct weather' do
     weatheroutcome = Weather.new
-    weatheroutcome.stub(:random_number) { 100 }
+    weatheroutcome.stub(:random_number) { 1 }
     expect(weatheroutcome.weather_outcome).to eq("Sunny")
   end
 
   it 'weather_outcome method outputs correct weather' do
     weatheroutcome = Weather.new
-    weatheroutcome.stub(:random_number) { 101 }
+    weatheroutcome.stub(:random_number) { 10 }
     expect(weatheroutcome.weather_outcome).to eq("Storm")
   end
 
   it 'weather_outcome method outputs correct weather' do
     weatheroutcome = Weather.new
-    weatheroutcome.stub(:random_number) { 50 }
+    weatheroutcome.stub(:random_number) { 5 }
     expect(weatheroutcome.weather_outcome).to eq("Sunny")
   end
 
