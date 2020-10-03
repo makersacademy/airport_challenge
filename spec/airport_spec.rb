@@ -43,4 +43,13 @@ describe Airport do
     subject.allows_for_take_off(airbus747)
     expect(subject.hangar.size). to eq 0
   end
+
+  it 'allows for take off only planes from the hangar' do
+    airbus747 = Plane.new
+    tupolev102 = Plane.new
+    subject.allows_for_landing(airbus747)
+    subject.allows_for_landing(tupolev102)
+    subject.allows_for_take_off(airbus747)
+    expect(subject.hangar).not_to include(airbus747)
+  end
 end

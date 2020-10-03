@@ -31,6 +31,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 9.Create hangar
 10. Put planes that landed into the hangar
 11. Check a plane count after take off
+12. Allow for take off only the plane that is in the hangar
 
 
 
