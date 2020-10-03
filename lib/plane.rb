@@ -1,5 +1,10 @@
+require 'airport'
+
 class Plane
-  def land
+
+  def land(airport)
+
+    airport.hangar.push(self)
 
   end
 end
