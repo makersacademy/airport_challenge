@@ -8,7 +8,7 @@ class Airports
   end
 
   def full?
-    @on_ground.length >= 20 ? true : false
+    @on_ground.length >= @capacity
   end
 
 end

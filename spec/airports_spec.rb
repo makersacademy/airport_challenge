@@ -15,5 +15,10 @@ describe Airports do
     it 'returns false when not full' do
       expect(subject.full?).to eq false
     end
+
+    it 'returns true when full' do
+      subject = Airports.new(0)
+      expect(subject.full?).to eq true
+    end
   end
 end
