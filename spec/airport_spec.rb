@@ -10,6 +10,20 @@ describe Airport do
     expect(airport.spaces).to be_empty
   end
 
+  context "stormy weather" do
+    let(:weather) { double :weather, stormy?: true }
+
+    it "prevents landing in stormy weather" do
+      expect { airport.land(plane) }.to raise_error("Too stormy for landing.")
+    end
+
+    it "prevents takeoff in stormy weather" do
+      allow(plane).to receive(:in_air?).and_return(false)
+      airport.spaces << plane
+      expect { airport.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
+    end
+  end
+
   context "landing a flying plane" do
     before do
       airport.land(plane)
