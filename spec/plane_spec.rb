@@ -4,6 +4,7 @@ describe Plane do
 
     before(:each) do
         @plane = Plane.new
+        @airport = Airport.new
     end
 
     it "is landed at default" do
@@ -25,6 +26,10 @@ describe Plane do
     it "takes off from the airport it's in" do 
         airport = @plane.location
         expect(@plane.take_off(airport)).to be true
+    end
+
+    it "does not take off from an airport it's not in" do 
+        expect { @plane.take_off(@airport) }.to raise_error 'The plane is not in this airport'
     end
     # planes can only take off from airports they are in; 
     # planes that are already flying cannot take off and/or be in an airport; 

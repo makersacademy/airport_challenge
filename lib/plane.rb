@@ -12,10 +12,9 @@ class Plane
     end
 
     def take_off(airport)
-        if airport == @location
-            @status = 'flying'
-            @location = 'in air'
-            true
-        end
+        raise 'The plane is not in this airport' if airport != @location
+        @status = 'flying'
+        @location = 'in air'
+        true
     end
 end
