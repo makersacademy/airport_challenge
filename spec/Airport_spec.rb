@@ -6,19 +6,23 @@ describe Airport do
     allow(subject.sky).to receive(:stormy?).and_return(false)
   end
   it "can land a plane" do
+    expect(plane).to receive(:land) { subject }
     subject.land(plane)
     expect(subject.planes).to include plane
   end
 
   it "can let a plane takeoff" do
+    expect(plane).to receive(:land) { subject }
+    expect(plane).to receive(:takeoff)
     subject.land(plane)
     subject.takeoff(plane)
     expect(subject.planes).to_not include plane
   end
 
   it "won't land a plane if at capacity" do
-    Airport::CAPACITY.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error "Airport is full."
+    expect(plane).to receive(:land) { subject }.exactly(Airport::CAPACITY).times
+    Airport::CAPACITY.times { subject.land(plane.clone) }
+    expect { subject.land(plane.clone) }.to raise_error "Airport is full."
   end
 
   it "won't allow takeoff if weather is stormy" do
