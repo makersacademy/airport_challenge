@@ -15,6 +15,13 @@ describe Airport do
   end
   it "throws an error if a plane tries to land when the hangar is full" do
     airport = Airport.new
-    expect{4.times { airport.request_landing(Plane.new) }}.to raise_error
+    expect{4.times { airport.request_landing(Plane.new) }}.to raise_error("Hangar is full")
   end
+  it "throws an error if a plane tries to land when it's stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    allow_any_instance_of(Weather).to receive(:randomizer).and_return(10)
+    expect{ airport.request_landing(plane) }.to raise_error("DANGER! STORMY WEATHER!")
+  end
+
 end

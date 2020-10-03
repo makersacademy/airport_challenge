@@ -13,6 +13,7 @@ class Airport
 
   def request_landing(plane)
     full?
+    check_weather
     plane.land(self)
   end
 
@@ -23,9 +24,11 @@ class Airport
   private
 
   def full?(capacity = DEFAULT_CAPACITY)
-
     return raise "Hangar is full" if @hangar.length >= capacity
+  end
 
+  def check_weather
+    return raise "DANGER! STORMY WEATHER!" if Weather.new.status == "STORMY"
   end
 
 end

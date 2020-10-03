@@ -10,7 +10,7 @@ class Plane
 
   def take_off(airport)
 
-    airport.hangar.pop
+    airport.hangar.delete(self)
     puts "Flying free!"
 
   end
