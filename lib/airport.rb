@@ -12,7 +12,14 @@ class Airport
   end
 
   def land(plane)
-    fail 'The airport is at max capacity' if landed_planes.count == capacity
+    fail 'The airport is at max capacity' if full?
     landed_planes << plane
   end
+
+  private
+
+  def full?
+    landed_planes.count == capacity
+  end
+
 end
