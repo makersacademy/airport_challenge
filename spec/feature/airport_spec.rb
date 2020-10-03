@@ -1,5 +1,7 @@
 require 'airport'
-
+# we need a land method
 describe Airport do
-  it { is_expect.to respond_to :land }
+  it 'instructs a plane to land' do
+    expect(subject).to respond_to(:land).with(1).argument
+  end
 end
