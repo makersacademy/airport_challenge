@@ -20,6 +20,7 @@ Airport <---- allows plane to land
 4. Create allows_for_landing methods
 5. Create plane class
 6. Create method asking_for_landing_permission
+7. Allows plane to land
 
 
 ## Installation

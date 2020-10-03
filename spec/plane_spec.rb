@@ -2,6 +2,6 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :asking_for_landing_permission }
+  it { is_expected.to respond_to :asking_for_landing_permission? }
 
 end
