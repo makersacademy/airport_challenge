@@ -18,4 +18,8 @@ describe Plane do
         expect(@plane.destination).to be_a Airport
     end
 
+    it "has between 1 and 100 passengers" do
+        expect(@plane.passengers).to be_between(1, 100)
+    end
+
 end
