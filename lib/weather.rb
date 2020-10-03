@@ -5,7 +5,6 @@ class Weather
   end
 
   def stormy?
-    return true if @condition == 8
-    false
+    @condition == 8
   end
 end

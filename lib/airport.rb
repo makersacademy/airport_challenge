@@ -24,7 +24,7 @@ class Airport
   end
   
   def landed?(plane)
-    return true if landed_planes.include?(plane)
+    landed_planes.include?(plane)
   end
 
 end
