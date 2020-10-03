@@ -5,4 +5,8 @@ class Airports
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
   end
+
+  def full?
+  end
+
 end
