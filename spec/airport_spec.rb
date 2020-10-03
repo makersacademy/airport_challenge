@@ -2,19 +2,24 @@ require "airport"
 
 describe Airport do
 
+    before(:each) do
+        @airport = Airport.new
+        @plane = Plane.new
+    end
+
     it "can change capacity" do
         airport = Airport.new(5)
         expect(airport.capacity).to eq(5)
     end
 
     it "has a default capacity of 10" do
-        airport = Airport.new
-        expect(airport.capacity).to eq(10)
+        expect(@airport.capacity).to eq(10)
     end
 
-    # describe "#full?"
-    #     it "can tell whether the airport is full" do
-    #         plane = double()
-    #     end
-    # end
+    describe "#land" do
+        it "can land a plane in the airport" do
+            @airport.land(@plane)
+            expect(@airport.landed_planes).to include(@plane)
+        end
+    end
 end
