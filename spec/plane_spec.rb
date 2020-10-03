@@ -6,6 +6,7 @@ describe Plane do
 
     it 'responds true after take-off' do
       airport = Airport.new
+      allow(airport).to receive(:weather?).and_return(2)
       airport.land(subject)
       plane = airport.take_off
       expect(plane.in_air?).to eq(true)

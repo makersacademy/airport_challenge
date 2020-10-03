@@ -1,6 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  include Weather
   DEFAULT_CAPACITY = 20
   attr_reader :capacity
 
@@ -16,6 +18,8 @@ class Airport
   end
 
   def take_off
+    raise "Stormy weather, take-off not possible." if weather? >= 7
+
     @planes[-1].flying
     @planes.pop
   end

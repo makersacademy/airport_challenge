@@ -17,6 +17,7 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'should raise error if Airport is full' do
+      allow(subject).to receive(:weather?).and_return(2)
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "This airport is full."
     end
@@ -28,6 +29,7 @@ describe Airport do
 
     it 'releases planes' do
       plane = Plane.new
+      allow(subject).to receive(:weather?).and_return(2)
       subject.land(plane)
       plane = subject.take_off
       expect(plane).to eq(plane)
