@@ -34,9 +34,8 @@ describe Airport do
 
   it 'if string given to capacity_override output error' do
     new_airport = Airport.new("Hamburg")
-    expect do new_airport.capacity_override("ten").to output("Capacity not updated.  Method only accepts integers.  Please retry").to_stdout
+    expect(new_airport.capacity_override("ten")).to eq("Capacity not updated.  Method only accepts integers.  Please retry")
   end
-end
 
   it 'airport responds to land_plane method' do
     new_airport = Airport.new("Hamburg")
@@ -58,4 +57,10 @@ end
     expect(new_airport).to respond_to(:storm_landing).with(1).argument
   end
 
+  it 'storm_landing shows option to user when there is a storm' do
+    new_airport = Airport.new("Hamburg")
+    new_flight = Plane.new("Lufthansa")
+    expect{new_airport.storm_landing(new_flight)}.to output("There is a storm. Do you want the plane to land yes or no:").to_stdout
+  end
+  
 end

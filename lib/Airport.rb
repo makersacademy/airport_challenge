@@ -16,6 +16,7 @@ def capacity_override(new_capacity)
 end
 
 def storm_landing(plane)
+  print "There is a storm. Do you want the plane to land yes or no:"
 end
 
 def land_plane(plane, weather)
