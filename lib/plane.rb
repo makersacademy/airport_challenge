@@ -1,6 +1,6 @@
 class Plane
 
-  def asking_for_landing_permission?
+  def asking_for_permission?
     true
   end
 

@@ -8,7 +8,12 @@ describe Airport do
 
   it 'allows plane to land' do
     airbus747 = subject.allows_for_landing
-    expect(airbus747).to be_asking_for_landing_permission
+    expect(airbus747).to be_asking_for_permission
+  end
+
+  it'allows plane to take off' do
+    airbus747 = subject.allows_for_take_off
+    expect(airbus747).to be_asking_for_permission
   end
 
 end

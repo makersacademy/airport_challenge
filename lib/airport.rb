@@ -6,4 +6,7 @@ class Airport
     Plane.new
   end
 
+  def allows_for_take_off
+    Plane.new
+  end
 end
