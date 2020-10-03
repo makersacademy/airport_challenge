@@ -43,6 +43,16 @@ describe Airport do
         expect { new_airport.land(plane) }. to raise_error("Airport full, landing denied.")
       end
     end
+
+    context "when stormy" do
+      before do
+        allow(airport).to receive(:stormy?).and_return true
+      end
+
+      it "Does not allow to land" do
+        expect { airport.land(plane) }.to raise_error("Too stormy for landing.")
+      end
+    end
   end
 
   describe "Takeoff tests" do
@@ -69,6 +79,18 @@ describe Airport do
         airport.spaces.clear
         expect { airport.takeoff(plane) }.to raise_error("There are no planes to take off")
       end
+    end
+  end
+
+  context "when stormy" do
+    before do
+      airport.land(plane)
+      allow(airport).to receive(:stormy?).and_return true
+    end
+
+    it "Does not allow to take off" do
+      allow(plane).to receive(:in_air?).and_return(false)
+      expect { airport.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
     end
   end
 end
