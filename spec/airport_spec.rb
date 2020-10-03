@@ -20,6 +20,7 @@ describe Airport do
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "This airport is full."
     end
+
   end
 
   describe '#take_off' do
@@ -30,6 +31,13 @@ describe Airport do
       subject.land(plane)
       plane = subject.take_off
       expect(plane).to eq(plane)
+    end
+
+    it 'should raise error if weather at aiport is stormy' do
+      airport = Airport.new
+      airport.land(Plane.new)
+      allow(airport).to receive(:weather?).and_return(8)
+      expect { airport.take_off }.to raise_error "Stormy weather, take-off not possible."
     end
   end
 
