@@ -3,7 +3,7 @@ require 'weather'
 
 class Airport
 
-  CAPACITY = 3
+  DEFAULT_CAPACITY = 3
 
   attr_accessor :hangar
 
@@ -22,9 +22,9 @@ class Airport
 
   private
 
-  def full?
+  def full?(capacity = DEFAULT_CAPACITY)
 
-    return raise "Hangar is full" if @hangar.length >= CAPACITY
+    return raise "Hangar is full" if @hangar.length >= capacity
 
   end
 
