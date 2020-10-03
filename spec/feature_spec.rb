@@ -1,13 +1,17 @@
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing
+
 require 'spec_helper'
 require 'airport'
 
-describe "Working airport" do
-  it "landing and taking off some planes" do
+describe "Working airport feature test" do
+  it "landing and taking off some planes in sunny weather" do
     given_there_is_an_airport_with_capacity_3
     and_the_weather_is_always_sunny
     and_there_are_4_planes
     i_can_land_3_of_the_planes
     but_cannot_land_the_4th_one
+    if_i_takeoff_one_plane_i_can_land_the_4th_one
+    and_takeoff_all_of_the_grounded_planes_in_the_end
   end
 
   def given_there_is_an_airport_with_capacity_3
@@ -36,5 +40,15 @@ describe "Working airport" do
     expect { @airport.land(@ezy523) }.to raise_error("Airport full, landing denied.")
   end
 
+  def if_i_takeoff_one_plane_i_can_land_the_4th_one
+    @airport.takeoff(@nz33)
+    expect { @airport.land(@ezy523) }.not_to raise_error("Airport full, landing denied.")
+  end
 
+  def and_takeoff_all_of_the_grounded_planes_in_the_end
+    @airport.takeoff(@ezy523)
+    @airport.takeoff(@ba55)
+    @airport.takeoff(@su420)
+    expect(@airport.spaces).to be_empty
+  end
 end
