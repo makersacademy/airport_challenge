@@ -68,4 +68,12 @@ describe Airport do
     expect(new_airport).to respond_to(:storm_decision)
   end
 
+  it 'check that user for storm decision' do
+    new_airport = Airport.new("Hamburg")
+    new_flight = Plane.new("Lufthansa")
+    new_airport.stub(:storm_decision) { "yes" }
+    new_airport.storm_landing(new_flight)
+    expect(new_airport.planes_in_airport).to eq([new_flight.name])
+  end
+
 end

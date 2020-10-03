@@ -15,11 +15,16 @@ def capacity_override(new_capacity)
   end
 end
 
-def storm_landing(plane)
-  print "There is a storm. Do you want the plane to land yes or no:"
+def storm_decision
+  decision = gets.chomp
+  decision
 end
 
-def storm_decision
+def storm_landing(plane)
+  print "There is a storm. Do you want the plane to land yes or no:"
+  if storm_decision == "yes"
+    @planes_in_airport << plane.name
+end
 end
 
 def land_plane(plane, weather)
