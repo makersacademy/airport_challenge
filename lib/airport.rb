@@ -5,10 +5,11 @@ class Airport
 
   DEFAULT_CAPACITY = 3
 
-  attr_accessor :hangar
+  attr_accessor :hangar, :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def request_landing(plane)
@@ -25,8 +26,8 @@ class Airport
 
   private
 
-  def full?(capacity = DEFAULT_CAPACITY)
-    return raise "Hangar is full" if @hangar.length >= capacity
+  def full?
+    return raise "Hangar is full" if @hangar.length >= @capacity
   end
 
   def empty?

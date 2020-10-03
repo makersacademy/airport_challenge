@@ -53,5 +53,9 @@ describe Airport do
     airport.request_landing(plane)
     expect{ airport.request_landing(plane) }.to raise_error("Plane already on the ground")
   end
+  it "allows users to override default hangar capacity" do
+    airport = Airport.new(1)
+    expect(airport.capacity).to eq(1)
+  end
 
 end
