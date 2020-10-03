@@ -26,5 +26,10 @@ describe Airport do
             airport = Airport.new(0)
             expect { airport.land(@plane) }.to raise_error 'The airport is at max capacity'
         end
+
+        it "does not allow planes to land if already landed" do
+            @airport.land(@plane)
+            expect { @airport.land(@plane) }.to raise_error 'This plane has already landed'
+        end
     end
 end

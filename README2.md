@@ -6,8 +6,8 @@
 ### Air Traffic Controller
 Object | Action
 ------ | ------
-Plane | take_off, land, confirm_location
-Airport | full? 
+Plane | take_off, confirm_location
+Airport | full?, land
 weather | stormy?
 
 ### System Designer
