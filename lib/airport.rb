@@ -12,7 +12,7 @@ class Airport
     @plane = plane
   end
 
-  def allows_for_take_off
+  def allows_for_take_off(plane)
     @hangar.pop
   end
 

@@ -6,3 +6,5 @@ p airbus747 = Plane.new
 p luton_airport.allows_for_landing(airbus747)
 luton_airport.plane
 p luton_airport.hangar
+luton_airport.allows_for_take_off(airbus747)
+p luton_airport.hangar
