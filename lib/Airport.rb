@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     raise "Airport is full." if self.full?
+    raise "The plane cannot land as it's not in the air." unless plane.flying?
     raise "The sky is too stormy to land." if @sky.stormy?
     plane.land(self)
     @planes.push(plane)

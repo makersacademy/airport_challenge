@@ -1,7 +1,7 @@
 require "Airport"
 
 describe Airport do
-  let(:plane) { double(:plane) }
+  let(:plane) { double(:plane, :flying? => true) }
   before(:each) do
     allow(subject.sky).to receive(:stormy?).and_return(false)
   end
@@ -35,7 +35,19 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error "The sky is too stormy to land."
   end
 
-  it "won't allow a plane to take off if it's not in airport" do
+  it "won't allow a plane to take off if it's not in an airport" do
     expect { subject.takeoff(plane) }.to raise_error "The plane couldn't take off because it is not at the airport."
+  end
+
+  it "won't allow a plane to take off it it's in a different airport" do
+    different_airport = Airport.new
+    expect(plane).to receive(:land) { different_airport }
+    different_airport.land(plane)
+    expect { subject.takeoff(plane) }.to raise_error "The plane couldn't take off because it is not at the airport."
+  end
+
+  it "won't allow a plane to land if it's not flying" do
+    allow(plane).to receive(:flying?).and_return(false)
+    expect { subject.land(plane) }.to raise_error "The plane cannot land as it's not in the air."
   end
 end
