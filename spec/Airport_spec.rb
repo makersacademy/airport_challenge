@@ -2,14 +2,15 @@ require "Airport"
 
 describe Airport do
   let(:plane) { double(:plane) }
+  before(:each) do
+    allow(subject.sky).to receive(:stormy?).and_return(false)
+  end
   it "can land a plane" do
     subject.land(plane)
     expect(subject.planes).to include plane
   end
 
   it "can let a plane takeoff" do
-    allow(subject.sky).to receive(:rand) { 5 }
-    subject.sky.change_weather
     subject.land(plane)
     subject.takeoff(plane)
     expect(subject.planes).to_not include plane
@@ -21,8 +22,7 @@ describe Airport do
   end
 
   it "won't allow takeoff if weather is stormy" do
-    allow(subject.sky).to receive(:rand) { 1 }
-    subject.sky.change_weather
+    allow(subject.sky).to receive(:stormy?).and_return(true)
     expect { subject.takeoff(plane) }.to raise_error "The sky is too stormy to fly."
   end
 end
