@@ -21,6 +21,10 @@ describe Airport do
       expect(subject.hangar).to include(airbus747)
     end
 
+    it 'return error when airport is full' do
+      2.times { subject.landing(Plane.new) }
+      expect { subject.landing(Plane.new) }.to raise_error 'No space available'
+    end
   end
 
   context 'during take off' do
@@ -56,5 +60,5 @@ describe Airport do
   end
 
   it { is_expected.to respond_to :capacity }
-  
+
 end

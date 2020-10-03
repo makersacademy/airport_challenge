@@ -17,4 +17,6 @@ describe Plane do
     expect(luton_airport.hangar).not_to include(airbus747)
   end
 
+  it { is_expected.to respond_to :current_position }
+
 end

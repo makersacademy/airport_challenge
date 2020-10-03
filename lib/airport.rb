@@ -5,9 +5,11 @@ class Airport
 
   def initialize
     @hangar = []
+    @capacity = 2
   end
 
   def landing(plane)
+    fail 'No space available' if @hangar.size >= @capacity
     return unless giving_permition_for_landing(plane) == true
 
     @hangar << plane

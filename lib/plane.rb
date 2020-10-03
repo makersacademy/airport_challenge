@@ -1,5 +1,5 @@
 class Plane
-
+  attr_reader :current_position
   def asking_for_permission?
     true
   end
@@ -11,4 +11,5 @@ class Plane
   def taking_off_from(airport)
     airport.take_off(self)
   end
+
 end
