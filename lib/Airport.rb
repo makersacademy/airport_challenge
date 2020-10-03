@@ -15,6 +15,9 @@ def capacity_override(new_capacity)
   end
 end
 
+def storm_landing
+end
+
 def land_plane(plane, weather)
 end
 

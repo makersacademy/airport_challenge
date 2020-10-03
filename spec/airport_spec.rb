@@ -48,5 +48,9 @@ end
     expect(new_airport).to respond_to(:land_plane).with(2).arguments
   end
 
+  it 'airport responds to storm_landing method' do
+    new_airport = Airport.new("Hamburg")
+    expect(new_airport).to respond_to(:storm_landing)
+  end
 
 end
