@@ -7,6 +7,11 @@ describe Planes do
       plane = Planes.new
       expect(plane).to respond_to :take_off
     end
+
+    it 'updates status when called' do
+      subject.take_off
+      expect(subject.status).to eq 'in air'
+    end
   end
 
   describe '#land' do
