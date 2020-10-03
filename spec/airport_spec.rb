@@ -17,5 +17,10 @@ describe Airport do
     it "will raise an error if there are no planes o take off" do
       expect { subject.take_off }.to raise_error "There are no planes to take off"
     end
+
+    it "will raise an error if the runway is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.land double :plane }
+      expect { subject.land double :plane }.to raise_error("Error, runway is full")
+    end
   end
 end

@@ -12,7 +12,13 @@ class Airport
     @runway.length.zero? ? true : false
   end
 
+  def full?
+    @runway.length >= DEFAULT_CAPACITY
+  end
+
   def land(plane)
+    fail ("Error, runway is full") if full?
+    
     @runway.push(plane)
   end
 
