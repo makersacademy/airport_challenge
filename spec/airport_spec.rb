@@ -55,7 +55,7 @@ describe Airport do
       end
     end
   end
-
+  
   describe "Takeoff tests" do
     context "when sunny" do
       before do
@@ -81,17 +81,17 @@ describe Airport do
         expect { airport.takeoff(plane) }.to raise_error("There are no planes to take off")
       end
     end
-  end
 
-  context "when stormy" do
-    before do
-      airport.land(plane)
-      allow(airport).to receive(:stormy?).and_return true
-    end
-
-    it "Does not allow to take off" do
-      allow(plane).to receive(:in_air?).and_return(false)
-      expect { airport.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
+    context "when stormy" do
+      before do
+        airport.land(plane)
+        allow(airport).to receive(:stormy?).and_return true
+      end
+  
+      it "Does not allow to take off" do
+        allow(plane).to receive(:in_air?).and_return(false)
+        expect { airport.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
+      end
     end
   end
 end
