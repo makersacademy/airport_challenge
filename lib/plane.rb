@@ -11,6 +11,7 @@ class Plane
   def take_off(airport)
 
     airport.hangar.pop
+    puts "Flying free!"
 
   end
 end
