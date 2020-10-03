@@ -1,25 +1,45 @@
 Airport Challenge
 =================
 
+This program allows a traffic controller to manage the flow of planes at an airport.
+
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(____KD____)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
-                =  ===(_________)
+                      (_________)
+                      (_______)
+             =========(_____)
+                      (___)
+                      (__)
+                      (_)
 
 ```
 
-Instructions
+
+How to Use
 ---------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+```
+irb -r "./lib/airport.rb"
+```
+* Create an airport:
+
+```
+heathrow = Airport.new
+```
+
+* Create some planes:
+
+```
+ba55 = Plane.new
+su420 = Plane.new
+```
+
 
 Steps
 -------
