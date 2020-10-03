@@ -12,9 +12,13 @@ describe Plane do
     end
 
     it 'responds false before take_off' do
-      airport = Airport.new
-      airport.land(subject)
       expect(subject.in_air?).to eq(false)
+    end
+
+    it 'responds false after landing, pre-take-off' do
+      airport = Airport.new
+      plane = airport.land(subject)
+      expect(plane.in_air?).to eq(false)
     end
   end
 end
