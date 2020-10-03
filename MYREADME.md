@@ -13,7 +13,11 @@ And here is a functional representation of that story:
 |an air traffic controller|      |
 |Passanger|get  to a destination |
 |Plane|can land at the airport|
-Airport controller <---- allows plane to land
+|Airport|allows plane to land|
+
+Airport <---- allows plane to land
+3. Create an Airport class and test
+4.
 
 ## Installation
 
