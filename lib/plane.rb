@@ -12,9 +12,16 @@ class Plane
     end
 
     def take_off(airport)
-        raise 'The plane is not in this airport' if airport != @location
+        raise 'The plane is not in this airport' if not_same(airport)
         @status = 'flying'
         @location = 'in air'
         true
     end
+
+    private
+
+    def not_same(airport)
+        return true if airport != @location
+    end
+
 end
