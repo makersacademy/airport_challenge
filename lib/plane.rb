@@ -1,4 +1,5 @@
 class Plane
   def in_air?
-  end 
+    true
+  end
 end
