@@ -31,7 +31,17 @@ describe Plane do
     it "does not take off from an airport it's not in" do 
         expect { @plane.take_off(@airport) }.to raise_error 'The plane is not in this airport'
     end
-    # planes can only take off from airports they are in; 
+    
+    it "cannot be in an airport if it is flying" do
+        @plane.take_off(@plane.location) 
+        expect(@plane.location).to eq 'in air'
+    end
+
+    it "cannot take off if it is flying" do
+        airport = @plane.location
+        @plane.take_off(airport) 
+        expect { @plane.take_off(airport) }.to raise_error 'The plane cannot take off while flying'
+    end
     # planes that are already flying cannot take off and/or be in an airport; 
     # planes that are landed cannot land again and must be in an airport, etc.
 
