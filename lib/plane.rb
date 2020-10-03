@@ -17,7 +17,7 @@ class Plane
   def take_off(airport)
     return raise "Plane already airborne" if @airborne == true
     airport.hangar.delete(self)
-    airborne = true
+    @airborne = true
     puts "Flying free!"
   end
 end

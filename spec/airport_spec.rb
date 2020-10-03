@@ -68,5 +68,26 @@ describe Airport do
     airport2.request_landing(plane2)
     expect{airport2.request_take_off(plane1)}.to raise_error("Plane not in hangar")
   end
+  it "lands and takes off a number of planes at different airports" do
+    airport1 = Airport.new
+    airport2 = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    plane4 = Plane.new
+    plane5 = Plane.new
+    allow_any_instance_of(Weather).to receive(:randomizer).and_return(8)
+    airport1.request_landing(plane1)
+    airport2.request_landing(plane2)
+    airport2.request_landing(plane3)
+    airport1.request_take_off(plane1)
+    airport1.request_landing(plane4)
+    airport2.request_landing(plane5)
+    airport2.request_take_off(plane3)
+    airport2.request_landing(plane1)
+    airport1.request_landing(plane3)
+    airport1.request_take_off(plane4)
+    airport2.request_take_off(plane2)
+  end
 
 end
