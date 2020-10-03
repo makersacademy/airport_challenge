@@ -38,4 +38,10 @@ describe Airport do
   end
 end
 
+  it 'airport responds to land_plane method' do
+    new_airport = Airport.new("Hamburg")
+    expect(new_airport).to respond_to(:land_plane)
+  end
+
+
 end

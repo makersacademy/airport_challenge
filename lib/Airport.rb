@@ -15,4 +15,8 @@ def capacity_override(new_capacity)
   end
 end
 
+def land_plane
+end
+
+
 end
