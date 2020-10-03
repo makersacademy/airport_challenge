@@ -1,8 +1,8 @@
 class Weather
   attr_reader :options
-  
+
   def initialize
-    @options = [:stormy, :sunny, :sunny, :sunny, :sunny, :sunny]
+    @options = [:stormy, :sunny, :sunny, :sunny, :sunny]
   end
 
   def generate
