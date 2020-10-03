@@ -16,8 +16,10 @@ And here is a functional representation of that story:
 |Airport|allows plane to land|
 
 Airport <---- allows plane to land
-3. Create an Airport class and test
-4.
+3. Create an Airport class
+4. Create allows_for_landing methods
+5. Create plane class
+
 
 ## Installation
 
