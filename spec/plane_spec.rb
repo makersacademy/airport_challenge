@@ -52,6 +52,23 @@ describe Plane do
     it "cannot land again, if it is landed" do
         expect { @plane.land_at_destination }.to raise_error 'A landed plane cannot land'
     end
+
+    it "is in an airport if it has landed" do
+        airport = @plane.location
+        @plane.take_off(airport)
+        @plane.land_at_destination
+
+        expect(@plane.location).to be_a Airport
+    end
+
+    it "lands at its destination" do
+        airport = @plane.location
+        destination = @plane.destination
+        @plane.take_off(airport)
+        @plane.land_at_destination
+
+        expect(@plane.location).to eq destination
+    end
     # planes that are landed cannot land again 
     # and must be in an airport, etc.
 

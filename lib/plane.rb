@@ -20,10 +20,18 @@ class Plane
     end
 
     def land_at_destination
-        raise 'A landed plane cannot land' if @status == 'landed'
+        raise 'A landed plane cannot land' if landed?
+        @status = 'landed'
+        @location = @destination
+        @destination = Airport.new
+        @passengers = rand(101)
     end
 
     private
+
+    def landed?
+        @status == 'landed'
+    end
 
     def flying?
         @status == 'flying'
