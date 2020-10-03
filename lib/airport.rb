@@ -18,6 +18,8 @@ class Airport
   end
 
   def request_take_off(plane)
+    empty?
+    check_weather
     plane.take_off(self)
   end
 
@@ -25,6 +27,10 @@ class Airport
 
   def full?(capacity = DEFAULT_CAPACITY)
     return raise "Hangar is full" if @hangar.length >= capacity
+  end
+
+  def empty?
+    return raise "Hangar is empty" if @hangar.empty?
   end
 
   def check_weather

@@ -10,6 +10,7 @@ describe Plane do
   it "Confirms take_off with a message" do
     airport = Airport.new
     plane = subject
+    allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
     airport.request_landing(plane)
     expect{airport.request_take_off(plane)}.to output("Flying free!\n").to_stdout
   end
