@@ -8,16 +8,18 @@ class Airport
   end
 
   def land(plane)
-    raise "Airport is full." if self.full?
+    raise "Airport is full." if full?
     raise "The plane cannot land as it's not in the air." unless plane.flying?
     raise "The sky is too stormy to land." if @sky.stormy?
+
     plane.land(self)
     @planes.push(plane)
   end
 
   def takeoff(plane)
     raise "The sky is too stormy to fly." if @sky.stormy?
-    raise "The plane couldn't take off because it is not at the airport." unless self.is_holding?(plane)
+    raise "Plane not at airport." unless holding?(plane)
+
     plane.takeoff
     @planes.delete(plane)
   end
@@ -26,7 +28,7 @@ class Airport
     @planes.length == CAPACITY
   end
 
-  def is_holding?(plane)
+  def holding?(plane)
     @planes.include?(plane)
   end
 end

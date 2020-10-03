@@ -36,14 +36,14 @@ describe Airport do
   end
 
   it "won't allow a plane to take off if it's not in an airport" do
-    expect { subject.takeoff(plane) }.to raise_error "The plane couldn't take off because it is not at the airport."
+    expect { subject.takeoff(plane) }.to raise_error "Plane not at airport."
   end
 
   it "won't allow a plane to take off it it's in a different airport" do
     different_airport = Airport.new
     expect(plane).to receive(:land) { different_airport }
     different_airport.land(plane)
-    expect { subject.takeoff(plane) }.to raise_error "The plane couldn't take off because it is not at the airport."
+    expect { subject.takeoff(plane) }.to raise_error "Plane not at airport."
   end
 
   it "won't allow a plane to land if it's not flying" do

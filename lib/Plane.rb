@@ -10,6 +10,6 @@ class Plane
   end
 
   def flying?
-    @airport == nil
+    @airport.nil?
   end
 end
