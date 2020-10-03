@@ -14,6 +14,8 @@ class Airport
 
     raise "Plane already landed" unless plane.in_air?
 
+    raise "Too stormy for landing." if stormy?
+
     plane.grounded
     spaces << plane
   end
@@ -22,6 +24,8 @@ class Airport
     raise "There are no planes to take off" if empty?
 
     raise "Plane already flying" if plane.in_air?
+
+    raise "Too stormy for takeoff." if stormy?
 
     plane.flying
     spaces.delete(plane)
@@ -34,5 +38,9 @@ class Airport
 
   def empty?
     spaces.count.zero?
+  end
+
+  def stormy?
+    rand(1..10) > 9
   end
 end

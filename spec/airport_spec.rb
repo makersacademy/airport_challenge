@@ -36,6 +36,7 @@ describe Airport do
 
       it "capacity can be changed" do
         new_airport = Airport.new(200)
+        allow(new_airport).to receive(:stormy?).and_return false
         200.times { 
           new_airport.land(plane)
           plane.flying
