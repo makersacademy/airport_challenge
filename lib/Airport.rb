@@ -8,7 +8,11 @@ def initialize(name)
 end
 
 def capacity_override(new_capacity)
-  @capacity = new_capacity 
+  if new_capacity.class == Integer
+    @capacity = new_capacity
+  else
+    "Capacity not updated.  Method only accepts integers.  Please retry"
+  end
 end
 
 end

@@ -26,10 +26,16 @@ describe Airport do
     expect(new_airport).to respond_to(:capacity_override).with(1).argument
   end
 
-  it 'capacity can be overriden' do
+  it 'capacity can be overriden to new value' do
     new_airport = Airport.new("Hamburg")
     new_airport.capacity_override(8)
     expect(new_airport.capacity).to eq(8)
   end
+
+  it 'if string given to capacity_override output error' do
+    new_airport = Airport.new("Hamburg")
+    expect do new_airport.capacity_override("ten").to output("Capacity not updated.  Method only accepts integers.  Please retry").to_stdout
+  end
+end
 
 end
