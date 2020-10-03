@@ -7,7 +7,7 @@ class Weather
   end
 
   def weather_calculator
-    @weather_no.between?(11,89) ? @weather = "clear" : @weather = "stormy"
+    @weather_no.between?(11, 89) ? @weather = "clear" : @weather = "stormy"
   end
 
 end
