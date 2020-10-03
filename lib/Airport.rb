@@ -19,6 +19,9 @@ def storm_landing(plane)
   print "There is a storm. Do you want the plane to land yes or no:"
 end
 
+def storm_decision
+end
+
 def land_plane(plane, weather)
 end
 

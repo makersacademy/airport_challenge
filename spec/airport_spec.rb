@@ -62,5 +62,10 @@ describe Airport do
     new_flight = Plane.new("Lufthansa")
     expect{new_airport.storm_landing(new_flight)}.to output("There is a storm. Do you want the plane to land yes or no:").to_stdout
   end
-  
+
+  it 'airport reponds to storm_decision' do
+    new_airport = Airport.new("Hamburg")
+    expect(new_airport).to respond_to(:storm_decision)
+  end
+
 end
