@@ -40,7 +40,7 @@ class Airport
     spaces.count.zero?
   end
 
-  #1 in 10 chance of the weather being stormy
+  # 1 in 10 chance of the weather being stormy
   def stormy?
     rand(1..10) > 9
   end

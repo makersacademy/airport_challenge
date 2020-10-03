@@ -17,7 +17,7 @@ describe Airport do
       end
       
       it { is_expected.to respond_to("land").with(1).argument }
-      
+
       it "cannot land planes if full" do
         airport.capacity.times { 
           airport.land(plane)
