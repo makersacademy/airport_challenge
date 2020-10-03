@@ -54,4 +54,7 @@ describe Airport do
   it 'has a hangar' do
     expect(subject.hangar).to be_an_instance_of(Array)
   end
+
+  it { is_expected.to respond_to :capacity }
+  
 end

@@ -37,6 +37,9 @@ Airport <---- allows plane to take off <--- after take off plane dissapear from 
 10. Put planes that landed into the hangar
 11. Check a plane count after take off
 12. Allow for take off only the plane that is in the hangar
+13. Create method landing_at
+14. Create method taking_off_from
+
 
 
 

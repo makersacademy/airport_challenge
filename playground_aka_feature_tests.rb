@@ -15,3 +15,4 @@ p luton_airport.giving_permition_for_landing(airbus747)
 airbus747.landing_at(luton_airport)
 p luton_airport
 airbus747.taking_off_from(luton_airport)
+p luton_airport.capacity

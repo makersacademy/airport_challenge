@@ -1,7 +1,7 @@
 require_relative './plane.rb'
 
 class Airport
-  attr_reader :hangar
+  attr_reader :hangar, :capacity
 
   def initialize
     @hangar = []
