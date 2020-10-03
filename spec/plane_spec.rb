@@ -3,9 +3,7 @@ require 'plane'
 describe Plane do
   let(:plane) { Plane.new }
 
-  it "creates a plane" do
-    expect(plane).to be_an_instance_of Plane
-  end
+  it { is_expected.to be_an_instance_of Plane }
 
   it "can understand that it is in air" do
     plane.flying

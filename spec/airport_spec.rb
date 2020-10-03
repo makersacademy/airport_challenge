@@ -2,11 +2,9 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane, in_air?: true, flying: true, grounded: false }
 
-  it "creates an airport" do
-    expect(airport).to be_an_instance_of Airport
-  end
+  it { is_expected.to be_an_instance_of Airport }
 
   it "has no planes when created" do
     expect(airport.spaces).to be_empty
@@ -22,6 +20,7 @@ describe Airport do
     end
 
     it "can instruct a plane to take off and confirm plane is gone" do
+      allow(plane).to receive(:in_air?).and_return(false)
       airport.takeoff(plane)
       expect(airport.spaces).not_to include(plane)
     end
@@ -54,6 +53,7 @@ describe Airport do
   end
 
   it "cannot land a plane that is grounded" do
+    allow(plane).to receive(:in_air?).and_return(false)
     expect { 
       plane.grounded
       airport.land(plane) 
