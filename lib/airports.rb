@@ -28,11 +28,10 @@ class Airports
 
   def status
     puts "On Ground:"
-    print "#{@on_ground}\n"
+    print "#{@on_ground.map { |each| each.id }}\n"
     puts "----------"
     puts "In Air"
-    print @in_air
+    print "#{@in_air.map { |each| each.id }}"
   end
 
 end
-$airport = Airports.new
