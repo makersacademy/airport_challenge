@@ -19,6 +19,11 @@ describe Planes do
       plane = Planes.new
       expect(plane).to respond_to :land
     end
+
+    it 'updates status when called' do
+      subject.land
+      expect(subject.status).to eq 'landed'
+    end
   end
 
   describe '#confirm_status' do

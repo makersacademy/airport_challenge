@@ -6,6 +6,7 @@ class Planes
   end
 
   def land
+    @status = 'landed'
   end
 
   def confirm_status
