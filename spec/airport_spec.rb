@@ -11,11 +11,6 @@ describe Airport do
     expect(airbus747).to be_asking_for_permission
   end
 
-  it 'takes plane' do
-    airbus747 = Plane.new
-    expect(subject.allows_for_landing(airbus747)).to eq airbus747
-  end
-
   it { is_expected.to respond_to(:allows_for_take_off) }
 
   it'checks for permission' do
@@ -24,8 +19,6 @@ describe Airport do
     airbus747 = subject.allows_for_take_off(airbus747)
     expect(airbus747).to be_asking_for_permission
   end
-
-  it { is_expected.to respond_to(:plane) }
 
   it 'has a hangar' do
     expect(subject.hangar).to be_an_instance_of(Array)
