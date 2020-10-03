@@ -26,6 +26,10 @@ describe Airport do
     expect(new_airport).to respond_to(:capacity_override).with(1).argument
   end
 
-
+  it 'capacity can be overriden' do
+    new_airport = Airport.new("Hamburg")
+    new_airport.capacity_override(8)
+    expect(new_airport.capacity).to eq(8)
+  end
 
 end
