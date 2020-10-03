@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'The airport is at max capacity' if landed_planes.count == capacity
     landed_planes << plane
   end
 end

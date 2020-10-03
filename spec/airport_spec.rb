@@ -21,5 +21,10 @@ describe Airport do
             @airport.land(@plane)
             expect(@airport.landed_planes).to include(@plane)
         end
+
+        it "does not allow planes to land if at capacity" do
+            airport = Airport.new(0)
+            expect { airport.land(@plane) }.to raise_error 'The airport is at max capacity'
+        end
     end
 end
