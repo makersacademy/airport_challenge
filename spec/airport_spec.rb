@@ -1,6 +1,13 @@
 require 'airport'
 
 describe Airport do
+
+  describe '#initialize' do
+    it 'has a default capacity of 20' do
+      expect(subject.capacity).to eq(20)
+    end
+  end
+  
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
