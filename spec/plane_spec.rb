@@ -13,7 +13,7 @@ describe Plane do
 
     it 'responds false before take_off' do
       airport = Airport.new
-      airport.lane(subject)
+      airport.land(subject)
       expect(subject.in_air?).to eq(false)
     end
   end
