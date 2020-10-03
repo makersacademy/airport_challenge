@@ -2,18 +2,30 @@ require 'airport'
 
 describe Airport do
 
-  it 'responds to allows_for_landing' do
-    expect(subject).to respond_to :allows_for_landing
-  end
+  it { is_expected.to respond_to(:allows_for_landing).with(1).argument }
 
-  it 'allows plane to land' do
-    airbus747 = subject.allows_for_landing
+  it 'checks for permission' do
+    airbus747 = Plane.new
+    subject.allows_for_landing(airbus747)
     expect(airbus747).to be_asking_for_permission
   end
 
-  it'allows plane to take off' do
+  it 'takes plane' do
+    airbus747 = Plane.new
+    expect(subject.allows_for_landing(airbus747)).to eq airbus747
+  end
+
+  it { is_expected.to respond_to(:allows_for_take_off) }
+
+  it'checks for permission' do
     airbus747 = subject.allows_for_take_off
     expect(airbus747).to be_asking_for_permission
+  end
+
+  it { is_expected.to respond_to(:plane) }
+
+  it 'has a hangar' do
+    expect(subject.hangar).to be_an_instance_of(Array)
   end
 
 end
