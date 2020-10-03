@@ -1,11 +1,14 @@
+require 'weather'
+
 class Airports
   DEFAULT_CAPACITY = 20
-  attr_reader :capacity
+  attr_reader :capacity, :in_air, :on_ground, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @on_ground = []
     @in_air = []
+    @weather = Weather.new
   end
 
   def full?
@@ -23,7 +26,11 @@ class Airports
   end
 
   def add_plane(plane)
-    @on_ground.push(plane)
+    if plane.status == 'in air'
+      @in_air.push(plane)
+    else
+      @on_ground.push(plane)
+    end
   end
 
   def status

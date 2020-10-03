@@ -13,38 +13,50 @@ class Planes
   end
 
   def take_off
-    if @status == 'in air'
-      error_status('take off')
+    if @@airport_in_use.weather == 'stormy'
+      error_status('weather-take_off')
     else
-      @status = 'in air'
-      confirm_status('take off')
-      @@airport_in_use.move_plane('air', self)
+      if @status == 'in air'
+        error_status('take off')
+      else
+        @status = 'in air'
+        confirm_status('take off')
+        @@airport_in_use.move_plane('air', self)
+      end
     end
   end
 
   def land
-    if @status == 'landed'
-      error_status('land')
+    if @@airport_in_use.weather == 'stormy'
+      error_status('weather-land')
     else
-      @status = 'landed'
-      confirm_status('land')
-      @@airport_in_use.move_plane('land', self)
+      if @status == 'landed'
+        error_status('land')
+      else
+        @status = 'landed'
+        confirm_status('land')
+        @@airport_in_use.move_plane('land', self)
+      end
     end
   end
 
   def confirm_status(action = nil)
     if action == 'land'
-      puts "#{self.id} has landed"
+      puts "#{id} has landed"
     elsif action == 'take off'
-      puts "#{self.id} has taken off"
+      puts "#{id} has taken off"
     end
   end
 
   def error_status(action)
     if action == 'land'
-      puts "Error: #{self.id} has already landed..."
+      puts "Error: #{id} has already landed..."
     elsif action == 'take off'
-      puts "Error: #{self.id} is already in the air..."
+      puts "Error: #{id} is already in the air..."
+    elsif action == 'weather-take_off'
+      puts "Warning: Cannot take-off in stormy weather!"
+    elsif action == 'weather-land'
+      puts "Warning: Cannot land in stormy weather!"
     end
   end
 end
