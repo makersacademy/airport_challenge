@@ -27,6 +27,12 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "Stormy weather, landing not possible."
     end
 
+    it 'should now allow landing if plane already in airport' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane already in airport."
+    end
+
   end
 
   describe '#take_off' do

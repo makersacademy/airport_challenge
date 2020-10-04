@@ -22,9 +22,9 @@ class Airport
   def take_off(plane)
     raise "Stormy weather, take-off not possible." if weather_report == "stormy"
 
-    raise "Plane not in airport." if !@planes.include?(plane)
+    raise "Plane not in airport." unless @planes.include?(plane)
 
-    plane = @planes.select {|flight| flight == plane}
+    plane = @planes.select { |flight| flight == plane }
     plane[0].flying
     plane[0]
   end
