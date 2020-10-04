@@ -27,6 +27,7 @@ def storm_landing(plane)
   end
 
 def land_plane(plane)
+  @planes_in_airport << plane.name
 end
 
 def plane_already_in_airport(plane)

@@ -88,4 +88,9 @@ let(:new_flight) {Plane.new("Lufthansa")}
     expect(new_airport.plane_already_in_airport(new_flight)).to eq("No")
   end
 
+  it 'check if plane landed' do
+    new_airport.land_plane(new_flight)
+    expect(new_airport.planes_in_airport).to eq([new_flight.name])
+  end
+
 end
