@@ -22,4 +22,7 @@ describe Airport do
     airport1 = Airport.new(25)
     expect(airport1.capacity).to eq(25)
   end
+  it 'if no argument is given, default capacity is 125' do
+    expect(airport.capacity).to eq(125)
+  end
 end

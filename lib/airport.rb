@@ -2,7 +2,7 @@ require 'plane.rb'
 
 class Airport
   attr_reader :bunker, :capacity
-  def initialize(capacity)
+  def initialize(capacity = 125)
     @bunker = []
     @capacity = capacity
   end
