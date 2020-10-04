@@ -11,17 +11,17 @@ class Airport
   def land(plane)
     if @parked.length >= @capacity
       "Please wait we are at max capacity"
+    elsif weather == 'stormy'
+      'You may not land as weather is stormy'
     else
-      "Please land"
       @parked.push(plane)
+      "Please land"
     end
   end
 
   def take_off(plane)
     @parked.pop
   end
-
-
 
 end
 
