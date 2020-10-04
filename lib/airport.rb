@@ -9,19 +9,16 @@ class Airport
   end
 
   def land(plane)
-    @parked.push(plane)
-  end
-
-  def take_off(plane)
-    @parked.pop
-  end
-
-  def at_capacity
     if @parked.length >= @capacity
       "Please wait we are at max capacity"
     else
       "Please land"
+      @parked.push(plane)
     end
+  end
+
+  def take_off(plane)
+    @parked.pop
   end
 
 
