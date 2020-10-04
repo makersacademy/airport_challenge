@@ -24,7 +24,7 @@ class Airport
 
   def takeoff(plane)
     return raise "Departure delayed: stormy weather" if @weather.stormy?
-    
+
     return raise "Plane has taken off" if (plane.flying == true)
 
     if (plane.flying == false) && !bunker.include?(plane)

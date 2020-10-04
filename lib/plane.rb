@@ -13,5 +13,5 @@ class Plane
   def departed
     @flying = true
   end
-  
+
 end

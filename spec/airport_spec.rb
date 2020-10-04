@@ -35,7 +35,6 @@ describe Airport do
 
       it 'raises error if a landed plane is asked to land' do
         gatwick = Airport.new
-        plane = Plane.new
         gatwick.land(plane)
         expect { gatwick.land(plane) }.to raise_error("Plane has already landed")
       end
@@ -47,7 +46,6 @@ describe Airport do
       end
 
       it 'raises error for landing if stormy' do
-        plane = Plane.new
         expect { airport.land(plane) }.to raise_error("Arrival delayed: stormy weather")
       end
     end
@@ -75,7 +73,6 @@ describe Airport do
       end
 
       it 'raises error if plane is not at the airport' do
-        plane = Plane.new
         gatwick = Airport.new
         heathrow = Airport.new
         gatwick.land(plane)
@@ -87,7 +84,6 @@ describe Airport do
 
     context 'stormy weather' do
       before do
-        plane = Plane.new
         airport.land(plane)
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       end
