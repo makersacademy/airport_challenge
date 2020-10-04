@@ -10,6 +10,14 @@ describe Airport do
     airport.land(plane)
     expect(airport.bunker.length).to eq(1)
   end
-
+  it 'removes plane from bunker when taking off' do
+    2.times do
+      plane = Plane.new
+      airport.land(plane)
+    end
+    plane = Plane.new
+    airport.takeoff(plane)
+    expect(airport.bunker.length).to eq(1)
+  end
 
 end
