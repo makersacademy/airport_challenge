@@ -19,9 +19,11 @@ class Airport
   end
 
   def takeoff(plane)
-    return raise "No planes available for take off" if empty?
+    return raise "Plane has taken off" if (plane.flying == true)
 
-    return raise "Plane not grounded at this airport" if (plane.flying == true)
+    if (plane.flying == false) && (!bunker.include?(plane))
+      raise "Plane not grounded at this airport"
+    end
 
     plane.departed
     bunker.delete(plane)
