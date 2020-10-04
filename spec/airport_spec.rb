@@ -10,10 +10,12 @@ describe Airport do
     end
   end
 
-  describe '#landed(plane)' do
+  describe '#land(plane)' do
     it 'should log that the plane is at the airport' do
       plane = Plane.new
-      expect(subject.landed(plane)).to eq [plane]
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport.grounded_planes).to eq [plane]
     end
   end
 
@@ -31,7 +33,20 @@ describe Airport do
   end
 
   describe '#confirm_takeoff' do
-    it 'should send a message confirming that the plane has left the airport' do
+    it 'should return the grounded_planes less the plane that took off' do
+      plane = Plane.new
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport.confirm_takeoff(plane)).to eq []
+    end
+  end
+
+  describe '#land(plane)' do
+    it 'does not allow a plane to land if the airport is at capacity' do
+      plane = Plane.new
+      airport = Airport.new
+      Airport::MAXIMUM_CAPACITY.times { airport.land(plane) }
+      expect {airport.land(plane)}.to raise_error(RuntimeError, 'The airport is full, you cannot land here')
     end
   end
 end
