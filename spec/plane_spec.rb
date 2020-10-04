@@ -10,4 +10,8 @@ describe Plane do
     expect(subject).to respond_to :in_air
   end
 
+  it "will confirm plane has landed" do
+    expect(subject).to respond_to :land
+  end
+
 end
