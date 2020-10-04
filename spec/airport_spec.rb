@@ -31,4 +31,12 @@ describe Airport do
     gatwick.land(plane)
     expect { gatwick.land(plane) }.to raise_error
   end
+#  it 'raises error if a plane is landed in one airport and tried to land in another' do
+#    plane = Plane.new
+#    gatwick = Airport.new
+#    heathrow = Airport.new
+#    gatwick.land(plane)
+#    expect { heathrow.land(plane) }.to raise_error
+#  end
+#  =end
 end

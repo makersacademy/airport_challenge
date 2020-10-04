@@ -12,7 +12,7 @@ class Airport
   def land(plane)
     return raise "Do not land, airport is full" if full?
 
-    return raise "Plane has already landed" if landed(plane)
+    return raise "Plane has already landed" if !plane.flying
 
     @bunker << plane
   end
@@ -32,8 +32,8 @@ class Airport
     @bunker.empty?
   end
 
-  def landed(plane)
-    bunker.include?(plane)
+  def landed?(plane)
+    @bunker.include?(plane)
   end
 
 end
