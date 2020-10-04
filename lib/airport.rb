@@ -15,12 +15,13 @@ class Airport
     return raise "No planes available for take off" if empty?
     @bunker.pop
   end
+
   private
   def full?
     @bunker.length >= @capacity ? true : false
   end
   def empty?
-    @bunker.length == 0 ? true : false
+    @bunker.empty?
   end
 
 
