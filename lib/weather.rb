@@ -1,9 +1,9 @@
 class Weather
 
   attr_reader :condition
-  
-  def initialize(num = 8)
-    @condition = num
+
+  def initialize(condition)
+    @condition = condition
   end
 
   def stormy?

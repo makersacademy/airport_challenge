@@ -28,6 +28,7 @@ class Airport
     check_weather
     fail 'You are not in this airport' if !landed?(plane)
     fail 'It is too stormy to fly' if weather.stormy?
+    landed_planes.delete(plane)
   end
 
   def check_weather

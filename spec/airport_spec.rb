@@ -56,5 +56,10 @@ describe Airport do
     it "doesn't allow planes to take off if they are not in the airport" do
       expect { @airport.take_off(@plane) }.to raise_error 'You are not in this airport'
     end
+
+    it "removes planes from airport upon take off" do
+      @home_ap.take_off(@plane)
+      expect(@home_ap.landed_planes.count).to eq 0
+    end
   end
 end

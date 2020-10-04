@@ -16,6 +16,7 @@ class Plane
     def take_off(airport)
         raise 'The plane cannot take off while flying' if flying?
         raise 'The plane is not in this airport' if not_same(airport)
+        location.take_off(self)
         @status = 'flying'
         @location = 'in air'
         true
