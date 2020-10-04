@@ -6,7 +6,7 @@ class Airport
   end
 
   def land(plane)
-    raise 'airport full' unless @hangar.length < 3
+    raise "You can not land at #{@airport_name}. Its hangar is full." unless @hangar.length < 3
     @hangar << plane
   end
 

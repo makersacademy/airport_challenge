@@ -17,18 +17,8 @@ describe Airport do
     airport.land(plane1)
     airport.land(plane2)
     airport.land(plane3)
-    expect { airport.land(plane4) }.to raise_error(RuntimeError, 'airport full')
+    expect { airport.land(plane4) }.to raise_error(RuntimeError, "You can not land at London Airport. Its hangar is full.")
   end
-
-  # describe "#release_bike" do
-  #   it 'does not release a bike if there are none in the docking station' do
-  #     docking_station = DockingStation.new
-  #     expect { docking_station.release_bike }.to raise_error(RuntimeError, 'There are no bikes available')
-  #   end
-  #
-  # end
-
-
 
   it '#depart departs a plane from an airport' do
     airport = Airport.new("London Airport")
