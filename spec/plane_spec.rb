@@ -28,26 +28,28 @@ describe Plane do
         expect(@plane.passengers).to be_between(1, 100)
     end
 
-    it "takes off from the airport it's in" do 
-        expect(@plane.take_off(@home_ap)).to be true
+    it "says how many passengers are on the plane" do
+        allow(@plane).to receive(:rand).and_return(50)
+        @plane.take_off
+        expect(@plane.land_at_destination).to eq 'There are 50 passengers on this plane'
     end
 
-    it "does not take off from an airport it's not in" do 
-        expect { @plane.take_off(@airport) }.to raise_error 'The plane is not in this airport'
+    it "takes off from the airport it's in" do 
+        expect(@plane.take_off).to be true
     end
     
     it "cannot be in an airport if it is flying" do
-        @plane.take_off(@home_ap) 
+        @plane.take_off 
         expect(@plane.location).to eq 'in air'
     end
 
     it "cannot take off if it is flying" do
-        @plane.take_off(@home_ap) 
-        expect { @plane.take_off(@home_ap) }.to raise_error 'The plane cannot take off while flying'
+        @plane.take_off 
+        expect { @plane.take_off }.to raise_error 'The plane cannot take off while flying'
     end
 
     it "cannot be in an airport if it is flying" do
-        @plane.take_off(@home_ap) 
+        @plane.take_off 
         expect(@plane.location).to eq 'in air'
     end
  
@@ -56,14 +58,14 @@ describe Plane do
     end
 
     it "is in an airport if it has landed" do
-        @plane.take_off(@home_ap)
+        @plane.take_off
         @plane.land_at_destination
 
         expect(@plane.location).to be_a Airport
     end
 
     it "lands at its destination" do
-        @plane.take_off(@home_ap)
+        @plane.take_off
         @plane.land_at_destination
 
         expect(@plane.location).to eq @destination_ap

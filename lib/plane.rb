@@ -8,14 +8,13 @@ class Plane
         @status = 'landed'
         @location = Airport.new
         @destination = Airport.new
-        @passengers = rand(1..100)
+        @passengers = load_passengers
 
         @location.place(self)
     end
 
-    def take_off(airport)
+    def take_off
         raise 'The plane cannot take off while flying' if flying?
-        raise 'The plane is not in this airport' if not_same(airport)
         location.take_off(self)
         @status = 'flying'
         @location = 'in air'
@@ -29,10 +28,19 @@ class Plane
         @status = 'landed'
         @location = @destination
         @destination = Airport.new
-        @passengers = rand(101)
+        @passengers = load_passengers
+        print_passengers
     end
 
+    def load_passengers
+        @passengers = rand(1..100)
+    end
+    
     private
+
+    def print_passengers
+        "There are #{@passengers} passengers on this plane"
+    end
 
     def landed?
         @status == 'landed'
@@ -40,10 +48,6 @@ class Plane
 
     def flying?
         @status == 'flying'
-    end
-
-    def not_same(airport)
-        airport != @location
     end
 
 end

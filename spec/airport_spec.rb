@@ -42,7 +42,7 @@ describe Airport do
     it "does not allow planes to land if the weather is stormy" do
       fresh_ap = Airport.new
       allow(fresh_ap).to receive(:rand).and_return(8)
-      @plane.take_off(@home_ap)
+      @plane.take_off
       expect { fresh_ap.land(@plane) }.to raise_error 'It is too stormy to land'
     end
   end
