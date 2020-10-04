@@ -8,7 +8,7 @@ class Airports
     @capacity = capacity
     @on_ground = []
     @in_air = []
-    @weather = (Weather.new).weather
+    @weather = Weather.new.weather
   end
 
   def full?

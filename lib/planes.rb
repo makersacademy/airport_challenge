@@ -5,7 +5,7 @@ class Planes
   @@plane_id = 1
 
   def initialize(airport, status = 'landed')
-    @status = status
+    set_status(status, true)
     @id = "Plane#{@@plane_id}"
     @@plane_id += 1
     @@airport_in_use = airport
@@ -19,8 +19,7 @@ class Planes
       if @status == 'in air'
         error_status('take off')
       else
-        @status = 'in air'
-        confirm_status('take off')
+        set_status('in air')
         @@airport_in_use.move_plane('air', self)
       end
     end
@@ -33,17 +32,21 @@ class Planes
       if @status == 'landed'
         error_status('land')
       else
-        @status = 'landed'
-        confirm_status('land')
+        set_status('landed')
         @@airport_in_use.move_plane('land', self)
       end
     end
   end
 
+  def set_status(status, init = false)
+    @status = status
+    confirm_status(status) unless init
+  end
+
   def confirm_status(action = nil)
-    if action == 'land'
+    if action == 'landed'
       puts "#{id} has landed"
-    elsif action == 'take off'
+    elsif action == 'in air'
       puts "#{id} has taken off"
     end
   end
@@ -59,4 +62,5 @@ class Planes
       puts "Warning: Cannot land in stormy weather!"
     end
   end
+  
 end

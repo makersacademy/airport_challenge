@@ -19,17 +19,10 @@ describe Airports do
       expect(subject.capacity).to eq 20
     end
 
-    it 'creates @in_air and @on ground' do
-      expect(subject.in_air).to eq []
-      expect(subject.on_ground).to eq []
-    end
   end
 
   describe '#full?' do
 
-    it 'responds to full? method' do
-      expect(subject).to respond_to(:full?)
-    end
     it 'returns false when not full' do
       expect(subject.full?).to eq false
     end
@@ -41,9 +34,12 @@ describe Airports do
   end
 
   describe '#move_plane' do
+    before do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
+    end
 
     it 'moves plane from @on_ground to @in_air' do
-      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
+
       @airport = Airports.new
       plane = Planes.new(@airport)
 
@@ -52,7 +48,7 @@ describe Airports do
     end
 
     it 'moves plane from @in_air to @on_ground' do
-      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
+
       @airport = Airports.new
       plane = Planes.new(@airport, 'in air')
 
@@ -65,17 +61,19 @@ describe Airports do
 
     it 'adds plane to @in_air on init of plane' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(50)
-    @airport = Airports.new
-    plane = Planes.new(@airport, 'in air')
+      @airport = Airports.new
+      plane = Planes.new(@airport, 'in air')
 
-    expect(@airport.in_air).to eq [plane]
+      expect(@airport.in_air).to eq [plane]
     end
 
-    it 'adds plane to @on_ground on init of plane' do
+    it 'adds plane to @on_ground on init of plane (both specified AND default)' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(50)
-    @airport = Airports.new
-    plane = Planes.new(@airport, 'landed')
-    expect(@airport.on_ground).to eq [plane]
+      @airport = Airports.new
+      plane_spec = Planes.new(@airport, 'landed')
+      plane_default = Planes.new(@airport, 'landed')
+
+      expect(@airport.on_ground).to eq [plane_spec, plane_default]
     end
   end
 
