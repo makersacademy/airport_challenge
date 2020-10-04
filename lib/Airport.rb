@@ -39,6 +39,7 @@ def plane_already_in_airport(plane)
 end
 
 def take_off(plane)
+  @planes_in_airport.delete(plane.name) 
 end
 
 end

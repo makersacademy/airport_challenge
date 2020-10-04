@@ -106,4 +106,10 @@ let(:new_flight) {Plane.new("Lufthansa")}
     expect(new_airport).to respond_to(:take_off).with(1).argument
   end
 
+  it 'check if plane removed from airport' do
+    new_airport.land_plane(new_flight)
+    new_airport.take_off(new_flight)
+    expect(new_airport.planes_in_airport).to eq([])
+  end
+
 end
