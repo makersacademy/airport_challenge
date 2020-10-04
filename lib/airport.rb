@@ -1,9 +1,10 @@
 require 'plane.rb'
 
 class Airport
-  attr_reader :bunker
-  def initialize
+  attr_reader :bunker, :capacity
+  def initialize(capacity)
     @bunker = []
+    @capacity = capacity
   end
   def land(plane)
     @bunker << Plane.new
@@ -11,6 +12,5 @@ class Airport
   def takeoff(plane)
     @bunker.pop
   end
-  def capacity
-  end
+
 end
