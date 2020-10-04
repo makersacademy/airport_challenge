@@ -45,10 +45,16 @@ describe Airport do
       @plane.take_off(@home_ap)
       expect { fresh_ap.land(@plane) }.to raise_error 'It is too stormy to land'
     end
+  end
 
+  describe "#take_off" do
     it "does not allow planes to take off if the weather is stormy" do
       allow(@home_ap).to receive(:rand).and_return(8)
       expect { @home_ap.take_off(@plane) }.to raise_error 'It is too stormy to fly'
+    end
+
+    it "doesn't allow planes to take off if they are not in the airport" do
+      expect { @airport.take_off(@plane) }.to raise_error 'You are not in this airport'
     end
   end
 end
