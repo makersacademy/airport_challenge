@@ -2,6 +2,7 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :runway
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -17,13 +18,13 @@ class Airport
   end
 
   def land(plane)
-    fail ("Error, runway is full") if full?
+    fail "Error, runway is full" if full?
     
     @runway.push(plane)
   end
 
   def take_off
-    fail("There are no planes to take off") if empty?
+    fail "There are no planes to take off" if empty?
 
     @runway.pop
   end

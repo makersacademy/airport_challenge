@@ -7,5 +7,6 @@ class Plane
 
   def taken_off?
     @flying = true
+    puts "A plane has taken off"
   end
 end
