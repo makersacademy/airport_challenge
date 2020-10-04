@@ -12,15 +12,20 @@ class Airport
   def land(plane)
     return raise "Do not land, airport is full" if full?
 
-    return raise "Plane has already landed" if !plane.flying
+    return raise "Plane has already landed" if (plane.flying == false)
 
+    plane.arrived
     @bunker << plane
   end
 
   def takeoff(plane)
     return raise "No planes available for take off" if empty?
 
-    @bunker.pop
+    return raise "Plane not grounded at this airport" if (plane.flying == true)
+
+    plane.departed
+    bunker.delete(plane)
+    "Flight has departed"
   end
 
   private
@@ -30,10 +35,6 @@ class Airport
 
   def empty?
     @bunker.empty?
-  end
-
-  def landed?(plane)
-    @bunker.include?(plane)
   end
 
 end
