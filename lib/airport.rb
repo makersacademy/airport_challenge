@@ -11,10 +11,6 @@ class Airport
     @capacity = capacity
   end
 
-  def airport_is_full
-    raise "The airport is full, you cannot land here" if full?
-  end
-
   def land(plane)
     airport_is_full
     @plane = plane
@@ -24,11 +20,17 @@ class Airport
 
   def takeoff(plane)
     @plane = plane
+    confirm_takeoff(plane)
+  end
+
+  private
+
+  def airport_is_full
+    raise "The airport is full, you cannot land here" if full?
   end
 
   def confirm_takeoff(plane)
-    plane_no  = @grounded_planes.index(plane)
-    @grounded_planes.delete_at(plane_no)
+    @grounded_planes.delete(plane)
     @grounded_planes
   end
 

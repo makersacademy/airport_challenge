@@ -25,19 +25,19 @@ describe Airport do
 
 
 
-  describe '#takeoff(plane)' do
-    it 'should remove a plane from the airport' do
-      plane = Plane.new
-      expect(subject.takeoff(plane)).to eq plane
-    end
-  end
+  # describe '#takeoff(plane)' do
+  #   it 'should remove a plane from the airport' do
+  #     plane = Plane.new
+  #     expect(subject.takeoff(plane)).to eq plane
+  #   end
+  # end
 
   describe '#confirm_takeoff' do
     it 'should return the grounded_planes less the plane that took off' do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect(airport.confirm_takeoff(plane)).to eq []
+      expect(airport.takeoff(plane)).to eq []
     end
   end
 
