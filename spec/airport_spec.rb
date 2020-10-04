@@ -10,17 +10,23 @@ describe Airport do
     end
   end
 
-  describe '#landed_plane' do
+  describe '#landed(plane)' do
     it 'should log that the plane is at the airport' do
       plane = Plane.new
-      airport = Airport.new.land(plane)
-      expect(airport.landed(plane).grounded_planes.length).to eq 1
+      expect(subject.landed(plane)).to eq [plane]
     end
   end
+
+  it 'should have an empty array of planes' do
+    expect(subject.grounded_planes).to eq []
+  end
+
 
 
   describe '#takeoff(plane)' do
     it 'should remove a plane from the airport' do
+      plane = Plane.new
+      expect(subject.takeoff(plane)).to eq plane
     end
   end
 
