@@ -6,22 +6,26 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = weather
+    
   end
   
   def land(plane)
-    fail "Airport is full" if full?
-    
 
+    fail "Airport is full" if full?
+
+    fail "can not land, weather is too stormy" if stormy?
+   
     @planes << plane
   end 
  
   def take_off
-    fail "cannot take off, weather is too stormy" if stormy?
+
+    fail "can not take off, weather is too stormy" if stormy?
+
   end 
 
   def full?
-    @planes.length == @capacity
+    @planes.length >= @capacity
   end  
  
   def stormy?
