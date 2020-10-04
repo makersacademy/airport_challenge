@@ -2,6 +2,7 @@ require 'Airport.rb'
 describe Airport do
 let(:new_airport) {Airport.new("Hamburg")}
 let(:new_flight) {Plane.new("Lufthansa")}
+let(:new_flight2) {Plane.new("British Airways")}
 
   it 'airport can be named' do
     expect(new_airport.name).to eq("Hamburg")
@@ -114,6 +115,13 @@ let(:new_flight) {Plane.new("Lufthansa")}
 
   it 'if attempt is make to take off plane not in airport receive error' do
     expect(new_airport.take_off(new_flight)).to eq("Plane cannot take off as it is not in the airport")
+  end
+
+  it 'if capacity full plane cannot land' do
+    new_airport.capacity_override(1)
+    new_airport.land_plane(new_flight)
+    expect(new_airport.planes_in_airport).to eq(["Lufthansa"])
+    expect{new_airport.land_plane(new_flight2)}.to output("Airport full cannot land plane").to_stdout
   end
 
 end

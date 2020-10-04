@@ -27,7 +27,11 @@ def storm_landing(plane)
   end
 
 def land_plane(plane)
-  @planes_in_airport << plane.name
+  if @capacity == @planes_in_airport.count
+    print "Airport full cannot land plane"
+  elsif @capacity > @planes_in_airport.count
+    @planes_in_airport << plane.name
+  end
 end
 
 def plane_already_in_airport(plane)
