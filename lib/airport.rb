@@ -16,11 +16,13 @@ class Airport
   def land(plane)
     raise "You can't land. #{@name}'s hangar is full." unless @hangar.length < @capacity
     raise "You can't land yet. It's too stormy." if airport_weather == 'stormy'
-    @hangar << plane if airport_weather == 'sunny'
+
+    @hangar << plane
   end
 
   def depart(plane)
     raise "You can't depart yet. It's too stormy." if airport_weather == 'stormy'
+
     @hangar.delete(plane)
     "Plane #{plane} has left #{@name}"
   end
