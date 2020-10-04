@@ -102,4 +102,8 @@ let(:new_flight) {Plane.new("Lufthansa")}
     expect(new_airport).to respond_to(:take_off)
   end
 
+  it 'airport responds to storm_landing with one argument' do
+    expect(new_airport).to respond_to(:take_off).with(1).argument
+  end
+
 end
