@@ -2,6 +2,17 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  it 'has a default capacity of 3' do
+    expect(Airport::AIRPORT_CAPACITY).to eq 3
+  end
+
+  it 'has a variable capacity' do
+    airport = Airport.new("London Airport", 30)
+    plane = Plane.new
+    30.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error(RuntimeError, "You can't land. London Airport's hangar is full.")
+  end
+
   it '#land lands a plane at an airport' do
     airport = Airport.new("London Airport")
     plane = Plane.new
@@ -17,7 +28,7 @@ describe Airport do
     airport.land(plane1)
     airport.land(plane2)
     airport.land(plane3)
-    expect { airport.land(plane4) }.to raise_error(RuntimeError, "You can not land at London Airport. Its hangar is full.")
+    expect { airport.land(plane4) }.to raise_error(RuntimeError, "You can't land. London Airport's hangar is full.")
   end
 
   it '#depart departs a plane from an airport' do
