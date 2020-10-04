@@ -20,9 +20,15 @@ describe Airport do
     expect(airport.capacity).to eq(125)
   end
   it 'raises error if plane tries to land when airport is full' do
-    expect{ 130.times { airport.land(Plane.new) } }.to raise_error("Do not land, airport is full")
+    expect { 130.times { airport.land(Plane.new) } }.to raise_error("Do not land, airport is full")
   end
   it 'raises error if plane tries to takeoff when airport is empty' do
-    expect{airport.takeoff(Plane.new)}.to raise_error("No planes available for take off")
+    expect { airport.takeoff(Plane.new) }.to raise_error("No planes available for take off")
+  end
+  it 'raises error if a landed plane is asked to land' do
+    gatwick = Airport.new
+    plane = Plane.new
+    gatwick.land(plane)
+    expect { gatwick.land(plane) }.to raise_error
   end
 end
