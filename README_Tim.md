@@ -9,14 +9,14 @@ I followed the user stories one-by-one and thought about the *Blackbox* theory. 
 
 ### This task is incomplete as I have not tested all the possible edge cases
 
-~Edge case tested:~
+#### Edge case tested:
 * If the plane is already parked it may not land
 
-~Edge cases not tested:~
+#### Edge cases not tested:
 * If the plane is not parked, it may not take off
 * If the plane is not flying it may not land
 
-~Additionals~
+#### Additionals
 
 * I did not complete the test for the weather. I couldn’t figure out in the time I had, how to test for any element of an array to be outputted.
 * I have one `rubocop` offence and ran out of time to find out why it didn’t like my use of the `!=` in this context: 
