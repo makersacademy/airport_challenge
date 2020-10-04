@@ -16,13 +16,13 @@ def capacity_override(new_capacity)
 end
 
 def storm_decision
-  decision = gets.chomp
-  decision
+  #decision = gets.chomp
+  #decision
 end
 
 def storm_landing(plane)
   print "There is a storm. Do you want the plane to land yes or no:"
-#  if storm_decision == "yes"
+  # if storm_decision == "yes"
 
   end
 
@@ -33,7 +33,7 @@ end
 def plane_already_in_airport(plane)
   if @planes_in_airport.include?(plane.name)
     "Yes"
-  elsif !@planes_in_airport.include?(plane)
+  elsif !@planes_in_airport.include?(plane.name)
     "No"
   end
 end
