@@ -5,17 +5,12 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
   it 'adds plane to bunker when landed' do
-    plane = Plane.new
-    airport.land(plane)
+    airport.land(Plane.new)
     expect(airport.bunker.length).to eq(1)
   end
   it 'removes plane from bunker when taking off' do
-    2.times do
-      plane = Plane.new
-      airport.land(plane)
-    end
-    plane = Plane.new
-    airport.takeoff(plane)
+    2.times { airport.land(Plane.new) }
+    airport.takeoff(Plane.new)
     expect(airport.bunker.length).to eq(1)
   end
   it 'Airplane instance takes capacity as an argument' do
@@ -24,5 +19,8 @@ describe Airport do
   end
   it 'if no argument is given, default capacity is 125' do
     expect(airport.capacity).to eq(125)
+  end
+  it 'raises error if plane tries to land when airport is full' do
+    expect{ 130.times { airport.land(Plane.new) } }.to raise_error("Do not land, airport is full")
   end
 end
