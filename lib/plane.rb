@@ -31,6 +31,7 @@ class Plane
         @destination = Airport.new
         @passengers = load_passengers
         print_passengers
+        true
     end
 
     def print_passengers
