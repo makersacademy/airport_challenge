@@ -2,6 +2,7 @@ require 'weather'
 require 'airport'
 
 describe Weather do
+
   describe 'weather_report' do
     it 'returns "stormy" when chance_of_storms is >= 7' do
       airport = Airport.new

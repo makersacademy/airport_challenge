@@ -16,7 +16,7 @@ class Airport
 
     raise "Stormy weather, landing not possible." if weather_report == "stormy"
 
-    raise "Plane already in airport." if @planes.include?(plane)
+    raise "Plane already in airport." if already_landed(plane)
 
     raise "Plane in another airport." if plane.in_airport?
 
@@ -35,6 +35,10 @@ class Airport
   end
 
   private
+
+  def already_landed(plane)
+    @planes.include?(plane)
+  end
 
   def full?
     @planes.size >= @capacity
