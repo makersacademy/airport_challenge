@@ -22,15 +22,19 @@ end
 
 def storm_landing(plane)
   print "There is a storm. Do you want the plane to land yes or no:"
-  if storm_decision == "yes"
-    @planes_in_airport << plane.name
-  elsif storm_decision == "no"
-    "#{plane.name} did not land."
-end
+#  if storm_decision == "yes"
+
+  end
+
+def land_plane(plane)
 end
 
-def land_plane(plane, weather)
+def plane_already_in_airport(plane)
+  if @planes_in_airport.include?(plane.name)
+    "Yes"
+  elsif !@planes_in_airport.include?(plane)
+    "No"
+  end
 end
-
 
 end
