@@ -13,12 +13,15 @@ class Airport
 
   def land(plane)
     fail "The airport is full!" if @planes.count == @capacity
-
+    
+    plane.land
     @planes << plane
+    
   end
 
   def take_off
-    Plane.new
+    @planes[0].take_off
+    @planes.delete_at(0)
   end
 
 end
