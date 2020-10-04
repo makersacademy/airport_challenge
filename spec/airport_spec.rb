@@ -2,9 +2,9 @@ require 'Airport.rb'
 
 describe Airport do
 
-  let(:new_airport) {Airport.new("Hamburg")}
-  let(:new_flight) {Plane.new("Lufthansa")}
-  let(:new_flight2) {Plane.new("British Airways")}
+  let(:new_airport) { Airport.new("Hamburg") }
+  let(:new_flight) { Plane.new("Lufthansa") }
+  let(:new_flight2) { Plane.new("British Airways") }
 
   it 'airport can be named' do
     expect(new_airport.name).to eq("Hamburg")
@@ -52,32 +52,32 @@ describe Airport do
   end
 
   it 'storm_landing shows option to user when there is a storm' do
-    expect{new_airport.storm_landing(new_flight)}.to output("There is a storm. Do you want the plane to land yes or no:").to_stdout
+    expect { new_airport.storm_landing(new_flight) }.to output("There is a storm. Do you want the plane to land yes or no:").to_stdout
   end
 
   it 'airport reponds to storm_decision' do
     expect(new_airport).to respond_to(:storm_decision)
   end
 
-  #it 'check that if user input for storm decision is yes the plane is landed' do
-    #new_airport.stub(:storm_decision) {"yes"}
-    #expect(new_airport.planes_in_airport).to eq([new_flight.name])
-  #end
+  # it 'check that if user input for storm decision is yes the plane is landed' do
+  # new_airport.stub(:storm_decision) {"yes"}
+  # expect(new_airport.planes_in_airport).to eq([new_flight.name])
+  # end
 
-  #it 'check that if user input for storm decision is no the plane doesnt land' do
-  #  new_airport.stub(:storm_decision) {"no"}
-  #  expect(new_airport.storm_landing(new_flight)).to eq("Lufthansa did not land.")
-  #end
+  # it 'check that if user input for storm decision is no the plane doesnt land' do
+  # new_airport.stub(:storm_decision) {"no"}
+  # expect(new_airport.storm_landing(new_flight)).to eq("Lufthansa did not land.")
+  # end
 
-  #it 'check if plane is included in Airport' do
-  #  new_airport.stub(:storm_decision) {"no"}
-  #  expect(new_airport.storm_landing(new_flight)).to eq("Plane is already in the airport, cannot land")
-  #end
+  # it 'check if plane is included in Airport' do
+  # new_airport.stub(:storm_decision) {"no"}
+  # expect(new_airport.storm_landing(new_flight)).to eq("Plane is already in the airport, cannot land")
+  # end
 
-  #it 'check that if user input for storm decision is yes the plane is landed' do
+  # it 'check that if user input for storm decision is yes the plane is landed' do
   #  allow(new_airport).to receive(:storm_decision).and_return("yes")
   #  expect(new_airport.planes_in_airport).to eq([new_flight.name])
-  #end
+  # end
 
   it 'airport reponds to plane_already_in_airport?' do
     expect(new_airport).to respond_to(:plane_already_in_airport)
@@ -123,12 +123,12 @@ describe Airport do
     new_airport.capacity_override(1)
     new_airport.land_plane(new_flight)
     expect(new_airport.planes_in_airport).to eq(["Lufthansa"])
-    expect{new_airport.land_plane(new_flight2)}.to output("Airport full cannot land plane").to_stdout
+    expect { new_airport.land_plane(new_flight2) }.to output("Airport full cannot land plane").to_stdout
   end
 
   it 'if plane already in airport cant land plane' do
     new_airport.land_plane(new_flight)
-    expect{new_airport.land_plane(new_flight)}.to output("Cannot land plane as it is already in the airport").to_stdout
+    expect { new_airport.land_plane(new_flight) }.to output("Cannot land plane as it is already in the airport").to_stdout
   end
 
 end
