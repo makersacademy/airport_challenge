@@ -4,6 +4,8 @@ luton_airport = Airport.new
 p luton_airport
 p airbus747 = Plane.new
 p tupolev102 = Plane.new
+p "current possition"
+p airbus747.current_position
 luton_airport.landing(airbus747)
 luton_airport.landing(tupolev102)
 p luton_airport.hangar

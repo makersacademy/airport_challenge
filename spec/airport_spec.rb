@@ -26,8 +26,8 @@ describe Airport do
     end
 
     it 'return error when airport is full' do
-      2.times { subject.landing(Plane.new) }
-      expect { subject.landing(Plane.new) }.to raise_error 'No space available'
+      2.times { subject.landing(airbus747) }
+      expect { subject.landing(airbus747) }.to raise_error 'No space available'
     end
   end
 

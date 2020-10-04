@@ -1,3 +1,18 @@
+Airport Challenge
+=================
+
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
+
 # Airport
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
@@ -14,17 +29,15 @@ Functional representation of that story:
 | ------------- | ------------- |
 |a traffic controller|      |
 |Passanger|get  to a destination |
-|Plane|ask for permission|
-|Airport|gives permmision to land|
+|Plane|asks for permission|
+|Airport|gives permmision for landing|
 
 Airport <---- allows plane to land <--- after landing plane goes to hangar
-3. Create an Airport class
-4. Create landing methods
-5. Create plane class
-6. Create method ask_for_permission
-7. Create landing
 
-8.  New user story:
+Feature tests follow Unit tests follow code.
+You can find feature test in ./playground_aka_feature_tests.rb
+
+3.  New user story:
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 Functional representation of that story:
 
@@ -32,23 +45,8 @@ Functional representation of that story:
 | ------------- | ------------- |
 |Airport        | gives permission to take off|
 |Airport        |confirm that plane is no longer at the airport|
+
 Airport <---- allows plane to take off <--- after take off plane dissapear from hangar
-9. Create hangar
-10. Put planes that landed into the hangar
-11. Check a plane count after take off
-12. Allow for take off only the plane that is in the hangar
-13. Create method landing_at
-14. Create method taking_off_from
-
-
-
-
-## Installation
-
-
-
-## Usage
-
 
 ```
 

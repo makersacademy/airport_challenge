@@ -1,5 +1,6 @@
 class Plane
-  attr_reader :current_position
+  attr_accessor :current_position
+
   def asking_for_permission?
     true
   end
