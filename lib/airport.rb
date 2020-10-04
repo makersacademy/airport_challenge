@@ -19,9 +19,9 @@ class Airport
   end 
  
   def take_off
-
     fail "can not take off, weather is too stormy" if stormy?
 
+    @planes.pop
   end 
 
   def full?
