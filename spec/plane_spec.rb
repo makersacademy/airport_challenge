@@ -8,7 +8,7 @@ describe Plane do
       airport = Airport.new
       allow(airport).to receive(:weather_report).and_return("sunny")
       airport.land(subject)
-      plane = airport.take_off
+      plane = airport.take_off(subject)
       expect(plane.in_air?).to eq(true)
     end
 

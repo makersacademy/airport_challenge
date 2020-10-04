@@ -36,16 +36,17 @@ describe Airport do
       plane = Plane.new
       allow(subject).to receive(:weather_report).and_return("sunny")
       subject.land(plane)
-      plane = subject.take_off
+      plane = subject.take_off(plane)
       expect(plane).to eq(plane)
     end
 
     it 'should raise error if weather at aiport is stormy' do
       airport = Airport.new
       allow(airport).to receive(:weather_report).and_return("sunny")
-      airport.land(Plane.new)
+      plane = Plane.new
+      airport.land(plane)
       allow(airport).to receive(:weather_report).and_return("stormy")
-      expect { airport.take_off }.to raise_error "Stormy weather, take-off not possible."
+      expect { airport.take_off(plane) }.to raise_error "Stormy weather, take-off not possible."
     end
 
     it 'should only allow take_off if plane is in airport' do
