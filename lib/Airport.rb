@@ -39,7 +39,7 @@ def plane_already_in_airport(plane)
 end
 
 def take_off(plane)
-  @planes_in_airport.delete(plane.name) 
+  @planes_in_airport.delete(plane.name) {"Plane cannot take off as it is not in the airport"}
 end
 
 end

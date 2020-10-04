@@ -112,4 +112,8 @@ let(:new_flight) {Plane.new("Lufthansa")}
     expect(new_airport.planes_in_airport).to eq([])
   end
 
+  it 'if attempt is make to take off plane not in airport receive error' do
+    expect(new_airport.take_off(new_flight)).to eq("Plane cannot take off as it is not in the airport")
+  end
+
 end
