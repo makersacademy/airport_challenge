@@ -19,7 +19,8 @@ Approach
 likely be required.
 * I will perform an IRB feature test and use this to write my first failing tests.
 * Pass these tests and move forward with the feature tests until I reach the next failure. Repeat.
-* Refactor.
+* I will test edge cases and make any necessary changes to my code.
+* Refactor for simplicity.
 
 
 Instructions

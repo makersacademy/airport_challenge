@@ -32,6 +32,6 @@ Verbs: Land, take-off, is full?,  is stormy?, in air?
 ### What is Needed?
 -----------------
 * Classes: Airport, Plane
-* Airport methods: land(plane), take_off(plane), full?, initialize method with
-randomised weather variable and capacity variable default (can be overridden).
+* Airport methods: land(plane), take_off(plane), full?, capacity variable default (can be overridden).
 * Plane methods: in_air?
+* A weather module 
