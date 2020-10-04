@@ -9,7 +9,7 @@ class Airport
 
   def airport_weather
     weather = ['sunny', 'sunny', 'sunny' 'sunny', 'sunny', 'sunny', 'stormy']
-    randomize = rand(0..4)
+    randomize = rand(0..6)
     weather[randomize]
   end
 
