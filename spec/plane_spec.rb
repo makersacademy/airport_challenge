@@ -31,7 +31,7 @@ describe Plane do
     it "says how many passengers are on the plane" do
         allow(@plane).to receive(:rand).and_return(50)
         @plane.take_off
-        expect(@plane.land_at_destination).to eq 'There are 50 passengers on this plane'
+        expect{ @plane.land_at_destination }.to output("There are 50 passengers on this plane\n").to_stdout
     end
 
     it "takes off from the airport it's in" do 

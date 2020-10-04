@@ -11,6 +11,7 @@ class Plane
         @passengers = load_passengers
 
         @location.place(self)
+        print_passengers
     end
 
     def take_off
@@ -32,14 +33,14 @@ class Plane
         print_passengers
     end
 
-    def load_passengers
-        @passengers = rand(1..100)
+    def print_passengers
+        puts "There are #{@passengers} passengers on this plane"
     end
     
     private
 
-    def print_passengers
-        "There are #{@passengers} passengers on this plane"
+    def load_passengers
+        @passengers = rand(1..100)
     end
 
     def landed?
