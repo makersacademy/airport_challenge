@@ -23,4 +23,5 @@ describe Airport do
   it 'raises error if plane tries to land when airport is full' do
     expect{ 130.times { airport.land(Plane.new) } }.to raise_error("Do not land, airport is full")
   end
+  
 end

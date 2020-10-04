@@ -12,6 +12,7 @@ class Airport
     @bunker << Plane.new
   end
   def takeoff(plane)
+    return raise "No planes available for take off" if (@bunker.length == 0)
     @bunker.pop
   end
 
