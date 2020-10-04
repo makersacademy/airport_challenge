@@ -1,5 +1,6 @@
 require 'airports'
 require 'planes'
+require 'weather'
 
 describe Airports do
 
@@ -42,6 +43,7 @@ describe Airports do
   describe '#move_plane' do
 
     it 'moves plane from @on_ground to @in_air' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       plane = Planes.new(@airport)
 
@@ -50,6 +52,7 @@ describe Airports do
     end
 
     it 'moves plane from @in_air to @on_ground' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       plane = Planes.new(@airport, 'in air')
 
@@ -61,6 +64,7 @@ describe Airports do
   describe '#add_plane' do
 
     it 'adds plane to @in_air on init of plane' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
     @airport = Airports.new
     plane = Planes.new(@airport, 'in air')
 
@@ -68,9 +72,9 @@ describe Airports do
     end
 
     it 'adds plane to @on_ground on init of plane' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
     @airport = Airports.new
     plane = Planes.new(@airport, 'landed')
-
     expect(@airport.on_ground).to eq [plane]
     end
   end
@@ -78,6 +82,7 @@ describe Airports do
   describe '#status' do
 
     it 'prints where planes are' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       plane = Planes.new(@airport)
 

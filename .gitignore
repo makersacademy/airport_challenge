@@ -9,3 +9,5 @@ analysis/**/*
 
 # Local cache of Rubocop remote config
 .rubocop-*
+
+Prev Version.rb
