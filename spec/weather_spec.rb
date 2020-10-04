@@ -4,4 +4,7 @@ describe Weather do
   it 'returns stormy weather' do
     allow(subject).to receive(:stormy?).and_return true
   end
+  it 'returns sunny weather' do
+    allow(subject).to receive(:stormy?).and_return false
+  end
 end
