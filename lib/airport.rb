@@ -21,13 +21,15 @@ class Airport
     fail 'The airport is at max capacity' if full?
     fail 'This plane has already landed' if landed?(plane)
     fail 'It is too stormy to land' if weather.stormy?
+    
     landed_planes << plane
   end
 
   def take_off(plane)
     check_weather
-    fail 'You are not in this airport' if !landed?(plane)
+    fail 'You are not in this airport' unless landed?(plane)
     fail 'It is too stormy to fly' if weather.stormy?
+
     landed_planes.delete(plane)
   end
 
@@ -39,8 +41,8 @@ class Airport
   private
 
   def first_airport?
-    @weather == nil
-    landed_planes.count == 0
+    @weather.nil?
+    landed_planes.count.zero?
   end
 
   def full?

@@ -4,10 +4,10 @@ describe Airport do
 
   before(:each) do
     @airport = Airport.new
-      @plane = Plane.new
-      @home_ap = @plane.location
-      allow(@airport).to receive(:rand).and_return(1)
-      allow(@home_ap).to receive(:rand).and_return(1)
+    @plane = Plane.new
+    @home_ap = @plane.location
+    allow(@airport).to receive(:rand).and_return(1)
+    allow(@home_ap).to receive(:rand).and_return(1)
   end
 
   it "can change capacity" do
