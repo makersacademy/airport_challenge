@@ -20,6 +20,7 @@ class Airport
   end
 
   def depart(plane)
+    raise "You can't depart yet. It's too stormy." if randomize_weather == 'stormy'
     @hangar.delete(plane)
     "Plane #{plane} has left #{@name}"
   end

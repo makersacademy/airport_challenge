@@ -55,6 +55,9 @@ describe Airport do
     expect(airport.depart(plane)).to eq "Plane #{plane} has left London Airport"
   end
 
+  # it 'raises an error when weather is stormy'
+  # it 'departs when weather is sunny'
+
   it '#randomize_weather returns either "sunny" or "stormy"' do
     airport = Airport.new("London Airport")
     expect(airport.randomize_weather).to eq 'sunny' or 'stormy'
