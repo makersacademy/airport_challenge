@@ -1,15 +1,18 @@
 require_relative './plane.rb'
 
 class Airport
+
+  DEFAULT_CAPACITY = 2
+
   attr_reader :hangar, :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @capacity = 2
+    @capacity = capacity
   end
 
   def landing(plane)
-    fail 'No space available' if @hangar.size >= @capacity
+    fail 'No space available' if full?
     return unless giving_permition_for_landing(plane) == true
 
     @hangar << plane
@@ -32,4 +35,11 @@ class Airport
 
     true
   end
+
+  private
+
+  def full?
+    @hangar.size >= @capacity
+  end
+
 end

@@ -2,7 +2,11 @@ require 'airport'
 
 describe Airport do
 
-  let(:airbus747) { Plane.new }
+  let(:airbus747) { double :plane }
+
+  before do
+    allow(airbus747).to receive(:asking_for_permission?).and_return(true)
+  end
 
   context 'during landing' do
     it 'checks for landing permission' do
@@ -46,7 +50,8 @@ describe Airport do
     end
 
     it 'allows for take off only planes from the hangar' do
-      tupolev102 = Plane.new
+      tupolev102 = double :plane
+      allow(tupolev102).to receive(:asking_for_permission?).and_return(true)
       subject.landing(airbus747)
       subject.landing(tupolev102)
       subject.take_off(airbus747)
@@ -61,4 +66,9 @@ describe Airport do
 
   it { is_expected.to respond_to :capacity }
 
+  it 'has a variable capacity' do
+    london_heathrow = Airport.new(50)
+    50.times { london_heathrow.landing airbus747 }
+    expect { london_heathrow.landing airbus747 }.to raise_error 'No space available'
+  end
 end
