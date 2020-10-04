@@ -1,6 +1,5 @@
 class Airport
 
-  attr_reader :plane
   attr_reader :capacity
   attr_reader :planes
 
@@ -12,7 +11,7 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full!" if @planes.count == @capacity
+    fail "The airport is full!" if full?
     fail "Cannot land plane: Storms" if storms?
 
     plane.land
@@ -31,4 +30,9 @@ class Airport
   def storms?
     rand(1..5) > 4
   end
+
+  def full?
+    @planes.count == @capacity
+  end
+
 end

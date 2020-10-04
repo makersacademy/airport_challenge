@@ -10,9 +10,8 @@ describe Airport do
   
   it { is_expected.to respond_to :take_off }
 
-  it { is_expected.to respond_to :plane }
-
   describe '#land(plane)' do
+    
     it "lands a plane" do
       airport = Airport.new
       plane = Plane.new
