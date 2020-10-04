@@ -2,9 +2,9 @@ class Airport
   attr_reader :name, :planes_in_airport, :capacity
 
   def initialize(name)
-  @name = name
-  @planes_in_airport = []
-  @capacity = 5
+    @name = name
+    @planes_in_airport = []
+    @capacity = 5
   end
 
   def capacity_override(new_capacity)
@@ -16,8 +16,8 @@ class Airport
   end
 
   def storm_decision
-    #decision = gets.chomp
-    #decision
+    # decision = gets.chomp
+    # decision
   end
 
   def storm_landing(plane)
@@ -46,7 +46,7 @@ class Airport
   end
 
   def take_off(plane)
-    @planes_in_airport.delete(plane.name) {"Plane cannot take off as it is not in the airport"}
+    @planes_in_airport.delete(plane.name) { "Plane cannot take off as it is not in the airport" }
   end
 
 end
