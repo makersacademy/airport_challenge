@@ -13,20 +13,20 @@ Partial entry
 - Methods which can be used on the following classes
 
 Airport
-.capacity_override(integer)
-.name
-.planes_in_airport
-.capacity
-.storm_landing(plane) **incomplete**
-.land_plane(plane)
-.plane_already_in_airport(planes)
-.take_off(plane)
+- .capacity_override(integer)
+- .name
+- .planes_in_airport
+- .capacity
+- .storm_landing(plane) **incomplete**
+- .land_plane(plane)
+- .plane_already_in_airport(planes)
+- .take_off(plane)
 
 Plane
-.name
+- .name
 
 Weather
-.weather_outcome
+- .weather_outcome
 
 #### Approach
 Following the RGR process for addressing the specifications of the program so tests were always created first before code was written.  My approach was the following  
