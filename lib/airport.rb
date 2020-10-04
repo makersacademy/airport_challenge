@@ -16,6 +16,8 @@ class Airport
 
     raise "Stormy weather, landing not possible." if weather_report == "stormy"
 
+    raise "Plane already in airport." if @planes.include?(plane)
+
     @planes << plane
   end
 
