@@ -8,12 +8,20 @@ class Airport
     @capacity = capacity
   end
   def land(plane)
-    return raise "Do not land, airport is full" if (@bunker.length >= @capacity)
+    return raise "Do not land, airport is full" if full?
     @bunker << Plane.new
   end
   def takeoff(plane)
-    return raise "No planes available for take off" if (@bunker.length == 0)
+    return raise "No planes available for take off" if empty?
     @bunker.pop
   end
+  private
+  def full?
+    @bunker.length >= @capacity ? true : false
+  end
+  def empty?
+    @bunker.length == 0 ? true : false
+  end
+
 
 end
