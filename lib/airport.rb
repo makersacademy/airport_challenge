@@ -1,4 +1,5 @@
 require 'plane.rb'
+require 'weather.rb'
 
 class Airport
   attr_reader :bunker, :capacity
@@ -20,6 +21,8 @@ class Airport
 
   def takeoff(plane)
     return raise "Plane has taken off" if (plane.flying == true)
+
+    return raise "Departure delayed: stormy weather" if weather.stormy?
 
     if (plane.flying == false) && !bunker.include?(plane)
       raise "Plane not grounded at this airport"
