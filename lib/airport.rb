@@ -12,9 +12,10 @@ class Airport
   end
 
   def land(plane)
-    raise "This airport is full." if @planes.size >= @capacity
+    raise "This airport is full." if full?
 
     raise "Stormy weather, landing not possible." if weather? >= 7
+
     @planes << plane
   end
 
@@ -23,5 +24,11 @@ class Airport
 
     @planes[-1].flying
     @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.size >= @capacity
   end
 end
