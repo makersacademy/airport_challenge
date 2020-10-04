@@ -8,6 +8,6 @@ describe Weather do
 
   # it 'It flags as Stormy if random number == 20' do
   #   allow_any_instance_of(Weather).to receive(:rand).and_return(rand(20))
-  #   expect(@forecast).to eq 'Stormy'
+  #   expect(forecast).to eq 'Stormy'
   # end
 end

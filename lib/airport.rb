@@ -14,9 +14,10 @@ class Airport
   end
 
   def plane_landing(plane)
-      raise StandardError.new 'Airport full' if @planes_grounded.length >= 20
-      @planes_grounded << plane
-      @plane = plane
+    raise StandardError.new 'Airport full' if @planes_grounded.length >= 20
+
+    @planes_grounded << plane
+    @plane = plane
     # fail 'Whether conditions do not permit landing' if whether == 20
   end
 
