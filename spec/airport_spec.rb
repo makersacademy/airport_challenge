@@ -8,7 +8,7 @@ describe Airport do
 
   it 'has a variable capacity' do
     airport = Airport.new("London Airport", 30)
-    airport.stub(:randomize_weather).and_return('sunny')
+    airport.stub(:airport_weather).and_return('sunny')
     plane = Plane.new
 
     30.times { airport.land(plane) }
@@ -17,7 +17,7 @@ describe Airport do
 
   it '#land lands a plane at an airport' do
     airport = Airport.new("London Airport")
-    airport.stub(:randomize_weather).and_return('sunny')
+    airport.stub(:airport_weather).and_return('sunny')
     plane = Plane.new
     expect(airport.land(plane)).to include plane
   end
@@ -25,7 +25,7 @@ describe Airport do
   it '#land does not land plane if airport capacity is full' do
 
     airport = Airport.new("London Airport")
-    airport.stub(:randomize_weather).and_return('sunny')
+    airport.stub(:airport_weather).and_return('sunny')
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new
@@ -38,7 +38,7 @@ describe Airport do
 
   it '#depart departs a plane from an airport' do
     airport = Airport.new("London Airport")
-    airport.stub(:randomize_weather).and_return('sunny')
+    airport.stub(:airport_weather).and_return('sunny')
     plane1 = Plane.new
     plane2 = Plane.new
     airport.land(plane1)
@@ -49,17 +49,21 @@ describe Airport do
 
   it '#depart confirms that a plane is no longer in the airport' do
     airport = Airport.new("London Airport")
-    airport.stub(:randomize_weather).and_return('sunny')
+    airport.stub(:airport_weather).and_return('sunny')
     plane = Plane.new
     airport.land(plane)
     expect(airport.depart(plane)).to eq "Plane #{plane} has left London Airport"
   end
 
-  # it 'raises an error when weather is stormy'
-  # it 'departs when weather is sunny'
-
-  it '#randomize_weather returns either "sunny" or "stormy"' do
+  it '#airport_weather can be sunny' do
     airport = Airport.new("London Airport")
-    expect(airport.randomize_weather).to eq 'sunny' or 'stormy'
+    airport.stub(:airport_weather).and_return('sunny')
+    expect(airport.airport_weather).to eq 'sunny'
+  end
+
+  it '#airport_weather can be stormy' do
+    airport = Airport.new("London Airport")
+    airport.stub(:airport_weather).and_return('stormy')
+    expect(airport.airport_weather).to eq 'stormy'
   end
 end

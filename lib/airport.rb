@@ -7,7 +7,7 @@ class Airport
     @capacity = capacity
   end
 
-  def randomize_weather
+  def airport_weather
     weather = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
     randomize = rand(0..4)
     weather[randomize]
@@ -15,12 +15,12 @@ class Airport
 
   def land(plane)
     raise "You can't land. #{@name}'s hangar is full." unless @hangar.length < @capacity
-    raise "You can't land yet. It's too stormy." if randomize_weather == 'stormy'
-    @hangar << plane if randomize_weather == 'sunny'
+    raise "You can't land yet. It's too stormy." if airport_weather == 'stormy'
+    @hangar << plane if airport_weather == 'sunny'
   end
 
   def depart(plane)
-    raise "You can't depart yet. It's too stormy." if randomize_weather == 'stormy'
+    raise "You can't depart yet. It's too stormy." if airport_weather == 'stormy'
     @hangar.delete(plane)
     "Plane #{plane} has left #{@name}"
   end
