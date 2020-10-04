@@ -1,16 +1,18 @@
 ### Airport Challenge ###
 Partial entry
 - I tried to build too much complexity into the ability of the ATC to control landing/take off during a storm.  Too much time was spent on this which caused a delay in the other requirements.  The storm aspect is not complete as a result so landing/taking off is not currently affected by weather.  As outlined below testing user input was causing issues so this aspect was put to one side.
-- Also not complete is the requirement for planes not to land in multiple airports at one time.  
+- Also, the requirement for planes not to land in multiple airports at one time is not complete.  
+- I assume a requirement of the challenge is to build a user interface for ATCs to control the planes landing and taking off but, due to the issues with testing and mocking user input, building an interface was not a priority.  
 
 ### Running the program from IRB
 - Navigate to the airport_challenge folder
-- require 'Airport.rb' / 'Weather.rb' / 'Plane.rb'
+- Run IRB
+- Require the following files: 'Airport.rb' / 'Weather.rb' / 'Plane.rb'
 - Create new classes
     airport = Airport.new("airport name")
     plane = Plane.new("plane name")
     weather = Weather.new
-- Methods which can be used on the following classes
+- The below methods can be used for each of the following classes
 
 Airport
 - .capacity_override(integer)
