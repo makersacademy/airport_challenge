@@ -8,7 +8,9 @@ class Plane
         @status = 'landed'
         @location = Airport.new
         @destination = Airport.new
-        @passengers = rand(101)
+        @passengers = rand(1..100)
+
+        @location.place(self)
     end
 
     def take_off(airport)
@@ -21,6 +23,8 @@ class Plane
 
     def land_at_destination
         raise 'A landed plane cannot land' if landed?
+        @destination.land(self)
+
         @status = 'landed'
         @location = @destination
         @destination = Airport.new

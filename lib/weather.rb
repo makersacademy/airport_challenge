@@ -1,6 +1,8 @@
 class Weather
 
-  def initialize(num = rand[1..10])
+  attr_reader :condition
+  
+  def initialize(num = 8)
     @condition = num
   end
 

@@ -5,6 +5,11 @@ describe Plane do
     before(:each) do
         @plane = Plane.new
         @airport = Airport.new
+        @home_ap = @plane.location
+        @destination_ap = @plane.destination
+        allow(@airport).to receive(:rand).and_return(1)
+        allow(@home_ap).to receive(:rand).and_return(1)
+        allow(@destination_ap).to receive(:rand).and_return(1)
     end
 
     it "is landed at default" do
@@ -24,8 +29,7 @@ describe Plane do
     end
 
     it "takes off from the airport it's in" do 
-        airport = @plane.location
-        expect(@plane.take_off(airport)).to be true
+        expect(@plane.take_off(@home_ap)).to be true
     end
 
     it "does not take off from an airport it's not in" do 
@@ -33,19 +37,17 @@ describe Plane do
     end
     
     it "cannot be in an airport if it is flying" do
-        @plane.take_off(@plane.location) 
+        @plane.take_off(@home_ap) 
         expect(@plane.location).to eq 'in air'
     end
 
     it "cannot take off if it is flying" do
-        airport = @plane.location
-        @plane.take_off(airport) 
-        expect { @plane.take_off(airport) }.to raise_error 'The plane cannot take off while flying'
+        @plane.take_off(@home_ap) 
+        expect { @plane.take_off(@home_ap) }.to raise_error 'The plane cannot take off while flying'
     end
 
     it "cannot be in an airport if it is flying" do
-        airport = @plane.location
-        @plane.take_off(airport) 
+        @plane.take_off(@home_ap) 
         expect(@plane.location).to eq 'in air'
     end
  
@@ -54,22 +56,16 @@ describe Plane do
     end
 
     it "is in an airport if it has landed" do
-        airport = @plane.location
-        @plane.take_off(airport)
+        @plane.take_off(@home_ap)
         @plane.land_at_destination
 
         expect(@plane.location).to be_a Airport
     end
 
     it "lands at its destination" do
-        airport = @plane.location
-        destination = @plane.destination
-        @plane.take_off(airport)
+        @plane.take_off(@home_ap)
         @plane.land_at_destination
 
-        expect(@plane.location).to eq destination
+        expect(@plane.location).to eq @destination_ap
     end
-    # planes that are landed cannot land again 
-    # and must be in an airport, etc.
-
 end
