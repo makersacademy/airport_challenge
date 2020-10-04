@@ -1,6 +1,7 @@
+require './lib/plane.rb'
 class Airport
 
-  attr_reader :capacity, :planes, :weather
+  attr_reader :capacity, :planes
   DEFAULT_CAPACITY = 50
   
   def initialize(capacity = DEFAULT_CAPACITY)
