@@ -5,11 +5,10 @@ class Airport
   attr_reader :bunker, :capacity, :weather
   DEFAULT_CAPACITY = 125
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @bunker = []
     @capacity = capacity
-    @weather = Weather.new
-
+    @weather = weather
   end
 
   def land(plane)
@@ -24,9 +23,9 @@ class Airport
   end
 
   def takeoff(plane)
-    return raise "Plane has taken off" if (plane.flying == true)
-
     return raise "Departure delayed: stormy weather" if @weather.stormy?
+    
+    return raise "Plane has taken off" if (plane.flying == true)
 
     if (plane.flying == false) && !bunker.include?(plane)
       raise "Plane not grounded at this airport"

@@ -1,7 +1,9 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new }
+  let(:plane) { Plane.new }
 
   describe 'Initalisation' do
     it 'airplane instance takes capacity as an argument' do
@@ -17,7 +19,7 @@ describe Airport do
   describe 'Landing' do
     context 'normal weather' do
       before do
-        allow(airport.weather).to receive(:stormy?).and_return(false)
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       end
 
       it { is_expected.to respond_to(:land).with(1).argument }
@@ -41,7 +43,7 @@ describe Airport do
 
     context 'stormy weather' do
       before do
-        allow(airport).to receive(:stormy?).and_return(true)
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       end
 
       it 'raises error for landing if stormy' do
@@ -54,7 +56,7 @@ describe Airport do
   describe 'Taking off' do
     context "normal weather" do
       before do
-        allow(airport.weather).to receive(:stormy?).and_return(false)
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       end
 
       it 'removes plane from bunker when taking off' do
@@ -83,14 +85,14 @@ describe Airport do
       end
     end
 
-    context 'Stormy weather' do
+    context 'stormy weather' do
       before do
-        allow(airport.weather).to receive(:stormy?).and_return(true)
-      end
-
-      it 'raises error for take off if stormy' do
         plane = Plane.new
         airport.land(plane)
+        allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+      end
+
+      it 'returns error message when plane attempts to take off in storm' do
         expect { airport.takeoff(plane) }.to raise_error("Departure delayed: stormy weather")
       end
     end
