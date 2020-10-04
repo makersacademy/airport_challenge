@@ -38,4 +38,7 @@ def plane_already_in_airport(plane)
   end
 end
 
+def take_off
+end
+
 end

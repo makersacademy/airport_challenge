@@ -98,4 +98,8 @@ let(:new_flight) {Plane.new("Lufthansa")}
     expect(new_airport.plane_already_in_airport(new_flight)).to eq("Yes")
   end
 
+  it 'airport responds to take_off method' do
+    expect(new_airport).to respond_to(:take_off)
+  end
+
 end
