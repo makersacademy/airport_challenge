@@ -18,6 +18,9 @@ class Airport
 
     raise "Plane already in airport." if @planes.include?(plane)
 
+    raise "Plane in another airport." if plane.in_airport?
+
+    plane.landed
     @planes << plane
   end
 

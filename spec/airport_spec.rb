@@ -27,10 +27,20 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "Stormy weather, landing not possible."
     end
 
-    it 'should now allow landing if plane already in airport' do
+    it 'should not allow landing if plane already in specific airport' do
       plane = Plane.new
+      allow(subject).to receive(:weather_report).and_return("sunny")
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error "Plane already in airport."
+    end
+
+    it 'should not allow landing if plane already in another airport' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(airport).to receive(:weather_report).and_return("sunny")
+      allow(subject).to receive(:weather_report).and_return("sunny")
+      airport.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane in another airport."
     end
 
   end
