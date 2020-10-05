@@ -1,3 +1,5 @@
+require_relative './airport.rb'
+
 class Plane
   attr_accessor :current_position
 

@@ -15,6 +15,7 @@ class Airport
     fail 'No space available' if full?
     return unless giving_permition_for_landing(plane) == true
 
+    plane.current_position = to_s
     @hangar << plane
   end
 

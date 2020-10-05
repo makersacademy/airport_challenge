@@ -6,6 +6,7 @@ describe Airport do
 
   before do
     allow(airbus747).to receive(:asking_for_permission?).and_return(true)
+    allow(airbus747).to receive(:current_position=).and_return(nil)
   end
 
   context 'during landing' do
@@ -52,6 +53,7 @@ describe Airport do
     it 'allows for take off only planes from the hangar' do
       tupolev102 = double :plane
       allow(tupolev102).to receive(:asking_for_permission?).and_return(true)
+      allow(tupolev102).to receive(:current_position=).and_return(nil)
       subject.landing(airbus747)
       subject.landing(tupolev102)
       subject.take_off(airbus747)

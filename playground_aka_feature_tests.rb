@@ -4,6 +4,7 @@ luton_airport = Airport.new
 p luton_airport
 p airbus747 = Plane.new
 p tupolev102 = Plane.new
+p "default position"
 p "current possition"
 p airbus747.current_position
 luton_airport.landing(airbus747)
@@ -16,5 +17,5 @@ p airbus747.asking_for_permission?
 p luton_airport.giving_permition_for_landing(airbus747)
 airbus747.landing_at(luton_airport)
 p luton_airport
-airbus747.taking_off_from(luton_airport)
 p luton_airport.capacity
+p airbus747.current_position
