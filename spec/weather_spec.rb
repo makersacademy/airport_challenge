@@ -9,15 +9,13 @@ describe Weather do
   it 'can return the weather as sunny, when number is less than 80' do
     Weather.any_instance.stub(:number).and_return(25)
     weather = Weather.new
-    weather.random_number
-    weather.weather.should eq('sunny')
+    expect(weather.weather).to eq('sunny')
   end
 
   it 'can return the weather as stormy, when number is greater than 80' do
     Weather.any_instance.stub(:number).and_return(82)
     weather = Weather.new
-    weather.random_number
-    weather.weather.should eq('stormy')
+    expect(weather.weather).to eq('stormy')
   end
 
 end

@@ -11,6 +11,15 @@ describe Airport do
   end
 
   describe '#land(plane)' do
+    it 'should raise an error when trying to takeoff in stormy whether' do
+      plane = Plane.new
+      Weather.any_instance.stub(:number).and_return(90)
+      weather = Weather.new
+      expect{ subject.land(plane) }.to raise_error('you cannot land here, the weather is too bad')
+    end
+  end
+
+  describe '#land(plane)' do
     it 'should log that the plane is at the airport' do
       plane = Plane.new
       airport = Airport.new
