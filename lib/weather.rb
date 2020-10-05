@@ -1,11 +1,13 @@
 class Weather
   attr_reader :weather
-  @stromy = false
   def initialize
     @weather = rand(1..20)
+    @stormy = stormy
   end
 
-  def weather_report
-    @weather >= 10 ? @stormy = true : @stromy = false
+  def stormy
+    return "stormy" if weather >= 10 
+    
+    return "clear"
   end
 end

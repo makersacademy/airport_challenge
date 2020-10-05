@@ -1,8 +1,8 @@
 require_relative 'plane'
-class Airport
+require_relative 'weather'
+class Airport < Weather
   DEFAULT_CAPACITY = 10
-  attr_reader :runway
-  attr_reader :capacity
+  attr_reader :runway, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -20,6 +20,8 @@ class Airport
   def land(plane)
     fail "Error, runway is full" if full?
     
+    fail "Stormy weather, unable to land in these conditions." if @stormy == "stormy"
+
     @runway.push(plane)
   end
 
