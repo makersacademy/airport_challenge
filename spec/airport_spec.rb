@@ -88,7 +88,7 @@ describe Airport do
   end
 
   it 'check if plane included in airport' do
-    expect(new_airport.plane_already_in_airport(new_flight)).to eq("No")
+    expect(new_airport.plane_already_in_airport(new_flight)).to eq(false)
   end
 
   it 'check if plane landed is added to array' do
@@ -98,7 +98,7 @@ describe Airport do
 
   it 'check if plane in airport outputs "yes" when planes_already_in_airport method called' do
     new_airport.land_plane(new_flight)
-    expect(new_airport.plane_already_in_airport(new_flight)).to eq("Yes")
+    expect(new_airport.plane_already_in_airport(new_flight)).to eq(true)
   end
 
   it 'airport responds to take_off method' do

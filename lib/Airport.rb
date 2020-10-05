@@ -23,7 +23,7 @@ class Airport
   end
 
   def land_plane(plane)
-    if plane_already_in_airport(plane) == "Yes"
+    if plane_already_in_airport(plane) == true
       print "Cannot land plane as it is already in the airport"
     else
       if @capacity == @planes_in_airport.count
@@ -35,11 +35,7 @@ class Airport
   end
 
   def plane_already_in_airport(plane)
-    if @planes_in_airport.include?(plane.name)
-      "Yes"
-    elsif !@planes_in_airport.include?(plane.name)
-      "No"
-    end
+    @planes_in_airport.include?(plane.name)
   end
 
   def take_off(plane)
