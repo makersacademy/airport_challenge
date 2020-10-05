@@ -16,8 +16,14 @@ describe Airport do
     end
 
     it "will raise an error if planes are unable to land due to weather" do
-      allow(subject).to receive(:stormy).and_return "stormy"
-      expect { subject.land(plane) }.to raise_error "Stormy weather, unable to land in these conditions."
+      allow(plane).to receive(:taken_off?).and_return(true)
+      allow(plane).to receive(:landed?).and_return(false)
+      allow(airport).to receive(:stormy).and_return "stormy"
+      allow(plane).to receive(:stormy).and_return "stormy"
+      subject.land(plane)
+      plane_left = subject.take_off
+      expect(plane_left).to be_taken_off
+      # expect { subject.land:plane }.to raise_error "Stormy weather, unable to land in these conditions."
     end
   end
 

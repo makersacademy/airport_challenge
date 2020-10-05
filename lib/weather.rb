@@ -7,7 +7,7 @@ class Weather
 
   def stormy
     return "stormy" if weather >= 10 
-    
-    return "clear"
+  
+    "clear"
   end
 end
