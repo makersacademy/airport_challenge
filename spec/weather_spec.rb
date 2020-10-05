@@ -6,13 +6,13 @@ describe Weather do
     expect(subject).to be_instance_of Weather
   end
 
-  it 'can select a random number between 1&100' do
-    stub(:rand) {74}
-    expect(subject.random_number).to eq 74
+  it 'can return the weather as sunny, when number is less than 80' do
+    allow(Weather.new).to receive(:rand) {5} 
+    expect(subject.weather).to eq 'sunny'
   end
 
-  it 'can return the weather as sunny' do
-    stub(:rand) {5}
-    expect(subject.weather).to eq 'sunny'
+  it 'can return the weather as stormy when the number is greater than 80' do
+    allow(Weather.new).to receive(:rand) {81}
+    expect(subject.weather).to eq 'stormy'
   end
 end
