@@ -13,8 +13,9 @@ class Airport
   end
 
   def land(plane)
+    weather_1 = Weather.new
+    weather_1.wet_weather?
     airport_is_full
-    wet_weather?
     @plane = plane
     @grounded_planes << plane
     @plane
@@ -29,10 +30,6 @@ class Airport
 
   def airport_is_full
     raise "The airport is full, you cannot land here" if full?
-  end
-
-  def wet_weather?
-    raise 'you cannot land here, the weather is too bad' if Weather.new == 'stormy'
   end
 
   def confirm_takeoff(plane)
