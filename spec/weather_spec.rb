@@ -7,12 +7,15 @@ describe Weather do
   end
 
   it 'can return the weather as sunny, when number is less than 80' do
-    allow(Weather.new).to receive(:rand) {5} 
-    expect(subject.weather).to eq 'sunny'
-  end
-
-  it 'can return the weather as stormy when the number is greater than 80' do
-    allow(Weather.new).to receive(:rand) {81}
-    expect(subject.weather).to eq 'stormy'
+    Weather.any_instance.stub(:number).and_return(25)
+    weather = Weather.new
+    weather.weather.should eq('sunny')
   end
 end
+
+#   it 'can return the weather as stormy when the number is greater than 80' do
+#     weather = Weather.new
+#     allow(:weather).to receive(:number).and_return(81)
+#     expect(weather.random_number).to eq 'stormy'
+#   end
+# end
