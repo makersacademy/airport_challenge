@@ -5,13 +5,13 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { Plane.new }
 
-  describe 'Initalisation' do
+  describe '#initalisation' do
     it 'airplane instance takes capacity as an argument' do
       gatwick = Airport.new(40)
       expect(gatwick.capacity).to eq(40)
     end
 
-    it 'if no argument is given, default capacity is 125' do
+    it 'default capacity is set to 125' do
       expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
   end
@@ -34,9 +34,7 @@ describe Airport do
       end
 
       it 'raises error if a landed plane is asked to land' do
-        gatwick = Airport.new
-        gatwick.land(plane)
-        expect { gatwick.land(plane) }.to raise_error("Plane has already landed")
+        expect { 2.times { airport.land(plane) } }.to raise_error("Plane has already landed")
       end
     end
 
@@ -55,30 +53,22 @@ describe Airport do
     context "normal weather" do
       before do
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+        airport.land(plane)
+        airport.takeoff(plane)
       end
 
       it 'removes plane from bunker when taking off' do
-        EZ101 = Plane.new
-        airport.land(EZ101)
-        airport.takeoff(EZ101)
         expect(airport.bunker).to be_empty
       end
 
       it 'raises error if plane tries to takeoff when already in flight' do
-        gatwick = Airport.new
-        EZ104 = Plane.new
-        gatwick.land(EZ104)
-        gatwick.takeoff(EZ104)
-        expect { airport.takeoff(EZ104) }.to raise_error("Plane has taken off")
+        expect { airport.takeoff(plane) }.to raise_error("Plane has taken off")
       end
 
       it 'raises error if plane is not at the airport' do
-        gatwick = Airport.new
         heathrow = Airport.new
-        gatwick.land(plane)
-        gatwick.takeoff(plane)
         heathrow.land(plane)
-        expect { gatwick.takeoff(plane) }.to raise_error("Plane not grounded at this airport")
+        expect { airport.takeoff(plane) }.to raise_error("Plane not grounded at this airport")
       end
     end
 
