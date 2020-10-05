@@ -17,14 +17,14 @@ describe Planes do
       allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       plane = Planes.new(@airport, 'in air')
-      expect { plane.take_off }.to output("Error: #{plane.id} is already in the air...\n").to_stdout
+      expect { plane.take_off }.to raise_error("Error: #{plane.id} is already in the air...")
     end
 
-    it 'prints Warning: stormy' do
+    it 'fails Warning: stormy' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(95)
       @airport = Airports.new
       plane = Planes.new(@airport)
-      expect { plane.take_off }.to output("Warning: Cannot take-off in stormy weather!\n").to_stdout
+      expect { plane.take_off }.to raise_error("Warning: Cannot take-off in stormy weather!")
     end
 
   end
@@ -38,26 +38,27 @@ describe Planes do
       expect { plane.land }.to output("#{plane.id} has landed\n").to_stdout
     end
 
-    it 'prints Error: <plane> already landed' do
+
+    it 'raises error for already landed plane' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       plane = Planes.new(@airport)
-      expect { plane.land }.to output("Error: #{plane.id} has already landed...\n").to_stdout
+      expect { plane.land}.to raise_error("Error: #{plane.id} has already landed...")
     end
 
-    it 'prints Warning: stormy' do
+    it 'fails Warning: stormy' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(95)
       @airport = Airports.new
       plane = Planes.new(@airport)
-      expect { plane.land }.to output("Warning: Cannot land in stormy weather!\n").to_stdout
+      expect { plane.land }.to raise_error("Warning: Cannot land in stormy weather!")
     end
 
     it 'prints Warning: airport full' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(50)
       @airport = Airports.new
       20.times { Planes.new(@airport)}
-      plane = Planes.new(@airport)
-      expect { plane.land }.to output("Warning: Airport is full!\n").to_stdout
+      plane = Planes.new(@airport, 'landed')
+      expect { plane.land }.to raise_error("Warning: Airport is full!")
     end
 
   end
