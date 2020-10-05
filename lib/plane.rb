@@ -10,7 +10,7 @@ class Plane
     @destination = Airport.new
     @passengers = load_passengers
 
-    @location.place(self)
+    @location.place_first(self)
     print_passengers
   end
 

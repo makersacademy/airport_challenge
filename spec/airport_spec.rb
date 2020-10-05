@@ -1,4 +1,5 @@
 require "airport"
+require 'weather'
 
 describe Airport do
 
@@ -6,13 +7,11 @@ describe Airport do
     @airport = Airport.new
     @plane = Plane.new
     @home_ap = @plane.location
-    allow(@airport).to receive(:rand).and_return(1)
-    allow(@home_ap).to receive(:rand).and_return(1)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
   end
 
   it "can change capacity" do
     changed_ap = Airport.new(5)
-    allow(changed_ap).to receive(:rand).and_return(1)
     expect(changed_ap.capacity).to eq(5)
   end
 
@@ -24,13 +23,11 @@ describe Airport do
 
     it "can land a plane in the airport" do
       @airport.land(@plane)
-      puts "This is the weather: #{@airport.weather.condition}"
       expect(@airport.landed_planes).to include(@plane)
     end
 
     it "does not allow planes to land if at capacity" do
       airport = Airport.new(0)
-      allow(airport).to receive(:rand).and_return(1)
       expect { airport.land(@plane) }.to raise_error 'The airport is at max capacity'
     end
 
@@ -40,16 +37,15 @@ describe Airport do
     end
 
     it "does not allow planes to land if the weather is stormy" do
-      fresh_ap = Airport.new
-      allow(fresh_ap).to receive(:rand).and_return(8)
       @plane.take_off
-      expect { fresh_ap.land(@plane) }.to raise_error 'It is too stormy to land'
+      allow(@airport.weather).to receive(:stormy?).and_return(true)
+      expect { @airport.land(@plane) }.to raise_error 'It is too stormy to land'
     end
   end
 
   describe "#take_off" do
     it "does not allow planes to take off if the weather is stormy" do
-      allow(@home_ap).to receive(:rand).and_return(8)
+      allow(@home_ap.weather).to receive(:stormy?).and_return(true)
       expect { @home_ap.take_off(@plane) }.to raise_error 'It is too stormy to fly'
     end
 

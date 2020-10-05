@@ -47,7 +47,7 @@ After creating the domain models, I began using TDD to create an airport class. 
 
 I didn't run into any big problems with this project until it was time to use a stub in my test, but after a lot of research–– I was able to implement it in my code.
 
-The next difficulty was that I had forgotten that each plan starts with a new Airport as a destination and a new Airport as a location. Because of that, I had to use a stub for each of these occurances in my tests to ensure that an error would not be raised unless expected.
+The next difficulty was that I had forgotten that each plane starts with a new Airport as a destination and a new Airport as a location. Because of that, I had to use a stub for each of these occurances in my tests to ensure that an error would not be raised unless expected.
 
 
 
