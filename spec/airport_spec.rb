@@ -84,6 +84,7 @@ describe Airport do
 
     context "when stormy" do
       before do
+        allow(airport).to receive(:stormy?).and_return false
         airport.land(plane)
         allow(airport).to receive(:stormy?).and_return true
       end
