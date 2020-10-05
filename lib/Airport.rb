@@ -8,11 +8,8 @@ class Airport
   end
 
   def capacity_override(new_capacity)
-    if new_capacity.class == Integer
+    return "Capacity must be an integer" if new_capacity.class != Integer
       @capacity = new_capacity
-    else
-      "Capacity not updated.  Method only accepts integers.  Please retry"
-    end
   end
 
   def storm_decision

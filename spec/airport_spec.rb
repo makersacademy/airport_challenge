@@ -32,7 +32,7 @@ describe Airport do
   end
 
   it 'if string given to capacity_override output error' do
-    expect(new_airport.capacity_override("ten")).to eq("Capacity not updated.  Method only accepts integers.  Please retry")
+    expect(new_airport.capacity_override("ten")).to eq("Capacity must be an integer")
   end
 
   it 'airport responds to land_plane method' do
