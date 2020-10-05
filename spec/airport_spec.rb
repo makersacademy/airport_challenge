@@ -18,14 +18,6 @@ describe Airport do
     expect(new_airport.capacity).to eq(5)
   end
 
-  it 'airport reponds to capacity_override method' do
-    expect(new_airport).to respond_to(:capacity_override)
-  end
-
-  it 'airport responds to capacity_override with argument' do
-    expect(new_airport).to respond_to(:capacity_override).with(1).argument
-  end
-
   it 'capacity can be overriden to new value' do
     new_airport.capacity_override(8)
     expect(new_airport.capacity).to eq(8)
@@ -33,22 +25,6 @@ describe Airport do
 
   it 'if string given to capacity_override output error' do
     expect(new_airport.capacity_override("ten")).to eq("Capacity must be an integer")
-  end
-
-  it 'airport responds to land_plane method' do
-    expect(new_airport).to respond_to(:land_plane)
-  end
-
-  it 'airport responds to land_plane with two arguments' do
-    expect(new_airport).to respond_to(:land_plane).with(1).arguments
-  end
-
-  it 'airport responds to storm_landing method' do
-    expect(new_airport).to respond_to(:storm_landing)
-  end
-
-  it 'airport responds to storm_landing with one argument' do
-    expect(new_airport).to respond_to(:storm_landing).with(1).argument
   end
 
   it 'storm_landing shows option to user when there is a storm' do
@@ -79,13 +55,6 @@ describe Airport do
   #  expect(new_airport.planes_in_airport).to eq([new_flight.name])
   # end
 
-  it 'airport reponds to plane_already_in_airport?' do
-    expect(new_airport).to respond_to(:plane_already_in_airport)
-  end
-
-  it 'airport responds to storm_landing with one argument' do
-    expect(new_airport).to respond_to(:plane_already_in_airport).with(1).argument
-  end
 
   it 'check if plane included in airport' do
     expect(new_airport.plane_already_in_airport(new_flight)).to eq(false)
@@ -99,14 +68,6 @@ describe Airport do
   it 'check if plane in airport outputs "yes" when planes_already_in_airport method called' do
     new_airport.land_plane(new_flight)
     expect(new_airport.plane_already_in_airport(new_flight)).to eq(true)
-  end
-
-  it 'airport responds to take_off method' do
-    expect(new_airport).to respond_to(:take_off)
-  end
-
-  it 'airport responds to storm_landing with one argument' do
-    expect(new_airport).to respond_to(:take_off).with(1).argument
   end
 
   it 'check if plane removed from airport' do
