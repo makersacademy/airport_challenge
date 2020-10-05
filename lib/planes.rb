@@ -28,6 +28,8 @@ class Planes
   def land
     if @@airport_in_use.weather == 'stormy'
       error_status('weather-land')
+    elsif @@airport_in_use.full?
+      error_status('full')
     else
       if @status == 'landed'
         error_status('land')
@@ -60,7 +62,9 @@ class Planes
       puts "Warning: Cannot take-off in stormy weather!"
     elsif action == 'weather-land'
       puts "Warning: Cannot land in stormy weather!"
+    elsif action == 'full'
+      puts "Warning: Airport is full!"
     end
   end
-  
+
 end

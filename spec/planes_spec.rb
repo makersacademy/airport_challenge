@@ -52,6 +52,14 @@ describe Planes do
       expect { plane.land }.to output("Warning: Cannot land in stormy weather!\n").to_stdout
     end
 
+    it 'prints Warning: airport full' do
+      allow_any_instance_of(Weather).to receive(:rand).and_return(50)
+      @airport = Airports.new
+      20.times { Planes.new(@airport)}
+      plane = Planes.new(@airport)
+      expect { plane.land }.to output("Warning: Airport is full!\n").to_stdout
+    end
+
   end
 
 end
