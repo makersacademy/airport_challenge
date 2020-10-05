@@ -12,23 +12,17 @@ class Airport
   end
 
   def land(plane)
-    raise "This airport is full." if full?
-
-    raise "Stormy weather, landing not possible." if weather_report == "stormy"
-
-    raise "Plane already in airport." if already_landed(plane)
-
-    raise "Plane in another airport." if plane.in_airport?
-
+    airport_full
+    stormy_weather
+    already_in_airport(plane)
+    wrong_airport(plane)
     plane.landed
     @planes << plane
   end
 
   def take_off(plane)
-    raise "Stormy weather, take-off not possible." if weather_report == "stormy"
-
-    raise "Plane not in airport." unless already_landed(plane)
-
+    stormy_weather
+    plane_not_present(plane)
     plane = @planes.select { |flight| flight == plane }
     plane[0].flying
     plane[0]
@@ -36,8 +30,24 @@ class Airport
 
   private
 
-  def already_landed(plane)
-    @planes.include?(plane)
+  def plane_not_present(plane)
+    raise "Plane not in airport." unless @planes.include?(plane)
+  end
+
+  def already_in_airport(plane)
+    raise "Plane already in airport." if @planes.include?(plane)
+  end
+
+  def stormy_weather
+    raise "Alert! Stormy weather!" if weather_report == "stormy"
+  end
+
+  def wrong_airport(plane)
+    raise "Plane in a different airport." if plane.in_airport?
+  end
+
+  def airport_full
+    raise "This airport is full." if full?
   end
 
   def full?
