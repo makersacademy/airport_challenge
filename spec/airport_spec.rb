@@ -1,43 +1,34 @@
 require 'airport'
 describe Airport do
+  let(:plane) {Plane.new}
   it "receives a plane that has been instructed to land and stores it in the hangar" do
-    plane = Plane.new
-    airport = Airport.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
-    airport.request_landing(plane)
-    expect(airport.hangar).to include(plane)
+    subject.request_landing(plane)
+    expect(subject.hangar).to include(plane)
   end
   it "no longer holds a plane that has been instructed to take off" do
-    plane = Plane.new
-    airport = Airport.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
-    airport.request_landing(plane)
-    airport.request_take_off(plane)
-    expect(airport.hangar).not_to include(plane)
+    subject.request_landing(plane)
+    subject.request_take_off(plane)
+    expect(subject.hangar).not_to include(plane)
   end
   it "throws an error if a plane tries to land when the hangar is full" do
-    airport = Airport.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
-    expect{4.times { airport.request_landing(Plane.new) }}.to raise_error("Hangar is full")
+    expect{4.times { subject.request_landing(Plane.new) }}.to raise_error("Hangar is full")
   end
   it "throws an error if a plane tries to take off when the hangar is empty" do
-    airport = Airport.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
-    expect{airport.request_take_off(Plane.new)}.to raise_error
+    expect{subject.request_take_off(Plane.new)}.to raise_error
   end
   it "throws an error if a plane tries to land when it's stormy" do
-    airport = Airport.new
-    plane = Plane.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(10)
-    expect{ airport.request_landing(plane) }.to raise_error("DANGER! STORMY WEATHER!")
+    expect{ subject.request_landing(plane) }.to raise_error("DANGER! STORMY WEATHER!")
   end
   it "throws an error if a plane tries to take off when it's stormy" do
-    airport = Airport.new
-    plane = Plane.new
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(5)
-    airport.request_landing(plane)
+    subject.request_landing(plane)
     allow_any_instance_of(Weather).to receive(:randomizer).and_return(10)
-    expect{ airport.request_take_off(plane) }.to raise_error("DANGER! STORMY WEATHER!")
+    expect{ subject.request_take_off(plane) }.to raise_error("DANGER! STORMY WEATHER!")
   end
   it "raises an error if an airborne plane is asked to take off" do
     airport = Airport.new
