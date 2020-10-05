@@ -2,6 +2,8 @@ require 'plane'
 
 describe Plane do
   let(:airport) {Airport.new}
+  let(:plane1) {Plane.new}
+  let(:plane2) {Plane.new}
 
   it "responds to call to #land from Air Traffic Controller" do
     expect(subject).to respond_to(:land)
@@ -15,8 +17,6 @@ describe Plane do
     expect{airport.request_take_off(subject)}.to output("Flying free!\n").to_stdout
   end
   it "confirms contains a variable that outputs flight status" do
-    plane1 = Plane.new
-    plane2 = Plane.new
     airport.request_landing(plane1)
     expect(plane2.airborne).to eq(true)
     expect(plane1.airborne).to eq(false)
