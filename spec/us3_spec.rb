@@ -11,7 +11,7 @@ I want to prevent landing when the airport is full
 
 RSpec.describe Airport do
   it '- confirm capacity is an attribute (and equal to default)' do
-    airport = Airport.new ("Test")
+    airport = Airport.new("Test")
     expect(airport).to respond_to(:capacity)
     expect(airport.capacity).to eq(10)
   end
@@ -19,18 +19,26 @@ RSpec.describe Airport do
   it '- able to change the capacity of an airport' do
     airport = Airport.new('Test')
     airport.capacity = 1
-    expect(airport.capatity).to eq(1)
+    expect(airport.capacity).to eq(1)
   end
 end
 
 RSpec.describe Plane do
   it '- confirm unable to land plane at a full airport' do
-    airport = instance_double("Airport", :capacity => 1)
-    dummy_plane = plane.new
-    test_plane = plane.new
+    airport = Airport.new('Test1', 1)
+    dummy_plane = Plane.new
+    dummy_plane.location = airport
+    test_plane = Plane.new
     test_plane.location = "in_air"
     test_plane.destination = airport
-    DblPlane = class_double("Plane", :list_all_planes => [dummy_plane])
-    expect{subject.land}.to raise_error
+    expect(test_plane.land).to eq(false)
+  end
+  it '- confirm able to land plane at airport with space' do
+    airport = Airport.new('Test1', 1)
+    test_plane = Plane.new
+    test_plane.location = "in_air"
+    test_plane.destination = airport
+    test_plane.land
+    expect(test_plane.location).to eq(airport)
   end
 end

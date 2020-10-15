@@ -16,7 +16,7 @@ class Plane
   end
 
   def land
-    @location = "on_ground"
+    destination_full? ? @location = @destination : false
   end
 
   def take_off
@@ -33,6 +33,12 @@ class Plane
   end
 
   def destination_set?
-    @destination != ''
+    Airport.list_all_airports.include? @destination
+  end
+
+  def destination_full?
+    Plane.list_all_planes.select {
+      |planeobj| planeobj.location == @destination
+    }.count < @destination.capacity
   end
 end

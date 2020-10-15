@@ -17,9 +17,11 @@ RSpec.describe Plane do
 
   describe ".take_off" do
     it "- changes the status of the plane to 'in_air'" do
+      dest_airport = Airport.new('Test')
+
       subject.take_off
       expect(subject.take_off).to eq(false)
-      subject.destination = 'Test'
+      subject.destination = dest_airport
       subject.take_off
       expect(subject.location).to eq('in_air')
     end
@@ -46,6 +48,6 @@ RSpec.describe Airport do
   describe ".list_all_airports" do
     it '- provides an array of 0 or more airports' do
       expect(Airport.list_all_airports).to be_an_instance_of(Array)
-    end 
+    end
   end
 end
