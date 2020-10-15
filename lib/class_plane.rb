@@ -11,7 +11,7 @@ class Plane
     @status = "on_ground"
   end
 
-  def self.list_planes
+  def self.list_all_planes
     @@planes
   end
 end

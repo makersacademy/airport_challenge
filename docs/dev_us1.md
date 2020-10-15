@@ -2,6 +2,9 @@
 [README file](../README.md)
 [Initial Review and Domain Model](initial_review.md)
 
+[Next User story 2](dev_us2.md)
+
+
 ## User Story 1
 '''
 As an air traffic controller

@@ -11,13 +11,13 @@ I want to instruct a plane to land at an Airport
 
 # testing the class level variable to get list of planes created
 RSpec.describe Plane do
-  it "- Class to respond to a request to give a list of planes" do
-    expect(Plane).to respond_to(:list_planes)
+  it "- Class to respond to a request to give a list of all planes" do
+    expect(Plane).to respond_to(:list_all_planes)
   end
 
   describe ".list_planes" do
     it "- provide an array of 0 or more 'Plane' objects" do
-      expect(Plane.list_planes).to be_an_instance_of(Array)
+      expect(Plane.list_all_planes).to be_an_instance_of(Array)
     end
   end
 end
