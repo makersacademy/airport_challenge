@@ -1,8 +1,7 @@
-
 require_relative '../lib/plane.rb'
 
 require_relative '../lib/airport.rb'
-#feature test for the story number one
+#feature test for the story number two
 #new plane class instance
 plane = Plane.new
 #allowing plane to land
@@ -11,4 +10,5 @@ airport = Airport.new
 #allowing plane to land
 airport.land(plane)
 
-puts airport.hangar
+#letting the specific plane take off
+airport.take_off(plane)
