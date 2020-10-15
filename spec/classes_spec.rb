@@ -6,7 +6,6 @@
 require 'class_plane'
 require 'class_airport'
 require 'software_airport'
-require 'user_designer'
 
 # checking core class availability
 RSpec.describe Airport do

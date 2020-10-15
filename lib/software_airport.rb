@@ -2,7 +2,7 @@ require './lib/class_airport'
 require './lib/class_plane'
 
 def interface
-  action_request =''
+  action_request = ''
 
   while action_request != "exit"
     # minimal interface - replace with command checker later
@@ -11,6 +11,5 @@ def interface
     puts "list, land-<plane>, exit"
     action_request = gets.chomp
 
-
   end
-end
+end 

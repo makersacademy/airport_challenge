@@ -15,4 +15,12 @@ RSpec.describe Plane do
   it "- Controller to instruct with 'land'" do
     expect(subject).to respond_to(:land)
   end
+
+  it "- Class instance to provide list of planes" do
+    expect(subject).to respond_to(:list_planes)
+  end
+end
+
+RSpec.describe Airport do
+
 end
