@@ -1,8 +1,10 @@
-# Change Log for Airport Individual Challenge
+# Initial review for Airport Individual Challenge
 
 [README file](../README.md)
+[User Story 1 development documentation](dev_us1.md)
 
 [Go to Domain Model](#domain-model-review)
+
 [Go to Design Discussion](#design-discussion)
 
 ## Initial Challenge Review
@@ -23,7 +25,7 @@ review of challenge documentation, outline, and initial review of user stories
   - BONUS mentioned - opportunity for extra credit -
     - end to end functionality test (testing / demonstration scenarios)
 
-### Domain Model Review
+### Domain Model Review
 
 Initial User Story review:
   - two roles identified
@@ -65,7 +67,7 @@ Initial direction:
   - land / take_off might be applicable against the airport rather than the plane
     - interaction / state diagram to determine best placement / association
   - no external interaction outside of core "business" roles identified
-    - potential 'pilot', 'airline', 'travel routing agent', 'passenger', etc
+    - potential roles: 'pilot', 'airline', 'travel routing agent', 'passenger', etc
   - no implicit/explicit timebase to weather or travel times
     - no explicit requirement for 'forecasting' (weather or capacity) or redirection
     - decision making done at point of action (land/take_off)

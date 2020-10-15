@@ -1,6 +1,6 @@
 # this is a set of tests to run as a "Functional Test"
 # testing the capabilities of the Air Traffic controller
-require 'user_controller'
+require 'software_airport'
 
 =begin
 User story 1 -

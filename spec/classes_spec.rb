@@ -5,7 +5,7 @@
 # checking file structure - update as needed during world creation
 require 'class_plane'
 require 'class_airport'
-require 'user_controller'
+require 'software_airport'
 require 'user_designer'
 
 # checking core class availability
