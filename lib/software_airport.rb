@@ -12,4 +12,4 @@ def interface
     action_request = gets.chomp
 
   end
-end 
+end

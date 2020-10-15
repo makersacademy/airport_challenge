@@ -10,7 +10,8 @@ require 'software_airport'
 # checking core class availability
 RSpec.describe Airport do
   it "- checking if an airport can be created" do
-    expect(subject).to_not eq(nil)
+    airport = Airport.new('Test')
+    expect(airport).to_not eq(nil)
   end
 end
 

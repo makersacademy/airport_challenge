@@ -30,9 +30,9 @@ RSpec.describe Plane do
 
   describe ".land" do
     it "- change plane 'status' to 'on_ground'" do
-      subject.status = "in_air"
+      subject.location = "in_air"
       subject.land
-      expect(subject.status).to eq("on_ground")
+      expect(subject.location).to eq("on_ground")
     end
   end
 end

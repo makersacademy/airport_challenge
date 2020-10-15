@@ -62,3 +62,9 @@ functionality:
    - list planes
    - list airports
    - take_off
+
+### "In Development" changes
+  - changed the @status variable for plane to @location
+    - "on_ground" changed to airport object - to enable easier airport capacity management
+    - maintaining "in_air" as is - destination MAY change
+  - added name to airport so that airports can be identified

@@ -18,12 +18,16 @@ RSpec.describe Plane do
   describe ".take_off" do
     it "- changes the status of the plane to 'in_air'" do
       subject.take_off
-      expect(subject.status).to eq('in_air')
+      expect(subject.take_off).to eq(false)
+      subject.destination = 'Test'
+      subject.take_off
+      expect(subject.location).to eq('in_air')
     end
   end
 
-  it "- able to obtain a list of planes with identifiers 'registration'" do
+  it "- able to obtain a plane's 'registration'" do
     expect(subject).to respond_to(:registration)
+    expect(subject.registration).to be_an_instance_of(String)
   end
 
   it "- able to set 'destination' for a plane" do
@@ -31,5 +35,17 @@ RSpec.describe Plane do
 
     subject.destination = 'Test'
     expect(subject.destination).to eq('Test')
+  end
+end
+
+RSpec.describe Airport do
+  it '- class returns a list of all airports' do
+    expect(Airport).to respond_to(:list_all_airports)
+  end
+
+  describe ".list_all_airports" do
+    it '- provides an array of 0 or more airports' do
+      expect(Airport.list_all_airports).to be_an_instance_of(Array)
+    end 
   end
 end
