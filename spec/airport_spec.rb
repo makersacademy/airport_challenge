@@ -20,7 +20,6 @@ describe Airport do
   describe "#take_off" do
     let(:plane) { double :plane }
     it "allows specific plane to take off and confirms it took off" do
-      subject.land(plane)
       expect{subject.take_off(plane)}.to output("Plane: #{plane} took off\n").to_stdout
     end
   end
