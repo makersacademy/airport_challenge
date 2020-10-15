@@ -22,5 +22,9 @@ describe Airport do
     it "allows specific plane to take off and confirms it took off" do
       expect{subject.take_off(plane)}.to output("Plane: #{plane} took off\n").to_stdout
     end
+    it "throws an error if airport is full" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Airport is full"
+    end
   end
 end
