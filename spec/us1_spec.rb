@@ -11,7 +11,7 @@ I want to instruct a plane to land at an Airport
 
 # testing the class level variable to get list of planes created
 RSpec.describe Plane do
-  it "- Class instance to provide list of planes" do
+  it "- Class to respond to a request to give a list of planes" do
     expect(Plane).to respond_to(:list_planes)
   end
 
@@ -22,7 +22,6 @@ RSpec.describe Plane do
   end
 end
 
-# Test breakdown:
 # ability for the controller to instruct a plane to land
 RSpec.describe Plane do
   it "- to accept Controller instruction to 'land'" do
@@ -31,12 +30,9 @@ RSpec.describe Plane do
 
   describe ".land" do
     it "- change plane 'status' to 'on_ground'" do
-      plane = Plane.new
-      plane.status = "in_air"
-      plane.land
-      expect(plane.status).to eq("on_ground")
-
-      plane.land
+      subject.status = "in_air"
+      subject.land
+      expect(subject.status).to eq("on_ground")
     end
   end
 end
