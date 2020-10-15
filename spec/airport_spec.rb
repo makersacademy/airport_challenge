@@ -9,6 +9,9 @@ describe Airport do
     it "creates a new airport object" do
       expect(Airport.new).to be_instance_of Airport
     end
+    it "has a corect custom capacity" do
+      expect(Airport.new(5).capacity).to eq 5
+    end
   end
   describe "#land" do
     let(:plane) { double :plane }
@@ -23,7 +26,7 @@ describe Airport do
       expect{subject.take_off(plane)}.to output("Plane: #{plane} took off\n").to_stdout
     end
     it "throws an error if airport is full" do
-      subject.land(plane)
+    subject.capacity.times  { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error "Airport is full"
     end
   end

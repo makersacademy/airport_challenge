@@ -3,7 +3,7 @@ require_relative '../lib/plane.rb'
 require_relative '../lib/airport.rb'
 #feature test for the story number three
 
-airport = Airport.new(1) # capacity of Airport = 1 Plane
+airport = Airport.new # capacity of Airport = 1 Plane
 plane0 = Plane.new
 airport.land(plane0)
 
