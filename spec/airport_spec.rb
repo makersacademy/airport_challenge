@@ -63,8 +63,55 @@ RSpec.describe Airport do
     it 'prevents takeoff when weather is stormy' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(1)
       plane = Plane.new
+      subject.planes << plane
       expect(subject.takeoff(plane)).to eq "No flying in stormy weather."
     end
+    it 'prevents a plane taking off from a different airport' do
+      allow_any_instance_of(Airport).to receive(:rand).and_return(4)
+      plane = Plane.new
+      subject.planes << plane
+      airport2 = Airport.new
+      expect(airport2.takeoff(plane)).to eq "That plane is not here."
+    end
+    it 'prevents a plane that is already flying from taking off' do
+      allow_any_instance_of(Airport).to receive(:rand).and_return(4)
+      plane = Plane.new
+      subject.planes << plane
+      subject.takeoff(plane)
+      expect(subject.takeoff(plane)).to eq "That plane is not here."
+    end
   end
+
+  # describe 'feature_test' do
+  #   it 'handles lots of situations' do
+  #     airport = Airport.new
+  #     [*1..4].each do |x|
+  #       x = Plane.new
+  #       airport.planes << x
+  #     end
+  #
+  #     allow_any_instance_of(Airport).to receive(:rand).and_return(1)
+  #
+  #     3.times {
+  #       plane = Plane.new
+  #       airport.land(plane)
+  #     }
+  #
+  #     allow_any_instance_of(Airport).to receive(:rand).and_return(5)
+  #     [*6..10].each do |x|
+  #       x = Plane.new
+  #       airport.land(x)
+  #     end
+  #
+  #     eleven = Plane.new
+  #     airport.land(eleven)
+  #
+  #     airport.takeoff(6)
+  #
+  #     twelve = Plane.new
+  #     airport.land(twelve)
+  #
+  #   end
+  # end
 
 end
