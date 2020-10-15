@@ -57,10 +57,10 @@ I want to prevent takeoff when weather is stormy
 
 As an air traffic controller
 To ensure safety
-I want to prevent landing when weather is stormy 
+I want to prevent landing when weather is stormy
 ```
 
-(Initial Review and Domain Model Discussion)[docs/initial_review.md]
+[Initial Review and Domain Model Discussion](docs/initial_review.md)
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
