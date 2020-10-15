@@ -12,8 +12,9 @@ describe Airport do
             end
 
             it "#ask plane to land" do
-                expect(airport).to respond_to(:land)
+                expect(airport).to respond_to(:land).with(1).argument
             end
+          end
     
         context 'when full' do
         it 'raise_error #does_not land' do
@@ -21,20 +22,21 @@ describe Airport do
             expect { airport.land(:plane) }.to raise_error 'this airport is full'
         end
       end
-   end
+  #  end
 end
 
     context 'when stormy' do
       it "raises an error" do
+        # weather_reporter = Weather_reporter.new
          allow(weather_reporter).to receive(:stormy?).and_return true
-           expect { airport.land(plane)}.to raise_error "stormy weather, cannot land"
+           expect { airport.land(plane) }.to raise_error "stormy weather, cannot land"
           end
        end
 
     describe "take_off" do 
       context 'when not stormy' do
         it "#ask plane to take off" do
-        expect(airport).to respond_to(:take_off)
+        expect(airport).to respond_to(:take_off).with(1).argument
         end
     end
     end
