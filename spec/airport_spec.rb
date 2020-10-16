@@ -24,7 +24,7 @@ describe Airport do
 
   describe '#fly_plane' do
 
-    it 'takes an plane and stores it to the storage' do
+    it 'delete plane from storage' do
 
       # Make objects
       boeing = Plane.new
@@ -35,8 +35,8 @@ describe Airport do
       heathrow.fly_plane(boeing)
 
       # Get our value
-      actual_value = heathrow.storage
-      expected_value = []
+      actual_value = heathrow.in_storage?(boeing)
+      expected_value = false
 
       expect(actual_value).to eq expected_value
     end

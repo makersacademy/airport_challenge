@@ -15,7 +15,15 @@ class Airport
     @storage.push(plane)
   end
 
+  # Fly one plane with that name
   def fly_plane(plane)
+    @storage.delete_at(@storage.find_index(plane))
   end
+
+  # Is it in storage?
+  def in_storage?(plane)
+    return (if @storage.include?(plane) then true else false end)
+  end
+
 
 end
