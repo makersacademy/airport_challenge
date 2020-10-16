@@ -9,7 +9,7 @@ RSpec.describe do
       when_the_weather_turns_bad
       three_planes_are_turned_away
       when_the_weather_turns_good
-      then_three_land
+      three_land
       and_another_three_land
       another_is_denied_landing
       one_takes_off
@@ -48,7 +48,7 @@ RSpec.describe do
       }
     end
 
-    def then_three_land
+    def three_land
       five = Plane.new
       @six = Plane.new
       seven = Plane.new
