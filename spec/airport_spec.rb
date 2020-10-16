@@ -56,6 +56,21 @@ describe Airport do
       expect { heathrow.land_plane(boeing) }.to raise_error("Do Not Land - Bad Weather")
     end
 
+    # ALREADY LAND TEST
+    it 'no plane error - no takeoff' do
+
+      # Make objects
+      boeing = Plane.new
+      heathrow = Airport.new(10)
+
+      # Run Methods
+      heathrow.weather_safe(true)
+      heathrow.land_plane(boeing)
+
+      # Check for error
+      expect { heathrow.land_plane(boeing) }.to raise_error("Can't Land - Already Landed")
+    end
+
   end
 
   # WEATHER SAFE NOTICE TEST
