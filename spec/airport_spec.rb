@@ -37,6 +37,21 @@ describe Airport do
       expect { heathrow.land_plane(drone) }.to raise_error("Do Not Land - No Space")
     end
 
+    # LAND WEATHER TEST
+    it 'weather error - no landing' do
+
+      # Make objects
+      boeing = Plane.new
+      heathrow = Airport.new(1)
+
+      # Run Methods
+      heathrow.weather_alert(true)
+      heathrow.land_plane(boeing)
+
+      # Check for error
+      expect { heathrow.land_plane(drone) }.to raise_error("Do Not Land - Bad Weather")
+    end
+
   end
 
   # DEPARTURE TEST

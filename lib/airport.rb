@@ -9,6 +9,7 @@ class Airport
   def initialize(cap = 810_000_00)
     @cap = cap
     @storage = []
+    @weather = false
   end
 
   # Method for landing a plane.
@@ -30,6 +31,9 @@ class Airport
   # Is it in storage?
   def in_storage?(plane)
     return (@storage.include?(plane) ? true : false)
+  end
+
+  def weather_alert(bool)
   end
 
   # Private Methods
