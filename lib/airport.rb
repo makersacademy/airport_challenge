@@ -6,7 +6,7 @@ class Airport
   attr_reader :storage
 
   # Initialize our stuff
-  def initialize()
+  def initialize
     @storage = []
   end
 
@@ -22,8 +22,7 @@ class Airport
 
   # Is it in storage?
   def in_storage?(plane)
-    return (if @storage.include?(plane) then true else false end)
+    return (@storage.include?(plane) ? true : false)
   end
-
 
 end
