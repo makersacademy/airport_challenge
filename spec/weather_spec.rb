@@ -8,7 +8,7 @@ describe Weather do
     end
 
     it 'returns false if weather is not randomly set to stormy' do
-      allow(subject).to receive(:rand).and_return(8)
+      allow(subject).to receive(:rand).and_return(5)
       expect(subject.stormy).to eq false
     end
   end

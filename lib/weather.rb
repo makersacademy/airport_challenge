@@ -1,12 +1,8 @@
 class Weather
-
   def stormy
-    x = rand(10)
-    if x == 1 or x == 3
-      return true
-    else
-      return false
-    end
+    x = rand(5)
+    return true if x == 1
+    
+    return false
   end
-
 end
