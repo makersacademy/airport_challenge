@@ -16,6 +16,7 @@ class Airport
   def land_plane(plane)
 
     # Guard Clause - Duplicate
+    raise "Can't Land - Already Landed" if @storage.include? plane
 
     # Guard Clause - Weather
     raise "Do Not Land - Bad Weather" unless @weather
