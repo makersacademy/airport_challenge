@@ -2,18 +2,17 @@ class Airport
 
   attr_reader :airport_array
 
-  def initialize(capacity = 5, weather = :sunny)
+  def initialize(capacity = 5)
     @airport_array = []
     @capacity = capacity
-    @weather = weather
   end
 
-  def land(plane)
-    return full ? (raise "The airport is full") : @airport_array << plane
+  def land(plane, forecast)
+    forecast.weather_check == true ? (return full ? (raise "The airport is full") : @airport_array << plane) : "It is too stormy to take off"
   end
 
-  def take_off(plane)
-    return good_weather ?
+  def take_off(plane, forecast)
+    return forecast.weather_check ?
     (@airport_array.delete_at(airport_array.find_index(plane)); "The plane has successfully left the airport") : (raise "It is too stormy to take off")
   end
 
@@ -23,12 +22,22 @@ class Airport
     @airport_array.length >= @capacity
   end
 
-  def good_weather
-    @weather == :sunny
-  end
-
 end
 
 class Plane
+
+end
+
+class Weather
+
+  attr_reader :weather
+
+  def initialize
+    @weather = (rand(1..10) == 10 ? "stormy" : "sunny")
+  end
+
+  def weather_check
+    @weather == "sunny"
+  end
 
 end
