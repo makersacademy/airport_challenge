@@ -15,4 +15,9 @@ I then committed and pushed these changes to github
 
 I then repeated the same process for airport.take_off
 
-After i wrote a failing test to check for an error to be raised when the airport was full, i created an argument for airport.initialize so that the use could input a capacity, and i set this by default to 5. I then created a private method to check whether the number of planes at the airport was less than the capacity. I then used this private method ('full') in the airport.land method to either output an error or to land the plane (the same way i did it in the original  method). This code was refactored quite a lot and now reads a lot better. 
+After i wrote a failing test to check for an error to be raised when the airport was full, i created an argument for airport.initialize so that the use could input a capacity, and i set this by default to 5. I then created a private method to check whether the number of planes at the airport was less than the capacity. I then used this private method ('full') in the airport.land method to either output an error or to land the plane (the same way i did it in the original  method). This code was refactored quite a lot and now reads a lot better.
+
+As there is already a default capacity set, but can be changed as required, the next user requirement has also been completed.
+
+After writing a failing test for weather, i created a new parameter for a new aiport and set it by default to sunny. I then made a private method to check if the weather was good, if it was is the plane can take off, if not an error is raised saying it is too stormy.
+This will not be my final method as i will need to be able to randomise the weather instead of having it input when a new airport is made, but i used this to check my initial logic.

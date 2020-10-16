@@ -20,6 +20,14 @@ RSpec.describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it 'if the weather is stormy, prevent take off' do
+      airport = Airport.new(5, :stormy)
+      plane = Plane.new
+      expect { airport.take_off(plane) }.to raise_error("It is too stormy to take off")
+    end
+  end
+
   describe "#full?" do
     it 'if an airport is full, you will not be able to land a plane there' do
       airport = Airport.new(0)
@@ -27,7 +35,6 @@ RSpec.describe Airport do
       expect { airport.land(plane) }.to raise_error("The airport is full")
     end
   end
-
 end
 
 RSpec.describe Plane do
