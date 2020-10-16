@@ -1,61 +1,89 @@
-# require 'airport'
-# require 'plane'
-#
-# RSpec.describe Airport do
-#   describe 'weather is calm then stormy for 3 actions, then calm' do
-#     it 'does' do
-#       given_4_planes_are_at_the_airport
-#       when_the_weather_turns_bad
-#       three_planes_are_turned_away
-#       when_the_weather_turns_good
-#       then_six_land
-#       another_is_denied_landing
-#       one_takes_off
-#       then_another_lands
-#     end
-#   end
-# end
-#
-# def given_4_planes_are_at_the_airport
-#   airport = Airport.new
-#   [*"1".."4"].each do |x|
-#     x = Plane.new
-#     airport.planes << x
-#   end
-# end
-#
-# def when_the_weather_turns_bad
-#   allow_any_instance_of(rand).to receive(1)
-# end
-#
-# def three_planes_are_turned_away
-#   3.times {
-#     plane = Plane.new
-#     airport.land(plane)
-#   }
-# end
-#
-# def when_the_weather_turns_good
-#   allow_any_instance_of(rand).to receive(5)
-# end
-#
-# def then_six_land
-#   [*"6".."10"].each do |x|
-#     x = Plane.new
-#     airport.land(x)
-#   end
-# end
-#
-# def another_is_denied_landing
-#   eleven = Plane.new
-#   airport.land(eleven)
-# end
-#
-# def one_takes_off
-#   airport.takeoff(6)
-# end
-#
-# def then_another_lands
-#   twelve = Plane.new
-#   airport.land(twelve)
-# end
+require 'airport'
+require 'plane'
+
+RSpec.describe do
+
+  describe 'feature_test' do
+    it 'handles many situations' do
+      given_4_planes_are_at_the_airport
+      when_the_weather_turns_bad
+      three_planes_are_turned_away
+      when_the_weather_turns_good
+      then_three_land
+      and_another_three_land
+      another_is_denied_landing
+      one_takes_off
+      then_another_lands
+    end
+
+    def given_4_planes_are_at_the_airport
+      @airport = Airport.new
+      one = Plane.new
+      two = Plane.new
+      three = Plane.new
+      four = Plane.new
+      [one, two, three, four].each do |x|
+        @airport.planes << x
+      end
+      expect(@airport.planes.length).to eq 4
+    end
+
+    def when_the_weather_turns_bad
+      allow_any_instance_of(Airport).to receive(:rand).and_return(1)
+      expect(@airport.weather_bad?).to eq true
+    end
+
+    def three_planes_are_turned_away
+      3.times {
+        plane = Plane.new
+        @airport.land(plane)
+      }
+      expect(@airport.planes.length).to eq 4
+    end
+
+    def when_the_weather_turns_good
+      allow_any_instance_of(Airport).to receive(:rand).and_return(5)
+      20.times {
+        expect(@airport.weather_bad?).to eq false
+      }
+    end
+
+    def then_three_land
+      five = Plane.new
+      @six = Plane.new
+      seven = Plane.new
+      [five, @six, seven].each do |x|
+        @airport.planes << x
+      end
+      expect(@airport.planes.length).to eq 7
+    end
+
+    def and_another_three_land
+      eight = Plane.new
+      nine = Plane.new
+      ten = Plane.new
+      [eight, nine, ten].each do |x|
+        @airport.planes << x
+      end
+      expect(@airport.planes.length).to eq 10
+    end
+
+    def another_is_denied_landing
+      eleven = Plane.new
+      expect(@airport.land(eleven)).to eq "Airport full, go away."
+      expect(@airport.planes.length).to eq 10
+    end
+
+    def one_takes_off
+      @airport.takeoff(@six)
+      expect(@airport.planes.length).to eq 9
+    end
+
+    def then_another_lands
+      twelve = Plane.new
+      @airport.land(twelve)
+      expect(@airport.planes.length).to eq 10
+    end
+  end
+
+end
