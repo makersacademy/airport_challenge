@@ -9,8 +9,8 @@ class Airport
 
   def receive_plane(plane)
     return if landing_problems?
-    
-    if plane.location == "flying"
+
+    if plane.location == :flying
       @planes << plane
       plane.land(self)
     else
@@ -44,7 +44,7 @@ class Airport
   end
 
   def bad_weather?
-    @weather.weather == "stormy"
+    @weather.weather == :stormy
   end
 
   def airport_full?

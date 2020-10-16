@@ -12,16 +12,16 @@ describe "Airport Feature Test" do
   let(:plane5) { Plane.new(lax) }
   let(:plane6) { Plane.new(lax) }
   # set weather to sunny
-  before(:each) { allow_any_instance_of(Weather).to receive(:weather).and_return("sunny") }
+  before(:each) { allow_any_instance_of(Weather).to receive(:weather).and_return(:sunny) }
 
   it "sees plane 1 as flying" do
     heathrow.release_plane(plane1)
-    expect(plane1.location).to eq("flying")
+    expect(plane1.location).to eq(:flying)
   end
 
   it "sees plane 2 as flying" do
     heathrow.release_plane(plane2)
-    expect(plane2.location).to eq("flying")
+    expect(plane2.location).to eq(:flying)
   end
 
   it "sees heathrow is empty" do

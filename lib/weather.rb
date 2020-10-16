@@ -7,6 +7,6 @@ class Weather
 
   def generate_weather
     rng = rand(1..5)
-    return rng == 5 ? "stormy" : "sunny"
+    return rng == 5 ? :stormy : :sunny
   end
 end

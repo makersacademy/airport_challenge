@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:takeoff => nil, :land => nil, :location => "flying") }
+  let(:plane) { double(:takeoff => nil, :land => nil, :location => :flying) }
   
   describe "creating a new airport" do
     it "returns an instance of Airport" do
@@ -28,7 +28,7 @@ describe Airport do
   describe "#receive_plane" do
     context "weather is sunny" do
       before(:each) do
-        allow_any_instance_of(Weather).to receive(:generate_weather).and_return("sunny")
+        allow_any_instance_of(Weather).to receive(:generate_weather).and_return(:sunny)
       end
 
       it "adds a plane to the airports planes array if plane is flying" do
@@ -62,7 +62,7 @@ describe Airport do
 
     context "weather is stormy" do
       before(:each) do
-        allow_any_instance_of(Weather).to receive(:generate_weather).and_return("stormy")
+        allow_any_instance_of(Weather).to receive(:generate_weather).and_return(:stormy)
       end
 
       it "doesn't let planes land when weather is stormy" do
@@ -81,7 +81,7 @@ describe Airport do
 
   describe "#release_plane" do
     before(:each) do
-      allow_any_instance_of(Weather).to receive(:generate_weather).and_return("sunny")
+      allow_any_instance_of(Weather).to receive(:generate_weather).and_return(:sunny)
     end
 
     context "weather is sunny" do
@@ -127,13 +127,13 @@ describe Airport do
       it "doesn't let planes take off when weather is stormy" do
         airport = Airport.new
         airport.receive_plane(plane)
-        allow_any_instance_of(Weather).to receive(:weather).and_return("stormy")
+        allow_any_instance_of(Weather).to receive(:weather).and_return(:stormy)
         airport.release_plane(plane)
         expect(airport.planes).to eq([plane])
       end
 
       it "prints warning when planes try to take off while weather is stormy" do
-        allow_any_instance_of(Weather).to receive(:generate_weather).and_return("stormy")
+        allow_any_instance_of(Weather).to receive(:generate_weather).and_return(:stormy)
         airport = Airport.new
         airport.receive_plane(plane)
         expected_output = "Weather too dangerous to take off\n"

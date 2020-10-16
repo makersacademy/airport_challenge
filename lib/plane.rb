@@ -1,15 +1,17 @@
 class Plane
-  attr_accessor :location 
+  attr_reader :location 
 
   def initialize(location)
     @location = location
   end
 
   def takeoff
-    @location = "flying" unless location == "flying"
+    raise("Plane is already flying") if location == :flying
+    @location = :flying
   end
 
   def land(airport)
-    @location = airport if @location == "flying"
+    raise("Plane is already landed") if location != :flying
+    @location = airport
   end
 end
