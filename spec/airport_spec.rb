@@ -6,7 +6,7 @@ RSpec.describe Airport do
     airport = Airport.new
     plane = Plane.new
     weather = Weather.new
-    it 'land a plane at an airport' do
+    it 'land a plane at an airport in good weather' do
       allow(weather).to receive(:weather_check) { true }
       airport.land(plane, weather)
       expect(airport.airport_array.length).to eq 1
@@ -28,7 +28,7 @@ RSpec.describe Airport do
     airport = Airport.new
     plane = Plane.new
     weather = Weather.new
-    it 'a plane takes off from an airport and confirms it is no longer at the airport' do
+    it 'a plane takes off from an airport in good weather and confirms it is no longer at the airport' do
       allow(weather).to receive(:weather_check) { true }
       airport.land(plane, weather)
       expect(airport.take_off(plane, weather)).to eq "The plane has successfully left the airport"

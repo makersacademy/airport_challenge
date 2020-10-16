@@ -22,4 +22,7 @@ As there is already a default capacity set, but can be changed as required, the 
 After writing a failing test for weather, i created a new parameter for a new aiport and set it by default to sunny. I then made a private method to check if the weather was good, if it was is the plane can take off, if not an error is raised saying it is too stormy.
 This will not be my final method as i will need to be able to randomise the weather instead of having it input when a new airport is made, but i used this to check my initial logic.
 
-I then randomised the weather, and had to create a double in the test to allow for more consistent checking. However, when i completed this, it wasnt using the saved value in the test, so i had to make another class for weather. Then i re-wrote the code and tests and retested to see if the randomisation and doubles had work. Now they are all working. 
+I then randomised the weather, and had to create a double in the test to allow for more consistent checking. However, when i completed this, it wasnt using the saved value in the test, so i had to make another class for weather. Then i re-wrote the code and tests and retested to see if the randomisation and doubles had work. Now they are all working.
+
+'Magic number' for capacity removed and added into 'DEFAULT_CAPACITY'.
+Weather strings changed to symbols.
