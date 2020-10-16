@@ -19,8 +19,7 @@ RSpec.describe Airport do
       plane = Plane.new
       weather = Weather.new
       allow(weather).to receive(:weather_check) { false }
-      airport.land(plane, weather)
-      expect { airport.take_off(plane, weather) }.to raise_error("It is too stormy to take off")
+      expect { airport.land(plane, weather) }.to raise_error("It is too stormy to land")
     end
   end
 
@@ -53,5 +52,5 @@ RSpec.describe Airport do
       expect { airport.land(plane, weather) }.to raise_error("The airport is full")
     end
   end
-  
+
 end
