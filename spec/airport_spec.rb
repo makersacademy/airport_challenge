@@ -9,5 +9,14 @@ RSpec.describe Airport do
     expect(airport2.capacity).to eq 15
   end
 
+  it "checks if airport is full" do
+    airport = Airport.new(0)
+    expect(airport.full?).to eq true
+  end
+
+  it "checks if airport is stormy" do
+    airport = Airport.new
+    expect(airport).to respond_to(:stormy?)
+  end
 
 end

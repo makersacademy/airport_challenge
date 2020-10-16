@@ -28,9 +28,23 @@ RSpec.describe Plane do
     plane1 = Plane.new
     plane2 = Plane.new
     plane1.land(airport)
-    expect{plane2.land(airport)}.to raise_error
+    expect{plane2.land(airport)}.to raise_error(RuntimeError)
   end
 
+  it "does not land if airport is stormy" do
+    Airport.any_instance.stub(:stormy?) {true}
+    airport = Airport.new
+    plane = Plane.new
+    expect{plane.land(airport)}.to raise_error(RuntimeError)
+  end
 
+  it "does not take off if airport is stormy" do
+    Airport.any_instance.stub(:stormy?) {false}
+    airport = Airport.new
+    plane = Plane.new
+    plane.land(airport)
+    Airport.any_instance.stub(:stormy?) {true}
+    expect{plane.take_off(airport)}.to raise_error(RuntimeError)
+  end
 
 end

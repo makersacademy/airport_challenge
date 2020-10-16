@@ -17,5 +17,4 @@ class Airport
     generator = rand(10)
     true if generator == 0 #10% chance of stormy weather
   end
-  
 end
