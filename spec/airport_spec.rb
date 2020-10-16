@@ -2,6 +2,15 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  describe '#initialize' do
+    it 'keeps the default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it 'takes a non-default capacity' do
+      non_standard_airport = Airport.new(30)
+      expect(non_standard_airport.capacity).to eq 30
+    end
+  end
   it 'the airport class exists' do
     expect(subject).to eq subject
   end
@@ -37,8 +46,7 @@ describe Airport do
   end
   it 'if the airport is full then a plane can not land' do
     plane = Plane.new
-    plane2 = Plane.new
-    subject.land(plane)
-    expect { subject.land(plane2) }.to raise_error("#{plane2} can't land at #{subject} as the airport is full!")
+    Airport::DEFAULT_CAPACITY.times{subject.land(plane)}
+    expect { subject.land(plane) }.to raise_error("#{plane} can't land at #{subject} as the airport is full!")
   end
 end

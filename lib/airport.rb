@@ -1,10 +1,12 @@
 class Airport
-  attr_reader :storage
-  def initialize
+  attr_reader :storage, :capacity
+  DEFAULT_CAPACITY = 20
+  def initialize(capacity = DEFAULT_CAPACITY)
     @storage = []
+    @capacity = capacity
   end
   def land(plane)
-    @storage.length < 1 ? @storage << plane : raise("#{plane} can't land at #{self} as the airport is full!")
+    @storage.length < @capacity ? @storage << plane : raise("#{plane} can't land at #{self} as the airport is full!")
     "#{plane} landed at #{self}"
   end
   def takeoff(plane)
