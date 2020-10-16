@@ -27,8 +27,13 @@ describe Airport do
     end
     it "throws an error if airport is full" do
       allow(subject.weather).to receive(:rand).and_return(1)
-      subject.capacity.times  { subject.land(plane) }
+      subject.capacity.times  { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error "Airport is full"
+    end
+    it "throws an error if you try to land a plane that is aleady grounded" do
+      allow(subject.weather).to receive(:rand).and_return(1)
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane is already at the airport"
     end
   end
   describe "#take_off" do
