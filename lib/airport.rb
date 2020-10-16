@@ -10,6 +10,11 @@ class Airport
     @airport_array << plane
   end
 
+  def take_off(plane)
+    @airport_array.delete_at(airport_array.find_index(plane))
+    "The plane has successfully left the airport"
+  end
+
 end
 
 class Plane
