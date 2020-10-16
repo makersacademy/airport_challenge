@@ -98,7 +98,7 @@ describe Airport do
       expect(actual_value).to eq expected_value
     end
 
-    # LAND WEATHER TEST
+    # FLY WEATHER TEST
     it 'weather error - no takeoff' do
 
       # Make objects
@@ -110,6 +110,22 @@ describe Airport do
 
       # Check for error
       expect { heathrow.fly_plane(boeing) }.to raise_error("Do Not Fly - Bad Weather")
+    end
+
+    # ALREADY FLY TEST
+    it 'no plane error - no takeoff' do
+
+      # Make objects
+      boeing = Plane.new
+      heathrow = Airport.new(10)
+
+      # Run Methods
+      heathrow.weather_safe(true)
+      heathrow.land_plane(boeing)
+      heathrow.fly_plane(boeing)
+
+      # Check for error
+      expect { heathrow.fly_plane(boeing) }.to raise_error("No Plane By Name")
     end
 
   end
