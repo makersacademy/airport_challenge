@@ -15,4 +15,7 @@ class Airport
     @storage.push(plane)
   end
 
+  def fly_plane(plane)
+  end
+
 end

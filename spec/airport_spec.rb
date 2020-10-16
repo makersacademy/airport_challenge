@@ -22,4 +22,24 @@ describe Airport do
     end
   end
 
+  describe '#fly_plane' do
+
+    it 'takes an plane and stores it to the storage' do
+
+      # Make objects
+      boeing = Plane.new
+      heathrow = Airport.new
+
+      # Run Methods
+      heathrow.land_plane(boeing)
+      heathrow.fly_plane(boeing)
+
+      # Get our value
+      actual_value = heathrow.storage
+      expected_value = []
+
+      expect(actual_value).to eq expected_value
+    end
+  end
+
 end
