@@ -42,17 +42,36 @@ describe Airport do
 
       # Make objects
       boeing = Plane.new
-      heathrow = Airport.new(1)
+      heathrow = Airport.new(10)
 
       # Run Methods
-      heathrow.weather_alert(true)
-      heathrow.land_plane(boeing)
+      heathrow.weather_safe(false)
 
       # Check for error
-      expect { heathrow.land_plane(drone) }.to raise_error("Do Not Land - Bad Weather")
+      expect { heathrow.land_plane(boeing) }.to raise_error("Do Not Land - Bad Weather")
     end
 
   end
+
+  # WEATHER SAFE NOTICE TEST
+  describe '#weather_safe' do
+
+    it 'changes the weather to safe if user says' do
+
+      # Make objects
+      heathrow = Airport.new(10)
+
+      # Run Methods
+      heathrow.weather_safe(false)
+
+      # Get our value
+      actual_value = heathrow.weather
+      expected_value = false
+
+      expect(actual_value).to eq expected_value
+    end
+  end
+
 
   # DEPARTURE TEST
   describe '#fly_plane' do
@@ -73,6 +92,21 @@ describe Airport do
 
       expect(actual_value).to eq expected_value
     end
+
+    # LAND WEATHER TEST
+    it 'weather error - no takeoff' do
+
+      # Make objects
+      boeing = Plane.new
+      heathrow = Airport.new(10)
+
+      # Run Methods
+      heathrow.weather_safe(false)
+
+      # Check for error
+      expect { heathrow.fly_plane(boeing) }.to raise_error("Do Not Fly - Bad Weather")
+    end
+
   end
 
 end
