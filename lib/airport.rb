@@ -2,25 +2,14 @@ class Airport
   attr_reader :weather, :planes, :capacity
 
   def initialize(capacity = 50)
-    @weather = generate_weather
+    @weather = Weather.new
     @planes = []
     @capacity = capacity
   end
 
-  def generate_weather
-    rng = rand(1..5)
-    return rng == 5 ? "stormy" : "sunny"
-  end
-
   def receive_plane(plane)
-    if bad_weather?
-      puts "Weather too dangerous to land"
-      return
-    end
-    if airport_full?
-      puts "Airport at maximum capacity"
-      return
-    end
+    return if landing_problems?
+    
     if plane.location == "flying"
       @planes << plane
       plane.land(self)
@@ -43,8 +32,19 @@ class Airport
   end
 
   private
+  def landing_problems?
+    if bad_weather?
+      puts "Weather too dangerous to land"
+      return true
+    end
+    if airport_full?
+      puts "Airport at maximum capacity"
+      return true
+    end
+  end
+
   def bad_weather?
-    @weather == "stormy"
+    @weather.weather == "stormy"
   end
 
   def airport_full?
