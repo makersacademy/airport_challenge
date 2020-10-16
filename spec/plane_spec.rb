@@ -18,7 +18,6 @@ RSpec.describe Plane do
     plane = Plane.new
     plane.land(airport)
     expect(plane.take_off(airport)).to be_a(String)
-    plane.take_off(airport)
     expect(airport.landed_planes.include?(plane)).to eq false
   end
 
