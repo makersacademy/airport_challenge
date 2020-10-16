@@ -28,7 +28,7 @@ describe Airport do
       # Make objects
       boeing = Plane.new
       drone = Plane.new
-      heathrow = Airport.new
+      heathrow = Airport.new(1)
 
       # Run Methods
       heathrow.land_plane(boeing)
