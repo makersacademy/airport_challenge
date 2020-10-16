@@ -32,8 +32,11 @@ class Airport
     # Guard Clause - Weather
     raise "Do Not Fly - Bad Weather" unless @weather
 
+    # Guard Clause - No Plane
+    raise "Can't Fly - No Plane By Name" unless @storage.include? plane
+
     # Fly
-    @storage.delete_at(@storage.find_index(plane)) if @weather
+    @storage.delete_at(@storage.find_index(plane)) if (@weather) and (@storage.include? plane)
   end
 
   # Is it in storage?

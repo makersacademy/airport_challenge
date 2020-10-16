@@ -125,7 +125,7 @@ describe Airport do
       heathrow.fly_plane(boeing)
 
       # Check for error
-      expect { heathrow.fly_plane(boeing) }.to raise_error("No Plane By Name")
+      expect { heathrow.fly_plane(boeing) }.to raise_error("Can't Fly - No Plane By Name")
     end
 
   end
