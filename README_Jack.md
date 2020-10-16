@@ -26,3 +26,7 @@ I then randomised the weather, and had to create a double in the test to allow f
 
 'Magic number' for capacity removed and added into 'DEFAULT_CAPACITY'.
 Weather strings changed to symbols.
+
+Different classes split into different documents and incorporated into the documents that they are referenced in.
+
+Tests grouped into different methods.  
