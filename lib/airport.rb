@@ -6,35 +6,39 @@ class Airport
   attr_reader :storage, :weather
 
   # Initialize our stuff
-  def initialize(cap = 810_000_00)
+  def initialize(cap = 810_000_00, weather = [true, true, true, true, false].sample)
     @cap = cap
     @storage = []
-    @weather = true
+    @weather = weather
   end
 
   # Method for landing a plane.
   def land_plane(plane)
 
+    # Guard Clause - Weather
     raise "Do Not Land - Bad Weather" unless @weather
 
     # Guard Clause - Full
     raise "Do Not Land - No Space" unless not_full?
 
-    # If there is space, land it.
+    # Land it
     @storage.push(plane) if not_full? and @weather
 
   end
 
   # Fly one plane with that name
   def fly_plane(plane)
+
+    # Guard Clause - Weather
     raise "Do Not Fly - Bad Weather" unless @weather
 
+    # Fly
     @storage.delete_at(@storage.find_index(plane)) if @weather
   end
 
   # Is it in storage?
   def in_storage?(plane)
-    return (@storage.include?(plane) ? true : false)
+    return @storage.include?(plane)
   end
 
   def weather_safe(reply)

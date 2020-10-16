@@ -8,9 +8,13 @@ describe Airport do
     # LAND NORMAL TEST
     it 'takes an plane and stores it to the storage' do
 
+      # Example of stubbing
+      weather_array = [true, true, true, true, false]
+      weather_array.stub(:sample).and_return(true)
+
       # Make objects
       boeing = Plane.new
-      heathrow = Airport.new
+      heathrow = Airport.new(10, weather_array.sample)
 
       # Run Methods
       heathrow.land_plane(boeing)
@@ -31,6 +35,7 @@ describe Airport do
       heathrow = Airport.new(1)
 
       # Run Methods
+      heathrow.weather_safe(true)
       heathrow.land_plane(boeing)
 
       # Check for error
@@ -72,7 +77,6 @@ describe Airport do
     end
   end
 
-
   # DEPARTURE TEST
   describe '#fly_plane' do
 
@@ -83,6 +87,7 @@ describe Airport do
       heathrow = Airport.new
 
       # Run Methods
+      heathrow.weather_safe(true)
       heathrow.land_plane(boeing)
       heathrow.fly_plane(boeing)
 
