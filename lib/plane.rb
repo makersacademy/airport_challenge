@@ -25,15 +25,15 @@ class Plane
   end
 
   def land_errors(airport)
+    fail "Plane has already landed at #{@airport}." if @flying == false
     fail "Airport is full." if airport.full?
     fail "Weather is stormy. Cannot land." if airport.stormy?
-    fail "Plane has already landed at #{@airport}." if @flying == false
   end
 
   def take_off_errors(airport)
-    fail "Weather is stormy. Cannot take off." if airport.stormy?
-    fail "This plane is not at the specified airport." if airport.landed_planes.include?(self) == false
     fail "This plane is already flying." if @flying == true
+    fail "This plane is not at the specified airport." if airport.landed_planes.include?(self) == false
+    fail "Weather is stormy. Cannot take off." if airport.stormy?
   end
 
   def flying_conditions
