@@ -20,6 +20,14 @@ RSpec.describe Airport do
     end
   end
 
+  describe "#full?" do
+    it 'if an airport is full, you will not be able to land a plane there' do
+      airport = Airport.new(0)
+      plane = Plane.new
+      expect { airport.land(plane) }.to raise_error("The airport is full")
+    end
+  end
+
 end
 
 RSpec.describe Plane do
