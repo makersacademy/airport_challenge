@@ -1,5 +1,5 @@
 class Airport
   def takeoff
-		Plane.new
+    Plane.new
   end
 end
