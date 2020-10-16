@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Plane is not at the airport" unless is_in?(plane)
     fail "Bad weather" if @weather.stormy?
     @hangar.delete(plane)
     puts "Plane: #{plane} took off"
@@ -25,5 +26,9 @@ class Airport
   private
   def is_full?
     @hangar.size == @capacity
+  end
+
+  def is_in?(plane)
+    @hangar.include?(plane)
   end
 end

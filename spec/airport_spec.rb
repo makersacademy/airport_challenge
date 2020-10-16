@@ -35,11 +35,18 @@ describe Airport do
     let(:plane) { double :plane }
     it "allows specific plane to take off and confirms it took off" do
       allow(subject.weather).to receive(:rand).and_return(3)
+      subject.land(plane)
       expect{subject.take_off(plane)}.to output("Plane: #{plane} took off\n").to_stdout
     end
     it "errors if weather is bad, not allowing a plane to take off" do
+      allow(subject.weather).to receive(:rand).and_return(1)
+      subject.land(plane)
       allow(subject.weather).to receive(:rand).and_return(0)
       expect { subject.take_off(plane) }.to raise_error "Bad weather"
+    end
+    it "throws an error if you try to start a plane that is not at the airport" do
+      allow(subject.weather).to receive(:rand).and_return(3)
+      expect { subject.take_off(plane) }.to raise_error "Plane is not at the airport"
     end
   end
 end
