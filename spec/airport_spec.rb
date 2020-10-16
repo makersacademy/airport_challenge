@@ -145,4 +145,29 @@ describe Airport do
 
   end
 
+  describe 'FEATURE TEST - PARIS TO BERLIN' do
+    it 'this is a feature test, a plane will go from paris to berlin airports' do
+
+      # Random Weather Stubbing
+      weather_array = [true, true, true, true, false]
+      weather_array.stub(:sample).and_return(true)
+
+      # Make Objects
+      paris = Airport.new(76_150_007, weather_array.sample)
+      berlin = Airport.new(24_227_570, weather_array.sample)
+      quanta = Plane.new
+
+      # Methods
+      paris.land_plane(quanta)
+      paris.fly_plane(quanta)
+      berlin.land_plane(quanta)
+
+      # Run Test
+      expected_value = true
+      actual_value = berlin.in_storage?(quanta)
+
+      expect(actual_value).to eq expected_value
+
+    end
+  end
 end

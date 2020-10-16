@@ -25,7 +25,7 @@ class Airport
     raise "Do Not Land - No Space" unless not_full?
 
     # Land it
-    @storage.push(plane) if not_full? and @weather
+    @storage.push(plane)
 
   end
 
@@ -39,7 +39,7 @@ class Airport
     raise "Can't Fly - No Plane By Name" unless @storage.include? plane
 
     # Fly
-    @storage.delete_at(@storage.find_index(plane)) if @weather and (@storage.include? plane)
+    @storage.delete_at(@storage.find_index(plane))
   end
 
   # Is it in storage?
