@@ -19,14 +19,28 @@ class Airport
   end
 
   def land(plane)
-    raise "That plane isn't in the air" unless plane.status == "flying"
+    raise "That plane isn't in the air" unless flying?(plane)
 
-    raise "Cant land here due to stormy weather" unless @local_weather.forcast == "sunny"
+    raise "Cant land here due to stormy weather" unless sunny?
 
-    raise "Airport is full" unless @planes.count < @capacity
+    raise "Airport is full" unless full?
 
     plane.status = "landed"
     @planes.push(plane)
     return plane
+  end
+
+  private
+
+  def flying?(plane)
+    plane.status == "flying"
+  end
+
+  def sunny?
+    @local_weather.forcast == "sunny"
+  end
+
+  def full?
+    @planes.count < @capacity
   end
 end
