@@ -23,6 +23,7 @@ class Airport
 
     raise "Cant land here due to stormy weather" unless @local_weather.forcast == "sunny"
 
+    plane.status = "landed"
     @planes.push(plane)
   end
 end

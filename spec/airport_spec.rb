@@ -25,6 +25,7 @@ describe Airport do
       end
     end
   end
+
   describe "#land" do
     it "expects the method to exist" do
       expect(subject).to respond_to(:land)
@@ -43,6 +44,17 @@ describe Airport do
         plane = Plane.new
         plane.status = "landed"
         expect { subject.land(plane) }.to raise_error "That plane isn't in the air"
+      end
+
+      it "checks landed plane is status 'landed'" do
+        plane = Plane.new
+        subject.land(plane)
+        expect(plane.status).to eq "landed"
+      end
+
+      it "shows plane in previously empty airport after landing" do
+        plane = Plane.new
+        expect(subject.land(plane)).to eq [plane]
       end
     end
 
@@ -78,9 +90,5 @@ describe Airport do
       expect(subject).to respond_to(:planes)
     end
 
-    it "shows plane in previously empty airport after landing" do
-      plane = Plane.new
-      expect(subject.land(plane)).to eq [plane]
-    end
   end
 end
