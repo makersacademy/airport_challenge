@@ -11,7 +11,7 @@ describe Airport do
       let(:bad_weather) { double("Bad Weather", forcast: "stormy") }
       subject { described_class.new(bad_weather) }
 
-      it "won't take off if weather is bad" do
+      it "can't take off" do
         expect { subject.takeoff }.to raise_error "Cant take off due to stormy weather"
       end
     end
@@ -20,7 +20,7 @@ describe Airport do
       let(:good_weather) { double("Good Weather", forcast: "sunny") }
       subject { described_class.new(good_weather) }
 
-      it "will take off if weather is fine" do
+      it "will take off" do
         expect(subject.takeoff).to be_kind_of Plane
       end
     end
@@ -56,4 +56,15 @@ describe Airport do
       end
     end
   end
+
+  describe "#capacity" do
+    it "checks that capacity exists" do
+      expect(subject).to respond_to(:capacity)
+    end
+
+    it "checks default capacity of 2" do
+      expect(subject.capacity).to eq 2
+    end
+  end
+
 end

@@ -2,8 +2,12 @@ require_relative "./weather"
 require_relative "./plane"
 
 class Airport
+
+  attr_reader(:capacity)
+
   def initialize(weather = Weather.new)
     @local_weather = weather
+    @capacity = 2
   end
 
   def takeoff
@@ -16,7 +20,7 @@ class Airport
     raise "That plane isn't in the air" unless plane.status == "flying"
 
     raise "Cant land here due to stormy weather" unless @local_weather.forcast == "sunny"
-    
+
     plane
   end
 end
