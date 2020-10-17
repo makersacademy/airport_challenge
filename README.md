@@ -5,10 +5,14 @@ This project is a test driven, object-oriented program that can be used to contr
 #### Getting Started ####
 
 Fork and then clone this repo using:
-`git clone [path-to-your-repo]`
+```
+git clone [path-to-your-repo]
+```
 
 Install the necessary dependencies using:
-`bundle`
+```
+bundle
+```
 
 #### Usage ####
 
@@ -28,12 +32,18 @@ airport = Airport.new
 ```
 
 To land a plane:
-`plane.land(airport)`
+```
+plane.land(airport)
+```
 
 To take-off a plane:
-`plane.take_off(airport)`
+```
+plane.take_off(airport)
+```
 
 #### Running Tests ####
 
 To run the tests:
-`rspec`
+```
+rspec
+```
