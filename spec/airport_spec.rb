@@ -36,7 +36,7 @@ describe Airport do
 
       it "can land at this airport" do
         plane = Plane.new
-        expect(subject.land(plane)).to eq plane
+        expect(subject.land(plane)).to eq [plane]
       end
 
       it "can't land a plane if it's grounded (edge case)" do
@@ -70,6 +70,17 @@ describe Airport do
       weather = Weather.new
       custom_airport = Airport.new(weather, 50)
       expect(custom_airport.capacity).to eq 50
+    end
+  end
+
+  describe "#planes" do
+    it "checks airport can respond" do
+      expect(subject).to respond_to(:planes)
+    end
+
+    it "shows plane in previously empty airport after landing" do
+      plane = Plane.new
+      expect(subject.land(plane)).to eq [plane]
     end
   end
 end
