@@ -12,10 +12,11 @@ class Airport
     @planes = []
   end
 
-  def takeoff(plane)
-    raise "Cant take off due to stormy weather" unless @local_weather.forcast == "sunny"
+  def takeoff(plane_name)
+    raise "Cant take off due to stormy weather" unless sunny?
 
-    Plane.new
+    departing_plane = @planes.select { |plane| plane.name == plane_name }
+    return departing_plane[0]
   end
 
   def land(plane)

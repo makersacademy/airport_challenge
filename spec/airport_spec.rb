@@ -21,9 +21,10 @@ describe Airport do
       let(:good_weather) { double("Good Weather", forcast: "sunny") }
       subject { described_class.new(good_weather) }
 
-      it "will take off" do
-        plane = Plane.new
-        expect(subject.takeoff(plane)).to be_kind_of Plane
+      it "a specific plane will take off" do
+        a320 = Plane.new("a320")
+        subject.land(a320)
+        expect(subject.takeoff("a320")).to eq a320
       end
 
     end
