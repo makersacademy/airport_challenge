@@ -23,6 +23,8 @@ class Airport
 
     raise "Cant land here due to stormy weather" unless @local_weather.forcast == "sunny"
 
+    raise "Airport is full" unless @planes.count < @capacity
+
     plane.status = "landed"
     @planes.push(plane)
   end
