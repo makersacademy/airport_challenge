@@ -23,6 +23,7 @@ class Airport
   end
 
   def stormy?
+    @weather = weather_set
     @weather == 'stormy'
   end
 
@@ -33,5 +34,9 @@ class Airport
     else
       @@airports[-1].name.succ
     end
+  end
+
+  def weather_set
+    Array['fine', 'cloudy', 'sunny', 'drizzle', 'raining', 'windy', 'snow', 'stormy'].sample
   end
 end

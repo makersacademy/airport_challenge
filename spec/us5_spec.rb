@@ -15,18 +15,13 @@ I want to prevent landing when weather is stormy
 =end
 
 RSpec.describe Airport do
-  it "- set the weather condition at an airport to stormy and back" do
-    test_airport = Airport.new('TestUS5')
-    test_airport.weather = 'fine'
-    expect { test_airport.weather = 'stormy' }.to change(test_airport, :stormy?).from(false).to(true)
-    expect { test_airport.weather = 'fine' }.to change(test_airport, :stormy?).from(true).to(false)
-  end
+
 end
 
 RSpec.describe Plane do
   it "- prevent plane landing if destination airport is stormy (US5)" do
     test_airport = Airport.new('TestUS5')
-    test_airport.weather = 'stormy'
+    allow(test_airport).to receive(:stormy?).and_return(true)
     test_plane = Plane.new
     test_plane.location = "in_air"
     test_plane.destination = test_airport
@@ -38,7 +33,7 @@ end
 RSpec.describe Plane do
   it "- prevent plane taking off if destination airport is stormy (US6)" do
     test_airport = Airport.new('TestUS6')
-    test_airport.weather = 'stormy'
+    allow(test_airport).to receive(:stormy?).and_return(true)
     test_plane = Plane.new
     test_plane.location = test_airport
     test_plane.destination = Airport.list_all_airports[0]
