@@ -1,7 +1,6 @@
 # User Story Developmemt Path - Airport individual challenge
 [README file](../README.md)
 [Initial Review and Domain Model](initial_review.md)
-[Interface development](dev_interface.md)
 
 [Previous User Story](dev_us4.md)  
 
