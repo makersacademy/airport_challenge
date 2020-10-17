@@ -29,7 +29,7 @@ RSpec.describe Plane do
   end
 
   describe ".land" do
-    it "- change plane 'status' to 'on_ground'" do
+    it "- change plane 'location' to 'airport'" do
       dest_airport = Airport.new('Test')
       subject.location = "in_air"
       subject.destination = dest_airport

@@ -9,7 +9,7 @@ I want to prevent landing when the airport is full
 
 # create envirionment for test: airport, plane, etc
 puts "create destination 'airport'"
-dest_airport = Airport.new ('Test')
+dest_airport = Airport.new('Test')
 
 puts "Create a 'plane' and setup ready to land"
 test_plane = Plane.new

@@ -25,7 +25,7 @@ explicit - only land if airport is not full
 possible implied - specific plane [valid plane]
 
 ### Assumptions:
-destination airport is valid (set at point of take_off
+destination airport is valid (set at point of take_off)
 assumptions (minimum state) - airports have a default capacity
 
 ### Considerations under review:

@@ -7,10 +7,14 @@ class Plane
     @@planes
   end
 
+  def self.clear_all_planes
+    @@planes =[]
+  end 
+
   def initialize
     @registration = registration_new
     @destination = ''
-    @location = "on_ground"
+    @location = 'in_factory'
 
     @@planes << self
   end
