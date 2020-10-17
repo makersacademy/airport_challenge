@@ -1,12 +1,15 @@
 class Plane
 
-  def permission?
-    @permission
+  def landing_permission?
+    @landing_permission
   end
 
 
   def permisson_to_land
-    @permission = true
+    @landing_permission = true
   end
+
+  
+
 
 end
