@@ -5,31 +5,35 @@ This project is a test driven, object-oriented program that can be used to contr
 #### Getting Started ####
 
 Fork and then clone this repo using:
-git clone path-to-your-repo
+`git clone [path-to-your-repo]`
 
 Install the necessary dependencies using:
-bundle
+`bundle`
 
 #### Usage ####
 
 To start running the program, run:
-irb
+`irb`
 
 Then require the necessary files:
+```
 require './lib/airport.rb'
 require './lib/plane.rb'
+```
 
 Creating a new plane/airport:
+```
 plane = Plane.new
 airport = Airport.new
+```
 
 To land a plane:
-plane.land(airport)
+`plane.land(airport)`
 
-To tack-off a plane:
-plane.take_off(airport)
+To take-off a plane:
+`plane.take_off(airport)`
 
 #### Running Tests ####
 
 To run the tests:
-rspec
+`rspec`
