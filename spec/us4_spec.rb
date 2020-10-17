@@ -21,4 +21,16 @@ RSpec.describe Airport do
   it "- clears all airports from Class" do
     expect { Airport.clear_all_airports }.to change {Airport.list_all_airports.count}.to(0)
   end
+
+  it '- confirm capacity is an attribute (and equal to default)' do
+    airport = Airport.new("Test")
+    expect(airport).to respond_to(:capacity)
+    expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+
+  it '- able to change the capacity of an airport' do
+    airport = Airport.new('Test')
+    airport.capacity = 1
+    expect(airport.capacity).to eq(1)
+  end
 end

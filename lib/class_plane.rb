@@ -9,7 +9,7 @@ class Plane
 
   def self.clear_all_planes
     @@planes =[]
-  end 
+  end
 
   def initialize
     @registration = registration_new
@@ -20,11 +20,27 @@ class Plane
   end
 
   def land
-    destination_full? ? @location = @destination : false
+    if destination_full?
+      puts "Destination airport is full - abort landing"
+      false
+    elsif destination_stormy?
+      puts "Destination airport is stormy - abort landing"
+      false
+    else
+      @location = @destination
+    end
   end
 
   def take_off
-    destination_set? ? @location = "in_air" : false
+    if !destination_set?
+      puts "No destination set - abort take off"
+      false
+    elsif current_stormy?
+      puts "Current airport is stormy - abort take off"
+      false
+    else
+      @location = "in_air"
+    end
   end
 
   private
@@ -41,8 +57,14 @@ class Plane
   end
 
   def destination_full?
-    Plane.list_all_planes.select {
-      |planeobj| planeobj.location == @destination
-    }.count < @destination.capacity
+    @destination.full?
+  end
+
+  def destination_stormy?
+    @destination.stormy?
+  end
+
+  def current_stormy?
+    @location.stormy? if @location.is_a?(Airport)
   end
 end

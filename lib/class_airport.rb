@@ -1,7 +1,7 @@
 class Airport
   @@airports = []
   DEFAULT_CAPACITY = 10
-  attr_accessor :capacity, :name
+  attr_accessor :capacity, :name, :weather
 
   def self.list_all_airports
     @@airports
@@ -14,7 +14,16 @@ class Airport
   def initialize(name = name_new, capacity = DEFAULT_CAPACITY)
     @name = name
     @capacity = capacity
+    @weather = 'fine'
     @@airports << self
+  end
+
+  def full?
+    Plane.list_all_planes.select{|tmp_plane| tmp_plane.location == self}.count == @capacity
+  end
+
+  def stormy?
+    @weather == 'stormy'
   end
 
   private
