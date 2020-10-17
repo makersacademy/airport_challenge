@@ -8,7 +8,7 @@ class Airport
   end
 
   def self.clear_all_airports
-    @@airports =[]
+    @@airports = []
   end
 
   def initialize(name = name_new, capacity = DEFAULT_CAPACITY)
@@ -19,7 +19,7 @@ class Airport
   end
 
   def full?
-    Plane.list_all_planes.select{|tmp_plane| tmp_plane.location == self}.count == @capacity
+    Plane.list_all_planes.select { |tmp_plane| tmp_plane.location == self }.count == @capacity
   end
 
   def stormy?

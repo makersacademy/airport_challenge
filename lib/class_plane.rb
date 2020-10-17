@@ -8,7 +8,7 @@ class Plane
   end
 
   def self.clear_all_planes
-    @@planes =[]
+    @@planes = []
   end
 
   def initialize

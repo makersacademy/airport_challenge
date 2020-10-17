@@ -16,7 +16,7 @@ RSpec.describe Airport do
 
   it "- airport is able to report full?" do
     expect(subject.full?).to be_falsey
-    subject.capacity.times{
+    subject.capacity.times {
       Plane.new
       Plane.list_all_planes[-1].location = subject
     }

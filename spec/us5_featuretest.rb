@@ -24,15 +24,15 @@ puts "\nworld contains - #{world.airports.count} airports - default registration
 puts Airport.list_all_airports.inspect
 
 puts "\nAdd a plane to 'Airport001'"
-airport001 = world.airports.select{|tmp_airport| tmp_airport.name == 'Airport001'}[0]
+airport001 = world.airports.select { |tmp_airport| tmp_airport.name == 'Airport001' }[0]
 world.planes[0].location = airport001
 puts world.planes[0].location.name == "Airport001"
 
 puts "\nList of planes at 'Airport001'"
-airport_planes = world.planes.select{|tmp_plane| tmp_plane.location.is_a? (Airport)}
-airport001_planes = airport_planes.select{|tmp_plane| tmp_plane.location.name == 'Airport001'}
+airport_planes = world.planes.select { |tmp_plane| tmp_plane.location.is_a? Airport }
+airport001_planes = airport_planes.select { |tmp_plane| tmp_plane.location.name == 'Airport001' }
 
-airport001_planes.each_with_index {|tmp_plane, index|
+airport001_planes.each_with_index { |tmp_plane, index|
   print "#{tmp_plane.registration}, "
   print "\n" if (index + 1) % 4 == 0
 }
@@ -41,7 +41,7 @@ print "\n"
 airport001.weather = 'stormy'
 
 puts "\nconfirming weather is 'stormy' at 'airport001'"
-puts "weather stormy? #{world.airports.select{|tmp_airport| tmp_airport.name == 'Airport001'}.stormy?}"
+puts "weather stormy? #{world.airports.select { |tmp_airport| tmp_airport.name == 'Airport001' }.stormy?}"
 
 puts "\nrequest a plane at 'Airport001' to take off"
 airport001_planes[0].take_off

@@ -2,7 +2,7 @@ require 'class_world'
 
 # this test module is intended to test the world class (scenarios)
 
-# clear world level classes
+# clear world level classes
 
 RSpec.describe World do
   it "- confirm scenario_setup mode indicator present" do
@@ -36,21 +36,21 @@ RSpec.describe World do
     Airport.clear_all_airports
 
     expect(subject.scenario_setup?).to be_truthy
-    expect{subject.airports = 15}.to change(subject, :airports).to(15)
-    expect{subject.planes = 12}.to change(subject, :planes).to(12)
+    expect { subject.airports = 15 }.to change(subject, :airports).to(15)
+    expect { subject.planes = 12 }.to change(subject, :planes).to(12)
   end
 
   it "- doesn't allow number of world airports to change after scenario has run" do
     subject.default if subject.airports.class == Integer
 
-    expect{ subject.airports = 16 }.to output("World scenario created" +
+    expect { subject.airports = 16 }.to output("World scenario created" +
         " - use 'controller software' to change airports\n").to_stdout
   end
 
   it "- doesn't allow number of world planes to change after scenario has run" do
     subject.default if subject.planes.class == Integer
 
-    expect{ subject.planes = 16 }.to output("World scenario created" +
+    expect { subject.planes = 16 }.to output("World scenario created" +
         " - use 'controller software' to change planes\n").to_stdout
   end
 

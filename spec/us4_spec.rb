@@ -12,14 +12,14 @@ I would like a default airport capacity that can be overridden as appropriate
 
 RSpec.describe Plane do
   it "- clear all planes from Class" do
-    expect { Plane.clear_all_planes }.to change{Plane.list_all_planes.count}.to(0)
+    expect { Plane.clear_all_planes }.to change { Plane.list_all_planes.count }.to(0)
   end
 
 end
 
 RSpec.describe Airport do
   it "- clears all airports from Class" do
-    expect { Airport.clear_all_airports }.to change {Airport.list_all_airports.count}.to(0)
+    expect { Airport.clear_all_airports }.to change { Airport.list_all_airports.count }.to(0)
   end
 
   it '- confirm capacity is an attribute (and equal to default)' do
