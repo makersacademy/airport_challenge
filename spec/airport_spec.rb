@@ -45,5 +45,15 @@ describe Airport do
         expect { subject.land(plane) }.to raise_error "That plane isn't in the air"
       end
     end
+
+    context "In bad weather" do
+      let(:bad_weather) { double("Bad Weather", forcast: "stormy") }
+      subject { described_class.new(bad_weather) }
+
+      it "can't land here" do
+        plane = Plane.new
+        expect { subject.land(plane) }.to raise_error "Cant land here due to stormy weather"
+      end
+    end
   end
 end

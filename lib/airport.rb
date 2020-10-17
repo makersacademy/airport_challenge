@@ -14,6 +14,8 @@ class Airport
 
   def land(plane)
     raise "That plane isn't in the air" unless plane.status == "flying"
+
+    raise "Cant land here due to stormy weather" unless @local_weather.forcast == "sunny"
     
     plane
   end
