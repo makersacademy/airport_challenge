@@ -27,5 +27,6 @@ class Airport
 
     plane.status = "landed"
     @planes.push(plane)
+    return plane
   end
 end

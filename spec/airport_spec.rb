@@ -37,7 +37,7 @@ describe Airport do
 
       it "can land at this airport" do
         plane = Plane.new
-        expect(subject.land(plane)).to eq [plane]
+        expect(subject.land(plane)).to eq plane
       end
 
       it "can't land a plane if it's grounded (edge case)" do
@@ -54,7 +54,8 @@ describe Airport do
 
       it "shows plane in previously empty airport after landing" do
         plane = Plane.new
-        expect(subject.land(plane)).to eq [plane]
+        subject.land(plane)
+        expect(subject.planes).to eq [plane]
       end
 
       it "raises an error if trying to land at a full airport" do
