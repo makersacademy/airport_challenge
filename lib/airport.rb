@@ -13,6 +13,8 @@ class Airport
   end
 
   def land(plane)
+    raise "That plane isn't in the air" unless plane.status == "flying"
+    
     plane
   end
 end

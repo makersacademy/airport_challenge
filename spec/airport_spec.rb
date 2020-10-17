@@ -38,6 +38,12 @@ describe Airport do
         plane = Plane.new
         expect(subject.land(plane)).to eq plane
       end
+
+      it "can't land a plane if it's grounded (edge case)" do
+        plane = Plane.new
+        plane.status = "landed"
+        expect { subject.land(plane) }.to raise_error "That plane isn't in the air"
+      end
     end
   end
 end
