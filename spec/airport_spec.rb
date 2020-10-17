@@ -13,6 +13,14 @@ describe Airport do
       expect { lhr.takeoff(plane) }.to raise_error("Plane is already in air")
     end
 
+    it "raises an error if the plane is not in the airport" do
+      lhr = Airport.new("lhr")
+      jfk = Airport.new("jfk")
+      allow(plane).to receive(:location) { jfk }
+      allow(lhr).to receive(:stormy?).and_return(false)
+      expect { lhr.takeoff(plane) }.to raise_error("Plane is not in this airport")
+    end
+
     it "raises an error if the weather is stormy" do
       lhr = Airport.new("lhr")
       allow(plane).to receive(:location) { lhr }
@@ -65,34 +73,4 @@ describe Airport do
 
   end
 
-  describe "#full?" do
-
-    it "returns true if an airport is full" do
-      lhr = Airport.new("lhr", 2)
-      lhr.planes = ["plane", "plane"] # use doubling for plane class
-      expect(lhr.full?).to eq true
-    end
-
-  end
-
-  describe "#weather_generator" do
-
-    it "randomly chooses a weather" do
-      lhr = Airport.new("lhr")
-      allow(lhr).to receive(:rand).and_return(2)
-      expect(lhr.weather_generator).to eq "stormy"
-    end
-
-  end
-
-  describe "#stormy?" do
-
-    it "returns true if the weather is stormy" do
-      lhr = Airport.new("lhr")
-      allow(lhr).to receive(:rand).and_return(2)
-      expect(lhr.stormy?).to eq true
-    end
-
-  end
-  
 end

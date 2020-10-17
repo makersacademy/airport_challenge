@@ -1,7 +1,7 @@
 require_relative "plane"
 
 class Airport
-  
+
   attr_accessor :capacity, :planes, :name
 
   DEFAULT_CAPACITY = 10
@@ -15,6 +15,8 @@ class Airport
   def takeoff(plane)
     if plane.location == "in air"
       raise("Plane is already in air")
+    elsif plane.location != self
+      raise("Plane is not in this airport")
     elsif stormy?
       raise("Weather is stormy! Do not takeoff")
     else
@@ -25,7 +27,7 @@ class Airport
 
   def land(plane)
     if plane.location.is_a? Airport
-      raise("Plane is already in #{@name}")
+      raise("Plane is already in #{plane.location.name}")
     elsif full?
       raise("No space in airport! Do not land")
     elsif stormy?
@@ -36,6 +38,8 @@ class Airport
     end
   end
 
+  private
+  
   def weather_generator
     weather = ["sunny", "cloudy", "stormy", "light rain"]
     weather[rand(0..3)]
