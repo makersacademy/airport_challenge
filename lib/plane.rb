@@ -1,8 +1,12 @@
 class Plane
 
+  def permission?
+    @permission
+  end
 
-  def land
-    true
+
+  def permisson_to_land
+    @permission = true
   end
 
 end
