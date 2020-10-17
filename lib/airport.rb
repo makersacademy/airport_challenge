@@ -12,7 +12,7 @@ class Airport
     @planes = []
   end
 
-  def takeoff
+  def takeoff(plane)
     raise "Cant take off due to stormy weather" unless @local_weather.forcast == "sunny"
 
     Plane.new

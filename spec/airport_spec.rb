@@ -4,7 +4,7 @@ describe Airport do
   describe "#takeoff" do
 
     it "expects the method to exist" do
-      expect(subject).to respond_to(:takeoff)
+      expect(subject).to respond_to(:takeoff).with(1).argument
     end
 
     context "In bad weather" do
@@ -12,7 +12,8 @@ describe Airport do
       subject { described_class.new(bad_weather) }
 
       it "can't take off" do
-        expect { subject.takeoff }.to raise_error "Cant take off due to stormy weather"
+        plane = Plane.new
+        expect { subject.takeoff(plane) }.to raise_error "Cant take off due to stormy weather"
       end
     end
 
@@ -21,8 +22,10 @@ describe Airport do
       subject { described_class.new(good_weather) }
 
       it "will take off" do
-        expect(subject.takeoff).to be_kind_of Plane
+        plane = Plane.new
+        expect(subject.takeoff(plane)).to be_kind_of Plane
       end
+
     end
   end
 
