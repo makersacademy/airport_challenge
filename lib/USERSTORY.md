@@ -2,10 +2,10 @@
 | -------------- | ---------------
 | Air_traffic_controller |         |
 | System_designer |                |
-| Passenger | destination |
-| Plane | land_at_airport |
-|       | take_off? |
-|       | location? |
+| Passenger | change_location |
+| Plane | change_location |
 | Airport | full? |
 |         | capacity |
 |         | weather |
+|         | land |
+|         | takeoff |
