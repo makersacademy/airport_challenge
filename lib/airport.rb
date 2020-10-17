@@ -5,9 +5,9 @@ class Airport
 
   attr_reader(:capacity)
 
-  def initialize(weather = Weather.new)
+  def initialize(weather = Weather.new, capacity = 2)
     @local_weather = weather
-    @capacity = 2
+    @capacity = capacity
   end
 
   def takeoff

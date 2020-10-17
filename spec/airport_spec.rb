@@ -65,6 +65,11 @@ describe Airport do
     it "checks default capacity of 2" do
       expect(subject.capacity).to eq 2
     end
-  end
 
+    it "creates an new airport with a custom capacity of 50" do
+      weather = Weather.new
+      custom_airport = Airport.new(weather, 50)
+      expect(custom_airport.capacity).to eq 50
+    end
+  end
 end
