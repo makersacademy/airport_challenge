@@ -1,13 +1,15 @@
 require_relative "plane"
 
 class Airport
-  attr_accessor :capacity, :planes
+  
+  attr_accessor :capacity, :planes, :name
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(name, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @name = name
   end
 
   def takeoff(plane)
@@ -23,13 +25,14 @@ class Airport
 
   def land(plane)
     if plane.location.is_a? Airport
-      raise("Plane is already in an Airport")
+      raise("Plane is already in #{@name}")
     elsif full?
       raise("No space in airport! Do not land")
     elsif stormy?
       raise("Weather is stormy! Do not land")
     else
       plane.change_location(self)
+      planes.push(plane)
     end
   end
 
