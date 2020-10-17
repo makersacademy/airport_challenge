@@ -1,5 +1,5 @@
 class Plane
-  def weather_ok?
-    true
+  def status
+
   end
 end

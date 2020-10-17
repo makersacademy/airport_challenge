@@ -1,9 +1,9 @@
 require "plane"
 
 describe Plane do
-  describe "#weather_ok?" do
-    it "can respond to the method" do
-      expect(subject).to respond_to(:weather_ok?)
+  describe "#status" do
+    it "responds to status" do
+      expect(subject).to respond_to(:status)
     end
   end
 end
