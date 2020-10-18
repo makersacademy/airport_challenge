@@ -13,7 +13,7 @@ RSpec.describe Airport do
       planes = 30.times{airport.land(Plane.new)}
       expect{
         airport.land(Plane.new)
-      }.to raise_error(RuntimeError)
+      }.to raise_error("Abort! No room for landing")
 
     end
   end
@@ -32,5 +32,17 @@ RSpec.describe Airport do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
   end
+  describe "weather_conditions" do
+    it "gives a biased random sunny > stormy" do
+      airport = Airport.new
+
+      allow(airport).to receive(:weather_conditions) {true}
+
+      expect(airport.weather_conditions).to eq(true)
+    end
+    it "causes flights to be grounded and landings aborted" do
+    end
+  end
+
 
 end
