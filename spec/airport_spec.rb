@@ -27,6 +27,13 @@ describe Airport do
         expect(subject.takeoff("a320")).to eq a320
       end
 
+      it "checks the plane was removed from airport" do
+        a320 = Plane.new("a320")
+        subject.land(a320)
+        subject.takeoff("a320")
+        expect(subject.planes).to eq []
+      end
+
       it "changes plane to 'flying' after takeoff" do
         a320 = Plane.new("a320")
         subject.land(a320)
