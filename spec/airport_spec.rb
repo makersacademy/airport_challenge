@@ -27,6 +27,16 @@ describe Airport do
         expect(subject.takeoff("a320")).to eq a320
       end
 
+      it "changes plane to 'flying' after takeoff" do
+        a320 = Plane.new("a320")
+        subject.land(a320)
+        subject.takeoff("a320")
+        expect(a320.status).to eq "flying"
+      end
+
+      it "can't take off a plane that is already flying - Edge case" do
+
+      end
     end
   end
 

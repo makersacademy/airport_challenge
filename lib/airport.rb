@@ -16,6 +16,7 @@ class Airport
     raise "Cant take off due to stormy weather" unless sunny?
 
     departing_plane = @planes.select { |plane| plane.name == plane_name }
+    departing_plane[0].status = "flying"
     return departing_plane[0]
   end
 
