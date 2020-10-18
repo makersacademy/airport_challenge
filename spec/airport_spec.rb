@@ -42,7 +42,10 @@ describe Airport do
       end
 
       it "can't take off a plane that is already flying - Edge case" do
-
+        a320 = Plane.new("a320")
+        subject.land(a320)
+        a320.status = "flying"
+        expect { subject.takeoff("a320") }.to raise_error "That plane is already flying"
       end
     end
   end

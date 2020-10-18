@@ -18,9 +18,11 @@ class Airport
     departing_plane = @planes.select { |plane| plane.name == plane_name }
     raise "No plane found" unless !departing_plane[0].nil?
 
-      departing_plane[0].status = "flying"
-      @planes.delete(departing_plane[0])
-      return departing_plane[0]
+    raise "That plane is already flying" unless !flying?(departing_plane[0])
+
+    departing_plane[0].status = "flying"
+    @planes.delete(departing_plane[0])
+    return departing_plane[0]
   end
 
   def land(plane)
@@ -48,4 +50,5 @@ class Airport
   def full?
     @planes.count < @capacity
   end
+
 end
