@@ -16,7 +16,19 @@ class Plane   # the class - is an object = noun in the user story
   end
 
   def take_off
-    @availability = 0
+    @capacity = 0
+  end
+
+  def storm
+    @information = "no_take_off"
+  end 
+
+  def stormy_weather
+    @storm = "no_landing"
+  end
+
+  def fly
+    @capacity = 0
   end
 end
 

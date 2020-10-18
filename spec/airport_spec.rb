@@ -23,7 +23,7 @@ RSpec.describe Plane do  #subject stands for the class (ie plane)
     plane = Plane.new #making sure i have plane and location are at the right place to do a test against
     plane.land   #same as above note 
     it "checking that location is now airport" do
-      expect(plane.location).to eq ("airport")
+      expect(plane.location).to eq ("airport") 
     end
   end
 
@@ -46,9 +46,33 @@ RSpec.describe Plane do  #subject stands for the class (ie plane)
   describe "take_off" do
     plane = Plane.new
     plane.location
-    it "should tell you the plane not at airport" do
+    it "should tell you airport capacity is back to 0" do
       expect(plane.take_off).to eq (0)
     end
+  end
+
+  describe "stormy_weather" do
+    plane = Plane.new
+    plane.location
+    it "should ask you to not fly due to stormy weather" do
+      expect(plane.storm).to eq ("no_take_off")
+    end
+  end
+
+  describe "stormy_weather" do
+    plane = Plane.new
+    plane.location
+    it "should ask you not to land due to stormy weather" do
+      expect(plane.stormy_weather).to eq ("no_landing")
+    end
+  end
+
+  describe "Good_weather" do 
+    plane = Plane.new
+    plane.capacity
+    it "should tell you to Fly due to good weather" do
+      expect(plane.fly).to eq (0)
+    end 
   end
 
 end
