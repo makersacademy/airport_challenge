@@ -4,11 +4,11 @@ require 'Plane'
 RSpec.describe Plane do 
 
   describe "land_at_airport" do    
-    it {is_expected.to respond_to (:land)}
+    it {is_expected.to respond_to (:land)} # I did the short hand here and the next but then used the long hand for my own understanding of the work
   end
 
   describe "location_of_plane" do
-    it {is_expected.to respond_to (:location)}
+    it {is_expected.to respond_to (:location)} #short hand
   end
 
   describe "confirm_location_of_plane" do 

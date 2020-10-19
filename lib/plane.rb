@@ -31,3 +31,11 @@ class Plane
     @capacity = 0
   end
 end
+
+
+=begin
+I followed the step by step user story to ensure I 
+could understand what I was doing step by step. I'm not entirely 
+sure if this is the best way to do this so 
+please feel free to give feedback
+=end
