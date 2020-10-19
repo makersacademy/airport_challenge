@@ -22,8 +22,8 @@ RSpec.describe do
       two = Plane.new
       three = Plane.new
       four = Plane.new
-      [one, two, three, four].each do |x|
-        @airport.planes << x
+      [one, two, three, four].each do |plane|
+        @airport.planes << plane
       end
       expect(@airport.planes.length).to eq 4
     end
