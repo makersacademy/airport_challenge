@@ -8,10 +8,6 @@ class Airport
     @capacity = capacity
   end
 
-  # def capacity
-  #   @capacity
-  # end
-
   def land(plane)
     return "Can't land because of weather" if weather_check == "stormy"
     return "Airport full" if full?

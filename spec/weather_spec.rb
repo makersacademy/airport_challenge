@@ -1,15 +1,16 @@
 require 'weather'
 
+
 describe Weather do
+  weather = Weather.new
+
   it "it's sunny" do
-    weather = Weather.new
-    allow(weather).to receive(:weather_check) { "sunny" }
-    expect(weather.weather_check).to eq "sunny"
+    allow(subject).to receive(:weather_check) { "sunny" }
+    expect(subject.weather_check).to eq "sunny"
   end
 
   it "it's stormy" do
-    weather = Weather.new
-    allow(weather).to receive(:weather_check) { "stormy" }
-    expect(weather.weather_check).to eq "stormy"
+    allow(subject).to receive(:weather_check) { "stormy" }
+    expect(subject.weather_check).to eq "stormy"
   end
 end
