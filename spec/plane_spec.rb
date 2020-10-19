@@ -9,8 +9,8 @@ RSpec.describe Plane do
             plane2 = Plane.new
 
             # 32 and 33 due to planes instantiated while testing Airport class
-            expect(plane1.get_id).to eq 32
-            expect(plane2.get_id).to eq 33
+            expect(plane1.id).to eq 6
+            expect(plane2.id).to eq 7
         end
     end
     

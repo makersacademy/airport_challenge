@@ -1,18 +1,13 @@
 require 'weather'
 class Airport
-    attr_reader :weather
-    attr_reader :hangar
+    attr_reader :weather, :hangar, :capacity
+
 
     # Creates an instance of Aiport with default capacity of 20
     def initialize(capacity = 20, storm_chance = 0.1)
         @hangar = []
         @capacity = capacity
         @weather = Weather.new(storm_chance)
-    end
-
-    # Gets airport capacity
-    def get_capacity
-        return @capacity
     end
 
     # Instruct plane to land
@@ -28,7 +23,7 @@ class Airport
         else
             # if weather is calm and hangar isn't full then land the plane
             @hangar << plane
-            return "Plane: #{plane.get_id}, has landed."
+            return "Plane: #{plane.id}, has landed."
         end
     end
 
@@ -44,18 +39,14 @@ class Airport
         else
             # if weather is calm and plane is in hangar then take off and return take off confirmation
             @hangar.delete(plane)
-            return "Plane: #{plane.get_id}, has taken off."
+            return "Plane: #{plane.id}, has taken off."
         end
     end
 
     private
         # Checks if hangar is full
         def hangar_full?
-            if @hangar.length == @capacity
-                return true
-            else
-                return false
-            end
+            return @hangar.length == @capacity
         end
 
 end

@@ -1,13 +1,10 @@
 class Plane
+    attr_reader :id
     @@last_id = 0
 
-    def initialize(id = @@last_id + 1)
+    def initialize()
         @@last_id += 1
-        @id = id
-    end
-
-    def get_id
-        return @id
+        @id = @@last_id
     end
 
 end
