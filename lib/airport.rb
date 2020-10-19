@@ -13,44 +13,42 @@ class Airport
   end
 
   def takeoff(plane)
-    if plane.location == "in air"
-      raise("Plane is already in air")
-    elsif plane.location != self
-      raise("Plane is not in this airport")
-    elsif stormy?
-      raise("Weather is stormy! Do not takeoff")
-    else
-      plane.change_location("in air")
-      planes.delete(plane)
-    end
+    raise("Plane is already in air") if plane.location == "in air"
+
+    raise("Plane is not in this airport") if plane.location != self
+
+    raise("Weather is stormy! Do not takeoff") if stormy?
+
+    plane.change_location("in air")
+    planes.delete(plane)
+
   end
 
   def land(plane)
-    if plane.location.is_a? Airport
-      raise("Plane is already in #{plane.location.name}")
-    elsif full?
-      raise("No space in airport! Do not land")
-    elsif stormy?
-      raise("Weather is stormy! Do not land")
-    else
-      plane.change_location(self)
-      planes.push(plane)
-    end
+    raise("Plane is already in #{plane.location.name}") if plane.location.is_a?(Airport)
+
+    raise("No space in airport! Do not land") if full?
+
+    raise("Weather is stormy! Do not land") if stormy?
+
+    plane.change_location(self)
+    planes.push(plane)
+
   end
 
   private
-  
+
   def weather_generator
     weather = ["sunny", "cloudy", "stormy", "light rain"]
-    weather[rand(0..3)]
+    weather.sample
   end
 
   def stormy?
-    return true if weather_generator == "stormy"
+    weather_generator == "stormy"
   end
 
   def full?
-    return true if planes.length == capacity
+    planes.length == capacity
   end
 
 end
