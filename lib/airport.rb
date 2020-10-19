@@ -26,6 +26,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..9) <= 3
+    rand(1..3) == 1
   end
 end

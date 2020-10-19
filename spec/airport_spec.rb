@@ -10,7 +10,7 @@ RSpec.describe Airport do
       airport = Airport.new(truetest)
       allow(airport).to receive(:stormy?) { false }
       truetest.times { airport.land(Plane.new) }
-      expect { airport.land(Plane.new) }.to raise_error 'There is not enough space to land another plane!'
+      expect(airport.capacity).to eq truetest
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Airport do
   describe "stormy? function" do
     it { is_expected.to respond_to(:stormy?) }
       it 'return true or false' do
-        allow(subject).to receive(:rand).and_return(2)
+        allow(subject).to receive(:rand).and_return(1)
         expect(subject.stormy?).to be true
       end
 
