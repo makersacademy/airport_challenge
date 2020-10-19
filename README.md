@@ -12,6 +12,11 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+My Approach
+---------
+I did strict TTD. As you can see from my commits, I would do Red (Make the test and the empty method), Green (Implement), Blue (Mostly Rubocop). 
+Sometimes I would mess it up, commit it as Red not Green, or miss a step, but I feel like I improved a lot.
+Passes all my tests, passes all rubocop (because I did rubocop after each Green stage)
 
 Instructions
 ---------
