@@ -52,6 +52,7 @@ RSpec.describe Airport do
       plane = Plane.new
       subject.planes << plane
       expect(subject.takeoff(plane)).to eq "I, #{plane}, have taken off."
+      expect(subject.planes.include?(plane)).to eq false
     end
     it 'denies takeoff if the plane is not at the airport' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(4)
