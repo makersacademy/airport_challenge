@@ -1,19 +1,37 @@
+require 'plane'
+
 class Airport
-  def initialize
-    @airport = []
+
+  attr_writer :capacity
+
+  def initialize(options = {})
+    self.capacity = options.fetch(:capacity, capacity)
   end
 
-  def plane_land(aeroplane)
-    @airport << aeroplane
-    "Plane safely landed at airport"
+  def capacity
+    @capacity == 10
   end
 
-  def takeoff
-    @airport.pop
-    "Plane takeoff successful"
+  def total_planes
+    @total_planes ||= []
+# not sure why this works?
   end
 
-  def conformation
-    return "Confirmed, the aeroplane has left the airport" if @airport.length.zero?
+  def receive(plane)
+    raise 'Full' if full?
+
+    @total_planes << plane
+  end
+
+  def takeoff(plane)
+    total_planes.delete(plane)
+  end
+
+  def full?
+    total_planes.length >= @capacity
+  end
+
+  def plane_count
+    total_planes.count
   end
 end

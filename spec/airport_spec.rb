@@ -1,32 +1,29 @@
 system 'clear'
 # calling aeroplane file
 require 'airport'
-require 'aeroplane'
+require 'plane'
+# require 'weather'
 # begin - checking airport Class
 RSpec.describe Airport do
-# begin - plane landing
-  it 'instructing a plane to land at an airport' do
-# arrange
-    aeroplane = Aeroplane.new
-    airport = Airport.new
+  let(:airport) { Airport.new(capacity: 10) }
+  let(:plane) { Plane.new } # removes the duplication
 
-    expect(airport.plane_land(aeroplane)).to eq "Plane safely landed at airport"
-  end
-# end - plane landing
-# begin - takeoff
-  it 'instructing a plane to takeoff from airport' do
-    airport = Airport.new
+  describe 'landing and takeoff' do
+    it 'a plane can land' do
+      expect { airport.receive(plane) }.to change { airport.plane_count }.by(1)
+    end
 
-    expect(airport.takeoff).to eq "Plane takeoff successful"
+    it 'a plane can takeoff' do
+      airport.receive(plane)
+      expect { airport.takeoff(plane) }.to change { airport.plane_count }.by(-1)
+    end
   end
-# end - takeoff
-# begin - confirm plane has taken takeoff
-  it "confirmation that the aeroplane has left the airport" do
-    airport = Airport.new
 
-    expect(airport.conformation).to eq "Confirmed, the aeroplane has left the airport"
+  describe 'air traffic control' do
+    it 'a plane canot land if the airport is full' do
+      allow(plane).to receive(:land!).with(airport)
+      10.times { airport.receive(plane) }
+      expect { airport.receive(plane) }.to raise_error('Full')
+    end
   end
-# end - confirm plane has
-# begin - 
 end
-# end - checking airport Class
