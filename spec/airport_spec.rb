@@ -46,40 +46,40 @@ RSpec.describe Airport do
 
   end
 
-  describe '#takeoff' do
-    it 'instructs a plane to takeoff from the airport and confirm it is no longer there' do
+  describe '#take_off' do
+    it 'instructs a plane to take_off from the airport and confirm it is no longer there' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(4)
       plane = Plane.new
       subject.planes << plane
-      expect(subject.takeoff(plane)).to eq "I, #{plane}, have taken off."
+      expect(subject.take_off(plane)).to eq "I, #{plane}, have taken off."
       expect(subject.planes.include?(plane)).to eq false
     end
-    it 'denies takeoff if the plane is not at the airport' do
+    it 'denies take_off if the plane is not at the airport' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(4)
       plane = Plane.new
       subject.land(plane)
       plane2 = Plane.new
-      expect(subject.takeoff(plane2)).to eq "That plane is not here."
+      expect(subject.take_off(plane2)).to eq "That plane is not here."
     end
-    it 'prevents takeoff when weather is stormy' do
+    it 'prevents take_off when weather is stormy' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(1)
       plane = Plane.new
       subject.planes << plane
-      expect(subject.takeoff(plane)).to eq "No flying in stormy weather."
+      expect(subject.take_off(plane)).to eq "No flying in stormy weather."
     end
     it 'prevents a plane taking off from a different airport' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(4)
       plane = Plane.new
       subject.planes << plane
       airport2 = Airport.new
-      expect(airport2.takeoff(plane)).to eq "That plane is not here."
+      expect(airport2.take_off(plane)).to eq "That plane is not here."
     end
     it 'prevents a plane that is already flying from taking off' do
       allow_any_instance_of(Airport).to receive(:rand).and_return(4)
       plane = Plane.new
       subject.planes << plane
-      subject.takeoff(plane)
-      expect(subject.takeoff(plane)).to eq "That plane is not here."
+      subject.take_off(plane)
+      expect(subject.take_off(plane)).to eq "That plane is not here."
     end
   end
 

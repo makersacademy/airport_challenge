@@ -52,8 +52,8 @@ RSpec.describe do
       five = Plane.new
       @six = Plane.new
       seven = Plane.new
-      [five, @six, seven].each do |x|
-        @airport.planes << x
+      [five, @six, seven].each do |plane|
+        @airport.planes << plane
       end
       expect(@airport.planes.length).to eq 7
     end
@@ -62,8 +62,8 @@ RSpec.describe do
       eight = Plane.new
       nine = Plane.new
       ten = Plane.new
-      [eight, nine, ten].each do |x|
-        @airport.planes << x
+      [eight, nine, ten].each do |plane|
+        @airport.planes << plane
       end
       expect(@airport.planes.length).to eq 10
     end

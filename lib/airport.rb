@@ -14,7 +14,7 @@ class Airport
     "Landing!"
   end
 
-  def takeoff(plane)
+  def take_off(plane)
     return "That plane is not here." unless @planes.include?(plane)
     return "No flying in stormy weather." if weather_bad?
 
