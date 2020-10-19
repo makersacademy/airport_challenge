@@ -12,12 +12,18 @@ class Airport
   end
 
   def land(plane, forecast)
-    return forecast.weather_check ? (full ? (raise "The airport is full") : @airport_array << plane) : (raise "It is too stormy to land")
+    raise "It is too stormy to land" unless forecast.weather_check
+    raise "The airport is full" if full
+
+    @airport_array << plane
+
   end
 
   def take_off(plane, forecast)
-    return forecast.weather_check ?
-    (@airport_array.delete_at(airport_array.find_index(plane)); "The plane has successfully left the airport") : (raise "It is too stormy to take off")
+    raise "It is too stormy to take off" unless forecast.weather_check
+
+    @airport_array.delete_at(airport_array.find_index(plane))
+    "The plane has successfully left the airport"
   end
 
   private
