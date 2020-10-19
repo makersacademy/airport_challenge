@@ -47,7 +47,9 @@ class Airport
     return @storage.include?(plane)
   end
 
+  # Allows setting of the weather externally
   def weather_safe(reply)
+    # Gets input from the user to set the weather
     @weather = reply
   end
 
