@@ -1,9 +1,9 @@
-require './lib/airport.rb'
+require '.lib/airport.rb'
 require './lib/plane.rb'
 # create airport
 @airport = Airport.new
 # what does airport need to do?
-describe Airport do
-  it { expect(Airport.new).to respond to(:land) }
-  it { expect(Airport.new).to respond to(:take_off) }
+RSpec.describe Airport do
+  expect(subject).respond_to(:land)
+  expect(subject).respond_to(:take_off)
 end
