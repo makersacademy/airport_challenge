@@ -1,15 +1,21 @@
 class Plane
 
-  def landing_permission?
-    @landing_permission
+  def initialize(grounded=nil)
+    @grounded = grounded
+  end
+
+  def flying?
+    @grounded == nil
+  end
+
+  def landing_process(airport)
+    raise "This plane is on the ground" if flying? == false
+    airport.land(self)
+    @grounded = airport
   end
 
 
-  def permisson_to_land
-    @landing_permission = true
-  end
 
-  
 
 
 end

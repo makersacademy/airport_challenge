@@ -2,26 +2,27 @@ require './lib/airport.rb'
 
 RSpec.describe Airport do
   describe "land" do
-    it "plane to land" do
+    it "plane land" do
       plane = Plane.new
-
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
     it "raise warning that airport is full" do
       airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return(false)
       planes = 30.times{airport.land(Plane.new)}
-      expect{
-        airport.land(Plane.new)
-      }.to raise_error("Abort! No room for landing")
-
-    end
+      plane = Plane.new
+      expect{ airport.land(plane) }.to raise_error(RuntimeError)
   end
+
+
   describe "take off" do
 
     it "plane takes off" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect(airport.take_off).to eq(plane)
     end
@@ -32,17 +33,17 @@ RSpec.describe Airport do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
   end
-  describe "weather_conditions" do
+  describe "stromy?" do
     it "gives a biased random sunny > stormy" do
       airport = Airport.new
 
-      allow(airport).to receive(:weather_conditions) {true}
+      allow(airport).to receive(:stormy?) {true}
 
-      expect(airport.weather_conditions).to eq(true)
+      expect(airport.stormy?).to eq(true)
     end
     it "causes flights to be grounded and landings aborted" do
     end
   end
-
+end
 
 end
