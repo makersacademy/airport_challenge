@@ -15,9 +15,9 @@
 ## How to Use
 
 - Airport objects are initialized with a default capacity of 10.
-- To use all methods are called on Plane objects.
+- Methods are called on Plane objects.
 - Landing / take off is subject to conditions.
-- Can call an airport to check capacity and planes landed.
+- You can call an airport to check capacity and planes landed.
 - Start by opening the 'plane.rb' file
 
 Here is an example of what you could write in irb:
