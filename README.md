@@ -1,4 +1,4 @@
-## Esther - Airport Challenge
+# Esther - Airport Challenge
 
 ```
         ______
@@ -12,7 +12,7 @@
 
 ```
 
-# How to Use
+## How to Use
 
 - Airport objects are initialized with a default capacity of 10.
 - To use all methods are called on Plane objects.
@@ -20,6 +20,7 @@
 - Can call an airport to check capacity and planes landed.
 - Start by opening the 'plane.rb' file
 
+Here is an example of what you could write in irb:
 ```
 gatwick = Airport.new
 heathrow = Airport.new(5)
