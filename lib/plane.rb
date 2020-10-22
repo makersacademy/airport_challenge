@@ -1,53 +1,42 @@
-require_relative 'airport'
+require 'airport'
+require 'errors'
 
 class Plane
+  attr_accessor :flying, :airport
+
   def initialize
     @flying = true
-    @airport = nil
   end
 
   def land(airport)
-    land_errors(airport)
-    landing_conditions(airport)
-    airport.landed_planes << self
+    Errors.new.land(self, airport)
+    Conditions.new.land(self, airport)
+    airport.land(self)
   end
 
   def take_off(airport)
-    take_off_errors(airport)
-    airport.landed_planes.delete(self)
-    flying_conditions
-    take_off_confirmation(airport)
+    Errors.new.take_off(self, airport)
+    airport.take_off(self)
+    Conditions.new.take_off(self, airport)
   end
 
-  def take_off_confirmation(airport)
-    confirm = "#{self} has left #{airport}."
-    confirm unless at_airport?(airport)
+end
+
+class Conditions
+  def take_off(plane, airport)
+    plane.flying = true
+    plane.airport = nil
+    take_off_confirmation(plane, airport)
   end
 
-  def land_errors(airport)
-    fail "Plane has already landed at #{@airport}." unless @flying
-    fail "Airport is full." if airport.full?
-    fail "Weather is stormy. Cannot land." if airport.stormy?
+  def land(plane, airport)
+    plane.flying = false
+    plane.airport = airport
   end
 
-  def take_off_errors(airport)
-    fail "This plane is already flying." if @flying
-    fail "This plane is not at the specified airport." unless at_airport?(airport)
-    fail "Weather is stormy. Cannot take off." if airport.stormy?
+  private
+  def take_off_confirmation(plane, airport)
+    confirm = "#{plane} has left #{airport}."
+    confirm unless airport.at_airport?(plane)
   end
-
-  def flying_conditions
-    @flying = true
-    @airport = nil
-  end
-
-  def landing_conditions(airport)
-    @flying = false
-    @airport = airport
-  end
-
-  def at_airport?(airport)
-    airport.landed_planes.include?(self)
-  end
-
 end

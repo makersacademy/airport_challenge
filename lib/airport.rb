@@ -1,20 +1,28 @@
-require_relative 'plane'
-
+require 'weather'
 class Airport
-  attr_reader :capacity, :landed_planes
+  attr_reader :capacity, :weather
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
+    @weather = Weather.new.stormy?
   end
 
   def full?
-    true if @landed_planes.count >= @capacity
+    @landed_planes.count >= @capacity
   end
 
-  def stormy?
-    generator = rand(10)
-    true if generator.zero? # 10% chance of stormy weather
+  def land(plane)
+    @landed_planes << plane
   end
+
+  def take_off(plane)
+    @landed_planes.delete(plane)
+  end
+
+  def at_airport?(plane)
+    @landed_planes.include?(plane)
+  end
+
 end
