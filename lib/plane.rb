@@ -1,10 +1,11 @@
-require 'airport'
-require 'errors'
+require_relative 'airport'
+require_relative 'errors'
 
 class Plane
   attr_accessor :flying, :airport
 
   def initialize
+    @id = object_id
     @flying = true
   end
 
