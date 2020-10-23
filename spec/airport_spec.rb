@@ -19,6 +19,23 @@ RSpec.describe Plane do
     end
   end
 
+  describe "take_off" do
+    plane = Plane.new
+    plane.location
+    it "should tell you airport capacity is back to 0" do
+      expect(plane.take_off).to eq (0)
+    end
+  end
+
+  describe "confirm plane no longer at airport" do 
+    plane = Plane.new
+    plane.take_off
+    it "confirm plane not at airport" do
+      expect(plane.location).to eq ("in the air")
+    end
+  end
+
+
   describe "confirm_airport_capacity" do
     plane = Plane.new
     plane.capacity
@@ -35,13 +52,7 @@ RSpec.describe Plane do
     end
   end
 
-  describe "take_off" do
-    plane = Plane.new
-    plane.location
-    it "should tell you airport capacity is back to 0" do
-      expect(plane.take_off).to eq (0)
-    end
-  end
+
 
   describe "stormy_weather" do
     plane = Plane.new
