@@ -19,14 +19,14 @@ describe 'Airport' do
 
     it 'plane doesnt land at the airport when its stormy' do
       allow(airport).to receive(:weather_check) { "stormy" }
-      expect(airport.land(plane)).to eq "Can't land because of weather"
+      expect { airport.land(plane) }.to raise_error "Can't land because of weather"
     end
   end
 
   describe '#take_off' do
     it 'if plane takes off from the airport during stormy weather' do
       allow(airport).to receive(:weather_check) { "stormy" }
-      expect(airport.take_off(plane)).to eq "Can't take off because of weather"
+      expect { airport.take_off(plane) }.to raise_error "Can't take off because of weather"
     end
   
     it 'check if a plane stayed during stormy weather' do

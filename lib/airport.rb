@@ -9,15 +9,15 @@ class Airport
   end
 
   def land(plane)
-    return "Can't land because of weather" if weather_check == "stormy"
-    return "Airport full" if full?
+    raise "Can't land because of weather" if weather_check == "stormy"
+    return "Airport full." if full?
 
     @airport << plane
     
   end
 
   def take_off(plane)
-    return "Can't take off because of weather" if weather_check == "stormy"
+    raise "Can't take off because of weather" if weather_check == "stormy"
 
     @airport.delete(plane)
   end

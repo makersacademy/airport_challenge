@@ -1,6 +1,5 @@
 require 'weather'
 
-
 describe Weather do
   weather = Weather.new
 
