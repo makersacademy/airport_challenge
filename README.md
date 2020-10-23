@@ -16,8 +16,9 @@
 
 - Airport objects are initialized with a default capacity of 10.
 - Methods are called on Plane objects.
-- Landing / take off is subject to conditions.
-- You can call an airport to check capacity and planes landed.
+- Landing / take off is subject to errors and conditions.
+- You can call an airport by variable name to check capacity and planes landed.
+- Landed planes in an airport can be identified by their id number.
 - Start by opening the 'plane.rb' file
 
 Here is an example of what you could write in irb:
@@ -32,8 +33,10 @@ plane3 = Plane.new
 plane1.land(gatwick)
 plane2.land(heathrow)
 plane3.land(gatwick)
+plane4.land(gatwick)
 
 gatwick
+heathrow
 
 plane1.take_off(gatwick)
 
