@@ -22,30 +22,30 @@ describe Airport do
       subject { described_class.new(good_weather) }
 
       it "a specific plane will take off" do
-        a320 = Plane.new("a320")
+        a320 = Plane.new
         subject.land(a320)
-        expect(subject.takeoff("a320")).to eq a320
+        expect(subject.takeoff(a320)).to eq a320
       end
 
       it "checks the plane was removed from airport" do
-        a320 = Plane.new("a320")
+        a320 = Plane.new
         subject.land(a320)
-        subject.takeoff("a320")
+        subject.takeoff(a320)
         expect(subject.planes).to eq []
       end
 
       it "changes plane to 'flying' after takeoff" do
-        a320 = Plane.new("a320")
+        a320 = Plane.new
         subject.land(a320)
-        subject.takeoff("a320")
+        subject.takeoff(a320)
         expect(a320.status).to eq "flying"
       end
 
       it "can't take off a plane that is already flying - Edge case" do
-        a320 = Plane.new("a320")
+        a320 = Plane.new
         subject.land(a320)
         a320.status = "flying"
-        expect { subject.takeoff("a320") }.to raise_error "That plane is already flying"
+        expect { subject.takeoff(a320) }.to raise_error "That plane is already flying"
       end
     end
   end
