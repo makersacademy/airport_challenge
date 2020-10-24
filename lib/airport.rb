@@ -15,10 +15,10 @@ class Airport
   def takeoff(plane)
     raise "Cant take off due to stormy weather" unless sunny?
 
-    departing_plane = @planes.select { |plane| plane == plane }
-    raise "No plane found" unless !departing_plane[0].nil?
+    departing_plane = @planes.select { |required_plane| required_plane == plane }
+    raise "No plane found" unless !!departing_plane[0]
 
-    raise "That plane is already flying" unless !flying?(departing_plane[0])
+    raise "That plane is already flying" if flying?(departing_plane[0])
 
     departing_plane[0].status = "flying"
     @planes.delete(departing_plane[0])
