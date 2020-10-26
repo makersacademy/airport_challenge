@@ -11,7 +11,7 @@ RSpec.describe Plane do
 
     it 'adds the landed plane to the planes array' do
       airport = Airport.new
-      allow(airport).to receive(:rand).and_return(1)
+      allow(airport.weather).to receive(:rand).and_return(1)
       subject.land(airport)
       expect(airport.planes).to include(subject)
     end
@@ -23,6 +23,9 @@ RSpec.describe Plane do
       plane1 = Plane.new
       plane2 = Plane.new
 
+      plane1.take_off(airport)
+      plane2.take_off(airport)
+      
       plane2.land(airport)
       expect(airport.planes).to eq [plane2]
     end

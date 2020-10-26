@@ -1,7 +1,7 @@
 class Plane
 
   def land(airport)
-    raise "WEATHER IS STORMY - CANNOT LAND" if airport.detect_weather == :stormy
+    raise "WEATHER IS STORMY - CANNOT LAND" if airport.weather == :stormy
     raise "PLANE ALREADY LANDED" if airport.planes.include?(self)
     raise "AIRPORT FULL" unless airport.planes.length < airport.capacity
 
@@ -10,7 +10,7 @@ class Plane
   end
 
   def take_off(airport)
-    raise "WEATHER IS STORMY - CANNOT TAKE OFF" if airport.detect_weather == :stormy
+    raise "WEATHER IS STORMY - CANNOT TAKE OFF" if airport.weather == :stormy
     raise "AIRPORT EMPTY" if airport.planes.empty?
     raise "PLANE NOT AT AIRPORT" unless airport.planes.include?(self)
 
