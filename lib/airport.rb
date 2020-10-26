@@ -1,6 +1,7 @@
 require_relative 'weather'
 class Airport
   attr_reader :capacity, :weather
+  attr_writer :landed_planes
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)

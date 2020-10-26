@@ -24,9 +24,12 @@ RSpec.describe Airport do
     end
 
     context "planes" do
+      let(:plane) { double :plane }
       it "checks if a plane is at the airport" do
+        allow(plane).to receive(:land) { subject }
+        allow(plane).to receive(:object_id).and_return(plane)
+        subject.landed_planes = [plane]
         Airport.any_instance.stub(:weather) { false }
-        plane = Plane.new
         plane.land(subject)
         expect(subject.at_airport?(plane)).to eq true
       end

@@ -5,14 +5,14 @@ RSpec.describe Plane do
   airport1 = Airport.new
   airport2 = Airport.new
 
+  before { Airport.any_instance.stub(:weather) { false } }
+
   it "lands at an airport" do
-    Airport.any_instance.stub(:weather) { false }
     subject.land(airport)
     expect(airport.at_airport?(subject)).to eq true
   end
 
   it "takes off from an airport and confirms" do
-    Airport.any_instance.stub(:weather) { false }
     subject.land(airport)
     expect(subject.take_off(airport)).to be_a(String)
     expect(airport.at_airport?(subject)).to eq false
@@ -22,7 +22,6 @@ RSpec.describe Plane do
     context "landing errors" do
 
       it "does not land if airport is full" do
-        Airport.any_instance.stub(:weather) { false }
         airport = Airport.new(1)
         plane = Plane.new
         subject.land(airport)
@@ -38,7 +37,6 @@ RSpec.describe Plane do
       end
 
       it "does not land if already landed" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport1)
         message = "Plane has already landed at #{airport1}."
         expect { subject.land(airport2) }.to raise_error(RuntimeError, message)
@@ -47,7 +45,6 @@ RSpec.describe Plane do
 
     context "take off errors" do
       it "does not take off if airport is stormy" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport)
         Airport.any_instance.stub(:weather) { true }
         message = 'Weather is stormy. Cannot take off.'
@@ -60,7 +57,6 @@ RSpec.describe Plane do
       end
 
       it "does not take off if not at the specified airport" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport1)
         message = 'This plane is not at the specified airport.'
         expect { subject.take_off(airport2) }.to raise_error(RuntimeError, message)
@@ -71,12 +67,10 @@ RSpec.describe Plane do
   describe "Conditions" do
     context "landing conditions" do
       it "changes flying status to false" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport)
         expect(subject.flying).to eq false
       end
       it "changes airport status" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport)
         expect(subject.airport).to eq airport
       end
@@ -84,13 +78,11 @@ RSpec.describe Plane do
     end
     context "take off conditions" do
       it "changes flying status to true" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport)
         subject.take_off(airport)
         expect(subject.flying).to eq true
       end
       it "removes airport status" do
-        Airport.any_instance.stub(:weather) { false }
         subject.land(airport)
         subject.take_off(airport)
         expect(subject.airport).to eq nil
