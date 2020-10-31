@@ -1,17 +1,18 @@
 require_relative '../lib/plane'
 
 class Airport
-  attr_reader :planes, :capacity, :weather
+  attr_reader :planes, :capacity
 
   def initialize(cap = 1)
     @planes = []
     @capacity = cap
-    @weather = stormy?
   end
 
   def land(plane)
+    raise 'Already landed' if plane.already_landed?
     raise 'Airport Full' if full?
 
+    plane.landed
     @planes << plane
   end
 

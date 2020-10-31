@@ -2,6 +2,7 @@ require_relative '../lib/airport'
 require_relative '../lib/plane'
 
 describe Airport do
+  let(:plane) { double :plane }
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff) }
 
@@ -38,6 +39,7 @@ describe Airport do
   it 'stops a plane from landing if airport is full' do
     plane = Plane.new
     subject.capacity.times { subject.land plane }
+    allow(plane).to receive(:already_landed?).and_return(false)
     expect { subject.land plane }.to raise_error 'Airport Full'
   end
 
