@@ -1,5 +1,6 @@
 require_relative './plane.rb'
 require_relative './weather.rb'
+include Weather
 
 class Airport
   attr_reader :planes, :capacity
@@ -11,20 +12,24 @@ class Airport
     @planes = []
   end
 
-  def land(plane, weather)
+  def land(plane)
     raise 'Cannot land, Airport at maximum capacity' if full?
-    raise 'Weather conditions unacceptable for landing' if weather == :stormy
+    raise 'Weather conditions unacceptable for landing' if stormy?
     @planes.push(plane)
     plane.landed = true
   end
 
-  def take_off(weather)
+  def take_off
     raise 'Airport empty' if @planes.empty?
-    raise 'Weather conditions unacceptable for take off' if weather == :stormy
+    raise 'Weather conditions unacceptable for take off' if stormy?
     plane = @planes.shift
     plane.landed = false
     print "#{plane} has taken off"
     plane
+  end
+
+  def stormy?
+    Weather.current == :stormy
   end
 
   private
