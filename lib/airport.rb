@@ -23,7 +23,11 @@ class Airport
   end
 
   def weather
-    %w[sunny stormy].sample
+    sunnies = Array.new(19) { 'sunny' }
+    stormies = Array.new(1) { 'stormy' }
+    samples = sunnies.concat(stormies).shuffle
+    randIndex = rand(0...samples.length)
+    samples[randIndex]
   end
 
   private
