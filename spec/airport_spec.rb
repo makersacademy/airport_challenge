@@ -24,4 +24,10 @@ describe Airport do
       expect(subject.plane).not_to eq(plane)
     end
   end
+  describe "When airport is at capacity" do
+    it "Does not allow planes to land" do
+      20.times {subject.land Plane.new}
+      expect { subject.land Plane.new }.to raise_error "Airport full! You cannot land here!"
+    end
+  end
 end
