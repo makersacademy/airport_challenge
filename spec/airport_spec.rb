@@ -11,4 +11,10 @@ describe Airport do
       expect { subject.land(Plane.new) }.to change { subject.planes.length }.by(1)
     end
   end
+
+  context '#take_off' do
+    it 'can be called on an Airport' do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
+  end
 end
