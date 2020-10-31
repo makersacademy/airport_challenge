@@ -10,6 +10,12 @@ describe Airport do
     it 'adds a Plane to the Airport array' do
       expect { subject.land(Plane.new) }.to change { subject.planes.length }.by(1)
     end
+
+    it 'changes Plane landed attribute to false' do
+      plane = double('plane', :landed => false)
+      subject.land(plane)
+      expect(plane.landed).to eq(true)
+    end
   end
 
   context '#take_off' do
