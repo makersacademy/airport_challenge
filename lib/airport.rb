@@ -16,6 +16,7 @@ class Airport
 
   def take_off
     raise 'Airport empty' if @planes.empty?
+    raise 'Weather conditions unacceptable for take off' if weather == 'stormy'
     plane = @planes.shift
     plane.landed = false
     print "#{plane} has taken off"
