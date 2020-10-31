@@ -57,6 +57,12 @@ describe Airport do
       subject.land(plane)
       expect { subject.take_off }.to output("#{plane} has taken off").to_stdout
     end
+
+    it 'raises error if weather is stormy' do
+      subject.land(Plane.new)
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect { subject.take_off }.to raise_error('Weather conditions unacceptable for take off')
+    end
   end
 
   context '#weather' do
