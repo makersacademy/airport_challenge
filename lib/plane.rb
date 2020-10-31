@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :call_sign
+  attr_reader :call_sign, :airbourne
   @@plane_id = 0
 
   def initialize(airbourne = false)
@@ -15,6 +15,7 @@ class Plane
   def land(airport)
     landing_error_checks(airport)
     airport.planes << self
+    @airbourne = false
   end
 
   def take_off(airport)

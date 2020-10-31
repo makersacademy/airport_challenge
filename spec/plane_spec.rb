@@ -32,6 +32,12 @@ describe Plane do
       airport = Airport.new(50, [alpha])
       expect { alpha.land(airport) }.to raise_error("Plane is already on the ground!")
     end
+
+    it "is no longer airborne after landing" do
+      freshly_landed = Plane.new(true)
+      freshly_landed.land(Airport.new)
+      expect(freshly_landed.airbourne).to eq(false)
+    end
   end
 
   describe "#take_off" do
