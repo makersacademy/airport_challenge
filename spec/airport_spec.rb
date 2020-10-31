@@ -12,9 +12,14 @@ describe Airport do
     end
 
     it 'changes Plane landed attribute to true' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(plane.landed).to eq(true)
+      plane_one = Plane.new
+      plane_two = Plane.new
+      subject.land(plane_one)
+      subject.land(plane_two)
+
+      subject.planes.each do |plane|
+        expect(plane.landed).to eq(true)
+      end
     end
   end
 
