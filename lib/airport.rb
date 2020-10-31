@@ -10,6 +10,7 @@ class Airport
   end
 
   def take_off
+    raise 'Airport empty' if @planes.empty?
     @planes.shift
   end
 end
