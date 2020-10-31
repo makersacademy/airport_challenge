@@ -56,5 +56,12 @@ describe Plane do
       about_to_fly.take_off(airport)
       expect(about_to_fly.airbourne).to eq(true)
     end
+
+    it "cannot take off from an airport it isn't in" do
+      plane_at_berlin = Plane.new
+      berlin = Airport.new
+      london = Airport.new
+      expect { plane_at_berlin.take_off(london) }.to raise_error("Plane can't take off from an airport it's not in!")
+    end
   end
 end
