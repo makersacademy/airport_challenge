@@ -20,6 +20,7 @@ class Plane
 
   def take_off(airport)
     airport.planes.delete(self)
+    @airbourne = true
   end
 
   def landing_error_checks(airport)

@@ -49,5 +49,12 @@ describe Plane do
       expect(airport.planes).not_to include(bravo)
       expect(airport.planes).to include(alpha)
     end
+
+    it "is airbourne after taking off" do
+      about_to_fly = Plane.new
+      airport = Airport.new(50, [about_to_fly])
+      about_to_fly.take_off(airport)
+      expect(about_to_fly.airbourne).to eq(true)
+    end
   end
 end
