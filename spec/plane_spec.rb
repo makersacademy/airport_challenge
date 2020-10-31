@@ -10,4 +10,13 @@ describe Plane do
     end
     expect(call_signs.length).to eq(call_signs.uniq.length)
   end
+
+  describe "#land" do
+    it "can land in an empty airport" do
+      empty_airport = Airport.new
+      plane = Plane.new
+      plane.land(empty_airport)
+      expect(empty_airport.planes).to include(plane)
+    end
+  end
 end
