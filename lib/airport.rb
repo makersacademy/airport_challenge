@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     raise 'Cannot land, Airport at maximum capacity' if full?
+    raise 'Weather conditions unacceptable for landing' if weather == 'stormy'
     @planes.push(plane)
     plane.landed = true
   end
