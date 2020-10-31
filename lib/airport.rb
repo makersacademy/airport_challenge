@@ -7,6 +7,7 @@ class Airport
 
   def land(plane)
     @planes.push(plane)
+    plane.landed = true
   end
 
   def take_off

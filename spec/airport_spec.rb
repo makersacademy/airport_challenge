@@ -11,8 +11,8 @@ describe Airport do
       expect { subject.land(Plane.new) }.to change { subject.planes.length }.by(1)
     end
 
-    it 'changes Plane landed attribute to false' do
-      plane = double('plane', :landed => false)
+    it 'changes Plane landed attribute to true' do
+      plane = Plane.new
       subject.land(plane)
       expect(plane.landed).to eq(true)
     end
