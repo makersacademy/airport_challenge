@@ -24,6 +24,12 @@ describe Plane do
       Plane.new.land(full_airport)
       expect { Plane.new.land(full_airport) }.to raise_error("Airport is full!")
     end
+
+    it "cannot land if landed" do
+      alpha = Plane.new
+      airport = Airport.new(50, [alpha])
+      expect { alpha.land(airport) }.to raise_error("Plane is already on the ground!")
+    end
   end
 
   describe "#take_off" do
