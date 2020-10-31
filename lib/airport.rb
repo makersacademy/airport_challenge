@@ -12,6 +12,6 @@ class Airport
   end
 
   def takeoff(plane)
-    @plane.pop
+    @plane - [plane]
   end
 end
