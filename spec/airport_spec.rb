@@ -2,6 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  context '#initialize' do
+    it 'allows user to set override default capacity' do
+      airport = Airport.new(77)
+      expect(airport.capacity).to eq(77)
+    end
+  end
+  
   context '#land' do
     it 'can be called on an Airport' do
       expect(subject).to respond_to(:land).with(1).argument
