@@ -18,5 +18,11 @@ describe Plane do
       plane.land(empty_airport)
       expect(empty_airport.planes).to include(plane)
     end
+
+    it "cannot land at a full airport" do
+      full_airport = Airport.new(1)
+      Plane.new.land(full_airport)
+      expect { Plane.new.land(full_airport) }.to raise_error("Airport is full!")
+    end
   end
 end
