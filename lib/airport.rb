@@ -22,6 +22,10 @@ class Airport
     plane
   end
 
+  def weather
+    %w[sunny stormy].sample
+  end
+
   private
 
   def full?
