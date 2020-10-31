@@ -21,5 +21,9 @@ describe Airport do
       subject.land(Plane.new)
       expect { subject.take_off }.to change { subject.planes.length }.by(-1)
     end
+
+    it 'raises an error if there are no planes in the Airport' do
+      expect { subject.take_off }.to raise_error('Airport empty')
+    end 
   end
 end
