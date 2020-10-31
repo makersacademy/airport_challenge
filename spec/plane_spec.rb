@@ -38,6 +38,13 @@ describe Plane do
       freshly_landed.land(Airport.new)
       expect(freshly_landed.airbourne).to eq(false)
     end
+
+    it "can't land in a storm" do
+      alpha = Plane.new(true)
+      airport = Airport.new
+      allow(airport).to receive(:current_weather).and_return('stormy')
+      expect { alpha.land(airport) }.to raise_error("Stormy conditions are preventing a landing.")
+    end
   end
 
   describe "#take_off" do
@@ -59,7 +66,6 @@ describe Plane do
 
     it "cannot take off from an airport it isn't in" do
       plane_at_berlin = Plane.new
-      berlin = Airport.new
       london = Airport.new
       expect { plane_at_berlin.take_off(london) }.to raise_error("Plane can't take off from an airport it's not in!")
     end
