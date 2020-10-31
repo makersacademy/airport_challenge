@@ -8,7 +8,7 @@ describe Airport do
       expect(airport.capacity).to eq(77)
     end
   end
-  
+
   context '#land' do
     it 'can be called on an Airport' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -56,6 +56,12 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       expect { subject.take_off }.to output("#{plane} has taken off").to_stdout
+    end
+
+    it 'raises an error if the weather is stormy' do
+      subject.land(Plane.new)
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect { subject.take_off }.to raise_error('Weather conditions unsuitable for take off')
     end
   end
 end
