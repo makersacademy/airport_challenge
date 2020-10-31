@@ -14,7 +14,11 @@ describe Airport do
 
   context '#take_off' do
     it 'can be called on an Airport' do
-      expect(subject).to respond_to(:take_off).with(1).argument
+      expect(subject).to respond_to(:take_off)
     end
+
+    #it 'removes a Plane from the Airport array' do
+      #expect(subject.take_off
+    #end
   end
 end

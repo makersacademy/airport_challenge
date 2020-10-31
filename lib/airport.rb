@@ -9,7 +9,7 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off(plane)
+  def take_off
     
   end
 end
