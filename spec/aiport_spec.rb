@@ -24,7 +24,7 @@ describe '#land' do
   end
 
   it 'raises an error when full' do
-    #this is maximum length -1 as we've already landed a plane in line 19!!
+    # this is maximum length -1 as we've already landed a plane in line 19!!
     9.times { airport.land Plane.new }
     expect { airport.land Plane.new }.to raise_error 'Airport full'
   end
