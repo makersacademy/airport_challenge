@@ -8,11 +8,15 @@ class Airport
   attr_reader :hanger, :capacity
 
   def land(plane, weather)
-    if full?
-      raise 'The airport is full!'
-    else
-      @hanger << plane
-    end
+    if weather == "It's clear!"
+      if full?
+        raise 'The airport is full!'
+      else
+        @hanger << plane
+      end
+    elsif weather == "It's stormy!"
+      raise "The conditions aren't good enough!"
+    end 
   end
 
 
