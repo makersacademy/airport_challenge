@@ -47,3 +47,12 @@ describe '#take_off' do
     expect(airport.take_off).to eq "The plane is in the air"
   end
 end
+
+describe '#custom capcity' do
+  airport = Airport.new(15)
+
+  it 'raises an error when full' do
+    15.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error 'Airport full'
+  end
+end

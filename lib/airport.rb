@@ -1,7 +1,8 @@
 require_relative 'plane'
 
 class Airport
-  def initialize
+  def initialize(capacity = 10)
+    @capacity = capacity
     @planes = []
   end
 
@@ -21,7 +22,7 @@ class Airport
   private
 
   def full?
-    @planes.length >= 10
+    @planes.length >= @capacity 
   end
 
   def empty?
