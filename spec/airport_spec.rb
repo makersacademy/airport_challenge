@@ -13,7 +13,14 @@ describe Airport do
     expect(Airport.new.planes).to eq([])
   end
 
-  it "responds to #current_weather" do
-    expect(subject).to respond_to(:current_weather)
+  describe "#current_weather" do
+    it "returns 'chill' or 'stormy'" do
+      airport = Airport.new
+      things_returned = []
+      while things_returned.uniq.size < 2
+        things_returned << airport.current_weather
+      end
+      expect(things_returned.uniq.size).to eq(2)
+    end
   end
 end

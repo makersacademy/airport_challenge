@@ -19,10 +19,16 @@ class Plane
   end
 
   def take_off(airport)
-    raise StandardError.new("Plane can't take off from an airport it's not in!") if !airport.planes.include?(self)
+    take_off_error_checks(airport)
 
     airport.planes.delete(self)
     @airbourne = true
+  end
+
+  def take_off_error_checks(airport)
+    raise StandardError.new("Plane can't take off from an airport it's not in!") if !airport.planes.include?(self)
+    
+    raise StandardError.new("Too stormy for a takeoff.") if airport.current_weather == 'stormy'
   end
 
   def landing_error_checks(airport)
