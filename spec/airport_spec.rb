@@ -30,6 +30,11 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error('Cannot land, Airport at maximum capacity')
     end
+
+    it 'raises error is weather is stormy' do
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect { subject.land(Plane.new) }.to raise_error('Weather conditions unacceptable for landing')
+    end
   end
 
   context '#take_off' do
