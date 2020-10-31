@@ -13,6 +13,18 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
+    describe "When a plane is already in an airport"
+      it "Can not land" do
+        plane = Plane.new
+        subject.land(plane)
+        expect { subject.land(plane) }.to raise_error
+      end
+    describe "When airport is at capacity" do
+      it "Does not allow planes to land" do
+        20.times { subject.land Plane.new } 
+        expect { subject.land Plane.new }.to raise_error "Airport full! You cannot land here!"
+      end
+    end
   end
   describe '#takeoff' do
     it 'Instances of airport respond to the takeoff method' do
@@ -22,12 +34,6 @@ describe Airport do
       plane = Plane.new
       subject.takeoff(plane)
       expect(subject.planes).to_not include(plane)
-    end
-  end
-  describe "When airport is at capacity" do
-    it "Does not allow planes to land" do
-      20.times { subject.land Plane.new } 
-      expect { subject.land Plane.new }.to raise_error "Airport full! You cannot land here!"
     end
   end
 end
