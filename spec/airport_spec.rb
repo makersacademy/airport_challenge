@@ -15,10 +15,12 @@ describe Airport do
     end
 
     it 'adds a Plane to the Airport array' do
+      allow(subject).to receive(:weather) { 'sunny' }
       expect { subject.land(Plane.new) }.to change { subject.planes.length }.by(1)
     end
 
     it 'changes Plane landed attribute to true' do
+      allow(subject).to receive(:weather) { 'sunny' }
       planes_to_land = Array.new(3) { Plane.new }
       
       planes_to_land.each do |plane|
@@ -27,6 +29,7 @@ describe Airport do
     end
 
     it 'raises an error when the Airport is full' do
+      allow(subject).to receive(:weather) { 'sunny' }
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error('Cannot land, Airport at maximum capacity')
     end
@@ -43,6 +46,7 @@ describe Airport do
     end
 
     it 'removes a Plane from the Airport array' do
+      allow(subject).to receive(:weather) { 'sunny' }
       subject.land(Plane.new)
       expect { subject.take_off }.to change { subject.planes.length }.by(-1)
     end
@@ -52,12 +56,14 @@ describe Airport do
     end
 
     it 'changes Plane landed attribute to false' do
+     allow(subject).to receive(:weather) { 'sunny' }
      plane = Plane.new
      subject.land(plane)
      expect { subject.take_off }.to change { plane.landed }.from(true).to(false)
     end
 
     it 'confirms Plane is no longer in the Airport' do
+      allow(subject).to receive(:weather) { 'sunny' }
       plane = Plane.new
       subject.land(plane)
       expect { subject.take_off }.to output("#{plane} has taken off").to_stdout
