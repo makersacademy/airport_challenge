@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-    raise 'Cannot land, Airport at maximum capacity' if planes.length >= DEFAULT_CAPACITY
+    raise 'Cannot land, Airport at maximum capacity' if full?
     @planes.push(plane)
     plane.landed = true
   end
@@ -20,5 +20,11 @@ class Airport
     plane.landed = false
     print "#{plane} has taken off"
     plane
+  end
+
+  private
+
+  def full?
+    @planes.length == @capacity
   end
 end
