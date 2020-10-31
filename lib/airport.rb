@@ -9,24 +9,18 @@ class Airport
   end
 
   def land(plane)
+    raise 'Airport Full' if full?
+
     @planes << plane
   end
 
   def takeoff
-    raise 'Takeoff aborted' if stormy?
-
     @planes.pop
-  end
-
-  def stormy?
-    random_weather == :stormy
   end
 
   private
 
-  WEATHER = %i[stormy sunny clear overcast].freeze
-
-  def random_weather
-    WEATHER.sample
+  def full?
+    @planes.count >= @capacity
   end
 end

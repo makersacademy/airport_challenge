@@ -12,7 +12,6 @@ describe Airport do
 
   it 'instructs a plane to take off from the airport' do
     plane = Plane.new
-    subject.stormy? == false
     subject.land(plane)
     expect(subject.takeoff).to eq plane
   end
@@ -21,10 +20,8 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     length = subject.planes.length
-    subject.stormy? == false
     subject.takeoff
     expect(length).to eq(subject.planes.length + 1)
-    # I expect that a later part of the program will break this test
   end
 
   it 'defaults to a specified capacity' do
@@ -36,8 +33,9 @@ describe Airport do
     expect(airport.capacity).not_to eq 1
   end
 
-  it 'stops a plane taking off when stormy' do
-    subject.stormy? == true
-    expect { subject.takeoff }.to raise_error 'Takeoff aborted'
+  it 'stops a plane from landing if airport is full' do
+    plane = Plane.new
+    subject.capacity.times { subject.land plane }
+    expect { subject.land plane }.to raise_error 'Airport Full'
   end
 end
