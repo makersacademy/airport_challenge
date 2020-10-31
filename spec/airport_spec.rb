@@ -17,8 +17,8 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
-    #it 'removes a Plane from the Airport array' do
-      #expect(subject.take_off
-    #end
+    it 'removes a Plane from the Airport array' do
+      expect { subject.take_off }.to change { subject.planes.length }.by(-1)
+    end
   end
 end
