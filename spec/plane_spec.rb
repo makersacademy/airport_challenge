@@ -15,12 +15,14 @@ describe Plane do
     it "can land in an empty airport" do
       empty_airport = Airport.new
       plane = Plane.new(true)
+      allow(empty_airport).to receive(:current_weather).and_return('chill')
       plane.land(empty_airport)
       expect(empty_airport.planes).to include(plane)
     end
 
     it "cannot land at a full airport" do
       full_airport = Airport.new(1)
+      allow(full_airport).to receive(:current_weather).and_return('chill')
       airbourne_plane = Plane.new(true)
       airbourne_plane.land(full_airport)
       second_airbourne_plane = Plane.new(true)
@@ -30,12 +32,15 @@ describe Plane do
     it "cannot land if landed" do
       alpha = Plane.new
       airport = Airport.new(50, [alpha])
+      allow(airport).to receive(:current_weather).and_return('chill')
       expect { alpha.land(airport) }.to raise_error("Plane is already on the ground!")
     end
 
     it "is no longer airborne after landing" do
       freshly_landed = Plane.new(true)
-      freshly_landed.land(Airport.new)
+      airport = Airport.new
+      allow(airport).to receive(:current_weather).and_return('chill')
+      freshly_landed.land(airport)
       expect(freshly_landed.airbourne).to eq(false)
     end
 

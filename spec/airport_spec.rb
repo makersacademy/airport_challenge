@@ -12,4 +12,8 @@ describe Airport do
   it "contains an array for planes to land, empty by default" do
     expect(Airport.new.planes).to eq([])
   end
+
+  it "responds to #current_weather" do
+    expect(subject).to respond_to(:current_weather)
+  end
 end
