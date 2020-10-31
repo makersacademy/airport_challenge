@@ -57,11 +57,11 @@ describe Airport do
       subject.land(plane)
       expect { subject.take_off }.to output("#{plane} has taken off").to_stdout
     end
+  end
 
-    it 'raises an error if the weather is stormy' do
-      subject.land(Plane.new)
-      allow(subject).to receive(:weather) { 'stormy' }
-      expect { subject.take_off }.to raise_error('Weather conditions unsuitable for take off')
+  context '#weather' do
+    it 'returns a string' do
+      expect(subject.weather).to be_instance_of(String)
     end
   end
 end

@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes, :capacity, :weather
+  attr_reader :planes, :capacity
 
   DEFAULT_CAPACITY = 50
 
@@ -16,7 +16,6 @@ class Airport
 
   def take_off
     raise 'Airport empty' if @planes.empty?
-    raise 'Weather conditions unsuitable for take off' if self.weather == 'stormy'
     plane = @planes.shift
     plane.landed = false
     print "#{plane} has taken off"
