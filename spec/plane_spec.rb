@@ -39,7 +39,7 @@ describe Plane do
       alpha = Plane.new
       bravo = Plane.new
       airport = Airport.new(50, [alpha, bravo])
-      bravo.take_off
+      bravo.take_off(airport)
       expect(airport.planes).not_to include(bravo)
       expect(airport.planes).to include(alpha)
     end

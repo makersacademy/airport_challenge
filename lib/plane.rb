@@ -17,6 +17,10 @@ class Plane
     airport.planes << self
   end
 
+  def take_off(airport)
+    airport.planes.delete(self)
+  end
+
   def landing_error_checks(airport)
     raise StandardError.new("Airport is full!") if airport.planes.length >= airport.capacity
 
