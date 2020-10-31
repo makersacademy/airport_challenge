@@ -11,7 +11,17 @@ describe Airport do
     it "airport should store the landed plane" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.plane).to eq(plane)
+      expect(subject.plane).to eq([plane])
+    end
+  end
+  describe '#takeoff' do
+    it 'Instances of airport respond to the takeoff method' do
+      expect(subject).to respond_to(:takeoff).with(1).argument
+    end
+    it "airport should release the stored plane" do
+      plane = Plane.new
+      subject.takeoff(plane)
+      expect(subject.plane).not_to eq(plane)
     end
   end
 end
