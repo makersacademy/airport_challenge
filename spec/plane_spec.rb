@@ -14,15 +14,17 @@ describe Plane do
   describe "#land" do
     it "can land in an empty airport" do
       empty_airport = Airport.new
-      plane = Plane.new
+      plane = Plane.new(true)
       plane.land(empty_airport)
       expect(empty_airport.planes).to include(plane)
     end
 
     it "cannot land at a full airport" do
       full_airport = Airport.new(1)
-      Plane.new.land(full_airport)
-      expect { Plane.new.land(full_airport) }.to raise_error("Airport is full!")
+      airbourne_plane = Plane.new(true)
+      airbourne_plane.land(full_airport)
+      second_airbourne_plane = Plane.new(true)
+      expect { second_airbourne_plane.land(full_airport) }.to raise_error("Airport is full!")
     end
 
     it "cannot land if landed" do
