@@ -12,13 +12,14 @@ class Airport
     raise 'Already landed' if plane.already_landed?
     raise 'Airport Full' if full?
 
-    plane.landed
+    plane.landed = true
     @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
     raise 'Too Stormy to take off' if stormy?
 
+    plane.landed = false
     @planes.pop
   end
 

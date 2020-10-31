@@ -5,9 +5,9 @@ class Plane
     @landed = false
   end
 
-  def landed
-    @landed = true
-  end
+  #   def landed
+  #     @landed = true
+  #   end
 
   def already_landed?
     @landed ? true : false

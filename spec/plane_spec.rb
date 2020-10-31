@@ -3,7 +3,7 @@ require_relative '../lib/plane'
 
 describe Plane do
   it 'marks a plane as landed' do
-    expect(subject.landed).to eq true
+    expect(subject.landed).to eq false
   end
 
   it 'stops a plane from landing if already landed' do
