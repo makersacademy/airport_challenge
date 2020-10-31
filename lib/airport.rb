@@ -8,31 +8,32 @@ class Airport
   attr_reader :hanger, :capacity
 
   def land(plane, weather)
-    if weather == "It's clear!"
-      if full?
-        raise 'The airport is full!'
-      else
-        @hanger << plane
-      end
-    elsif weather == "It's stormy!"
-      raise "The conditions aren't good enough!"
-    end 
+    if weather == "It's stormy!"
+      return condition_error
+    elsif full?
+      raise 'The airport is full!'
+    else
+      @hanger << plane
+    end
   end
 
 
   def take_off(weather)
-    if weather == "It's clear!"
-      if @hanger.empty?
-        raise 'There are no planes in the hanger!'
-      else
-        @hanger.pop
-      end
-    elsif weather == "It's stormy!"
-      raise "The conditions aren't good enough!"
+    if weather == "It's stormy!"
+      return condition_error
+    elsif @hanger.empty?
+      raise 'There are no planes in the hanger!'
+    else
+      @hanger.pop
     end
   end
 
   private
+
+  def condition_error
+    raise "The conditions aren't good enough!"
+  end
+
 
   def full?
     return false if @hanger.length < @capacity
