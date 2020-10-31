@@ -12,13 +12,10 @@ describe Airport do
     end
 
     it 'changes Plane landed attribute to true' do
-      plane_one = Plane.new
-      plane_two = Plane.new
-      subject.land(plane_one)
-      subject.land(plane_two)
-
-      subject.planes.each do |plane|
-        expect(plane.landed).to eq(true)
+      planes_to_land = Array.new(3) { Plane.new }
+      
+      planes_to_land.each do |plane|
+        expect { subject.land(plane) }.to change { plane.landed }.from(false).to(true)
       end
     end
   end
@@ -35,6 +32,12 @@ describe Airport do
 
     it 'raises an error if there are no planes in the Airport' do
       expect { subject.take_off }.to raise_error('Airport empty')
+    end
+
+    it 'changes Plane landed attribute to false' do
+     plane = Plane.new
+     subject.land(plane)
+     expect { subject.take_off }.to change { plane.landed }.from(true).to(false)
     end
   end
 end
