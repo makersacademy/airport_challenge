@@ -25,4 +25,15 @@ describe Plane do
       expect { Plane.new.land(full_airport) }.to raise_error("Airport is full!")
     end
   end
+
+  describe "#take_off" do
+    it "is removed from the array of planes after taking off" do
+      alpha = Plane.new
+      bravo = Plane.new
+      airport = Airport.new(50, [alpha, bravo])
+      bravo.take_off
+      expect(airport.planes).not_to include(bravo)
+      expect(airport.planes).to include(alpha)
+    end
+  end
 end
