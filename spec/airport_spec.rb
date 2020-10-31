@@ -24,6 +24,6 @@ describe Airport do
 
     it 'raises an error if there are no planes in the Airport' do
       expect { subject.take_off }.to raise_error('Airport empty')
-    end 
+    end
   end
 end
