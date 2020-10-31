@@ -19,6 +19,8 @@ class Plane
   end
 
   def take_off(airport)
+    raise StandardError.new("Plane can't take off from an airport it's not in!") if !airport.planes.include?(self)
+
     airport.planes.delete(self)
     @airbourne = true
   end
