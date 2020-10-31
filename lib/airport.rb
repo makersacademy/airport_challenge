@@ -1,4 +1,5 @@
 require_relative './plane.rb'
+require_relative './weather.rb'
 
 class Airport
   attr_reader :planes, :capacity
@@ -10,28 +11,20 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather)
     raise 'Cannot land, Airport at maximum capacity' if full?
-    raise 'Weather conditions unacceptable for landing' if weather == 'stormy'
+    raise 'Weather conditions unacceptable for landing' if weather == :stormy
     @planes.push(plane)
     plane.landed = true
   end
 
-  def take_off
+  def take_off(weather)
     raise 'Airport empty' if @planes.empty?
-    raise 'Weather conditions unacceptable for take off' if weather == 'stormy'
+    raise 'Weather conditions unacceptable for take off' if weather == :stormy
     plane = @planes.shift
     plane.landed = false
     print "#{plane} has taken off"
     plane
-  end
-
-  def weather
-    sunnies = Array.new(19) { 'sunny' }
-    stormies = Array.new(1) { 'stormy' }
-    samples = sunnies.concat(stormies).shuffle
-    randIndex = rand(0...samples.length)
-    samples[randIndex]
   end
 
   private
