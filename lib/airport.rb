@@ -14,6 +14,7 @@ class Airport
     raise 'Airport empty' if @planes.empty?
     plane = @planes.shift
     plane.landed = false
+    print "#{plane} has taken off"
     plane
   end
 end
