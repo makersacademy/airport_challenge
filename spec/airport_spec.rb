@@ -11,7 +11,7 @@ describe Airport do
     it "airport should store the landed plane" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.plane).to eq([plane])
+      expect(subject.planes).to include(plane)
     end
   end
   describe '#takeoff' do
@@ -21,12 +21,12 @@ describe Airport do
     it "airport should release the stored plane" do
       plane = Plane.new
       subject.takeoff(plane)
-      expect(subject.plane).not_to eq(plane)
+      expect(subject.planes).to_not include(plane)
     end
   end
   describe "When airport is at capacity" do
     it "Does not allow planes to land" do
-      20.times {subject.land Plane.new}
+      20.times { subject.land Plane.new } 
       expect { subject.land Plane.new }.to raise_error "Airport full! You cannot land here!"
     end
   end
