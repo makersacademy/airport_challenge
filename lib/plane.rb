@@ -1,3 +1,3 @@
 class Plane
-  #stunningly empty
+  # stunningly empty
 end

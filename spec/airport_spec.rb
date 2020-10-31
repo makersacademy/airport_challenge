@@ -1,7 +1,7 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
-
   let(:plane) { double :plane }
   let(:clear) { double :weather }
   let(:stormy) { double :weather }
@@ -26,6 +26,13 @@ describe Airport do
     expect(subject.take_off(clear.forecast)).to eq plane
   end
 
+  it 'can check if a particular plane is within the airport' do
+    allow(clear).to receive(:forecast).and_return("It's clear!")
+    a = Plane.new
+    subject.land(a, clear.forecast)
+    expect(subject.check(a)).to be true
+  end
+
   it 'raises an error if the hanger is empty' do
     allow(clear).to receive(:forecast).and_return("It's clear!")
     expect { subject.take_off(clear.forecast) }.to raise_error('There are no planes in the hanger!')
@@ -33,8 +40,8 @@ describe Airport do
 
   it 'prevents landing when the airport is full' do
     allow(clear).to receive(:forecast).and_return("It's clear!")
-    subject.capacity.times { subject.land(plane, clear.forecast) }
-    expect { subject.land(plane, clear.forecast) }.to raise_error('The airport is full!')
+    subject.capacity.times { subject.land(Plane.new, clear.forecast) }
+    expect { subject.land(Plane.new, clear.forecast) }.to raise_error('The airport is full!')
   end
 
   it 'the capacity of the hanger can change when appropriate' do
@@ -46,12 +53,19 @@ describe Airport do
   it 'if its stormy the plane wont take off' do
     allow(clear).to receive(:forecast).and_return("It's clear!")
     allow(stormy).to receive(:forecast).and_return("It's stormy!")
-    subject.land(plane, clear.forecast)
+    subject.land(Plane.new, clear.forecast)
     expect { subject.take_off(stormy.forecast) }.to raise_error("The conditions aren't good enough!")
   end
 
   it "if it's stormy planes wont land" do
     allow(stormy).to receive(:forecast).and_return("It's stormy!")
-    expect { subject.land(plane, stormy.forecast) }.to raise_error("The conditions aren't good enough!")
+    expect { subject.land(Plane.new, stormy.forecast) }.to raise_error("The conditions aren't good enough!")
+  end
+
+  it 'wont allow a plane to land if its already in the airport' do
+    allow(clear).to receive(:forecast).and_return("It's clear!")
+    a = Plane.new
+    subject.land(a, clear.forecast)
+    expect { subject.land(a, clear.forecast) }.to raise_error("This plane is already in the airport!")
   end
 end
