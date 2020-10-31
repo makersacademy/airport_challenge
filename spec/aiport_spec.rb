@@ -16,7 +16,7 @@ describe '#land' do
   plane = Plane.new
 
   it 'lands a plane' do
-    expect(plane).to be_instance_of Plane
+    expect(airport.land(plane)).to eq [plane]
   end
 
   it 'requires 1 argument' do
@@ -24,8 +24,9 @@ describe '#land' do
   end
 
   it 'raises an error when full' do
-    airport.land(Plane.new)
-    expect {airport.land(Plane.new)}.to raise_error 'Airport full'
+    #this is maximum length -1 as we've already landed a plane in line 19!!
+    9.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error 'Airport full'
   end
 end
 
@@ -38,11 +39,11 @@ describe '#take_off' do
   end
 
   it 'raises an error when empty' do
-    expect {airport.take_off}.to raise_error 'No planes'
+    expect { airport.take_off }.to raise_error 'No planes'
   end
 
   it 'confirms the plane is in the air' do
-    airport.land(plane)
+    airport.land(Plane.new)
     expect(airport.take_off).to eq "The plane is in the air"
   end
 end
