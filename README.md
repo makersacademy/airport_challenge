@@ -14,11 +14,7 @@ Airport Challenge
 ```
 My solution to the Week 1 Weekend Challenge at Makers Academy, a TDD & OOP assignment to create a fully tested way to control plane and airport objects through Ruby.
 ## My solution
-I broke the below problem down into three classes:
-
- - Airport
- - Plane
- - Weather
+I broke the below problem down into two classes, Airport and Plane, supported by a Weather module.
  
  I then wrote tests, using Doubles to simulate interaction between classes during unit testing. I then wrote a comprehensive integration test to ensure that these interactions were consistent when using the actual classes.
  
