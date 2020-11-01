@@ -7,11 +7,6 @@ class Plane
     @airbourne = airbourne
   end
 
-  def create_call_sign
-    @@plane_id += 1
-    three_random_letters + @@plane_id.to_s
-  end
-
   def land(airport)
     landing_error_checks(airport)
     airport.planes << self
@@ -25,6 +20,7 @@ class Plane
     @airbourne = true
   end
 
+  private
   def take_off_error_checks(airport)
     raise StandardError.new("Plane can't take off from an airport it's not in!") if !airport.planes.include?(self)
     
@@ -41,5 +37,10 @@ class Plane
 
   def three_random_letters
     (0...3).map { (65 + rand(26)).chr }.join
+  end
+
+  def create_call_sign
+    @@plane_id += 1
+    three_random_letters + @@plane_id.to_s
   end
 end
