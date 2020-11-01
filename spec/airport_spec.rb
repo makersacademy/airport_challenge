@@ -12,6 +12,12 @@ describe Airport do
       subject.landing(plane)
       expect(subject.hangar).to eq [plane]
     end
+
+    it 'wont allow more planes than the capacity allows for' do
+      plane = Plane.new
+      Airport::DEFAULT_CAPACITY.times { subject.landing(Plane.new) }
+      expect{ subject.landing(plane) }.to raise_error "NO SPACE"
+    end
   end
 
   context '#take_off method' do
