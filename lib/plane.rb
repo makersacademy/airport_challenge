@@ -19,4 +19,9 @@ class Plane
       raise StandardError.new "This plane cannot take off as it is not at an airport"
     end
   end
+
+  def at_airport?(airport)
+    return false unless @landed_at == airport
+    return true
+  end
 end

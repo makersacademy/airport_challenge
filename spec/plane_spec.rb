@@ -41,7 +41,20 @@ describe Plane do
     it "Will raise an error when told to take off when not at an airport" do
       expect { subject.take_off(airport) }.to raise_error(StandardError)
     end
+  end
 
+  context "#at_airport?" do
+    it "Will return true if asked if landed at correct airport" do
+      expect(landed_plane.at_airport?(airport)).to eq(true)
+    end
+
+    it "Will return false if asked if landed at incorrect airport" do
+      expect(landed_plane.at_airport?(another_airport)).to eq(false)
+    end
+
+    it "Will return false if asked if landed when not at airport" do
+      expect(subject.at_airport?(airport)).to eq(false)
+    end
   end
 
 end
