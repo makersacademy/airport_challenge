@@ -1,3 +1,7 @@
-class Airport
+require 'plane.rb'
 
+class Airport
+  def land(plane)
+    plane
+  end
 end
