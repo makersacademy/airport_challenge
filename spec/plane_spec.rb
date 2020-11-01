@@ -12,4 +12,10 @@ describe Plane do
       expect { subject.landed }.to raise_error('Unauthorized, ATC request')
     end
   end
+
+  context '#flying' do
+    it 'raises error unless called by Airport' do
+      exptect { subject.flying }.to raise_error('Unauthorized, ATC request')
+    end
+  end
 end
