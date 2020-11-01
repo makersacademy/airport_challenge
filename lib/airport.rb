@@ -1,7 +1,9 @@
+
 class Airport
   DEFAULT_CAPACITY = 15
 
-  def initialize(capacity = DEFAULT_CAPACITY )
+  def initialize(weather, capacity = DEFAULT_CAPACITY )
+    @weather = weather.weather_status
     @capacity = capacity
     @airplanes = []
   end
@@ -16,8 +18,12 @@ class Airport
   end
 
   def take_off(plane)
-    @airplanes.delete(plane)
-    return @airplanes.length
+    if @weather != "stormy"
+      @airplanes.delete(plane)
+      return @airplanes.length
+    else
+      raise StandardError.new("The storm is preventing us to takeoff")
+    end
   end
 
 end
