@@ -15,8 +15,9 @@ describe Airport do
 
     it 'wont allow more planes than the capacity allows for' do
       plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times { subject.landing(Plane.new) }
-      expect{ subject.landing(plane) }.to raise_error "NO SPACE"
+      airport = Airport.new(0)
+      expect{ airport.landing(plane) }.to raise_error "NO SPACE"
+
     end
   end
 
