@@ -14,11 +14,14 @@ class Airport
 
     raise "Airport full! You cannot land here!" if @planes.count >= @capacity
 
+    raise "Conditions are too risky to land!" if stormy?
+
     @planes << plane
   end
 
   def takeoff(plane)
     raise "Conditions are too risky to fly. Stay grounded!" if stormy?
+
     @planes -= [plane]
   end
 
