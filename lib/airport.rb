@@ -1,4 +1,5 @@
 require_relative '../lib/plane'
+require_relative '../lib/weather'
 
 class Airport
   attr_reader :planes, :capacity
@@ -13,15 +14,16 @@ class Airport
     raise 'Airport Full' if full?
     raise 'Too Stormy to land' if stormy?
 
-    plane.landed = true
+    plane.landed
     @planes << plane
   end
 
   def takeoff(plane)
     raise 'Too Stormy to take off' if stormy?
 
-    plane.landed = false
-    @planes.pop
+    plane = @planes.pop
+    plane.flying
+    print "#{plane} is now in the air"
   end
 
   private
