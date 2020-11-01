@@ -30,9 +30,27 @@ describe Airport do
       expect(subject).to respond_to(:takeoff).with(1).argument
     end
     it "airport should release the stored plane" do
+      allow(subject).to receive(:stormy?) {false}
       plane = Plane.new
       subject.takeoff(plane)
       expect(subject.planes).to_not include(plane)
+    end
+    # it "When it is stormy, takeoff will be prevented" do
+    #   weather = Weather.new
+    #   allow(subject).to receive(weather.weather).and_return("Stormy")
+    #   expect(subject)
+    # end
+  end
+  describe '#stormy?' do
+    it 'Instances of airport respond to the stormy method' do
+      expect(subject).to respond_to(:stormy?)
+    end
+    it 'Returns sunny or stormy' do
+      expect(subject.stormy?).to eq(true).or eq(false)
+    end
+    it 'When metoffice returns stormy, takeoff is prevented' do
+      allow(subject).to receive(:stormy?) {true}
+      expect {subject.takeoff Plane.new}.to raise_error "Conditions are too risky to fly. Stay grounded!"
     end
   end
 end
