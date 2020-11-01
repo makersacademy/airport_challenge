@@ -16,11 +16,11 @@ describe Airport do
   end
 
   it "Should return true when asked if it has space and it does" do
-    expect(subject.has_space?).to eq(true)
+    expect(subject.space?).to eq(true)
   end
 
   it "Should return false when asked if it has space and it doesn\'t" do
-    expect(zero_capacity_airport.has_space?).to eq(false)
+    expect(zero_capacity_airport.space?).to eq(false)
   end
 
   it "Should return either true or false when .good_weather? called" do
