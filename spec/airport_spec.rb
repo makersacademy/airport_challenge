@@ -14,4 +14,8 @@ describe Airport do
     expect(subject.capacity).to eq(20)
   end
 
+  it "Should return either true or false when .good_weather? called" do
+    expect([true, false]).to include(subject.good_weather?)
+  end
+
 end
