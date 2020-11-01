@@ -19,8 +19,8 @@ describe Airport do
     end
 
     it 'changes Plane landed attribute to true' do
-      planes_to_land = Array.new(3) { Plane.new }
       allow(subject).to receive(:stormy?) { false }
+      planes_to_land = Array.new(3) { Plane.new }
 
       planes_to_land.each do |plane|
         expect { subject.land(plane) }.to change { plane.docked }.from(false).to(true)
