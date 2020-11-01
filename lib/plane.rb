@@ -1,8 +1,6 @@
 require_relative '../lib/airport'
 
 class Plane
-  attr_accessor :landed
-
   def landed
     @landed = true
   end

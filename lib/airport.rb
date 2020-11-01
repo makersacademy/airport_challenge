@@ -17,12 +17,12 @@ class Airport
     @planes << plane
   end
 
-  def takeoff(plane)
+  def takeoff(*)
     raise 'Too Stormy to take off' if stormy?
 
-    plane = @planes.pop
-    plane.flying
-    print "#{plane} is now in the air"
+    takeoff = @planes.pop
+    takeoff.flying
+    print "#{takeoff} is now in the air"
   end
 
   private
