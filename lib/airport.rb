@@ -9,21 +9,26 @@ class Airport
   end
 
   def land(plane)
-    if @airplanes.length < @capacity
+    if @airplanes.length < @capacity && !stormy?
       @airplanes.push(plane)
       return @airplanes.length
     else
-      raise StandardError.new("Airport at full capacity")
+      raise StandardError.new("Airport at full capacity") if @airplanes.length >= @capacity
+      raise StandardError.new("The storm is preventing us to land") if stormy?
     end
   end
 
   def take_off(plane)
-    if @weather != "stormy"
+    if !stormy?
       @airplanes.delete(plane)
       return @airplanes.length
     else
       raise StandardError.new("The storm is preventing us to takeoff")
     end
+  end
+
+  def stormy?
+    @weather == "stormy"
   end
 
 end
