@@ -6,4 +6,10 @@ describe Plane do
       expect(subject.docked).to be_instance_of(FalseClass)
     end
   end
+
+  context '#landed' do
+    it 'raises error unless called by Airport' do
+      expect { subject.landed }.to raise_error('Unauthorized, ATC request')
+    end
+  end
 end
