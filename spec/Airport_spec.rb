@@ -34,5 +34,10 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error "ATTENTION - It is not possible to land because of weather condition!"
   end
 
-
+  it "raise an error if plane is not in this airport" do
+    allow(airport).to receive(:stormy?).and_return false
+    airport2 = described_class.new(100)
+    airport2.land(plane)
+    expect { airport.take_off(plane) }.to raise_error "ERROR - Plane is not in this airport."
+  end
 end
