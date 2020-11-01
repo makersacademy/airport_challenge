@@ -8,21 +8,22 @@ describe Airport do
 
   it 'lands a plane at the airport' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
     expect(subject.land(plane)).to eq [plane]
   end
 
   it 'instructs a plane to take off from the airport' do
     plane = Plane.new
-    subject.land(plane)
     allow(subject).to receive(:stormy?).and_return(false)
+    subject.land(plane)
     expect(subject.takeoff(plane)).to eq plane
   end
 
   it 'checks that the plane has taken off' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
     subject.land(plane)
     length = subject.planes.length
-    allow(subject).to receive(:stormy?).and_return(false)
     subject.takeoff(plane)
     expect(length).to eq(subject.planes.length + 1)
   end
@@ -38,13 +39,20 @@ describe Airport do
 
   it 'stops a plane from landing if airport is full' do
     plane = Plane.new
-    subject.capacity.times { subject.land plane }
+    allow(subject).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:already_landed?).and_return(false)
+    subject.capacity.times { subject.land plane }
     expect { subject.land plane }.to raise_error 'Airport Full'
   end
 
   it 'does not allow take off due to stormy weather' do
     allow(subject).to receive(:stormy?).and_return(true)
     expect { subject.takeoff(plane) }.to raise_error 'Too Stormy to take off'
+  end
+
+  it 'does not allow land due to stormy weather' do
+    allow(plane).to receive(:already_landed?).and_return(false)
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect { subject.land(plane) }.to raise_error 'Too Stormy to land'
   end
 end

@@ -11,6 +11,7 @@ class Airport
   def land(plane)
     raise 'Already landed' if plane.already_landed?
     raise 'Airport Full' if full?
+    raise 'Too Stormy to land' if stormy?
 
     plane.landed = true
     @planes << plane
