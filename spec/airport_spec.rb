@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  let(:zero_capacity_airport) { Airport.new(0) }
 
   it "Is an instance of the airport class" do
     expect(subject).to be_instance_of(Airport)
@@ -12,6 +13,14 @@ describe Airport do
 
   it "Should have default capacity of 20" do
     expect(subject.capacity).to eq(20)
+  end
+
+  it "Should return true when asked if it has space and it does" do
+    expect(subject.has_space?).to eq(true)
+  end
+
+  it "Should return false when asked if it has space and it doesn\'t" do
+    expect(zero_capacity_airport.has_space?).to eq(false)
   end
 
   it "Should return either true or false when .good_weather? called" do

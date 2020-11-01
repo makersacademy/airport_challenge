@@ -8,6 +8,7 @@ class Plane
   def land(airport)
     raise StandardError.new "This plane is already at an airport" if @landed_at != -1
     raise StandardError.new "The plane cannot be landed at this airport because of stormy weather" if !airport.good_weather?
+    raise StandardError.new "The plane cannot be landed at this airport because the airport is full" if !airport.has_space?
     @landed_at = airport unless @landed_at != -1
   end
 
