@@ -15,7 +15,7 @@ describe Plane do
       boeing = Plane.new
       heathrow = Airport.new
       boeing.land(heathrow)
-      expect { subject.land(heathrow) }.to raise_error "Airport full!" 
+      expect { heathrow.capacity.times {subject.land(heathrow)} }.to raise_error "Airport full!"
     end
   end
   describe '#take_off' do
