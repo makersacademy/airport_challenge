@@ -11,6 +11,12 @@ describe Plane do
       boeing.land(heathrow)
       expect(heathrow.planes).to include(boeing)
     end
+    it 'does not land a plane if airport is full' do
+      boeing = Plane.new
+      heathrow = Airport.new
+      boeing.land(heathrow)
+      expect { subject.land(heathrow) }.to raise_error "Airport full!" 
+    end
   end
   describe '#take_off' do
     it 'takes off plane from airport (removes plane from airport planes list)' do
