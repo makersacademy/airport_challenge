@@ -6,11 +6,14 @@ describe Airport do
   end
   
   # Landing 
+describe "Landing" do
   it "land is a function" do
     expect(subject).to respond_to(:land)
-  end  
+  end
+end  
   
   # Taking off
+describe "Taking off" do
   it "can take off" do
     expect(subject).to respond_to(:take_off)
   end
@@ -18,7 +21,8 @@ describe Airport do
   it "can confirm that the plane has left the airport" do
     expect(subject.take_off).to eq "plane has taken off and longer at airport"
   end
-    
+end
+  # Capacity    
 describe "Capacity" do
   it "will prevent landing when the airport is full " do
     plane = Plane.new
