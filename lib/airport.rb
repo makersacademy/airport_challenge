@@ -28,11 +28,11 @@ class Airport
     plane
   end
 
+  private
+
   def stormy?
     Weather.current == :stormy
   end
-
-  private
 
   def full?
     @planes.length == @capacity
