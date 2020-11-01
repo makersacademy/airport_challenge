@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -43,7 +44,11 @@ describe Airport do
     it 'responds to #take_off' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
-
+    it 'prevents take off if stormy(number 1)' do
+      weather = Weather.new
+      allow(weather).to receive(:generate) { 1 }
+      expect { subject.take_off Plane.new }.to raise_error 'Cant take off in stormy weather'
+    end
   end
 
 end

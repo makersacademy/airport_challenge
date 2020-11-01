@@ -19,6 +19,7 @@ DEFAULT_CAPACITY = 10
   end
 
   def take_off(plane)
+    fail 'Cant take off in stormy weather' if 1
     @plane.pop
   end
 
