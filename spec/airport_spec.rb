@@ -32,4 +32,15 @@ describe Airport do
     10.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error("Airport at full capacity")
   end
+
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+
+  it "it will throw an error if airport at default capacity" do
+    airport = Airport.new()
+    15.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error("Airport at full capacity")
+  end
 end
