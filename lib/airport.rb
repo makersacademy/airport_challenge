@@ -16,14 +16,14 @@ class Airport
     raise 'Cannot land, Airport at maximum capacity' if full?
     raise 'Weather conditions unacceptable for landing' if stormy?
     @planes.push(plane)
-    plane.landed = true
+    plane.landed
   end
 
   def take_off
     raise 'Airport empty' if @planes.empty?
     raise 'Weather conditions unacceptable for take off' if stormy?
     plane = @planes.shift
-    plane.landed = false
+    plane.flying
     print "#{plane} has taken off"
     plane
   end

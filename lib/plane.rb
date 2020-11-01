@@ -1,7 +1,15 @@
 class Plane
-  attr_accessor :landed
+  attr_reader :docked
 
   def initialize
-    @landed = false
+    @docked = false
+  end
+
+  def landed
+    @docked = true
+  end
+
+  def flying
+    @docked = false
   end
 end

@@ -23,7 +23,7 @@ describe Airport do
       allow(subject).to receive(:stormy?) { false }
 
       planes_to_land.each do |plane|
-        expect { subject.land(plane) }.to change { plane.landed }.from(false).to(true)
+        expect { subject.land(plane) }.to change { plane.docked }.from(false).to(true)
       end
     end
 
@@ -55,7 +55,7 @@ describe Airport do
       allow(subject).to receive(:stormy?) { false }
       plane = Plane.new
       subject.land(plane)
-      expect { subject.take_off }.to change { plane.landed }.from(true).to(false)
+      expect { subject.take_off }.to change { plane.docked }.from(true).to(false)
     end
 
     it 'confirms Plane is no longer in the Airport' do
