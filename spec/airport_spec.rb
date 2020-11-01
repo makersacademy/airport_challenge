@@ -64,4 +64,12 @@ describe Airport do
     plane = Plane.new
     expect { airport.take_off(plane) }.to raise_error("The storm is preventing us to takeoff")
   end
+
+
+  it 'throw an error at landing when wheater is stormy' do
+    allow(weather).to receive(:weather_status).and_return "stormy"
+    airport = Airport.new(weather, 10)
+    plane = Plane.new
+    expect { airport.land(plane) }.to raise_error("The storm is preventing us to land")
+  end
 end
