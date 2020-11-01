@@ -6,8 +6,14 @@ describe Airport do
   it { is_expected.to respond_to :take_off }
   it { is_expected.to respond_to :hangar_count }
 
-  describe '#land method' do
+  context "weather is stormy" do
+    it 'plane cannot land' do
+      airport = Airport.new('stormy')
+      expect { airport.land Plane.new }.to raise_error("The weather is too stormy!")
+    end
+  end
 
+  context "weather is sunny" do
     it "puts the plane in the Airport" do
       airport = Airport.new
       plane = Plane.new
@@ -30,7 +36,5 @@ describe Airport do
       airport.land(plane)
       expect { airport.take_off(plane) }.to change { airport.hangar.count }.by(-1)
     end
-
   end
-
-end
+end 
