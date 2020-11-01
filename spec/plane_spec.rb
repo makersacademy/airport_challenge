@@ -19,17 +19,25 @@ describe Plane do
 
   context "#land" do
     it "Will be landed at an airport after landing there (if it was not already landed when method was called)" do
+      allow(airport).to receive(:good_weather?).and_return(true)
       subject.land(airport)
       expect(subject.landed_at).to eq(airport)
     end
 
     it "Will raise an error if asked to land when already landed" do
+      allow(airport).to receive(:good_weather?).and_return(true)
       expect { 2.times { subject.land(airport) } }.to raise_error(StandardError)
+    end
+
+    it "Will raise error when trying to land at airport with stormy weather (even with other conditions to land met)" do
+      allow(airport).to receive(:good_weather?).and_return(false)
+      expect { subject.land(airport) }.to raise_error(StandardError)
     end
   end
 
   context "#take_off" do
     it "Will take off when told to take off from correct airport" do
+      allow(airport).to receive(:good_weather?).and_return(true)
       landed_plane.take_off(airport)
       expect(landed_plane.landed_at).to eq(-1)
     end
@@ -40,6 +48,11 @@ describe Plane do
 
     it "Will raise an error when told to take off when not at an airport" do
       expect { subject.take_off(airport) }.to raise_error(StandardError)
+    end
+
+    it "Will raise error when take of from airport with stormy weather (even with other conditions for take off met)" do
+      allow(airport).to receive(:good_weather?).and_return(false)
+      expect { landed_plane.take_off(airport) }.to raise_error(StandardError)
     end
   end
 
