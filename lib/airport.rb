@@ -1,5 +1,4 @@
 require_relative '../lib/plane'
-require_relative '../lib/weather'
 
 class Airport
   attr_reader :planes, :capacity

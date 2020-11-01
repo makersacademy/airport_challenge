@@ -1,6 +1,5 @@
 require_relative '../lib/airport'
 require_relative '../lib/plane'
-require_relative '../lib/weather'
 
 describe Airport do
   context '#capacity' do

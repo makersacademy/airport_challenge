@@ -1,5 +1,4 @@
 require_relative '../lib/airport'
-require_relative '../lib/weather'
 
 class Plane
   attr_accessor :landed
