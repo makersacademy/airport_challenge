@@ -10,10 +10,11 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
+
     hangar << plane 
   end
 
-  def take_off(plane)
+  def take_off(*)
     @hangar.pop
   end
 
