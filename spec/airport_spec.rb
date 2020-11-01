@@ -15,9 +15,15 @@ describe Airport do
 
     it 'wont allow more planes than the capacity allows for' do
       plane = Plane.new
-      airport = Airport.new(0)
-      expect{ airport.landing(plane) }.to raise_error "NO SPACE"
+      airport = Airport.new([], 0)
+      allow(airport).to receive(:rand) { 20 }
+      expect { airport.landing(plane) }.to raise_error "NO SPACE"
+    end
 
+    it 'wont allow planes to land if the weather is bad' do
+      plane = Plane.new
+      allow(subject).to receive(:rand) { 1 }
+      expect { subject.landing(plane) }.to raise_error "HOLY SH*T ITS WET"
     end
   end
 
@@ -28,9 +34,17 @@ describe Airport do
 
     it 'removes the plane from the hangar when it takes off' do
       plane = Plane.new
-      subject.landing(plane)
-      expect(subject.take_off(plane)).to eq(plane)
-      expect(subject.hangar).to be_empty
+      airport = Airport.new([plane])
+      allow(airport).to receive(:rand) { 20 }
+      expect(airport.take_off(plane)).to eq(plane)
+      expect(airport.hangar).to be_empty
+    end
+
+    it 'wont allow planes to take of if the weather is bad' do
+      plane = Plane.new
+      airport = Airport.new([plane])
+      allow(airport).to receive(:rand) { 1 }
+      expect { airport.take_off(plane) }.to raise_error "HOLY SH*T ITS WET"
     end
   end
 end
