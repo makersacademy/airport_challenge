@@ -12,24 +12,38 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+My solution to the Week 1 Weekend Challenge at Makers Academy, a TDD & OOP assignment to create a fully tested way to control plane and airport objects through Ruby.
+## My solution
+I broke the below problem down into three classes:
 
-Instructions
----------
+ - Airport
+ - Plane
+ - Weather
+ 
+ I then wrote tests, using Doubles to simulate interaction between classes during unit testing. I then wrote a comprehensive integration test to ensure that these interactions were consistent when using the actual classes.
+ 
+I tested for reasonable edge cases, and used TDD development (notably the red-green-refactor method) to write my code throughout, as well as feature testing regularly in IRB.
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+SimpleCov shows that I reached 100% test coverage for the project, with all tests passing.
 
-Steps
--------
+## Example Usage
+```console
+git clone https://github.com/ehwus/airport_challenge.git
+cd ./airport_challenge
+bundle install
+bundle
+irb -r "./lib/plane.rb"
+2.6.5 :001 > require './lib/airport.rb'
+ => true
+2.6.5 :002 > plane = Plane.new(true)
+ => #<Plane:0x00007fc02c23b308 @call_sign="TDW1", @airbourne=false> 
+2.6.5 :003 > airport = Airport.new
+ => #<Airport:0x00007fc02c242338 @capacity=50, @planes=[], @weather=#<Weather:0x00007fc02c2422c0>> 
+2.6.5 :004 > plane.land(airport)
+```
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
+Assignment Brief
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
@@ -75,15 +89,3 @@ In code review we'll be hoping to see:
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
