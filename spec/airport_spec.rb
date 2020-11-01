@@ -17,7 +17,7 @@ describe Airport do
       #expect{ airport.land Plane.new }.to raise_error 'Airport Full'
     subject { Airport.new }
     let(:plane) { Plane.new }
-    it "defaults capacity" do
+    it "allows user to set capacity" do
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
@@ -43,6 +43,7 @@ describe Airport do
     it 'responds to #take_off' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
+
   end
 
 end
