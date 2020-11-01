@@ -6,17 +6,18 @@ class Plane
   end
 
   def landed
-    raise 'Unauthorized, ATC request' if !atc_request?
+    raise 'Unauthorized, ATC request' if not_atc_request?
     @docked = true
   end
 
   def flying
+    raise 'Unauthorized, ATC request' if not_atc_request?
     @docked = false
   end
 
   private
 
-  def atc_request?
-    %w[land].include?(caller[1][/`.*'/][1..-2])
+  def not_atc_request?
+    !%w[land take_off].include? caller[1][/`.*'/][1..-2]
   end
 end

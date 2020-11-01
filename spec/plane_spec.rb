@@ -15,7 +15,7 @@ describe Plane do
 
   context '#flying' do
     it 'raises error unless called by Airport' do
-      exptect { subject.flying }.to raise_error('Unauthorized, ATC request')
+      expect { subject.flying }.to raise_error('Unauthorized, ATC request')
     end
   end
 end
