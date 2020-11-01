@@ -32,11 +32,11 @@ class Plane
   end
 
   def landing_error_checks(airport)
+    raise StandardError.new("Plane is already on the ground!") if !@airbourne
+
     raise StandardError.new("Stormy conditions are preventing a landing.") if airport.current_weather == 'stormy'
     
     raise StandardError.new("Airport is full!") if airport.planes.length >= airport.capacity
-
-    raise StandardError.new("Plane is already on the ground!") if !@airbourne
   end
 
   def three_random_letters
