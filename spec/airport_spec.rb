@@ -4,8 +4,8 @@ describe Airport do
 
   describe "#land" do 
 
-    it "prevents a landing if airport is full" do 
-      subject.land(Plane.new)
+    it "raises an error if airport is full" do 
+      100.times { subject.land Plane.new }
       expect { subject.land Plane.new }.to raise_error "Airport is full"
     end 
 
@@ -24,7 +24,7 @@ describe Airport do
     it "confirms a plane that has taken off is not in the airport" do 
       plane = Plane.new
       subject.take_off(plane)
-      expect(subject.plane).to eq plane 
+      expect(subject.hangar).not_to include plane 
     end 
 
   end 
