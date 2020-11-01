@@ -11,12 +11,15 @@ class Airport
 
   def landing(plane)
     raise "HOLY SH*T ITS WET" if stormy?
+
     raise "NO SPACE" if hangar.length >= capacity
+
     @hangar << plane
   end
 
   def take_off(plane)
     raise "HOLY SH*T ITS WET" if stormy?
+    
     hangar.delete(plane)
   end
 
