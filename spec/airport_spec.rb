@@ -40,7 +40,11 @@ describe Airport do
 
   it "it will throw an error if airport at default capacity" do
     airport = Airport.new()
-    15.times { airport.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error("Airport at full capacity")
   end
 end
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
