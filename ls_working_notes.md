@@ -9,7 +9,7 @@ User story 1 - plane to land at airport
 Need class for airport & plane. Need method of land.
 
 Feature test:
-```
+```ruby
 require "./lib/airport.rb"
 airport = Airport.new
 plane = airport.land_plane
