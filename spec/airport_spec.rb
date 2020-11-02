@@ -29,10 +29,22 @@ describe Airport do
   end
 
   context '#full?' do
+    error_message = 'Unable to land due to full airport'
+
     it 'prevents landing if airport full' do
       allow(subject).to receive(:full?).and_return(true)
-      error_message = 'Unable to land due to full airport'
       expect { subject.land(plane) }.to raise_error error_message
+    end
+
+    it 'raises an error when full' do
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error error_message
+    end
+  end
+
+  describe '#capacity' do
+    it 'sets the default airport capacity' do
+      expect(subject.capacity).to eq(3)
     end
   end
 end
