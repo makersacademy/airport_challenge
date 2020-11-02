@@ -40,7 +40,7 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-I created a set of classes and modules to satisfy the first four stories. 
+I created a set of classes and modules to satisfy the first three stories. For the fourth, I got as far as creating a default capacity, but not as far as one that could be overridden. 
 
 For the fifth story, I would use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In the tests, I would use a stub to override random weather to ensure consistent test behaviour.
 
