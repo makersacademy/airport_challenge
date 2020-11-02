@@ -1,7 +1,18 @@
 require 'plane.rb'
 
 class Airport
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
+
   def land(plane)
-    plane
+    @planes << plane
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)
+    @planes
   end
 end
