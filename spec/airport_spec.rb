@@ -14,14 +14,24 @@ describe Airport do
 
     it "appends the incoming plane to landed planes" do
       plane = Plane.new
+      allow(subject.airport_weather).to receive(:request_weather) {"sunny"}
       plane.land(subject)
       expect(subject.landed_planes[-1]).to eq(plane)
     end
 
     it "raises an Exception when trying to land at a full airport" do
-      subject.capacity.times { Plane.new.land(subject) }
-      expect { subject.inbound_flight(Plane.new) }.to raise_error(Exception, "Landing denied - Airport in full capacity")
+      plane = Plane.new
+      airport = Airport.new(1)
+      allow(airport.airport_weather).to receive(:request_weather) {"sunny"}
+      plane.land(airport)
+      expect { (Plane.new).land(airport) }.to raise_error(Exception, "Landing denied - Airport in full capacity")
     end
+
+    it "raises an exception when trying to land and weather is stormy" do
+      allow(subject.airport_weather).to receive(:request_weather) {"stormy"}
+      expect { subject.inbound_flight(Plane.new) }.to raise_error(Exception, "Landing denied due to stormy weather.")
+    end
+
   end
 
   describe "#outbound_flight" do
@@ -31,23 +41,21 @@ describe Airport do
 
     it "removes a plane from the landed_planes list based on plane number" do
       plane = Plane.new
+      allow(subject.airport_weather).to receive(:request_weather) {"sunny"}
       plane.land(subject)
       expect(subject.outbound_flight(plane)).to eq(plane)
     end
-  end
 
-  describe "#confirm_takeoff" do
-    it "responds to the confirm method" do
-      expect(subject).to respond_to(:confirm_takeoff).with(1).argument
+    it "raises an exception when trying to take off and weather is stormy" do
+      allow(subject.airport_weather).to receive(:request_weather) {"stormy"}
+      expect { subject.outbound_flight(Plane.new) }.to raise_error(Exception, "Take off denied due to stormy weather.")
     end
-
-    it "confirms the absence of a plane" do
-      plane = Plane.new
-      airport = Airport.new
-      plane.land(airport)
-      subject.outbound_flight(plane)
-      expect(subject.confirm_takeoff(plane)).to eq("Plane #{plane} is not at the airport.")
-    end
+    # 
+    # it "raises an exception when trying to take off but plane is not present at the airport" do
+    #   allow(subject).to receive(:landed_planes) { 0 }
+    #   allow(subject.airport_weather).to receive(:request_weather) {"sunny"}
+    #   expect { subject.outbound_flight(Plane.new) }.to raise_error(Exception, "Take off denied as plane is not at the airport")
+    # end
 
   end
 

@@ -1,3 +1,5 @@
+require '~/Projects/airport_challenge/lib/weather.rb'
+
 class Plane
 
   def land(airport)

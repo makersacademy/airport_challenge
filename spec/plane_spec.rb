@@ -3,6 +3,10 @@ require 'airport'
 
 describe Plane do
 
+  it "creates an instance of Plane" do
+    expect(subject).to be_instance_of Plane
+  end
+
   describe "#land" do
     it "responds to land method" do
       expect(subject).to respond_to(:land).with(1).argument
@@ -10,15 +14,18 @@ describe Plane do
 
     it "lands at a specific airport" do
       airport = Airport.new
+      allow(airport.airport_weather).to receive(:request_weather) {"sunny"}
       expect(subject.land(airport)).to eq("Plane #{subject} landed at #{airport}.")
     end
 
     it "asks from airport to append plane to landed ones" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport.airport_weather).to receive(:request_weather) {"sunny"}
       plane.land(airport)
       expect(airport.landed_planes[-1]).to eq(plane)
     end
+
   end
 
   describe "#take_off" do
@@ -28,15 +35,18 @@ describe Plane do
 
     it "takes off from a specific airport" do
       airport = Airport.new
+      allow(airport.airport_weather).to receive(:request_weather) {"sunny"}
       expect(subject.take_off(airport)).to eq("Plane #{subject} took off from #{airport}.")
     end
 
     it "asks the airport to remove the plane from the landed_planes list" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport.airport_weather).to receive(:request_weather) { "sunny" }
       plane.land(airport)
       expect(airport.outbound_flight(plane)).to eq(plane)
     end
+
   end
 
 end
