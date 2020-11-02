@@ -4,7 +4,7 @@ describe Airport do
   plane = Plane.new
 
   it 'allows the user to create an Airport instance' do
-    expect(subject).to be_instance_of Airport
+    expect(subject).to be_instance_of(Airport)
   end
 
   describe '#land' do
@@ -25,6 +25,14 @@ describe Airport do
     it 'confirms that the plane is no longer in the airport' do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq(subject.planes)
+    end
+  end
+
+  context '#full?' do
+    it 'prevents landing if airport full' do
+      allow(subject).to receive(:full?).and_return(true)
+      error_message = 'Unable to land due to full airport'
+      expect { subject.land(plane) }.to raise_error error_message
     end
   end
 end
