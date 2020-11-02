@@ -1,8 +1,8 @@
 require 'airport.rb'
 
 describe Airport do
-  plane = Plane.new
-  weather = Weather.new
+  let(:plane) { Plane.new }
+  let(:weather) { Weather.new }
 
   it 'allows the user to create an Airport instance' do
     expect(subject).to be_instance_of(Airport)
@@ -24,7 +24,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    plane_2 = Plane.new
 
     it 'instructs a plane to take off from an airport' do
       expect(subject).to respond_to(:take_off).with(1).argument
@@ -32,9 +31,9 @@ describe Airport do
 
     it 'confirms that the plane is no longer in the airport' do
       allow(weather).to receive(:stormy?).and_return(false)
-      subject.land(plane_2)
-      subject.take_off(plane_2)
-      expect(subject.planes).not_to include(plane_2)
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include(plane)
     end
   end
 
