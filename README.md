@@ -13,52 +13,100 @@ Airport Challenge
 
 ```
 
-Instructions
+
 ---------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+In this project, a command line application is written after a request from a client, which controls the flow of planes at an airport. The software was implemented in Ruby and it consists of 3 scripts in total, namely,
 
-Steps
+- airport.rb
+- plane.rb
+- weather.rb
+
+Each script has its own class created inside of it, and there is interaction between the three classes (Airport, Plane, Weather).
+
+The user stories are the following ones,
+
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+How to Use
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+In order to run the application, follow these steps,
+
+#### Clone the repository
+
+Initially, clone the repository like this,
+
+```bash
+$ git clone https://github.com/CodeZeus-dev/airport_challenge.git
+```
+
+#### Open irb in the terminal
+
+```bash
+$ irb
+```
+
+#### Require the appropriate files
+```bash
+$ require('./lib/airport.rb')
+$ require('./lib/plane.rb')
+$ require('./lib/weather.rb')
+```
+
+#### Create new objects
+```bash
+airport = Airport.new
+plane = Plane.new
+```
+
+#### To land a plane at an airport, do
+```bash
+plane.land(airport)
+```
+
+#### To let a plane take off, do
+```bash
+plane.take_off(airport)
+```
+
+#### To manually set the airport capacity, pass it as an argument
+```bash
+airport = Airport.new(15)
+```
+
+All other methods can be accessed via .dot notation.
 
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
@@ -72,7 +120,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
