@@ -21,7 +21,7 @@ class Airport
   def outbound_flight(plane)
     raise Exception.new "Take off denied due to stormy weather." if @airport_weather.request_weather == "stormy"
     # raise Exception.new "Take off denied as plane is not at the airport"
-    @landed_planes.delete(plane) if at_airport?
+    @landed_planes.delete(plane) if at_airport?(plane)
   end
 
   private
@@ -30,8 +30,8 @@ class Airport
     @landed_planes.length == @capacity
   end
 
-  def at_airport?
-    !@landed_planes.include?(self)
+  def at_airport?(plane)
+    @landed_planes.include?(plane)
   end
 
 end
