@@ -16,4 +16,9 @@ describe "Airport" do
     expect { airport.land_plane Plane.new }.to raise_error "The airport is full"
   end
 
+  it "prevents take-off when weather is stormy" do
+    airport = Airport.new(2, "stormy")
+    expect { airport.take_off }.to raise_error "No take-off due to poor weather"
+  end
+
 end
