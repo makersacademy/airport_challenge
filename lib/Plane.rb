@@ -4,11 +4,14 @@ class Plane
 
   def land(airport)
     fail "Airport full!" if airport.planes.count >= airport.capacity
-    airport.planes.push(self)
+    fail "Stormy conditions preventing landing" if airport.stormy? == true
 
+    airport.planes.push(self)
   end
 
   def take_off(airport)
+    fail "It's stormy, cannot take off!" if airport.stormy? == true
+
     airport.planes.delete(self)
     "Plane no longer in airport"
   end
