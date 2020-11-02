@@ -1,11 +1,13 @@
 require 'plane.rb'
+require 'weather.rb'
 
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
 
   def initialize(capacity: 3)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -14,8 +16,8 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Unable to take off due to stormy weather' if @weather.stormy?
     @planes.delete(plane)
-    @planes
   end
 
   def full?
