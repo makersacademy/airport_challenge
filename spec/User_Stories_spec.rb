@@ -18,4 +18,10 @@ describe 'User Stories' do
     20.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error("Airport at full Capacity")
   end
+  it 'Setting a default Capacity' do
+    default_airport = Airport.new
+    plane = Plane.new
+    default_capacity = Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+    expect{ default_airport.land(plane) }.to raise_error("Airport at full Capacity")
+  end
 end

@@ -23,4 +23,13 @@ describe '#take_off' do
     expect(airport).to respond_to(:take_off)
   end
 end
+
+context 'defaults' do
+  subject(:default_airport) { Airport.new}
+
+  it ' has a default capacity' do
+    Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+    expect { default_airport.land(plane) }.to raise_error 'Airport at full Capacity'
+  end
+end
 end
