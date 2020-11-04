@@ -19,10 +19,13 @@ DEFAULT_CAPACITY = 10
   end
 
   def take_off(plane)
-    weather = Weather.new
-    current = weather.generate
-    fail 'Cant take off in stormy weather' if current == 1
+    fail 'Cant take off in stormy weather' if weather == 1
     @plane.pop
+  end
+
+  def weather
+    weather = Weather.new
+    @current = weather.generate
   end
 
   private

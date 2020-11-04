@@ -1,5 +1,6 @@
 require 'airport'
 require 'weather'
+require 'plane'
 
 describe Airport do
 
@@ -18,6 +19,7 @@ describe Airport do
       #expect{ airport.land Plane.new }.to raise_error 'Airport Full'
     subject { Airport.new }
     let(:plane) { Plane.new }
+    #plane = Plane.new
     it "allows user to set capacity" do
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
@@ -45,9 +47,12 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
     it 'prevents take off if stormy(number 1)' do
-      weather = Weather.new
-      allow(weather).to receive(:generate) { 1 }
+      allow(subject).to receive(:weather) { 1 }
       expect { subject.take_off Plane.new }.to raise_error 'Cant take off in stormy weather'
+    end
+    it 'allows take off if sunny (number 2-6)' do
+      allow(subject).to receive(:weather) { 3 }
+      expect { subject.take_off(Plane.new) }.to change { subject.plane.length }.by(-1)
     end
   end
 
