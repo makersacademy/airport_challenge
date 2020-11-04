@@ -51,6 +51,7 @@ describe Airport do
       expect { subject.take_off Plane.new }.to raise_error 'Cant take off in stormy weather'
     end
     it 'allows take off if sunny (number 2-6)' do
+      subject.land(Plane.new)
       allow(subject).to receive(:weather) { 3 }
       expect { subject.take_off(Plane.new) }.to change { subject.plane.length }.by(-1)
     end
