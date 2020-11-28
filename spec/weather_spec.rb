@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  it "says whether it is sunny or stormy" do
-    expect(subject.generate).to eq(:sunny).or eq(:stormy) 
+  it "checks wether it's sunny" do
+    expect(subject.sunny?).to eq(true).or eq(false)
   end
 end
