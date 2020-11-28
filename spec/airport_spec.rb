@@ -22,6 +22,12 @@ describe Airport do
       airport.land_plane(plane)
       expect(airport.planes[-1]).to be_instance_of Plane
     end
+
+    it 'raises error when airport is full' do
+      plane = Plane.new
+      airport.capacity.times { airport.land_plane(plane) }
+      expect { airport.land_plane(plane) }.to raise_error 'Airport full!'
+    end
   end
 
   describe '#take_off' do
