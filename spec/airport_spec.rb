@@ -8,7 +8,7 @@ describe Airport do
   end
 
   it 'responds to request_take_off method' do
-    expect(subject).to respond_to(:request_take_off)
+    expect(subject).to respond_to(:request_take_off).with(1).argument
   end
 
   it 'responds to check_weather method' do
@@ -43,11 +43,12 @@ describe Airport do
     it 'removes a plane from the airport' do
       plane = Plane.new
       airport.receive_plane(plane)
-      expect(airport.request_take_off).to be_instance_of Plane
+      expect(airport.request_take_off(plane)).to be_instance_of Plane
     end
 
     it 'raises error when no planes left in airport' do
-      expect { airport.request_take_off }.to raise_error 'No planes left!'
+      plane = Plane.new
+      expect { airport.request_take_off(plane) }.to raise_error 'No planes left!'
     end
   end
 

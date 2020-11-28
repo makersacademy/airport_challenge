@@ -11,6 +11,7 @@ class Plane
   def land_plane(airport)
     fail 'Plane has already landed' if flying? == false
 
+    airport.receive_plane(self)
     @current_airport = airport
   end
 
@@ -23,6 +24,7 @@ class Plane
 
     fail 'Plane located at different airport' unless airport == @current_airport
 
+    airport.request_take_off(self)
     @current_airport = nil
   end
 
