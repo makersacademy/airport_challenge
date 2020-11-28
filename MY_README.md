@@ -26,10 +26,10 @@ To ensure safety
 ##### I want to prevent landing when weather is stormy 
 
 ### TaskList
-* I want to instruct a plane to land at an airport
-* I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-* I want to prevent landing when the airport is full
-* I would like a default airport capacity that can be overridden as appropriate
+* ##### I want to instruct a plane to land at an airport
+* ##### I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+* ##### I want to prevent landing when the airport is full
+* ##### I would like a default airport capacity that can be overridden as appropriate
 * I want to prevent takeoff when weather is stormy
 * I want to prevent landing when weather is stormy
 
@@ -63,3 +63,8 @@ To ensure safety
 27) Watch the test pass.
 28) UT for edge cases and try to pass one thousand planes into the array and see if that causes the error to be raised.
 29) push to GH repo
+30) I want, when the new airport is initialized for a hangar size to be provided by the user and if no hangar size then a default size.
+31) My previous UTs tell me that there is a capacity of five currently set. I now want initialize to take a argument and i will FT this.
+32) refactor tests to use subject and set a paramter for capacity.
+33) UT for default capacity being used to determine capacity and UT to test for specified capacity and check UTs pass.
+34) push to GH repo
