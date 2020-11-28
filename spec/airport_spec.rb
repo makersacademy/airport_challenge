@@ -6,15 +6,15 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
-  it 'allows the plane to land' do
-    plane = Plane.new
-    expect(subject.land_plane(plane)).to eq plane
-  end
-
-  it 'allows the plane to take off' do
-    plane = Plane.new
-    expect(subject.take_off_plane(plane)).to eq plane
-  end
+  # it 'allows the plane to land' do
+  #   plane = Plane.new
+  #   expect(subject.land_plane(plane)).to eq plane
+  # end
+  #
+  # it 'allows the plane to take off' do
+  #   plane = Plane.new
+  #   expect(subject.take_off_plane(plane)).to eq plane
+  # end
 
    # it 'registers that a plane has taken off' do
    #   plane = Plane.new
