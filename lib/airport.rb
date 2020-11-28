@@ -23,7 +23,7 @@ class Airport
   end
 
   def check_weather
-
+    ['sunny', 'stormy', 'coludy', 'rainy', 'calm'].sample
   end
 
 end
