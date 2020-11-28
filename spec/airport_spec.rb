@@ -5,4 +5,12 @@ describe Airport do
   it 'responds to land_plane method' do
     expect(subject).to respond_to(:land_plane).with(1).argument
   end
+
+  describe '#land_plane' do
+    it 'allows airport to accept a plane and store it' do
+      plane = Plane.new
+      airport.land_plane(plane)
+      expect(airport.planes).to include(plane)
+    end
+  end
 end
