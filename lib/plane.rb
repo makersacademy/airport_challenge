@@ -12,4 +12,7 @@ class Plane
     @current_airport = airport
   end
 
+  def flying?
+  end
+
 end
