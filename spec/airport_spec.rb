@@ -11,8 +11,8 @@ describe Airport do
     expect(subject).to respond_to(:request_take_off).with(1).argument
   end
 
-  it 'responds to check_weather method' do
-    expect(subject).to respond_to(:check_weather)
+  it 'responds to check_stormy method' do
+    expect(subject).to respond_to(:check_stormy)
   end
 
   it 'can accept 1 argument with initialize' do
@@ -52,10 +52,10 @@ describe Airport do
     end
   end
 
-  describe '#check_weather' do
-    it 'produces a random weather type' do
-      weather = ['sunny', 'stormy', 'cloudy', 'rainy', 'calm']
-      expect(weather).to include(airport.check_weather)
+  describe '#check_stormy' do
+    it 'produces true or false randomly' do
+      stormy_options = [true, false]
+      expect(stormy_options). to include(airport.check_stormy)
     end
   end
 

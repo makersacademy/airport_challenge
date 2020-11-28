@@ -23,8 +23,8 @@ class Airport
 
   end
 
-  def check_weather
-    ['sunny', 'stormy', 'cloudy', 'rainy', 'calm'].sample
+  def check_stormy
+    [true, false].sample
   end
 
   def full?
