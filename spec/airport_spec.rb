@@ -32,6 +32,19 @@ describe Airport do
       subject.land_plane(p1)
       expect(subject.planes).to eq([p1])
     end
+    it "registers a landed plane as not airborne" do
+      a1 = Airport.new
+      p1 = Plane.new
+      a1.land_plane(p1)
+      expect(p1.airborne).to eq false
+    end
+    it "cannot land an already landed plane" do
+      a1 = Airport.new
+      a2 = Airport.new
+      p1 = Plane.new
+      a1.land_plane(p1)
+      expect{a2.land_plane(p1)}.to raise_error("Plane is not airborne!")
+    end
   end
 
   describe '#take_off_plane' do
@@ -47,6 +60,13 @@ describe Airport do
     it "returns an error if the specified plane is not in the airport" do
       p1 = Plane.new
       expect{subject.take_off_plane(p1)}.to raise_error("Plane not at airport!")
+    end
+    it "registers to taking-off plane as airborne" do
+      a1 = Airport.new
+      p1 = Plane.new
+      a1.land_plane(p1)
+      a1.take_off_plane(p1)
+      expect(p1.airborne).to eq(true)
     end
   end
 
