@@ -1,9 +1,9 @@
 class Airport
 
-#########################################  
-  # def land_plane(plane)# replace with numbers
-  #   plane
-  # end
+#########################################
+  def land_plane
+
+  end
   #
   # def take_off_plane(plane)
   #   plane
@@ -15,4 +15,6 @@ class Airport
   #   end
   # end
 ########################################
+
+
 end

@@ -6,6 +6,12 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
+  it 'can respond to land_plane' do
+    airport = Airport.new
+    expect(subject).to respond_to('land_plane')
+  end
+
+
   # it 'allows the plane to land' do
   #   plane = Plane.new
   #   expect(subject.land_plane(plane)).to eq plane
