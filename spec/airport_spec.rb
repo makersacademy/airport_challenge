@@ -12,5 +12,12 @@ describe Airport do
       airport.land_plane(plane)
       expect(airport.planes).to include(plane)
     end
+
+    it 'accepts instances of Plane class' do
+      plane = Plane.new
+      airport.land_plane(plane)
+      expect(airport.planes[-1]).to be_instance_of Plane
+    end
   end
+
 end
