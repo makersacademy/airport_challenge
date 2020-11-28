@@ -39,7 +39,7 @@ describe Airport do
     end
   end
 
-  describe '#take_off' do
+  describe '#request_take_off' do
     it 'removes a plane from the airport' do
       plane = Plane.new
       airport.receive_plane(plane)
