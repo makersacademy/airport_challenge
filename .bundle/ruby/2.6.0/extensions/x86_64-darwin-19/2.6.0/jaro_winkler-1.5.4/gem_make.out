@@ -1,0 +1,18 @@
+current directory: /Users/aracho/Makers/Projects/airport_challenge/.bundle/ruby/2.6.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+/Users/aracho/.rvm/rubies/ruby-2.6.5/bin/ruby -I /Users/aracho/.rvm/rubies/ruby-2.6.5/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201128-56246-1vz0nus.rb extconf.rb
+creating Makefile
+
+current directory: /Users/aracho/Makers/Projects/airport_challenge/.bundle/ruby/2.6.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR=" clean
+
+current directory: /Users/aracho/Makers/Projects/airport_challenge/.bundle/ruby/2.6.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR="
+compiling adj_matrix.c
+compiling codepoints.c
+compiling jaro.c
+compiling jaro_winkler.c
+linking shared-object jaro_winkler/jaro_winkler_ext.bundle
+
+current directory: /Users/aracho/Makers/Projects/airport_challenge/.bundle/ruby/2.6.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 jaro_winkler_ext.bundle ./.gem.20201128-56246-17txmmi/jaro_winkler
