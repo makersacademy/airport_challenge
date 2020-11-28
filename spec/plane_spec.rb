@@ -15,7 +15,7 @@ describe Plane do
   end
 
   describe '#land_plane' do
-    it 'change plane status from flying to landed' do
+    it 'updates current airport' do
       airport = Airport.new
       plane.land_plane(airport)
       expect(plane.current_airport).to eq airport
@@ -37,6 +37,27 @@ describe Plane do
 
     it 'verifies a flying plane is flying' do
       expect(plane.current_airport).to be_nil
+    end
+  end
+
+  describe '#take_off' do
+    it 'updates current airport' do
+      airport = Airport.new
+      plane.land_plane(airport)
+      plane.take_off(airport)
+      expect(plane.current_airport).to eq nil
+    end
+
+    it 'raises error if plane is already in the air' do
+      airport = Airport.new
+      expect { plane.take_off(airport) }.to raise_error 'Plane is already flying'
+    end
+
+    it 'raises error when trying to takeoff from airport where plane is not currently located' do
+      airport = Airport.new
+      airport1 = Airport.new
+      plane.land_plane(airport)
+      expect { plane.take_off(airport1) }.to raise_error 'Plane located at different airport'
     end
   end
 

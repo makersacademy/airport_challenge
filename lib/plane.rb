@@ -19,6 +19,11 @@ class Plane
   end
 
   def take_off(airport)
+    fail 'Plane is already flying' if flying? == true
+
+    fail 'Plane located at different airport' unless airport == @current_airport
+
+    @current_airport = nil
   end
 
 end
