@@ -12,9 +12,15 @@ describe Airport do
     subject.land_plane(p1)
     expect(subject.planes).to eq([p1])
   end
-  it "has a capacity of 1" do
+  it "has a default capacity of DEFAULT_CAPACITY" do
     a1 = subject
-    expect{2.times{a1.land_plane(Plane.new)}}.to raise_error("Airport full!")
+    expect{(Airport::DEFAULT_CAPACITY + 1).times{a1.land_plane(Plane.new)}}.to raise_error("Airport full!")
+  end
+  it "can be given a specified capacity" do
+    user_capacity = 7
+    a1 = Airport.new(user_capacity)
+    expect{user_capacity.times{a1.land_plane(Plane.new)}}.not_to raise_error
+    expect{(user_capacity + 1).times{a1.land_plane(Plane.new)}}.to raise_error("Airport full!")
   end
 
   describe '#land_plane' do
