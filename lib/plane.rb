@@ -1,6 +1,9 @@
+require_relative './airport.rb'
+
 class Plane
 
-  def land
+  def land(airport)
+    airport.hangar << self
     "Landed!"
   end
 
