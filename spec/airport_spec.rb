@@ -10,6 +10,10 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'responds to check_weather method' do
+    expect(subject).to respond_to(:check_weather)
+  end
+
   it 'can accept 1 argument with initialize' do
     expect(Airport).to respond_to(:new).with(1).argument
   end

@@ -22,4 +22,8 @@ class Airport
     @planes.pop()
   end
 
+  def check_weather
+
+  end
+
 end
