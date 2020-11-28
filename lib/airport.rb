@@ -1,6 +1,8 @@
 class Airport
   def land_plane
   end
+  
   def take_off
-  end 
+    "Plane has taken off"
+  end
 end
