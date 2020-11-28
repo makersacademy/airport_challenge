@@ -28,4 +28,13 @@ class Airport
     @planes.length == @capacity ? true : false
   end
 
+  def weather_generate
+    n = rand(10)
+    if n == 0
+      @weather = "stormy"
+    else
+      @weather = "sunny"
+    end
+  end
+
 end

@@ -75,4 +75,16 @@ describe Airport do
     end
   end
 
+  describe "#weather_generate" do
+    it "changes the weather to stormy roughly 1 in 10 times" do
+      a1 = subject
+      weather_frequencies = Hash.new(0)
+      for i in 1..5000
+        a1.weather_generate
+        weather_frequencies[a1.weather] += 1
+      end
+      expect(weather_frequencies["sunny"] / weather_frequencies["stormy"]).to be_within(2).of(10)
+    end
+  end
+
 end
