@@ -20,10 +20,11 @@ class Airport
     fail 'No planes left!' if @planes.empty?
 
     @planes.pop()
+
   end
 
   def check_weather
-    ['sunny', 'stormy', 'coludy', 'rainy', 'calm'].sample
+    ['sunny', 'stormy', 'cloudy', 'rainy', 'calm'].sample
   end
 
 end

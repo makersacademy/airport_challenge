@@ -52,7 +52,7 @@ describe Airport do
 
   describe '#check_weather' do
     it 'produces a random weather type' do
-      weather = ['sunny', 'stormy', 'coludy', 'rainy', 'calm']
+      weather = ['sunny', 'stormy', 'cloudy', 'rainy', 'calm']
       expect(weather).to include(airport.check_weather)
     end
   end
