@@ -3,15 +3,16 @@ require './lib/plane.rb'
 class Airport
 
   attr_reader :planes, :capacity
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 10
+    @capacity = capacity
   end
 
   def land_plane(plane)
     fail 'Airport full!' if @planes.length >= @capacity
-    
+
     @planes.push(plane)
   end
 

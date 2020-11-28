@@ -10,6 +10,10 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'can accept 1 argument with initialize' do
+    expect(Airport).to respond_to(:new).with(1).argument
+  end
+
   describe '#land_plane' do
     it 'allows airport to accept a plane and store it' do
       plane = Plane.new
@@ -37,7 +41,7 @@ describe Airport do
       expect(airport.take_off).to be_instance_of Plane
     end
 
-    it 'throws error when no planes left in airport' do
+    it 'raises error when no planes left in airport' do
       expect { airport.take_off }.to raise_error 'No planes left!'
     end
   end
