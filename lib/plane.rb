@@ -10,12 +10,15 @@ class Plane
 
   def land_plane(airport)
     fail 'Plane has already landed' if flying? == false
-    
+
     @current_airport = airport
   end
 
   def flying?
     @current_airport.nil?
+  end
+
+  def take_off(airport)
   end
 
 end

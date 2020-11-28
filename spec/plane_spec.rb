@@ -10,6 +10,10 @@ describe Plane do
     expect(subject).to respond_to(:flying?)
   end
 
+  it 'responds to take_off method' do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
   describe '#land_plane' do
     it 'change plane status from flying to landed' do
       airport = Airport.new
