@@ -22,6 +22,9 @@ describe Airport do
     expect{user_capacity.times{a1.land_plane(Plane.new)}}.not_to raise_error
     expect{(user_capacity + 1).times{a1.land_plane(Plane.new)}}.to raise_error("Airport full!")
   end
+  it "is created with good weather" do
+    expect(subject.weather).to eq("sunny")
+  end
 
   describe '#land_plane' do
     it "can be called on an airport with 1 argument" do
@@ -44,6 +47,8 @@ describe Airport do
       p1 = Plane.new
       a1.land_plane(p1)
       expect{a2.land_plane(p1)}.to raise_error("Plane is not airborne!")
+    end
+    it "cannot work if the weather is stormy" do
     end
   end
 
