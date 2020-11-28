@@ -6,11 +6,27 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
-  it 'can respond to land_plane' do
-    airport = Airport.new
-    expect(subject).to respond_to('land_plane')
+  it 'will accept a set capacity' do
+    expect(subject.capacity).to eq AIRPORT::DEFAULT_CAPACITY
   end
 
+  describe '#land_plane' do
+  it 'raises an error when full' do
+    subject.capacity.times { subject.land_plane(Plane.new) }
+    expect { subject.land_plane(Plane.new) }.to raise_error 'Airport full'
+  end
+end
+
+
+  # it 'can respond to land_plane' do
+  #   airport = Airport.new
+  #   expect(subject).to respond_to('land_plane')
+  # end
+
+  # it 'adds 1 to total number of planes in airport when a plane lands' do
+  #   airport = Airport.new
+  #
+  # end
 
   # it 'allows the plane to land' do
   #   plane = Plane.new
