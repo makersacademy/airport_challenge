@@ -13,6 +13,7 @@ class Plane
   end
 
   def flying?
+    @current_airport.nil?
   end
 
 end

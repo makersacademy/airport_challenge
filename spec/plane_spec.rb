@@ -16,7 +16,18 @@ describe Plane do
       plane.land_plane(airport)
       expect(plane.current_airport).to eq airport
     end
+  end
 
+  describe '#flying?' do
+    it 'verifies a landed plane has landed' do
+      airport = Airport.new
+      plane.land_plane(airport)
+      expect(plane.current_airport).to be_truthy
+    end
+
+    it 'verifies a flying plane is flying' do
+      expect(plane.current_airport).to be_nil
+    end
   end
 
 end
