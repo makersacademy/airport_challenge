@@ -7,7 +7,7 @@ describe Airport do
   end
 
   it 'responds to take_off method' do
-    expect(subject).to respond_to(:take_off).with(1).argument
+    expect(subject).to respond_to(:take_off)
   end
 
   describe '#land_plane' do
@@ -21,6 +21,18 @@ describe Airport do
       plane = Plane.new
       airport.land_plane(plane)
       expect(airport.planes[-1]).to be_instance_of Plane
+    end
+  end
+
+  describe '#take_off' do
+    it 'removes a plane from the airport' do
+      plane = Plane.new
+      airport.land_plane(plane)
+      expect(airport.take_off).to be_instance_of Plane
+    end
+
+    it 'throws error when no planes left in airport' do
+      expect { airport.take_off }.to raise_error 'No planes left!'
     end
   end
 

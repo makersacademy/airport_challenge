@@ -12,8 +12,10 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off(plane)
+  def take_off
+    fail 'No planes left!' if @planes.empty?
 
+    @planes.pop()
   end
 
 end
