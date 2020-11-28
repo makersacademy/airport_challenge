@@ -9,6 +9,8 @@ class Plane
   end
 
   def land_plane(airport)
+    fail 'Plane has already landed' if flying? == false
+    
     @current_airport = airport
   end
 

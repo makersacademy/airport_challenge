@@ -16,6 +16,12 @@ describe Plane do
       plane.land_plane(airport)
       expect(plane.current_airport).to eq airport
     end
+
+    it 'raises error if plane is already on the ground' do
+      airport = Airport.new
+      plane.land_plane(airport)
+      expect { plane.land_plane(airport) }.to raise_error 'Plane has already landed'
+    end
   end
 
   describe '#flying?' do
