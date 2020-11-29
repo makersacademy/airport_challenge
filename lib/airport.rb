@@ -11,27 +11,23 @@ class Airport
   end
 
   def receive_plane(plane)
-    fail 'Airport full!' if  full? == true
+    fail 'Airport full!' if full? == true
 
     @planes.push(plane)
   end
 
   def request_take_off(plane)
-    fail 'No planes left!' if is_empty? == true
+    fail 'No planes left!' if empty? == true
 
     @planes.delete(plane)
 
-  end
-
-  def check_stormy
-    [true, false].sample
   end
 
   def full?
     @planes.length >= @capacity
   end
 
-  def is_empty?
+  def empty?
     @planes.empty? == true
   end
 

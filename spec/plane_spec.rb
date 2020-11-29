@@ -60,5 +60,4 @@ describe Plane do
       expect { plane.take_off(airport1) }.to raise_error 'Plane located at different airport'
     end
   end
-
 end
