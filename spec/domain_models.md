@@ -14,6 +14,7 @@ I want to instruct a plane to land at an airport
 |Plane      |        |
 |Airport    |land          |
 
+Complete: [x]
 
 ### User Story 2
 
@@ -29,6 +30,7 @@ I want to instruct a plane to take off from an airport and confirm it is no long
 |Plane      |    |
 |Airport    |takeoff and confirm departure |
 
+Complete: [x]
 
 ### User Story 3
 
@@ -44,6 +46,7 @@ I want to prevent landing when the airport is full
 |Plane      |            |
 |Airport    |full?       |
 
+Complete: [x]
 
 ### User Story 4
 
@@ -58,6 +61,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |-----------|------------|
 |Airport   |capacity            |
 
+Complete: [x]
 
 ### User Story 5
 
@@ -72,6 +76,7 @@ I want to prevent takeoff when the weather is stormy
 |-----------|------------|
 |Airport   |stormy?     |
 
+Complete: [x]
 
 ### User Story 6
 
@@ -85,3 +90,5 @@ I want to prevent landing when the weather is stormy
 |**Objects**|**Messages**|
 |-----------|------------|
 |Airport  |stormy?     |
+
+Complete: [x]

@@ -5,24 +5,35 @@ class Airport
 
   def initialize(capacity = 1)
     @capacity = capacity
-    @hangar = []
+    @airport = []
   end
 
   def land(plane)
-    raise "Airport Full" unless self.full? == false
-      raise "No landing, stormy weather" unless self.stormy? == false
-      @hangar << plane
-      @hangar.last
+    raise "Plane already in airport" unless in_airport?(plane) == false
+    raise "Airport Full" unless full? == false
+    raise "No landing, stormy weather" unless stormy? == false
+
+    @airport << plane
+    @airport.last
   end
 
   def takeoff(plane)
-    raise "No takeoff, stormy weather" unless self.stormy? == false
-      @hangar.pop
-      "#{plane} has departed"
+    raise "Plane not in airport" unless in_airport?(plane)
+    raise "No takeoff, stormy weather" unless stormy? == false
+
+    @airport.delete(plane)
+  end
+
+  def confirm_departure(plane)
+    in_airport?(plane) ? "Plane in Airport" : "Plane not in Airport"
+  end
+
+  def in_airport?(plane)
+    @airport.include?(plane)
   end
 
   def full?
-    @hangar.count >= @capacity
+    @airport.count >= @capacity
   end
 
   def chance
@@ -30,6 +41,6 @@ class Airport
   end
 
   def stormy?
-    chance < 3 ? true : false
+    chance < 3
   end
 end
