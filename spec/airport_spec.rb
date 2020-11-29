@@ -1,5 +1,5 @@
-require './lib/airport'
-require './lib/plane'
+require './lib/airport.rb'
+require './lib/plane.rb'
 
 describe Airport do
   it "runs an instance of an airport" do

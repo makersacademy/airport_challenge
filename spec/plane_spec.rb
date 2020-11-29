@@ -1,4 +1,4 @@
-require './lib/plane'
+require './lib/plane.rb'
 
 describe Plane do
   it "creates an instance of a plane" do

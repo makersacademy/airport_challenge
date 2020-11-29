@@ -1,3 +1,5 @@
+require './lib/plane'
+
 class Airport
   attr_reader :hangar
 
@@ -5,15 +7,13 @@ class Airport
     @hangar = []
   end
 
-  def airport
-  end
-
   def land(plane)
     @hangar << plane
   end
 
-  def depart(plane)
-    
+  def depart
+    @hangar.pop
+    fail 'Hangar empty!' if @hangar.empty?
   end
 
 end
