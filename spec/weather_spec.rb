@@ -7,13 +7,24 @@ describe Weather do
   end
 
 
-  describe "stormy?" do
+  describe "#stormy?" do
     it 'specifies if the weather is stormy or clear' do
-      generator = Weather.new
+      weather = Weather.new
 
-      allow(generator).to receive(:sample).and_return(1)
-
-      expect(generator.stormy?).to eq(true)
+      allow(weather).to receive(:sample).and_return(true)
     end
   end
+
+  # describe Weather do
+  #   it 'raises an error if a plain tries to take off during stormy weather'
+  #   expect(subject.stormy?)
+  # end
+
+  # describe '#stormy' do
+  #   it 'raises an error when true' do
+  #     subject.stormy? { subject.land(Plane.new) }
+  #     expect { subject.land(Plane.new) }.to raise_error 'Airport full'
+  #   end
+  # end
+
 end
