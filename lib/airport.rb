@@ -38,4 +38,8 @@ class Airport
     ['sunny', 'stormy', 'cloudy', 'rainy', 'windy'].sample
   end
 
+  def stormy?
+
+  end
+
 end

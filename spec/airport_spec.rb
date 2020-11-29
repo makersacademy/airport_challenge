@@ -28,6 +28,10 @@ describe Airport do
     expect(subject).to respond_to(:weather_generator)
   end
 
+  it 'responds to stormy? method' do
+    expect(subject).to respond_to(:stormy?)
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       airport.land_plane(plane)
