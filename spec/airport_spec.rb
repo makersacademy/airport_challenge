@@ -72,4 +72,11 @@ describe Airport do
       expect(airport.plane_present?(plane)).to eq true
     end
   end
+
+  describe '#weather_generator' do
+    it 'generates random weather type' do
+      weather_types = ['sunny', 'stormy', 'cloudy', 'rainy', 'windy']
+      expect(weather_types).to include(airport.weather_generator)
+    end
+  end
 end

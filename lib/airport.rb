@@ -9,7 +9,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
-    @weather = 'sunny'
+    @weather = weather_generator
   end
 
   def land_plane(plane)
@@ -35,7 +35,7 @@ class Airport
   end
 
   def weather_generator
-
+    ['sunny', 'stormy', 'cloudy', 'rainy', 'windy'].sample
   end
 
 end
