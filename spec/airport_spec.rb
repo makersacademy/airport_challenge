@@ -20,6 +20,10 @@ describe Airport do
     expect(subject).to respond_to(:capacity?)
   end
 
+  it 'can be initialized with 1 argument for capacity' do
+    expect(Airport).to respond_to(:new).with(1).argument
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       airport.land_plane(plane)
@@ -33,7 +37,7 @@ describe Airport do
 
     it 'raises error when airport capacity is full' do
       plane1 = Plane.new
-      airport.land_plane(plane)
+      airport.capacity.times { airport.land_plane(plane) }
       expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
     end
   end
