@@ -55,8 +55,42 @@ I want to prevent landing when weather is stormy
 
 <img src="https://github.com/xavierloos/airport_challenge/blob/master/airport-diagram.png">
 
-#Steps
+## Solution
 
-- Create a spec file for the airport, add a describe method to check if the class exit.
-- Create a Airport file in the lib folder and add the class Airport
-- Require the file in the spec file.
+For the solution of this challenge I created 3 ruby files int the lib folder:
+In ./lib/airport.rb
+
+```
+The main class contains Airport with the methods initialize, takeoff and land
+```
+
+In ./lib/plane.rb
+
+```
+We create the planes and check the state of the plane
+```
+
+In ./lib/weather.rb
+
+```
+We have the weather conditions which will change randomly the state of the weather
+```
+
+For the RSpec test I created 3 files:
+In ./lib/airport_spec.rb
+
+```
+We have the main files test that will check all the methods of the airport class.
+```
+
+In ./lib/plane_spec.rb
+
+```
+This test will responde if the plane is flying
+```
+
+In ./lib/weather_spec.rb
+
+```
+The test will check if the weather conditions are ok to fly
+```
