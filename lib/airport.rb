@@ -10,13 +10,25 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport full" if @hangar.size >= @capacity
+    fail "Airport full" if full?
 
+    puts "Plane landed"
     @hangar << plane
   end
 
-  def take_off(*)
-    @hangar = nil
-    puts "Plane has left airport"
+  def take_off(plane)
+    fail "Plane not at this airport" unless present?(plane)
+
+    puts "Plane departed"
+    @hangar.delete(plane)
   end
+
+  def full?
+    @hangar.size >= @capacity
+  end
+
+  def present?(plane)
+    @hangar.include?(plane)
+  end
+
 end
