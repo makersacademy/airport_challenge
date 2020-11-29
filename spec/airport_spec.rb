@@ -119,4 +119,16 @@ describe Airport do
     end
   end
 
+  describe '#capacity?' do
+    it 'returns false when the hangar is full' do
+      allow(airport).to receive(:stormy?) { false }
+      airport.land_plane(plane)
+      expect(airport.capacity?).to eq false
+    end
+
+    it 'returns true when the hangar has room' do
+      allow(airport).to receive(:stormy?) { false }
+      expect(airport.capacity?).to eq true
+    end
+  end
 end
