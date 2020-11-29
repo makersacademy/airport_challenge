@@ -1,8 +1,13 @@
 class Weather
 
-  def generate
-    weather_types = ["sunny", "sunny", "sunny", "stormy"]
-    weather_types.sample
+  def stormy?
+    random_weather == :stormy
+  end
+
+  WEATHER = [:stormy, :sunny, :sunny, :sunny]
+
+  def random_weather
+    WEATHER.sample
   end
 
 end
