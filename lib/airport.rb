@@ -4,6 +4,8 @@ class Airport
   attr_reader :hangar
 
   def land(plane)
+    fail "Airport full" if @hangar
+    
     @hangar = plane
   end
 
