@@ -15,5 +15,6 @@ class Airport
 
   def take_off(plane)
     @hangar.delete(plane)
+    plane.current_location = 'flying'
   end
 end

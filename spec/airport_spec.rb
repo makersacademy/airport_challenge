@@ -30,5 +30,11 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.hangar).not_to include(plane)
     end
+
+    it 'changes status of plane from landed to flying' do
+      airport.land_plane(plane)
+      airport.take_off(plane)
+      expect(plane.flying?).to eq true
+    end
   end
 end

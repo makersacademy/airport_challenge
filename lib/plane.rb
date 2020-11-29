@@ -9,7 +9,7 @@ class Plane
   end
 
   def flying?
-    @current_airport == 'flying'
+    @current_location == 'flying'
   end
 
 end
