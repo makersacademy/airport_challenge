@@ -1,8 +1,6 @@
 require_relative '../lib/weather'
 require_relative '../lib/plane'
 
-
-
 class Airport
   attr_reader :ramp, :weather, :capacity
 
@@ -30,8 +28,8 @@ class Airport
     weather.sunny?
   end
 
-  def below_capacity?
-    capacity > ramp.count
+  def full?
+    capacity <= ramp.count
   end
 
   def landed?(plane)
@@ -42,7 +40,7 @@ class Airport
   def ready_for_landing(plane)
     raise 'the plane has already landed in the airport' if landed?(plane)
     raise 'the plane is already parked in another airport' if plane.location == "ground"
-    raise 'sorry, cannot land as airport has no space' unless below_capacity?
+    raise 'sorry, cannot land as airport has no space' if full?
     raise 'sorry cannot land or take off due to bad weather conditions' unless good_weather?
 
     true

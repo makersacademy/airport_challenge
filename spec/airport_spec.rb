@@ -1,7 +1,6 @@
 require 'weather'
 require 'plane'
 
-  
 describe Airport do
   let(:plane) { Plane.new }
   
@@ -18,7 +17,7 @@ describe Airport do
 
   it 'confirms if the capacity is full' do
     subject.ramp << plane
-    expect(subject.below_capacity?).to eq false
+    expect(subject.full?).to eq true
   end
 
   describe '#landing' do
@@ -28,7 +27,7 @@ describe Airport do
     end
 
     it 'refuses landing if the capacity is full' do
-      allow(subject).to receive(:below_capacity?).and_return(false)
+      allow(subject).to receive(:full?).and_return(true)
       expect { subject.land(plane) } .to raise_error(RuntimeError, NO_CAPACITY_MSG)
     end
 
@@ -48,7 +47,7 @@ describe Airport do
     it 'returns true if the conditions are met' do
       allow(subject).to receive(:landed?).and_return(false)
       allow(subject).to receive(:good_weather?).and_return(true)
-      allow(subject).to receive(:below_capacity?).and_return(true)
+      allow(subject).to receive(:full?).and_return(false)
       expect(subject.ready_for_landing(plane)).to be true
     end
   end
