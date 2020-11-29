@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport full" if @hangar.size >= DEFAULT_CAPACITY
+    fail "Airport full" if @hangar.size >= @capacity
 
     @hangar << plane
   end

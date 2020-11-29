@@ -11,7 +11,7 @@ describe Airport do
     expect(subject.hangar).to be_empty
   end
 
-  it 'initializes with the default capacity' do
+  it 'initializes with the default capacity if not overridden' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
@@ -38,7 +38,7 @@ describe Airport do
     end
 
     it 'raises error when airport is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport full"
     end
 
