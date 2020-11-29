@@ -20,7 +20,7 @@ I want to instruct a plane to land at an airport
 |Plane      |        |
 |Airport    |land          |
 
-Complete: - [x]
+- [x] Complete 
 
 ### User Story 2
 
@@ -36,7 +36,7 @@ I want to instruct a plane to take off from an airport and confirm it is no long
 |Plane      |    |
 |Airport    |takeoff and confirm departure |
 
-Complete: - [x]
+- [x] Complete 
 
 ### User Story 3
 
@@ -52,7 +52,7 @@ I want to prevent landing when the airport is full
 |Plane      |            |
 |Airport    |full?       |
 
-Complete: - [x]
+- [x] Complete 
 
 ### User Story 4
 
@@ -67,7 +67,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |-----------|------------|
 |Airport   |capacity            |
 
-Complete: - [x]
+- [x] Complete 
 
 ### User Story 5
 
@@ -82,7 +82,7 @@ I want to prevent takeoff when the weather is stormy
 |-----------|------------|
 |Airport   |stormy?     |
 
-Complete: - [x]
+- [x] Complete 
 
 ### User Story 6
 
@@ -97,7 +97,7 @@ I want to prevent landing when the weather is stormy
 |-----------|------------|
 |Airport  |stormy?     |
 
-Complete: - [x]
+- [x] Complete 
 
 ## Test Driven Development of the User Stories
 Having drafted the domain models, I stepped through each user story in turn. Firstly scripting a feature test, then a unit test, and then scripting to pass the unit test accordingly. Refactoring where necessary.
