@@ -9,7 +9,7 @@ describe Airport do
   end
 
   it 'responds to take_off' do
-    expect(subject).to respond_to(:take_off)
+    expect(subject).to respond_to(:take_off).with(1).argument
   end
 
   describe '#land_plane' do
@@ -21,6 +21,14 @@ describe Airport do
     it 'changes plane status from flying to landed' do
       airport.land_plane(plane)
       expect(plane.flying?).to eq false
+    end
+  end
+
+  describe '#take_off' do
+    it 'removes plane from airport hangar' do
+      airport.land_plane(plane)
+      airport.take_off(plane)
+      expect(airport.hangar).not_to include(plane)
     end
   end
 end
