@@ -1,6 +1,16 @@
 require 'airport'
 
 describe Airport do
+  subject {
+    subject = Airport.new
+    allow(subject).to receive(:stormy?) { false }
+    subject
+  }
+  let(:stormy_airport) {
+    stormy_airport = Airport.new
+    allow(stormy_airport).to receive(:stormy?) { true }
+    stormy_airport
+  }
   let(:plane) { Plane.new }
 
   it 'allows system designer to override default capacity' do
@@ -35,7 +45,12 @@ describe Airport do
     is_expected.to respond_to(:present?)
   end
 
+  it 'responds to "stormy?" query' do
+    is_expected.to respond_to(:stormy?)
+  end
+
   describe '.land' do
+
     it 'takes 1 argument' do
       is_expected.to respond_to(:land).with(1).argument
     end
@@ -50,6 +65,14 @@ describe Airport do
       expect { subject.land(Plane.new) }.to raise_error "Airport full"
     end
 
+    it 'raises error when plane on ground' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "Plane already landed"
+    end
+
+    it 'raises error when stormy' do
+      expect { stormy_airport.land(plane) }.to raise_error "Landing aborted due to stormy weather"
+    end
   end
 
   describe '.take_off' do
@@ -71,6 +94,11 @@ describe Airport do
         expect(subject.hangar.size).to eq 2
         expect(subject.hangar).not_to include(plane)
       end
+    end
+
+    it 'raises error when stormy' do
+      stormy_airport.hangar << plane
+      expect { stormy_airport.take_off(plane) }.to raise_error "Take off aborted due to stormy weather"
     end
 
   end

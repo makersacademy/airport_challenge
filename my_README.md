@@ -17,3 +17,10 @@ After passing all rspec tests, I noticed with further irb testing that I needed 
 3. This plane should be removed from wherever it is in the hangar.
 
 Reflecting on my code, I have spotted poor SRP - the land and take_off methods are both evaluating the status of the hangar and landing / removing the plane. I created a full? and a present? method to evaluate these.
+
+User stories 5 and 6. For these, when do we want the weather to be "created" (ie in this case, when do we want the random number to be generated)?
+Options: 1) when airport is created by system designer. 2) when air traffic controller wants to land/send off a plane?
+Considerations: User stories state air traffic controller. Weather changes so not good to initialize when airport is created.
+Decision: When planes are instructed to land and take_off
+
+After a fair bit of research into mocks and stubs, I eventually created 2 subjects which set the return value from airport.stormy? as either true or false to use appropriately in my rspec tests.
