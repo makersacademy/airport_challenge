@@ -8,6 +8,10 @@ describe Airport do
     expect(subject).to respond_to(:land_plane).with(1).argument
   end
 
+  it 'responds to take_off' do
+    expect(subject).to respond_to(:take_off)
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       airport.land_plane(plane)

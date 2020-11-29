@@ -12,4 +12,8 @@ class Airport
     @hangar << plane
     plane.current_location = 'landed'
   end
+
+  def take_off
+
+  end
 end
