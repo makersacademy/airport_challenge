@@ -1,13 +1,15 @@
+require './lib/airport.rb'
+
 class Plane
 
-  attr_reader :current_airport
+  attr_accessor :current_location
 
   def initialize
-    @current_airport = nil
+    @current_location = 'flying'
   end
 
   def flying?
-    @current_airport == nil
+    @current_airport == 'flying'
   end
 
 end

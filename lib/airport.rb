@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_reader :hangar
+  attr_accessor :hangar
 
   def initialize
     @hangar = []
@@ -10,5 +10,6 @@ class Airport
 
   def land_plane(plane)
     @hangar << plane
+    plane.current_location = 'landed'
   end
 end
