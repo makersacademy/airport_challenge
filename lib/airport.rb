@@ -48,6 +48,8 @@ class Airport
     @weather == 'stormy'
   end
 
+  private
+
   def reset_airport_weather
     @weather = weather_generator
   end
