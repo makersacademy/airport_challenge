@@ -10,16 +10,23 @@ class Airport
   end
 
   def land(plane)
+    fail "Weather too stormy for landing" if poor_weather
+    
     fail 'Airport full' if full
 
     planes << plane
   end
 
   def take_off(plane)
-    # fail 'No planes available' if @planes.empty?
-    #
+    fail "Weather too stormy for take-off" if poor_weather
+
     planes.delete(plane)
     "#{plane} has taken off"
+  end
+
+  def weather
+    possible_weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "stormy"]
+    possible_weather[rand(6)]
   end
 
   private
@@ -28,4 +35,7 @@ class Airport
     planes.count >= capacity
   end
 
+  def poor_weather
+    weather == "stormy"
+  end
 end
