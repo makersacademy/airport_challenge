@@ -1,4 +1,4 @@
-# Airport Challenge
+![](https://placehold.it/950x200/374c53/FFFFFF/?text=Airport+Challenge)
 
 ``````
         ______
@@ -53,4 +53,4 @@ I want to prevent landing when weather is stormy
 
 ## Diagram
 
-<img src=""/>
+<img src="https://github.com/xavierloos/airport_challenge/blob/master/airport-diagram.png">
