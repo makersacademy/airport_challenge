@@ -12,8 +12,10 @@
 - All tests passing: YES - 17 examples all passing including a feature test
 - High test coverage: 100% including a feature test
 - Code quality: tried to code with SRP
+- 
 
 ## Learning Takeaways
 - Completed testing driving the creation of a set of classes to satisfy user stories
 - Wrote a feature test for the first time on rspec
 - Gained more familiarity with using rspec such as using stub and raising error
+- No offenses on Rubocop
