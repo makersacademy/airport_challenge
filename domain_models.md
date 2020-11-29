@@ -56,7 +56,7 @@ I would like a default airport capacity that can be overridden as appropriate
 **Domain Model:**
 |**Objects**|**Messages**|
 |-----------|------------|
-|AirportCapacity    |            |
+|Airport   |capacity            |
 
 
 ### User Story 5
@@ -70,7 +70,7 @@ I want to prevent takeoff when the weather is stormy
 **Domain Model:**
 |**Objects**|**Messages**|
 |-----------|------------|
-|Plane   |prevent_takeoff      |
+|Airport   |stormy?     |
 
 
 ### User Story 6
@@ -84,4 +84,4 @@ I want to prevent landing when the weather is stormy
 **Domain Model:**
 |**Objects**|**Messages**|
 |-----------|------------|
-|Plane   |prevent_landing     |
+|Airport  |stormy?     |
