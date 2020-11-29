@@ -2,14 +2,10 @@ require 'plane'
 
 describe Plane do
   let(:airport) { Airport.new }
-
-  it 'lands in the airport' do
-    expect { subject.land(airport) }.to(change { airport.ramp }.from([]).to([subject]))
-  end
-
-  it 'takes off from the airport' do
-    airport.ramp << subject
-    expect { subject.takeoff(airport) }.to(change { airport.ramp }.from([subject]).to([]))
+  
+  it 'cannot take off or be in the airport if already flying' do
+    subject.location = "air"
+    expect { airport.takeoff(subject) } .to raise_error(RuntimeError, 'the plane is not in the airport') 
   end
 
 end

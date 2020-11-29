@@ -1,7 +1,9 @@
 class Weather
 
   def sunny?
-    [:sunny, :sunny, :sunny, :stormy].sample == :sunny
+    FORECAST.sample == :sunny
   end
+
+  FORECAST = [:sunny, :sunny, :sunny, :stormy]
 
 end

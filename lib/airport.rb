@@ -1,38 +1,56 @@
 require_relative '../lib/weather'
 require_relative '../lib/plane'
 
+DEFAULT_CAPACITY = 1
+
 class Airport
-  attr_reader :capacity, :ramp
+  attr_reader :ramp, :weather
+  attr_accessor :capacity # made the capacity amendable for feature testing later
 
   def initialize
-    # default capacity of 1
-    @capacity = 1
-    # where planes are parked
-    @ramp = []
-    # weather
+    @capacity = DEFAULT_CAPACITY
     @weather = Weather.new
+    @ramp = []
   end
 
   def land(plane)
-    raise 'sorry, plane cannot land' unless good_weather? && capacity?
-    
-    @ramp << plane
-    self
+    ramp << plane if ready_for_landing(plane)
+    plane.location = "ground" # update plane location
+    self # return the airport object
   end
 
   def takeoff(plane)
-    raise 'sorry, plane cannot take off due to bad weather' unless good_weather?
-    
-    @ramp.delete(plane)
+    ramp.delete(plane) if ready_for_takeoff(plane)
+    plane.location = "air"
     self
   end
 
   def good_weather?
-    @weather.sunny?
+    weather.sunny?
   end
 
-  def capacity?
-    # checks parked planes vs. capacity
-    @capacity > @ramp.count
+  def below_capacity?
+    capacity > ramp.count
+  end
+
+  def landed?(plane)
+    ramp.include?(plane) # check if plane is already landed in the airport
+  end
+
+  # checks plane position, airport capacity and weather for landing
+  def ready_for_landing(plane)
+    raise 'the plane has already landed in the airport' if landed?(plane)
+    raise 'the plane is already parked in another airport' if plane.location == "ground"
+    raise 'sorry, cannot land as airport has no space' unless below_capacity?
+    raise 'sorry cannot land or take off due to bad weather conditions' unless good_weather?
+
+    true
+  end
+  
+  def ready_for_takeoff(plane)
+    raise 'the plane is not in the airport' unless landed?(plane)
+    raise 'sorry cannot land or take off due to bad weather conditions' unless good_weather?
+
+    true
   end
 end

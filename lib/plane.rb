@@ -1,13 +1,9 @@
 require_relative '../lib/airport'
 
 class Plane
+  attr_accessor :location
 
-  def land(airport)
-    airport.ramp << self
+  def initialize
+    @location = "air"
   end
-
-  def takeoff(airport)
-    airport.ramp.delete(self)
-  end
-
 end
