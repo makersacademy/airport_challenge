@@ -3,7 +3,7 @@ require 'plane'
 
 describe Plane do 
 
-let(:airport) { double(:airport) } 
+  let(:airport) { double(:airport) } 
 
 # I would like to instruct a plane to take off and confirm it is no longer in the airport
 

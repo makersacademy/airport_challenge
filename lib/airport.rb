@@ -17,7 +17,7 @@ class Airport
     @stored_planes[0]
   end
   
-  def takeoff(plane) 
+  def takeoff(*)
     raise StandardError.new "It is too stormy to takeoff plane" if stormy?
   end
 end
