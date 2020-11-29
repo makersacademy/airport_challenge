@@ -22,6 +22,8 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'too stormy' if stormy?
+
     fail 'plane not located here' unless plane_present?(plane)
 
     @hangar.delete(plane)
