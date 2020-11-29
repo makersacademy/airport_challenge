@@ -1,6 +1,6 @@
 ## Domain Models
 
-# User Story 1
+### User Story 1
 
 ```
 As an air traffic controller
@@ -11,11 +11,11 @@ I want to instruct a plane to land at an airport
 **Domain Model:**
 |**Objects**|**Messages**|
 |-----------|------------|
-|Plane      |land        |
-|Airport    |            |
+|Plane      |        |
+|Airport    |land          |
 
 
-# User Story 2
+### User Story 2
 
 ```
 As an air traffic controller
@@ -26,11 +26,11 @@ I want to instruct a plane to take off from an airport and confirm it is no long
 **Domain Model:**
 |**Objects**|**Messages**|
 |-----------|------------|
-|Plane      |takeoff    |
-|Airport    |confirm_departure?    |
+|Plane      |    |
+|Airport    |takeoff and confirm departure |
 
 
-# User Story 3
+### User Story 3
 
 ```
 As an air traffic controller
@@ -45,7 +45,7 @@ I want to prevent landing when the airport is full
 |Airport    |full?       |
 
 
-# User Story 4
+### User Story 4
 
 ```
 As the system designer
@@ -59,11 +59,11 @@ I would like a default airport capacity that can be overridden as appropriate
 |AirportCapacity    |            |
 
 
-# User Story 5
+### User Story 5
 
 ```
 As an air traffic controller
-So ensure safety
+To ensure safety
 I want to prevent takeoff when the weather is stormy
 ```
 
@@ -73,11 +73,11 @@ I want to prevent takeoff when the weather is stormy
 |Plane   |prevent_takeoff      |
 
 
-# User Story 6
+### User Story 6
 
 ```
 As an air traffic controller
-So ensure safety
+To ensure safety
 I want to prevent landing when the weather is stormy
 ```
 
