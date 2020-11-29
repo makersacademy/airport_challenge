@@ -39,7 +39,7 @@ class Airport
   end
 
   def stormy?
-
+    @weather == 'stormy'
   end
 
 end

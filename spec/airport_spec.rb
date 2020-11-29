@@ -83,4 +83,11 @@ describe Airport do
       expect(weather_types).to include(airport.weather_generator)
     end
   end
+
+  describe '#stormy?' do
+    it 'returns true if weather is stormy' do
+      allow(airport.weather).to receive(:weather_generator) { 'stormy'}
+      expect(airport.stormy?). to eq true
+    end
+  end
 end
