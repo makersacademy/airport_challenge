@@ -2,13 +2,14 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_accessor :hangar, :capacity
+  attr_accessor :hangar, :capacity, :weather
 
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
+    @weather = 'sunny'
   end
 
   def land_plane(plane)
@@ -20,7 +21,7 @@ class Airport
 
   def take_off(plane)
     fail 'plane not located here' unless plane_present?(plane)
-    
+
     @hangar.delete(plane)
     plane.current_location = 'flying'
   end
