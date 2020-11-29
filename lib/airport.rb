@@ -13,6 +13,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Weather is stormy' if stormy?
     @planes.delete(plane)
   end
 
@@ -24,5 +25,9 @@ class Airport
 
   def full?
     @planes.size >= @capacity
+  end
+
+  def stormy?
+    rand(1..100) > 95
   end
 end
