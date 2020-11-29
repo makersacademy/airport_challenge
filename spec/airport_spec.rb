@@ -9,6 +9,8 @@ require 'plane'
 # I would like to instruct a plane to take off and confirm it is no longer in the airport
 
 # As an air traffic controller 
+# to ensure safety
+# i want to prevent landing when the airport is full
 
 describe Airport do
 
@@ -19,5 +21,8 @@ describe Airport do
   it 'instructs a plane to take off' do
     expect(subject).to respond_to(:takeoff).with(1).argument
   end 
+
+  it 'gives an error when a plane tries to land when the airport is full' do
+    expect { 21.times { subject.land(Plane.new) } }.to raise_error "Airport is full" 
+  end
 end
- 
