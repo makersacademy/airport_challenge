@@ -16,6 +16,10 @@ describe Airport do
     expect(subject).to respond_to(:plane_present?).with(1).argument
   end
 
+  it 'responds to capacity? method' do
+    expect(subject).to respond_to(:capacity?)
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       airport.land_plane(plane)

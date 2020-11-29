@@ -10,8 +10,8 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'hangar full' if @hangar.length >= @capacity
-    
+    fail 'hangar full' unless capacity?
+
     @hangar << plane
     plane.current_location = 'landed'
   end
@@ -23,5 +23,9 @@ class Airport
 
   def plane_present?(plane)
     @hangar.include?(plane)
+  end
+
+  def capacity?
+    @hangar.count < @capacity
   end
 end
