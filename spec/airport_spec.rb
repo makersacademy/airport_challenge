@@ -54,6 +54,12 @@ describe Airport do
       airport.take_off(plane)
       expect(plane.flying?).to eq true
     end
+
+    it 'raises error if the plane is not at the airport' do
+      plane1 = Plane.new
+      airport.land_plane(plane)
+      expect { airport.take_off(plane1) }.to raise_error 'plane not located here'
+    end
   end
 
   describe '#plane_present?' do

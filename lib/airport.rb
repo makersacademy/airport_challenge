@@ -19,6 +19,8 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'plane not located here' unless plane_present?(plane)
+    
     @hangar.delete(plane)
     plane.current_location = 'flying'
   end
@@ -30,4 +32,5 @@ class Airport
   def capacity?
     @hangar.count < @capacity
   end
+
 end
