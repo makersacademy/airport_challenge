@@ -33,58 +33,66 @@ describe Airport do
   end
 
   describe '#land_plane' do
-    it 'stores plane in the airport' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      expect(airport.hangar).to include(plane)
+    context 'when the weather is good' do
+      it 'stores plane in the airport' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        expect(airport.hangar).to include(plane)
+      end
+
+      it 'changes plane status from flying to landed' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        expect(plane.flying?).to eq false
+      end
+
+      it 'raises error when airport capacity is full' do
+        allow(airport).to receive(:stormy?) { false }
+        plane1 = Plane.new
+        airport.capacity.times { airport.land_plane(plane) }
+        expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
+      end
     end
 
-    it 'changes plane status from flying to landed' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      expect(plane.flying?).to eq false
-    end
-
-    it 'raises error when airport capacity is full' do
-      allow(airport).to receive(:stormy?) { false }
-      plane1 = Plane.new
-      airport.capacity.times { airport.land_plane(plane) }
-      expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
-    end
-
-    it 'raises error when weather is stormy' do
-      allow(airport).to receive(:stormy?) { true }
-      expect { airport.land_plane(plane) }.to raise_error 'too stormy'
+    context 'when the weather is stormy' do
+      it 'raises error when weather is stormy' do
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.land_plane(plane) }.to raise_error 'too stormy'
+      end
     end
   end
 
   describe '#take_off' do
-    it 'removes plane from airport hangar' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      airport.take_off(plane)
-      expect(airport.hangar).not_to include(plane)
+    context 'when the weather is good' do
+      it 'removes plane from airport hangar' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        airport.take_off(plane)
+        expect(airport.hangar).not_to include(plane)
+      end
+
+      it 'changes status of plane from landed to flying' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        airport.take_off(plane)
+        expect(plane.flying?).to eq true
+      end
+
+      it 'raises error if the plane is not at the airport' do
+        allow(airport).to receive(:stormy?) { false }
+        plane1 = Plane.new
+        airport.land_plane(plane)
+        expect { airport.take_off(plane1) }.to raise_error 'plane not located here'
+      end
     end
 
-    it 'changes status of plane from landed to flying' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      airport.take_off(plane)
-      expect(plane.flying?).to eq true
-    end
-
-    it 'raises error if the plane is not at the airport' do
-      allow(airport).to receive(:stormy?) { false }
-      plane1 = Plane.new
-      airport.land_plane(plane)
-      expect { airport.take_off(plane1) }.to raise_error 'plane not located here'
-    end
-
-    it 'raises error when weather is stormy' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      allow(airport).to receive(:stormy?) { true }
-      expect { airport.take_off(plane) }.to raise_error 'too stormy'
+    context 'when the weather is stormy' do
+      it 'raises error when weather is stormy' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.take_off(plane) }.to raise_error 'too stormy'
+      end
     end
   end
 
