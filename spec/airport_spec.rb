@@ -2,6 +2,10 @@ require_relative "../lib/airport"
 require_relative "../lib/plane"
 
 describe Airport do
+  before do
+    allow(subject).to receive(:stormy?) { false }
+  end
+
   describe "#land_a_plane" do
     it "lands plane at an airport" do
       plane = Plane.new
@@ -14,10 +18,19 @@ describe Airport do
       expect { subject.land_a_plane Plane.new }.to raise_error 'Airport is full'
     end
 
-    it "raises error when full with custom capacity" do
-      airport = Airport.new(capacity: 200)
-      200.times { airport.land_a_plane Plane.new }
-      expect { airport.land_a_plane Plane.new }.to raise_error 'Airport is full'
+    describe 'when with custom capacity' do
+      subject { Airport.new(capacity: 200) }
+
+      it "raises error when full" do
+        200.times { subject.land_a_plane Plane.new }
+        expect { subject.land_a_plane Plane.new }.to raise_error 'Airport is full'
+      end
+    end
+
+    it "prevents landing when weather is stormy" do
+      plane = Plane.new
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land_a_plane(plane) }.to raise_error "Weather is stormy"
     end
   end
 
