@@ -4,6 +4,7 @@ class Plane
 
   def land(airport)
     fail "This airport is full!" if airport.full?
+    fail "The weather is too stormy!" if airport.stormy?
     airport.hangar << self
     "Landed!"
   end
