@@ -24,6 +24,10 @@ describe Airport do
     expect(Airport).to respond_to(:new).with(1).argument
   end
 
+  it 'responds to weather_generator method' do
+    expect(subject).to respond_to(:weather_generator)
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       airport.land_plane(plane)

@@ -34,4 +34,8 @@ class Airport
     @hangar.count < @capacity
   end
 
+  def weather_generator
+
+  end
+
 end
