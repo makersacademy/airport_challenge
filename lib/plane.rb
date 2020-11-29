@@ -9,7 +9,8 @@ class Plane
     "Landed!"
   end
 
-  def take_off
+  def take_off(airport)
+    fail "The weather is too stormy!" if airport.stormy?
     "Taken off!"
   end
 
