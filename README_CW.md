@@ -20,7 +20,7 @@ I want to instruct a plane to land at an airport
 |Plane      |        |
 |Airport    |land          |
 
-Complete: [x]
+Complete: -[x]
 
 ### User Story 2
 
