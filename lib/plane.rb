@@ -13,6 +13,7 @@ class Plane
 
   def takeoff
     raise StandardError, "Plane is in the air" if @location == LOCATION
+    
     @location = LOCATION
   end
 end
