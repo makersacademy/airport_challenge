@@ -17,7 +17,7 @@ describe Airport do
   end
 
   describe "#stormy?" do
-    it "raises updates the weather based on #weather_check" do
+    it "updates the weather based on #weather_check" do
       allow(subject).to receive(:weather_check) {6}
       subject.stormy?
       expect(subject.storm).to eq true
