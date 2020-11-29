@@ -7,11 +7,16 @@ class Plane
 #   end
 
 #########################################
-  def land
-    'plane landed'
+  # def land
+  #   'plane landed'
+  # end
+  #
+  # def takeoff
+  #   'plane left airport'
+  # end
+  def working?
+    true
   end
 
-  def takeoff
-    'plane left airport'
-  end
+
 end

@@ -6,45 +6,37 @@ describe Airport do
     expect(airport).to be_kind_of(Airport)
   end
 
+  it 'allows the plane to land' do
+    plane = Plane.new
+    expect(subject.land(plane)).to eq 'Plane has landed'
+  end
+
+  # describe '#take_off' do
+  it 'allows the plane to take off' do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to eq 'Plane has left airport'
+  end
+
   it 'will accept a set capacity' do
-    expect(subject.capacity).to eq AIRPORT::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  describe '#land_plane' do
-  it 'raises an error when full' do
-    subject.capacity.times { subject.land_plane(Plane.new) }
-    expect { subject.land_plane(Plane.new) }.to raise_error 'Airport full'
+  it 'will override a default capacity' do
+    airport = Airport.new(40)
+    expect(airport.capacity).to eq 40
   end
-end
 
+  describe '#land' do
+    it 'raises an error when full' do
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
+    end
+  end
 
-  # it 'can respond to land_plane' do
-  #   airport = Airport.new
-  #   expect(subject).to respond_to('land_plane')
-  # end
-
-  # it 'adds 1 to total number of planes in airport when a plane lands' do
-  #   airport = Airport.new
-  #
-  # end
-
-  # it 'allows the plane to land' do
-  #   plane = Plane.new
-  #   expect(subject.land_plane(plane)).to eq plane
-  # end
-  #
-  # it 'allows the plane to take off' do
-  #   plane = Plane.new
-  #   expect(subject.take_off_plane(plane)).to eq plane
-  # end
-
-   # it 'registers that a plane has taken off' do
-   #   plane = Plane.new
-   #
-   #   expect(subject.take_off_confirm(1)).to eq 0
-   #  end
-
-  # it 'will see if a plane has taken off'
-  #   expect(subject).to_respond_to()
-
+  describe '#full' do
+    it 'raises an error when not full' do
+      plane = Plane.new
+      expect(subject.capacity).to eq 20
+    end
+  end
 end
