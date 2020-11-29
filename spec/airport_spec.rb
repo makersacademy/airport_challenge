@@ -7,7 +7,11 @@ describe Airport do
     expect(subject).to be_instance_of(Airport)
   end
 
-  it "lands a plane on arrivel" do
+  it "lands a plane on arrival" do
     expect(subject).to respond_to(:land)
+  end
+
+  it "lets a plane take off from the airport" do
+    expect(subject).to respond_to(:depart)
   end
 end
