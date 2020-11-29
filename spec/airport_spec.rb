@@ -17,10 +17,10 @@ describe Airport do
   end
 
   describe "#stormy?" do
-    it "raises an error if the airport weather is stormy" do
-      plane = Plane.new
+    it "raises updates the weather based on #weather_check" do
       allow(subject).to receive(:weather_check) {6}
-      expect { plane.land(subject) }.to raise_error "The weather is too stormy!"
+      subject.stormy?
+      expect(subject.storm).to eq true
     end
   end
 end
