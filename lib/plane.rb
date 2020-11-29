@@ -19,13 +19,13 @@ class Plane
 
     airport.hangar << self
     @current_airport = airport
-    "Landed!"
+    "Landed at #{@current_airport}!"
   end
 
   def take_off
     fail "Already flying!" if flying?
     fail "The weather is too stormy!" if @current_airport.stormy?
-    
+
     @current_airport.hangar.delete(self)
     @current_airport = "flying"
     "Taken off!"

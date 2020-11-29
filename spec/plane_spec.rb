@@ -7,7 +7,7 @@ describe Plane do
     it "lands at an airport" do
       airport = Airport.new
       allow(airport).to receive(:weather_setter) { 5 }
-      expect(subject.land(airport)).to eq "Landed!"
+      expect(subject.land(airport)).to eq "Landed at #{airport}!"
     end
 
     it "raises an error if already landed" do
@@ -26,7 +26,7 @@ describe Plane do
 
     it "raises an error if the weather is too stormy" do
       airport = Airport.new
-      allow(airport).to receive(:weather_setter) {6}
+      allow(airport).to receive(:weather_setter) { 6 }
       expect { subject.land(airport) }.to raise_error "The weather is too stormy!"
     end
 
