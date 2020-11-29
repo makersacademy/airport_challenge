@@ -54,3 +54,9 @@ I want to prevent landing when weather is stormy
 ## Diagram
 
 <img src="https://github.com/xavierloos/airport_challenge/blob/master/airport-diagram.png">
+
+#Steps
+
+- Create a spec file for the airport, add a describe method to check if the class exit.
+- Create a Airport file in the lib folder and add the class Airport
+- Require the file in the spec file.
