@@ -16,11 +16,9 @@ describe Airport do
 
     it "rejects plane if hangar is full" do
       plane = Plane.new
-      plane2 = Plane.new
       plane3 = Plane.new
-      plane4 = Plane.new
       subject.land(plane)
-      expect { subject.land(plane4) }.to raise_error "No space available"
+      expect { subject.land(plane3) }.to raise_error "No space available"
     end
   end
 
@@ -34,19 +32,17 @@ describe Airport do
     it "confirms plane no longer at airport" do
       plane = Plane.new
       subject.land(plane)
-      expect { subject.take_off(plane) }.to change { subject.hangar }
+      expect(subject.take_off(plane)).to eq plane
     end
   end
 
   describe "#weather" do
     it "prevents take off in stormy weather" do
-      airport = Airport.new
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error "Cannot take off due to stormy weather"
     end
 
     it "prevents landing in stormy weather" do
-      airport = Airport.new
       plane = Plane.new
       expect { subject.land(plane) }.to raise_error "Cannot land plane due to stormy weather"
     end

@@ -12,33 +12,25 @@ class Airport
   end
 
   def land(plane)
-    fail "No space available" if full?
-    plane
+    raise "No space available" if full?
+
     @hangar << plane
   end
 
   def take_off(plane)
+    weather_take_off(plane)
+  end
+
+  def weather_take_off(plane) 
+    (raise "Cannot take off due to stormy weather" if @weather == "stormy")
     @hangar.pop
     plane
   end
 
-  def weather_take_off(takeoff) 
-      if @weather == "stormy"
-        raise "cannot takeoff due to stormy weather"
-      else
-        @hangar.pop
-        plane
-      end
+  def weather_land(plane)
+    (raise "Cannot land plane due to stormy weather" if @weather == "stormy")
+    @hangar << plane
   end
-
-  def weather_land(land)
-    if @weather == "stormy"
-      raise "cannot land plane due to stormy weather"
-    else
-      @hangar << plane
-    end
-  end
-
 
   private
   def full?
