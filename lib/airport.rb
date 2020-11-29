@@ -15,7 +15,15 @@ class Airport
     @hangar.length >= @capacity
   end
 
+  def weather_check
+    rand(7)
+  end
+
   def stormy?
-    @storm
+    if self.weather_check == 6
+      @storm = true
+    else
+      storm = false
+    end
   end
 end

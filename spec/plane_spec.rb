@@ -5,6 +5,7 @@ describe Plane do
   describe "#land" do
     it "lands at an airport" do
       airport = Airport.new
+      allow(airport).to receive(:weather_check) { 5 }
       expect(subject.land(airport)).to eq "Landed!"
     end
   end
