@@ -34,36 +34,47 @@ describe Airport do
 
   describe '#land_plane' do
     it 'stores plane in the airport' do
+      allow(airport).to receive(:stormy?) { false }
       airport.land_plane(plane)
       expect(airport.hangar).to include(plane)
     end
 
     it 'changes plane status from flying to landed' do
+      allow(airport).to receive(:stormy?) { false }
       airport.land_plane(plane)
       expect(plane.flying?).to eq false
     end
 
     it 'raises error when airport capacity is full' do
+      allow(airport).to receive(:stormy?) { false }
       plane1 = Plane.new
       airport.capacity.times { airport.land_plane(plane) }
       expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
+    end
+
+    it 'raises error when weather is stormy' do
+      allow(airport).to receive(:stormy?) { true }
+      expect { airport.land_plane(plane) }.to raise_error 'too stormy'
     end
   end
 
   describe '#take_off' do
     it 'removes plane from airport hangar' do
+      allow(airport).to receive(:stormy?) { false }
       airport.land_plane(plane)
       airport.take_off(plane)
       expect(airport.hangar).not_to include(plane)
     end
 
     it 'changes status of plane from landed to flying' do
+      allow(airport).to receive(:stormy?) { false }
       airport.land_plane(plane)
       airport.take_off(plane)
       expect(plane.flying?).to eq true
     end
 
     it 'raises error if the plane is not at the airport' do
+      allow(airport).to receive(:stormy?) { false }
       plane1 = Plane.new
       airport.land_plane(plane)
       expect { airport.take_off(plane1) }.to raise_error 'plane not located here'
@@ -84,10 +95,4 @@ describe Airport do
     end
   end
 
-  describe '#stormy?' do
-    it 'returns true if weather is stormy' do
-      allow(airport.weather).to receive(:weather_generator) { 'stormy'}
-      expect(airport.stormy?). to eq true
-    end
-  end
 end

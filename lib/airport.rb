@@ -13,6 +13,8 @@ class Airport
   end
 
   def land_plane(plane)
+    fail 'too stormy' if stormy?
+
     fail 'hangar full' unless capacity?
 
     @hangar << plane
