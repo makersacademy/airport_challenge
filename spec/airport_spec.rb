@@ -13,6 +13,12 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land_a_plane Plane.new }
       expect { subject.land_a_plane Plane.new }.to raise_error 'Airport is full'
     end
+
+    it "raises error when full with custom capacity" do
+      airport = Airport.new(capacity: 200)
+      200.times { airport.land_a_plane Plane.new }
+      expect { airport.land_a_plane Plane.new }.to raise_error 'Airport is full'
+    end
   end
 
   describe "#take_off" do
