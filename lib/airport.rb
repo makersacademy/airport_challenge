@@ -8,22 +8,17 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
-    @storm = false
   end
 
   def full?
     @hangar.length >= @capacity
   end
 
-  def weather_check
+  def weather_setter
     rand(7)
   end
 
   def stormy?
-    if self.weather_check == 6
-      @storm = true
-    else
-      storm = false
-    end
+    weather_setter == 6
   end
 end
