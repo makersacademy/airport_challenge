@@ -6,19 +6,10 @@ describe Airport do
     allow(subject).to receive(:stormy?) { false }
     subject
   }
-  let(:stormy_airport) {
-    stormy_airport = Airport.new
-    allow(stormy_airport).to receive(:stormy?) { true }
-    stormy_airport
-  }
-  let(:plane) { Plane.new }
+  let(:plane) { double :Plane }
 
   it 'allows system designer to override default capacity' do
     expect(Airport).to respond_to(:new).with(1).argument
-  end
-
-  it 'initializes with an empty hangar' do
-    expect(subject.hangar).to be_empty
   end
 
   it 'initializes with the default capacity if not overridden' do
@@ -29,30 +20,18 @@ describe Airport do
     expect(Airport.new(20).capacity).to eq 20
   end
 
-  it 'responds to instruction "land"' do
-    is_expected.to respond_to(:land)
-  end
-
-  it 'responds to instruction "take_off"' do
-    is_expected.to respond_to(:take_off)
-  end
-
-  it 'responds to "full?" query' do
-    is_expected.to respond_to(:full?)
-  end
-
-  it 'responds to "present?" query' do
-    is_expected.to respond_to(:present?)
-  end
-
-  it 'responds to "stormy?" query' do
-    is_expected.to respond_to(:stormy?)
+  it 'initializes with an empty hangar' do
+    expect(subject.hangar).to be_empty
   end
 
   describe '.land' do
+    before do
+      allow(plane).to receive(:land)
+    end
 
-    it 'takes 1 argument' do
-      is_expected.to respond_to(:land).with(1).argument
+    it 'instructs the plane to land' do
+      expect(plane).to receive(:land)
+      subject.land(plane)
     end
 
     it 'stores plane in hangar' do
@@ -70,35 +49,32 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Plane already landed"
     end
 
-    it 'raises error when stormy' do
-      expect { stormy_airport.land(plane) }.to raise_error "Landing aborted due to stormy weather"
-    end
   end
 
   describe '.take_off' do
-    it 'takes 1 argument' do
-      is_expected.to respond_to(:take_off).with(1).argument
-    end
-
     it 'when plane not in the hangar' do
       subject.land(Plane.new)
-      expect { subject.take_off(Plane.new) }.to raise_error "Plane not at this airport"
+      message = "Plane not at this airport"
+      expect { subject.take_off(plane) }.to raise_error message
     end
 
     context 'when plane is present in hangar' do
-      it 'removes correct plane from hangar' do
-        subject.land(Plane.new)
+      before(:each) do
+        allow(plane).to receive(:land)
+        allow(plane).to receive(:depart)
         subject.land(plane)
         subject.land(Plane.new)
+      end
+
+      it 'removes correct plane from hangar' do
         subject.take_off(plane)
-        expect(subject.hangar.size).to eq 2
         expect(subject.hangar).not_to include(plane)
       end
-    end
 
-    it 'raises error when stormy' do
-      stormy_airport.hangar << plane
-      expect { stormy_airport.take_off(plane) }.to raise_error "Take off aborted due to stormy weather"
+      it 'tells the correct plane to depart' do
+        expect(plane).to receive(:depart)
+        subject.take_off(plane)
+      end
     end
 
   end
@@ -112,6 +88,7 @@ describe Airport do
 
   describe '#present?' do
     it 'returns true if plane is in the hangar' do
+      allow(plane).to receive(:land)
       subject.land(plane)
       expect(subject.present?(plane)).to be true
     end
@@ -120,6 +97,36 @@ describe Airport do
       subject.land(Plane.new)
       expect(subject.present?(plane)).to be false
     end
+  end
+
+  context 'when it is stormy' do
+    subject {
+      stormy_airport = Airport.new
+      allow(stormy_airport.weather).to receive(:stormy?) { true }
+      stormy_airport
+    }
+
+    describe '#stormy?' do
+      it 'returns true' do
+        expect(subject.stormy?).to be true
+      end
+    end
+
+    describe '.take_off' do
+      it 'raises error when trying to take_off' do
+        subject.hangar << plane
+        message = "Take off aborted due to stormy weather"
+        expect { subject.take_off(plane) }.to raise_error message
+      end
+    end
+
+    describe '.land' do
+      it 'raises error when trying to land' do
+        message = "Landing aborted due to stormy weather"
+        expect { subject.land(plane) }.to raise_error message
+      end
+    end
+
   end
 
 end

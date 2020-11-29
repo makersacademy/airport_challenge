@@ -1,5 +1,38 @@
 ## Natasha's Airport Challenge Readme ##
 
+## How to Use
+```shell
+irb -r './lib/airport.rb'
+```
+
+## Example irb transcript
+```shell
+$ irb
+2.6.5 :001 > airport = Airport.new
+ => #<Airport:0x00007fd16f0adc08 @hangar=[], @capacity=10, @weather=#<Weather:0x00007fd16f0adb68>>
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x00007fd16f0b4e18>
+2.6.5 :003 > airport.land(plane)
+Plane landed
+ => [#<Plane:0x00007fd16f0b4e18 @landed=true>]
+2.6.5 :004 > plane2 = Plane.new
+ => #<Plane:0x00007fd16f0ce638>
+2.6.5 :005 > airport.land(plane2)
+Plane landed
+ => [#<Plane:0x00007fd16f0b4e18 @landed=true>, #<Plane:0x00007fd16f0ce638 @landed=true>]
+2.6.5 :006 > airport.take_off(plane)
+Plane departed
+ => #<Plane:0x00007fd16f0b4e18 @landed=false>
+2.6.5 :007 > airport.take_off(plane2)
+Traceback (most recent call last):
+        5: from /Users/natashamcintyre/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/natashamcintyre/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/natashamcintyre/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):7
+        1: from /Users/natashamcintyre/Projects/weekend-challenges/airport_challenge/lib/airport.rb:28:in `take_off'
+RuntimeError (Take off aborted due to stormy weather)
+```
+
 ## My approach to the airport challenge
 Perform the following steps for each user story:
 1. Draw a diagram modelling the user story
@@ -23,4 +56,4 @@ Options: 1) when airport is created by system designer. 2) when air traffic cont
 Considerations: User stories state air traffic controller. Weather changes so not good to initialize when airport is created.
 Decision: When planes are instructed to land and take_off
 
-After a fair bit of research into mocks and stubs, I eventually created 2 subjects which set the return value from airport.stormy? as either true or false to use appropriately in my rspec tests.
+After a fair bit of research into mocks and stubs, I eventually created set stormy to false in an initial subject, and a contextual subject for stormy weather. This then broke when I tried to make the weather method private so I have omitted the privacy for now (I have left a commented out private where I would have done this.)

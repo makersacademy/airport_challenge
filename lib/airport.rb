@@ -2,7 +2,7 @@ require_relative './plane.rb'
 require_relative './weather.rb'
 
 class Airport
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :capacity
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -18,8 +18,8 @@ class Airport
 
     fail "Landing aborted due to stormy weather" if stormy?
 
-    puts "Plane landed"
-    @hangar << plane
+    plane.land
+    hangar << plane
   end
 
   def take_off(plane)
@@ -27,20 +27,24 @@ class Airport
 
     fail "Take off aborted due to stormy weather" if stormy?
 
-    puts "Plane departed"
-    @hangar.delete(plane)
+    plane.depart
+    hangar.delete(plane)
   end
 
   def full?
-    @hangar.size >= @capacity
+    hangar.size >= capacity
   end
 
   def present?(plane)
-    @hangar.include?(plane)
+    hangar.include?(plane)
   end
 
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
+
+#  private
+
+  attr_reader :weather, :hangar
 
 end
