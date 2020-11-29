@@ -16,7 +16,7 @@ Airport Challenge
 
 Steps
 -------
-I attempted to solve this challenge using the Boris Bike challenge that we had been working on during the week as a guide. There were many elements of this challenges user stories that were analagous to the user stories found in the Boris Bike challenge. For example, the 'airport' can be likened to a 'docking station'. 'Land' can be likened to 'dock', and 'take off' can be likened to 'release bike'. As there were similarities, I was able to use some of my previous works as a guide for this challenge. I then tried to solve the problem of testing randomness but was unable to complete this task. There is more I could research regarding testing randomness as it is quite a well written about subject. I would hope to use this extra research to complete the challenge.
+I attempted to solve this challenge using the Boris Bike challenge that we had been working on during the week as a guide. There were many elements of this challenges user stories that were analogous to the user stories found in the Boris Bike challenge. For example, the 'airport' can be likened to a 'docking station'. 'Land' can be likened to 'dock', and 'take off' can be likened to 'release bike'. As there were similarities, I was able to use some of my previous works as a guide for this challenge. I then tried to solve the problem of testing randomness but was unable to complete this task. There is more I could research regarding testing randomness as it is quite a well written about subject. I would hope to use this extra research to complete the challenge.
 
 Task
 -----
@@ -64,3 +64,7 @@ In code review we'll be hoping to see:
 * The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 31d3237b5d5ce0c75f75af2b465e0d91307532cf
