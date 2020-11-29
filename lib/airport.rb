@@ -18,7 +18,7 @@ class Airport
     plane.current_location = 'flying'
   end
 
-  def plane_present(plane)
-
+  def plane_present?(plane)
+    @hangar.include?(plane)
   end
 end

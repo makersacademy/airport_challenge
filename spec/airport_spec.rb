@@ -12,8 +12,8 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it 'responds to plane_present method' do
-    expect(subject).to respond_to(:plane_present).with(1).argument
+  it 'responds to plane_present? method' do
+    expect(subject).to respond_to(:plane_present?).with(1).argument
   end
 
   describe '#land_plane' do
@@ -39,6 +39,13 @@ describe Airport do
       airport.land_plane(plane)
       airport.take_off(plane)
       expect(plane.flying?).to eq true
+    end
+  end
+
+  describe '#plane_present?' do
+    it 'verifies if a specific plane is in the hangar' do
+      airport.land_plane(plane)
+      expect(airport.plane_present?(plane)).to eq true
     end
   end
 end
