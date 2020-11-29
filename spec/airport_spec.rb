@@ -1,6 +1,21 @@
 require 'airport'
 
 describe Airport do
+  describe "#initialize" do
+    it "starts with an empty hangar" do
+      expect(subject.hangar).to eq []
+    end
+
+    it "has a default capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "has a variable capacity" do
+      airport = Airport.new(1)
+      expect(airport.capacity).to eq 1
+    end
+  end
+
   describe '#full?' do
     it "raises an error if airport with default capacity is full" do
       allow(subject).to receive(:weather_setter) {5}
