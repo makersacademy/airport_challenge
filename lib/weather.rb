@@ -1,10 +1,8 @@
 class Weather
-	
-	attr_reader :weather 
+  attr_reader :weather 
+  WEATHER = [:sunny, :rainy, :stormy, :breezy]
 
-	WEATHER = [ :sunny, :rainy, :stormy, :breezy ]
-
-	def stormy?
-		WEATHER.sample == :stormy
-	end 
-end 
+  def stormy?
+  		WEATHER.sample == :stormy
+  	end 
+end

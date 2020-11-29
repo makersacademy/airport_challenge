@@ -2,22 +2,23 @@
 # a plane should take off
 
 class Plane 
-	attr_reader :flying, :airport
+	 attr_reader :flying, :airport
 
-	def initialize(flying = true)
-		@flying = flying
-		@airport = nil
-	end 
+	 def initialize(flying = true)
+ 		 @flying = flying
+ 		 @airport = nil
+ 	end 
 
-	def land
-		raise "Plane has already landed" unless @flying
-		@flying = false
-		@airport = airport
-		
-	end 
+	 def land
+ 		 raise "Plane has already landed" unless @flying
 
-	def take_off
-		raise "Plane is already flying" if @flying	
-	end 
+ 		 @flying = false
+ 		 @airport = airport
+ 		
+ 	end 
 
-end 
+	 def take_off
+ 		 raise "Plane is already flying" if @flying	
+ 	end 
+
+end

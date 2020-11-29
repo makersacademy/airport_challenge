@@ -50,7 +50,7 @@ PLATFORMS
 
 DEPENDENCIES
   rspec
-  rubocop (= 0.79.0)
+  rubocop
   simplecov
   simplecov-console
 
