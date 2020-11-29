@@ -26,6 +26,12 @@ describe Airport do
       airport.land_plane(plane)
       expect(plane.flying?).to eq false
     end
+
+    it 'raises error when airport capacity is full' do
+      plane1 = Plane.new
+      airport.land_plane(plane)
+      expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
+    end
   end
 
   describe '#take_off' do

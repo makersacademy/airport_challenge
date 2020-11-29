@@ -2,13 +2,16 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_accessor :hangar
+  attr_accessor :hangar, :capacity
 
   def initialize
     @hangar = []
+    @capacity = 1
   end
 
   def land_plane(plane)
+    fail 'hangar full' if @hangar.length >= @capacity
+    
     @hangar << plane
     plane.current_location = 'landed'
   end
