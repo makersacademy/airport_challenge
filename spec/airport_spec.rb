@@ -8,6 +8,11 @@ describe Airport do
       subject.land_a_plane(plane)
       expect(subject.planes).to include(plane)
     end
+
+    it "raises error when full" do
+      Airport::DEFAULT_CAPACITY.times { subject.land_a_plane Plane.new }
+      expect { subject.land_a_plane Plane.new }.to raise_error 'Airport is full'
+    end
   end
 
   describe "#take_off" do
@@ -27,5 +32,4 @@ describe Airport do
       expect(subject.has_plane?(plane)).to be false
     end
   end
-
 end

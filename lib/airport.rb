@@ -1,11 +1,13 @@
 class Airport
   attr_reader :planes
+  DEFAULT_CAPACITY = 100
 
   def initialize
     @planes = []
   end
 
   def land_a_plane(plane)
+    fail 'Airport is full' if full?
     @planes << plane
   end
 
@@ -15,5 +17,11 @@ class Airport
 
   def has_plane?(plane)
     @planes.include?(plane)
+  end
+
+  private
+
+  def full?
+    @planes.size >= DEFAULT_CAPACITY
   end
 end
