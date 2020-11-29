@@ -4,10 +4,7 @@ require 'weather'
 
 describe 'Feature Testing' do
   it 'can land and take off multiple aircrafts' do
-    @airport = Airport.new
-
-    # increase airport capacity to two
-    @airport.capacity = 2
+    @airport = Airport.new(2)
 
     # create mulitple planes
     @plane1 = Plane.new
@@ -53,8 +50,8 @@ describe 'Feature Testing' do
     allow(@airport2).to receive(:good_weather?).and_return(true)
     allow(@airport3).to receive(:good_weather?).and_return(true)
 
-    # new airport has a default capacity of 1
-    expect(@airport2.capacity).to eq 1
+    # new airport equals default capacity
+    expect(@airport2.capacity).to eq Airport::DEFAULT_CAPACITY
 
     # make planes land in each airport
     @airport1.land(@plane1)

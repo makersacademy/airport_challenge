@@ -1,14 +1,15 @@
 require_relative '../lib/weather'
 require_relative '../lib/plane'
 
-DEFAULT_CAPACITY = 1
+
 
 class Airport
-  attr_reader :ramp, :weather
-  attr_accessor :capacity # made the capacity amendable for feature testing later
+  attr_reader :ramp, :weather, :capacity
 
-  def initialize
-    @capacity = DEFAULT_CAPACITY
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @weather = Weather.new
     @ramp = []
   end
