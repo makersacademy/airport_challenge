@@ -4,7 +4,7 @@ class Airport
 
   attr_accessor :hangar, :capacity, :weather
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 1
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
@@ -14,6 +14,8 @@ class Airport
 
   def land_plane(plane)
     fail 'too stormy' if stormy?
+
+    fail 'plane already on land' if plane.flying? == false
 
     fail 'hangar full' unless capacity?
 

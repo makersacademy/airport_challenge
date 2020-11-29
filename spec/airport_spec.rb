@@ -50,7 +50,15 @@ describe Airport do
         allow(airport).to receive(:stormy?) { false }
         plane1 = Plane.new
         airport.capacity.times { airport.land_plane(plane) }
+        allow(airport).to receive(:stormy?) { false }
         expect { airport.land_plane(plane1) }.to raise_error 'hangar full'
+      end
+
+      it 'raises error if plane is already on land' do
+        allow(airport).to receive(:stormy?) { false }
+        airport.land_plane(plane)
+        allow(airport).to receive(:stormy?) { false }
+        expect { airport.land_plane(plane) }.to raise_error 'plane already on land'
       end
     end
 
