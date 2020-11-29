@@ -16,7 +16,7 @@ while airport.hangar.length < 4
       puts "Current hangar:"
       puts airport.hangar
       puts "----"
-    rescue
+    rescue StandardError
       puts $!
       next
     end
@@ -30,7 +30,7 @@ while airport.hangar.length.positive?
       puts "Current hangar:"
       puts airport.hangar
       puts "----"
-    rescue
+    rescue StandardError
       puts $!
       next
     end
