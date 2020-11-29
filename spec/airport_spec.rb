@@ -32,6 +32,10 @@ describe Airport do
     expect(subject).to respond_to(:stormy?)
   end
 
+  it 'responds to reset_airport_weather' do
+    expect(subject).to respond_to(:reset_airport_weather)
+  end
+
   describe '#land_plane' do
     it 'stores plane in the airport' do
       allow(airport).to receive(:stormy?) { false }

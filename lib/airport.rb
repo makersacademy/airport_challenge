@@ -19,6 +19,7 @@ class Airport
 
     @hangar << plane
     plane.current_location = 'landed'
+    reset_airport_weather
   end
 
   def take_off(plane)
@@ -28,6 +29,7 @@ class Airport
 
     @hangar.delete(plane)
     plane.current_location = 'flying'
+    reset_airport_weather
   end
 
   def plane_present?(plane)
@@ -44,6 +46,10 @@ class Airport
 
   def stormy?
     @weather == 'stormy'
+  end
+
+  def reset_airport_weather
+    @weather = weather_generator
   end
 
 end
