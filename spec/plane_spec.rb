@@ -7,7 +7,7 @@ describe Plane do
   end
 
   describe Plane do
-    it { is_expected.to respond_to(:working?)}
+    it { is_expected.to respond_to(:working?) }
   end
 
   # it 'can respond to land' do

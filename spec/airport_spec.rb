@@ -35,7 +35,7 @@ describe Airport do
 
   describe '#full' do
     it 'raises an error when not full' do
-      plane = Plane.new
+      # plane = Plane.new
       expect(subject.capacity).to eq 20
     end
   end
