@@ -4,21 +4,18 @@ require 'plane'
 describe Airport do
   let(:airport) { described_class.new }
   let(:plane) { Plane.new }
-  it 'responds to land_plane' do
-    expect(subject).to respond_to(:land_plane).with(1).argument
-  end
+  it { is_expected.to respond_to(:land_plane).with(1).argument}
 
-  it 'responds to take_off' do
-    expect(subject).to respond_to(:take_off).with(1).argument
-  end
+  it { is_expected.to respond_to(:take_off).with(1).argument}
 
   it 'responds to plane_present? method' do
     expect(subject).to respond_to(:plane_present?).with(1).argument
   end
 
-  it 'responds to capacity? method' do
-    expect(subject).to respond_to(:capacity?)
-  end
+  #made this method private so commenting out test
+  # it 'responds to capacity? method' do
+  #   expect(subject).to respond_to(:capacity?)
+  # end
 
   it 'can be initialized with 1 argument for capacity' do
     expect(Airport).to respond_to(:new).with(1).argument
@@ -119,16 +116,17 @@ describe Airport do
     end
   end
 
-  describe '#capacity?' do
-    it 'returns false when the hangar is full' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land_plane(plane)
-      expect(airport.capacity?).to eq false
-    end
-
-    it 'returns true when the hangar has room' do
-      allow(airport).to receive(:stormy?) { false }
-      expect(airport.capacity?).to eq true
-    end
-  end
+  #made method private so commenting out
+  # describe '#capacity?' do
+  #   it 'returns false when the hangar is full' do
+  #     allow(airport).to receive(:stormy?) { false }
+  #     airport.land_plane(plane)
+  #     expect(airport.capacity?).to eq false
+  #   end
+  #
+  #   it 'returns true when the hangar has room' do
+  #     allow(airport).to receive(:stormy?) { false }
+  #     expect(airport.capacity?).to eq true
+  #   end
+  # end
 end

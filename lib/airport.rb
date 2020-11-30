@@ -15,8 +15,7 @@ class Airport
   def land_plane(plane)
     storm_failure?
     fail 'plane already on land' if plane.flying? == false
-
-    fail 'hangar full' unless capacity?
+    capacity?
 
     @hangar << plane
     plane.current_location = 'landed'
@@ -36,10 +35,6 @@ class Airport
     @hangar.include?(plane)
   end
 
-  def capacity?
-    @hangar.count < @capacity
-  end
-
   def weather_generator
     ['sunny', 'stormy', 'cloudy', 'rainy', 'windy'].sample
   end
@@ -55,6 +50,10 @@ class Airport
       reset_airport_weather
       fail 'too stormy'
     end
+  end
+
+  def capacity?
+    fail 'hangar full' unless @hangar.count < @capacity
   end
 
   def reset_airport_weather
