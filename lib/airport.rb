@@ -24,7 +24,7 @@ class Airport
     self
   end
 
-  def good_weather?
+  def sunny?
     weather.sunny?
   end
 
@@ -41,14 +41,14 @@ class Airport
     raise 'the plane has already landed in the airport' if landed?(plane)
     raise 'the plane is already parked in another airport' if plane.location == "ground"
     raise 'sorry, cannot land as airport has no space' if full?
-    raise 'sorry cannot land or take off due to bad weather conditions' unless good_weather?
+    raise 'sorry cannot land or take off due to bad weather conditions' unless sunny?
 
     true
   end
   
   def ready_for_takeoff(plane)
     raise 'the plane is not in the airport' unless landed?(plane)
-    raise 'sorry cannot land or take off due to bad weather conditions' unless good_weather?
+    raise 'sorry cannot land or take off due to bad weather conditions' unless sunny?
 
     true
   end

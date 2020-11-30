@@ -8,7 +8,7 @@ describe Airport do
   NO_CAPACITY_MSG = 'sorry, cannot land as airport has no space'
 
   it 'checks the weather' do
-    expect(subject.good_weather?).to(respond_to { Weather.new })
+    expect(subject.sunny?).to(respond_to { Weather.new })
   end
   
   it 'has a default capacity of 1' do
@@ -22,7 +22,7 @@ describe Airport do
 
   describe '#landing' do
     it 'refuses landing if weather is bad' do
-      allow(subject).to receive(:good_weather?).and_return(false)
+      allow(subject).to receive(:sunny?).and_return(false)
       expect { subject.land(plane) } .to raise_error(RuntimeError, BAD_WEATHER_MSG) 
     end
 
@@ -46,7 +46,7 @@ describe Airport do
   describe '#ready_for_landing' do
     it 'returns true if the conditions are met' do
       allow(subject).to receive(:landed?).and_return(false)
-      allow(subject).to receive(:good_weather?).and_return(true)
+      allow(subject).to receive(:sunny?).and_return(true)
       allow(subject).to receive(:full?).and_return(false)
       expect(subject.ready_for_landing(plane)).to be true
     end
@@ -54,7 +54,7 @@ describe Airport do
 
   describe '#takeoff' do
     it 'refuses takeoff if the weather is bad' do
-      allow(subject).to receive(:good_weather?).and_return(false)
+      allow(subject).to receive(:sunny?).and_return(false)
       allow(subject).to receive(:landed?).and_return(true)
       expect { subject.takeoff(plane) }.to raise_error(RuntimeError, BAD_WEATHER_MSG) 
     end
@@ -71,7 +71,7 @@ describe Airport do
     end
 
     it 'allows take-off if all conditions are met' do
-      allow(subject).to receive(:good_weather?).and_return(true)
+      allow(subject).to receive(:sunny?).and_return(true)
       allow(subject).to receive(:landed?).and_return(true)
       expect(subject.ramp.include? plane).to be false
     end
@@ -80,7 +80,7 @@ describe Airport do
   describe '#ready_for_takeoff' do
     it 'returns true if the conditions are met' do
       allow(subject).to receive(:landed?).and_return(true)
-      allow(subject).to receive(:good_weather?).and_return(true)
+      allow(subject).to receive(:sunny?).and_return(true)
       expect(subject.ready_for_takeoff(plane)).to be true
     end
   end

@@ -12,7 +12,7 @@ describe 'Feature Testing' do
     @plane3 = Plane.new
 
     # make two planes land
-    allow(@airport).to receive(:good_weather?).and_return(true)
+    allow(@airport).to receive(:sunny?).and_return(true)
     @airport.land(@plane1)
     @airport.land(@plane2)
 
@@ -46,9 +46,9 @@ describe 'Feature Testing' do
     @plane2 = Plane.new
     @plane3 = Plane.new
 
-    allow(@airport1).to receive(:good_weather?).and_return(true)
-    allow(@airport2).to receive(:good_weather?).and_return(true)
-    allow(@airport3).to receive(:good_weather?).and_return(true)
+    allow(@airport1).to receive(:sunny?).and_return(true)
+    allow(@airport2).to receive(:sunny?).and_return(true)
+    allow(@airport3).to receive(:sunny?).and_return(true)
 
     # new airport equals default capacity
     expect(@airport2.capacity).to eq Airport::DEFAULT_CAPACITY
