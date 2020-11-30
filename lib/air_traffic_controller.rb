@@ -9,12 +9,10 @@ class Air_traffic_controller
           raise RuntimeError.new('Location must be wrong')
         end
     else 
-      if airport.get_weather == :stormy
-        raise RuntimeError.new("The plane cannot take_off because of the stormy weather")
-        elsif plane.is_flying == true
-          raise RuntimeError.new("The plane is already flying")
+      fail "The plane cannot take_off because of the stormy weather" if  airport.get_weather == :stormy
+      fail "The plane is already flying" if plane.is_flying == true
+        
       end
-    end
   end
 
   def are_same_locations(location_a, location_b)

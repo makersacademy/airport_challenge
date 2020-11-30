@@ -51,7 +51,7 @@ describe Air_traffic_controller do
     london_city = Airport.new(50, "LCY")
     easyjet_plane = Plane.new("LCY")
     allow(london_city).to receive(:get_weather).and_return(:stormy)
-    expect { atc.take_off(london_city, easyjet_plane) }.to raise_error(RuntimeError, "The plane cannot take_off because of the stormy weather")
+    expect { atc.take_off(london_city, easyjet_plane) }.to raise_error("The plane cannot take_off because of the stormy weather")
   end
   it "raises an error when plane wants to take off from the wrong airport " do
     atc = Air_traffic_controller.new
@@ -83,6 +83,6 @@ describe Air_traffic_controller do
     easyjet_plane = Plane.new("LCY")
     easyjet_plane.is_flying = true
     allow(london_city).to receive(:get_weather).and_return(:sunny)
-    expect { atc.take_off(london_city, easyjet_plane) }.to raise_error(RuntimeError, "The plane is already flying")
+    expect { atc.take_off(london_city, easyjet_plane) }.to raise_error( "The plane is already flying")
   end
 end
