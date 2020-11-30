@@ -1,4 +1,5 @@
 require './lib/weather.rb'
+require './lib/plane.rb'
 
 class Airport
   attr_reader :hanger, :capacity, :weather

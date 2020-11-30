@@ -7,7 +7,7 @@ class Weather
   end
 
   def stormy?
-    if @weather > 8
+    if @weather >= 8
       return true
       return fail 'Too stormy'
     else
