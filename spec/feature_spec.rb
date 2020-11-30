@@ -25,7 +25,7 @@ describe 'Feature Testing' do
     expect(@airport.ramp.include? @plane1).to be false
 
     # airport rejects if a plane tries to land twice
-    expect { @airport.land(@plane2) } .to raise_error(RuntimeError, 'the plane has already parked in the airport')
+    expect { @airport.land(@plane2) } .to raise_error(RuntimeError, 'the plane has already landed in the airport')
 
     # airport rejects if a plane tries to take off if it's not parked
     expect { @airport.takeoff(@plane3) } .to raise_error(RuntimeError, 'the plane is not in the airport')

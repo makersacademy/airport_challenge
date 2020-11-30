@@ -33,7 +33,7 @@ describe Airport do
 
     it 'cannot land again if the plane is already on the ground' do
       allow(subject).to receive(:parked?).and_return(true)
-      expect { subject.land(plane) }.to raise_error(RuntimeError, 'the plane has already parked in the airport')
+      expect { subject.land(plane) }.to raise_error(RuntimeError, 'the plane has already landed in the airport')
     end
 
     it 'allows landing if good weather and has capacity, and has not parked before' do

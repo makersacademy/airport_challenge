@@ -38,7 +38,7 @@ class Airport
 
   # checks plane position, airport capacity and weather for landing
   def ready_for_landing(plane)
-    raise 'the plane has already parked in the airport' if parked?(plane)
+    raise 'the plane has already landed in the airport' if parked?(plane)
     raise 'the plane is already parked in another airport' if plane.location == "ground"
     raise 'sorry, cannot land as airport has no space' if full?
     raise 'sorry cannot land or take off due to bad weather conditions' unless sunny?
