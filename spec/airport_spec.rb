@@ -78,11 +78,13 @@ describe Airport do
   describe "#weather_generate" do
     it "changes the weather to stormy roughly 1 in 10 times" do
       a1 = subject
+      # generate weather 5000 times, store results in a 'histogram' hash called 'weather frequencies'
       weather_frequencies = Hash.new(0)
       for i in 1..5000
         a1.weather_generate
         weather_frequencies[a1.weather] += 1
       end
+      # after 5000 generations, would expect the frequency of "sunny" to be roughly 10 times greater than that of "stormy"
       expect(weather_frequencies["sunny"] / weather_frequencies["stormy"]).to be_within(2).of(10)
     end
   end
