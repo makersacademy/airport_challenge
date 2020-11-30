@@ -3,7 +3,7 @@ require 'weather'
 
 describe Airport do
 
-  let(:plane) {Plane.new}
+  let(:plane) { Plane.new }
   it { is_expected.to respond_to(:land).with(1).argument } 
 
   it 'adds plane to hanger when landed' do
