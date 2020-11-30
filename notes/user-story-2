@@ -1,0 +1,7 @@
+# objects - plane, airport
+# actions - take off
+
+# if plane.take_off
+  #(expecting 1 plane to be in airport before take off)
+  #(airport.plane = 1)
+  # plane will now be gone

@@ -4,6 +4,7 @@ coverage/**/*
 disabled-upgraded.yml
 enabled-upgraded.yml
 CoverallsRakefile
+notes
 analysis/**/*
 .gitignore-analysis
 
