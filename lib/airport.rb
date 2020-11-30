@@ -1,4 +1,4 @@
-require 'weather'
+require './lib/weather.rb'
 
 class Airport
   attr_reader :hanger, :capacity, :weather
@@ -7,21 +7,21 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
-    @weather = Weather.new
+    @weather = Weather.new.stormy
   end
 
   def land(plane)
-    @hanger.push(plane) unless full?
+    @hanger.push(plane) unless full? || @weather == true
   end
 
   def take_off(plane)
-    @hanger.delete(plane)
+    @hanger.delete(plane) unless @weather == true
   end
 
-  private
+  private 
 
   def full?
-    raise 'Airport Full!' if @hanger.length >= @capacity
+    raise 'Airport Full!' if @hanger.count >= @capacity
   end
 
 end

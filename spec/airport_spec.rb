@@ -30,4 +30,9 @@ describe Airport do
     expect { subject.land("plane") }.to raise_error 'Airport Full!'
   end
 
+#  it 'returns stormy if weather >= 8' do
+#    allow(Weather.new).to receive(:weather) { 9 }
+#    expect(subject.weather).to eq true
+#  end
+
 end
