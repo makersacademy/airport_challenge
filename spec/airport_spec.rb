@@ -32,11 +32,11 @@ describe Airport do
     end
 
     it 'cannot land again if the plane is already on the ground' do
-      allow(subject).to receive(:landed?).and_return(true)
-      expect { subject.land(plane) }.to raise_error(RuntimeError, 'the plane has already landed in the airport')
+      allow(subject).to receive(:parked?).and_return(true)
+      expect { subject.land(plane) }.to raise_error(RuntimeError, 'the plane has already parked in the airport')
     end
 
-    it 'allows landing if good weather and has capacity, and has not landed before' do
+    it 'allows landing if good weather and has capacity, and has not parked before' do
       allow(subject).to receive(:ready_for_landing).and_return(true)
       subject.land(plane)
       expect(subject.ramp.include? plane).to be true
@@ -45,7 +45,7 @@ describe Airport do
 
   describe '#ready_for_landing' do
     it 'returns true if the conditions are met' do
-      allow(subject).to receive(:landed?).and_return(false)
+      allow(subject).to receive(:parked?).and_return(false)
       allow(subject).to receive(:sunny?).and_return(true)
       allow(subject).to receive(:full?).and_return(false)
       expect(subject.ready_for_landing(plane)).to be true
@@ -55,12 +55,12 @@ describe Airport do
   describe '#takeoff' do
     it 'refuses takeoff if the weather is bad' do
       allow(subject).to receive(:sunny?).and_return(false)
-      allow(subject).to receive(:landed?).and_return(true)
+      allow(subject).to receive(:parked?).and_return(true)
       expect { subject.takeoff(plane) }.to raise_error(RuntimeError, BAD_WEATHER_MSG) 
     end
 
     it 'plane raises error if it tries take off from airport it is not in' do
-      allow(subject).to receive(:landed?).and_return(false)
+      allow(subject).to receive(:parked?).and_return(false)
       expect { subject.takeoff(plane) } .to raise_error(RuntimeError, 'the plane is not in the airport')
     end
 
@@ -72,14 +72,14 @@ describe Airport do
 
     it 'allows take-off if all conditions are met' do
       allow(subject).to receive(:sunny?).and_return(true)
-      allow(subject).to receive(:landed?).and_return(true)
+      allow(subject).to receive(:parked?).and_return(true)
       expect(subject.ramp.include? plane).to be false
     end
   end
 
   describe '#ready_for_takeoff' do
     it 'returns true if the conditions are met' do
-      allow(subject).to receive(:landed?).and_return(true)
+      allow(subject).to receive(:parked?).and_return(true)
       allow(subject).to receive(:sunny?).and_return(true)
       expect(subject.ready_for_takeoff(plane)).to be true
     end

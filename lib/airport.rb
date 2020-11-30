@@ -32,13 +32,13 @@ class Airport
     capacity <= ramp.count
   end
 
-  def landed?(plane)
-    ramp.include?(plane) # check if plane is already landed in the airport
+  def parked?(plane)
+    ramp.include?(plane) # check if plane is already parked in the airport
   end
 
   # checks plane position, airport capacity and weather for landing
   def ready_for_landing(plane)
-    raise 'the plane has already landed in the airport' if landed?(plane)
+    raise 'the plane has already parked in the airport' if parked?(plane)
     raise 'the plane is already parked in another airport' if plane.location == "ground"
     raise 'sorry, cannot land as airport has no space' if full?
     raise 'sorry cannot land or take off due to bad weather conditions' unless sunny?
@@ -47,7 +47,7 @@ class Airport
   end
   
   def ready_for_takeoff(plane)
-    raise 'the plane is not in the airport' unless landed?(plane)
+    raise 'the plane is not in the airport' unless parked?(plane)
     raise 'sorry cannot land or take off due to bad weather conditions' unless sunny?
 
     true
