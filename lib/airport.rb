@@ -11,11 +11,13 @@ class Airport
   end
 
   def land(plane)
-    @hanger.push(plane) unless full? || @weather == true
+    return @hanger.push(plane) unless (full? || @weather == true)
+    return fail 'Too stormy' if @weather == true
   end
 
   def take_off(plane)
-    @hanger.delete(plane) unless @weather == true
+    return @hanger.delete(plane) unless @weather == true
+    return fail 'Too stormy' if @weather == true
   end
 
   private 
