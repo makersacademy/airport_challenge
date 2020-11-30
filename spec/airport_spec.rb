@@ -10,7 +10,6 @@ describe Airport do
   it 'removes plane from airport after take off' do
     allow(subject).to receive(:weather) { "sunny" }
     subject.land(plane)
-    subject.land(Plane.new)
     subject.take_off(plane)
     expect(subject.planes).not_to include(plane)
   end
