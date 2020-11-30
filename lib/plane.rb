@@ -15,6 +15,5 @@ class Plane
   #   'plane left airport'
   # end
   def working?
-    true
   end
 end
