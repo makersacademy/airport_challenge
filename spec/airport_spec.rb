@@ -25,7 +25,8 @@ describe Airport do
 
   it 'will not land a plane if hanger is full' do
     allow(airport).to receive(:stormy?).and_return(false)
-    expect { (Airport:: DEFAULT_CAPACITY + 1).times {airport.land(plane)} }.to raise_error('Hanger is full!')
+    Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
+    expect {airport.land(plane)}.to raise_error('Hanger is full!')
   end
 
   it { is_expected.to respond_to(:hanger_report) }
