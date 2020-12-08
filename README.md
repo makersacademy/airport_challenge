@@ -22,7 +22,7 @@ Instructions
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
 Steps
--------
+------- 
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
