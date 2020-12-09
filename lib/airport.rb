@@ -28,5 +28,3 @@ class Airport
   end
 
 end
-
-# TODO create methods for adding and removing planes from hangar on takeoff or landing
