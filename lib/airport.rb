@@ -15,8 +15,10 @@ class Airport
   def good_weather?
     roll = rand(1..20) # gives us a 1 in 20 chance of stormy weather
     return false if roll == 1 # false returned for stormy
-    
+
     return true # true returned for good weather
   end
 
 end
+
+# TODO create methods for adding and removing planes from hangar on takeoff or landing
