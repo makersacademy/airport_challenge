@@ -19,5 +19,18 @@ describe Airport do
         expect(was_successful).to eq true
     end
 
-   
+    it "returns that the airport is not full" do
+      airport = Airport.new
+      is_full = airport.capacity_max?
+      expect(is_full).to eq false
+    end
+
+    it "returns that the airport is full" do
+      airport = Airport.new
+      5.times{ airport.land_plane(Plane.new) }
+      # add 5 (default capacity) new planes to the airport
+      is_full = airport.capacity_max?
+      expect(is_full).to eq true
+    end
+
 end

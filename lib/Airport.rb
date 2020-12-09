@@ -7,6 +7,10 @@ class Airport
     @max_capacity = 5
     @airplanes = []
   end
+  
+  def capacity_max?
+    return @airplanes.length == @max_capacity
+  end
 
   def in_airport?(search_plane)
     return @airplanes.any? {|airplane| airplane.ID == search_plane.ID }
