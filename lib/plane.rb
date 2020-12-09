@@ -12,6 +12,7 @@ class Plane
     raise StandardError.new "The plane cannot be landed at this airport because the airport is full" unless airport.space?
 
     @landed_at = airport
+    airport.land_plane(self)
   end
 
   def take_off(airport)
@@ -20,6 +21,7 @@ class Plane
     raise StandardError.new "The plane cannot take off from this airport because of stormy weather" unless airport.good_weather?
 
     @landed_at = -1
+    airport.takeoff_plane(self)
   end
 
   def at_airport?(airport)
