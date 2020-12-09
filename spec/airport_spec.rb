@@ -11,6 +11,18 @@ describe Airport do
     expect(subject.planes_in_hangar.length).to eq(0)
   end
 
+  it "Landing a plane will cause that plane to be in the hangar" do
+    subject.land_plane("real plane")
+    expect(subject.planes_in_hangar.length).to eq(1)
+    expect(subject.planes_in_hangar[0]).to eq("real plane")
+  end
+
+  it "Telling a plane to take off after landing will cause it to not be in the hangar" do
+    subject.land_plane("real plane")
+    subject.takeoff_plane("real plane")
+    expect(subject.planes_in_hangar.length).to eq(0)
+  end
+
   it "Should have default capacity of 20" do
     expect(subject.capacity).to eq(20)
   end

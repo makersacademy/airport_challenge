@@ -11,7 +11,7 @@ class Plane
 
     raise StandardError.new "The plane cannot be landed at this airport because the airport is full" unless airport.space?
 
-    @landed_at = airport unless @landed_at != -1
+    @landed_at = airport
   end
 
   def take_off(airport)
@@ -24,7 +24,7 @@ class Plane
 
   def at_airport?(airport)
     return false unless @landed_at == airport
-    
+
     return true
   end
 end

@@ -6,6 +6,14 @@ class Airport
     @capacity = capacity # default capacity of 20
   end
 
+  def land_plane(plane)
+    @planes_in_hangar << plane
+  end
+
+  def takeoff_plane(plane)
+    @planes_in_hangar.delete(plane)
+  end
+
   def space?
     return false if @planes_in_hangar.length >= @capacity
 
