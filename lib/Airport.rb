@@ -7,6 +7,10 @@ class Airport
     @max_capacity = 5
     @airplanes = []
   end
+
+  def override_max_capacity(new_max)
+    @max_capacity = new_max
+  end
   
   def capacity_max?
     return @airplanes.length == @max_capacity
