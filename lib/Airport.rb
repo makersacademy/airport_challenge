@@ -1,4 +1,3 @@
-require 'TrafficController'
 require 'Plane'
 
 class Airport
