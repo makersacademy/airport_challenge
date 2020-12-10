@@ -8,12 +8,20 @@ class Airport
     @airplanes = []
   end
 
+  def load_planes(num)
+    num.times { land_plane(Plane.new) }
+  end
+
+  def count_planes
+    @airplanes.length
+  end
+
   def override_max_capacity(new_max)
     @max_capacity = new_max
   end
   
   def capacity_max?
-    return @airplanes.length == @max_capacity
+    return count_planes == @max_capacity
   end
 
   def in_airport?(search_plane)
@@ -24,6 +32,10 @@ class Airport
 
   def land_plane(plane)
     @airplanes << plane
+  end
+
+  def take_off_plane
+    @airplanes.pop
   end
 
 end
