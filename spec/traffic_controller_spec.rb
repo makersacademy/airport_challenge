@@ -67,20 +67,16 @@ describe TrafficController do
   end
 
   describe "can land a plane" do
-    it "when can_land? is true, returns true" do
-        controller.override_weather("clear")
-        expect(controller.try_land(plane)).to eq true
-    end
-
-    it "when can_land? is false, returns false" do
-      controller.override_weather("stormy")
-      expect(controller.try_land(plane)).to eq false
-    end
-    
     it "when can_land? is true, plane is in the 'airplanes' array" do
       controller.override_weather("clear")
       controller.try_land(plane)
       expect(controller.airport.in_airport?(plane)).to eq true
+    end
+
+    it "when can_land? is false, plane is not in the 'airplanes' array" do
+      controller.override_weather("stormy")
+      controller.try_land(plane)
+      expect(controller.airport.in_airport?(plane)).to eq false
     end
   end
 
@@ -108,15 +104,15 @@ describe TrafficController do
   end
 
   describe "can let a plane take off" do
-    it "when can_take_off? is true, returns true" do
+    it "when can_take_off? is false, plane is still in 'airplanes' array" do
       controller.override_weather("clear")
       controller.try_land(plane)
-      expect(controller.try_take_off(plane)).to eq false
-    end
-
-    it "when can_take_off? is false, returns false" do
-      controller.override_weather("clear")
-      expect(controller.try_take_off(plane)).to eq false
+      expect(controller.airport.in_airport?(plane)).to eq true
+      # Good weather conditions to get plane into airport
+      # Then bad for test
+      controller.override_weather("stormy")
+      controller.try_take_off(plane)
+      expect(controller.airport.in_airport?(plane)).to eq true
     end
     
     it "when can_take_off? is true, plane is taken out of the 'airplanes' array" do

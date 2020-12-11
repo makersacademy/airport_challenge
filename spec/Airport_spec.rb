@@ -47,7 +47,8 @@ describe Airport do
     end
 
     it "Lets a plane take off" do 
-      airport.load_planes(3)
+      airport.land_plane(plane)
+      expect(airport.in_airport?(plane)).to eq true
       airport.take_off_plane(plane)
       expect(airport.in_airport?(plane)).to eq false
     end

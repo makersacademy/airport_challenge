@@ -14,7 +14,7 @@ describe Plane do
     expect(num_of_repeated_ids).to eq 1 
   end
 
-  it "says it successfully landed" do
+  it "successful landing" do
     controller.override_weather("clear")
     expect { plane.land(controller) }.to output("Successful landing\n").to_stdout
   end
@@ -24,17 +24,17 @@ describe Plane do
     expect { plane.land(controller) }.to output("Could not land\n").to_stdout
   end
 
-  it "successfully taking off" do
+  it "unsuccessful take off" do
+    controller.override_weather("stormy")
+    expect { plane.take_off(controller) }.to output("Could not take off\n").to_stdout
+  end
+
+  it "successful take off" do
     controller.override_weather("clear")
     expect do
       plane.land(controller)
       plane.take_off(controller)
     end.to output("Successful landing\nSuccessful take off\n").to_stdout
-  end
-
-  it "unsuccessful take off" do
-    controller.override_weather("stormy")
-    expect { plane.take_off(controller) }.to output("Could not take off\n").to_stdout
   end
 
 end
