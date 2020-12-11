@@ -24,7 +24,7 @@ class Airport
   end
 
   def in_airport?(search_plane)
-    @airplanes.any? {|airplane| airplane.ID == search_plane.ID }
+    @airplanes.any? {|airplane| airplane.object_id == search_plane.object_id }
     # returns true if any of the airplanes in the array have the same ID as the search plane
   end
 
@@ -33,7 +33,7 @@ class Airport
   end
 
   def take_off_plane(search_plane)
-    @airplanes.reject! {|airplane| airplane.ID == search_plane.ID }
+    @airplanes.reject! {|airplane| airplane.object_id == search_plane.object_id }
   end
 
 end

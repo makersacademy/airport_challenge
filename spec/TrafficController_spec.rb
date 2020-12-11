@@ -12,19 +12,8 @@ describe TrafficController do
     let(:controller) {TrafficController.new}
     let(:plane) {Plane.new}
 
-    describe "When created," do
-        it "has an 'airport' object as an attribute" do
-            expect(controller.airport).to be_instance_of(Airport)
-        end
-
-        it "randomises the weather" do
-            outcomes = []
-            100.times do
-                new_controller = TrafficController.new
-                outcomes << new_controller.weather_clear?
-            end
-            expect(outcomes.count(false)).to be_between(12, 28).exclusive
-        end
+    it "When created, has an 'airport' object as an attribute" do
+        expect(controller.airport).to be_instance_of(Airport)
     end
 
     describe "weather" do
