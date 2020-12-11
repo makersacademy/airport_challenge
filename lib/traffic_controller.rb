@@ -1,5 +1,5 @@
-require 'Plane'
-require 'Airport'
+require 'plane'
+require 'airport'
 
 class TrafficController
   attr_reader :airport
