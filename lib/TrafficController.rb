@@ -23,4 +23,13 @@ class TrafficController
     # 20% chance of storm
   end
 
+  def can_land?
+    return weather_clear? && !@airport.capacity_max?
+  end
+
+  def try_land(plane)
+    @airport.land_plane(plane) if can_land?
+    return can_land?
+  end
+
 end

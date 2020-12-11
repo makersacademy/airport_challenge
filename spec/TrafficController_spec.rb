@@ -10,8 +10,9 @@ RSpec::Matchers.define :be_boolean do
 
 describe TrafficController do
     let(:controller) {TrafficController.new}
+    let(:plane) {Plane.new}
 
-    describe "When created, " do
+    describe "When created," do
         it "has an 'airport' object as an attribute" do
             expect(controller.airport).to be_instance_of(Airport)
         end
@@ -47,6 +48,50 @@ describe TrafficController do
         it "can override random weather" do
             controller.override_weather("clear")
             expect(controller.weather_clear?).to eq true
+        end
+    end
+
+    describe "check if can land" do
+        it "when the weather is clear and the airport is not full, can land" do
+            controller.override_weather("clear")
+            expect(controller.can_land?).to eq true
+        end
+
+        it "when the weather is stormy and the airport is not full, can't land" do
+            controller.override_weather("stormy")
+            expect(controller.can_land?).to eq false
+        end
+
+        it "when the weather is clear and the airport is full, can't land" do
+            controller.override_weather("clear")
+            controller.airport.override_max_capacity(2)
+            controller.airport.load_planes(2)
+            expect(controller.can_land?).to eq false
+        end
+
+        it "when the weather is stormy and the airport is full, can't land" do
+            controller.override_weather("stormy")
+            controller.airport.override_max_capacity(2)
+            controller.airport.load_planes(2)
+            expect(controller.can_land?).to eq false
+        end
+    end
+
+    describe "can land a plane" do
+        it "when can_land? is true, returns true" do
+            controller.override_weather("clear")
+            expect(controller.try_land(plane)).to eq true
+        end
+
+        it "when can_land? is false, returns false" do
+            controller.override_weather("stormy")
+            expect(controller.try_land(plane)).to eq false
+        end
+        
+        it "when can_land? is true, plane is in the 'airplanes' array" do
+            controller.override_weather("clear")
+            controller.try_land(plane)
+            expect(controller.airport.in_airport?(plane)).to eq true
         end
     end
 end
