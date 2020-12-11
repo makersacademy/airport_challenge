@@ -36,7 +36,7 @@ class TrafficController
   end
 
   def try_take_off(plane)
-    @airport.take_off_plane(plane) if weather_clear? && @airport.in_airport?(plane)
+    @airport.take_off_plane(plane) if can_take_off?(plane)
   end
 
 end
