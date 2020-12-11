@@ -1,6 +1,6 @@
-require 'TrafficController'
-require 'Plane'
-require 'Airport'
+require 'traffic_controller'
+require 'plane'
+require 'airport'
 
 RSpec::Matchers.define :be_boolean do
   match do |actual|
