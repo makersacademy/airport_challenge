@@ -12,8 +12,17 @@ describe TrafficController do
     let(:controller) {TrafficController.new}
 
     describe "When created, " do
-        it "When created, has an 'airport' object as an attribute" do
+        it "has an 'airport' object as an attribute" do
             expect(controller.airport).to be_instance_of(Airport)
+        end
+
+        it "randomises the weather" do
+            outcomes = []
+            100.times do
+                new_controller = TrafficController.new
+                outcomes << new_controller.weather_clear?
+            end
+            expect(outcomes.count(false)).to be_between(12, 28).exclusive
         end
     end
 
@@ -30,9 +39,9 @@ describe TrafficController do
             end
             expect(outcomes.count(false)).to be_between(12, 28).exclusive
             # H0 - P = 0.2
-            # H1 - P 
+            # H1 - P ≠ 0.2
             # X ~ B(100,0.2)
-            # 0.54 significance level
+            # 0.054 significance level
         end
 
         it "can override random weather" do

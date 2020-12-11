@@ -6,7 +6,7 @@ class TrafficController
 
   def initialize
     @airport = Airport.new
-    @weather = "clear"
+    randomise_weather
   end
 
   def weather_clear?
