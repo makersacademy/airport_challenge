@@ -32,8 +32,8 @@ class Airport
     @airplanes << plane
   end
 
-  def take_off_plane
-    @airplanes.pop
+  def take_off_plane(search_plane)
+    @airplanes.reject! {|airplane| airplane.ID == search_plane.ID }
   end
 
 end

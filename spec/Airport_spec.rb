@@ -2,12 +2,13 @@ require 'Airport'
 require 'Plane'
 
 describe Airport do
-
     let(:airport) {Airport.new}
+    let(:plane) {Plane.new}
+
     describe "Check airplane array" do
       it "Returns false when a specific airplane is not in the airport" do
         # Create new plane and ask airport if it is in the airport
-        expect(airport.in_airport?(Plane.new)).to eq false
+        expect(airport.in_airport?(plane)).to eq false
       end
         
       it "Returns 0 when aiport is empty" do
@@ -41,14 +42,13 @@ describe Airport do
       end
 
       it "Lets a plane be landed" do
-        plane = Plane.new
         airport.land_plane(plane)
         expect(airport.in_airport?(plane)).to eq true
       end
 
       it "Lets a plane take off" do 
         airport.load_planes(3)
-        plane = airport.take_off_plane
+        airport.take_off_plane(plane)
         expect(airport.in_airport?(plane)).to eq false
       end
     end

@@ -32,4 +32,13 @@ class TrafficController
     return can_land?
   end
 
+  def can_take_off?(plane)
+    return weather_clear? && @airport.in_airport?(plane)
+  end
+
+  def try_take_off(plane)
+    @airport.take_off_plane(plane) if can_take_off?(plane)
+    return can_take_off?(plane)
+  end
+
 end
