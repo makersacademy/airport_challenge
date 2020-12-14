@@ -24,7 +24,13 @@ describe Airport do
       airport = Airport.new
       plane = 1
       airport.land(plane)
-      expect{ airport.full? }.to raise_error "airplane is full can't land"
+      expect{ airport.full? }.to raise_error "airport is full can't land"
+    end
+  end
+
+  describe 'system designer' do
+    it 'software can be used for many different airports' do
+
     end
   end
 end
