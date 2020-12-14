@@ -32,8 +32,4 @@ class Airport
   def full?
     return @hangar.length >= @capacity
   end
-
-  def random_weather
-    rand(1..3)
-  end
 end
