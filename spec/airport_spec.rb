@@ -9,8 +9,15 @@ describe Airport do
       airport.land(plane)
       expect(airport.gate).to include(plane)
     end
+    it 'prevent landing if gate is full' do
+        #assume capacity to be 1
+        airport = Airport.new
+        plane = Plane.new
+        airport.land(plane)
+        expect { airport.land(plane) }.to raise_error('cannot land, airport is full')
+      end
   end
-  
+
   describe '#take_off' do
     it 'removes plain from hangar after take-off' do
       airport = Airport.new
