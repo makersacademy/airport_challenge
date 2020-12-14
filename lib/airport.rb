@@ -1,4 +1,5 @@
 class Airport
+  attr_accessor :gate
   DEFAULT_CAPACITY = 1
     def initialize(capacity=DEFAULT_CAPACITY)
       @gate = []
@@ -9,11 +10,7 @@ class Airport
       fail 'cannot land, airport is full' if airport_full?
       @gate << plane
     end
-  
-    def gate
-      @gate
-    end
-  
+
     def take_off(plane)
       @gate.delete(plane)
     end
