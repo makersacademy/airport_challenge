@@ -1,6 +1,8 @@
 class Airport
-    def initialize
+  DEFAULT_CAPACITY = 1
+    def initialize(capacity=DEFAULT_CAPACITY)
       @gate = []
+      @capacity = capacity
     end
   
     def land(plane)
@@ -17,6 +19,6 @@ class Airport
     end
 
     def airport_full?
-      @gate.length == 1
+      @gate.length == @capacity
     end
   end
