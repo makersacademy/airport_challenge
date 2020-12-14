@@ -1,0 +1,121 @@
+lbasiu@macadmins-MBP spec % irb
+2.6.5 :001 > require './airport'
+ => true 
+2.6.5 :002 > airport = Airport.new
+ => #<Airport:0x00007fc196074dd8 @capacity=10, @planes=[]> 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fc19608fe80> 
+2.6.5 :004 > airport.landing(plane)
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):4
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:20:in `landing'
+RuntimeError (Planes cannot land on rainy weather!)
+2.6.5 :005 > airport.landing(plane)
+ => [#<Plane:0x00007fc19608fe80>] 
+2.6.5 :006 > airport.take_off()
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):6
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :007 > airport.take_off()
+ => #<Plane:0x00007fc19608fe80> 
+2.6.5 :008 > airport.planes.length
+ => 0 
+2.6.5 :009 > 10.times { airport.planes << Plane.new }
+ => 10 
+2.6.5 :010 > airport.planes
+ => [#<Plane:0x00007fc19684ce20>, #<Plane:0x00007fc19684cdd0>, #<Plane:0x00007fc19684cd80>, #<Plane:0x00007fc19684cd30>, #<Plane:0x00007fc19684cd08>, #<Plane:0x00007fc19684ccb8>, #<Plane:0x00007fc19684cc68>, #<Plane:0x00007fc19684cbf0>, #<Plane:0x00007fc19684cbc8>, #<Plane:0x00007fc19684cb78>] 
+2.6.5 :011 > airport.landing(Plane.new)
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):11
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:25:in `landing'
+RuntimeError (The airport is full!)
+2.6.5 :012 > airport_new = Airport.new
+ => #<Airport:0x00007fc19605aac8 @capacity=10, @planes=[]> 
+2.6.5 :013 > airport_new.capacity
+ => 10 
+2.6.5 :014 > airport_new = Airport.new(20)
+ => #<Airport:0x00007fc19608f598 @capacity=20, @planes=[]> 
+2.6.5 :015 > airport_new.capacity
+ => 20 
+2.6.5 :016 > airport.take_off
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):16
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :017 > airport.take_off
+ => #<Plane:0x00007fc19684cb78> 
+2.6.5 :018 > airport.take_off
+ => #<Plane:0x00007fc19684cbc8> 
+2.6.5 :019 > airport.take_off
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):19
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :020 > airport.take_off
+ => #<Plane:0x00007fc19684cbf0> 
+2.6.5 :021 > airport.take_off
+ => #<Plane:0x00007fc19684cc68> 
+2.6.5 :022 > airport.take_off
+ => #<Plane:0x00007fc19684ccb8> 
+2.6.5 :023 > airport.take_off
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):23
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :024 > airport.take_off
+Traceback (most recent call last):
+        6: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):24
+        2: from (irb):24:in `rescue in irb_binding'
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :025 > airport.take_off
+Traceback (most recent call last):
+        6: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):25
+        2: from (irb):25:in `rescue in irb_binding'
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:66:in `take_off'
+RuntimeError (Planes cannot take off on rainy weather!)
+2.6.5 :026 > airport.landing()
+Traceback (most recent call last):
+        6: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        3: from (irb):26
+        2: from (irb):26:in `rescue in irb_binding'
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:14:in `landing'
+ArgumentError (wrong number of arguments (given 0, expected 1))
+2.6.5 :027 > airport.landing(Plane.new)
+ => [#<Plane:0x00007fc19684ce20>, #<Plane:0x00007fc19684cdd0>, #<Plane:0x00007fc19684cd80>, #<Plane:0x00007fc19684cd30>, #<Plane:0x00007fc19684cd08>, #<Plane:0x00007fc1960813a8>] 
+2.6.5 :028 > airport.landing(Plane.new)
+Traceback (most recent call last):
+        5: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/lbasiu/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):28
+        1: from /Users/lbasiu/Documents/Makers/airport_challenge/spec/airport.rb:20:in `landing'
+RuntimeError (Planes cannot land on rainy weather!)
+2.6.5 :029 > 
