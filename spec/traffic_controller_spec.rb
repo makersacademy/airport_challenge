@@ -1,5 +1,4 @@
 require 'traffic_controller'
-require 'plane'
 require 'airport'
 
 RSpec::Matchers.define :be_boolean do
@@ -10,7 +9,7 @@ end
 
 describe TrafficController do
   let(:controller) { TrafficController.new }
-  let(:plane) { Plane.new }
+  let(:plane) { double() }
 
   it "When created, has an 'airport' object as an attribute" do
     expect(controller.airport).to be_instance_of(Airport)
