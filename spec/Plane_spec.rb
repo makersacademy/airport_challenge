@@ -21,12 +21,12 @@ describe Plane do
 
   it "unsuccessful landing" do
     controller.override_weather("stormy")
-    expect { plane.land(controller) }.to output("Could not land\n").to_stdout
+    expect { plane.land(controller) }.to output("Unsuccessful landing\n").to_stdout
   end
 
   it "unsuccessful take off" do
     controller.override_weather("stormy")
-    expect { plane.take_off(controller) }.to output("Could not take off\n").to_stdout
+    expect { plane.take_off(controller) }.to output("Unsuccessful take off\n").to_stdout
   end
 
   it "successful take off" do

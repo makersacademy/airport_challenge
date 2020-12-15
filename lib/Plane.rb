@@ -1,13 +1,25 @@
 require 'traffic_controller'
 
 class Plane
-  
+
   def land(controller)
-    puts controller.try_land(self) ? "Successful landing" : "Could not land"
+    begin
+      controller.try_land(self)
+    rescue RuntimeError
+      puts "Unsuccessful landing"
+    else
+      puts "Successful landing"
+    end
   end
 
   def take_off(controller)
-    puts controller.try_take_off(self) ? "Successful take off" : "Could not take off"
+    begin
+      controller.try_take_off(self) 
+    rescue RuntimeError
+      puts "Unsuccessful take off"
+    else
+      puts "Successful take off"
+    end
   end
  
 end

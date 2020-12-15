@@ -28,7 +28,11 @@ class TrafficController
   end
 
   def try_land(plane)
-    @airport.land_plane(plane) if can_land?
+    if can_land?
+      @airport.land_plane(plane)
+    else
+      raise "Plane can't land"
+    end
   end
 
   def can_take_off?(plane)
@@ -36,7 +40,11 @@ class TrafficController
   end
 
   def try_take_off(plane)
-    @airport.take_off_plane(plane) if can_take_off?(plane)
+    if can_take_off?(plane)
+      @airport.take_off_plane(plane) 
+    else
+      raise "Plane can't take off"
+    end
   end
 
 end
