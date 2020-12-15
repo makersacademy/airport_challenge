@@ -25,7 +25,6 @@ class Airport
 
   def in_airport?(search_plane)
     @airplanes.any?(search_plane)
-    # returns true if any of the airplanes in the array have the same ID as the search plane
   end
 
   def land_plane(plane)

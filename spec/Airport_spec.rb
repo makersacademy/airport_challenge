@@ -1,9 +1,8 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { Plane.new }
+  let(:plane) { double() }
 
   describe "Check airplane array" do
     it "Returns false when a specific airplane is not in the airport" do
