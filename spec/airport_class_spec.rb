@@ -56,4 +56,10 @@ describe Airport do
   # As an air traffic controller 
   # To ensure safety 
   # I want to prevent landing when weather is stormy
+  
+  it "prevents a plane from landing when weather is stormy" do 
+    plane = Plane.new
+    subject.weather = "stormy"
+    expect{subject.land_plane(plane)}.to raise_error "The plane cannot land due to stormy weather"
+  end
 end
