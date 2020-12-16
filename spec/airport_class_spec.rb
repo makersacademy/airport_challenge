@@ -36,6 +36,13 @@ describe Airport do
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
 
+  it "allows the airport capacity to be manually set" do
+    plane = Plane.new
+    airport = Airport.new(10)
+    Airport::AIRPORT_CAPACITY.times {airport.land_plane(plane)}
+    expect{airport.land_plane(plane)}.not_to raise_error "The plane cannot land as the airport is full"
+  end
+
   # As an air traffic controller 
   # To ensure safety 
   # I want to prevent takeoff when weather is stormy 
