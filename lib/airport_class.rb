@@ -1,5 +1,6 @@
 require "plane_class.rb"
 class Airport 
+  attr_accessor :planes
   def initialize
     @planes = []
   end
@@ -9,6 +10,3 @@ class Airport
     puts @planes
   end
 end
-
-plane = Plane.new
-
