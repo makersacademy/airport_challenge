@@ -18,6 +18,21 @@ describe Airport do
     end
 
 # As an air traffic controller
+# To ensure safety
+# I want to prevent landing when the airport is full
+
+    it 'raises an error when full' do
+      # arrange
+      airport = Airport.new
+      plane = 'BA123'
+      #act
+      airport.land(plane)
+      # assert
+      expect{ airport.land(plane) }.to raise_error 'Airport is full'
+    end
+  end
+
+# As an air traffic controller
 # So I can get passengers on the way to their destination
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
@@ -34,20 +49,6 @@ describe Airport do
     end
   end
 
-
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when the airport is full
-
-  describe '#full?' do
-    it 'prevents landing when the airport is full' do
-      airport = Airport.new
-      plane = 'BA123'
-      airport.land(plane)
-      expect{ airport.full? }.to raise_error 'Airport is full - plane cannot land'
-    end
-  end
-
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
@@ -56,26 +57,8 @@ describe Airport do
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
 
-  describe '#prevent_landing' do
-    it 'prevents landing when weather is stormy' do
-      airport = Airport.new
-      plane = 'BA123'
-      airport.land(plane)
-      expect{ airport.prevent_landing? }.to raise_error 'Bad weather, plane cannot land'
-    end
-  end
-end
 # As an air traffic controller
 # To ensure safety
 # I want to prevent landing when weather is stormy
 
-  describe '#prevent_take_off' do
-    it 'prevents landing when weather is stormy' do
-      airport = Airport.new
-      plane = 'BA123'
-      airport.land(plane)
-      airport.take_off(plane)
-      expect{ airport.prevent_take_off? }.to raise_error 'Bad weather, plane cannot take off'
-    end
-  end
 end
