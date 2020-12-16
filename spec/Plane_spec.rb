@@ -2,7 +2,12 @@ require 'Plane'
 
 describe Plane do
   let(:plane) { Plane.new }
-  let(:controller) { TrafficController.new }
+  let(:controller) { double("Traffic Controller") }
+  before do
+    allow(controller).to receive(:override_weather)
+    allow(controller).to receive(:try_land)
+    allow(controller).to receive(:try_take_off)
+  end
 
   it "each plane has a unique ID" do
     plane_ids = []
@@ -21,11 +26,14 @@ describe Plane do
 
   it "unsuccessful landing" do
     controller.override_weather("stormy")
+    allow(controller).to receive(:try_land).and_raise("Plane can't land")
+    # Purposely making controller double raise an error
     expect { plane.land(controller) }.to output("Unsuccessful landing\n").to_stdout
   end
 
   it "unsuccessful take off" do
     controller.override_weather("stormy")
+    allow(controller).to receive(:try_take_off).and_raise("Plane can't take off")
     expect { plane.take_off(controller) }.to output("Unsuccessful take off\n").to_stdout
   end
 

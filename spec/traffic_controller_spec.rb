@@ -9,7 +9,7 @@ end
 
 describe TrafficController do
   let(:controller) { TrafficController.new }
-  let(:plane) { double() }
+  let(:plane) { double("Plane") }
 
   it "When created, has an 'airport' object as an attribute" do
     expect(controller.airport).to be_instance_of(Airport)
