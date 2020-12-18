@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-# As an air traffic controller
-# So I can get passengers to a destination
-# I want to instruct a plane to land at an airport
-
   describe '#land' do
     it 'takes a plane and puts it in the hangar' do
       # arrange -> gather all the objects we need
@@ -16,23 +12,12 @@ describe Airport do
       expect(airport.hangar).to include 'BA123'
     end
 
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when the airport is full
-
     it 'raises an error when full' do
-      # arrange
       airport = Airport.new
-      #act
       airport.land('BA123')
-      # assert
       expect{ airport.land('BA123') }.to raise_error 'Airport is full'
     end
   end
-
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
   describe '#take_off' do
     it 'takes a plane and removes it from the hangar' do
@@ -45,17 +30,4 @@ describe Airport do
       expect(airport.hangar).not_to include 'BA123'
     end
   end
-
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
-
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
-
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when weather is stormy
-
 end
