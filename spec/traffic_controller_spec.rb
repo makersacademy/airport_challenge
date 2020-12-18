@@ -21,16 +21,10 @@ describe TrafficController do
     end
 
     it "can randomise weather" do
-      outcomes = []
-      100.times do
-        controller.randomise_weather
-        outcomes << controller.weather_clear?
-      end
-      expect(outcomes.count(false)).to be_between(12, 28).exclusive
-      # H0 - P = 0.2
-      # H1 - P ≠ 0.2
-      # X ~ B(100,0.2)
-      # 0.054 significance level
+      srand(15)
+      # Set random seed to 9 so that randomness will be predictable
+      controller.randomise_weather
+      expect(controller.weather_clear?).to eq false
     end
 
     it "can override random weather" do
