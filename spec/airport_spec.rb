@@ -10,11 +10,10 @@ describe Airport do
     it 'takes a plane and puts it in the hangar' do
       # arrange -> gather all the objects we need
       airport = Airport.new
-      plane = 'BA123'
       #act -> execute the method under test
-      airport.land(plane)
+      airport.land('BA123')
       # assert -> place some assertion regarding what the method should have done
-      expect(airport.hangar).to include plane
+      expect(airport.hangar).to include 'BA123'
     end
 
 # As an air traffic controller
@@ -24,11 +23,10 @@ describe Airport do
     it 'raises an error when full' do
       # arrange
       airport = Airport.new
-      plane = 'BA123'
       #act
-      airport.land(plane)
+      airport.land('BA123')
       # assert
-      expect{ airport.land(plane) }.to raise_error 'Airport is full'
+      expect{ airport.land('BA123') }.to raise_error 'Airport is full'
     end
   end
 
@@ -40,12 +38,11 @@ describe Airport do
     it 'takes a plane and removes it from the hangar' do
       # arrange
       airport = Airport.new
-      plane = 'BA123'
-      airport.land(plane)
+      airport.land('BA123')
       #act
-      airport.take_off(plane)
+      airport.take_off('BA123')
       # assert
-      expect(airport.hangar).not_to include plane
+      expect(airport.hangar).not_to include 'BA123'
     end
   end
 
