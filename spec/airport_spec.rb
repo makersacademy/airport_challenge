@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:airport) { Airport.new }
+  subject(:airport) { described_class.new }
 
   describe '#land' do
     it 'takes a plane and puts it in the hangar' do
@@ -29,4 +29,17 @@ describe Airport do
       expect(airport.hangar).not_to include 'BA123'
     end
   end
+
+  it 'has a default airport capacity' do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'default capacity can be overriden as appropriate' do
+    expect(airport.capacity = 50).to eq 50
+  end
 end
+
+#   it 'default airport capacity that can be overridden as appropriate' do
+#     airport.capacity = 10
+#     expect(airport.capacity).to eq(10)
+#   end
