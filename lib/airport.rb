@@ -1,24 +1,26 @@
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
+
   def initialize
-      @terminal = []
+    @terminal = []
   end
 
   def land(plane)
-    @terminal  << plane
+    @terminal << plane
   end
   
-  def take_off(plane)
-    plane !~ @terminal
+  def take_off
+    true
   end
 
   def full
-    plane.replace("BA31")
+    DEFAULT_CAPACITY 
   end
 
-  def terminal
-    @terminal
-    plane = "BA30"
-  end
+  # def terminal(plane)
+  #   @terminal << plane
+  #   # DEFAULT_CAPACITY
+  # end
 end
