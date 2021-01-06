@@ -1,4 +1,3 @@
-require 'airport'
 class Plane
   attr_reader :flying
 
@@ -13,5 +12,4 @@ class Plane
   def departed
     @flying = true
   end
-
 end
