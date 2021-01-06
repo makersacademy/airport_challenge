@@ -1,5 +1,5 @@
-require 'plane.rb'
-require 'weather.rb'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :bunker, :capacity, :weather
