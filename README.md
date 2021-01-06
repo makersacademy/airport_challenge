@@ -31,7 +31,7 @@ $ irb
 ```
 > require './lib/weather.rb'
 > require './lib/plane.rb'
-> require '/lib/airport.rb'
+> require './lib/airport.rb'
 ```
 3) Begin app use...
 - Create a new airport, specifying the capacity as the argument:
