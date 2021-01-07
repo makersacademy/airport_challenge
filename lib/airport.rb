@@ -1,19 +1,26 @@
 #require './lib/plane.rb'
 
 class Airport 
-  attr_reader :capacity, :planes
+  attr_reader :planes
+  attr_accessor :capacity
+  
+  DEFAULT_CAPACITY = 20
 
-  def initialize(capacity)
+  def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
-    @planes = 0
+    @planes = []
   end
 
   def land(plane)
-    raise 'Airport cannot accept more than one' if @planes >= @capacity
-    @planes += 1
+    raise 'Airport cannot accept more planes: Full' if full?
+    @planes << plane
   end
 
   def take_off(plane)
-    @planes -= 1
+    @planes.pop
+  end
+
+  def full?
+    @planes.length >= @capacity
   end
 end

@@ -8,11 +8,12 @@ describe Airport do
   describe '#land' do
     
     it 'lands a plane' do
-      airport = Airport.new(1)
+      capacity = Airport::DEFAULT_CAPACITY
+      airport = Airport.new(capacity)
       plane = Plane.new
 
       actual_result = airport.land(plane)
-      expected_result = 1
+      expected_result = [plane]
 
       expect(actual_result).to eq expected_result
     end
@@ -21,9 +22,10 @@ describe Airport do
       airport = Airport.new(1)
       plane = Plane.new
       
+      # p airport.capacity 1
       airport.land(plane)
       
-      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
+      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
     end
     it 'does not allow planes to land when airport is full (capacity == 2 planes)' do
       airport = Airport.new(2)
@@ -32,17 +34,7 @@ describe Airport do
       airport.land(plane)
       airport.land(plane)
       
-      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
-    end
-    it 'does not allow planes to land when airport is full (capacity == 20 planes)' do
-      airport = Airport.new(20)
-      plane = Plane.new
-      
-      20.times do
-        airport.land(plane)
-      end
-      
-      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
+      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
     end
   end
   
@@ -57,9 +49,20 @@ describe Airport do
 
       landed_plane = airport.land(plane)
       actual_result = airport.take_off(landed_plane)
-      expected_result = 0
+      expected_result = plane
 
       expect(actual_result).to eq expected_result
     end
+  end
+  it 'does not allow planes to land when airport is full (DEFAULT capacity == 20 planes)' do
+    capacity = Airport::DEFAULT_CAPACITY
+    airport = Airport.new(capacity)
+    plane = Plane.new
+    
+    Airport::DEFAULT_CAPACITY.times do
+      airport.land(plane)
+    end
+    
+    expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
   end
 end
