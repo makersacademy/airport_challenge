@@ -18,23 +18,37 @@ describe Airport do
       expect(actual_result).to eq expected_result
     end
     
-    it 'does not allow planes to land when airport is full (capacity == 1 plane)' do
-      airport = Airport.new(1)
-      plane = Plane.new
+    context 'when airport is full' do
+      it 'does not allow planes to land at capacity of 1 plane' do
+        airport = Airport.new(1)
+        plane = Plane.new
+        
+        # p airport.capacity 1
+        airport.land(plane)
+        
+        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+      end
       
-      # p airport.capacity 1
-      airport.land(plane)
-      
-      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
-    end
-    it 'does not allow planes to land when airport is full (capacity == 2 planes)' do
-      airport = Airport.new(2)
-      plane = Plane.new
-      
-      airport.land(plane)
-      airport.land(plane)
-      
-      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+      it 'does not allow planes to land at capacity of 2 planes' do
+        airport = Airport.new(2)
+        plane = Plane.new
+        
+        airport.land(plane)
+        airport.land(plane)
+        
+        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+      end
+      it 'does not allow planes to land at DEFAULT capacity of 20 planes' do
+        capacity = Airport::DEFAULT_CAPACITY
+        airport = Airport.new(capacity)
+        plane = Plane.new
+        
+        Airport::DEFAULT_CAPACITY.times do
+          airport.land(plane)
+        end
+        
+        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+      end
     end
   end
   
@@ -42,7 +56,6 @@ describe Airport do
   #it { is_expected.to respond_to(:take_off).with(1).argument }
   
   describe '#take_off' do
-    
     it 'allows a plane to take off from the airport' do
       airport = Airport.new(1)
       plane = Plane.new
@@ -53,16 +66,15 @@ describe Airport do
 
       expect(actual_result).to eq expected_result
     end
-  end
-  it 'does not allow planes to land when airport is full (DEFAULT capacity == 20 planes)' do
-    capacity = Airport::DEFAULT_CAPACITY
-    airport = Airport.new(capacity)
-    plane = Plane.new
     
-    Airport::DEFAULT_CAPACITY.times do
-      airport.land(plane)
+    context 'when weather is stormy' do
+      it 'raises an error if tries to take off' do
+        airport = Airport.new
+        plane = Plane.new
+    
+        allow(airport).to receive(:stormy?).and_return true
+        expect { airport.take_off(plane) }.to raise_error 'Cannot take off: Weather stormy'
+      end
     end
-    
-    expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
   end
 end
