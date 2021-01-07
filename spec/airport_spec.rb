@@ -25,6 +25,25 @@ describe Airport do
       
       expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
     end
+    it 'does not allow planes to land when airport is full (capacity == 2 planes)' do
+      airport = Airport.new(2)
+      plane = Plane.new
+      
+      airport.land(plane)
+      airport.land(plane)
+      
+      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
+    end
+    it 'does not allow planes to land when airport is full (capacity == 20 planes)' do
+      airport = Airport.new(20)
+      plane = Plane.new
+      
+      20.times do
+        airport.land(plane)
+      end
+      
+      expect { airport.land(plane) }.to raise_error 'Airport cannot accept more than one'
+    end
   end
   
   # The one-liner below is not necessary for the purposes of our methods, since we want out methods do something
