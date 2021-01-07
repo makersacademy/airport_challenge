@@ -17,10 +17,16 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Cannot take off: Weather stormy' if stormy?
     @planes.pop
   end
 
+  private
   def full?
     @planes.length >= @capacity
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 end
