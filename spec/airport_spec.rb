@@ -2,52 +2,69 @@ require 'simplecov'
 require 'airport'
 
 describe Airport do  
-  # The one-liner below is not necessary for the purposes of our methods to do something
-  # it { is_expected.to respond_to(:land).with(1).argument }
   
   describe '#land' do
-    
-    it 'lands a plane' do
+    context 'when weather is not stormy' do
       capacity = Airport::DEFAULT_CAPACITY
       airport = Airport.new(capacity)
-      plane = Plane.new
-
-      actual_result = airport.land(plane)
-      expected_result = [plane]
-
-      expect(actual_result).to eq expected_result
-    end
-    
-    context 'when airport is full' do
-      it 'does not allow planes to land at capacity of 1 plane' do
-        airport = Airport.new(1)
+      before do
+        allow(airport).to receive(:stormy?).and_return false
+      end
+      it 'lands a plane' do
         plane = Plane.new
-        
-        # p airport.capacity 1
-        airport.land(plane)
-        
-        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+  
+        actual_result = airport.land(plane)
+        expected_result = [plane]
+  
+        expect(actual_result).to eq expected_result
       end
       
-      it 'does not allow planes to land at capacity of 2 planes' do
-        airport = Airport.new(2)
-        plane = Plane.new
+      context 'when airport is full' do
+        it 'does not allow planes to land at capacity of 1 plane' do
+          airport = Airport.new(1)
+          plane = Plane.new
+          
+          allow(airport).to receive(:stormy?).and_return false
+          airport.land(plane)
+          
+          expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+        end
         
-        airport.land(plane)
-        airport.land(plane)
-        
-        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+        it 'does not allow planes to land at capacity of 2 planes' do
+          airport = Airport.new(2)
+          plane = Plane.new
+          
+          allow(airport).to receive(:stormy?).and_return false
+          airport.land(plane)
+          airport.land(plane)
+          
+          expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+        end
+        it 'does not allow planes to land at DEFAULT capacity of 20 planes' do
+          capacity = Airport::DEFAULT_CAPACITY
+          airport = Airport.new(capacity)
+          plane = Plane.new
+          
+          Airport::DEFAULT_CAPACITY.times do
+            allow(airport).to receive(:stormy?).and_return false
+            airport.land(plane)
+          end
+          
+          expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+        end
       end
-      it 'does not allow planes to land at DEFAULT capacity of 20 planes' do
+    end
+
+    context 'when weather is stormy' do
+      it 'raises an error if a plane tries to land' do
         capacity = Airport::DEFAULT_CAPACITY
         airport = Airport.new(capacity)
         plane = Plane.new
-        
-        Airport::DEFAULT_CAPACITY.times do
-          airport.land(plane)
-        end
-        
-        expect { airport.land(plane) }.to raise_error 'Airport cannot accept more planes: Full'
+  
+        allow(airport).to receive(:stormy?).and_return true
+  
+        expect { airport.land(plane) }.to raise_error 'Cannot take off: Weather stormy'
+
       end
     end
   end
@@ -61,8 +78,8 @@ describe Airport do
         airport = Airport.new(1)
         plane = Plane.new
   
-        landed_plane = airport.land(plane)
         allow(airport).to receive(:stormy?).and_return false
+        landed_plane = airport.land(plane)
         actual_result = airport.take_off(landed_plane)
         expected_result = plane
   
