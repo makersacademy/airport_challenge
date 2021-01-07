@@ -56,15 +56,18 @@ describe Airport do
   #it { is_expected.to respond_to(:take_off).with(1).argument }
   
   describe '#take_off' do
-    it 'allows a plane to take off from the airport' do
-      airport = Airport.new(1)
-      plane = Plane.new
-
-      landed_plane = airport.land(plane)
-      actual_result = airport.take_off(landed_plane)
-      expected_result = plane
-
-      expect(actual_result).to eq expected_result
+    context 'when not stormy' do
+      it 'allows a plane to take off from the airport' do
+        airport = Airport.new(1)
+        plane = Plane.new
+  
+        landed_plane = airport.land(plane)
+        allow(airport).to receive(:stormy?).and_return false
+        actual_result = airport.take_off(landed_plane)
+        expected_result = plane
+  
+        expect(actual_result).to eq expected_result
+      end  
     end
     
     context 'when weather is stormy' do
