@@ -7,7 +7,8 @@ describe Weather do
     it 'is stormy' do
       weather = Weather.new
 
-      allow(weather).to receive(:rand).and_return 1
+      allow(weather).to receive(:rand_stormy).and_return :stormy
+      
       actual_result = weather.stormy?
 
       expect(actual_result).to eq true
@@ -16,7 +17,8 @@ describe Weather do
     it 'is not stormy' do
       weather = Weather.new
       
-      allow(weather).to receive(:rand).and_return 3
+      allow(weather).to receive(:rand_stormy).and_return :fine
+      
       actual_result = weather.stormy?
       
       expect(actual_result).to eq false

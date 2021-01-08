@@ -1,3 +1,4 @@
+require 'simplecov'
 SimpleCov.start
 
 require 'airport'
@@ -8,7 +9,7 @@ describe Airport do
     context 'when weather is not stormy' do
       it 'lands a plane' do
         capacity = Airport::DEFAULT_CAPACITY
-        weather = double('Weather')
+        weather = Weather.new
         airport = Airport.new(capacity, weather)
         plane = Plane.new
 
@@ -61,10 +62,10 @@ describe Airport do
         capacity = Airport::DEFAULT_CAPACITY
         airport = Airport.new(capacity, weather = Weather.new)
         plane = Plane.new
-  
+        allow(weather).to receive(:rand_stormy).and_return :stormy
         allow(weather).to receive(:stormy?).and_return true
   
-        expect { airport.land(plane) }.to raise_error 'Cannot take off: Weather stormy'
+        expect { airport.land(plane) }.to raise_error 'Cannot land: Weather stormy'
 
       end
     end
@@ -88,6 +89,7 @@ describe Airport do
     context 'when weather is stormy' do
       it 'raises an error if tries to take off' do
         airport = Airport.new(1, weather = Weather.new)
+        plane = Plane.new
     
         allow(weather).to receive(:stormy?).and_return true
         expect { airport.take_off }.to raise_error 'Cannot take off: Weather stormy'
