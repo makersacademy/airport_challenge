@@ -1,7 +1,9 @@
+SimpleCov.start
+
 require 'weather'
 
 describe Weather do
-  describe '#stormy?'do
+  describe '#stormy?' do
     it 'is stormy' do
       weather = Weather.new
 
@@ -21,4 +23,3 @@ describe Weather do
     end
   end
 end
-
