@@ -32,13 +32,9 @@ To ensure safety
 I want to prevent landing when weather is stormy
 >
 ## Nouns:
-- Air Traffic Controller
-- Passengers
-- Destination
 - Plane
 - Airport
 - Weather
-- Capacity
 
 ## Verbs:
 - land
@@ -49,8 +45,10 @@ I want to prevent landing when weather is stormy
 
 
 ## Table
-|Objects         |Messages      |
-|----------------|--------------|
-|Person          |                   |
-|Bike            |use, see_if_working|
-|Docking Station |release       |
+| Object  | Messages  |
+|---------|-----------|
+| Plane   | land      |
+|         | take_off  |
+| Airport | full?     |
+|         | contains? |
+| Weather | stormy?   |
