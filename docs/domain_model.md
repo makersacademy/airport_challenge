@@ -32,14 +32,21 @@ To ensure safety
 I want to prevent landing when weather is stormy
 >
 ## Nouns:
-- Person
-- Bike
-- Docking Station
+- Air Traffic Controller
+- Passengers
+- Destination
+- Plane
+- Airport
+- Weather
+- Capacity
 
 ## Verbs:
-- use
-- release
-- see if bike is working
+- land
+- take off
+- is in airport
+- is full
+- is stormy
+
 
 ## Table
 |Objects         |Messages      |
