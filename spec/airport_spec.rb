@@ -1,4 +1,6 @@
 require 'simplecov'
+SimpleCov.start
+
 require 'airport'
 
 describe Airport do  
@@ -68,9 +70,6 @@ describe Airport do
       end
     end
   end
-  
-  # The one-liner below is not necessary for the purposes of our methods, since we want out methods do something
-  #it { is_expected.to respond_to(:take_off).with(1).argument }
   
   describe '#take_off' do
     context 'when not stormy' do

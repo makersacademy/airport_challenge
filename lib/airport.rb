@@ -28,6 +28,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    Weather.stormy?
   end
 end
