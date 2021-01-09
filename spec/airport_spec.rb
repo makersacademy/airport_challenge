@@ -7,10 +7,6 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off) }
 
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when the airport is full
-
   describe '#land' do
 
     it 'should let a plane land at the airport' do
