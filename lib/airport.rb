@@ -17,9 +17,11 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off()
+  def take_off
     fail "There are no planes to take off" if empty
-    @planes.pop
+    plane = @planes.pop
+    plane.docked = false
+    return plane
   end
 
   # def weather_forecast 
