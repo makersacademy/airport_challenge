@@ -13,7 +13,18 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Plane cannot take off due to storm" if stormy?
     "The plane: #{plane} has taken off"
+  end
+
+  def report_storm
+    @storm = true
+  end
+
+  # private
+
+  def stormy?
+    @storm
   end
 
   private
@@ -21,5 +32,4 @@ class Airport
   def full
     @hangar.length >= @capacity
   end
-
 end
