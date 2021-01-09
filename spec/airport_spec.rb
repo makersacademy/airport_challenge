@@ -42,6 +42,12 @@ describe Airport do
       it 'instruct the plane to take off' do
         expect(airport).to respond_to(:take_off).with(1).argument
       end
+
+      it 'confirm taken off plane is no longer in the airport' do
+        another_airport = described_class.new(20, weather_forecast)
+        another_airport.land(plane)
+        expect { airport.take_off(plane) }.to raise_error "Plane taken off - no longer in the airport"
+      end
     end
 
     context 'when stormy' do
