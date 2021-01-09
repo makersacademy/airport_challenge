@@ -31,7 +31,6 @@ class Airport
   end
 
   def stormy?
-    storm = rand(100)
-    storm == 1
+    1 == rand(100)
   end
 end
