@@ -8,7 +8,7 @@ describe Airport do
 
     it 'reports plane in hangar' do
         plane = Plane.new
-        expect(subject.land(plane)).to eq plane
+        expect(subject.land(plane)).to include plane
     end
 
     it 'should repond to take_off' do
@@ -17,7 +17,7 @@ describe Airport do
 
     describe '#land' do
         it 'raises an error when the airport is full' do
-            subject.land(Plane.new)
+            Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
             expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
         end
     end
