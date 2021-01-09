@@ -7,6 +7,7 @@ class Plane
   end
 
   def flying?
+    false
   end
 
 end

@@ -6,9 +6,19 @@ describe Airport do
     expect(subject).to respond_to(:land_plane)
   end
 
-  it 'adds plane to the hangar if landing is approved' do
+  it 'adds plane to the runway if landing is approved' do
     plane = Plane.new
     subject.land_plane(plane)
-    expect(subject.hangar).to include(plane)
+    expect(subject.runway).to include(plane)
   end
+
+  it "responds to take_off" do
+    expect(subject).to respond_to :take_off
+  end
+
+  it "gives permission for take off" do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to eq true unless plane.flying? == true
+  end
+
 end
