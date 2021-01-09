@@ -22,8 +22,8 @@ describe Airport do
   end
 
   it "prevents landing when the runway is full (capacity is 20 planes)" do
-    20.times { subject.land_plane Plane.new }
-    expect { subject.land_plane Plane.new }.to raise_error "Runway full: maintain holding pattern"
+    21.times { subject.land_plane Plane.new }
+    expect(subject.full?).to eq false
   end
 
   # it "prevents landing when the weather is stormy" do

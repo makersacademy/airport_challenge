@@ -19,11 +19,15 @@ class Airport
   end
 
   def full?
-    raise StandardError.new "Runway full: maintain holding pattern" unless @runway.length < @capacity
+    return if @runway.length < @capacity
+
+    puts "Runway full: maintain holding pattern"
+    false
   end
 
   def take_off(plane)
     return if plane.flying? == true #  && hanger.empty?
+    
     plane.in_air
     #  @hangar.pop
   end

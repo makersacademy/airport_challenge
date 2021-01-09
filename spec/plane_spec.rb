@@ -26,5 +26,4 @@ describe Plane do
     expect(plane.on_runway?).to eq false
   end
 
-
 end
