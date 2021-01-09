@@ -6,10 +6,9 @@ describe Plane do
   let(:airport) { double :Airport, :stormy? => false, :full? => false, plane_list: [] }
 
   describe "#land" do
-    it { should respond_to(:land).with(1).arguments }
+    it { is_expected.to respond_to(:land).with(1).arguments }
 
     it "adds plane to airport" do
-      # airport = Airport.new
       subject.land(airport)
       expect(airport.plane_list.length).to eq 1
     end
@@ -33,7 +32,7 @@ describe Plane do
   end
 
   describe "#take_off" do
-    it { should respond_to :take_off }
+    it { is_expected.to respond_to :take_off }
 
     it "raises error if not at airport" do
       expect { subject.take_off }.to raise_error "Plane is already in the air!"
@@ -46,7 +45,6 @@ describe Plane do
     end
 
     it "remove from airport list" do
-      # airport = Airport.new
       subject.land(airport)
       subject.take_off
       expect(airport.plane_list.length).to eq 0
