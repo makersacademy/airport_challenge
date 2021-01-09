@@ -1,5 +1,4 @@
 class Airport
-  # attr_reader :planes
 
   def initialize
     @planes = []
@@ -23,6 +22,7 @@ class Plane
   end
 
   def land(airport)
+    check_valid_airport(airport)
     airport.add_plane(self)
     self
   end

@@ -23,20 +23,21 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off) }
 
+  let(:airport) { Airport.new }
+
   describe '@airport' do
     context 'when a plane is created' do
       it 'should default to nil' do
         expect(subject.airport).to be_nil
       end
       context 'with a given airport' do
-        let(:airport) { Airport.new }
         let(:plane) { Plane.new(airport) }
         it 'should return the airport given at creation' do
           expect(plane.airport).to eq airport
         end
       end
       context 'with something that is not an airport' do
-        it 'should raise an airport does not exist error' do
+        it 'raises an airport does not exist error' do
           expect { Plane.new("foo") }.to raise_error "Not a valid airport"
         end
       end
@@ -44,12 +45,15 @@ describe Plane do
 
   end
 
-  let(:airport) { Airport.new }
-
   describe '#land' do
     context 'when an airport is given as argument' do
       it 'returns the plane that just landed' do
         expect(subject.land(airport)).to eq subject
+      end
+    end
+    context 'when a non-airport is given as an argument' do
+      it 'raises an airport does not exist error' do
+        expect { subject.land("foo") }.to raise_error "Not a valid airport"
       end
     end
   end
