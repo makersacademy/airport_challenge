@@ -38,9 +38,15 @@ describe Airport do
     it "removes a plane" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.planes.include?(plane)).to eq true
       expect(subject.take_off).to eq plane
       expect(subject.planes.include?(plane)).to eq false
+    end
+
+    it "sets plane to be not docked" do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off
+      expect(plane.docked).to eq false
     end
   end
 
