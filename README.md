@@ -21,8 +21,9 @@ Planes cannot land or take off if the weather is stormy.
 
 1. irb -r 'airport.rb'
 
-Airport - stores planes in the hangar
-- Airport.land: adds a plane to the hanger if the aircraft has permission to land
+Airport - grants planes permission to take off and land; planes are stored on the RUNWAY
+- Airport.land_plane: adds a plane to the runway if the aircraft has permission to land
+- Airport.take_off: allows plane to land if the aircraft is in the air and the runway is not full
 
 Plane
 - Plane.flying?
