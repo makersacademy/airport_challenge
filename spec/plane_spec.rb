@@ -1,25 +1,26 @@
 require "plane"
 require "airport"
 
-describe Plane do 
+describe Plane do
+
+  let(:airport) { double :Airport, :stormy? => false, :full? => false, plane_list: [] }
 
   describe "#land" do
     it { should respond_to(:land).with(1).arguments }
 
     it "adds plane to airport" do
-      airport = Airport.new
+      # airport = Airport.new
       subject.land(airport)
       expect(airport.plane_list.length).to eq 1
     end
 
     it "sets plane as being at airport" do
-      airport = Airport.new
       subject.land(airport)
-      expect(subject.location.class).to eq Airport
+      expect(subject.location).to eq airport
     end
 
     it "raises error if plane is already landed" do
-      airport = Airport.new
+      airport = double(:Airport, :stormy? => false, :full? => false, :plane_list => [])
       subject.land(airport)
       expect { subject.land(airport) }.to raise_error "Plane has already landed"
     end
@@ -39,13 +40,13 @@ describe Plane do
     end
 
     it "plane location changes" do
-      subject.land(Airport.new)
+      subject.land(airport)
       subject.take_off
       expect(subject.location).to eq "the air"
     end
 
     it "remove from airport list" do
-      airport = Airport.new
+      # airport = Airport.new
       subject.land(airport)
       subject.take_off
       expect(airport.plane_list.length).to eq 0
@@ -55,8 +56,6 @@ describe Plane do
       airport = double(:Airport, :full? => false, plane_list: [])
       allow(airport).to receive(:stormy?).and_return(false, true)
       subject.land(airport)
-      
-      
       expect { subject.take_off }.to raise_error "The weather is too bad to take off"
     end
 

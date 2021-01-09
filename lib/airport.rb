@@ -2,7 +2,7 @@ class Airport
 
   attr_reader :plane_list, :capacity, :name
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 1
 
   def initialize(name = "LHR", capacity = DEFAULT_CAPACITY)
     @plane_list = []
@@ -19,6 +19,7 @@ class Airport
   end
 
   def stormy?
+    rand(1..10) == 10
   end
 
 end

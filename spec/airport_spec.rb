@@ -13,6 +13,8 @@ describe Airport do
     expect { Plane.new.land(subject) }.to raise_error "Unable to land; airport at capacity"
   end
 
-  it { should respond_to :stormy? }
+  it "stormy?" do
+    expect(subject.stormy?).not_to be_nil
+  end
 
 end

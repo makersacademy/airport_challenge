@@ -14,8 +14,8 @@ class Plane
   end
 
   def land(airport)
-    fail "The weather is too bad to land there" if airport.stormy?
     fail "Unable to land; airport at capacity" if airport.full?
+    fail "The weather is too bad to land there" if airport.stormy?
     fail "Plane has already landed" if @location != "the air"
 
     airport.plane_list << self
