@@ -16,6 +16,12 @@ describe Airport do
         expect(subject.contains?(plane)).to eq false
       end
     end
+    context 'when given a plane initiated there' do
+      let(:plane) { Plane.new(subject) }
+      it 'should return true' do
+        expect(subject.contains?(plane)).to be true
+      end
+    end
   end
 end
 
@@ -63,10 +69,17 @@ describe Plane do
     end
   end
 
-  # describe '#take_off' do
-  #   it 'returns the airport just taken off from' do
-  #   before { subject.land(airport) }
-  #   # expect(subject.)
-  # end
+  describe '#take_off' do
+    context 'when passed an airport that contains the plane' do
+      let(:plane) { Plane.new(airport) }
+      it 'should return a string confirming take off' do
+        expect(plane.take_off).to eq "#{plane} has taken off from #{airport}"
+      end
+      it 'should remove the plane from the airport' do
+        plane.take_off
+        expect(airport.contains?(plane)).to be false
+      end
+    end
+  end
 
 end
