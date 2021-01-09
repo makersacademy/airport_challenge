@@ -24,6 +24,12 @@ describe Airport do
       subject.land(plane)
       expect(plane.docked).to eq true
     end
+
+    it "raises an error when trying to land a plane that has already landed" do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plande) }.to raise_error "Already landed"
+    end
   end
 
   describe "take off" do
