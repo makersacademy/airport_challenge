@@ -35,8 +35,4 @@ describe Airport do
         end
     end
 
-    # it 'confirms that the plane is not longer in the hangar' do
-    #     expect(subject.take_off(Plane.new)).to eq @hangar.pop(Plane.new)
-    # end
-
 end
