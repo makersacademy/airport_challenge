@@ -4,11 +4,13 @@ require "plane"
 describe Airport do 
 
   it "full if add planes to capacity" do
+    allow(subject).to receive(:stormy?).and_return(false)
     Airport::DEFAULT_CAPACITY.times { Plane.new.land(subject) }
     expect(subject).to be_full
   end
 
   it "prevents landing when full" do
+    allow(subject).to receive(:stormy?).and_return(false)
     Airport::DEFAULT_CAPACITY.times { Plane.new.land(subject) }
     expect { Plane.new.land(subject) }.to raise_error "Unable to land; airport at capacity"
   end
