@@ -1,4 +1,4 @@
-require 'air_traffic_controller.rb'
+require 'air_traffic_controller'
 
 describe AirTrafficController do
 
