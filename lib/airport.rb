@@ -9,11 +9,12 @@ class Airport
   end
 
   def land(plane)
-    
+    @plane = plane
   end
 
   def take_off
     fail "Plane has taken off" unless @plane
+    @plane
   end
 
 end
