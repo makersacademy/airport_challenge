@@ -19,6 +19,10 @@ describe Airport do
   it "checks if there are planes that have landed" do
     expect(subject).to respond_to(:plane)
   end
+
+  it "sets a default capacity" do
+    expect(subject.capacity).to eq Airport::STANDARD_CAPACITY
+  end
   
   describe "Plane has taken off" do 
     it "raises a fail if there is a plane after take off" do
@@ -30,6 +34,14 @@ describe Airport do
     it "raises a fail if the airport is full" do
       10.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport is full"
+    end
+  end
+
+  describe "Initialization" do
+    it "sets variable capacity" do
+      airport = Airport.new(40)
+      40.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "Airport is full"
     end
   end
 
