@@ -1,3 +1,5 @@
+
+
 class Airport
 
   DEFAULT_CAPACITY = 20
@@ -14,6 +16,8 @@ class Airport
   end
 
   def takeoff(plane)
+    fail "No take offs allowed due to bad weather" if stormy?
+
     @landed_planes.delete(plane)
     "#{plane} has left the Airport"
   end
@@ -22,4 +26,9 @@ class Airport
   def full?
     @landed_planes.count >= @capacity
   end
+
+  def stormy?
+    rand(1..6) > 4
+  end
+
 end
