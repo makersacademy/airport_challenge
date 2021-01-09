@@ -26,6 +26,10 @@ describe Airport do
     expect { subject.land_plane Plane.new }.to raise_error "Runway full: maintain holding pattern"
   end
 
+  # it "prevents landing when the weather is stormy" do
+  #   expect { subject.land_plane Plane.new }.to raise_error "Too stormy to land" unless be_true{ subject.weather? }
+  # end
+
   it "has a default capacity" do
     airport = Airport.new
     expect(airport.capacity).to eq 20
