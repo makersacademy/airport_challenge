@@ -10,7 +10,7 @@ describe Airport do
 
   it 'should raise error when airport full' do
     plane = Plane.new
-    subject.land(plane)
+    subject.capacity.times { subject.land(plane) }
     expect { subject.land(plane) }.to raise_error "Airport is full"
   end
 
@@ -24,7 +24,7 @@ describe Airport do
 
   it 'should return true or false if full' do
     expect(subject.send(:full?)).to eq false
-    subject.land(Plane.new)
+    subject.capacity.times { subject.land(Plane.new) }
     expect(subject.send(:full?)).to eq true
   end
 end
