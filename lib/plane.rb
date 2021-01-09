@@ -1,9 +1,10 @@
 class Plane
- def land 
-    p 'plane can land'
- end
+  def land(plane)
+    p "plane can land"
+  end
 
- def takeoff 
-    p 'plane take off confirmed'
- end 
+  def takeoff(plane)
+   p "plane can takeoff"
+  end
+
 end 
