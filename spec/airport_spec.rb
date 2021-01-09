@@ -12,4 +12,11 @@ describe Airport do
     it 'confirms plane is no longer in airport after take off' do
         expect(subject.take_off).to be(true)
     end
+
+    it 'has a default capacity' do
+        Airport::DEFAULT_CAPACITY.should eq(20)
+    end
+
+    it { is_expected.to respond_to(:capacity) }
+
 end
