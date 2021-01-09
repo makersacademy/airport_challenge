@@ -5,7 +5,7 @@ describe Airport do
 
     it 'instructs a plane to land at airport' do 
         airport = Airport.new
-    expect(airport).to respond_to(:land).with(1).argument
+    expect(airport).to respond_to(:land)
     end 
 
     it 'prevent landing when the airport is full' do 
@@ -13,8 +13,7 @@ describe Airport do
             airport = Airport.new 
         expect{ airport.to respond_to(:land).to raise_error 'landing not permitted: airport full'}
         end 
-        
-    end
+   end
 end 
    
 

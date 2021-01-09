@@ -4,8 +4,9 @@ class Airport
     @capacity = capacity 
     @planes = []
   end
-def land(plane)
+def land
 raise "plane cannot land at airport because the airport is full" if @planes.length >= @capacity 
-@planes << plane 
+
 end  
+
 end 
