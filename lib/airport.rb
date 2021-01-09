@@ -3,10 +3,11 @@ require './lib/plane'
 class Airport
 
   attr_reader :runway
+  attr_reader :capacity
 
-  def initialize
+  def initialize(capacity = 20)
     @runway = Array.new
-    @capacity = 20
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -15,7 +16,6 @@ class Airport
     full?
     puts "landing plane"
     @runway << plane
-    puts @runway.length
   end
 
   def full?

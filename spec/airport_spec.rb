@@ -26,4 +26,14 @@ describe Airport do
     expect { subject.land_plane Plane.new }.to raise_error "Runway full: maintain holding pattern"
   end
 
+  it "has a default capacity" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 20
+  end
+
+  it "the default capacity can be overwritten" do
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq 5
+  end
+
 end
