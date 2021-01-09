@@ -9,8 +9,14 @@ describe Airport do
         end
     end
 
-    it 'confirms plane is no longer in airport after take off' do
-        expect(subject.take_off).to be(true)
+    describe '#take_off' do
+        # it 'confirms plane is no longer in airport after take off' do
+        #     expect(subject.take_off).to be(true)
+        # end
+
+        it 'raises an error when weather conditions are stormy' do
+            expect { subject.take_off }.to raise_error 'Weather conditions too stormy for landing'
+        end
     end
 
     it 'has a default capacity' do

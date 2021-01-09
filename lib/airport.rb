@@ -12,6 +12,10 @@ class Airport
         true
     end
     def take_off
+        fail 'Weather conditions too stormy for landing' if stormy?
         true
+    end
+    def stormy?
+        rand(10) > 7
     end
 end
