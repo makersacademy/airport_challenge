@@ -7,7 +7,6 @@ describe Plane do
     it { should respond_to(:land).with(1).arguments }
 
     it "adds plane to airport" do
-      # airport = double(:airport, plane_list: [1])
       airport = Airport.new
       subject.land(airport)
       expect(airport.plane_list.length).to eq 1
@@ -27,7 +26,6 @@ describe Plane do
 
     it "prevented if airport weather is stormy" do
       airport = double(:Airport, :stormy? => true, :full? => false, plane_list: [])
-
       expect { subject.land(airport) }.to raise_error "The weather is too bad to land there"
     end 
 
@@ -51,6 +49,15 @@ describe Plane do
       subject.land(airport)
       subject.take_off
       expect(airport.plane_list.length).to eq 0
+    end
+
+    it "prevented if airport weather is bad" do
+      airport = double(:Airport, :full? => false, plane_list: [])
+      allow(airport).to receive(:stormy?).and_return(false, true)
+      subject.land(airport)
+      
+      
+      expect { subject.take_off }.to raise_error "The weather is too bad to take off"
     end
 
   end

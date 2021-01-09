@@ -25,6 +25,7 @@ class Plane
 
   def take_off
     fail "Plane is already in the air!" if location == "the air"
+    fail "The weather is too bad to take off" if location.stormy?
 
     airport = location
     airport.plane_list.delete(self)
