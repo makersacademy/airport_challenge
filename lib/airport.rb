@@ -2,6 +2,8 @@ require_relative 'plane'
 
 class Airport
 
+		DEFAULT_CAPACITY = 10
+		
 		attr_reader :hanger
 
 		def initialize
@@ -9,7 +11,7 @@ class Airport
 		end
 
 		def land(plane)
-				fail "Airport at capacity" if hanger.count >= 5
+				fail "Airport at capacity" if hanger.count >= DEFAULT_CAPACITY
 				
 				plane = plane
 				hanger << plane

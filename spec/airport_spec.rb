@@ -18,9 +18,9 @@ describe Airport do
 		end
 
 		describe "#land" do
-				it "Stops planes landing when airport is full" do
-						expect { raise StandardError, "Airport at capacity" }.
-				to raise_error("Airport at capacity")
+				it "Stops planes landing when airport is at default capacity" do
+					Airport:: DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+					expect { subject.land(Plane.new) }. to raise_error "Airport at capacity"
 				end
 		end 
 
