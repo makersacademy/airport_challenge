@@ -11,5 +11,9 @@ describe Airport do
   it "lands plane at airport" do
     expect(subject).to respond_to(:land).with(1).argument
   end
+
+  it "checks it airport responds to take off" do
+    expect(subject).to respond_to(:take_off)
+  end
   
 end
