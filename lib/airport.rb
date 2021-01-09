@@ -5,16 +5,17 @@ class Airport
   attr_reader :plane
 
   def initialize()
-    @plane = plane
+    @planes = []
   end
 
   def land(plane)
-    @plane = plane
+    fail "Airport is full" if @planes.count >= 10
+    @planes.push(plane)
   end
 
   def take_off
-    fail "Plane has taken off" unless @plane
-    @plane
+    fail "Plane has taken off" if @planes.empty?
+    @plane.pop
   end
 
 end
