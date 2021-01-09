@@ -1,9 +1,11 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new }
-  # Let(:plane) { Plane.new }
-  plane = Plane.new
+  # subject(:airport) { described_class.new }
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off) }

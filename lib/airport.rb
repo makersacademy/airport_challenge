@@ -22,12 +22,12 @@ class Airport
   end
 
   private
-  
+
   def full?
     @planes.count >= capacity
   end
 
   def stormy?
-    rand(1..8) > 6
+    rand(1..10) > 9
   end
 end
