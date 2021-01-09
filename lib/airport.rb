@@ -18,7 +18,7 @@ class Plane
   attr_reader :airport
 
   def initialize(airport = nil)
-    raise "Not a valid airport" if airport && !airport.is_a?(Airport)
+    check_valid_airport(airport)
     @airport = airport
   end
 
@@ -30,4 +30,7 @@ class Plane
   def take_off
   end
 
+  def check_valid_airport(airport)
+    raise "Not a valid airport" if airport && !airport.is_a?(Airport)
+  end
 end
