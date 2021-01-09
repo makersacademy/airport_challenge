@@ -26,6 +26,7 @@ class Airport
   attr_reader :capacity
   attr_accessor :stormy
 
+  private
   def full?
     @planes.length == @capacity
   end
