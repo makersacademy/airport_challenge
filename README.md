@@ -22,12 +22,13 @@ Planes can't land or take off if the weather is stormy.
 Planes can't land if the runway is full.
 
 ```
+--- GETTING STARTED ----
 
 Load 'airport.rb' to begin
 
 ```
 
---- Airport ---
+--- AIRPORT ---
 
 The airport controls the flow of planes.
 
@@ -35,18 +36,21 @@ It grants planes permission to take off and land.
 
 Planes are stored on the RUNWAY
 
-The runway has a default capacity of 20. To change the capacity use 'Airport.new(X)'.
+The runway has a default capacity of 20.
+
+To change the capacity use 'Airport.new(X)'.
 
 Methods:
 
-- Airport.land_plane
-  - adds a plane to the runway if the aircraft has permission to land
+- Airport.land_plane(plane)
+  - Adds a plane to the runway if the aircraft has permission to land and the runway is not full.
 
-- Airport.take_off
-  - allows plane to land if the aircraft is flying and the runway is not full
+- Airport.take_off(plane)
+  - Allows plane to land if the aircraft is flying.
 
+```
 
---- Plane ---
+--- PLANE ---
 
 Planes keep track of their status: they can either be on the runway or in the air.
 

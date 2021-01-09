@@ -11,7 +11,7 @@ class Airport
   end
 
   def land_plane(plane)
-    return unless plane.flying? == false
+    return unless plane.flying? == true
 
     full?
     plane.landed
@@ -27,7 +27,7 @@ class Airport
 
   def take_off(plane)
     return if plane.flying? == true #  && hanger.empty?
-    
+
     plane.in_air
     #  @hangar.pop
   end

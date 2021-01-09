@@ -8,6 +8,7 @@ describe Airport do
 
   it 'adds plane to the runway if landing is approved' do
     plane = Plane.new
+    subject.take_off(plane)
     subject.land_plane(plane)
     expect(subject.runway).to include(plane)
   end
@@ -22,7 +23,11 @@ describe Airport do
   end
 
   it "prevents landing when the runway is full (capacity is 20 planes)" do
-    21.times { subject.land_plane Plane.new }
+    20.times do
+      plane = Plane.new
+      subject.take_off(plane)
+      subject.land_plane(plane)
+    end
     expect(subject.full?).to eq false
   end
 
