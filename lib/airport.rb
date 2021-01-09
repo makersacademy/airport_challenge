@@ -1,7 +1,17 @@
 require './lib/plane'
-require './lib/air_traffic_controller'
 
 class Airport
-  def land_plane
+
+  attr_reader :hangar
+
+  def initialize
+    @hangar = Array.new
+  end
+
+  def land_plane(plane)
+    return unless plane.landing_permission == true
+
+    puts "landing plane"
+    @hangar << plane
   end
 end

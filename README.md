@@ -21,15 +21,11 @@ Planes cannot land or take off if the weather is stormy.
 
 1. irb -r 'airport.rb'
 
-Airport - stores Planes in the HANGAR; Air Traffic Controller works here
-- Airport.land: adds a plane to the HANGAR 
-
-AirTrafficController
-
-- AirTrafficController.landing_control:
-  - checks landing conditions
-  - approves landing unless WEATHER is STORMY
+Airport - stores planes in the hangar
+- Airport.land: adds a plane to the hanger if the aircraft has permission to land
 
 Plane
 - Plane.flying?
   - returns TRUE if the Plane is in the sky
+- Plane.ask_to_land
+  - asks permission to land
