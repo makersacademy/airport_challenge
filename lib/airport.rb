@@ -1,2 +1,7 @@
+require './lib/plane'
+require './lib/air_traffic_controller'
+
 class Airport
-end 
+  def land_plane
+  end
+end
