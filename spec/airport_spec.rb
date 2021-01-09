@@ -1,7 +1,22 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:contains?).with(1).argument}
+  it { is_expected.to respond_to(:contains?).with(1).argument }
+  let(:plane) { Plane.new }
+
+  describe '#contains?' do
+    context 'when given a plane that has landed there' do
+      before { plane.land(subject) }
+      it 'should return true' do
+        expect(subject.contains?(plane)).to eq true
+      end
+    end
+    context 'when given a plane that has not landed there' do
+      it 'should return false' do
+        expect(subject.contains?(plane)).to eq false
+      end
+    end
+  end
 end
 
 describe Plane do
