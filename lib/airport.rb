@@ -1,6 +1,6 @@
 require_relative 'weather'
 
-class Airport
+class Airport < Weather
 
     attr_reader :capacity
 
@@ -17,6 +17,7 @@ class Airport
     end
 
     def take_off(plane)
+        fail 'Plane cannot take off due to stormy weather' if stormy?
         @hangar.pop(plane)
     end
 

@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -32,6 +33,13 @@ describe Airport do
         it 'raises an error when the airport is full' do
             subject.capacity.times { subject.land(Plane.new) }
             expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
+        end
+    end
+
+    describe '#take_off' do
+        it 'raises an error when the weather is stromy' do
+            Weather.new.stormy?
+            expect { subject.take_off(Plane.new) }.to raise_error 'Plane cannot take off due to stormy weather'
         end
     end
 

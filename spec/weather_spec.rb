@@ -7,7 +7,8 @@ describe Weather do
     end
 
     it 'can be reported stormy' do
-        expect(subject.reported_stormy).to eq(true)
+        subject.reported_stormy
+        expect(subject).to be_stormy
     end
 
 end
