@@ -7,9 +7,10 @@ describe Airport do
     expect(subject.land(plane)[0]).to eq(plane)
   end
 
-  # it "should allow instance of plane to take off from instance of airport" do
-  #   plane = Plane.new
-  #   expect(subject.take_off(plane)).to ("The plane is no longer in the airport")
-  # end
-
+  it "should allow plane to take off" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes).not_to include(plane)
+  end
 end
