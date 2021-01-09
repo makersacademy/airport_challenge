@@ -56,6 +56,11 @@ describe Plane do
         expect { subject.land("foo") }.to raise_error "Not a valid airport"
       end
     end
+    context 'when nil is given as an argument' do
+      it 'raises an airport does not exist error' do
+        expect { subject.land(nil) }.to raise_error "Not a valid airport"
+      end
+    end
   end
 
   # describe '#take_off' do
