@@ -47,4 +47,9 @@ describe Airport do
     subject.report_storm
     expect(subject).to be_stormy
   end
+
+  it 'will prevent landing when weather is stormy' do
+    subject.report_storm
+    expect { subject.land Plane.new }.to raise_error "Plane cannot land due to storm"
+  end
 end
