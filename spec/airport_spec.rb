@@ -70,7 +70,7 @@ describe Plane do
   end
 
   describe '#take_off' do
-    context 'when passed an airport that contains the plane' do
+    context 'when passed a plane in an airport' do
       let(:plane) { Plane.new(airport) }
       it 'should return a string confirming take off' do
         expect(plane.take_off).to eq "#{plane} has taken off from #{airport}"
@@ -78,6 +78,11 @@ describe Plane do
       it 'should remove the plane from the airport' do
         plane.take_off
         expect(airport.contains?(plane)).to be false
+      end
+    end
+    context 'when passed a plane not in an airport' do
+      it 'should raise a can\'t take off when not in airport error' do
+        expect { subject.take_off }.to raise_error "Can't take off when not in airport"
       end
     end
   end

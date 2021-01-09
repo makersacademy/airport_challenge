@@ -22,8 +22,8 @@ class Plane
 
   def initialize(airport = nil)
     check_valid_airport_ignore_nil(airport)
-    airport.add_plane(self) unless airport.nil?
     @airport = airport
+    add_plane_unless_nil
   end
 
   def land(airport)
@@ -33,6 +33,7 @@ class Plane
   end
 
   def take_off
+    raise "Can't take off when not in airport" if @airport.nil?
     @airport.remove_plane(self)
     "#{self} has taken off from #{@airport}"
   end
@@ -43,6 +44,10 @@ class Plane
 
   def check_valid_airport(airport)
     raise "Not a valid airport" unless airport.is_a?(Airport)
+  end
+
+  def add_plane_unless_nil
+    @airport.add_plane(self) unless airport.nil?
   end
 
 end
