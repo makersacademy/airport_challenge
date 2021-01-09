@@ -4,9 +4,7 @@ class Airport
 
   STANDARD_CAPACITY = 10
 
-  attr_reader :plane
-
-  attr_accessor :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = STANDARD_CAPACITY)
     @planes = []
@@ -20,8 +18,7 @@ class Airport
 
   def take_off()
     fail "There are no planes to take off" if empty
-    fail "Too stormy to take off" if weather == "stormy"
-    @plane.pop
+    @planes.pop
   end
 
   # def weather_forecast 

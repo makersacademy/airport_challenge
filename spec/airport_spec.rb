@@ -9,7 +9,7 @@ describe Airport do
     end
 
     it "raises a fail if the airport is full" do
-      10.times { subject.land(Plane.new) }
+      Airport::STANDARD_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport is full"
     end
   end
@@ -19,8 +19,16 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
     
-    it "raises a fail if there is a plane after take off" do
-      expect { subject.take_off }.to raise_error "Plane has taken off"
+    it "raises a fail if there are no planes docked" do
+      expect { subject.take_off }.to raise_error "There are no planes to take off"
+    end
+
+    it "removes a plane" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes.include?(plane)).to eq true
+      expect(subject.take_off).to eq plane
+      expect(subject.planes.include?(plane)).to eq false
     end
   end
 
