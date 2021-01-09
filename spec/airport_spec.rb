@@ -15,6 +15,13 @@ describe Airport do
         expect(Airport.new).to respond_to(:take_off).with(1).argument
     end
 
+    describe '#land' do
+        it 'raises an error when the airport is full' do
+            subject.land(Plane.new)
+            expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
+        end
+    end
+
     # it 'confirms that the plane is not longer in the hangar' do
     #     expect(subject.take_off(Plane.new)).to eq @hangar.pop(Plane.new)
     # end
