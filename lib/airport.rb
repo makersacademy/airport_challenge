@@ -9,6 +9,8 @@ class Airport
 		end
 
 		def land(plane)
+				fail "Airport at capacity" if hanger.count >= 5
+				
 				plane = plane
 				hanger << plane
 				plane
