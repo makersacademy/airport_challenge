@@ -7,10 +7,16 @@ describe Airport do
     expect(subject.land(plane)[0]).to eq plane
   end
 
-  it "a plane takes off and is gone from airport" do
+  it "plane takes off and is gone from airport" do
     plane = Plane.new
     subject.land(plane)
     subject.takeoff(plane)
     expect(subject.planes).not_to include plane
+  end
+
+  it "blocks landing when airport at capacity" do
+    plane = Plane.new
+    subject.capacity.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error("This airport is full.")
   end
 end
