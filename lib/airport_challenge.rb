@@ -9,16 +9,19 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather = DEF_WEATHER)
+    @weather = weather
     raise "This airport is full." if full?
+
+    raise "Too stormy to land." if stormy?
 
     @planes << plane
   end
 
   def takeoff(plane, weather = DEF_WEATHER)
     @weather = weather
-    raise "Weather too stormy." if stormy?
-    
+    raise "Too stormy for takeoff." if stormy?
+
     @planes.delete(plane)
   end
 
@@ -32,6 +35,6 @@ class Airport
   end
 
   def stormy?
-    weather == "stormy"
+    @weather == "stormy"
   end
 end
