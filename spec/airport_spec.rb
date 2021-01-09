@@ -3,18 +3,31 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { Airport.new(20) }
+  let(:plane) { double :plane }
 
-  it 'instruct a plane to land' do
-    expect(airport).to respond_to(:land).with(1).argument
+  context 'when a plane is landing' do
+
+    it 'instruct the plane' do
+      expect(airport).to respond_to(:land).with(1).argument
+    end
+  
+    context 'when airport is full' do
+
+      it 'raises error' do
+        20.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "Cannot land plane - airport full"
+      end
+      
+    end
+
   end
 
-  it 'instruct a plane to take off' do
-    expect(airport).to respond_to(:take_off).with(1).argument
+  context 'when a plane is taking off' do
+
+    it 'instruct the plane' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end
+
   end
 
-  it 'does not allow landing when full' do
-    plane = double :plane
-    20.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error "Cannot land plane - airport full"
-  end
 end
