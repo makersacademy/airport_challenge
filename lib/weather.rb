@@ -1,7 +1,11 @@
 class Weather
 
-def stormy?
-    true
-end
+    def reported_stormy
+        @stromy = true
+    end
+
+    def stormy?
+        @stormy
+    end
 
 end
