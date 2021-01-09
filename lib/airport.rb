@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Already landed" if plane.docked
     fail "Airport is full" if full
     plane.docked = true
     @planes.push(plane)
