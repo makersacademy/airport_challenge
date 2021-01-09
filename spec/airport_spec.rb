@@ -18,6 +18,12 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes.include?(plane)).to eq true
     end
+
+    it "sets plane to docked" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(plane.docked).to eq true
+    end
   end
 
   describe "take off" do
