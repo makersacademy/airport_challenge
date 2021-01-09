@@ -18,4 +18,7 @@ class Airport
     capacity == plane_list.length
   end
 
+  def stormy?
+  end
+
 end

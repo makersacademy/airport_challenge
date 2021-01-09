@@ -25,6 +25,12 @@ describe Plane do
       expect { subject.land(airport) }.to raise_error "Plane has already landed"
     end
 
+    it "prevented if airport weather is stormy" do
+      airport = double(:Airport, :stormy? => true, :full? => false, plane_list: [])
+
+      expect { subject.land(airport) }.to raise_error "The weather is too bad to land there"
+    end 
+
   end
 
   describe "#take_off" do
