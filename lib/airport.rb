@@ -33,7 +33,7 @@ class Plane
   end
 
   def take_off
-    raise "Can't take off when not in airport" if @airport.nil?
+    can_take_off?
     @airport.remove_plane(self)
     "#{self} has taken off from #{@airport}"
   end
@@ -50,4 +50,11 @@ class Plane
     @airport.add_plane(self) unless airport.nil?
   end
 
+  def can_take_off?
+    raise "Can't take off when not in airport" if flying?
+  end
+
+  def flying?
+    @airport.nil?
+  end
 end
