@@ -19,9 +19,16 @@ The planes can land and take off if the weather is sunny.
 
 Planes cannot land or take off if the weather is stormy.
 
+1. irb -r 'airport.rb'
+
+Airport
+
+
 
 AirTrafficController
 
-- landing_control: 
+- landing_control:
   - checks landing conditions
   - approves landing unless WEATHER is STORMY
+
+Plane
