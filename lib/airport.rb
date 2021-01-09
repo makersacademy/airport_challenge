@@ -1,4 +1,5 @@
-require 'weather'
+require_relative 'weather'
+require_relative 'plane'
 
 class Airport
 
@@ -11,14 +12,16 @@ class Airport
 
   def land(plane)
     fail "No landings allowed due to bad weather" if stormy?
-      
+
     fail "Airport is full" if full?
 
+    plane.landed?
     @landed_planes << plane
   end
 
   def takeoff(plane)
     fail "No take offs allowed due to bad weather" if stormy?
+    fail "Plane is flying" if plane.flying?
 
     @landed_planes.delete(plane)
     "#{plane} has left the Airport"

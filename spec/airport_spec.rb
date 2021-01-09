@@ -25,6 +25,11 @@ describe Airport do
       expect(subject.takeoff(plane)).to eq "#{plane} has left the Airport"
     end
 
+    it "should raise an error when we call takeoff but the plane is flying" do
+      plane = Plane.new
+      expect { subject.takeoff(plane) }.to raise_error "Plane is flying"
+    end
+
     context 'when airport is full' do
         # As an air traffic controller
         # To ensure safety
@@ -55,7 +60,7 @@ describe Airport do
     allow(subject).to receive(:stormy?).and_return true
     expect { subject.takeoff(Plane.new) }.to raise_error "No take offs allowed due to bad weather"
   end
-  
+
   context 'checking if the airport is full' do
     it 'should return true or false if full' do
       expect(subject.send(:full?)).to eq false
