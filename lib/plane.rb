@@ -1,7 +1,11 @@
 class Plane
 
-  def ready_to_fly
-    true
+  attr_accessor :docked
+
+  def initialize
+
+    @docked =false
+
   end
 
 end

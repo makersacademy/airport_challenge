@@ -5,7 +5,7 @@ describe Airport do
 
   it "checks if a plane instance was created" do
     plane = Plane.new
-    expect(plane).to respond_to(:ready_to_fly)
+    expect(plane.docked).to eq false 
   end
 
   it "lands plane at airport" do
@@ -44,5 +44,12 @@ describe Airport do
       expect { airport.land(Plane.new) }.to raise_error "Airport is full"
     end
   end
+
+  # describe "Stormy weather" do
+  #   it "raises an error when a plane tries to take_off and weather is stormy" do
+  #     weather = "stormy"
+  #     expect { subject.take_off(weather) }.to raise_error "Too Stormy to take off"
+  #   end
+  # end
 
 end

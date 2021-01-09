@@ -18,10 +18,21 @@ class Airport
     @planes.push(plane)
   end
 
-  def take_off
-    fail "Plane has taken off" if empty
+  def take_off()
+    fail "There are no planes to take off" if empty
+    fail "Too stormy to take off" if weather == "stormy"
     @plane.pop
   end
+
+  # def weather_forecast 
+
+  #   if random_weather =< 8
+  #     weather = "sunny"
+  #   else
+  #     weather = "stormy"
+  #   end
+      
+  # end
 
   private
 
@@ -32,5 +43,9 @@ class Airport
   def full
     @planes.count >= @capacity
   end
+
+  # def random_weather
+  #   chance = (1..10).to_a.sample
+  # end
 
 end
