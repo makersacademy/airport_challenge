@@ -12,7 +12,7 @@ describe Airport do
     expect(airport.take_off(plane)).to eq "The plane: #{plane} has taken off"
   end
 
-  it 'instructs a plane to land at an airport' do
+  it 'will instruct a plane to land at an airport' do
     plane = Plane.new
     expect(airport.land(plane)).to include(plane)
   end
@@ -20,6 +20,12 @@ describe Airport do
   it 'will prevent landing when the airport is full' do
     airport = Airport.new(5)
     5.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error "Airport is full"
+  end
+
+  it 'will have a default airport capacity that can be overridden as appropriate' do
+    airport = Airport.new
+    Airport::DEFAULT_CAPACITY.times { airport.land Plane.new }
     expect { airport.land Plane.new }.to raise_error "Airport is full"
   end
 end
