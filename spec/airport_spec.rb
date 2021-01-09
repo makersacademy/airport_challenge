@@ -6,7 +6,6 @@ describe Airport do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
 
-
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off) }
 
@@ -46,9 +45,15 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return false
       end
 
-      it 'allows a plane to take off and confirm plan has left' do
+      it 'allows a plane to take off and confirms the plane has left' do
         airport.land(plane)
         expect(airport.take_off).to eq "#{plane} has taken off."
+      end
+
+      context 'when airport has no planes' do
+        it 'raises an error' do
+          expect { airport.take_off }.to raise_error 'There are no planes left to takeoff'
+        end
       end
     end
 
