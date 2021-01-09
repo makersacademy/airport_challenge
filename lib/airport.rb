@@ -1,4 +1,4 @@
-
+require 'weather'
 
 class Airport
 
@@ -10,6 +10,8 @@ class Airport
   end
 
   def land(plane)
+    fail "No landings allowed due to bad weather" if stormy?
+      
     fail "Airport is full" if full?
 
     @landed_planes << plane
@@ -28,7 +30,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    Weather.stormy?
   end
 
 end
