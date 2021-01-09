@@ -8,6 +8,7 @@ describe Airport do
 
   it 'adds plane to the runway if landing is approved' do
     plane = Plane.new
+    allow(subject).to receive(:weather) { true }
     subject.take_off(plane)
     subject.land_plane(plane)
     expect(subject.runway).to include(plane)
@@ -19,20 +20,24 @@ describe Airport do
 
   it "gives permission for take off" do
     plane = Plane.new
+    allow(subject).to receive(:weather) { true }
     expect(subject.take_off(plane)).to eq true unless plane.flying? == true
   end
 
   it "prevents landing when the runway is full (capacity is 20 planes)" do
     20.times do
       plane = Plane.new
+      allow(subject).to receive(:weather) { true }
       subject.take_off(plane)
       subject.land_plane(plane)
     end
     expect(subject.full?).to eq false
   end
 
-  # it "prevents landing when the weather is stormy" do
-  #   expect { subject.land_plane Plane.new }.to raise_error "Too stormy to land" unless be_true{ subject.weather? }
+  # it "prevents take_off when the weather is stormy" do
+  #   airport = Airport.new
+  #   allow(airport).to receive(:weather) { false }
+  #   expect { airport.take_off Plane.new }.to be false
   # end
 
   it "has a default capacity" do

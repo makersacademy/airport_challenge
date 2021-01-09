@@ -10,8 +10,16 @@ class Airport
     @capacity = capacity
   end
 
+  def take_off(plane)
+    return if plane.flying? == true
+
+    weather?
+    plane.in_air
+    #  @hangar.pop
+  end
+
   def land_plane(plane)
-    return unless plane.flying? == true
+    return if plane.flying? == false || @weather == false
 
     full?
     plane.landed
@@ -25,10 +33,19 @@ class Airport
     false
   end
 
-  def take_off(plane)
-    return if plane.flying? == true #  && hanger.empty?
+  def weather?
+    "Checking weather"
+    return if weather == true
 
-    plane.in_air
-    #  @hangar.pop
+    puts "Stormy weather: permission denied"
+    return false
   end
+
+  def weather
+    puts "generating weather"
+    if rand(1..10) > 7
+      false
+    end
+  end
+
 end
