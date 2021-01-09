@@ -22,6 +22,11 @@ describe Airport do
         expect(subject.contains?(plane)).to be true
       end
     end
+    context 'when given a plane intitiated in flight' do
+      it 'should return false' do
+        expect(subject.contains?(plane)).to be false
+      end
+    end
   end
 end
 
