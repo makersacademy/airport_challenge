@@ -2,10 +2,10 @@ require_relative 'plane'
 
 class Airport
   def land(plane)
-    plane
+    raise "Airport is full" if plane
   end
 
-  def take_off
-    "The plane has taken off"
+  def take_off(plane)
+    "The plane: #{plane} has taken off"
   end
 end
