@@ -11,6 +11,11 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     subject.take_off(plane)
-    expect(subject.planes).not_to include(plane)
+    expect(subject.runway).not_to include(plane)
+  end
+
+  it "should see if the airport is full" do
+    airport = Airport.new
+    expect(airport.full?).to eq('The runway is full you cannot land')
   end
 end
