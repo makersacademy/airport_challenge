@@ -2,15 +2,13 @@ require_relative "plane"
 
 class Airport
   DEF_CAPACITY = 20
-  DEF_WEATHER = "fair"
 
   def initialize(capacity = DEF_CAPACITY)
     @capacity = capacity
     @planes = []
   end
 
-  def land(plane, weather = DEF_WEATHER)
-    @weather = weather
+  def land(plane)
     raise "This airport is full." if full?
 
     raise "Too stormy to land." if stormy?
@@ -18,8 +16,7 @@ class Airport
     @planes << plane
   end
 
-  def takeoff(plane, weather = DEF_WEATHER)
-    @weather = weather
+  def takeoff(plane)
     raise "Too stormy for takeoff." if stormy?
 
     @planes.delete(plane)
@@ -27,14 +24,14 @@ class Airport
 
   attr_reader :planes
   attr_reader :capacity
-  attr_reader :weather
+  attr_accessor :stormy
 
-  private
   def full?
     @planes.length == @capacity
   end
 
   def stormy?
-    @weather == "stormy"
+    storm = rand(100)
+    storm == 1
   end
 end
