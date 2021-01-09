@@ -12,6 +12,7 @@ class Airport
   end
   def land(plane)
     fail "Airport is full" if full?
+    fail "Cannot land, due to stormy weather" if stormy?
     @planes.push(plane)
   end
 
@@ -23,5 +24,9 @@ class Airport
 
   def full?
     @planes.count >= capacity
+  end
+
+  def stormy?
+    rand(1..8) > 6
   end
 end
