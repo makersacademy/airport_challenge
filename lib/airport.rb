@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   DEFAULT_CAPACITY = 10
+  attr_reader :hangar
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
@@ -9,12 +10,13 @@ class Airport
 
   def land(plane)
     raise "Plane cannot land due to storm" if stormy?
-    raise "Airport is full" if full
+    raise "Airport is full" if full?
     @hangar << plane
   end
 
   def take_off(plane)
     raise "Plane cannot take off due to storm" if stormy?
+    hangar.delete(plane)
     "The plane: #{plane} has taken off"
   end
 
@@ -22,15 +24,13 @@ class Airport
     @storm = true
   end
 
-  # private
+  private
 
   def stormy?
     @storm
   end
 
-  private
-
-  def full
+  def full?
     @hangar.length >= @capacity
   end
 end
