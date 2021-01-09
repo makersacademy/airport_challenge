@@ -17,11 +17,12 @@ class Airport
   end
 
   def take_off
+    fail "Cannot take off, due to stormy weather" if stormy?
     "#{@planes.pop} has taken off."
   end
 
   private
-
+  
   def full?
     @planes.count >= capacity
   end
