@@ -19,6 +19,8 @@ class Airport
     "#{@planes.pop} has taken off."
   end
 
+  private
+
   def full?
     @planes.count >= capacity
   end
