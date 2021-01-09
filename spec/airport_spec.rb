@@ -4,13 +4,19 @@ require "plane"
 describe Airport do
 
   describe "land" do
-    it "lands plane at airport" do
+    it "checks if airport responds to land method" do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
     it "raises a fail if the airport is full" do
       Airport::STANDARD_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport is full"
+    end
+
+    it "lands a plane" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes.include?(plane)).to eq true
     end
   end
 
