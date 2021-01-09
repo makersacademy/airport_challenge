@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes
+  # attr_reader :planes
 
   def initialize
     @planes = []
@@ -9,11 +9,14 @@ class Airport
     @planes.include?(plane)
   end
 
+  def add_plane(plane)
+    @planes << plane
+  end
 end
 
 class Plane
   def land(airport)
-    airport.planes << self
+    airport.add_plane(self)
     self
   end
 
