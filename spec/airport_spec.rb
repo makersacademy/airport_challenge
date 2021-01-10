@@ -47,7 +47,7 @@ describe Airport do
     it "instructs the plane to take off from the airport" do
       airplane = Airplane.new
       subject.land(airplane)
-      expect(subject.take_off).to eq airplane
+      expect(subject.take_off).to eq "#{airplane} has taken off"
     end
 
     it "should not instruct a plane to take off if a plane is not at the airport" do

@@ -21,9 +21,11 @@ class Airport
   def take_off
     fail "No airplanes at airport" if empty?
 
-    @airplanes.pop
+    "#{@airplanes.pop} has taken off"
   end
 
+  private 
+  
   def full?
     @airplanes.count >= DEFAULT_CAPACITY
   end
