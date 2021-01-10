@@ -29,6 +29,15 @@ describe Airport do
     expect(subject).to respond_to :planes
   end
 
+  describe 'land method' do
+    it 'raises an error when airport limit is reached' do
+      plane = Plane.new
+      subject.land(plane)
+      plane2 = Plane.new
+      expect { subject.land(plane2) }.to raise_error "Airport is full"
+    end
+  end
+
   it "test that the default capacity is 20" do
     expect(subject.capacity).to eq 20
   end
