@@ -10,9 +10,9 @@ describe Airport do
         it 'defaults capacity' do
             allow(subject).to receive(:stormy?).and_return false
             described_class::DEFAULT_CAPACITY.times do
-                subject.land(plane)
+                subject.land(Plane.new)
             end
-            expect { subject.land(plane) }.to raise_error 'Airport is full'
+            expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
         end
 
         it 'has a variable capacity' do
@@ -41,6 +41,13 @@ describe Airport do
         it 'raises an error when weather conditions are stormy' do
             allow(subject).to receive(:stormy?).and_return true
             expect { subject.land(Plane.new) }.to raise_error 'Weather conditions too stormy for landing'
+        end
+
+        it 'raises an error when plane is already at the airport' do
+            allow(subject).to receive(:stormy?).and_return false
+            plane = Plane.new
+            subject.land(plane)
+            expect { subject.land(plane) }.to raise_error 'Plane already at airport'
         end
 
     end

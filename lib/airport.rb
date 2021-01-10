@@ -12,6 +12,7 @@ class Airport
     def land(plane)
         fail 'Airport is full' if full?
         fail 'Weather conditions too stormy for landing' if stormy?
+        fail 'Plane already at airport' if already_landed?(plane)
         planes << plane
     end
     def take_off
@@ -30,6 +31,10 @@ class Airport
 
     def empty?
         planes.empty?
+    end
+
+    def already_landed?(plane)
+        planes.include?(plane)
     end
 
 end
