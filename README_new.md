@@ -79,3 +79,16 @@ When I completed the first four user stories, I had code that would give me a re
 
 2.6.5 :003 > airport.land(plane)
 => [#<Airplane:0x00007ffd060d1ff0>]
+
+I continued to work on the next user stories, wherein a plane should not be allowed to take off or land if the weather is stormy. This is where I didn't complete my code, though this bit took longer in working out how to randomize the weather - and I haven't been able to successfully test for that completely. I'm also receiving Runtime Errors on my RSpec tests, and I'm not sure why yet. Hopefully, after reviewing the code in Week 2, I'll understand more of what was happening! For now, here is what irb looks like:
+
+➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
+2.6.5 :001 > airport = Airport.new
+
+=> #<Airport:0x00007ff5fb8a1878 @airplanes=[], @capacity=20, @weather=#<Weather:0x00007ff5fb8a1800>>
+
+2.6.5 :002 > plane = Airplane.new
+=> #<Airplane:0x00007ff5fb8c4490>
+
+2.6.5 :003 > airport.land(plane)
+=> [#<Airplane:0x00007ff5fb8c4490>]
