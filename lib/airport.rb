@@ -1,5 +1,5 @@
 class Airport
-
+  attr_reader :planes
   def initialize
     @planes = []
   end
@@ -17,7 +17,7 @@ class Airport
   end
 
   def full?
-    @planes.length > 100
+    @planes.length >= 100
   end
 end
 

@@ -4,6 +4,15 @@ describe Airport do
   it { is_expected.to respond_to(:contains?).with(1).argument }
   let(:plane) { Plane.new }
 
+  context 'when created' do
+    context 'without being passed a capacity' do
+      before { 100.times { Plane.new(subject) } }
+      it 'should have a default capacity of 100' do
+        expect { Plane.new(subject) }.to raise_error "Airport full"
+      end
+    end
+  end
+
   describe '#contains?' do
     context 'when given a plane that has landed there' do
       before { plane.land(subject) }
@@ -122,5 +131,4 @@ describe Plane do
       end
     end
   end
-
 end
