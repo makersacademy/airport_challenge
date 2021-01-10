@@ -76,6 +76,12 @@ describe Plane do
       it 'returns the plane that just landed' do
         expect(subject.land(airport)).to eq subject
       end
+      describe '@airport' do
+        before { subject.land(airport) }
+        it 'should be the airport just passed' do
+          expect(subject.airport).to eq airport
+        end
+      end
     end
     context 'when a non-airport is given as an argument' do
       it 'raises an airport does not exist error' do

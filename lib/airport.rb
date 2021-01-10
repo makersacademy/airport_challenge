@@ -33,6 +33,7 @@ class Plane
   def land(airport)
     can_land?(airport)
     airport.add_plane(self)
+    @airport = airport
     self
   end
 
