@@ -9,15 +9,18 @@ class Airport
   end
 
   def land(plane)
-    raise "Plane cannot land due to storm" if stormy?
     raise "Airport is full" if full?
+
+    raise "Plane cannot land due to storm" if stormy?
+
     @hangar << plane
   end
 
   def take_off(plane)
     raise "Plane cannot take off due to storm" if stormy?
+
     hangar.delete(plane)
-    "#{plane} has taken off"
+    "The plane: #{plane} has taken off"
   end
 
   def report_storm
