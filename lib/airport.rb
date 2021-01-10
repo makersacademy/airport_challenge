@@ -17,7 +17,7 @@ class Airport
   def take_off(plane)
     raise "Plane cannot take off due to storm" if stormy?
     hangar.delete(plane)
-    "The plane: #{plane} has taken off"
+    "#{plane} has taken off"
   end
 
   def report_storm
