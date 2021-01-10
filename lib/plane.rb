@@ -18,10 +18,6 @@ class Plane
     @flying = true
   end
 
-  # def on_runway?
-  #   @on_runway
-  # end
-
   def flying?
     @flying
   end

@@ -12,6 +12,10 @@ class Airport
     @weather = 1
   end
 
+  def plane
+    plane = Plane.new
+  end
+
   def take_off(plane)
     return if plane.flying? == true || weather? == false
 
@@ -31,7 +35,7 @@ class Airport
   def full?
     return if @runway.length < @capacity
 
-    puts "Runway full: maintain holding pattern"
+    puts "Runway is full"
     false
   end
 
