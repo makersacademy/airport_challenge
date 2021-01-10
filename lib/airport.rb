@@ -4,10 +4,12 @@ class Airport
 
   attr_reader :runway
   attr_reader :capacity
+  attr_reader :weather
 
   def initialize(capacity = 20)
     @runway = Array.new
     @capacity = capacity
+    @weather = 1
   end
 
   def take_off(plane)
@@ -41,8 +43,8 @@ class Airport
   end
 
   def storm
-    return true if rand(1..10) > 7
-
+    @weather = rand(1..10)
+    return true if @weather > 7
   end
 
 end

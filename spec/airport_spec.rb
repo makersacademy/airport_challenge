@@ -61,10 +61,15 @@ describe Airport do
     expect(airport.capacity).to eq 5
   end
 
-  # it "generates a storm randomly"
-  #   storm_checker = Array.new
-  #    100.times do
-  #      subject.storm
-  #    end
+  it "generates a storm randomly" do
+    storm_checker = Array.new
+    100.times do
+      subject.storm
+      storm_checker << subject.weather
+    end
+    expected = [1, 10]
+    actual = storm_checker.minmax
+    expect(actual).to eq(expected)
+  end
 
 end
