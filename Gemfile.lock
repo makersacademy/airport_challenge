@@ -53,7 +53,6 @@ DEPENDENCIES
   rubocop (= 0.79.0)
   simplecov
   simplecov-console
-  rake
 
 BUNDLED WITH
    2.1.4
