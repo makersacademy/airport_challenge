@@ -101,8 +101,8 @@ describe Plane do
       expect(subject.flying?).to be true
     end
     context 'with a given airport' do
+      let(:plane) { Plane.new(airport) }
       context 'when the airport is not full' do
-        let(:plane) { Plane.new(airport) }
         describe '@airport' do
           it 'should return the airport given at creation' do
             expect(plane.airport).to eq airport
@@ -110,7 +110,7 @@ describe Plane do
         end
       end
       context 'when the airport is full' do
-        before { Plane.new(airport) until airport.full? }
+        before { allow(airport).to receive(:full?) { true } }
         it 'should raise an airport full error' do
           expect { Plane.new(airport) }.to raise_error "Airport full"
         end
@@ -152,7 +152,7 @@ describe Plane do
         end
       end
       context 'when the airport is full' do
-        before { Plane.new(airport) until airport.full? }
+        before { allow(airport).to receive(:full?) { true } }
         it 'should raise an airport full error' do
           expect { subject.land(airport) }.to raise_error "Airport full"
         end
@@ -178,13 +178,14 @@ describe Plane do
         it 'should return a string confirming take off' do
           expect(plane.take_off).to eq "#{plane} has taken off from #{airport}"
         end
-        it 'should remove the plane from the airport' do
-          plane.take_off
-          expect(airport.contains?(plane)).to be false
-        end
-        it 'should be flying' do
-          plane.take_off
-          expect(plane.flying?).to be true
+        context 'when the plane has taken off' do
+          before { plane.take_off }
+          it 'should not be contained in the airport' do
+            expect(airport.contains?(plane)).to be false
+          end
+          it 'should be flying' do
+            expect(plane.flying?).to be true
+          end
         end
       end
       context 'when the weather at the airport is stormy' do
