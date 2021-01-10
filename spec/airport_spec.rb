@@ -1,6 +1,15 @@
 require 'airport'
 
 describe Airport do
+  it 'has a default capacity of 20' do
+    expect(subject.capacity).to eq 20
+  end
+
+  it 'can change the capacity for new airports' do
+    airport = Airport.new(100)
+    expect(airport.capacity).to eq 100
+  end
+
   it 'responds to .generate_weather' do
     expect(subject).to respond_to(:generate_weather)
   end
@@ -28,9 +37,17 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error "Weather is too bad for landing"
   end
 
+  it "doesn't let planes land if at full capacity" do
+    airport = Airport.new(5)
+    airport.generate_weather("sunny")
+    5.times { airport.land(Plane.new) }
+    expect{ airport.land(Plane.new) }.to raise_error "Airport at full capacity"
+  end
+
   it 'lets planes takeoff' do
     airport = Airport.new
     plane = Plane.new
+    airport.generate_weather("sunny")
     airport.land(plane)
     expect(airport.takeoff(plane)).to eq plane
   end
@@ -38,6 +55,7 @@ describe Airport do
   it 'confirms planes have taken off after takeoff' do
     airport = Airport.new
     plane = Plane.new
+    airport.generate_weather("sunny")
     airport.land(plane)
     airport.takeoff(plane)
     expect(airport.planes_in_airport).to eq []
@@ -46,6 +64,7 @@ describe Airport do
   it "doesn't let planes takeoff if there are none in airport" do
     airport = Airport.new
     plane = Plane.new
+    airport.generate_weather("sunny")
     expect { airport.takeoff(plane) }.to raise_error "No planes available for takeoff"
   end
 
@@ -61,12 +80,14 @@ describe Plane do
   it 'planes can land' do
     airport = Airport.new
     plane = Plane.new
+    airport.generate_weather("sunny")
     expect(airport.land(plane)).to eq [plane]
   end
 
   it 'stores the planes at the airport' do
     airport = Airport.new
     plane = Plane.new
+    airport.generate_weather("sunny")
     airport.land(plane)
     expect(airport.planes_in_airport).to eq [plane]
   end
