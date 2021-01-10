@@ -7,5 +7,4 @@ class Weather
   def forecast
     @rng.rand(10) < 9 ? "sunny" : "stormy"
   end
-
 end

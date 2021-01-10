@@ -13,13 +13,16 @@ class Airport
 
   def land(plane)
     fail "Already landed" if plane.docked
+
     fail "Airport is full" if full
+
     plane.docked = true
     @planes.push(plane)
   end
 
   def take_off
     fail "There are no planes to take off" if empty
+
     plane = @planes.pop
     plane.docked = false
     return plane
@@ -44,9 +47,4 @@ class Airport
   def full
     @planes.count >= @capacity
   end
-
-  # def random_weather
-  #   chance = (1..10).to_a.sample
-  # end
-
 end

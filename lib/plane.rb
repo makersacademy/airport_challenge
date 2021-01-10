@@ -3,9 +3,6 @@ class Plane
   attr_accessor :docked
 
   def initialize
-
-    @docked =false
-
+    @docked = false
   end
-
 end

@@ -8,7 +8,7 @@ describe Weather do
 
   describe "forecast" do
     it "returns stormy" do
-      allow(@rng).to receive(:rand).with(10).and_return(9)
+      allow(@rng).to receive(:rand).with(10).and_return(10)
       expect(subject.forecast).to eq "stormy"
     end
 
