@@ -39,7 +39,7 @@ class Airport
   end
 
   def stormy?
-    true
+    Weather.new.check == 'stormy'
   end
 end
 

@@ -77,6 +77,16 @@ describe Airport do
     it 'should be either true or false' do
       expect(subject.stormy?).to be(true).or be false
     end
+    context 'when called many times' do
+      let(:results) { [] }
+      before { 100_000.times { results << subject.stormy? } }
+      it 'should contain both true and false' do
+        expect(results).to include(true).and include false
+      end
+      it 'should be false much more often than true' do
+        expect(results.count(false)).to be > results.count(true) * 2
+      end
+    end
   end
 end
 
