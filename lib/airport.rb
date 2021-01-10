@@ -20,6 +20,10 @@ class Airport
   def full?
     @planes.length >= @capacity
   end
+
+  def change_capacity(capacity)
+
+  end
 end
 
 class Plane

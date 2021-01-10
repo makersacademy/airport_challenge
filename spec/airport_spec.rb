@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   it { is_expected.to respond_to(:contains?).with(1).argument }
+  it { is_expected.to respond_to(:change_capacity).with(1).argument }
   let(:plane) { Plane.new }
 
   context 'when created' do
@@ -11,7 +12,7 @@ describe Airport do
         expect { Plane.new(subject) }.to raise_error "Airport full"
       end
     end
-    context 'when passed a capacity greater than 100' do
+    context 'when passed a different capacity' do
       let(:big_airport) { Airport.new(250) }
       it 'should be able to hold that many planes' do
         expect { 250.times { Plane.new(big_airport) } }.not_to raise_error
@@ -45,6 +46,10 @@ describe Airport do
         expect(subject.contains?(plane)).to be false
       end
     end
+  end
+
+  describe '#change_capacity' do
+
   end
 end
 
