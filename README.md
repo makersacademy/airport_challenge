@@ -46,9 +46,8 @@ I want to prevent landing when weather is stormy
 ## Method
 * I mapped out similarities and differences from the Boris Bikes challenge and understood them in pseudo-code.
 * After getting the core functionality working, I attempted to create a Weather class and also attempted some edge cases.
-* Ultimately I thought my time was more wisely used improving my RSpec knowledge and consequently have used doubles in my tests. 
+* Ultimately I thought my time was more wisely used improving my RSpec knowledge and consequently have used doubles in my tests.
 
 ## Next steps
----------
 * Create a separate weather class
 * Work on edge cases
