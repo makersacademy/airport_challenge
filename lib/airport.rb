@@ -13,13 +13,14 @@ class Airport
   def take_off(plane)
     return if plane.flying? == true
 
-    weather?
+    return if weather? == false
+    
+    puts "It's a fine day with clear skies - ready for take off"
     plane.in_air
-    #  @hangar.pop
   end
 
   def land_plane(plane)
-    return if plane.flying? == false || @weather == false
+    return if plane.flying? == false
 
     full?
     plane.landed
@@ -34,18 +35,15 @@ class Airport
   end
 
   def weather?
-    "Checking weather"
-    return if weather == true
+    return if storm != true
 
     puts "Stormy weather: permission denied"
-    return false
+    false
   end
 
-  def weather
-    puts "generating weather"
-    if rand(1..10) > 7
-      false
-    end
+  def storm
+    return true if rand(1..10) > 7
+
   end
 
 end
