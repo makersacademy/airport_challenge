@@ -22,7 +22,7 @@ class Airport
   end
 
   def change_capacity(capacity)
-
+    @capacity = capacity
   end
 end
 

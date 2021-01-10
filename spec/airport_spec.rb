@@ -49,7 +49,22 @@ describe Airport do
   end
 
   describe '#change_capacity' do
-
+    context 'when passed a new larger capacity' do
+      before { subject.change_capacity(250) }
+      it 'should be able to hold that many planes' do
+        expect { 250.times { Plane.new(subject) } }.not_to raise_error
+      end
+      it 'should not be able to hold more than that number' do
+        expect { (250 + 1).times { Plane.new(subject) } }.to raise_error "Airport full"
+      end
+    end
+    # context 'when passed a new smaller capacity' do
+    #   context 'when that capacity is greater than the number of planes stored' do
+    #     it 'should be able to hold that many planes' do
+    #
+    #     end
+    #   end
+    # end
   end
 end
 
