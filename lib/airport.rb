@@ -27,9 +27,7 @@ class Plane
   end
 
   def land(airport)
-    raise "Can't land when in an airport" if @airport
-    
-    check_valid_airport(airport)
+    can_land?(airport)
     airport.add_plane(self)
     self
   end
@@ -54,6 +52,11 @@ class Plane
 
   def can_take_off?
     raise "Can't take off when not in airport" if flying?
+  end
+
+  def can_land?(airport)
+    raise "Can't land when in an airport" unless flying?
+    check_valid_airport(airport)
   end
 
   def flying?
