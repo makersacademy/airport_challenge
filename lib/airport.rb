@@ -10,11 +10,15 @@ class Airport
 				@hanger = []
 		end
 
-		def land(plane)
+		def land(plane, weather)
 				fail "Airport at capacity" if hanger.count >= DEFAULT_CAPACITY
+
+				fail "Planes unable to land because of storms" if weather
 				
 				plane = plane
+				weather = self.stormy?
 				hanger << plane
+				puts "#{plane} has landed"
 				plane
 		end
 
@@ -23,16 +27,14 @@ class Airport
 				fail "Planes grounded because of storms" if weather 
 
 				hanger.include?(plane)
-				hanger.reject! do 
-					|x| x == plane
-				end
+				hanger.reject! { |x| x == plane } 
 				puts "#{plane} has taken off"
 				self
 		end 
 
 		def stormy?
-				x = rand(1..6)
-				x == 6 ? true : false
+				x = rand(1..10)
+				x == 10 ? true : false
 		end 
 
 end
