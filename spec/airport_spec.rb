@@ -64,6 +64,11 @@ describe Airport do
         expect { subject.change_capacity(50) }.to raise_error "Can't reduce capacity below current usage"
       end
     end
+    context 'when passed a non-integer number' do
+      it 'should raise a must be integer error' do
+        expect { subject.change_capacity(2.5) }.to raise_error "Must be an integer"
+      end
+    end
   end
 end
 
