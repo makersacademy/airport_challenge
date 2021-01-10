@@ -13,13 +13,15 @@ Airport Challenge
 
 ```
 
-This software controls the flow of planes at an airport.
+This software simulates the flow of planes at an airport.
 
 The planes can land and take off if the weather is sunny.
 
 Planes can't land or take off if the weather is stormy.
 
 Planes can't land if the runway is full.
+
+Planes must be on a runway before they can take off.
 
 ```
 --- GETTING STARTED ----
@@ -42,14 +44,19 @@ To change the capacity use 'Airport.new(X)'.
 
 Methods:
 
-- Airport.plane
- - Generates a new plane and adds it to the runway, unless runway is full.
+- Airport.new
+ - Generates new Airport
+
+- Airport.add_plane(plane)
+ - Adds a plane to the runway, unless runway is full.
+ - All planes must be on a runway before they can take off.
+ - Use add_plane to  add new planes to an airport's runway.
+
+ - Airport.take_off(plane)
+   - Allows plane to take off if it is on the runway and weather conditions are clear.
 
 - Airport.land_plane(plane)
-  - Adds a plane to the runway unless the weather is stormy or the runway is full.
-
-- Airport.take_off(plane)
-  - Allows plane to take off if it is on the runway and weather conditions are clear.
+  - Lands plane on the runway unless the weather is stormy or the runway is full.
 
 - Airport.weather?
   - Checks that weather conditions are safe enough for take_off and land_plane
@@ -65,18 +72,20 @@ Planes keep track of their status: they can either be on the runway or in the ai
 
 The Airport can ask the plane whether it's flying or not.
 
-Use Airport.plane to create a new plane and add it to the runway.
+Planes must be on a runway before they can take off: use Airport.add_plane to add a plane to an airport's runway.
 
 Methods:
 
+- Plane.new
+ - Generates new plane.
+ - Use Airport.add_plane to add the plane to an airport's runway.
+
 - Plane.landed
-  - Sets the plane's status to on_runway (in_air is false, on_runway is true)
+ - Sets the plane's status to on_runway (@flying is false)
 
 - Plane.in_air
-  - Sets the plane's status to flying (on_runway is false, in_air is true)
+ - Sets the plane's status to flying (@flying is true)
 
 - Plane.flying?
-  - True if plane is in the air; false if it's on the runway
-
-- Plane.on_runway?
-  - True if plane is on the runway; false if it's in the air
+ - Returns the status of the plane.
+ - True if plane is in the air; false if it's on the runway

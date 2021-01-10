@@ -26,12 +26,12 @@ describe Airport do
 
   it "prevents landing when the runway is full (capacity is 20 planes)" do
     20.times do
-      subject.plane
+      plane = Plane.new
+      allow(subject).to receive(:storm) { false }
+      subject.take_off(plane)
+      allow(subject).to receive(:storm) { false }
+      subject.land_plane(plane)
     end
-    allow(subject).to receive(:storm) { false }
-    plane = Plane.new
-    subject.take_off(plane)
-    subject.land_plane(plane)
     expect(subject.full?).to eq false
   end
 
@@ -73,15 +73,10 @@ describe Airport do
     expect(actual).to eq(expected)
   end
 
-  it "generates new planes and adds them the runway" do
-    subject.plane
-    expect(subject.runway[0]).to be_an_instance_of Plane
+  it "adds new planes to runway" do
+    plane = Plane.new
+    subject.add_plane(plane)
+    expect(subject.runway).to include(plane)
   end
 
-  it "won't generate new planes if runway is full" do
-    20.times do
-      subject.plane
-    end
-    expect(subject.full?).to eq false
-  end
 end

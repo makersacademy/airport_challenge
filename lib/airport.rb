@@ -12,16 +12,10 @@ class Airport
     @weather = 1
   end
 
-  def plane
-    return if full? == false
-
-    plane = Plane.new
-    add_to_runway(plane)
-  end
-
-  def add_to_runway(plane)
+  def add_plane(plane)
     @runway << plane
   end
+
 
   def take_off(plane)
     return if plane.flying? == true || weather? == false
@@ -31,17 +25,18 @@ class Airport
   end
 
   def land_plane(plane)
-    return if plane.flying? == false || weather? == false || full? == false
+    return if plane.flying? == false || weather? == false
 
+    full?
     puts "Runway is clear for landing"
     plane.landed
-    @runway << plane
+    add_plane(plane)
   end
 
   def full?
     return if @runway.length < @capacity
 
-    puts "Runway is full"
+    puts "Runway full: maintain holding pattern"
     false
   end
 
