@@ -15,13 +15,15 @@ class Airport
 
     fail "Airport is full" if full?
 
+    # fail "Plane has already landed" if @landed_planes.include?(plane)
+
     plane.landed?
     @landed_planes << plane
   end
 
   def takeoff(plane)
     fail "No take offs allowed due to bad weather" if stormy?
-    fail "Plane is flying" if plane.flying?
+    fail "This plane has not landed" unless @landed_planes.include?(plane)
 
     @landed_planes.delete(plane)
     "#{plane} has left the Airport"
