@@ -15,6 +15,10 @@ class Airport
   def remove_plane(plane)
     @planes -= [plane]
   end
+
+  def full?
+    @planes.length > 100
+  end
 end
 
 class Plane
@@ -56,8 +60,8 @@ class Plane
 
   def can_land?(airport)
     raise "Can't land when in an airport" unless flying?
-    
     check_valid_airport(airport)
+    raise "Airport full" if airport.full?
   end
 
   def flying?

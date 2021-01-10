@@ -78,6 +78,12 @@ describe Plane do
         expect { subject.land(nil) }.to raise_error "Not a valid airport"
       end
     end
+    context 'when passed an airport that is full' do
+      before { Plane.new(airport) until airport.full? }
+      it 'should raise an airport full error' do
+        expect { subject.land(airport) }.to raise_error "Airport full"
+      end
+    end
   end
 
   describe '#take_off' do
