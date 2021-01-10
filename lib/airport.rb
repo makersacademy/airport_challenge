@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     airport_full?
+    stormy?
     plane.landed
     @planes << plane
   end
@@ -33,6 +34,6 @@ class Airport
   end
 
   def stormy?
-    fail "Weather is stormy, plane not permitted to take off." if @weather.weather_report == "stormy"
+    fail "Stormy weather, plane cannot land or take off" if @weather.weather_report == "stormy"
   end
 end

@@ -1,5 +1,5 @@
 class Weather
   def weather_report
-    return rand(1..10) <= 8 ? "sunny" : "stormy"
+    return rand(1..8) <= 6 ? "sunny" : "stormy"
   end
 end

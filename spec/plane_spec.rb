@@ -9,6 +9,7 @@ describe Plane do
 
     it "shows status as 'in airport' after landing" do
       airport = Airport.new
+      allow(airport.weather).to receive(:weather_report) { "sunny" }
       airport.land(subject)
       expect(subject.status).to eq "In airport"
     end
