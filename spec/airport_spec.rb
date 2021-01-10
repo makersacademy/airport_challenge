@@ -57,6 +57,12 @@ describe Plane do
   end
 
   describe '#land' do
+    context 'when a plane is already in an airport' do
+      let(:grounded_plane) { Plane.new(airport) }
+      it 'raises a can\'t land when in an airport error' do
+        expect { grounded_plane.land(airport) }.to raise_error "Can't land when in an airport"
+      end
+    end
     context 'when an airport is given as argument' do
       it 'returns the plane that just landed' do
         expect(subject.land(airport)).to eq subject
