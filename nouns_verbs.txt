@@ -1,0 +1,32 @@
+
+Planes can take off and land when the weather is sunny
+If it is stormy, no planes can land or take off
+
+To get passengers to a destination 
+Instruct plane -> land at airport
+
+:To get passengers on their way
+Instruct plane -> take off form airport -> confirm to airport it is no longer there
+
+:To ensure safety
+Prevent landing -> when airport is full
+
+:So it can apply to other airports
+Default air capacity -> overrides when needed
+
+To ensure safety
+Prevent takeoff -> when weather is stormy
+
+To ensure safety
+Prevent landing -> weather stormy
+
+:To create weather
+Random number -> rarely it will be stormy -> needs to be able to be overridden for testing
+
+Defence against edge cases
+Planes can only take off from airports they are in	
+Planes that are already flying cannot take off/be in an airport
+Planes that have landed cannot land again and must be in an airport
+
+
+
