@@ -38,10 +38,12 @@ describe Airport do
       expect { subject.land Airplane.new }.to raise_error "Airport is full"
     end
 
-    it "raises an error when weather at airport is stormy" do
-    Weather::OUTLOOKS == :stormy
-    expect { subject.land Airplane.new }.to raise_error "Cannot land due to stormy weather"
+      context 'when stormy' do
+    it 'raises an error' do
+      allow(subject).to receive(:stormy?).and_return true
+      expect { subject.land(Airplane.new) }.to raise_error 'Cannot land, due to stormy weather'
     end
+  end
 
   end
 
@@ -59,11 +61,12 @@ describe Airport do
       expect { subject.take_off }.to raise_error "No airplanes at airport"
     end
 
-    it "should not let a plane take off when the weather at the airport is stormy" do
-    Weather::OUTLOOKS == :stormy
-    expect { subject.take_off }.to raise_error "Cannot take off due to stormy weather"
+    context 'when stormy' do
+    it 'raises an error' do
+      allow(subject).to receive(:stormy?).and_return true
+      expect { subject.take_off }.to raise_error 'Cannot take off, due to stormy weather'
     end
-
+  end
   end
 
 end

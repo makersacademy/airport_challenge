@@ -40,4 +40,8 @@ private
     @airplanes.empty?
   end
 
+  def stormy?
+    @weather > 9
+  end
+
 end
