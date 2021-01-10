@@ -31,17 +31,17 @@ I want to prevent takeoff when weather is stormy
 To ensure safety  
 I want to prevent landing when weather is stormy
 >
+
 ## Nouns:
 - Plane
 - Airport
-- Weather
 
 ## Verbs:
 - land
 - take off
 - is in airport
 - is full
-- is stormy
+- weather is stormy
 
 
 ## Table
@@ -51,4 +51,4 @@ I want to prevent landing when weather is stormy
 |         | take_off  |
 | Airport | full?     |
 |         | contains? |
-| Weather | stormy?   |
+|         | stormy?   |
