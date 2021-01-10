@@ -13,15 +13,17 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
-    fail "Already landed" if plane.docked
-
+  def land(*planes)
     fail "Can't land while stormy" if is_stormy
 
-    fail "Airport is full" if is_full
+    for plane in planes
+      fail "Airport is full" if is_full
 
-    plane.docked = true
-    @planes.push(plane)
+      fail "Already landed" if plane.docked
+
+      plane.docked = true
+      @planes.push(plane)
+    end
   end
 
   def take_off
