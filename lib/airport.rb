@@ -25,6 +25,7 @@ class Airport
     return if plane.flying? == true || weather? == false
 
     puts "It's a fine day with clear skies - ready for take off"
+    @runway.delete(plane)
     plane.in_air
   end
 

@@ -91,4 +91,12 @@ describe Airport do
     subject.take_off(plane)
     expect(plane.flying?).to be false
   end
+
+  it "removes the plane from the runway after take_off" do
+    plane = Plane.new
+    subject.add_plane(plane)
+    subject.take_off(plane)
+    expect(subject.runway).not_to include(plane)
+  end
+
 end
