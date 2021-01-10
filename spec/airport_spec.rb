@@ -20,7 +20,7 @@ describe Airport do
     end
 
     it 'should repond to take_off' do
-      expect(Airport.new).to respond_to(:take_off)
+      expect(Airport.new).to respond_to(:take_off).with(1).argument
     end
 
     it 'has a default capacity' do
@@ -54,9 +54,13 @@ describe Airport do
     end
   end
 
-  it 'raises an error as flying' do
-    allow(subject).to receive(:flying?).and_return true
-    expect { Airport.new.take_off(Plane.new) }.to raise_error 'Plane is already flying'
+  context 'edge case' do
+
+    it 'raises an error as flying' do
+      allow(subject).to receive(:flying?).and_return true
+      expect { Airport.new.take_off(Plane.new) }.to raise_error 'Plane is already flying'
+    end
+
   end
 
 end
