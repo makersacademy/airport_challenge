@@ -15,5 +15,9 @@ describe Airport do
     it 'removes planes from hangar when they takeoff' do
         expect (subject.takeoff) == @hangar
     end
+
+    it "raises error - Hangar is empty" do
+        expect {subject.takeoff}.to raise_error
+    end
     
 end

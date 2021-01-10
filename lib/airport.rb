@@ -12,6 +12,7 @@ class Airport
     end
 
     def takeoff
+        raise StandardError.new "Hangar is empty" if @hangar.empty?
         @hangar.pop
     end
 
