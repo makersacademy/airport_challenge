@@ -9,5 +9,11 @@ describe Airport do
         plane = Plane.new
         expect (subject.land(plane)) == @hangar
     end
+
+    it {is_expected.to respond_to(:takeoff)}
+
+    it 'removes planes from hangar when they takeoff' do
+        expect (subject.takeoff) == @hangar
+    end
     
 end
