@@ -173,16 +173,25 @@ describe Plane do
   describe '#take_off' do
     context 'when passed a plane in an airport' do
       let(:plane) { Plane.new(airport) }
-      it 'should return a string confirming take off' do
-        expect(plane.take_off).to eq "#{plane} has taken off from #{airport}"
+      context 'when the weather at the airport is not stormy' do
+        before { allow(airport).to receive(:stormy?) { false } }
+        it 'should return a string confirming take off' do
+          expect(plane.take_off).to eq "#{plane} has taken off from #{airport}"
+        end
+        it 'should remove the plane from the airport' do
+          plane.take_off
+          expect(airport.contains?(plane)).to be false
+        end
+        it 'should be flying' do
+          plane.take_off
+          expect(plane.flying?).to be true
+        end
       end
-      it 'should remove the plane from the airport' do
-        plane.take_off
-        expect(airport.contains?(plane)).to be false
-      end
-      it 'should be flying' do
-        plane.take_off
-        expect(plane.flying?).to be true
+      context 'when the weather at the airport is stormy' do
+        before { allow(airport).to receive(:stormy?) { true } }
+        it 'should raise a can\'t take off when weather is stormy error' do
+          expect { plane.take_off }.to raise_error "Can't take off when weather is stormy"
+        end
       end
     end
     context 'when passed a plane not in an airport' do

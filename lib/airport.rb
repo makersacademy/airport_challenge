@@ -82,6 +82,8 @@ class Plane
 
   def can_take_off?
     raise "Can't take off when not in airport" if flying?
+
+    raise "Can't take off when weather is stormy" if @airport.stormy?
   end
 
   def can_land?(airport)
