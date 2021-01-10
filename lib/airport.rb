@@ -3,7 +3,7 @@ require_relative "airplane"
 class Airport
 
   attr_accessor :capacity
-  attr_reader :airplanes 
+  attr_accessor :airplanes 
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -15,6 +15,7 @@ class Airport
     fail "Airport is full" if full?
 
     @airplanes.push(airplane)
+   
   end
 
   def take_off
