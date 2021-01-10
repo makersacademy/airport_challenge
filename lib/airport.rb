@@ -1,26 +1,31 @@
-require_relative 'plane.rb'
+require_relative 'plane'
 
 class Airport
 
-  def initialize
+DEF_CAPACITY = 5
+
+  def initialize(capacity = DEF_CAPACITY)
+    @capacity = capacity
     @runway = []
-    # changed planes array to runway to make it more literal
-    # also, planes and plane is too similar
   end
 
   def land(plane)
+    raise "Go away. Airport is full." if full?
     @runway << plane
   end
 
   def take_off(plane)
     @runway.delete(plane)
+    "#{plane} has buggered off."
   end
 
+attr_reader :runway
+attr_reader :capacity
+
+
+private
   def full?
-    if true
-      return 'The runway is full you cannot land'
-    end
+    @runway.length == @capacity
   end
 
-  attr_reader :runway
 end
