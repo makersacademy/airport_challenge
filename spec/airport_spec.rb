@@ -69,10 +69,20 @@ describe Airport do
       expect(@plane.docked).to eq false
     end
 
+    it "raises an error if a plane tries to take off while stormy" do
+      subject.land(@plane)
+      allow(@weather).to receive(:forecast).and_return("stormy")
+      expect { subject.take_off }.to raise_error "Can't take off while stormy"
+    end
+
     it "allows for multiple planes to take off" do
       5.times { subject.land(@plane) }
       subject.take_off(5)
       expect(subject.planes.empty?).to eq true
+    end
+
+    it "raises an error if plane count is less than one" do
+      expect { subject.take_off(0) }.to raise_error "Departure plane count must be greater than zero"
     end
   end
 
@@ -85,12 +95,6 @@ describe Airport do
       airport = Airport.new(@weather, 40)
       40.times { airport.land(@plane) }
       expect { airport.land(@plane) }.to raise_error "Airport is full"
-    end
-
-    it "raises an error if a plane tries to take off while stormy" do
-      subject.land(@plane)
-      allow(@weather).to receive(:forecast).and_return("stormy")
-      expect { subject.take_off }.to raise_error "Can't take off while stormy"
     end
   end
 end

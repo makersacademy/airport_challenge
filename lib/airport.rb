@@ -27,6 +27,8 @@ class Airport
   end
 
   def take_off(plane_count = 1)
+    fail "Departure plane count must be greater than zero" if plane_count <= 0
+
     fail "Can't take off while stormy" if is_stormy
 
     i = 0
