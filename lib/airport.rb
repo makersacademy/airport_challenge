@@ -14,10 +14,10 @@ class Airport
   end
 
   def land(*planes)
-    fail "Can't land while stormy" if is_stormy
+    fail "Can't land while stormy" if stormy?
 
     for plane in planes
-      fail "Airport is full" if is_full
+      fail "Airport is full" if full?
 
       fail "Already landed" if plane.docked
 
@@ -29,36 +29,34 @@ class Airport
   def take_off(plane_count = 1)
     fail "Departure plane count must be greater than zero" if plane_count <= 0
 
-    fail "Can't take off while stormy" if is_stormy
-
-    i = 0
+    fail "Can't take off while stormy" if stormy?
 
     departed_planes = []
 
-    while i < plane_count 
-      fail "There are no planes to take off" if is_empty
-
-      i += 1
-
-      plane = @planes.pop
-      plane.docked = false
-      departed_planes.push(plane)
-    end
+    plane_count.times { departed_planes.push(depart_plane) }
 
     return departed_planes.length > 1 ? departed_planes : departed_planes[0]
   end
 
   private
 
-  def is_empty
+  def empty?
     @planes.empty?
   end
 
-  def is_full
+  def full?
     @planes.count >= @capacity
   end
 
-  def is_stormy
+  def stormy?
     @weather.forecast == "stormy"
+  end
+
+  def depart_plane
+    fail "There are no planes to take off" if empty?
+
+    plane = @planes.pop
+    plane.docked = false
+    return plane
   end
 end
