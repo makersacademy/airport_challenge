@@ -11,18 +11,17 @@ class Airport
   end
 
   def take_off(plane)
-    return if plane.flying? == true
+    return if plane.flying? == true || weather? == false
 
-    return if weather? == false
-    
     puts "It's a fine day with clear skies - ready for take off"
     plane.in_air
   end
 
   def land_plane(plane)
-    return if plane.flying? == false
+    return if plane.flying? == false || weather? == false
 
     full?
+    puts "Runway is clear for landing"
     plane.landed
     @runway << plane
   end

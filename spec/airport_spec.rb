@@ -42,6 +42,15 @@ describe Airport do
     expect(plane.flying?).to eq false
   end
 
+  it "prevents land_plane when the weather is stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    plane.in_air
+    allow(airport).to receive(:storm) { true }
+    airport.land_plane(plane)
+    expect(plane.flying?).to eq true
+  end
+
   it "has a default capacity" do
     airport = Airport.new
     expect(airport.capacity).to eq 20

@@ -48,6 +48,12 @@ Methods:
 - Airport.take_off(plane)
   - Allows plane to land if the aircraft is flying.
 
+- Airport.weather?
+  - Checks that weather conditions are safe enough for take_off and land_plane
+
+- Airport.storm
+  - Generates a random number between 1 and 10. Any value above 7 creates a storm.
+
 ```
 
 --- PLANE ---
