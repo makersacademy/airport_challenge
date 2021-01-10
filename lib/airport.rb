@@ -26,14 +26,24 @@ class Airport
     end
   end
 
-  def take_off
-    fail "There are no planes to take off" if is_empty
-
+  def take_off(plane_count = 1)
     fail "Can't take off while stormy" if is_stormy
 
-    plane = @planes.pop
-    plane.docked = false
-    return plane
+    i = 0
+
+    departed_planes = []
+
+    while i < plane_count 
+      fail "There are no planes to take off" if is_empty
+
+      i += 1
+
+      plane = @planes.pop
+      plane.docked = false
+      departed_planes.push(plane)
+    end
+
+    return departed_planes.length > 1 ? departed_planes : departed_planes[0]
   end
 
   private

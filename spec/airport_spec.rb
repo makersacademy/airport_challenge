@@ -71,7 +71,7 @@ describe Airport do
 
     it "allows for multiple planes to take off" do
       5.times { subject.land(@plane) }
-      5.times { subject.take_off(5) }
+      subject.take_off(5)
       expect(subject.planes.empty?).to eq true
     end
   end
