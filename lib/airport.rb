@@ -32,15 +32,16 @@ class Plane
 
   def land(airport)
     can_land?(airport)
-    airport.add_plane(self)
-    @airport = airport
+    add_plane_unless_nil(airport)
     self
   end
 
   def take_off
     can_take_off?
     @airport.remove_plane(self)
-    "#{self} has taken off from #{@airport}"
+    return_string = "#{self} has taken off from #{@airport}"
+    @airport = nil
+    return_string
   end
 
   def check_valid_airport_ignore_nil(airport)
@@ -52,7 +53,7 @@ class Plane
   end
 
   def add_plane_unless_nil(airport)
-    airport.add_plane(self) unless airport.nil?
+    airport&.add_plane(self)
     @airport = airport
   end
 

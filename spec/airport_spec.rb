@@ -37,10 +37,8 @@ describe Plane do
   let(:airport) { Airport.new }
 
   context 'when a plane is created' do
-    describe '@airport' do
-      it 'should default to nil' do
-        expect(subject.airport).to be_nil
-      end
+    it 'should be flying by default' do
+      expect(subject.flying?).to be true
     end
     context 'with a given airport' do
       context 'when the airport is not full' do
@@ -73,13 +71,21 @@ describe Plane do
       end
     end
     context 'when an airport is given as argument' do
-      it 'returns the plane that just landed' do
-        expect(subject.land(airport)).to eq subject
+      context 'when the airport is not full' do
+        it 'returns the plane that just landed' do
+          expect(subject.land(airport)).to eq subject
+        end
+        describe '@airport' do
+          before { subject.land(airport) }
+          it 'should be the airport just passed' do
+            expect(subject.airport).to eq airport
+          end
+        end
       end
-      describe '@airport' do
-        before { subject.land(airport) }
-        it 'should be the airport just passed' do
-          expect(subject.airport).to eq airport
+      context 'when the airport is full' do
+        before { Plane.new(airport) until airport.full? }
+        it 'should raise an airport full error' do
+          expect { subject.land(airport) }.to raise_error "Airport full"
         end
       end
     end
@@ -93,12 +99,6 @@ describe Plane do
         expect { subject.land(nil) }.to raise_error "Not a valid airport"
       end
     end
-    context 'when passed an airport that is full' do
-      before { Plane.new(airport) until airport.full? }
-      it 'should raise an airport full error' do
-        expect { subject.land(airport) }.to raise_error "Airport full"
-      end
-    end
   end
 
   describe '#take_off' do
@@ -110,6 +110,10 @@ describe Plane do
       it 'should remove the plane from the airport' do
         plane.take_off
         expect(airport.contains?(plane)).to be false
+      end
+      it 'should be flying' do
+        plane.take_off
+        expect(plane.flying?).to be true
       end
     end
     context 'when passed a plane not in an airport' do
