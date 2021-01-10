@@ -3,6 +3,12 @@ require "plane"
 require "weather"
 
 describe Airport do
+  subject { Airport.new(@weather) }
+
+  before(:each) do
+    @weather = double("weather")
+    allow(@weather).to receive(:forecast).and_return("sunny")
+  end
 
   describe "land" do
     it "checks if airport responds to land method" do
@@ -33,7 +39,9 @@ describe Airport do
     end
 
     it "raises an arror when trying to land and weather is stormy" do
-
+      plane = Plane.new
+      allow(@weather).to receive(:forecast).and_return("stormy")
+      expect { subject.land(plane) }.to raise_error "Can't land while stormy"
     end
   end
 
@@ -67,7 +75,7 @@ describe Airport do
     end
     
     it "sets variable capacity" do
-      airport = Airport.new(40)
+      airport = Airport.new(@weather, 40)
       40.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error "Airport is full"
     end
