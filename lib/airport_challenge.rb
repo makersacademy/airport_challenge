@@ -15,9 +15,16 @@ class Airport
   end
 
   def landing_safety_check
-    raise "This airport is full." if full?
+    storm_safety
+    full_airport
+  end
 
-    raise "Too stormy to land." if stormy?
+  def storm_safety
+    raise "Too stormy." if stormy?
+  end
+
+  def full_airport
+    raise "This airport is full." if full?
   end
 
   def takeoff(plane)
@@ -27,10 +34,16 @@ class Airport
   end
 
   def takeoff_safety_check(plane)
-    raise "Too stormy for takeoff." if stormy?
+    storm_safety
+    fly_safety(plane)
+    absent_plane(plane)
+  end
 
+  def fly_safety(plane)
     raise "Plane in air." if flying?(plane)
+  end
 
+  def absent_plane(plane)
     raise "Plane not in airport." if absent?(plane)
   end
 
