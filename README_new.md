@@ -20,9 +20,7 @@ We received the below instructions:
 
 ---
 
-## "Task
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client:
+## We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller
@@ -50,7 +48,7 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-# Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour."
+# Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 ---
 
@@ -72,9 +70,12 @@ I continued in this fashion - running unit tests, failing them, writing code tha
 When I completed the first four user stories, I had code that would give me a response like the below:
 
 ➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
+
 2.6.5 :001 > airport = Airport.new
 => #<Airport:0x00007ffd060cb470 @airplanes=[], @capacity=20>
+
 2.6.5 :002 > plane = Airplane.new
 => #<Airplane:0x00007ffd060d1ff0>
+
 2.6.5 :003 > airport.land(plane)
 => [#<Airplane:0x00007ffd060d1ff0>]
