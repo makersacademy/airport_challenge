@@ -11,18 +11,18 @@ class Airport
     end
     def land(plane)
         fail 'Airport is full' if full?
-        fail 'Weather conditions too stormy for landing' if stormy?
-        @planes.push(plane)
+        # fail 'Weather conditions too stormy for landing' if stormy?
+        planes << plane
     end
     def take_off
-        fail 'No planes available' if empty?
-        fail 'Weather conditions too stormy for take-off' if stormy?
-        @planes.pop
+        # fail 'No planes available' if empty?
+        # fail 'Weather conditions too stormy for take-off' if stormy?
+        planes.pop
     end
 
     private
     def full?
-        return @planes.count >= @capacity ? true : false
+        return planes.count >= capacity
     end
 
     def empty?
