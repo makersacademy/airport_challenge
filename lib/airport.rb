@@ -89,6 +89,7 @@ class Plane
 
     check_valid_airport(airport)
     check_airport_full_ignore_nil(airport)
+    raise "Can't land when stormy" if airport.stormy?
   end
 
   def check_airport_full_ignore_nil(airport)

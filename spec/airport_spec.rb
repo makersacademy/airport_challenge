@@ -132,13 +132,22 @@ describe Plane do
     end
     context 'when an airport is given as argument' do
       context 'when the airport is not full' do
-        it 'returns the plane that just landed' do
-          expect(subject.land(airport)).to eq subject
+        context 'when the weather at the chosen airport is not stormy' do
+          before { allow(airport).to receive(:stormy?) { false } }
+          it 'returns the plane that just landed' do
+            expect(subject.land(airport)).to eq subject
+          end
+          describe '@airport' do
+            before { subject.land(airport) }
+            it 'should be the airport just passed' do
+              expect(subject.airport).to eq airport
+            end
+          end
         end
-        describe '@airport' do
-          before { subject.land(airport) }
-          it 'should be the airport just passed' do
-            expect(subject.airport).to eq airport
+        context 'when the weather at the chosen airport is stormy' do
+          before { allow(airport).to receive(:stormy?) { true } }
+          it 'should raise a can\'t land when stormy error' do
+            expect { subject.land(airport) }.to raise_error "Can't land when stormy"
           end
         end
       end
