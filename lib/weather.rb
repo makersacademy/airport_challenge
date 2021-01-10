@@ -1,11 +1,8 @@
 class Weather
-
-    # def reported_stormy
-    #     true
-    # end
-
-    def stormy?
-        true
-    end
-
+    
+  def stormy?
+    x = rand(1..100)
+    x.between?(1, 90) ? false : true
+  end
+  
 end
