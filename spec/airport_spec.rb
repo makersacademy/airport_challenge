@@ -4,7 +4,6 @@ require 'plane'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  let(:airport) { airport = Airport.new }
 
   context 'plane will land' do
     it { is_expected.to respond_to(:land).with(1).argument }
