@@ -18,13 +18,21 @@ class Airport
 				plane
 		end
 
-		def take_off(plane)
+		def take_off(plane, weather)
 				plane = plane 
+				fail "Planes grounded because of storms" if weather 
+
+				hanger.include?(plane)
 				hanger.reject! do 
 					|x| x == plane
 				end
 				puts "#{plane} has taken off"
 				self
+		end 
+
+		def stormy?
+				x = rand(1..6)
+				x == 6 ? true : false
 		end 
 
 end
