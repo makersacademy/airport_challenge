@@ -68,6 +68,12 @@ describe Airport do
       subject.take_off
       expect(@plane.docked).to eq false
     end
+
+    it "allows for multiple planes to take off" do
+      5.times { subject.land(@plane) }
+      5.times { subject.take_off(5) }
+      expect(subject.planes.empty?).to eq true
+    end
   end
 
   describe "Initialization" do
