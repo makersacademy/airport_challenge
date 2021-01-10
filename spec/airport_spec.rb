@@ -36,24 +36,33 @@ describe Plane do
 
   let(:airport) { Airport.new }
 
-  describe '@airport' do
-    context 'when a plane is created' do
+  context 'when a plane is created' do
+    describe '@airport' do
       it 'should default to nil' do
         expect(subject.airport).to be_nil
       end
-      context 'with a given airport' do
+    end
+    context 'with a given airport' do
+      context 'when the airport is not full' do
         let(:plane) { Plane.new(airport) }
-        it 'should return the airport given at creation' do
-          expect(plane.airport).to eq airport
+        describe '@airport' do
+          it 'should return the airport given at creation' do
+            expect(plane.airport).to eq airport
+          end
         end
       end
-      context 'with something that is not an airport' do
-        it 'raises an airport does not exist error' do
-          expect { Plane.new("foo") }.to raise_error "Not a valid airport"
+      context 'when the airport is full' do
+        before { Plane.new(airport) until airport.full? }
+        it 'should raise an airport full error' do
+          expect { Plane.new(airport) }.to raise_error "Airport full"
         end
       end
     end
-
+    context 'with something that is not an airport' do
+      it 'raises an airport does not exist error' do
+        expect { Plane.new("foo") }.to raise_error "Not a valid airport"
+      end
+    end
   end
 
   describe '#land' do

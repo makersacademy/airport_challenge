@@ -26,6 +26,7 @@ class Plane
 
   def initialize(airport = nil)
     check_valid_airport_ignore_nil(airport)
+    raise "Airport full" if airport && airport.full?
     @airport = airport
     add_plane_unless_nil
   end
