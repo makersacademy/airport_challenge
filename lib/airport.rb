@@ -10,9 +10,9 @@ class Airport
   end
 
   def land(plane)
-      fail "Go away. Airport is full." if full?
-      # raise "The weather is a bit mental best not to land." if stormy?
-      @runway << plane
+    fail "Weather looks a bit mental best find somewhere else to land." if stormy?
+    fail "Go away. Airport is full." if full?
+    @runway << plane
   end
 
   def take_off(plane)

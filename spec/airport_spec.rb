@@ -8,6 +8,7 @@ subject(:airport) {described_class.new}
   it { is_expected.to respond_to(:land).with(1).argument }
   it 'should instruct a plane to land at the airport' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return false
     expect(airport.land(plane)).to include(plane)
   end
 
@@ -21,6 +22,7 @@ subject(:airport) {described_class.new}
 
   it 'should prevent landing when airport is full' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return false
     Airport::DEF_CAPACITY.times { subject.land(plane) }
     expect{ airport.land (plane) }.to raise_error("Go away. Airport is full.")
   end
@@ -38,4 +40,10 @@ subject(:airport) {described_class.new}
     expect { subject.take_off (plane) }.to raise_error "Weather looks a bit mental best not to take off."
   end
 
+  it "should send an error message to say it is too stormy to land" do
+    plane = Plane.new
+    subject.land(plane)
+    allow(subject).to receive(:stormy?).and_return true
+    expect {subject.land (plane) }.to raise_error "Weather looks a bit mental best find somewhere else to land."
+  end
 end
