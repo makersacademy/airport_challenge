@@ -18,9 +18,9 @@ subject(:airport) {described_class.new}
   end
 
   it 'should prevent landing when airport is full' do
-    5.times { airport = Airport.new }
-    5.times { airport.land Plane.new }
-    expect{ airport.land (Plane.new) }.to raise_error("Go away. Airport is full.")
+    plane = Plane.new
+    Airport::DEF_CAPACITY.times { subject.land(plane) }
+    expect{ subject.land (plane) }.to raise_error("Go away. Airport is full.")
   end
 
 end

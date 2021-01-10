@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-DEF_CAPACITY = 5
+  DEF_CAPACITY = 2
 
   def initialize(capacity = DEF_CAPACITY)
     @capacity = capacity
@@ -10,8 +10,11 @@ DEF_CAPACITY = 5
   end
 
   def land(plane)
-    raise "Go away. Airport is full." if full?
-    @runway << plane
+    if @runway.length == @capacity
+      raise "Go away. Airport is full."
+    else
+      @runway << plane
+    end
   end
 
   def take_off(plane)
@@ -21,11 +24,11 @@ DEF_CAPACITY = 5
 
 attr_reader :runway
 attr_reader :capacity
-
-
-private
-  def full?
-    @runway.length == @capacity
-  end
-
 end
+
+# private
+#   def full?
+#     @runway.length == @capacity
+#   end
+#
+# end
