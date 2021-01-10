@@ -1,7 +1,12 @@
 require 'plane'
 
 describe Plane do
-  it "instructs a plane to land at an airport" do
-    expect(subject).to respond_to(:land).with(1).arguments
-  end
+
+  # it "gives the location of the plane as in the air" do
+  #   airport = Airport.new
+  #   subject.land(airport)
+  #   subject.take_off
+  #   expect(subject.current_location).to eq "Plane is in the air."
+  # end
+
 end

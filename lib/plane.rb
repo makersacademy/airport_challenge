@@ -1,4 +1,8 @@
+require_relative 'airport'
+
 class Plane
-  def land(airport)
+
+  def current_location
+    p "In current_location method"
   end
 end
