@@ -1,21 +1,26 @@
 require 'airport'
 
 describe Airport do
+    it 'should allow a plane to land' do
+        expect(subject).to respond_to(:land) 
+end
+it 'should allow a plane to land' do
+    expect(subject).to respond_to(:land).with(1).argument
+end
 
-  it 'should land plane in airport' do 
-    expect(subject).to respond_to :land?
-  end
-    
-  it 'should take off and confirm to airport' do
-    expect(subject).to respond_to(:takeoff?).with(1).argument
+it 'lands something' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.plane).to eq plane
   end
 
-  it 'should not land plane if airport is full' do
-    expect(subject).to respond_to(:isairportfull)
-  end
+it 'plane should takeoff' do
+    expect(subject).to respond_to(:takenoff?)
+end
+it 'confirms takeoff to airport' do
+    plane = subject.takenoff?
+    expect(plane).to be_takeoffconfirmed
+end
 
-  it 'raises an error saying it cannot land plane' do
-      expect {subject.}
-  end
 
 end

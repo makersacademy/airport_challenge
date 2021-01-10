@@ -1,5 +1,8 @@
-require 'planes'
+require 'plane'
 
-describe Planes do
+describe Plane do
+    it 'should say if has left the airport' do
+        expect(subject).to respond_to(:takeoffconfirmed?)
+    end
     
 end
