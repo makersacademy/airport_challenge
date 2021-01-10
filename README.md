@@ -15,18 +15,29 @@ Airport Challenge
 
 This software simulates the flow of planes at an airport.
 
-The planes can land and take off if the weather is sunny.
+Planes can take off if:
+ - they are on an airport's runway
+ - the weather is sunny
+ - they are not in flight
 
-Planes can't land or take off if the weather is stormy.
-
-Planes can't land if the runway is full.
-
-Planes must be on a runway before they can take off.
+Planes can land if:
+ - they are in flight
+ - the weather is sunny
+ - the airport's runway is not full
 
 ```
---- GETTING STARTED ----
+--- SETTING UP ---
 
 Load 'airport.rb' to begin
+
+Create a new airport, eg:
+ - gatwick = Airport.new
+
+Create a new plane, eg
+ - makers_airlines = Plane.new
+
+Add the plane to the airport - all planes must begin on a runway.
+- gatwick.add_plane(makers_airlines)
 
 ```
 
@@ -38,19 +49,18 @@ It grants planes permission to take off and land.
 
 Planes are stored on the RUNWAY
 
-The runway has a default capacity of 20.
-
-To change the capacity use 'Airport.new(X)'.
-
 Methods:
 
-- Airport.new
- - Generates new Airport
+- Airport.new(capacity)
+ - Generates a new airport.
+ - The runway has a default capacity of 20.
+ - To set the capacity use 'Airport.new(capacity)'.
 
 - Airport.add_plane(plane)
  - Adds a plane to the runway, unless runway is full.
  - All planes must be on a runway before they can take off.
- - Use add_plane to  add new planes to an airport's runway.
+ - Use add_plane(plane) to add new planes to an airport's runway.
+ - A plane can be added only once: a single plane cannot be in more than one airport.
 
  - Airport.take_off(plane)
    - Allows plane to take off if it is on the runway and weather conditions are clear.
@@ -81,11 +91,20 @@ Methods:
  - Use Airport.add_plane to add the plane to an airport's runway.
 
 - Plane.landed
- - Sets the plane's status to on_runway (@flying is false)
+ - Sets the plane's status to on runway (@flying is false)
 
 - Plane.in_air
  - Sets the plane's status to flying (@flying is true)
 
+- Plane.added_to_airport
+ - Sets the plane's status to at airport (@at_airport is true)
+
+- Plane.at_airport?
+ - Checks if the plane has been added to an airport.
+ - Used to prevent a plane from being added to more than one airport.
+
 - Plane.flying?
- - Returns the status of the plane.
- - True if plane is in the air; false if it's on the runway
+ - Returns the flight status of the plane.
+ - True if plane is in the air; false if it's on the runway.
+
+ ```

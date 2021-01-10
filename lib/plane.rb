@@ -2,12 +2,12 @@ require './lib/airport'
 
 class Plane
 
-  ##  Plane keeps track of whether a plane is flying or on the runway
-
   attr_reader :flying
+  attr_reader :at_airport
 
   def initialize
     @flying = false
+    @at_airport = false
   end
 
   def landed
@@ -20,6 +20,14 @@ class Plane
 
   def flying?
     @flying
+  end
+
+  def added_to_airport
+    @at_airport = true
+  end
+
+  def at_airport?
+    @at_airport
   end
 
 end

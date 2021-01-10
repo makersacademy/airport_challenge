@@ -15,9 +15,10 @@ class Airport
   end
 
   def add_plane(plane)
-    return if full? == true
+    return if full? == true || plane.at_airport? == true
 
     @runway << plane
+    plane.added_to_airport
   end
 
   def take_off(plane)

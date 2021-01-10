@@ -99,4 +99,12 @@ describe Airport do
     expect(subject.runway).not_to include(plane)
   end
 
+  it "won't add a plane to more than one airport" do
+    plane = Plane.new
+    gatwick = Airport.new
+    heathrow = Airport.new
+    gatwick.add_plane(plane)
+    expect(heathrow.add_plane(plane)).to eq nil
+  end
+
 end
