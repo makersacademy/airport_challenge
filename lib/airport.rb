@@ -1,5 +1,4 @@
 class Airport
-  attr_reader :planes
   def initialize(capacity = 100)
     @planes = []
     @capacity = capacity
@@ -22,8 +21,12 @@ class Airport
   end
 
   def change_capacity(capacity)
-    raise "Can't reduce capacity below current usage" if capacity < planes.length
+    check_capacity(capacity)
     @capacity = capacity
+  end
+
+  def check_capacity(capacity)
+    raise "Can't reduce capacity below current usage" if capacity < @planes.length
   end
 end
 
