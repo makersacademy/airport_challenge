@@ -56,6 +56,7 @@ class Plane
 
   def can_land?(airport)
     raise "Can't land when in an airport" unless flying?
+    
     check_valid_airport(airport)
   end
 
