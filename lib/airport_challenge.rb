@@ -6,6 +6,7 @@ class Airport
   def initialize(capacity = DEF_CAPACITY)
     @capacity = capacity
     @planes = []
+    @fly = []
   end
 
   def land(plane)
@@ -19,12 +20,16 @@ class Airport
   def takeoff(plane)
     raise "Too stormy for takeoff." if stormy?
 
+    raise "Plane in air." if flying?(plane)
+
+    raise "Plane not in airport." if absent?(plane)
+
+    @fly << plane
     @planes.delete(plane)
   end
 
-  attr_reader :planes
-  attr_reader :capacity
-  attr_accessor :stormy
+  attr_accessor :planes, :stormy
+  attr_reader :capacity, :fly
 
   private
   def full?
@@ -33,5 +38,13 @@ class Airport
 
   def stormy?
     rand(100) == 1
+  end
+
+  def absent?(plane)
+    !@planes.include?(plane)
+  end
+
+  def flying?(plane)
+    @fly.include?(plane)
   end
 end
