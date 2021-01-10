@@ -1,4 +1,5 @@
 require_relative "airplane"
+require_relative "weather"
 
 class Airport
 
@@ -25,7 +26,7 @@ class Airport
   end
 
   private 
-  
+
   def full?
     @airplanes.count >= DEFAULT_CAPACITY
   end
