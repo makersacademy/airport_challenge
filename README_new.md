@@ -14,7 +14,7 @@
 
 ``````
 
-This is the first weekend challenge for Makers Academy. During the previous week, we worked on the Boris Bikes Challenge (of which I have two examples, [here] (https://github.com/day-katy/Boris_Bikes) and [here] (https://github.com/day-katy/Boris_Bikes2)) which helped walk us through the basics of RSpec, the benefits of TDD, and helped us become comfortable with pair programming. This Airport Challenge is a recap of what we covered in the Boris Bikes Challenge, though now we're doing in on our own, without pair programming. The point is to solidify what we've learned the week before - in this case, why TDD is a good approach to coding, how RSpec works, how to write our own RSpec tests, - and to apply them to a different, but similar, challenge.
+This is the first weekend challenge for Makers Academy. During the previous week, we worked on the Boris Bikes Challenge (of which I have two examples, [here](https://github.com/day-katy/Boris_Bikes) and [here](https://github.com/day-katy/Boris_Bikes2)) which helped walk us through the basics of RSpec, the benefits of TDD, and helped us become comfortable with pair programming. This Airport Challenge is a recap of what we covered in the Boris Bikes Challenge, though now we're doing in on our own, without pair programming. The point is to solidify what we've learned the week before - in this case, why TDD is a good approach to coding, how RSpec works, how to write our own RSpec tests, - and to apply them to a different, but similar, challenge.
 
 We received the below instructions:
 
@@ -52,7 +52,7 @@ I want to prevent landing when weather is stormy
 
 ---
 
-To accomplish this, I approached it in a similar way as we did the Boris Bikes Challenge. The first was to wrap my brain around what the challenge was really asking from us, which came from reading the user stories and understanding what they were really asking. To do this I wrote up some [domain models] (https://github.com/day-katy/airport_challenge/blob/master/user-stories.md), and concluded that it would be important to create two new objects: airports and airplanes. To do this, I ran feature tests to create new planes and airports, and ran into my first errors:
+To accomplish this, I approached it in a similar way as we did the Boris Bikes Challenge. The first was to wrap my brain around what the challenge was really asking from us, which came from reading the user stories and understanding what they were really asking. To do this I wrote up some [domain models](https://github.com/day-katy/airport_challenge/blob/master/user-stories.md), and concluded that it would be important to create two new objects: airports and airplanes. To do this, I ran feature tests to create new planes and airports, and ran into my first errors:
 
 2.7.0 :001 > airport = Airport.new
 Traceback (most recent call last):
