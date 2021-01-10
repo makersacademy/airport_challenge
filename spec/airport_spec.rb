@@ -167,10 +167,21 @@ describe Plane do
 end
 
 describe Weather do
-  it { is_expected.to respond_to :change }
+  it { is_expected.to respond_to :check }
 
-  describe '#change' do
-    subject { Weather.new.change }
-    it { is_expected.to eq('sunny').or eq 'stormy' }
+  describe '#check' do
+    it 'should return either sunny or stormy' do
+      expect(subject.check).to eq('sunny').or eq 'stormy'
+    end
+    context 'when run many times' do
+      let(:results) { [] }
+      before { 100000.times { results << subject.check } }
+      it 'should change between sunny and stormy' do
+        expect(results).to include('sunny').and include 'stormy'
+      end
+      it 'should be sunny much more often than stormy' do
+        expect(results.count('sunny')).to be > results.count('stormy') * 2
+      end
+    end
   end
 end

@@ -96,7 +96,20 @@ class Plane
 end
 
 class Weather
-  def change
-    'sunny'
+  def initialize
+    @possible_weather = generate_weather_possibilities
+  end
+
+  def check
+    @possible_weather[rand(@possible_weather.length)]
+  end
+
+  def generate_weather_possibilities
+    chance_sunny = 95
+    chance_stormy = 5
+    out_arr = []
+    chance_sunny.times { out_arr << 'sunny' }
+    chance_stormy.times { out_arr << 'stormy' }
+    out_arr
   end
 end
