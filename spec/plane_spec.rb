@@ -2,11 +2,16 @@ require 'plane'
 
 describe Plane do
 
-  # it "gives the location of the plane as in the air" do
-  #   airport = Airport.new
-  #   subject.land(airport)
-  #   subject.take_off
-  #   expect(subject.current_location).to eq "Plane is in the air."
-  # end
+  context "Gives the correct status" do
+    it "shows status as 'in the air'" do
+      expect(subject.status).to eq "In the air"
+    end
+
+    it "shows status as 'in airport' after landing" do
+      airport = Airport.new
+      airport.land(subject)
+      expect(subject.status).to eq "In airport"
+    end
+  end
 
 end

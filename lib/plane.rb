@@ -2,11 +2,11 @@ require_relative 'airport'
 
 class Plane
 
+  attr_reader :status
+
   def initialize
     @status = "In the air"
   end
-
-  attr_reader :status
 
   def landed
     @status = "In airport"
