@@ -9,7 +9,7 @@ class Airport
   end
 
   def generate_weather(weather = 0)
-    if weather == "stormy" || weather == "sunny"
+    if sunny? || stormy?
       @weather = weather
     else
       rand_num = [1, 2, 3, 4, 5, 6].sample
@@ -45,6 +45,10 @@ class Airport
     @planes_in_airport == []
   end
 
+  def sunny?
+    @weather == 'sunny'
+  end
+
   def stormy?
     @weather == "stormy"
   end
@@ -56,6 +60,7 @@ class Airport
   def plane_elsewhere(plane)
     $all_grounded_planes.include?(plane)
   end
+
 end
 
 class Plane
