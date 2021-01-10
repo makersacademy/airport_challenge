@@ -2,6 +2,7 @@ class Airport
   def initialize(capacity = 100)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def contains?(plane)
@@ -39,7 +40,7 @@ class Airport
   end
 
   def stormy?
-    Weather.new.check == 'stormy'
+    @weather.check == 'stormy'
   end
 end
 
