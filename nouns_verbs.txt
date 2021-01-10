@@ -20,7 +20,7 @@ Prevent takeoff -> when weather is stormy
 To ensure safety
 Prevent landing -> weather stormy
 
-:To create weather
+To create weather
 Random number -> rarely it will be stormy -> needs to be able to be overridden for testing
 
 Defence against edge cases

@@ -30,6 +30,21 @@ describe Airport do
     expect(subject).to respond_to(:takeoff).with(1).argument
   end
 
+  it 'lets planes can land' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.generate_weather("sunny")
+    expect(airport.land(plane)).to eq [plane]
+  end
+
+  it 'stores the planes at the airport' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.generate_weather("sunny")
+    airport.land(plane)
+    expect(airport.planes_in_airport).to eq [plane]
+  end
+
   it "doesn't let planes land in storms" do
     airport = Airport.new
     plane = Plane.new
@@ -41,7 +56,7 @@ describe Airport do
     airport = Airport.new(5)
     airport.generate_weather("sunny")
     5.times { airport.land(Plane.new) }
-    expect{ airport.land(Plane.new) }.to raise_error "Airport at full capacity"
+    expect { airport.land(Plane.new) }.to raise_error "Airport at full capacity"
   end
 
   it 'lets planes takeoff' do
@@ -74,21 +89,48 @@ describe Airport do
     airport.generate_weather("stormy")
     expect { airport.takeoff(plane) }.to raise_error "Weather is too bad for takeoff"
   end
-end
 
-describe Plane do
-  it 'planes can land' do
+  it "planes can only take off from airports they are in" do
     airport = Airport.new
+    airport2 = Airport.new
     plane = Plane.new
     airport.generate_weather("sunny")
-    expect(airport.land(plane)).to eq [plane]
+    airport2.generate_weather("sunny")
+    airport.land(plane)
+    airport2.land(Plane.new)
+    expect { airport2.takeoff(plane) }.to raise_error "Plane not at this airport"
   end
 
-  it 'stores the planes at the airport' do
+  it 'planes that are already flying cannot take off/be in an airport' do
+    airport = Airport.new
+    plane = Plane.new
+    plane2 = Plane.new
+    airport.generate_weather("sunny")
+    airport.land(plane)
+    airport.land(plane2)
+    airport.takeoff(plane)
+    expect { airport.takeoff(plane) }.to raise_error "Plane not at this airport"
+    expect(airport.planes_in_airport).to eq [plane2]
+  end
+
+  it 'planes that have landed cannot land again' do
     airport = Airport.new
     plane = Plane.new
     airport.generate_weather("sunny")
     airport.land(plane)
-    expect(airport.planes_in_airport).to eq [plane]
+    expect { airport.land(plane) }.to raise_error "Plane is not flying"
   end
+
+  it 'planes that have landed in one airport cannot land in another' do
+    airport = Airport.new
+    airport2 = Airport.new
+    plane = Plane.new
+    airport.generate_weather("sunny")
+    airport2.generate_weather("sunny")
+    airport.land(plane)
+    expect { airport2.land(plane) }.to raise_error "Plane is not flying"
+  end
+end
+
+describe Plane do
 end
