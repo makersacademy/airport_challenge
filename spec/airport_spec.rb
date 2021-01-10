@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
   it { is_expected.to respond_to(:contains?).with(1).argument }
   it { is_expected.to respond_to(:change_capacity).with(1).argument }
+  it { is_expected.to respond_to :stormy? }
+
   let(:plane) { Plane.new }
 
   context 'when created' do
@@ -68,6 +70,12 @@ describe Airport do
       it 'should raise a must be integer error' do
         expect { subject.change_capacity(2.5) }.to raise_error "Must be an integer"
       end
+    end
+  end
+
+  describe '#stormy?' do
+    it 'should be either true or false' do
+      expect(subject.stormy?).to be(true).or be false
     end
   end
 end
@@ -175,7 +183,7 @@ describe Weather do
     end
     context 'when run many times' do
       let(:results) { [] }
-      before { 100000.times { results << subject.check } }
+      before { 100_000.times { results << subject.check } }
       it 'should change between sunny and stormy' do
         expect(results).to include('sunny').and include 'stormy'
       end

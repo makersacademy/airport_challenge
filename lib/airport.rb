@@ -37,6 +37,10 @@ class Airport
   def capacity_below_usage_check(capacity)
     raise "Can't reduce capacity below current usage" if capacity < @planes.length
   end
+
+  def stormy?
+    true
+  end
 end
 
 class Plane
