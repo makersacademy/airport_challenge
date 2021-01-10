@@ -94,3 +94,8 @@ class Plane
     @airport.nil?
   end
 end
+
+class Weather
+  def change
+  end 
+end

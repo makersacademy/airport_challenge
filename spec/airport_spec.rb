@@ -165,3 +165,8 @@ describe Plane do
     end
   end
 end
+
+describe Weather do
+  it { is_expected.to respond_to :change }
+
+end
