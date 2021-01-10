@@ -13,6 +13,8 @@ class Airport
   end
 
   def plane
+    return if full? == false
+
     plane = Plane.new
     add_to_runway(plane)
   end
@@ -29,9 +31,8 @@ class Airport
   end
 
   def land_plane(plane)
-    return if plane.flying? == false || weather? == false
+    return if plane.flying? == false || weather? == false || full? == false
 
-    full?
     puts "Runway is clear for landing"
     plane.landed
     @runway << plane
