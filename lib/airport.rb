@@ -27,6 +27,8 @@ class Airport
   def take_off
     fail "There are no planes to take off" if empty
 
+    fail "Can't take off while stormy" if stormy
+
     plane = @planes.pop
     plane.docked = false
     return plane

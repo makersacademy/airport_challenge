@@ -81,7 +81,10 @@ describe Airport do
     end
 
     it "raises an error if a plane tries to take off while stormy" do
-
+      plane = Plane.new
+      subject.land(plane)
+      allow(@weather).to receive(:forecast).and_return("stormy")
+      expect { subject.take_off }.to raise_error "Can't take off while stormy"
     end
   end
 end
