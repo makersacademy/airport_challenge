@@ -1,7 +1,8 @@
 class Airport
   attr_reader :planes
-  def initialize
+  def initialize(capacity = 100)
     @planes = []
+    @capacity = capacity
   end
 
   def contains?(plane)
@@ -17,7 +18,7 @@ class Airport
   end
 
   def full?
-    @planes.length >= 100
+    @planes.length >= @capacity
   end
 end
 

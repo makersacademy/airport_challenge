@@ -11,6 +11,12 @@ describe Airport do
         expect { Plane.new(subject) }.to raise_error "Airport full"
       end
     end
+    context 'when passed a capacity greater than 100' do
+      let(:big_airport) { Airport.new(250) }
+      it 'should be able to hold that many planes' do
+        expect { 250.times { Plane.new(big_airport) } }.not_to raise_error
+      end
+    end
   end
 
   describe '#contains?' do
