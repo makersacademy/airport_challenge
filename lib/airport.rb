@@ -5,19 +5,23 @@ class Airport
   attr_reader :runway
   attr_reader :capacity
   attr_reader :weather
+  attr_reader :runway_check
 
   def initialize(capacity = 20)
     @runway = Array.new
     @capacity = capacity
     @weather = 1
+    @runway_check = false
   end
 
   def add_plane(plane)
+    return if full? == true
+
     @runway << plane
   end
 
-
   def take_off(plane)
+    return unless @runway.include?(plane)
     return if plane.flying? == true || weather? == false
 
     puts "It's a fine day with clear skies - ready for take off"
@@ -25,19 +29,18 @@ class Airport
   end
 
   def land_plane(plane)
-    return if plane.flying? == false || weather? == false
+    return if plane.flying? == false || full? == true || weather? == false
 
-    full?
     puts "Runway is clear for landing"
     plane.landed
-    add_plane(plane)
+    @runway << plane
   end
 
   def full?
     return if @runway.length < @capacity
 
-    puts "Runway full: maintain holding pattern"
-    false
+    puts "Runway is full"
+    true
   end
 
   def weather?

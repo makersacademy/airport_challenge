@@ -13,6 +13,7 @@ describe Plane do
   it "knows when it's on the runway" do
     plane = Plane.new
     airport = Airport.new
+    airport.add_plane(plane)
     allow(airport).to receive(:storm) { false }
     airport.land_plane(plane)
     #  expect(plane.on_runway?).to eq true
@@ -22,6 +23,7 @@ describe Plane do
   it "knows when it's in the air" do
     plane = Plane.new
     airport = Airport.new
+    airport.add_plane(plane)
     allow(airport).to receive(:storm) { false }
     airport.take_off(plane)
     expect(plane.flying?).to eq true
