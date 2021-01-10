@@ -49,7 +49,7 @@ describe Airport do
   end
 
   describe '#change_capacity' do
-    context 'when passed a new larger capacity' do
+    context 'when passed a capacity larger than the number of planes stored' do
       before { subject.change_capacity(250) }
       it 'should be able to hold that many planes' do
         expect { 250.times { Plane.new(subject) } }.not_to raise_error
@@ -58,13 +58,12 @@ describe Airport do
         expect { (250 + 1).times { Plane.new(subject) } }.to raise_error "Airport full"
       end
     end
-    # context 'when passed a new smaller capacity' do
-    #   context 'when that capacity is greater than the number of planes stored' do
-    #     it 'should be able to hold that many planes' do
-    #
-    #     end
-    #   end
-    # end
+    context 'when passed a capacity less than the number of stored planes' do
+      before { 60.times { Plane.new(subject) } }
+      it 'should raise a can\'t reduce capacity below current usage error' do
+        expect { subject.change_capacity(50) }.to raise_error "Can't reduce capacity below current usage"
+      end
+    end
   end
 end
 

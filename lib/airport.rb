@@ -22,6 +22,7 @@ class Airport
   end
 
   def change_capacity(capacity)
+    raise "Can't reduce capacity below current usage" if capacity < planes.length
     @capacity = capacity
   end
 end
