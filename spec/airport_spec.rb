@@ -37,6 +37,15 @@ describe Airport do
       allow(@weather).to receive(:forecast).and_return("stormy")
       expect { subject.land(@plane) }.to raise_error "Can't land while stormy"
     end
+
+    it "allows multiple planes to land" do
+      plane_2 = double("second plane", :docked => false, :docked= => nil)
+      subject.land(@plane, plane_2)
+      contains_planes_1 = subject.planes.include?(@plane)
+      contains_planes_2 = subject.planes.include?(plane_2)
+      expect(contains_planes_1 && contains_planes_2).to eq true
+    end
+      
   end
 
   describe "take off" do

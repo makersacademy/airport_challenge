@@ -16,18 +16,18 @@ class Airport
   def land(plane)
     fail "Already landed" if plane.docked
 
-    fail "Can't land while stormy" if stormy
+    fail "Can't land while stormy" if is_stormy
 
-    fail "Airport is full" if full
+    fail "Airport is full" if is_full
 
     plane.docked = true
     @planes.push(plane)
   end
 
   def take_off
-    fail "There are no planes to take off" if empty
+    fail "There are no planes to take off" if is_empty
 
-    fail "Can't take off while stormy" if stormy
+    fail "Can't take off while stormy" if is_stormy
 
     plane = @planes.pop
     plane.docked = false
@@ -36,15 +36,15 @@ class Airport
 
   private
 
-  def empty
+  def is_empty
     @planes.empty?
   end
 
-  def full
+  def is_full
     @planes.count >= @capacity
   end
 
-  def stormy
+  def is_stormy
     @weather.forecast == "stormy"
   end
 end
