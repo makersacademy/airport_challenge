@@ -35,6 +35,7 @@ I want to prevent landing when weather is stormy
 ## Nouns:
 - Plane
 - Airport
+- Weather
 
 ## Verbs:
 - land
@@ -52,3 +53,4 @@ I want to prevent landing when weather is stormy
 | Airport | full?     |
 |         | contains? |
 |         | stormy?   |
+| Weather | change    |
