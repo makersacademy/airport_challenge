@@ -14,6 +14,11 @@ class Airport
 
   def plane
     plane = Plane.new
+    add_to_runway(plane)
+  end
+
+  def add_to_runway(plane)
+    @runway << plane
   end
 
   def take_off(plane)

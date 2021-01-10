@@ -72,10 +72,8 @@ describe Airport do
     expect(actual).to eq(expected)
   end
 
-  it "generates new planes" do
-    expect(subject.plane).to be_an_instance_of Plane
+  it "generates new planes and adds them the runway" do
+    subject.plane
+    expect(subject.runway[0]).to be_an_instance_of Plane
   end
 end
-
-  # it "adds new planes to the runway"
-  #   sub

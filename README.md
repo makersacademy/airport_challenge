@@ -42,11 +42,14 @@ To change the capacity use 'Airport.new(X)'.
 
 Methods:
 
+- Airport.plane
+ - Generates a new plane and adds it to the runway, unless runway is full.
+
 - Airport.land_plane(plane)
-  - Adds a plane to the runway if the aircraft has permission to land and the runway is not full.
+  - Adds a plane to the runway unless the weather is stormy or the runway is full.
 
 - Airport.take_off(plane)
-  - Allows plane to land if the aircraft is flying.
+  - Allows plane to take off if it is on the runway and weather conditions are clear.
 
 - Airport.weather?
   - Checks that weather conditions are safe enough for take_off and land_plane
@@ -62,7 +65,7 @@ Planes keep track of their status: they can either be on the runway or in the ai
 
 The Airport can ask the plane whether it's flying or not.
 
-All planes start on the runway.
+Use Airport.plane to create a new plane and add it to the runway.
 
 Methods:
 
