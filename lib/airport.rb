@@ -26,8 +26,15 @@ class Airport
   end
 
   def check_capacity(capacity)
-    raise "Must be an integer" unless capacity.to_int == capacity
+    int_check(capacity)
+    capacity_below_usage_check(capacity)
+  end
 
+  def int_check(capacity)
+    raise "Must be an integer" unless capacity.to_int == capacity
+  end
+
+  def capacity_below_usage_check(capacity)
     raise "Can't reduce capacity below current usage" if capacity < @planes.length
   end
 end
