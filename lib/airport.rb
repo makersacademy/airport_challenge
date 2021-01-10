@@ -2,9 +2,11 @@ require 'weather_forecast'
 
 class Airport
 
-  def initialize(capacity, weather_forecast)
-    @capacity = capacity
+  DEFAULT_CAPACITY = 20
+  
+  def initialize(weather_forecast, capacity = DEFAULT_CAPACITY)
     @weather_forecast = weather_forecast
+    @capacity = capacity
     @planes = []
   end
 
@@ -16,7 +18,7 @@ class Airport
 
   def take_off(plane)
     raise "Cannot take off plane - stormy weather" if stormy?
-    raise "Plane taken off - no longer in the airport" unless @planes.include?(plane)
+    raise "Plane taken off - no longer in the airport" unless at_airport?(plane)
   end
 
   private
@@ -27,5 +29,9 @@ class Airport
 
   def stormy?
     @weather_forecast.stormy?
+  end
+
+  def at_airport?(plane)
+    @planes.include?(plane)
   end
 end

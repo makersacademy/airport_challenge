@@ -2,10 +2,9 @@ require 'airport'
 
 describe Airport do
 
-  subject(:airport) { Airport.new(20, weather_forecast) }
+  subject(:airport) { Airport.new(weather_forecast, 20) }
   let(:plane) { double :plane }
   let(:weather_forecast) { double :weather_forecast}
-
 
   describe '#land' do
     context 'when not stormy' do
@@ -44,7 +43,7 @@ describe Airport do
       end
 
       it 'confirm taken off plane is no longer in the airport' do
-        another_airport = described_class.new(20, weather_forecast)
+        another_airport = described_class.new(weather_forecast, 20)
         another_airport.land(plane)
         expect { airport.take_off(plane) }.to raise_error "Plane taken off - no longer in the airport"
       end
@@ -57,6 +56,16 @@ describe Airport do
       it 'raises error' do
         expect { airport.take_off(plane) }.to raise_error "Cannot take off plane - stormy weather"
       end
+    end
+  end
+
+  context 'defaults' do
+    subject(:default_airport) { described_class.new(weather_forecast) }
+
+    it 'has a default capacity' do
+      allow(weather_forecast).to receive(:stormy?).and_return false
+      described_class::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+      expect { default_airport.land(plane) }.to raise_error "Cannot land plane - airport full"
     end
   end
 end

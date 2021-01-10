@@ -1,6 +1,6 @@
 describe 'User Stories' do
 
-  let(:airport) { Airport.new(20, weather_forecast) }
+  let(:airport) { Airport.new(weather_forecast, 20) }
   let(:plane) { Plane.new }
   let(:weather_forecast) { WeatherForecast.new }
 
@@ -21,9 +21,17 @@ describe 'User Stories' do
 
     # I want to confirm that a plane that's taken off is no longer in the airport
     it 'planes take off from the airport they are at' do
-      airport_2 = Airport.new(20, weather_forecast)
+      airport_2 = Airport.new(weather_forecast, 20)
       airport_2.land(plane)
       expect { airport.take_off(plane) }.to raise_error "Plane taken off - no longer in the airport"
+    end
+    
+    # I would like a default airport capacity that can be overridden as appropriate
+
+    it 'airports have a default capacity' do
+      default_airport = Airport.new(weather_forecast)
+      Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+      expect { default_airport.land(plane) }.to raise_error "Cannot land plane - airport full"
     end
   
     # I want to prevent landing when the airport is full 
