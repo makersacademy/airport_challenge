@@ -16,6 +16,9 @@ describe Airport do
       it 'should be able to hold that many planes' do
         expect { 250.times { Plane.new(big_airport) } }.not_to raise_error
       end
+      it 'should not be able to hold more than that number' do
+        expect { (250 + 1).times { Plane.new(big_airport) } }.to raise_error "Airport full"
+      end
     end
   end
 
