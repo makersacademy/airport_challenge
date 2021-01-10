@@ -47,6 +47,10 @@ describe Airport do
 
     describe '#take_off' do
 
+        it 'raises an error if there are no planes available to take off' do
+            expect { subject.take_off }.to raise_error 'No planes available'
+        end
+
         it 'confirms plane is no longer in airport after take off' do
             allow(subject).to receive(:stormy?).and_return false
             subject.land(Plane.new)

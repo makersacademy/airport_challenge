@@ -15,7 +15,7 @@ class Airport
         planes << plane
     end
     def take_off
-        # fail 'No planes available' if empty?
+        fail 'No planes available' if empty?
         fail 'Weather conditions too stormy for take-off' if stormy?
         planes.pop
     end
@@ -25,11 +25,11 @@ class Airport
 
     private
     def full?
-        return planes.count >= capacity
+        planes.count >= capacity
     end
 
     def empty?
-        return @planes.empty? ? true : false
+        planes.empty?
     end
 
 end
