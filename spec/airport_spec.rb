@@ -169,4 +169,8 @@ end
 describe Weather do
   it { is_expected.to respond_to :change }
 
+  describe '#change' do
+    subject { Weather.new.change }
+    it { is_expected.to eq('sunny').or eq 'stormy' }
+  end
 end

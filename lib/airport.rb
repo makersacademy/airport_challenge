@@ -97,5 +97,6 @@ end
 
 class Weather
   def change
-  end 
+    'sunny'
+  end
 end
