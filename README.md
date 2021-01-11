@@ -53,3 +53,6 @@ This section outlines known/identified areas of improvement/optimisation that se
 - The Plane class has been implemented mostly to allow future expansion and allow it to logically form part of a larger aeronautical environment.
 
 - The Airport class presently uses a simple randomised 'stormy' weather generator method to allow/disallow landing/take-off of planes. A more functional Weather component can be developed that allows re-use by other classes.
+
+##  Acknowledgements/Appreciations
+- I got stuck on getting my stubs working to override randomising of weather considtions. I jumped around [this](https://www.youtube.com/watch?v=Vg0cFVLH_EM) video published by [Sam Morgan](https://github.com/sjmog) to help me overcome this blocker. I'd like to watch the full video as it would be great to see how this challenge is met by a more senior/experienced software engineer.
