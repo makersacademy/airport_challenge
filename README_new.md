@@ -54,12 +54,7 @@ I want to prevent landing when weather is stormy
 
 To accomplish this, I approached it in a similar way as we did the Boris Bikes Challenge. The first was to wrap my brain around what the challenge was really asking from us, which came from reading the user stories and understanding what they were really asking. To do this I wrote up some [domain models](https://github.com/day-katy/airport_challenge/blob/master/user-stories.md), and concluded that it would be important to create two new objects: airports and airplanes. To do this, I ran feature tests to create new planes and airports, and ran into my first errors:
 
-2.7.0 :001 > airport = Airport.new
-Traceback (most recent call last):
-NameError (uninitialized constant Airport)
-2.7.0 :002 > plane = Airplane.new
-Traceback (most recent call last):
-NameError (uninitialized constant Airplane)
+`2.7.0 :001 > airport = Airport.new Traceback (most recent call last): NameError (uninitialized constant Airport) 2.7.0 :002 > plane = Airplane.new Traceback (most recent call last): NameError (uninitialized constant Airplane)`
 
 This of course happened because I have not created the class Airport and Airplane yet.
 
@@ -69,7 +64,7 @@ I continued in this fashion - running unit tests, failing them, writing code tha
 
 When I completed the first four user stories, I had code that would give me a response like the below:
 
-➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
+`➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
 
 2.6.5 :001 > airport = Airport.new
 => #<Airport:0x00007ffd060cb470 @airplanes=[], @capacity=20>
@@ -78,11 +73,11 @@ When I completed the first four user stories, I had code that would give me a re
 => #<Airplane:0x00007ffd060d1ff0>
 
 2.6.5 :003 > airport.land(plane)
-=> [#<Airplane:0x00007ffd060d1ff0>]
+=> [#<Airplane:0x00007ffd060d1ff0>]`
 
 I continued to work on the next user stories, wherein a plane should not be allowed to take off or land if the weather is stormy. This is where I didn't complete my code, though this bit took longer in working out how to randomize the weather - and I haven't been able to successfully test for that completely. I'm also receiving Runtime Errors on my RSpec tests, and I'm not sure why yet. Hopefully, after reviewing the code in Week 2, I'll understand more of what was happening! For now, here is what irb looks like:
 
-➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
+`➜ airport_challenge git:(master) ✗ irb -r ./lib/airport.rb
 2.6.5 :001 > airport = Airport.new
 
 => #<Airport:0x00007ff5fb8a1878 @airplanes=[], @capacity=20, @weather=#<Weather:0x00007ff5fb8a1800>>
@@ -91,4 +86,4 @@ I continued to work on the next user stories, wherein a plane should not be allo
 => #<Airplane:0x00007ff5fb8c4490>
 
 2.6.5 :003 > airport.land(plane)
-=> [#<Airplane:0x00007ff5fb8c4490>]
+=> [#<Airplane:0x00007ff5fb8c4490>]`
