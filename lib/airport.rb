@@ -1,10 +1,13 @@
 require_relative 'plane'
 
+
 class Airport
     attr_reader :planes
     attr_accessor :capacity
 
-  def initialize(capacity = 20)
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -22,7 +25,7 @@ class Airport
   private
 
   def full?
-    @planes.length >= 1
+    @planes.length >= DEFAULT_CAPACITY
   end
 
 

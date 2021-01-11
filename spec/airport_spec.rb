@@ -31,15 +31,15 @@ describe Airport do
 
   describe 'land method' do
     it 'raises an error when airport limit is reached' do
+      airport = Airport.new(20)
       plane = Plane.new
-      subject.land(plane)
-      plane2 = Plane.new
-      expect { subject.land(plane2) }.to raise_error "Airport is full"
+      20.times {airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error "Airport is full"
     end
   end
 
   it "test that the default capacity is 20" do
-    expect(subject.capacity).to eq 20
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
 end
