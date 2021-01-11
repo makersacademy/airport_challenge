@@ -2,22 +2,22 @@ require 'airport'
 
 describe Airport do
 
-subject(:airport) {described_class.new(20)}
+  subject(:airport) { described_class.new(20) }
 
-it 'should allow a plane to land' do
-    expect(subject).to respond_to(:land).with(1).argument
+  it 'should allow a plane to land' do
+expect(airport).to respond_to(:land).with(1).argument
 end
 
-it 'does not allow to land when at full capacity' do
-plane = double :plane
+  it 'does not allow to land when at full capacity' do
+  plane = double :plane
     20.times do
     airport.land(plane)
 end
-expect {airport.land(plane)}.to raise_error 'airport full'
+  expect {airport.land(plane)}.to raise_error 'airport full'
 end
 
 
-describe '#takeoff' do
+  describe '#takeoff' do
     context 'when weather is stormy' do
         it 'does not allow planes to land' do
           airport = Airport.new(20)
@@ -29,7 +29,7 @@ describe '#takeoff' do
 end
 
 it 'plane should takeoff' do
-    expect(subject).to respond_to(:takenoff?).with(1).argument
+    expect(airport).to respond_to(:takenoff?).with(1).argument
 end
 
 

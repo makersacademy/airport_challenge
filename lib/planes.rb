@@ -1,5 +1,5 @@
 class Plane
-    def takeoffconfirmed?
-        true
-    end
+  def takeoffconfirmed?
+    true
+  end
 end
