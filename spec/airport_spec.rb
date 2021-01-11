@@ -17,8 +17,7 @@ describe Airport do
 
     it 'raises an error when plane has already landed' do
       plane = Plane.new
-      # subject.land(plane)
-      plane.landed?
+      subject.land(plane)
       expect { subject.land(plane) }.to raise_error "Plane has already landed"
     end
 
@@ -37,14 +36,25 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error "This plane has not landed"
     end
 
+    describe '#present?' do
+      it 'should return true or false if airplanes have landed' do
+        plane = Plane.new
+        expect(subject.present?(plane)).to eq false
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.present?(plane)).to eq true
+      end
+    end
+
     context 'when airport is full' do
         # As an air traffic controller
         # To ensure safety
         # I want to prevent landing when the airport is full
       it 'should raise error when airport full' do
         plane = Plane.new
-        subject.capacity.times { subject.land(plane) }
-        expect { subject.land(plane) }.to raise_error "Airport is full"
+        airport = Airport.new(1)
+        airport.land(plane)
+        expect { airport.land(plane) }.to raise_error "Airport is full"
       end
     end
   end
@@ -76,4 +86,5 @@ describe Airport do
       expect(subject.send(:full?)).to eq true
     end
   end
+
 end
