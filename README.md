@@ -16,7 +16,6 @@ Airport Challenge
 Instructions
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
@@ -75,7 +74,7 @@ In code review we'll be hoping to see:
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
 **BONUS**
 
@@ -85,7 +84,7 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+* **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
