@@ -34,27 +34,17 @@ describe Airport do
       expect { subject.full? }.to raise_error 'airport full, no landing'
     end
   end
-  # User story: 5
-
-
-    # it 'it can be stormy weather' do
-    #   airport = Airport.new
-    #   subject.stormy
-    #   expect{ subject.land(plane) }.to raise_error 'stormy, no landing'
-    # end
-
-
-#User story:4
+# User story:4
   describe 'initialization' do
     subject { Airport.new }
     let(:plane) { Plane.new }
     it 'sets capacity' do
       Airport::DEFAULT_CAPACITY.times do
-      subject.land(plane)
+        subject.land(plane)
       end
-      expect{ subject.land(plane) }.to raise_error 'airport full, no landing'
+      expect { subject.land(plane) }.to raise_error 'airport full, no landing'
     end
   end
-
+# User story: 5
 
 end

@@ -10,7 +10,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @stormy
+    @stormy = false
 
   end
 
@@ -30,7 +30,7 @@ class Airport
     fail 'airport full, no landing' if @planes.length == @capacity
   end
 
-  # def stormy
-  #   @stormy = true
-  # end
+  def stormy
+    @stormy = true
+  end
 end
