@@ -1,4 +1,4 @@
-require 'plane'
+require 'planes'
 
 describe Plane do
     it 'should say if has left the airport' do
