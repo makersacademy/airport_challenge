@@ -13,77 +13,98 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+This software simulates the flow of planes at an airport.
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Planes can take off if:
+ - they are on an airport's runway
+ - the weather is sunny
+ - they are not in flight
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Planes can land if:
+ - they are in flight
+ - the weather is sunny
+ - the airport's runway is not full
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+--- SETTING UP ---
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Load 'airport.rb' to begin
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+Create a new airport, eg:
+ - gatwick = Airport.new
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+Create a new plane, eg
+ - makers_airlines = Plane.new
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+Add the plane to the airport - all planes must begin on a runway.
+- gatwick.add_plane(makers_airlines)
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+--- AIRPORT ---
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+The airport controls the flow of planes.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+It grants planes permission to take off and land.
 
-Please create separate files for every class, module and test suite.
+Planes are stored on the RUNWAY
 
-In code review we'll be hoping to see:
+Methods:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+- Airport.new(capacity)
+ - Generates a new airport.
+ - The runway has a default capacity of 20.
+ - To set the capacity use 'Airport.new(capacity)'.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+- Airport.add_plane(plane)
+ - Adds a plane to the runway, unless runway is full.
+ - All planes must be on a runway before they can take off.
+ - Use add_plane(plane) to add new planes to an airport's runway.
+ - A plane can be added only once: a single plane cannot be in more than one airport.
 
-**BONUS**
+ - Airport.take_off(plane)
+   - Allows plane to take off if it is on the runway and weather conditions are clear.
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+- Airport.land_plane(plane)
+  - Lands plane on the runway unless the weather is stormy, the runway is full or the plane is already on a runway.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+- Airport.weather?
+  - Checks that weather conditions are safe enough for take_off and land_plane
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+- Airport.storm
+  - Generates a random number between 1 and 10. Any value above 7 creates a storm.
 
-* **Submit a pull request early.**
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+--- PLANE ---
+
+Planes keep track of their status: they can either be on a runway or in the air.
+
+The Airport can ask the plane whether it's flying or not.
+
+Planes must be on a runway before they can take off: use Airport.add_plane to add a plane to an airport's runway.
+
+Methods:
+
+- Plane.new
+ - Generates new plane.
+ - Use Airport.add_plane(plane) to add the plane to an airport's runway.
+
+- Plane.landed
+ - Sets the plane's status to on runway (@flying is false)
+
+- Plane.in_air
+ - Sets the plane's status to flying (@flying is true)
+
+- Plane.added_to_airport
+ - Sets the plane's status to at airport (@at_airport is true)
+
+- Plane.at_airport?
+ - Checks if the plane has been added to an airport.
+ - Used to prevent a plane from being added to more than one airport.
+
+- Plane.flying?
+ - Returns the flight status of the plane.
+ - True if plane is in the air; false if it's on the runway.
+
+ ```
