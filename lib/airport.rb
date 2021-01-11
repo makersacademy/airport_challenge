@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 class Airport
 
   attr_reader :planes
@@ -22,9 +23,7 @@ class Airport
   end
 
   def stormy?
-    # 1 in 10 chance it is stormy
-    storminess = rand(10)
-    storminess == 9
+    Weather.new.stormy?
   end
 
 private
