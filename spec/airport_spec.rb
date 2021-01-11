@@ -15,11 +15,12 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    # it 'raises an error when plane has already landed' do
-    #   plane = Plane.new
-    #   subject.land(plane)
-    #   expect { subject.land(plane) }.to raise_error "Plane has already landed"
-    # end
+    it 'raises an error when plane has already landed' do
+      plane = Plane.new
+      # subject.land(plane)
+      plane.landed?
+      expect { subject.land(plane) }.to raise_error "Plane has already landed"
+    end
 
     # As an air traffic controller
     # So I can get passengers on the way to their destination
@@ -33,7 +34,7 @@ describe Airport do
 
     it "should raise an error when we call takeoff but the plane is flying" do
       plane = Plane.new
-      expect { subject.takeoff(plane) }.to raise_error "Plane is flying"
+      expect { subject.takeoff(plane) }.to raise_error "This plane has not landed"
     end
 
     context 'when airport is full' do

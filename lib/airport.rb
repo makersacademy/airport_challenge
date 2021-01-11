@@ -12,10 +12,8 @@ class Airport
 
   def land(plane)
     fail "No landings allowed due to bad weather" if stormy?
-
     fail "Airport is full" if full?
-
-    # fail "Plane has already landed" if @landed_planes.include?(plane)
+    fail "Plane has already landed" if plane.landed?
 
     plane.landed?
     @landed_planes << plane
@@ -26,6 +24,7 @@ class Airport
     fail "This plane has not landed" unless @landed_planes.include?(plane)
 
     @landed_planes.delete(plane)
+    plane.flying?
     "#{plane} has left the Airport"
   end
 
