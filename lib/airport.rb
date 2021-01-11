@@ -31,8 +31,6 @@ class Airport
 
     puts "It's a fine day with clear skies - ready for take off"
     @runway.delete(plane)
-    puts @runway
-    puts @runway.length
     plane.in_air
   end
 
