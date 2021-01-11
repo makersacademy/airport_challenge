@@ -79,3 +79,34 @@ $ require "./lib/airport"
 $ require "./lib/plane"
 $ require "./lib/plane"
 ```
+
+4. Create an airport and a plane
+
+```
+$ airport = Airport.new
+$ plane = Plane.new
+```
+
+5. Try to land the plane in the airport (weather is randomly generated, on a stormy day this will not be possible)
+
+```
+$ airport.land(plane)
+```
+
+6. Set the airport capacity (default capacity is set to 20 planes)
+
+```
+$ airport = Airport.new(50)
+```
+
+7. Make the plane take off from the airport (again, depending on weather conditions!)
+
+```
+$ airport.take_off(plane)
+```
+
+Key lessons learned
+--------------------
+- [x] RSpec syntax - use "context", different "describe" blocks and sensible grouping to improve readability
+- [x] Make the unit test pass, then refine the code.
+- [x] Commit early and commit often, not enough commits made in this project to allow for proper version control.
