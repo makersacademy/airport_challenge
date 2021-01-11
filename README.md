@@ -35,7 +35,7 @@ I followed a strict [TDD](https://bit.ly/3q65B8q) approach to satisfying the req
 
 A brief review of all user stories revealed three protagonists: - Airport, Plane and Weather. The busiest class here was clearly going to be the Airport class.
 
-In terms of how classes interact, I focused on allowing a ```Plane``` to ```#land``` and ```#take-off``` from an ```Airport``` along with a series of controls implmented to satisfy user requirements.
+In terms of how classes interact, I focused on allowing a ```Plane``` to ```#land``` and ```#take-off``` from an ```Airport``` along with a series of controls implemented to satisfy user requirements.
 
 On the ```Airport``` class, I later implemented the ```#empty?``` and ```#full?``` and ```#already_landed?``` methods to contribute to a [SRP](https://bit.ly/2Xrxrzx) approach of my object implementation.
 
@@ -52,7 +52,7 @@ This section outlines known/identified areas of improvement/optimisation that se
 
 - The Plane class has been implemented mostly to allow future expansion and allow it to logically form part of a larger aeronautical environment.
 
-- The Airport class presently uses a simple randomised 'stormy' weather generator method to allow/disallow landing/take-off of planes. A more functional Weather component can be developed that allows re-use by other classes.
+- ```Airport``` presently uses a simple randomised 'stormy' weather generator method to allow/disallow landing/take-off of planes. Presently it's ```#stormy?``` around 20% of the time. A more functional Weather component can be developed that allows re-use by other classes.
 
 ##  Acknowledgements/Appreciations
-- I got stuck on getting my stubs working to override randomising of weather considtions. I jumped around [this](https://www.youtube.com/watch?v=Vg0cFVLH_EM) video published by [Sam Morgan](https://github.com/sjmog) to help me overcome this blocker. I'd like to watch the full video as it would be great to see how this challenge is met by a more senior/experienced software engineer.
+- I got stuck on getting my stubs working to override randomising of weather considtions. I jumped around [this](https://www.youtube.com/watch?v=Vg0cFVLH_EM) video published by [Sam Morgan](https://github.com/sjmog) to help me overcome this blocker. I'd like to watch the full video as it would be great to see how this challenge is/was met by a more senior/experienced software engineer.
