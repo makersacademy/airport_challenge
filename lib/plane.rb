@@ -20,7 +20,11 @@ class Plane
 
     airport.plane_list << self
     self.location = airport
-    puts "#{self} has landed at #{airport}."
+    confirm_plane_landed
+  end
+
+  def confirm_plane_landed
+    puts "#{self} has landed at #{location}."
   end
 
   def take_off
@@ -30,6 +34,10 @@ class Plane
     airport = location
     airport.plane_list.delete(self)
     self.location = "the air"
+    confirm_plane_departed(airport)
+  end
+
+  def confirm_plane_departed(airport)
     puts "#{self} has departed from #{airport}. It is now in #{location}."
   end
 
