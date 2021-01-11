@@ -39,6 +39,7 @@ Create a new plane, eg
 Add the plane to the airport - all planes must begin on a runway.
 - gatwick.add_plane(makers_airlines)
 
+
 ```
 
 --- AIRPORT ---
@@ -66,7 +67,7 @@ Methods:
    - Allows plane to take off if it is on the runway and weather conditions are clear.
 
 - Airport.land_plane(plane)
-  - Lands plane on the runway unless the weather is stormy or the runway is full.
+  - Lands plane on the runway unless the weather is stormy, the runway is full or the plane is already on a runway.
 
 - Airport.weather?
   - Checks that weather conditions are safe enough for take_off and land_plane
@@ -74,11 +75,10 @@ Methods:
 - Airport.storm
   - Generates a random number between 1 and 10. Any value above 7 creates a storm.
 
-```
 
 --- PLANE ---
 
-Planes keep track of their status: they can either be on the runway or in the air.
+Planes keep track of their status: they can either be on a runway or in the air.
 
 The Airport can ask the plane whether it's flying or not.
 
@@ -88,7 +88,7 @@ Methods:
 
 - Plane.new
  - Generates new plane.
- - Use Airport.add_plane to add the plane to an airport's runway.
+ - Use Airport.add_plane(plane) to add the plane to an airport's runway.
 
 - Plane.landed
  - Sets the plane's status to on runway (@flying is false)
