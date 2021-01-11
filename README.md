@@ -66,5 +66,16 @@ How to run the program
 -----------------------
 
 1. Clone this repository to your local machine
-2. Open irb from the command line
-```$ irb```
+2. Open irb from the command line  
+
+```
+$ irb
+```
+
+3. Require the 3 ruby scripts
+
+```
+$ require "./lib/airport"
+$ require "./lib/plane"
+$ require "./lib/plane"
+```
