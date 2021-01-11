@@ -16,10 +16,10 @@ class Plane
   def land(airport)
     fail "Unable to land; airport at capacity" if airport.full?
     fail "The weather is too bad to land there" if airport.stormy?
-    fail "Plane has already landed" if @location != "the air"
+    fail "Plane has already landed" if location != "the air"
 
     airport.plane_list << self
-    @location = airport
+    self.location = airport
     puts "#{self} has landed at #{airport}."
   end
 
@@ -29,8 +29,12 @@ class Plane
 
     airport = location
     airport.plane_list.delete(self)
-    @location = "the air"
+    self.location = "the air"
     puts "#{self} has departed from #{airport}. It is now in #{location}."
   end
+
+  private #--------------------------------------------------
+
+  attr_writer :location
 
 end

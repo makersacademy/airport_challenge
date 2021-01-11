@@ -3,8 +3,6 @@ require "airport"
 
 describe Plane do
 
-  # let(:airport) { double :Airport, :stormy? => false, :full? => false, plane_list: [] }
-
   describe "#land" do
 
     it { is_expected.to respond_to(:land).with(1).arguments }
