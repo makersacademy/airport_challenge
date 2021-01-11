@@ -95,6 +95,7 @@ describe Airport do
   it "removes the plane from the runway after take_off" do
     plane = Plane.new
     subject.add_plane(plane)
+    allow(subject).to receive(:storm) { false }
     subject.take_off(plane)
     expect(subject.runway).not_to include(plane)
   end

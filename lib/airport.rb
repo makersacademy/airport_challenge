@@ -22,16 +22,26 @@ class Airport
   end
 
   def take_off(plane)
-    return unless @runway.include?(plane)
+    unless @runway.include?(plane)
+      puts "This plane is not on the runway"
+      return
+    end
+
     return if plane.flying? == true || weather? == false
 
     puts "It's a fine day with clear skies - ready for take off"
     @runway.delete(plane)
+    puts @runway
+    puts @runway.length
     plane.in_air
   end
 
   def land_plane(plane)
-    return if plane.flying? == false || full? == true || weather? == false
+    if plane.flying? == false
+      puts "This plane is already on a runway"
+      return
+    end
+    return if full? == true || weather? == false
 
     puts "Runway is clear for landing"
     plane.landed

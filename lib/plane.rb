@@ -27,6 +27,9 @@ class Plane
   end
 
   def at_airport?
+    if @at_airport == true
+      puts "This plane has already been added to an airport"
+    end
     @at_airport
   end
 
