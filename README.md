@@ -1,89 +1,58 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+Airport Challenge is a collection of Ruby classes and unit tests developed to satisfy the requirements of a challenge set during the first week of the Makers Academy bootcamp.
 
-```
+## Installation
 
-Instructions
----------
+Use the Ruby package manager [Bundler](https://bundler.io/) to setup your environment after cloning the repository.
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+```bash
+git clone git@github.com:Mornevanzyl/airport_challenge.git
 
-Steps
--------
+gem install bundle
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+bundle
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Usage
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```ruby
+require './lib/airport'
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+airport = Airport.new # returns instance of Airport class
 
-Please create separate files for every class, module and test suite.
+airport = Airport.new(30) # Airport class may be instantiated with any capacity (maximum number of planes), but will use DEFAULT_CAPACITY of 20 if no argument is recevied at instantiation. 
 
-In code review we'll be hoping to see:
+plane = Plane.new # returns instance of Plane class
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+plane = Airport.take_off # instantiates Plane class from within Airport class instance.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+airport.land(plane) # allows a plane to land at the airport.
+```
 
-**BONUS**
+## Approach
+I followed a strict [TDD](https://bit.ly/3q65B8q) approach to satisfying the requirements of this challenge. A systematic and iterative cycle of interpreting a series of user stories and developing feature tests/unit tests/feature implmentation/refactoring.
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+A brief review of all user stories revealed three protagonists: - Airport, Plane and Weather. The busiest class here was clearly going to be the Airport class.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+In terms of how classes interact, I focused on allowing a ```Plane``` to ```#land``` and ```#take-off``` from an ```Airport``` along with a series of controls implemented to satisfy user requirements.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+On the ```Airport``` class, I later implemented the ```#empty?``` and ```#full?``` and ```#already_landed?``` methods to contribute to a [SRP](https://bit.ly/2Xrxrzx) approach of my object implementation.
 
-* **Submit a pull request early.**
+```Airport``` presently provides a public interface to the ```planes``` instance variable, an array used to store planes at the airport. I've enjoyed using this from ```irb``` to aid in feature testing. It will likely be a better practice to move this to private for final implementation.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Finally, the ```Airport``` class also exposes the ```#stormy?``` method used in many guard clauses. It's a simple solution, but will lend itself to be rolled into a larger ```Weather``` class in future.
+
+I had some internal debates related to whether a concept like 'land' should exits on the Airport and/or Plane class. From an immediate functionality perspective it was clearly required on the Airport class, but I recognise the fact that it will likely be required on the Plane class in future, and potential conflicts on this existing on both classes will be addressed at a future junction.
+
+## Suggested Improvements
+This section outlines known/identified areas of improvement/optimisation that serve as input to future development of this project.
+
+- Unit test have been developed/added on an iterative basis closely following the implementation of individual user stories. These can be revisited and grouped in a more optimal way.
+
+- The Plane class has been implemented mostly to allow future expansion and allow it to logically form part of a larger aeronautical environment.
+
+- ```Airport``` presently uses a simple randomised 'stormy' weather generator method to allow/disallow landing/take-off of planes. Presently it's ```#stormy?``` around 20% of the time. A more functional Weather component can be developed that allows re-use by other classes.
+
+##  Acknowledgements/Appreciations
+- I got stuck on getting my stubs working to override randomising of weather considtions. I jumped around [this](https://www.youtube.com/watch?v=Vg0cFVLH_EM) video published by [Sam Morgan](https://github.com/sjmog) to help me overcome this blocker. I'd like to watch the full video as it would be great to see how this challenge is/was met by a more senior/experienced software engineer.
