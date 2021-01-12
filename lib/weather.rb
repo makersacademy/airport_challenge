@@ -6,8 +6,8 @@ class Weather
   def initialize
     @weather = rand(1..10)
   end
-  
+
   def stormy?
-    @weather == 10
+    weather == 10
   end
 end
