@@ -10,7 +10,7 @@ describe("Airport", () => {
         it("responds to capacity", () => {
             expect(airport.capacity).toBeDefined();
         })
-        it("sets the hangar to be equal to capacity", () => {
+        it("sets a default capacity", () => {
             expect(airport.capacity).toEqual(20);
         })
     })
