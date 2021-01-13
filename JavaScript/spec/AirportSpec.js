@@ -16,6 +16,9 @@ describe("Airport", () => {
         it("responds to takeOff", () => {
             expect(airport.takeOff).toBeDefined();
         })
+        it("responds to land", () => {
+            expect(airport.land).toBeDefined();
+        })
     })
 
 })
