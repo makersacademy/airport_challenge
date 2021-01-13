@@ -31,6 +31,8 @@ describe("Airport", () => {
         it("has permition to land", () => {
             airport.land('plane')
             expect(airport.hangar).toContain("plane")
+            console.log(airport.hangar)
+            expect(airport.hangar.length).toEqual(1)
         })
     })
     
