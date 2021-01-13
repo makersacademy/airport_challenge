@@ -42,7 +42,6 @@ class Plane
   end
 
   private #--------------------------------------------------
-
   attr_writer :location
 
 end

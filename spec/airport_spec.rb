@@ -3,20 +3,19 @@ require "plane"
 
 describe Airport do 
 
+  before(:each) do
+    @airport = Airport.new
+    allow(@airport).to receive(:stormy?).and_return(false)
+  end
+
   it "full if add planes to capacity" do
-    allow(subject).to receive(:stormy?).and_return(false)
-    Airport::DEFAULT_CAPACITY.times { Plane.new.land(subject) }
-    expect(subject).to be_full
+    Airport::DEFAULT_CAPACITY.times { Plane.new.land(@airport) }
+    expect(@airport).to be_full
   end
 
   it "prevents landing when full" do
-    allow(subject).to receive(:stormy?).and_return(false)
-    Airport::DEFAULT_CAPACITY.times { Plane.new.land(subject) }
-    expect { Plane.new.land(subject) }.to raise_error "Unable to land; airport at capacity"
-  end
-
-  it "stormy?" do
-    expect(subject.stormy?).not_to be_nil
+    Airport::DEFAULT_CAPACITY.times { Plane.new.land(@airport) }
+    expect { Plane.new.land(@airport) }.to raise_error "Unable to land; airport at capacity"
   end
 
 end
