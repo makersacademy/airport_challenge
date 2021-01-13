@@ -6,7 +6,7 @@ class Airport {
     takeOff() {
         
     }
-    land() {
+    land(plane) {
         
     }
 }
