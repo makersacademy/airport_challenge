@@ -11,7 +11,7 @@ describe("Airport", () => {
             expect(airport.capacity).toBeDefined();
         })
         it("sets a default capacity", () => {
-            expect(airport.capacity).toEqual(20);
+            expect(airport.capacity).toEqual(19);
         })
         it("responds to takeOff", () => {
             expect(airport.takeOff).toBeDefined();
@@ -31,9 +31,22 @@ describe("Airport", () => {
         it("has permition to land", () => {
             airport.land('plane')
             expect(airport.hangar).toContain("plane")
-            console.log(airport.hangar)
             expect(airport.hangar.length).toEqual(1)
         })
+     
+        it("denies permition if hangar is full", () => {
+            airport.hangar.pop()
+            for (var hangar = 0; hangar<= 19; hangar++) {
+                airport.land("plane")
+            }
+            expect(airport.hangar.length).toEqual(20)
+            airport.land("plane")
+            console.log(airport.hangar.length)
+            expect(airport.hangar.length).not.toEqual(21)
+            // reset the hangar to 0
+            airport.hangar.length = 0 
+        })
+
     })
     
 

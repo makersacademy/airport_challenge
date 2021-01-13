@@ -1,12 +1,14 @@
 class Airport {
     constructor() {
         this.hangar = []
-        this.capacity = 20
+        this.capacity = 19
     }
     takeOff() {
         
     }
     land(plane) {
-        return this.hangar.push(plane)
+        if (this.hangar.length <= this.capacity) {
+           return this.hangar.push("plane")
+        }
     }
 }
