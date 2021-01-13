@@ -7,6 +7,6 @@ class Airport {
         
     }
     land(plane) {
-        
+        return this.hangar.push(plane)
     }
 }

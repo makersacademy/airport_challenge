@@ -22,12 +22,15 @@ describe("Airport", () => {
     })
     describe("land", () => {
         var airport = new Airport()
-        
         it("has plane as argument", () => {
             spyOn(airport, 'land');
             airport.land('plane')
             expect(airport.land).toHaveBeenCalled();
             expect(airport.land).toHaveBeenCalledWith('plane');
+        })
+        it("has permition to land", () => {
+            airport.land('plane')
+            expect(airport.hangar).toContain("plane")
         })
     })
     
