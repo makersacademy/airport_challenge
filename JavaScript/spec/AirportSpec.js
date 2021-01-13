@@ -13,6 +13,9 @@ describe("Airport", () => {
         it("sets a default capacity", () => {
             expect(airport.capacity).toEqual(20);
         })
+        it("responds to takeOff", () => {
+            expect(airport.takeOff).toBeDefined();
+        })
     })
 
 })

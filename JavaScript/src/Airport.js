@@ -3,4 +3,7 @@ class Airport {
         this.hangar = []
         this.capacity = 20
     }
+    takeOff() {
+        
+    }
 }
