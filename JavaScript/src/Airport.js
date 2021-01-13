@@ -1,8 +1,6 @@
 class Airport {
     constructor() {
-        this.hangar = this.setHangar()
+        this.hangar = []
     }
-    setHangar() {
-        return this.setHangar=[]
-    }
+    
 }
