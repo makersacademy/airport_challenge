@@ -1,67 +1,45 @@
-$all_grounded_planes = []
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
-  attr_reader :planes_in_airport, :capacity
+  DEFAULT_CAPACITY = 20
+  attr_reader :planes_in_airport, :capacity, :weather
 
-  def initialize(capacity = 20)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes_in_airport = []
-    @weather = generate_weather
     @capacity = capacity
-  end
-
-  def generate_weather(weather = 0)
-    if sunny? || stormy?
-      @weather = weather
-    else
-      rand_num = [1, 2, 3, 4, 5, 6].sample
-      rand_num <= 5 ? @weather = "sunny" : @weather = "stormy"
-    end
-    @weather
+    @weather = Weather.new
   end
 
   def land(plane)
-    raise "Weather is too bad for landing" if stormy?
-    raise "Airport at full capacity" if full?
-    raise "Plane is not flying" if present?(plane)
-    raise "Plane is not flying" if plane_elsewhere(plane)
-
+    full?
+    stormy?
+    plane.landed
     @planes_in_airport << plane
-    $all_grounded_planes << plane
-    @planes_in_airport
   end
 
   def takeoff(plane)
-    raise "Weather is too bad for takeoff" if stormy?
-    raise "No planes available for takeoff" if empty?
-    raise "Plane not at this airport" unless present?(plane)
-
+    stormy?
+    empty?
+    present?(plane)
+    plane.departed
     @planes_in_airport.delete(plane)
   end
 
   def full?
-    @planes_in_airport.length >= @capacity
+    raise "Airport at full capacity" if @planes_in_airport.length >= @capacity
   end
 
   def empty?
-    @planes_in_airport == []
-  end
-
-  def sunny?
-    @weather == 'sunny'
+    raise "No planes available for takeoff" if @planes_in_airport.empty?
   end
 
   def stormy?
-    @weather == "stormy"
+    raise "Weather is too bad for landing/takeoff" if @weather.weather_report == "stormy"
   end
 
   def present?(plane)
-    @planes_in_airport.include?(plane)
+    raise "Plane not at this airport" unless @planes_in_airport.include?(plane)
   end
 
-  def plane_elsewhere(plane)
-    $all_grounded_planes.include?(plane)
-  end
-
-end
-
-class Plane
 end
