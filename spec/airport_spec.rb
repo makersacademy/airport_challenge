@@ -1,11 +1,12 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do 
 
   before(:each) do
     @airport = Airport.new
-    allow(@airport).to receive(:stormy?).and_return(false)
+    allow(@airport.weather).to receive(:stormy?).and_return(false)
   end
 
   it "full if add planes to capacity" do

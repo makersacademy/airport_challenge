@@ -15,7 +15,7 @@ class Plane
 
   def land(airport)
     fail "Unable to land; airport at capacity" if airport.full?
-    fail "The weather is too bad to land there" if airport.stormy?
+    fail "The weather is too bad to land there" if airport.weather.stormy?
     fail "Plane has already landed" if location != "the air"
 
     airport.plane_list << self
@@ -29,7 +29,7 @@ class Plane
 
   def take_off
     fail "Plane is already in the air!" if location == "the air"
-    fail "The weather is too bad to take off" if location.stormy?
+    fail "The weather is too bad to take off" if location.weather.stormy?
 
     airport = location
     airport.plane_list.delete(self)

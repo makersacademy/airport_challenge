@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :plane_list, :capacity, :name
+  attr_reader :plane_list, :capacity, :name, :weather
 
   DEFAULT_CAPACITY = 10
 
@@ -8,6 +8,7 @@ class Airport
     @plane_list = []
     @name = name
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def to_s
@@ -16,10 +17,6 @@ class Airport
 
   def full?
     capacity == plane_list.length
-  end
-
-  def stormy?
-    rand(1..10) == 10
   end
 
 end

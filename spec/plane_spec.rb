@@ -1,5 +1,6 @@
 require "plane"
 require "airport"
+require "weather"
 
 describe Plane do
 
@@ -7,7 +8,8 @@ describe Plane do
 
     before(:each) do
       @airport = Airport.new
-      allow(@airport).to receive(:stormy?) { false }
+      allow(@airport.weather).to receive(:stormy?) { false }
+
       subject.land(@airport)   
     end
 
@@ -26,7 +28,7 @@ describe Plane do
     end
 
     it "prevented if airport weather is stormy" do
-      allow(@airport).to receive(:stormy?) { true }
+      allow(@airport.weather).to receive(:stormy?) { true }
       expect { subject.land(@airport) }.to raise_error "The weather is too bad to land there"
     end 
 
@@ -35,7 +37,7 @@ describe Plane do
   context "#take_off" do
     before(:each) do
       @airport = Airport.new
-      allow(@airport).to receive(:stormy?) { false } 
+      allow(@airport.weather).to receive(:stormy?) { false } 
     end
 
     it { is_expected.to respond_to :take_off }
@@ -58,7 +60,7 @@ describe Plane do
     end
 
     it "prevented if airport weather is bad" do
-      allow(@airport).to receive(:stormy?).and_return(false, true)
+      allow(@airport.weather).to receive(:stormy?).and_return(false, true)
       subject.land(@airport)
       expect { subject.take_off }.to raise_error "The weather is too bad to take off"
     end
