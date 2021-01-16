@@ -9,7 +9,6 @@ describe Airport do
   describe 'landing' do
     it "receives a landing plane" do
       allow(subject.weather).to receive(:stormy?) { false }
-      allow(subject).to receive(:landed?) { false }
       expect(subject.land(plane)[0]).to eq plane
     end
 
