@@ -7,9 +7,9 @@ class Airport
         @hangar = []
     end
 
-    def land(plane)
-        @hangar.push(plane) 
-    end
+    # def land(plane)
+    #     @hangar.push(plane) 
+    # end
 
     def takeoff
         raise StandardError.new "Hangar is empty" if @hangar.empty?

@@ -2,8 +2,8 @@ require_relative 'airport'
 
 class Plane
 
-    # def land
-    #     @hangar.push
-    # end
+    def land(airport)
+        airport.hangar.push(self)
+    end
     
 end
