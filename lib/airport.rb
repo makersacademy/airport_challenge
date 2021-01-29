@@ -7,7 +7,7 @@ class Airport
   end
 
   def planes
-    @planes.map {|plane| plane.flight_id}
+    @planes.map { |plane| plane.flight_id }
   end
 
   def land(plane)
@@ -22,7 +22,7 @@ class Airport
   end
 
   def confirm_status(flight_id)
-    if @planes.map {|plane| plane.flight_id}.include?(flight_id)
+    if @planes.map { |plane| plane.flight_id }.include?(flight_id)
       "#{flight_id} is at #{@name}"
     else
       "#{flight_id} is in flight"
