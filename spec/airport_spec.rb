@@ -23,7 +23,7 @@ describe Airport do
     it 'confirms that plane is no longer at airport'do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "#{plane} has taken off"
-  end
+    end
 
   end
 
