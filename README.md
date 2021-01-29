@@ -65,3 +65,13 @@
 |passenger          |            |
 |airport            |`stormy?`   |
 |plane              |            |
+
+|A 'normal' process       |
+|:-----------------------:|
+|_air traffic controller_ |
+|'land plane'             |
+|**airport**              |
+|`land_plane`             |
+|**plane**                |
+|`confirm_status`         |
+|_air traffic controller_ |
