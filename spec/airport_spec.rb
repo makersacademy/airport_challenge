@@ -3,9 +3,8 @@ require 'airport'
 describe Airport do
   describe '#land' do
     it 'raises an error if airport it full' do
+      subject.airport_capacity.times { subject.land(Plane.new) }
       plane = Plane.new
-      plane2 = Plane.new
-      subject.land(plane2)
       expect {raise subject.land(plane)}.to raise_error('The airport is full')
     end
     it 'instructs a plane to land' do
