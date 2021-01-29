@@ -71,7 +71,18 @@ describe Airport do
 
   describe '#capacity' do
     it 'the system designer should be able to override the default capacity for a new instance of Airport' do
-      
+      devs_airport = Airport.new('Dev airport', 3)
+      expect(devs_airport.capacity).to eq 3
+    end
+
+    it 'given the above, the correct amount of planes should be able to land' do
+      devs_airport = Airport.new('Dev airport', 3)
+      plane1 = Plane.new('RUB091')
+      plane2 = Plane.new('CPP091')
+      plane3 = Plane.new('MAK121')
+      devs_airport.land(plane1)
+      devs_airport.land(plane2)
+      expect(devs_airport.land(plane3)).to eq 'MAK121 successfully landed at Dev airport'
     end
   end
 end

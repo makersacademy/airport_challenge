@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :name
+  attr_reader :name, :capacity
 
   def initialize(name, capacity = 2)
     @name = name
@@ -12,11 +12,11 @@ class Airport
   end
 
   def land(plane)
-    if @planes.length < @capacity
+    if full?
+      raise "Landing denied"
+    else
       @planes.push(plane)
       "#{plane.flight_id} successfully landed at #{@name}"
-    else
-      raise "Landing denied"
     end
   end
 
@@ -32,5 +32,10 @@ class Airport
     else
       "#{flight_id} is in flight"
     end
+  end
+
+  private
+  def full?
+    @planes.length >= @capacity
   end
 end
