@@ -18,4 +18,13 @@ describe Airport do
     end
 
   end
+
+  describe '#take_off' do
+    it 'informs air traffic controller that plane nas taken off' do
+      plane = Plane.new('MAK121')
+      airport = Airport.new('Ruby airport')
+      airport.land(plane)
+      expect(airport.take_off(plane)).to eq 'MAK121 has successfully taken off from Ruby airport'
+    end
+  end
 end
