@@ -3,6 +3,7 @@ class Airport
 
   def initialize(name)
     @name = name
+    @capacity = 2
     @planes = []
   end
 
@@ -11,8 +12,12 @@ class Airport
   end
 
   def land(plane)
-    @planes.push(plane)
-    "#{plane.flight_id} successfully landed at #{@name}"
+    if @planes.length < @capacity
+      @planes.push(plane)
+      "#{plane.flight_id} successfully landed at #{@name}"
+    else
+      "Landing denied for #{plane.flight_id}"
+    end
   end
 
   def take_off(plane)

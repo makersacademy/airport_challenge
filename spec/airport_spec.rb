@@ -17,6 +17,16 @@ describe Airport do
       expect(airport.planes).to eq ['MAK942']
     end
 
+    it 'prevents a plane from landing when the airport is full' do
+      airport = Airport.new('Python airport')
+      plane1 = Plane.new('MAK121')
+      plane2 = Plane.new('CPP091')
+      plane3 = Plane.new('RUB091')
+      airport.land(plane1)
+      airport.land(plane2)
+      expect(airport.land(plane3)).to eq 'Landing denied for RUB091'
+    end
+
   end
 
   describe '#take_off' do
