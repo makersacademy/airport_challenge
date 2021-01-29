@@ -26,5 +26,15 @@ describe Airport do
       airport.land(plane)
       expect(airport.take_off(plane)).to eq 'MAK121 successfully taken off from Ruby airport'
     end
+
+    it 'the list of planes at airport should now reflect that planes have left the airport' do
+      airport = Airport.new('Python airport')
+      plane1 = Plane.new('CPP091')
+      plane2 = Plane.new('RUB091')
+      airport.land(plane1)
+      airport.land(plane2)
+      airport.take_off(plane1)
+      expect(airport.planes).to eq ['RUB091']
+    end
   end
 end
