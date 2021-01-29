@@ -24,7 +24,7 @@ describe Airport do
       plane3 = Plane.new('RUB091')
       airport.land(plane1)
       airport.land(plane2)
-      expect{airport.land(plane3)}.to raise_error "Landing denied"
+      expect { airport.land(plane3) }.to raise_error "Landing denied"
     end
 
   end
@@ -94,7 +94,7 @@ describe Airport do
       devs_airport.land(plane1)
       devs_airport.land(plane2)
       devs_airport.land(plane3)
-      expect{devs_airport.land(plane4)}.to raise_error 'Landing denied'
+      expect { devs_airport.land(plane4) }.to raise_error 'Landing denied'
       expect(devs_airport.planes).to eq ['RUB091', 'CPP091', 'MAK121']
     end 
 

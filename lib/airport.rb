@@ -12,12 +12,10 @@ class Airport
   end
 
   def land(plane)
-    if full?
-      raise "Landing denied"
-    else
-      @planes.push(plane)
-      "#{plane.flight_id} successfully landed at #{@name}"
-    end
+    raise "Landing denied" if full?
+
+    @planes.push(plane)
+    "#{plane.flight_id} successfully landed at #{@name}"
   end
 
   def take_off(plane)
