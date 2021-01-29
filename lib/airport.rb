@@ -21,7 +21,11 @@ class Airport
     "#{plane.flight_id} successfully taken off from #{@name}"
   end
 
-  def confirm_status(plane)
-    
+  def confirm_status(flight_id)
+    if @planes.map {|plane| plane.flight_id}.include?(flight_id)
+      "#{flight_id} is at #{@name}"
+    else
+      "#{flight_id} is in flight"
+    end
   end
 end
