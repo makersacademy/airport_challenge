@@ -16,6 +16,8 @@ class Airport
   end
 
   def take_off(plane)
+    i = @planes.index(plane)
+    @planes.delete_at(i)
     "#{plane.flight_id} successfully taken off from #{@name}"
   end
 end
