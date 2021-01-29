@@ -14,6 +14,12 @@ describe Airport do
   end
 
   describe '#take_off' do
+    it 'raises error if stormy' do
+      plane = Plane.new
+      allow(subject).to receive(:rand).and_return(3) 
+      expect {raise subject.stormy?}.to raise_error('Cannot take off due to storm')
+    end
+
     it 'instructs a plane to take off' do
       plane = Plane.new
       expect(subject.take_off(plane)).to be
@@ -25,19 +31,16 @@ describe Airport do
     end
   end
 
-  describe '#weather' do
+  describe '#stormy?' do
     it 'decides if weather is stormy or sunny' do
-      expect(subject).to respond_to(:weather)
+      expect(subject).to respond_to(:stormy?)
     end
     
-    it 'is stormy when number is 3' do
+    it 'will generate a random number when called' do
       allow(subject).to receive(:rand).and_return(3) 
-      expect(subject.weather).to eq 3
+      expect(subject.stormy?).to eq 3
     end
-    it 'is sunny when number is 0..2' do
-      allow(subject).to receive(:rand).and_return(1)
-      expect(subject.weather).to eq 1
-    end
+    
   end
 
 end

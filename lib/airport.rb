@@ -17,7 +17,7 @@ class Airport
     "#{plane} has taken off"
   end
 
-  def weather
+  def stormy?
     rand(4)
   end
 end
