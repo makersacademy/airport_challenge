@@ -5,7 +5,7 @@ class Airport
     @name = name
   end
 
-  def land(flight_id)
-    "#{flight_id} successfully landed at #{@name}"
+  def land(plane)
+    "#{plane.flight_id} successfully landed at #{@name}"
   end
 end
