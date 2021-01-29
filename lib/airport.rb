@@ -14,4 +14,8 @@ class Airport
     @planes.push(plane)
     "#{plane.flight_id} successfully landed at #{@name}"
   end
+
+  def take_off(plane)
+    "#{plane.flight_id} successfully taken off from #{@name}"
+  end
 end
