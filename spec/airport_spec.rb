@@ -16,8 +16,9 @@ describe Airport do
   describe '#take_off' do
     it 'raises error if stormy' do
       plane = Plane.new
-      allow(subject).to receive(:rand).and_return(3) 
-      expect {raise subject.stormy?}.to raise_error('Cannot take off due to storm')
+      subject.land(plane)
+      allow(subject).to receive(:stormy?).and_return(3) 
+      expect {raise subject.take_off(plane)}.to raise_error('Cannot take off due to storm')
     end
 
     it 'instructs a plane to take off' do

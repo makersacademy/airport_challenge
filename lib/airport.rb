@@ -13,6 +13,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'Cannot take off due to storm' if stormy? == 3
     @plane.delete(plane)
     "#{plane} has taken off"
   end
