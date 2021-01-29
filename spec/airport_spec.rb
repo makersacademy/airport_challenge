@@ -7,6 +7,13 @@ describe Airport do
       plane = Plane.new
       expect {raise subject.land(plane)}.to raise_error('The airport is full')
     end
+
+    # it 'raises an error if landing during a storm' do
+    #   plane = Plane.new
+    #   allow(subject).to receive(:stormy?).and_return(3)
+    #   expect {raise subject.land(plane)}.to raise_error('Too stormy to land')
+    # end
+      
     it 'instructs a plane to land' do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
@@ -14,7 +21,7 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'raises error if stormy' do
+    it 'raises error if taking off during a storm' do
       plane = Plane.new
       subject.land(plane)
       allow(subject).to receive(:stormy?).and_return(3) 

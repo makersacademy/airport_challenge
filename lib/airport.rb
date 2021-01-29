@@ -8,7 +8,8 @@ class Airport
   end
 
   def land(plane)
-    raise 'The airport is full' if @plane.length  >= @airport_capacity 
+    raise 'The airport is full' if full? 
+    
     @plane.push(plane)
   end
 
@@ -20,5 +21,11 @@ class Airport
 
   def stormy?
     rand(4)
+  end
+
+  private
+
+  def full?
+    @plane.length  >= @airport_capacity
   end
 end
