@@ -1,5 +1,8 @@
 # Airport Challenge
 
+## Credits to my solution
+Used advice of peer group 1! (Anna (yy140), Graeme and Anastasia)
+
 ## User Stories  
 
 ### Story 1

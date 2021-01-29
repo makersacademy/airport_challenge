@@ -6,7 +6,7 @@ describe Airport do
   describe '#land' do
     it 'informs air traffic controller plane has landed' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       plane = Plane.new('MAK942')
       airport = Airport.new('Makers airport')
       expect(airport.land(plane, weather)).to eq "MAK942 successfully landed at Makers airport"
@@ -14,7 +14,7 @@ describe Airport do
 
     it 'lets a plane land at an airport and the controller can see that it has landed' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       plane = Plane.new('MAK942')
       airport = Airport.new('Makers airport')
       airport.land(plane, weather)
@@ -23,7 +23,7 @@ describe Airport do
 
     it 'prevents a plane from landing when the airport is full' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       airport = Airport.new('Python airport')
       plane1 = Plane.new('MAK121')
       plane2 = Plane.new('CPP091')
@@ -38,7 +38,7 @@ describe Airport do
   describe '#take_off' do
     it 'informs air traffic controller that plane has taken off' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       plane = Plane.new('MAK121')
       airport = Airport.new('Ruby airport')
       airport.land(plane, weather)
@@ -47,7 +47,7 @@ describe Airport do
 
     it 'the list of planes at airport should now reflect that planes have left the airport' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       airport = Airport.new('Python airport')
       plane1 = Plane.new('CPP091')
       plane2 = Plane.new('RUB091')
@@ -61,7 +61,7 @@ describe Airport do
   describe '#confirm_status' do
     it 'should, upon request, inform controller when landed at airport' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       airport = Airport.new('Python airport')
       plane1 = Plane.new('CPP091')
       plane2 = Plane.new('RUB091')
@@ -72,7 +72,7 @@ describe Airport do
   
     it 'should, upon request, inform controller when in flight' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       airport = Airport.new('Python airport')
       plane1 = Plane.new('CPP091')
       plane2 = Plane.new('RUB091')
@@ -86,14 +86,14 @@ describe Airport do
   describe '#capacity' do
     it 'the system designer should be able to override the default capacity for a new instance of Airport' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       devs_airport = Airport.new('Dev airport', 3)
       expect(devs_airport.capacity).to eq 3
     end
 
     it 'given the above, the correct amount of planes should be able to land' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       devs_airport = Airport.new('Dev airport', 3)
       plane1 = Plane.new('RUB091')
       plane2 = Plane.new('CPP091')
@@ -105,7 +105,7 @@ describe Airport do
 
     it 'given an increased capacity, no more than the max capacity should be allowed to land' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       devs_airport = Airport.new('Dev airport', 3)
       plane1 = Plane.new('RUB091')
       plane2 = Plane.new('CPP091')
@@ -122,7 +122,7 @@ describe Airport do
   describe '#stormy?' do
     it 'denies clearance for landing if weather is stormy' do
       weather = double()
-      weather.stub(:report) {"stormy"}
+      weather.stub(:report) { "stormy" }
       airport = Airport.new('Makers airport')
       plane = Plane.new('MAK121')
       expect { airport.land(plane, weather) }.to raise_error 'Landing denied due to weather'
@@ -130,13 +130,13 @@ describe Airport do
 
     it 'also denies clearance for takeoff if weather is stormy' do
       weather = double()
-      weather.stub(:report) {"sunny"}
+      weather.stub(:report) { "sunny" }
       airport = Airport.new('Makers airport')
       plane = Plane.new('MAK121')
       airport.land(plane, weather)
       weather = double()
-      weather.stub(:report) {"stormy"}
-      expect{ airport.take_off(plane, weather) }.to raise_error 'Take off denied due to weather'
+      weather.stub(:report) { "stormy" }
+      expect { airport.take_off(plane, weather) }.to raise_error 'Take off denied due to weather'
     end
   end
 end

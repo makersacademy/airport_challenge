@@ -8,7 +8,7 @@ describe Weather do
 
     it 'weather can be stormy' do
       weather = double()
-      weather.stub(:report) {"stormy"}
+      weather.stub(:report) { "stormy" }
       expect(weather.report).to eq 'stormy'
     end
   end
