@@ -84,5 +84,19 @@ describe Airport do
       devs_airport.land(plane2)
       expect(devs_airport.land(plane3)).to eq 'MAK121 successfully landed at Dev airport'
     end
+
+    it 'given an increased capacity, no more than the max capacity should be allowed to land' do
+      devs_airport = Airport.new('Dev airport', 3)
+      plane1 = Plane.new('RUB091')
+      plane2 = Plane.new('CPP091')
+      plane3 = Plane.new('MAK121')
+      plane4 = Plane.new('MAK942')
+      devs_airport.land(plane1)
+      devs_airport.land(plane2)
+      devs_airport.land(plane3)
+      expect{devs_airport.land(plane4)}.to raise_error 'Landing denied'
+      expect(devs_airport.planes).to eq ['RUB091', 'CPP091', 'MAK121']
+    end 
+
   end
 end

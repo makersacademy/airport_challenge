@@ -43,12 +43,12 @@
 * So that the software can be used for many different **airport**s
 * I would like a default **airport** capacity that can be _overridden_ as appropriate  
 
-|Objects            |Messages                            |
-|-------------------|------------------------------------|
-|traffic controller |                                    |
-|passenger          |                                    |
-|airport            |`initialize` (with default capacity)|
-|plane              |                                    |
+|Objects            |Messages                                |
+|-------------------|----------------------------------------|
+|traffic controller |                                        |
+|passenger          |                                        |
+|airport            |`initialize` (with alternative capacity)|
+|plane              |                                        |
 
 * As an air **traffic controller** 
 * To ensure safety 
