@@ -20,4 +20,8 @@ class Airport
     @planes.delete_at(i)
     "#{plane.flight_id} successfully taken off from #{@name}"
   end
+
+  def confirm_status(plane)
+    
+  end
 end
