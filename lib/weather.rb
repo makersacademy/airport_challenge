@@ -1,11 +1,12 @@
 class Weather
-  def report
+  attr_reader :report
+  def initialize
     weather = rand(2)
     case weather
     when 0 
-      "sunny"
+      @report = "sunny"
     when 1
-      "stormy"
+      @report = "stormy"
     end
   end
 end
