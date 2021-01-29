@@ -1,9 +1,9 @@
 class Airport
   attr_reader :name
 
-  def initialize(name)
+  def initialize(name, capacity = 2)
     @name = name
-    @capacity = 2
+    @capacity = capacity
     @planes = []
   end
 
@@ -16,7 +16,7 @@ class Airport
       @planes.push(plane)
       "#{plane.flight_id} successfully landed at #{@name}"
     else
-      "Landing denied for #{plane.flight_id}"
+      raise "Landing denied"
     end
   end
 

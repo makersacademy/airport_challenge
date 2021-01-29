@@ -24,7 +24,7 @@ describe Airport do
       plane3 = Plane.new('RUB091')
       airport.land(plane1)
       airport.land(plane2)
-      expect(airport.land(plane3)).to eq 'Landing denied for RUB091'
+      expect{airport.land(plane3)}.to raise_error "Landing denied"
     end
 
   end
@@ -66,6 +66,12 @@ describe Airport do
       airport.land(plane2)
       airport.take_off(plane1)
       expect(airport.confirm_status('CPP091')).to eq 'CPP091 is in flight'
+    end
+  end
+
+  describe '#capacity' do
+    it 'the system designer should be able to override the default capacity for a new instance of Airport' do
+      
     end
   end
 end
