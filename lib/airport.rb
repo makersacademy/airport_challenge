@@ -30,11 +30,10 @@ class Airport
   end
 
   def check_landing_conditions(tail_number)
-  raise "Plane cannot land because airport is at full capacity" if full?
+    raise "Plane cannot land because airport is at full capacity" if full?
 
-  raise "Weather is still stormy, please wait for weather 
-  to improve before landing" if stormy?
+    raise "Weather is still stormy, please wait for weather 
+    to improve before landing" if stormy?
   end
+  
 end
-
-

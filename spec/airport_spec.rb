@@ -16,7 +16,8 @@ RSpec.describe Airport do
       10.times do
         airport.approved_for_landing("DLH430")
       end
-    expect {airport.approved_for_landing("DLH430")}.to raise_error(RuntimeError, "Plane cannot land because airport is at full capacity")
+      allow(airport).to receive(:stormy?).and_return(false)
+      expect { airport.approved_for_landing("DLH430") }.to raise_error(RuntimeError, "Plane cannot land because airport is at full capacity")
     end
   end
 
@@ -46,5 +47,4 @@ RSpec.describe Airport do
       expect(airport.capacity).to eq(20)
     end
   end
-
 end
