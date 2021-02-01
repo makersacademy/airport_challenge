@@ -21,6 +21,6 @@ Anytime take_off or land_plane methods are run the weather is randomised using t
 
 Problems - 
 
-Code appears to be running fine but I have messed up with the tests after chaning some functionality. Right now any weather tests in airport spec (testing if the planes will take off / land in stormy weather) will fail often. I think this is a problem in the tests rather than the code. Because weather.update_weather is called in both take_off and land_plane I struggled to make sure I had the correct weather setting for testing. I have ecperimented with instance_variable_set but havent managed to make it work yet. 
+Code appears to be running fine but I have messed up with the tests after chaning some functionality. Right now any weather tests in airport spec (testing if the planes will take off / land in stormy weather) will fail often. I think this is a problem in the tests rather than the code. Because weather.update_weather is called in both take_off and land_plane I struggled to make sure I had the correct weather setting for testing. I have experimented with instance_variable_set but havent managed to make it work yet. In order to manually test this right now you can move the update_weather call to the last line of take_off and land_plane. This will allow instance_variable_set to change the weather to be what we want for testing. 
 
 
