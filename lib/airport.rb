@@ -12,16 +12,18 @@ class Airport
 
   def land_plane(plane)
     @weather.update_weather
-    fail('Plane is already in hangar') if @hangar.include?(plane)
-    fail('Is it too stormy') unless @weather.stormy == false
-    fail ('Airport is full') unless @hangar.length < @capacity    
+    fail 'Plane is already in hangar' if @hangar.include?(plane)
+    fail 'It is too stormy' unless @weather.stormy == false
+    fail 'Airport is full' unless @hangar.length < @capacity   
+
     @hangar.append(plane)
   end
 
   def take_off(plane)
     @weather.update_weather
-    fail('Plane is not in hangar') unless @hangar.include?(plane)
-    fail('Is it too stormy') unless @weather.stormy == false
+    fail 'Plane is not in hangar' unless @hangar.include?(plane)
+    fail 'It is too stormy' unless @weather.stormy == false
+
     @hangar.delete(plane)
   end
 
