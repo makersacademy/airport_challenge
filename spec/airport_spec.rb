@@ -71,11 +71,3 @@ describe Airport do
   end
 
 end
-
-
-# it "doesn't allow planes to take off during a storm" do
-#   allow(subject).to receive(:checks_safety) { "sunny" }
-#   subject.land(plane)
-#   allow(subject).to receive(:checks_safety) { "stormy" }
-#   expect { subject.takeoff }.to raise_error "It is too stormy"
-# end
