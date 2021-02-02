@@ -9,7 +9,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @weather = ""
+    @weather = Weather.new
     @planes = []
   end
 
@@ -42,12 +42,8 @@ class Airport
     fail "#{plane} has already landed" unless @planes.include?(plane) == false
   end
 
-  def checks_weather
-    @weather = Weather.new.current_weather
-  end
-
   def checks_safety
-    fail "It is too stormy" unless checks_weather == "sunny"
+    fail "It is too stormy" unless @weather.stormy? == "sunny"
   end
 
   def checks_planes_available_to_takeoff
