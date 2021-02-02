@@ -21,10 +21,6 @@ class Airport
     @planes.length
   end
 
-  def full?
-    @planes.length >= @capacity
-  end
-
   def stormy?
     # rand(1..10) > 7
     false
@@ -33,8 +29,13 @@ class Airport
   def check_landing_conditions(tail_number)
     raise "Plane cannot land because airport is at full capacity" if full?
 
-    raise "Weather is still stormy, please wait for weather 
-    to improve before landing" if stormy?
+    raise "Weather is still stormy, please wait for weather to improve before landing" if stormy?
+  end
+
+  private
+
+  def full?
+    @planes.length >= @capacity
   end
   
 end
