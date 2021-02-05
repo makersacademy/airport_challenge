@@ -48,7 +48,7 @@ describe Plane do
   context "#take_off" do
     it "Will take off when told to take off from correct airport" do
       allow(airport).to receive(:good_weather?).and_return(true)
-      allow(airport).to receive(:takeoff_plane)
+      allow(airport).to receive(:take_off_plane)
       landed_plane.take_off(airport)
       expect(landed_plane.landed_at).to eq(-1)
     end

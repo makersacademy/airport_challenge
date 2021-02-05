@@ -21,7 +21,7 @@ class Plane
     raise StandardError.new "The plane cannot take off from this airport because of stormy weather" unless airport.good_weather?
 
     @landed_at = -1
-    airport.takeoff_plane(self)
+    airport.take_off_plane(self)
   end
 
   def at_airport?(airport)

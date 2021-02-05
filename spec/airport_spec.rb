@@ -19,7 +19,7 @@ describe Airport do
 
   it "Telling a plane to take off after landing will cause it to not be in the hangar" do
     subject.land_plane("real plane")
-    subject.takeoff_plane("real plane")
+    subject.take_off_plane("real plane")
     expect(subject.planes_in_hangar.length).to eq(0)
   end
 
