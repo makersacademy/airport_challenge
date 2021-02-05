@@ -1,14 +1,19 @@
 class Airport
+
+  MAX_CAPACITY = 5
+  
   attr_accessor :capacity, :planes, :weather
-  def initialize
-    @capacity = 0
+  def initialize(capacity = MAX_CAPACITY)
+    @capacity = capacity
     @planes = []
     @weather = ["sunny", "sunny", "cloudy", "stormy", "sunny"].sample
   end
 
   def land(flight_number)
-    if @planes.length >= @capacity
-      return "the airport is full"
+    if @planes.length >= @capacity && @weather == "stormy"
+      return "airport is full and the weather is poor, you must not land"
+    elsif @planes.length >= @capacity
+        return "the airports max capacity of #{@capacity} planes has been reached, the airport is full"
     elsif @weather == "stormy"
       return "you can not land due to stormy weather"
     else
@@ -23,7 +28,7 @@ end
     @planes.delete(flight_number)
   end
 
-  def max_capacity(num)
-    @capacity =+ num
+  def override_capacity(num)
+    @capacity = num
   end
 end
