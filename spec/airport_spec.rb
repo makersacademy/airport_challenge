@@ -17,6 +17,10 @@ describe Airport do
     expect(subject.planes_in_hangar[0]).to eq("real plane")
   end
 
+  it "Trying to land a plane at an airport with no capacity will cause an error to be raised" do
+    expect { zero_capacity_airport.land_plane("real plane") }.to raise_error(StandardError)
+  end
+
   it "Telling a plane to take off after landing will cause it to not be in the hangar" do
     subject.land_plane("real plane")
     subject.take_off_plane("real plane")

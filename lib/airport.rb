@@ -7,6 +7,8 @@ class Airport
   end
 
   def land_plane(plane)
+    raise StandardError.new "You cannot land a plane at this airport as it is full" unless space?
+
     @planes_in_hangar << plane
   end
 
