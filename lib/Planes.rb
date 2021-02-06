@@ -4,9 +4,11 @@ end
 
 
 class Airport
-  attr_reader :plane, :capacity
+  attr_reader :plane, :capacity, :weather_today
   MAX_AIRPORT_CAPACITY = 20
-  def initialize(capacity = MAX_AIRPORT_CAPACITY)
+  WEATHER = ["clear", "stormy"]
+  def initialize(capacity = MAX_AIRPORT_CAPACITY, weather = WEATHER.sample)
+    @weather_today = weather
     @capacity = capacity
     @plane = []
   end
@@ -17,10 +19,14 @@ class Airport
     else
       @plane << plane
     end
-  end 
-  
-  def take_off
-      @plane.pop
   end
   
+  def takeoff
+    if @plane.length < 1
+      fail 'There are no planes ready for takeoff'
+    else
+      @plane.pop
+    end
+  end
+
 end
