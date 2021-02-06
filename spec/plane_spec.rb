@@ -4,10 +4,10 @@ describe Plane do
 let(:heathrow_airport) { Airport.new }
 
   describe '#land' do
-    context 'when the airport hangar has available spaces' do
       it 'should take one argument' do
         expect(subject).to respond_to(:land).with(1)
       end
+    context 'when the airport hangar has available spaces' do
       it 'should add the plane the airport hangar specified' do
         plane_1 = Plane.new
         plane_1.land(heathrow_airport)

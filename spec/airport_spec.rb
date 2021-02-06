@@ -2,8 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  # model_airport = Airport.new
-
   describe '#capacity' do
     it 'returns a new Airport object with capacity set' do
       expect(subject.capacity).to_not be nil
@@ -25,18 +23,36 @@ describe Airport do
   end
 
   describe '#hangar_full?' do
-    it 'should return true if the hangar full' do
-      small_airport = Airport.new @capacity=1
-      plane_1 = Plane.new
-      plane_1.land(small_airport)
-      expect(small_airport.hangar_full?).to be true
+    context 'when the hangar is full' do
+      it 'should return true' do
+        small_airport = Airport.new @capacity=1
+        plane_1 = Plane.new
+        plane_1.land(small_airport)
+        expect(small_airport.hangar_full?).to be true
+      end
     end
-    # it 'should return fall if the hangar is not full' do
-    #   small_airport = Airport.new @capacity=3
-    #   plane_1 = Plane.new
-    #   plane_1.land(small_airport)
-    #   expect(small_airport.hangar_full?).to be false
+    # context 'when the hangar is not full' do
+      # it 'should return false if the hangar is not full' do
+      #   small_airport = Airport.new @capacity=3
+      #   plane_1 = Plane.new
+      #   plane_1.land(small_airport)
+      #   expect(small_airport.hangar_full?).to be false
+      # end
     # end
   end
 
+#allow(Airport.new).to receive(stromy?) { true }
+  describe '#weather' do
+    it 'should respond to weather' do
+      expect(Airport.new).to respond_to(:weather)
+    end
+  end
 end
+
+# describe 'generate_weather' do
+#   it 'should randomly select between stormy and sunny' do
+#     weathers = ['sunny','sunny','sunny', 'stormy']
+#     weather_rand = weathers.sample
+#     allow(Airport.new.generate_weather).to receive(:weather_rand) { 'sunny' }
+#   end
+# end
