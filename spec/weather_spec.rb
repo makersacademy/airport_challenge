@@ -9,6 +9,13 @@ describe Weather do
       end
     end
 
+    context 'when moderate pressure' do
+      it 'is sunny' do
+        allow(subject).to receive(:atmospheric_pressure) { 5 }
+        expect(subject.forcast).to be :sunny
+      end
+    end
+
     context 'when high pressure' do
       it 'is sunny' do
         allow(subject).to receive(:atmospheric_pressure) { 9 }

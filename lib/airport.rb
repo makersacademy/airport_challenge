@@ -5,28 +5,29 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  attr_accessor :planes, :capacity
+  attr_reader :planes
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
 
-  def gone?(plane)
+  def not_contain?(plane)
     planes.none?(plane)
   end
-
-  def request_landing
-    capacity_guard
-  end
-
-  def request_take_off(plane)
-    airport_guard(plane)
+  
+  def weather
+    weather_forcast
   end
 
   private
 
   def full?
     planes.count >= capacity
+  end
+
+  def weather_forcast
+    Weather.new.forcast
   end
 end

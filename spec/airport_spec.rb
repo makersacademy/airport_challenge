@@ -2,6 +2,12 @@ describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
 
   it { is_expected.to respond_to :planes }
+  it { is_expected.to respond_to :capacity }
+  it { is_expected.to respond_to :weather }
+  it { is_expected.to respond_to :not_contain? }
+  it { is_expected.to respond_to :request_landing }
+  it { is_expected.to respond_to :request_take_off }
+
 
   describe '#planes' do
     subject { described_class.new.planes }
@@ -12,34 +18,26 @@ describe Airport do
     end
   end
 
-  describe '#gone?' do
+  describe '#not_contain?' do
     context 'when plane is not in airport' do
-      subject { described_class.new.gone?(plane) }
+      subject { described_class.new.not_contain?(plane) }
       it { is_expected.to be true }
     end
 
     context 'when plane is in aiport' do
       before(:example) { subject.planes << plane }
       it 'returns false' do
-        expect(subject.gone?(plane)).to be false
+        expect(subject.not_contain?(plane)).to be false
       end
     end
   end
 
-  describe '#request_landing' do
-    context 'when airport is not full' do
-      it 'approves landing' do
-        expect { subject.request_landing }.not_to raise_error
-      end
-    end
-
-    context 'when airport is full' do
-      before(:example) { 50.times { subject.planes << plane } }
-      it 'raises error' do
-        expect { subject.request_landing }.to raise_error CapacityError, CapacityError.new.msg
-      end
-    end
-  end
+  #   context 'when weather is sunny' do
+  #     it 'approves landing' do
+  #       expect()
+  #     end
+  #   end
+  # end
 
   describe '#request_take_off' do
     context 'when plane is in airports' do
@@ -97,6 +95,12 @@ describe Airport do
       it 'can still be overridden' do
         expect(subject.capacity).to be 500
       end
+    end
+  end
+
+  describe '#weather' do
+    it 'returns the current forcast' do
+      expect(subject.weather).to be :sunny || :stormy
     end
   end
 end
