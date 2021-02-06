@@ -20,7 +20,8 @@ default_capacity = 10
    describe '#capacity_check' do
      it 'informs when capacity is at safe level' do
       safety = SafetyProtocol.new(default_capacity)
-      expect(safety.capacity_check(2)).to eq'Airport capacity level check: safe'
+      less_than_default_capacity = 2
+      expect(safety.capacity_check(less_than_default_capacity)).to eq'Airport capacity level check: safe'
     end
 
     it 'raises an error when capacity level is unsafe' do

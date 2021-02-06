@@ -3,24 +3,45 @@ require "weather"
 
 class AirTrafficController
 
-
-  def initialize(safety_protocol, current_weather)
-  @safety_protocol = safety_protocol
-  @airport = []
-  @current_weather = current_weather
+  def initialize(safety_protocol, current_weather,currently_landed=[],currently_flying=[])
+    @safety_protocol = safety_protocol
+    @airport = currently_landed
+    @currently_flying = currently_flying
+    @current_weather = current_weather
   end
 
   def land(plane)
-    @safety_protocol.is_landing_safe?(@airport.count, @current_weather)
-    @airport << plane
+     land_airport_check(plane)
+     @currently_flying.delete(plane) if is_this_plane_flying_already?(plane)
+     @airport << plane
+     puts 'Plane landed succesfuly! There is now #{@airport.count} planes in the airport'
+     @airport
   end
 
-  def take_off
-    @airport.pop
-    @airport
+  def take_off(plane)
+    take_off_airport_check(plane)
+    @airport.delete(plane)
+    @currently_flying << plane
   end
 
-end
+  def land_airport_check(plane)
+    raise 'This plane is at the airport already' if is_this_plane_in_the_airport_already?(plane)
+    @safety_protocol.is_landing_safe?(@airport.count, @current_weather.)
+  end
+
+  def take_off_airport_check(plane)
+    raise 'This plane is currently flying' if is_this_plane_flying_already?(plane)
+    raise 'This plane is not in this airport' if is_this_plane_in_the_airport_already?(plane) == false
+  end
+
+  def is_this_plane_in_the_airport_already?(plane)
+     @airport.include?(plane)
+  end
+
+  def is_this_plane_flying_already?(plane)
+   @currently_flying.include?(plane)
+  end
+ end
 
 class Plane
 end
