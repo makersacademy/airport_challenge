@@ -21,3 +21,19 @@ class WeatherError < StandardError
     super(msg)
   end
 end
+
+class LandingError < StandardError
+  attr_reader :msg
+  def initialize
+    @msg = 'Plane is already grounded'
+    super(msg)
+  end
+end
+
+class TakeOffError < StandardError
+  attr_reader :msg
+  def initialize
+    @msg = 'Plane is already in the air'
+    super(msg)
+  end
+end
