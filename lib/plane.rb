@@ -2,7 +2,11 @@ require_relative 'airport'
 
 class Plane
 
-  def land
+  def initialize
+  end
+  
+  def land(airport)
+    airport.hangar << self
   end
 
 end
