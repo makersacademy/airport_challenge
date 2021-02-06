@@ -4,6 +4,7 @@ class Plane
   end
 
   def take_off(airport)
+    airport.planes.delete(self)
   end
 
 end
