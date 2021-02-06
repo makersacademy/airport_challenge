@@ -9,4 +9,9 @@ class Plane
     self.status = :ground
     airport.planes << self
   end
+
+  def take_off(airport)
+    self.status = :air
+    airport.planes.delete(self)
+  end
 end

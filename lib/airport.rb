@@ -4,4 +4,8 @@ class Airport
   def initialize
     @planes = []
   end
+
+  def gone?(plane)
+    planes.none?(plane)
+  end
 end
