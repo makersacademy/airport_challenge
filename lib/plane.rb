@@ -3,7 +3,11 @@ require_relative 'airport'
 class Plane
 
   def land(airport)
-    airport.hangar << self
+    if airport.hangar_full?
+      raise "Airport hangar at full capacity"
+    else
+      airport.hangar << self
+    end
   end
 
   def take_off(airport)
@@ -12,6 +16,6 @@ class Plane
   end
 
   def successful_take_off(airport)
-    puts "#{self} has successfully taken-off from #{airport}"
+    puts "#{self} has successfully taken-off from #{airport}" # need to figure out how to passe local variable as instance var
   end
 end

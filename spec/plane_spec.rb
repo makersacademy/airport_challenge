@@ -4,13 +4,24 @@ describe Plane do
 let(:heathrow_airport) { Airport.new }
 
   describe '#land' do
-    it 'should take one argument' do
-      expect(subject).to respond_to(:land).with(1)
+    context 'when the airport hangar has available spaces' do
+      it 'should take one argument' do
+        expect(subject).to respond_to(:land).with(1)
+      end
+      it 'should add the plane the airport hangar specified' do
+        plane_1 = Plane.new
+        plane_1.land(heathrow_airport)
+        expect(heathrow_airport.hangar).to include(plane_1)
+      end
     end
-    it 'should add the plane the airport hangar specified' do
-      plane_1 = Plane.new
-      plane_1.land(heathrow_airport)
-      expect(heathrow_airport.hangar).to include(plane_1)
+    context 'when the airport hangar is full' do
+      it 'should prevent plane landing' do
+        small_airport = Airport.new @capacity=1
+        plane_1 = Plane.new
+        plane_2 = Plane.new
+        plane_1.land(small_airport)
+        expect { plane_2.land(small_airport) }.to raise_error("Airport hangar at full capacity")
+      end
     end
   end
 

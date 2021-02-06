@@ -7,4 +7,12 @@ class Airport
     @hangar = []
   end
 
+  def hangar_full?
+    self.hangar.count >= @capacity
+  end
+
+  def modify_capacity(value)
+    @capacity = value
+  end
+
 end
