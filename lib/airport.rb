@@ -1,4 +1,12 @@
+require_relative './plane.rb'
+
 class Airport
-  def land
+  attr_reader :plane
+  def new_plane
+    Plane.new
+  end
+
+  def land(plane)
+    @plane = plane
   end
 end
