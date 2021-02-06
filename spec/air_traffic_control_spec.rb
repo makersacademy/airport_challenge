@@ -1,4 +1,4 @@
-module AirTrafficControl
+describe AirTrafficControl do
   describe Airport do
     let(:plane) { instance_double(Plane, 'Plane') }
 

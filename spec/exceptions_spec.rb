@@ -11,3 +11,7 @@ end
 describe AirportError do
   include_examples 'custom exceptions'
 end
+
+describe WeatherError do
+  include_examples 'custom exceptions'
+end

@@ -51,7 +51,7 @@ describe Airport do
 
     context 'when plane is not in the airport' do
       it 'raises error' do
-        expect { subject.request_take_off(plane) }.to raise_error
+        expect { subject.request_take_off(plane) }.to raise_error AirportError, AirportError.new.msg
       end
     end
   end

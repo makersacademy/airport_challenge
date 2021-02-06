@@ -4,7 +4,6 @@ describe Plane do
   let(:planes)  { [] }
 
   it { is_expected.to respond_to(:status).with 0 }
-  # it { is_expected.to respond_to(:airport).with 0 }
   it { is_expected.to respond_to(:land).with 1 }
   it { is_expected.to respond_to(:take_off).with 1 }
 
@@ -15,19 +14,6 @@ describe Plane do
       it { is_expected.to be :air }
     end
   end
-  #
-  # describe '#airport' do
-  #   context 'when initialized' do
-  #     subject { plane.airport }
-  #     it { is_expected.to be nil }
-  #   end
-  #
-  #   context 'after landing' do
-  #     before(:example) { subject.land(airport) }
-  #     subject { plane.airport }
-  #     it { is_expected.to be airport }
-  #   end
-  # end
 
   describe '#land' do
     context 'when in air' do
@@ -40,10 +26,6 @@ describe Plane do
       it 'adds itself to the airport' do
         expect(airport.planes).to include subject
       end
-
-      # it 'updates airport attribute' do
-      #   expect(subject.airport).to be airport
-      # end
     end
   end
 
@@ -58,10 +40,6 @@ describe Plane do
       it 'removes itself from airport' do
         expect(airport.planes).not_to include subject
       end
-
-      # it 'resets airport attribute to nil' do
-      #   expect(subject.airport).to be nil
-      # end
     end
   end
 end

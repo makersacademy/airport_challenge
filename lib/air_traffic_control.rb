@@ -1,6 +1,6 @@
 module AirTrafficControl
   private
-
+  
   def capacity_guard
     raise CapacityError if full?
   end
