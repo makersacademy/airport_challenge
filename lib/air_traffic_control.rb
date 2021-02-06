@@ -1,3 +1,4 @@
+# prevents landing and take off when guard conditions are not met
 module AirTrafficControl
   def request_landing
     weather_guard

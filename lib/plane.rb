@@ -1,3 +1,4 @@
+# can be instructed to land and take off, sends requests to air traffic control
 class Plane
   attr_accessor :status
 

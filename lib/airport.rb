@@ -1,5 +1,5 @@
 require_relative 'air_traffic_control'
-
+# responsible for holding plane objects and tracking capacity & local weather
 class Airport
   include AirTrafficControl
 
@@ -16,7 +16,7 @@ class Airport
   def not_contain?(plane)
     planes.none?(plane)
   end
-  
+
   def weather
     weather_forcast
   end

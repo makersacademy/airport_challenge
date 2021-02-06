@@ -60,7 +60,7 @@ describe Airport do
   describe '#capacity' do
     context 'when initialized without argument' do
       subject { described_class.new.capacity }
-      it { is_expected.to be 50 }
+      it { is_expected.to be described_class::DEFAULT_CAPACITY }
     end
 
     context 'when intialized with argument 100' do
