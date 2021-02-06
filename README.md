@@ -1,6 +1,6 @@
 # AIRPORT CHALLENGE
 
-[![Build Status](https://travis-ci.com/AJ8GH/airport_challenge.svg?branch=master)](https://travis-ci.com/AJ8GH/airport_challenge) [![Maintainability](https://api.codeclimate.com/v1/badges/d2842c2f872b398661ac/maintainability)](https://codeclimate.com/github/AJ8GH/airport_challenge/maintainability)
+[![Build Status](https://travis-ci.com/AJ8GH/airport_challenge.svg?branch=master)](https://travis-ci.com/AJ8GH/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/AJ8GH/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/AJ8GH/airport_challenge?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/d2842c2f872b398661ac/maintainability)](https://codeclimate.com/github/AJ8GH/airport_challenge/maintainability)
 
 
 ```
@@ -21,7 +21,18 @@ An exercise in object oriented design, test driven development and domain modell
 
 This program has been designed to meet the needs of [user stories](##user-stories) in the client specification.
 
+## Dependencies
 
+- `rspec`
+- `rake`
+- `rubocop`
+- `coveralls`
+
+## Getting Started
+
+Clone this repo
+
+- `git clone git@github.com:AJ8GH/airport-challenge.git`
 
 
 
