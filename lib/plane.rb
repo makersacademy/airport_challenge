@@ -1,7 +1,12 @@
 class Plane
-  attr_reader :status
+  attr_accessor :status
 
-  def initialize
-    @status = :ground
+  def initialize(status = :air)
+    @status = status
+  end
+
+  def land(airport)
+    self.status = :ground
+    airport.planes << self
   end
 end
