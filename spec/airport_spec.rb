@@ -26,4 +26,12 @@ describe Airport do
       expect(airport.hangar).to eq([])
     end
   end
+
+  describe '#override_capacity' do
+    it 'overrides the default capacity of the airport' do
+      airport = Airport.new
+      airport.override_capacity(5)
+      expect(airport.capacity).to eq(5)
+    end
+  end
 end
