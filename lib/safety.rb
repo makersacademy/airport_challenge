@@ -2,7 +2,7 @@ require "./air_traffic_controller"
 require "weather"
 
 
-class SafetyCheck
+class SafetyProtocol
 
 
 
