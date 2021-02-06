@@ -31,6 +31,49 @@ describe AirTrafficControl do
           expect { subject.request_landing }.to raise_error CapacityError, CapacityError.new.msg
         end
       end
+
+      context 'when weather is sunny' do
+        it 'approves landing' do
+          allow(subject).to receive(:weather) { :sunny }
+          expect { subject.request_landing }.not_to raise_error
+        end
+      end
+
+      context 'when weather is stormy' do
+        it 'raises error' do
+          allow(subject).to receive(:weather) { :stormy }
+          expect { subject.request_landing }.to raise_error WeatherError, WeatherError.new.msg
+        end
+      end
+    end
+
+    describe '#request_take_off' do
+      context 'when plane is not in the airport' do
+        it 'raises error' do
+          expect { subject.request_take_off(plane) }.to raise_error AirportError, AirportError.new.msg
+        end
+      end
+
+      context 'when plane is in airports' do
+        before(:example) { subject.planes << plane }
+        it 'approves take_off' do
+          expect { subject.request_take_off(plane) }.not_to raise_error
+        end
+
+        context 'when weather is sunny' do
+          it 'approves take off' do
+            allow(subject).to receive(:weather) { :sunny }
+            expect { subject.request_take_off(plane) }.not_to raise_error
+          end
+        end
+
+        context 'when weather is stormy' do
+          it 'raises error' do
+            allow(subject).to receive(:weather) { :stormy }
+            expect { subject.request_take_off(plane) }.to raise_error WeatherError, WeatherError.new.msg
+          end
+        end
+      end
     end
 
     describe '#weather_guard' do

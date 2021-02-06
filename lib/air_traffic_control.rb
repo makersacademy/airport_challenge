@@ -1,9 +1,11 @@
 module AirTrafficControl
   def request_landing
+    weather_guard
     capacity_guard
   end
 
   def request_take_off(plane)
+    weather_guard
     airport_guard(plane)
   end
 
