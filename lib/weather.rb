@@ -3,10 +3,8 @@ require './air_traffic_controller'
 
 class Weather
 
-  def generate_random_weather
+  def generate_weather
+    @weather = ['stormy','sunny'].sample
   end
 
-  def get_weather
-  end
-  
 end
