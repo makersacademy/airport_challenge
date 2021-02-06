@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 subject(:plane) { described_class.new }
-let(:airport) { double(:airport, :planes => [plane]) }
+let(:airport) { double(:airport, :title => "heathrow", :planes => [plane]) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -25,7 +25,7 @@ let(:airport) { double(:airport, :planes => [plane]) }
     it 'plane should be at airport after landing' do
     plane.land(airport)
     expect(airport.planes).to include plane
-    expect(plane.status).to eq "landed at #{airport}"
+    expect(plane.status).to eq "landed at #{airport.title}"
     end
   end
 

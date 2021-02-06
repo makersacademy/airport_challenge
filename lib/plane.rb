@@ -7,7 +7,7 @@ class Plane
 
   def land(airport)
     airport.planes << self
-    @status = "landed at #{airport}"
+    @status = "landed at #{airport.title}"
   end
 
   def take_off(airport)
