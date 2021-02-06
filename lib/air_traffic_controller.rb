@@ -1,4 +1,5 @@
 require "./safety"
+require "weather"
 
 class AirTrafficController
   DEAFAULT_CAPACITY = 5
