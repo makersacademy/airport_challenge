@@ -78,7 +78,7 @@ describe Airport do
 
   describe '#weather' do
     it 'returns the current forcast' do
-      expect(subject.weather).to be :sunny || :stormy
+      expect(subject.weather).to be_an_instance_of Symbol
     end
   end
 end

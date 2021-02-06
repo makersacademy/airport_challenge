@@ -20,7 +20,7 @@ describe Plane do
   end
 
   describe '#land' do
-    context 'when in air' do
+    context 'when airborne' do
       before(:example) { subject.land(airport) }
 
       it 'changes status to :ground' do
@@ -53,7 +53,7 @@ describe Plane do
       end
     end
 
-    context 'when in air' do
+    context 'when airborne' do
       it 'raises take off error' do
         expect { subject.take_off(airport) }.to raise_error TakeOffError
       end

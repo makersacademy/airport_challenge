@@ -4,11 +4,11 @@ describe AirTrafficControl do
 
     describe '#capacity_guard' do
       context 'when weather is sunny' do
-
+        before { let_there_be_sun }
+        
         context 'when capacity is full' do
           before(:example) { 50.times { subject.planes << plane } }
           it 'raises capacity error' do
-            let_there_be_sun
             expect { subject.send(:capacity_guard) }.to raise_error CapacityError
           end
         end
@@ -16,7 +16,6 @@ describe AirTrafficControl do
         context 'when capacity is nearly full' do
           before(:example) { 49.times { subject.planes << plane } }
           it 'raises nothing' do
-            let_there_be_sun
             expect { subject.send(:capacity_guard) }.not_to raise_error
           end
         end
@@ -25,11 +24,11 @@ describe AirTrafficControl do
 
     describe '#request_landing' do
       context 'when weather is sunny' do
+        before(:example) { let_there_be_sun }
 
         context 'when airport is full' do
           before(:example) { 50.times { subject.planes << plane } }
           it 'raises capacity error' do
-            let_there_be_sun
             expect { subject.request_landing }.to raise_error CapacityError
           end
         end
@@ -51,18 +50,17 @@ describe AirTrafficControl do
 
     describe '#request_take_off' do
       context 'when weather is sunny' do
+        before(:example) { let_there_be_sun }
 
         context 'when plane is in airport' do
           before(:example) { subject.planes << plane }
           it 'approves take off' do
-            let_there_be_sun
             expect { subject.request_take_off(plane) }.not_to raise_error
           end
         end
 
         context 'when plane is not in airport' do
           it 'raises error' do
-            let_there_be_sun
             expect { subject.request_take_off(plane) }.to raise_error AirportError
           end
         end

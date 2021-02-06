@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  attr_reader :planes
+  attr_reader :planes # refactor into a private method
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)

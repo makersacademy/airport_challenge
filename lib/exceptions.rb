@@ -11,7 +11,7 @@ end
 class AirportError < StandardError
   attr_reader :msg
   def initialize
-    @msg = 'Request Denied: Plane not located in specified airport'
+    @msg = 'Request Denied: Plane not located in airport'
     super(msg)
   end
 end
@@ -27,7 +27,7 @@ end
 class LandingError < StandardError
   attr_reader :msg
   def initialize
-    @msg = 'Plane is already grounded'
+    @msg = 'Plane already grounded'
     super(msg)
   end
 end
@@ -35,7 +35,7 @@ end
 class TakeOffError < StandardError
   attr_reader :msg
   def initialize
-    @msg = 'Plane is already in the air'
+    @msg = 'Plane already airborne'
     super(msg)
   end
 end

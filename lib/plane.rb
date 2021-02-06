@@ -9,14 +9,14 @@ class Plane
   def land(airport)
     landing_guard
     airport.request_landing
-    enter(airport)
+    enter(airport) # refactor into air traffic control as #clear_for_landing
     update_status(:ground)
   end
 
   def take_off(airport)
     take_off_guard
     airport.request_take_off(self)
-    leave(airport)
+    leave(airport) # refactor into air traffic control as #clear_for_take_off
     update_status(:air)
   end
 
