@@ -70,17 +70,7 @@ describe AirTrafficController do
 
 
   describe "#take_off" do
-    it 'Plane takes off' do
-      weather_station = double()
-      allow(weather_station).to receive(:generate_weather) { "sunny" }
-      controller = AirTrafficController.new(SafetyProtocol.new(default_capacity), weather_station)
-      controller.land('plane')
-      expect(controller.take_off('plane')).to eq ['plane']
-    end
-  end
-
-  describe "#take_off" do
-    it 'Plane takes off' do
+    it 'Plane takes off and gets added to currently_flying' do
       weather_station = double()
       allow(weather_station).to receive(:generate_weather) { "sunny" }
       controller = AirTrafficController.new(SafetyProtocol.new(default_capacity), weather_station)

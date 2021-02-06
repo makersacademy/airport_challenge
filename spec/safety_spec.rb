@@ -1,6 +1,6 @@
-require "safety"
+
 require "./air_traffic_controller"
-require 'weather'
+require './weather'
 describe SafetyProtocol do
 
 default_capacity = 10
