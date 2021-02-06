@@ -1,5 +1,5 @@
 describe Weather do
-  it { is_expected.to respond_to :forcast }
+  it { is_expected.to respond_to(:forcast).with 0 }
 
   describe '#forcast' do
     context 'when low pressure' do

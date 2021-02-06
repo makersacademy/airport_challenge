@@ -1,12 +1,12 @@
 describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
 
-  it { is_expected.to respond_to :planes }
-  it { is_expected.to respond_to :capacity }
-  it { is_expected.to respond_to :weather }
-  it { is_expected.to respond_to :not_contain? }
-  it { is_expected.to respond_to :request_landing }
-  it { is_expected.to respond_to :request_take_off }
+  it { is_expected.to respond_to(:planes).with 0 }
+  it { is_expected.to respond_to(:capacity).with 0 }
+  it { is_expected.to respond_to(:weather).with 0 }
+  it { is_expected.to respond_to(:not_contain?).with 1 }
+  it { is_expected.to respond_to(:request_landing).with 0 }
+  it { is_expected.to respond_to(:request_take_off).with 1 }
 
 
   describe '#planes' do
