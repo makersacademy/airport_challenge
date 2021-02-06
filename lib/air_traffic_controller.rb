@@ -1,5 +1,5 @@
 require "./safety"
-require "weather"
+require "./weather"
 
 class AirTrafficController
 
@@ -30,6 +30,7 @@ class AirTrafficController
   end
 
   def take_off_airport_check(plane)
+    @safety_protocol.is_landing_safe?(@airport.count, @weather_station.generate_weather)
     raise 'This plane is currently flying' if is_this_plane_flying_already?(plane)
     raise 'This plane is not in this airport' if is_this_plane_in_the_airport_already?(plane) == false
   end

@@ -1,5 +1,5 @@
 require "./air_traffic_controller"
-require "weather"
+require "./weather"
 
 
 class SafetyProtocol
