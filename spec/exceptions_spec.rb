@@ -7,3 +7,7 @@ end
 describe CapacityError do
   include_examples 'custom exceptions'
 end
+
+describe AirportError do
+  include_examples 'custom exceptions'
+end

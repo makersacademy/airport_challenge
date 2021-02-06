@@ -1,20 +1,25 @@
 class Plane
-  attr_accessor :status, :airport
+  attr_accessor :status
 
   def initialize(status = :air)
     @status = status
-    @airport = nil
   end
 
   def land(airport)
+    airport.request_landing
     airport.planes << self
-    self.airport = airport
-    self.status = :ground
+    update_status(:ground)
   end
 
-  def take_off
+  def take_off(airport)
+    airport.request_take_off(self)
     airport.planes.delete(self)
-    self.airport = nil
-    self.status = :air
+    update_status(:air)
+  end
+
+  private
+
+  def update_status(status)
+    self.status = status
   end
 end

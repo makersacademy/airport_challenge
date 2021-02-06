@@ -26,6 +26,36 @@ describe Airport do
     end
   end
 
+  describe '#request_landing' do
+    context 'when airport is not full' do
+      it 'approves landing' do
+        expect { subject.request_landing }.not_to raise_error
+      end
+    end
+
+    context 'when airport is full' do
+      before(:example) { 50.times { subject.planes << plane } }
+      it 'raises error' do
+        expect { subject.request_landing }.to raise_error CapacityError, CapacityError.new.msg
+      end
+    end
+  end
+
+  describe '#request_take_off' do
+    context 'when plane is in airports' do
+      before(:example) { subject.planes << plane }
+      it 'approves take_off' do
+        expect { subject.request_take_off(plane) }.not_to raise_error
+      end
+    end
+
+    context 'when plane is not in the airport' do
+      it 'raises error' do
+        expect { subject.request_take_off(plane) }.to raise_error
+      end
+    end
+  end
+
   describe '#full?' do
     context 'when aiport is full' do
       it 'returns true' do

@@ -1,4 +1,8 @@
+require_relative 'air_traffic_control'
+
 class Airport
+  include AirTrafficControl
+
   DEFAULT_CAPACITY = 50
 
   attr_accessor :planes, :capacity
@@ -10,6 +14,14 @@ class Airport
 
   def gone?(plane)
     planes.none?(plane)
+  end
+
+  def request_landing
+    capacity_guard
+  end
+
+  def request_take_off(plane)
+    airport_guard(plane)
   end
 
   private
