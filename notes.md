@@ -51,7 +51,7 @@
 
 | Object  | Method |
 | ------  | ------ |
-|   |        |
+| Airport | closed |
 |  |   |
 
 > As an air traffic controller
