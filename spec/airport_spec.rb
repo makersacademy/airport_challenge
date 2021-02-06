@@ -1,6 +1,7 @@
 require "airport"
 
 describe Airport do
+ describe '#land' do	
  it "Airport responds to land" do
  	airport = Airport.new
  	expect(airport).to respond_to(:land).with(1).argument
@@ -15,6 +16,13 @@ describe Airport do
  	plane = Plane.new
  	expect(airport.land(plane)).to eq [plane]
  end
+ it "raises an error when airport is full" do
+ 	airport = Airport.new
+ 	plane = Plane.new
+ 	airport.land(Plane.new)
+ 	expect {airport.land Plane.new}.to raise_error 'Airport is full: cannot land right now.'
+ end
+end
  # it "Airport returns a plane when called" do
  # 	airport = Airport.new
  # 	plane = Plane.new

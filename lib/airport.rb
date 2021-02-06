@@ -8,6 +8,7 @@ attr_reader :plane
 	end
 
 	def land(plane)	
+		fail 'Airport is full: cannot land right now.' if @hangar_report.count == 1
      	@hangar_report << plane
 	end
 
