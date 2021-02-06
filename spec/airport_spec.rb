@@ -25,4 +25,29 @@ describe Airport do
       end
     end
   end
+
+  describe '#full?' do
+    context 'when aiport is full' do
+      it 'returns true' do
+        21.times { subject.planes << plane }
+        expect(subject.send(:full?)).to be true
+      end
+
+      it 'returns true when only just full' do
+        20.times { subject.planes << plane }
+        expect(subject.send(:full?)).to be true
+      end
+    end
+
+    context 'when airport is not full' do
+      it 'returns false' do
+        expect(subject.send(:full?)).to be false
+      end
+
+      it 'returns false when nearly full' do
+        19.times { subject.planes << plane }
+        expect(subject.send(:full?)).to be false
+      end
+    end
+  end
 end

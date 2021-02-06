@@ -3,15 +3,15 @@ describe Plane do
   let(:airport) { instance_double(Airport, 'Airport', planes: planes) }
   let(:planes)  { [] }
 
-  it { is_expected.to respond_to :status }
+  it { is_expected.to respond_to(:status).with 0 }
   it { is_expected.to respond_to(:land).with 1 }
   it { is_expected.to respond_to(:take_off).with 1 }
 
   describe '#status' do
     subject { plane.status }
-
+    
     context 'when initialized without arguments' do
-      it { is_expected.to eq :air }
+      it { is_expected.to be :air }
     end
   end
 
@@ -38,7 +38,7 @@ describe Plane do
       end
 
       it 'removes itself from airport' do
-        expect(airport.planes).to_not include(subject)
+        expect(airport.planes).not_to include(subject)
       end
     end
   end
