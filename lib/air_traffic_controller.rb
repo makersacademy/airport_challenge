@@ -3,11 +3,11 @@ require "weather"
 
 class AirTrafficController
 
-  def initialize(safety_protocol, current_weather,currently_landed=[],currently_flying=[])
+  def initialize(safety_protocol, weather_station ,currently_landed=[],currently_flying=[])
     @safety_protocol = safety_protocol
     @airport = currently_landed
     @currently_flying = currently_flying
-    @current_weather = current_weather
+    @weather_station = weather_station
   end
 
   def land(plane)
@@ -26,7 +26,7 @@ class AirTrafficController
 
   def land_airport_check(plane)
     raise 'This plane is at the airport already' if is_this_plane_in_the_airport_already?(plane)
-    @safety_protocol.is_landing_safe?(@airport.count, @current_weather.)
+    @safety_protocol.is_landing_safe?(@airport.count, @weather_station.generate_weather)
   end
 
   def take_off_airport_check(plane)
