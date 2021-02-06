@@ -29,4 +29,19 @@ default_capacity = 10
    end
 
   end
+
+  describe '#is_landing_safe?' do
+    it 'checks if landing is safe' do
+      safety = SafetyCheck.new(default_capacity)
+      expect(safety.is_landing_safe?(5,'sunny')).to eq true
+    end
+  end
+
+  describe '#is_take_off_safe?' do
+    it 'checks if take off is safe' do
+      safety = SafetyCheck.new(default_capacity)
+      expect(safety.is_take_off_safe?('sunny')).to eq true
+    end
+  end
+
 end
