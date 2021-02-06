@@ -15,24 +15,25 @@ describe Airport do
  	plane = Plane.new
  	expect(airport.land(plane)).to eq [plane]
  end
-end
  # it "Airport returns a plane when called" do
  # 	airport = Airport.new
  # 	plane = Plane.new
  # 	airport.land(plane)
  # 	expect(airport.plane).to eq [plane]
  # end
-
+end
 describe '#take_off' do
  it "Airport responds to take_off" do
  	airport = Airport.new
- 	expect(airport).to respond_to(:take_off)
+ 	plane = Plane.new
+ 	airport.land(plane)
+ 	expect(airport).to respond_to(:take_off).with(1).argument
  end
- it "should update the hangar report when plane has taken off" do
+ it "should return updated hangar report when plane has taken off" do
  	airport = Airport.new
  	plane = Plane.new
  	airport.land(plane)
- 	expect(airport.take_off).to change {airport}.by(1)
+ 	expect(airport.take_off(plane)).to_not include([plane])
  end
 end
  #we need to show that a plane has taken off and is no longer present in the airport

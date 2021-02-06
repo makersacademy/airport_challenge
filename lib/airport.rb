@@ -1,6 +1,7 @@
 class Airport
 
-#attr_reader :plane 
+attr_reader :hangar_report 
+attr_reader :plane
 
 	def initialize
  		@hangar_report = []	
@@ -10,9 +11,9 @@ class Airport
      	@hangar_report << plane
 	end
 
-	def take_off
+	def take_off(plane)
         @hangar_report.pop
-        # puts "#{plane} has taken off!"
+        return @hangar_report
 	end
 
 end
@@ -20,4 +21,5 @@ end
 
 class Plane
 
+ 
 end
