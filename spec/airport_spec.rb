@@ -13,5 +13,11 @@ describe Airport do
     subject.land(plane)
     expect(subject.plane).to eq(plane)
   end
+  it 'stores planes at the airport' do
+    expect(subject.parking).to be_kind_of(Array)
+  end
+  it 'allows planes to take off' do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
 
 end
