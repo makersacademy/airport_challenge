@@ -31,16 +31,34 @@ default_capacity = 10
   end
 
   describe '#is_landing_safe?' do
-    it 'checks if landing is safe' do
+    it 'returns true if landing is safe' do
       safety = SafetyCheck.new(default_capacity)
       expect(safety.is_landing_safe?(5,'sunny')).to eq true
     end
+
+    it 'raises an error when weather is unsafe' do
+      safety = SafetyCheck.new(default_capacity)
+      expect{safety.is_landing_safe?(5,'stormy')}.to raise_error'Too stormy to land safely'
+    end
+
+
+    it 'raises an error when capacity level is unsafe' do
+      safety = SafetyCheck.new(default_capacity)
+      expect{safety.is_landing_safe?(15,'sunny')}.to raise_error'Airport too full to land safely'
+    end
   end
 
+
+
   describe '#is_take_off_safe?' do
-    it 'checks if take off is safe' do
+    it 'returns true if take off is safe' do
       safety = SafetyCheck.new(default_capacity)
       expect(safety.is_take_off_safe?('sunny')).to eq true
+    end
+
+    it 'raises an error when weather is unsafe' do
+      safety = SafetyCheck.new(default_capacity)
+      expect{safety.is_take_off_safe?('stormy')}.to raise_error'Too stormy to land safely'
     end
   end
 
