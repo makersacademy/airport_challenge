@@ -29,12 +29,12 @@ describe Airport do
   describe '#full?' do
     context 'when aiport is full' do
       it 'returns true' do
-        21.times { subject.planes << plane }
+        51.times { subject.planes << plane }
         expect(subject.send(:full?)).to be true
       end
 
       it 'returns true when only just full' do
-        20.times { subject.planes << plane }
+        50.times { subject.planes << plane }
         expect(subject.send(:full?)).to be true
       end
     end
@@ -45,8 +45,27 @@ describe Airport do
       end
 
       it 'returns false when nearly full' do
-        19.times { subject.planes << plane }
+        49.times { subject.planes << plane }
         expect(subject.send(:full?)).to be false
+      end
+    end
+  end
+
+  describe '#capacity' do
+    context 'when initialized without argument' do
+      subject { described_class.new.capacity }
+      it { is_expected.to be 50 }
+    end
+
+    context 'when intialized with argument 100' do
+      subject { described_class.new(100).capacity }
+      it { is_expected.to be 100 }
+    end
+
+    context 'after intialization' do
+      before(:example) { subject.capacity = 500 }
+      it 'can still be overridden' do
+        expect(subject.capacity).to be 500
       end
     end
   end

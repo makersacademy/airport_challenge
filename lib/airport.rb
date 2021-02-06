@@ -1,5 +1,5 @@
 class Airport
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 50
 
   attr_accessor :planes, :capacity
 
