@@ -11,6 +11,10 @@ describe Airport do
   it '#land increases number of planes in the airport' do
     expect { subject.land(plane) }.to change { subject.planes.length }.from(0).to(1)
   end
+
+  it '#takeoff decrease number of planes in the airport' do
+    expect {subject.takeoff }.to change { }
+  end
 end
 
 describe Plane do

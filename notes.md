@@ -22,6 +22,8 @@
 | Plane   |          |
 | Airport | takeoff  |
 
+_Note: language used here is ambiguous - not clear who is confirming that the plane is no longer in the airport (does plane/pilot confirm when airborne or does controller confirm by checking the airport). Will work on the assumption that it is the second of these_
+
 > As an air traffic controller
 >
 > To ensure safety
