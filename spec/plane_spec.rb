@@ -6,7 +6,7 @@ let(:airport) { double(:airport, :title => "heathrow", :planes => [plane]) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
-  it { is_expected.to respond_to(:status)}
+  it { is_expected.to respond_to(:status) }
 
   it "should have status of unassigned when new" do
     expect(plane.status).to eq "unassigned"
