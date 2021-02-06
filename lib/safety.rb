@@ -1,4 +1,4 @@
-require "air_traffic_controller"
+require "./air_traffic_controller"
 
 class Safety
 

@@ -1,13 +1,22 @@
-require "safety"
+require "./safety"
 
 class AirTrafficController
   DEAFAULT_CAPACITY = 5
 
-  def land
-    'Plane landed'
+  def initialize
+  @airport = []
+  end
+
+  def land(plane)
+    @airport << plane
   end
 
   def take_off
-    'Plane took off'
+    @airport.pop
+    @airport
   end
+
+end
+
+class Plane
 end

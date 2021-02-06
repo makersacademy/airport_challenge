@@ -1,2 +1,2 @@
 require "safety"
-require "air_traffic_controller"
+require "./air_traffic_controller"
