@@ -5,6 +5,16 @@ The program allow traffic controllers to instruct a plane if it can land and tak
 This is the first Makers weekend challenge to be completed alone.
 It aims at testing and consolidating all skills and concepts acquired through week 1.
 
+## Planning
+-  User Stories review
+-  Objects needed: 'Plane'
+    - Message needed: 'to land', 'take off', 'confirm'
+    - Exceptions needed: 'prevent landing if airport is full', 'prevent takeoff if stormy', 'prevent landing'
+-  Objects needed: 'Airport'
+    - Message needed: 'capacity overridden'
+    - Attribute needed: 'default airport capacity', 'storing plane objects'
+- Method needed: 'weather'
+
 ## Installation
 ```
 $ git clone https://github.com/sandyMax974/airport_challenge.git
