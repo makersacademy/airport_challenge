@@ -4,18 +4,18 @@ class Plane
 
   def land(airport)
     landing_guard
-    airport.request_landing(self)
+    airport.request_landing(self) # see AirTrafficControl
     update_status(:ground)
   end
 
   def take_off(airport)
     take_off_guard
-    airport.request_take_off(self)
+    airport.request_take_off(self) # see AirTrafficControl
     update_status(:air)
   end
 
   private
-  # keep writer method private - for internal use only
+
   attr_writer :status
 
   def initialize

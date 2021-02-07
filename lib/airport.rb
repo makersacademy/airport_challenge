@@ -12,23 +12,24 @@ class Airport
   end
 
   def weather_forcast
-    weather
+    weather.forcast
   end
 
   private
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @weather = weather_generator # memoizes weather object, instead of creating a new one for each forcast
   end
 
   def full?
     planes.count >= capacity
   end
 
-  def weather
-    Weather.new.forcast
+  def weather_generator
+    Weather.new
   end
 end
