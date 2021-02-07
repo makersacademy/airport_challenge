@@ -1,11 +1,11 @@
 class Airport
 
-  def land
+  def land(plane)
   end
 
-  def takeoff
+  def takeoff(plane)
   end
-  
+
   def empty?
   end
 
