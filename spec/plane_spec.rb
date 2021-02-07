@@ -27,22 +27,25 @@ describe Plane do
 
   it "doesn't land when airport is full" do
     allow(airport).to receive(:space?).and_return(false)
-    plane.land(airport).to raise_error("Airport is full")
+    expect { plane.land(airport) }.to raise_error("Airport is full")
   end
 
-  # before do
-  #   allow(airport).to receive(:safe?).and_return(false)
-  # end
+  context "when weather is bad:" do
+    before do
+      allow(airport).to receive(:safe?).and_return(false)
+    end
 
-  it "doesn't land when the weather is unsafe" do
-    allow(airport).to receive(:safe?).and_return(false)
-    expect(plane.land(airport)).to raise_error("Not safe to takeoff")
+    it "doesn't land when the weather is unsafe" do
+      #allow(airport).to receive(:safe?).and_return(false)
+      expect { plane.land(airport) }.to raise_error("Not safe to land")
+    end
+
+    it "doesn't takeoff when the weather is unsafe" do
+      plane.instance_variable_set(:@location, airport)
+      #allow(airport).to receive(:safe?).and_return(false)
+      expect { plane.takeoff }.to raise_error("Not safe to takeoff")
+      expect(plane.location).to eq airport
+    end
   end
-
-  it "doesn't takeoff when the weather is unsafe" do
-    allow(airport).to receive(:safe?).and_return(false)
-    expect(plane.takeoff).to raise_error("Not safe to takeoff")
-  end
-
 end
   
