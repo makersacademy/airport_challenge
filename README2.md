@@ -25,7 +25,7 @@ $ pry
   * Item 2a
   * Item 2b
 
-## Project status (https://img.shields.io/badge/Min%20coverage-%3E%2095%25-green)
+## Project status
 - [x] Fork directory
 - [x] Create Domain Model based on User Stories
 - [x] Apply TTD process to create objects
@@ -34,3 +34,4 @@ $ pry
 - [ ] Use a double to override random behaviours
 - [ ] Defend against edge cases
 - [x] Use the Single Responsability Principle
+- [x] Minimum coverage > 95%
