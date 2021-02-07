@@ -39,10 +39,18 @@ describe Airport do
   end
 
   context "Airport has space to land" do
-
     it 'Performs a safety check to allow planes to land when there is space for them' do
       expect(subject.safety_check).to eq "Space available, please land here"
     end
   end
 
+  context 'Stormy weather' do
+    it 'Prevents takeoff when weather is stormy' do
+      expect(subject.check_weather("stormy")).to eq "Weather is stormy, do not takeoff"
+    end
+
+    it 'Prevents landing when weather is stormy' do
+      expect(subject.check_weather("stormy")).to eq "Weather is stormy, do not land"
+    end
+  end
 end
