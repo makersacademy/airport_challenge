@@ -15,19 +15,19 @@ describe Airport do
 
     describe 'is expected to take a plane as an argument and return the same instance' do
       it 'when :land is called' do
-        expect(@airport.land(@plane)).to eq @plane
+        expect(subject.land(@plane)).to eq @plane
       end
 
       it 'when :take_off is called' do
-        expect(@airport.take_off(@plane)).to eq @plane
+        expect(subject.take_off(@plane)).to eq @plane
       end
 
       it 'when :plane_at_airport is called' do
-        allow(@airport).to receive(:plane_at_airport?) { @plane }
+        allow(subject).to receive(:plane_at_airport?) { @plane }
       end
     end
 
-    context 'when a plane has already landed at airport' do
+    context 'when a plane has already landed' do
       before do
         @airport.land(@plane)
       end
@@ -45,9 +45,9 @@ describe Airport do
       end
     end
 
-    context 'when airport is full (20 or more planes currently landed at the airport)' do
+    context 'when full' do
       before do
-        20.times { @airport.land(Plane.new) }
+        Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }
       end
 
       it 'is expected to return true when :full? is called' do
@@ -56,6 +56,16 @@ describe Airport do
 
       it 'is expected to raise an error if user attempts to land plane' do
         expect { @airport.land(Plane.new) }.to raise_error("Airport is currently full. You cannot land.")
+      end
+    end
+
+    describe 'is expected to have a variable capacity' do
+      it 'has a default capacity' do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+
+      it 'is expected to allow the user to set their own capacity' do
+        expect(subject.new_capacity(50)).to eq subject.capacity
       end
     end
   end
