@@ -1,5 +1,5 @@
 describe 'Feature Tests' do
-  plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :light_aircraft]
+  plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :biplane]
   plane_symbols.each { |plane| let(plane) { new_plane } }
 
   airport_symbols = [:jfk, :lhr, :lgw, :lax, :dxb]
@@ -48,8 +48,8 @@ describe 'Feature Tests' do
       expect(lhr.contain?(airbus)).to be false
       expect(lhr.contain?(boeing)).to be true
 
-      dream_liner.land(lhr); light_aircraft.land(lhr)
-      boeing.take_off(lhr); light_aircraft.take_off(lhr)
+      dream_liner.land(lhr); biplane.land(lhr)
+      boeing.take_off(lhr); biplane.take_off(lhr)
 
       expect(lhr.contain?(dream_liner)).to be true
       expect(lhr.contain?(boeing)).to be false
@@ -58,16 +58,16 @@ describe 'Feature Tests' do
 
   context 'raising errors' do
     context 'when stormy' do
-      before { make_sunshine;
-               boeing.land(lhr);
-               dream_liner.land(lax);
-               why_does_it_always_rain_on_me }
+      before {
+        make_sunshine; boeing.land(lhr);
+        dream_liner.land(lax); why_does_it_always_rain_on_me
+      }
 
       it 'raises weather errors as expected' do
         expect { boeing.take_off(lhr) }.to raise_error WeatherError
         expect { airbus.land(jfk) }.to raise_error WeatherError
         expect { dream_liner.take_off(lax) }.to raise_error WeatherError
-        expect { light_aircraft.land(lgw) }.to raise_error WeatherError
+        expect { biplane.land(lgw) }.to raise_error WeatherError
       end
     end
 
@@ -77,8 +77,8 @@ describe 'Feature Tests' do
       it 'raises all other errors as expected' do
         expect { dream_liner.take_off(lax) }.to raise_error TakeOffError
 
-        light_aircraft.land(lgw)
-        expect { light_aircraft.take_off(dxb) }.to raise_error AirportError
+        biplane.land(lgw)
+        expect { biplane.take_off(dxb) }.to raise_error AirportError
 
         dream_liner.land(jfk)
         expect { dream_liner.land(lax) }.to raise_error LandingError

@@ -1,4 +1,4 @@
-# returns its status, can be instructed to land & take off, sends requests to air traffic control
+# returns flight status, lands, takes off, sends requests to air traffic control
 class Plane
   attr_reader :status
 

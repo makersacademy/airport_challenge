@@ -57,9 +57,11 @@ describe AirTrafficControl do
             end
 
             context 'when there are multiple planes' do
-              before { subject.request_landing(plane_2)
-                       subject.request_landing(plane_3)
-                       subject.request_take_off(plane_2) }
+              before {
+                subject.request_landing(plane_2)
+                subject.request_landing(plane_3)
+                subject.request_take_off(plane_2)
+              }
 
               it 'only removes one plane' do
                 expect(subject.send(:planes).count).to be 2
@@ -91,6 +93,7 @@ describe AirTrafficControl do
 
       describe '#capacity_guard' do
         before { let_there_be_sun }
+
         context 'when capacity is full' do
           before { fill_her_up }
           it 'raises capacity error' do
@@ -131,8 +134,10 @@ describe AirTrafficControl do
 
       describe '#clear_for_take_off' do
         context 'when there is 1 plane in airport' do
-          before { subject.send :clear_for_landing, plane
-                   subject.send :clear_for_take_off, plane }
+          before {
+            subject.send :clear_for_landing, plane
+            subject.send :clear_for_take_off, plane
+          }
 
           it 'removes plane from airport' do
             expect(subject.contain?(plane)).to be false
@@ -140,8 +145,10 @@ describe AirTrafficControl do
         end
 
         context 'when there are multiple planes' do
-          before { subject.send(:planes) << plane << plane_2 << plane_3
-                   subject.send :clear_for_take_off, plane_2 }
+          before {
+            subject.send(:planes) << plane << plane_2 << plane_3
+            subject.send :clear_for_take_off, plane_2
+          }
 
           it 'only removes one plane' do
             expect(subject.send(:planes).count).to be 2

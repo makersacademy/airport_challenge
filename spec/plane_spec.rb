@@ -2,10 +2,13 @@
 describe Plane do
   let(:plane)   { described_class.new }
   let(:planes)  { [] }
-  let(:airport) { instance_double(Airport, 'Airport',
-                                  planes: planes,
-                                  request_landing: nil,
-                                  request_take_off: nil) }
+  let(:airport) {
+    instance_double(
+      Airport, 'Airport',
+      planes: planes,
+      request_landing: nil,
+      request_take_off: nil)
+  }
 
   it { is_expected.to respond_to(:land).with 1 }
   it { is_expected.to respond_to(:take_off).with 1 }
