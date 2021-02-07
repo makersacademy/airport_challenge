@@ -47,8 +47,6 @@ describe Airport do
 
   end
 
-
-
   context 'when full' do
     before do
       Airport::DEFAULT_CAPACITY.times { @airport.land(Plane.new) }

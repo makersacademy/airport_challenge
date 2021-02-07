@@ -18,13 +18,16 @@ class Airport
   def land(plane)
     prevent_landing
     raise "Plane is already at airport, cannot land again." if plane_at_airport?(plane)
+    
     @planes_at_airport << plane
     plane.to_s + " landing now" if plane_at_airport?(plane)
   end
 
   def take_off(plane)
     prevent_take_off
-    @planes_at_airport.delete_at(@planes_at_airport.index(plane)) if @planes_at_airport.include?(plane)
+    if @planes_at_airport.include?(plane)
+      @planes_at_airport.delete_at(@planes_at_airport.index(plane))
+    end
     plane
   end
 
