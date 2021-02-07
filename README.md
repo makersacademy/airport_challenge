@@ -21,6 +21,7 @@ Description
 How to use
 -------
 
+* To run in irb, require the 'script.rb' file from within the /lib directory.
 * To create objects to represent planes and airports, use Plane.new and Airport.new.
 * Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes. Current airport default capacity is 10 - to change this, pass the capacity integer as an argument when creating an Airport object.
 * Call .status on a plane to see if it is flying, or which airport it is currently landed at. New plane objects will have a status of "unassigned" until you call 'land' on them with an airport as an argument to assign them to an airport. This can be chained when creating the plane.
