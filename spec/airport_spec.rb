@@ -13,6 +13,8 @@ describe Airport do
   	50.times {airport.land Plane.new}
   	expect {airport.land Plane.new}.to raise_error 'Airport is full: cannot land right now.'
   end
+  it "has a weather forecast" do
+
  end
 
  describe '#land' do	
@@ -62,20 +64,32 @@ describe '#take_off' do
  	airport.land(plane)
  	expect(airport.take_off(plane)).to_not include([plane])
  end
+ it "raises an error when weather is stormy" do
+ 	airport = Airport.new
+ 	plane = Plane.new
+ 	airport.land(plane)
+ 	airport.forecast(:stormy)
+ 	expect {airport.take_off(plane)}.to raise_error 'Weather is stormy, cannot take-off.'
+ end 
 end
-
+end
  # it "Plane takes off from airport" do
  # 	airport = Airport.new
  # 	plane = Plane.new
  # 	expect(airport.take_off(plane)).
 
-describe Weather do
-  it "Weather responds to stormy?" do	
-	weather = Weather.new
-	expect(weather).to respond_to(:stormy?)
-  end
-end
-
+# describe Weather do
+#  describe '#stormy?' do
+#   it "Weather responds to stormy?" do	
+# 	weather = Weather.new
+# 	expect(weather).to respond_to(:weather)
+#   end
+#   it "Returns a weather report between stormy and sunny." do
+#   	weather = Weather.new
+#   	expect(weather.weather).not_to be_nil
+#   end	
+#  end
+# end
 # I want to prevent takeoff when weather is stormy 
 
 
