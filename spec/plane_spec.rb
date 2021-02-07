@@ -29,5 +29,11 @@ describe Plane do
       airport = double("airport")
       expect { plane.takeoff(airport) }.to raise_error("Warning: plane is already airborne")
     end
+    it 'plane cannot takeoff if not at correct airport' do
+      heathrow = double("airport")
+      gatwick = double("airport")
+      plane = Plane.new(heathrow)
+      expect { plane.takeoff(gatwick) }.to raise_error("Warning: plane is not at that airport")
+    end
   end
 end
