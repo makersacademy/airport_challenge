@@ -25,7 +25,7 @@ class Airport
   end  
   
   def land(plane, run_type = "run") 
-    #landed?
+#   landed?
     full?
     weather_generator(run_type)
     weather? 
@@ -34,7 +34,7 @@ class Airport
   end
 
   def take_off(plane, run_type = "run")
-    #flying?
+#   flying?
     empty?
     weather_generator(run_type)
     weather?
@@ -67,6 +67,5 @@ class Airport
   def landed? 
     fail "Plane Already Landed" if @status == "landed" 
   end 
-  
-  
+    
 end 

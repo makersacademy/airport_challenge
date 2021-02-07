@@ -42,14 +42,14 @@ describe Airport do
     expect { airport.land(plane, "stormy_test") }.to raise_error("Weather Stormy")
   end 
   
-  #it "prevents taking off when plane is already flying" do 
-    # plane = Plane.new 
-    #expect { subject.take_off(plane) }.to raise_error("Plane Already Flying") 
-  #end
+# it "prevents taking off when plane is already flying" do 
+#   plane = Plane.new 
+#   expect { subject.take_off(plane) }.to raise_error("Plane Already Flying") 
+# end
   
-  #it "prevents landing if the plane is already landed" do 
-  #  plane = Plane.new
-  #  subject.land(plane) 
-  #  expect { subject.land(plane) }.to raise_error("Plane Already Landed")
-  #end 
+# it "prevents landing if the plane is already landed" do 
+#   plane = Plane.new
+#   subject.land(plane) 
+#   expect { subject.land(plane) }.to raise_error("Plane Already Landed")
+# end 
 end 
