@@ -27,7 +27,7 @@ describe Airport do
     it 'returns the capacity of the hangar' do
       expect(subject.capacity).to eq(24)
     end
-    it 'prevents landing if the hangar is full'
+    it { is_expected.to respond_to(:hangar_full?) }
     # expect that if @hangar = @capacity subject.land
     # returns "this plane can't land" and doesn't push
   end
