@@ -13,8 +13,17 @@ describe Airport do
 
     it 'raises an error and prevents plane landing when the airport is full' do
       airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
       10.times { airport.land(Plane.new) }
       expect { airport.land(Plane.new) }.to raise_error("Airport is full")
+    end
+
+    it 'raises an error and prevents plane landing when weather is stormy' do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:rand).and_return(10)
+      airport.checkweather
+      expect { airport.land(plane) }.to raise_error("Plane cannot land due to stormy weather conditions")
     end
   end
 
@@ -22,6 +31,8 @@ describe Airport do
     it 'instructs a plane to take off and is no longer at the airport' do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:rand).and_return(1)
+      airport.land(plane)
       airport.take_off(plane)
       expect(airport.hangar).to eq([])
     end
@@ -31,8 +42,17 @@ describe Airport do
       plane = Plane.new
       airport.land(plane)
       allow(airport).to receive(:rand).and_return(10)
-      airport.weather
-      expect{ airport.take_off(plane) }.to raise_error("Plane cannot take off due to stormy weather conditions")
+      airport.checkweather
+      expect { airport.take_off(plane) }.to raise_error("Plane cannot take off due to stormy weather conditions")
+    end
+
+    it 'raises an error when plan is trying to take off from an airport they are not in' do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      plane = Plane.new
+      allow(airport1).to receive(:rand).and_return(1)
+      airport1.land(plane)
+      expect { airport2.take_off(plane) }.to raise_error("Plane cannot take off from an airport it is not in")
     end
   end
 

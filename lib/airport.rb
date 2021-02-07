@@ -12,12 +12,18 @@ class Airport
   end
 
   def land(plane)
+    checkweather
     fail "Airport is full" if full?
+    fail "Plane cannot land due to stormy weather conditions" if @weather == "Stormy"
+
     @hangar << plane
   end
 
   def take_off(plane)
+    checkweather
     fail "Plane cannot take off due to stormy weather conditions" if @weather == "Stormy"
+    fail "Plane cannot take off from an airport it is not in" unless @hangar.include?(plane)
+
     @hangar.delete(plane)
   end
 
@@ -29,9 +35,9 @@ class Airport
     @capacity = number
   end
 
-  def weather
-    n = rand (1..10)
-    n == 10? @weather = "Stormy" : @weather = "Sunny"
+  def checkweather
+    n = rand(1..10)
+    n == 10 ? @weather = "Stormy" : @weather = "Sunny"
   end
 
 end
