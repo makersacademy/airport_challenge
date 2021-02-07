@@ -13,5 +13,10 @@ describe Plane do
       airport = double("airport")
       expect { plane.land(airport) }.to change { plane.location }.from("airborne").to(airport)
     end
+    it 'plane cannot land if not already airborne' do
+      airport = double("airport")
+      plane = Plane.new("airport")
+      expect { plane.land(airport) }.to raise_error("Warning: plane is not airborne")
+    end
   end
 end
