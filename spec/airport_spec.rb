@@ -7,23 +7,23 @@ describe Airport do
   it { should respond_to :plane_at_airport? }
   it { should respond_to :full? }
 
-  context 'when airport and plane instances exist' do
     before do
       @airport = Airport.new
       @plane = Plane.new
+      allow(@airport.weather).to receive(:weather_state) { 1..4 }
     end
 
     describe 'is expected to take a plane as an argument and return the same instance' do
       it 'when :land is called' do
-        expect(subject.land(@plane)).to eq @plane
+        expect(@airport.land(@plane)).to eq @plane
       end
 
       it 'when :take_off is called' do
-        expect(subject.take_off(@plane)).to eq @plane
+        expect(@airport.take_off(@plane)).to eq @plane
       end
 
       it 'when :plane_at_airport is called' do
-        allow(subject).to receive(:plane_at_airport?) { @plane }
+        allow(@airport).to receive(:plane_at_airport?) { @plane }
       end
     end
 
@@ -68,8 +68,34 @@ describe Airport do
         expect(subject.new_capacity(50)).to eq subject.capacity
       end
     end
-  end
 
-  
+    describe 'is expected to be able to use the Weather class' do
+      it 'is expected to create a new instance of Weather' do
+        expect(subject.weather).to be_a(Weather)
+      end
 
+      it 'stormy? is expected to return false if weather is not stormy?' do
+        allow(subject.weather).to receive(:weather_state) { 1..4 }
+        expect(subject.weather.stormy?).to eq false
+      end
+
+      context 'when weather is stormy?' do
+        before do
+          allow(@airport.weather).to receive(:weather_state) { 5 }
+        end
+
+        it 'stormy? is expected to return true' do
+          expect(@airport.weather.stormy?).to eq true
+        end
+
+        it 'is expected to raise an error if user attempts :take_off' do
+          expect { @airport.take_off(Plane.new) }.to raise_error("Weather is currently stormy. You cannot take_off until it is sunny again.")
+        end
+
+        it 'is expected to raise an error if user attempts :land' do
+          expect { @airport.land(Plane.new) }.to raise_error("Weather is currently stormy. You cannot land until it is sunny again.")
+        end
+
+      end
+    end
 end
