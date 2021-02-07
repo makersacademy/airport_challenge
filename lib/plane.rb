@@ -9,4 +9,8 @@ class Plane
     raise("Warning: plane is not airborne") if @location != "airborne"
     @location = airport
   end
+
+  def takeoff(airport)
+    @location = "airborne"
+  end
 end
