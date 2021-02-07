@@ -1,3 +1,4 @@
+require_relative './plane.rb'
 class Airport 
   DEFAULT_CAPACITY = 20 # default airport capacity
   
@@ -24,36 +25,48 @@ class Airport
   end  
   
   def land(plane, run_type = "run") 
+    #landed?
     full?
     weather_generator(run_type)
     weather? 
     (@planes.size < @capacity) ? @planes << plane : nil
+    @status = "landed" 
   end
 
   def take_off(plane, run_type = "run")
+    #flying?
     empty?
     weather_generator(run_type)
     weather?
     @planes.delete(plane)
+    @status = "flying"
     true 
   end 
-end 
 
-# checks to see if airport is full. And thus no planes can land here. 
-def full? 
-  fail "Airport Full. Cannot Land" if @planes.size >= @capacity 
-end
+  # checks to see if airport is full. And thus no planes can land here. 
+  def full? 
+    fail "Airport Full. Cannot Land" if @planes.size >= @capacity 
+  end
 
-# checks to see if the airport is empty. And thus no planes can take off from it. 
-def empty? 
-  fail "Airport Empty" if @planes.size == 0 
-end
+  # checks to see if the airport is empty. And thus no planes can take off from it. 
+  def empty? 
+    fail "Airport Empty" if @planes.size == 0 
+  end
 
-# checks to see if stormy weather. If so It return error"  
-def weather? 
-  fail "Weather Stormy" if @weather == "stormy" 
-end 
+  # checks to see if stormy weather. If so It return error"  
+  def weather? 
+    fail "Weather Stormy" if @weather == "stormy" 
+  end 
 
-class Plane
+  # checks to see if plane is already flying. 
+  def flying?
+    fail "Plane Already FLying" if @status == "flying"     
+  end 
   
-end
+  # checks to see if plane is already landed
+  def landed? 
+    fail "Plane Already Landed" if @status == "landed" 
+  end 
+  
+  
+end 

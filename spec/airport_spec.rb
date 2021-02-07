@@ -1,4 +1,5 @@
-require_relative '../docs/classes.rb'
+require_relative '../docs/airport.rb'
+require_relative '../docs/plane.rb'
 describe Airport do 
   
   it "responds to land method" do 
@@ -17,7 +18,7 @@ describe Airport do
 
   it "prevents landing when the airport if full at default capacity" do 
     plane = Plane.new 
-    Airport::DEFAULT_CAPACITY.times { subject.land(plane, "sunny_test") }
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane, "sunny_test")  }
     expect { subject.land(plane, "sunny_test") }.to raise_error("Airport Full. Cannot Land") 
   end 
 
@@ -40,4 +41,15 @@ describe Airport do
     plane = Plane.new 
     expect { airport.land(plane, "stormy_test") }.to raise_error("Weather Stormy")
   end 
+  
+  #it "prevents taking off when plane is already flying" do 
+    # plane = Plane.new 
+    #expect { subject.take_off(plane) }.to raise_error("Plane Already Flying") 
+  #end
+  
+  #it "prevents landing if the plane is already landed" do 
+  #  plane = Plane.new
+  #  subject.land(plane) 
+  #  expect { subject.land(plane) }.to raise_error("Plane Already Landed")
+  #end 
 end 
