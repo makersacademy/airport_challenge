@@ -9,11 +9,20 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if full?
-    
+
     @planes << plane
     @planes
   end
 
+  def take_off(plane)
+    if @planes.include? plane
+      index = @planes.find_index(plane)
+      @planes.delete_at(index)
+    else
+      fail 'Plane not in current airport'
+    end
+  end
+  
   private
 
   attr_reader :planes
