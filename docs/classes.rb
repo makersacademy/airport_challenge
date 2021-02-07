@@ -4,23 +4,28 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity 
     @planes = [] 
-    @weather  
   end 
-    
-  def weather_generator(run_type) # run type allows for sunny tests / stormy tests. To bypass random weather for test where not needed. 
-    if run_type == "stormy_test" # if block to allow garanteed stormy weather for testing stormy takeoff error
-      @weather = "stormy" # in the 'test' condition the weather will alwasys be stormy
-    elsif run_type == "sunny_test" # default value for testing that is not dependant on weather. 
+  
+  # run type allows for sunny tests / stormy tests. To bypass random weather.  
+  
+  def weather_generator(run_type)
+    # if block to allow garanteed stormy weather for testing stormy takeoff error
+    if run_type == "stormy_test" 
+      # in the 'stromy_test' condition the weather will alwasys be stormy  
+      @weather = "stormy" 
+    # default value for testing that is not dependant on weather.   
+    elsif run_type == "sunny_test" 
       @weather = "sunny"
-    elsif run_type == "run" # value for when random weather is required. Default running condition 
+    # value for when random weather is required. Default running condition 
+    elsif run_type == "run" 
       weather_gen = rand(10)
-      (weather_gen >= 8) ? (@weather = "stormy") : (@weather = "sunny") # otherwise it will use the weather_gen vaiable to assign wetaher
+      (weather_gen >= 8) ? (@weather = "stormy") : (@weather = "sunny") 
     end
   end  
   
   def land(plane, run_type = "run") 
     full?
-    @weather = weather_generator(run_type)
+    weather_generator(run_type)
     weather? 
     (@planes.size < @capacity) ? @planes << plane : nil
   end
@@ -34,15 +39,18 @@ class Airport
   end 
 end 
 
-def full? # checks to see if airport is full. And thus no planes can land here. 
+# checks to see if airport is full. And thus no planes can land here. 
+def full? 
   fail "Airport Full. Cannot Land" if @planes.size >= @capacity 
 end
 
-def empty? # checks to see if the airport is empty. And thus no planes can take off from it. 
+# checks to see if the airport is empty. And thus no planes can take off from it. 
+def empty? 
   fail "Airport Empty" if @planes.size == 0 
 end
 
-def weather? # checks to see if stormy weather. If so It return error"  
+# checks to see if stormy weather. If so It return error"  
+def weather? 
   fail "Weather Stormy" if @weather == "stormy" 
 end 
 
