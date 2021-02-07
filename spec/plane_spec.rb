@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:plane) { Plane.new("airborne") }
+  let(:plane) { Plane.new }
 
   it 'plane class exists in program' do
     expect(plane).to be_a(Plane)
@@ -10,7 +10,7 @@ describe Plane do
   describe '#land' do
     it 'land allows plane to land at airport' do
       airport = double("airport", :closed? => false)
-      expect { plane.land(airport) }.to change { plane.location }.from("airborne").to(airport)
+      expect { plane.land(airport) }.to change { plane.location }.from(:airborne).to(airport)
     end
     it 'plane cannot land if not already airborne' do
       airport = double("airport")
@@ -28,7 +28,7 @@ describe Plane do
     it 'takeoff allows plane to leave airport' do
       airport = double("airport", :closed? => false)
       plane = Plane.new(airport)
-      expect { plane.takeoff(airport) }.to change { plane.location }.from(airport).to("airborne")
+      expect { plane.takeoff(airport) }.to change { plane.location }.from(airport).to(:airborne)
     end
     it 'plane cannot takeoff if already airborne' do
       airport = double("airport")

@@ -26,7 +26,7 @@ class Airport
   # end
 
   def closed?
-    return true if weather == "stormy"
+    return true if weather == :stormy
     @state == :closed ? true : false
   end
 
@@ -34,9 +34,9 @@ class Airport
     forecast = rand(1..20)
     case forecast
     when 1..19
-      "sunny"
+      :sunny
     when 20
-      "stormy"
+      :stormy
     end
   end
 end

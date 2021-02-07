@@ -19,11 +19,11 @@ describe Airport do
 
   describe '#status' do
     it 'ATC can check the status of an airport' do
-      airport.stub(:weather).and_return("sunny")
+      allow(airport).to receive(:weather).and_return(:sunny)
       expect(airport.closed?).to eq(false)
     end
     it 'stormy weather closes airport' do
-      airport.stub(:weather).and_return("stormy")
+      allow(airport).to receive(:weather).and_return(:stormy)
       expect(airport.closed?).to eq(true)
     end
   end
@@ -54,7 +54,7 @@ describe Airport do
 
   describe '#weather' do
     it 'airport has weather' do
-      expect(airport.weather).to satisfy { |value| ["sunny", "stormy"].include?(value) }
+      expect(airport.weather).to satisfy { |value| [:sunny, :stormy].include?(value) }
     end
 
   end
