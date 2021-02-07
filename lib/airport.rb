@@ -1,14 +1,16 @@
 require_relative 'plane'
 
 class Airport
+  attr_reader :plane
 
   def initialize
     @planes_at_airport = []
   end
 
   def land(plane)
-    @planes_at_airport << plane
-    return plane
+      prevent_landing
+      @planes_at_airport << plane
+      return plane
   end
 
   def take_off(plane)
@@ -23,6 +25,14 @@ class Airport
     return true if @planes_at_airport.include?(plane)
 
     false
+  end
+
+  def full?
+    @planes_at_airport.length >= 20
+  end
+
+  def prevent_landing
+    raise "Airport is currently full. You cannot land." if self.full?
   end
 
 end
