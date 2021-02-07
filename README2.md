@@ -25,7 +25,7 @@ $ pry
   * Item 2a
   * Item 2b
 
-## Project status https://img.shields.io/badge/Min%20coverage-%3E%2095%25-green
+## Project status (https://img.shields.io/badge/Min%20coverage-%3E%2095%25-green)
 - [x] Fork directory
 - [x] Create Domain Model based on User Stories
 - [x] Apply TTD process to create objects
@@ -33,4 +33,4 @@ $ pry
 - [x] Use stubs methods to override random behaviours
 - [ ] Use a double to override random behaviours
 - [ ] Defend against edge cases
-- [ ] Use the Single Responsability Principle
+- [x] Use the Single Responsability Principle
