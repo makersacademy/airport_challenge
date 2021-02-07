@@ -33,17 +33,17 @@ told it to do. I have been experiencing issues when trying to implement
 counting the number of planes in the plane array, and seeing if that number
 is equal to any given capacity.
 
-  solution 2 ?: I have implemented a default number of planes and capacity
-  and have a passing test for if the two numbers are the same
+    solution 2: I have implemented a default number of planes and capacity
+    and have a passing test for if the two numbers are the same
 
 issue 2.5:
 
 This solution does not account for if the capacity is less than the number
 of planes
 
-  solution 2.5: I simply changed the equals to a less than or equals
-  the test now passes for the default capacity value being less than or
-  equal to the number of planes
+    solution 2.5: I simply changed the equals to a less than or equals
+    the test now passes for the default capacity value being less than or
+    equal to the number of planes
 
 
 at this point, I am still uncertain that I am comfortable enough with TDD, so
