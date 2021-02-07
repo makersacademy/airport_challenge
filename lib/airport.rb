@@ -5,16 +5,10 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  attr_reader :planes # refactor into a private method
   attr_accessor :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @planes = []
-    @capacity = capacity
-  end
-
-  def not_contain?(plane)
-    planes.none?(plane)
+  def contain?(plane)
+    planes.include?(plane)
   end
 
   def weather
@@ -22,6 +16,13 @@ class Airport
   end
 
   private
+
+  attr_reader :planes
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    @planes = []
+  end
 
   def full?
     planes.count >= capacity
