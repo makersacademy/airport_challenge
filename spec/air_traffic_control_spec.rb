@@ -86,8 +86,8 @@ describe AirTrafficControl do
         end
       end
     end
-    # testing mission critical private methods
-    context 'private methods' do
+
+    context 'private methods' do # testing mission critical private methods
 
       describe '#capacity_guard' do
         before { let_there_be_sun }

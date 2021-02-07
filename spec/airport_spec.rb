@@ -47,8 +47,8 @@ describe Airport do
       end
     end
   end
-  # testing mission critical private methods
-  context 'private methods' do
+
+  context 'private methods' do # testing mission critical private methods
 
     describe '#full?' do
       before { let_there_be_sun }
