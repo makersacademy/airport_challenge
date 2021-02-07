@@ -123,7 +123,7 @@ The `contain?` method confirms if a plane is in a given airport. Useful for conf
 
 ## System Guard Conditions
 
-When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the Air Traffic Control mixin:
+When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the `Air Traffic Control` mixin:
 
 - Requesting to land or take off in extreme weather, throws: `WeatherError`
   - The `weather forcast` is local to each airport and determined by `atmospheric pressure` (a randomly generated number between 0 and 100). When pressure is very low (<= 10), the forcast will be `stormy` and all take offs and landings are prevented
@@ -163,7 +163,9 @@ Traceback (most recent call last): ...
 AirportError (Request Denied: Plane not located in airport)
 ```
 
-- Planes automatically reject invalid instructions. Instructing grounded planes to land, throws: `LandingError`
+#### Planes automatically reject invalid instructions
+
+- Instructing grounded planes to land, throws: `LandingError`
 
 ```
 2.6.5 :048 > airbus.land(LHR)
@@ -211,6 +213,14 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
+
+## Reflections
+
+- I am pleased with the outcome of the program and feel that it meets the requirements.
+- Given more time I'd like to add an optional hash of arguments to Plane's initialize method, allowing it to be initialized in an airport.
+- This exercise has made me more determined to master object oriented design, in particular SOLID principles.
+- My long term goal is to be confident in designing complex programs from scratch, using loosely coupled objects with minimal dependencies and well designed public interfaces.
+
 
 ## Mission Accomplished
 
