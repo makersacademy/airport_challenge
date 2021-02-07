@@ -27,7 +27,7 @@ class Airport
 
   def closed?
     return true if weather == :stormy
-    @state == :closed ? true : false
+    @state == :closed
   end
 
   def weather
