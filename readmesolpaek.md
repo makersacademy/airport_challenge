@@ -49,3 +49,21 @@ of planes
 at this point, I am still uncertain that I am comfortable enough with TDD, so
 am once again returning to the boris bikes afternoon challenges (I missed a lot
 due to illness)
+
+
+
+
+I have now added a couple more features. Firstly, I now have a test to see whether
+the airport is at capacity or not. Although this is not fully fleshed out, due
+to the fact that the count of planes does not increase nor decrease when a
+plane lands or takes off, it still works-ish and I am happy with this.
+
+Secondly, I have a new feature that means that the plane does not land if the
+airport is full, and does land if it is not full. The full? is defined by if the
+number of planes is less than the capacity or not, but this, as previously
+mentioned, is not fully fleshed out.
+This is reflected in the tests that expect a false or true based on the
+fullness of the airport.
+
+At this point, I will try to implement the counter's increasing and decreasing
+based on the taking off or landing of planes. Wish me luck.
