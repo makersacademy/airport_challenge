@@ -58,19 +58,8 @@ describe Plane do
       end
     end
 
-    context 'when weather is `sunny`' do
-      it 'should remove the plane from the hangar' do
-        plane_1 = Plane.new
-        plane_2 = Plane.new
-        airport = Airport.new @hangar = [plane_1, plane_2]
-        allow(airport).to receive(:weather) { 'sunny' }
-        plane_1.take_off(airport)
-        expect(airport.hangar).to_not include(plane_1)
-      end
-    end
-
-    context 'when it is `sunny`' do
-      it 'should only take_off if present in the hangar' do
+    context 'when it is `sunny` and plane is present in the hangar' do
+      it 'should be removed from the hangar' do
         plane_1 = Plane.new
         airport = Airport.new @hangar = []
         allow(airport).to receive(:weather) { 'sunny' }
