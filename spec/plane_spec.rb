@@ -21,7 +21,7 @@ describe Plane do
 
   it 'shoud not land if airport is full' do
     airport = Airport.new("Heathrow")
-    Plane.new.land(airport)
+    airport.capacity.times { Plane.new.land(airport) }
     expect { subject.land(airport) }.to raise_error("Airport full")
   end
 

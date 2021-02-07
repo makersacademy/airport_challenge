@@ -8,6 +8,7 @@ class Plane
   end
 
   def takeoff(airport)
+    airport.parked -= 1
     "Departed from #{airport.name}"
   end
 
