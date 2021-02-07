@@ -9,13 +9,17 @@ describe Plane do
 
   describe '#land' do
     it 'land allows plane to land at airport' do
-      airport = double("airport")
+      airport = double("airport", :status => "open")
       expect { plane.land(airport) }.to change { plane.location }.from("airborne").to(airport)
     end
     it 'plane cannot land if not already airborne' do
       airport = double("airport")
       plane = Plane.new(airport)
       expect { plane.land(airport) }.to raise_error("Warning: plane is not airborne")
+    end
+    it 'plane cannot land if airport is closed' do
+      airport = double("airport", :status => "closed")
+      expect { plane.land(airport) }.to raise_error("Cannot land: airport is closed")
     end
   end
 
