@@ -37,4 +37,12 @@ describe Airport do
       expect(airport.hangar_full?).to be false
     end
   end
+
+  describe '#weather' do
+    it 'should return either `sunny` or `stormy`' do
+      options = ['sunny', 'stormy']
+      index = options.find_index(airport.weather)
+      expect(index).to_not be_nil
+    end
+  end
 end
