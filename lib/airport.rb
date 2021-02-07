@@ -14,19 +14,25 @@ class Airport
 
   def land(plane)
     fail "This plane is already in the airport" if @planes.include?(plane)
+
     fail "The airport is full" if full?
+
     fail "It is too stormy to land" if stormy?
+
     @planes << plane
   end
 
   def take_off(plane)
     fail "This plane is not in the airport" unless @planes.include?(plane)
+
     fail "It is too stormy to take off" if stormy?
+
     @planes.slice!(@planes.index(plane))
   end
 
   def location(plane)
     return "This plane is grounded in the airport" if @planes.include?(plane)
+
     return "This plane is airborne"
   end
 

@@ -40,7 +40,7 @@ describe Airport do
         airport.land(double(:plane))
       end
       expect { airport.land(double(:plane)) }.to raise_error "The airport is full"
-      end
+    end
 
     it "raises an error when a plane that is already in the airport tries to land" do
       airport = Airport.new
@@ -58,22 +58,22 @@ describe Airport do
     end
   end
 
-    describe "#take_off" do
-      it "raises an error when told to allow a plane to take off that isn't in the airport"  do
-        airport = Airport.new
-        plane = double(:plane)
-        expect { airport.take_off(plane) }.to raise_error "This plane is not in the airport"
-      end
-
-      it "raises an error if it is too stormy for a plane to take off" do
-        airport = Airport.new
-        plane = double(:plane)
-        allow(airport).to receive(:stormy?) { false }
-        airport.land(plane)
-        allow(airport).to receive(:stormy?) { true }
-        expect { airport.take_off(plane) }.to raise_error "It is too stormy to take off"
-      end
+  describe "#take_off" do
+    it "raises an error when told to allow a plane to take off that isn't in the airport" do
+      airport = Airport.new
+      plane = double(:plane)
+      expect { airport.take_off(plane) }.to raise_error "This plane is not in the airport"
     end
+
+    it "raises an error if it is too stormy for a plane to take off" do
+      airport = Airport.new
+      plane = double(:plane)
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      allow(airport).to receive(:stormy?) { true }
+      expect { airport.take_off(plane) }.to raise_error "It is too stormy to take off"
+    end
+  end
 
   it "responds to being asked the location of a place" do
     airport = Airport.new
