@@ -1,29 +1,32 @@
 class Airport
-  attr_reader :capacity, :planes
+  attr_reader :capacity, :planes, :state
 
   def initialize(capacity = 50)
     @capacity = capacity
     @planes = []
-    @status = :open
+    @state = :open
   end
 
   def close
-    @status = :closed
+    @state = :closed
   end
 
   def open
-    @status = :open
+    @state = :open
   end
 
   def receive(plane)
     @planes.push(plane)
     return unless @planes.length >= @capacity
-    
-    @status = :closed
+
+    @state = :closed
   end
 
+  # def release(plane)
+  # end
+
   def status
-    weather == "stormy" ? :closed : @status
+    weather == "stormy" ? :closed : @state
   end
 
   def weather
