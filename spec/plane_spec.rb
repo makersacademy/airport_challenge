@@ -25,5 +25,9 @@ describe Plane do
       plane = Plane.new(airport)
       expect { plane.takeoff(airport) }.to change { plane.location }.from(airport).to("airborne")
     end
+    it 'plane cannot takeoff if already airborne' do
+      airport = double("airport")
+      expect { plane.takeoff(airport) }.to raise_error("Warning: plane is already airborne")
+    end
   end
 end
