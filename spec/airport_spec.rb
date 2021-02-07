@@ -35,4 +35,10 @@ describe Airport do
     airport.take_off(plane)
     expect(airport.land(plane).length).to eq 1
   end
+  it "doesn't allow planes that already landed to land" do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error 'Already in airport'
+  end
 end
