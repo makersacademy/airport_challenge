@@ -8,7 +8,6 @@ describe Airport do
   it { is_expected.to respond_to(:stormy?) }
   it { is_expected.to respond_to(:full?) }
 
-
   it "should contain no planes when new" do
     expect(airport.planes).to eq []
   end
@@ -33,6 +32,5 @@ describe Airport do
       expect(airport.full?).to eq true
     end
   end
-
 
 end

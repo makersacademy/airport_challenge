@@ -7,19 +7,15 @@ class Airport
   end
 
   def stormy?
-    if rand(1..10).between?(1,9)
-      return false
-    else
-      return true
-    end
+    return false if rand(1..10).between?(1, 9)
+
+    true
   end
 
   def full?
-    if @planes.length == @capacity
-      return true
-    else
-      return false
-    end
+    return true if @planes.length == @capacity
+    
+    false
   end
 
 end
