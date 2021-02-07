@@ -28,6 +28,10 @@ This program is designed to meet the needs of these client [user stories](#user-
 - `rubocop`
 - `coveralls`
 
+## Running tests
+Running the test suite provides thorough `documentation` on all classes and methods. After running bundle install, run test suite with:
+- `rspec`
+
 ## Skills applied
 
 ### Testing
