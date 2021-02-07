@@ -33,9 +33,16 @@ describe Airport do
       expect(airport.capacity).to eq(100)
     end
 
+    it 'when airport receives a plane, it is stored in the airport' do
+      plane = double("plane")
+      expect { airport.receive(plane) }.to change { airport.planes.length }.from(0).to(1)
+    end
+
     context 'when airport is full' do
       it 'airport is automatically closed' do
-
+        plane = double("plane")
+        airport = Airport.new(1)
+        expect { airport.receive(plane) }.to change { airport.status }.from("open").to("closed")
       end
     end
   end
