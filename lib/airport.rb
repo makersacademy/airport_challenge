@@ -2,6 +2,7 @@ class Airport
 
 attr_reader :hangar_report 
 attr_reader :plane
+DEFAULT_CAPACITY = 20
 
 	def initialize
  		@hangar_report = []	
@@ -21,7 +22,7 @@ attr_reader :plane
 	private 
 
 	def full?
-		@hangar_report.count == 1
+		@hangar_report.count >= DEFAULT_CAPACITY
 	end
 
 end
