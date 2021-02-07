@@ -1,11 +1,10 @@
 class Airport
 
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :hangar, :capacity
 
   def initialize(capacity = 20)
     @capacity = capacity
     @hangar = []
-    @weather = weather
   end
 
   def hangar_full?
@@ -16,8 +15,15 @@ class Airport
     @capacity = value
   end
 
-end
+  def weather
+    ['sunny', 'sunny', 'sunny', 'stormy'].sample
+  end
+  # def stormy?
+    # if (rand(1..10).to_i) >= 8
+    #   return true
+    # else
+    #   return false
+    # end
+  # end
 
-# def generate_weather
-#   weather_rand = ['sunny','sunny','sunny', 'stormy'].sample
-# end
+end

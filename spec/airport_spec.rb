@@ -31,6 +31,31 @@ describe Airport do
         expect(small_airport.hangar_full?).to be true
       end
     end
+  end
+
+  # describe '#stormy?' do
+  #   it 'should exist' do
+  #     expect(subject).to respond_to(:stormy?)
+  #   end
+  #   context 'when rand_num is greater than or eql to 8' do
+  #     it 'should return true' do
+  #       allow(subject.stormy?).to receive(:rand_num){ 8 }
+  #       expect(subject.stormy?).to be true
+  #     end
+  #   end
+  #   context 'when rand_num is less than or eql to 7' do
+  #     it 'should return false' do
+  #       allow(subject.stormy?).to receive(:rand_num){ 7 }
+  #       expect(subject.stormy?).to be false
+  #     end
+  #   end
+  # end
+  describe 'weather' do
+    it 'should randomly select between stormy and sunny' do
+      # allow(subject).to receive(:weather) { 'stormy' }
+      # expect(subject.weather).to match('stormy') # => I want to match two strings outcome
+    end
+  end
     # context 'when the hangar is not full' do
       # it 'should return false if the hangar is not full' do
       #   small_airport = Airport.new @capacity=3
@@ -39,20 +64,4 @@ describe Airport do
       #   expect(small_airport.hangar_full?).to be false
       # end
     # end
-  end
-
-#allow(Airport.new).to receive(stromy?) { true }
-  describe '#weather' do
-    it 'should respond to weather' do
-      expect(Airport.new).to respond_to(:weather)
-    end
-  end
 end
-
-# describe 'generate_weather' do
-#   it 'should randomly select between stormy and sunny' do
-#     weathers = ['sunny','sunny','sunny', 'stormy']
-#     weather_rand = weathers.sample
-#     allow(Airport.new.generate_weather).to receive(:weather_rand) { 'sunny' }
-#   end
-# end
