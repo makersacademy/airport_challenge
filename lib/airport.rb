@@ -11,6 +11,8 @@ class Airport
   def land(plane)
     if self.full?
       raise "Airport full, ABORT LANDING"
+    elsif @hanger.include?(plane)
+      raise "This plane has already landed"
     else
     @hanger << plane
     end
