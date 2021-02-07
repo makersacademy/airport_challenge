@@ -30,6 +30,9 @@ describe Airport do
       airport.instance_variable_set(:@capacity, 1)
       airport.instance_variable_set(:@planes, [plane])
       expect(airport.full?).to eq true
+      airport.instance_variable_set(:@capacity, 5)
+      airport.instance_variable_set(:@planes, [plane, plane, plane, plane, plane])
+      expect(airport.full?).to eq true
     end
   end
 

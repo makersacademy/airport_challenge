@@ -23,12 +23,20 @@ How to use
 
 * To create objects to represent planes and airports, use Plane.new and Airport.new.
 * Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes. Current airport default capacity is 10 - to change this, pass the capacity integer as an argument when creating an Airport object.
-* Call .status on a plane to see if it is flying, or which airport it is currently landed at. New plane objects will have a status of "unassigned" - call 'land' on them with an airport as an argument to assign them to an airport. 
+* Call .status on a plane to see if it is flying, or which airport it is currently landed at. New plane objects will have a status of "unassigned" until you call 'land' on them with an airport as an argument to assign them to an airport. This can be chained when creating the plane.
 * Call .planes on an Airport to see which planes are currently stated there.
 * There is a weather checker built into the take_off and land methods to prevent both from executing if the weather is stormy.
 * If a plane attempts to land at a full airport, an error message will be raised.
 * If a plane that is not flying is told to land, an error message will be raised.
 * If a plane is told to leave an airport that it is not in, an error message will be raised.
+
+Approach
+-------
+
+* In contrast to the bikes challenge, I chose to define the land methods within the Plane class rather than the Airport class. This is largely I product of how I read the user stories, and I did contemplate switching them round. However, I felt it made a certain amount of syntactic sense to keep it how it was (and would also make the challenge slightly different, removing the temptation to simply copy and paste code from the challenge in the week.) I did find this created problems with testing the 'full?' method using doubles, as whatever the capacity of the double, its response to the full method would be hard-coded into it. This method is tested in the airport spec though so the coverage is still there.
+* I have tried to design error messages so that they are thrown in a logical order (e.g. telling a plane to land when it is already landed throws an error before the question of the weather is even raised.)
+* The biggest problem I had was with the weather method as I got caught up on making it reflect real life and making an airport always have a weather attribute. On reflection I felt that the point of the method was to simply get a snapshot of the weather at the exact moment a plane was instructed to land or take off, so I felt this wasn't necessary. I did feel it might make sense in real world application to store the most recent weather status to the Airport object each time it was checked, so that the controller could see this when telling planes where to land. However, building the weather method into the land and take_off methods effectively achieves the same thing, since the error message comes back before the plane is instructed to do anything. There was definitely a lesson in this in that I made it too complicated because of not test-driving it! I reverted a commit and made the method again through TDD and it was much more straightforward.
+* Hopefully everything else is self-explanatory! I did initially also have a 'title' attribute for airports so they could be named, which would make the airport status more readable when planes were landed, but I felt this was making the code unnecessarily complicated, and that readability would be factored in when 'translating' this code into an actual user interface.
 
 ## Challenge Notes ##
 

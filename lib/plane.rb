@@ -14,15 +14,17 @@ class Plane
 
     airport.planes << self
     @status = "landed at #{airport}"
+    return self
   end
 
   def take_off(airport)
     fail 'This plane is not at that airport!' unless airport.planes.include?(self)
 
     fail 'The weather is too stormy for take off right now.' if airport.stormy?
-    
+
     airport.planes.delete(self)
     @status = "flying"
+    return self
   end
 
 end
