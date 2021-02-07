@@ -102,7 +102,17 @@ Or use the writer method `capacity=` to change after initialization:
  => 500
 ```
 
-The `contain?` method confirms if a plane is in a given airport. Useful for confirming that planes have left or entered airports after take off or landing:
+After a successful landing or take off, planes auto update their `status` attribute to `ground` and `air` respectively. The attribute is publicly readable and privately writable. A plane's updated `status` is the return value of the two methods and provides confirmation of success.
+
+```
+2.6.5 :003 > jumbo_jet.land(DXB)
+ => :ground
+
+2.6.5 :004 > jumbo_jet.take_off(DXB)
+ => :air
+```
+
+The `contain?` method gives additional peace of mind, letting users confirm whether a plane is in a given airport:
 
 ```
 2.6.5 :033 > JFK.contain?(boeing_747)
@@ -126,7 +136,7 @@ The `contain?` method confirms if a plane is in a given airport. Useful for conf
 When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the `Air Traffic Control` mixin:
 
 - Requesting to land or take off in extreme weather, throws: `WeatherError`
-  - The `weather forcast` is local to each airport and determined by `atmospheric pressure` (a randomly generated number between 0 and 100). When pressure is very low (<= 10), the forcast will be `stormy` and all take offs and landings are prevented
+  - The `weather forcast` is local to each airport and determined by `atmospheric pressure` (a randomly generated number between 0 and 100). When pressure is very low (< 10), the forcast will be `stormy` and all take offs and landings are prevented
 
 ```
 2.6.5 :005 > private_jet.land(LHR)
@@ -163,7 +173,7 @@ Traceback (most recent call last): ...
 AirportError (Request Denied: Plane not located in airport)
 ```
 
-#### Planes automatically reject invalid instructions
+### Planes automatically reject invalid instructions
 
 - Instructing grounded planes to land, throws: `LandingError`
 

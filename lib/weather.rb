@@ -1,7 +1,7 @@
 # class for simulating random weather conditions
 class Weather
   def forcast
-    atmospheric_pressure > 10 ? :sunny : :stormy
+    atmospheric_pressure < 10 ? :stormy : :sunny
   end
 
   private
