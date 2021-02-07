@@ -1,6 +1,12 @@
 class Airport
 
-  def empty?
+  def land
+  end
+
+  def takeoff
   end
   
+  def empty?
+  end
+
 end
