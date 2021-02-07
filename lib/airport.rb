@@ -9,7 +9,9 @@ class Airport
   end
 
   def land(plane)
-    if self.full?
+    if self.weather_check == "Stormy"
+      raise "Weather too bad to land"
+    elsif self.full?
       raise "Airport full, ABORT LANDING"
     elsif @hanger.include?(plane)
       raise "This plane has already landed"
@@ -19,7 +21,9 @@ class Airport
   end
 
   def take_off(plane)
-    if @hanger.include?(plane)
+    if self.weather_check == "Stormy"
+      raise "Weather too bad to take off"
+    elsif @hanger.include?(plane)
     @hanger.delete(plane)
     @hanger
   else
