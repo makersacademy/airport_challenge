@@ -8,11 +8,13 @@ describe Airport do
   describe '#land' do
     before do
       allow(plane).to receive(:land)
-      allow(airport).to receive(:rand).and_return(1)
+      allow(airport.weather).to receive(:stormy?).and_return(false)
+      #allow(weather).to receive(:stormy?).and_return(false)
     end
 
     it 'lands a plane at the airport and must be in the airport hangar' do
-      expect(airport.land(plane)).to eq(airport.hangar)
+      airport.land(plane)
+      expect(airport.hangar).to include plane
     end
 
     it 'raises an error and prevents plane landing when the airport is full' do
@@ -22,7 +24,8 @@ describe Airport do
 
     it 'cannot instruct a plane to land if already landed at an airport' do
       airport.land(plane)
-      expect { airport.land(plane) }.to raise_error("Plane cannot land if already landed")
+      message = "Plane cannot land if already landed"
+      expect { airport.land(plane) }.to raise_error message
     end
   end
 
@@ -30,7 +33,7 @@ describe Airport do
     before do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
-      allow(airport).to receive(:rand).and_return(1)
+      allow(airport.weather).to receive(:stormy?).and_return(false)
     end
 
     it 'instructs a plane to take off and is no longer at the airport' do
@@ -39,17 +42,27 @@ describe Airport do
       expect(airport.hangar).to eq([])
     end
 
-    it 'cannot instruct a plane to take off if already flying and not at the airport' do
+    it 'removes correct plane from hangar when there are multiple planes' do
+      plane2 = Plane.new
       airport.land(plane)
+      airport.land(plane2)
       airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error("Plane is not in this airport")
+      expect(airport.hangar).not_to include(plane)
     end
 
-    it 'raises an error when plane is trying to take off from an airport they are not in' do
-      airport2 = Airport.new
-      allow(airport2).to receive(:rand).and_return(1)
+    it 'cannot instruct a plane to take off if already flying' do
       airport.land(plane)
-      expect { airport2.take_off(plane) }.to raise_error("Plane is not in this airport")
+      airport.take_off(plane)
+      message = "Plane is not in this airport"
+      expect { airport.take_off(plane) }.to raise_error message
+    end
+
+    it 'cannot allow plane to take off from an airport they are not in' do
+      airport2 = Airport.new
+      allow(airport2.weather).to receive(:stormy?).and_return(false)
+      airport.land(plane)
+      message = "Plane is not in this airport"
+      expect { airport2.take_off(plane) }.to raise_error message
     end
   end
 
@@ -63,14 +76,16 @@ describe Airport do
   context "When it is stormy" do
 
     it 'raises an error and prevents plane landing' do
-      allow(airport).to receive(:rand).and_return(10)
-      expect { airport.land(plane) }.to raise_error("Plane cannot land due to stormy weather conditions")
+      allow(airport.weather).to receive(:stormy?).and_return(true)
+      message = "Plane cannot land due to stormy weather conditions"
+      expect { airport.land(plane) }.to raise_error message
     end
 
     it 'raises an error and prevents plane taking off' do
-      allow(airport).to receive(:rand).and_return(1, 10)
+      allow(airport.weather).to receive(:stormy?).and_return(false, true)
       airport.land(plane)
-      expect { airport.take_off(plane) }.to raise_error("Plane cannot take off due to stormy weather conditions")
+      message = "Plane cannot take off due to stormy weather conditions"
+      expect { airport.take_off(plane) }.to raise_error message
     end
   end
 
