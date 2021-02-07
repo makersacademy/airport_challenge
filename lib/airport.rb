@@ -10,4 +10,8 @@ class Airport
     @status = "closed"
   end
 
+  def open
+    @status = "open"
+  end
+
 end

@@ -9,6 +9,14 @@ describe Airport do
     end
   end
 
+  describe '#open' do
+    it 'ATC can open an airport' do
+      airport = Airport.new
+      airport.close
+      expect { airport.open }.to change {airport.status }.from("closed").to("open")
+    end
+  end
+
   describe '#status' do
     it 'ATC can check the status of an airport' do
       expect(airport.status).to eq("open")
