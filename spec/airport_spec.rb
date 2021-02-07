@@ -6,20 +6,25 @@ describe Airport do
 
   it { is_expected.to respond_to(:land) }
 
+  describe '#initialize' do
+    it 'sets a default airport capacity' do
+      # default capacity = 5
+      dxb = Airport.new
+      expect{ 100.times {dxb.land Plane.new} }.to raise_error 'Airport is full'
+    end
+    it 'can override the default airport capacity' do
+      dxb = Airport.new(30)
+      30.times { dxb.land Plane.new }
+      expect{ dxb.land(Plane.new) }.to raise_error 'Airport is full'
+    end
+  end
+  
   describe "#land" do
     it 'allows airplanes to land' do
       dxb = Airport.new
       pj = Plane.new
       dxb.land(pj)
       expect(dxb.hangar).to include(pj)
-    end
-    it 'prevents airports landing if airport is full' do
-      dxb = Airport.new
-      pj = Plane.new
-      Airport::Capacity.times do  
-        dxb.land Plane.new
-      end
-      expect{ dxb.land(pj) }.to raise_error 'Airport is full'
     end
   end
 
