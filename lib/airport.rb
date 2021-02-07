@@ -9,18 +9,26 @@ class Airport
   end
 
   def land(plane)
+    if self.full?
+      raise "Airport full, ABORT LANDING"
+    else
     @hanger << plane
+    end
   end
 
   def take_off(plane)
+    if @hanger.include?(plane)
     @hanger.delete(plane)
     @hanger
+  else
+    raise "Plane not available to take off"
+  end
   end
 
-def full?
-  if @hanger.length >= @capacity
-    true
+  def full?
+    if @hanger.length >= @capacity
+      true
+    end
   end
-end
 
 end
