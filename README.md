@@ -17,9 +17,7 @@
 
 ## Objectives
 
-An exercise in object oriented design, test driven development and domain modelling.
-
-This program has been designed to meet the needs of [user stories](##user-stories) in the client specification.
+An exercise in object oriented design, test driven development and domain modelling. This program has been designed to meet the needs of [user stories](#user-stories) in the client specification.
 
 ## Dependencies
 
@@ -32,11 +30,42 @@ This program has been designed to meet the needs of [user stories](##user-storie
 
 Clone this repo
 
-- `git clone git@github.com:AJ8GH/airport-challenge.git`
+- `git clone git@github.com:AJ8GH/airport_challenge.git`
 
+`cd` to root folder
+- `cd airport_challenge`
 
+Kick things off with
 
-## (##User-Stories)
+- `irb -r ./lib/flight_simulator.rb`
+
+You are an air traffic controller. It's your job to ensure the safety of millions of people each week. Luckily the system you are using contains a number of fail safes making catastrophes much less likely.
+
+- To begin with, instantiate one (or more) airport(s)
+- Instantiate a plane (or a few). Planes start off in the air - as if they have just appeared on your air traffic control radar.
+
+CODE SNIPPET
+
+- Land and take off planes with the` #land` and `#take_off` methods. They require an aiport as an argument.
+- When a plane is instructed to land or take off, it sends a request to the aiport. That request is normally approved, but will be denied in case of:
+  - Requests to land or take off in extreme weather
+  - Requests to land in airports with full capacity
+  - Requests to take off from airports they are not in
+- Planes will automatically reject invalid instrutions:
+  - Being told to land when already grounded
+  - Being told to take off when already airborne
+
+CODE SNIPPET
+
+## Skills applied
+
+- `TDD` - Test driving every feature, writing unit tests and watching them fail, before adding any code
+- Translating `user stories` into domain model, into unit tests, into code
+- `Feature testing` - automated with `rspec` and manual with `irb`
+- `OOP` - applying `SOLID` principles with the aim of achieving loosely coupled objects with maximum felxibility and tolerence for change. Creating lean methods and classes with a `single responsibility`
+- Testing `edge cases` and `corner cases` thoroughly, ensuring reliability in extreme or inconsistent system states
+
+## User Stories
 
 ```
 As an air traffic controller

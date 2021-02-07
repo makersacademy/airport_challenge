@@ -4,7 +4,7 @@ Coveralls.wear!
 # require 'simplecov'
 # require 'simplecov-console'
 
-require 'airport_challenge.rb'
+require 'flight_simulator'
 
 # SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 #   SimpleCov::Formatter::Console,
