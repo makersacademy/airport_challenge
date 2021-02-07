@@ -2,18 +2,28 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  it 'allows planes to land' do
-    expect(subject).to respond_to(:land).with(1).argument
+  describe 'landing' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+    it 'adds the landed plane to the hangar' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.hangar).to eq([plane])
+    end
   end
-  it 'stores planes at the airport' do
-    expect(subject.hangar).to be_an_instance_of(Array)
+  describe 'take-off' do
+    it { is_expected.to respond_to(:take_off) }
+    it 'removes and confirms plane has left the hanger' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off).to eq("#{plane} has left the hangar")
+      # expect the method to take a plane out of the hangar
+    end
   end
-  it 'adds the landed plane to the hangar' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.hangar).to eq([plane])
+  describe 'hangar' do
+    it 'stores planes at the airport' do
+      expect(subject.hangar).to be_an_instance_of(Array)
+    end
+#    it { is_expected.to respond_to(:capacity) }
+#    it 'returns the capacity of the hangar' do
+    end
   end
-  it 'allows planes to take off' do
-    expect(subject).to respond_to(:take_off).with(1).argument
-  end
-end
