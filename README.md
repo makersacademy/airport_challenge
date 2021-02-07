@@ -29,11 +29,14 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 
 ```
-Our app can allow the airport object to instruct a plane object to `land` or `take_off`. Once landed, the plane object will be stored in the airport; once removed, it will be removed from the airport.
+## Description
 
-When the airport invokes the `land` or `take_off` methods, it will first check the weather to determine if `stormy?`. If it returns `true`, it will raise an error to prevent it to land or take off due to stormy weather conditions.
+Our app allows the `Airport` object to instruct a `Plane` object to `land` or `take_off`. Once landed, the `Plane` is stored in an array within the `Airport`; once taken off, it is removed from the array.
 
-Airport objects have a default capacity of `10`. System designers can override the default by using `override_capacity`.
+When the `Airport` invokes the `land` or `take_off` methods, it checks the weather by instructing its weather instance variable (created from the `Weather` class) to determine if it is `stormy?`. If it returns `true`, it raises an error to prevent the `Plane` to land or take off due to stormy weather conditions.
+
+`Airport` objects have a default capacity of `10`. System designers can override the default by using `override_capacity`.
+
 
 ## Installation
 
