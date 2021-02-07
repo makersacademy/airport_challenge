@@ -100,7 +100,7 @@ The `contain?` method confirms if a plane has left or entered the airport after 
  => false
 ```
 
-## System Guard Conditions
+## System Guard Conditions
 
 When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the Air Traffic Control mixin:
 
@@ -135,7 +135,7 @@ Traceback (most recent call last): ...
 AirportError (Request Denied: Plane not located in airport)
 ```
 
-- Planes automatically reject invalid instructions. Instructing grounded plane to land throws: `LandingError`
+- Planes automatically reject invalid instructions. Instructing grounded planes to land throws: `LandingError`
 
 ```
 2.6.5 :048 > airbus.land(LHR)
@@ -143,7 +143,7 @@ Traceback (most recent call last): ...
 LandingError (Plane already grounded)
 ```
 
-  - Instructing airborne plane to take off throws: `TakeOffError`
+  - Instructing airborne planes to take off throws: `TakeOffError`
 
 ```
 2.6.5 :049 > airbus.take_off(LAX)
