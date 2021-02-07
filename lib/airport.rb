@@ -2,7 +2,9 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :hangar, :capacity, :weather
+  attr_accessor :capacity
+  attr_reader :hangar, :weather
+
   DEFAULTCAPACITY = 10
 
   def initialize(capacity = DEFAULTCAPACITY)
@@ -15,6 +17,7 @@ class Airport
     checkweather
     fail "Airport is full" if full?
     fail "Plane cannot land due to stormy weather conditions" if @weather == "Stormy"
+    fail "Plane cannot land if already landed" if @hangar.include?(plane)
 
     @hangar << plane
   end
@@ -22,17 +25,19 @@ class Airport
   def take_off(plane)
     checkweather
     fail "Plane cannot take off due to stormy weather conditions" if @weather == "Stormy"
-    fail "Plane cannot take off from an airport it is not in" unless @hangar.include?(plane)
+    fail "Plane is not in this airport" unless @hangar.include?(plane)
 
     @hangar.delete(plane)
   end
 
-  def full?
-    @hangar.length >= @capacity
-  end
-
   def override_capacity(number)
     @capacity = number
+  end
+
+  private
+
+  def full?
+    @hangar.length >= @capacity
   end
 
   def checkweather

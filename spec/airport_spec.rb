@@ -5,9 +5,10 @@ describe Airport do
   it { is_expected.to be_a(Airport) }
 
   describe '#land' do
-    it 'lands a plane at the airport' do
+    it 'lands a plane at the airport and must be in the airport hangar' do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:rand).and_return(1)
       expect(airport.land(plane)).to eq(airport.hangar)
     end
 
@@ -22,8 +23,15 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       allow(airport).to receive(:rand).and_return(10)
-      airport.checkweather
       expect { airport.land(plane) }.to raise_error("Plane cannot land due to stormy weather conditions")
+    end
+
+    it 'cannot instruct a plane to land if already landed at an airport' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("Plane cannot land if already landed")
     end
   end
 
@@ -37,12 +45,20 @@ describe Airport do
       expect(airport.hangar).to eq([])
     end
 
+    it 'cannot instruct a plane to take off if already flying and not at the airport' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(1)
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) }.to raise_error("Plane is not in this airport")
+    end
+
     it 'raises an error when weather is stormy so plane cannot take off' do
       airport = Airport.new
       plane = Plane.new
+      allow(airport).to receive(:rand).and_return(1, 10)
       airport.land(plane)
-      allow(airport).to receive(:rand).and_return(10)
-      airport.checkweather
       expect { airport.take_off(plane) }.to raise_error("Plane cannot take off due to stormy weather conditions")
     end
 
@@ -51,8 +67,9 @@ describe Airport do
       airport2 = Airport.new
       plane = Plane.new
       allow(airport1).to receive(:rand).and_return(1)
+      allow(airport2).to receive(:rand).and_return(1)
       airport1.land(plane)
-      expect { airport2.take_off(plane) }.to raise_error("Plane cannot take off from an airport it is not in")
+      expect { airport2.take_off(plane) }.to raise_error("Plane is not in this airport")
     end
   end
 
