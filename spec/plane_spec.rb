@@ -11,7 +11,7 @@ describe Plane do
   it { is_expected.to respond_to(:take_off).with 1 }
 
   describe '#status' do
-    subject { plane.send(:status) }
+    subject { plane.status }
     context 'when initialized without arguments' do
       it { is_expected.to be :air }
     end
@@ -22,7 +22,7 @@ describe Plane do
 
     context 'when airborne' do
       it 'changes status to :ground' do
-        expect(subject.send(:status)).to be :ground
+        expect(subject.status).to be :ground
       end
     end
 
@@ -37,7 +37,7 @@ describe Plane do
     context 'when grounded' do
       before { land_self; self_take_off }
       it 'changes status to :air' do
-        expect(plane.send(:status)).to be :air
+        expect(plane.status).to be :air
       end
     end
 
