@@ -7,6 +7,7 @@ class Airport
   end
 
   def empty?
+    true
   end
 
 end
