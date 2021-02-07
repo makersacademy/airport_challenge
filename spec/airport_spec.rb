@@ -29,7 +29,7 @@ describe Airport do
   end
 
   describe '#full?' do
-    before { let_there_be_sun}
+    before { let_there_be_sun }
 
     context 'when aiport is full' do
       before { fill_her_up }

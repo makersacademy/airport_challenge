@@ -28,6 +28,20 @@ This program is designed to meet the needs of these client [user stories](#user-
 - `rubocop`
 - `coveralls`
 
+## Skills applied
+
+### Testing
+- `TDD` - Test driving every feature with automated unit tests
+- `coveralls` - Achieving 100% test coverage
+- `Travis CI` - Build passing
+- `Feature testing` - Automated feature testing using `rspec`
+- `edge cases` and `corner cases` thoroughly tested - Ensuring system reliability in extreme and inconsistent states
+
+### Design
+- `Domain Modelling` - Translating `user stories` into domain model, into unit tests, into code
+- `OOP` - Applying `SOLID` principles with the aim of achieving loosely coupled objects with maximum flexibility and tolerance for change. Creating lean methods and classes with a `single responsibility`
+- `Code Climate` - Grade A for maintainability
+
 ## Getting Started
 
 Clone this repo
@@ -43,7 +57,10 @@ Head to the root folder
 Kick things off with
 - `irb -r ./lib/flight_simulator.rb`
 
-You are now air traffic controller! It's your job to ensure the safety of millions. Luckily the system implements a number of safety guards, making catastrophes far less likely.
+
+## You are an air traffic controller
+
+It's your job to ensure the safety of millions. Luckily the system implements a number of safety guards, making catastrophes far less likely.
 
 ![airplane!](https://media.giphy.com/media/wvWJOoYmFnSp2/giphy.gif)
 
@@ -72,30 +89,34 @@ irb -r ./lib/flight_simulator.rb
  => :ground
 ```
 
-Airports have a default capacity of 50 aircraft. Give an integer argument to initialize with a different capacity:
+Airports have a default capacity of 50 aircraft. Give an integer argument to `new` to initialize with a different capacity:
 
 ```
 2.6.5 :027 > LAX = Airport.new(200)
 => #<Airport:0x00007f902c0154f0 @capacity=200, @planes=[]>
 ```
 
-Or use the writer method to change after initialization:
+Or use the writer method `capacity=` to change after initialization:
 ```
 2.6.5 :028 > LHR.capacity = 500
  => 500
 ```
 
-The `contain?` method confirms if a plane has left or entered the airport after take off or landing:
+The `contain?` method confirms if a plane is in a given airport. Useful for confirming that planes have left or entered airports after take off or landing:
 
 ```
 2.6.5 :033 > JFK.contain?(boeing_747)
  => false
+
 2.6.5 :034 > boeing_747.land(JFK)
  => :ground
+
 2.6.5 :035 > JFK.contain?(boeing_747)
  => true
+
 2.6.5 :037 > boeing_747.take_off(JFK)
  => :air
+
 2.6.5 :038 > JFK.contain?(boeing_747)
  => false
 ```
@@ -108,6 +129,7 @@ When you plane instruct a plane to land or take off, you must pass an airport as
 
 ```
 2.6.5 :005 > private_jet.land(LHR)
+
 Traceback (most recent call last): ...
 WeatherError (Request Denied: Extreme weather)
 ```
@@ -118,9 +140,12 @@ WeatherError (Request Denied: Extreme weather)
 ```
 2.6.5 :040 > LGW = Airport.new(10)
  => #<Airport:0x00007f902b01eb00 @capacity=10, @planes=[]>
+
 2.6.5 :041 > 10.times { Plane.new.land(LGW) }
  => 10
+
 2.6.5 :042 > Plane.new.land(LGW)
+
 Traceback (most recent call last): ...
 CapacityError (Request Denied: Airport capacity full)
 ```
@@ -130,7 +155,9 @@ CapacityError (Request Denied: Airport capacity full)
 ```
 2.6.5 :044 > airbus.land(LAX)
  => :ground
+
 2.6.5 :045 > airbus.take_off(LHR)
+
 Traceback (most recent call last): ...
 AirportError (Request Denied: Plane not located in airport)
 ```
@@ -139,27 +166,22 @@ AirportError (Request Denied: Plane not located in airport)
 
 ```
 2.6.5 :048 > airbus.land(LHR)
+
 Traceback (most recent call last): ...
 LandingError (Plane already grounded)
 ```
 
-  - Instructing airborne planes to take off throws: `TakeOffError`
+- Instructing airborne planes to take off throws: `TakeOffError`
 
 ```
 2.6.5 :049 > airbus.take_off(LAX)
  => :air
+
 2.6.5 :050 > airbus.take_off(LAX)
+
 Traceback (most recent call last): ...
 TakeOffError (Plane already airborne)
 ```
-
-## Skills applied
-
-- `TDD` - Test driving every feature, writing unit tests and watching them fail, before adding any code
-- Translating `user stories` into domain model, into unit tests, into code
-- `Feature testing` - automated with `rspec` and manual with `irb`
-- `OOP` - applying `SOLID` principles with the aim of achieving loosely coupled objects with maximum felxibility and tolerence for change. Creating lean methods and classes with a `single responsibility`
-- Testing `edge cases` and `corner cases` thoroughly, ensuring reliability in extreme or inconsistent system states
 
 ## User Stories
 
