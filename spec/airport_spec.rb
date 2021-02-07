@@ -32,7 +32,7 @@ let(:plane_1) { Plane.new }
       expect(small_airport.hangar_full?).to be true
     end
     it 'should return false hangar.count > airport.capacity' do
-      allow(small_airport).to receive(:weather) { 'sunny' }
+      allow(airport).to receive(:weather) { 'sunny' }
       plane_1.land(airport)
       expect(airport.hangar_full?).to be false
     end
