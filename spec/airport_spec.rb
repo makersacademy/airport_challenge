@@ -44,4 +44,5 @@ describe Airport do
       expect(subject.safety_check).to eq "Space available, please land here"
     end
   end
+
 end
