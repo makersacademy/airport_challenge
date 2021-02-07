@@ -6,6 +6,7 @@ class Plane
   end
 
   def land(airport)
+    fail 'The weather is too stormy for landing right now.' if airport.weather == 'stormy'
     airport.planes << self
     @status = "landed at #{airport.title}"
   end

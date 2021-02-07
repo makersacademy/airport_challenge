@@ -31,6 +31,9 @@ let(:stormy_airport) { double(:airport, :title => "storm_city", :planes => [plan
     expect(airport.planes).to include plane
     expect(plane.status).to eq "landed at #{airport.title}"
     end
+    it 'should throw error message if weather is stormy' do
+      expect{ plane.land(stormy_airport) }.to raise_error 'The weather is too stormy for landing right now.'
+    end
   end
 
 end
