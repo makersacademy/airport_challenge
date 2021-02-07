@@ -22,10 +22,15 @@ $ pry
 `Plane class`
 * `#land(airport)` - takes an argument 'airport' and if the weather is 'sunny' and there is available space lands the 'plane' object in the 'airport' hangar.  
 * `#take_off(airport)` - takes an argument 'airport' and if the weather is 'sunny' it will remove the 'plane' object from the 'airport' hangar.  
-  * Item 2a
-  * Item 2b
 
-## Project status
+
+`Airport class`
+* `#weather` - return 'sunny' or 'stormy' based on an array sample.
+* `#hangar_full?` - return 'true' if the quantity of object in the array is superior to the 'capacity' instance variable.
+* `#modify_capacity(new_capacity)` - take an Integer to pass as the new capacity attribute.
+* `#hangar` - returns the airport hangar array.
+
+## Tasks
 - [x] Fork directory
 - [x] Create Domain Model based on User Stories
 - [x] Apply TTD process to create objects
