@@ -9,6 +9,10 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'allows user to change capacity' do
+    expect(subject.change_capacity(50)).to eq "Capacity changed to 50"
+  end
+
   describe 'Landing' do
     it { is_expected.to respond_to :land }
 
@@ -27,7 +31,7 @@ describe Airport do
     end
   end
   
-  context "Airport is at max capacity" do
+  context "Airport at max capacity" do
     it 'Performs a safety check to prevent planes landing when airport is full' do
       20.times { subject.land(plane) }
       expect(subject.safety_check).to eq "Capacity is full, do not land"

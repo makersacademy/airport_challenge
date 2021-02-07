@@ -10,14 +10,17 @@ class Airport
     @capacity = DEFAULT_CAPACITY
   end
 
+  def change_capacity(number)
+    @capacity = number
+    return "Capacity changed to #{number}"
+  end
+
   def land(plane)
     hangar << plane
-    p "Plane successfully landed"
   end
 
   def takeoff
     hangar.pop
-    p "Plane successfully taken off"
   end
 
   def empty?
