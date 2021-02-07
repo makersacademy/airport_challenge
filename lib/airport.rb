@@ -21,8 +21,8 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
+    @weather = weather_generator # memoizes weather object
     @planes = []
-    @weather = weather_generator # memoizes weather object, instead of creating a new one for each forcast
   end
 
   def full?

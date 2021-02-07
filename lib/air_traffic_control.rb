@@ -23,7 +23,7 @@ module AirTrafficControl
   end
 
   def airport_guard(plane)
-    raise AirportError unless contain?(plane)
+    raise AirportError unless contain?(plane) # see Airport
   end
 
   def clear_for_landing(plane)

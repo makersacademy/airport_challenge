@@ -1,15 +1,14 @@
-# custom errors thrown when:
-# planes request to land at a full airport
+# when planes request to land at a full airport
 class CapacityError < StandardError
   attr_reader :msg
-  
+
   def initialize
     @msg = 'Request Denied: Airport capacity full'
     super(msg)
   end
 end
 
-# planes request to take off from airports they are not in
+# when planes request to take off from airports they are not in
 class AirportError < StandardError
   attr_reader :msg
 
@@ -19,7 +18,7 @@ class AirportError < StandardError
   end
 end
 
-# planes request to land or take off during stormy weather
+# when planes request to land or take off during stormy weather
 class WeatherError < StandardError
   attr_reader :msg
 
@@ -29,7 +28,7 @@ class WeatherError < StandardError
   end
 end
 
-# grounded planes are instructed to land
+# when grounded planes are instructed to land
 class LandingError < StandardError
   attr_reader :msg
 
@@ -39,7 +38,7 @@ class LandingError < StandardError
   end
 end
 
-# airborne planes are instructed to take off
+# when airborne planes are instructed to take off
 class TakeOffError < StandardError
   attr_reader :msg
 
