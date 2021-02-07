@@ -12,5 +12,9 @@ end
   def full?
     return true if @capacity <= @planes
   end
+  # 
+  # def land(plane)
+  #   @planes += 1
+  # end
 
 end
