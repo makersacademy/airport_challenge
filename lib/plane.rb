@@ -1,3 +1,5 @@
+require 'airport'
+
 class Plane
 
 attr_reader :location, :sky, :airport

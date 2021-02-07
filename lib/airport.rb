@@ -12,9 +12,9 @@ end
   def full?
     return true if @capacity <= @planes
   end
-  # 
-  # def land(plane)
-  #   @planes += 1
-  # end
+
+  def land(plane)
+    return false if Airport.new.full?
+  end
 
 end
