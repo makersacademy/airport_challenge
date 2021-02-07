@@ -14,4 +14,11 @@ it 'should confirm a plane is no longer in the airport' do
   subject.land("plane")
   expect(subject.take_off("plane")).not_to include("plane")
 end
+
+it 'should tell you if an airport is full' do
+  hanger = subject.hanger
+  hanger > capacity
+  expect(subject.full?).to eq true
+end
+
 end
