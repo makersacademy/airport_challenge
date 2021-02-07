@@ -9,19 +9,19 @@ class Airport
 
   def land(plane)
     hangar << plane
-    p "Plane landed"
+    p "Plane has landed"
   end
 
   def takeoff(plane)
     hangar.pop
-    p "Plane taken off"
+    p "Plane has taken off"
   end
 
   def is_empty
     if hangar.empty?
-      true
+      return "Space to land here"
     else
-      false
+      return "Airport is at max capacity"
     end
   end
 
