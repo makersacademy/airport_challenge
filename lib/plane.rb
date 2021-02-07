@@ -1,23 +1,21 @@
 class Plane
   attr_reader :location
 
-  def initialize location=:in_flight
+  def initialize location = :in_flight
     @location = location
   end
 
   def land(airport)
-    fail "Airport is full" if not airport.space?
-    fail "Not safe to land" if not airport.safe?
-    landing = airport.land(self)
-    if landing == true
-      @location = airport
-    else
-      landing
-    end
+    fail "Airport is full" unless airport.space?
+    fail "Not safe to land" unless airport.safe?
+
+    airport.land(self)
+    @location = airport
   end
 
   def takeoff
-    fail "Not safe to takeoff" if !@location.safe?
+    fail "Not safe to takeoff" unless @location.safe?
+    
     @location.takeoff(self)
     @location = :in_flight
   end
