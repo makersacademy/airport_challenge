@@ -1,18 +1,38 @@
+require 'weather'
+
 class Airport
 
-  DEFAULT_CAPACITY = 5
+  DEFAULT_CAPACITY = 10
 
-  attr_reader :name, :capacity
-  attr_accessor :parked
+  attr_reader :name, :capacity, :parked
 
-  def initialize(name, capacity = DEFAULT_CAPACITY)
-    @name = name
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @parked = 0
+    @parked = []
+  end
+
+  def land(plane, weather = Weather.new)
+    raise "Can't land - The plane is already grounded" unless plane.flying
+    raise "Can't land, airport full" if full?
+    raise "Can't land, too stormy" if weather.stormy?
+
+    plane.flying = false
+    @parked << plane
+    "Plane landed"
+  end
+
+  def takeoff(plane, weather = Weather.new)
+    raise "Can't take off - The plane is already flying" if plane.flying
+    raise "Can't take off - The plane is not at this airport" unless @parked.include?(plane)
+    raise "Can't take off, too stormy" if weather.stormy?
+
+    plane.flying = true
+    @parked.delete plane
+    "Plane departed"
   end
 
   def full?
-    @parked >= capacity
+    @parked.length >= capacity
   end
 
 end

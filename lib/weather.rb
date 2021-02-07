@@ -1,6 +1,8 @@
 class Weather
 
-  def initialize(storm_probability = 0.2)
+  DEFAULT_PROBABILITY = 0.2
+
+  def initialize(storm_probability = DEFAULT_PROBABILITY)
     @storm_probability = storm_probability
   end
 
