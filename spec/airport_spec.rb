@@ -9,4 +9,9 @@ end
 it 'should let a plane take off' do
   expect(subject).to respond_to(:take_off).with(1).argument
 end
+
+it 'should confirm a plane is no longer in the airport' do
+  subject.land("plane")
+  expect(subject.take_off("plane")).not_to include("plane")
+end
 end
