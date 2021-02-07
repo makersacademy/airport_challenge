@@ -1,18 +1,11 @@
 require 'airport'
 
 describe Airport do
-  let(:subject) { Airport.new }
+  let(:airport) { Airport.new }
 
-  it '#land allows plane to land at airport' do
-    expect(subject).to respond_to(:land)
-  end
-
-  it '#land increases number of planes in the airport' do
-    plane = double("plane")
-    expect { subject.land(plane) }.to change { subject.planes.length }.from(0).to(1)
-  end
-
-  it '#takeoff decrease number of planes in the airport' do
-    expect {subject.takeoff }.to change { }
+  describe '#close' do
+    it 'ATC can close an airport' do
+      expect { airport.close }.to change { airport.status }.from("open").to("closed")
+    end
   end
 end

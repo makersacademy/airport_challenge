@@ -1,11 +1,12 @@
 class Airport
-  attr_reader :planes
+  attr_reader :status
 
   def initialize
-    @planes = []
+    @status = "open"
   end
 
-  def land(plane)
-    @planes.push(plane)
+  def close
+    @status = "closed"
   end
+
 end
