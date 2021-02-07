@@ -8,7 +8,7 @@ class Plane
   def land(airport)
     raise("Warning: plane is not airborne") if @location != "airborne"
 
-    raise("Cannot land: airport is closed") if airport.status == :closed
+    raise("Cannot land: airport is closed") if airport.closed?
 
     @location = airport
     # airport.receive(self)
@@ -19,7 +19,7 @@ class Plane
 
     raise("Warning: plane is not at that airport") if @location != airport
 
-    raise("Cannot take off: airport is closed") if airport.status == :closed
+    raise("Cannot take off: airport is closed") if airport.closed?
 
     @location = "airborne"
     # airport.release(self)

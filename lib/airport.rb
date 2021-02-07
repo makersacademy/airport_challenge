@@ -25,8 +25,9 @@ class Airport
   # def release(plane)
   # end
 
-  def status
-    weather == "stormy" ? :closed : @state
+  def closed?
+    return true if weather == "stormy"
+    @state == :closed ? true : false
   end
 
   def weather
