@@ -23,4 +23,9 @@ describe Airport do
       expect { airport.land Plane.new }.to raise_error 'Airport full'
     end
   end
+  it "doesn't take off planes that aren't in the airport"
+    plane = Plane.new
+    airport = Airport.new
+    expect { airport.take_off(plane) }.to raise_error 'Plane not in current airport'
+  end
 end
