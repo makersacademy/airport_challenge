@@ -17,5 +17,6 @@ class Plane
     raise("Warning: plane is not at that airport") if @location != airport
 
     @location = "airborne"
+    puts "Plane has taken off successfully and is now #{@location}"
   end
 end

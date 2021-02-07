@@ -35,5 +35,10 @@ describe Plane do
       plane = Plane.new(heathrow)
       expect { plane.takeoff(gatwick) }.to raise_error("Warning: plane is not at that airport")
     end
+    it 'plane reports successful takeoff to ATC' do
+      airport = double("airport")
+      plane = Plane.new(airport)
+      expect { plane.takeoff(airport) }.to output(/Plane has taken off successfully and is now airborne/).to_stdout
+    end
   end
 end
