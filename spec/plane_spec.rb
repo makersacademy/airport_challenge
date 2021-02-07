@@ -2,8 +2,9 @@ require 'plane'
 
 describe Plane do
 subject(:plane) { described_class.new }
-let(:airport) { double(:airport, :title => "heathrow", :planes => [plane], :stormy? => false) }
-let(:stormy_airport) { double(:airport, :title => "storm_city", :planes => [plane], :stormy? => true) }
+let(:airport) { double(:airport, :title => "heathrow", :capacity => 100, :planes => [plane], :stormy? => false, :full? => false) }
+let(:stormy_airport) { double(:airport, :title => "storm_city", :capacity => 100, :planes => [plane], :stormy? => true, :full? => false) }
+let(:full_airport) { double(:airport, :title => "plane_city", :capacity => 1, :planes => [plane], :stormy? => false, :full? => true) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -33,6 +34,9 @@ let(:stormy_airport) { double(:airport, :title => "storm_city", :planes => [plan
     end
     it 'should throw error message if weather is stormy' do
       expect{ plane.land(stormy_airport) }.to raise_error 'The weather is too stormy for landing right now.'
+    end
+    it 'should throw error message if airport is full' do
+      expect{ Plane.new.land(full_airport) }.to raise_error 'This airport is full.'
     end
   end
 

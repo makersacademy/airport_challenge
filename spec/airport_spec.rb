@@ -5,16 +5,34 @@ describe Airport do
   let(:plane) { double(:plane, :status => "unassigned") }
 
   it { is_expected.to respond_to(:planes) }
-  it { is_expected.to respond_to(:weather) }
+  it { is_expected.to respond_to(:stormy?) }
+  it { is_expected.to respond_to(:full?) }
+
 
   it "should contain no planes when new" do
     expect(airport.planes).to eq []
   end
 
-  describe '#weather' do
-    it "should return 'sunny' or 'stormy'" do
-      expect(["sunny", "stormy"]).to include(airport.weather)
+  it "should have default capacity of 10" do
+    expect(airport.capacity).to eq 10
+  end
+
+  describe '#stormy?' do
+    it "should return true or false" do
+      expect([true, false]).to include(airport.stormy?)
     end
   end
+
+  describe '#full?' do
+    it "should return true or false" do
+      expect([true, false]).to include(airport.full?)
+    end
+    it 'should return true if airport is full' do
+      airport.instance_variable_set(:@capacity, 1)
+      airport.instance_variable_set(:@planes, [plane])
+      expect(airport.full?).to eq true
+    end
+  end
+
 
 end
