@@ -13,6 +13,14 @@ describe Airport do
       dxb.land(pj)
       expect(dxb.hangar).to include(pj)
     end
+    it 'prevents airports landing if airport is full' do
+      dxb = Airport.new
+      pj = Plane.new
+      Airport::Capacity.times do  
+        dxb.land Plane.new
+      end
+      expect{ dxb.land(pj) }.to raise_error 'Airport is full'
+    end
   end
 
   describe "#take_off" do
