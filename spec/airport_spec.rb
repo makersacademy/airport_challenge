@@ -46,4 +46,10 @@ describe Airport do
       end
     end
   end
+
+  describe '#weather' do
+    it 'airport has weather' do
+      expect(airport.weather).to satisfy { |value| ["sunny", "stormy"].include?(value) }
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity, :planes, :status
+  attr_reader :capacity, :planes, :weather
 
   def initialize(capacity = 50)
     @capacity = capacity
@@ -19,6 +19,20 @@ class Airport
     @planes.push(plane)
     if @planes.length >= @capacity
       @status = "closed"
+    end
+  end
+
+  def status
+    weather == "stormy" ? "closed" : @status
+  end
+
+  def weather
+    forecast = rand(1..20)
+    case forecast
+    when 1..19
+      "sunny"
+    when 20
+      "stormy"
     end
   end
 end
