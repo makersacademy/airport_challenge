@@ -69,7 +69,7 @@ It's your job to ensure the safety of millions. Luckily the system implements a 
 - Instantiate airports: `airport_name = Airport.new`
 - Instantiate planes: `plane_name = Plane.new`
 - Land planes with: `plane_name.land(airport_name)`
-- take off planes with: `plane_name.take_off(airport_name)`
+- Take off planes with: `plane_name.take_off(airport_name)`
 
 _Note: Planes start off in the air - as if they have just entered your airspace and appeared on your radar._
 
@@ -114,10 +114,10 @@ The `contain?` method confirms if a plane is in a given airport. Useful for conf
 2.6.5 :035 > JFK.contain?(boeing_747)
  => true
 
-2.6.5 :037 > boeing_747.take_off(JFK)
+2.6.5 :036 > boeing_747.take_off(JFK)
  => :air
 
-2.6.5 :038 > JFK.contain?(boeing_747)
+2.6.5 :037 > JFK.contain?(boeing_747)
  => false
 ```
 
@@ -125,7 +125,8 @@ The `contain?` method confirms if a plane is in a given airport. Useful for conf
 
 When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the Air Traffic Control mixin:
 
-- Requesting to land or take off in extreme weather throws: `WeatherError`. The weather forcast is local to each airport and is generated randomly. When *atmospheric pressure* becomes *very low*, the forcast will be `stormy` and all take offs and landings are prevented.
+- Requesting to land or take off in extreme weather, throws: `WeatherError`
+  - The `weather forcast` is local to each airport and determined by `atmospheric pressure` (a randomly generated number between 0 and 100). When pressure is very low (<= 10), the forcast will be `stormy` and all take offs and landings are prevented
 
 ```
 2.6.5 :005 > private_jet.land(LHR)
@@ -135,7 +136,7 @@ WeatherError (Request Denied: Extreme weather)
 ```
 ![windy](https://media.giphy.com/media/M9tpu3TPG42n6/giphy.gif)
 
-- Requesting to land at an airport at full capacity throws: `CapacityError`
+- Requesting to land at an airport at full capacity, throws: `CapacityError`
 
 ```
 2.6.5 :040 > LGW = Airport.new(10)
@@ -150,7 +151,7 @@ Traceback (most recent call last): ...
 CapacityError (Request Denied: Airport capacity full)
 ```
 
-- Requesting to take off from an airport the plane is not in throws: `AirportError`
+- Requesting to take off from an airport the plane is not in, throws: `AirportError`
 
 ```
 2.6.5 :044 > airbus.land(LAX)
@@ -162,7 +163,7 @@ Traceback (most recent call last): ...
 AirportError (Request Denied: Plane not located in airport)
 ```
 
-- Planes automatically reject invalid instructions. Instructing grounded planes to land throws: `LandingError`
+- Planes automatically reject invalid instructions. Instructing grounded planes to land, throws: `LandingError`
 
 ```
 2.6.5 :048 > airbus.land(LHR)
@@ -171,7 +172,7 @@ Traceback (most recent call last): ...
 LandingError (Plane already grounded)
 ```
 
-- Instructing airborne planes to take off throws: `TakeOffError`
+- Instructing airborne planes to take off, throws: `TakeOffError`
 
 ```
 2.6.5 :049 > airbus.take_off(LAX)
