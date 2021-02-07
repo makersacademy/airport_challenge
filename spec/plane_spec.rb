@@ -23,6 +23,16 @@ describe Plane do
     expect(plane.location).to eq :in_flight
   end
 
+  it "can't take off when not at airport" do
+    plane.instance_variable_set(:@location, :in_flight)
+    expect { plane.takeoff }.to raise_error
+  end
+
+  it "can't land when not in the air" do
+    plane.instance_variable_set(:@location, airport)
+    expect { plane.land(airport) }.to raise_error("Already in an airport")
+  end
+
   it "doesn't land when airport is full" do
     allow(airport).to receive(:space?).and_return(false)
     expect { plane.land(airport) }.to raise_error("Airport is full")

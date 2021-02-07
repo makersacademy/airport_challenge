@@ -9,8 +9,8 @@ class Airport
   end
 
   def safe?
-    return false if @weather == "stormy"
-    
+    return false if @weather.downcase == "stormy"
+
     return true
   end
 

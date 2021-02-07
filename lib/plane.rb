@@ -6,6 +6,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Already in an airport" unless @location == :in_flight
     fail "Airport is full" unless airport.space?
     fail "Not safe to land" unless airport.safe?
 
