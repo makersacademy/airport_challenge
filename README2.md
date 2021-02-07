@@ -24,3 +24,13 @@ $ pry
 * `#take_off(airport)` - takes an argument 'airport' and if the weather is 'sunny' it will remove the 'plane' object from the 'airport' hangar.  
   * Item 2a
   * Item 2b
+
+## Project status https://img.shields.io/badge/Min%20coverage-%3E%2095%25-green
+- [x] Fork directory
+- [x] Create Domain Model based on User Stories
+- [x] Apply TTD process to create objects
+- [ ] Use random number generator to set the weather
+- [x] Use stubs methods to override random behaviours
+- [ ] Use a double to override random behaviours
+- [ ] Defend against edge cases
+- [ ] Use the Single Responsability Principle

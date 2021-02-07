@@ -37,7 +37,4 @@ class Plane
       take_off_message(airport)
     end
   end
-
-
-
 end
