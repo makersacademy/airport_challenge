@@ -9,27 +9,21 @@ class Airport
 
   def land(plane)
     hangar << plane
-    p "Plane has landed"
+    p "Plane successfully landed"
   end
 
-  def takeoff(plane)
+  def takeoff
     hangar.pop
-    p "Plane has taken off"
+    p "Plane successfully taken off"
   end
 
-  def is_empty
-    if hangar.empty?
-      return "Airport has space available"
-    else
-      return "Airport is at max capacity"
-    end
+  def empty?
+    return "Airport has space available" if hangar.empty?
+    return "Airport is at max capacity" if hangar.length >= 1
   end
 
   def safety_check
-    if hangar.empty?
-      return "Space available, please land here"
-    else 
-      return "Capacity is full, do not land"
-    end
+    return "Space available, please land here" if hangar.empty?
+    return "Capacity is full, do not land" if hangar.length >= 1
   end
 end
