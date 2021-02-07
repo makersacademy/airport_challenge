@@ -25,7 +25,7 @@ How to use
 * Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes.
 * Call .status on a plane to see if it is flying, or which airport it is currently landed at.
 * Call .planes on an Airport to see which planes are currently stated there.
-* You can call .weather on an airport to get the weather right now, however this will be built into the landing and taking off methods to ensure the most up-to-date information is used.
+* There is a weather checker built into the take_off and land methods to prevent both from executing if the weather is stormy.
 
 ## Challenge Notes ##
 

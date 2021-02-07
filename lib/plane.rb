@@ -6,13 +6,13 @@ class Plane
   end
 
   def land(airport)
-    fail 'The weather is too stormy for landing right now.' if airport.weather == 'stormy'
+    fail 'The weather is too stormy for landing right now.' if airport.stormy?
     airport.planes << self
     @status = "landed at #{airport.title}"
   end
 
   def take_off(airport)
-    fail 'The weather is too stormy for take off right now.' if airport.weather == 'stormy'
+    fail 'The weather is too stormy for take off right now.' if airport.stormy?
     airport.planes.delete(self)
     @status = "flying"
   end

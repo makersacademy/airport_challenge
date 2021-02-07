@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
 subject(:plane) { described_class.new }
-let(:airport) { double(:airport, :title => "heathrow", :planes => [plane], :weather => "sunny") }
-let(:stormy_airport) { double(:airport, :title => "storm_city", :planes => [plane], :weather => "stormy") }
+let(:airport) { double(:airport, :title => "heathrow", :planes => [plane], :stormy? => false) }
+let(:stormy_airport) { double(:airport, :title => "storm_city", :planes => [plane], :stormy? => true) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
