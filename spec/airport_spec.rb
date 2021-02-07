@@ -5,7 +5,7 @@ describe Airport do
 
   describe '#close' do
     it 'ATC can close an airport' do
-      expect { airport.close }.to change { airport.status }.from("open").to("closed")
+      expect { airport.close }.to change { airport.status }.from(:open).to(:closed)
     end
   end
 
@@ -13,13 +13,13 @@ describe Airport do
     it 'ATC can open an airport' do
       airport = Airport.new
       airport.close
-      expect { airport.open }.to change {airport.status }.from("closed").to("open")
+      expect { airport.open }.to change { airport.status }.from(:closed).to(:open)
     end
   end
 
   describe '#status' do
     it 'ATC can check the status of an airport' do
-      expect(airport.status).to eq("open")
+      expect(airport.status).to eq(:open)
     end
   end
 
@@ -42,14 +42,17 @@ describe Airport do
       it 'airport is automatically closed' do
         plane = double("plane")
         airport = Airport.new(1)
-        expect { airport.receive(plane) }.to change { airport.status }.from("open").to("closed")
+        expect { airport.receive(plane) }.to change { airport.status }.from(:open).to(:closed)
       end
     end
   end
 
   describe '#weather' do
     it 'airport has weather' do
-      expect(airport.weather).to satisfy { |value| ["sunny", "stormy"].include?(value) }
+      expect(airport.weather).to satisfy { |value| ["sunny", "stormy"].include?(value) } 
+    end
+    it 'stormy weather closes airport' do
+
     end
   end
 end
