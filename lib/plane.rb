@@ -1,6 +1,6 @@
 class Plane
-  def initialize
-    @flying = false
+  def initialize(flying = false)
+    @flying = flying
   end
 
   def flying?
@@ -8,17 +8,13 @@ class Plane
   end
 
   def take_off
-    if @flying == true 
-      fail "Plane is already flying"
-    end
+    fail "Plane is already flying" if @flying == true 
 
     @flying = true
   end
 
   def land
-    if @flying == false 
-      fail "Plane is already landed"
-    end
+    fail "Plane is already landed" if @flying == false 
 
     @flying = false
   end 

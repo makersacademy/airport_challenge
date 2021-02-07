@@ -19,6 +19,12 @@ describe Plane do
     expect { subject.take_off() }.to raise_error "Plane is already flying"
   end
 
+  it "confirms that plane has landed" do 
+    subject = Plane.new(true)
+    subject.land()
+    expect(subject.flying?).to eq false
+  end
+
   it "ensures that landed plane cannot land again" do 
     expect { subject.land() }.to raise_error "Plane is already landed"
   end
