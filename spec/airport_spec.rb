@@ -6,7 +6,7 @@ describe Airport do
   it { is_expected.to respond_to :empty? }
 
   it 'has a default capacity' do
-    expect(subject.capacity).to eq :default_capcity
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe 'Landing' do
@@ -14,7 +14,7 @@ describe Airport do
 
     it 'Confirm airport is full if plane has landed' do
       subject.land(plane)
-      expect(subject.empty?).to eq "Airport is at max capacity"
+      expect(subject.empty?).to eq "Airport contains plane"
     end
   end
 
@@ -23,13 +23,13 @@ describe Airport do
 
     it 'Confirm space available if plane takes off' do
       subject.takeoff
-      expect(subject.empty?).to eq "Airport has space available"
+      expect(subject.empty?).to eq "Airport is empty"
     end
   end
   
   context "Airport is at max capacity" do
     it 'Performs a safety check to prevent planes landing when airport is full' do
-      subject.land(plane)
+      20.times { subject.land(plane) }
       expect(subject.safety_check).to eq "Capacity is full, do not land"
     end
   end
