@@ -25,6 +25,15 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.hangar).to eq([])
     end
+
+    it 'raises an error when weather is stormy so plane cannot take off' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      allow(airport).to receive(:rand).and_return(10)
+      airport.weather
+      expect{ airport.take_off(plane) }.to raise_error("Plane cannot take off due to stormy weather conditions")
+    end
   end
 
   describe '#override_capacity' do
@@ -32,6 +41,13 @@ describe Airport do
       airport = Airport.new
       airport.override_capacity(5)
       expect(airport.capacity).to eq(5)
+    end
+  end
+
+  describe '#weather' do
+    airport = Airport.new
+    it 'retrieves weather condition of the day' do
+      expect(['Stormy', 'Sunny']).to include(airport.weather)
     end
   end
 end
