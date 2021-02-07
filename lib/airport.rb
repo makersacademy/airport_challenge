@@ -21,7 +21,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @weather = weather_generator # memoizes weather object
+    @weather = weather_station # memoizes weather object
     @planes = []
   end
 
@@ -29,7 +29,7 @@ class Airport
     planes.count >= capacity
   end
 
-  def weather_generator
+  def weather_station
     Weather.new
   end
 end
