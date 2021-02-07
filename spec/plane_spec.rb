@@ -3,17 +3,15 @@ require 'airport'
 
 describe Plane do
 
-  let(:plane) {Plane.new}
-  let(:airport) {Airport.new}
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
 
 
   it "can land" do
-    airport = Airport.new
     expect(plane.land(airport)).to eq(:airport)
   end
 
   it "cannot land when not in flight" do
-    airport = Airport.new
     expect(plane.land(airport)).to eq(Error) if @location == :airport
   end
 
