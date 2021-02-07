@@ -17,7 +17,9 @@ class Plane
   def take_off_message(airport)
     puts "#{self} has successfully taken-off from #{airport}" # need to figure out how to passe local variable as instance var
   end
-
+  def is_present?(airport)
+    airport.hangar.include?(self)
+  end
 
   def land(airport)
     if stormy?(airport)
@@ -33,8 +35,10 @@ class Plane
     if stormy?(airport)
       stormy_weather_warning
     else
-      airport.hangar.delete(self)
-      take_off_message(airport)
+      if is_present?(airport)
+        airport.hangar.delete(self)
+        take_off_message(airport)
+      end
     end
   end
 end

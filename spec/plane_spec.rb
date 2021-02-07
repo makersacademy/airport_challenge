@@ -35,6 +35,16 @@ let(:small_airport) { Airport.new(1) }
         expect(heathrow_airport.hangar).to include(plane_1)
       end
     end
+
+    # context 'when the plane is already landed'do
+    #   it 'should not land again' do
+    #     plane_1 = Plane.new
+    #     airport_1 = Airport.new
+    #     airport_2 = Airport.new
+    #     plane_1.land(airport_1)
+    #     expect { plane_1.land(airport_2) }.to raise_error("Plane has already landed")
+    #   end
+    # end
   end
 
   describe "#take_off" do
@@ -46,7 +56,7 @@ let(:small_airport) { Airport.new(1) }
       end
     end
 
-    context 'when weather is `sunny` and the plane is in the airport hangar' do
+    context 'when weather is `sunny`' do
       it 'should remove the plane from the hangar' do
         plane_1 = Plane.new
         plane_2 = Plane.new
@@ -56,14 +66,27 @@ let(:small_airport) { Airport.new(1) }
         expect(airport.hangar).to_not include(plane_1)
       end
     end
+
+    context 'when it is `sunny`' do
+      it 'should only take_off if present in the hangar' do
+        plane_1 = Plane.new
+        airport = Airport.new @hangar=[]
+        allow(airport).to receive(:weather) { 'sunny' }
+        allow(plane_1).to receive(:is_present?) { false }
+        expect(plane_1.take_off(airport)).to be_nil
+      end
+    end
+
     context 'when plane has succesfully left the hangar' do
       it 'should output a take-off success message' do
         plane_1 = Plane.new
-        airport = Airport.new @hangar=[plane_1]
+        airport = Airport.new @hangar=[]
+        airport.hangar << plane_1
         allow(airport).to receive(:weather) { 'sunny' }
+        # allow(airport).to receive(:hangar) { plane_1 }
         expect { plane_1.take_off(airport) }.to output.to_stdout
       end
     end
-  end
 
+  end
 end

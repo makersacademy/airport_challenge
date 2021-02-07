@@ -1,5 +1,5 @@
 # Airport Challenge
-The program let traffic controllers instruct plane if they can land and take off from different airports, provided that the weather is sunny. It also allow system designers to manage how many planes can land in a specific airport.
+The program allow traffic controllers to instruct a plane if it can land and take off from different airports, provided that the weather is sunny. It also allow system designers to manage how many planes can land in a specific airport.
 
 ## Motivation
 This is the first Makers weekend challenge to be completed alone.
@@ -18,7 +18,7 @@ $ bundle
 $ pry
 [1] pry(main)> require './lib/plane.rb'
 ```
-#### Instance methods available
+### Instance methods available
 `Plane class`
 * `#land(airport)` - takes an argument 'airport' and if the weather is 'sunny' and there is available space lands the 'plane' object in the 'airport' hangar.  
 * `#take_off(airport)` - takes an argument 'airport' and if the weather is 'sunny' it will remove the 'plane' object from the 'airport' hangar.  
@@ -40,3 +40,9 @@ $ pry
 - [ ] Defend against edge cases
 - [x] Use the Single Responsability Principle
 - [x] Minimum coverage > 95%
+
+## Difficulties encountered
+- Struggled with use of double
+- Struggled with use of stubs
+- Struggled with 'Arrange' and 'Act' section on RSpec
+- Struggled with setting up multiple regex match

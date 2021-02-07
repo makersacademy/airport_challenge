@@ -37,10 +37,4 @@ let(:plane_1) { Plane.new }
       expect(airport.hangar_full?).to be false
     end
   end
-
-  # describe 'weather' do
-  #   it 'should randomly select between stormy and sunny' do
-  #     expect(subject.weather).to match('stormy') # => I want to match two strings outcome
-  #   end
-  # end
 end
