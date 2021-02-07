@@ -13,6 +13,7 @@ describe Airport do
 
   it "confirms that plane is no longer in the airport" do 
     plane = Plane.new
+    subject.land_plane(plane)
     expect(subject.launch_plane(plane)).to eq "Plane took off"
   end
 
@@ -25,4 +26,9 @@ describe Airport do
     subject = Airport.new(15)
     expect(subject.capacity).to eq 15
   end
+
+  it "prevents a plane from taking off if it is not landed at current airport" do 
+    expect { subject.launch_plane(Plane.new) }.to raise_error "Cannot launch the plane because it is not at this airport"
+  end 
+
 end 

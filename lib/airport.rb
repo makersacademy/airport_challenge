@@ -18,7 +18,10 @@ class Airport
   end
 
   def launch_plane(plane)
+    fail "Cannot launch the plane because it is not at this airport" unless @planes.include? plane
+    
+    @planes.delete(plane)
     "Plane took off"
   end
-
+  
 end 
