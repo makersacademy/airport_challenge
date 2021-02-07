@@ -18,3 +18,9 @@ $ bundle
 $ pry
 [1] pry(main)> require './lib/plane.rb'
 ```
+#### Instance methods available
+`Plane class`
+* `#land(airport)` - takes an argument 'airport' and if the weather is 'sunny' and there is available space lands the 'plane' object in the 'airport' hangar.  
+* `#take_off(airport)` - takes an argument 'airport' and if the weather is 'sunny' it will remove the 'plane' object from the 'airport' hangar.  
+  * Item 2a
+  * Item 2b
