@@ -68,7 +68,7 @@ It's your job to ensure the safety of millions. Luckily the system implements a 
 
 - Instantiate airports: `airport_name = Airport.new`
 - Instantiate planes: `plane_name = Plane.new`
-- Land planes with: `plane_name.take_off(airport_name)`
+- Land planes with: `plane_name.land(airport_name)`
 - take off planes with: `plane_name.take_off(airport_name)`
 
 _Note: Planes start off in the air - as if they have just entered your airspace and appeared on your radar._
