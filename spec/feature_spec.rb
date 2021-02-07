@@ -1,7 +1,6 @@
 describe 'Feature Tests' do
   plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :light_aircraft]
   plane_symbols.each { |plane| let(plane) { new_plane } }
-  # let(:planes) { [boeing, private_jet, dream_liner, airbus, light_aircraft] }
 
   airport_symbols = [:jfk, :lhr, :lgw, :lax, :dxb]
   airport_symbols.each { |airport| let(airport) { new_airport } }
@@ -17,14 +16,16 @@ describe 'Feature Tests' do
   end
 
   context 'landing and taking off aircraft' do
-    before { make_hay }
+    before { make_sunshine }
 
     it 'sucessfully lands and takes off one aircraft' do
       expect(lhr.contain?(boeing)).to be false
       expect(boeing.status).to be :air
+
       boeing.land(lhr)
       expect(lhr.contain?(boeing)).to be true
       expect(boeing.status).to be :ground
+
       boeing.take_off(lhr)
       expect(lhr.contain?(boeing)).to be false
       expect(boeing.status).to be :air
@@ -33,6 +34,7 @@ describe 'Feature Tests' do
     it 'successfully lands multiple aircraft' do
       10.times { land_plane(lhr) }
       expect(lhr.send(:planes).count).to be 10
+
       5.times { land_plane(lhr) }
       expect(lhr.send(:planes).count).to be 15
     end
@@ -41,11 +43,14 @@ describe 'Feature Tests' do
       boeing.land(lhr); airbus.land(lhr)
       expect(lhr.contain?(boeing)).to be true
       expect(lhr.contain?(airbus)).to be true
+
       airbus.take_off(lhr)
       expect(lhr.contain?(airbus)).to be false
       expect(lhr.contain?(boeing)).to be true
+
       dream_liner.land(lhr); light_aircraft.land(lhr)
       boeing.take_off(lhr); light_aircraft.take_off(lhr)
+
       expect(lhr.contain?(dream_liner)).to be true
       expect(lhr.contain?(boeing)).to be false
     end
@@ -53,7 +58,11 @@ describe 'Feature Tests' do
 
   context 'raising errors' do
     context 'when stormy' do
-      before { boeing.land(lhr); dream_liner.land(lax); why_does_it_always_rain_on_me }
+      before { make_sunshine;
+               boeing.land(lhr);
+               dream_liner.land(lax);
+               why_does_it_always_rain_on_me }
+
       it 'raises weather errors as expected' do
         expect { boeing.take_off(lhr) }.to raise_error WeatherError
         expect { airbus.land(jfk) }.to raise_error WeatherError
@@ -63,14 +72,17 @@ describe 'Feature Tests' do
     end
 
     context 'when sunny' do
-      before { make_hay }
+      before { make_sunshine }
 
       it 'raises all other errors as expected' do
         expect { dream_liner.take_off(lax) }.to raise_error TakeOffError
+
         light_aircraft.land(lgw)
         expect { light_aircraft.take_off(dxb) }.to raise_error AirportError
+
         dream_liner.land(jfk)
         expect { dream_liner.land(lax) }.to raise_error LandingError
+
         49.times { new_plane.land(lhr) }
         expect { airbus.land(lhr) }.not_to raise_error
         expect { boeing.land(lhr) }.to raise_error CapacityError

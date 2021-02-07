@@ -11,7 +11,7 @@ def new_weather
   Weather.new
 end
 
-def make_hay
+def make_sunshine
   make(:sunny)
 end
 
