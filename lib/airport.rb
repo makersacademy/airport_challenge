@@ -19,10 +19,17 @@ class Airport
 
   def is_empty
     if hangar.empty?
-      return "Space to land here"
+      return "Airport has space available"
     else
       return "Airport is at max capacity"
     end
   end
 
+  def safety_check
+    if hangar.empty?
+      return "Space available, please land here"
+    else 
+      return "Capacity is full, do not land"
+    end
+  end
 end
