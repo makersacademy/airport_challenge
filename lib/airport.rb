@@ -8,9 +8,9 @@ class Airport
   end
 
   def land(plane)
-      prevent_landing
-      @planes_at_airport << plane
-      return plane
+    prevent_landing
+    @planes_at_airport << plane
+    return plane
   end
 
   def take_off(plane)
@@ -32,7 +32,7 @@ class Airport
   end
 
   def prevent_landing
-    raise "Airport is currently full. You cannot land." if self.full?
+    raise "Airport is currently full. You cannot land." if full?
   end
 
 end
