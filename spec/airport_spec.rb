@@ -9,7 +9,6 @@ describe Airport do
     before do
       allow(plane).to receive(:land)
       allow(airport.weather).to receive(:stormy?).and_return(false)
-      #allow(weather).to receive(:stormy?).and_return(false)
     end
 
     it 'lands a plane at the airport and must be in the airport hangar' do

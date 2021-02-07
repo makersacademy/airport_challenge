@@ -4,29 +4,29 @@
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client.
 
 ```bash
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used by many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
 ```
 ## Description
@@ -55,3 +55,12 @@ airport.take_off(plane) # instructs the plane to take-off
 
 airport.override_capacity(5) # overrides an airport's default capacity from 10 to the argument
 ```
+
+## Notes
+The weather and hangar variables of the Airport is currently accessible by the attribute reader, due to its involvement in some of the tests.
+
+While I am aware they should be kept private, I am unsure how to:
+
+1. Mock the weather checking method of the `Weather` object within the airport, without calling on the weather variable explicitly.
+
+2. Determine whether if the airport includes a specific plane in tests without checking its `hangar` array explicitly.
