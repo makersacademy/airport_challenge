@@ -11,6 +11,7 @@ class Plane
   end
 
   def take_off(airport)
+    fail 'The weather is too stormy for take off right now.' if airport.weather == 'stormy'
     airport.planes.delete(self)
     @status = "flying"
   end
