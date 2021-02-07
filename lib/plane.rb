@@ -5,17 +5,18 @@ class Plane
   def at_capacity_warning(airport)
     raise "Airport hangar at full capacity" if airport.hangar_full?
   end
-  def stromy_weather_warning(airport)
+  def stormy_weather_warning(airport)
     raise "Warning! Stormy weather" if airport.weather == 'stormy'
   end
 
   def land(airport)
-    stromy_weather_warning(airport)
+    stormy_weather_warning(airport)
     at_capacity_warning(airport)
     airport.hangar << self
   end
 
   def take_off(airport)
+    stormy_weather_warning(airport)
     airport.hangar.delete(airport)
     successful_take_off(airport)
   end

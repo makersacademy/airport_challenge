@@ -38,6 +38,13 @@ let(:heathrow_airport) { Airport.new }
 
   describe "#take_off" do
 
+    context 'when the weather is `stormy`' do
+      it 'should prevent the plane to take_off' do
+        allow(heathrow_airport).to receive(:weather) { 'stormy' }
+        expect { subject.take_off(heathrow_airport) }.to raise_error("Warning! Stormy weather")
+      end
+    end
+
     context 'when the plane is in the airport hangar' do
       it 'should remove the plane from the hangar' do
         plane_1 = Plane.new
@@ -45,11 +52,14 @@ let(:heathrow_airport) { Airport.new }
         plane_1.take_off(airport)
         expect(airport.hangar).to be_empty
       end
+    end
+
       it 'should output a take-off success message' do
         plane_1 = Plane.new
         airport = Airport.new @hangar=[plane_1]
         expect { plane_1.take_off(airport) }.to output.to_stdout
       end
-    end
+
   end
+
 end
