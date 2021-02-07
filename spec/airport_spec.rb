@@ -63,12 +63,21 @@ describe '#take_off' do
  	expect(airport.take_off(plane)).to_not include([plane])
  end
 end
- #we need to show that a plane has taken off and is no longer present in the airport
 
  # it "Plane takes off from airport" do
  # 	airport = Airport.new
  # 	plane = Plane.new
  # 	expect(airport.take_off(plane)).
+
+describe Weather do
+  it "Weather responds to stormy?" do	
+	weather = Weather.new
+	expect(weather).to respond_to(:stormy?)
+  end
+end
+
+# I want to prevent takeoff when weather is stormy 
+
 
 
 describe Plane do

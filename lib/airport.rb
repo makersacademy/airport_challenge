@@ -20,7 +20,7 @@ DEFAULT_CAPACITY = 20
 	end
 
 
-	private 
+private 
 
 attr_reader :hangar_report
 
@@ -29,6 +29,17 @@ attr_reader :hangar_report
 	end
 
 end
+
+
+class Weather 
+
+	def stormy?
+
+	end
+
+end
+
+
 
 
 class Plane
