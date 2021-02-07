@@ -7,6 +7,11 @@ describe Airport do
 
   describe 'Landing' do
     it { is_expected.to respond_to :land }
+
+    it 'Confirm airport is full if plane has landed' do
+      subject.land(plane)
+      expect(subject.empty?).to eq false
+    end
   end
 
   describe 'Takeoff' do
