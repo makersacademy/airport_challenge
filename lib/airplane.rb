@@ -6,16 +6,16 @@ class Airplane
   def takeoff(airport)
     raise 'Plane is already in the air' unless @landed
 
-    airport.remove(self)
+    airport.takeoff(self)
     @landed = false
-    "plane has left airport"
+    "Plane has taken off"
   end
 
   def land(airport)
     raise 'Plane has already landed' if @landed
 
-    airport.store(self)
+    airport.land(self)
     @landed = true
-    "plane has landed at airport"
+    "Plane has landed"
   end
 end

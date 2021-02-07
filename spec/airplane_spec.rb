@@ -1,13 +1,13 @@
 require 'airplane'
 
 describe Airplane do
-  let(:mockAirport) { double :airport, :store => nil, :remove => nil }
+  let(:mockAirport) { double :airport, :land => nil, :takeoff => nil }
 
   context 'when plane in in the air' do
     describe '.land' do
       it 'lands the plane at an airport' do
         expect(subject.land(mockAirport))
-          .to eq 'plane has landed at airport'
+          .to eq 'Plane has landed'
       end
     end
 
@@ -25,9 +25,9 @@ describe Airplane do
     end
 
     describe '.takeoff' do
-      it 'makes the plane leave the airport' do
+      it 'makes the plane take off' do
         expect(subject.takeoff(mockAirport))
-          .to eq 'plane has left airport'
+          .to eq 'Plane has taken off'
       end
     end
 
