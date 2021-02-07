@@ -19,9 +19,15 @@ it 'should confirm a plane is no longer in the airport' do
 end
 
 it 'should tell you if an airport is full' do
-  airport = Airport.new(10)
+  airport = Airport.new(1)
+  airport.land("plane1")
+  airport.land("plane2")
+  airport.land("plane3")
   expect(airport.full?).to eq true
 end
 
-
+# it 'should not let a plane land if an airport is full' do
+#   airport = Airport.new(2)
+# expect{airport.full?}.to raise_error ("Airport full, ABORT LANDING")
+# end
 end
