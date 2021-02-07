@@ -46,3 +46,6 @@ $ pry
 - Struggled with use of stubs
 - Struggled with 'Arrange' and 'Act' section on RSpec
 - Struggled with setting up multiple regex match
+
+## Unfinished
+- I was planning on setting an 'in_flight' instance variable for the Plane object and change that value depending if the plane was landed or in-flight, but it kept making my tests fail.
