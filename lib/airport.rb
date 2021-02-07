@@ -33,4 +33,15 @@ class Airport
     end
   end
 
+  def weather_check
+    num = rand(1..6)
+    case num
+    when 1, 2, 4, 5, 6
+      "Fine Weather"
+    else
+      "Stormy"
+    end
+
+  end
+
 end

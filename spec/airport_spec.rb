@@ -43,10 +43,11 @@ it 'should not let a plane land if it has already landed' do
 end
 
 
-# it 'should not allow take off if the weather is stormy' do
-#   airport = Airport.new
-#   airport.land("plane1")
-#
-# end
+it 'should check if the weather is stormy' do
+  airport = Airport.new
+  allow(airport).to receive(:weather_check) {"Stormy"}
+  allow(airport).to receive(:weather_check) {"Fine Weather"}
+  #expect(airport.weather_check).to be_instance_of String
+end
 
 end
