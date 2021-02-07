@@ -46,6 +46,7 @@ Airport Challenge
 :white_check_mark: Doesn't allow planes to land if there is no more space at the airport.  
 :white_check_mark: Allows making a SafetyProtocol to be reused with AirTrafficControllers of choice.  
 :white_check_mark: Allows for set-up of AirTrafficController to include current state of airport( planes that are currently landed and currently flying).  
+:white_check_mark: 100 % test coverage.
 
 
 
