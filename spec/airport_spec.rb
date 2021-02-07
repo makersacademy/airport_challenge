@@ -31,4 +31,8 @@ describe Airport do
     expect { subject.launch_plane(Plane.new) }.to raise_error "Cannot launch the plane because it is not at this airport"
   end 
 
+  it "checks local weather" do 
+    expect(subject.check_weather).to eq("Stormy").or eq("Sunny")
+  end 
+
 end 

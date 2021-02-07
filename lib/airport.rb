@@ -19,9 +19,12 @@ class Airport
 
   def launch_plane(plane)
     fail "Cannot launch the plane because it is not at this airport" unless @planes.include? plane
-    
+
     @planes.delete(plane)
     "Plane took off"
   end
   
+  def check_weather
+    rand(10) == 9 ? "Stormy" : "Sunny"
+  end  
 end 
