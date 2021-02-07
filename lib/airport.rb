@@ -15,14 +15,12 @@ class Airport
   end
 
   def take_off(plane)
-    if @planes.include? plane
-      index = @planes.find_index(plane)
-      @planes.delete_at(index)
-    else
-      fail 'Plane not in current airport'
-    end
+    fail 'Plane not in current airport' unless @planes.include? plane
+    
+    index = @planes.find_index(plane)
+    @planes.delete_at(index)
   end
-  
+
   private
 
   attr_reader :planes
