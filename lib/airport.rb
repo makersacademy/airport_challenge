@@ -3,12 +3,12 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_reader :capacity, :weather
+  attr_reader :capacity, :weather, :plane, :planes_at_airport
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new, planes_at_airport = [])
     @weather = weather
     @capacity = capacity
-    @planes_at_airport = []
+    @planes_at_airport = planes_at_airport
   end
 
   def new_capacity(new_capacity = DEFAULT_CAPACITY)
@@ -17,15 +17,14 @@ class Airport
 
   def land(plane)
     prevent_landing
+    raise "Plane is already at airport, cannot land again." if plane_at_airport?(plane)
     @planes_at_airport << plane
-    return plane
+    plane.to_s + " landing now" if plane_at_airport?(plane)
   end
 
   def take_off(plane)
     prevent_take_off
-    if @planes_at_airport.include?(plane)
-      @planes_at_airport.delete_at(@planes_at_airport.index(plane))
-    end
+    @planes_at_airport.delete_at(@planes_at_airport.index(plane)) if @planes_at_airport.include?(plane)
     plane
   end
 

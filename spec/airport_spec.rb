@@ -11,7 +11,7 @@ describe Airport do
 
   describe 'methods are expected to take a plane as an argument and return the same instance' do
     it 'when :land is called' do
-      expect(@airport.land(@plane)).to eq @plane
+      expect(@airport.land(@plane)).to eq @plane.to_s + " landing now"
     end
 
     it 'when :take_off is called' do
@@ -23,12 +23,12 @@ describe Airport do
     end
   end
 
-  context 'when a plane has already landed' do
+  context ' - when a plane has already landed' do
     before do
       @airport.land(@plane)
     end
 
-    describe ":plane_at_airport? is expected to return" do
+    describe ':plane_at_airport? is expected to return' do
 
       it 'true' do
         expect(@airport.plane_at_airport?(@plane)).to eq true
@@ -39,7 +39,15 @@ describe Airport do
         expect(@airport.plane_at_airport?(@plane)).to eq false
       end
     end
+
+    it ' - expected to raise an error if user attempts to call :land on a plane that has landed and not yet taken off' do
+      message = "Plane is already at airport, cannot land again."
+      expect { @airport.land(@plane) }.to raise_error(message)
+    end
+
   end
+
+
 
   context 'when full' do
     before do
@@ -51,7 +59,8 @@ describe Airport do
     end
 
     it 'is expected to raise an error if user attempts to land plane' do
-      expect { @airport.land(Plane.new) }.to raise_error("Airport is currently full. You cannot land.")
+      message = "Airport is currently full. You cannot land."
+      expect { @airport.land(Plane.new) }.to raise_error(message)
     end
   end
 
