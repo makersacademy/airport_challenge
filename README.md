@@ -1,7 +1,6 @@
 # Airport Challenge
 
-Inline-style:
-![alt text](https://www.washingtonpost.com/resizer/LKZ7ZJiy6ZPeG12w4M5toiRZfeM=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/UBRYK3UQ7BGH3IICOAT2JNU2VU.jpg "Airplane Challenge")
+![alt text](https://m.dw.com/image/43469144_401.jpg "Airplane Challenge")
 
 
 
@@ -11,8 +10,8 @@ Inline-style:
 We have a request from a client to write the software to control the flow of
 
 planes at an airport. The planes can land and take off provided that the
-
 weather is sunny.
+
 Occasionally it may be stormy, in which case no planes can land or take off.
 
 Here are the user stories that we worked out in collaboration with the client:
