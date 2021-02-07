@@ -1,28 +1,31 @@
 class Airport
 
-attr_reader :hangar_report 
 attr_reader :plane
+attr_reader :capacity
 DEFAULT_CAPACITY = 20
 
 	def initialize
  		@hangar_report = []	
+ 		@capacity = DEFAULT_CAPACITY
 	end
 
 	def land(plane)	
 		fail 'Airport is full: cannot land right now.' if full?
-     	@hangar_report << plane
+     	hangar_report << plane
 	end
 
 	def take_off(plane)
-        @hangar_report.pop
+        hangar_report.pop
         return @hangar_report
 	end
 
 
 	private 
 
+attr_reader :hangar_report
+
 	def full?
-		@hangar_report.count >= DEFAULT_CAPACITY
+		hangar_report.count >= capacity
 	end
 
 end
