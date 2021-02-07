@@ -3,7 +3,7 @@ describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
 
   it { is_expected.to respond_to(:capacity).with 0 }
-  it { is_expected.to respond_to(:weather).with 0 }
+  it { is_expected.to respond_to(:weather_forcast).with 0 }
   it { is_expected.to respond_to(:contain?).with 1 }
 
   describe '#planes' do
@@ -71,7 +71,7 @@ describe Airport do
 
   describe '#weather' do
     it 'returns the current forcast' do
-      expect(subject.weather).to be(:sunny) | be(:stormy)
+      expect(subject.weather_forcast).to be(:sunny) | be(:stormy)
     end
   end
 end

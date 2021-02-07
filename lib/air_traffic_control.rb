@@ -35,6 +35,6 @@ module AirTrafficControl
   end
 
   def weather_stormy?
-    weather == :stormy
+    weather_forcast == :stormy
   end
 end

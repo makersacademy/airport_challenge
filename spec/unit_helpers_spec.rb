@@ -8,11 +8,11 @@ def fill_her_up
 end
 
 def let_there_be_sun
-  allow(subject).to receive(:weather) { :sunny }
+  allow(subject).to receive(:weather_forcast) { :sunny }
 end
 
 def make_it_rain
-  allow(subject).to receive(:weather) { :stormy }
+  allow(subject).to receive(:weather_forcast) { :stormy }
 end
 
 # helper methods for Plane test suite

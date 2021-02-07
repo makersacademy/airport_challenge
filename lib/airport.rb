@@ -11,8 +11,8 @@ class Airport
     planes.include?(plane)
   end
 
-  def weather
-    weather_forcast
+  def weather_forcast
+    weather
   end
 
   private
@@ -28,7 +28,7 @@ class Airport
     planes.count >= capacity
   end
 
-  def weather_forcast
+  def weather
     Weather.new.forcast
   end
 end

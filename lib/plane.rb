@@ -1,5 +1,7 @@
 # can be instructed to land and take off, sends requests to air traffic control
 class Plane
+  attr_reader :status
+
   def land(airport)
     landing_guard
     airport.request_landing(self)
@@ -13,8 +15,8 @@ class Plane
   end
 
   private
-
-  attr_accessor :status
+  # keep writer method private - for internal use only
+  attr_writer :status
 
   def initialize
     @status = :air
