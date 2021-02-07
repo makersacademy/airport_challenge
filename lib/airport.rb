@@ -1,10 +1,9 @@
 class Airport
   attr_reader :title, :capacity, :planes
   DEFAULT_CAPACITY = 10
-  def initialize(title = "Unnamed Airport", capacity = DEFAULT_CAPACITY, planes = [])
-    @title = title
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @planes = planes
+    @planes = []
   end
 
   def stormy?

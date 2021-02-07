@@ -21,11 +21,12 @@ Description
 How to use
 -------
 
-* To create objects to represent planes and airports, use Plane.new and Airport.new(name_of_airport). The argument passed to Airport.new will be the title of the airport. This is to lend readability to plane status when landed, so that what is returned is the airport title rather than the memory location of the airport object. Planes do not have titles currently on the basis that there would be too many planes in circulation for this to be worth implementing, and that it makes more sense for them to be known by their memory IDs.
-* Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes.
+* To create objects to represent planes and airports, use Plane.new and Airport.new.
+* Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes. Current airport default capacity is 10 - to change this, pass the capacity integer as an argument when creating an Airport object.
 * Call .status on a plane to see if it is flying, or which airport it is currently landed at.
 * Call .planes on an Airport to see which planes are currently stated there.
 * There is a weather checker built into the take_off and land methods to prevent both from executing if the weather is stormy.
+* If a plane attempts to land at a full airport, an error messsage will be raised.
 
 ## Challenge Notes ##
 
