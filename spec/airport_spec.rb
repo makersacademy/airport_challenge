@@ -15,6 +15,17 @@ describe Airport do
     end
   end
 
+  describe "#take_off" do
+    it 'instructs airplane to take off and confirms its left the airport' do  
+      dxb = Airport.new
+      pj = Plane.new
+      dxb.land(pj)
+      dxb.take_off(pj)
+      expect(dxb.view_hangar).not_to include(pj)
+    end
+  end
+
+
 end  
 =begin  
   describe "#hangar" do
@@ -25,10 +36,6 @@ end
     end 
   end
 =end
-
-
-
-
 =begin
   describe "#initialize" do
     it 'allows user to set initial station capacity' do
