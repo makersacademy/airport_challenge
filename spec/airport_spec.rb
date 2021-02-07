@@ -2,9 +2,9 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-let(:airport) { Airport.new(10) }
-let(:small_airport) { Airport.new(1) }
-let(:plane_1) { Plane.new }
+  let(:airport) { Airport.new 10 }
+  let(:small_airport) { Airport.new 1 }
+  let(:plane_1) { Plane.new }
 
   describe '#capacity' do
     it 'returns a new Airport object with capacity set' do
@@ -14,8 +14,8 @@ let(:plane_1) { Plane.new }
 
   describe "#modify_capacity" do
     it 'should amend the default capacity for hangar' do
-      small_airport.modify_capacity(10)
-      expect(small_airport.capacity).to eq (10)
+      small_airport.modify_capacity 10
+      expect(small_airport.capacity).to eq 10
     end
   end
 
