@@ -5,10 +5,9 @@ end
 
 describe Airport do
   subject(:airport) { Airport.new }
-  let(:plane) { double :plane}
+  let(:plane) { double :plane }
 
   before(:each) do
-    #allow(plane).to receive(land).and_return(true)
     airport.instance_variable_set(:@planes, (1..5).map { Plane.new })
     airport.weather = "sunny"
   end
