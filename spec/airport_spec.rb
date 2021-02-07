@@ -5,6 +5,10 @@ describe Airport do
 
   it { is_expected.to respond_to :empty? }
 
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq :default_capcity
+  end
+
   describe 'Landing' do
     it { is_expected.to respond_to :land }
 
