@@ -43,11 +43,11 @@ class Airport
 
   def prevent_landing
     raise "Airport is currently full. You cannot land." if full?
-    raise "Weather is currently stormy. You cannot land until it is sunny again." if weather.stormy?
+    raise "Weather is currently stormy. You cannot land until it is sunny" if weather.stormy?
   end
 
   def prevent_take_off
-    raise "Weather is currently stormy. You cannot take_off until it is sunny again." if weather.stormy?
+    raise "Weather is currently stormy. You cannot take_off until it is sunny" if weather.stormy?
   end
 
 end
