@@ -5,6 +5,7 @@ class Airport
 
   def initialize
     @hangar = []
+    @capacity = 24
   end
 
   def land(plane)
@@ -16,4 +17,7 @@ class Airport
     "#{plane} has left the hangar"
   end
 
+  def capacity
+    @capacity
+  end
 end

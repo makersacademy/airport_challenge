@@ -23,7 +23,13 @@ describe Airport do
     it 'stores planes at the airport' do
       expect(subject.hangar).to be_an_instance_of(Array)
     end
-#    it { is_expected.to respond_to(:capacity) }
-#    it 'returns the capacity of the hangar' do
+    it { is_expected.to respond_to(:capacity) }
+    it 'returns the capacity of the hangar' do
+      expect(subject.capacity).to eq(24)
     end
+    it 'prevents landing if the hangar is full'
+    # expect that if @hangar = @capacity subject.land
+    # returns "this plane can't land" and doesn't push
   end
+
+end
