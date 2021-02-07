@@ -9,7 +9,3 @@ class Airport
     @planes.push(plane)
   end
 end
-
-class Plane
-
-end
