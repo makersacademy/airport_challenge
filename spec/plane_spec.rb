@@ -6,7 +6,4 @@ describe Plane do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  # it 'should land at a named airport'do
-  #
-  # end
 end

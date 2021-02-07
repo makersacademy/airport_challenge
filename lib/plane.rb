@@ -1,10 +1,6 @@
 class Plane
 
-
-  def land(airport)
-
+  def land(airport_name)
   end
-
-
 
 end
