@@ -6,9 +6,7 @@ describe Weather do
   describe '#generate' do
     it 'generates random weather' do
       weather = Weather.new
-      expect(['stormy','sunny']).to include(weather.generate_weather)
+      expect(['stormy', 'sunny']).to include(weather.generate_weather)
     end
   end
-
-
 end
