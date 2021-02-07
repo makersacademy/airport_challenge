@@ -39,7 +39,7 @@ Running the test suite provides thorough `documentation` on all classes and meth
 - `coveralls` - Achieving 100% test coverage
 - `Travis CI` - Build passing
 - `Feature testing` - Automated feature testing using `rspec`
-- `edge cases` and `corner cases` thoroughly tested - Ensuring system reliability in extreme and inconsistent states
+- `Edge cases` and `corner cases` thoroughly tested - Ensuring system reliability in extreme and inconsistent states
 
 ### Design
 - `Domain Modelling` - Translating `user stories` into domain model, into unit tests, into code
