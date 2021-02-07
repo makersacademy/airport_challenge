@@ -31,13 +31,13 @@ class Airport
   end
 
   def full?
-    fail 'Airport Full' if @airport_space.length == @capacity
+    @airport_space.length == @capacity
   end
 
   def landing_errors(plane)
     raise 'Already Landed' if already_landed?(plane)
     raise 'Stormy Weather, unsafe to land' if stormy?
-    raise 'Airport Full, no space to land' if full?
+    raise 'Airport Full' if full?
   end
 
   def takeoff_errors(plane)
