@@ -3,15 +3,15 @@ require 'plane'
 describe Plane do
 subject(:plane) { described_class.new }
 let(:airport) { double(:airport, :capacity => 10, :planes => [plane], :stormy? => false, :full? => false) }
-let(:stormy_airport) { double(:airport, :capacity => 10, :planes => [plane], :stormy? => true, :full? => false) }
+let(:stormy_airport) { double(:airport, :capacity => 100, :planes => [plane], :stormy? => true, :full? => false) }
 let(:full_airport) { double(:airport, :capacity => 1, :planes => [plane], :stormy? => false, :full? => true) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:status)}
 
-  it "should have status of flying when new" do
-    expect(plane.status).to eq "flying"
+  it "should have status of unassigned when new" do
+    expect(plane.status).to eq "unassigned"
   end
 
 

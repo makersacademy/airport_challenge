@@ -1,16 +1,19 @@
 class Plane
   attr_reader :status
 
-  def initialize(status = "flying")
-    @status = status
+  def initialize
+    @status = "unassigned"
   end
 
   def land(airport)
-    fail 'This plane is not in the air!' if self.status != "flying"
-    fail 'This airport is full.' if airport.full?
-    fail 'The weather is too stormy for landing right now.' if airport.stormy?
-    airport.planes << self
-    @status = "landed at #{airport}"
+    if self.status != "flying" && self.status != "unassigned"
+      fail 'This plane is not in the air!'
+    else
+      fail 'This airport is full.' if airport.full?
+      fail 'The weather is too stormy for landing right now.' if airport.stormy?
+      airport.planes << self
+      @status = "landed at #{airport}"
+    end
   end
 
   def take_off(airport)

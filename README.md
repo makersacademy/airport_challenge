@@ -23,10 +23,12 @@ How to use
 
 * To create objects to represent planes and airports, use Plane.new and Airport.new.
 * Call methods #land and #take_off on planes, with the Airport name passed as an argument, to land or take_off planes. Current airport default capacity is 10 - to change this, pass the capacity integer as an argument when creating an Airport object.
-* Call .status on a plane to see if it is flying, or which airport it is currently landed at.
+* Call .status on a plane to see if it is flying, or which airport it is currently landed at. New plane objects will have a status of "unassigned" - call 'land' on them with an airport as an argument to assign them to an airport. 
 * Call .planes on an Airport to see which planes are currently stated there.
 * There is a weather checker built into the take_off and land methods to prevent both from executing if the weather is stormy.
-* If a plane attempts to land at a full airport, an error messsage will be raised.
+* If a plane attempts to land at a full airport, an error message will be raised.
+* If a plane that is not flying is told to land, an error message will be raised.
+* If a plane is told to leave an airport that it is not in, an error message will be raised.
 
 ## Challenge Notes ##
 
