@@ -14,4 +14,21 @@ describe Airport do
       expect(airport.status).to eq("open")
     end
   end
+
+  describe '#capacity' do
+    it 'airport has default capacity of 50' do
+      expect(airport.capacity).to eq(50)
+    end
+
+    it 'airport capacity can be changed on creation' do
+      airport = Airport.new(100)
+      expect(airport.capacity).to eq(100)
+    end
+
+    context 'when airport is full' do
+      it 'airport is automatically closed' do
+
+      end
+    end
+  end
 end

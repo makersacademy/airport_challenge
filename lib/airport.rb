@@ -1,7 +1,8 @@
 class Airport
-  attr_reader :status
+  attr_reader :status, :capacity
 
-  def initialize
+  def initialize(capacity = 50)
+    @capacity = capacity
     @status = "open"
   end
 
