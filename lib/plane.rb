@@ -1,6 +1,5 @@
 # can be instructed to land and take off, sends requests to air traffic control
 class Plane
-
   def land(airport)
     landing_guard
     airport.request_landing(self)
