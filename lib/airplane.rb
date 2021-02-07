@@ -4,18 +4,26 @@ class Airplane
   end
 
   def takeoff(airport)
-    raise 'Plane is already in the air' unless @landed
-
+    takeoff_fail
     airport.takeoff(self)
     @landed = false
     "Plane has taken off"
   end
 
   def land(airport)
-    raise 'Plane has already landed' if @landed
-
+    land_fail
     airport.land(self)
     @landed = true
     "Plane has landed"
+  end
+
+  private
+
+  def takeoff_fail
+    raise 'Plane is already in the air' unless @landed
+  end
+
+  def land_fail
+    raise 'Plane has already landed' if @landed
   end
 end
