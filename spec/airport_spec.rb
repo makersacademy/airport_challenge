@@ -14,7 +14,7 @@ describe Airport do
       end
 
       context 'when plane is in aiport' do
-        before(:example) { let_there_be_sun; land_one }
+        before(:example) { let_there_be_sun; land_one } # see helper_methods
         it 'returns true' do
           expect(subject.contain?(plane)).to be true
         end

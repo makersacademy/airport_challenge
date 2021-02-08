@@ -1,3 +1,4 @@
+# see helper_methods for definitions of helper methods used
 describe AirTrafficControl do
   describe Airport do
     let(:plane) { instance_double(Plane, 'Plane') }

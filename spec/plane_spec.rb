@@ -1,3 +1,4 @@
+# see helper_methods for definitions of helper methods used
 describe Plane do
   let(:plane)   { described_class.new }
   let(:planes)  { [] }
