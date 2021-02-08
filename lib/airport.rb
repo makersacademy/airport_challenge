@@ -2,13 +2,13 @@ class Airport
 
 attr_reader :capacity, :planes, :weather
 
-def initialize
+  def initialize
 
-  @capacity = $def_capacity
-  @planes = 10
-  @weather = $def_weather
+    @capacity = $def_capacity
+    @planes = 10
+    @weather = $def_weather
 
-end
+  end
 
   def full?
     return true if @capacity <= @planes
@@ -21,7 +21,6 @@ end
 
     #return false if Weather.new.stormy?
     #return true if !Weather.new.stormy?
-    
   end
 
   def take_off(plane)
