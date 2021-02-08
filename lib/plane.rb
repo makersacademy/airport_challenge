@@ -16,6 +16,7 @@ class Plane
   end
 
   def takeoff
+    fail "Not in an airport" unless @location != :in_flight
     fail "Not safe to takeoff" unless @location.safe?
     
     @location.takeoff(self)

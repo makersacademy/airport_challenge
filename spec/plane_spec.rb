@@ -30,7 +30,7 @@ describe Plane do
 
   it "can't take off when not at airport" do
     plane.instance_variable_set(:@location, :in_flight)
-    expect { plane.takeoff }.to raise_error
+    expect { plane.takeoff }.to raise_error("Not in an airport")
   end
 
   it "can't land when not in the air" do
