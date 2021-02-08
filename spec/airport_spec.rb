@@ -14,10 +14,10 @@ describe Airport do
   end
 
   it "doesn't land" do
-    expect(Airport.new.land(:plane)).to eq(false) if Airport.new.full?
+    expect(subject.land(:plane)).to eq(false) if subject.full?
   end
   it "does land" do
-    expect(Airport.new.land(:plane)).to eq(true) if (!Airport.new.full?)
+    expect(subject.land(:plane)).to eq(true) unless subject.full?
   end
 
   it "default capacity can be changed" do
@@ -26,11 +26,11 @@ describe Airport do
   end
 
   it "doesn't take off if stormy" do
-    expect(Airport.new.take_off(:plane)).to eq(false) if Weather.new.stormy?
+    expect(subject.take_off(:plane)).to eq(false) if Weather.new.stormy?
   end
 
   it "does take off if not stormy" do
-    expect(Airport.new.take_off(:plane)).to eq(true) if (!Weather.new.stormy?)
+    expect(subject.take_off(:plane)).to eq(true) unless Weather.new.stormy?
   end
 
   # it "doesn't land if stormy" do
