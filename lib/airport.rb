@@ -10,13 +10,15 @@ class Airport
   def land(plane)
     fail 'Airport full' if full?
 
+    fail 'Already in airport' if @planes.include? plane
+
     @planes << plane
     @planes
   end
 
   def take_off(plane)
     fail 'Plane not in current airport' unless @planes.include? plane
-    
+
     index = @planes.find_index(plane)
     @planes.delete_at(index)
   end
