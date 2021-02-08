@@ -15,13 +15,13 @@
 ```
 Hi! Welcome to my version of the Makers Airport Challenge. I have built a functioning program, using TDD and RSpec, that controls the flow of planes at airports - by emulating their landing and take off. These airports are affected by the weather and will not allow planes to land or take off if the weather is stormy.
 
-Code examples and feature tests are at the end of the README if you're interested in those specifically.
+Code examples and feature tests are at the end of the README if you're specifically interested in those.
 
 ## How far did I get? What did I learn? ##
 
-I completed the whole challenge!! Well, sort of.. I coded the tests and functionality for one edge case, but stopped there. The Superbowl is on in a few minutes and it's Patrick Mahomes vs Tom Brady. I can't miss that!! If you have no idea what that means, think of it as the Buddha vs Jesus.. but obviously more aggressive. Basically two ridiculously awesome people. But that's besides the point. I probably prefer Lao Tzu anyway :).
+I completed the whole challenge!! Well, sort of.. I didn't code all of the edge cases - I coded the tests and functionality for one edge case, but stopped there. Why? I must have a good reason, right? Absolutely!! The Super Bowl is on in a few minutes and it's Patrick Mahomes vs Tom Brady.. of course I can't miss that! If you have no idea what that means; think of it like the Buddha vs Jesus.. but obviously more aggressive - basically two ridiculously awesome people. But that's besides the point, and I probably prefer Lao Tzu anyway :).
 
-The tests should all pass with 100% coverage, including the first edge case (planes trying to land while they're still grounded). It seemed like the best way to write the other edge cases would have probably been to work with the plane class and spec, and I did start but had to restart quite a few times - so I chose to conclude it here.
+The tests [should] all pass with 100% coverage, including the first edge case (planes trying to land while they're still grounded). It seemed like the best way to write the other edge cases would have probably been to work with the Plane class and spec and I did start them but had to restart a few times - so I chose to conclude it here.
 
 This challenge has really helped me push my synctatical knowledge and skills with RSpec, and I really enjoyed it as I went through it. It was quite frustrating at times, especially because the code itself isn't very difficult to write - I'm still getting confident and effective with the actual syntax and logic of RSpec but I'm coming to really love it. Cycling through Feature tests and Unit tests helped me build a relatively robust program and deepen my understanding. I really enjoy thinking about products and why they're successful, and am super eager to build products that are solid and useful for customers, so the TDD process really appeals to me and I can see why it's useful for building sustainable programs.
 
