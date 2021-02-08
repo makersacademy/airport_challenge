@@ -19,3 +19,10 @@ The conditions that the user of this program can check include: checking if a pl
 ## How To Run Tests
 
 All of the tests are written using Rspec, in order to run the tests, first install Rspec and then use the `rspec` command in the command line.
+
+## Notes
+
+I have not completed this challenge fully, I still need to create a random weather generator and tests to ensure planes do not land and take off when the weather is stormy.
+To do this I would make an array with the possible weather conditions and use the `sample` method to generate them randomly.
+I would then make an error for when the `takeoff` method is called if the random weather condition is equal to stormy.
+I would also make an error for when the `land(plane)` method is called if the random weather condition is equal to stormy.
