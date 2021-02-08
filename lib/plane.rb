@@ -4,13 +4,13 @@ class Plane
 
   def land(airport)
     landing_guard
-    airport.request_landing(self) # see AirTrafficControl
+    airport.request_landing(self) # AirTrafficControl
     update_status(:ground)
   end
 
   def take_off(airport)
     take_off_guard
-    airport.request_take_off(self) # see AirTrafficControl
+    airport.request_take_off(self) # AirTrafficControl
     update_status(:air)
   end
 

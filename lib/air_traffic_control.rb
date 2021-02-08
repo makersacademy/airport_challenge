@@ -23,15 +23,15 @@ module AirTrafficControl
   end
 
   def airport_guard(plane)
-    raise AirportError unless contain?(plane) # see Airport
+    raise AirportError unless contain?(plane) # Airport#contain?
   end
 
   def clear_for_landing(plane)
-    planes << plane
+    planes << plane # Airport#planes
   end
 
   def clear_for_take_off(plane)
-    planes.delete(plane)
+    planes.delete(plane) # Airport#planes
   end
 
   def weather_stormy?
