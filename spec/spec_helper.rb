@@ -5,6 +5,7 @@ Coveralls.wear!
 # require 'simplecov-console'
 
 require 'flight_simulator'
+require 'helper_methods'
 
 # SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 #   SimpleCov::Formatter::Console,

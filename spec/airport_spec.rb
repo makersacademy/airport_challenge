@@ -1,5 +1,3 @@
-require_relative 'helper_methods'
-
 describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
 

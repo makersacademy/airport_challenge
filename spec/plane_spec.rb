@@ -1,4 +1,3 @@
-# helper methods are defined in ./airport_test_setup_spec.rb
 describe Plane do
   let(:plane)   { described_class.new }
   let(:planes)  { [] }

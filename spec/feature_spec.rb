@@ -1,5 +1,3 @@
-require_relative 'helper_methods'
-
 describe 'Feature Tests' do
   plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :biplane]
   plane_symbols.each { |plane| let(plane) { new_plane } }
