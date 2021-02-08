@@ -21,7 +21,8 @@ describe Airport do
   end
 
   it "default capacity can be changed" do
-    expect($def_capacity).to be_a(Integer)
+    $def_capacity = @capacity
+    expect(@capacity).to eq($def_capacity)
   end
 
   it "doesn't take off if stormy" do
