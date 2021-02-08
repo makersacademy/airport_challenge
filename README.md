@@ -1,5 +1,8 @@
 ## My Solution to the Airport Challenge ##
 
+Hi! Welcome to my version of the Makers Airport Challenge. I have built a functioning program, using TDD and RSpec, that controls the flow of planes at airports - by emulating their landing and take off. These airports are affected by the weather and will not allow planes to land or take off if the weather is stormy.
+
+Code examples and feature tests are at the end of the README if you're specifically interested in those.
 =================
 
 ```
@@ -13,9 +16,6 @@
                 =  ===(_________)
 
 ```
-Hi! Welcome to my version of the Makers Airport Challenge. I have built a functioning program, using TDD and RSpec, that controls the flow of planes at airports - by emulating their landing and take off. These airports are affected by the weather and will not allow planes to land or take off if the weather is stormy.
-
-Code examples and feature tests are at the end of the README if you're specifically interested in those.
 
 ## How far did I get? What did I learn? ##
 
