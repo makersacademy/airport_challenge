@@ -30,8 +30,7 @@ I also need to do further research and practice with private and public methods,
 ## Great! What was my process? ##
 I broke the User Stories down into tables, and then made simple diagrams from them. This really helped me tackle everything one step at a time, and was my saving grace any time I got lost or wound up.
 
-User Story Representations:
-https://docs.google.com/document/d/1DBY8AGhNPGZyTBH7NbiWuWzSISpm6BZO-1r5H7JT70c/edit?usp=sharing
+User Story Representations: [link](src/user_story_reps.pdf)
 
 I followed the Red-Green-Refactor process. I created a feature test for the first feature, within the first user story. I used the information I received from this feature test to write my first unit test. I watched that fail, and wrote the code to make it pass. I watched it pass, then refactored everything. I checked that it was all still green, and then restarted the process for the next feature.
 
