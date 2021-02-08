@@ -4,8 +4,6 @@ Hi! Welcome to my version of the Makers Airport Challenge. I have built a functi
 
 Code examples and feature tests are at the end of the README if you're specifically interested in those.
 
-=================
-
 ```
         ______
         _\____\___
