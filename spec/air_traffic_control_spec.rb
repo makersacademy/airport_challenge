@@ -1,4 +1,5 @@
-# helper methods are defined in ./airport_test_setup_spec.rb
+require_relative 'helper_methods'
+
 describe AirTrafficControl do
   describe Airport do
     let(:plane) { instance_double(Plane, 'Plane') }
@@ -15,7 +16,7 @@ describe AirTrafficControl do
           before(:example) { let_there_be_sun }
 
           context 'when airport is full' do
-            before { fill_her_up }
+            before { fill_it_up }
             it 'raises capacity error' do
               expect { subject.request_landing(plane) }.to raise_error CapacityError
             end
@@ -95,7 +96,7 @@ describe AirTrafficControl do
         before { let_there_be_sun }
 
         context 'when capacity is full' do
-          before { fill_her_up }
+          before { fill_it_up }
           it 'raises capacity error' do
             expect { subject.send(:capacity_guard) }.to raise_error CapacityError
           end

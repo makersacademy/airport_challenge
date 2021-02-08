@@ -1,3 +1,5 @@
+require_relative 'helper_methods'
+
 describe 'Feature Tests' do
   plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :biplane]
   plane_symbols.each { |plane| let(plane) { new_plane } }
@@ -16,7 +18,7 @@ describe 'Feature Tests' do
   end
 
   context 'landing and taking off aircraft' do
-    before { make_sunshine }
+    before { let_there_be_sun }
 
     it 'sucessfully lands and takes off one aircraft' do
       expect(lhr.contain?(boeing)).to be false
@@ -59,8 +61,8 @@ describe 'Feature Tests' do
   context 'raising errors' do
     context 'when stormy' do
       before {
-        make_sunshine; boeing.land(lhr);
-        dream_liner.land(lax); why_does_it_always_rain_on_me
+        let_there_be_sun; boeing.land(lhr);
+        dream_liner.land(lax); make_it_rain
       }
 
       it 'raises weather errors as expected' do
@@ -72,7 +74,7 @@ describe 'Feature Tests' do
     end
 
     context 'when sunny' do
-      before { make_sunshine }
+      before { let_there_be_sun }
 
       it 'raises all other errors as expected' do
         expect { dream_liner.take_off(lax) }.to raise_error TakeOffError

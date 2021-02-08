@@ -1,4 +1,5 @@
-# helper methods are defined in ./airport_test_setup_spec.rb
+require_relative 'helper_methods'
+
 describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
 
@@ -54,7 +55,7 @@ describe Airport do
       before { let_there_be_sun }
 
       context 'when aiport is full' do
-        before { fill_her_up }
+        before { fill_it_up }
         it 'returns true' do
           expect(subject.send(:full?)).to be true
         end
