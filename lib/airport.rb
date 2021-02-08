@@ -1,6 +1,10 @@
 class Airport
   attr_reader :hangar
 
+  # add tests 2 only let airplanes in hangars
+  # doubels
+  
+
   def initialize(capacity = 5)
     @hangar = []
     @capacity = capacity
