@@ -233,7 +233,7 @@ I want to prevent landing when weather is stormy
 - I am pleased with the outcome of the program and feel that it meets the requirements.
 - Given more time I'd like to:
   - Add an optional hash of arguments to Plane's initialize method, allowing it to also be initialized in an airport
-  - Add verification to the `capacity=` writer methods so that only an integer can be given
+  - Add verification to the `capacity=` writer method so that only an integer can be given
   - Add a password feature so that only authorised users can change the capacity
 - This exercise has made me more determined to master object oriented design, in particular SOLID principles.
 - My long term goal is to be confident in designing complex programs from scratch, using loosely coupled objects with minimal dependencies and well designed public interfaces.
