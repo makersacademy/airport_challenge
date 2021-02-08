@@ -28,7 +28,9 @@ This challenge has really helped me push my synctatical knowledge and skills wit
 I also need to do further research and practice with private and public methods, but did my best with them today.
 
 ## Great! What was my process? ##
-I broke the User Stories down into tables, and then made simple diagrams from them. This really helped me tackle everything one step at a time, and was my saving grace any time I got lost or wound up. [User Story Representations](user_story_reps.pdf)
+I broke the User Stories down into tables, and then made simple diagrams from them. This really helped me tackle everything one step at a time, and was my saving grace any time I got lost or wound up.
+
+[User Story Representations](user_story_reps.pdf)
 
 I followed the Red-Green-Refactor process. I created a feature test for the first feature, within the first user story. I used the information I received from this feature test to write my first unit test. I watched that fail, and wrote the code to make it pass. I watched it pass, then refactored everything. I checked that it was all still green, and then restarted the process for the next feature.
 
@@ -57,4 +59,8 @@ I used rubocop to check my code for correct formatting (what an awesome tool!), 
 
 (What you've really been waiting for)
 
-Finally, here are a couple feature tests that demonstrate the intended user experience:
+Finally, here are a couple of feature tests that demonstrate the intended user experience:
+
+[Basic Feature Test](airport_challenge_basic_feature_test.png)
+[Advanced Feature Test - 1](airport_challenge_advanced_feature_test_1.png)
+[Advanced Feature Test - 2](airport_challenge_advanced_feature_test_2.png)
