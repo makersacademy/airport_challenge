@@ -32,4 +32,12 @@ describe Airport do
     expect(Airport.new.take_off(:plane)).to eq(true) if (!Weather.new.stormy?)
   end
 
+  # it "doesn't land if stormy" do
+  #   expect(Airport.new.land(:plane)).to eq(false) if Weather.new.stormy?
+  # end
+  #
+  # it "does land if not stormy" do
+  #   expect(Airport.new.take_off(:plane)).to eq(true) if (!Weather.new.stormy?)
+  # end
+
 end

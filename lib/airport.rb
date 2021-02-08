@@ -18,6 +18,10 @@ end
   def land(plane)
     return false if Airport.new.full?
     return true if !Airport.new.full?
+
+    #return false if Weather.new.stormy?
+    #return true if !Weather.new.stormy?
+    
   end
 
   def take_off(plane)

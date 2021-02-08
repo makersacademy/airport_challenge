@@ -74,5 +74,4 @@ based on the taking off or landing of planes. Wish me luck.
 
 update:
 
-my weather test and function work very basically. I will try to make this
-better in the morning.
+I am struggling to make the plane not land if stormy
