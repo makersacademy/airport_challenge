@@ -41,16 +41,4 @@ describe Airport do
     airport.land(plane)
     expect { airport.land(plane) }.to raise_error 'Already in airport'
   end
-  it "doesn't allow landings if weather is stormy" do
-    plane = Plane.new
-    airport = Airport.new
-    double(:Airport, weather: "stormy")
-    expect { airport.land(plane) }.to raise_error 'Weather too bad to land'
-  end
-  it "doesn't allow take offs if weather is stormy" do
-    plane = Plane.new
-    airport = Airport.new
-    double(:Airport, weather: "stormy")
-    expect { airport.take_off(plane) }.to raise_error 'Weather too bad to take off'
-  end
 end
