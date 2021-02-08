@@ -16,7 +16,7 @@ describe Airport do
   it "doesn't land" do
     expect(Airport.new.land(:plane)).to eq(false) if Airport.new.full?
   end
-  it "lands" do
+  it "does land" do
     expect(Airport.new.land(:plane)).to eq(true) if (!Airport.new.full?)
   end
 
@@ -24,7 +24,7 @@ describe Airport do
     expect($def_capacity).to be_a(Integer)
   end
 
-  it "does not take off if stormy" do
+  it "doesn't take off if stormy" do
     expect(Airport.new.take_off(:plane)).to eq(false) if Weather.new.stormy?
   end
 
