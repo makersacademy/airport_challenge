@@ -49,9 +49,11 @@ Airport Challenge
 :white_check_mark: 100 % test coverage.
 
 
+---
 
+## Areas to improve on 
 
-
+* I'd like to incoroporate before...do statements to my tests to make code cleaner.
 
 
 Task
