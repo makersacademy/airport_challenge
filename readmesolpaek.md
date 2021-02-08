@@ -65,5 +65,9 @@ mentioned, is not fully fleshed out.
 This is reflected in the tests that expect a false or true based on the
 fullness of the airport.
 
+Finally, there is a default capacity which can be edited, and depending on the
+number of planes compared to the default capacity, the respective tests work.
+This makes me happy.
+
 At this point, I will try to implement the counter's increasing and decreasing
 based on the taking off or landing of planes. Wish me luck.
