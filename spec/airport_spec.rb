@@ -1,4 +1,5 @@
 require "airport"
+require "Plane"
 
 describe Airport do
 	it "has a default capacity" do 
@@ -68,7 +69,7 @@ describe '#take_off' do
  	airport = Airport.new
  	plane = Plane.new
  	airport.land(plane)
- 	airport.forecast(:stormy)
+ 	airport.forecast == :stormy
  	expect {airport.take_off(plane)}.to raise_error 'Weather is stormy, cannot take-off.'
  end 
 end

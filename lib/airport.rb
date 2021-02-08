@@ -1,3 +1,6 @@
+require "./lib/Plane"
+
+
 class Airport
 
 attr_reader :plane
@@ -55,11 +58,4 @@ end
 # end
 
 
-class Plane
-
-def plane
-	@plane
-end 
-
-end
 
