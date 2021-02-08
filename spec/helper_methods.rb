@@ -12,15 +12,15 @@ def new_weather
 end
 
 def let_there_be_sun
-  make(:sunny)
+  make_it(:sunny)
 end
 
 def make_it_rain
-  make(:stormy)
+  make_it(:stormy)
 end
 
 # helper methods for Feature Tests and Airport / AirTrafficControl
-def make(weather)
+def make_it(weather)
   allow_any_instance_of(Airport).to receive(:weather_forcast) { weather }
 end
 
