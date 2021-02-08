@@ -71,3 +71,8 @@ This makes me happy.
 
 At this point, I will try to implement the counter's increasing and decreasing
 based on the taking off or landing of planes. Wish me luck.
+
+update:
+
+my weather test and function work very basically. I will try to make this
+better in the morning.

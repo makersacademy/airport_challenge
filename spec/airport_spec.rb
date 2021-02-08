@@ -19,4 +19,8 @@ describe Airport do
     expect(Airport.new.land(:plane)).to eq(true) if (!Airport.new.full?)
   end
 
+  it "default capacity can be changed" do
+    expect($def_capacity).to be_a(Integer)
+  end
+
 end
