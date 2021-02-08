@@ -13,21 +13,48 @@ Airport Challenge
 
 ```
 
-Instructions
----------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
+## :airplane: How to use
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+* To run in irb when in airport_challenge/lib in terminal  
+ `require_relative 'air_traffic_controller.rb'`
+
+* In irb to create new SafetyProtocol to be used in any given AirTrafficController  
+ `my_safety_protocol = SafetyProtocol.new(insert your airport's capacity)`
+ 
+ * In irb to make a new AirTrafficController to be used with your SafetyProtocol  
+ `my_air_traffic_controller = AirTrafficController.new(my_safety_protocol, Weather.new, ['optional parameter for planes that are currently at the airport'], 
+  ['optional parameter for planes that are currently in the air'])`
+  
+  * In irb to land your plane of choice  
+ `my_air_traffic_controller.land('my_plane')`
+ 
+  * In irb to take off your plane of choice  
+ `my_air_traffic_controller.take_off('my_plane')`
+
+---
+
+## Features
+
+:white_check_mark: Generates weather with every land/take off attempt.  
+:white_check_mark: Stores landed planes.  
+:white_check_mark: Stores planes currently in air.  
+:white_check_mark: Doesn't allow planes that are already landed to land.  
+:white_check_mark: Doesn't allow planes not present in the airport or already flying to take off.   
+:white_check_mark: Doesn't allow planes to land if weather is stormy.        
+:white_check_mark: Doesn't allow planes to land if there is no more space at the airport.  
+:white_check_mark: Allows making a SafetyProtocol to be reused with AirTrafficControllers of choice.  
+:white_check_mark: Allows for set-up of AirTrafficController to include current state of airport( planes that are currently landed and currently flying).  
+:white_check_mark: 100 % test coverage.
+
+
+---
+
+## Areas to improve on 
+
+* I'd like to incoroporate before...do statements to my tests to make code cleaner.
+
 
 Task
 -----
