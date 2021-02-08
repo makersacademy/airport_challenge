@@ -59,14 +59,14 @@ I used rubocop to check my code for correct formatting (what an awesome tool!), 
 
 (What you've really been waiting for)
 
-Finally, here are a couple of feature tests that demonstrate the intended user experience:
+Here are a couple of feature tests that demonstrate the current user experience, as well as the intended user experience:
 
-[Basic Feature Test](airport_challenge_basic_feature_test.png)
+[Basic Feature Test](docs/airport_challenge_basic_feature_test.png)
 
 This feature test showcases all of the current features of the program. Some key features: error returned if user tries to land plane that is still grounded; the ability to check if the weather is stormy?; the ability to check an airport's capacity and manually set a new one; and the ability to see which planes are currently stored in the airport. The last feature also highlights how planes are stored and removed when they land and take off.
 
-[Advanced Feature Test - 1](airport_challenge_advanced_feature_test_1.png)
-[Advanced Feature Test - 2](airport_challenge_advanced_feature_test_2.png)
+[Advanced Feature Test - 1](docs/airport_challenge_advanced_feature_test_1.png)
+[Advanced Feature Test - 2](docs/airport_challenge_advanced_feature_test_2.png)
 
 This feature test lands 10 planes at once and then attempts to take them off. The 10 planes are stored at the airport when they land, but are not removed from the airport once they take off. This is mostly because I haven't currently added a built in functionality to land multiple planes at once and then take them off. I tried to use an array to simulate what I would probably want to happen. I chose to showcase this feature test as I think it's a good example of where the program can go.
 
