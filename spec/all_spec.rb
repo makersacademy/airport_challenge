@@ -4,9 +4,14 @@ require "airport.rb"
 test_max_capacity = 10
 
 describe "Airport and Plane:" do
-  let(:airport) { Airport.new("sunny", test_max_capacity)}
-  let(:plane) { Plane.new}
+  let(:airport) { Airport.new("sunny", test_max_capacity) }
+  let(:plane) { Plane.new }
 
+  it "create a plane inside the airport" do
+    test_plane = Plane.new(airport)
+    expect(test_plane.location).to eq airport
+    expect(airport.planes).to include(test_plane)
+  end
   context "good weather:" do
     it "plane lands at the airport" do
       expect(airport.planes).not_to include(plane)
@@ -61,9 +66,9 @@ describe "Airport and Plane:" do
     end
 
     it "3 planes try to land, but airport is full after 2nd" do
-      airport.instance_variable_set(:@planes, (1..test_max_capacity-2).map{Plane.new})
-      expect(airport.planes.size).to eq test_max_capacity-2
-      2.times{ new_plane = Plane.new; new_plane.land(airport) }
+      airport.instance_variable_set(:@planes, (1..test_max_capacity - 2).map { Plane.new })
+      expect(airport.planes.size).to eq test_max_capacity - 2
+      2.times { new_plane = Plane.new; new_plane.land(airport) }
       expect(airport.planes.size).to eq test_max_capacity
       expect { plane.land(airport) }.to raise_error("Airport is full")
       expect(airport.planes.size).to eq test_max_capacity
@@ -73,7 +78,7 @@ describe "Airport and Plane:" do
 
   context "weather changes for the worse" do
     let(:plane1) { Plane.new }
-    let(:plane2) {Plane.new}
+    let(:plane2) { Plane.new }
     before(:each) do
       airport.instance_variable_set(:@weather, "sunny")
     end

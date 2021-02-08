@@ -3,6 +3,7 @@ class Plane
 
   def initialize location = :in_flight
     @location = location
+    location.land(self) unless location == :in_flight
   end
 
   def land(airport)

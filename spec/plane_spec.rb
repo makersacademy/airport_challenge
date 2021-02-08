@@ -17,6 +17,11 @@ describe Plane do
     expect(plane.location).to eq airport
   end
 
+  it "create a plane inside an airport" do
+    test_plane = Plane.new(airport)
+    expect(test_plane.location).to eq airport
+  end
+
   it "takes off" do
     plane.instance_variable_set(:@location, airport)
     plane.takeoff()
