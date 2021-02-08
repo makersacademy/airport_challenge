@@ -33,6 +33,13 @@ describe Airport do
       allow(dxb).to receive(:set_weather) { "stormy" }
       expect { dxb.land(Plane.new) }.to raise_error 'Cant land, bad weather!'
     end
+    it 'prevents landed planes from landing again' do
+      dxb = Airport.new
+      allow(dxb).to receive(:set_weather) { "sunny" }
+      pj = Plane.new
+      dxb.land(pj)
+      expect { dxb.land(pj) }.to raise_error 'This plane has already landed!'
+    end  
   end
 
   describe "#take_off" do
@@ -44,15 +51,20 @@ describe Airport do
       dxb.take_off(pj)
       expect(dxb.view_hangar).not_to include(pj)
     end
-    it 'prevents landing if weather is stormy' do
+    it 'prevents take off if weather is stormy' do
       dxb = Airport.new
       allow(dxb).to receive(:set_weather) { "sunny" }
       pj = Plane.new
       dxb.land(pj)
       allow(dxb).to receive(:set_weather) { "stormy" }
-      expect { dxb.take_off(Plane.new) }.to raise_error 'Cant take off, bad weather!'
+      expect { dxb.take_off(pj) }.to raise_error 'Cant take off, bad weather!'
     end
-
+    it 'limits take off to planes in relevant airport hangars' do
+      dxb = Airport.new
+      allow(dxb).to receive(:set_weather) { "sunny" }
+      expect { dxb.take_off(Plane.new) }.to raise_error 'This plane is unavailable!'
+    end
+    
   end
 
 end
