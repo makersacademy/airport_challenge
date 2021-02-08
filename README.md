@@ -29,22 +29,26 @@ This program is designed to meet the needs of these client [user stories](#user-
 - `coveralls`
 
 ## Running tests
-Running the test suite provides thorough `documentation` on all classes and methods. After running bundle install, run test suite with:
+
+Run test suite to see thorough `documentation` of all classes and methods
+
+After running bundle install, run tests with:
 - `rspec`
 
 ## Skills applied
 
 ### Testing
-- `TDD` - Test driving every feature with automated unit tests
+- `TDD` - Test driving all code with automated unit tests
 - `coveralls` - Achieving 100% test coverage
 - `Travis CI` - Build passing
 - `Feature testing` - Automated feature testing using `rspec`
-- `Edge cases` and `corner cases` thoroughly tested - Ensuring system reliability in extreme and inconsistent states
+- `Edge cases` and `corner cases` tested, ensuring system reliability in extreme and inconsistent states
 
 ### Design
-- `Domain Modelling` - Translating `user stories` into domain model, into unit tests, into code
-- `OOP` - Applying `SOLID` principles with the aim of achieving loosely coupled objects with maximum flexibility and tolerance for change. Creating lean methods and classes with a `single responsibility`
-- `Code Climate` - Grade A for maintainability
+- `Domain Modelling` - Translating `user stories` into unit tests, into code
+- `OOP` - Applying `OOD` and `SOLID` principles building a program with maximum flexibility and tolerance for change
+- `Code Climate` - Grade A maintainability
+- `Reek` - 0 code smells
 
 ## Getting Started
 
@@ -61,7 +65,6 @@ Head to the root folder
 Kick things off with
 - `irb -r ./lib/flight_simulator.rb`
 
-
 ## You are an air traffic controller
 
 It's your job to ensure the safety of millions. Luckily the system implements a number of safety guards, making catastrophes far less likely.
@@ -72,8 +75,8 @@ It's your job to ensure the safety of millions. Luckily the system implements a 
 
 - Instantiate airports: `airport_name = Airport.new`
 - Instantiate planes: `plane_name = Plane.new`
-- Land planes with: `plane_name.land(airport_name)`
-- Take off planes with: `plane_name.take_off(airport_name)`
+- Land planes: `plane_name.land(airport_name)`
+- Take off planes: `plane_name.take_off(airport_name)`
 
 _Note: Planes start off in the air - as if they have just entered your airspace and appeared on your radar._
 
@@ -106,7 +109,7 @@ Or use the writer method `capacity=` to change after initialization:
  => 500
 ```
 
-After a successful landing or take off, planes auto update their `status` attribute to `ground` and `air` respectively. The attribute is publicly readable and privately writable. A plane's updated `status` is the return value of the two methods and provides confirmation of success.
+After successfully landing and taking off, planes auto-update their `status` attribute to `ground` and `air` respectively. The updated `status` is the return value of the `land` and `take_off` methods, giving confirmation of success.
 
 ```
 2.6.5 :003 > jumbo_jet.land(DXB)
@@ -116,7 +119,7 @@ After a successful landing or take off, planes auto update their `status` attrib
  => :air
 ```
 
-The `contain?` method gives additional peace of mind, letting users confirm whether a plane is in a given airport:
+The `contain?` method gives additional confirmation, letting users see whether a plane is in a given airport:
 
 ```
 2.6.5 :033 > JFK.contain?(boeing_747)
@@ -137,9 +140,13 @@ The `contain?` method gives additional peace of mind, letting users confirm whet
 
 ## System Guard Conditions
 
-When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which in some cases will be denied by the `Air Traffic Control` mixin:
+When you plane instruct a plane to land or take off, you must pass an airport as an argument. The plane sends a request to the airport, which will either be approved or denied
 
-- Requesting to land or take off in extreme weather, throws: `WeatherError`
+### The Air Traffic Control mixin
+
+Denies requests to:
+
+- Land or take off in extreme weather - throws: `WeatherError`
   - The `weather forcast` is local to each airport and determined by `atmospheric pressure` (a randomly generated number between 0 and 100). When pressure is very low (< 10), the forcast will be `stormy` and all take offs and landings are prevented
 
 ```
@@ -150,7 +157,7 @@ WeatherError (Request Denied: Extreme weather)
 ```
 ![windy](https://media.giphy.com/media/M9tpu3TPG42n6/giphy.gif)
 
-- Requesting to land at an airport at full capacity, throws: `CapacityError`
+- Land at an airport at full capacity - throws: `CapacityError`
 
 ```
 2.6.5 :040 > LGW = Airport.new(10)
@@ -165,7 +172,7 @@ Traceback (most recent call last): ...
 CapacityError (Request Denied: Airport capacity full)
 ```
 
-- Requesting to take off from an airport the plane is not in, throws: `AirportError`
+- Take off from an airport the plane is not in - throws: `AirportError`
 
 ```
 2.6.5 :044 > airbus.land(LAX)
@@ -179,7 +186,7 @@ AirportError (Request Denied: Plane not located in airport)
 
 ### Planes automatically reject invalid instructions
 
-- Instructing grounded planes to land, throws: `LandingError`
+- Instructing grounded planes to land - throws: `LandingError`
 
 ```
 2.6.5 :048 > airbus.land(LHR)
