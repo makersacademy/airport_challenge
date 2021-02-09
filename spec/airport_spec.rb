@@ -63,16 +63,17 @@ describe '#take_off' do
  	airport = Airport.new
  	plane = Plane.new
  	airport.land(plane)
+  allow(airport).to receive(:forecast) {:sunny}
  	expect(airport.take_off(plane)).to_not include([plane])
  end
  it "raises an error when weather is stormy" do
- 	airport = Airport.new
+  airport = Airport.new
  	plane = Plane.new
  	airport.land(plane)
- 	airport.forecast == :stormy
- 	expect {airport.take_off(plane)}.to raise_error 'Weather is stormy, cannot take-off.'
- end 
-end
+ 	 allow(airport).to receive(:forecast) {:stormy}
+    expect {airport.take_off(plane)}.to raise_error 'Weather is stormy, cannot take-off.'
+    end 
+  end  
 end
  # it "Plane takes off from airport" do
  # 	airport = Airport.new
