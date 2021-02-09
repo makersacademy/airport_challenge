@@ -1,12 +1,13 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:land).with(1).argument }
+  let (:weather) { double :weather }
 
   before do
     allow(subject.weather).to receive(:storm?) { :sun }
-    expect(subject.weather.storm?).to eq :sun
   end
+
+  it { is_expected.to respond_to(:land).with(1).argument }
 
   it 'instructs a plane to land' do
     plane = Plane.new
