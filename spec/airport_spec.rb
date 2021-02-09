@@ -40,6 +40,11 @@ describe Airport do
       dxb.land(pj)
       expect { dxb.land(pj) }.to raise_error 'This plane has already landed!'
     end  
+    it 'only lands airplanes from Plane class' do
+      airport = Airport.new
+      allow(airport).to receive(:set_weather) { "sunny" }
+      expect(airport).to receive(:land).with(Plane)
+    end
   end
 
   describe "#take_off" do
@@ -64,7 +69,9 @@ describe Airport do
       allow(dxb).to receive(:set_weather) { "sunny" }
       expect { dxb.take_off(Plane.new) }.to raise_error 'This plane is unavailable!'
     end
-    
+
   end
 
 end
+# Sample double
+# let(:stormy_airport) { double(:airport, :stormy? => true }
