@@ -41,9 +41,9 @@ describe Airport do
       expect { dxb.land(pj) }.to raise_error 'This plane has already landed!'
     end  
     it 'only lands airplanes from Plane class' do
-      airport = Airport.new
-      allow(airport).to receive(:set_weather) { "sunny" }
-      expect(airport).to receive(:land).with(Plane)
+      # airport = Airport.new
+      # allow(airport).to receive(:set_weather) { "sunny" }
+      expect(:land).to be_a Plane
     end
   end
 

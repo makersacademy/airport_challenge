@@ -1,4 +1,3 @@
-require "plane"
 class Airport
   attr_reader :hangar
 
@@ -12,7 +11,7 @@ class Airport
   end
 
   def land(plane)
-#    is_a_plane?(plane)
+    is_a_plane?(plane)
     full?
     already_landed?(plane)
     check_weather(set_weather, "land")
@@ -60,11 +59,11 @@ class Airport
 
     raise 'This plane is unavailable!'
   end
-=begin
+
   def is_a_plane?(plane)
-    return unless plane.!is_a? Plane
+    return if plane.is_a? Plane
 
     raise 'Can only land real airplanes!'
   end
-=end
+
 end
