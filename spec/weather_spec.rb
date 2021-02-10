@@ -38,4 +38,11 @@ describe Weather do
       end
     end
   end
+
+  # private
+  describe '#atmospheric_pressure' do
+    it 'returns a number between 0...100' do
+      expect(subject.send :atmospheric_pressure).to be_between(0, 100)
+    end
+  end
 end

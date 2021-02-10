@@ -3,15 +3,15 @@ class Plane
   attr_reader :status
 
   def land(airport)
-    landing_guard
-    airport.request_landing(self) # AirTrafficControl
-    update_status(:ground)
+    raise LandingError if grounded?
+    airport.request_landing(self) # defined in AirTrafficControl
+    self.status = :ground
   end
 
   def take_off(airport)
-    take_off_guard
-    airport.request_take_off(self) # AirTrafficControl
-    update_status(:air)
+    raise TakeOffError unless grounded?
+    airport.request_take_off(self) # defined in AirTrafficControl
+    self.status = :air
   end
 
   private
@@ -22,19 +22,7 @@ class Plane
     @status = :air
   end
 
-  def landing_guard
-    raise LandingError if grounded?
-  end
-
-  def take_off_guard
-    raise TakeOffError unless grounded?
-  end
-
   def grounded?
     status == :ground
-  end
-
-  def update_status(status)
-    self.status = status
   end
 end
