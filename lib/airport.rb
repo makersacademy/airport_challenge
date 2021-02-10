@@ -29,7 +29,7 @@ class Airport
     capacity <= all_planes.length
     fail "airport is full now, cannot land any planes" if airport_full?
   end
-  
+
   def stormy?
     weather.stormy?
   end
