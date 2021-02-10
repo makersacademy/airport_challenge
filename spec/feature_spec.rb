@@ -1,4 +1,4 @@
-# see helper_methods for definitions of helper methods used
+# helper methods defined at bottom of file
 describe 'Feature Tests' do
   plane_symbols = [:boeing, :private_jet, :dream_liner, :airbus, :biplane]
   plane_symbols.each { |plane| let(plane) { new_plane } }

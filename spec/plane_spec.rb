@@ -15,7 +15,7 @@ describe Plane do
 
   describe '#status' do
     subject { plane.status }
-    context 'when initialized without arguments' do
+    context 'when initialized' do
       it { is_expected.to be :air }
     end
   end

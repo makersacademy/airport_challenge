@@ -19,17 +19,13 @@ class Airport
 
   attr_reader :planes, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = capacity
-    @weather = weather_station # memoizes weather object
+  def initialize(args = {})
+    @capacity = args[:capacity] || DEFAULT_CAPACITY
+    @weather = args[:weather] || Weather.new
     @planes = []
   end
 
   def full?
     planes.count >= capacity
-  end
-
-  def weather_station
-    Weather.new
   end
 end
