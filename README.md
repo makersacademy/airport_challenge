@@ -8,13 +8,10 @@
 
 
 We have a request from a client to write the software to control the flow of
-
-planes at an airport. The planes can land and take off provided that the
-weather is sunny.
-
-Occasionally it may be stormy, in which case no planes can land or take off.
-
-Here are the user stories that we worked out in collaboration with the client:
+planes at an airport.  
+The planes can land and take off provided that the weather is sunny.  
+Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user  
+stories that we worked out in collaboration with the client:
 
 
 
@@ -46,11 +43,35 @@ I want to prevent landing when weather is stormy
 ```
 
 ```
-All user requirements have been met and the program runs as specified.
+*** All user requirements have been met and the program runs as specified.
 
 Almost all RSpec tests are within the airport_spec.rb file as I felt that the
 
 airport is the control center in a real life context and it would be nice
 
-to keep it true to life for this task.
+to keep it true to life for this task ***
 ```
+
+
+## Getting Started
+
+```
+Enter the following into your terminal to get going:
+
+git clone https://github.com/charlierdm/airport_challenge.git
+gem install bundle
+bundle
+```
+## How to operate
+
+![alt text](https://pbs.twimg.com/media/BubQVOvIMAALtIj.jpg "Airport control")
+
+Create your own airplanes and enter the skies if weather permits directly from your  
+command line (there's a 14.28% chance of a storm).
+
+- To create an airport: **airport = Airplane.new**
+- To change hanger capacity = **airport.capacity(enter number here)**
+- To create a plane: **plane = Plane.new**
+- To land in the airport = **airport.land(plane)**
+- To take off = **plane.take_off**
+- To view your hanger = **airport.hanger**
