@@ -5,11 +5,10 @@ class Airport
   def initialize(capacity = 5)
     @capacity = capacity
     @hangar = []
-    @airport = self
   end
 
   def hangar_full?
-    @airport.hangar.count >= @capacity
+    @hangar.count >= @capacity
   end
 
   def modify_capacity(value)

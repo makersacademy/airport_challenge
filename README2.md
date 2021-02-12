@@ -47,9 +47,14 @@ $ pry
 - [ ] Use random number generator to set the weather
 - [x] Use stubs methods to override random behaviours
 - [ ] Use a double to override random behaviours
-- [ ] Defend against edge cases
+- [x] Defend against edge cases
 - [x] Use the Single Responsability Principle
 - [x] Minimum coverage > 95%
+
+### Edge cases:
+- [x] planes can only take off from airports they are in;
+- [x] planes that are already flying cannot take off and/or be in an airport;
+- [ ] planes that are landed cannot land again and must be in an airport
 
 ## Difficulties encountered
 - Struggled with use of double
@@ -58,4 +63,4 @@ $ pry
 - Struggled with setting up multiple regex match
 
 ## Unfinished
-- I was planning on setting an 'in_flight' instance variable for the Plane object and change that value depending if the plane was landed or in-flight, but it kept making my tests fail.
+- When attempting to solve the test case for `Plane#in_flight? when the plane is already on the ground should not have an in-flight status`, it breaks my other test. I haven't figured out why but I suspect it is because my test are not isolated.

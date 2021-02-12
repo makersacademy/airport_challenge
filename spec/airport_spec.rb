@@ -7,8 +7,8 @@ describe Airport do
   let(:plane_1) { Plane.new }
 
   describe '#capacity' do
-    it 'returns a new Airport object with capacity set' do
-      expect(airport.capacity).to_not be nil
+    it 'returns the hangar capacity as integer' do
+      expect(airport.capacity).to be_an_instance_of Integer
     end
   end
 
@@ -26,13 +26,18 @@ describe Airport do
   end
 
   describe '#hangar_full?' do
-    it 'should return true when hangar.count <= airport.capacity' do
+
+    before :each do
       allow(small_airport).to receive(:weather) { 'sunny' }
+      allow(airport).to receive(:weather) { 'sunny' }
+      allow(plane_1).to receive(:in_flight) { true }
+    end
+
+    it 'should return true when the plane count in hangar >= airport capacity' do
       plane_1.land(small_airport)
       expect(small_airport.hangar_full?).to be true
     end
-    it 'should return false hangar.count > airport.capacity' do
-      allow(airport).to receive(:weather) { 'sunny' }
+    it 'should return false the plane count in hangar < airport.capacity' do
       plane_1.land(airport)
       expect(airport.hangar_full?).to be false
     end
@@ -40,9 +45,7 @@ describe Airport do
 
   describe '#weather' do
     it 'should return either `sunny` or `stormy`' do
-      options = ['sunny', 'stormy']
-      index = options.find_index(airport.weather)
-      expect(index).to_not be_nil
+      expect(subject.weather).to(satisfy { |value| ['sunny', 'stormy'].include?(value) })
     end
   end
 end
