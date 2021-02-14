@@ -46,7 +46,7 @@ After running bundle install, run tests with:
 
 ### Design
 - `Domain Modelling` - Translating `user stories` into unit tests, into code
-- `OOP` - Applying `OOD` and `SOLID` principles building a program with maximum flexibility and tolerance for change
+- `OOP` - Applying `single responsibility principle`, `encapsulation`, `dependency injection`
 - `Code Climate` - Grade A maintainability
 - `Reek` - 0 code smells
 
