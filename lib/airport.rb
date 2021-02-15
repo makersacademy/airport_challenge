@@ -4,10 +4,10 @@ require 'weather.rb'
 class Airport
   attr_reader :planes, :capacity, :weather
 
-  def initialize(capacity = 3)
+  def initialize(weather = Weather.new, capacity = 3)
     @planes = []
+    @weather = weather
     @capacity = capacity
-    @weather = Weather.new
   end
 
   def land(plane)

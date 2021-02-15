@@ -1,8 +1,9 @@
 require 'airport.rb'
 
 describe Airport do
-  let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
+  let(:plane) { double :plane }
+  let(:weather) { double :weather }
+  let(:subject) { Airport.new(weather) }
 
   it 'allows the user to create an Airport instance' do
     expect(subject).to be_instance_of(Airport)
