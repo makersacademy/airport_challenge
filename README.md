@@ -46,5 +46,5 @@ I want to prevent landing when weather is stormy
 Tech Stack
 -----
 
-Ruby 2.6.5
-RSpec
+- Ruby 2.6.5
+- RSpec
