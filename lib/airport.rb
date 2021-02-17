@@ -7,6 +7,12 @@ class Airport
 
   attr_accessor :capacity
 
+  def initialize(args = {})
+    @capacity = args[:capacity] || DEFAULT_CAPACITY
+    @weather = args[:weather] || Weather.new
+    @planes = []
+  end
+
   def contain?(plane)
     planes.include?(plane)
   end
@@ -18,12 +24,6 @@ class Airport
   private
 
   attr_reader :planes, :weather
-
-  def initialize(args = {})
-    @capacity = args[:capacity] || DEFAULT_CAPACITY
-    @weather = args[:weather] || Weather.new
-    @planes = []
-  end
 
   def full?
     planes.count >= capacity

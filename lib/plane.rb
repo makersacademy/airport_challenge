@@ -2,6 +2,10 @@
 class Plane
   attr_reader :status
 
+  def initialize
+    @status = :air
+  end
+
   def land(airport)
     raise LandingError if grounded?
     airport.request_landing(self) # defined in AirTrafficControl
@@ -17,10 +21,6 @@ class Plane
   private
 
   attr_writer :status
-
-  def initialize
-    @status = :air
-  end
 
   def grounded?
     status == :ground
