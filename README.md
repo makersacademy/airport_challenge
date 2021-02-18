@@ -2,8 +2,6 @@
 
 Please also see my solutions to this challenge in [JavaScript](https://github.com/AdamusBG/airport_challenge-js) and [Java](https://github.com/AdamusBG/airport_challenge-java).
 
-This is my solution to [this](https://github.com/makersacademy/airport_challenge) challenge.
-
 ```
         ______
         _\____\___
@@ -85,5 +83,6 @@ Edge cases considered:
 * Planes will not be able to take off from an airport that they are not currently in  
 * Planes will not be able to take off when already in flight  
 * Planes cannot land at an airport if they are already at an airport  
+* Planes can neither land nor take off from an airport with bad weather (randomly chosen)  
 
 To run the tests proving that the above edge cases are handled, enter run `rspec` in your terminal after navigating to this directory.  
