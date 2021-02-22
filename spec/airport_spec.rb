@@ -14,7 +14,26 @@ end
 
 # it' prevent the plane to land when the airport is full'do
 # airport = Airport.new
+  #plane = Plane.new
 #  airport.prevent_landing_full?
 #  expect(airport.prevent_landing_full?).to eq.(true)
 # end
+
+# it' prevents the plane landing when the wheather is stormy' do
+#   airport = Airport.new
+#   plane = Plane.new
+#   plane.instruct_plane_land
+#   expect(airport).to eq('no landing')
+# end
+
+
+
+ describe 'Plane'do
+it' lands  if the airport is empty' do
+   airport = Airport.new
+   plane = Plane.new
+   airport.confirm_no_plane
+   expect(plane.land).to  eq(0)
+ end
+end
 end

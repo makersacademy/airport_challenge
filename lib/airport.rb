@@ -22,3 +22,11 @@ end
  # end
 
 end
+
+class Plane
+
+def land
+  0
+end
+
+end
