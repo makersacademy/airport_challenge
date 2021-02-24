@@ -37,7 +37,20 @@ end
   plane = Plane.new
   expect(airport.land(plane)).to eq(true)
 end
+
+it ' it confirms that theres is no longer plane in the airport' do
+  airport = Airport.new(0, false)
+  plane = Plane.new
+  expect(airport.confirm_no_plane(plane)).to eq(true)
+  end
+  it ' it confirms that there is plane in the airport' do
+    airport = Airport.new(20, true)
+    plane = Plane.new
+    expect(airport.confirm_no_plane(plane)).to eq(false)
+  end
 end
+
+
 
 
 # it' prevents the plane landing when the wheather is stormy' do
