@@ -15,7 +15,7 @@ end
     elsif @stormy_weather == true
         false
     else
-       
+
     end
   end
 
@@ -29,7 +29,13 @@ end
    end
  end
  def land(plane)
+   if @stormy_weather == true
+     false
+   else
+     true
+   end
  end
+ 
 end
 #
 #  # def prevent_landing_full?

@@ -26,20 +26,19 @@ describe 'Airport'do
    airport.take_off(plane)
    expect(airport.take_off(plane)).to eq(false)
  end
-#  it ' prevents a plane to land when the wheather is stormy'do
-#   airport = Airport.new(20, true)
-#   plane = Plane.new
-#   expect(airport.land(plane)).to eq(false)
-# end
-
+ it ' prevents a plane to land when the wheather is stormy'do
+  airport = Airport.new(20, true)
+  plane = Plane.new
+  expect(airport.land(plane)).to eq(false)
 end
 
-# it' prevent the plane to land when the airport is full'do
-# airport = Airport.new
-  #plane = Plane.new
-#  airport.prevent_landing_full?
-#  expect(airport.prevent_landing_full?).to eq.(true)
-# end
+  it ' alloweds a plane to land when the wheather is not stormy'do
+  airport = Airport.new(20, false)
+  plane = Plane.new
+  expect(airport.land(plane)).to eq(true)
+end
+end
+
 
 # it' prevents the plane landing when the wheather is stormy' do
 #   airport = Airport.new
