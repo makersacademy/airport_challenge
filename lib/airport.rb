@@ -15,7 +15,7 @@ end
     elsif @stormy_weather == true
         false
     else
-       false
+       
     end
   end
 
