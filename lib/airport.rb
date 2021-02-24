@@ -10,10 +10,10 @@ end
 
 
   def instruct_plane_land(plane)
-    if @stormy_weather == true
-       false
-    elsif @capacity <= 20
-        true
+    if @capacity <=20
+      true
+    elsif @stormy_weather == true
+        false
     else
        false
     end
@@ -27,6 +27,8 @@ end
    else
      true
    end
+ end
+ def land(plane)
  end
 end
 #
