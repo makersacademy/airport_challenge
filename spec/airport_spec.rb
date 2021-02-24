@@ -1,16 +1,32 @@
 require 'airport'
 
 describe 'Airport'do
-  it 'instruct a plane to land'do
-    airport = Airport.new
+  it 'instructs a plane to land when the capacity is 20 or less'do
+    airport = Airport.new(20, true)
     plane = Plane.new
-    expect(airport.instruct_plane_land(plane)).to eq(0)
+    expect(airport.instruct_plane_land(plane)).to eq(true)
   end
 
-  # it' confirms that it is no longer planes in the airport'do
-  # airport = Airport.new
-  # airport.confirm_no_plane
-  # expect(airport.confirm_no_plane).to eq(0)
+  it 'does not instructs a plane to land when the capacity is more than 20'do
+    airport = Airport.new(21, true)
+    plane = Plane.new
+    expect(airport.instruct_plane_land(plane)).to eq(false)
+  end
+
+   it' instructs a plane to take off when the weather is not stormy 'do
+    airport = Airport.new(20, false)
+    plane = Plane.new
+    airport.take_off(plane)
+    expect(airport.take_off(plane)).to eq(true)
+  end
+
+  it' instructs a plane to not take off when the weather is stormy 'do
+   airport = Airport.new(20, true)
+   plane = Plane.new
+   airport.take_off(plane)
+   expect(airport.take_off(plane)).to eq(false)
+ end
+
 end
 
 # it' prevent the plane to land when the airport is full'do

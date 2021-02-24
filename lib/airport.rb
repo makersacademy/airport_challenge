@@ -1,21 +1,34 @@
 class Airport
 attr_reader :stormy_weather, :empty
 
-def initialize
-  @capacity = 0
-  @stormy_weather = @stormy_weather
-  @empty
+def initialize(capacity, stormy_weather)
+  @capacity = capacity
+  @stormy_weather = stormy_weather
+  @empty = empty
+  @plane = []
 end
 
 
   def instruct_plane_land(plane)
-    @capacity
+    if @stormy_weather == true
+       false
+    elsif @capacity <= 20
+        true
+    else
+       false
+    end
   end
-end
 
-# def confirm_no_plane
-#   @capacity = 0
-# end
+
+
+ def take_off(plane)
+   if @stormy_weather == true
+     false
+   else
+     true
+   end
+ end
+end
 #
 #  # def prevent_landing_full?
 #  #if @capacity > 0
