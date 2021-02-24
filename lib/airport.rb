@@ -1,10 +1,9 @@
 class Airport
-attr_reader :stormy_weather, :empty
+attr_reader :stormy_weather,
 
 def initialize(capacity, stormy_weather)
   @capacity = capacity
   @stormy_weather = stormy_weather
-  @empty = empty
   @plane = []
 end
 
@@ -19,15 +18,14 @@ end
     end
   end
 
-
-
- def take_off(plane)
+  def take_off(plane)
    if @stormy_weather == true
      false
    else
      true
    end
- end
+  end
+
  def land(plane)
    if @stormy_weather == true
      false
