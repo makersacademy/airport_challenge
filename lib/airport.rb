@@ -8,16 +8,7 @@ def initialize(capacity, stormy_weather)
 end
 
 
-  # def instruct_plane_land(new_plane)
-  #
-  #   if @capacity <=20
-  #     true
-  #   elsif @stormy_weather == true
-  #       false
-  #   else
-  #
-  #   end
-  # end
+  
 
 
 
