@@ -4,7 +4,6 @@ attr_reader :stormy_weather
 def initialize(capacity, stormy_weather)
   @capacity = capacity
   @stormy_weather = stormy_weather
-  @good_weather = good_weather
   @plane = []
 end
 
@@ -25,7 +24,7 @@ end
 
   def land(new_plane)
       @plane.each do |plane| plane.new_plane
-        if stormy_weather?
+        if stormy_weather? == true
           return false
         end
       end
