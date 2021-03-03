@@ -4,6 +4,7 @@ attr_reader :stormy_weather
 def initialize(capacity, stormy_weather)
   @capacity = capacity
   @stormy_weather = stormy_weather
+  @good_weather = good_weather
   @plane = []
 end
 
@@ -22,29 +23,29 @@ end
 
 
 
-
   def land(new_plane)
-   @plane.push(new_plane)
-    if @capacity <=20
-        true
-    elsif @stormy_weather == false
-      true
-    elsif @stormy_weather == true
-    false
-    end
+      @plane.each do |plane| plane.new_plane
+        if stormy_weather?
+          return false
+        end
+      end
+
   end
 
 
 
 
- def take_off(plane)
+
+
+def take_off(plane)
 
    if @stormy_weather == true
      false
    else
      true
    end
- end
+end
+
 
 
 
@@ -57,6 +58,7 @@ end
    end
  end
 end
+
 
 
  # if @capacity <= 20
@@ -79,4 +81,3 @@ end
 # def land
 #   0
 # end
-#
