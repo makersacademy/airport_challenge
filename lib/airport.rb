@@ -23,12 +23,11 @@ end
 
 
   def land(new_plane)
-      @plane.each do |plane| plane.new_plane
-        if stormy_weather? == true
-          return false
-        end
-      end
-
+    if @stormy_weather == true
+       false
+    else
+      true
+    end
   end
 
 
