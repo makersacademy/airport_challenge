@@ -8,23 +8,14 @@ def initialize(capacity, stormy_weather)
 end
 
 
-  
 
-
-
-
-  def land(new_plane)
-      @plane.each do |plane| plane.new_plane
-         if stormy_weather? == true
-           return false
-         end
-
+    def land(new_plane)
+      if @stormy_weather == true
+        return   false
+      else
+      true
       end
-
-
-  end
-
-
+    end
 
 
 
@@ -50,26 +41,3 @@ end
    end
  end
 end
-
-
-
- # if @capacity <= 20
- #   false
- # elsif capacity.empty?
- #   true
-
-
-#
-#  # def prevent_landing_full?
-#  #if @capacity > 0
-#
-#  #  true
-#  # end
-#
-# end
-#
-#class Plane
-#
-# def land
-#   0
-# end
