@@ -1,5 +1,9 @@
 # Airport Challenge
 
+### Project
+
+The goal of this project is to build a software which controls the flow of planes at an airport focusing on TDD.
+
 
 ```
         ______
@@ -12,11 +16,6 @@
                 =  ===(_________)
 
 ```
-
-
-### Project
-
-The goal of this project is to build a software which controls the flow of planes at an airport focusing on TDD.
 
 
 
