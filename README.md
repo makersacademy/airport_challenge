@@ -16,10 +16,10 @@ Airport Challenge
 
 ### Project
 
-The goal of this project is to build a software which controls the flow of planes at an airport focusing on TDD
+The goal of this project is to build a software which controls the flow of planes at an airport focusing on TDD.
+
 
 ### User Stories
-
 
 ```
 As an air traffic controller 
