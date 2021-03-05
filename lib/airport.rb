@@ -1,4 +1,6 @@
 class Airport
+
+  FULL_CAPACITY = 20
 attr_reader :stormy_weather
 
 def initialize(capacity, stormy_weather)
@@ -10,12 +12,29 @@ end
 
 
     def land(new_plane)
+
       if @stormy_weather == true
-        return   false
+         raise " Not allowed to land stormy weather "
       else
-      true
+         true
+
+
       end
     end
+
+
+
+    #  def full(plane)
+    #     fail 'Full capacity exceeded' if plane + capacity  >= FULL_CAPACITY
+    #     @capacity += plane
+    # end
+
+
+
+
+
+
+
 
 
 

@@ -29,7 +29,7 @@ describe 'Airport'do
  it ' prevents a plane to land when the wheather is stormy'do
   airport = Airport.new(17, true)
   plane = Plane.new
-  expect(airport.land(plane)).to eq(false)
+  expect{airport.land(plane)}.to raise_error " Not allowed to land stormy weather "
 end
 
   it ' alloweds a plane to land when the wheather is not stormy'do
@@ -49,7 +49,12 @@ it ' it confirms that theres is no longer plane in the airport' do
     plane = Plane.new
     expect(airport.confirm_no_plane(plane)).to eq(false)
   end
-end
+    # it 'it raises an error when the wather is stormy'do
+    # airport = Airport.new(20, true)
+    # plane = Plane.new
+    # expect(airport.land(plane)).to raise_error "Not allowed to land stormy weather"
+    # end
+ end
 
 
 
