@@ -6,4 +6,8 @@ class Airport
   def take_off
     true
   end
+
+  def planes
+    []
+  end
 end
