@@ -9,7 +9,7 @@ describe Airport do
   end
 
   it "allows a plane to take off" do
-    expect(heathrow.take_off).to eq(true)
+    expect(heathrow.take_off(bertie)).to eq(true)
   end
 
   it "can check if there are planes at the airport" do
