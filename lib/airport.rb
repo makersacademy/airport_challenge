@@ -1,15 +1,23 @@
 require_relative 'planes'
 
 class Airport
+
+attr_reader :apron
+
+  def initialize
+    @apron = []
+  end
+
   def land(plane)
-    true
+    apron << plane
   end
 
   def take_off(plane)
-    true
+    apron.pop
   end
 
-  def planes_at_airport(plane)
-    [] << plane
+  def planes_at_airport
+    apron
   end
+
 end
