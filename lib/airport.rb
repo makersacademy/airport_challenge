@@ -1,3 +1,5 @@
+require_relative 'planes'
+
 class Airport
   def land
     true
@@ -7,7 +9,7 @@ class Airport
     true
   end
 
-  def planes
-    []
+  def planes_at_airport(plane)
+    [] << plane
   end
 end
