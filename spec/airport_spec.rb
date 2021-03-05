@@ -49,11 +49,12 @@ it ' it confirms that theres is no longer plane in the airport' do
     plane = Plane.new
     expect(airport.confirm_no_plane(plane)).to eq(false)
   end
-    # it 'it raises an error when the wather is stormy'do
-    # airport = Airport.new(20, true)
-    # plane = Plane.new
-    # expect(airport.land(plane)).to raise_error "Not allowed to land stormy weather"
-    # end
+     it 'it raises an error when the airport is full capacity'do
+     #full_capacity = Airport::FULL_CAPACITY
+     airport = Airport.new(20, true)
+     plane = Plane.new
+     expect{airport.full(plane)}.to raise_error " Full capacity exceede "
+     end
  end
 
 

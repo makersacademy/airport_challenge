@@ -1,7 +1,7 @@
 class Airport
 
   FULL_CAPACITY = 20
-attr_reader :stormy_weather
+attr_reader :stormy_weather, :capacity
 
 def initialize(capacity, stormy_weather)
   @capacity = capacity
@@ -24,10 +24,12 @@ end
 
 
 
-    #  def full(plane)
-    #     fail 'Full capacity exceeded' if plane + capacity  >= FULL_CAPACITY
-    #     @capacity += plane
-    # end
+      def full(plane)
+
+          fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
+
+      end
+
 
 
 
