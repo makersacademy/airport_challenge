@@ -13,7 +13,7 @@ attr_reader :apron
   end
 
   def take_off(plane)
-    apron.pop
+    apron.delete(plane)
   end
 
   def planes_at_airport

@@ -21,7 +21,9 @@ describe Airport do
     expect(heathrow.planes_at_airport).to eq([bertie])
   end
 
-  # it "removes a plane from planes_at_airport when it takes off" do
-  #   expect(heathrow.take_off(bertie)).to
-  # end
+  it "removes a plane from planes_at_airport when it takes off" do
+    heathrow.land(bertie)
+    heathrow.take_off(bertie)
+    expect(heathrow.planes_at_airport).to eq([])
+  end
 end
