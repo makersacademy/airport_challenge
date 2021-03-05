@@ -26,4 +26,10 @@ describe Airport do
     heathrow.take_off(bertie)
     expect(heathrow.planes_at_airport).to eq([])
   end
+
+  it "prevents a plane from landing when the airport is at capacity" do
+    heathrow.land(bertie)
+    colin = Plane.new
+  expect { heathrow.land(colin) }.to raise_error("A plane can't land, there's no room!")
+  end
 end
