@@ -5,7 +5,7 @@ bertie = Plane.new
 
 describe Airport do
   it "allows a plane to land at an airport" do
-    expect(heathrow.land).to eq(true)
+    expect(heathrow.land(bertie)).to eq(true)
   end
 
   it "allows a plane to take off" do
