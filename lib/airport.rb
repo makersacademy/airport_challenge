@@ -12,6 +12,8 @@ class Airport
   def land(plane)
     fail "A plane can't land, there's no room!" if apron.length == capacity
 
+    fail "Plane cannot land during bad weather!" if weather_report == "stormy"
+
     apron << plane
   end
 
@@ -24,7 +26,7 @@ class Airport
   end
 
   def weather_report
-    "stormy"
+    "sunny"
   end
 
 end

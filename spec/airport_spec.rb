@@ -40,8 +40,17 @@ describe Airport do
     expect(gatwick.capacity).to eq(5)
   end
 
-  it "reports stormy weather at heathrow" do
-    expect(heathrow.weather_report).to eq("stormy")
-  end
+  context "when weather is stormy" do
+    before do
+      allow(heathrow).to receive(:weather_report).and_return("stormy")
+    end
 
+    it "reports stormy weather at heathrow" do
+      expect(heathrow.weather_report).to eq("stormy")
+    end
+
+    it "prevents a plane from landing when the weather is stormy" do
+      expect { heathrow.land(bertie) }.to raise_error("Plane cannot land during bad weather!")
+    end
+  end
 end
