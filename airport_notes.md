@@ -92,6 +92,11 @@ developer
 std airport - 10 planes
 alt airport - 15 planes
 
+>Airport.new
+>> airport_1, capacity = 10
+>Airport.new(20)
+>> airport_1, capacity = 20
+
 
 #### User Story 5
 As an air traffic controller
@@ -112,3 +117,8 @@ controller (user)
 plane --- request to land
 weather(is stormy)
 airport --- cannot land
+
+
+## Other
+
+#### Diagram Board: https://miro.com/app/board/o9J_lQnY5pM=/

@@ -1,15 +1,20 @@
 require 'plane'
 
 class Airport
-  def initialize
-    @planes = nil
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @airport_capacity = capacity
+    @planes = []
   end
+
+  DEFAULT_CAPACITY = 10
+  
+  attr_reader :airport_capacity
 
   def request_to_land(plane)
     if full?
       "Plane cannot land, Airport is full."
     else
-      @planes = plane
+      @planes << plane
       "Plane has landed."
     end
   end
@@ -21,7 +26,7 @@ class Airport
   private
 
   def full?
-    @planes != nil
+    @planes.count >= @airport_capacity
   end
 end
 
