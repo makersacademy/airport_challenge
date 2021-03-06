@@ -28,7 +28,7 @@ describe SafetyBreach do
   describe '#weapon' do
     it { is_expected.to respond_to :weapon }
     it 'should give a warning about the threat' do
-      message = 'weapons spotted, no planes will take off untill safety restored, authoroties have been notified, safety level dangerous.'
+      message = 'weapons spotted, no planes will take off until safety restored, authorities have been notified, safety level dangerous.'
       expect { subject.weapon }.to output(message).to_stdout
     end
   end
@@ -44,7 +44,7 @@ describe SafetyBreach do
   describe '#agressive_passenger' do
     it { is_expected.to respond_to :agressive_passenger }
     it 'should give a warning about the threat' do
-      message = 'A passenger is acting agressive, authoroties have been notified, stay alert, safety level medium.'
+      message = 'A passenger is acting aggressive, authorities have been notified, stay alert, safety level medium.'
       expect { subject.agressive_passenger }.to output(message).to_stdout
     end
   end
@@ -52,7 +52,7 @@ describe SafetyBreach do
   describe '#terrorist' do
     it { is_expected.to respond_to :terrorist }
     it 'should give a warning about the threat' do
-      message = 'A terrorist threat has been made at at this airport. Emediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
+      message = 'A terrorist threat has been made at this airport. Immediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
       expect(subject.terrorist).to eq message
     end
   end

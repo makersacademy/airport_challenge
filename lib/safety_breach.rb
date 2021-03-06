@@ -30,7 +30,7 @@ class SafetyBreach
   def weapon
     @possible_threat = [1, 7, 8].sample
 
-    print 'weapons spotted, no planes will take off untill safety restored, authoroties have been notified, safety level dangerous.'
+    print 'weapons spotted, no planes will take off until safety restored, authorities have been notified, safety level dangerous.'
     safety_assesment
   end
 
@@ -44,12 +44,12 @@ class SafetyBreach
   def agressive_passenger
     @possible_threat = [1, 5, 8].sample
 
-    print 'A passenger is acting agressive, authoroties have been notified, stay alert, safety level medium.'
+    print 'A passenger is acting aggressive, authorities have been notified, stay alert, safety level medium.'
     safety_assesment
   end
 
   def terrorist
-    'A terrorist threat has been made at at this airport. Emediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
+    'A terrorist threat has been made at this airport. Immediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
   end
 
   def safety_assesment

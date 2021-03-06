@@ -28,7 +28,7 @@ describe Airport do
     end
     it 'should not allow planes to arrive when under terrorist attack.' do
       airport_under_attack = Airport.new('Heathrow', capacity, weather, SafetyBreach.new([8]))
-      expect { airport_under_attack.arrive(plane) }.to raise_error 'This airport is in a quarantaine situation, no access.'
+      expect { airport_under_attack.arrive(plane) }.to raise_error 'This airport is in a quarantine situation, no access.'
     end
   end
 
@@ -45,7 +45,7 @@ describe Airport do
     it 'should not allow planes to leave whilst under terrorist attack' do
       airport.arrive(plane)
       airport_under_attack = Airport.new('Heathrow', capacity, weather, SafetyBreach.new([8]))
-      expect { airport_under_attack.depart(plane) }.to raise_error 'This airport is in a quirantaine situation, no planes can leave.'
+      expect { airport_under_attack.depart(plane) }.to raise_error 'This airport is in a quarantine situation, no planes can leave.'
     end
 
   end
@@ -69,6 +69,13 @@ describe Airport do
     it { is_expected.to respond_to :change_capacity }
     it 'should be able to change capacity' do
       expect(airport.change_capacity(capacity)).to eq capacity
+    end
+  end
+
+  describe '#check_weather' do
+    it { is_expected.to respond_to :check_weather }
+    it 'should see whether or not the weather is safe' do
+      expect(SafeWeather.safety_check(weather)).to eq true
     end
   end
 

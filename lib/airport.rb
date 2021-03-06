@@ -35,18 +35,22 @@ class Airport
     @safety_check_result.include?('terrorist')
   end
 
+  def check_weather
+    SafeWeather.safety_check(weather)
+  end
+
   def arrive(plane)
-    fail 'This airport is in a quarantaine situation, no access.' if safety_breach
+    fail 'This airport is in a quarantine situation, no access.' if safety_breach
     fail 'Airport is at max capacity.' if full?
-    fail 'It is not safe to land here at the moment.' unless SafeWeather.safety_check(weather)
+    fail 'It is not safe to land here at the moment.' unless check_weather
 
     arriving_planes(plane)
   end
 
   def depart(plane)
-    fail 'This airport is in a quirantaine situation, no planes can leave.' if safety_breach
+    fail 'This airport is in a quarantine situation, no planes can leave.' if safety_breach
     fail 'There are no planes at your disposal.' if empty?
-    fail 'It is not safe to depart at the moment.' unless SafeWeather.safety_check(weather)
+    fail 'It is not safe to depart at the moment.' unless check_weather
 
     @planes.delete(plane)
   end
