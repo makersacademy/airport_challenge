@@ -16,7 +16,13 @@ describe Plane do
 
     it 'fails if the hangar is at capacity' do
       airport.hangar << Plane.new
-      expect {plane.land(airport)}.to raise_error('hangar at capacity')
+      expect { plane.land(airport) }.to raise_error('hangar at capacity')
+    end
+
+    it 'fails if custom set capacity hangar is reached' do
+      large_airport = Airport.new('large', [], 20)
+      large_airport.capacity.times { large_airport.hangar << Plane.new }
+      expect { plane.land(large_airport) }.to raise_error('hangar at capacity')
     end
   end
 
