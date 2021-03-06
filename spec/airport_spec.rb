@@ -35,7 +35,8 @@ describe Airport do
   end
 
   it "allows airports to have different capacities" do
-    expect(heathrow.capacity).to eq(3)
+    expect(heathrow.capacity).to eq(1)
+    gatwick = Airport.new(5)
     expect(gatwick.capacity).to eq(5)
   end
 end

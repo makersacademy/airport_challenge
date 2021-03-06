@@ -2,13 +2,15 @@ require_relative 'planes'
 
 class Airport
 
-attr_reader :apron
-
-  def initialize
+  attr_reader :apron, :capacity
+  def initialize(capacity = 1)
     @apron = []
+    @capacity = capacity
   end
 
   def land(plane)
+    fail "A plane can't land, there's no room!" if apron.length == capacity
+
     apron << plane
   end
 
