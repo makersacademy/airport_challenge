@@ -150,6 +150,23 @@ plane --- request to land
 weather(is stormy)
 airport --- cannot land
 
+```
+>airport.request_to_land(plane)
+>airport.private.check_weather
+>> Weather is Stormy
+>> "Plane cannot land"
+
+>airport.request_to_land(plane)
+>airport.private.check_weather
+>> Weather is Sunny
+>> "Plane can land"
+```
+
+- similar solve to take_off check
+
+COMPLETED USER STORY 6
+- wrote tests and added in stubs into the test + previous tests for landings
+- corrected tests on the weather_spec
 
 ## Other
 

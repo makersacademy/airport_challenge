@@ -13,13 +13,21 @@ describe Airport do
     let(:test_airport_land) { Airport.new(1) }
 
     it "lands a plane succesfully and responds with a confirmation - 'Plane has landed.'" do
+      allow(test_airport_land).to receive(:stormy?).and_return(false)
       expect(test_airport_land.request_to_land(Plane.new)).to eq "Plane has landed."
     end
 
     it "cannot land a plane if the airport is full - provides rejection message - 'Plane cannot land, Airport is full.'" do
+      allow(test_airport_land).to receive(:stormy?).and_return(false)
       test_airport_land.request_to_land(Plane.new)
       expect(test_airport_land.request_to_land(Plane.new)).to eq "Plane cannot land, Airport is full."
     end
+
+    it "cannot land a plane if the weather is stormy - provides confirmation message" do
+      allow(test_airport_land).to receive(:stormy?).and_return(true)
+      expect(test_airport_land.request_to_land(Plane.new)).to eq "Plane cannot land, it is stormy. Plane to circle."
+    end
+
   end
 
   describe "#request_to_take_off" do
@@ -30,7 +38,7 @@ describe Airport do
       expect(test_airport_land.request_to_take_off(Plane.new)).to eq "Plane has taken off."
     end
 
-    it "cannot take off a plane if it is stormy" do
+    it "cannot take off a plane if it is stormy - provides confirmation message" do
       allow(test_airport_land).to receive(:stormy?).and_return(true)
       expect(test_airport_land.request_to_take_off(Plane.new)).to eq "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
     end

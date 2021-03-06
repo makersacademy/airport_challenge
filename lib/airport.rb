@@ -19,6 +19,8 @@ class Airport
   def request_to_land(plane)
     if full?
       "Plane cannot land, Airport is full."
+    elsif stormy?
+      "Plane cannot land, it is stormy. Plane to circle."
     else
       @planes << plane
       "Plane has landed."
