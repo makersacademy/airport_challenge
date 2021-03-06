@@ -4,9 +4,12 @@ require 'plane'
 
 describe AirTraffic do
   controller = AirTraffic.new
-  
-  it "sends a message to land" do
-    expect(subject.instruction).to eq("land")
+  test_plane = Plane.new
+  test_airport = Airport.new
+
+  it "sends a message to land with clear conditions" do
+    test_airport.local_weather(:clear)
+    expect(subject.instruction(test_plane, test_airport)).to eq(:success)
   end
 
   describe 'planes' do

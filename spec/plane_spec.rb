@@ -9,4 +9,8 @@ describe Plane do
     expect(subject.origin).to be_a(Airport)
     expect(subject.destination).to be_a(Airport)
   end
+
+  it "must report its flying status as true or false" do
+    expect(subject.in_flight).to be(true).or be(false)
+  end
 end
