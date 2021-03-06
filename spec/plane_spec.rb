@@ -4,6 +4,10 @@ require 'airport'
 describe Plane do
   test_airport = Airport.new
 
+  it "returns a callsign" do
+    expect(subject.callsign).to be_a(String)
+  end
+
   context "in response to a request for location" do
     it "responds with its origin if in_flight == false" do
       expect(subject.location).to be_a(Airport)
@@ -35,10 +39,12 @@ describe Plane do
 
   context "a plane's in_flight status must" do
     it "be true when the plane has taken off" do
+      test_airport.local_weather(:clear)
       subject.takeoff(test_airport)
       expect(subject.in_flight).to eq(true) 
     end
     it "be false when the plan has landed" do
+      test_airport.local_weather(:clear)
       subject.takeoff(test_airport)
       subject.land(test_airport)
       expect(subject.in_flight).to eq(false)

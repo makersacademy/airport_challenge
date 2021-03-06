@@ -5,6 +5,10 @@ describe Airport do
   test_airport = Airport.new
   test_plane = Plane.new
 
+  it "has a code and returns it" do
+    expect(subject.code).to be_a(String)
+  end
+
   it "should have a maximum capactity" do
     expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end

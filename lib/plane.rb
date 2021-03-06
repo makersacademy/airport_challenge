@@ -1,10 +1,12 @@
 class Plane
-  attr_accessor :origin, :destination, :in_flight
+  attr_accessor :origin, :destination
+  attr_reader :in_flight, :callsign
 
-  def initialize
-    @origin = Airport.new
-    @destination = Airport.new
+  def initialize(callsign = self, origin = Airport.new, destination = Airport.new)
+    @origin = origin
+    @destination = destination
     @in_flight = false
+    @callsign = callsign.to_s
   end 
 
   def location
@@ -15,9 +17,10 @@ class Plane
     end
   end
 
-  def takeoff(airport_origin)
-    if airport_origin.safe_to_takeoff?
-      airport_origin.gates -= [self]
+  def takeoff(airport_destination)
+    if origin.safe_to_takeoff?
+      origin.gates -= [self]
+      @destination = airport_destination
       @in_flight = true
       :success
     end

@@ -8,4 +8,4 @@ On initialization Arrays containing the planes and airports are created
 
 - `AirTraffic.land(plane, airport)` this commands a plane to land at a specified airport
 
-- `AirTraffic.takeoff(plane, airport)` this commands a plane to take off from the specified airport.
+- `AirTraffic.takeoff(plane, destination_airport)` this commands a plane to take off and sets the destination of that plane to the specified airport.

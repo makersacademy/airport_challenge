@@ -2,8 +2,12 @@ class AirTraffic
   attr_reader :planes, :airports
 
   def initialize
-    @planes = [za915 = Plane.new, za943 = Plane.new, zj754 = Plane.new]
-    @airports = [xja = Airport.new, khl = Airport.new, wtf = Airport.new]
+    @airports = [xja = Airport.new("xja", 15), 
+                 khl = Airport.new("khl", 25), 
+                 wtf = Airport.new("wtf",30)]
+    @planes = [za915 = Plane.new("za915", xja, khl), 
+               za943 = Plane.new("za943", khl, xja), 
+               zj754 = Plane.new("zj754", wtf, xja)]
   end
 
   def interrogate(plane)
@@ -14,7 +18,7 @@ class AirTraffic
     plane.land(airport)
   end
 
-  def takeoff(plane, airport)
-    plane.takeoff(airport)
+  def takeoff(plane, destination_airport)
+    plane.takeoff(destination_airport)
   end
 end
