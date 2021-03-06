@@ -68,10 +68,11 @@ controller (user)
 plane --- request to land
 airport(is full) ---- plane cannot land
 
+```
 >airport.request_to_land(plane)
 >*airport is full*
 >> "Plane cannot land, airport is full."
-
+```
 - request_to_land method already exists, so will add tests to that describe
 - as using ruby version 2.6.5 cannot use self.private_method in class
 
@@ -94,8 +95,19 @@ alt airport - 15 planes
 
 >Airport.new
 >> airport_1, capacity = 10
+
 >Airport.new(20)
 >> airport_1, capacity = 20
+
+- will create capacity as a readable piece of information
+- will need to adjust tests on landing if creating default capacity greater than 10 (will set to only be a single airplane capacity)
+- will need to adjust the @planes instance variable to be an array and adjust the full? method to accomodate the new capacity
+- default capacity will be set as a constant.
+
+COMPLETED USER STORY 4
+- created a capacity instance variable which can be set at instance creation if needed.
+- created a default capacity class constant
+- adjusted @planes to be an array and adjusted full methods and landing methods to work with new instance variables
 
 
 #### User Story 5
@@ -107,6 +119,26 @@ controller (user)
 plane --- request to take off
 weather(is stormy)
 airport --- cannot take off
+
+```
+>airport.request_to_take_off(plane)
+>airport.private.check_weather
+>> Weather is Stormy
+>> "Plane cannot take off"
+
+>airport.request_to_take_off(plane)
+>airport.private.check_weather
+>> Weather is Sunny
+>> "Plane can take off"
+```
+
+- will create weather class
+- Weather is decided with rand 1-100 - 5% change of Storms
+
+COMPLETED USER STORY 5
+- created a weather module to generate random stormy or sunny weather
+- created a private method stormy? and a conditional for taking off.
+- added test and created stub for removing randomness during tests.
 
 #### User Story 6
 As an air traffic controller

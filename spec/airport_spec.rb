@@ -23,8 +23,16 @@ describe Airport do
   end
 
   describe "#request_to_take_off" do
+    let(:test_airport_land) { Airport.new(1) }
+
     it "takes off a plane succesfully and responds with a confirmation - 'Plane has taken off.'" do
-      expect(subject.request_to_take_off(Plane.new)).to eq "Plane has taken off."
+      allow(test_airport_land).to receive(:stormy?).and_return(false)
+      expect(test_airport_land.request_to_take_off(Plane.new)).to eq "Plane has taken off."
+    end
+
+    it "cannot take off a plane if it is stormy" do
+      allow(test_airport_land).to receive(:stormy?).and_return(true)
+      expect(test_airport_land.request_to_take_off(Plane.new)).to eq "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
     end
   end
 

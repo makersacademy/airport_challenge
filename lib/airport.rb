@@ -1,4 +1,8 @@
-require 'plane'
+# require './lib/plane.rb'
+# require './lib/weather.rb'
+
+require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -7,7 +11,9 @@ class Airport
   end
 
   DEFAULT_CAPACITY = 10
-  
+
+  include Weather
+
   attr_reader :airport_capacity
 
   def request_to_land(plane)
@@ -20,13 +26,21 @@ class Airport
   end
 
   def request_to_take_off(_plane)
-    "Plane has taken off."
+    if stormy?
+      "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
+    else
+      "Plane has taken off."
+    end
   end
 
   private
 
   def full?
     @planes.count >= @airport_capacity
+  end
+
+  def stormy?
+    generate_weather == "Stormy"
   end
 end
 
