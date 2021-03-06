@@ -7,6 +7,10 @@ describe AirTraffic do
   test_plane = Plane.new
   test_airport = Airport.new
 
+  it "asks a plane its location expect an answer" do
+    expect(subject.interrogate(test_plane)).to be_a(String).or be_a(Airport)
+  end
+
   it "sends a message to land with clear conditions" do
     test_airport.local_weather(:clear)
     expect(subject.land(test_plane, test_airport)).to eq(:success)

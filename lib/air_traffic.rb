@@ -6,6 +6,10 @@ class AirTraffic
     @airports = [xja = Airport.new, khl = Airport.new, wtf = Airport.new]
   end
 
+  def interrogate(plane)
+    plane.location
+  end
+
   def land(plane, airport)
     plane.land(airport)
   end
