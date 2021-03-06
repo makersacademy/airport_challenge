@@ -53,4 +53,10 @@ describe Airport do
       expect { heathrow.land(bertie) }.to raise_error("Plane cannot land during bad weather!")
     end
   end
+
+  it "returns a random number" do
+    heathrow = Airport.new
+    allow(heathrow).to receive(:rand) { 4 }
+    expect(heathrow.weather_report).to eq(4)
+  end
 end
