@@ -2,7 +2,7 @@ require 'airport'
 
 class Plane
 
-  attr_accessor :name, :location
+  attr_reader :name, :location
 
   def initialize(name = 'concord', location = 'air')
     @name = name
@@ -22,6 +22,8 @@ class Plane
     fail 'weather is stormy' if stormy?
     fail 'already in the air' if @location == 'air'
 
+    # removes plane from airport's hangar
+    @location.hangar.delete(self)
     @location = 'air'
   end
 

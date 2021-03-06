@@ -2,7 +2,7 @@ require 'plane'
 
 class Airport
 
-  attr_accessor :name, :hangar, :capacity
+  attr_reader :name, :hangar, :capacity
 
   def initialize(name = 'heathrow', hangar = [], capacity = 1)
     @name = name
@@ -13,5 +13,5 @@ class Airport
   def full?
     @hangar.length == @capacity
   end
-  
+
 end

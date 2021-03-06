@@ -45,10 +45,16 @@ describe Plane do
   end
 
   describe 'take_off' do
-    it 'instructs a plane to take off from an airport and confirms no longer in the airport' do
-      plane.location = airport
+    it 'instructs a plane to take off from an airport' do
+      plane = Plane.new('test', airport)
       plane.take_off
       expect(plane.location).to eq('air')
+    end
+
+    it 'removes a plane from the  hangar' do
+      plane.land(airport)
+      plane.take_off
+      expect(airport.hangar).not_to include(plane)
     end
 
     it 'fails if the weather is stormy' do
