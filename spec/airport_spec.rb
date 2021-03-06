@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   let(:heathrow) { Airport.new }
   let(:bertie) { Plane.new }
+  let(:weather) { instance_double("Weather", weather_report: 'sunny') }
 
   it "allows a plane to land at an airport" do
     expect(heathrow.land(bertie)).to eq([bertie])
@@ -41,6 +42,7 @@ describe Airport do
   end
 
   context "when weather is stormy" do
+
     before do
       allow(heathrow).to receive(:weather_report).and_return("stormy")
     end
@@ -54,9 +56,4 @@ describe Airport do
     end
   end
 
-  it "returns a random number" do
-    heathrow = Airport.new
-    allow(heathrow).to receive(:rand) { 4 }
-    expect(heathrow.weather_report).to eq(4)
-  end
 end

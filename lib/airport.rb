@@ -3,16 +3,17 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :apron, :capacity
+  attr_reader :apron, :capacity, :weather
   def initialize(capacity = 1)
     @apron = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
     fail "A plane can't land, there's no room!" if apron.length == capacity
 
-    fail "Plane cannot land during bad weather!" if weather_report == "stormy"
+    fail "Plane cannot land during bad weather!" if weather.weather_report == "stormy"
 
     apron << plane
   end
@@ -23,11 +24,6 @@ class Airport
 
   def planes_at_airport
     apron
-  end
-
-  def weather_report
-    #where every number is sunny except for 6 which is a rare occasion of stormy
-    rand(1..9)
   end
 
 end
