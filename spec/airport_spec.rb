@@ -19,7 +19,6 @@ describe Airport do
   end
 
   it "can check if there are planes at the airport" do
-
     expect(heathrow.planes_at_airport.kind_of?(Array)).to eq(true)
   end
 
@@ -44,6 +43,10 @@ describe Airport do
     expect(heathrow.capacity).to eq(1)
     gatwick = Airport.new(5)
     expect(gatwick.capacity).to eq(5)
+  end
+
+  it "can only allow a plane to take off if it is on the apron" do
+    expect { heathrow.take_off(bertie) } .to raise_error("Plane is not at this airport")
   end
 
   context "when weather is stormy" do
