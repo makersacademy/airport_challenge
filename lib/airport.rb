@@ -23,4 +23,8 @@ class Airport
     apron
   end
 
+  def weather_report
+    "stormy"
+  end
+
 end

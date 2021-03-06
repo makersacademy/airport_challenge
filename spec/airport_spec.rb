@@ -39,4 +39,9 @@ describe Airport do
     gatwick = Airport.new(5)
     expect(gatwick.capacity).to eq(5)
   end
+
+  it "reports stormy weather at heathrow" do
+    expect(heathrow.weather_report).to eq("stormy")
+  end
+
 end

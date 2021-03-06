@@ -1,5 +1,5 @@
-require 'airport'
+require 'weather'
 
 describe Weather do
-  
+
 end
