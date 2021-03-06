@@ -8,4 +8,6 @@ class Weather
     rand(1..9) == 6 ? "stormy" : "sunny"
   end
 
+
+
 end

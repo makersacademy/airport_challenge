@@ -5,6 +5,10 @@ describe Airport do
   let(:bertie) { Plane.new }
   let(:weather) { instance_double("Weather", weather_report: 'sunny') }
 
+  before do
+      allow(Weather).to receive(:new).and_return(weather)
+  end
+
   it "allows a plane to land at an airport" do
     expect(heathrow.land(bertie)).to eq([bertie])
   end
@@ -15,6 +19,7 @@ describe Airport do
   end
 
   it "can check if there are planes at the airport" do
+
     expect(heathrow.planes_at_airport.kind_of?(Array)).to eq(true)
   end
 
@@ -42,13 +47,8 @@ describe Airport do
   end
 
   context "when weather is stormy" do
-
     before do
-      allow(heathrow).to receive(:weather_report).and_return("stormy")
-    end
-
-    it "reports stormy weather at heathrow" do
-      expect(heathrow.weather_report).to eq("stormy")
+      allow(weather).to receive(:weather_report).and_return("stormy")
     end
 
     it "prevents a plane from landing when the weather is stormy" do
