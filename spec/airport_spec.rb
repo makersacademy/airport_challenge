@@ -4,9 +4,10 @@ require 'weather'
 
 describe Airport do
   let(:plane) { Plane.new }
-  let(:airport) { Airport.new('Schiphol') }
   let(:capacity) { 13 }
-  let(:weather) { Weather.new }
+  let(:weather) { Weather.new(0, 2, 10) }
+  let(:airport) { Airport.new('Schiphol', capacity, weather) }
+
   it { is_expected.to respond_to :name }
 
   it { is_expected.to respond_to :arrive }
@@ -18,9 +19,10 @@ describe Airport do
       airport.capacity.times { airport.arrive(plane) }
       expect { airport.arrive(plane) }.to raise_error 'Airport is at max capacity.'
     end
-    it 'should not let planes arrive in a storm' do
-      airport.weather.weather_forecast = 'Stormy'
-      expect { airport.arrive(plane) }.to raise_error 'It is not safe to land here right now.'
+    it 'should not allow planes to arrive when the weather is unsafe' do
+      windy_weather = Weather.new(15)
+      windy_airport = Airport.new('a', 10, windy_weather)
+      expect { windy_airport.arrive(plane) }.to raise_error 'It is not safe to land here at the moment.'
     end
   end
 
@@ -31,19 +33,22 @@ describe Airport do
       airport.depart(plane)
       expect(airport.planes).to eq []
     end
+    it 'should not allow planes to depart during bad weather' do
+      windy_weather = Weather.new(15)
+      windy_airport = Airport.new('a', 10, windy_weather)
+      windy_airport.planes = [plane]
+      expect { windy_airport.depart(plane) }.to raise_error 'It is not safe to depart at the moment.'
+    end
     it 'should not be able to have departing planes when empty' do
       expect { airport.depart(plane) }.to raise_error 'There are no planes at your disposal.'
     end
-    it 'should not allow planes to depart during stormy weather' do
-      airport.weather.weather_forecast = 'Stormy'
-      expect { airport.depart(plane) }.to raise_error 'It is not safe to depart right now.'
-    end
+
   end
 
   describe 'full' do
     it { is_expected.to respond_to :full? }
     it 'knows that the airport is at max capasity' do
-      Airport::DEFAULT_CAPACITY.times { airport.arrive(plane) }
+      capacity.times { airport.arrive(plane) }
       expect(airport.full?).to eq true
     end
   end
@@ -59,14 +64,6 @@ describe Airport do
     it { is_expected.to respond_to :change_capacity }
     it 'should be able to change capacity' do
       expect(airport.change_capacity(capacity)).to eq capacity
-    end
-  end
-
-  describe 'safe_weather?' do
-    it { is_expected.to respond_to :safe_weather? }
-    it 'should know it is not safe to fly in stormy weather' do
-      airport.weather.weather_forecast = 'Stormy'
-      expect(airport.safe_weather?).to eq false
     end
   end
 
