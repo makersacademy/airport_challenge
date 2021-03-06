@@ -1,6 +1,6 @@
 require 'airport'
 
-describe Airport do
+describe Plane do
 
     it { is_expected. to respond_to(:land).with(1).argument }
 
