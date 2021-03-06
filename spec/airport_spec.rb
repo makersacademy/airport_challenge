@@ -33,12 +33,6 @@ describe Airport do
       airport.depart(plane)
       expect(airport.planes).to eq []
     end
-    it 'should not allow planes to depart during bad weather' do
-      windy_weather = Weather.new(15)
-      windy_airport = Airport.new('a', 10, windy_weather)
-      windy_airport.planes = [plane]
-      expect { windy_airport.depart(plane) }.to raise_error 'It is not safe to depart at the moment.'
-    end
     it 'should not be able to have departing planes when empty' do
       expect { airport.depart(plane) }.to raise_error 'There are no planes at your disposal.'
     end
@@ -64,6 +58,14 @@ describe Airport do
     it { is_expected.to respond_to :change_capacity }
     it 'should be able to change capacity' do
       expect(airport.change_capacity(capacity)).to eq capacity
+    end
+  end
+
+  describe '#safety_breach' do
+    it { is_expected.to respond_to :safety_breach }
+    it 'should do a safety checkup on the airport' do
+      message = 'No safety breach.'
+      expect { subject.safety_breach }.to output(message).to_stdout
     end
   end
 

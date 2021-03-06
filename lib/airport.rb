@@ -1,10 +1,12 @@
 require 'plane'
 require 'weather'
 require 'safe_weather'
+require 'safety_breach'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_accessor :name, :planes, :capacity, :weather
+  attr_accessor :name, :capacity, :weather
+  attr_reader :planes
 
   def initialize(
     name = 'Schiphol',
@@ -21,11 +23,15 @@ class Airport
     @capacity = capacity
   end
 
+  def safety_breach
+    safety_assesment
+  end
+
   def arrive(plane)
     fail 'Airport is at max capacity.' if full?
     fail 'It is not safe to land here at the moment.' unless SafeWeather.safety_check(weather)
 
-    @planes << plane
+    arriving_planes(plane)
   end
 
   def depart(plane)
@@ -41,6 +47,12 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  private
+
+  def arriving_planes(plane)
+    @planes << plane
   end
 
 end
