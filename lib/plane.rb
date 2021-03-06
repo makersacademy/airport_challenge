@@ -19,14 +19,15 @@ class Plane
   end
 
   def takeoff(airport_destination)
-    raise "This callsign is already in flight" unless origin.safe_to_takeoff? && @in_flight == false
-
-    return unless origin.safe_to_takeoff? && @in_flight == false
-    
+    raise "This callsign is already in flight" unless takeoff_condition
     origin.gates -= [self]
     @destination = airport_destination
     @in_flight = true
     :success 
+  end
+
+  def takeoff_condition
+    origin.safe_to_takeoff? && @in_flight == false
   end
 
   def land(airport_destination)

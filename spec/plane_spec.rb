@@ -62,4 +62,8 @@ describe Plane do
       expect { test_plane.takeoff(test_airport) }.to raise_error("This callsign is already in flight")
     end
   end
+
+  it "must capture the the conditions for takeoff in one place" do
+    expect(subject.takeoff_condition).to be(true).or be(false)
+  end
 end
