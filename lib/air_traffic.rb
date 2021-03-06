@@ -1,13 +1,13 @@
+require './lib/plane'
+require './lib/airport'
+require './lib/register'
+
 class AirTraffic
-  attr_reader :planes, :airports
+  attr_reader :airports, :planes
 
   def initialize
-    @airports = [xja = Airport.new("xja", 15), 
-                 khl = Airport.new("khl", 25), 
-                 wtf = Airport.new("wtf",30)]
-    @planes = [za915 = Plane.new("za915", xja, khl), 
-               za943 = Plane.new("za943", khl, xja), 
-               zj754 = Plane.new("zj754", wtf, xja)]
+    @airports = [Airport.new]
+    @planes = [Plane.new]
   end
 
   def interrogate(plane)

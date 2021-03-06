@@ -11,18 +11,20 @@ class Plane
 
   def location
     if in_flight == false
-      origin
+      origin.code
     else
-      response = "Tower, this is #{self}, we are en route to #{destination} out of #{origin}, out."
+      response = "Tower, this is #{self.callsign}, we are en route to #{destination.code} out of #{origin.code}, out."
     end
   end
 
   def takeoff(airport_destination)
-    if origin.safe_to_takeoff?
+    if origin.safe_to_takeoff? && @in_flight == false
       origin.gates -= [self]
       @destination = airport_destination
       @in_flight = true
       :success
+    else
+      raise "This callsign is already in flight"
     end
   end
 

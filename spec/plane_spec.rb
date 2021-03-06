@@ -2,17 +2,20 @@ require 'plane'
 require 'airport'
 
 describe Plane do
-  test_airport = Airport.new
+  test_airport = Airport.new("ABC")
+  test_plane = Plane.new("AB123", test_airport, test_airport)
 
   it "returns a callsign" do
     expect(subject.callsign).to be_a(String)
   end
 
   context "in response to a request for location" do
-    it "responds with its origin if in_flight == false" do
-      expect(subject.location).to be_a(Airport)
+    it "responds with its origin code if in_flight == false" do
+      expect(test_plane.location.length).to eq(3)
     end
     it "responds with a string message when in flight" do
+      test_airport = Airport.new("ABC")
+      test_airport.local_weather(:clear)
       subject.takeoff(test_airport)
       expect(subject.location).to be_a(String)
     end
@@ -37,17 +40,26 @@ describe Plane do
     end
   end
 
-  context "a plane's in_flight status must" do
+  context "the plane's in_flight status must" do
     it "be true when the plane has taken off" do
-      test_airport.local_weather(:clear)
+      subject.origin = test_airport
+      allow(test_airport).to receive(:rand).and_return(10)
       subject.takeoff(test_airport)
       expect(subject.in_flight).to eq(true) 
     end
-    it "be false when the plan has landed" do
+    it "be false when the plane has landed" do
       test_airport.local_weather(:clear)
       subject.takeoff(test_airport)
       subject.land(test_airport)
       expect(subject.in_flight).to eq(false)
+    end
+  end
+
+  context "when a plane is already in flight it" do 
+    it "cannot be given the order to take off and it returns an error" do
+      allow(test_airport).to receive(:rand).and_return(10)
+      test_plane.takeoff(test_airport)
+      expect{ test_plane.takeoff(test_airport) }.to raise_error("This callsign is already in flight")
     end
   end
 end
