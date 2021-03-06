@@ -34,7 +34,7 @@ describe Airport do
     expect { heathrow.land(colin) }.to raise_error("A plane can't land, there's no room!")
   end
 
-  it "allows airports to have different capacities" do
+  it "allows airports to override the default capacity" do
     expect(heathrow.capacity).to eq(1)
     gatwick = Airport.new(5)
     expect(gatwick.capacity).to eq(5)
