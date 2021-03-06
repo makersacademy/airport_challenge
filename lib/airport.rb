@@ -16,6 +16,9 @@ class Airport
 
     fail "Plane cannot land during bad weather!" if weather.weather_report == "stormy"
 
+    fail "This plane is already at an airport" if
+    apron.include?(plane)
+
     apron << plane
   end
 
@@ -30,14 +33,4 @@ class Airport
   def planes_at_airport
     apron
   end
-
-  # def check_weather
-  #   weather.weather_report
-  #   # if weather.weather_report == "stormy"
-  #   #   @weather = "stormy"
-  #   # else
-  #   #   @weather = "sunny"
-  #   # end
-  # end
-
 end

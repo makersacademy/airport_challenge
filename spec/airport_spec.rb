@@ -49,6 +49,12 @@ describe Airport do
     expect { heathrow.take_off(bertie) } .to raise_error("Plane is not at this airport")
   end
 
+  it "cannot land a plane if already on the apron of that airport" do
+    gatwick = Airport.new(5)
+    gatwick.land(bertie)
+    expect { gatwick.land(bertie) }.to raise_error "This plane is already at an airport"
+  end
+
   context "when weather is stormy" do
     before do
       allow(weather).to receive(:weather_report).and_return("stormy")
