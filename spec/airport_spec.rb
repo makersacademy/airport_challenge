@@ -3,7 +3,6 @@ require 'airport'
 
 describe Airport do
   test_airport = Airport.new
-  test_plane = Plane.new
 
   it "has a code and returns it" do
     expect(subject.code).to be_a(String)

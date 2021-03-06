@@ -59,7 +59,7 @@ describe Plane do
     it "cannot be given the order to take off and it returns an error" do
       allow(test_airport).to receive(:rand).and_return(10)
       test_plane.takeoff(test_airport)
-      expect{ test_plane.takeoff(test_airport) }.to raise_error("This callsign is already in flight")
+      expect { test_plane.takeoff(test_airport) }.to raise_error("This callsign is already in flight")
     end
   end
 end
