@@ -9,8 +9,8 @@ class Plane
     @location = location
   end
 
-  def land
-
+  def land(airport)
+    fail 'hangar at capacity' if airport.full?
   end
 
   def take_off

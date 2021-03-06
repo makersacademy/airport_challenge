@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
   # default values shown for clairty.
   let(:plane) { Plane.new('concord', 'air') }
-  let(:airport) { Airport.new('heathrow', []) }
+  let(:airport) { Airport.new('heathrow', [], 1) }
 
   it 'responds to land' do
     is_expected.to respond_to :land
@@ -12,6 +12,11 @@ describe Plane do
   describe 'land' do
     it 'instructs a plane to land at an airport' do
 
+    end
+
+    it 'fails if the hangar is at capacity' do
+      airport.hangar << Plane.new
+      expect {plane.land(airport)}.to raise_error('hangar at capacity')
     end
   end
 
