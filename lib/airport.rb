@@ -1,7 +1,8 @@
 class Airport
   DEFAULT_CAPACITY = 20
 
-  attr_reader :capacity, :gates
+  attr_accessor :gates
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -9,20 +10,6 @@ class Airport
     @safe_to_takeoff = false
     @gates = []
     local_weather(weather_forecast)
-  end
-
-  def takeoff(plane)
-    if safe_to_takeoff?
-      @gates -= [plane]
-    end
-  end
-
-  def land(plane)
-    if safe_to_land?
-      @gates << plane
-      :success
-    end
-    
   end
 
   def safe_to_land?

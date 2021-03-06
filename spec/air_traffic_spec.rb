@@ -9,7 +9,12 @@ describe AirTraffic do
 
   it "sends a message to land with clear conditions" do
     test_airport.local_weather(:clear)
-    expect(subject.instruction(test_plane, test_airport)).to eq(:success)
+    expect(subject.land(test_plane, test_airport)).to eq(:success)
+  end
+
+  it "sends a message to takeoff with clear conditions" do
+    test_airport.local_weather(:clear)
+    expect(subject.takeoff(test_plane, test_airport)).to eq(:success)
   end
 
   describe 'planes' do
