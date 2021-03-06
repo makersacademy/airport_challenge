@@ -13,4 +13,5 @@ class Airport
   def full?
     @hangar.length == @capacity
   end
+  
 end

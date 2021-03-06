@@ -10,4 +10,5 @@ describe Airport do
       expect(airport.full?).to eq(true)
     end
   end
+
 end
