@@ -35,7 +35,7 @@ airport --- plane has landed
 >airport.request_to_land(plane)
 >> "Plane has landed"
 
-COMPLETED USER STORY
+COMPLETED USER STORY 1
 - created plane and airport class
 - created test for airport and plane to exist
 - tested airport responds to request to land method and wrote code to pass
@@ -48,12 +48,16 @@ So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 controller (user)
-plane --- take off
-plane --- has taken off
-airport --- plan has taken off
+user --- instruct plane to take off
+airport --- plane has taken off
 
+>airport.request_to_take_off(plane)
+>> "Plane has taken off"
 
-
+COMPLETED USER STORY 2
+- created a request to take off method which takes plane as argument
+- wrote test confirming airport responds to the methods
+- wrote unit test that tests take off with a plane argument and provides confirmation message
 
 #### User Story 3
 As an air traffic controller
