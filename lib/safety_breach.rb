@@ -1,8 +1,9 @@
 class SafetyBreach
-  SAFETY_THREAT = [1, 2, 3, 4, 5, 6, 7, 8]
 
-  def initialize
-    @possible_threat = SAFETY_THREAT.sample
+  attr_reader :threat_scale
+
+  def initialize(threat_scale = [1, 2, 3, 4, 5, 6, 7, 8])
+    @possible_threat = threat_scale.sample
   end
 
   def unattended_item
@@ -48,7 +49,7 @@ class SafetyBreach
   end
 
   def terrorist
-     'A terrorist threat has been made at at this airport. Emediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
+    'A terrorist threat has been made at at this airport. Emediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
   end
 
   def safety_assesment

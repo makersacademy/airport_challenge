@@ -59,10 +59,6 @@ describe SafetyBreach do
 
   describe '#safety_assesment' do
     it { is_expected.to respond_to :safety_assesment }
-    # it 'should respon approprately to each threat' do
-    #   message = 'Warning, unattended item spotted, safety protocol started, safety level medium.'
-    #   expect(subject.safety_assesment).to eq message
-    # end
   end
 
 end
