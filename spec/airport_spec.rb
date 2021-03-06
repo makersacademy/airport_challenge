@@ -10,8 +10,15 @@ describe Airport do
   end
 
   describe "#request_to_land" do
+    let(:test_airport_land) { subject }
+
     it "lands a plane succesfully and responds with a confirmation - 'Plane has landed.'" do
-      expect(subject.request_to_land(Plane.new)).to eq "Plane has landed."
+      expect(test_airport_land.request_to_land(Plane.new)).to eq "Plane has landed."
+    end
+
+    it "cannot land a plane if the airport is full - provides rejection message - 'Plane cannot land, Airport is full.'" do
+      test_airport_land.request_to_land(Plane.new)
+      expect(test_airport_land.request_to_land(Plane.new)).to eq "Plane cannot land, Airport is full."
     end
   end
 

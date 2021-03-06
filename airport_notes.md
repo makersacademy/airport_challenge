@@ -68,6 +68,20 @@ controller (user)
 plane --- request to land
 airport(is full) ---- plane cannot land
 
+>airport.request_to_land(plane)
+>*airport is full*
+>> "Plane cannot land, airport is full."
+
+- request_to_land method already exists, so will add tests to that describe
+- as using ruby version 2.6.5 cannot use self.private_method in class
+
+COMPLETED USER STORY 3
+- added new test in the request to land method to respond with cannot land if airport is full
+- set airport to have a capacity of one plane
+- created new instance variable @planes
+- created new private method full to determine if the airport is full.
+- take_off does not remove the plane from the places variable - future add on.
+
 
 #### User Story 4
 As the system designer
