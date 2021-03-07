@@ -44,6 +44,7 @@ class Airport
       "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
     else
       @planes.delete(plane)
+      plane.take_off
       "Plane has taken off."
     end
   end

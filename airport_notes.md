@@ -229,11 +229,17 @@ COMPLETED EDGE CASE USER STORY 8
 EDGE CASE USER STORY 9
 Planes that are landed cannot land again
 
-- check with test 
+COMPLETED EDGE CASE USER STORY 9
+- added test for plane method of landing to give rejection message if already landed
+- adjust code for land method to conditional
 
 
 Edge Case USER STORY 10
 Plane cannot take off if airplane is flying
+
+- already captured with the include function.
+- adjust plane class and take off methods to put status back to flying when it is flying.
+- created test on plane class that plane cannot take off if already flying.
 
 Edge Case USER STORY 11
 Plane cannot take off if airplane is at another airport

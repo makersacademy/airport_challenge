@@ -15,10 +15,16 @@ class Plane
     end
   end
 
-private
+  def take_off
+    if self.status[:flying] == true
+      "Plane is already flying."
+    else
+      adjust_status(true, "The Sky!")
+    end
+  end
 
+private
   def adjust_status(flying, location)
     @status = {flying: flying, location: location}
   end
-
 end
