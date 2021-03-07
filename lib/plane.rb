@@ -1,5 +1,4 @@
 class Plane
-def landed?
-  false
-end
+  def present?
+  end
 end

@@ -1,4 +1,13 @@
-require_relative 'plane'
+class Weather
+  def weather_report
+    @weather = rand(6)
+      if @weather >=5
+        "Stormy weather, airport closed."
+      end
+    end
+  end
+
+
 class Airport
   CAPACITY = 3
   attr_accessor :plane
@@ -41,14 +50,5 @@ end
 class Plane
   def present?
       false
-  end
-end
-
-class Weather
-  def weather_report
-   weather = rand(6)
-    if weather >= 5
-    "Stormy weather, airport closed."
-    end
   end
 end
