@@ -125,7 +125,7 @@ def land_plane
     end
 
     loop do
-        puts "Airports available: #{airports_idx.join(",")}"
+        puts "Airports has capacity to land: #{airports_idx.join(",")}"
         puts "Select a airport number to land"
         begin
             airport_idx = gets.chomp.to_i
