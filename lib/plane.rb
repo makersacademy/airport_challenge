@@ -8,7 +8,11 @@ class Plane
   attr_reader :status
 
   def land(airport)
-    adjust_status(false, airport)
+    if self.status[:flying] == false
+      "Plane has already landed at an airport: #{self.status[:location].name}"
+    else
+      adjust_status(false, airport)
+    end
   end
 
 private

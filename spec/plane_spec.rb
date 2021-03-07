@@ -12,4 +12,9 @@ describe Plane do
     test_plane.land(test_airport)
     expect(test_plane.status).to eq({ flying: false, location: test_airport })
   end
+
+  it "plane cannot be landed if already landed" do
+    test_plane.land(test_airport)
+    expect(test_plane.land(test_airport)).to eq "Plane has already landed at an airport: #{test_plane.status[:location].name}"
+  end
 end

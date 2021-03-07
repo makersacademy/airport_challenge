@@ -224,13 +224,19 @@ COMPLETED EDGE CASE USER STORY 8
 - set up a double airport test case
 - added status and location variables to Plane instances
 - test passed for allowing a plane to land that is already landed.
-- added test that a plane cannot land twice at the same airport 
+- added test that a plane cannot land twice at the same airport
 
 EDGE CASE USER STORY 9
-Planes that are landed cannot land again and must be in an airport
+Planes that are landed cannot land again
+
+- check with test 
+
 
 Edge Case USER STORY 10
 Plane cannot take off if airplane is flying
+
+Edge Case USER STORY 11
+Plane cannot take off if airplane is at another airport
 
 
 
