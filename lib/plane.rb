@@ -13,7 +13,7 @@ class Plane
     if in_flight == false
       origin.code
     else
-      "Tower, this is #{callsign}, we are en route to #{destination.code} out of #{origin.code}, out."
+      "Tower, this is #{callsign}, en route to #{destination.code} out of #{origin.code}, out."
     end
   end
 

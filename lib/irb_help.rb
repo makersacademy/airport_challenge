@@ -5,9 +5,9 @@ require './lib/air_traffic.rb'
 # register of airports and planes
 
 # airports
-$xja = Airport.new("XJA", 15)
-$khl = Airport.new("KHL", 25)
-$wtf = Airport.new("WTF", 30)
+$xja = Airport.new("XJA", 2)
+$khl = Airport.new("KHL", 2)
+$wtf = Airport.new("WTF", 3)
 $yep = Airport.new("YEP", 5)
 
 # planes
