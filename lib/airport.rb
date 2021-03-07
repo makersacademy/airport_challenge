@@ -19,7 +19,7 @@ class Airport
   end
 
   def stormy?
-    true if @weather.forecast == "stormy"
+    @weather.forecast == "stormy"
   end
 
   def plane_list
