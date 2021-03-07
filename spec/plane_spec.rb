@@ -10,6 +10,6 @@ describe Plane do
 
   it "after landing at an airport it adjusts status to flying: False and location: Airport " do
     test_plane.land(test_airport)
-    expect(test_plane.status).to eq({ flying: false, location: test_airport.name })
+    expect(test_plane.status).to eq({ flying: false, location: test_airport })
   end
 end

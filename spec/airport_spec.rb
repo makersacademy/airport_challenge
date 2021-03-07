@@ -44,6 +44,11 @@ describe Airport do
       test_airport.request_to_land(test_plane)
       expect(test_airport.planes.include?(test_plane)).to eq true
     end
+
+    it "cannot land a plane that is already landed at the airport" do
+      test_airport.request_to_land(test_plane)
+      expect(test_airport.request_to_land(test_plane)).to eq "Plane has already landed at this airport."
+    end
   end
 
   describe "#request_to_take_off" do
@@ -66,7 +71,7 @@ describe Airport do
     end
 
     it "cannot take off a plane that is not at the airport" do
-      expect(test_airport.request_to_take_off(Plane.new)).to eq "That plane is not at the airport, cannot take off. It is still flying."
+      expect(test_airport.request_to_take_off(Plane.new)).to eq "That plane is not at the airport, cannot take off."
     end
 
     it "once a plane has taken off, it is no longer at the airport" do
@@ -97,7 +102,7 @@ describe Airport do
   context "With two airports" do
     it "does not allow a plane to land at airport_2 if it is already landed at airport_1" do
       test_airport.request_to_land(test_plane)
-      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane is currently landed at another airport"
+      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane is currently landed at another airport: #{test_airport.name}"
     end
   end
 

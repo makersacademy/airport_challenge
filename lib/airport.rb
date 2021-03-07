@@ -19,7 +19,11 @@ class Airport
 
   def request_to_land(plane)
     if plane.status[:flying] == false
-      "Plane is currently landed at another airport"
+      if plane.status[:location] == self
+        "Plane has already landed at this airport."
+      else
+        "Plane is currently landed at another airport: #{plane.status[:location].name}"
+      end
     elsif full?
       "Plane cannot land, Airport is full."
     elsif stormy?
@@ -35,7 +39,7 @@ class Airport
     if empty?
       "No planes to take off. Have a 5 minute break air control..."
     elsif !@planes.include?(plane)
-      "That plane is not at the airport, cannot take off. It is still flying."
+      "That plane is not at the airport, cannot take off."
     elsif stormy?
       "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
     else

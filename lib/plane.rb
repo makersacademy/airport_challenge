@@ -14,7 +14,7 @@ class Plane
 private
 
   def adjust_status(flying, location)
-    @status = {flying: flying, location: location.name}
+    @status = {flying: flying, location: location}
   end
 
 end
