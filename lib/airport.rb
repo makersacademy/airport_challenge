@@ -14,6 +14,7 @@ class Airport
 
   def change_capacity(capacity)
     raise "Too many planes for reduced capacity" if @planes_at_airport.length > capacity
+
     @capacity = capacity
   end
 
@@ -34,6 +35,7 @@ class Airport
     raise "Weather stormy; plane cannot land" if stormy?
     raise "Plane already in airport" if plane?(plane)
     raise "Plane can't land if it isn't flying" if plane.location != "In the air"
+
     @planes_at_airport << plane
     plane.change_location(@name)
   end
@@ -41,7 +43,7 @@ class Airport
   def take_off(plane)
     raise "Weather stormy; plane cannot take off" if stormy?
     raise "Plane is already in the air" if plane.location == "In the air"
-    raise "Plane isn't in airport" if !plane?(plane)
+    raise "Plane isn't in airport" unless plane?(plane)
 
     @planes_at_airport.delete(plane)
     plane.change_location("In the air")
