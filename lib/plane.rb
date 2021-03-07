@@ -33,7 +33,7 @@ class Plane
 
     raise "The weather prevents landing" unless airport_destination.safe_to_manoeuvre?
 
-    raise "At capacity, enter holding circuit" unless !airport_destination.at_capacity?
+    raise "At capacity, enter holding circuit" if airport_destination.at_capacity?
 
     airport_destination.gates << self
     @origin = airport_destination
