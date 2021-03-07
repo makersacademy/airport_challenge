@@ -1,11 +1,13 @@
 class Airport
-  def land(plane)
+  def land(_plane)
     return "Plane landed"
   end
-  def takeoff(plane)
+
+  def takeoff(_plane)
     return "Plane taken off"
   end
-  def at_airport?(plane)
+  
+  def at_airport?(_plane)
     return false
   end
 end
