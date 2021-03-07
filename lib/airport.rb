@@ -11,23 +11,11 @@ class Airport
   end
 
   def safe_to_land?
-    if gates.count == capacity || local_weather == :stormy
-      false
-      # raise "The conditions do not allow landing at this time"
-
-    else
-      true
-    end  
+    !(gates.count == capacity || local_weather == :stormy)
   end
 
   def safe_to_takeoff?
-    if local_weather == :stormy
-      false
-      # raise "The conditions do not allow departure at this time"
-
-    else
-      true
-    end
+    !(local_weather == :stormy) # nice conditional that replaces if blah false else true
   end
 
   def local_weather 
