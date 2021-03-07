@@ -2,20 +2,21 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :landed_plane, :landed_planes, :capacity
-  def initialize(capacity=2)
-    @plane
+  attr_reader :landed_planes, :capacity
+
+  def initialize(capacity = 2)
     @capacity = capacity
     @landed_planes = []
   end
+
   def take_off(plane)
     @plane = plane
     raise "Plane has already taken off" unless @landed_planes.include?(plane)
     if weather == "Stormy"
       return "Weather is stormy; plane is unable to take off"
-    else
-    @landed_planes.delete(plane)
-    "#{plane} has taken off"
+      else
+        @landed_planes.delete(plane)
+        "#{plane} has taken off"
     end
   end
 
@@ -25,10 +26,10 @@ class Airport
     raise "Airport full; unable to land plane" if @landed_planes.length == @capacity
     if weather == "Stormy"
       return "Weather is stormy; plane is currently unable to land"
-    else
-    @landed_planes.push(plane)
-    "#{plane} has landed"
-  end
+      else
+        @landed_planes.push(plane)
+        "#{plane} has landed"
+    end
   end
 
   def weather
