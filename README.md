@@ -20,4 +20,4 @@
 2. run "ruby destination_mars.rb" in command line. Innitially, it starts with 1 airport and 15 planes
 3. follow menu
 
-[Domain Model](domain_model.md)
+[Domain Model](docs/domain_model.md)
