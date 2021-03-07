@@ -52,15 +52,15 @@ test double/mocking has been used to ovveride sunny weather to stormy within tes
 Stormy weather is rare, and based on a random number generator between 1-9 where all numbers are sunny, except 6 which represents stormy.
 
 
-To feature test in irb:
-require './lib/airport'
-
-example instances to test:
-heathrow = Aiport.new (default capacity is 1)
-gatwick = Airport.new(10) (default capacity overriden to be 10)
-bertie = Plane.new('Bertie')
-colin = Plane.new('Colin')
-heathrow.land(bertie) => "Bertie has landed!" (provided weather is sunny)
-heathrow.land(colin) => "A plane can't land, there's no room!" (heathrow only has a capacity of 1, bertie is already on the apron)
+To feature test in irb:  
+> require './lib/airport'  
+  
+example instances to test:  
+> heathrow = Aiport.new (default capacity is 1)  
+> gatwick = Airport.new(10) (default capacity overriden to be 10)  
+> bertie = Plane.new('Bertie')  
+> colin = Plane.new('Colin')  
+> heathrow.land(bertie) => "Bertie has landed!" (provided weather is sunny)  
+> heathrow.land(colin) => "A plane can't land, there's no room!" (heathrow only has a capacity of 1, bertie is already on the apron)  
 
 
