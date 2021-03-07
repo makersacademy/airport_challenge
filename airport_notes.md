@@ -237,12 +237,19 @@ COMPLETED EDGE CASE USER STORY 9
 Edge Case USER STORY 10
 Plane cannot take off if airplane is flying
 
+COMPLETED EDGE CASE USER STORY 10
 - already captured with the include function.
 - adjust plane class and take off methods to put status back to flying when it is flying.
 - created test on plane class that plane cannot take off if already flying.
 
 Edge Case USER STORY 11
 Plane cannot take off if airplane is at another airport
+
+- add to two airports test case to check if it can take off a plane at another airport
+
+COMPLETED EDGE CASE USER STORY 11
+- added test, passed test with no need to edit code
+- refactored some of the test cases. 
 
 
 

@@ -100,9 +100,17 @@ describe Airport do
   end
 
   context "With two airports" do
-    it "does not allow a plane to land at airport_2 if it is already landed at airport_1" do
+    before do
       test_airport.request_to_land(test_plane)
+      test_airport_2.request_to_land(Plane.new)
+    end
+
+    it "does not allow a plane to land at airport_2 if it is already landed at airport_1" do
       expect(test_airport_2.request_to_land(test_plane)).to eq "Plane is currently landed at another airport: #{test_airport.name}"
+    end
+
+    it "does not allow a plane to take off from airport_2 if it is at airport_1" do
+      expect(test_airport_2.request_to_take_off(test_plane)).to eq "That plane is not at the airport, cannot take off."
     end
   end
 
