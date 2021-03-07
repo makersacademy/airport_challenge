@@ -10,7 +10,6 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes_at_airport = []
     @capacity = capacity
-    # @weather = stormy?
   end 
 
   def land(plane)
