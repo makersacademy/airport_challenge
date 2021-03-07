@@ -84,7 +84,7 @@ describe Plane do
     it "must return an error if ordered to land and the airport destination is at capacity" do
       allow(test_airport).to receive(:rand).and_return(1)
       allow(test_airport).to receive(:at_capacity?).and_return(true)
-      expect { test_plane.land(test_airport) }.to raise_error("The airport is at capacity, enter the holding circuit")
+      expect { test_plane.land(test_airport) }.to raise_error("At capacity, enter holding circuit")
     end
   end
 end
