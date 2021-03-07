@@ -73,3 +73,10 @@ next I created a weather class, that would randomly pick weather conditions; the
 I told my airport class to look at the weather conditions, and if they are deemed unsafe by the module, my airport should not allow for arrivals or departures.
 
 I loved this challenge, so for now this will be my pull request, but considering it is only saturday morning, I think I will add some more fun features! (like a safety breach! )
+
+Update:
+
+I added some random features to my airport! First, I wanted to check for any possible threat, we wouldn't want to risk our airport being under attack and us not being aware of it! I created this with the same random pick as I did for the weather, but made the chance of having a positive outcome greater than that of a negative outcome. The two possible end results will be; no safety breach, and an error message that will tell us there is a terrorist attack happening.
+Now, with every plane arriving and leaving, the airport will check if it is safe, and either give an error, or allow the plane to leave or arrive.
+
+Next, to stick with the times, I added a covid test, that will check the original take-off destination of the flight. That will either give an error, when the country of origin has a travel ban on it, or it will urge the passengers to quarantine (unless it is Ireland, as they are allowed to do whatever atm.). After that I cleaned up my code a bit to make it more readable.

@@ -8,7 +8,7 @@ describe Weather do
     end
   end
 
-  describe 'chances_of_rain' do
+  describe 'chance_of_rain' do
     it { is_expected.to respond_to :chances_of_rain }
     it 'should return the change of rain' do
       expect(subject.chances_of_rain).to be_between(0, 100)

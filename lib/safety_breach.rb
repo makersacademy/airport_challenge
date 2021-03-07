@@ -2,54 +2,55 @@ class SafetyBreach
 
   attr_reader :threat_scale
 
-  def initialize(threat_scale = [1, 2, 3, 4, 5, 6, 7, 8])
+  def initialize(threat_scale = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8])
     @possible_threat = threat_scale.sample
   end
 
   def unattended_item
-    @possible_threat = [1, 4, 8].sample
+    @possible_threat = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 8].sample
 
-    print 'Warning, unattended item spotted, safety protocol started, safety level medium.'
+    'Warning, unattended item spotted, safety protocol started, safety level medium.'
     safety_assesment
   end
 
   def drugs_on_person
-    @possible_threat = [1, 7].sample
+    @possible_threat = [1, 1, 1, 1, 1, 1, 7].sample
 
-    print 'Drugs found on a person, authorities have been notified, stay alert.'
+    'Drugs found on a person, authorities have been notified, stay alert.'
     safety_assesment
   end
 
   def drugs_in_package
     @possible_threat = [1].sample
 
-    print 'Drugs found in a package, authorities have been notified, stay alert.'
+    'Drugs found in a package, authorities have been notified, stay alert.'
     safety_assesment
   end
 
   def weapon
-    @possible_threat = [1, 7, 8].sample
+    @possible_threat = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 8].sample
 
-    print 'weapons spotted, no planes will take off until safety restored, authorities have been notified, safety level dangerous.'
+    'weapons spotted, no planes will take off until safety restored.'
     safety_assesment
   end
 
   def passenger_unwell
     @possible_threat = [1].sample
 
-    print 'A passenger seems unwell, care personal have been notified, safety threat low.'
+    'A passenger seems unwell, care personal have been notified, safety threat low.'
     safety_assesment
   end
 
   def agressive_passenger
-    @possible_threat = [1, 5, 8].sample
+    @possible_threat = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 8].sample
 
-    print 'A passenger is acting aggressive, authorities have been notified, stay alert, safety level medium.'
+    'A passenger is acting aggressive, authorities have been notified.'
     safety_assesment
   end
 
   def terrorist
-    'A terrorist threat has been made at this airport. Immediate close-down, nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
+    fail 'A terrorist threat has been made at this airport. Immediate close-down.
+    Nobody is to leave until the safety level is restored. Safety level extremely dangerous.'
   end
 
   def safety_assesment

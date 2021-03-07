@@ -2,24 +2,26 @@ require 'plane'
 require 'weather'
 require 'safe_weather'
 require 'safety_breach'
+require 'covid'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_accessor :name, :capacity, :weather, :safety_status
+  attr_accessor :name, :country, :capacity, :weather, :safety_status
   attr_reader :planes
 
   def initialize(
     name = 'Schiphol',
+    country = 'Netherlands',
     capacity = DEFAULT_CAPACITY,
     weather = Weather.new(0, 2, 10),
     safety_status = SafetyBreach.new([1, 2, 3, 4, 5, 6, 7, 8])
   )
     @name = name
+    @country = country
     @planes = []
     @capacity = capacity
     @weather = weather
     @safety_status = safety_status
-
   end
 
   def change_capacity(capacity)
@@ -28,19 +30,19 @@ class Airport
 
   def safety_breach
     @safety_check_result = @safety_status.safety_assesment
-    terrorist_protocol
-  end
-
-  def terrorist_protocol
-    @safety_check_result.include?('terrorist')
   end
 
   def check_weather
     SafeWeather.safety_check(weather)
   end
 
+  def heath_check(plane)
+    Covid.new.covid_check(plane.country_takeoff)
+  end
+
   def arrive(plane)
-    fail 'This airport is in a quarantine situation, no access.' if safety_breach
+    heath_check(plane)
+    safety_breach
     fail 'Airport is at max capacity.' if full?
     fail 'It is not safe to land here at the moment.' unless check_weather
 
@@ -48,7 +50,7 @@ class Airport
   end
 
   def depart(plane)
-    fail 'This airport is in a quarantine situation, no planes can leave.' if safety_breach
+    safety_breach
     fail 'There are no planes at your disposal.' if empty?
     fail 'It is not safe to depart at the moment.' unless check_weather
 

@@ -5,7 +5,7 @@ require 'weather'
 describe Plane do
   let(:plane) { Plane.new }
   let(:weather) { Weather.new(0, 2, 10) }
-  let(:airport) { Airport.new('Schiphol', 13, weather, SafetyBreach.new([1])) }
+  let(:airport) { Airport.new('Schiphol', 'Ireland', 13, weather, SafetyBreach.new([1])) }
 
   describe 'land' do
     it { is_expected.to respond_to :land }
