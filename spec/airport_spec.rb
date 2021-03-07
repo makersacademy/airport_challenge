@@ -6,7 +6,7 @@ describe Airport do
   let(:weather) { instance_double("Weather", weather_report: 'sunny') }
 
   before do
-      allow(Weather).to receive(:new).and_return(weather)
+    allow(Weather).to receive(:new).and_return(weather)
   end
 
   it "allows a plane to land at an airport" do

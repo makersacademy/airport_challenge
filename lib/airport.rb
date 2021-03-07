@@ -12,7 +12,6 @@ class Airport
   end
 
   def land(plane)
-
     fail "A plane can't land, there's no room!" if apron.length == capacity
 
     fail "Plane cannot land during bad weather!" if weather.weather_report == "stormy"
@@ -30,14 +29,13 @@ class Airport
   end
 
   def take_off(plane)
-    if apron.include?(plane.name)
-      apron.delete(plane.name)
-      plane.status = "flying"
-      "#{plane.name} has taken off!"
-      # change_status(plane)
-    else
-      fail "Plane is not at this airport"
-    end
+
+    return fail "Plane is not at this airport" unless apron.include?(plane.name)
+
+    apron.delete(plane.name)
+    plane.status = "flying"
+    "#{plane.name} has taken off!"
+    # change_status(plane)
   end
 
   # def change_status(plane)
