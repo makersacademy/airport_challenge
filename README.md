@@ -17,7 +17,7 @@
 #### How to use
 
 1. [Setup](docs/setup.md)
-2. run "ruby destination_mars.rb" in command line. Innitially, it starts with 1 airport and 15 planes
-3. follow menu
+2. Run "ruby destination_mars.rb" in command line. Innitially, it starts with 1 airport and 15 planes
+3. Follow menu
 
 [Domain Model](docs/domain_model.md)
