@@ -2,10 +2,20 @@ require "airport"
 require "plane"
 
 RSpec.describe Airport do
-  plane = Plane.new
+  let(:plane) {Plane.new}
+
   describe '#land' do
-    it 'allows a plane to land' do
-      expect(subject.land(plane)).to eq "Plane landed"
+    context "when airport isn't full" do
+      it 'allows a plane to land' do
+        expect(subject.land(plane)).to eq "Plane landed"
+      end
+    end
+    context "when airport is full" do
+      before(:example) {subject.airplanes.length >= subject.capacity}
+      
+      it 'prevents a plane from landing' do
+        expect{subject.land(plane)}.to raise_error("Airport full; cannot land plane.")
+      end
     end
   end
   describe '#takeoff' do
