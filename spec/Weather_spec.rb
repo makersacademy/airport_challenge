@@ -1,6 +1,9 @@
 require 'Weather'
+
 describe Weather do
-  it 'Responds to weather if it is stormy' do
-    expect(subject).to respond_to(:stormy?)
-  end 
+  it { is_expected.to respond_to :forecast }
+
+  it 'Describes the weather as stormy or fine' do
+    expect(subject.forecast).to eq("fine").or(eq("stormy"))
+  end
 end

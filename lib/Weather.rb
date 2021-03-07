@@ -1,15 +1,11 @@
 class Weather
-  attr_reader :weather
-
+  attr_reader :forecast
   def initialize
     i = rand(6)
     if i >= 5
-      @weather = "stormy"
+      @forecast = "stormy"
     else
-      @weather = "fine"
+      @forecast = "fine"
     end
   end
-  def stormy?
-    true if @weather.weather  == "stormy"
-  end 
 end

@@ -8,7 +8,7 @@ class Airport
   end
 
   def bad_weather?
-    true if @weather.weather  == "stormy"
+    true if @weather.forecast == "stormy"
   end
 
   def land_plane(plane)
@@ -20,26 +20,25 @@ class Airport
   end
 
   def take_off
+    raise 'Weather is stormy, cannot take off' if bad_weather?
     raise 'That plane is not here' if empty?
-    raise 'Weather is Stormy, cannot take off' if bad_weather?
-
 
     @planes.pop
   end
 
 private
   def full?
-    if @planes.length >= CAPACITY
+   if @planes.length >= CAPACITY
       true
-    else
+     else
       false
-    end
+     end
   end
 
   def empty?
-    if @planes.length == 0
+   if @planes.length.zero?
       true
-    else false
+     else false
     end
   end
-end
+end 
