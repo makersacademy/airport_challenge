@@ -14,9 +14,8 @@ RSpec.describe Airport do
     end
     context "when airport is full" do
       
-      subject do
-        Airport.new(Array.new(5, Plane.new))
-      end
+      subject {Airport.new(Array.new(5, Plane.new))}
+      
       it 'prevents a plane from landing' do
         expect{subject.land(plane)}.to raise_error("Airport full; cannot land plane.")
       end
@@ -24,7 +23,9 @@ RSpec.describe Airport do
   end
   describe '#takeoff' do
     it 'allows a plane to take off' do
+      subject.land(plane)
       expect(subject.takeoff(plane)).to eq "Plane taken off"
+      expect(subject.planes).not_to include(plane)
     end
   end
   describe '#at_airport?' do
