@@ -39,3 +39,14 @@ I had to make them `global` variables for irb to recognise them.
 5. Lets see if your luck continues, `three` of our planes are headed to `XJA`, but that particular `Airport` has a capacity of `two`, super exclusive. Lets see what happens: `tower.land($za943, $xja)` `tower.land($zj754, $xja)` `tower.land($xj652, $xja)`
 6. If the weather didn't stop you, the exclusivity of XJA probably did. Lets send ZJ754 to WTF so '652 can land: `tower.takeoff($zj754, $wtf)` `tower.land($xj652, $xja)`
 7. So we saw that the takeoff command can take an extra arguement to send a plane to a new destination, otherwise they'll take off do a circuit be waiting to land again.
+
+
+
+
+
+
+
+
+
+
+Passes Rubocop with no warnings. 
