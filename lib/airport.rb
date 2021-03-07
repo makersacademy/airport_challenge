@@ -1,5 +1,13 @@
 class Airport
+  attr_reader :planes, :capacity
+
+  def initialize(planes, capacity = 5)
+    @planes = planes
+    @capacity = capacity
+  end
+
   def land(_plane)
+    raise "Airport full; cannot land plane." if @planes.length >= @capacity
     return "Plane landed"
   end
 
