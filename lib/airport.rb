@@ -18,29 +18,21 @@ class Airport
   attr_reader :airport_capacity, :planes, :name
 
   def request_to_land(plane)
-    if !plane.flying?
-      "Plane has already landed at #{here?(plane) ? "this" : "another"} airport."
-    elsif full?
-      "Plane cannot land, Airport is full."
-    elsif stormy?
-      "Plane cannot land, it is stormy. Plane to circle."
-    else
-      land_plane(plane)
-      "Plane has landed."
-    end
+    return "Plane is already at #{here?(plane) ? "this" : "another"} airport." unless plane.flying?
+    return "Plane cannot land, Airport is full." if full?
+    return "Plane cannot land, it is stormy. Plane to circle." if stormy?
+
+    land_plane(plane)
+    "Plane has landed."
   end
 
   def request_to_take_off(plane)
-    if empty?
-      "No planes to take off. Have a 5 minute break air control..."
-    elsif !here?(plane)
-      "That plane is not at the airport, cannot take off."
-    elsif stormy?
-      "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
-    else
-      take_off_plane(plane)
-      "Plane has taken off."
-    end
+    return "No planes to take off. Have a 5 minute break air control..." if empty?
+    return "That plane is not at the airport, cannot take off." unless here?(plane)
+    return "Plane cannot take off, it is stormy. Everybody gets a £15 WcDonalds Voucher." if stormy?
+
+    take_off_plane(plane)
+    "Plane has taken off."
   end
 
   private
@@ -59,12 +51,12 @@ class Airport
 
   def land_plane(plane)
     @planes << plane
-    plane.land(self)
+    plane.send(:land, self)
   end
 
   def take_off_plane(plane)
     @planes.delete(plane)
-    plane.take_off
+    plane.send(:take_off)
   end
 
   def here?(plane)

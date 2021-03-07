@@ -12,8 +12,74 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Introduction
+---------
 
-Instructions
+Solution to the Makers Week 1 Weekend Challenge - airport_challenge by Jack McCarthy (jackmcc08).
+
+The program was developed entirely via TDD, and I attempted to apply encapsulation and SRP principles as much as possible, as well stick as strictly as possible to TDD methods.
+
+I developed the 6 user stories below via TDD and you can see my initial domain models, pseudocode and diagrams in 'airport_notes.md'.
+
+On completion of the 6 user stories, I then developed some edge case user stories and TDD impelmented them (also available in the notes markup).
+
+Throughout I attempted to refactor the code and slimmed down the tests.
+
+On completion:
+- all user stories were delivered
+- all RSPEC tests passed
+- there was 100% test coverage
+- there were no Rubocop errors
+
+My concerns/potential style violations:
+- I use .send in the airport class to access the Plane private methods to change the plane status when it lands/takes off. I did this to avoid the user being able to change the plane status directly rather than through an airport method but this solution violates encapsulation.
+- Was not sure how to build a feature_spec, I had a go but do not think it is what is considered a standard feature_spec.rb.
+
+Have fun!
+
+Instructions for use
+----------
+#### RSPEC Testing
+In the project folder run rspec to show test demonstration, it will give you an overview of the functionality of the program.
+
+#### IRB
+
+To operate the program in IRB, open with below commands. Suggested to create airport instances and plane instances to enable manipulation of program.
+
+```
+$ irb
+2.2.3 :001 > airport = Airport.new
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :002 > plane = Plane.new
+ => #<Plane:0x007fafdb0041b8>
+2.2.3 :003 > airport.land(plane)
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :004 >
+```
+
+#### Classes and Methods
+
+- Class: Airport(capacity, name)
+  - capacity is optional integer, will default to 10 if not passed
+  - name is optional string, will default to 'test_airport' if not passed
+
+  - Methods:
+    - .request_to_land(plane) - use this method on Airport instances, passing a Plane instance to land a plane at the airport (Plane instance must be flying)
+    - .request_to_take_off(plane) - use this method on Airport instances, passing a Plane instance to take off that plane at the airport (Plane instance must be landed at that Airport)
+
+  - Attribute Readers:
+    - .airport_capacity (allows you to see max capacity of the airport)
+    - .planes (allows you to see what planes are at the airport)
+    - .name (allows you to see the airports name)
+
+- Class: Plane
+  - Methods:
+  - .location (allows you to see the plane instance location)
+  - .flying? (tells you if the plane instance is flying or not)
+
+
+
+Challenge Instructions
 ---------
 
 * Feel free to use google, your notes, books, etc. but work on your own
@@ -35,29 +101,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -72,7 +138,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 

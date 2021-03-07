@@ -9,16 +9,6 @@ describe Airport do
     allow(test_airport).to receive(:stormy?).and_return(false)
   end
 
-  it { is_expected.to respond_to :request_to_land }
-
-  it { is_expected.to respond_to :request_to_take_off }
-
-  it { is_expected.to respond_to :planes }
-
-  it { is_expected.to respond_to :airport_capacity }
-
-  it { is_expected.to respond_to :name }
-
   describe "#request_to_land" do
     it "lands a plane succesfully and responds with a confirmation - 'Plane has landed.'" do
       expect(test_airport.request_to_land(Plane.new)).to eq "Plane has landed."
@@ -41,7 +31,7 @@ describe Airport do
 
     it "cannot land a plane that has already landed at the airport" do
       test_airport.request_to_land(test_plane)
-      expect(test_airport.request_to_land(test_plane)).to eq "Plane has already landed at this airport."
+      expect(test_airport.request_to_land(test_plane)).to eq "Plane is already at this airport."
     end
   end
 
@@ -61,7 +51,7 @@ describe Airport do
 
     it "cannot take off a plane if it is stormy - provides confirmation message" do
       allow(test_airport).to receive(:stormy?).and_return(true)
-      expect(test_airport.request_to_take_off(test_plane)).to eq "Plane cannot take off, it is stormy. Each passenger gets a £15 WcDonalds Voucher."
+      expect(test_airport.request_to_take_off(test_plane)).to eq "Plane cannot take off, it is stormy. Everybody gets a £15 WcDonalds Voucher."
     end
 
     it "cannot take off a plane that is not at the airport" do
@@ -100,7 +90,7 @@ describe Airport do
     end
 
     it "does not allow a plane to land at airport_2 if it is already landed at airport_1" do
-      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane has already landed at another airport."
+      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane is already at another airport."
     end
 
     it "does not allow a plane to take off from airport_2 if it is at airport_1" do
