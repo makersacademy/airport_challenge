@@ -26,6 +26,7 @@ class Airport
     apron << plane.name
     plane.status = "landed"
     "#{plane.name} has landed!"
+    # change_status(plane)
   end
 
   def take_off(plane)
@@ -33,10 +34,21 @@ class Airport
       apron.delete(plane.name)
       plane.status = "flying"
       "#{plane.name} has taken off!"
+      # change_status(plane)
     else
       fail "Plane is not at this airport"
     end
   end
+
+  # def change_status(plane)
+  #
+  #   plane.status = "landed"
+  #   "#{plane.name} has landed!"
+  #
+  #   plane.status = "flying"
+  #   "#{plane.name} has taken off!"
+  #
+  # end
 
   def planes_at_airport
     apron
