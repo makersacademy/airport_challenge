@@ -2,7 +2,7 @@ require "airport"
 require "plane"
 
 RSpec.describe Airport do
-  subject {Airport.new([], 5)}
+  subject {Airport.new}
   let(:plane) {Plane.new}
 
   describe '#land' do
@@ -33,6 +33,20 @@ RSpec.describe Airport do
       it 'returns false' do
         subject.takeoff(plane)
         expect(subject.at_airport?(plane)).to eq false
+      end
+    end
+  end
+  describe '#initialize' do
+    context 'when no arguments provided' do
+      it 'uses default capacity of 5' do
+        expect(subject.capacity).to eq(5)
+      end
+    end
+    context 'when capacity argument provided as 10' do
+      subject {described_class.new([], 10)}
+
+      it 'sets capacity to 10' do
+        expect(subject.capacity).to eq(10)
       end
     end
   end

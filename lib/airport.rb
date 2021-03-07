@@ -3,7 +3,8 @@ class Airport
 
   def initialize(planes = [], capacity = 5)
     @planes = planes
-    @capacity = capacity
+    p @capacity = capacity
+    p "Created airport containing #{@planes.length} planes, with a maximum capacity of #{@capacity}."
   end
 
   def land(plane)
