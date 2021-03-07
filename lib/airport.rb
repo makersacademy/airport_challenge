@@ -12,6 +12,11 @@ class Airport
     @planes_at_airport.length == @capacity
   end
 
+  def change_capacity(capacity)
+    raise "Too many planes for reduced capacity" if @planes_at_airport.length > capacity
+    @capacity = capacity
+  end
+
   def stormy?
     true if @weather.forecast == "stormy"
   end

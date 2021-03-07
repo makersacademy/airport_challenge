@@ -5,13 +5,31 @@ describe Airport do
   let(:plane1) { double "plane" }
   let(:weather) { double "weather" }
 
-  it 'responds to a request to allow a user to set the capacity' do
-    expect(test_airport).to respond_to(:capacity)
+  describe "The airport knows what the weather is" do
+    it 'responds to a question of whether it is stormy' do
+      expect(test_airport).to respond_to(:stormy?)
+    end
+    it 'responds to a question of whether it is stormy with either true or false' do
+      airport = Airport.new
+      expect(airport.stormy?).to eq(true).or eq(false)
+    end
   end
-  it 'responds to a question of whether it is stormy' do
-    expect(test_airport).to respond_to(:stormy?)
+
+  describe "User is able to change the airport's capacity" do
+    it 'responds to a request to allow a user to set the capacity' do
+      expect(test_airport).to respond_to(:capacity)
+    end
+    it "won't allow the user to change the capacity if there are more planes at the airport than the new capacity allows" do
+      allow(test_airport).to receive(:stormy?) { false }
+      Airport::DEFAULT_CAPACITY.times { test_airport.land(Plane.new) }
+      expect { test_airport.change_capacity(10) }.to raise_error "Too many planes for reduced capacity"
+    end
+    it "changes the capacity when requested" do
+      test_airport.change_capacity(10)
+      expect(test_airport.capacity).to eq 10
+    end
   end
-  
+
   describe 'Planes landing at the airport.' do
     it 'Airport responds to a request for a plane to land.' do
       allow(test_airport).to receive(:stormy?) { false }
