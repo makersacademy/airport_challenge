@@ -1,6 +1,5 @@
 require './lib/plane'
 require './lib/airport'
-require './lib/register'
 
 class AirTraffic
 

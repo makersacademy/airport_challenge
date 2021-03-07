@@ -18,21 +18,14 @@ describe Airport do
     it "planes must be prevented from landing" do
       subject.gates = Array.new(Airport::DEFAULT_CAPACITY, Plane.new)
       allow(subject).to receive(:rand).and_return(1)
-      expect(subject.safe_to_land?).to eq(false)
+      expect(subject.at_capacity?).to eq(true)
     end
   end
   
-  describe 'safe_to_land?' do
-    it "must return false when it is considered unsafe to land" do
+  describe 'safe_to_manoeuvre?' do
+    it "must return false when it is considered unsafe to land or takeoff" do
       allow(subject).to receive(:local_weather) { :stormy }
-      expect(subject.safe_to_land?).to eq(false)
-    end  
-  end
-
-  describe 'safe_to_takeoff?' do
-    it "must return false when it is considered unsafe to takeoff" do
-      allow(subject).to receive(:local_weather) { :stormy }
-      expect(subject.safe_to_takeoff?).to eq(false)
+      expect(subject.safe_to_manoeuvre?).to eq(false)
     end
   end
 
@@ -48,8 +41,7 @@ describe Airport do
     context "if the weather is stormy" do
       it "the outcomes of safe_to_land and safe_to_Takeoff? must be false" do
         allow(subject).to receive(:local_weather) { :stormy }
-        expect(subject.safe_to_land?).to eq(false)
-        expect(subject.safe_to_takeoff?).to eq(false)
+        expect(subject.safe_to_manoeuvre?).to eq(false)
       end
     end
   end

@@ -10,11 +10,11 @@ class Airport
     @code = code.to_s
   end
 
-  def safe_to_land?
-    !(gates.count == capacity || local_weather == :stormy)
+  def at_capacity?
+    (gates.count >= capacity)
   end
 
-  def safe_to_takeoff?
+  def safe_to_manoeuvre?
     (local_weather != :stormy) # nice conditional that replaces if blah true else false
   end
 

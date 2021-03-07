@@ -35,11 +35,11 @@ describe Plane do
   context "when the airport weather is good for landing and takeoff" do
     it "is able to land at a given airport" do
       allow(test_airport).to receive(:rand).and_return(1)
-      expect(test_airport.safe_to_land?).to eq(true)
+      expect(test_airport.safe_to_manoeuvre?).to eq(true)
     end
     it "is able to takeoff at a given airport" do
       allow(test_airport).to receive(:rand).and_return(1)
-      expect(test_airport.safe_to_takeoff?).to eq(true)
+      expect(test_airport.safe_to_manoeuvre?).to eq(true)
     end
   end
 
@@ -60,6 +60,17 @@ describe Plane do
     end
   end
 
+  context "when landed" do
+    it "must return an error if ordered to land" do
+      allow(test_airport).to receive(:rand).and_return(1)
+      expect { test_plane.land(test_airport) }.to raise_error("This callsign has already landed")
+    end
+    it "must return an error if ordered to takeoff and the weather at origin is :stormy" do
+      allow(test_airport).to receive(:rand).and_return(6)
+      expect { test_plane.takeoff(test_airport) }.to raise_error("The weather prevents take off")
+    end
+  end
+
   context "when in flight" do 
     it "must return an error if given order to take off" do
       allow(test_airport).to receive(:rand).and_return(1)
@@ -70,17 +81,10 @@ describe Plane do
       allow(test_airport).to receive(:rand).and_return(6)
       expect { test_plane.land(test_airport) }.to raise_error("The weather prevents landing")
     end
-  end
-
-  context "when landed" do
-    it "must return an error if ordered to land" do
+    it "must return an error if ordered to land and the airport destination is at capacity" do
       allow(test_airport).to receive(:rand).and_return(1)
-      test_plane.land(test_airport)
-      expect { test_plane.land(test_airport) }.to raise_error("This callsign has already landed")
-    end
-    it "must return an error if ordered to takeoff and the weather at origin is :stormy" do
-      allow(test_airport).to receive(:rand).and_return(6)
-      expect { test_plane.takeoff(test_airport) }.to raise_error("The weather prevents take off")
+      allow(test_airport).to receive(:at_capacity?).and_return(true)
+      expect { test_plane.land(test_airport) }.to raise_error("The airport is at capacity, enter the holding circuit")
     end
   end
 end
