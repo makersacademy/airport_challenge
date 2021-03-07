@@ -46,36 +46,55 @@ In the project folder run rspec to show test demonstration, it will give you an 
 
 To operate the program in IRB, open with below commands. Suggested to create airport instances and plane instances to enable manipulation of program.
 
+All classes and methods listed below this section.
+
 ```
 $ irb
-2.2.3 :001 > airport = Airport.new
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :002 > plane = Plane.new
- => #<Plane:0x007fafdb0041b8>
-2.2.3 :003 > airport.land(plane)
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :004 >
+2.6.5 :001 > require './lib/airport.rb'
+ => true
+2.6.5 :002 > heathrow = Airport.new(20, "Heathrow")
+ => #<Airport:0x00007f8dae891528 @airport_capacity=20, @planes=[], @name="Heathrow">
+2.6.5 :003 > julius_747 = Plane.new
+ => #<Plane:0x00007f8dab9b75e0 @status={:flying=>true, :location=>"The Sky!"}>
+2.6.5 :004 > sky_falcon = Plane.new
+ => #<Plane:0x00007f8dab9be020 @status={:flying=>true, :location=>"The Sky!"}>
+2.6.5 :005 > heathrow.request_to_land(julius_747)
+ => "Plane has landed."
+2.6.5 :006 > heathrow.planes
+ => [#<Plane:0x00007f8dab9b75e0 @status={:flying=>false, :location=>#<Airport:0x00007f8dae891528 @airport_capacity=20, @planes=[...], @name="Heathrow">}>]
+2.6.5 :007 > heathrow.airport_capacity
+ => 20
+2.6.5 :008 > heathrow.request_to_take_off(julius_747)
+ => "Plane has taken off."
+2.6.5 :009 > julius_747.location
+ => "The Sky!"
+2.6.5 :010 > heathrow.request_to_land(sky_falcon)
+ => "Plane has landed."
+2.6.5 :011 > sky_falcon.location
+ => #<Airport:0x00007f8dae891528 @airport_capacity=20, @planes=[#<Plane:0x00007f8dab9be020 @status={:flying=>false, :location=>#<Airport:0x00007f8dae891528 ...>}>], @name="Heathrow">
+2.6.5 :012 > sky_falcon.flying?
+ => false
 ```
 
 #### Classes and Methods
 
-- Class: Airport(capacity, name)
-  - capacity is optional integer, will default to 10 if not passed
-  - name is optional string, will default to 'test_airport' if not passed
+- Class: Airport
+  - Create with Airport.new(capacity, name)
+    - capacity is optional integer, will default to 10 if not passed
+    - name is optional string, will default to 'test_airport' if not passed
 
   - Methods:
     - .request_to_land(plane) - use this method on Airport instances, passing a Plane instance to land a plane at the airport (Plane instance must be flying)
     - .request_to_take_off(plane) - use this method on Airport instances, passing a Plane instance to take off that plane at the airport (Plane instance must be landed at that Airport)
-
-  - Attribute Readers:
     - .airport_capacity (allows you to see max capacity of the airport)
     - .planes (allows you to see what planes are at the airport)
     - .name (allows you to see the airports name)
 
 - Class: Plane
+  - Create with Plane.new
   - Methods:
-  - .location (allows you to see the plane instance location)
-  - .flying? (tells you if the plane instance is flying or not)
+    - .location (allows you to see the plane instance location)
+    - .flying? (tells you if the plane instance is flying or not)
 
 
 
