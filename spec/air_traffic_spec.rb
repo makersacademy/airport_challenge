@@ -12,13 +12,13 @@ describe AirTraffic do
   end
 
   it "sends a message to land with clear conditions" do
-    test_airport.local_weather(:clear)
-    expect(subject.land(test_plane, test_airport)).to eq(:success)
+    allow(test_airport).to receive(:rand).and_return(1)
+    expect(subject.land(test_plane, test_airport)).to eq(false)
   end
 
   it "sends a message to takeoff with clear conditions" do
-    test_airport.local_weather(:clear)
-    expect(subject.takeoff(test_plane, test_airport)).to eq(:success)
+    allow(test_airport).to receive(:rand).and_return(1)
+    expect(subject.takeoff(test_plane, test_airport)).to eq(true)
   end
 
   describe 'airports the collection' do

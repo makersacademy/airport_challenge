@@ -14,10 +14,10 @@ describe Plane do
       expect(test_plane.location.length).to eq(3)
     end
     it "responds with a string message when in flight" do
-      test_airport = Airport.new("ABC")
-      test_airport.local_weather(:clear)
-      subject.takeoff(test_airport)
-      expect(subject.location).to be_a(String)
+      allow(test_airport).to receive(:rand).and_return(1)
+      test_plane.takeoff(test_airport)
+      expect(test_plane.location).to be_a(String)
+      test_plane.land(test_airport)
     end
   end
   
@@ -31,11 +31,12 @@ describe Plane do
   end
   
   context "when the airport weather is good for landing and takeoff a plane" do
-    test_airport.local_weather(:clear)
     it "is able to land at a given airport" do
+      allow(test_airport).to receive(:rand).and_return(1)
       expect(test_airport.safe_to_land?).to eq(true)
     end
     it "is able to takeoff at a given airport" do
+      allow(test_airport).to receive(:rand).and_return(1)
       expect(test_airport.safe_to_takeoff?).to eq(true)
     end
   end
@@ -43,13 +44,15 @@ describe Plane do
   context "the plane's in_flight status must" do
     it "be true when the plane has taken off" do
       subject.origin = test_airport
-      allow(test_airport).to receive(:rand).and_return(10)
+      allow(test_airport).to receive(:rand).and_return(1)
       subject.takeoff(test_airport)
       expect(subject.in_flight).to eq(true) 
     end
     it "be false when the plane has landed" do
-      test_airport.local_weather(:clear)
+      subject.origin = test_airport
+      allow(test_airport).to receive(:local_weather) { :clear }
       subject.takeoff(test_airport)
+      allow(test_airport).to receive(:local_weather) { :clear }
       subject.land(test_airport)
       expect(subject.in_flight).to eq(false)
     end
@@ -57,13 +60,9 @@ describe Plane do
 
   context "when a plane is already in flight it" do 
     it "cannot be given the order to take off and it returns an error" do
-      allow(test_airport).to receive(:rand).and_return(10)
+      allow(test_airport).to receive(:rand).and_return(1)
       test_plane.takeoff(test_airport)
       expect { test_plane.takeoff(test_airport) }.to raise_error("This callsign is already in flight")
     end
-  end
-
-  it "must capture the the conditions for takeoff in one place" do
-    expect(subject.takeoff_condition).to be(true).or be(false)
   end
 end

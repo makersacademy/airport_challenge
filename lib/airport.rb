@@ -6,39 +6,32 @@ class Airport
 
   def initialize(code = self, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @safe_to_land = false
-    @safe_to_takeoff = false
     @gates = []
     @code = code.to_s
-    local_weather(weather_forecast)
   end
 
   def safe_to_land?
-    if gates.count == capacity
-      @safe_to_land = false
-    end
-    @safe_to_land
+    if gates.count == capacity || local_weather == :stormy
+      false
+      # raise "The conditions do not allow landing at this time"
+
+    else
+      true
+    end  
   end
 
   def safe_to_takeoff?
-    @safe_to_takeoff
-  end
+    if local_weather == :stormy
+      false
+      # raise "The conditions do not allow departure at this time"
 
-  def local_weather(weather)
-    if weather == :stormy
-      @safe_to_land = false
-      @safe_to_takeoff = false
-      :stormy
     else
-      @safe_to_land = true
-      @safe_to_takeoff = true
-      :clear
+      true
     end
   end
 
-  def weather_forecast
-    forecast = rand(1..30)
-    if forecast > 25
+  def local_weather 
+    if rand(1..6) == 6
       :stormy
     else
       :clear
