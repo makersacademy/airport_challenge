@@ -104,16 +104,35 @@ end
 def land_plane
   planes_idx = plane_idx_to_land
   airports_idx = valid_airport_idx
-  plane_idx = nil
-  airport_idx = nil
+
+  return unless validate_idx_arrays(planes_idx, airports_idx)
+
+  plane_idx = select_plane_idx(planes_idx)
+  airport_idx = select_airport_idx(airports_idx)
+
+  puts "-" * DIVIDE_LINE_LEN
+  puts "Please try again later" unless land_plane_on_airport(airport_idx, plane_idx)
+  puts "-" * DIVIDE_LINE_LEN
+  2.times { puts "" }
+end
+
+def validate_idx_arrays(planes_idx, airports_idx)
   if planes_idx.empty?
     puts "No plane to land"
-    return
+    return false
   end
+  
   if airports_idx.empty?
     puts "No airport has spare capacity"
-    return
+    return false
   end
+
+  true
+end
+
+# user select plane idx
+def select_plane_idx(planes_idx)
+  plane_idx = nil
   loop do
     puts "Planes to land: #{planes_idx.join(",")}"
     puts "Select a plane number to land"
@@ -124,7 +143,12 @@ def land_plane
     end
     planes_idx.include?(plane_idx) ? break : (puts "Invalid number, try again")
   end
+  plane_idx
+end
 
+# user select airport idx
+def select_airport_idx(airports_idx)
+  airport_idx = nil
   loop do
     puts "Airports has capacity to land: #{airports_idx.join(",")}"
     puts "Select a airport number to land"
@@ -135,11 +159,7 @@ def land_plane
     end
     airports_idx.include?(airport_idx) ? break : (puts "Invalid number, try again")
   end
-
-  puts "-" * DIVIDE_LINE_LEN
-  puts "Please try again later" unless land_plane_on_airport(airport_idx, plane_idx)
-  puts "-" * DIVIDE_LINE_LEN
-  2.times { puts "" }
+  airport_idx
 end
 
 # airport with spare capacity
@@ -175,11 +195,27 @@ end
 # ------------------------------------------------------
 def take_off_plane
   planes_idx = plane_idx_to_take_off
-  plane_idx = nil
+ 
+  return unless validate_idx_array(planes_idx)
+  
+  plane_idx = select_plane_idx2(planes_idx)
+
+  puts "-" * DIVIDE_LINE_LEN
+  puts "Please try again later" unless take_off_plane_from_airport(plane_idx)
+  puts "-" * DIVIDE_LINE_LEN
+  2.times { puts "" }
+end
+
+def validate_idx_array(planes_idx)
   if planes_idx.empty?
     puts "No plane to take off"
-    return
+    return false
   end
+  true
+end
+
+def select_plane_idx2(planes_idx)
+  plane_idx = nil
   loop do
     puts "Planes to take off: #{planes_idx.join(",")}"
     puts "Select a plane number to take off"
@@ -190,11 +226,7 @@ def take_off_plane
     end
     planes_idx.include?(plane_idx) ? break : (puts "Invalid number, try again")
   end
-
-  puts "-" * DIVIDE_LINE_LEN
-  puts "Please try again later" unless take_off_plane_from_airport(plane_idx)
-  puts "-" * DIVIDE_LINE_LEN
-  2.times { puts "" }
+  plane_idx
 end
 
 def plane_idx_to_take_off
@@ -233,31 +265,9 @@ end
 def build_airport
   capacity = Airport::DEFAULT_CAPACITY
   storm_probability = Airport::DEFAULT_STORM_PROBABILITY 
-  loop do
-    puts "please enter airport capacity (positive integer), enter 'd' to use default value #{capacity}"
-    input = gets.chomp
-    break if input.downcase == "d"
-
-    if input.to_i.positive?
-      capacity = input.to_i
-      break
-    else
-      puts "Invalid number, try again"
-    end
-  end
-
-  loop do
-    puts "please enter airport storm probability (between 0-1), enter 'd' to use default value #{storm_probability}"
-    input = gets.chomp
-    break if input.downcase == "d"
-
-    if input.to_f >= 0 && input.to_f <= 1
-      storm_probability = input.to_f
-      break
-    else
-      puts "Invalid number, try again"
-    end
-  end
+  
+  capacity = define_capacity(capacity)
+  storm_probability = define_storm_probability(storm_probability)
 
   airport = Airport.new(capacity, storm_probability)
   $mars_airports << airport
@@ -265,6 +275,38 @@ def build_airport
   puts "Built new airport #{airport.name}, capacity: #{airport.capacity}, storm_probability: #{airport.storm_probability}"
   puts "-" * DIVIDE_LINE_LEN
   2.times { puts "" }
+end
+
+def define_capacity(capacity)
+  loop do
+    puts "please enter airport capacity (positive integer), enter 'd' to use default value #{capacity}"
+    input = gets.chomp
+    break if input.downcase == "d"
+  
+    if input.to_i.positive?
+      capacity = input.to_i
+      break
+    else
+      puts "Invalid number, try again"
+    end
+  end
+  capacity
+end
+
+def define_storm_probability(storm_probability)
+  loop do
+    puts "please enter airport storm probability (between 0-1), enter 'd' to use default value #{storm_probability}"
+    input = gets.chomp
+    break if input.downcase == "d"
+  
+    if input.to_f >= 0 && input.to_f <= 1
+      storm_probability = input.to_f
+      break
+    else
+      puts "Invalid number, try again"
+    end
+  end
+  storm_probability
 end
 
 # ------------------------------------------------------
