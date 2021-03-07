@@ -1,7 +1,7 @@
 require_relative 'plane'
 class Airport
   CAPACITY = 3
-attr_accessor :plane
+  attr_accessor :plane
 
   def initialize
     @planes = []
@@ -17,14 +17,13 @@ attr_accessor :plane
     fail 'That plane is not here' if self.empty?
     @planes.pop
   end
-end
 
   # def full?
   #   true
   # end
 private
   def full?
-    if @planes.length >= 3
+    if @planes.length >= CAPACITY
       true
     else
       false
@@ -37,9 +36,19 @@ private
     else false
     end
   end
+end
 
 class Plane
   def present?
       false
+  end
+end
+
+class Weather
+  def weather_report
+   weather = rand(6)
+    if weather >= 5
+    "Stormy weather, airport closed."
+    end
   end
 end

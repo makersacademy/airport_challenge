@@ -1,5 +1,4 @@
 require 'Airport'
-
 describe Airport do
     heathrow = Airport.new
     plane = Plane.new
@@ -21,4 +20,11 @@ describe Airport do
     expect { subject.land_plane(plane) }.to raise_error 'Airport is full'
   end
 
+  #The plane can't take off or land if the weather is bad
+describe Weather do
+  it "Says you can't land or take off if weather is stormy" do
+    allow(subject).to receive(:rand).and_return(5)
+    expect(subject.weather_report).to eq "Stormy weather, airport closed."
+  end
+end
 end
