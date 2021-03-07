@@ -8,7 +8,7 @@ class Plane
 
     def initialize()
         @name = auto_name
-        @status = nil
+        @status = "queueing to land"
         @airport = nil
         @@planes << self
     end

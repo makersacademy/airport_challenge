@@ -1,9 +1,7 @@
 require 'plane'
 
 describe Plane do
-    puts Plane.planes
     subject { described_class.new }
-    puts Plane.planes
     
     # land
     describe "#land" do

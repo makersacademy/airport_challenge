@@ -67,11 +67,6 @@ describe Airport do
             expect(plane.status).to eq "take off"
         end
 
-        # it "raises error when plane already take off" do
-        #     subject.take_off(plane)
-        #     expect{subject.take_off(plane)}.to raise_error "#{plane.name} has already taken off"
-        # end
-
         it "raises error when plane not in airport" do
             subject.take_off(plane)
             expect{subject.take_off(plane)}.to raise_error "#{plane.name} not in airport"
@@ -93,13 +88,4 @@ describe Airport do
             expect{subject.set_storm_probability(1.1)}.to raise_error "only accept probability between 0-1"
         end
     end
-
-    # describe "#check_weather" do
-    #     it "should stay for 1 minute once newly set" do
-    #         subject.set_storm_probability(0)
-    #         subject.check_storm
-    #         subject.set_storm_probability(1)
-    #         expect(subject.check_storm).to eq false
-    #     end
-    # end
 end

@@ -6,6 +6,5 @@
 | plane       | take off                                |
 | airport     | capacity with default                   |
 | airport     | prevent landing when full               |
-| airport     | check stormy weather                    |
 | airport     | prevent take off when weather is stormy |
 | airport     | prevent landing when weather is stormy  |                           |

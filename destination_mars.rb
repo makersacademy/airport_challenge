@@ -3,11 +3,11 @@ require './lib/plane'
 
 $mars_airports
 $mars_planes
+DIVIDE_LINE_LEN = 80
 
-def welcome
-    puts "Welcome to Mars!"
-end
-
+# ------------------------------------------------------
+# Main procedures
+# ------------------------------------------------------
 def initialize_control
     $mars_airports = []
     $mars_planes = []
@@ -18,14 +18,40 @@ def initialize_control
     15.times { $mars_planes << Plane.new }
 end
 
+def interactive_menu
+    loop do
+      # print the menu and ask the user what to do
+      print_menu
+      # do what the user has asked
+      process(gets.chomp)
+      # let user choose to proceed to next
+      puts "press any key to return to menu"
+      gets.chomp
+    end
+end
+
+# ------------------------------------------------------
+# Menu
+# ------------------------------------------------------
 def print_menu
+    print_banner
+    puts "*" * DIVIDE_LINE_LEN
+    puts "Menu (select a number listed below to operate)"
+    puts "-" * DIVIDE_LINE_LEN
     puts "1. Show airport(s) information"
     puts "2. Show plane(s) information"
     puts "3. Land a plane"
     puts "4. Take off a plane"
-    puts "5. Build an extra airport"
+    puts "5. Build an airport"
     puts "6. Add a plane"
     puts "7. Exit"
+    puts "*" * DIVIDE_LINE_LEN
+    2.times { puts "" }
+end
+
+def print_banner
+    banner = File.read("docs/banner.txt")
+    puts banner
 end
 
 def process(selection)
@@ -49,22 +75,31 @@ def process(selection)
     end
 end
 
+# ------------------------------------------------------
+# 1. Show airport(s) information
+# ------------------------------------------------------
 def print_airports
-    puts "--------------------------------------"
+    puts "-" * DIVIDE_LINE_LEN
     puts "Martian Airports"
-    puts "--------------------------------------"
-    $mars_airports.each { |airport| puts "Airport: #{airport.name}, Capacity: #{airport.capacity}"}
-    puts ""
+    puts "-" * DIVIDE_LINE_LEN
+    $mars_airports.each { |airport| puts "Airport: #{airport.name}, Capacity: #{airport.capacity}, Storm Probability: #{airport.storm_probability}"}
+    2.times { puts "" }
 end
 
+# ------------------------------------------------------
+# 2. Show plane(s) information
+# ------------------------------------------------------
 def print_planes
-    puts "--------------------------------------"
+    puts "-" * DIVIDE_LINE_LEN
     puts "Martian Planes"
-    puts "--------------------------------------"
+    puts "-" * DIVIDE_LINE_LEN
     $mars_planes.each { |plane| puts "Plane: #{plane.name}, Status: #{plane.status} #{ plane.airport.name if !plane.airport.nil?}"}
-    puts ""
+    2.times { puts "" }
 end
 
+# ------------------------------------------------------
+# 3. Land a plane
+# ------------------------------------------------------
 def land_plane
     planes_idx = plane_idx_to_land
     airports_idx = valid_airport_idx
@@ -100,7 +135,10 @@ def land_plane
         airports_idx.include?(airport_idx) ? break : (puts "Invalid number, try again")
     end
 
+    puts "-" * DIVIDE_LINE_LEN
     puts "Please try again later" if !land_plane_on_airport(airport_idx, plane_idx)
+    puts "-" * DIVIDE_LINE_LEN
+    2.times { puts "" }
 end
 
 # airport with spare capacity
@@ -131,6 +169,9 @@ def land_plane_on_airport(airport_idx, plane_idx)
     end
 end
 
+# ------------------------------------------------------
+# 4. Take off a plane
+# ------------------------------------------------------
 def take_off_plane
     planes_idx = plane_idx_to_take_off
     plane_idx = nil
@@ -149,7 +190,10 @@ def take_off_plane
         planes_idx.include?(plane_idx) ? break : (puts "Invalid number, try again")
     end
 
+    puts "-" * DIVIDE_LINE_LEN
     puts "Please try again later" if !take_off_plane_from_airport(plane_idx)
+    puts "-" * DIVIDE_LINE_LEN
+    2.times { puts "" }
 end
 
 def plane_idx_to_take_off
@@ -172,11 +216,18 @@ def take_off_plane_from_airport(plane_idx)
     end
 end
 
+# ------------------------------------------------------
+# Shared function for 3 and 4
+# ------------------------------------------------------
+
 def check_index_valid(idx, arr, type)
     fail "Invalid #{type}" if idx > arr.count
     true
 end
 
+# ------------------------------------------------------
+# 5. Build an airport
+# ------------------------------------------------------
 def build_airport
     capacity = Airport::DEFAULT_CAPACITY
     storm_probability = Airport::DEFAULT_STORM_PROBABILITY 
@@ -197,7 +248,7 @@ def build_airport
         input = gets.chomp
         break if input.downcase == "d"
         if input.to_f >= 0 && input.to_f <= 1
-            capacity = input.to_f
+            storm_probability = input.to_f
             break
         else
             puts "Invalid number, try again"
@@ -206,36 +257,27 @@ def build_airport
 
     airport = Airport.new(capacity, storm_probability)
     $mars_airports << airport
+    puts "-" * DIVIDE_LINE_LEN
     puts "Built new airport #{airport.name}, capacity: #{airport.capacity}, storm_probability: #{airport.storm_probability}"
+    puts "-" * DIVIDE_LINE_LEN
+    2.times { puts "" }
 end
 
+# ------------------------------------------------------
+# 6. Add a plane
+# ------------------------------------------------------
 def add_plane
     $mars_planes << Plane.new
+    puts "-" * DIVIDE_LINE_LEN
     puts "Added new plane #{$mars_planes[-1].name}"
+    puts "-" * DIVIDE_LINE_LEN
+    2.times { puts "" }
 end
 
-def interactive_menu
-    loop do
-      # 1. print the menu and ask the user what to do
-      print_menu
-      # 3. do what the user has asked
-      process(STDIN.gets.chomp)
-    end
-end
-
+# ------------------------------------------------------
+# Main
+# ------------------------------------------------------
 initialize_control
 interactive_menu
-
-# land_plane_on_airport(1,1)
-# land_plane_on_airport(1,2)
-# take_off_plane_from_airport(1)
-# take_off_plane_from_airport(1)
-# take_off_plane_from_airport(3)
-# $mars_airports << Airport.new(0)
-# $mars_airports << Airport.new(50)
-# # print_airports
-# # print_valid_airport
-# print_planes
-# print_plane_to_land
 
 
