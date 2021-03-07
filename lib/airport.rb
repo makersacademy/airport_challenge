@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
 
   attr_reader :apron, :capacity, :weather
+
   def initialize(capacity = 1)
     @apron = []
     @capacity = capacity
@@ -16,15 +17,22 @@ class Airport
 
     fail "Plane cannot land during bad weather!" if weather.weather_report == "stormy"
 
-    fail "This plane is already at an airport" if
-    apron.include?(plane)
+    fail "This plane is already at this airport" if
+    apron.include?(plane.name)
 
-    apron << plane
+    fail "This plane is already at another airport" if
+    plane.status == "landed"
+
+    apron << plane.name
+    plane.status = "landed"
+    "#{plane.name} has landed!"
   end
 
   def take_off(plane)
-    if apron.include?(plane)
-      apron.delete(plane)
+    if apron.include?(plane.name)
+      apron.delete(plane.name)
+      plane.status = "flying"
+      "#{plane.name} has taken off!"
     else
       fail "Plane is not at this airport"
     end
