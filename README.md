@@ -5,7 +5,7 @@
 ![app](docs/app.png)
 
 ---------
-#### Functions
+### Functions
 
 1. **Show airport(s) information**: all airports in Mars
 2. **Show plane(s) information**: all planes in Mars
@@ -15,11 +15,11 @@
 6. **Add a plane**
 
 ---------
-#### How to use
+### How to use
 
 1. [Setup](docs/setup.md)
 2. Run "ruby destination_mars.rb" in command line. Innitially, it starts with 1 airport and 15 planes
 3. Follow menu
 
 ---------
-[Domain Model](docs/domain_model.md)
+### [Domain Model](docs/domain_model.md)
