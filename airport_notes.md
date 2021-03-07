@@ -1,6 +1,6 @@
-TDD - the creation of classes and modules to satisfy the user stories
+TDD - the creation of classes and modules to satisfy the user stories - DONE
 
-Use a random number generator to set the weather (mostly sunny with occasional storms)
+Use a random number generator to set the weather (mostly sunny with occasional storms) - DONE (5% chance of storms)
 
 Code should defend against edge cases
 - Only take off from airport you are in
@@ -8,9 +8,9 @@ Code should defend against edge cases
 - planes that are landed cannot land again and must be in an airport
 - etc
 
-Use a test stub for testing the random weather
+Use a test stub for testing the random weather - DONE
 
-keep a seperate file for each class, module, test suite
+keep a seperate file for each class, module, test suite - DONE
 
 Code Review
 
@@ -32,8 +32,10 @@ controller (user)
 user --- instruct plane to land
 airport --- plane has landed
 
+```
 >airport.request_to_land(plane)
 >> "Plane has landed"
+```
 
 COMPLETED USER STORY 1
 - created plane and airport class
@@ -51,8 +53,10 @@ controller (user)
 user --- instruct plane to take off
 airport --- plane has taken off
 
+```
 >airport.request_to_take_off(plane)
 >> "Plane has taken off"
+```
 
 COMPLETED USER STORY 2
 - created a request to take off method which takes plane as argument
@@ -93,11 +97,13 @@ developer
 std airport - 10 planes
 alt airport - 15 planes
 
+```
 >Airport.new
 >> airport_1, capacity = 10
 
 >Airport.new(20)
 >> airport_1, capacity = 20
+```
 
 - will create capacity as a readable piece of information
 - will need to adjust tests on landing if creating default capacity greater than 10 (will set to only be a single airplane capacity)
@@ -167,6 +173,66 @@ airport --- cannot land
 COMPLETED USER STORY 6
 - wrote tests and added in stubs into the test + previous tests for landings
 - corrected tests on the weather_spec
+
+
+EDGE CASE USER STORIES
+
+Edge Case USER STORY 7
+As a system designer
+Airport cannot have a plane take off if there is no planes at the airport
+
+designer
+airport - no planes
+airport - no planes to take off
+
+```
+> airport.request_to_take_off
+>> no planes at airport
+>> "No planes available to take off"
+```
+
+COMPLETED EDGE CASE USER STORY 7
+- added in tests to confirm that planes could not take off if not at the airport
+- refactored other tests to provide better context
+- added landing test to confirm plane joins airport planes list
+
+*Implement below edge cases*
+- can users see what is at an airport? - yes
+
+*Implement Bonus Test*
+
+*Look at code review rubric*
+
+Edge Case USER STORY 8
+Plane can only take off from the airports they are in
+
+plane - needs to leave
+airport - take off (airport pops plane)
+plane removed from airport
+
+>airport.request_to_take_off(plane specifier)
+>> if plane is in the planes array then take off otherwise return failure message
+>> Airport removes plane from Plane array
+
+- to create test with two airports and attempt to take off from both airports with the same plane.
+- adding a status to the plane class which indicates where it is.
+-   Defaults to Flying when created
+- going to add a name to airports because why not
+
+COMPLETED EDGE CASE USER STORY 8
+- refactored previous test cases to be neater and set up test airports appropriately
+- set up a double airport test case
+- added status and location variables to Plane instances
+- test passed for allowing a plane to land that is already landed. 
+
+EDGE CASE USER STORY 9
+Planes that are landed cannot land again and must be in an airport
+
+Edge Case USER STORY 10
+Plane cannot take off if airplane is flying
+
+
+
 
 ## Other
 
