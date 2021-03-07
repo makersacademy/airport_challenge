@@ -4,17 +4,25 @@ class Airport
 
   def initialize
     @planes = []
+    @weather = Weather.new
+  end
+
+  def bad_weather?
+    true if @weather.weather  == "stormy"
   end
 
   def land_plane(plane)
-    fail 'Airport is full' if full?
+    raise 'Airport is full' if full?
+    raise 'Weather is stormy, cannot land' if bad_weather?
 
     @planes << plane
     @planes.last
   end
 
   def take_off
-    fail 'That plane is not here' if empty?
+    raise 'That plane is not here' if empty?
+    raise 'Weather is Stormy, cannot take off' if bad_weather?
+
 
     @planes.pop
   end

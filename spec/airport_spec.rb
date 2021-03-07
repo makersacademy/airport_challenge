@@ -1,5 +1,6 @@
 require 'Airport'
 require 'Plane'
+require 'Weather'
 describe Airport do
     heathrow = Airport.new
     plane = Plane.new
@@ -9,6 +10,7 @@ describe Airport do
   it {is_expected.to respond_to :take_off }
   #I can confirm the plane is no longer at the airport.
   it "releases a plane for take off" do
+     allow(subject).to receive(:bad_weather?) { false }
      subject.land_plane(plane)
      expect(subject.take_off).to eq plane
   end
