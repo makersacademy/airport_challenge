@@ -1,4 +1,5 @@
 require 'Airport'
+require 'Plane'
 describe Airport do
     heathrow = Airport.new
     plane = Plane.new
@@ -19,12 +20,9 @@ describe Airport do
     Airport::CAPACITY.times {subject.land_plane(plane)}
     expect { subject.land_plane(plane) }.to raise_error 'Airport is full'
   end
-
-  #The plane can't take off or land if the weather is bad
-describe Weather do
-  it "Says you can't land or take off if weather is stormy" do
-    allow(subject).to receive(:rand).and_return(5)
-    expect(subject.weather_report).to eq 'Stormy weather, airport closed.'
+  it 'raises an error when the plane is not at the airport' do
+    # Airport::CAPACITY.times {
+    # subject.empty?
+    expect { subject.take_off }.to raise_error 'That plane is not here'
   end
-end
 end
