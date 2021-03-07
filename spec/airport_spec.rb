@@ -9,21 +9,15 @@ describe Airport do
     allow(test_airport).to receive(:stormy?).and_return(false)
   end
 
-  it "responds to .request_to_land(plane)" do
-    is_expected.to respond_to :request_to_land
-  end
+  it { is_expected.to respond_to :request_to_land }
 
-  it "responds to .request_to_take_off(plane)" do
-    is_expected.to respond_to :request_to_take_off
-  end
+  it { is_expected.to respond_to :request_to_take_off }
 
-  it "responds to .planes : see which planes are at the airport" do
-    is_expected.to respond_to :planes
-  end
+  it { is_expected.to respond_to :planes }
 
-  it "responds to .airport_capacity : see the max capacity of the airport" do
-    is_expected.to respond_to :airport_capacity
-  end
+  it { is_expected.to respond_to :airport_capacity }
+
+  it { is_expected.to respond_to :name }
 
   describe "#request_to_land" do
     it "lands a plane succesfully and responds with a confirmation - 'Plane has landed.'" do
@@ -45,7 +39,7 @@ describe Airport do
       expect(test_airport.planes.include?(test_plane)).to eq true
     end
 
-    it "cannot land a plane that is already landed at the airport" do
+    it "cannot land a plane that has already landed at the airport" do
       test_airport.request_to_land(test_plane)
       expect(test_airport.request_to_land(test_plane)).to eq "Plane has already landed at this airport."
     end
@@ -80,7 +74,7 @@ describe Airport do
     end
   end
 
-  context "set alternate capacity airports" do
+  context "can create alternate capacity airports" do
     it "new airports automatically set to DEFAULT_CAPACITY of 10" do
       expect(subject.airport_capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -93,20 +87,20 @@ describe Airport do
       expect(Airport.new(1).airport_capacity).to eq 1
     end
 
-    it "does not allow negative or zero capacity airports - resets to DEFAULT_CAPACITY if requested" do
+    it "does not allow negative or zero capacity airports - resets to DEFAULT_CAPACITY if a non-positive number is specified" do
       expect(Airport.new(0).airport_capacity).to eq Airport::DEFAULT_CAPACITY
       expect(Airport.new(-20).airport_capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
-  context "With two airports" do
+  context "tests with two airports" do
     before do
       test_airport.request_to_land(test_plane)
       test_airport_2.request_to_land(Plane.new)
     end
 
     it "does not allow a plane to land at airport_2 if it is already landed at airport_1" do
-      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane is currently landed at another airport: #{test_airport.name}"
+      expect(test_airport_2.request_to_land(test_plane)).to eq "Plane has already landed at another airport."
     end
 
     it "does not allow a plane to take off from airport_2 if it is at airport_1" do
@@ -115,7 +109,8 @@ describe Airport do
   end
 
   context "Airports can be named, defaults to 'test_airport'" do
-    it { expect(subject.name).to eq "test_airport"}
+    it { expect(subject.name).to eq "test_airport" }
+    it { expect(Airport.new(50, "Heathrow").name).to eq "Heathrow" }
   end
 
 end

@@ -249,8 +249,19 @@ Plane cannot take off if airplane is at another airport
 
 COMPLETED EDGE CASE USER STORY 11
 - added test, passed test with no need to edit code
-- refactored some of the test cases. 
+- refactored some of the test cases.
 
+
+- do my classes and methods have only one responsibility
+- are my attr_readers to open
+
+BONUS
+
+Write an RSpec feature test that lands and takes off a number of planes
+
+*Getting bored of all these 'manual' feature tests? Try creating a feature_spec.rb file inside your spec directory and putting your feature tests in there instead. No more guidance on this one for now ;*
+
+- created a feature_spec.rb
 
 
 
