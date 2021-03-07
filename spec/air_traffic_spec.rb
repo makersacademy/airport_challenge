@@ -3,7 +3,6 @@ require 'airport'
 require 'plane'
 
 describe AirTraffic do
-  controller = AirTraffic.new
   test_airport = Airport.new
   test_plane = Plane.new(test_airport, test_airport)
 
