@@ -4,7 +4,7 @@ I found this really challenging and have submitted a partial solution. The parts
 I have looked at some previous years solutions but not copied from one single one. My code is more of an update of my boris bike
 bike challenge so I didn't manage to integrate a plane landing AT a specific airport.
 I only had airports being passed a plane object but I think you would need to pass a plane an airport object?
------
+
 
 ```
 As an air traffic controller 
