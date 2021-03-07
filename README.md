@@ -25,6 +25,10 @@ On completion of the 6 user stories, I then developed some edge case user storie
 
 Throughout I attempted to refactor the code and slimmed down the tests.
 
+Approach I took was to create 2 classes (Airport and Plane) and 1 Module (Weather) to build the program. 
+- The Airport class contains most of the mechanics of the program and the user interacts primarily with the Airport Instances to control landing and take off of the planes. There are a lot of private methods to facilitate the program, and limit the options for the user to interfer with the mechanics. User can see the values of the instance variables as this will allow the user to decide about what to do next.
+- The Plane class initially was an empty class, but in order to facilitate the edge cases the plane now contains information on where it is and if its flying. The user cannot manipulate the plane class directly, and can only see the status of the plane. 
+
 On completion:
 - all user stories were delivered
 - all RSPEC tests passed
@@ -33,6 +37,7 @@ On completion:
 
 My concerns/potential style violations:
 - I use .send in the airport class to access the Plane private methods to change the plane status when it lands/takes off. I did this to avoid the user being able to change the plane status directly rather than through an airport method but this solution violates encapsulation.
+- The airport contains the planes it has, the planes then contains the airports its in which creates an infinite loop potentially...but does not crash the program.
 - Was not sure how to build a feature_spec, I had a go but do not think it is what is considered a standard feature_spec.rb.
 
 Have fun!
@@ -95,6 +100,13 @@ $ irb
   - Methods:
     - .location (allows you to see the plane instance location)
     - .flying? (tells you if the plane instance is flying or not)
+
+
+Future Improvements
+---------
+- Add a method or class to easily see which planes are listing
+- refine planes method on airport to give a nice list
+- add names to planes.
 
 
 
