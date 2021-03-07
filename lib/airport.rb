@@ -1,10 +1,11 @@
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :weather
   attr_accessor :plane
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
+    @weather = weather
   end
 
   def land(plane)
@@ -17,8 +18,8 @@ class Airport
   end
 
   def take_off(plane)
-
     raise "Plane is already in the air" if plane.flying
+    raise "Planes cannot fly when stormy" if @weather.report == "stormy"
 
     plane.airborne = true
     @plane = plane
@@ -44,4 +45,16 @@ class Plane
 end
 
 class Weather
+  attr_reader :report
+  def initialize(report = self.forecast)
+    @report = report
+  end
+  def forecast
+    number = rand(1..10)
+    if number.odd?
+      "stormy"
+    else
+      "sunny"
+    end
+  end
 end

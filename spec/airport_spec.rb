@@ -47,4 +47,10 @@ describe Airport do
     expect { airport.take_off(plane) }.to raise_error("Plane is already in the air")
   end
 
+  it "won't let planes fly if the weather is stormy" do
+    weather = Weather.new("stormy")
+    airport = Airport.new
+    plane = Plane.new(false)
+    expect{airport.take_off(plane)}.to raise_error "Planes cannot fly when stormy"
+  end
 end

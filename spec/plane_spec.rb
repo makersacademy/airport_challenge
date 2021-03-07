@@ -6,6 +6,8 @@ describe Plane do
   it "changes it's status to airborne = true when it takes off" do
     airport = Airport.new
     plane = Plane.new(false)
+    weather = Weather.new
+    allow(weather).to receive(:rand).and_return(4)
     airport.take_off(plane)
     expect(plane.airborne).to eq true
   end
@@ -17,7 +19,6 @@ describe Plane do
     expect(plane.airborne).to eq false
   end
 
-    it { is_expected.to respond_to :airport_id }
-
+  it { is_expected.to respond_to :airport_id }
 
 end
