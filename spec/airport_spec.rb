@@ -9,10 +9,11 @@ RSpec.describe Airport do
     context "when airport isn't full" do
       it 'allows a plane to land' do
         expect(subject.land(plane)).to eq "Plane landed"
+        expect(subject.planes).to include(plane)
       end
     end
     context "when airport is full" do
-      # before(:example) {subject.planes = [plane, plane, plane, plane, plane]}
+      
       subject do
         Airport.new(Array.new(5, Plane.new))
       end
