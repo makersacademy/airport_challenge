@@ -1,7 +1,7 @@
 class Plane
 
   def land
-    raise ("Airport is full")if "airport is full"
+    raise "Airport is full"
   end
 
   def take_off

@@ -10,12 +10,12 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
-  it 'confirms that not at the airport'do
+  it 'confirms that not at the airport' do
     expect(subject.take_off).to eq("not at the airport")
   end
 
-  it "prevents landing when airport is full" do
-    expect{subject.land}.to raise_error("Airport is full")
+  it 'prevents landing when airport is full' do
+    expect { subject.land }.to raise_error("Airport is full")
   end
-  
+
 end

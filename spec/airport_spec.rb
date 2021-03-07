@@ -3,10 +3,11 @@ require './lib/airport.rb'
 describe Airport do
 
   it 'answers if full' do
-    expect(subject).to respond_to(:full?)
+    expect(subject.full?).to eq(true)
   end
 
-  it 'shows if full' do
-    expect(subject.full?).to eq("full")
+  it 'has default capacity' do
+    expect(subject).to have_exactly(Airport::DEFAULT_CAPACITY).items
   end
+
 end
