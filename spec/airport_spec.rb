@@ -2,8 +2,7 @@ require "airport"
 require "plane"
 
 RSpec.describe Airport do
-  subject {Airport.new}
-  let(:plane) {Plane.new}
+  let(:plane) { Plane.new }
 
   describe '#land' do
     context "when airport isn't full" do
@@ -14,10 +13,10 @@ RSpec.describe Airport do
     end
     context "when airport is full" do
       
-      subject {Airport.new(Array.new(5, Plane.new))}
+      subject { Airport.new(Array.new(5, Plane.new)) }
       
       it 'prevents a plane from landing' do
-        expect{subject.land(plane)}.to raise_error("Airport full; cannot land plane.")
+        expect { subject.land(plane) }.to raise_error("Airport full; cannot land plane.")
       end
     end
   end
@@ -43,7 +42,7 @@ RSpec.describe Airport do
       end
     end
     context 'when capacity argument provided as 10' do
-      subject {described_class.new([], 10)}
+      subject { described_class.new([], 10) }
 
       it 'sets capacity to 10' do
         expect(subject.capacity).to eq(10)
