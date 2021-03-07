@@ -13,8 +13,7 @@ class Plane
     if in_flight == false
       origin.code
     else
-      "Tower, this is #{callsign}, we are en route 
-       to #{destination.code} out of #{origin.code}, out."
+      "Tower, this is #{callsign}, we are en route to #{destination.code} out of #{origin.code}, out."
     end
   end
 
@@ -29,7 +28,9 @@ class Plane
   end
 
   def land(airport_destination)
-    return unless airport_destination.safe_to_land?
+    raise "This callsign has already landed" unless @in_flight == true
+
+    raise "The weather prevents landing" unless airport_destination.safe_to_land?
 
     airport_destination.gates << self
     @in_flight = false

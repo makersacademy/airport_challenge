@@ -15,7 +15,7 @@ class Airport
   end
 
   def safe_to_takeoff?
-    !(local_weather == :stormy) # nice conditional that replaces if blah false else true
+    (local_weather != :stormy) # nice conditional that replaces if blah true else false
   end
 
   def local_weather 

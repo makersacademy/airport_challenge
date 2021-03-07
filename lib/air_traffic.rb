@@ -3,12 +3,6 @@ require './lib/airport'
 require './lib/register'
 
 class AirTraffic
-  attr_reader :airports, :planes
-
-  def initialize
-    @airports = [Airport.new]
-    @planes = [Plane.new]
-  end
 
   def interrogate(plane)
     plane.location

@@ -13,33 +13,13 @@ describe AirTraffic do
 
   it "sends a message to land with clear conditions" do
     allow(test_airport).to receive(:rand).and_return(1)
+    test_plane.takeoff(test_airport)
+    allow(test_airport).to receive(:rand).and_return(1)
     expect(subject.land(test_plane, test_airport)).to eq(false)
   end
 
   it "sends a message to takeoff with clear conditions" do
     allow(test_airport).to receive(:rand).and_return(1)
     expect(subject.takeoff(test_plane, test_airport)).to eq(true)
-  end
-
-  describe 'airports the collection' do
-    it "must be an Array" do
-      expect(subject.airports).to be_a(Array)
-    end
-    controller.airports.each do |airport|
-      it "must contain objects of class Aiport" do
-        expect(airport).to be_a(Airport)
-      end
-    end
-  end
-
-  describe 'planes the collection' do
-    it "must be an Array" do
-      expect(subject.planes).to be_a(Array)
-    end
-    controller.planes.each do |plane|
-      it "must be contain objects of class Plane" do
-        expect(plane).to be_a(Plane)
-      end
-    end
   end
 end
