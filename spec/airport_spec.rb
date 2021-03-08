@@ -1,13 +1,16 @@
 require 'airport'
 
 describe Airport do
+  before do
+    allow(Weather.new).to receive(:rand) { 4 }
+  end
   it 'responds to land' do
     expect(subject).to respond_to(:land)
   end
 
   it 'allows a plane to land' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq(plane)
+    expect(subject.land(plane)).to eq([plane])
   end
 
   it 'responds to take_off' do
@@ -20,12 +23,14 @@ describe Airport do
   end
 
   it 'throws an error when airport is full' do
-    plane = Plane.new
-    subject.land(plane)
+    p plane = Plane.new
+    Airport::DEFAULT_CAPACITY.times {
+      subject.land(plane)
+    }
     expect { subject.land(plane) }.to raise_error("Airport full")
   end
 
-  it 'is initialized with a capacity inout capacity' do
+  it 'is initialized with a capacity input capacity' do
     airport = Airport.new(30)
     expect(airport.capacity).to eq(30)
   end
@@ -48,9 +53,14 @@ describe Airport do
   end
 
   it "won't let planes fly if the weather is stormy" do
-    weather = Weather.new("stormy")
     airport = Airport.new
     plane = Plane.new(false)
     expect{airport.take_off(plane)}.to raise_error "Planes cannot fly when stormy"
+  end
+
+  it "won't let planes land if the weather is stormy" do
+    airport = Airport.new
+    plane = Plane.new(true)
+    expect{airport.land(plane)}.to raise_error "Planes cannot land when stormy"
   end
 end
