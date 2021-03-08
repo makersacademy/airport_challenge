@@ -34,4 +34,8 @@ describe Plane do
     expect { subject.land(@airport, "stormy") }.to raise_error("Too stormy for landing!")
   end
 
+  it 'checks if airport is full' do
+    allow(subject.airport_check).to eq('full')
+  end
+
 end

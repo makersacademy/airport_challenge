@@ -1,9 +1,15 @@
 require './lib/weather.rb'
 
 describe Weather do
-  it 'checks if sunny or stormy' do
+
+  it 'shows if sunny' do
     weather = Weather.new
-    expect(weather.weather).to match("sunny").or match("stormy")
-    p weather.weather
+    allow(weather.weather).to receive("sunny")
   end
+
+  it 'shows if stormy' do
+    weather = Weather.new
+    allow(weather.weather).to receive("stormy")
+  end
+
 end
