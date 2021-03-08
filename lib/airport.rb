@@ -4,9 +4,10 @@ class Airport
 
   def initialize(_capacity = DEFAULT_CAPACITY)
     @planes = []
+    @planes
+    if @planes.count >= DEFAULT_CAPACITY
+      'full'
+    end
   end
 
-  def full?
-    @full = true
-  end
 end

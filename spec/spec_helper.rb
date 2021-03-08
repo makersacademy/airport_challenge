@@ -1,6 +1,5 @@
 require 'simplecov'
 require 'simplecov-console'
-require 'rspec/collection_matchers'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
