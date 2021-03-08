@@ -2,7 +2,7 @@ class Plane
 
   def land(airport, weather)
 
-    raise "Airport is full" if airport.check == 'full'
+    raise "Airport is full" if airport == 'full'
 
     raise "Too stormy for landing!" if weather == "stormy"
 
@@ -12,16 +12,10 @@ class Plane
   def take_off(airport, weather)
     raise "Too stormy for take off!" if weather == 'stormy'
 
-     if airport != nil
-       airport.planes.delete(self)
-     else
-        "Plane is taking off"
-     end
-  end
-
-  def airport_check(airport)
-    if airport.planes.count <= Airport::DEFAULT_CAPACITY
-      'full'
+    if airport != nil
+      airport.planes.delete(self)
+    else
+      "Plane is taking off"
     end
   end
 
