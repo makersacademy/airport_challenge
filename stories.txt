@@ -1,0 +1,87 @@
+Work through user stories writing code with behaviour driven tests
+
+Should follow this process:
+1. Read user story and establish domain model
+2. Write basic feature test to fail
+3. Write code to pass
+3. Use irb to run feature test
+4. Run unit test in rspec to fail
+5. Write code to pass test.
+6. Debug and refactor
+
+User Story 1
+
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport
+
+objects -------------- messages
+
+Controller
+Passengers          get_to_destination
+*Plane               to_land
+*Airport             land_plane
+
+This is running a land method within airport that
+returns a plane which is passed into it as an arguement
+
+
+User story 2
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+controller
+plane                 is_in_the_air
+airport               take_off(plane)
+
+User story 3
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+controller            to_ensure_safety
+plane                 can't_land
+airport               when_full_throws_error
+
+User story 4
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+
+Designer
+Software                  can_be_used_at_different
+Airports                  default_capacity
+
+User story 5
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+controller            ensure_safety
+plane                 can't_take_off
+weather               is_stormy
+
+weather_randomizer = rand(1..10)
+if weather.randomizer.even
+weather = stormy
+else
+weather = sunny
+end
+
+class weather
+attribute forecast
+forecast = randomizer
+end
+
+test
+
+test for randomizer
+test for weather method
+weather = sunny
+weather = stormy
