@@ -1,6 +1,6 @@
 describe Airport do
   let(:plane) { instance_double(Plane, 'Plane') }
-  let(:weather) { instance_double(Weather, 'Weather', forcast: :sunny)}
+  let(:weather) { instance_double(Weather, 'Weather', forcast: :sunny) }
   subject { described_class.new(weather: weather) }
 
   it { is_expected.to respond_to(:capacity).with 0 }

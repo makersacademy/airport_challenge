@@ -8,12 +8,14 @@ class Plane
 
   def land(airport)
     raise LandingError if grounded?
+
     airport.request_landing(self) # defined in AirTrafficControl
     self.status = :ground
   end
 
   def take_off(airport)
     raise TakeOffError unless grounded?
+
     airport.request_take_off(self) # defined in AirTrafficControl
     self.status = :air
   end
