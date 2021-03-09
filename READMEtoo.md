@@ -1,4 +1,4 @@
-# Air Traffic Controller
+# Air Traffic Controller [![Build Status](https://travis-ci.com/StuBehan/airport_challenge.svg?branch=master)](https://travis-ci.com/StuBehan/airport_challenge)
 
 ## Commands for AirTraffic class
 
