@@ -2,16 +2,31 @@ require 'plane'
 
 describe Plane do
 
-  it 'creates an instance of the Plane class' do
-    plane = Plane.new
-    expect(plane).to be_instance_of(Plane)
+  subject { described_class.new }
+
+  it 'initializes new planes in the air' do
+    expect(subject).to be_in_air
+  end 
+
+  describe '#in_air?' do
+    it 'confirms whether a plane is in the air' do
+      expect(subject.in_air?).to eq(true)
+    end
   end
 
-  it { is_expected.to respond_to(:in_air?) }
+  describe '#ground' do
+    it 'changes plane location as not in air' do
+      subject.ground
+      expect(subject).not_to be_in_air
+    end
+  end
 
-  it 'can reveal location status' do
-    plane = Plane.new
-    expect(plane.in_air?).to eq true
+  describe '#airborn' do
+    it 'changes plane location as in the air' do
+      subject.ground
+      subject.airborn
+      expect(subject).to be_in_air
+    end
   end
 
 end
