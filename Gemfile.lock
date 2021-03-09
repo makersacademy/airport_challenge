@@ -11,6 +11,7 @@ GEM
     parser (2.7.0.3)
       ast (~> 2.4.0)
     rainbow (3.0.0)
+    rake (12.3.2)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -50,6 +51,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  rake
   rspec
   rubocop (= 0.79.0)
   simplecov
