@@ -20,7 +20,6 @@ class Plane
 
   def takeoff(airport_destination)
     raise "This callsign is already in flight" unless @in_flight == false
-
     raise "The weather prevents take off" unless origin.safe_to_manoeuvre?
     
     origin.gates -= [self]
@@ -30,9 +29,7 @@ class Plane
 
   def land(airport_destination)
     raise "This callsign has already landed" unless @in_flight == true
-
     raise "The weather prevents landing" unless airport_destination.safe_to_manoeuvre?
-
     raise "At capacity, enter holding circuit" if airport_destination.at_capacity?
 
     airport_destination.gates << self
