@@ -12,43 +12,26 @@ end
 
 
     def land(new_plane)
-
-      if @stormy_weather == true
+        if @stormy_weather == true
          raise " Not allowed to land stormy weather "
-      else
-         true
-
-
-      end
+        else
+          true
+        end
     end
 
+  def full(plane)
+      fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
+  end
 
 
-      def full(plane)
-
-          fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
-
-      end
-
-
-
-
-
-
-
-
-
-
-
-
-def take_off(plane)
+  def take_off(plane)
 
    if @stormy_weather == true
      false
    else
      true
    end
-end
+  end
 
 
 
