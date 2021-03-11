@@ -1,6 +1,7 @@
 class Airport
 
-  FULL_CAPACITY = 20
+FULL_CAPACITY = 20
+
 attr_reader :stormy_weather, :capacity
 
 def initialize(capacity, stormy_weather)
@@ -9,39 +10,35 @@ def initialize(capacity, stormy_weather)
   @plane = []
 end
 
-
-
-    def land(new_plane)
-        if @stormy_weather == true
+  def land(new_plane)
+      if @stormy_weather == false
+          @plane.push(new_plane)
+      elsif @stormy_weather == true
          raise " Not allowed to land stormy weather "
-        else
-          true
-        end
-    end
+      else
+      end
+  end
 
   def full(plane)
       fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
   end
 
-
   def take_off(plane)
-
-   if @stormy_weather == true
+    if @stormy_weather == false
+      @plane.push(plane)
+    elsif @stormy_weather == true
      false
-   else
+    else
      true
-   end
+    end
   end
 
-
-
-
- def confirm_no_plane(plane)
+def confirm_no_plane(plane)
 
    if @capacity == 0
      true
    elsif @capacity <= 20
      false
    end
- end
+end
 end

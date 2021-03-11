@@ -17,7 +17,7 @@ describe 'Airport'do
     airport = Airport.new(20, false)
     plane = Plane.new
     airport.take_off(plane)
-    expect(airport.take_off(plane)).to eq(true)
+    expect(airport).to respond_to(:take_off).with(1).argument
   end
 
   it' instructs a plane to not take off when the weather is stormy 'do
@@ -34,8 +34,8 @@ end
 
   it ' alloweds a plane to land when the wheather is not stormy'do
   airport = Airport.new(20, false)
-  plane = Plane.new
-  expect(airport.land(plane)).to eq(true)
+
+  expect(airport).to respond_to(:land).with(1).argument
 end
 
 it ' it confirms that theres is no longer plane in the airport' do
