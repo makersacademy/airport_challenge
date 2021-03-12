@@ -32,4 +32,19 @@ describe Airport do
     subject.land(plane)
     expect { subject.take_off(plane) }.to output("#{plane} has left #{subject}").to_stdout
   end
+
+  it 'airport takes argument capacity when initialized' do
+    airport = Airport.new(4)
+    expect(airport.capacity).to eq(4)
+  end
+
+  it 'raises error if you try and land plane at an airport at max capacity' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    heathrow = Airport.new
+    heathrow.land(plane1)
+
+    expect{ heathrow.land(plane2) }.to raise_error('Airport full cannot land') 
+  end
+
 end
