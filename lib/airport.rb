@@ -12,7 +12,8 @@ attr_reader :hanger
   end
 
   def take_off(plane)
-
+    @hanger.delete(plane)
+    print "#{plane} has left #{self}"
   end
 
 end
