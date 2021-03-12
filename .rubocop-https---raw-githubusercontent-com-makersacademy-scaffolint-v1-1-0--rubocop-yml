@@ -69,8 +69,6 @@ Metrics/BlockLength:
 #     inject concretes)
 #   * Egregious non-idiomatic ruby like `def getFilename`
 
-AllCops:
-  NewCops: enable
 Layout/IndentationConsistency:
   Enabled: true
 Layout/IndentationWidth:
@@ -202,6 +200,8 @@ Style/BeginBlock:
 Style/BlockComments:
   Enabled: false
 Style/BlockDelimiters:
+  Enabled: false
+Style/BracesAroundHashParameters:
   Enabled: false
 Style/CaseEquality:
   Enabled: false
@@ -339,7 +339,7 @@ Style/MethodCalledOnDoEndBlock:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
-Lint/MissingSuper:
+Style/MethodMissingSuper:
   Enabled: false
 Style/MissingRespondToMissing:
   Enabled: false
@@ -451,7 +451,7 @@ Style/SymbolArray:
   Enabled: false
 Style/SymbolProc:
   Enabled: false
-Layout/IndentationStyle:
+Layout/Tab:
   Enabled: false
 Style/TernaryParentheses:
   Enabled: false

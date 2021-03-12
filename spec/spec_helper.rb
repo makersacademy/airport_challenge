@@ -1,3 +1,7 @@
+=begin
+
+SimpleCov wasn't working:
+
 require 'simplecov'
 require 'simplecov-console'
 
@@ -7,6 +11,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   # SimpleCov::Formatter::HTMLFormatter
 ])
 SimpleCov.start
+=end
 
 RSpec.configure do |config|
   config.after(:suite) do
