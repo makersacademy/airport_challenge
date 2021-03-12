@@ -19,5 +19,13 @@ describe Weather do
 
 
     it { is_expected.to respond_to :stormy? }
+
+    describe '#stormy?' do
+        it 'returns true if the forecast is stormy' do
+            allow(subject).to receive(:forecast) { "stormy" }
+            expect(subject.stormy?).to eq true
+        end
+    end
+
     
 end

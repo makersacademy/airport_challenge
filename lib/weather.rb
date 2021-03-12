@@ -9,9 +9,10 @@ class Weather
     attr_accessor :weather_predictions
 
     def forecast
-        weather_predictions[rand(0..weather_predictions.length)]
+        weather_predictions[rand(0...weather_predictions.length)]
     end
 
     def stormy?
+        forecast == "stormy" ? true : false
     end
 end
