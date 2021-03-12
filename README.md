@@ -1,18 +1,6 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
 Task
 -----
 
@@ -43,6 +31,29 @@ I want to prevent takeoff when weather is stormy
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+How to use
+-----
+
+The programme should be used within a REPL like irb. Once within that environment, there are no pre-programmed class instances, so the user will need to instantiate their own planes and airports using a fairly standard syntax before using the available commands. Examples are given below:
+
+
+```
+Instatiate plane:
+plane_1 = Plane.new("G-BBFX", "LAX")
+=> the first argument is compulsory, giving a plane_id. The second is optional, giving an airport_id to reflect the plane's location. If left empty, this defaults to "IN TRANSIT/AIR"
+
+Instantiate airport:
+airport_1 = Airport.new("LGW", 20)
+=> the first argument is compulsory, giving an airport_id. The second is optional, giving a capacity. If left empty, this defaults to 10 (planes).
+
+Instructions to planes:
+Land: airport_1.land(plane_1)
+Take off: airport_1.take_off(plane_1)
+Report location: plane_1.check_location
+
+```
+
+Airports
 
 My approach
 -----
@@ -83,8 +94,17 @@ Attribute| Format | Example
 plane_ID | "Tail number" | G-EBBT for a de Havilland DH.34 registered in 1922
 airport_ID | IATA airport code (trigram) | LBA for Leeds–Bradford (Airport)
 </br>
+
 Next steps (incomplete)
 -----
+My first thought was actually to do a whole menu structure to separate out the system designer and air traffic controller user story functionality (why should a system designer be able to land planes or an ATC tamper with airport capacity?) and to make the interaction less 'ugly'. The main difference in that implementation would have been to run the whole programme ('airport.rb') from the command line with helpful, programme-generated messages along the way, rather than the more 'raw' irb interaction in this repo, which relies on clunky commands like `plane_1 = Plane.New("LAX", 20)` or `airport_1.land(plane_1)`. 
+
+Changing the code to do this would probably be the main next step I would take. I think it could be done quite easily - in a similar way to the interactive menu in my earlier <a href ='https://github.com/Dominic-Taylor-Dev/student-directory'>student-directory project</a> except probably making the menu a class of its own rather than just a method - but I didn't implement this for a couple of reasons:
+
+1) It would have overcomplicated things, for the actual set of user stories provided
+2) I wasn't confident with simulating user inputs for RSpec tests. I think the syntax would run something like this for an 
+
+There is also other functionality that I could imagine implementing, such as making it possible to save airports
 
 Additional guidance from the original (Makers Academy) brief
 -----
