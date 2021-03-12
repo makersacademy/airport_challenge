@@ -43,8 +43,13 @@ describe Airport do
     plane2 = Plane.new
     heathrow = Airport.new
     heathrow.land(plane1)
+    expect { heathrow.land(plane2) }.to raise_error('Airport full cannot land') 
+  end
 
-    expect{ heathrow.land(plane2) }.to raise_error('Airport full cannot land') 
+  it 'airport capacity can be overridden' do
+    heathrow = Airport.new
+    heathrow.capacity = 20
+    expect(heathrow.capacity).to eq(20)
   end
 
 end
