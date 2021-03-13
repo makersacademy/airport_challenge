@@ -39,8 +39,8 @@ The programme should be used within a REPL like irb. Once within that environmen
 
 ```
 **Instatiate plane (system designer):
-plane_1 = Plane.new("G-BBFX", "LAX")
-=> the first argument is compulsory, giving a plane_id. The second is optional, giving an airport_id to reflect the plane's location. If left empty, this defaults to "IN TRANSIT/AIR"
+plane_1 = Plane.new("G-BBFX")
+=> the argument is compulsory, giving a plane_id. Note: Your plane will instantiate "IN TRANSIT/AIR". You will need to use land to assign it to an airport for the first time.
 
 **Instantiate airport (system designer):
 airport_1 = Airport.new("LGW", 20)
