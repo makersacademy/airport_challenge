@@ -38,18 +38,18 @@ The programme should be used within a REPL like irb. Once within that environmen
 
 
 ```
-Instatiate plane:
+**Instatiate plane (system designer):
 plane_1 = Plane.new("G-BBFX", "LAX")
 => the first argument is compulsory, giving a plane_id. The second is optional, giving an airport_id to reflect the plane's location. If left empty, this defaults to "IN TRANSIT/AIR"
 
-Instantiate airport:
+**Instantiate airport (system designer):
 airport_1 = Airport.new("LGW", 20)
 => the first argument is compulsory, giving an airport_id. The second is optional, giving a capacity. If left empty, this defaults to 10 (planes).
 
-Instructions to planes:
-Land: airport_1.land(plane_1)
-Take off: airport_1.take_off(plane_1)
-Report location: plane_1.check_location
+**Instructions to planes (air traffic controller):
+*Land: airport_1.land(plane_1)
+*Take off: airport_1.take_off(plane_1)
+*Report location: plane_1.check_location
 
 ```
 
