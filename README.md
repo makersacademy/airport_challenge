@@ -34,7 +34,7 @@ I want to prevent landing when weather is stormy
 How to use
 -----
 
-The programme should be used within a REPL like irb. Once within that environment, there are no pre-programmed class instances, so the user will need to instantiate their own planes and airports using a fairly standard syntax before using the available commands. Examples are given below:
+The programme should be used within a REPL like irb. Once within that environment, there are no pre-programmed class instances, so the user will need to instantiate their own planes and airports using a fairly standard syntax before using the available commands (`land`, `take_off` and `check_location`). Examples are given below:
 
 
 ```
@@ -53,7 +53,6 @@ airport_1 = Airport.new("LGW", 20)
 
 ```
 
-Airports
 
 My approach
 -----
@@ -69,8 +68,8 @@ My first step was to represent the objects and messages that I'd need to meet th
 |3. As an air traffic controller, To ensure safety, I want to prevent landing when the airport is full |(Airport)| full?
 |4. As the system designer, So that the software can be used for many different airports, I would like a default airport capacity that can be overridden as appropriate| System designer |
 ||(Airport) | initialize (with default - I picked 10 - and override for capacity)
-|5. As an air traffic controller, To ensure safety, I want to prevent takeoff when weather is stormy| (Airport) | weather_now - to check as part of take_off and land
-|6. As an air traffic controller, To ensure safety, I want to prevent landing when weather is stormy| (Airport) | (weather_now)
+|5. As an air traffic controller, To ensure safety, I want to prevent takeoff when weather is stormy| Weather | weather_now - to check as part of take_off and land
+|6. As an air traffic controller, To ensure safety, I want to prevent landing when weather is stormy| (Weather) | (weather_now)
 </br>
 
 I then imagined what unit tests I'd need to create to meet them (this was also the structure of my workflow - create the tests, one at a time, see them fail, make them pass, and then refactor). A few of these are edge cases e.g. where trying to land a plane that is already in the airport in question. All of these I went on to test through the airport class, although some of the code function being checked was by reference to the plane class in a separate file:
@@ -85,9 +84,8 @@ User story | Unit Test(s)
 | 6. As an air traffic controller, To ensure safety, I want to prevent landing when weather is stormy | - should raise an error "Weather is stormy" if trying to land when airport weather is stormy
 
 </br>
-In addition, whilst not strictly necessary from the given user stories, I thought it prudent to store unique identifiers for each plane and airport, so that handling interactions would be easier from a human point of view (i.e. not having to deal directly with object instance references). For this reason, I thought it would be helpful for each plane object to have a `plane_ID` and each airport to have an `airport_ID` (which I stored in a hash key). Although I didn't introduce any validation, what I had in mind for those values was something like these: 
-
-</br>
+In addition, whilst not strictly necessary from the given user stories, I thought it prudent to store unique identifiers for each plane and airport, so that handling interactions would be easier from a human point of view (i.e. not having to deal directly with object instance references). For this reason, I thought it would be helpful for each plane object to have a `plane_ID` and each airport to have an `airport_ID` (which I stored in a hash key). Although I didn't introduce any validation, what I had in mind for the user to input was something like these: 
+</br></br>
 
 Attribute| Format | Example
 ---|---|---
