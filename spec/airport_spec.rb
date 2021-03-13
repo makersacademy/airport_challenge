@@ -52,7 +52,8 @@ describe Airport do
   it 'should raise an error "Plane not airborne" if trying to land when plane
       is not in the air (could be already in airport or in another airport)' do
     new_airport = Airport.new('AIRPORT') # set airport capacity to zero
-    new_plane = Plane.new('PLANE', 'ANY AIRPORT')
+    new_plane = Plane.new('PLANE')
+    new_plane.plane_attributes[:airport_id] = "ANY AIRPORT"
     expect { new_airport.land(new_plane) }.to raise_error('Plane not airborne')
   end
 
@@ -114,7 +115,8 @@ describe Airport do
   it "plane 'airport_id' should revert to 'IN TRANSIT/AIR' when taking off" do
     allow_any_instance_of(Weather).to receive(:weather_now).and_return('clear')
     new_airport = Airport.new('AIRPORT')
-    new_plane = Plane.new('PLANE', new_airport.airport_attributes[:airport_id])
+    new_plane = Plane.new('PLANE')
+    new_plane.plane_attributes[:airport_id] = new_airport.airport_attributes[:airport_id]
     new_airport.airport_attributes[:planes] << new_plane
     new_airport.take_off(new_plane)
     expect(new_plane.plane_attributes[:airport_id]).to eq('IN TRANSIT/AIR')
@@ -125,7 +127,8 @@ describe Airport do
     it "should return the correct location for a plane that has taken off ('IN TRANSIT/AIR')" do
       allow_any_instance_of(Weather).to receive(:weather_now).and_return('clear')
       new_airport = Airport.new('AIRPORT')
-      new_plane = Plane.new('PLANE', new_airport.airport_attributes[:airport_id])
+      new_plane = Plane.new('PLANE')
+      new_plane.plane_attributes[:airport_id] = new_airport.airport_attributes[:airport_id]
       new_airport.airport_attributes[:planes] << new_plane
       new_airport.take_off(new_plane)
       expect(new_plane.check_location).to eq('IN TRANSIT/AIR')

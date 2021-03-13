@@ -14,7 +14,8 @@ describe Plane do
     it "should return the correct location for a plane that has taken off ('IN TRANSIT/AIR')" do
       allow_any_instance_of(Weather).to receive(:weather_now).and_return('clear')
       new_airport = Airport.new('AIRPORT')
-      new_plane = Plane.new('PLANE', new_airport.airport_attributes[:airport_id])
+      new_plane = Plane.new('PLANE')
+      new_plane.plane_attributes[:airport_id] = new_airport.airport_attributes[:airport_id]
       new_airport.airport_attributes[:planes] << new_plane
       new_airport.take_off(new_plane)
       expect(new_plane.check_location).to eq('IN TRANSIT/AIR')

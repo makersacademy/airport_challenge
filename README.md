@@ -93,7 +93,20 @@ plane_ID | "Tail number" | G-EBBT for a de Havilland DH.34 registered in 1922
 airport_ID | IATA airport code (trigram) | LBA for Leeds–Bradford (Airport)
 </br>
 
-Next steps (incomplete)
+Next steps (Fixes)
+-----
+Most urgently there are a couple of kinks I didn't have time to iron out. The most major (that I caught...!) is that when I finished my first pass of the code, planes could be instantiated with a second optional argument, `airport_id`, indicating their location (with a default value of 'IN TRANSIT/AIR'). The `airport_id` value is not necessarily unique (I don't know a way to validate/enforce uniqueness of airport instances' `airport_id` without adding yet another object), and there is therefore no reliable process to automate the relevant airport 'knowing' that the plane has been instantiated there (in terms of the way the code is written, this would look like the relevant airport holding the plane instance in an array). If I'd left it that way, a plane instantiated anywhere other than 'IN TRANSIT/AIR' would not be able to leave the airport (`take_off`) as the airport will raise an error saying it's not there. Nor could that plane `land` anywhere new, because the `land` method checks that the plane is in the air to deem the request valid.
+
+To fix this I could:
+
+1) Simply remove the option to instantiate a plane alredy in an airport - this what I did
+2) Add a flag into plane properties when instantiating that class. The flag would note the plane instance is new so that it can be treated differently as a one-off the first time it tries to take off or land - bypassing the 'no such plane here' error mentioned above. However, this would be a bit messy and would still lead to a mismatch between plane and airport information on where the plane is located until the `land`/`take_off` method is used.
+3) Add a method call into the initialize method for planes to ensure it is 'pushed' into the @planes array of the appropriate airport instance (still has the issue of airport_id being non-unique so some difficulty identifying the airport instance with confidence).
+4) Create a new object to represent the 'airport network' as a whole, keeping track of all plane and airport instances, and ensuring that only unique airport_id and plane_id can be assigned when instantiating.
+
+There may also be other, better ways of fixing this - please let me know!
+
+Next steps (Features/functionality)
 -----
 My first thought was actually to do a whole menu structure to separate out the system designer and air traffic controller user story functionality (why should a system designer be able to land planes or an ATC tamper with airport capacity?) and to make the interaction less 'ugly'. The main difference in that implementation would have been to run the whole programme ('airport.rb') from the command line with helpful, programme-generated messages along the way, rather than the more 'raw' irb interaction in this repo, which relies on clunky commands like `plane_1 = Plane.New("LAX", 20)` or `airport_1.land(plane_1)`. 
 
@@ -102,34 +115,4 @@ Changing the code to do this would probably be the main next step I would take. 
 1) It would have overcomplicated things, for the actual set of user stories provided
 2) I wasn't confident with simulating user inputs for RSpec tests. I think the syntax would run something like this for an 
 
-There is also other functionality that I could imagine implementing, such as making it possible to save airports
-
-Additional guidance from the original (Makers Academy) brief
------
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+There is also other functionality that I could imagine implementing, such as making it possible to save airports.
