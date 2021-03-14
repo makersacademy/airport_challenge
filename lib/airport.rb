@@ -32,6 +32,7 @@ class Airport
     @planes.delete(plane)
     plane_state_change(plane)
     "Plane #{plane} has taken off."
+
   end
 
   def airport_full
