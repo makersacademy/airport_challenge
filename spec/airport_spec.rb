@@ -52,4 +52,16 @@ describe Airport do
     expect(heathrow.capacity).to eq(20)
   end
 
+  # it 'raises error if stormy and stops take off' do
+  #   # arrange
+  #   today = Weather.new
+  #   allow(today).to receive(:weather) { "stormy" }
+  #   plane1 = Plane.new
+  #   heathrow = Airport.new
+  #   # act
+  #   heathrow.land(plane1)
+  #   # assertion
+  #   expect { heathrow.take_off(plane1) }.to raise_error('Stormy - Cannot takeoff')
+  # end
+
 end
