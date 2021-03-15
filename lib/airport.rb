@@ -18,7 +18,7 @@ class Airport
   end
 
   def max_capacity?
-    @planes.count >= @capacity
+    plane_count >= @capacity
   end
 
   def plane_count

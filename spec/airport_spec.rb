@@ -7,13 +7,13 @@ describe Airport do
     context 'take off and landing' do
       
       it 'a plane is permitted to land' do
-        expect{ airport.allow_take_off(plane) }.to change {airport.plane_count}.by(1)
+        expect{ airport.receive(plane) }.to change {airport.plane_count}.by(1)
       end
 
       it 'a plane is permitted to take off' do
         airport = Airport.new
         airport.receive(plane)
-        expect{ airport.allow_take_off(plane) }.to change {airport.plane_count}.by(1)
+        expect{ airport.allow_take_off(plane) }.to change {airport.plane_count}.by(-1)
       end
       
     end
