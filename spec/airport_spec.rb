@@ -16,15 +16,14 @@ describe 'Airport'do
    it' instructs a plane to take off when the weather is not stormy 'do
     airport = Airport.new(20, false)
     plane = Plane.new
-    airport.take_off(plane)
-    expect(airport).to respond_to(:take_off).with(1).argument
+    20.times{airport.land(plane)}
+    expect(airport.take_off).to eq(19)
   end
 
   it' instructs a plane to not take off when the weather is stormy 'do
    airport = Airport.new(20, true)
-   plane = Plane.new
-   airport.take_off(plane)
-   expect(airport.take_off(plane)).to eq(false)
+   airport.take_off
+   expect(airport.take_off).to eq(false)
  end
  it ' prevents a plane to land when the wheather is stormy'do
   airport = Airport.new(17, true)
@@ -34,11 +33,10 @@ end
 
   it ' alloweds a plane to land when the wheather is not stormy'do
   airport = Airport.new(20, false)
-
   expect(airport).to respond_to(:land).with(1).argument
 end
 
-it ' it confirms that theres is no longer plane in the airport' do
+it 'confirms that theres is no longer plane in the airport' do
   airport = Airport.new(0, false)
   plane = Plane.new
   expect(airport.confirm_no_plane(plane)).to eq(true)
@@ -51,7 +49,7 @@ it ' it confirms that theres is no longer plane in the airport' do
   end
      it 'it raises an error when the airport is full capacity'do
      #full_capacity = Airport::FULL_CAPACITY
-     airport = Airport.new(20, true)
+     airport = Airport.new(21, true)
      plane = Plane.new
      expect{airport.full(plane)}.to raise_error " Full capacity exceede "
      end
