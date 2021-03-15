@@ -18,6 +18,13 @@ class Airport
     end
   end
 
+  attr_accessor :planes, :capacity
+  DEFAULT_CAPACITY = 10
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes = []
+    @capacity = capacity
+  end
+
   def prevent_landing(plane)
     raise "plane cannot land when airport is full"
     if @planes.count >= @capacity
