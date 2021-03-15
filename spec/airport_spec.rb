@@ -44,3 +44,11 @@ describe Airport do
       expect(airport.capacity).to eq(10)
     end
   end
+
+  describe "prevent_take_off" do
+    it "If weather is stormy prevent take off" do
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport.take_off(plane)).to be true
+    end
+  end
