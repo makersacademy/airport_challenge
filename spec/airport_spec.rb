@@ -43,26 +43,22 @@ describe Airport do
 
   # not possible for a plane to land at an airport if full
   it 'should raise an error "Airport full" if trying to land when airport is already at capacity' do
-    new_airport = Airport.new('AIRPORT', 0) # set airport capacity to zero
-    new_plane = Plane.new('PLANE')
-    expect { new_airport.land(new_plane) }.to raise_error('Airport full')
+    expect { Airport.new('AIRPORT', 0).land(Plane.new('PLANE')) }.to raise_error('Airport full')
   end
 
   # not possible for a plane to land if it's not in the air (or in transit)
   it 'should raise an error "Plane not airborne" if trying to land when plane
       is not in the air (could be already in airport or in another airport)' do
-    new_airport = Airport.new('AIRPORT') # set airport capacity to zero
     new_plane = Plane.new('PLANE')
     new_plane.plane_attributes[:airport_id] = "ANY AIRPORT"
-    expect { new_airport.land(new_plane) }.to raise_error('Plane not airborne')
+    expect { Airport.new('AIRPORT').land(new_plane) }.to raise_error('Plane not airborne')
   end
 
   # not possible for a plane to land at an airport if stormy
   it 'should raise an error "Weather is stormy" if trying to land when airport weather is stormy' do
     allow_any_instance_of(Weather).to receive(:weather_now).and_return('stormy')
-    new_airport = Airport.new('AIRPORT')
     new_plane = Plane.new('PLANE')
-    expect { new_airport.land(new_plane) }.to raise_error('Weather is stormy')
+    expect { Airport.new('AIRPORT').land(new_plane) }.to raise_error('Weather is stormy')
   end
 
   # possible for a plane to land at an airport if clear and airport not full
