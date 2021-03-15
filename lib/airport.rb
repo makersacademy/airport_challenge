@@ -5,7 +5,7 @@ class Airport
   attr_reader :hanger
   attr_accessor :capacity
   DEFAULT_CAPACITY = 1 
-  today_weather = Weather.new.weather
+  # today_weather = Weather.new.weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = Array.new
