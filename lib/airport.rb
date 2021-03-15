@@ -2,32 +2,27 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  def initialize(capacity = 40)
+  DEFAULT = 40
+  def initialize(capacity = DEFAULT)
     @capacity = capacity
-  end 
-  
-  def planes
     @planes = []
-    p @planes
   end 
 
   def receive(plane)
     raise 'Airport is at maximum capacity.' if max_capacity?
     @planes << plane
-    planes.count -= 1
   end
 
   def allow_take_off(plane)
-    planes.delete(plane)
-    planes.count -= 1
+    @planes.delete(plane)
   end
 
   def max_capacity?
-    planecount >= @capacity
+    @planes.count >= @capacity
   end
 
   def plane_count
-    planes.count
+    @planes.count
   end
 
 end
