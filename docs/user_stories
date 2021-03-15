@@ -1,0 +1,17 @@
+Airport (Traffic controller)
+1. Receive planes [plane, airport]
+2. Release planes [plane, aiport]
+3. Count planes - to prevent landing when full
+
+Plane (Traffic contorller)
+1. Can take off [airport]
+2. Can land [airport]
+3. Knows status
+
+Weather
+1. Can be sunny [airport]
+2. Can be stormy [airport] - prevent landing
+
+
+Classes: Plane, Airport
+Module: Weather
