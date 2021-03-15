@@ -52,6 +52,11 @@ I solved this challenge using TDD, as well as the BDD cycle as guidance. Below a
 • Rubocop tests did not bring up any offences.
 • Test coverage of around 99%.
 
+#### Improvements
+• There is still some repetition in the spec files that can be avoided with reorganisation of the tests and implementation of more "before do" blocks.
+• Certain functions in the airport.rb file are lengthy and can probably be broken down into more individual functions.
+
+
 ## Tech used
 • Ruby
 • Rspec (tests)

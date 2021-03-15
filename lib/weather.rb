@@ -1,6 +1,7 @@
 class Weather
 
-  WEATHER_PREDICTIONS = ["stormy", "sunny", "sunny", "stormy", "sunny", "sunny", "sunny"]
+#   WEATHER_PREDICTIONS = ["stormy", "sunny", "sunny", "stormy", "sunny", "sunny", "sunny"]
+  WEATHER_PREDICTIONS = [:stormy, :sunny, :sunny, :stormy, :sunny, :sunny, :sunny]
 
   def initialize(weather_predictions = WEATHER_PREDICTIONS)
     @weather_predictions = weather_predictions
@@ -13,6 +14,6 @@ class Weather
   end
 
   def stormy?
-    forecast == "stormy"
+    forecast == :stormy
   end
 end

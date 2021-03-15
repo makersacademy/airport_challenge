@@ -21,7 +21,7 @@ describe Weather do
 
   describe '#stormy?' do
     it 'returns true if the forecast is stormy' do
-      allow(subject).to receive(:forecast) { "stormy" }
+      allow(subject).to receive(:forecast) { :stormy }
       expect(subject.stormy?).to eq true
     end
   end
