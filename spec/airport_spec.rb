@@ -36,12 +36,11 @@ describe Airport do
 # As an air traffic controller
 # To ensure safety
 # I want to prevent landing when the airport is full
-  describe "receive plane"
-    it "Has a default capacity which can not be changed" do
+  describe "prevent_landing"
+    it "Prevents landing when the airport is full by using a default capacity" do
       airport = Airport.new
       plane = Plane.new
       airport.capacity = 10
       expect(airport.capacity).to eq(10)
     end
   end
-end
