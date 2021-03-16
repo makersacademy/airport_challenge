@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-// Tests
+<h2>Tests</h2>
 
 To Check tests and test coverage, clone/fork the repo and navigate to the root directory.
 From there, run `rspec` in the terminal.
