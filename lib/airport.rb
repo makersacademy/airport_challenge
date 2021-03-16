@@ -15,16 +15,13 @@ DEFAULT_CAPACITY = 10
   end 
 
   def take_off(plane)
-  end 
-
-
-  def instruct_take_off(plane)
-    raise 'The place cannot take off in stormy weather' if stormy?
-    @planes.delete(plane)
+     raise 'The place cannot take off in stormy weather' if stormy?
+     @planes.delete(plane)
   end 
 
   def stormy?
-  rand(1..100) > 75
+    rand(1..100) > 75
   end
+  
 end
 
