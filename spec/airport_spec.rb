@@ -53,6 +53,13 @@ it 'confirms that theres is no longer plane in the airport' do
      plane = Plane.new
      expect{airport.full(plane)}.to raise_error " Full capacity exceede "
      end
+     it 'confirms that there is no longer plane in the airport'do
+     airport = Airport.new(0, false)
+     plane = Plane.new
+     airport.land(plane)
+     expect{airport.take_off}.to raise_error " There is no longer plane in the airport "
+    end 
+
  end
 
 

@@ -25,13 +25,19 @@ end
   end
 
   def take_off
-    if @stormy_weather == false
-      @planes.pop
-    return @planes.count
-    elsif @stormy_weather == true
-      false
-    end
+      if  @capacity == 0
+        fail " There is no longer plane in the airport "
+      elsif @stormy_weather == true
+        false
+      elsif
+        @stormy_weather == false
+        @planes.pop
+        return @planes.count
+      end
   end
+
+
+
 
 def confirm_no_plane(plane)
 
