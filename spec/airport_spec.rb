@@ -58,7 +58,7 @@ it 'confirms that theres is no longer plane in the airport' do
      plane = Plane.new
      airport.land(plane)
      expect{airport.take_off}.to raise_error " There is no longer plane in the airport "
-    end 
+    end
 
  end
 

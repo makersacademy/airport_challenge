@@ -16,6 +16,8 @@ end
           @planes.push(new_plane)
       elsif @stormy_weather == true
          raise " Not allowed to land stormy weather "
+      elsif @capacity >= FULL_CAPACITY
+         fail " Full capacity exceed "
       else
       end
   end
