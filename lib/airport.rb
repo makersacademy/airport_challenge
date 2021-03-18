@@ -12,19 +12,20 @@ def initialize(capacity, stormy_weather)
 end
 
   def land(new_plane)
-      if @stormy_weather == false
-          @planes.push(new_plane)
-      elsif @stormy_weather == true
+        if @capacity >= FULL_CAPACITY
+          raise " Full capacity "
+        elsif @stormy_weather == true
          raise " Not allowed to land stormy weather "
-      elsif @capacity >= FULL_CAPACITY
-         fail " Full capacity exceed "
-      else
-      end
+        elsif @stormy_weather == false
+            @planes.push(new_plane)
+        else
+        end
   end
 
-  def full(plane)
-      fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
-  end
+
+  # def full(plane)
+  #     fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
+  # end
 
   def take_off
       if  @capacity == 0

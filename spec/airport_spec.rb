@@ -51,7 +51,8 @@ it 'confirms that theres is no longer plane in the airport' do
      #full_capacity = Airport::FULL_CAPACITY
      airport = Airport.new(21, true)
      plane = Plane.new
-     expect{airport.full(plane)}.to raise_error " Full capacity exceede "
+     expect{airport.land(plane)}.to raise_error " Full capacity "
+
      end
      it 'confirms that there is no longer plane in the airport'do
      airport = Airport.new(0, false)
@@ -63,7 +64,8 @@ it 'confirms that theres is no longer plane in the airport' do
  end
 
 
-
+ #expected Exception with " Full capacity exceede "
+ #<RuntimeError:  Full capacity exceed > with backtrace:
 
 # it' prevents the plane landing when the wheather is stormy' do
 #   airport = Airport.new
