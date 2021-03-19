@@ -23,10 +23,6 @@ end
   end
 
 
-  # def full(plane)
-  #     fail " Full capacity exceede " if  @capacity >= FULL_CAPACITY
-  # end
-
   def take_off
       if  @capacity == 0
         fail " There is no longer plane in the airport "
@@ -38,8 +34,6 @@ end
         return @planes.count
       end
   end
-
-
 
 
 def confirm_no_plane(plane)
