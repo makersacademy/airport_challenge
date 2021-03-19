@@ -26,17 +26,17 @@ end
   expect(airport).to respond_to(:land).with(1).argument
 end
 
-  it 'confirms that theres is no longer plane in the airport' do
-  airport = Airport.new(0, false)
-  plane = Plane.new
-  expect(airport.confirm_no_plane(plane)).to eq(true)
-  end
+  # it 'confirms that theres is no longer plane in the airport' do
+  # airport = Airport.new(0, false)
+  # plane = Plane.new
+  # expect(airport.confirm_no_plane(plane)).to eq(true)
+  # end
 
-  it ' it confirms that there is plane in the airport' do
-    airport = Airport.new(20, true)
-    plane = Plane.new
-    expect(airport.confirm_no_plane(plane)).to eq(false)
-  end
+  # it ' it confirms that there is plane in the airport' do
+  #   airport = Airport.new(20, true)
+  #   plane = Plane.new
+  #   expect(airport.confirm_no_plane(plane)).to eq(false)
+  # end
 
      it 'it raises an error when the airport is full capacity'do
      airport = Airport.new(21, true)

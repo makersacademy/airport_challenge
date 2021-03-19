@@ -35,13 +35,12 @@ end
       end
   end
 
-
-def confirm_no_plane(plane)
-
-   if @capacity == 0
-     true
-   elsif @capacity <= 20
-     false
-   end
-end
+# def confirm_no_plane(plane)
+#
+#    if @capacity == 0
+#      true
+#    elsif @capacity <= 20
+#      false
+#    end
+# end
 end
