@@ -1,0 +1,3 @@
+class Plane
+  true
+end
