@@ -1,5 +1,10 @@
-class Plane
+class Plane 
+
     def initialize
-    @plane = plane
+        @fly = true
     end
+
+
+    attr_accessor :fly
+
 end

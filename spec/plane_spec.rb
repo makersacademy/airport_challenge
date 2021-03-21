@@ -1,9 +1,12 @@
-require './lib/plane.rb'
+require 'plane.rb'
 
-RSpec.describe Plane do 
-    it 'is a new plane' do
-        plane = Plane.new
+describe Plane do 
 
-        expect (subject).to eq(plane)
+    let(:plane) { Plane.new }
+
+    describe '#fly' do
+    it 'shows the plane is flying' do 
+        expect(plane.fly).to eq true
+    end
     end
 end

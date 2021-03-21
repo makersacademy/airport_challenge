@@ -1,42 +1,49 @@
-require './lib/airport.rb'
+require 'airport.rb'
+require 'plane.rb'
+require_relative 'plane_spec.rb'
 
-RSpec.describe Airport do
 
-it 'shows how many planes are at the airport' do
-  airport = Airport.new
+describe Airport do 
 
-  expect(airport.planes_landed).to eq(1)
-  end
-end
+  let(:airport) {Airport.new}
+  let(:plane)   {Plane.new}
 
-  describe '#land' do 
-    it 'to land a plane' do
-    airport = Airport.new
 
-    airport.land(1)
-
-    expect { airport.land.to respond_to :land }
-  end
-  
-  describe '#land' do 
-    airport = Airport.new
-
-    airport.land(1)
-
-    it "says you can't land the airport is full" do
-    expect(airport.land).to respond_to(@capacity)
+  # capacity is at 1 originally 
+  it 'knows what the capacity of the airport is' do 
+    expect(airport.capacity).to eq Airport::MAX_CAPACITY
   end
 
-  describe 'full' do
-    it "says the airport is full and won't allow any
-    planes to land" do
-
-    airport = Airport.new
-    
-    expect(airport.full).to eq(@capacity)
-
-    airport.full
+# the land method allows planes to land - increasing @planes
+describe '#land' do  
+it 'allows planes to land' do 
+    expect(airport.planes).to eq(airport.land(plane))
   end
-end
-end
+
+  # @planes adds up landed planes
+  it 'keeps a track of how many planes are at the aiport' do
+    airport.land(plane)
+    expect(airport.landed_planes).to eq(airport.landed_planes)
+  end
+
+  # it should error if a landed plane tries to land
+   it 'does not allow planes to land when the airport is full' do
+     expect { airport.land }.to raise_error 'Airport capacity reached MAX_CAPACITY' if @planes = airport.airport_full
+   end
+
+   it 'stops a plane flying when it has landed' do 
+    plane = Plane.new
+    plane.fly = false
+    expect{ airport.land(plane) }.to raise_error 'Plane not flying.'
+   end
+  end
+
+  # allows planes to take off and remove 1 from @planes
+  describe '#take_off' do
+  it 'allows planes to take off' do 
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.take_off(plane)).to eq @planes
+  end
+  end
 end
