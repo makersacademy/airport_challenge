@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'airport'
+require 'plane'
 # User story:
 # As an air traffic controller
 # So I can get passengers to a destination
@@ -36,19 +37,38 @@ describe Airport do
 # As an air traffic controller
 # To ensure safety
 # I want to prevent landing when the airport is full
-  describe "prevent_landing"
+  describe "prevent_landing" do
     it "Prevents landing when the airport is full by using a default capacity" do
       airport = Airport.new
-      plane = Plane.new
       airport.capacity = 10
       expect(airport.capacity).to eq(10)
     end
   end
 
-  describe "prevent_take_off" do
-    it "If weather is stormy prevent take off" do
-      airport = Airport.new
+  describe "override" do
+    it "overrides airport capacity if needed" do
+      airport = Airport.new(9)
+      expect(airport.capacity).to eq(9)
+    end
+    it "can add more than 10 planes" do
+      airport = Airport.new(1)
+      expect(airport.capacity).to eq(1)
       plane = Plane.new
-      expect(airport.take_off(plane)).to be true
+      airport.land_plane(plane)
+      plane_two = Plane.new
+      expect { airport.land_plane(plane_two) }.to raise_error 'airport capacity full'
     end
   end
+end
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
+
+#   describe "prevent_take_off" do
+#     it "If weather is stormy prevent take off" do
+#        airport = Airport.new
+#        plane = Plane.new
+#        airport.prevent_take_off(plane)
+#        expect { airport.prevent_take_off(planes) }.to raise_error 'weather is stormy'
+#     end
+#   end
