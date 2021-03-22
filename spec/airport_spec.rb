@@ -65,7 +65,6 @@ end
 # As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
-
 #   describe "prevent_take_off" do
 #     it "If weather is stormy prevent take off" do
 #        airport = Airport.new
