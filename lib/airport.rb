@@ -1,22 +1,33 @@
 require_relative 'plane'
 require_relative 'weather' 
 
-class Controller
-    def plane (plane)
-        # This should be edited so that each plane called is 
-        # is one of 20 that are registered at the aiport
-        @plane = Plane.new
-    end
+class Airport
+  attr_reader :capacity, :hangar
 
-    def safe_landing(plane)
-      weather = Weather.new
-      weather.stormy?? (fail 'unsafe conditions') : (@plane.land)
-    
-    end
+  def initialize(capacity)
+    @capacity = capacity
+    @hangar = [Plane.new]
 
-    def safe_takeoff(plane)
-      weather = Weather.new
-      weather.stormy?? (fail 'unsafe conditions') : (@plane.takeoff)
-    end
+  end
 
+  def safe_landing
+    @plane = Plane.new
+    weather = Weather.new
+    if weather.stormy == true
+      (fail 'unsafe conditions')
+    else
+      (@plane.land)
+    end
+    @hangar.push(@plane)
+  end
+
+  def safe_takeoff
+    weather = Weather.new
+    @plane = @hangar.pop
+    if weather.stormy == true
+      (fail 'unsafe conditions')
+    else
+      (@plane.take_off)
+    end
+  end
 end

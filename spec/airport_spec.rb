@@ -1,28 +1,32 @@
-require 'spec_helper'
 require 'airport'
 require 'weather'
+require 'plane'
 
-describe 'Controller' do 
-  controller = Controller.new
-  boeing747 = controller.plane(boeing747)
-  it 'instructs a plane to land' do
-    expect(boeing747).to respond_to(:land)
+describe Airport do
+  let(:subject) {Airport.new(3)}
+  describe '#safe_landing' do
+    it 'lands plane and sends to hangar' do
+      expect{subject.safe_landing}.to change{subject.hangar.length}.by 1
+    end
+    
+    context 'landing in unsafe conditions' do
+      it 'raises error in unsafe conditions' do
+        expect{subject.safe_landing}.to raise_error{'unsafe conditions'}
+      end
+    end
+  end
+
+  describe '#safe_takeoff' do
+  it 'take off plane and remove from hangar' do
+    expect{subject.safe_takeoff}.to change{subject.hangar.length}.by -1
   end
   
-  it 'checks weather is safe for landing' do
-    weather = Weather.new
-    weather.stormy? == true
-    expect(controller.safe_landing(boeing747)).to raise_error('unsafe conditions')
+  context 'take off in unsafe conditions' do
+    it 'raises error in unsafe conditions' do
+      expect{subject.safe_takeoff}.to raise_error{'unsafe conditions'}
+    end
   end
-    
-  it 'instructs a plane to take off' do
-    expect(boeing747).to respond_to(:takeoff)
-  end
-    
-  it 'checks weather is safe for takeoff' do
-    weather = Weather.new
-    weather.stormy? == true
-    expect(controller.safe_takeoff(boeing747)).to raise_error('unsafe conditions')
-  end
+end
 
-  end
+
+end
