@@ -44,9 +44,11 @@ describe Airport do
       expect(airport.capacity).to eq(10)
     end
   end
-
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
   describe "override" do
-    it "overrides airport capacity if needed" do
+    it "default capacity which can be overridden" do
       airport = Airport.new(9)
       expect(airport.capacity).to eq(9)
     end
