@@ -26,6 +26,11 @@ describe Airport do
       expect{subject.safe_takeoff}.to raise_error{'unsafe conditions'}
     end
   end
+
+  describe '#full_airport' do
+    it 'prevents landing if airport is at capacity' do
+      expect{subject.safe_landing}.to raise_error{'airport is full'}
+    end
 end
 
 
