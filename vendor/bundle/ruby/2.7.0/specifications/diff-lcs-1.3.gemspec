@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze, "Artistic-2.0".freeze, "GPL-2.0+".freeze]
   s.rdoc_options = ["--main".freeze, "README.rdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8".freeze)
-  s.rubygems_version = "3.1.2".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "Diff::LCS computes the difference between two Enumerable sequences using the McIlroy-Hunt longest common subsequence (LCS) algorithm".freeze
 
-  s.installed_by_version = "3.1.2" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

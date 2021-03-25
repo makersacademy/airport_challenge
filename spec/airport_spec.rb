@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let (:weather) { double :weather }
+  let (:plane) { Plane.new }
 
   before do
     allow(subject.weather).to receive(:storm?) { :sun }
@@ -10,12 +11,10 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
 
   it 'instructs a plane to land' do
-    plane = Plane.new
     expect(subject.land(plane)).to eq [plane]
   end
 
   it 'instructs a plane to take off' do
-    plane = Plane.new
     subject.land(plane)
     expect(subject.take_off).to eq [plane]
   end
@@ -31,6 +30,7 @@ describe Airport do
   end
 
   context 'when there is a storm' do
+    
     before do
       allow(subject.weather).to receive(:storm?) { :storm }
     end
@@ -40,7 +40,7 @@ describe Airport do
     end
 
     it 'prevents landing when there is a storm' do
-      expect{ subject.land Plane.new }.to raise_error 'Cannot land the plane, poor weather'
+      expect{ subject.land(plane) }.to raise_error 'Cannot land the plane, poor weather'
   end
 
   end

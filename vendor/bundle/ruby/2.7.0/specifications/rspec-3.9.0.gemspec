@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/rspec".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--charset=UTF-8".freeze]
-  s.rubygems_version = "3.1.2".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "rspec-3.9.0".freeze
 
-  s.installed_by_version = "3.1.2" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

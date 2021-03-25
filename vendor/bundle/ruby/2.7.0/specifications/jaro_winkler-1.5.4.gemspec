@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
   s.files = ["ext/jaro_winkler/extconf.rb".freeze]
   s.homepage = "https://github.com/tonytonyjan/jaro_winkler".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.1.2".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "An implementation of Jaro-Winkler distance algorithm written \\ in C extension which supports any kind of string encoding.".freeze
 
-  s.installed_by_version = "3.1.2" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

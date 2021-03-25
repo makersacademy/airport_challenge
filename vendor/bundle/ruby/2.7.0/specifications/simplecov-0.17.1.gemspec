@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/colszowka/simplecov".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7".freeze)
-  s.rubygems_version = "3.1.2".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "Code coverage for Ruby 1.9+ with a powerful configuration library and automatic merging of coverage across test suites".freeze
 
-  s.installed_by_version = "3.1.2" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

@@ -15,10 +15,10 @@ Gem::Specification.new do |s|
   s.files = ["DEMO.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "NOTICE.md".freeze, "README.md".freeze]
   s.homepage = "http://rubyworks.github.com/ansi".freeze
   s.licenses = ["BSD-2-Clause".freeze]
-  s.rubygems_version = "3.1.2".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "ANSI at your fingertips!".freeze
 
-  s.installed_by_version = "3.1.2" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

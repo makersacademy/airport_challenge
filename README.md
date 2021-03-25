@@ -1,5 +1,8 @@
 # Airport Challenge
 
+[![Build Status](https://travis-ci.com/charlierdm/airport_challenge.svg?branch=master)](https://travis-ci.com/charlierdm/airport_challenge)
+
+
 ![alt text](https://m.dw.com/image/43469144_401.jpg "Airplane Challenge")
 
 
