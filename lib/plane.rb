@@ -1,5 +1,5 @@
-class Plane
+class Plane 
   def land
-    true
+
   end
 end
