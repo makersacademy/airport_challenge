@@ -37,3 +37,9 @@ Approach
 
 All the stories were approached using TDD ([planning](https://github.com/KaneG9/airport_challenge/blob/master/Airport_plan.HEIC)).
 * Both `takeoff` and `land` were created as methods within the `Airport` class
+* Made program produce an error message when `land` was called whilst the hanger was full.
+* Created a default capacity as well as giving it `attr_accessor` status so it can be overridden.
+* Created the private `weather` method which is called whenever a plane takes off or lands. If `weather` is stormy an error is produced (This was tested using a stub).
+* Had to edit the rspec configuration to call a stub setting the `weather` sunny before testing to prevent an error due to stormy weather. 
+* Created errors for edge cases of planes taking off if they don't exist in the hanger and planes landing if they already exist in the hanger.
+* Attempted to use rescue to prevent weather errors crashing the program in a feature test but it broke the weather tests which I couldn't work out how to fix.
