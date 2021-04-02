@@ -2,7 +2,7 @@ require "airport"
 require "plane"
 require "weather"
 
-describe Airport do 
+describe Airport do
 
   before(:each) do
     @airport = Airport.new

@@ -1,3 +1,5 @@
+require_relative "weather"
+
 class Airport
 
   attr_reader :plane_list, :capacity, :name, :weather
