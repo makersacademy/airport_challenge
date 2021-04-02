@@ -1,7 +1,9 @@
 require_relative 'plane'
 
 class Airport
-  def land
-
+  attr_reader :plane
+  
+  def dock(plane)
+    @plane = plane
   end
 end
