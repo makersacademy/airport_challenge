@@ -1,23 +1,32 @@
 require 'plane'
+require 'weather'
 
 class Airport 
-  attr_reader :plane, :hangar, :capacity
+  attr_reader :plane, :hangar, :capacity, :storm
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @hangar = []
     @capacity = capacity
+    @storm = weather.stormy?
   end
 
   def land(plane)
-    raise 'Airport is full' if full?
+    fail 'Airport is full' if full?
+
+    fail 'Weather is too bad' if @storm == true
+
     @hangar.push(plane)
   end
 
   def take_off
-    #removed argument, unnecessary unless you need to refer to specific planes later
+    fail 'Airport is empty' if empty?
+
+    # fail 'Weather is too bad' if weather?
+
     @hangar.pop
   end
+
 
   private 
 
@@ -25,4 +34,7 @@ class Airport
     @hangar.size >= capacity
   end
 
+  def empty?
+    @hangar.empty?
+  end
 end
