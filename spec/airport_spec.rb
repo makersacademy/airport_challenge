@@ -23,6 +23,7 @@ describe Airport do
   end
 
   it "Receives error if airport is full" do
+    allow(subject).to receive(:weather) { "sunny" }
     Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error(RuntimeError, "The airport is full.")
   end
@@ -35,8 +36,14 @@ describe Airport do
     expect(subject.capacity).to eq new_capacity
   end
 
-  it "Receives error taking off if stormy" do
-    allow(weather).to recieve(:stormy)
+  it "Receives error landing if weather is stormy" do
+    allow(subject).to receive(:weather) { "stormy" }
+    expect { subject.land(Plane.new) }.to raise_error(RuntimeError, "The weather is stormy, no planes can land.")
+  end
+
+  it "Receives error taking off if weather is stormy" do
+    allow(subject).to receive(:weather) { "stormy" }
+    expect { subject.takeoff(Plane.new) }.to raise_error(RuntimeError, "The weather is stormy, no planes can takeoff.")
   end
 
 end
