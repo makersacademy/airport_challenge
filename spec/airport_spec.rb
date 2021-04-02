@@ -22,10 +22,21 @@ describe Airport do
     expect(subject.hanger).not_to include(p)
   end
 
-  it "Recieves error if airport is full" do
+  it "Receives error if airport is full" do
     Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error(RuntimeError, "The airport is full.")
   end
 
   it { is_expected.to respond_to :change_capacity }
+
+  it "Capacity changes when change_capcaity is called" do 
+    new_capacity = 50
+    subject.change_capacity(new_capacity)
+    expect(subject.capacity).to eq new_capacity
+  end
+
+  it "Receives error taking off if stormy" do
+    allow(weather).to recieve(:stormy)
+  end
+
 end
