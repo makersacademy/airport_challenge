@@ -2,7 +2,7 @@ require "airport"
 # set the weather to sunny automatically or all tests
 RSpec.configure do |config|
   config.before(:each) do
-    allow(subject).to receive(:weather) { "sunny" }
+    allow(Weather).to receive(:stormy?) { false }
   end
 end
 
@@ -46,12 +46,12 @@ describe Airport do
 
   context "#weather" do 
     it "Receives error landing if weather is stormy" do
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(Weather).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can land.")
     end
 
     it "Receives error taking off if weather is stormy" do
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(Weather).to receive(:stormy?) { true }
       expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can takeoff.")
     end
   end
