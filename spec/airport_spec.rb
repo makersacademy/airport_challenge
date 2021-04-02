@@ -1,14 +1,20 @@
 require "airport"
+# set the weather to sunny automatically or all tests
+RSpec.configure do |config|
+  config.before(:each) do
+    allow(subject).to receive(:weather) { "sunny" }
+  end
+end
 
 describe Airport do
+  let(:plane) { Plane.new }
 
   it "Tests if a plane can land" do
     expect(subject).to respond_to :land
   end
 
   it "Tests if plane goes into hanger after landing" do
-    p = Plane.new
-    expect { subject.land(p) }.to change { subject.hanger.last }.to(p)
+    expect { subject.land(plane) }.to change { subject.hanger.last }.to(plane)
   end
 
   it "Tests if a plane can takeoff" do
@@ -16,16 +22,14 @@ describe Airport do
   end
 
   it "Tests if the plane is no longer in the hanger after takeoff" do
-    p = Plane.new
-    subject.land(p)
-    subject.takeoff(p)
-    expect(subject.hanger).not_to include(p)
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(subject.hanger).not_to include(plane)
   end
 
   it "Receives error if airport is full" do
-    allow(subject).to receive(:weather) { "sunny" }
-    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error(RuntimeError, "The airport is full.")
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane) } # does this land the same plane 10 times?
+    expect { subject.land(plane) }.to raise_error(RuntimeError, "The airport is full.")
   end
 
   it { is_expected.to respond_to :change_capacity }
@@ -38,12 +42,12 @@ describe Airport do
 
   it "Receives error landing if weather is stormy" do
     allow(subject).to receive(:weather) { "stormy" }
-    expect { subject.land(Plane.new) }.to raise_error(RuntimeError, "The weather is stormy, no planes can land.")
+    expect { subject.land(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can land.")
   end
 
   it "Receives error taking off if weather is stormy" do
     allow(subject).to receive(:weather) { "stormy" }
-    expect { subject.takeoff(Plane.new) }.to raise_error(RuntimeError, "The weather is stormy, no planes can takeoff.")
+    expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can takeoff.")
   end
 
 end
