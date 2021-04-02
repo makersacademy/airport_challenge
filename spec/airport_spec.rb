@@ -39,7 +39,7 @@ describe Airport do
 
     it "Capacity can be changed" do 
       new_capacity = 50
-      subject.capacity = new_capacity
+      subject.change_capacity(new_capacity)
       expect(subject.capacity).to eq new_capacity
     end
   end
