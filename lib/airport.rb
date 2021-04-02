@@ -1,7 +1,8 @@
 require_relative "plane"
 
 class Airport
-  attr_reader :hanger, :capacity
+  attr_reader :hanger
+  attr_accessor :capacity
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -12,19 +13,16 @@ class Airport
   def land(plane)
     raise "The airport is full." if full?
     raise "The weather is stormy, no planes can land." if weather == "stormy"
+    raise "The plane is already in the hanger. It cannot land again." if hanger.include? plane
 
     @hanger << plane
   end
 
   def takeoff(plane)
     raise "The weather is stormy, no planes can takeoff." if weather == "stormy"
-    raise "The plane is not in the hanger. It cannot takeoff" unless hanger.include? plane
+    raise "The plane is not in the hanger. It cannot takeoff." unless hanger.include? plane
 
     @hanger.delete(plane)
-  end
-
-  def change_capacity(new)
-    @capacity = new
   end
 
   private

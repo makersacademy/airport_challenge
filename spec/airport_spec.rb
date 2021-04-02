@@ -33,15 +33,13 @@ describe Airport do
 
   context "#capacity" do 
     it "Receives error if airport is full" do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) } # does this land the same plane 10 times?
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) } # Plane.new to prevent same plane landing error
       expect { subject.land(plane) }.to raise_error(RuntimeError, "The airport is full.")
     end
 
-    it { is_expected.to respond_to :change_capacity }
-
-    it "Capacity changes when change_capcaity is called" do 
+    it "Capacity can be changed" do 
       new_capacity = 50
-      subject.change_capacity(new_capacity)
+      subject.capacity = new_capacity
       expect(subject.capacity).to eq new_capacity
     end
   end
@@ -58,9 +56,14 @@ describe Airport do
     end
   end
 
-  context "edge cases" do 
+  context "Edge cases" do 
     it "Receive error if plane taking off is not in hanger" do
-      expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The plane is not in the hanger. It cannot takeoff")
+      expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The plane is not in the hanger. It cannot takeoff.")
+    end
+
+    it "Receive error if plane is already in the hanger" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error(RuntimeError, "The plane is already in the hanger. It cannot land again.")
     end
   end
 
