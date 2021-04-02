@@ -1,5 +1,4 @@
-Airport Challenge
-=================
+## Airport Challenge
 
 ```
         ______
@@ -13,10 +12,10 @@ Airport Challenge
 
 ```
 
-Task
------
+A command line air traffic control system, in Ruby. This was a coding challenge for the first week of the [Makers Academy](https://makers.tech) coding bootcamp. The goal was to practise basic Ruby, TDD, and mocking.
 
-Writing an airport! Here are the user stories:
+### Description
+We were given these user stories:
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -42,4 +41,26 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
-To fulfill these requirements I wrote a Plane and an Airport class, and unit tests to go with them. The weather at the airport is stormy 10% of the time.
+
+To satisfy these requirements I created a Plane and an Airport class. I decided that the Planes should have most of the responsibilities about landing or taking off, rather than being made to land or take off by an Airport. The weather was then extracted out as a separate class. There's a 10% chance of having bad weather any time the plane tries to land or take off.  
+
+Test coverage is 98%.
+
+### Installation and Usage
+To try out the project:
+* Make sure Ruby 3.0.0 is installed
+* Clone this repo
+* Navigate into the cloned folder
+* Run `bundle` to install the dependencies
+* Run `irb -r ./lib/plane`
+* Play with the code in the irb REPL
+* To run the tests, exit from irb
+* Run `rspec`
+
+Here's a screenshot of the code in action:
+![airport in irb](airport.png)
+
+
+### Known Issues
+* The Weather class is very minimal, all it does is use rand to determine whether the weather is bad or not. A Module would have been sufficient.
+* Planes are initialised in midair. That's not very realistic.
