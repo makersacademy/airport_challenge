@@ -1,4 +1,6 @@
 require 'weather'
+require 'plane'
+require 'airport'
 
 describe Weather do
   it 'can generate a weather object' do

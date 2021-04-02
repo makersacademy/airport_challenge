@@ -13,10 +13,9 @@ describe Airport do
   end
 
   it 'can have a storm value' do
-    allow(subject).to receive(:Stormy?) {false}
+    Weather.any_instance.stub(:stormy?).and_return(false)
     expect(subject.storm).to eq(false)
   end
-
 
   describe '#land' do
     it 'can respond to land' do
@@ -30,6 +29,7 @@ describe Airport do
     it 'can land a plane' do
       plane = Plane.new
       subject.land(plane)
+      Weather.any_instance.stub(:stormy?).and_return(false)
       expect(subject.hangar).to include(plane)
     end
   
@@ -47,7 +47,7 @@ describe Airport do
 
     it 'prevents a plane from landing in a storm' do
       plane = Plane.new
-      allow(Weather).to receive(:Stormy?) { true }  
+      Weather.any_instance.stub(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error 'Weather is too bad'
     end
   end
@@ -61,12 +61,20 @@ describe Airport do
     it 'lets a plane take_off' do
       plane = Plane.new
       subject.land(plane)
+      Weather.any_instance.stub(:stormy?).and_return(false)
       subject.take_off
       expect(subject.hangar).to be_empty
     end
 
     it 'prevents planes from taking off when airport is empty' do
       expect { subject.take_off }.to raise_error 'Airport is empty'
+    end
+
+    it 'prevents a plane from taking off in a storm' do
+      Weather.any_instance.stub(:stormy?).and_return(true)
+      subject.add_plane
+      p subject
+      expect { subject.take_off }.to raise_error 'Weather is too bad'
     end
   end
 end
