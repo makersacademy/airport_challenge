@@ -32,3 +32,8 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+Approach
+---------
+
+All the stories were approached using TDD ([planning](https://github.com/KaneG9/airport_challenge/blob/master/Airport_plan.HEIC)).
+* Both `takeoff` and `land` were created as methods within the `Airport` class
