@@ -1,5 +1,5 @@
-class Plane 
-  def land
-
+class Plane
+  def flying?
+    true
   end
 end
