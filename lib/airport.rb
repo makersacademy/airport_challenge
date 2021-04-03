@@ -14,7 +14,8 @@ class Airport
     raise "The airport is full." if full?
     raise "The weather is stormy, no planes can land." if Weather.stormy?
     raise "The plane is already in the hanger. It cannot land again." if hanger.include? plane
-
+    
+    plane.land
     @hanger << plane
   end
 

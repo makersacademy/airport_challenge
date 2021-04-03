@@ -17,6 +17,11 @@ describe Airport do
     it "Tests if plane goes into hanger after landing" do
       expect { subject.land(plane) }.to change { subject.hanger.last }.to(plane)
     end
+
+    it "Sets flying variable to false for the plane object" do
+      subject.land(plane)
+      expect(plane.flying?).to be false
+    end
   end
 
   context "#takeoff" do 
