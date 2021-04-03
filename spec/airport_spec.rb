@@ -3,8 +3,12 @@ require 'airport'
 describe Airport do
 
   context 'initialize' do
-    it 'has a defaut capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+
+    it 'has a default capacity' do
+      described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
   end
   context '#land' do
