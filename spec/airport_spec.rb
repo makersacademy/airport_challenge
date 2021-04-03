@@ -20,5 +20,20 @@ describe Airport do
   end
 
   it { is_expected.to respond_to(:takeoff).with(1).argument }
+
+  it 'instructs a specific plane to take off and removes it from the airport' do
+    subject.land(@plane)
+    subject.takeoff(@plane)
+    expect(subject.planes).to eq([])
+  end
   
+  describe '#land' do
+    it 'raises an error when airport is full' do
+      Airport::DEFAULT_CAPACITY.times do 
+        subject.land(Plane.new)
+      end
+      expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
+    end
+  end
+
 end
