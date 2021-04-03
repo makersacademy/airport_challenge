@@ -1,2 +1,2 @@
-class Airport 
+class Airport
 end
