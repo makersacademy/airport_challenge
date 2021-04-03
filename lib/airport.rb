@@ -8,12 +8,13 @@ class Airport
   
   def land(plane)
     plane = Plane.new
+    fail "Sorry, Airport packed over capacity" if @runway.length >= 20
     @runway << plane
   end
 
   def takeoff(plane)
     @runway.delete(plane)
-    return "#{plane} has left the runway."
+    return "#{plane} is in the clouds"
   end
 
 end
