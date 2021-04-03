@@ -2,7 +2,7 @@ require "airport"
 # set the weather to sunny automatically or all tests
 RSpec.configure do |config|
   config.before(:each) do
-    allow(Weather).to receive(:stormy?) { false }
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
   end
 end
 
@@ -57,19 +57,20 @@ describe Airport do
 
   context "#weather" do 
     it "Receives error landing if weather is stormy" do
-      allow(Weather).to receive(:stormy?) { true }
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can land.")
     end
 
     it "Receives error taking off if weather is stormy" do
-      allow(Weather).to receive(:stormy?) { true }
+      subject.land(plane)
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The weather is stormy, no planes can takeoff.")
     end
   end
 
   context "Edge cases" do 
     it "Receive error if plane taking off is not in hanger" do
-      expect { subject.takeoff(plane) }.to raise_error(RuntimeError, "The plane is not in the hanger. It cannot takeoff.")
+      expect { subject.takeoff(Plane.new(false)) }.to raise_error(RuntimeError, "The plane is not in the hanger. It cannot takeoff.")
     end
 
     it "Receive error if plane is already in the hanger" do
@@ -78,7 +79,7 @@ describe Airport do
     end
 
     it "Receive error if plane taking off is already flying" do 
-      p = double("plane", :flying? => true)
+      p = double(:flying? => true)
       allow(p).to receive(:land)
       subject.land(p)
       expect { subject.takeoff(p) }.to raise_error(RuntimeError, "The plane is already flying")

@@ -42,6 +42,5 @@ All the stories were approached using TDD ([planning](https://github.com/KaneG9/
 * Created the private `weather` method which is called whenever a plane takes off or lands. If `weather` is stormy an error is produced (This was tested using a stub).
 * Had to edit the rspec configuration to call a stub setting the `weather` sunny before testing to prevent an error due to stormy weather. 
 * Created errors for edge cases of planes taking off if they don't exist in the hanger and planes landing if they already exist in the hanger.
-* Attempted to use rescue to prevent weather errors crashing the program in a feature test but it broke the weather tests which I couldn't work out how to fix.
 * After looking at [code review rubric](docs/review.md) I decided to move the `weather` method to its own `Weather` class with the `stormy?` method.
 * I also created both `land` and `takeoff` methods for the `Plane` class which allowed edge case testing for planes landing which wern't flying and planes taking off which were already flying.
