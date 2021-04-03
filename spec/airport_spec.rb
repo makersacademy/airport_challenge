@@ -28,12 +28,22 @@ describe Airport do
   end
   
   describe '#land' do
+
     it 'raises an error when airport is full' do
       Airport::DEFAULT_CAPACITY.times do 
         subject.land(Plane.new)
       end
       expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
     end
+
+    it 'raises an error when landing an already landed plane' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'Plane has already landed'
+    end
+    
   end
+
+
 
 end
