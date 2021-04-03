@@ -1,7 +1,8 @@
 require_relative 'plane'
 
 class Airport
-attr_accessor = :capacity
+  
+  attr_reader :capacity, :runway
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -10,8 +11,8 @@ attr_accessor = :capacity
   end
   
   def land(plane)
-    plane = Plane.new
     fail "Sorry, Airport packed over capacity" if full?
+
     @runway << plane
   end
 
