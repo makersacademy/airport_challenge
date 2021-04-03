@@ -18,7 +18,7 @@ describe Airport do
       expect { subject.land(plane) }.to change { subject.hanger.last }.to(plane)
     end
 
-    it "Sets flying variable to false for the plane object" do
+    it "Land sets flying variable to false for the plane object" do
       subject.land(plane)
       expect(plane.flying?).to be false
     end
@@ -33,6 +33,12 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.hanger).not_to include(plane)
+    end
+
+    it "Takeoff sets flying variable to true for the plane object" do
+      subject.land(plane)
+      subject.takeoff(plane)
+      expect(plane.flying?).to be true
     end
   end
 
@@ -70,6 +76,17 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error(RuntimeError, "The plane is already in the hanger. It cannot land again.")
     end
-  end
 
+    it "Receive error if plane taking off is already flying" do 
+      p = double("plane", :flying? => true)
+      allow(p).to receive(:land)
+      subject.land(p)
+      expect { subject.takeoff(p) }.to raise_error(RuntimeError, "The plane is already flying")
+    end
+
+    it "Receive error if plane landing is not flying" do
+      p = double("plane", :flying? => false)
+      expect { subject.land(p) }.to raise_error(RuntimeError, "The plane is not flying")
+    end
+  end
 end

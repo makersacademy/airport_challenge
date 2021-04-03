@@ -14,7 +14,8 @@ class Airport
     raise "The airport is full." if full?
     raise "The weather is stormy, no planes can land." if Weather.stormy?
     raise "The plane is already in the hanger. It cannot land again." if hanger.include? plane
-    
+    raise "The plane is not flying" if plane.flying? == false
+
     plane.land
     @hanger << plane
   end
@@ -22,7 +23,9 @@ class Airport
   def takeoff(plane)
     raise "The weather is stormy, no planes can takeoff." if Weather.stormy?
     raise "The plane is not in the hanger. It cannot takeoff." unless hanger.include? plane
+    raise "The plane is already flying" if plane.flying?
 
+    plane.takeoff
     @hanger.delete(plane)
   end
 
