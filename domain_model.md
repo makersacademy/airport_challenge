@@ -1,5 +1,5 @@
 | Objects                      | Messages          |
 | ---------------------------- | ----------------- | 
 | Controller                   |                   | 
-| Airport                      | "Plane land"      | 
+| Airport                      | "plane takeoff"   | 
 | Plane                        |                   |
