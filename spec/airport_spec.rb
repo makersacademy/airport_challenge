@@ -11,4 +11,10 @@ describe Airport do
     expect(subject).to respond_to(:takeoff).with(1).argument
   end
 
+  it "confirm a plane is no longer in the airport" do
+     plane = Plane.new
+     subject.land(plane)
+    expect(subject.takeoff(plane)).to eq "#{plane} has left the runway."
+  end
+
 end
