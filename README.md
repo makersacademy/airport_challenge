@@ -15,9 +15,13 @@ Airport
 
 **Airport** models and controls the flow of planes at an airport. The planes can land and take off provided that there is spare capacity at the airport and that the weather is not stormy. The weather is set using a random number generator. 
 
-This program was built as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04)
+This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04).
 
 In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+
+Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+
+For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
 ## Installation
 
@@ -43,7 +47,7 @@ rspec
 
 ## Development / Contributing
 
-This project was a one off project created as part of the Makers Academy Coding Bootcamp. 
+This project was created as a learning exercise as part of the Makers Academy Coding Bootcamp. 
 
 No further development is planned on this project and pull requests are not sought (sorry🤗).
 
@@ -78,7 +82,16 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+## Domain Model
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+| Objects                | Messages                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| air traffic controller |                                                              |
+| passengers             |                                                              |
+| destination            |                                                              |
+| plane                  |                                                              |
+| airport                | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />full?<br />change_capacity(new_capacity) |
+| weather                | stormy?                                                      |
+
+
 
