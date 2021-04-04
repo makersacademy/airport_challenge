@@ -1,6 +1,9 @@
 require 'airport'
 
 describe Airport do
+  let(:plane_one) { double('plane_one') }
+  let(:plane_two) { double('plane_two') }
+
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
 
@@ -23,26 +26,22 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
   
     it 'plane cannot land if default capacity airport full' do
-      plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error('Airport full!')
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane_one) }
+      expect { subject.land(plane_one) }.to raise_error('Airport full!')
     end
 
     it 'plane cannot land if airport full after capacity change' do
-      plane = Plane.new
       new_capacity = 12
       subject.change_capacity(new_capacity)
-      new_capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error('Airport full!')
+      new_capacity.times { subject.land(plane_one) }
+      expect { subject.land(plane_one) }.to raise_error('Airport full!')
     end
 
     it 'plane cannot land if airport full after numerous operations' do
-      plane_one = Plane.new
-      plane_two = Plane.new
-      plane_three = Plane.new
-      plane_four = Plane.new
-      plane_five = Plane.new
-      plane_six = Plane.new
+      plane_three = double('plane_three')
+      plane_four = double('plane_four')
+      plane_five = double('plane_five')
+      plane_six = double('plane_six')
       new_capacity = 4
       subject.change_capacity(new_capacity)
       subject.land(plane_one)
@@ -68,41 +67,32 @@ describe Airport do
     it { is_expected.to respond_to(:hangar?).with(1).argument }
   
     it 'plane never landed in airport' do
-      plane = Plane.new
-      expect(subject.hangar?(plane)).to be false
+      expect(subject.hangar?(plane_one)).to be false
     end
 
     it 'plane landed in airport' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.hangar?(plane)).to be true
+      subject.land(plane_one)
+      expect(subject.hangar?(plane_one)).to be true
     end
 
     it 'plane landed then took off from airport' do
-      plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.hangar?(plane)).to be false
+      subject.land(plane_one)
+      subject.take_off(plane_one)
+      expect(subject.hangar?(plane_one)).to be false
     end
 
     it 'different plane landed in airport' do
-      plane_one = Plane.new
-      plane_two = Plane.new
       subject.land(plane_one)
       expect(subject.hangar?(plane_two)).to be false
     end
 
     it 'both planes landed in airport' do
-      plane_one = Plane.new
-      plane_two = Plane.new
       subject.land(plane_one)
       subject.land(plane_two)
       expect(subject.hangar?(plane_one)).to be true
     end
 
     it 'both planes landed in airport, other plane took off' do
-      plane_one = Plane.new
-      plane_two = Plane.new
       subject.land(plane_one)
       subject.land(plane_two)
       subject.take_off(plane_two)
@@ -110,8 +100,6 @@ describe Airport do
     end
 
     it 'both planes landed in airport, this plane took off' do
-      plane_one = Plane.new
-      plane_two = Plane.new
       subject.land(plane_one)
       subject.land(plane_two)
       subject.take_off(plane_two)

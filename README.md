@@ -25,7 +25,7 @@ For overriding random weather behaviour, please read the documentation to learn 
 
 ## Installation
 
-This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell) (or a similar interactive Ruby environment).  This requires Ruby (recommended version 3.0.0) - which will give you access to irb. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setp Ruby**](https://www.codecademy.com/articles/ruby-setup). 
+This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell) (or a similar interactive Ruby environment) and requires **Ruby version 2.6.5** - which will give you access to irb. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setup Ruby**](https://www.codecademy.com/articles/ruby-setup). 
 
 ## Usage
 
