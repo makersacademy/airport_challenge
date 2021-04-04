@@ -33,3 +33,27 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 2.6.5 :004 > plane.in_air?
  => true
  ```
+
+ >As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+>
+
+```irb
+2.6.5 :001 > airport = Airport.new
+ => #<Airport:0x00007ff1a1869af8>
+2.6.5 :002 > plane1 = Plane.new
+ => #<Plane:0x00007ff1a1870c40>
+2.6.5 :003 > plane2 = Plane.new
+ => #<Plane:0x00007ff1a3149af0>
+2.6.5 :004 > plane1.land(airport)
+ => #<Plane:0x00007ff1a1870c40>
+2.6.5 :005 > plane2.land(airport)
+Traceback (most recent call last):
+        5: from /Users/apple/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/apple/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/apple/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/apple/Desktop/Projects/airport_challenge/lib/plane.rb:4:in `land'
+RuntimeError (airport full)
+```
