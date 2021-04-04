@@ -4,8 +4,12 @@ describe Plane do
   describe "#land" do
     it { expect(subject).to respond_to(:land).with(1).argument }
     it 'returns the airport object where the plane lands' do
+      expect(subject.land(Airport.new)).to eq(subject)
+    end
+    it 'raise error when airport is full' do
       airport = Airport.new
-      expect(subject.land(airport)).to eq(airport) 
+      Plane.new.land(airport)
+      expect { subject.land(airport) }.to raise_error('airport full')
     end
   end
   describe "#take_off" do

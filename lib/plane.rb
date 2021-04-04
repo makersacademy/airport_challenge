@@ -1,12 +1,9 @@
 require_relative 'airport'
 class Plane
-  attr_reader :at_airport
-  def initialize
-    @at_airport = true
-  end
-
   def land(airport)
-    airport 
+    fail 'airport full' if airport.full?
+    
+    airport.hanger = self
   end
 
   def take_off
