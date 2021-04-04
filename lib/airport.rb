@@ -13,15 +13,16 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full" if full?
     fail "It's too stormy, the plane cannot land" if stormy?
-
+    fail "The airport is full" if full?
+    
     @hangar << plane
   end
 
   def take_off(plane)
     fail "It's too stormy, the plane cannot take off" if stormy?
-    
+    fail "The airport is empty" if empty?
+
     @hangar.delete(plane)
     announcement
   end
@@ -36,9 +37,9 @@ class Airport
     @hangar.count >= @capacity
   end
 
-#   def empty?
-#     @hangar.empty?
-#   end
+  def empty?
+    @hangar.empty?
+  end
 
   def stormy? 
     @climate == "stormy"

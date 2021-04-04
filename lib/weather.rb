@@ -1,9 +1,10 @@
 class Weather
   attr_reader :meteo
   def weather_condition
-    @meteo = ["sunny", "sunny", ["stormy", "sunny"].sample, "sunny"].sample
+    ["sunny", "sunny", ["stormy", "sunny"].sample, "sunny"].sample
   end
 
- 
-
+  def meteo
+    @meteo = weather_condition
+  end
 end

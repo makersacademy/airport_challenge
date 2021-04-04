@@ -7,7 +7,7 @@ describe Airport do
       expect(subject.capacity).to eq(subject.capacity)
     end
 
-    it "should have a climate of type string" do
+    it "should have a default climate" do
       expect(subject.climate).to eq(subject.climate)
     end
   end
@@ -42,6 +42,12 @@ describe Airport do
       expect(subject.hangar).not_to include(the_plane)
     end
 
+    it "raises an error when the airport is empty." do
+      LAX = Airport.new
+      b747 = Plane.new
+      expect { LAX.take_off(b747) }.to raise_error("The airport is empty")
+    end
+
     it "raises an error when the plane cannot land because of bad weather." do
       heathrow = Airport.new(6, "stormy")
       expect { heathrow.take_off(Plane.new) }.to raise_error("It's too stormy, the plane cannot take off")
@@ -54,5 +60,4 @@ describe Airport do
       expect(heathrow.send(:stormy?)).to be true
     end  
   end
-
 end
