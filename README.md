@@ -1,4 +1,4 @@
-Airport Challenge
+Airport
 =================
 
 ```
@@ -10,29 +10,49 @@ Airport Challenge
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
+                                    ________________________________________________________
+```
+
+**Airport** models and controls the flow of planes at an airport. The planes can land and take off provided that there is spare capacity at the airport and that the weather is not stormy. The weather is set using a random number generator. 
+
+This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04).
+
+In my tests I use **doubles** so one class spec is not testing against another class. I also use **stubs** to override random weather and ensure consistent test behaviour.
+
+## Installation
+
+This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell) (or a similar interactive Ruby environment) and requires **Ruby version 2.6.5** - which will give you access to irb. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setup Ruby**](https://www.codecademy.com/articles/ruby-setup). 
+
+## Usage
+
+```bash
+# open irb
+irb -r ./lib/airport -r ./lib/plane
+# create an airport
+irb(main):001 > shoreditch_airfield = Airport.new
+# create a plane
+irb(main):002 > MA001 = Plane.new
+# land the plane at the airport
+irb(main):003 > shoreditch_airfield.land(MA001)
+# check if the plane is in the airport
+irb(main):004 > shoreditch_airfield.hangar?(MA001)
+ => true
+# have the plane take off from the airport
+irb(main):005 > shoreditch_airfield.take_off(MA001)
+# check if the plane is in the airport
+irb(main):006 > shoreditch_airfield.hangar?(MA001)
+ => false
+# change the capacity at the airport
+irb(main):007 > shoreditch_airfield.change_capacity(35)
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
+Design
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+### User Stories
+
+Below are the user stories as worked out in collaboration with the client (these were provided in the challenge):
 
 ```
 As an air traffic controller 
@@ -60,30 +80,34 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+### Edge Cases
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+The code also defends against a number of edge cases including:
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+* planes can only take off from airports they are in
+* planes that have taken off cannot take off again without landing first
+* planes that have taken off should no longer be in the hanger
+* planes that are landed cannot land again
+* planes that are landed must be in airport
 
-Please create separate files for every class, module and test suite.
+### Domain Model
 
-In code review we'll be hoping to see:
+| Objects | Messages                                                     |
+| ------- | ------------------------------------------------------------ |
+| plane   |                                                              |
+| airport | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />change_capacity(new_capacity)<br />full? |
+| weather | stormy?                                                      |
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+## Running Tests
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+```bash
+# To run tests
+rspec
+```
 
-**BONUS**
+## Development / Contributing
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+This project was created as a learning exercise as part of the Makers Academy Coding Bootcamp. 
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+No further development is planned on this project and pull requests are not sought (sorry🤗).
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
