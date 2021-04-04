@@ -1,5 +1,5 @@
 class Weather
-  def stormy?
+  def self.stormy?
     rand(5) < 1
   end
 end

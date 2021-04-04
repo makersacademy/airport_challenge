@@ -1,7 +1,9 @@
 require 'weather'
 
 describe Weather do
-  describe '#stormy?' do
+  subject { described_class }
+
+  describe '.stormy?' do
     it { is_expected.to respond_to(:stormy?) }
 
     it 'check that random stormy? return is not too often true' do
