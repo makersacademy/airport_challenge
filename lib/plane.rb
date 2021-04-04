@@ -2,8 +2,9 @@ require_relative 'airport'
 class Plane
   def land(airport)
     fail 'airport full' if airport.full?
-    
-    airport.hanger = self
+
+    airport.hanger.push(self)
+    self
   end
 
   def take_off

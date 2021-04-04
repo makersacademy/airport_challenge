@@ -9,6 +9,8 @@ describe Plane do
     it 'raise error when airport is full' do
       airport = Airport.new
       Plane.new.land(airport)
+      p airport.hanger
+      p airport.capacity
       expect { subject.land(airport) }.to raise_error('airport full')
     end
   end
