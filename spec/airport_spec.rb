@@ -22,19 +22,23 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'adds a plane to the hanger' do
-      airport = Airport.new
       plane = Plane.new
-      airport.land(plane)
-      expect(airport.hanger).to include(plane)
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      subject.land(plane)
+      expect(subject.hanger).to include(plane)
     end
 
     it 'raises an error if hanger is full' do
-      airport = Airport.new
       plane = Plane.new
-      airport.land(plane)
-      expect { airport.land(plane) }.to raise_error 'unable to land plane, hanger is full'
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      expect { 2.times { subject.land(plane) } }.to raise_error 'unable to land plane, hanger is full'
     end
 
+    it 'raises an error if weather is stormy and we want to prevent landing' do
+      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
+      plane = Plane.new
+      expect { subject.land(plane) }.to raise_error 'unable to land, weather is stormy'
+    end
   end
 
   describe '#take_off' do
@@ -57,9 +61,10 @@ describe Airport do
     end
 
     it 'raises an error if weather is stormy and we want to prevent take off' do
-      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       plane = Plane.new
       subject.land(plane)
+      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
       expect { subject.take_off(plane) }.to raise_error 'unable to fly, weather is stormy'
     end
 
@@ -78,9 +83,9 @@ describe Airport do
     
     it 'should return true if airport is full' do
       plane = Plane.new
-      airport = Airport.new
-      airport.land(plane)
-      expect(airport.hanger_full?).to be true
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      subject.land(plane)
+      expect(subject.hanger_full?).to be true
     end
   end
 
@@ -90,6 +95,15 @@ describe Airport do
     it 'tells us if the plane can take off' do
       allow(subject.weather).to receive(:stormy_weather?).and_return(true)
       expect(subject.prevent_take_off?).to be true
+    end
+  end
+
+  describe '#prevent_landing?' do
+    it { is_expected.to respond_to(:prevent_landing?) }
+
+    it 'tells us if the plane can land' do
+      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
+      expect(subject.prevent_landing?).to be true
     end
   end
 end

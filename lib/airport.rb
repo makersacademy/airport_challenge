@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     raise 'unable to land plane, hanger is full' if hanger_full?
+    raise 'unable to land, weather is stormy' if prevent_landing?
 
     @hanger << plane
   end
@@ -35,4 +36,9 @@ class Airport
   def prevent_take_off?
     weather.stormy_weather?
   end
+
+  def prevent_landing?
+    weather.stormy_weather?
+  end
+
 end
