@@ -40,4 +40,10 @@ describe Airport do
     allow(plane).to receive(:flying) { true }
     expect { subject.take_off(plane) }.to raise_error(RuntimeError, 'Plane is currently flying, cannot take off')
   end
+  it "Checks that the plane that has taken off has left the hangar" do
+    allow(subject).to receive(:stormy?).and_return(false)
+    5.times { subject.land(Plane.new) }
+    subject.take_off(Plane.new)
+    expect(subject.hangar.size).to eq(4)
+  end
 end
