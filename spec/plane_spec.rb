@@ -4,25 +4,35 @@ describe Plane do
   it { is_expected.to be_instance_of(Plane) }
   describe "#land" do
     it 'lands the plane' do
-      subject.take_off
+      allow(airport.weather).to receive(:present_weather).and_return(:clear)
       expect(subject.land(airport)).to be_truthy
     end
     it 'raise error when airport is full' do
-      Plane.new.take_off.land(airport)
-      expect { subject.take_off.land(airport) }.to raise_error('airport full')
+      allow(airport.weather).to receive(:present_weather).and_return(:clear)
+      airport.change_capacity(0)
+      expect { subject.land(airport) }.to raise_error('airport full')
     end
     it 'raise error when already on ground' do
+      subject.land(Airport.new)
       expect { subject.land(airport) }.to raise_error('already on ground')
     end
   end
   describe "#take_off" do
     it 'tells the plane to take off' do
-      subject.take_off
-      expect(subject).to be_in_air
+      allow(airport.weather).to receive(:present_weather).and_return(:clear)
+      subject.land(airport)
+      expect(subject.take_off).to be_in_air
     end
     it 'raise error if it is already in air' do
+      allow(airport.weather).to receive(:present_weather).and_return(:clear)
+      subject.land(airport)
       subject.take_off
       expect { subject.take_off }.to raise_error('plane in air')
+    end
+    it 'raise error when weather is stormy' do
+      allow(airport.weather).to receive(:present_weather).and_return(:stormy)
+      subject.land(airport)
+      expect { subject.take_off }.to raise_error('weather is stormy')
     end
   end
 end
