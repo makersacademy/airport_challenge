@@ -1,7 +1,7 @@
 require 'plane'
 describe Plane do
   let(:airport) { Airport.new }
-  it { is_expected.to be_instance_of(Plane) }
+
   describe "#land" do
     it 'lands the plane' do
       allow(airport.weather).to receive(:present_weather).and_return(:clear)

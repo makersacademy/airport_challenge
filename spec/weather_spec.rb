@@ -1,6 +1,5 @@
 require 'weather'
 describe Weather do
-  it { is_expected.to respond_to(:present_weather) }
   it 'should give us a weather' do
     expect([:stormy, :clear]).to include(subject.present_weather)
   end
