@@ -14,6 +14,8 @@ HANGAR_CAPACITY = 50
       raise RuntimeError, "Cannot land plane, Airport is full" 
     elsif stormy?
       raise RuntimeError, 'It is stormy cannot land'
+    elsif plane.landed == true
+      raise RuntimeError, 'Plane is currently landed'
     else
       @hangar << plane
     end

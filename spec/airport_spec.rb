@@ -29,4 +29,9 @@ describe Airport do
     allow(subject).to receive(:stormy?).and_return(true)
     expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'It is stormy cannot land')
   end
+  it "Will not land a plane that is already landed" do
+    plane = Plane.new
+    allow(plane).to receive(:landed) {true}
+    expect{subject.land(plane)}.to raise_error(RuntimeError, 'Plane is currently landed')
+  end
 end
