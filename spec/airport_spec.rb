@@ -11,6 +11,7 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
   it "Will not land a plane if the airport is full" do
+    allow(subject).to receive(:stormy?).and_return(false)
     Airport::HANGAR_CAPACITY.times {subject.land Plane.new}
     expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'Cannot land plane, Airport is full')
   end
@@ -21,8 +22,11 @@ describe Airport do
     expect(subject.stormy?(5)).to eq(true)
   end
   it "Will not take a plane off if the weather is stormy" do 
-    airport = Airport.new 
     allow(subject).to receive(:stormy?).and_return(true)
     expect{subject.take_off}.to raise_error(RuntimeError, 'It is stormy cannot takeoff')
+  end
+  it "Will not land a plane if the weather is stormy" do 
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'It is stormy cannot land')
   end
 end
