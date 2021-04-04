@@ -88,7 +88,7 @@ The code also defends against a number of edge cases including:
 * planes that have taken off cannot take off again without landing first
 * planes that have taken off should no longer be in the hanger
 * planes that are landed cannot land again
-* planes that are landed must be in an airport
+* planes that are landed must be in airport
 
 ### Domain Model
 

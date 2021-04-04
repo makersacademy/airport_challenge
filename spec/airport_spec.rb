@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane_one) { double('plane_one') }
   let(:plane_two) { double('plane_two') }
-
+  
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
 
@@ -28,15 +28,20 @@ describe Airport do
     describe '#land' do
       it { is_expected.to respond_to(:land).with(1).argument }
   
+      it 'plane that has landed at airport cannot land there again' do
+        subject.land(plane_one)
+        expect { subject.land(plane_one) }.to raise_error('Plane already here!')
+      end
+
       it 'plane cannot land if default capacity airport full' do
-        Airport::DEFAULT_CAPACITY.times { subject.land(plane_one) }
+        Airport::DEFAULT_CAPACITY.times { subject.land(double()) }
         expect { subject.land(plane_one) }.to raise_error('Airport full!')
       end
 
       it 'plane cannot land if airport full after capacity change' do
         new_capacity = 12
         subject.change_capacity(new_capacity)
-        new_capacity.times { subject.land(plane_one) }
+        new_capacity.times { subject.land(double()) }
         expect { subject.land(plane_one) }.to raise_error('Airport full!')
       end
     end

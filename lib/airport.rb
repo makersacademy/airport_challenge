@@ -15,6 +15,8 @@ class Airport
 
     raise('Too stormy!') if stormy?
 
+    raise('Plane already here!') if hangar?(plane)
+
     @planes.push(plane)
   end
 
