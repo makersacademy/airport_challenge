@@ -85,8 +85,8 @@ I want to prevent landing when weather is stormy
 The code also defends against a number of edge cases including:
 
 * planes can only take off from airports they are in
-* planes that are already flying cannot take off
-* planes that are already flying cannot be in an airport
+* planes that have taken off cannot take off again without landing first
+* planes that have taken off should no longer be in the hanger
 * planes that are landed cannot land again
 * planes that are landed must be in an airport
 

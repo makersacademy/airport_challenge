@@ -47,6 +47,12 @@ describe Airport do
       it 'prevent plane taking off from an airport it is not in' do
         expect { subject.take_off(plane_one) }.to raise_error('Plane not here!')
       end
+
+      it 'prevent plane that has taken off taking off again without landing' do
+        subject.land(plane_one)
+        subject.take_off(plane_one)
+        expect { subject.take_off(plane_one) }.to raise_error('Plane not here!')
+      end
     end
 
     describe '#hangar?' do
