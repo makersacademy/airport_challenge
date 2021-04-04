@@ -1,4 +1,4 @@
-Airport Challenge
+Airport
 =================
 
 ```
@@ -13,26 +13,44 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+**Airport** models and controls the flow of planes at an airport. The planes can land and take off provided that there is spare capacity at the airport and that the weather is not stormy. The weather is set using a random number generator. 
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This program was built as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04)
 
-Steps
--------
+In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+## Installation
 
-Task
+This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell) (or a similar interactive Ruby environment).  This requires Ruby (recommended version 3.0.0) - which will give you access to irb. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setp Ruby**](https://www.codecademy.com/articles/ruby-setup). 
+
+## Usage
+
+```bash
+# Open irb
+irb -r ./lib ???
+# To create an airport
+irb(main):001 > london_stansted = Airport.new
+# To create a plane
+irb(main):002 > BA001 = Plane.new
+```
+
+## Running Tests
+
+```bash
+# To run tests
+rspec
+```
+
+## Development / Contributing
+
+This project was a one off project created as part of the Makers Academy Coding Bootcamp. 
+
+No further development is planned on this project and pull requests are not sought (sorry🤗).
+
+User Stories
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Below are the user stories as worked out in collaboration with the client (these were provided in the challenge):
 
 ```
 As an air traffic controller 
@@ -60,30 +78,7 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
