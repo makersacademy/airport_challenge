@@ -3,12 +3,17 @@ require_relative 'plane'
 class Airport 
   attr_reader :planes
 
-  def initialize 
+  def initialize
     @planes = []
   end
 
   def land(plane)
-    @planes << plane
+    if full?
+      raise "Airport is full"
+    else
+      @planes << plane
+      return plane
+    end
   end
 
   def takeoff(plane)
@@ -21,6 +26,10 @@ class Airport
     else 
       return "The plane is no longer in the airport"
     end
+  end
+
+  def full?
+    @planes.length >= 10
   end
 
 end
