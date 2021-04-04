@@ -1,4 +1,4 @@
-require 'airport.rb'
+require 'airport'
 describe Airport do
 
   it { is_expected. to be_an_instance_of(Airport) }
@@ -38,29 +38,34 @@ describe Airport do
   end
 
   describe '#take_off' do
-  
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'removes a plane from the hanger' do
-      airport = Airport.new
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       plane = Plane.new
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.hanger).not_to include(plane)
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.hanger).not_to include(plane)
     end
 
     it 'raises an error if hanger is empty' do
-      airport = Airport.new
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       plane = Plane.new
-      airport.land(plane)
-      airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error 'unable to take_off, no planes at hanger'
+      subject.land(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error 'unable to take_off, no planes at hanger'
+    end
+
+    it 'raises an error if weather is stormy and we want to prevent take off' do
+      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.take_off(plane) }.to raise_error 'unable to fly, weather is stormy'
     end
 
   end
 
   describe '#hanger_is_empty?' do
-
     it { is_expected.to respond_to(:hanger_is_empty?) }
 
     it 'returns a true value is there are no planes at the hanger' do
@@ -69,7 +74,6 @@ describe Airport do
   end
 
   describe '#hanger_full?' do
-
     it { is_expected.to respond_to(:hanger_full?) }
     
     it 'should return true if airport is full' do
@@ -77,6 +81,15 @@ describe Airport do
       airport = Airport.new
       airport.land(plane)
       expect(airport.hanger_full?).to be true
+    end
+  end
+
+  describe '#prevent_take_off?' do
+    it { is_expected.to respond_to(:prevent_take_off?) }
+  
+    it 'tells us if the plane can take off' do
+      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
+      expect(subject.prevent_take_off?).to be true
     end
   end
 end
