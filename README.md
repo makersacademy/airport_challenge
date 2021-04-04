@@ -57,3 +57,17 @@ Traceback (most recent call last):
         1: from /Users/apple/Desktop/Projects/airport_challenge/lib/plane.rb:4:in `land'
 RuntimeError (airport full)
 ```
+
+>As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+>
+
+```irb
+2.6.5 :001 > airport = Airport.new
+ => #<Airport:0x00007fe0db938d98 @hanger=[], @capacity=1>
+2.6.5 :002 > airport.change_capacity(3)
+ => 3
+2.6.5 :003 > 3.times { Plane.new.land(airport) }
+ => 3
+ ```
