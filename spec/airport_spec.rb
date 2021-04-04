@@ -1,29 +1,25 @@
 require 'airport'
 
 describe Airport do
-
-  before do
-    @plane = Plane.new
-  end
+  let(:plane) { instance_double(Plane, :plane) }
 
   it { is_expected.to be_instance_of Airport }
-
   it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   it 'lands a given plane' do
-    expect(subject.land(@plane)).to eq([@plane])
+    expect(subject.land(plane)).to eq([plane])
   end
 
   it 'returns the landed planes' do
-    subject.land(@plane)
-    expect(subject.planes).to eq([@plane])
+    subject.land(plane)
+    expect(subject.planes).to eq([plane])
   end
 
-  it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   it 'instructs a specific plane to take off and removes it from the airport' do
-    subject.land(@plane)
-    subject.takeoff(@plane)
+    subject.land(plane)
+    subject.takeoff(plane)
     expect(subject.planes).to eq([])
   end
   
@@ -31,7 +27,7 @@ describe Airport do
 
     it 'raises an error when airport is full' do
       Airport::DEFAULT_CAPACITY.times do 
-        subject.land(Plane.new)
+        subject.land( Plane.new )
       end
       expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
     end
@@ -44,6 +40,12 @@ describe Airport do
     
   end
 
+  describe '#takeoff' do
 
+    it 'raises an error when airport is empty' do
+      expect { subject.takeoff(plane) }.to raise_error 'Airport is empty'
+    end
+
+  end
 
 end
