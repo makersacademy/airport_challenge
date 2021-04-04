@@ -22,7 +22,7 @@ describe Airport do
   end
   it "Will not take a plane off if the weather is stormy" do 
     airport = Airport.new 
-    airport.stub(:stormy?).and_return(true)
+    allow(subject).to receive(:stormy?).and_return(true)
     expect{subject.take_off}.to raise_error(RuntimeError, 'It is stormy cannot takeoff')
   end
 end

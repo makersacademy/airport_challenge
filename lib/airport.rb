@@ -10,13 +10,8 @@ HANGAR_CAPACITY = 50
   end
 
   def land(plane)
-    if full?
-    raise RuntimeError, "Cannot land plane, Airport is full"
-    elsif stormy?
-    raise RuntimeError, 'It is stormy cannot land'
-    else
+    raise RuntimeError, "Cannot land plane, Airport is full" if full?
     @hangar << plane
-    end
   end
 
   def take_off
