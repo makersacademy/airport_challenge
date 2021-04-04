@@ -9,12 +9,9 @@ class Airport
   end
 
   def land(plane)
-    if full?
-      raise "Airport is full"
-    else
-      @planes << plane
-      return plane
-    end
+    raise 'Airport is full' if full?
+    raise 'Too stormy to land' if stormy?
+    @planes << plane
   end
 
   def takeoff(plane)
@@ -31,6 +28,10 @@ class Airport
 
   def full?
     @planes.length >= DEFAULT_CAPACITY
+  end
+
+  def stormy?
+    rand(1..100) > 75
   end
 
 end
