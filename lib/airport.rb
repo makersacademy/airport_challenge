@@ -17,6 +17,7 @@ class Airport
   end
   
   def take_of(plane)
+    raise 'cant take of, is stormy' if stormy?
     @planes.delete(plane)
     plane
   end
@@ -25,4 +26,8 @@ class Airport
   def full?
     planes.length >= capacity
   end
+  def stormy?
+    rand(1..6)>4
+  end
+
 end

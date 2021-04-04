@@ -2,12 +2,14 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double :plane}
-    describe '#land' do
+  let(:airport) {Airport.new(2)}
+  let(:plane) {Plane.new}
+   
+  describe '#land' do
   it { is_expected.to respond_to(:land).with(1).argument }
 
   it 'lands a plane' do 
-    plane = Plane.new
-    expect(airport.land(plane)).to eq([plane])
+     expect(airport.land(plane)).to eq([plane])
   end
 context 'when full' do
   it 'raises an error' do
@@ -22,7 +24,6 @@ end
     
     it 'takes-of a plane' do 
       @planes = []
-      plane = Plane.new
       airport.land(plane)
       @planes << plane
       airport.take_of(plane)
@@ -37,11 +38,16 @@ end
       @planes << plane
       expect(airport.take_of(plane)).to eq(plane)
     end
+
+    it 'doesnt allow when weather is stormy' do
+      allow(airport).to receive(:stormy?).and_return true
+      expect{ airport.take_of(plane) }.to raise_error 'cant take of, is stormy'
+    end
+
   end
 end   
   
     
        
          
-    # off from an airport and confirm 
-    # that it is no longer in the airport missing this on the take of part
+  
