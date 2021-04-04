@@ -1,9 +1,17 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:land).with(1).argument }
-
   it { is_expected.to respond_to(:take_off).with(1).argument }
+
+  describe '#land' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+  
+    it 'plane cannot land if default capacity airport full' do
+      plane = Plane.new
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error('Airport full!')
+    end
+  end
 
   describe '#hangar?' do
     it { is_expected.to respond_to(:hangar?).with(1).argument }

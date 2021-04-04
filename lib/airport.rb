@@ -1,9 +1,13 @@
 class Airport
+  DEFAULT_CAPACITY = 25
+
   def initialize
     @planes = []
   end
 
   def land(plane)
+    raise('Airport full!') if full?
+
     @planes.push(plane)
   end
 
@@ -13,5 +17,11 @@ class Airport
 
   def hangar?(plane)
     @planes.include?(plane)
+  end
+
+  private
+
+  def full?
+    @planes.length >= DEFAULT_CAPACITY
   end
 end

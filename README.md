@@ -30,14 +30,23 @@ This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Inte
 ## Usage
 
 ```bash
-# Open irb
+# open irb
 irb -r ./lib/airport -r ./lib/plane
-# To create an airport
+# create an airport
 irb(main):001 > london_stansted = Airport.new
-# To create a plane
+# create a plane
 irb(main):002 > BA001 = Plane.new
-# To land the above plane at the above airport
+# land the plane at the airport
 irb(main):003 > london_stansted.land(BA001)
+# check if the plane is in the airport
+irb(main):004 > london_stansted.hangar?(BA001)
+ => true
+# have the plane take off from the airport
+irb(main):005 > london_stansted.take_off(BA001)
+# check if the plane is in the airport
+irb(main):006 > london_stansted.hangar?(BA001)
+ => false
+
 ```
 
 ## Running Tests
