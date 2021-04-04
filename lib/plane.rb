@@ -3,17 +3,21 @@ class Plane
   def initialize
     @on_ground = true
   end
+
   def land(airport)
+    fail 'already on ground' if @on_ground
     fail 'airport full' if airport.full?
+    
     
     airport.hanger.push(self)
     @on_ground = true
   end
 
   def take_off
-    fail 'plane in air' if self.in_air?
+    fail 'plane in air' unless @on_ground
+
     @on_ground = false
-    return nil
+    self
   end
 
   def in_air?
