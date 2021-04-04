@@ -1,6 +1,9 @@
 require 'airport'
 
 describe Airport do
+  before do
+    allow(subject).to receive(:stormy).and_return false
+  end
   
   context '#initialize' do
     it 'has a default capacity and it can change' do
