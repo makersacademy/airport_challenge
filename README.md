@@ -17,11 +17,7 @@ Airport
 
 This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04).
 
-In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+In my tests I use **doubles** so one class spec is not testing against another class. I also use **stubs** to override random weather and ensure consistent test behaviour.
 
 ## Installation
 
@@ -86,7 +82,7 @@ I want to prevent landing when weather is stormy
 
 ### Edge Cases
 
-The code also defends against including:
+The code also defends against a number of edge cases including:
 
 * planes can only take off from airports they are in
 * planes that are already flying cannot take off

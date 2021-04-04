@@ -43,6 +43,10 @@ describe Airport do
 
     describe '#take_off' do
       it { is_expected.to respond_to(:take_off).with(1).argument }
+
+      it 'prevent plane taking off from an airport it is not in' do
+        expect { subject.take_off(plane_one) }.to raise_error('Plane not here!')
+      end
     end
 
     describe '#hangar?' do
