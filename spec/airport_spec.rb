@@ -11,8 +11,12 @@ describe Airport do
     it 'will create an instance variable with default capacity' do
       expect(subject.capacity).to eq(1)
     end
-  end
 
+    it 'will create an instance variable with the capacity provided' do
+      airport = Airport.new(2)
+      expect(airport.capacity).to eq(2)
+    end
+  end
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -31,11 +35,10 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error 'unable to land plane, hanger is full'
     end
 
-
   end
 
-
   describe '#take_off' do
+  
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'removes a plane from the hanger' do
@@ -54,21 +57,19 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error 'unable to take_off, no planes at hanger'
     end
 
-
-
-
   end
 
-
   describe '#hanger_is_empty?' do
+
     it { is_expected.to respond_to(:hanger_is_empty?) }
+
     it 'returns a true value is there are no planes at the hanger' do
       expect(subject.hanger_is_empty?).to be true
     end
   end
 
-
   describe '#hanger_full?' do
+
     it { is_expected.to respond_to(:hanger_full?) }
     
     it 'should return true if airport is full' do
