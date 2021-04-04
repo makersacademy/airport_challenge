@@ -10,7 +10,7 @@ Airport
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
-
+                                    ________________________________________________________
 ```
 
 **Airport** models and controls the flow of planes at an airport. The planes can land and take off provided that there is spare capacity at the airport and that the weather is not stormy. The weather is set using a random number generator. 
@@ -19,7 +19,7 @@ This program was built  using **TDD** as part of [**Makers Academy Coding Bootca
 
 In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
@@ -33,37 +33,28 @@ This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Inte
 # open irb
 irb -r ./lib/airport -r ./lib/plane
 # create an airport
-irb(main):001 > london_stansted = Airport.new
+irb(main):001 > shoreditch_airfield = Airport.new
 # create a plane
-irb(main):002 > BA001 = Plane.new
+irb(main):002 > MA001 = Plane.new
 # land the plane at the airport
-irb(main):003 > london_stansted.land(BA001)
+irb(main):003 > shoreditch_airfield.land(MA001)
 # check if the plane is in the airport
-irb(main):004 > london_stansted.hangar?(BA001)
+irb(main):004 > shoreditch_airfield.hangar?(MA001)
  => true
 # have the plane take off from the airport
-irb(main):005 > london_stansted.take_off(BA001)
+irb(main):005 > shoreditch_airfield.take_off(MA001)
 # check if the plane is in the airport
-irb(main):006 > london_stansted.hangar?(BA001)
+irb(main):006 > shoreditch_airfield.hangar?(MA001)
  => false
+# change the capacity at the airport
+irb(main):007 > shoreditch_airfield.change_capacity(35)
 
 ```
 
-## Running Tests
-
-```bash
-# To run tests
-rspec
-```
-
-## Development / Contributing
-
-This project was created as a learning exercise as part of the Makers Academy Coding Bootcamp. 
-
-No further development is planned on this project and pull requests are not sought (sorry🤗).
-
-User Stories
+Design
 -----
+
+### User Stories
 
 Below are the user stories as worked out in collaboration with the client (these were provided in the challenge):
 
@@ -93,16 +84,34 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-## Domain Model
+### Edge Cases
 
-| Objects                | Messages                                                     |
-| ---------------------- | ------------------------------------------------------------ |
-| air traffic controller |                                                              |
-| passengers             |                                                              |
-| destination            |                                                              |
-| plane                  |                                                              |
-| airport                | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />change_capacity(new_capacity)<br />full? |
-| weather                | stormy?                                                      |
+The code also defends against including:
 
+* planes can only take off from airports they are in
+* planes that are already flying cannot take off
+* planes that are already flying cannot be in an airport
+* planes that are landed cannot land again
+* planes that are landed must be in an airport
 
+### Domain Model
+
+| Objects | Messages                                                     |
+| ------- | ------------------------------------------------------------ |
+| plane   |                                                              |
+| airport | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />change_capacity(new_capacity)<br />full? |
+| weather | stormy?                                                      |
+
+## Running Tests
+
+```bash
+# To run tests
+rspec
+```
+
+## Development / Contributing
+
+This project was created as a learning exercise as part of the Makers Academy Coding Bootcamp. 
+
+No further development is planned on this project and pull requests are not sought (sorry🤗).
 
