@@ -14,13 +14,13 @@ class Airport
   
   def land(plane)
     fail "Sorry, Airport packed over capacity" if full?
-    fail "Stormy wether, land somewhere else" if stormy?
+    fail "Stormy weather, land somewhere else" if stormy?
 
     @runway << plane
   end
 
   def takeoff(plane)
-    fail "Stormy wether, take off not happening" if stormy?
+    fail "Stormy weather, take off not happening" if stormy?
 
     @runway.delete(plane)
     return "#{plane} is in the clouds"
