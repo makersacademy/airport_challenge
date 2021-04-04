@@ -14,12 +14,14 @@ class Airport
   
   def land(plane)
     fail "Sorry, Airport packed over capacity" if full?
+    fail "Stormy wether, land somewhere else" if stormy?
 
     @runway << plane
   end
 
   def takeoff(plane)
-    stormy?
+    fail "Stormy wether, take off not happening" if stormy?
+
     @runway.delete(plane)
     return "#{plane} is in the clouds"
   end
@@ -31,7 +33,7 @@ class Airport
   end
   
   def stormy?
-    fail "Stormy wether, take off not happening" if @weather.forecast == "stormy"
+    @weather.forecast == "stormy"
   end
 
 end
