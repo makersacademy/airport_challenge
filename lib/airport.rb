@@ -21,7 +21,8 @@ class Airport
 
   def takeoff(plane)
     fail "Stormy weather, take off not happening" if stormy?
-
+    
+    correct_airport(plane)
     @runway.delete(plane)
     return "#{plane} is in the clouds"
   end
@@ -34,6 +35,10 @@ class Airport
   
   def stormy?
     @weather.forecast == "stormy"
+  end
+
+  def correct_airport(plane)
+    fail "Plane is in a different airport" unless runway.include? plane
   end
 
 end

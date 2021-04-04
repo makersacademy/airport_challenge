@@ -38,4 +38,16 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error "Stormy weather, land somewhere else"
   end
 
+  describe '#edge cases' do
+
+    it "ensures that planes can only take off from airports they are in" do
+      allow(subject.weather).to receive(:forecast) { "sunny" }
+      airport_2 = Airport.new
+      allow(airport_2.weather).to receive(:forecast) { "sunny" }
+      subject.land(plane)
+      expect { airport_2.takeoff(plane) }.to raise_error "Plane is in a different airport"
+    end
+
+  end
+
 end
