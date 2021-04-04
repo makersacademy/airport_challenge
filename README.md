@@ -31,11 +31,13 @@ This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Inte
 
 ```bash
 # Open irb
-irb -r ./lib ???
+irb -r ./lib/airport
 # To create an airport
 irb(main):001 > london_stansted = Airport.new
 # To create a plane
 irb(main):002 > BA001 = Plane.new
+# To land the above plane at the above airport
+irb(main):003 > london_stansted.land(BA001)
 ```
 
 ## Running Tests
