@@ -15,6 +15,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise 'Too stormy to takeoff' if stormy?
     @planes.pop
   end
 
