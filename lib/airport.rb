@@ -18,7 +18,6 @@ class Airport
     
     plane.location(self)
     @hanger << plane
-
   end
 
   def take_off(plane)
@@ -43,5 +42,4 @@ class Airport
   def prevent_landing?
     weather.stormy_weather?
   end
-
 end
