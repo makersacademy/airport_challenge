@@ -2,7 +2,6 @@ require 'plane'
 describe Plane do
   it { is_expected.to be_instance_of(Plane) }
   describe "#land" do
-    it { expect(subject).to respond_to(:land).with(1).argument }
     it 'lands the plane' do
       subject.take_off
       expect(subject.land(Airport.new)).to be_truthy
@@ -17,7 +16,6 @@ describe Plane do
     end
   end
   describe "#take_off" do
-    it { is_expected.to respond_to(:take_off) }
     it 'tells the plane to take off' do
       subject.take_off.land(Airport.new)
       subject.take_off
