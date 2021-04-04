@@ -12,10 +12,13 @@ class Airport
   end
 
   def land(plane)
+    raise 'already on ground' if plane.landed?
     raise 'unable to land plane, hanger is full' if hanger_full?
     raise 'unable to land, weather is stormy' if prevent_landing?
-
+    
+    plane.location(self)
     @hanger << plane
+
   end
 
   def take_off(plane)

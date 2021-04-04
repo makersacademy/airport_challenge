@@ -28,10 +28,17 @@ describe Airport do
       expect(subject.hanger).to include(plane)
     end
 
-    it 'raises an error if hanger is full' do
+    it 'raises an error if plane has already landed' do
       plane = Plane.new
+      subject = Airport.new(2)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
-      expect { 2.times { subject.land(plane) } }.to raise_error 'unable to land plane, hanger is full'
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'already on ground'
+    end
+
+    it 'raises an error if hanger is full' do
+      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      expect { 2.times { subject.land(Plane.new) } }.to raise_error 'unable to land plane, hanger is full'
     end
 
     it 'raises an error if weather is stormy and we want to prevent landing' do
