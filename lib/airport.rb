@@ -3,6 +3,8 @@ require_relative 'plane'
 class Airport 
   attr_reader :planes
   DEFAULT_CAPACITY = 10
+  PLANES_LANDING = 3
+  PLANES_TAKEOFF = 2
 
   def initialize
     @planes = []
@@ -11,20 +13,18 @@ class Airport
   def land(plane)
     raise 'Airport is full' if full?
     raise 'Too stormy to land' if stormy?
+    
     @planes << plane
   end
 
-  def takeoff(plane)
+  def takeoff(*)
     raise 'Too stormy to takeoff' if stormy?
+
     @planes.pop
   end
 
   def no_longer_in_airport(plane)
-    if @planes.include?(plane)
-      return "The plane is in the airport"
-    else 
-      return "The plane is no longer in the airport"
-    end
+    @planes.include?(plane) ? "The plane is in the airport" : "The plane has left the airport"
   end
 
   def full?
@@ -34,5 +34,4 @@ class Airport
   def stormy?
     rand(1..100) > 75
   end
-
 end

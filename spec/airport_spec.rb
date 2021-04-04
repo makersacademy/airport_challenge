@@ -30,7 +30,7 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     subject.takeoff(plane)
-    expect(subject.no_longer_in_airport(plane)).to eq "The plane is no longer in the airport"
+    expect(subject.no_longer_in_airport(plane)).to eq "The plane has left the airport"
   end
 
   it 'prevents landing when airport is full' do
