@@ -38,7 +38,7 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error "Stormy weather, land somewhere else"
   end
 
-  describe '#edge cases' do
+  describe ' #edge cases' do
 
     it "ensures that planes can only take off from airports they are in" do
       allow(subject.weather).to receive(:forecast) { "sunny" }
