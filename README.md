@@ -101,7 +101,7 @@ I want to prevent landing when weather is stormy
 | passengers             |                                                              |
 | destination            |                                                              |
 | plane                  |                                                              |
-| airport                | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />full?<br />change_capacity(new_capacity) |
+| airport                | land(plane)<br />take_off(plane)<br />hangar?(plane)<br />change_capacity(new_capacity)<br />full? |
 | weather                | stormy?                                                      |
 
 
