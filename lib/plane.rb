@@ -5,8 +5,10 @@ class Plane
   end  
   
   def land(airport)
-    fail 'airport full' if airport.full?
     fail 'already on ground' if @on_ground
+    fail 'weather is stormy' if airport.stormy?
+    fail 'airport full' if airport.full?
+    
     
     
     airport.hanger.push(self)
