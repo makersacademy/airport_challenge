@@ -1,25 +1,36 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
+  
+  let(:plane) { Plane.new }
+  let(:weather) { Weather.new }
 
   it "instructs a plane to land at an airport" do
+    allow(subject.weather).to receive(:forecast) { "sunny" }
     expect(subject).to respond_to(:land)
   end
 
   it "instructs plane to take off from an airport" do
+    allow(subject.weather).to receive(:forecast) { "sunny" }
     expect(subject).to respond_to(:takeoff).with(1).argument
   end
 
   it "confirm a plane is no longer in the airport" do
-    plane = Plane.new
+    allow(subject.weather).to receive(:forecast) { "sunny" }
     subject.land(plane)
     expect(subject.takeoff(plane)).to eq "#{plane} is in the clouds"
   end
 
   it "prevents landing when airport is full" do
-    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error "Sorry, Airport packed over capacity"
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error "Sorry, Airport packed over capacity"
+  end
+
+  it "prevents take off when weather is stormy" do
+    allow(subject.weather).to receive(:forecast) { "stormy" }
+    expect { subject.takeoff(plane) }.to raise_error "Stormy wether, take off not happening"
   end
 
 end
