@@ -92,6 +92,11 @@ describe Airport do
 
   context 'stormy' do
     before { allow(Weather).to receive(:stormy?).and_return(true) }
+    describe '#land' do
+      it 'prevent landing if weather is stormy' do
+        expect { subject.land(plane_one) }.to raise_error('Too stormy!')
+      end
+    end
 
     describe '#take_off' do
       it 'prevent take off if weather is stormy' do

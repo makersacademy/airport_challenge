@@ -1,4 +1,4 @@
-require './lib/weather.rb'
+require './lib/weather'
 
 class Airport
   attr_reader :capacity
@@ -12,6 +12,8 @@ class Airport
 
   def land(plane)
     raise('Airport full!') if full?
+    
+    raise('Too stormy!') if stormy?
 
     @planes.push(plane)
   end
