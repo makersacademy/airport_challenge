@@ -31,7 +31,7 @@ This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Inte
 
 ```bash
 # Open irb
-irb -r ./lib/airport
+irb -r ./lib/airport -r ./lib/plane
 # To create an airport
 irb(main):001 > london_stansted = Airport.new
 # To create a plane
