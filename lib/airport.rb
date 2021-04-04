@@ -1,3 +1,5 @@
+require './lib/weather.rb'
+
 class Airport
   attr_reader :capacity
 
@@ -15,6 +17,8 @@ class Airport
   end
 
   def take_off(plane)
+    raise('Too stormy!') if stormy?
+
     @planes.delete(plane)
   end
 
@@ -30,5 +34,9 @@ class Airport
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def stormy?
+    Weather.stormy?
   end
 end
