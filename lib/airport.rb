@@ -1,3 +1,4 @@
+require 'weather'
 class AirportFull < StandardError
   def initialize(message)
     super(message)
@@ -12,15 +13,13 @@ class Airport
   end
 
   def land
-    if @plane == @max_capacity
-      raise AirportFull.new("Airport at maximum capacity")
-    else
-      @plane += 1
-      puts "Plane has successfully landed"    
-    end
+    raise AirportFull.new("Airport at maximum capacity") if @plane == @max_capacity
+    @plane += 1
+    puts "Plane has successfully landed"    
   end
 
   def take_off
     @plane -= 1
+    raise StormyWeather.new("Stormy weather, can't take off") if Weather.new.stormy? == "yes"
   end
 end
