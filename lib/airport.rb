@@ -10,8 +10,9 @@ class Airport
   end
 
   def land(plane)
-    fail 'Error: Cannot land plane, hangar is full' if full?
-    
+    raise 'Error: Cannot land plane, hangar is full' if full?
+    raise 'Error: Cannot land plane, weather is stormy' if stormy?
+
     @hangar << plane
   end
 
@@ -27,6 +28,15 @@ class Airport
 
   def empty?
     
+  end
+
+  def stormy?
+    weather = rand(1..6)
+      if weather < 3
+        return true
+      else 
+        return false
+      end
   end
 
 end
