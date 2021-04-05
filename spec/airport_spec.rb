@@ -47,6 +47,12 @@ describe 'Airport' do
       expect(airport.hangar).not_to include(plane)
     end
 
+    it "raises an error when airport hangar is empty" do
+      expect { airport.take_off(plane) }.to raise_error 'Error: Plane cannot take off, hangar is empty' 
+    end
+
+    
+
   end
   
 end

@@ -17,7 +17,8 @@ class Airport
   end
 
   def take_off(plane)
-   @hangar.delete(plane)
+    raise 'Error: Plane cannot take off, hangar is empty' if @hangar.length < 1
+    @hangar.delete(plane)
   end
 
   private
