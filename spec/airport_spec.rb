@@ -29,7 +29,8 @@ describe Airport do
 
     it 'raises an error if hanger is full' do
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
-      expect { 2.times { subject.land(Plane.new) } }.to raise_error 'unable to land plane, hanger is full'
+      error = 'unable to land plane, hanger is full'
+      expect { 2.times { subject.land(Plane.new) } }.to raise_error error
     end
 
     it 'raises an error if weather is stormy and we want to prevent landing' do
