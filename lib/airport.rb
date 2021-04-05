@@ -17,7 +17,9 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'Error: Plane cannot take off, hangar is empty' if @hangar.length < 1
+    raise 'Error: Plane cannot take off, hangar is empty' if empty?
+    raise 'Error: Plane cannot take off, weather is stormy' if stormy?
+   
     @hangar.delete(plane)
   end
 
@@ -25,6 +27,10 @@ class Airport
 
   def full?
     @hangar.length >= @capacity
+  end
+
+  def empty?
+    @hangar.length < 1
   end
 
   def stormy?
