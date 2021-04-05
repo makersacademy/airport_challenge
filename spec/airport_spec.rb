@@ -22,4 +22,12 @@ describe Airport do
     expect(subject).to be_empty
   end
 
+  it 'when plane lands, is no longer empty' do
+    test_plane = Plane.new#.land
+    subject.take_in_plane(test_plane)
+    expect(subject).not_to be_empty
+  end
 end
+
+# PROBLEM: it's posible the take_in_plane but for plane.landed? to be false
+# plane.landed might be a redundant method.
