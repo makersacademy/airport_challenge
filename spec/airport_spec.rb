@@ -16,6 +16,12 @@ describe 'Airport' do
       airport.hangar << plane
       expect(airport.hangar).to include(plane)
     end
+
+    it "raises an error when airport hangar capacity is full" do
+      20.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Error: Cannot land plane, hangar is full' 
+    end
+
   end
   
   describe 'conditions for #take_off(plane)' do
