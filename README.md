@@ -13,77 +13,86 @@ Airport Challenge
 
 ```
 
-Instructions
+Welcome to my solution for the airport challenge. Below I have explained how I approached the challenge, the process I have followed and the learning outcomes achieved. 
+
+Objective
 ---------
+The objective of this challenge was to create a program which controls the flow of planes at an airport by allowing them to land, take_off and stay inside the airport. The program should account for changing weather conditions and take into account any edge cases. 
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
+Progress and Learning Outcomes
+------------------------------
+At first I found this challenge very difficult to complete. However, by following a robust process, I have managed to complete this test to the best of my ability keeping in line with all the user stories. All the edge cases I could think of have been considered during the writing of this program.
+
+I have learned the following during the completion of this challenge:
+
+1. Gained a deeper understanding of test driven development
+2. Have been able to understand RSPEC concept and syntax better
+3. Have managed to write cleaner and better fit for purpose tests
+4. Have been able to understand abstraction and apply that better
+5. Gained further understanding of scope
+6. application of SRP
+7. Further knowledge and clarity on OOP
+8. Understanding of attr_reader, accessor, writer and stubs
+9. Gained problem solving skills
+
+
+Process
 -------
+I followed the TDD process as below:
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+1. Break down the user story into its components using problem solving skills
+2. Figure out the object and methods from the breakdown
+3. Wrote feature tests based on the diagram
+4. Wrote unit test based on feature test failures
+5. Wrote the code to make the unit pass
 
-Task
------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Program (Features and Functionality)
+------------------------------------
+The program allows to manage the flow of traffic in an airport effectively and robustly. The program takes has various features but some of the main features are highlighted below
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+**Features Tests and User Stories**
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Please follow this link for [User story representations and feature tests](https://docs.google.com/document/d/e/2PACX-1vRD_SHoy4B9YGyuX5tKhT0AMdy7yQ7SsbrwUpOB8Z_CuZQocBVMnt6fHaykmG2M23xq4rIVW4GDfhrn/pub). 
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+**Classes**
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+The program has three classes which are airport, plane, and weather. For each class the methods and features have been clearly defined in the code and have all been tested out. 
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+**Airport**
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
+For every new airport, the program creates a hanger where the planes will be kept after landing until they takeoff again. The program also sets the default capacity of that hanger to hold 1 plane which can changed by the user at the creation of the airport.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+**Weather**
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Weather class has been created to take into account ensure the other functionalities of the program that depend on weather conditions are not compromised. Weather has been assigned a set of procedures where randomises so that it will say the weather is stormy 20% of the times. The procedures defined in this class are integral to other functioanlities of the program. 
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+**Landing Functionality**
 
-Please create separate files for every class, module and test suite.
+The program allows us the land planes at the airport. It then parks the plane in a hanger on the airport this plane landed in. The program does not allow the plane to land when the weather is stormy, when the hanger is full or the plane that we are asking to be landed has already been landed on the airport.
 
-In code review we'll be hoping to see:
+**Take_off Functionality**
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+The planes which have previously been landed can also takeoff from the airport. We also test for cases where we will get an error if we instruct for a plane to takeoff which is not in the hanger and to prevent takeoff when weather is stormy. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
-**BONUS**
+Challenges Faced
+----------------
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Some of the biggest challenges I faced during this challengeare below:
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+**Problem solving**
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+I have recently started to try and think like a programmer and problem solve in that capacity. What I have noticed during this challenge is that I can spend a lot of time trying to break down a problem without any actual progress made. I spent an obscene amount of time just stuck at user story 1. This was something that really blocked me and did not let me move on as I was thinking about the end result and not the problem at hand. After a gruelling few hours without any progress, I changed my approach and went back to the drawing board to think about problem solving and TDD process. I then started writing my first meaningful feature test to solve the smallest problem and slowly started building up from there. Once I was unblocked, completing the rest of the challenge was a much better experience. 
 
-* **Submit a pull request early.**
+**Writing Tests and Rspec**
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+I do not have any previous experience writing test and using Rspec so it was difficult to figure this out at first. After practising and researching it has now become a bit more easier to write test. I hope that this is something that will become better with time.
+
+
+Conclusion
+----------
+
+I am very happy to have completed this challenge and I am glad that I did not give up when I was blocked. I kept reminding (and will keep reminding myself) the quote 'it's not hard, it's new'.
+
