@@ -1,18 +1,15 @@
 class Plane
-#
-#   attr_accessor :landed
-#   def in_airport?
-#     if @landed != true
-#       false
-#     else
-#       true
-#     end
-#   end
-#
-#   def land
-#     @landed = true
-#     return self
-#     # we need something to
-#     #ensure the airport takes it in
-#   end
+  attr_accessor :dock_status
+  def initialize
+    @dock_status = false
+  end
+
+  def dock
+    @dock_status = true
+  end
+
+  def undock
+    @dock_status = false
+  end
+
 end

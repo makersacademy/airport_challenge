@@ -6,6 +6,19 @@ describe Plane do
   it 'successfully instantiates' do
     expect(subject).to be_instance_of(Plane)
   end
+
+  it 'docks' do
+    expect(subject).to respond_to(:dock)
+    subject.dock
+    expect(subject.dock_status).to equal(true)
+  end
+
+  it 'undocks' do
+    expect(subject).to respond_to(:undock)
+    subject.dock
+    subject.undock
+    expect(subject.dock_status).to equal(false)
+  end
   ## successful plane.is_in_airport == false
   #it 'is not in airport on instantiation' do
   #  expect(subject).not_to be_in_airport
