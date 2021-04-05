@@ -21,7 +21,9 @@ class Airport
   
   def take_off(plane)
     raise 'cant take off, is stormy' if stormy?
+    
     raise 'cant take off, already flying' unless in_airport?(plane)
+    
     plane.take_off
     del_plane(plane)
     plane
@@ -29,7 +31,7 @@ class Airport
   
   private 
   
-  attr_reader :capacity, :planes
+  attr_reader :capacity
   
   def full?
     planes.length >= capacity
@@ -46,6 +48,7 @@ class Airport
   def del_plane(plane)
     planes.delete(plane)
   end
+  
   def add_plane(plane)
     planes << plane
   end

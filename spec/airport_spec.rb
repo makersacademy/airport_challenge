@@ -1,7 +1,7 @@
 require 'airport'
 describe Airport do
   subject(:airport) { described_class.new } 
-  let(:plane) { double :plane , land: nil, take_off: nil }
+  let(:plane) { double :plane, land: nil, take_off: nil }
   
    
   describe '#land' do
@@ -13,7 +13,7 @@ describe Airport do
       end
 
       it 'responds to land' do
-        expect(plane).to receive (:land)
+        expect(plane).to receive(:land)
         airport.land(plane)
       end
 
