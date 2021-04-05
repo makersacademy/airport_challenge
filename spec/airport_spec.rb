@@ -11,18 +11,21 @@ describe 'Airport' do
   end
   
   describe 'conditions for #land' do
-    it "allows airport to accept landing plane" do
-      allow(airport).to receive(:land)
-      allow(airport).to receive(:stormy?).and_return false
-      airport.hangar << plane
-      expect(airport.hangar).to include(plane)
-    end
-    
-    context 'when airport hangar is full' do
-      it "raises an error" do
+    context 'when not stormy' do
+      before do
         allow(airport).to receive(:stormy?).and_return false
-        20.times { airport.land(plane) }
-        expect { airport.land(plane) }.to raise_error 'Error: Cannot land plane, hangar is full' 
+      end
+      it "allows airport to accept landing plane" do
+        allow(airport).to receive(:land)
+        airport.hangar << plane
+        expect(airport.hangar).to include(plane)
+      end
+    
+      context 'when airport hangar is full' do
+        it "raises an error" do
+          20.times { airport.land(plane) }
+          expect { airport.land(plane) }.to raise_error 'Error: Cannot land plane, hangar is full' 
+        end
       end
     end
 
