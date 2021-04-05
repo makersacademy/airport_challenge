@@ -135,11 +135,11 @@ As the user stories specified that the airport was instructing the planes to lan
 - [x] Write preventative contexts and associated methods for 'Land':
     - [x] if airport hangar full
     - [x] if weather stormy
-    - []  if plane already landed
+    - [ ]  if plane already landed
 - [x] Write preventative contexts and associated methods for 'Take off'
     - [x] if airport hangar empty
     - [x] if weather stormy
-    - []  if plane already flying
+    - [ ]  if plane already flying
 
 # Reflection and stretch goals
 -----
