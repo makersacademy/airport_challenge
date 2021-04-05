@@ -143,7 +143,7 @@ As the user stories specified that the airport was instructing the planes to lan
 
 # Reflection and stretch goals
 -----
-This challenge helped me consolidate the weeks work and improve my understanding of TDD methodology and RSpec syntax. I would like to improve on my ability to adhere more rigorously to the methodical apstructure of TDD to help ensure simplicity and elegance in my test writing and production code. 
+This challenge helped me consolidate the week's work and improve my understanding of TDD methodology and RSpec syntax. I would like to improve on my ability to adhere more rigorously to the methodical apstructure of TDD to help ensure simplicity and elegance in my test writing and production code. 
 
 In the time constraints I didn't manage to include edge cases into my build. I would like to revisit and add the following contexts and features:
 * Prevent a flying plane from taking off
