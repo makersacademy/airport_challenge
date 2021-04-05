@@ -1,9 +1,8 @@
 require 'airport'
 describe Airport do
   subject(:airport) { described_class.new } 
-  let(:plane) { double :plane }
-  let(:airport) { Airport.new(2) }
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane , land: nil, take_off: nil }
+  
    
   describe '#land' do
 
@@ -14,7 +13,8 @@ describe Airport do
       end
 
       it 'responds to land' do
-        expect(airport).to respond_to(:land).with(1).argument 
+        expect(plane).to receive (:land)
+        airport.land(plane)
       end
 
       it 'lands a plane' do 
@@ -24,7 +24,9 @@ describe Airport do
       context 'when full' do
 
         it 'raises an error' do
-          2.times { airport.land(plane) }
+          2.times do
+            airport.land(plane)
+          end
           expect { airport.land(plane) }.to raise_error('Airport full:take off a plane to land this one') 
         end
       end
@@ -48,7 +50,9 @@ describe Airport do
       end
     
       it 'responds to take of' do
-        expect(airport).to respond_to(:take_off).with(1).argument 
+        airport.land(plane)
+        expect(plane).to receive(:take_off)
+        airport.take_off(plane)
       end
       it 'takes-of a plane' do 
         @planes = []

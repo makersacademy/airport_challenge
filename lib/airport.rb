@@ -15,13 +15,14 @@ class Airport
     
     raise 'cant land, is stormy' if stormy?
 
-    @planes << plane
+    plane.land(self)
+    add_plane(plane)
   end
   
   def take_off(plane)
     raise 'cant take off, is stormy' if stormy?
     raise 'cant take off, already flying' unless in_airport?(plane)
-    
+    plane.take_off
     del_plane(plane)
     plane
   end
@@ -44,5 +45,8 @@ class Airport
 
   def del_plane(plane)
     planes.delete(plane)
+  end
+  def add_plane(plane)
+    planes << plane
   end
 end
