@@ -2,6 +2,10 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
+  before do
+    allow(plane).to receive(:land_plane)
+    allow(plane).to receive(:takeoff_plane)
+  end
 
   it { is_expected.to be_instance_of Airport }
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -22,7 +26,7 @@ describe Airport do
 
     it 'raises an error when airport is full' do
       Airport::DEFAULT_CAPACITY.times do 
-        subject.land( Plane.new )
+        subject.land(Plane.new)
       end
       expect { subject.land(Plane.new) }.to raise_error LandingError
     end

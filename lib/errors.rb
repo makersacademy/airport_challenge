@@ -13,3 +13,19 @@ class LandingError < StandardError
     super(msg)
   end
 end
+
+class PlaneLandedError < StandardError
+  attr_reader :msg
+
+  def initialize(msg = 'Plane already in airport')
+    super(msg)
+  end
+end
+
+class PlaneTakeoffError < StandardError
+  attr_reader :msg
+
+  def initialize(msg = 'Plane already in flight')
+    super(msg)
+  end
+end
