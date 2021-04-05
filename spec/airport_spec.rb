@@ -22,6 +22,10 @@ describe Airport do
     expect(subject).to be_empty
   end
 
+  it 'responds to #take_in_plane' do
+    expect(subject).to respond_to(:take_in_plane)
+  end
+
   it 'when plane lands, is no longer empty' do
     test_plane = Plane.new#.land
     subject.take_in_plane(test_plane)
@@ -44,7 +48,7 @@ describe Airport do
     expect { x.take_in_plane(first_plane) }.to raise_error 'DOCKED ALREADY'
   end
 
-  it 'cannot allow an self to take in a plane docked in another airport' do
+  it 'cannot allow self to take in a plane currently docked in another airport' do
     test_plane = Plane.new
     a1 = Airport.new
     a2 = Airport.new
@@ -52,6 +56,16 @@ describe Airport do
     expect {a2.take_in_plane(test_plane) }.to raise_error 'DOCKED ALREADY'
   end
 
+  it 'responds to #part_with_plane' do
+    expect(subject).to respond_to(:part_with_plane_at_pos)
+  end
+  # if we dock and undock a plane, is it gone from hangar?
+  it 'takes in plane, then parts with it' do
+    test_plane = Plane.new
+    subject.take_in_plane(test_plane)
+    subject.part_with_plane_at_pos(0)
+    expect(subject.hangar).not_to include(test_plane)
+  end
 
 end
 

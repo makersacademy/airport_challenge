@@ -16,6 +16,11 @@ class Airport
     @hangar.push(plane)
   end
 
+  def part_with_plane_at_pos(plane_pos)
+    @hangar[plane_pos].undock
+    @hangar.delete_at(plane_pos)
+  end
+
   def empty?
     return @hangar.length == 0
   end
