@@ -7,13 +7,13 @@ describe Plane do
     expect(subject).to be_instance_of(Plane)
   end
 
-  it 'docks' do
+  it 'docks, and has dock_status as true' do
     expect(subject).to respond_to(:dock)
     subject.dock
     expect(subject.dock_status).to equal(true)
   end
 
-  it 'undocks' do
+  it 'undocks, and has dock_status as false' do
     expect(subject).to respond_to(:undock)
     subject.dock
     subject.undock
