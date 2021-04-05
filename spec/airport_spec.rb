@@ -25,7 +25,7 @@ describe Airport do
 
         it 'raises an error' do
           2.times { airport.land(plane) }
-          expect { airport.land(plane) }.to raise_error('Airport full:take of a plane to land this one') 
+          expect { airport.land(plane) }.to raise_error('Airport full:take off a plane to land this one') 
         end
       end
     end
@@ -39,7 +39,7 @@ describe Airport do
     end
   end
   
-  describe '#take of' do
+  describe '#take off' do
 
     context 'when not stormy' do
 
@@ -48,31 +48,28 @@ describe Airport do
       end
     
       it 'responds to take of' do
-        expect(airport).to respond_to(:take_of).with(1).argument 
+        expect(airport).to respond_to(:take_off).with(1).argument 
       end
       it 'takes-of a plane' do 
         @planes = []
         airport.land(plane)
         @planes << plane
-        airport.take_of(plane)
+        airport.take_off(plane)
         @planes.delete(plane)
         expect(@planes).not_to include(plane)
       end
 
       it 'confirms that plane is no longer at the airport' do
-        @planes = []
-        plane = Plane.new
         airport.land(plane)
-        @planes << plane
-        expect(airport.take_of(plane)).to eq(plane)  
+        expect(airport.take_off(plane)).to eq plane  
       end
     end
 
     context 'when stormy' do
 
-      it 'doesnt allow take ofs ' do
+      it 'doesnt allow take offs ' do
         allow(airport).to receive(:stormy?).and_return true
-        expect { airport.take_of(plane) }.to raise_error('cant take of, is stormy')
+        expect { airport.take_off(plane) }.to raise_error('cant take off, is stormy')
       end
     end
   end

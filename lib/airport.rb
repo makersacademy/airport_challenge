@@ -11,23 +11,24 @@ class Airport
   end
   
   def land(plane)
-    raise 'Airport full:take of a plane to land this one' if full?
+    raise 'Airport full:take off a plane to land this one' if full?
     
     raise 'cant land, is stormy' if stormy?
 
     @planes << plane
   end
   
-  def take_of(plane)
-    raise 'cant take of, is stormy' if stormy?
+  def take_off(plane)
+    raise 'cant take off, is stormy' if stormy?
+    raise 'cant take off, already flying' unless in_airport?(plane)
     
-    @planes.delete(plane)
+    del_plane(plane)
     plane
   end
   
   private 
   
-  attr_reader :capacity
+  attr_reader :capacity, :planes
   
   def full?
     planes.length >= capacity
@@ -37,4 +38,11 @@ class Airport
     rand(1..6) > 4
   end
 
+  def in_airport?(plane)
+    planes.include?(plane)
+  end
+
+  def del_plane(plane)
+    planes.delete(plane)
+  end
 end
