@@ -3,7 +3,7 @@ require_relative "weather"
 
 class Airport
 
-  DEFAULT_CAPACITY = 20
+  ::DEFAULT_CAPACITY = 20
   attr_reader :capacity, :hangar, :climate, :name
 
   def initialize(capacity = DEFAULT_CAPACITY, climate = Weather.new.meteo)

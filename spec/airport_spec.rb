@@ -21,9 +21,15 @@ describe Airport do
       expect(CdG.land(concorde)).to eq([concorde])
     end
 
-    it "raises an error when the hangar's airport is full." do
+    it "raises an error when the hangar's airport is at full defaut capacity." do
       subject.land(Plane.new)
-      expect { subject.capacity.times { subject.land(Plane.new) } }.to raise_error("The airport is full")
+      expect { ::DEFAULT_CAPACITY.times { subject.land(Plane.new) } }.to raise_error("The airport is full")
+    end
+
+    it "raises an error when the hangar's airport is full." do
+      orly = Airport.new(4)
+      orly.land(Plane.new)
+      expect { orly.capacity.times { orly.land(Plane.new) } }.to raise_error("The airport is full")
     end
 
     it "raises an error when the plane cannot land because of bad weather." do
