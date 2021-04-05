@@ -5,7 +5,7 @@ class Airport
   def initialize(default_capacity = 1)
     @hangar = []
     @CAPACITY = default_capacity
-    @weather = 'fair'
+    @weather = randomise_weather
   end
 
   def take_in_plane(plane)
@@ -16,8 +16,14 @@ class Airport
     @hangar.push(plane)
   end
 
-  def sudden_bad_weather
+  # I did not end up using stubs to override randomness
+  #  I just couldn't get the syntax right!
+  def randomise_weather
+    if rand(10).ceil <= 2
       @weather = 'stormy'
+    else
+      @weather = 'fair'
+    end
   end
 
   def part_with_plane_at_pos(plane_pos)
