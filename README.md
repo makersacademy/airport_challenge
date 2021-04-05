@@ -143,11 +143,11 @@ As the user stories specified that the airport was instructing the planes to lan
 
 # Reflection and stretch goals
 -----
-This challenge helped me consolidate the week's work and improve my understanding of TDD methodology and RSpec syntax. I would like to improve on my ability to adhere more rigorously to the methodical apstructure of TDD to help ensure simplicity and elegance in my test writing and production code. 
+This challenge helped me consolidate the week's work and improve my understanding of TDD methodology and RSpec syntax. I would like to improve on my ability to adhere more rigorously to the methodical structure of TDD to help ensure simplicity and elegance in my test writing and production code. 
 
 In the time constraints I didn't manage to include edge cases into my build. I would like to revisit and add the following contexts and features:
 * Prevent a flying plane from taking off
 * Prevent a landed plane from landing
 * Have planes take off and land at different airports
-* Ensure plane lands and takes off from the same airport.
+* Ensure plane lands and takes off from the same airport
 * Allow for multiple planes to land and take off from an airport
