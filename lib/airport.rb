@@ -31,12 +31,7 @@ class Airport
   end
 
   def stormy?
-    weather = rand(1..6)
-      if weather < 3
-        return true
-      else 
-        return false
-      end
+    rand(1..6) < 3
   end
 
 end
