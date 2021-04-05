@@ -9,8 +9,6 @@ class Plane
     fail 'weather is stormy' if airport.stormy?
     fail 'airport full' if airport.full?
     
-    
-    
     airport.hanger.push(self)
     @on_ground = airport
   end

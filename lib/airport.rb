@@ -1,8 +1,9 @@
 require_relative 'weather'
 class Airport
-  attr_accessor :hanger, :capacity, :weather
- 
-  def initialize(capacity = 1)
+  attr_accessor :hanger
+  attr_reader :capacity, :weather
+  DEFAULT_CAPACITY = 1
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = []
     @capacity = capacity
     @weather = Weather.new
@@ -13,7 +14,7 @@ class Airport
   end  
 
   def full?
-    true if @hanger.length == @capacity
+    @hanger.length == @capacity
   end
 
   def stormy?
