@@ -13,6 +13,7 @@ class Airport
   end
 
   def land
+    raise StormyWeather.new("Stormy weather, unable to land plane at airport") if Weather.new.stormy? == "yes"
     raise AirportFull.new("Airport at maximum capacity") if @plane == @max_capacity
     @plane += 1
     puts "Plane has successfully landed"    
