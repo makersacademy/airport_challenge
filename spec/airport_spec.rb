@@ -4,8 +4,9 @@ describe Airport.new(@plane, @max_capacity) do
   #take plane off from an airport and confirm it is no longer there
   #take_off method. puts "plane x has taken off"
   it { is_expected.to respond_to(:take_off) }
-
-  
+  #responds to stormy?
+  #it { is_expected.to respond_to(:stormy?) }
+  #if yes, prevent take_off. i.e. take_off raises an exception
 end
 
 describe "#land" do

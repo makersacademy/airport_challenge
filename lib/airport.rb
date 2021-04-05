@@ -5,7 +5,8 @@ class AirportFull < StandardError
 end
 
 class Airport
-  def initialize(plane, max_capacity = 3)
+  attr_reader :plane, :max_capacity
+  def initialize(plane = 0, max_capacity = 3)
     @plane = plane
     @max_capacity = max_capacity
   end
