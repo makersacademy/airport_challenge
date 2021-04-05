@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'errors'
 
 class Airport
   DEFAULT_CAPACITY = 30
@@ -10,27 +11,21 @@ class Airport
   end
 
   def land(plane)
-    @plane = plane
-    landed? && empty?
+    full?
     @planes << plane 
   end
 
   def takeoff(plane)
     empty?
-    @planes.delete(plane)
   end
 
   private
   def full?
-    fail 'Airport is full' if @planes.size >= DEFAULT_CAPACITY
-  end
-
-  def landed?
-    fail 'Plane has already landed' if @planes.include?(@plane)
+    raise LandingError if @planes.size >= DEFAULT_CAPACITY
   end
 
   def empty?
-    fail 'Airport is empty' if @planes.empty?
+    raise TakeOffError if @planes.empty?
   end
 
 end

@@ -1,26 +1,21 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { instance_double(Plane, :plane) }
+  let(:plane) { double :plane }
 
   it { is_expected.to be_instance_of Airport }
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
 
-  it 'lands a given plane' do
-    expect(subject.land(plane)).to eq([plane])
-  end
+  context 'landing a plane' do
+    it 'lands a given plane' do
+      expect(subject.land(plane)).to eq([plane])
+    end
 
-  it 'returns the landed planes' do
-    subject.land(plane)
-    expect(subject.planes).to eq([plane])
-  end
-
-
-  it 'instructs a specific plane to take off and removes it from the airport' do
-    subject.land(plane)
-    subject.takeoff(plane)
-    expect(subject.planes).to eq([])
+    it 'returns the landed planes' do
+      subject.land(plane)
+      expect(subject.planes).to eq([plane])
+    end
   end
   
   describe '#land' do
@@ -29,13 +24,7 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times do 
         subject.land( Plane.new )
       end
-      expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
-    end
-
-    it 'raises an error when landing an already landed plane' do
-      plane = Plane.new
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'Plane has already landed'
+      expect { subject.land(Plane.new) }.to raise_error LandingError
     end
     
   end
@@ -43,7 +32,7 @@ describe Airport do
   describe '#takeoff' do
 
     it 'raises an error when airport is empty' do
-      expect { subject.takeoff(plane) }.to raise_error 'Airport is empty'
+      expect { subject.takeoff(plane) }.to raise_error TakeOffError
     end
 
   end
