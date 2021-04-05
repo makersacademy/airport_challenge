@@ -11,6 +11,7 @@ class Airport
 
   def land(plane)
     fail 'Error: Cannot land plane, hangar is full' if full?
+    
     @hangar << plane
   end
 
@@ -22,6 +23,10 @@ class Airport
 
   def full?
     @hangar.length >= @capacity
+  end
+
+  def empty?
+    
   end
 
 end
