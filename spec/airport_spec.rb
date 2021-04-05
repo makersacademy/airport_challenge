@@ -39,6 +39,13 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error TakeOffError
     end
 
+    it 'raises an error when plane does not exist' do
+      subject.land(plane)
+      plane1 = double('plane', land_plane: true)
+      expect do
+        subject.takeoff(plane1)
+      end.to raise_error PlaneError
+    end
   end
 
 end

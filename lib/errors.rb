@@ -29,3 +29,19 @@ class PlaneTakeoffError < StandardError
     super(msg)
   end
 end
+
+class PlaneError < StandardError
+  attr_reader :msg
+
+  def initialize(msg = 'Plane does not exist')
+    super(msg)
+  end
+end
+
+class WeatherError < StandardError
+  attr_reader :msg
+
+  def initialize(msg = 'Stormy weather conditions')
+    super(msg)
+  end
+end
