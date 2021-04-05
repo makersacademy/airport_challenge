@@ -14,9 +14,3 @@ describe "#land" do
     end
   end
 end
-
-describe "#take_off" do
-  it "raises an error when weather is stormy" do
-    expect { Airport.new.take_off }.to raise_error(StormyWeather, "Stormy weather, can't take off")
-  end
-end

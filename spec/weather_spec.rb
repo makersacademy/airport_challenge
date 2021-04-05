@@ -19,8 +19,7 @@ describe Weather do
   it "refuses to land when weather is stormy" do
     if Weather.new.stormy? == "yes"
       airport = Airport.new
-      expect { airport.land }.to raise_error(StormyWeather, "Stormy weather, unable to land plane at airport")
+      expect { airport.land }.to raise_error(StormyWeather, "Stormy weather")
     end
   end
-
 end

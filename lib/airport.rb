@@ -13,14 +13,18 @@ class Airport
   end
 
   def land
-    raise StormyWeather.new("Stormy weather, unable to land plane at airport") if Weather.new.stormy? == "yes"
+    raise StormyWeather.new("Stormy weather") if Weather.new.stormy? == "yes"
+
     raise AirportFull.new("Airport at maximum capacity") if @plane == @max_capacity
-    @plane += 1
-    puts "Plane has successfully landed"    
+
+    @plane += 1 if Weather.new.stormy? == "no"
+    puts "Plane has successfully landed" if Weather.new.stormy? == "no" 
   end
 
   def take_off
-    @plane -= 1
+    @plane -= 1 if Weather.new.stormy? == "no"
+
     raise StormyWeather.new("Stormy weather, can't take off") if Weather.new.stormy? == "yes"
+
   end
 end
