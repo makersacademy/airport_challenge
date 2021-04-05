@@ -17,17 +17,13 @@ class Airport
   end
 
   def take_off(plane)
-    
+   @hangar.delete(plane)
   end
 
   private
 
   def full?
     @hangar.length >= @capacity
-  end
-
-  def empty?
-    
   end
 
   def stormy?

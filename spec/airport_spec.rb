@@ -39,9 +39,14 @@ describe 'Airport' do
   end
   
   describe 'conditions for #take_off' do
-    it "allows airport to release plane in take off" do
+    
+    it 'allows planes to take off from airport' do
       allow(airport).to receive(:take_off)
+      airport.hangar << plane
+      airport.hangar.delete(plane)
+      expect(airport.hangar).not_to include(plane)
     end
+
   end
   
 end
