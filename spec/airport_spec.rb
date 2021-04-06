@@ -48,4 +48,17 @@ describe Airport do
     end
   end
 
+  context 'weather conditions' do
+    xit 'raises an error when stormy' do
+      allow(subject).to receive(:weather_stormy?) { :stormy }
+      subject.land_plane(plane) 
+      expect { subject.takeoff(plane) }.to raise_error WeatherError
+    end
+
+    xit 'cannot land a plane during a storm' do
+      allow(subject).to receive(:weather_stormy?) { :stormy }
+      expect { subject.land_plane(plane) }.to raise_error WeatherError
+    end
+  end
+
 end

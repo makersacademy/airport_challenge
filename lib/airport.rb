@@ -32,7 +32,7 @@ class Airport
   def takeoff_checks(plane)
     raise TakeOffError if @planes.empty?
     raise PlaneError unless plane_in_airport?(plane)
-    raise WeatherError if stormy_weather?
+    raise WeatherError if weather_stormy?
   end
   
   def plane_in_airport?(plane)
