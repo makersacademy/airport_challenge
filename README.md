@@ -19,7 +19,9 @@
 ### Process to solve the task              
 
 • Tackled everything one step at a time.
+
 • Transformed the User Story into a Domain Model.
+
 • Made a diagram that shows how Objects will use Messages to communicate with one another.
 
 ### User Stories
