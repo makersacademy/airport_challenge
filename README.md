@@ -61,5 +61,7 @@ I want to prevent landing when weather is stormy
 ### User Stories Diagram
 
 Plane <-- plane_at_airport? --> true/false
+
 Airport <-- land --> Plane
+
 Airport <-- take off --> Plane 
