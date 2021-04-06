@@ -17,6 +17,11 @@ class Airport
 
   def take_off
     Plane.new
+    fail "Not allowed to take off due to stormy weather" if weather == :stormy
+  end  
+
+  def weather
+    weather = [:stormy, :fine].sample
   end
 
   private
@@ -24,5 +29,5 @@ class Airport
   def full?
     @planes.count >= capacity
   end
-
+    
 end

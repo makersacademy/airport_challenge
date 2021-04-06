@@ -30,4 +30,8 @@ describe Airport do
     end
   end
 
+  it 'does not allow plane to take off' do
+    expect { subject.take_off }.to raise_error "Not allowed to take off due to stormy weather"
+  end
+
 end
