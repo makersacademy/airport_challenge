@@ -3,7 +3,7 @@ class Weather
     rand(1..10) 
   end 
 
-  def stormy?
+  def stormy? 
     randomizer >= 8
   end 
 end 

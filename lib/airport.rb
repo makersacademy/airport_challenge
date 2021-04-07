@@ -12,13 +12,13 @@ class Airport
 
   def land(plane)
     raise 'Airport full, do not land' if @planes.count >= DEFAULT_CAPACITY
-    raise 'Stormy weather, do not land' if stormy?
+    raise 'Stormy weather, do not land' if @weather.stormy?
     
     @planes << plane
   end 
 
   def takeoff(*)
-    raise 'Stormy weather, do not take off' if stormy?
+    raise 'Stormy weather, do not take off' if @weather.stormy?
     
     @planes.pop
   end 
