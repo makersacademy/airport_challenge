@@ -1,5 +1,7 @@
 # Airport Challenge
 
+#### Technologies: Ruby, Rspec
+
 ```
         ______
         _\____\___
@@ -12,8 +14,6 @@
 
 ```
 
-
-#### Technologies: Ruby, Rspec
 
 ## Makers Academy - Week 1 Solo Weekend Project
 
