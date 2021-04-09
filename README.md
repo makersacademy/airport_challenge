@@ -23,7 +23,7 @@ We have a request from a client to write the software to control the flow of pla
 
 The code allows for:
 
-1 - Creation of a bike 2 - Reporting a bike as broken 3 - Docking of bikes at a docking station, ensuring that they are actually bikes and separating them into working and broken bikes. 4 - Loading of broken bikes onto a van to be taken away for repair. 5 - Unloading of broken bikes at a garage. 6 - Repairing of bikes at the garage. 7 - Loading of working bikes onto a van to be taken back to a docking station. 8 - Unloading of working bikes at a docking station.
+1 - Creation of a plane 2 - Landing of a plane 3 - 
 
 
 Here are the user stories that we worked out in collaboration with the client:
