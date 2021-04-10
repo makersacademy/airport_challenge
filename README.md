@@ -28,7 +28,7 @@ We have a request from a client to write the software to control the flow of pla
 I used a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests of the airport, I used a double for the plane in order to remove test dependence on the plane object. The code passes all tests with 100% coverage and Rubocop reports no offences.
 
 
-Here are the user stories that we worked out in collaboration with the client:
+Here are the user stories that were worked out in collaboration with the client:
 
 ### User Stories
 
