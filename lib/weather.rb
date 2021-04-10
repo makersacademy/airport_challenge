@@ -1,9 +1,17 @@
 class Weather
 
-  attr_reader :sunny
+  def condition
+    if random_number < 8
+      'calm'
+    else
+      'stormy'
+    end
+  end
 
-  def initialize
-    rand(5) < 4 ? @sunny = true : @sunny = false
+  private
+
+  def random_number
+    rand(1..10)
   end
 
 end

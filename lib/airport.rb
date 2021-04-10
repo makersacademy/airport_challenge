@@ -1,36 +1,35 @@
-require 'plane'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
-  DEFAULT_CAPACITY = 20
+  attr_accessor :hangar, :capacity, :weather
 
-  attr_accessor :capacity, :planes, :sunny
+  CAPACITY = 1
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = CAPACITY)
+    @hangar = []
     @capacity = capacity
-    @planes = []
-    weather_condition = Weather.new
-    @weather = weather_condition.sunny
+    @weather = Weather.new.condition
   end
 
   def land(plane)
-    fail "Airport is full" if planes.length >= capacity
-    fail "Weather stormy: cannot land" unless sunny
-    fail "Plane has already landed" if plane.landed
+    fail "Plane is already landed" unless plane.status == 'flying'
+    fail "Plane unable to land due to stormy weather" unless @weather == 'calm'
+    fail "Airport is full" unless @hangar.count < capacity
 
-    plane.landed = true
-    planes << plane
+    plane.status = 'landed'
+    puts "#{plane} has landed"
+    @hangar << plane
   end
 
   def take_off(plane)
-    fail "Weather stormy: cannot take-off" unless sunny
-    fail "Plane is has already taken-off" unless plane.landed
-    fail "Plane is not at this airport" unless planes.include? plane
+    fail "Plane is already flying" unless plane.status == 'landed'
+    fail "Plane unable to take off due to stormy weather" unless @weather == 'calm'
 
-    plane.landed = false
-    planes.pop
+    plane.status = 'flying'
+    @hangar.pop
+    puts "#{plane} has taken off"
   end
 
 end
-
-// redo code

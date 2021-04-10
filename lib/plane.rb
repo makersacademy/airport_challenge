@@ -1,10 +1,9 @@
-require 'airport'
-
 class Plane
-  attr_accessor :landed
 
-  def initialize(status = true)
-    @landed = status
+  attr_accessor :status
+
+  def initialize
+    @status = 'flying'
   end
 
 end
