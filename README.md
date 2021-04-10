@@ -21,7 +21,7 @@
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
-The code has the following features:
+### The code has the following features:
 
 1 - Creation of an airport with a set or default capacity 2 - Creation of a plane 3 - Landing of a plane 4 - Takeoff of a plane 5 - Landing of planes dependent on not exceeding capacity of airport 6 - Landing and takeoff of planes dependent on weather conditions
 
