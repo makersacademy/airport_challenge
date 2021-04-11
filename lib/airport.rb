@@ -7,10 +7,10 @@ class Airport
 
   CAPACITY = 1
 
-  def initialize(capacity = CAPACITY)
+  def initialize(capacity = CAPACITY, weather = Weather.new.condition)
     @hangar = []
     @capacity = capacity
-    @weather = Weather.new.condition
+    @weather = weather
   end
 
   def land(plane)
