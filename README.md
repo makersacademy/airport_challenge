@@ -25,7 +25,7 @@ We have a request from a client to write the software to control the flow of pla
 
 1 - Creation of an airport with a set or default capacity 2 - Creation of a plane 3 - Landing of a plane 4 - Takeoff of a plane 5 - Landing of planes dependent on not exceeding capacity of airport 6 - Landing and takeoff of planes dependent on weather conditions 7 - Edge cases of the landing of a landed plane or the takeoff of a flying plane are prevented through guard clauses.
 
-I used a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests of the airport, I used a double for the plane in order to remove test dependence on the plane object. The code passes all tests with 100% coverage and Rubocop reports no offences.
+I used a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests of the airport, I used doubles for the plane and weather in order to remove test dependence on the plane and weather objects. The code passes all tests with 100% coverage and Rubocop reports no offences.
 
 
 Here are the user stories that were worked out in collaboration with the client:
