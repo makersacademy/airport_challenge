@@ -11,7 +11,7 @@ class Weather
   private
 
   def random_number
-    rand(1..10)
+    Kernel.rand(1..10)
   end
 
 end
