@@ -3,32 +3,24 @@ require_relative 'weather'
 
 class Airport
   DEF_CAPACITY = 20
-  @landed_planes = []
-  @fly = []
-  self.class.public_send(:attr_reader, :landed_planes, :fly)
 
   attr_reader :capacity, :fly, :stormy, :weather, :landed, :planes
 
-  def initialize(capacity = DEF_CAPACITY)
+  def initialize(capacity = DEF_CAPACITY, weather: Weather.new)
     @capacity = capacity
     @planes = []
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
+    raise "Too stormy." if weather.stormy?
     landing_safety_check(plane)
     planes << plane
-    self.class.landed_planes << plane
   end
 
   def landing_safety_check(plane)
-    storm_safety
     plane_landed(plane)
     full_airport
-  end
-
-  def storm_safety
-    raise "Too stormy." if weather.stormy?
   end
 
   def plane_landed(plane)
@@ -40,10 +32,10 @@ class Airport
   end
 
   def takeoff(plane)
-    takeoff_safety_check(plane)
-    self.class.landed_planes.delete(plane)
+    # takeoff_safety_check(plane)
+    raise "Too stormy." if weather.stormy?
     planes.delete(plane)
-    self.class.fly << plane
+    plane.takeoff
   end
 
   def takeoff_safety_check(plane)
@@ -53,7 +45,7 @@ class Airport
   end
 
   def fly_safety(plane)
-    raise "Plane in air." if flying?(plane)
+    raise "Plane in air." unless landed?(plane)
   end
 
   def absent_plane(plane)
@@ -71,11 +63,7 @@ class Airport
     !planes.include?(plane)
   end
 
-  def flying?(plane)
-    self.class.fly.include?(plane)
-  end
-
   def landed?(plane)
-    self.class.landed_planes.include?(plane)
+    plane.grounded?
   end
 end
