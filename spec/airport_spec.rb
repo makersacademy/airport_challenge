@@ -8,6 +8,7 @@ describe Airport do
   let(:weather) {double 'weather' }
   subject { described_class.new(weather: weather)}
 
+
   describe 'landing' do
     before do
       allow(weather).to receive(:stormy?).and_return(false)
@@ -16,50 +17,37 @@ describe Airport do
     end
 
     it "receives a landing plane" do
-      # allow(weather).to receive(:stormy?).and_return(false)
       expect(subject.land(plane)).to eq [plane]
     end
 
     it "plane takes off and is gone from airport" do
-      # allow(weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
-      # allow(weather).to receive(:stormy?).and_return(false)
       subject.takeoff(plane)
       expect(subject.planes).not_to include plane
     end
 
     it "blocks landing when airport at capacity" do
-      # allow(subject.weather).to receive(:stormy?) { false }
-      # allow(subject).to receive(:landed?) { false }
-      # subject.capacity.times { subject.land(plane) }
-      # expect { subject.land(plane) }.to raise_error("This airport is full.")
-    end
-
-    it "keeps a record of all landed planes" do
-      # allow(subject.weather).to receive(:stormy?) { false }
-      # allow(subject).to receive(:landed?) { false }
-      # subject.land(plane)
-      # expect(Airport.landed_planes).to include plane
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error("This airport is full.")
     end
 
     it "plane takes off and is gone from landed_planes" do
-      # allow(subject.weather).to receive(:stormy?) { false }
-      # allow(subject).to receive(:flying?) { false }
-      # allow(subject).to receive(:landed?) { false }
-      # subject.land(plane)
-      # subject.takeoff(plane)
-      # expect(subject.landed_planes).not_to include plane
+      subject.land(plane)
+      subject.takeoff(plane)
+      expect(subject.planes).not_to include plane
     end
   end
   context 'stormy' do
-    it "prevents takeoff when weather is stormy" do
+    before do
       allow(weather).to receive(:stormy?).and_return(true)
+    end
+
+    it "prevents takeoff when weather is stormy" do
       allow(plane).to receive(:takeoff)
       expect { subject.takeoff(plane) }.to raise_error("Too stormy.")
     end
 
     it "prevents landing when weather is stormy" do
-      allow(weather).to receive(:stormy?).and_return(true)
       allow(plane).to receive(:grounded?)
       expect { subject.land(plane) }.to raise_error("Too stormy.")
     end
