@@ -70,10 +70,6 @@ describe Airport do
 
     it "planes in air cannot take off" do
       allow(plane).to receive(:grounded?) { false }
-      subject.land(plane)
-      allow(plane).to receive(:grounded?) { true }
-      subject.takeoff(plane)
-      allow(plane).to receive(:grounded?) { false }
       expect { subject.takeoff(plane) }.to raise_error("Plane in air.")
     end
 
