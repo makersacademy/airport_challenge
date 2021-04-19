@@ -1,7 +1,7 @@
 class Plane
   attr_reader :grounded
   def initialize
-    @grounded = true
+    @grounded = false
   end
 
   def takeoff
@@ -9,7 +9,7 @@ class Plane
   end
 
   def land
-    grounded = true
+    @grounded = true
   end
 
   def grounded?

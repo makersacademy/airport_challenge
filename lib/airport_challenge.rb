@@ -34,6 +34,8 @@ class Airport
   def takeoff(plane)
     # takeoff_safety_check(plane)
     raise "Too stormy." if weather.stormy?
+    raise "Plane in air." unless landed?(plane)
+    raise "Plane not in airport." unless present?(plane)
     planes.delete(plane)
     plane.takeoff
   end
@@ -44,14 +46,6 @@ class Airport
     absent_plane(plane)
   end
 
-  def fly_safety(plane)
-    raise "Plane in air." unless landed?(plane)
-  end
-
-  def absent_plane(plane)
-    raise "Plane not in airport." if absent?(plane)
-  end
-
   private
   attr_writer :planes
 
@@ -59,8 +53,8 @@ class Airport
     planes.length == capacity
   end
 
-  def absent?(plane)
-    !planes.include?(plane)
+  def present?(plane)
+    planes.include?(plane)
   end
 
   def landed?(plane)

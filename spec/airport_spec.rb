@@ -9,7 +9,7 @@ describe Airport do
   subject { described_class.new(weather: weather)}
 
 
-  describe 'landing' do
+  describe '.landing' do
     before do
       allow(weather).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:grounded?).and_return(false)
@@ -20,23 +20,12 @@ describe Airport do
       expect(subject.land(plane)).to eq [plane]
     end
 
-    it "plane takes off and is gone from airport" do
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect(subject.planes).not_to include plane
-    end
-
     it "blocks landing when airport at capacity" do
       subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error("This airport is full.")
     end
-
-    it "plane takes off and is gone from landed_planes" do
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect(subject.planes).not_to include plane
-    end
   end
+
   context 'stormy' do
     before do
       allow(weather).to receive(:stormy?).and_return(true)
@@ -53,20 +42,40 @@ describe Airport do
     end
   end
 
+  describe '.takeoff' do
+    before do
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:grounded?).and_return(false)
+      allow(plane).to receive(:takeoff)
+    end
+
+    it "plane takes off and is gone from airport" do
+      subject.land(plane)
+      allow(plane).to receive(:grounded?).and_return(true)
+      subject.takeoff(plane)
+      expect(subject.planes).not_to include plane
+    end
+  end
+
   describe '#edge cases' do
+    before do
+      allow(weather).to receive(:stormy?) { false }
+      allow(plane).to receive(:grounded?) { true }
+      allow(plane).to receive(:takeoff)
+    end
 
-    # it "planes can only take off from airports they are in" do
-    #   allow(subject.weather).to receive(:stormy?) { false }
-    #   allow(subject).to receive(:flying?) { false }
-    #   expect { subject.takeoff(plane) }.to raise_error("Plane not in airport.")
-    # end
+    it "planes can only take off from airports they are in" do
+      expect { subject.takeoff(plane) }.to raise_error("Plane not in airport.")
+    end
 
-    # it "planes in air cannot take off" do
-    #   allow(subject.weather).to receive(:stormy?) { false }
-    #   subject.land(plane2)
-    #   subject.takeoff(plane2)
-    #   expect { subject.takeoff(plane2) }.to raise_error("Plane in air.")
-    # end
+    it "planes in air cannot take off" do
+      allow(plane).to receive(:grounded?) { false }
+      subject.land(plane)
+      allow(plane).to receive(:grounded?) { true }
+      subject.takeoff(plane)
+      allow(plane).to receive(:grounded?) { false }
+      expect { subject.takeoff(plane) }.to raise_error("Plane in air.")
+    end
 
     # it "planes in air cannot be in an airport" do
     #   expect(subject.landed_planes).not_to match_array(Airport.fly)
