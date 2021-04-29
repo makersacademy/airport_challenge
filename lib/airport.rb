@@ -1,4 +1,5 @@
 require_relative 'planes'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -23,10 +24,10 @@ class Airport
     hangar.pop
   end
 
-  def empty?
-    return "Airport is empty" if hangar.empty? 
-    return "Airport contains plane" if hangar.length >= 1
-  end
+  # def empty?
+  #   return "Airport is empty" if hangar.empty? 
+  #   return "Airport contains plane" if hangar.length >= 1
+  # end
 
   def safety_check
     return "Space available, please land here" if hangar.length < capacity
