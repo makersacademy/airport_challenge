@@ -11,8 +11,8 @@ class Airport
     @planes << plane
   end
 
-  def take_off(plane)
-
+  def take_off(_plane)
+    raise "Plane cannot take off during stormy conditions!" if stormy?
   end
 
 private

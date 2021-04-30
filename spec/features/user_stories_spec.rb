@@ -43,6 +43,10 @@ describe 'user stories' do
       it "Does not allow planes to land" do
         expect { airport.land(plane) }.to raise_error "Plane cannot land during stormy conditions!"
       end
+
+      it "Does not allow planes to take off" do
+        expect { airport.take_off(plane) }.to raise_error "Plane cannot take off during stormy conditions!"
+      end
     end
   end
 end
