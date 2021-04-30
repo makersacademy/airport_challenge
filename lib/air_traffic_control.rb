@@ -1,5 +1,7 @@
 class ATC
   def check_weather
-    return "Here's some weather!"
+    p weather = "stormy"
   end
 end
+luton = ATC.new
+luton.check_weather
