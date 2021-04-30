@@ -1,3 +1,4 @@
+require_relative './plane.rb'
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :capacity
@@ -14,11 +15,15 @@ class Airport
 
     fail "Stormy weather - landing not permitted" if stormy?
 
+    fail "Plane already grounded" if plane.landed?
+
     @planes << plane
   end
 
   def take_off(plane)
     fail "Stormy weather - take off not permitted" if stormy?
+
+    fail "Plane currently flying" unless plane.landed?
 
     @planes.delete(plane)
   end

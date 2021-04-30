@@ -10,6 +10,4 @@ describe Plane do
     expect(subject).to respond_to :landed?
   end
 
-  
-
 end

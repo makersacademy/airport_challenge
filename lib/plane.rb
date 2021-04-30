@@ -4,8 +4,12 @@
 
 class Plane
 
-  def landed?
-    
-
+  def initialize
+    @landed = true
   end
+
+  def landed?
+    @landed
+  end
+
 end
