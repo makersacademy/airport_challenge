@@ -1,5 +1,5 @@
-require "plane.rb"
-
+require_relative "plane"
+ 
 class Airport
   attr_reader :planes
     
@@ -9,6 +9,11 @@ class Airport
 
   def land_plane(plane)
     @planes.push(plane)
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)
+    @planes
   end
 
   def return_planes
