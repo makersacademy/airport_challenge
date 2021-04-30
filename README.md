@@ -87,3 +87,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+KERRI'S NOTES
+-----
+* I have satisfied all 6 of the above user stories 
+* All tests passing with 98.63% coverage
+* Rubocop is showing no offenses
+* I was able to override random weather successfully to ensure consistent testing throughout my RSpec tests
+* I didn't get as far as I would have hoped to defend against edge cases in my code, I wanted to focus on getting the basics completed as best I could 
+* I got a bit of help looking at these two blogs from previous Makers students, but just took some inspiration from their approaches, blog 1: https://medium.com/@charlottebrf/makers-academy-day-5-8dc1c792cda5 and blog 2: https://medium.com/@tomspencer_uk/weekend-challenges-with-makers-academy-my-experience-with-the-airport-challenge-4e50ea848bb4 
