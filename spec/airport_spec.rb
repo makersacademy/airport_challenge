@@ -14,15 +14,16 @@ describe Airport do
     expect(subject.return_planes).to eq []
   end
 
-  it "prevents landing when airport is full" do
-    plane = Plane.new
-    plane1 = Plane.new
-    subject.land_plane(plane)
-    expect { subject.land_plane(plane1) }.to raise_error "Landing Declined: Airport full"
+  it "raises an error when full" do
+    subject.capacity.times do
+      subject.land_plane(Plane.new)
+    end
+    expect { subject.land_plane(Plane.new) }.to raise_error "Landing Declined: Airport full"
+
   end
 
   it "has a variable default capacity" do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
   end
 
 end
