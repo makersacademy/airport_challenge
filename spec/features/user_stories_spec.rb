@@ -5,6 +5,7 @@ describe 'user stories' do
   it "so planes can land at airports, instructs a plane to land" do
     airport = Airport.new(10)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
 
@@ -21,12 +22,27 @@ describe 'user stories' do
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when the airport is full
-  it "does not allow planes to land when the airport is full" do
-    airport = Airport.new(10)
-    plane = Plane.new
-    10.times do
-      airport.land(plane)
+  context "When the airport is full" do
+    it "Does not allow planes to land" do
+      airport = Airport.new(10)
+      plane = Plane.new
+      allow(airport).to receive(:stormy?).and_return false
+      10.times do
+        airport.land(plane)
       end
       expect { airport.land(plane) }.to raise_error "Plane cannot land at a full airport!"
     end
   end
+
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing/takeoff when weather is stormy.
+  context "When weather is stormy" do
+    it "Does not allow planes to land" do
+      airport = Airport.new(10)
+      plane = Plane.new
+      allow(airport).to receive(:stormy?).and_return true
+      expect { airport.land(plane) }.to raise_error "Plane cannot land during stormy conditions!"
+      end
+    end
+end
