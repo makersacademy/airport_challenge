@@ -1,11 +1,11 @@
 class ATC
   def check_weather
-    @weather = "stormy"
+    "stormy"
   end
 
   def land_plane
    if self.check_weather == "stormy"
-    puts "Can't land - too stormy"
+     puts "Can't land - too stormy"
    end
   end
 
@@ -15,5 +15,9 @@ class ATC
     end
   end
 end
-# luton = ATC.new
-# luton.check_weather
+
+atc = ATC.new
+p atc
+p atc.check_weather
+atc.land_plane
+atc.takeoff_plane
