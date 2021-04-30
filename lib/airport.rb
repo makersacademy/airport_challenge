@@ -8,6 +8,8 @@ class Airport
   end
 
   def land_plane(plane)
+    raise "Landing Declined: Airport full" if @planes.any?
+    
     @planes.push(plane)
   end
 
