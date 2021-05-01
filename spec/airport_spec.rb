@@ -5,6 +5,16 @@ RSpec.describe Airport do
     it "should tell a plane to land" do
       expect(subject).to respond_to(:land).with(1).argument
     end
+
+    it "accepts landing planes" do
+      subject.land(Plane.new)
+      expect(subject.planes.length).to be 1
+    end
+
+    it "should raise an error when full" do
+      20.times {subject.land(Plane.new)}
+      expect{subject.land(Plane.new)}.to raise_error("Airport full.")
+    end
   end
 
   describe "#take_off" do
@@ -20,10 +30,10 @@ RSpec.describe Airport do
     end
   end
 
-  describe "capacity" do
-    it "has a capacity" do
-      subject.land(Plane.new)
-      expect(subject.planes.length).to be 1
-    end
-  end
+  # describe "capacity" do
+  #   it "has a capacity" do
+  #     subject.land(Plane.new)
+  #     expect(subject.planes.length).to be 1
+  #   end
+  # end
 end
