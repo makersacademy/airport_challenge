@@ -14,7 +14,9 @@ class Airport
   end
 
   def take_off(plane)
+    return_plane = @planes.detect { |landed_plane| landed_plane == plane }
     @planes.delete(plane)
+    return_plane
   end
 
   private
