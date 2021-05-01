@@ -35,6 +35,8 @@ describe Airport do
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error 'Plane not found in airport!'
     end
+    it 'raises an error when weather is "Stormy"' do 
+    end
   end
   describe '#capacity' do
     it "has a default capacity of #{DEFAULT_CAPACITY}" do
