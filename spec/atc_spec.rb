@@ -1,8 +1,16 @@
 require 'air_traffic_control.rb'
 describe ATC do
-  describe 'checks the weather' do
+  describe '#check_weather' do
     it { is_expected.to respond_to :check_weather }
-    # write a test here that expects "stormy" when weather == stormy
+    
+    #it 'raises an error when no weather report' do
+     #   expect {subject.check_weather}.to raise_error 'No weather'
+    #end
+    
+    it 'raises an error when it is stormy' do
+        #stub that forces weather == 'stormy'
+        expect {subject.check_weather}.to raise_error 'Storm warning'
+    end
   end
 
   describe 'instructs planes to land' do

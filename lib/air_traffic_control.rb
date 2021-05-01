@@ -1,6 +1,15 @@
+require_relative 'weather'
+
 class ATC
+  def initialize
+    weather = Weather.new
+    @weather = weather.report
+  end
+
   def check_weather
-    "stormy"
+    fail 'No weather report' if @weather.empty?
+    fail 'Storm warning' if @weather == "stormy"
+    @weather
   end
 
   def land_plane
@@ -16,6 +25,7 @@ class ATC
   end
 end
 
+#feature testing
 atc = ATC.new
 p atc
 p atc.check_weather
