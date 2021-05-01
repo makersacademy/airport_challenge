@@ -13,4 +13,13 @@ class Airport
       false
     end
   end
+
+  def launch(plane)
+    if @weather.now == 'sunny' && @planes.include?(plane)
+      @planes.delete(plane)
+      true
+    else
+      false
+    end
+  end
 end
