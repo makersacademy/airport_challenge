@@ -1,6 +1,7 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 class Airport
-  attr_reader :hangar, :capacity
+  attr_reader :hangar, :capacity, :weather
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity=DEFAULT_CAPACITY)
@@ -8,7 +9,8 @@ class Airport
     @capacity = capacity
   end
   
-  def random_weather
+  def get_weather(weather=Weather.get_current)
+    @weather = weather
   end
 
   def full?

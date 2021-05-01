@@ -47,4 +47,10 @@ describe Airport do
       expect(airport.capacity).to eq(100)
     end
   end
+  describe '#weather' do  
+    it 'sets the weather' do
+      subject.get_weather("Test")
+      expect(subject.weather).to eq("Test")
+    end
+  end
 end
