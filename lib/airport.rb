@@ -4,7 +4,7 @@ class Airport
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    @hangar = []
+    @hangar = [Plane.new]
     @capacity = capacity
   end
   
@@ -18,6 +18,7 @@ class Airport
 
   def land(plane)
     raise 'Hangar is full!' if full?
+    raise 'Plane already landed!' if plane.flying == false
     plane.landed
     @hangar << plane 
   end

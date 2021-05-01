@@ -1,5 +1,5 @@
 require './lib/airport.rb'
-
+#TODO need to refactor as 1 plane starting in every hangar by default
 describe Airport do
   DEFAULT_CAPACITY = Airport::DEFAULT_CAPACITY
   describe '#land' do
@@ -7,17 +7,23 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
     it 'stores a plane in the airport hangar' do
-      plane = Plane.new
-      subject.land(plane)
+      # plane = Plane.new
+      # subject.land(plane)
+      plane = subject.hangar[0]
       expect(subject.hangar.include?(plane)).to eq(true)
     end
     it "prevents landing when #{DEFAULT_CAPACITY} planes in hangar" do
-      DEFAULT_CAPACITY.times { 
+      #-1 because 1 plane starts in every hangar by default
+      (DEFAULT_CAPACITY-1).times { 
         plane = Plane.new
-        subject.land(plane)
+        subject.hangar << plane
       }
       plane = Plane.new
       expect { subject.land(plane) }.to raise_error 'Hangar is full!' 
+    end
+    it 'prevents landing if plane already landed' do
+      plane = subject.hangar[0]
+      expect { subject.land(plane) }.to raise_error 'Plane already landed!'
     end
   end
   describe '#take_off' do
@@ -25,16 +31,13 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
     it 'removes the plane from the airport hangar' do
-      plane = Plane.new
-      subject.land(plane)
+      plane = subject.hangar[0]
       subject.take_off(plane)
       expect(subject.hangar.include?(plane)).to eq(false)
     end
     it 'raises an error if plane not in airport' do
-      plane_one = Plane.new
-      plane_two = Plane.new
-      subject.land(plane_one)
-      expect { subject.take_off(plane_two) }.to raise_error 'Plane not found in airport!'
+      plane = Plane.new
+      expect { subject.take_off(plane) }.to raise_error 'Plane not found in airport!'
     end
   end
   describe '#capacity' do
