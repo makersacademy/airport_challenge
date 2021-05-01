@@ -113,5 +113,14 @@ describe Airport do
         expect(airport.launch(plane)).to eq(false)
       end
     end
+
+    context 'give a plane which is at another airport' do
+      it 'does not launch a plane (returns false)' do
+        weather = double('weather', :now => 'sunny')
+        airport = Airport.new(weather: weather)
+        plane = double('plane', :landed? => true)
+        expect(airport.launch(plane)).to eq(false)
+      end
+    end
   end
 end
