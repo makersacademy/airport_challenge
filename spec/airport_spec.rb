@@ -1,5 +1,4 @@
 require './lib/airport.rb'
-#TODO need to refactor as 1 plane starting in every hangar by default
 describe Airport do
   DEFAULT_CAPACITY = Airport::DEFAULT_CAPACITY
   describe '#land' do
@@ -7,13 +6,10 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
     it 'stores a plane in the airport hangar' do
-      # plane = Plane.new
-      # subject.land(plane)
       plane = subject.hangar[0]
       expect(subject.hangar.include?(plane)).to eq(true)
     end
     it "prevents landing when #{DEFAULT_CAPACITY} planes in hangar" do
-      #-1 because 1 plane starts in every hangar by default
       (DEFAULT_CAPACITY-1).times { 
         plane = Plane.new
         subject.hangar << plane

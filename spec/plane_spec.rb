@@ -1,5 +1,4 @@
 require './lib/airport.rb'
-#removed instances of airport.land(plane) and put 1 plane in hangar as default
 describe Plane do
   describe '#flying' do
     it 'responds to flying' do
@@ -16,7 +15,6 @@ describe Plane do
     end
     it 'returns false when plane has landed' do
       airport = Airport.new
-      #removed airport.land(plane) and getting the first plane in hangar instead. 
       plane = airport.hangar[0]
       airport.take_off(plane)
       airport.land(plane)
