@@ -1,6 +1,18 @@
 require 'airport'
 
 describe Airport do
+  it 'has a default capacity of 10' do
+    weather = double('weather', :now => 'sunny')
+    airport = Airport.new(weather: weather)
+    10.times { airport.land(double('plane')) }
+    expect(airport.land(double('plane'))).to eq(false)
+  end
+  it 'default capacity can be overridden' do
+    weather = double('weather', :now => 'sunny')
+    airport = Airport.new(weather: weather, capacity: 100)
+    100.times { airport.land(double('plane')) }
+    expect(airport.land(double('plane'))).to eq(false)
+  end
   describe '#land' do
     context 'when the weather is sunny and there is space at the airport' do
       it 'lands a plane (returns true)' do
