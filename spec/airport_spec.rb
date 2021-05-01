@@ -10,6 +10,14 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar.include?(plane)).to eq(true)
     end
+    it 'prevents landing when 50 planes in hangar' do
+      50.times { 
+        plane = Plane.new
+        subject.land(plane)
+      }
+      plane = Plane.new
+      expect { subject.land(plane) }.to raise_error 'Hangar is full!' 
+    end
   end
   describe '#take_off' do
     it 'responds to #take_off with 1 argument' do

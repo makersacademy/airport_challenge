@@ -5,7 +5,8 @@ class Airport
     @hangar = []
   end
   def land(plane)
-    @hangar << plane
+    raise 'Hangar is full!' if @hangar.length >= 50
+    @hangar << plane 
   end
 
   def take_off(plane)
