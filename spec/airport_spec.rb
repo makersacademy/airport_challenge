@@ -8,7 +8,7 @@ describe Airport do
     it 'stores a plane in the airport hangar' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.hangar).to eq(plane)
+      expect(subject.hangar.include?(plane)).to eq(true)
     end
   end
   describe '#take_off' do
@@ -19,7 +19,7 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       subject.take_off(plane)
-      expect(subject.hangar).to eq(nil)
+      expect(subject.hangar.include?(plane)).to eq(false)
     end
   end
 end
