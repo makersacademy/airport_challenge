@@ -9,7 +9,13 @@ describe ATC do
     
     it 'raises an error when it is stormy' do
         #stub that forces weather == 'stormy'
-        expect {subject.check_weather}.to raise_error 'Storm warning'
+        #weather = double
+        #weather.stub(:report) { 'stormy' }
+        weather = double(Weather.new)
+        allow(weather).to receive(:report) { "stormy" }
+        
+        #@weatherstatus = "stormy"
+        expect {subject.check_weather(weather)}.to raise_error 'Storm warning'
     end
   end
 

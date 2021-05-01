@@ -1,9 +1,9 @@
 class Weather
-    def initialize
-        @weather = "stormy"
-    end
+  def initialize
+    @weather = "sunny"
+  end
 
-    def report
-        @weather
-    end
+  def report
+    @weather
+  end
 end
