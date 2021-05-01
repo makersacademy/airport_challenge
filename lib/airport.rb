@@ -1,8 +1,11 @@
 class Airport
-  attr_reader :planes
+  DEFUALT_CAPACITY = 20
 
-  def initialize
+  attr_reader :planes, :capacity
+
+  def initialize(capacity=DEFUALT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -17,6 +20,6 @@ class Airport
   private
 
   def full?
-    @planes.length >= 20
+    @planes.length >= @capacity
   end
 end
