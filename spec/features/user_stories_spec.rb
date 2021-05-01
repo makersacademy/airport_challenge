@@ -24,4 +24,13 @@ describe 'User Stories' do
         20.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
     end
+    #As the system designer
+    #So that the software can be used for many different airports
+    #I would like a default airport capacity that can be overridden as appropriate
+    it 'sets the capacity when argument not given' do
+    airport = Airport.new
+    plane = Plane.new
+    20.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
+    end
 end
