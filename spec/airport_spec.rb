@@ -8,33 +8,54 @@ describe Airport do
       expect(airport.land(plane)).to eq([plane])
     end
 
-    it 'stores planes in an airport' do
+    it 'stores a plane in an airport' do
       airport = Airport.new
       plane = Plane.new
       airport.land(plane)
       expect(airport.planes).to eq([plane])
     end
+
+    it 'raises an error when landing at full airport with default capacity' do
+      airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times{airport.land(Plane.new)}
+
+      expect{airport.land(Plane.new)}.to raise_error('Cannot land. The airport is full.')
+    end
+
+    it 'raises an error when landing at full airport with explicit capacity' do
+      airport = Airport.new(500)
+      airport.capacity.times{airport.land(Plane.new)}
+
+      expect{airport.land(Plane.new)}.to raise_error('Cannot land. The airport is full.')
+    end
   end
 
   describe '#take_off' do
     it 'takes off' do
-      airport = Airport.new
       plane = Plane.new
-      airport.land(plane)
+      subject.land(plane)
 
-      expect(airport.take_off(plane)).to eq(plane)
+      allow(subject).to receive(:weather) { 'rain' }
+      expect(subject.take_off(plane)).to eq(plane)
     end
 
-    it 'removes itself from an airport after takin off' do
-      airport = Airport.new
+    it 'removes itself from an airport after taking off' do
       plane = Plane.new
       plane2 = Plane.new
 
-      airport.land(plane)
-      airport.land(plane2)
-      airport.take_off(plane)
+      subject.land(plane)
+      subject.land(plane2)
+      allow(subject).to receive(:weather) { 'rain' }
+      subject.take_off(plane)
 
-      expect(airport.planes).not_to include([plane])
+      expect(subject.planes).not_to include([plane])
+    end
+
+    it 'cannot take off in stormy weather' do
+      plane = Plane.new
+
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect{subject.take_off(plane)}.to raise_error('DANGER. STORMY WEATHER.')
     end
   end
 
@@ -44,13 +65,12 @@ describe Airport do
       airport.capacity.times{airport.land(Plane.new)}
       expect(airport.full?).to eq true
     end
+  end
 
-    it 'raises an error when landing at full airport' do
-      airport = Airport.new(2)
-      airport.land(Plane.new)
-      airport.land(Plane.new)
-
-      expect{airport.land(Plane.new)}.to raise_error('Cannot land. The airport is full.')
+  describe '#weather?' do
+    it 'creates a random weather object' do
+      weather = Weather.new
+      expect(weather.CONDITION).to include subject.weather
     end
   end
 end
