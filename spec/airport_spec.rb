@@ -31,4 +31,13 @@ describe Airport do
       expect(subject.hangar.include?(plane)).to eq(false)
     end
   end
+  describe '#capacity' do
+    it "has a default capacity of #{DEFAULT_CAPACITY}" do
+      expect(subject.capacity).to eq(50)
+    end
+    it 'can override the default capacity' do
+      airport = Airport.new(100)
+      expect(airport.capacity).to eq(100)
+    end
+  end
 end
