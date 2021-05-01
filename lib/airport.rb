@@ -1,12 +1,15 @@
 class Airport
 
-    def initialize(capacity = 20)
+    CAPACITY = 20
+
+    def initialize(capacity = CAPACITY)
+        
         @capacity = capacity
         @planes = []
     end
 
     def land(plane)
-        fail 'Airport Full: Cannot Land' if @planes.length >= @capacity
+        fail 'Airport Full: Cannot Land' if full?
         @planes.push(plane)
     end
 
@@ -14,8 +17,8 @@ class Airport
 
     end
 
-    # def full?
-        
-    # end
+    def full?
+        @planes.length >= @capacity
+    end
 
 end
