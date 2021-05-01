@@ -30,6 +30,12 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.hangar.include?(plane)).to eq(false)
     end
+    it 'raises an error if plane not in airport' do
+      plane_one = Plane.new
+      plane_two = Plane.new
+      subject.land(plane_one)
+      expect { subject.take_off(plane_two) }.to raise_error 'Plane not found in airport!'
+    end
   end
   describe '#capacity' do
     it "has a default capacity of #{DEFAULT_CAPACITY}" do
