@@ -10,7 +10,14 @@ describe Plane do
       airport.take_off(subject)
       expect(subject.flying).to eq(true)
     end
-    it 'returns false when not flying' do
+    it 'returns false when plane first created' do
+      expect(subject.flying).to eq(false)
+    end
+    it 'returns false when plane has landed' do
+      airport = Airport.new
+      airport.land(subject)
+      airport.take_off(subject)
+      airport.land(subject)
       expect(subject.flying).to eq(false)
     end
   end

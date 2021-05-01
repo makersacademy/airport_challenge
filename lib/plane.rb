@@ -4,7 +4,12 @@ class Plane
   def initialize
     @flying = false
   end
+
   def is_flying
     @flying = true
+  end
+
+  def landed
+    @flying = false
   end
 end

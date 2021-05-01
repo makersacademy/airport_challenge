@@ -18,6 +18,7 @@ class Airport
 
   def land(plane)
     raise 'Hangar is full!' if full?
+    plane.landed
     @hangar << plane 
   end
 
