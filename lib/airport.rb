@@ -10,6 +10,7 @@ class Airport
 
     def land(plane)
         fail 'Airport Full: Cannot Land' if full?
+        fail 'Stormy: Cannot Land' if stormy?
         @planes.push(plane)
     end
 
@@ -17,8 +18,15 @@ class Airport
 
     end
 
+    private
+
     def full?
         @planes.length >= @capacity
+    end
+
+    def stormy?
+        ran_num = rand(1..10)
+        ran_num > 7 ? true : false
     end
 
 end

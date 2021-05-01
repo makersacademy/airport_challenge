@@ -5,6 +5,7 @@ describe 'User Stories' do
     it 'lands a plane at the airport after instruction to land' do
         airport = Airport.new(20)
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(false)
         expect { airport.land(plane) }.not_to raise_error
     end
     # As an air traffic controller 
@@ -21,6 +22,7 @@ describe 'User Stories' do
     it 'prevents a plane from landing when a plane is full' do
         airport = Airport.new(20)
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(false)
         20.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
     end
@@ -28,9 +30,19 @@ describe 'User Stories' do
     #So that the software can be used for many different airports
     #I would like a default airport capacity that can be overridden as appropriate
     it 'sets the capacity when argument not given' do
-    airport = Airport.new
-    plane = Plane.new
-    20.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
+        airport = Airport.new
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(false)
+        20.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
+    end
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent takeoff when weather is stormy
+    it 'does not allow a plane to land when it is stormy' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.land(plane) }.to raise_error('Stormy: Cannot Land')
     end
 end
