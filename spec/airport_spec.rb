@@ -1,6 +1,7 @@
 require './lib/airport.rb'
 
 describe Airport do
+  DEFAULT_CAPACITY = Airport::DEFAULT_CAPACITY
   describe '#land' do
     it 'responds to #land with 1 argument' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -10,8 +11,8 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar.include?(plane)).to eq(true)
     end
-    it 'prevents landing when 50 planes in hangar' do
-      50.times { 
+    it "prevents landing when #{DEFAULT_CAPACITY} planes in hangar" do
+      DEFAULT_CAPACITY.times { 
         plane = Plane.new
         subject.land(plane)
       }
