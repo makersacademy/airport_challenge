@@ -5,6 +5,6 @@ describe 'User Stories' do
     it 'lands a plane at the airport after instruction to land' do
         airport = Airport.new
         plane = Plane.new
-        expect { aiport.land(plane) }.not_to raise_error
+        expect { airport.land(plane) }.not_to raise_error
     end
 end

@@ -33,7 +33,7 @@ Client request for a program that can perform the following functions.
 * Run rspec
 
 ## Tests
-* 
+* Initially ran the test in irb as I thought the program should run. I fixed the initial errors.
 
 ## How to use?
 ## If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
