@@ -6,7 +6,7 @@ class Airport
   end
 
   def land(plane)
-    if @weather.now == 'sunny' && @planes.length < @capacity
+    if @weather.now == 'sunny' && @planes.length < @capacity && !@planes.include?(plane)
       @planes << plane
       true
     else
