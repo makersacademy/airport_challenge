@@ -4,8 +4,7 @@ describe 'ATC' do
 
   describe '#land_plane' do
     it 'fails when stormy' do
-      stormy_weather = double(Weather.new)
-      allow(stormy_weather).to receive(:status) { "stormy" }
+      stormy_weather = Weather.new("stormy")
       atc = ATC.new(stormy_weather)
 
       expect { atc.land_plane }.to raise_error "Can't land - too stormy"
@@ -14,8 +13,7 @@ describe 'ATC' do
 
   describe '#takeoff_plane' do
     it 'fails when stormy' do
-      stormy_weather = double(Weather.new)
-      allow(stormy_weather).to receive(:status) { "stormy" }
+      stormy_weather = Weather.new("stormy")
       atc = ATC.new(stormy_weather)
 
       expect { atc.takeoff_plane }.to raise_error "Can't takeoff - too stormy"
