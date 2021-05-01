@@ -12,17 +12,18 @@ class Airport
     @hangar.length >= @capacity
   end
 
-  def plane_in_airport(plane)
+  def plane_in_airport?(plane)
     hangar.include?(plane)
   end
-  
+
   def land(plane)
     raise 'Hangar is full!' if full?
     @hangar << plane 
   end
 
   def take_off(plane)
-    raise 'Plane not found in airport!' if !plane_in_airport(plane)
+    raise 'Plane not found in airport!' if !plane_in_airport?(plane)
     @hangar.delete(plane)
+    plane.is_flying
   end
 end
