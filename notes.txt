@@ -1,0 +1,13 @@
+| Object                     | Message                    |
+|----------------------------|----------------------------|
+| traffic_controller         |                            |
+| plane                      | land                       |
+|                            | take_off                   |
+| airport                    | planes                     |
+|                            | full?                      |
+| weather                    | stormy?                    |
+
+Weather <-- stromy? --> true/false
+Airport <-- full? --> true/false
+Plane <-- land --> store_plane
+Plane <-- take_off --> remove_plane
