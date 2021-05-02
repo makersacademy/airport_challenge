@@ -9,15 +9,17 @@ class ATC
     @airport = airport
   end
   
-  def land_plane(plane)
+  def land_plane(_plane)
     fail "Can't land - too stormy" if stormy?
     fail "Can't land - airport full" if full?
 
     "Plane landed"
   end
 
-  def takeoff_plane(plane)
+  def takeoff_plane(_plane)
     fail "Can't takeoff - too stormy" if stormy?
+
+    # Do we want a fail if there are no plane in port?
 
     "Plane tookoff"
   end
@@ -28,6 +30,6 @@ class ATC
   end
 
   def full?
-    @airport.capcity_status == "full"
+    @airport.capacity_status == "full"
   end
 end

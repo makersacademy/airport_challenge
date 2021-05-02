@@ -1,5 +1,5 @@
 class Airport
-  def capcity_status
+  def capacity_status
     
   end
 end
