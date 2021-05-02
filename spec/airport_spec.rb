@@ -31,6 +31,13 @@ describe Airport do
       plane = subject.hangar[0]
       expect { subject.land(plane) }.to raise_error 'Plane already landed!'
     end
+    it 'prevents landing if weather is stormy' do
+      airport_one = sunny_airport
+      airport_two = stormy_airport
+      plane = airport_one.hangar[0]
+      airport_one.take_off(plane)
+      expect { airport_two.land(plane) }.to raise_error 'Weather is stormy. Unable to land!'
+    end
   end
   describe '#take_off' do
     it 'responds to #take_off with 1 argument' do
@@ -49,7 +56,7 @@ describe Airport do
     it 'raises an error when weather is "Stormy"' do 
       airport = stormy_airport
       plane = airport.hangar[0]
-      expect { airport.take_off(plane) }.to raise_error 'Weather is stormy. Unable to take-off'
+      expect { airport.take_off(plane) }.to raise_error 'Weather is stormy. Unable to take-off!'
     end
   end
   describe '#hangar' do

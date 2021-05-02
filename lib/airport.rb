@@ -21,13 +21,14 @@ class Airport
   def land(plane)
     raise 'Hangar is full!' if full?
     raise 'Plane already landed!' if !plane.flying
+    raise 'Weather is stormy. Unable to land!' if @weather.get_current == 'Stormy'
     plane.landed
     @hangar << plane 
   end
   #other tests now fail as weather is sometimes stormy, maybe need to change so weather is always sunny for those tests
   def take_off(plane)
     raise 'Plane not found in airport!' if !plane_in_airport?(plane)
-    raise 'Weather is stormy. Unable to take-off' if @weather.get_current == 'Stormy'
+    raise 'Weather is stormy. Unable to take-off!' if @weather.get_current == 'Stormy'
     @hangar.delete(plane)
     plane.is_flying
   end
