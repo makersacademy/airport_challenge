@@ -14,6 +14,8 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
     raise "Cannot land due to bad weather" if stormy?
+    raise "Plane already landed" if plane.location == "airport"
+    plane.land
     @planes << plane        
   end
 
@@ -37,4 +39,5 @@ class Airport
   def plane_at_airport?(plane)
     @planes.include?(plane)
   end
+  
 end
