@@ -11,10 +11,13 @@ describe Airport do
     expect(sixer_airport.capacity).to eq 6
   end
 
-  it 'it starts with 0 planes on the ground' do
+  it 'knows it starts with 0 planes on the ground' do
     expect(subject.planes_in_port.size).to eq 0
   end
 
-  # test to see whether planes on ground increases by 1 when a plane lands
+  it 'increases planes_in_port by 1 when a plane lands' do
+    expect(subject.plane_arrives.planes_in_port.size).to eq 1
+  end
+
   # test to see whether planes on ground decreases by 1 when a plane takesoff
 end
