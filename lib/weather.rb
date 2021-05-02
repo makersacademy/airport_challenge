@@ -1,10 +1,12 @@
 class Weather
-  DEFAULT_STATUS = "sunny"
+
+  WEATHER_POSSIBLES = ["sunny", "sunny", "stormy"]  
+  # more sunnys  than stormys so that only occasionally the status is stormy
+
   attr_reader :status
-  def initialize(status = DEFAULT_STATUS)
+
+  def initialize(status = WEATHER_POSSIBLES.sample)
     @status = status
-  # at some point later there will be a random weather generator 
-  # so that occasionally the status is stormy
   end
 
   
