@@ -60,4 +60,12 @@ describe 'user stories' do
     expect { airport.take_off(plane) }.to raise_error "Cannot take off due to bad weather"
   end
 
+  # planes can only take off from airports they are in
+
+
+  # planes that are flying cannot take off and/or be in an airport 
+
+
+  # planes that have landed cannot land again and are in an airport
+
 end

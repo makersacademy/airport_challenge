@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   DEFUALT_CAPACITY = 20
 
@@ -6,6 +8,7 @@ class Airport
   def initialize(capacity=DEFUALT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -27,6 +30,6 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    @weather.stormy?
   end
 end
