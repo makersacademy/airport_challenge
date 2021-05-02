@@ -13,6 +13,8 @@ class Airport
   end
 
   def land(plane)
+    fail 'This plane has already landed' if planes.include?(plane)
+    fail 'DANGER. STORMY WEATHER.' if weather == 'stormy'
     self.full? ? (fail "Cannot land. The airport is full.") : planes << plane
   end
 
