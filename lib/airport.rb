@@ -8,7 +8,7 @@ class Airport
   end
 
   def capacity_status
-    available = @capacity - @planes_in_port.size
+    available = @capacity - plane_count
     available <= 0 ? "full" : "there are spaces to land in"
   end
 

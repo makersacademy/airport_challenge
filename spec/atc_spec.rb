@@ -10,8 +10,7 @@ describe 'ATC' do
 
   describe '#land_plane' do
     it 'fails when stormy' do
-      airport_with_spaces = double(Airport.new)
-      allow(airport_with_spaces).to receive(:capcity_status) { "there are spaces to land in" }
+      airport_with_spaces = Airport.new
       stormy_weather = double(Weather.new)
       allow(stormy_weather).to receive(:status) { "stormy" }
       atc = ATC.new(stormy_weather, airport_with_spaces)
@@ -32,19 +31,16 @@ describe 'ATC' do
     it 'lands a plane when sunny' do
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
-      airport_with_spaces = double(Airport.new)
-      allow(airport_with_spaces).to receive(:capacity_status) { "there are spaces to land in" }
+      airport_with_spaces = Airport.new
       atc = ATC.new(sunny_weather, airport_with_spaces)
-      plane = Plane.new
-      expect(atc.land_plane(plane)).to eq "Plane landed"
+      expect(atc.land_plane()).to eq "Plane landed"
       # later this could become more specific eg 'Oceanic flight 815 has landed'
     end
   end
 
   describe '#takeoff_plane' do
     it 'fails when stormy' do
-      airport_with_spaces = double(Airport.new)
-      allow(airport_with_spaces).to receive(:capacity_status) { "there are spaces to land in" }
+      airport_with_spaces = Airport.new
       stormy_weather = double(Weather.new)
       allow(stormy_weather).to receive(:status) { "stormy" }
       atc = ATC.new(stormy_weather, airport_with_spaces)
@@ -53,8 +49,7 @@ describe 'ATC' do
     end
 
     it 'takesoff plane when sunny' do
-      airport_with_spaces = double(Airport.new)
-      allow(airport_with_spaces).to receive(:capacity_status) { "there are spaces to land in" }
+      airport_with_spaces = Airport.new
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
       atc = ATC.new(sunny_weather, airport_with_spaces)

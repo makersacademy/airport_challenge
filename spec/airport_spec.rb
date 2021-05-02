@@ -1,5 +1,6 @@
 require 'airport'
 require 'planes'
+require 'air_traffic_control'
 
 describe Airport do
   it 'instantiates with a default capacity value of 4' do
@@ -34,4 +35,15 @@ describe Airport do
     # p airport.planes_in_port
     expect(airport.plane_count).to eq 1
   end
+
+  it 'stores the specific plane instance from atc during landing process' do
+    sunny_weather = double(Weather.new)
+    allow(sunny_weather).to receive(:status) { "sunny" }
+
+    atc = ATC.new(sunny_weather, subject)
+    plane1 = Plane.new
+    atc.land_plane(plane1)
+    expect(subject.planes_in_port).to include plane1.to_s
+  end
+
 end

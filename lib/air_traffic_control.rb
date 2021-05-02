@@ -9,11 +9,12 @@ class ATC
     @airport = airport
   end
   
-  def land_plane(_plane)
+  def land_plane(plane = Plane.new)
     fail "Can't land - too stormy" if stormy?
     fail "Can't land - airport full" if full?
 
-    "Plane landed"
+    @airport.plane_arrives(plane)
+    return "Plane landed"
   end
 
   def takeoff_plane(_plane)
