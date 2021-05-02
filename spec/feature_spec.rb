@@ -17,6 +17,7 @@ describe 'user stories' do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return false
+    airport.land(plane)
     expect { airport.take_off(plane) }.not_to raise_error 
   end
 
@@ -61,8 +62,15 @@ describe 'user stories' do
   end
 
   # planes can only take off from airports they are in
-
-
+  it "planes can only take off from airports they are in" do
+    airport = Airport.new
+    plane = Plane.new
+    airport1 = Airport.new
+    allow(airport).to receive(:stormy?).and_return false
+    allow(airport1).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect{ airport1.take_off(plane) }.to raise_error "Plane not in airport"
+  end
   # planes that are flying cannot take off and/or be in an airport 
 
 

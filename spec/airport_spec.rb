@@ -35,6 +35,13 @@ RSpec.describe Airport do
         subject.take_off(plane)
         expect(subject.planes).not_to include(plane)
       end
+
+      let (:airport2) {Airport.new}
+      it "only planes in the airport can take off" do
+        subject.land(plane)
+        allow(airport2).to receive(:stormy?).and_return false
+        expect{ airport2.take_off(plane) }.to raise_error "Plane not in airport"
+      end
     end
 
     context "when stormy" do
