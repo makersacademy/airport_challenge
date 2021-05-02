@@ -34,6 +34,13 @@ describe Airport do
       airport.capacity.times{airport.land(Plane.new)}
       expect{airport.land(Plane.new)}.to raise_error('Cannot land. The airport is full.')
     end
+
+    it 'cannot land in stormy weather' do
+      plane = Plane.new
+
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect{subject.land(plane)}.to raise_error('DANGER. STORMY WEATHER.')
+    end
   end
 
   describe '#take_off' do
@@ -63,12 +70,7 @@ describe Airport do
       expect{subject.take_off(plane)}.to raise_error('DANGER. STORMY WEATHER.')
     end
 
-    it 'cannot land in stormy weather' do
-      plane = Plane.new
-
-      allow(subject).to receive(:weather) { 'stormy' }
-      expect{subject.land(plane)}.to raise_error('DANGER. STORMY WEATHER.')
-    end
+    
   end
 
   describe '#full?' do
