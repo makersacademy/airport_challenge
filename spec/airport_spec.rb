@@ -40,6 +40,12 @@ describe Airport do
       it 'instructs a plane to take_off' do
         expect(heathrow).to respond_to(:take_off).with(1).argument
       end
+
+      it 'does not allow planes to take off from wrong airports' do
+        gatwick = described_class.new(30, weather)
+        gatwick.land(plane)
+        expect { heathrow.take_off(plane) }.to raise_error('Cannot take off the plane - the plane is in another airport.')
+      end 
     end
 
     context 'when the weather is stormy' do
