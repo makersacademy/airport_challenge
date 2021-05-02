@@ -14,6 +14,7 @@ class ATC
 
   def takeoff_plane(plane)
     fail "Can't takeoff - too stormy" if stormy?
+    "Plane tookoff"
   end
 
   private
