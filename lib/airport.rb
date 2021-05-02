@@ -8,6 +8,7 @@ class Airport
   def land(plane)
     if plane_can_land?(plane)
       @planes << plane
+      plane.landed = true
       true
     else
       false
@@ -17,6 +18,7 @@ class Airport
   def launch(plane)
     if plane_can_launch?(plane)
       @planes.delete(plane)
+      plane.landed = false
       true
     else
       false
