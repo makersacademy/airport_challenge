@@ -1,9 +1,13 @@
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather)
     @capacity = capacity
+    @weather = weather
     @landed_planes = []
   end 
 
@@ -25,6 +29,10 @@ class Airport
   end 
 
   def stormy?
-    rand(1..10) > 7
+    @weather.stormy?
+  end
+
+  def serve_food
+    Kernel.rand(1..10)
   end
 end
