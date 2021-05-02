@@ -11,6 +11,16 @@ describe 'ATC' do
       expect { atc.land_plane(plane) }.to raise_error "Can't land - too stormy"
     end
 
+    it 'fails when airport is full' do
+      full_airport = double(Airport.new)
+      allow(full_airport).to receive(:capcity_status) { "full" }
+      sunny_weather = double(Weather.new)
+      allow(sunny_weather).to receive(:status) { "sunny" }
+      atc = ATC.new(sunny_weather)
+      plane = Plane.new
+      expect { atc.land_plane(plane) }.to raise_error "Can't land - airport full"
+    end
+
     it 'lands a plane when sunny' do
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
