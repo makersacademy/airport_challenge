@@ -8,7 +8,6 @@ class ATC
   
   def land_plane
     fail "Can't land - too stormy" if stormy?
-
   end
 
   def takeoff_plane
