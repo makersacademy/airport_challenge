@@ -1,4 +1,5 @@
 require 'airport'
+require 'planes'
 
 describe Airport do
   it 'instantiates with a default capacity value of 4' do
@@ -12,11 +13,14 @@ describe Airport do
   end
 
   it 'knows it starts with 0 planes on the ground' do
-    expect(subject.planes_in_port.size).to eq 0
+    expect(subject.plane_count).to eq 0
   end
 
   it 'increases planes_in_port by 1 when a plane lands' do
-    expect(subject.plane_arrives.planes_in_port.size).to eq 1
+    plane1 = Plane.new
+    airport = Airport.new
+    airport.plane_arrives(plane1)
+    expect(airport.plane_count).to eq 1
   end
 
   # test to see whether planes on ground decreases by 1 when a plane takesoff
