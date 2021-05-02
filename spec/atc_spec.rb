@@ -15,6 +15,7 @@ describe 'ATC' do
       atc = ATC.new(sunny_weather)
       plane = Plane.new
       expect(atc.land_plane(plane)).to eq "Plane landed"
+      # later this could become more specific eg 'Oceanic flight 815 has landed'
     end
   end
 
@@ -28,8 +29,8 @@ describe 'ATC' do
 
     it 'takesoff plane when sunny' do
       sunny_weather = Weather.new("sunny")
-      atc = ATC.new(stormy_weather)
-      plane Plane.new
+      atc = ATC.new(sunny_weather)
+      plane = Plane.new
       expect(atc.takeoff_plane(plane)).to eq "Plane tookoff" 
       # later this could become 'Flight FR23 departed' or similar
     end
