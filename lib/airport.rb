@@ -1,11 +1,10 @@
 require './lib/plane.rb'
 require './lib/weather_forecaster.rb'
 class Airport
-  attr_reader :hangar, :capacity
-  attr_accessor :weather
+  attr_reader :hangar, :capacity, :weather
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity: DEFAULT_CAPACITY, weather: WeatherForecaster)
+  def initialize(capacity: DEFAULT_CAPACITY, weather: WeatherForecaster.new)
     @hangar = [Plane.new]
     @capacity = capacity
     @weather = weather
