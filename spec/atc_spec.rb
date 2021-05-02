@@ -25,5 +25,13 @@ describe 'ATC' do
       plane = Plane.new
       expect { atc.takeoff_plane(plane) }.to raise_error "Can't takeoff - too stormy"
     end
+
+    it 'takesoff plane when sunny' do
+      sunny_weather = Weather.new("sunny")
+      atc = ATC.new(stormy_weather)
+      plane Plane.new
+      expect(atc.takeoff_plane(plane)).to eq "Plane tookoff" 
+      # later this could become 'Flight FR23 departed' or similar
+    end
   end
 end
