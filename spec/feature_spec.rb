@@ -72,6 +72,14 @@ describe 'user stories' do
     expect{ airport1.take_off(plane) }.to raise_error "Plane not in airport"
   end
   # planes that are flying cannot take off and/or be in an airport 
+  it "should not allow flying planes to take off again" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
+    airport.land(plane)
+    airport.take_off(plane)
+    expect { airport.take_off(plane) }.to raise_error "Plane not in airport"
+  end
 
 
   # planes that have landed cannot land again and are in an airport
