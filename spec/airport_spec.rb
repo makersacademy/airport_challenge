@@ -36,6 +36,11 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error 'Plane not found in airport!'
     end
     it 'raises an error when weather is "Stormy"' do 
+      stormy_weather = instance_double("WeatherForecaster")
+      allow(stormy_weather).to receive(:get_current).and_return("Stormy")
+      airport = Airport.new(weather: stormy_weather)
+      plane = airport.hangar[0]
+      expect { airport.take_off(plane) }.to raise_error 'Weather is stormy. Unable to take-off'
     end
   end
   describe '#capacity' do
@@ -43,14 +48,8 @@ describe Airport do
       expect(subject.capacity).to eq(50)
     end
     it 'can override the default capacity' do
-      airport = Airport.new(100)
+      airport = Airport.new(capacity: 100)
       expect(airport.capacity).to eq(100)
-    end
-  end
-  describe '#weather' do  
-    it 'sets the weather' do
-      subject.get_weather("Test")
-      expect(subject.weather).to eq("Test")
     end
   end
 end

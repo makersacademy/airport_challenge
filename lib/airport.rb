@@ -1,15 +1,13 @@
 require './lib/plane.rb'
-require './lib/weather.rb'
+require './lib/weather_forecaster.rb'
 class Airport
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :hangar, :capacity
+  attr_accessor :weather
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity: DEFAULT_CAPACITY, weather: WeatherForecaster)
     @hangar = [Plane.new]
     @capacity = capacity
-  end
-  
-  def get_weather(weather=Weather.get_current)
     @weather = weather
   end
 
@@ -27,9 +25,10 @@ class Airport
     plane.landed
     @hangar << plane 
   end
-
+  #other tests now fail as weather is sometimes stormy, maybe need to change so weather is always sunny for those tests
   def take_off(plane)
     raise 'Plane not found in airport!' if !plane_in_airport?(plane)
+    raise 'Weather is stormy. Unable to take-off' if @weather.get_current == 'Stormy'
     @hangar.delete(plane)
     plane.is_flying
   end
