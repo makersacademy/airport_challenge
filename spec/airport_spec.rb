@@ -65,12 +65,21 @@ describe Airport do
 
     it 'cannot take off in stormy weather' do
       plane = Plane.new
-
+      
+      allow(subject).to receive(:weather) { 'rain' }
+      subject.land(plane)
       allow(subject).to receive(:weather) { 'stormy' }
       expect{subject.take_off(plane)}.to raise_error('DANGER. STORMY WEATHER.')
     end
 
-    
+    it 'cannot take off if the plane is not at the airport' do
+      plane = Plane.new
+
+      allow(subject).to receive(:weather) { 'rain' }
+      subject.land(plane)
+      subject.take_off(plane)
+      expect{subject.take_off(plane)}.to raise_error('This plane has already taken off')
+    end
   end
 
   describe '#full?' do

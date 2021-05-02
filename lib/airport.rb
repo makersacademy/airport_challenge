@@ -19,6 +19,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'This plane has already taken off' if planes.include?(plane) == false
     weather == 'stormy' ? (fail 'DANGER. STORMY WEATHER.') : planes.delete(plane)
   end
 
