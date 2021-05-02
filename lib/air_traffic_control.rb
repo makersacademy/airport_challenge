@@ -9,11 +9,13 @@ class ATC
   
   def land_plane(plane)
     fail "Can't land - too stormy" if stormy?
+
     "Plane landed"
   end
 
   def takeoff_plane(plane)
     fail "Can't takeoff - too stormy" if stormy?
+    
     "Plane tookoff"
   end
 
