@@ -16,12 +16,22 @@ describe Airport do
     expect(subject.plane_count).to eq 0
   end
 
-  it 'increases planes_in_port by 1 when a plane lands' do
+  it 'increases planes_in_port by 1 when a plane arrives' do
     plane1 = Plane.new
     airport = Airport.new
     airport.plane_arrives(plane1)
     expect(airport.plane_count).to eq 1
   end
 
-  # test to see whether planes on ground decreases by 1 when a plane takesoff
+  it 'decreases planes_in_port by 1 when a plane departs' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport = Airport.new
+    airport.plane_arrives(plane1)
+    airport.plane_arrives(plane2)
+    # p airport.planes_in_port
+    airport.plane_departs
+    # p airport.planes_in_port
+    expect(airport.plane_count).to eq 1
+  end
 end

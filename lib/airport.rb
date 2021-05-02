@@ -1,7 +1,7 @@
 class Airport
   DEFAULT_CAPACITY = 4
   attr_reader :capacity
-
+  attr_reader :planes_in_port
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes_in_port = []
@@ -14,6 +14,11 @@ class Airport
 
   def plane_arrives(plane)
     @planes_in_port << plane.to_s
+    return
+  end
+
+  def plane_departs
+    @planes_in_port.pop
     return
   end
 
