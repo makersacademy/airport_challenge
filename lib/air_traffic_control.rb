@@ -1,4 +1,5 @@
 require_relative 'weather'
+require_relative 'planes'
 
 class ATC
 
@@ -6,11 +7,12 @@ class ATC
     @weather = weather
   end
   
-  def land_plane
+  def land_plane(plane)
     fail "Can't land - too stormy" if stormy?
+    "Plane landed"
   end
 
-  def takeoff_plane
+  def takeoff_plane(plane)
     fail "Can't takeoff - too stormy" if stormy?
   end
 
