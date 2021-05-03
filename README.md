@@ -18,6 +18,32 @@
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client:
 
+## Approach
+
+#### Break down the problem
+
+- Write down user stories
+- Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple object model table
+- Draw a diagram to outline how objects interact
+- Break this down further into smallest units of behavior that our program can do
+
+### Write the feature test
+
+- Create a features_spec file inside spec folder
+- Run the features_spec file before writing our unit test
+
+#### Write unit test that based on the first feature test
+
+- Arrange the environment, by creating desired object instances and/or variables
+- Execute the code to create the necessary context
+- Assert expectations: expected change of state in our program
+
+#### Make unit test pass by writing the simplest code
+
+- Keep repeating this cycle until we cover entire program
+
+#### Refactor the code and commit to Git
+
 ## User Stories
 
 ---
@@ -233,3 +259,7 @@ I want to ensure that planes that take off are no longer in the airport
 | airport    | full?            |
 | airport    | default_capacity |
 | weather    | stormy?          |
+
+## Thoughts and follow-up research
+
+Getting the methods on right class, and ensuring the tests were testing the right things was an iterative process.
