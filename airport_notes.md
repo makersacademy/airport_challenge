@@ -9,4 +9,8 @@ it 'lands a plane at an airport' do
 end
 end 
 
-attr_reader :planes 
+
+
+
+raise "ERROR! Airport is full, you cannot land" if full?
+  @planes << new_plane 

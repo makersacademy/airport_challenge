@@ -7,7 +7,7 @@ describe Airport do
       airport = Airport.new
       plane = Plane.new
       # act 
-      airport.land(plane)
+      airport.capacity.times { airport.land(plane) }
       # assert
       expect { airport.land(plane) }.to raise_error 'ERROR! Airport is full, you cannot land'
     end
@@ -19,10 +19,17 @@ describe Airport do
       # act 
       airport.land(plane)
       # assert 
-      expect(airport.land(plane)).to eq("Aircraft has landed at airport")
-    end  
+      expect(airport.land(plane)).to eq([plane])
+      end  
   end 
   describe '#take_off' do 
+    it 'returns an error if there are no planes to take-off' do
+      # arrange
+      airport = Airport.new
+      # assert
+      expect { airport.take_off(plane) }.to raise_error
+    end
+
     it 'instructs plane to take-off from airport' do
       # arrange 
       airport = Airport.new
@@ -30,7 +37,7 @@ describe Airport do
       # act
       airport.take_off(plane)
       # assert
-      expect(airport.take_off(plane)).to eq("Aircraft has taken off and is no longer in the airport")
+      expect(airport.take_off(plane)).to eq([plane].pop)
     end
   end 
   
