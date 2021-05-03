@@ -18,5 +18,6 @@ class Plane
   def airport
     fail 'The plane is not at the airport.' unless @landed
     @airport
-  end 
+  end
+
 end
