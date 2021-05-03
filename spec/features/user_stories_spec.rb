@@ -1,3 +1,5 @@
+require 'airport'
+
 describe 'User Stories' do
     # As an air traffic controller 
     # So I can get passengers to a destination 
@@ -14,7 +16,12 @@ describe 'User Stories' do
     it 'lets a plane take off so it is no longer at the airport' do
         airport = Airport.new(20)
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(false)
+        airport.land(plane)
+        allow(airport).to receive(:stormy?).and_return(false)
+        p "before"
         expect { airport.take_off(plane) }.not_to raise_error
+        p "after"
     end
     # As an air traffic controller 
     # To ensure safety 
@@ -38,11 +45,20 @@ describe 'User Stories' do
     end
     # As an air traffic controller 
     # To ensure safety 
-    # I want to prevent takeoff when weather is stormy
+    # I want to prevent landing when weather is stormy
     it 'does not allow a plane to land when it is stormy' do
         airport = Airport.new(20)
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(true)
         expect { airport.land(plane) }.to raise_error('Stormy: Cannot Land')
+    end
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent takeoff when weather is stormy 
+    it 'does not allow a plane to takeoff when it is stormy' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.take_off(plane) }.to raise_error('Stormy: Cannot Takeoff')
     end
 end
