@@ -6,6 +6,7 @@ class Plane
 
   def take_off
     fail ('The plane is already in the sky.') unless @landed
+    @landed = false
   end
 
   def land(airport)

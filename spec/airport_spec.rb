@@ -50,6 +50,12 @@ describe Airport do
         expect( heathrow.take_off(plane)).to eq(plane)
       end 
 
+      it 'does not return planes that have taken off' do
+        heathrow.land(plane)
+        heathrow.take_off(plane)
+        expect(heathrow.landed_planes).to_not include(plane)
+      end
+
       it 'does not allow planes to take off from wrong airports' do
         gatwick = described_class.new(30, weather)
         gatwick.land(plane)

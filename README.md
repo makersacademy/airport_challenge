@@ -168,3 +168,12 @@ As an air traffic controller
 To ensure consistency
 I want to ensure that not-flying planes can land and must be in the airport
 ```
+
+#### User Story 10
+
+```
+User Story
+As an air traffic controller
+To ensure consistency
+I want to ensure that planes that take off are no longer in the airport
+```

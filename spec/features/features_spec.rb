@@ -50,6 +50,16 @@ describe "Features" do
 # User Story
 # As an air traffic controller 
 # To ensure consistency 
+# I want to ensure that planes that take off are no longer in the airport 
+    it 'removes plane from the airport once it takes off' do
+      heathrow.land(plane)
+      heathrow.take_off(plane)
+      expect(heathrow.landed_planes).to_not include(plane)
+    end 
+
+# User Story
+# As an air traffic controller 
+# To ensure consistency 
 # I want to ensure that not-flying planes cannot land and must be in the airport
 
     it 'cannot land landed planes again' do
