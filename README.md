@@ -39,12 +39,12 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-| Object     | Messages   |
-| ---------- | ---------- |
+| Object     | Messages |
+| ---------- | -------- |
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane |
+| airport    | land     |
 
 #### User Story 2: Take-off Plane
 
@@ -55,13 +55,13 @@ I want to instruct a plane to take off from an airport
 and confirm that it is no longer in the airport
 ```
 
-| Object     | Messages     |
-| ---------- | ------------ |
+| Object     | Messages |
+| ---------- | -------- |
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane   |
-| airport    | launch_plane |
+| airport    | land     |
+| airport    | take_off |
 
 #### User Story 3: Prevent take-off in stormy weather
 
@@ -71,18 +71,18 @@ To ensure safety
 I want to prevent take-off when weather is stormy
 ```
 
-| Object     | Messages     |
-| ---------- | ------------ |
+| Object     | Messages |
+| ---------- | -------- |
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane   |
-| airport    | launch_plane |
-| airport    | stormy?      |
+| airport    | land     |
+| airport    | take_off |
+| weather    | stormy?  |
 
 1. stormy? is a predicate method
-2. Prevents launch_plane if stormy? is true (guard condition)
-3. Allows launch_plane if stormy? is false
+2. Prevents take_offif stormy? is true (guard condition)
+3. Allows take_offif stormy? is false
 4. Provide an input for stormy? to be able to return true
 
 #### User Story 4: Prevent landing in stormy weather
@@ -93,14 +93,14 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-| Object     | Messages     |
-| ---------- | ------------ |
+| Object     | Messages |
+| ---------- | -------- |
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane   |
-| airport    | launch_plane |
-| weather    | stormy?      |
+| airport    | land     |
+| airport    | take_off |
+| weather    | stormy?  |
 
 #### User Story 5: Prevent landing when airport is full
 
@@ -115,8 +115,8 @@ I want to prevent landing when the airport is full
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane       |
-| airport    | launch_plane     |
+| airport    | land             |
+| airport    | take_off         |
 | airport    | prevent_take_off |
 | airport    | prevent_landing  |
 | airport    | full?            |
@@ -135,12 +135,12 @@ I would like a default airport capacity that can be overridden as appropriate
 | controller |
 | passenger  |
 | plane      |
-| airport    | land_plane       |
-| airport    | launch_plane     |
+| airport    | land             |
+| airport    | take_off         |
 | airport    | prevent_take_off |
 | airport    | prevent_landing  |
 | airport    | full?            |
-| airport    | set_capacity     |
+| airport    | default_capacity |
 | weather    | stormy?          |
 
 ## Edge Cases
@@ -153,6 +153,19 @@ To ensure consistency
 I want to ensure that planes can only take off from airports they are in
 ```
 
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
+
 #### User Story 8
 
 ```
@@ -160,6 +173,19 @@ As a system designer
 So I can ensure system consistency
 I do not want to allow flying planes to take off and/or be in an airport
 ```
+
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
 
 #### User Story 9
 
@@ -169,6 +195,21 @@ To ensure consistency
 I want to ensure that not-flying planes can land and must be in the airport
 ```
 
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| plane      | land             |
+| plane      | airport          |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
+
 #### User Story 10
 
 ```
@@ -177,3 +218,18 @@ As an air traffic controller
 To ensure consistency
 I want to ensure that planes that take off are no longer in the airport
 ```
+
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| plane      | land             |
+| plane      | airport          |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
