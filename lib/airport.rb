@@ -2,11 +2,12 @@ require "./lib/airplane.rb"
 
 class Airport
   
-  def land(airplane)
-    airplane = Airplane.new
+  def land
+    
   end
   
-  def tate_off
+  def take_off
+    
   end
   
 end

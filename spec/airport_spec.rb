@@ -4,9 +4,8 @@ require "./lib/airplane.rb"
 describe Airport do
   
   describe '#land' do
-    it 'should instruct a plane to land in an Airport' do
-      airplane = Airplane.new
-      expect(subject.land(airplane)).to eq(airplane)
+    it 'responds to the instruction to land a plane' do
+      expect(subject).to respond_to :land
     end
   end
 
