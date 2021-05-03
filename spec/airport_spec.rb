@@ -2,6 +2,16 @@ require 'Airport'
 
 describe Airport do
   describe '#land' do 
+    it 'does not allow landing when the airport is full' do
+      # arrange
+      airport = Airport.new
+      plane = Plane.new
+      # act 
+      airport.land(plane)
+      # assert
+      expect { airport.land(plane) }.to raise_error 'ERROR! Airport is full, you cannot land'
+    end
+
     it 'lands a plane at the airport' do 
       # arrange
       airport = Airport.new 
