@@ -13,3 +13,6 @@ Airport <--- land ---> a Plane
 Airport <--- full? ---> true/false
 Plane <--- can_land? ---> true/false
 Plane <--- can_takeoff? ---> true/false
+
+## Notes
+  - The default airport capacity is 10 planes
