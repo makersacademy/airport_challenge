@@ -44,8 +44,7 @@ describe 'ATC' do
       stormy_weather = double(Weather.new)
       allow(stormy_weather).to receive(:status) { "stormy" }
       atc = ATC.new(stormy_weather, airport_with_spaces)
-      plane = Plane.new
-      expect { atc.takeoff_plane(plane) }.to raise_error "Can't takeoff - too stormy"
+      expect { atc.takeoff_plane }.to raise_error "Can't takeoff - too stormy"
     end
 
     it 'fails if no planes are at the airport' do
@@ -53,8 +52,7 @@ describe 'ATC' do
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
       atc = ATC.new(sunny_weather, airport)
-      plane = Plane.new
-      expect { atc.takeoff_plane(plane) }.to raise_error "Can't perform takeoff - no planes at the airport"
+      expect { atc.takeoff_plane }.to raise_error "Can't perform takeoff - no planes at the airport"
     end
 
     it 'takesoff plane when sunny' do
@@ -62,8 +60,11 @@ describe 'ATC' do
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
       atc = ATC.new(sunny_weather, airport_with_spaces)
-      plane = Plane.new
-      expect(atc.takeoff_plane(plane)).to eq "Plane tookoff" 
+      plane1 = Plane.new
+      plane2 = Plane.new
+      atc.land_plane(plane1)
+      atc.land_plane(plane2)
+      expect(atc.takeoff_plane).to eq "Plane tookoff" # include str interp for plane instance
       # later this could become 'Flight FR23 departed' or similar
     end
   end
