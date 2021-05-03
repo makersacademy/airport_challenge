@@ -23,12 +23,12 @@ class Airport
     plane.takeoff
   end
   
+  private
   def weather
     conditions = ["clear", "rain", "snow", "wind", "fog", "stormy"]
     conditions[rand(6)]
   end
 
-  private
   def full? 
     @planes.count >= @capacity
   end

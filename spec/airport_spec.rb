@@ -23,8 +23,8 @@ describe Airport do
 
   describe "#takeoff" do
     it "should tell planes to take off" do
-      allow(subject).to receive(:weather) { "clear" }
       airport = Airport.new
+      allow(airport).to receive(:weather) { "clear" }
       plane = Plane.new
       airport.land(plane)
       airport.takeoff(plane)
@@ -36,9 +36,10 @@ describe Airport do
       expect {subject.takeoff(plane)}.to raise_error "The plane is not landed at this airport"
     end
     it "fails when the plane is landed at a different airport" do
-      allow(subject).to receive(:weather) { "clear" }
       plane = Plane.new
       airport = Airport.new
+      allow(subject).to receive(:weather) { "clear" }
+      allow(airport).to receive(:weather) { "clear" }
       airport.land(plane)
       expect {subject.takeoff(plane)}.to raise_error "The plane is not landed at this airport"
     end
