@@ -37,7 +37,7 @@ describe Airport do
       # act
       airport.take_off(plane)
       # assert
-      expect(airport.take_off(plane)).to eq([plane].pop)
+      expect(airport.take_off(plane)).to eq([plane].pop())
     end
   end 
   

@@ -30,8 +30,9 @@ This is my first personal project, completed after the first week at Makers Acad
 The core theme of this challenge is to cement my skills in TDD, debugging and creating 
 code independantly from a specified brief. All the work is my own. 
 
-* You must submit a pull request to this repo with your code by 9am Monday morning
+I did not finish this challenge - I reached the 4th step and began creating a weather class but did not integrate it into the programme. To finish this challenge I would create a weather instance when I call the take-off of land method. The weather would then print, and if stormy then it would stop the programme from running. If it was sunny, then the programme would run as usual.
 
+Areas for me to improve: rspec and writing tests. I am becoming more confident in writing programmes, but the way I write and understand rspec needs imrpovement. 
 
 Task
 -----

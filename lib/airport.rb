@@ -1,4 +1,5 @@
 require_relative 'Plane'
+require_relative 'Weather'
 
 class Airport 
   attr_reader :planes
@@ -18,6 +19,6 @@ class Airport
   def take_off(plane)
     raise "ERROR! There are no aircraft to take off" if @planes.length == 0
     
-    @planes.pop
+    @planes.pop()
   end
 end
