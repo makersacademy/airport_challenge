@@ -1,5 +1,26 @@
-Airport Challenge
-=================
+Becca Parker's solution to Airport Challenge
+============================================
+
+(For original instructions etc from MAKERS, scroll down)
+
+Partial or full solution?
+-------------------------
+The code and tests I've written in this repo aim to meet all the user stories (see below), but could probably do with some refactoring.
+
+
+Next steps / additional features
+--------------------------------
+If I were to refine this further, I'd try to cover features like adding plane identifiers (rather than just using the object ids). This would allow the user to instruct specific planes to take-off. Currently the takeoff_plane method can only .pop the next plane out of the planes_on_the_ground array.
+
+
+How to use
+----------
+# include example irb lines for the user to run
+
+
+
+
+
 
 ```
         ______
