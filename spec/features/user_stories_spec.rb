@@ -1,5 +1,3 @@
-require 'airport'
-
 describe 'User Stories' do
     # As an air traffic controller 
     # So I can get passengers to a destination 
@@ -23,22 +21,20 @@ describe 'User Stories' do
     # As an air traffic controller 
     # To ensure safety 
     # I want to prevent landing when the airport is full 
-    it 'prevents a plane from landing when a plane is full' do
+    it 'prevents a plane from landing when a airport is full' do
         airport = Airport.new(20)
-        plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(false)
-        20.times { airport.land(plane) }
-        expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
+        20.times { airport.land(Plane.new) }
+        expect { airport.land(Plane.new) }.to raise_error('Airport Full: Cannot Land')
     end
     #As the system designer
     #So that the software can be used for many different airports
     #I would like a default airport capacity that can be overridden as appropriate
     it 'sets the capacity when argument not given' do
         airport = Airport.new
-        plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(false)
-        20.times { airport.land(plane) }
-        expect { airport.land(plane) }.to raise_error('Airport Full: Cannot Land')
+        20.times { airport.land(Plane.new) }
+        expect { airport.land(Plane.new) }.to raise_error('Airport Full: Cannot Land')
     end
     # As an air traffic controller 
     # To ensure safety 
@@ -57,5 +53,13 @@ describe 'User Stories' do
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(true)
         expect { airport.take_off(plane) }.to raise_error('Stormy: Cannot Takeoff')
+    end
+    # Make sure a plane that has already landed cannot land again.
+    it 'does not allow a plane to land if the plane has already landed' do
+        airport = Airport.new
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(false)
+        airport.land(plane)
+        expect { airport.land(plane) }.to raise_error('Plane Already Landed')
     end
 end

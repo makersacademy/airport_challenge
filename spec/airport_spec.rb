@@ -19,6 +19,14 @@ describe Airport do
             allow(airport).to receive(:stormy?).and_return(true)
             expect { airport.land(Plane.new) }.to raise_error('Stormy: Cannot Land')
         end
+
+        it 'does not allow a plane to land again' do
+            airport = Airport.new
+            plane = Plane.new
+            allow(airport).to receive(:stormy?).and_return(false)
+            airport.land(plane)
+            expect { airport.land(plane) }.to raise_error('Plane Already Landed')
+        end
     end
 
     describe '#take_off' do
