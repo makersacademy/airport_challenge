@@ -37,3 +37,7 @@ class ATC
     @airport.planes_in_port.empty?
   end
 end
+
+weather = Weather.new
+airport = Airport.new() #add an integer as argument to override DEFAUL_CAPACITY
+atc = ATC.new(weather, airport)
