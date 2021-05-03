@@ -17,7 +17,79 @@ If I were to refine this solution further, I'd try to implement a feature to let
 
 How to use
 ----------
-# include example irb lines for the user to run
+*Load an ATC (Air Traffic Control):*
+irb -r './lib/air_traffic_control'
+2.6.5 :001 > weather = Weather.new
+airport = Airport.new() #add an integer as argument to override DEFAULT_CAPACITY(currently 4)
+atc = ATC.new(weather, airport)
+ => #<Weather:0x00007fa8fe8b18f8> 
+ => #<Airport:0x00007fa90202e358 @capacity=4, @planes_in_port=[]> 
+ => #<ATC:0x00007fa8fe10a578 @weather=#<Weather:0x00007fa8fe8b18f8>, @airport=#<Airport:0x00007fa90202e358 @capacity=4, @planes_in_port=[]>> 
+2.6.5 :004 > 
+
+For this user story:
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+```
+do this:
+2.6.5 :004 > atc.land_plane()
+ => "Plane landed" 
+
+
+For this user story:
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+do this:
+2.6.5 :005 > atc.takeoff_plane
+ => "Confirmation: #<Plane:0x00007fa9020ae8c8> tookoff" 
+ 
+For this user story:
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+```
+do this:
+2.6.5 :006 > 5.times {atc.land_plane()}
+=> RuntimeError (Can't land - airport full)
+
+
+For this user story:
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+do this:
+provide an integer as argument to Airport.new when loading your ATC to override DEFAULT_CAPACITY (currently 4)
+
+
+For this user story: 
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+```
+do this:
+note that when you land planes, if weather (randomly generated) is stormy you'll get
+=> RuntimeError (Can't land - too stormy)
+
+
+For this user story: 
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
+do this:
+note that when you takeoff_planes, if weather (randomly generated) is stormy you'll get
+=> RuntimeError (Can't takeoff - too stormy)
+
 
 
 
