@@ -20,6 +20,7 @@ If I were to refine this solution further, I'd try to implement a feature to let
 How to use
 ----------
 *Load an ATC (Air Traffic Control):*
+
     irb -r './lib/air_traffic_control'
     weather = Weather.new
     airport = Airport.new() # or add an integer as argument to override DEFAULT_CAPACITY (currently 4)
