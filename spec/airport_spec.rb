@@ -1,7 +1,7 @@
-require "airport"
+require 'airport'
 
 describe Airport do
-  subject(:heathrow) { described_class.new(described_class::DEFAULT_CAPACITY, weather) }
+  subject(:heathrow) { described_class.new( described_class::DEFAULT_CAPACITY, weather) }
   let(:plane) {Plane.new}
   let (:weather) { double :weather }
 
@@ -17,7 +17,7 @@ describe Airport do
 
       context 'when the airport is full' do 
         it 'does not allow a plane to land by raising an error' do
-          Airport::DEFAULT_CAPACITY.times { heathrow.land(plane) }
+          described_class::DEFAULT_CAPACITY.times { heathrow.land(plane) }
           expect { heathrow.land(plane) }.to raise_error('The airport is full.')
         end
       end
@@ -58,4 +58,18 @@ describe Airport do
       end 
     end 
   end
+
+  describe '.initialize' do
+    before(:each) { allow(weather).to receive(:stormy?).and_return(false) }
+
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'has a variable capacity' do
+      random_number = Random.rand(10..100)
+      expect { double(:heathrow, capacity: random_number)}.not_to raise_error
+    end
+
+  end 
 end

@@ -3,18 +3,16 @@ describe "Features" do
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
+  context 'when the weather is not stormy' do
+    before do 
+      allow(weather).to receive(:stormy?).and_return(false)
+    end
   #User Story
   # As an air traffic controller
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport
-  it 'instructs a plane to land so passengers get to a destination' do
-    allow(weather).to receive(:stormy?).and_return(false)
-    expect { heathrow.land(plane) }.not_to raise_error
-  end
-
-  context 'when the weather is not stormy' do
-    before do 
-      allow(weather).to receive(:stormy?).and_return(false)
+    it 'instructs a plane to land so passengers get to a destination' do
+      expect { heathrow.land(plane) }.not_to raise_error
     end
 
 #User Story 
@@ -34,7 +32,7 @@ describe "Features" do
       gatwick = Airport.new(30, Weather.new)
       gatwick.land(plane)
       expect { heathrow.take_off(plane) }.to raise_error('Cannot take off the plane - the plane is in another airport.')
-    end 
+    end
 
 #User Story 
 # As an air traffic controller 
@@ -42,11 +40,20 @@ describe "Features" do
 # I want to prevent landing when the airport is full 
     context 'when the airport is full' do
 
-    it 'does not allow plane to land to ensure safety' do
-      50.times { heathrow.land(plane) }
-      expect { heathrow.land(plane) }.to raise_error('The airport is full.')
+      it 'does not allow plane to land to ensure safety' do
+        50.times { heathrow.land(plane) }
+        expect { heathrow.land(plane) }.to raise_error('The airport is full.')
+      end
     end
 
+  # User_story 
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+    it 'has a variable capacity' do
+      random_number = Random.rand(10..100)
+      airport = double(:airport, capacity: random_number, weather: false)
+      expect { airport.capacity }.not_to raise_error
     end
   end
 
@@ -74,7 +81,5 @@ describe "Features" do
       expect { heathrow.take_off(plane) }.to raise_error('Cannot take off - it is stormy.')
     end
   end
-
-
 end
 
