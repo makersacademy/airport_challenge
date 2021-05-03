@@ -48,6 +48,15 @@ describe 'ATC' do
       expect { atc.takeoff_plane(plane) }.to raise_error "Can't takeoff - too stormy"
     end
 
+    it 'fails if no planes are at the airport' do
+      airport = Airport.new
+      sunny_weather = double(Weather.new)
+      allow(sunny_weather).to receive(:status) { "sunny" }
+      atc = ATC.new(sunny_weather, airport)
+      plane = Plane.new
+      expect { atc.takeoff_plane(plane) }.to raise_error "Can't perform takeoff - no planes at the airport"
+    end
+
     it 'takesoff plane when sunny' do
       airport_with_spaces = Airport.new
       sunny_weather = double(Weather.new)
