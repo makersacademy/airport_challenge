@@ -18,10 +18,7 @@ describe 'User Stories' do
         plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(false)
         airport.land(plane)
-        allow(airport).to receive(:stormy?).and_return(false)
-        p "before"
         expect { airport.take_off(plane) }.not_to raise_error
-        p "after"
     end
     # As an air traffic controller 
     # To ensure safety 

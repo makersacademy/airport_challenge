@@ -26,6 +26,16 @@ describe Airport do
             expect(airport).to respond_to(:take_off).with(1).argument
         end
 
+        it 'instructs a plane to take off and remove from airport' do
+            airport = Airport.new
+            plane = Plane.new
+            plane1 = Plane.new
+            allow(airport).to receive(:stormy?).and_return(false)
+            airport.land(plane)
+            airport.land(plane1)
+            expect(airport.take_off(plane1)).to eq(plane1)
+        end
+
         it 'does not allow a plane to takeoff in stormy weather' do
             allow(airport).to receive(:stormy?).and_return(true)
             expect { airport.take_off(Plane.new) }.to raise_error('Stormy: Cannot Takeoff')
