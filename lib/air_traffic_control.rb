@@ -34,3 +34,4 @@ class ATC
     @airport.capacity_status == "full"
   end
 end
+

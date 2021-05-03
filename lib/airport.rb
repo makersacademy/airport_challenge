@@ -13,13 +13,12 @@ class Airport
   end
 
   def plane_arrives(plane)
-    @planes_in_port << plane.to_s
+    @planes_in_port << plane
     return
   end
 
   def plane_departs
     @planes_in_port.pop
-    return
   end
 
   def plane_count

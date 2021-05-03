@@ -43,7 +43,7 @@ describe Airport do
     atc = ATC.new(sunny_weather, subject)
     plane1 = Plane.new
     atc.land_plane(plane1)
-    expect(subject.planes_in_port).to include plane1.to_s
+    expect(subject.planes_in_port).to include plane1
   end
 
 end
