@@ -10,22 +10,34 @@ class Airport
   def land(plane)
     fail "Landing is prevented due to stormy conditions" if weather == "stormy"
     fail "The airport is full" if full?
+    fail "The plane has already landed" unless can_land?(plane)
     @planes << plane
+    plane.land
   end
 
-  def takeoff
+  def takeoff(plane)
     fail "Takeoff is prevented due to stormy conditions" if weather == "stormy"
+    fail "The plane is not landed at this airport" unless can_takeoff?(plane)
     plane = @planes.pop
     @planes.delete_if { |aeroplane| aeroplane == plane}
-    "The plane has taken off"
-  end
-
-  def full? 
-    @planes.count >= @capacity
+    plane.takeoff
   end
   
   def weather
     conditions = ["clear", "rain", "snow", "wind", "fog", "stormy"]
     conditions[rand(6)]
+  end
+
+  private
+  def full? 
+    @planes.count >= @capacity
+  end
+
+  def can_land?(plane)
+    plane.state == :flying
+  end
+
+  def can_takeoff?(plane)
+    plane.state == :landed && @planes.find { |aeroplane| aeroplane == plane} == plane
   end
 end
