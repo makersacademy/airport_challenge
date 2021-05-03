@@ -24,4 +24,20 @@ describe Airport do
     expect(subject.planes).to be_empty
   end
 
+  it 'has a default capacity' do
+    airport = Airport.new
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'capacity can be overriden at init' do
+    airport = Airport.new(14)
+    expect(airport.capacity).to eq 14
+  end
+
+  it 'capacity can be overriden as appropriate' do
+    airport = Airport.new
+    airport.override_capacity(14)
+    expect(airport.capacity).to eq 14
+  end
+
 end

@@ -11,8 +11,8 @@ This codebase will be tested using Rspec as a framework.
 Airport <--- takeoff ---> a Plane
 Airport <--- land ---> a Plane
 Airport <--- full? ---> true/false
-Plane <--- can_land? ---> true/false
-Plane <--- can_takeoff? ---> true/false
+Weather <--- ok for takeoff/landing? ---> true/false
 
 ## Notes
   - The default airport capacity is 10 planes
+  - occasional stormy weather assumed to be 5% chance

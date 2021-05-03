@@ -2,12 +2,13 @@ require_relative 'plane'
 
 class Airport
 
-attr_reader :planes
-attr_reader :capacity
+  attr_reader :planes
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 10
   
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 10
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -15,13 +16,16 @@ attr_reader :capacity
     @planes.push(plane)
   end
 
-def takeoff_plane
-  @planes.pop
-end
+  def takeoff_plane
+    @planes.pop
+  end
 
-def full?
-  true if @planes.count >= @capacity
-end 
+  def full?
+    true if @planes.count >= @capacity
+  end 
 
+  def override_capacity(new_capacity)
+    @capacity = new_capacity
+  end
 
 end
