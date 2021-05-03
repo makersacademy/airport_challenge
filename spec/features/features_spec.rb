@@ -30,16 +30,11 @@ describe "Features" do
 # So I can ensure system consistency 
 # I do not want to allow flying planes to take off and/or be in an airport
     it 'cannot take off flying planes' do
-      heathrow.land(plane)
-      flying_plane = heathrow.take_off(plane)
-      expect { flying_plane.take_off }.to raise_error('The plane is in the sky.')
+      expect { plane.take_off }.to raise_error('The plane is already in the sky.')
     end 
 
     it 'cannot have flying planes in the airport' do
-      heathrow.land(plane)
-      flying_plane = heathrow.take_off(plane)
-      # expect(heathrow.landed_planes).not_to include(flying_plane)
-      expect { flying_plane.airport }.to raise_error('The plane is in the sky.')
+      expect { plane.airport }.to raise_error('The plane is not at the airport.')
     end 
 
 # User Story
@@ -52,6 +47,20 @@ describe "Features" do
       expect { heathrow.take_off(plane) }.to raise_error('Cannot take off the plane - the plane is in another airport.')
     end
 
+# User Story
+# As an air traffic controller 
+# To ensure consistency 
+# I want to ensure that not-flying planes cannot land and must be in the airport
+
+    it 'cannot land landed planes again' do
+      plane.land(heathrow)
+      expect { plane.land(heathrow) }.to raise_error('Landed planes cannot land again.')
+    end 
+
+    it 'should have non-flying/landed planes in the airport' do
+      plane.land(heathrow)
+      expect(plane.airport).to eq(heathrow)
+    end 
 # User Story 
 # As an air traffic controller 
 # To ensure safety 
@@ -59,7 +68,10 @@ describe "Features" do
     context 'when the airport is full' do
 
       it 'does not allow plane to land to ensure safety' do
-        50.times { heathrow.land(plane) }
+        50.times do  
+          new_plane = Plane.new
+          heathrow.land(new_plane) 
+        end
         expect { heathrow.land(plane) }.to raise_error('The airport is full.')
       end
     end
@@ -68,7 +80,7 @@ describe "Features" do
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
-    it 'has a variable capacity' do
+    it 'has a default capacity that can be overridden' do
       random_number = Random.rand(10..100)
       airport = double(:airport, capacity: random_number, weather: false)
       expect { airport.capacity }.not_to raise_error

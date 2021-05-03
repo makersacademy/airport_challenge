@@ -160,3 +160,11 @@ As a system designer
 So I can ensure system consistency
 I do not want to allow flying planes to take off and/or be in an airport
 ```
+
+#### User Story 9
+
+```
+As an air traffic controller
+To ensure consistency
+I want to ensure that not-flying planes can land and must be in the airport
+```
