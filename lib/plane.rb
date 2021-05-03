@@ -1,7 +1,7 @@
 class Plane
 
-  def can_land?
-    true
-  end 
+  #def can_land?
+  #  true
+ # end 
 
 end
