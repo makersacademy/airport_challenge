@@ -55,7 +55,7 @@ describe 'ATC' do
       expect { atc.takeoff_plane }.to raise_error "Can't perform takeoff - no planes at the airport"
     end
 
-    it 'takesoff plane when sunny' do
+    it 'performs and confirms plane takefoff when sunny' do
       airport_with_spaces = Airport.new
       sunny_weather = double(Weather.new)
       allow(sunny_weather).to receive(:status) { "sunny" }
@@ -64,7 +64,7 @@ describe 'ATC' do
       plane2 = Plane.new
       atc.land_plane(plane1)
       atc.land_plane(plane2)
-      expect(atc.takeoff_plane).to eq "Plane tookoff" # include str interp for plane instance
+      expect(atc.takeoff_plane).to eq "Confirmation: #{plane2.to_s} tookoff" # include str interp for plane instance
       # later this could become 'Flight FR23 departed' or similar
     end
   end

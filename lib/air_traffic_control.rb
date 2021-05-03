@@ -21,8 +21,7 @@ class ATC
     fail "Can't takeoff - too stormy" if stormy?
     fail "Can't perform takeoff - no planes at the airport" if airport_empty?
 
-    @airport.plane_departs
-    "Plane tookoff"
+    "Confirmation: #{@airport.plane_departs} tookoff"
   end
 
   private
