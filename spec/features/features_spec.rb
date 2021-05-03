@@ -4,10 +4,11 @@ describe "Features" do
   let(:weather) { Weather.new }
 
   context 'when the weather is not stormy' do
-    before do 
+    before(:each) do 
       allow(weather).to receive(:stormy?).and_return(false)
     end
-  #User Story
+
+  # User Story
   # As an air traffic controller
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport
@@ -15,26 +16,43 @@ describe "Features" do
       expect { heathrow.land(plane) }.not_to raise_error
     end
 
-#User Story 
+# User Story - Edge Case 
 # As an air traffic controller 
 # So I can get passengers on the way to their destination 
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it 'instructs a plane to take off so passengers get to a destination' do
-      heathrow.land(plane)
+      heathrow.land(plane) 
       expect { heathrow.take_off(plane) }.not_to raise_error
     end
 
-#User Story
+# User Story - Edge Case 
+# As a system designer
+# So I can ensure system consistency 
+# I do not want to allow flying planes to take off and/or be in an airport
+    it 'cannot take off flying planes' do
+      heathrow.land(plane)
+      flying_plane = heathrow.take_off(plane)
+      expect { flying_plane.take_off }.to raise_error('The plane is in the sky.')
+    end 
+
+    it 'cannot have flying planes in the airport' do
+      heathrow.land(plane)
+      flying_plane = heathrow.take_off(plane)
+      # expect(heathrow.landed_planes).not_to include(flying_plane)
+      expect { flying_plane.airport }.to raise_error('The plane is in the sky.')
+    end 
+
+# User Story
 # As an air traffic controller 
 # To ensure consistency 
 # I want to ensure that planes can only take off from airports they are in
     it 'takes off planes only from the airports they are in' do
-      gatwick = Airport.new(30, Weather.new)
+      gatwick = Airport.new(30, weather)
       gatwick.land(plane)
       expect { heathrow.take_off(plane) }.to raise_error('Cannot take off the plane - the plane is in another airport.')
     end
 
-#User Story 
+# User Story 
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when the airport is full 
@@ -58,7 +76,7 @@ describe "Features" do
   end
 
 
-#User Story 
+# User Story 
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
@@ -72,7 +90,7 @@ describe "Features" do
       expect { heathrow.land(plane) }.to raise_error('Cannot land - it is stormy.')
     end
 
-#User Story 
+# User Story 
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy

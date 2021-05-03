@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   subject(:heathrow) { described_class.new( described_class::DEFAULT_CAPACITY, weather) }
   let(:plane) {Plane.new}
-  let (:weather) { double :weather }
+  let (:weather) { double :weather}
 
   describe "#land" do 
     context "when the weather is not stormy" do
@@ -40,6 +40,11 @@ describe Airport do
       it 'instructs a plane to take_off' do
         expect(heathrow).to respond_to(:take_off).with(1).argument
       end
+      
+      it 'returns a plane that takes off' do
+        heathrow.land(plane)
+        expect( heathrow.take_off(plane)).to eq(plane)
+      end 
 
       it 'does not allow planes to take off from wrong airports' do
         gatwick = described_class.new(30, weather)

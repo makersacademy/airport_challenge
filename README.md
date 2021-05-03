@@ -143,10 +143,20 @@ I would like a default airport capacity that can be overridden as appropriate
 | airport    | set_capacity     |
 | weather    | stormy?          |
 
-#### User Story 7: Edge Cases
+## Edge Cases
+
+#### User Story 7:
 
 ```
 As an air traffic controller
 To ensure consistency
 I want to ensure that planes can only take off from airports they are in
+```
+
+#### User Story 8
+
+```
+As a system designer
+So I can ensure system consistency
+I do not want to allow flying planes to take off and/or be in an airport
 ```

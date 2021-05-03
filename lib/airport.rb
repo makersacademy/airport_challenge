@@ -4,10 +4,11 @@ require_relative 'weather'
 class Airport
 
   attr_accessor :capacity
+  attr_reader :weather,:landed_planes 
 
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity=DEFAULT_CAPACITY, weather)
+  def initialize(capacity= DEFAULT_CAPACITY, weather)
     @capacity = capacity
     @weather = weather
     @landed_planes = []
@@ -22,7 +23,8 @@ class Airport
 
   def take_off(plane)
     fail 'Cannot take off - it is stormy.' if stormy?
-    fail 'Cannot take off the plane - the plane is in another airport.' unless @landed_planes.include?(plane) 
+    fail 'Cannot take off the plane - the plane is in another airport.' unless @landed_planes.include?(plane)
+    return plane
   end 
 
   private
