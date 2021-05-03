@@ -1,12 +1,6 @@
 require 'air_traffic_control.rb'
 
-describe 'ATC' do
-  # before(:each)
-  #   airport_with_spaces = double(Airport.new)
-  #   allow(airport_with_spaces).to receive(:capcity_status) { "there are spaces to land in" }
-  #   stormy_weather = double(Weather.new)
-  #   allow(stormy_weather).to receive(:status) { "stormy" }
-  # end
+describe ATC do
 
   describe '#land_plane' do
     it 'fails when stormy' do
@@ -64,8 +58,7 @@ describe 'ATC' do
       plane2 = Plane.new
       atc.land_plane(plane1)
       atc.land_plane(plane2)
-      expect(atc.takeoff_plane).to eq "Confirmation: #{plane2.to_s} tookoff" # include str interp for plane instance
-      # later this could become 'Flight FR23 departed' or similar
+      expect(atc.takeoff_plane).to eq "Confirmation: #{plane2} tookoff" # include str interp for plane instance
     end
   end
 end

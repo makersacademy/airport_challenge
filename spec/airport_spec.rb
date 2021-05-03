@@ -30,9 +30,7 @@ describe Airport do
     airport = Airport.new
     airport.plane_arrives(plane1)
     airport.plane_arrives(plane2)
-    # p airport.planes_in_port
     airport.plane_departs
-    # p airport.planes_in_port
     expect(airport.plane_count).to eq 1
   end
 

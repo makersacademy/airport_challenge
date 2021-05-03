@@ -5,12 +5,14 @@ Becca Parker's solution to Airport Challenge
 
 Partial or full solution?
 -------------------------
-The code and tests I've written in this repo aim to meet all the user stories (see below), but could probably do with some refactoring.
+The code and tests I've written in this repo aim to meet all the user stories (see below), but could probably do with some refactoring. Particularly the Rspec. I struggled for a logn time this weekend tryng to extract the mocks/doubles out into before blocks, but I couldn't get the it blocks to access these objects, so I reverted back to longhand declaring the mocks/doubles each time they were needed in an it block.
 
 
 Next steps / additional features
 --------------------------------
-If I were to refine this further, I'd try to cover features like adding plane identifiers (rather than just using the object ids). This would allow the user to instruct specific planes to take-off. Currently the takeoff_plane method can only .pop the next plane out of the planes_on_the_ground array.
+Currently the takeoff_plane method can only .pop the next plane out of the planes_in_port array.
+
+If I were to refine this solution further, I'd try to implement a feature to let the user instruct specific planes to take-off. 
 
 
 How to use
