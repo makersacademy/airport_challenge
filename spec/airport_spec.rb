@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  subject(:heathrow) { described_class.new( described_class::DEFAULT_CAPACITY, weather) }
+  subject(:heathrow) { described_class.new(described_class::DEFAULT_CAPACITY, weather) }
   let(:plane) { double :plane, land: nil, take_off: nil }
-  let (:weather) { double :weather}
+  let(:weather) { double :weather }
 
   describe "#land" do 
     context "when the weather is not stormy" do
@@ -47,7 +47,7 @@ describe Airport do
       
       it 'returns a plane that takes off' do
         heathrow.land(plane)
-        expect( heathrow.take_off(plane)).to eq(plane)
+        expect(heathrow.take_off(plane)).to eq(plane)
       end 
 
       it 'does not return planes that have taken off' do
@@ -83,7 +83,7 @@ describe Airport do
 
     it 'has a variable capacity' do
       random_number = Random.rand(10..100)
-      expect { double(:heathrow, capacity: random_number)}.not_to raise_error
+      expect { double(:heathrow, capacity: random_number) }.not_to raise_error
     end
 
   end 

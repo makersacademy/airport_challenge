@@ -97,7 +97,6 @@ describe "Features" do
     end
   end
 
-
 # User Story 
 # As an air traffic controller 
 # To ensure safety 
@@ -122,4 +121,3 @@ describe "Features" do
     end
   end
 end
-
