@@ -4,14 +4,20 @@
 # ATC = Air Traffic Controller
 class ATC
 
-  def land_plane(airport)
-# #   @airport = airport
-# #   puts "landed " + @airport 
+  def land_plane(airport, plane)
+  @airport = airport
+  @plane = plane
+  puts @plane + " landed @ " + @airport + " airport."
   end
 
-  def takeoff_plane(airport)
+  def takeoff_plane(airport, plane)
     true
 
+  end
+
+  def prevent_landing(airport)
+    true
+  
   end
 
 end
@@ -19,4 +25,4 @@ end
 
 
 # jim = ATC.new
-# jim.land_plane("airbus1")
+# jim.land_plane("Heathrow", "airbus1")
