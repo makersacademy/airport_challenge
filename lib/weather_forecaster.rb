@@ -1,5 +1,5 @@
 class WeatherForecaster
   def current
-    rand(11) == 10 ? "Stormy" : "Sunny"
+    rand(10) > 8 ? "Stormy" : "Sunny"
   end
 end
