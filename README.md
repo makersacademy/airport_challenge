@@ -1,7 +1,6 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
+``````
         ______
         _\____\___
 =  = ==(____MA____)
@@ -11,79 +10,256 @@ Airport Challenge
                 `---~~\___________/------------`````
                 =  ===(_________)
 
+``````
+
+## Task
+
+---
+
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client:
+
+## Approach
+
+#### Break down the problem
+
+- Write down user stories
+- Capture objects (nouns in user stories) and messages (verbs in user stories) to create a simple object model table
+- Draw a diagram to outline how objects interact
+- Break this down further into smallest units of behavior that our program can do
+
+### Write the feature test
+
+- Create a features_spec file inside spec folder
+- Run the features_spec file before writing our unit test
+
+#### Write unit test that based on the first feature test
+
+- Arrange the environment, by creating desired object instances and/or variables
+- Execute the code to create the necessary context
+- Assert expectations: expected change of state in our program
+
+#### Make unit test pass by writing the simplest code
+
+- Keep repeating this cycle until we cover entire program
+
+#### Refactor the code and commit to Git
+
+## User Stories
+
+---
+
+[User Story 1 : Land Plane] (#U1)
+[User Story 2 : Takeoff Plane] (#U2)
+[User Story 3 : Prevent takeoff when weather is stormy] (#U3)
+[User Story 4 : Prevent landing when weather is stormy] (#U4)
+[User Story 5 : Prevent landing when the airport is full] (#U5)
+[User Story 6 : Overridden default airport capacity] (#U6)#
+
+## User Stories & Object Model
+
+#### User Story 1: Land Plane
+
 ```
-
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
+```
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+| Object     | Messages |
+| ---------- | -------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land     |
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+#### User Story 2: Take-off Plane
 
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport
+and confirm that it is no longer in the airport
+```
+
+| Object     | Messages |
+| ---------- | -------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land     |
+| airport    | take_off |
+
+#### User Story 3: Prevent take-off in stormy weather
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent take-off when weather is stormy
+```
+
+| Object     | Messages |
+| ---------- | -------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land     |
+| airport    | take_off |
+| weather    | stormy?  |
+
+1. stormy? is a predicate method
+2. Prevents take_offif stormy? is true (guard condition)
+3. Allows take_offif stormy? is false
+4. Provide an input for stormy? to be able to return true
+
+#### User Story 4: Prevent landing in stormy weather
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+| Object     | Messages |
+| ---------- | -------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land     |
+| airport    | take_off |
+| weather    | stormy?  |
+
+#### User Story 5: Prevent landing when airport is full
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| weather    | stormy?          |
+
+#### User Story 6: Airport capacity
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+## Edge Cases
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+#### User Story 7:
 
-Please create separate files for every class, module and test suite.
+```
+As an air traffic controller
+To ensure consistency
+I want to ensure that planes can only take off from airports they are in
+```
 
-In code review we'll be hoping to see:
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+#### User Story 8
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+```
+As a system designer
+So I can ensure system consistency
+I do not want to allow flying planes to take off and/or be in an airport
+```
 
-**BONUS**
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+#### User Story 9
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+```
+As an air traffic controller
+To ensure consistency
+I want to ensure that not-flying planes can land and must be in the airport
+```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| plane      | land             |
+| plane      | airport          |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
 
-* **Submit a pull request early.**
+#### User Story 10
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+User Story
+As an air traffic controller
+To ensure consistency
+I want to ensure that planes that take off are no longer in the airport
+```
+
+| Object     | Messages         |
+| ---------- | ---------------- |
+| controller |
+| passenger  |
+| plane      | take_off         |
+| plane      | land             |
+| plane      | airport          |
+| airport    | land             |
+| airport    | take_off         |
+| airport    | prevent_take_off |
+| airport    | prevent_landing  |
+| airport    | full?            |
+| airport    | default_capacity |
+| weather    | stormy?          |
+
+## Thoughts and follow-up research
+
+Getting the methods on right class, and ensuring the tests were testing the right things was an iterative process.
