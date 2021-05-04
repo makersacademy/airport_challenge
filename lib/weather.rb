@@ -1,6 +1,6 @@
 class Weather
 
-  def weatherforcast
+  def weatherforecast
     ["stormy", "calm"].sample
   end
 

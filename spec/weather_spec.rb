@@ -1,18 +1,19 @@
-require 'weather.rb'
+require 'weather'
 
 describe Weather do
-  it 'weather responds to weatherforcast' do
-    expect(subject).to respond_to(:weatherforcast)
+
+  it 'weather responds to weatherforecast' do
+    expect(subject).to respond_to(:weatherforecast)
   end
 
-  it "checks forecast for stormy weather" do
-    allow(subject).to receive(:weatherforcast) { "stormy" }
-    expect(subject.weatherforcast).to eq "stormy"
+  it "it's calm" do
+    allow(subject).to receive(:weatherforecast) { "calm" }
+    expect(subject.weatherforecast).to eq "calm"
   end
 
-  it "checks forecast for calm weather" do
-    allow(subject).to receive(:weatherforcast) { "calm" }
-    expect(subject.weatherforcast).to eq "calm"
+  it "it's stormy" do
+    allow(subject).to receive(:weatherforecast) { "stormy" }
+    expect(subject.weatherforecast).to eq "stormy"
   end
 
 end
