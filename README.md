@@ -18,5 +18,5 @@ Weather <--- ok for takeoff/landing? ---> true/false
   - occasional stormy weather assumed to be 5% chance
 
   ## Status
-  - random weather tests/code currently not working
+  - random weather generated but not yet used in takeoff/landing
   - edge cases still to be defended against

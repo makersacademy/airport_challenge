@@ -2,18 +2,18 @@ require 'weather'
 
 describe Weather do
 
-  it { is_expected.to respond_to :random_weather }
+  it { is_expected.to respond_to :fine_weather? }
 
-  it 'random weather can be sunny' do
-    allow{subject.random_nember_method}.to eq {5}
-    subject.random_weather
-    expect(subject.status).to eq "sunny"
-  end
-
-  it 'random weather can be stormy' do
-    allow{subject.random_nember_method}.to eq {1}
-    subject.random_weather
-    expect(subject.status).to eq "stormy"
+  describe Weather do
+    it 'returns true for good weather' do
+      allow(subject).to receive(:rand).and_return 2
+      expect(subject.fine_weather?).to eq true
+    end
+  
+    it 'returns false for bad weather' do
+      allow(subject).to receive(:rand).and_return 1
+      expect(subject.fine_weather?).to eq false
+    end
   end
 
 end 
