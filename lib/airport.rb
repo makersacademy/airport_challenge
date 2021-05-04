@@ -1,6 +1,6 @@
 require './lib/plane.rb'
 
-class DockingStation
+class Airport
     attr_reader :planes, :capacity, :storm
     DEFAULT_CAPACITY = 20
     def initialize(capacity=DEFAULT_CAPACITY)
@@ -12,11 +12,11 @@ class DockingStation
         @storm = true
     end
     if rand(10)>7 
-        DockingStation.in_storm
+        Airport.in_storm
     end
     def release_plane
       fail 'No planes' if empty? 
-      fail 'Cannot release plane in storm' if @storm = true
+      fail 'Cannot release plane in storm' if (@storm = true)
       planes.pop
     end
     def docking_plane(plane, is_broken=false)
