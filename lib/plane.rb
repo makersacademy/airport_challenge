@@ -5,7 +5,7 @@ class Plane
     @flying = false
   end
 
-  def is_flying
+  def take_off
     @flying = true
   end
 
