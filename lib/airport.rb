@@ -19,7 +19,7 @@ class Airport
     fail 'Cannot land - it is stormy.' if stormy?
 
     plane.land(self)
-    @landed_planes.push(plane)
+    landed_planes.push(plane)
   end
 
   def take_off(plane)
@@ -28,14 +28,14 @@ class Airport
     fail 'Cannot take off the plane - the plane is in another airport.' unless landed?(plane)
 
     plane.take_off
-    @landed_planes.delete(plane)
+    landed_planes.delete(plane)
     return plane
   end 
 
   private
 
   def full?
-    @landed_planes.count >= capacity
+    landed_planes.count >= capacity
   end 
 
   def stormy?
@@ -43,7 +43,7 @@ class Airport
   end
 
   def landed?(plane)
-    @landed_planes.include?(plane)
+    landed_planes.include?(plane)
   end 
 
 end
