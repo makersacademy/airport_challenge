@@ -2,32 +2,37 @@ Airport Challenge
 =================
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+                      ___
+                      \\ \
+                       \\ `\
+    ___                 \\  \
+   |    \                \\  `\
+   |_____\                \    \
+   |__FP__\                \    `\
+   |       \                \     \
+   |      __\__---------------------------------._.
+ __|---~~~__o_o_o_o_o_o_o_o_o_o_o_o_o_o_o_o_o_o_[][\__
+|___                         /~      )                \__
+    ~~~---..._______________/      ,/_________________/
+                           /      /
+                          /     ,/
+                         /     /
+                        /    ,/
+                       /    /
+                      //  ,/
+                     //  /
+                    // ,/
+                   //_/
 
 ```
-
-Instructions
 ---------
+This is my first personal project, completed after the first week at Makers Academy. 
+The core theme of this challenge is to cement my skills in TDD, debugging and creating 
+code independantly from a specified brief. All the work is my own. 
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+I did not finish this challenge - I reached the 4th step and began creating a weather class but did not integrate it into the programme. To finish this challenge I would create a weather instance when I call the take-off of land method. The weather would then print, and if stormy then it would stop the programme from running. If it was sunny, then the programme would run as usual.
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Areas for me to improve: rspec and writing tests. I am becoming more confident in writing programmes, but the way I write and understand rspec needs imrpovement. 
 
 Task
 -----
@@ -59,6 +64,20 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+
+__|__
+\___/
+ | |
+ | |
+_|_|______________
+        /|\ 
+      */ | \*
+      / -+- \
+  ---o--(_)--o---
+    /  0 " 0  \
+  */     |     \*
+  /      |      \
+*/       |       \*
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
