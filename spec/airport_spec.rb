@@ -40,4 +40,6 @@ describe Airport do
     expect(airport.capacity).to eq 14
   end
 
+  it { is_expected.to respond_to :weather_check }
+
 end

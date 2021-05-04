@@ -1,9 +1,12 @@
 class Weather
 
-def fine_weather?
-  random_weather = 20
-  rand(random_weather) !=1
-end 
+  RANDOM_WEATHER = 20
+  CHANCE_OF_STORMY = 1
+
+  def fine_weather?
+    # will return false if weather is stormy - 5% chance
+    rand(RANDOM_WEATHER) != CHANCE_OF_STORMY
+  end 
 
 end
-# should return false if weather is stormy - 5% chance
+

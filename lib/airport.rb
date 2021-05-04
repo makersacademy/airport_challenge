@@ -29,4 +29,7 @@ class Airport
     @capacity = new_capacity
   end
 
+  def weather_check
+  end
+
 end
