@@ -3,6 +3,8 @@ require 'planes'
 require 'air_traffic_control'
 
 describe Airport do
+  let(:plane1){double(:plane)}
+  let(:plane2){double(:plane)}
   it 'instantiates with a default capacity value of 4' do
     default_airport = Airport.new
     expect(default_airport.capacity).to eq 4
@@ -18,15 +20,12 @@ describe Airport do
   end
 
   it 'increases planes_in_port by 1 when a plane arrives' do
-    plane1 = Plane.new
     airport = Airport.new
     airport.plane_arrives(plane1)
     expect(airport.plane_count).to eq 1
   end
 
   it 'decreases planes_in_port by 1 when a plane departs' do
-    plane1 = Plane.new
-    plane2 = Plane.new
     airport = Airport.new
     airport.plane_arrives(plane1)
     airport.plane_arrives(plane2)
@@ -39,7 +38,6 @@ describe Airport do
     allow(sunny_weather).to receive(:status) { "sunny" }
 
     atc = ATC.new(sunny_weather, subject)
-    plane1 = Plane.new
     atc.land_plane(plane1)
     expect(subject.planes_in_port).to include plane1
   end
