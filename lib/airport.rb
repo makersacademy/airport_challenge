@@ -5,16 +5,16 @@ class Airport
 
   attr_reader :planes, :capacity
 
-  def initialize(capacity=DEFUALT_CAPACITY)
+  def initialize(capacity=DEFUALT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
     raise "Airport full" if full?
     raise "Cannot land due to bad weather" if stormy?
-    raise "Plane already landed" if plane.location == "airport"
+    raise "Plane already landed" if plane_landed?(plane)
     plane.land
     @planes << plane        
   end
@@ -33,11 +33,14 @@ class Airport
   end
 
   def stormy?
-    @weather.stormy?
+    @weather.generate > 4
   end
 
   def plane_at_airport?(plane)
     @planes.include?(plane)
   end
-  
+
+  def plane_landed?(plane)
+    plane.location == "airport"
+  end
 end
