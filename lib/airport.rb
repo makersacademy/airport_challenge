@@ -1,4 +1,4 @@
-require 'weather'
+require './lib/weather.rb'
 
 class Airport
   DEFUALT_CAPACITY = 20
