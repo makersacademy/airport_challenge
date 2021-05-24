@@ -1,5 +1,5 @@
-Airport Challenge
-=================
+# Airport Challenge
+
 
 ```
         ______
@@ -47,7 +47,7 @@ airport_challenge % irb
  => #<Airport:0x00007f9cd88d3c78 @planes=[], @capacity=20, @weather=#<Weat... 
 ```
 
-## To create a plane
+#### To create a plane
 
 Open IRB and load the 'plane.rb' file in the 'lib' folder. Instantiate a plane by calling Plane.new.
 
@@ -59,7 +59,7 @@ Open IRB and load the 'plane.rb' file in the 'lib' folder. Instantiate a plane b
 2.7.3 :005 > 
 ```
 
-## Airport methods
+#### Airport methods
 
 An airport can land a plane with land(plane) and instruct a plane to take off with take_off(plane). Guard conditions and logic have been implemented such that:
 - A plane cannot land if the airport is full
