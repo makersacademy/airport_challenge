@@ -17,7 +17,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  it 'can allow planes to take off' do
+  it "can allow planes to take off and confirms that it's gone" do
     # put a plane in the hangar first
     subject.land(plane)
     # when the plane takes off, we want to see whats in the hangar? or we want to see error?
