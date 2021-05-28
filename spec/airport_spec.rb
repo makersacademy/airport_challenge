@@ -10,6 +10,11 @@ describe Airport do
     expect(subject.land(plane)).to eq [plane]
   end
 
+  it 'only lands a plane once' do
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error 'That plane has already landed.'
+  end
+
   it 'returns parked planes in the hangar' do
     subject.land(plane)
     expect(subject.hangar).to eq [plane]
@@ -27,6 +32,5 @@ describe Airport do
   it 'only allows planes that are at that airport to take off' do
     expect { subject.take_off(plane) }.to raise_error 'That plane is not here.'
   end
-
 
 end

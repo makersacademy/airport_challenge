@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'That plane has already landed.' if parked?(plane)
     @hangar << plane
   end
 
