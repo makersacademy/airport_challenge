@@ -10,7 +10,7 @@ describe Airport do
     expect(subject.land(plane)).to eq [plane]
   end
 
-  it 'only lands a plane once' do
+  it "raises an error if you try to land a plane that's already landed" do
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error 'That plane has already landed.'
   end
@@ -22,7 +22,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  it "can allow planes to take off and confirms that it's gone" do
+  it "can allow planes to take off and confirms that it's left the hangar" do
     # put a plane in the hangar first
     subject.land(plane)
     # when the plane takes off, we want to see whats in the hangar? or we want to see error?
