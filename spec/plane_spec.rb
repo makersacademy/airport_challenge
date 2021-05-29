@@ -12,7 +12,7 @@ RSpec.describe Plane do
 
     it 'does not land a plane if airport is full' do 
       
-      airport = double(:airport, full?: true)
+      airport = double(:airport, full: true)
       plane = Plane.new
 
       expect {plane.land_at(airport)}.to raise_error "Unable to land, the airport is full!"
@@ -32,6 +32,4 @@ RSpec.describe Plane do
         expect(plane.status).to eq("flying")
     end
   end
-
-
 end
