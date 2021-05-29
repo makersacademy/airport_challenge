@@ -20,24 +20,31 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
     end
-
+    
     it 'raises an error when the airport is full' do
-      # land DEFAULT_CAPACITY amount of mocked planes in the airport
-      Airport::DEFAULT_CAPACITY.times do 
-        subject.land(instance_double(Plane))
-      end
+      # land 'capacity' amount of mocked planes in the airport
+      subject.capacity.times { subject.land(instance_double(Plane)) }
       expect { subject.land(plane) }.to raise_error 'The airport is full, please do not land.'
     end
-    
+  end
+  
+  context 'initialization' do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-    # it 'allows you to change the default capacity' do
-    #   subject(:something) { Plane.new(50) }
-      
-    # end
-  end
 
+    it 'allows you to change the capacity' do
+      airport = Airport.new(50)
+      50.times { airport.land(instance_double(Plane)) }
+      expect { airport.land(instance_double(Plane)) }.to raise_error 'The airport is full, please do not land.'
+    end
+
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times { subject.land(instance_double(Plane)) }
+      expect { subject.land(plane) }.to raise_error 'The airport is full, please do not land.'      
+    end
+  end
+  
   context '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
