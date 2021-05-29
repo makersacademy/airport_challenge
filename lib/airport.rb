@@ -1,5 +1,6 @@
 class Airport
   attr_reader :hangar
+  DEFAULT_CAPACITY = 20
   
   def initialize
     @hangar = []
@@ -7,6 +8,7 @@ class Airport
 
   def land(plane)
     raise 'That plane has already landed.' if parked?(plane)
+    raise 'The airport is full, please do not land.' if full?
 
     @hangar << plane
   end
@@ -26,6 +28,10 @@ class Airport
 
   def parking_spot(plane)
     @hangar.index(plane)
+  end
+
+  def full?
+    @hangar.length >= DEFAULT_CAPACITY
   end
 
 end

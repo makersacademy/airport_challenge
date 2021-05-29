@@ -20,6 +20,14 @@ describe Airport do
       subject.land(plane)
       expect(subject.hangar).to eq [plane]
     end
+
+    it 'raises an error to prevent landing when the airport is full' do
+      # land DEFAULT_CAPACITY amount of mocked planes in the airport
+      Airport::DEFAULT_CAPACITY.times do 
+        subject.land(instance_double(Plane))
+      end
+      expect { subject.land(plane) }.to raise_error 'The airport is full, please do not land.'
+    end
   end
 
   context '#take_off' do
