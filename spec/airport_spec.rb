@@ -61,4 +61,10 @@ describe Airport do
     new_capacity = Airport.new(30)
     expect(new_capacity.capacity).to eq(30)
   end
+
+  it 'can land and take off a number of planes' do
+    20.times { subject.land }
+    10.times { subject.takeoff }
+    expect(subject.airport.length).to eq(10)
+  end
 end
