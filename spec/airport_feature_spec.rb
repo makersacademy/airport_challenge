@@ -2,7 +2,7 @@ require 'airport'
 
 feature Airport do
   scenario 'taking off and landing multiple planes' do
-    allow(subject).to receive(:weather) { 'Sunny' }
+    allow(subject).to receive(:weather) { :sunny }
     subject.capacity = 3
     plane_one = Plane.new
     plane_two = Plane.new

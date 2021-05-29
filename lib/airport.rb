@@ -4,24 +4,26 @@ class Airport
 
   attr_reader :hanger
   attr_accessor :capacity
+  DEFAULT_CAPACITY = 1
 
   def initialize
     @hanger = []
-    @capacity = 1
+    @capacity = DEFAULT_CAPACITY
   end
  
   def land_plane(plane)
-    if weather == 'Sunny' && full? != 'Full'
+    if weather == :sunny && full? != :full
       @hanger << plane
-    elsif full? == 'Full'
-      'The airport is full'
-    elsif weather == 'Stormy'
-      'The weather is bad'
+    elsif full? == :full
+      fail 'The airport is full'
+    elsif weather == :stormy
+      fail 'The weather is stormy'
     end
   end
 
   def release_plane
-    weather == 'Sunny' ? @hanger.pop : "The weather is bad, you cant take off"
+    fail 'The weather is stormy' if weather == :stormy
+    @hanger.pop
   end
 
   def empty?
@@ -30,11 +32,11 @@ class Airport
   end 
 
   def full?
-    @hanger.count >= @capacity ? 'Full' : 'Not full'
+    @hanger.count >= @capacity ? :full : :not_full
   end
 
   def weather
-    rand(10) <= 9 ? 'Sunny' : 'Stormy'
+    rand(10) <= 9 ? :sunny : :stormy
   end
 
 end
