@@ -1,15 +1,4 @@
 class Plane
-
-  def land
-    
-  end
-
-  def take_off
-  
-  end
-
-  def flying
-  
-  end
+  attr_accessor :plane
 
 end
