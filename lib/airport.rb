@@ -15,7 +15,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise 'That plane is not here.' unless parked?(plane)
+    raise 'That plane is not at this airport.' unless parked?(plane)
     
     hangar.delete_at(parking_spot(plane))
     hangar
