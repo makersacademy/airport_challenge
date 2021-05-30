@@ -60,9 +60,11 @@ RSpec.feature 'control the flow of planes at an airport' do
     instructing_the_plane_to_take_off_should_raise_an_error
   end
 
-  # scenario 'preventing landing when weather is stormy' do
-
-  # end
+  scenario 'preventing landing when weather is stormy' do
+    given_there_is_a_plane
+    with_bad_weather
+    landing_the_plane_should_raise_an_error
+  end
   
   private
 
@@ -127,31 +129,3 @@ RSpec.feature 'control the flow of planes at an airport' do
     @heathrow = Airport.new(number)
   end
 end
-
-=begin
-  IRB FEATURE TEST
-
-prevents takeoff when the weather is stormy
-loop do
-  city_airport.take_off(light_aircraft)
-  until city_airport.hangar.length == 1
-    begin
-      city_airport.land(light_aircraft)
-    rescue RuntimeError
-      next
-    end
-  end
-end
-
-prevents landing when the weather is stormy
-loop do
-  until city_airport.hangar.length == 0
-    begin
-      city_airport.take_off(light_aircraft)
-    rescue RuntimeError
-      next
-    end
-  end
-  city_airport.land(light_aircraft)
-end
-=end
