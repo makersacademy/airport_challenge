@@ -24,7 +24,7 @@ class Airport
 
 
   private 
-  attr_accessor :weather
+  attr_reader :weather
 
   def airport_full?
     planes == @capacity
