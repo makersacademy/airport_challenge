@@ -39,7 +39,7 @@ RSpec.feature 'control the flow of planes at an airport' do
   end
 
   scenario 'preventing landing when the airport is full' do
-    park_20_planes
+    repeat_park_planes 20
     given_there_is_a_plane
     landing_the_plane_should_raise_an_error
   end
@@ -48,9 +48,11 @@ RSpec.feature 'control the flow of planes at an airport' do
     the_airport_has_default_capacity
   end
 
-  # scenario 'overriding airport capacity' do
-
-  # end
+  scenario 'overriding airport capacity' do
+    create_a_new_airport_with_capacity 2
+    repeat_park_planes 2
+    landing_the_plane_should_raise_an_error
+  end
 
   # scenario 'preventing take off when weather is stormy' do
 
@@ -104,9 +106,9 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect { @heathrow.take_off(@boeing747) }.to raise_error RuntimeError
   end
 
-  def park_20_planes
+  def repeat_park_planes(number)
     with_good_weather
-    20.times do
+    number.times do
       @heathrow.land(Plane.new)
     end
   end
@@ -114,25 +116,14 @@ RSpec.feature 'control the flow of planes at an airport' do
   def the_airport_has_default_capacity
     expect(@heathrow.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+
+  def create_a_new_airport_with_capacity(number)
+    @heathrow = Airport.new(number)
+  end
 end
 
 =begin
   IRB FEATURE TEST
-
-Airport capacity can be defaulted
-city_airport = Airport.new(1)
-light_aircraft = Plane.new
-
-until city_airport.hangar.length == 1
-  begin
-    city_airport.land(light_aircraft)
-  rescue RuntimeError
-    next
-  end
-end
-
-city_airport.land(boeing747)
-# Should give us an error that the airport is full
 
 prevents takeoff when the weather is stormy
 loop do
