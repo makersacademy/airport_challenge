@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   # mock an instance of the Plane class each time it's needed
-  let(:plane) { instance_double(Plane) }
+  let(:plane) { instance_double(Plane, weather: 'sunny') }
 
   context '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -23,9 +23,15 @@ describe Airport do
     
     it 'raises an error when the airport is full' do
       # land 'capacity' amount of mocked planes in the airport
-      subject.capacity.times { subject.land(instance_double(Plane)) }
+      subject.capacity.times { subject.land(instance_double(Plane, weather: 'sunny')) }
       expect { subject.land(plane) }.to raise_error 'The airport is full, please do not land.'
     end
+
+    it 'raises an error to prevent landing when weather is stormy' do
+      plane = instance_double(Plane, weather: 'stormy')
+      expect { subject.land(plane) }.to raise_error 'The weather is too bad to land now.'
+    end
+
   end
   
   context 'initialization' do
@@ -35,12 +41,12 @@ describe Airport do
 
     it 'allows you to change the capacity' do
       airport = Airport.new(50)
-      50.times { airport.land(instance_double(Plane)) }
-      expect { airport.land(instance_double(Plane)) }.to raise_error 'The airport is full, please do not land.'
+      50.times { airport.land(instance_double(Plane, weather: 'sunny')) }
+      expect { airport.land(instance_double(Plane, weather: 'sunny')) }.to raise_error 'The airport is full, please do not land.'
     end
 
     it 'defaults capacity' do
-      described_class::DEFAULT_CAPACITY.times { subject.land(instance_double(Plane)) }
+      described_class::DEFAULT_CAPACITY.times { subject.land(instance_double(Plane, weather: 'sunny')) }
       expect { subject.land(plane) }.to raise_error 'The airport is full, please do not land.'      
     end
   end
@@ -57,6 +63,12 @@ describe Airport do
 
     it 'only allows planes that are at that airport to take off' do
       expect { subject.take_off(plane) }.to raise_error 'That plane is not at this airport.'
+    end
+
+    it 'raises an error to prevent take_off when weather is stormy' do
+      allow(plane).to receive(:weather).and_return('sunny', 'stormy')
+      subject.land(plane)
+      expect { subject.take_off(plane) }.to raise_error 'The weather is too bad for take off.'
     end
   end
 

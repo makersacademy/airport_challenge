@@ -10,12 +10,14 @@ class Airport
   def land(plane)
     raise 'That plane has already landed.' if parked?(plane)
     raise 'The airport is full, please do not land.' if full?
+    raise 'The weather is too bad to land now.' if stormy?(plane)
 
     hangar << plane
   end
 
   def take_off(plane)
     raise 'That plane is not at this airport.' unless parked?(plane)
+    raise 'The weather is too bad for take off.' if stormy?(plane)
     
     hangar.delete_at(parking_spot(plane))
     hangar
@@ -33,6 +35,10 @@ class Airport
 
   def full?
     hangar.length >= @capacity
+  end
+
+  def stormy?(plane)
+    plane.weather == 'stormy'
   end
 
 end
