@@ -1,28 +1,30 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
-  attr_reader :hanger
+  attr_reader :hanger, :weather
   attr_accessor :capacity
   DEFAULT_CAPACITY = 1
 
   def initialize
     @hanger = []
     @capacity = DEFAULT_CAPACITY
+    @weather = Weather.new
   end
  
   def land_plane(plane)
-    if weather == :sunny && full? != :full
+    if @weather.stormy? == :sunny && full? != :full
       @hanger << plane
     elsif full? == :full
       fail 'The airport is full'
-    elsif weather == :stormy
+    elsif @weather.stormy? == :stormy
       fail 'The weather is stormy'
     end
   end
 
   def release_plane
-    fail 'The weather is stormy' if weather == :stormy
+    fail 'The weather is stormy' if @weather.stormy? == :stormy
     @hanger.pop
   end
 
@@ -33,10 +35,6 @@ class Airport
 
   def full?
     @hanger.count >= @capacity ? :full : :not_full
-  end
-
-  def weather
-    rand(10) <= 9 ? :sunny : :stormy
   end
 
 end
