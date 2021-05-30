@@ -54,9 +54,11 @@ RSpec.feature 'control the flow of planes at an airport' do
     landing_the_plane_should_raise_an_error
   end
 
-  # scenario 'preventing take off when weather is stormy' do
-
-  # end
+  scenario 'preventing take off when weather is stormy' do
+    given_there_is_a_plane_in_the_airport
+    with_bad_weather
+    instructing_the_plane_to_take_off_should_raise_an_error
+  end
 
   # scenario 'preventing landing when weather is stormy' do
 
@@ -74,6 +76,10 @@ RSpec.feature 'control the flow of planes at an airport' do
 
   def with_good_weather
     allow_any_instance_of(Object).to receive(:rand).and_return(0.9)
+  end
+
+  def with_bad_weather
+    allow_any_instance_of(Object).to receive(:rand).and_return(0.1)
   end
 
   def land_the_plane_at_the_airport
