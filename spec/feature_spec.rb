@@ -3,9 +3,11 @@ require './lib/plane.rb'
 require 'capybara/rspec'
 
 RSpec.feature 'control the flow of planes at an airport' do
+  background do
+    given_there_is_an_airport
+  end
 
   scenario 'instructing a plane to land at an airport' do
-    given_there_is_an_airport
     given_there_is_a_plane
     with_good_weather
     land_the_plane_at_the_airport
@@ -13,40 +15,38 @@ RSpec.feature 'control the flow of planes at an airport' do
   end
 
   scenario 'raises an error when trying to land a plane already landed' do
-    given_there_is_an_airport_with_a_plane_in_it
+    given_there_is_a_plane_in_the_airport
     landing_the_plane_should_raise_an_error
   end
 
   scenario 'instructing a plane to take off from an airport and confirm that it is no longer in the airport' do
-    given_there_is_an_airport_with_a_plane_in_it
+    given_there_is_a_plane_in_the_airport
     with_good_weather
     instruct_the_plane_to_take_off
     the_plane_should_have_left_the_airport
   end
 
   scenario 'planes cannot take off once already taken off' do
-    given_there_is_an_airport_with_a_plane_in_it
+    given_there_is_a_plane_in_the_airport
     with_good_weather
     instruct_the_plane_to_take_off
     instructing_the_plane_to_take_off_should_raise_an_error
   end
 
   scenario 'planes not at the airport are unable to take off' do
-    given_there_is_an_airport
     given_there_is_a_plane
     instructing_the_plane_to_take_off_should_raise_an_error
   end
 
   scenario 'preventing landing when the airport is full' do
-    given_there_is_an_airport
     park_20_planes
     given_there_is_a_plane
     landing_the_plane_should_raise_an_error
   end
 
-  # scenario 'defaulting airport capacity' do
-  
-  # end
+  scenario 'defaulting airport capacity' do
+    the_airport_has_default_capacity
+  end
 
   # scenario 'overriding airport capacity' do
 
@@ -82,8 +82,7 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect(@heathrow.hangar).to include(@boeing747)
   end
 
-  def given_there_is_an_airport_with_a_plane_in_it
-    given_there_is_an_airport
+  def given_there_is_a_plane_in_the_airport
     given_there_is_a_plane
     with_good_weather
     @heathrow.land(@boeing747)
@@ -112,6 +111,9 @@ RSpec.feature 'control the flow of planes at an airport' do
     end
   end
 
+  def the_airport_has_default_capacity
+    expect(@heathrow.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 end
 
 =begin
