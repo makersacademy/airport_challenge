@@ -24,7 +24,17 @@ describe Airport do
     expect { subject.land(Plane.new) }.to raise_error 'Airport full'
   end
 
+  describe 'initialization' do
+    it 'has a variable capacity' do
+      luton = Airport.new(20)
+      20.times { luton.land(Plane.new) }
+      expect { luton.land(Plane.new) }.to raise_error 'Airport full'
+    end
+  end
 
-
-
+  
 end
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
