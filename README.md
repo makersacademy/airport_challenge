@@ -87,3 +87,89 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+My Solution
+-----
+A Makers Week 1 weekend challenge using all the skills learned that week. 
+
+* **Languages used**: Ruby
+* **Testing frameworks**: RSpec, Capybara with RSpec
+
+### Functional Representation of User Stories
+
+Objects  | Messages
+------------- | -------------
+Passengers |
+Plane  | weather
+Airport | land(plane), take_off(plane), initialize(capacity), hangar
+
+### Domain Model
+
+```
+Plane <-- weather --> 'stormy'/'sunny'
+Airport <-- land(plane) --> planes landed at the airport
+Airport <-- take_off(plane) --> planes remaining at the airport
+Airport <-- initialize(capacity) --> sets default airport capacity
+Airport <-- hangar --> planes at the airport
+```
+
+### Additional set up
+
+```
+gem install rspec
+```
+
+```
+gem install rubocop -v 0.79.0
+```
+
+```
+gem install capybara
+```
+
+To run feature tests in `irb`:
+```irb
+require './lib/airport.rb'
+require './lib/plane.rb'
+```
+
+### Approach
+
+* BDD approach: Client - User Stories - Feature Test - Unit Test - Implementation
+* TDD: RED - GREEN - REFACTOR
+* AAA (Arrange, Act, Assert): for arranging and formatting code in Unit Tests.
+* Isolation: used RSpec Instance Doubles (verifying doubles) to stand in for Plane class and stub its methods
+* Used RSpec `let` to memoize the instance double
+* Considered edge cases for:-
+  1. planes can only take off from the airports that they are at
+  2. planes already flying cannot take off again or be in an airport
+  3. planes landed cannot land again and must be in an airport
+* Used `rand` method to generate weather randomness
+* Used `srand` to attain predictable results for testing weather method
+* SRP (Single Responsibility Principle): extracted method responsibilities into private methods
+* Used a **constant** to encapsulate magic numbers (airport capacity & % chance of storm).
+* Linted with Rubocop
+* Focus on refactoring once unit tests pass with green
+* IRB feature test with each successful unit test pass
+* RSpec feature test with Capybara gem, wrapped the instructions in private methods for readability (SRP).
+
+
+### Files
+| File    | Description |
+| ----------- | ----------- |
+| README.md  | this readme page :) |
+| ./lib/airport.rb  | code for Airport class |
+| ./lib/plane.rb  | code for Plane class |
+|  ./spec/airport_spec.rb  |  RSpec file containing all the unit tests for Airport  |
+|  ./spec/plane_spec.rb  |  RSpec file containing all the unit tests for Plane  |
+|  ./spec/feature_spec.rb  |  Rspec feature test  |
+| .gitignore  | added ignore vscode settings |
+| **all other files** | **as forked from original repo** |
+
+### TODO
+
+* Feature test spec file - am I approaching this correctly?
+* Test coverage on Plane class is not 100% on line 5 & 11 - perhaps due to `rand()`? - understand why that area is untested.
+* How to decide what seed number to use for randomness in feature tests. 
