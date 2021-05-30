@@ -18,4 +18,13 @@ describe Airport do
         expect(plane.status).to eq('taken off')
       end
     end
+
+    describe '#land' do
+        it 'prevent a plane form landing if the airport is full' do
+            plane = double(:plane)
+            allow(plane).to receive(:landed)
+            subject.capacity.times { subject.land(plane) }
+            expect { subject.land(plane) }.to raise_error('airport is full')
+        end
+    end
   end
