@@ -28,13 +28,13 @@ RSpec.feature 'control the flow of planes at an airport' do
     given_there_is_an_airport_with_a_plane_in_it
     with_good_weather
     instruct_the_plane_to_take_off
-    instructing_the_plane_to_take_off_again_should_raise_an_error
+    instructing_the_plane_to_take_off_should_raise_an_error
   end
 
   scenario 'planes not at the airport are unable to take off' do
     given_there_is_an_airport
     given_there_is_a_plane
-    instructing_the_plane_to_take_off_again_should_raise_an_error
+    instructing_the_plane_to_take_off_should_raise_an_error
   end
 
   scenario 'preventing landing when the airport is full' do
@@ -71,10 +71,6 @@ RSpec.feature 'control the flow of planes at an airport' do
   end
 
   def with_good_weather
-    expect_any_instance_of(Object).to receive(:rand).and_return(0.9)
-  end
-
-  def with_good_day
     allow_any_instance_of(Object).to receive(:rand).and_return(0.9)
   end
 
@@ -105,46 +101,21 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect { @heathrow.land(@boeing747) }.to raise_error RuntimeError
   end
 
-  def instructing_the_plane_to_take_off_again_should_raise_an_error
+  def instructing_the_plane_to_take_off_should_raise_an_error
     expect { @heathrow.take_off(@boeing747) }.to raise_error RuntimeError
   end
 
   def park_20_planes
-    with_good_day
+    with_good_weather
     20.times do
       @heathrow.land(Plane.new)
     end
   end
 
-
 end
 
 =begin
   IRB FEATURE TEST
-
-# It can instruct a plane to take off and confirm it has left
-until heathrow.hangar.length == 0
-  begin
-    heathrow.take_off(boeing747)
-  rescue RuntimeError
-    next
-  end
-end
-heathrow.hangar
-
-
-# It can prevent landing if the airport is full
-until heathrow.hangar.length == 20
-  begin
-    heathrow.land(Plane.new) 
-  rescue RuntimeError
-    next
-  end
-end
-
-heathrow.land(Plane.new)
-# gives us an error that the airport is full
-
 
 Airport capacity can be defaulted
 city_airport = Airport.new(1)
