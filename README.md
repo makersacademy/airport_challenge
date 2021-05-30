@@ -90,8 +90,13 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 
 
-Solution
+My Solution
 -----
+A Makers Week 1 weekend challenge using all the skills learned that week. 
+
+* **Languages used**: Ruby
+* **Testing frameworks**: RSpec, Capybara with RSpec
+
 ### Functional Representation of User Stories
 
 Objects  | Messages
@@ -124,6 +129,12 @@ gem install rubocop -v 0.79.0
 gem install capybara
 ```
 
+To run feature tests in `irb`:
+```irb
+require './lib/airport.rb'
+require './lib/plane.rb'
+```
+
 ### Approach
 
 * BDD approach: Client - User Stories - Feature Test - Unit Test - Implementation
@@ -132,9 +143,9 @@ gem install capybara
 * Isolation: used RSpec Instance Doubles (verifying doubles) to stand in for Plane class and stub its methods
 * Used RSpec `let` to memoize the instance double
 * Considered edge cases for:-
-  * planes can only take off from the airports that they are at
-  * planes already flying cannot take off again or be in an airport
-  * planes landed cannot land again and must be in an airport
+  1. planes can only take off from the airports that they are at
+  2. planes already flying cannot take off again or be in an airport
+  3. planes landed cannot land again and must be in an airport
 * Used `rand` method to generate weather randomness
 * Used `srand` to attain predictable results for testing weather method
 * SRP (Single Responsibility Principle): extracted method responsibilities into private methods
@@ -143,6 +154,19 @@ gem install capybara
 * Focus on refactoring once unit tests pass with green
 * IRB feature test with each successful unit test pass
 * RSpec feature test with Capybara gem, wrapped the instructions in private methods for readability (SRP).
+
+
+### Files
+| File    | Description |
+| ----------- | ----------- |
+| README.md  | this readme page :) |
+| ./lib/airport.rb  | code for Airport class |
+| ./lib/plane.rb  | code for Plane class |
+|  ./spec/airport_spec.rb  |  RSpec file containing all the unit tests for Airport  |
+|  ./spec/plane_spec.rb  |  RSpec file containing all the unit tests for Plane  |
+|  ./spec/feature_spec.rb  |  Rspec feature test  |
+| .gitignore  | added ignore vscode settings |
+| **all other files** | **as forked from original repo** |
 
 ### TODO
 
