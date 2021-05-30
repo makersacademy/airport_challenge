@@ -87,3 +87,62 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+Solution
+-----
+### Functional Representation of User Stories
+Objects  | Messages
+------------- | -------------
+Passengers |
+Plane  | weather
+Airport | land(plane), take_off(plane), initialize(capacity), hangar
+
+### Domain Model
+```
+Plane <-- weather --> 'stormy'/'sunny'
+Airport <-- land(plane) --> planes landed at the airport
+Airport <-- take_off(plane) --> planes remaining at the airport
+Airport <-- initialize(capacity) --> sets default airport capacity
+Airport <-- hangar --> planes at the airport
+```
+
+### Additional set up
+```
+gem install rspec
+```
+
+```
+gem install rubocop -v 0.79.0
+```
+
+### Approach
+* BDD approach: Client - User Stories - Feature Test - Unit Test - Implementation
+* TDD: RED - GREEN - REFACTOR
+* Isolation: used RSpec Instance Doubles (verifying doubles) to stand in for Plane class and stub its methods
+* Used RSpec `let` to memoize the instance double
+* Considered edge cases for:-
+  * planes can only take off from the airports that they are at
+  * planes already flying cannot take off again or be in an airport
+  * planes landed cannot land again and must be in an airport
+* Used `rand` method to generate weather randomness
+* Used `srand` to attain predictable results for testing weather method
+* SRP (Single Responsibility Principle): extracted method responsibilities into private methods
+* Used a **constant** to encapsulate magic numbers (airport capacity & % chance of storm).
+* Linted with Rubocop
+* Focus on refactoring once unit tests pass with green
+* Feature test with each successful unit test pass
+
+### TODO
+* Feature test spec file
+* 100% Test Coverage on Plane class
+* README
+
+* Double check: Passing, rubocop
+
+
+
+
+
+

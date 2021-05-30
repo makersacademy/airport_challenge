@@ -10,13 +10,11 @@ describe Plane do
     end
 
     it 'may be sunny' do
-      # seed with srand(1235)
       srand(1235)
       expect(subject.weather).to eq('sunny')
     end
     
     it 'may be stormy' do
-      # seed with srand(1234)
       srand(1234)
       expect(subject.weather).to eq('stormy')
     end  
