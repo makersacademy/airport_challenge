@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :plane, :flying
+  attr_accessor :plane
 
   def initialize
     @flying = true
@@ -7,7 +7,7 @@ class Plane
   
   def take_off
     fail 'Plane is already in-flight' if @flying
-    @flying = true
+    in_flight
   end
 
   def land
@@ -15,8 +15,24 @@ class Plane
     landed
   end
 
+  private
+  attr_reader :flying
+
   def landed
+    landing_message
     @flying = false
   end
 
+  def in_flight
+    flight_message
+    @flying = true
+  end
+  
+  def flight_message
+    "#{self} has taken off and is now in-flight"
+  end
+  
+  def landing_message
+    "#{self} has now landed"
+  end
 end
