@@ -31,9 +31,11 @@ RSpec.feature 'control the flow of planes at an airport' do
     instructing_the_plane_to_take_off_again_should_raise_an_error
   end
 
-  # scenario 'planes not at the airport are unable to take off' do
-
-  # end
+  scenario 'planes not at the airport are unable to take off' do
+    given_there_is_an_airport
+    given_there_is_a_plane
+    instructing_the_plane_to_take_off_again_should_raise_an_error
+  end
 
   # scenario 'preventing landing when the airport is full' do
    
@@ -99,6 +101,7 @@ RSpec.feature 'control the flow of planes at an airport' do
   def instructing_the_plane_to_take_off_again_should_raise_an_error
     expect { @heathrow.take_off(@boeing747) }.to raise_error RuntimeError
   end
+
 end
 
 =begin
