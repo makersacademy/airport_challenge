@@ -13,11 +13,11 @@ describe Airport do
       plane = Plane.new
       subject.land_plane(plane)
       plane2 = Plane.new
-      expect{subject.land_plane(plane2)}.to raise_error 'The airport is full'
+      expect { subject.land_plane(plane2) }.to raise_error 'The airport is full'
     end
     it 'Doesnt land a plane if the weather is bad' do
       allow(subject.weather).to receive(:stormy?) { :stormy }
-      expect{subject.land_plane(Plane.new)}.to raise_error 'The weather is stormy'
+      expect { subject.land_plane(Plane.new) }.to raise_error 'The weather is stormy'
     end
   end
 
@@ -36,7 +36,7 @@ describe Airport do
       plane = Plane.new
       subject.land_plane(plane)
       allow(subject.weather).to receive(:stormy?) { :stormy }
-      expect{ subject.release_plane }.to raise_error 'The weather is stormy'
+      expect { subject.release_plane }.to raise_error 'The weather is stormy'
     end
   end
 

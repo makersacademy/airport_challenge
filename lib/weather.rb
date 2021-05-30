@@ -1,9 +1,9 @@
 class Weather
 
   attr_reader :weather_event
-  
+
   def initialize
-    @weather_event = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy]
+    @weather_event = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy]
   end
 
   def stormy?

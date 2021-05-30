@@ -12,7 +12,7 @@ class Airport
     @capacity = DEFAULT_CAPACITY
     @weather = Weather.new
   end
- 
+
   def land_plane(plane)
     if @weather.stormy? == :sunny && full? != :full
       @hanger << plane
@@ -25,6 +25,7 @@ class Airport
 
   def release_plane
     fail 'The weather is stormy' if @weather.stormy? == :stormy
+    
     @hanger.pop
   end
 
