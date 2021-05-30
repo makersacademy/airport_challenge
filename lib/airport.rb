@@ -1,5 +1,5 @@
 require_relative 'plane'
-DEFAULT_CAPACITY = 10
+#DEFAULT_CAPACITY = 10
 
 class Airport
 
@@ -20,9 +20,16 @@ class Airport
   end
 
   def take_off(plane)
-  @plane_no.pop
+    raise 'Stormy!' if stormy?
+    raise 'Wrong airport!' unless @plane_no.include?(plane)
+    @plane_no.pop
+    #plane
   end
   
+  def stormy?
+    rand(1..10) > 9
+ end
+
   private
 
   def full?
@@ -33,11 +40,5 @@ class Airport
     end
   end
 
-  def stormy?
-    if rand(1..10) > 9
-        true
-    else
-        false
-    end
-  end
+ 
 end
