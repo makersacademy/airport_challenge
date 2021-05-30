@@ -11,11 +11,18 @@ class Airport
 
   def land(plane)
     raise 'airport is full' if @planes.length >= @capacity
-    @planes.push(plane.landed)
+    plane.landed
+    @planes.push(plane)
   end
 
   def take_off(plane)
+    raise 'no planes to take off' if @planes.empty?
     plane.taking_off
     @planes.delete(plane)
+  end
+
+  private
+  def empty?
+    @planes.empty?
   end
 end

@@ -17,6 +17,17 @@ describe Airport do
         plane = double(:plane, status: 'taken off')
         expect(plane.status).to eq('taken off')
       end
+
+      it 'raises an error if a user tries to take off plane in an empty airport' do
+        plane = double(:plane)
+        allow(plane).to receive(:take_off)
+        expect { subject.take_off(plane) }.to raise_error 'no planes to take off'
+    end
+
+    it 'checks if planes status is take off' do
+        plane = double(:plane, status: 'taken off')
+        expect(plane.status).to eq('taken off')
+    end
     end
 
     describe '#land' do
@@ -25,6 +36,11 @@ describe Airport do
             allow(plane).to receive(:landed)
             subject.capacity.times { subject.land(plane) }
             expect { subject.land(plane) }.to raise_error('airport is full')
+        end
+
+        it 'checks if planes status is landed' do
+            plane = double(:plane, status: 'landed')
+            expect(plane.status).to eq('landed')
         end
     end
   end
