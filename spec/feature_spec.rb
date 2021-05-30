@@ -24,9 +24,12 @@ RSpec.feature 'control the flow of planes at an airport' do
     the_plane_should_have_left_the_airport
   end
 
-  # scenario 'planes cannot take off once already taken off' do
-  
-  # end
+  scenario 'planes cannot take off once already taken off' do
+    given_there_is_an_airport_with_a_plane_in_it
+    with_good_weather
+    instruct_the_plane_to_take_off
+    instructing_the_plane_to_take_off_again_should_raise_an_error
+  end
 
   # scenario 'planes not at the airport are unable to take off' do
 
@@ -93,6 +96,9 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect { @heathrow.land(@boeing747) }.to raise_error RuntimeError
   end
 
+  def instructing_the_plane_to_take_off_again_should_raise_an_error
+    expect { @heathrow.take_off(@boeing747) }.to raise_error RuntimeError
+  end
 end
 
 =begin
