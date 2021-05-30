@@ -31,5 +31,13 @@ RSpec.describe Plane do
 
         expect(plane.status).to eq("flying")
     end
+
+    it 'does not take off if the weather is "stormy"' do
+      plane = double(:plane, ok?: 'stormy')
+  
+      expect { plane.take_off }.to raise_error "The weather is too stormy to fly!"
+    end
   end
+
+ 
 end
