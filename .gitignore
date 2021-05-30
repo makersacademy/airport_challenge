@@ -10,4 +10,3 @@ analysis/**/*
 # Local cache of Rubocop remote config
 .rubocop-*
 .vscode
-feature_spec.rb

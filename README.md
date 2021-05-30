@@ -93,6 +93,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 Solution
 -----
 ### Functional Representation of User Stories
+
 Objects  | Messages
 ------------- | -------------
 Passengers |
@@ -100,6 +101,7 @@ Plane  | weather
 Airport | land(plane), take_off(plane), initialize(capacity), hangar
 
 ### Domain Model
+
 ```
 Plane <-- weather --> 'stormy'/'sunny'
 Airport <-- land(plane) --> planes landed at the airport
@@ -109,6 +111,7 @@ Airport <-- hangar --> planes at the airport
 ```
 
 ### Additional set up
+
 ```
 gem install rspec
 ```
@@ -117,9 +120,15 @@ gem install rspec
 gem install rubocop -v 0.79.0
 ```
 
+```
+gem install capybara
+```
+
 ### Approach
+
 * BDD approach: Client - User Stories - Feature Test - Unit Test - Implementation
 * TDD: RED - GREEN - REFACTOR
+* AAA (Arrange, Act, Assert): for arranging and formatting code in Unit Tests.
 * Isolation: used RSpec Instance Doubles (verifying doubles) to stand in for Plane class and stub its methods
 * Used RSpec `let` to memoize the instance double
 * Considered edge cases for:-
@@ -135,14 +144,7 @@ gem install rubocop -v 0.79.0
 * Feature test with each successful unit test pass
 
 ### TODO
-* Feature test spec file
-* 100% Test Coverage on Plane class
-* README
 
-* Double check: Passing, rubocop
-
-
-
-
-
-
+* Feature test spec file - am I approaching this correctly?
+* Test coverage on Plane class is not 100% on line 5 & 11 - perhaps due to `rand()`? - understand why that area is untested.
+* How to decide what seed number to use for randomness in feature tests. 
