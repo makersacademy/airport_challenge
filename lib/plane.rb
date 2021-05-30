@@ -1,12 +1,15 @@
+class Plane
+  attr_reader :status
 
-class Plane 
-  attr_reader :landed
+  def status
+    @status
+  end
 
- def report_landed
-    true
- end
+  def taking_off
+    @status = 'taken off'
+  end
 
- def report_take_off
-   true
- end
+  def landed
+    @status = 'landed'
+  end
 end

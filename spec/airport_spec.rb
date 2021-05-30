@@ -1,22 +1,21 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:plane) }
   it { is_expected.to respond_to(:land).with(1).argument }
-  #it { is_expected.to respond_to(:landed?) }
   
- 
+    describe '#take_off' do
       it 'instructs a plane to take off from an airport' do
-        plane = double(:plane, report_take_off: true)
-        allow(plane).to receive(:take_off)
+        plane = double(:plane)
+        allow(plane).to receive(:taking_off)
+        allow(plane).to receive(:landed)
         subject.land(plane)
         subject.take_off(plane)
-        plane.report_take_off
         expect(subject.planes).not_to include plane
       end
 
       it 'is expected to confirm that it is no longer in the airport' do
-        plane = double(:plane, report_take_off: true)
-        expect(plane.report_take_off).to eq true
+        plane = double(:plane, status: 'taken off')
+        expect(plane.status).to eq('taken off')
       end
+    end
   end
