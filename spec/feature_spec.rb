@@ -14,7 +14,7 @@ RSpec.feature 'control the flow of planes at an airport' do
 
   scenario 'raises an error when trying to land a plane already landed' do
     given_there_is_an_airport_with_a_plane_in_it
-    landing_the_plane_again_should_raise_an_error
+    landing_the_plane_should_raise_an_error
   end
 
   scenario 'instructing a plane to take off from an airport and confirm that it is no longer in the airport' do
@@ -37,9 +37,12 @@ RSpec.feature 'control the flow of planes at an airport' do
     instructing_the_plane_to_take_off_again_should_raise_an_error
   end
 
-  # scenario 'preventing landing when the airport is full' do
-   
-  # end
+  scenario 'preventing landing when the airport is full' do
+    given_there_is_an_airport
+    park_20_planes
+    given_there_is_a_plane
+    landing_the_plane_should_raise_an_error
+  end
 
   # scenario 'defaulting airport capacity' do
   
@@ -71,6 +74,10 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect_any_instance_of(Object).to receive(:rand).and_return(0.9)
   end
 
+  def with_good_day
+    allow_any_instance_of(Object).to receive(:rand).and_return(0.9)
+  end
+
   def land_the_plane_at_the_airport
     @heathrow.land(@boeing747)
   end
@@ -94,7 +101,7 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect(@heathrow.hangar).not_to include(@boeing747)
   end
 
-  def landing_the_plane_again_should_raise_an_error
+  def landing_the_plane_should_raise_an_error
     expect { @heathrow.land(@boeing747) }.to raise_error RuntimeError
   end
 
@@ -102,20 +109,18 @@ RSpec.feature 'control the flow of planes at an airport' do
     expect { @heathrow.take_off(@boeing747) }.to raise_error RuntimeError
   end
 
+  def park_20_planes
+    with_good_day
+    20.times do
+      @heathrow.land(Plane.new)
+    end
+  end
+
+
 end
 
 =begin
   IRB FEATURE TEST
-# It can land a plane at an airport
-until heathrow.hangar.length == 1
-  begin
-    heathrow.land(boeing747)
-  rescue RuntimeError
-    next
-  end
-end
-heathrow.hangar
-
 
 # It can instruct a plane to take off and confirm it has left
 until heathrow.hangar.length == 0

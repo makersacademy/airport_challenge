@@ -141,7 +141,8 @@ gem install capybara
 * Used a **constant** to encapsulate magic numbers (airport capacity & % chance of storm).
 * Linted with Rubocop
 * Focus on refactoring once unit tests pass with green
-* Feature test with each successful unit test pass
+* IRB feature test with each successful unit test pass
+* RSpec feature test with Capybara gem, wrapped the instructions in private methods for readability (SRP).
 
 ### TODO
 
