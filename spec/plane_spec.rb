@@ -8,19 +8,24 @@ describe Plane do
     expect(subject).to eq flying
   end
 
-  it { should respond_to(:take_off) } 
+  it { should respond_to(:take_off) }
+  it 'Error if trying to land when plane in-flight' do
+    expect{subject.take_off}.to raise_error 'Plane is already in-flight'
+  end 
+    
   it 'Plane in-flight' do
     subject.take_off
-    expect(subject.flying).to eq true
+    expect(subject.plane).to flying == true
   end  
   
-  it { should respond_to(:land) } 
+  it { should respond_to(:land) }
+  it 'Error if trying to land when plane is on the ground' do
+    expect{subject.land}.to raise_error 'Plane is already on the ground'
+  end  
   it 'Plane has landed' do
     subject.land
     expect(subject.land).to eq !flying
   end  
-
-  
 
 end
 

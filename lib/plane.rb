@@ -6,6 +6,7 @@ class Plane
   end
   
   def take_off
+    fail 'Plane is already in-flight' if flying
     flying = true
   end
 
