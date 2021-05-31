@@ -6,6 +6,7 @@ describe Airport do
     describe '#take_off' do
       it 'instructs a plane to take off from an airport' do
         plane = double(:plane, taking_off: 'taken off', landed: 'landed')
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.land(plane)
         subject.take_off(plane)
         expect(subject.planes).not_to include plane
@@ -30,6 +31,7 @@ describe Airport do
 
     describe '#land' do
         it 'prevent a plane form landing if the airport is full' do
+            allow(subject).to receive(:stormy?).and_return(false)
             plane = double(:plane, landed: 'landed')
             subject.capacity.times { subject.land(plane) }
             expect { subject.land(plane) }.to raise_error('airport is full')
