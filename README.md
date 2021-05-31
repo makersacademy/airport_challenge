@@ -1,6 +1,39 @@
 Airport Challenge
 =================
 
+## Notes
+
+First of all, this challenge is complete in the sense that the code meets all of the requirements of the user stories.
+
+However, it is in need of further refactoring (see below). After completing it, I looked at the code review to see if it could be refactored in any way and I spent some time on cleaning the code up, but struggled when it came to significant refactoring, in particular creating a new class, weather. I am submitting it because I want feedback on the code as is.
+
+I approached this challenge by first of all by going through the user stories and working out what the objects and methods should be. I felt that most of the work would be done by the airport class, and designed it so that:
+
+* The airport would have a state, either open or closed. This could be set manually by the air traffic controller; it could also be automatically set either by the weather or the airport being full. This means that there is only one attribute that needs to be checked to see whether a plane is allowed to land or takeoff in a number of different scenarios.
+
+* Plane would have land and takeoff methods. These methods would check where the plane currently is, and would allow takeoff or landing accordingly. Those methods could also check whether the airport is closed.
+
+* I realised that the airport would need to track how many planes are in it and whether capacity has been reached. It would need to store specific instances of planes in an array. On reflection, this means I'm tracking the location of the plane in two areas - in the plane instance and also in the airport. As written there should be no conflicts, but it is possible to envisage a problem arising here.
+
+* Random weather is dealt with by adding a weather method to the airport, which returns either sunny or stormy. There is a closed? method that is called whenever a plane wishes to land or take off, and so this method also checks the weather and returns closed if it is stormy. As the closed? method checks the weather, I needed a separate "state" attribute for testing purposes.
+
+## Refactoring
+
+If I had time, I would refactor the code as follows:
+
+* Create a weather class, with a forecast method that returns the weather. This can be fed into the closed? method in airport to close it when the weather is stormy.
+* Consider whether there is a better way of dealing with planes landing and taking off. At the moment, I envisage the plane.land/plane.takeoff methods to respectively invoke airport.receive/airport/release - this would mean that the array of planes in the airport is amended properly. I tried to refactor this but struggled to get the land/takeoff methods to pass the plane object to the receive/release methods. More importantly, I have methods in airport and plane that are related - it would presumably be easier for land/takeoff to be methods of the airport class.
+* Consider whether the duplication of the aircraft location can be refactored.
+* Complete the airport.release method to check whether a plane is in the airport and if it is, release it for takeoff.
+* Encapsulation - making methods private, ensuring that information cannot be ready outside the class unless strictly necessary.
+
+## Reflection
+
+I should have spent more time at the very beginning planning out the structure of the program. I should have given  greater thought to what the verbs and nouns in the user stories are, and planned accordingly.
+
+I need to become much more proficient with rspec; partly the difficulty is that I don't really understand how to test classes that are dependent on each other. 
+
+
 ```
         ______
         _\____\___
@@ -35,29 +68,29 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
@@ -72,7 +105,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
