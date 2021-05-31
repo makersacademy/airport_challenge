@@ -1,5 +1,7 @@
+require_relative 'plane'
+
 class Airport
-  attr_reader :airport, :message, :capacity
+  attr_reader :airport, :capacity
 
   DEFAULT_CAPACITY = 50
 
@@ -8,31 +10,23 @@ class Airport
     @capacity = capacity
   end
 
-  def land
-    @airport << 'plane'
-    @message = 'Plane has landed'
-  end
-
-  def prevent_landing
+  def instruct_landing(plane)
     if full?
-      @message = 'Abort landing, airport is full'
+      'Abort landing, airport is full'
     elsif weather == 'stormy'
-      @message = 'The weather is not suitable for landing'
+      'The weather is not suitable for landing'
     else
-      land
+      @airport.push(plane)
+      plane.land
     end
   end
 
-  def takeoff
-    @airport.pop
-    @message = 'Plane has taken off and is no longer at the airport'
-  end
-
-  def prevent_takeoff
+  def instruct_takeoff(plane)
     if weather == 'stormy'
-      @message = 'The weather is not suitable for takeoff'
+      'The weather is not suitable for takeoff'
     else
-      takeoff
+      @airport.delete(plane)
+      plane.takeoff
     end
   end
 
@@ -41,6 +35,6 @@ class Airport
   end
 
   def full?
-    @airport.length == @capacity
+    @airport.length >= @capacity
   end
 end
