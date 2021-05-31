@@ -14,8 +14,8 @@ describe Plane do
   end 
     
   it 'Plane in-flight' do
-      subject.land
-    p expect(subject.take_off).to eq true
+    subject.land
+    expect(subject.take_off).to eq true
   end  
   
   it { should respond_to(:land) }

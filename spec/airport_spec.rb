@@ -18,6 +18,10 @@ require 'airport'
       allow(airport).to receive(:airport_empty?).and_return false
     end
   
+    it 'tests for stormy weather' do
+      allow(subject).to receive(:stormy?) { 1 }
+    end
+
   describe '#land' do
     context 'when not stormy' do
       before do 
