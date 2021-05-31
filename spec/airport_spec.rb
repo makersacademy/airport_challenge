@@ -18,10 +18,8 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times do
       subject.land(Plane.new)
     end
-    expect { subject.land(Plane.new).to raise_error "Airport is full"}
+    expect { subject.land(Plane.new).to raise_error "Airport is full" }
   end
-  
-  
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 

@@ -10,8 +10,13 @@ class Airport
     @hangar = []
   end
 
+  def full
+    @hangar.length >= DEFAULT_CAPACITY
+  end
+
   def land(plane)
-    raise "Airport is full" if @hangar.length >= DEFAULT_CAPACITY
+    raise "Airport is full" if full
+
     @hangar << plane
     @hangar
   end
