@@ -14,7 +14,7 @@ RSpec.describe Airport do
 
   it 'can store multiple planes in its garage' do 
     plane = double(:plane)
-    allow(plane).to receive(:land_at) {true}
+    allow(plane).to receive(:land_at) { true }
     airport = subject
 
     plane.land_at(airport)

@@ -1,5 +1,5 @@
 class Airport 
-  attr_accessor :full, :capacity, :planes
+  attr_accessor :capacity, :planes
   
   DEFAULT = 50
 
@@ -17,6 +17,6 @@ class Airport
   end
 
   def full
-    @planes >= @capacity ? true : false
+    @planes >= @capacity
   end
 end

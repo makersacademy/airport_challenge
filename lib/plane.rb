@@ -4,30 +4,26 @@ class Plane
   attr_reader :status, :ok_to_fly
   attr_accessor :airport
 
- def land_at(airport)
+  def land_at(airport)
     @airport = airport
-     if airport.full && weather_ok?
-      fail "Unable to land, the airport is full!" 
-    elsif !airport.full && !weather_ok?
-      fail "The weather is too 'stormy' to land!"
-    else
-      @airport.garage
-      @status = "landed"
-    end
+    fail "Unable to land, the airport is full!" if airport.full
+
+    fail "The weather is too 'stormy' to land!" unless weather_ok?
+
+    @airport.garage
+    @status = "landed"
   end
 
   def take_off
-    if @status != 'landed'
-      fail "Your airplane is still in the air." 
-    elsif !weather_ok?
-      fail "The weather is too stormy to fly!" 
-    else
-      @airport.au_revoir
-      @status = 'flying'
-    end
+    fail "Your airplane is still in the air." unless @status == 'landed'
+
+    fail "The weather is too stormy to fly!"  unless weather_ok?
+
+    @airport.au_revoir
+    @status = 'flying'
   end
 
   def weather_ok?
-    @ok_to_fly = rand(10) !=9 ? true : false
+    @ok_to_fly = rand(10) != 9
   end
 end

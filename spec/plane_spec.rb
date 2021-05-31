@@ -24,19 +24,19 @@ RSpec.describe Plane do
       
       allow(plane).to receive(:weather_ok?) { false } 
 
-      expect {plane.land_at(airport)}.to raise_error "The weather is too 'stormy' to land!"
+      expect { plane.land_at(airport) }.to raise_error "The weather is too 'stormy' to land!"
     end
   end
 
   describe 'takes off from the airport' do
 
     it 'confirms that the plane is not inside an airport' do
-        allow(airport).to receive_messages(full: false, garage: nil, au_revoir: nil)
-        allow(plane).to receive(:weather_ok?) { true }
-        plane.land_at(airport)
-        plane.take_off
+      allow(airport).to receive_messages(full: false, garage: nil, au_revoir: nil)
+      allow(plane).to receive(:weather_ok?) { true }
+      plane.land_at(airport)
+      plane.take_off
 
-        expect(plane.status).to eq("flying")
+      expect(plane.status).to eq("flying")
     end
 
     it 'does not take off if the weather is "stormy"' do
@@ -46,8 +46,7 @@ RSpec.describe Plane do
       plane.land_at(airport)
       allow(plane).to receive(:weather_ok?) { false } 
 
-      expect {plane.take_off}.to raise_error "The weather is too stormy to fly!"
+      expect { plane.take_off }.to raise_error "The weather is too stormy to fly!"
     end
   end
-
 end
