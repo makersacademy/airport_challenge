@@ -22,7 +22,6 @@ describe Airport do
       before do 
         allow(subject).to receive(:stormy?) { false }
       end
-      it { should respond_to(:land) } 
       it 'Plane landing when in the airport' do 
         subject.land(plane)
         expect(subject.planes).to eq [plane]
@@ -44,7 +43,6 @@ describe Airport do
       before do 
         allow(subject).to receive(:stormy?) { false }
       end
-      it { should respond_to(:take_off) }
       it 'Plane takes off' do
         subject.land(plane)
         expect(subject.take_off).to eq plane
