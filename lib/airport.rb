@@ -19,6 +19,8 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Plane not in airport' unless in_airport?(plane)
+    
     fail 'Unsuitable weather conditions' if stormy?
 
     @planes.delete(plane)
@@ -35,6 +37,15 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def in_airport?(plane)
+    @planes.each do |x|
+      if x == plane
+        return true
+      end
+    end
+    return false
   end
 
 end

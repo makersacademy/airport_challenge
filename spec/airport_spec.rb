@@ -44,6 +44,12 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error 'Unsuitable weather conditions'
   end
 
+  it 'does not allow plane to take off from airport if not already in airport' do
+    plane = double(:plane)
+    allow(subject).to receive(:stormy?) { false }
+    expect { subject.take_off(plane) }.to raise_error 'Plane not in airport'
+  end
+
   describe 'initialization' do
     it 'has a variable capacity' do
       plane = double(:plane)
