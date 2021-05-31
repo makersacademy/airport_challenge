@@ -28,7 +28,7 @@ class Airport
   attr_reader :weather
 
   def airport_full?
-    planes == @capacity
+    planes.count == @capacity
   end
 
   def airport_empty?

@@ -33,10 +33,10 @@ class Plane
   end
   
   def flight_message
-    "#{self} has taken off and is now in-flight"
+    puts "#{self} has taken off and is now in-flight"
   end
   
   def landing_message
-    "#{self} has now landed"
+    puts "#{self} has now landed"
   end
 end
