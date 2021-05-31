@@ -33,15 +33,12 @@ RSpec.describe Plane do
 
     it 'does not take off if the weather is "stormy"' do
       plane = subject
-      # airport = double(:airport, full: false)
-      # plane.land_at(airport)
+      airport = double(:airport, full: false)
+      plane.land_at(airport)
 
-      allow(plane).to receive(:ready_to_go?) {'stormy'}
-      expect(plane.ready_to_go?).to eq('stormy')
-       
-      # allow(plane).to receive(:status) {'grounded'}
+      allow(plane).to receive(:weather) {'stormy'}
    
-      # expect {plane.take_off}.to raise_error "The weather is too stormy to fly!"
+      expect {plane.take_off}.to raise_error "The weather is too stormy to fly!"
     end
   end
 

@@ -2,7 +2,7 @@ require_relative 'airport'
 require_relative 'weather'
 
 class Plane
-  attr_reader :status, :sky
+  attr_reader :status
 
  def land_at(airport)
     fail "Unable to land, the airport is full!" if airport.full
@@ -10,22 +10,10 @@ class Plane
   end
 
   def take_off
+    fail "Your airplane is still in the air." if @status == 'flying'
     
-    case @status
-    when "grounded" 
-      fail "The weather is too stormy to fly!" 
-    when "flying" || nil
-      fail "Your airplane is still in the air."
-    when "good to go"
-      @status = "flying"
-    else
-      @status = "flying"
-    end
+    fail "The weather is too stormy to fly!" unless airport.weather_ok?
+
+    @status = 'flying'
   end
-
-  def ready_to_go?
-   @clime = Weather.new.ok?
-
-   @clime == "clear" ? @status = "good to go" : @status = "grounded"
-  end 
 end
