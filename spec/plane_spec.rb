@@ -23,19 +23,25 @@ RSpec.describe Plane do
 
   describe 'take offs from the airport' do
 
-    it { is_expected.to respond_to :take_off }
-
     it 'confirms that the plane is not inside an airport' do
-        plane = subject
+        plane = Plane.new
+        allow(plane).to receive(:ready_to_go?) {'clear'}
         plane.take_off
 
         expect(plane.status).to eq("flying")
     end
 
     it 'does not take off if the weather is "stormy"' do
-      plane = double(:plane, ok?: 'stormy')
-  
-      expect { plane.take_off }.to raise_error "The weather is too stormy to fly!"
+      plane = subject
+      # airport = double(:airport, full: false)
+      # plane.land_at(airport)
+
+      allow(plane).to receive(:ready_to_go?) {'stormy'}
+      expect(plane.ready_to_go?).to eq('stormy')
+       
+      # allow(plane).to receive(:status) {'grounded'}
+   
+      # expect {plane.take_off}.to raise_error "The weather is too stormy to fly!"
     end
   end
 

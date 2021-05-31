@@ -1,5 +1,6 @@
 class Weather
-  
+  attr_reader :sky
+
   def initialize
     @sky = []
   end
@@ -7,9 +8,13 @@ class Weather
   def ok?
     skies = ["clear", "stormy"]
     
-    rand(10) > 4 ? @sky << skies[1] : @sky<< skies[0]
-
+   if  rand(10) == 9 
+    @sky << skies[1]
+    @sky[0] 
+   else 
+    @sky << skies[0]
     @sky[0]
+   end
   end
 end
 

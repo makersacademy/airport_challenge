@@ -10,21 +10,22 @@ class Plane
   end
 
   def take_off
-    ready_to_go?
-   
+    
     case @status
-    when 'grounded' 
+    when "grounded" 
       fail "The weather is too stormy to fly!" 
-    when 'flying' || nil
+    when "flying" || nil
       fail "Your airplane is still in the air."
+    when "good to go"
+      @status = "flying"
     else
-      @status = 'flying'
+      @status = "flying"
     end
   end
 
   def ready_to_go?
-   @skies = Weather.new.ok?
-   @skies == "stormy" ? @status = 'grounded' : @status = 'good to go'
-  end
+   @clime = Weather.new.ok?
 
+   @clime == "clear" ? @status = "good to go" : @status = "grounded"
+  end 
 end
