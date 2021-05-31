@@ -12,7 +12,7 @@ RSpec.describe Plane do
 
     it 'does not land a plane if airport is full' do 
       
-      airport = double(:airport, full: true)
+      airport = double(:airport, full: true, weather_ok?: true)
       plane = Plane.new
 
       expect {plane.land_at(airport)}.to raise_error "Unable to land, the airport is full!"
@@ -32,15 +32,11 @@ RSpec.describe Plane do
     end
 
     it 'does not take off if the weather is "stormy"' do
-      plane = subject
-      airport = double(:airport, full: false)
+      airport = double(:airport, weather_ok?: false, full: false)
+      plane = Plane.new
       plane.land_at(airport)
-
-      allow(plane).to receive(:weather) {'stormy'}
    
       expect {plane.take_off}.to raise_error "The weather is too stormy to fly!"
     end
   end
-
- 
 end

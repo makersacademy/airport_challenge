@@ -1,19 +1,22 @@
 require_relative 'airport'
-require_relative 'weather'
 
 class Plane
-  attr_reader :status
+  attr_reader :status, :ok_to_fly
 
  def land_at(airport)
+    @ok_to_fly = airport.weather_ok?
     fail "Unable to land, the airport is full!" if airport.full
+  
     @status = "landed"
   end
 
   def take_off
-    fail "Your airplane is still in the air." if @status == 'flying'
-    
-    fail "The weather is too stormy to fly!" unless airport.weather_ok?
-
-    @status = 'flying'
+    if @status != 'landed' && @ok_to_fly == true
+      fail "Your airplane is still in the air." 
+    elsif @status == 'landed' && @ok_to_fly == false
+      fail "The weather is too stormy to fly!" 
+    else
+      @status = 'flying'
+    end
   end
 end
