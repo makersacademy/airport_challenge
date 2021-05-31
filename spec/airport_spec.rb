@@ -2,7 +2,7 @@ require "airport"
 
 describe Airport do
 
-  it { is_expected.to be_instance_of Airport}
+  it { is_expected.to be_instance_of Airport }
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -10,4 +10,7 @@ describe Airport do
     plane = Plane.new
     expect(subject.land(plane)).to eq(plane)
   end
+
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+
 end
