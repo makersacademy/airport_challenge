@@ -7,11 +7,13 @@ class Plane
   
   def take_off
     fail 'Plane is already in-flight' if @flying
+
     in_flight
   end
 
   def land
-    fail 'Plane is already on the ground' if !@flying
+    fail 'Plane is already on the ground' unless @flying
+
     landed
   end
 
@@ -20,11 +22,13 @@ class Plane
 
   def landed
     landing_message
+
     @flying = false
   end
 
   def in_flight
     flight_message
+
     @flying = true
   end
   

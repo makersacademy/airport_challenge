@@ -13,15 +13,16 @@ class Airport
   def land(plane)
     fail 'Unable to land. Weather is stormy' if stormy?
     fail 'Airport is full' if airport_full?
+
     planes << plane
   end
 
   def take_off
     fail 'Weather is stormy. Cannot take off' if stormy?
     fail 'No planes available to take off' if airport_empty?
+
     planes.pop     
   end
-
 
   private 
   attr_reader :weather
@@ -37,5 +38,4 @@ class Airport
   def stormy?
     rand(1...6) == 1
   end
-  
 end
