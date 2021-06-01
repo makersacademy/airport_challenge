@@ -15,12 +15,7 @@
 
 ## Instructions
 
-Week 1 weekend challenge at [Makers Academy](https://makers.tech/). Lets users land planes and take off if certain conditions are met. Test drive the creation of a set of classes/modules to satisfy all the user stories.
-
-## Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Week 1, weekend challenge at [Makers Academy](https://makers.tech/). Test drive the creation of a set of classes/modules to satisfy all the user stories that lets users land planes and take off if certain conditions are met.
 
 ## Technical Skills
 - TDD
@@ -28,6 +23,11 @@ We have a request from a client to write the software to control the flow of pla
 - Domain Modelling
 - Isolating tests with doubles
 - 
+
+## Task
+-----
+
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller 
