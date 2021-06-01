@@ -56,6 +56,10 @@ I want to prevent landing when weather is stormy
 
 ## How to use
 
+```
+git clone https://github.com/frank-mck/airport_challenge.git
+```
+
 Run feature tests
 ```
 irb 
