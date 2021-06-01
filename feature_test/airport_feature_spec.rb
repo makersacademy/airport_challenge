@@ -1,4 +1,3 @@
-#require "./lib/airport.rb"
 require './lib/plane.rb'
 require './lib/airport.rb'
 require './lib/weather_reporter.rb'
@@ -22,13 +21,14 @@ describe 'User Stories' do
 
     # As an air traffic controller 
     # So I can get passengers on the way to their destination 
-    # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport  
+    # I want to instruct a plane to take off from an airport 
+    #and confirm that it is no longer in the airport  
     it 'instruct planes to take off' do
       airport.land(plane)
       expect { airport.take_off(plane) }.not_to raise_error
     end
     
-    #takes off a plane only for an airport they are at
+    # takes off a plane only for an airport they are at
     it 'takes off a plane only for an airport they are at' do
       airport_2 = Airport.new(20, WeatherReporter.new)
       airport_2.land(plane)
@@ -46,7 +46,6 @@ describe 'User Stories' do
       end
     end 
   end 
-    
     #     As an air traffic controller 
     # To ensure safety 
     # I want to prevent takeoff when weather is stormy 
@@ -62,7 +61,7 @@ describe 'User Stories' do
       expect { airport.land(:plane) }.to raise_error 'Cannot land plane, weather is stormy.'
     end 
     it 'does not allow planes to take off' do
-    expect { airport.take_off(:plane) }.to raise_error 'Cannot take off, weather is stormy.'
+      expect { airport.take_off(:plane) }.to raise_error 'Cannot take off, weather is stormy.'
     end 
   end
 end
