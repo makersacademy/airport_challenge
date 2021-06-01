@@ -57,7 +57,7 @@ I want to prevent landing when weather is stormy
 
 ## How to use
 
-run feature tests
+Run feature tests
 ```
 irb 
 require './lib/airport'
