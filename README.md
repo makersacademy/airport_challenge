@@ -22,7 +22,6 @@ Week 1, weekend challenge at [Makers Academy](https://makers.tech/). Test drive 
 - Single Responsibility Principle
 - Domain Modelling
 - Isolating tests with doubles
-- 
 
 ## Task
 -----
