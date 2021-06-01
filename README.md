@@ -69,8 +69,8 @@ Edge cases considered -
 * Planes cannot take off if they are already flying
 * Planes cannot land if they are already grounded
 
-In code review we'll be hoping to see:
-
+Criteria met -
+-----
 * All tests passing
 * High [Test coverage] (98.99%)
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
