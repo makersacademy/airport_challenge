@@ -2,7 +2,6 @@
 This challenge was the first of my Maker's weekend challenge, intended to be done alone to reinforce the week's learning and concepts.
 The necessary skills covered in this challenge were:
 
------
 * TDD and RSpec
 * Knowing when to split a class and how to add functionality
 * Basic class structure and attributes
