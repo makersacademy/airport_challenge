@@ -16,7 +16,7 @@ Successes
 * Successfuly stubbed randomised outcomes to work exactly as intended so tests always pass
 * Good use of different RSpec syntaxes to allow thorough testing
 
-------------------
+
 
 To improve
 -----
