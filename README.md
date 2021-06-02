@@ -1,3 +1,29 @@
+# Maker's Week 1: Weekend challenge
+This challenge was the first of my Maker's weekend challenge, intended to be done alone to reinforce the week's learning and concepts.
+The necessary skills covered in this challenge were:
+```
+-TDD and RSpec
+-Knowing when to split a class and how to add functionality
+-Basic class structure and attributes
+```
+-----
+Successes
+-----
+
+* My learning from the week meant that implementing 90% of the required functionality was extremely fast and easy
+* I was able to work out the complex part of the challenge (dependency injection)
+* Successfuly stubbed randomised outcomes to work exactly as intended so tests always pass
+* Good use of different RSpec syntaxes to allow thorough testing
+
+------------------
+
+To improve
+-----
+* Took too long to implement dependency injection because I refused to step away from the computer and let my mind relax to work the problem
+* Lack of understanding in doubles means the tests are not decoupled, which could make redesigning/ bug fixing much harder than necessary
+
+
+
 Airport Challenge
 =================
 
