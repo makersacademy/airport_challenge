@@ -7,7 +7,7 @@ The necessary skills covered in this challenge were:
 *Knowing when to split a class and how to add functionality
 *Basic class structure and attributes
 
------
+
 Successes
 -----
 
