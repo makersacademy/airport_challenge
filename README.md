@@ -1,8 +1,6 @@
 # Maker's Week 1: Weekend challenge
 This challenge was the first of my Maker's weekend challenge, intended to be done alone to reinforce the week's learning and concepts.
-The necessary skills covered in this challenge were:
 
------
 The necessary skills covered in this challenge were:
 -----
 *TDD and RSpec
