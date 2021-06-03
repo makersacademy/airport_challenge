@@ -2,10 +2,13 @@ class Airport
   def initialize(capacity = 1)
     @airplanes = []
     @capacity = capacity
+    @weather = "sunny"
   end
   
   def land(airplane)
-    @airplanes.push(airplane) if @airplanes.length < @capacity
+    if @airplanes.length < @capacity && @weather != "stormy"
+      @airplanes.push(airplane)
+    end
   end
 
   def take_off(airplane)
@@ -18,5 +21,9 @@ class Airport
 
   def get_capacity
     @capacity
+  end
+
+  def set_weather(weather)
+    @weather = weather
   end
 end

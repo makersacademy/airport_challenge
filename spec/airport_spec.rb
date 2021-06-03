@@ -30,4 +30,11 @@ describe Airport do
     airport = Airport.new(10)
     expect(airport.get_capacity).to eq(10)
   end
+
+  it "isn't possible to land when weather is stormy" do
+    subject.set_weather("stormy")
+    airplane = "airplane"
+    subject.land(airplane)
+    expect(subject.get_airplanes).to eq([])
+  end
 end
