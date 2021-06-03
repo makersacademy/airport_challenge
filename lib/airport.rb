@@ -6,7 +6,7 @@ class Airport
   end
   
   def land(airplane)
-    if @airplanes.length < @capacity && @weather != "stormy"
+    if !full_airport? && @weather != "stormy"
       @airplanes.push(airplane)
     end
   end
@@ -25,5 +25,9 @@ class Airport
 
   def set_weather(weather)
     @weather = weather
+  end
+
+  def full_airport?
+    @airplanes.length == @capacity
   end
 end
