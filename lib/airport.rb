@@ -12,7 +12,7 @@ class Airport
   end
 
   def take_off(airplane)
-    @airplanes.delete(airplane)
+    @airplanes.delete(airplane) if @weather != "stormy"
   end
 
   def get_airplanes

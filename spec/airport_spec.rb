@@ -37,4 +37,12 @@ describe Airport do
     subject.land(airplane)
     expect(subject.get_airplanes).to eq([])
   end
+
+  it "isn't possible to take-off when weather is stormy" do
+    airplane = "airplane"
+    subject.land(airplane)
+    subject.set_weather("stormy")
+    subject.take_off(airplane)
+    expect(subject.get_airplanes).to eq([airplane])
+  end
 end
