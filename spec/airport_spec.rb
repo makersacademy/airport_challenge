@@ -21,4 +21,13 @@ describe Airport do
     subject.land(airplane_two)
     expect(subject.get_airplanes).to eq([airplane])
   end
+
+  it "has a default capacity" do
+    expect(subject.get_capacity).to eq(1)
+  end
+
+  it "is possible to override default capacity" do
+    airport = Airport.new(10)
+    expect(airport.get_capacity).to eq(10)
+  end
 end

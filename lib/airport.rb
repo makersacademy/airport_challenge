@@ -1,7 +1,7 @@
 class Airport
-  def initialize
+  def initialize(capacity = 1)
     @airplanes = []
-    @capacity = 1
+    @capacity = capacity
   end
   
   def land(airplane)
@@ -14,5 +14,9 @@ class Airport
 
   def get_airplanes
     @airplanes
+  end
+
+  def get_capacity
+    @capacity
   end
 end
