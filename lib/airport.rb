@@ -1,10 +1,11 @@
 class Airport
   def initialize
     @airplanes = []
+    @capacity = 1
   end
   
   def land(airplane)
-    @airplanes.push(airplane)
+    @airplanes.push(airplane) if @airplanes.length < @capacity
   end
 
   def take_off(airplane)

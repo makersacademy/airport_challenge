@@ -13,4 +13,12 @@ describe Airport do
     subject.take_off(airplane)
     expect(subject.get_airplanes).to eq([])
   end
+
+  it "not possible to land airplane when full" do
+    airplane = "airplane"
+    subject.land(airplane)
+    airplane_two = "airplane_two"
+    subject.land(airplane_two)
+    expect(subject.get_airplanes).to eq([airplane])
+  end
 end
