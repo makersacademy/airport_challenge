@@ -3,6 +3,6 @@ require "plane"
 
 describe Plane do
   it "can confirm if departed" do
-    expect(subject.departed?).to eq(false)
+    expect(subject).to respond_to(:departed?).with(0).argument
   end
 end
