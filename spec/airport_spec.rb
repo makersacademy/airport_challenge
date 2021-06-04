@@ -8,7 +8,7 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
     # expect(subject.land(plane)).to eq([plane])
   end
-  #   it { is_expected.to respond_to :land }
+
   it "can instruct a plane to take off from airport" do
     subject.land(plane)
     expect(subject).to respond_to(:take_off).with(1).argument
@@ -17,7 +17,7 @@ describe Airport do
   it "can confirm that a plane has taken off and is not at airport" do
     subject.take_off(plane)
     expect(subject.planes).not_to include(plane) # need to use attr_accessor for planes
-    expect(subject.confirm_takeoff(plane)).to eq(false)
+    expect(subject.confirm_takeoff(plane)).to eq(true)
   end
 
   it "can prevent landing when airport is full" do
