@@ -23,7 +23,7 @@ class Airport
   end
 
   def confirm_takeoff(plane)
-    @planes.include?(plane)
+    !@planes.include?(plane)
   end
 
   def weather_report
