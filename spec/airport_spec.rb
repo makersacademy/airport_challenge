@@ -40,4 +40,8 @@ describe Airport do
     plane1 = Plane.new
     expect { subject.take_off(plane1) }.to raise_error("Weather is stormy, cannot take off!") if subject.weather == "stormy"
   end
+  it "can prevent landind when weather is stormy" do
+    plane1 = Plane.new
+    expect { subject.land(plane1) }.to raise_error("Weather is stormy, cannot land!") if subject.weather == "stormy"
+  end
 end

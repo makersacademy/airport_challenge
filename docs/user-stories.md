@@ -47,13 +47,13 @@ to ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 
-Requirements:
-- Classes: Plane, Airport
-- Variable: @weather
-- Methods: weather_report
-
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
+
+Requirements:
+- Classes: Plane, Airport
+- Variable: @weather
+- Methods: weather_report, land, take_off (raise errors if landing or departing during stormy weather)
