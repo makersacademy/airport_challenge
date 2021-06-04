@@ -7,7 +7,7 @@ class Airport
   end
 
   def land(plane)
-    @planes << plane
+    full? ? (raise "Airport is full!") : @planes << plane
   end
 
   def take_off(plane)
@@ -16,7 +16,13 @@ class Airport
   end
 
   def confirm_takeoff(plane)
-    p @planes.include?(plane)
+    @planes.include?(plane)
+  end
+
+  private
+
+  def full?
+    @planes.size >= @capacity
   end
 end
 

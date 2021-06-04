@@ -21,4 +21,9 @@ describe Airport do
     expect(subject.planes).not_to include(plane1) # need to use attr_accessor for planes
     expect(subject.confirm_takeoff(plane1)).to eq(false)
   end
+
+  it "can prevent landing when airport is full" do
+    50.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error("Airport is full!")
+  end
 end
