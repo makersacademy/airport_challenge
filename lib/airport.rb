@@ -9,7 +9,9 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
+    fail "Plane not in airport" unless in_airport?(plane)
+
     "The plane can take off."
   end
 
