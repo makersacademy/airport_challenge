@@ -52,4 +52,11 @@ describe Airport do
     airplane_two = "airplane_two"
     expect { subject.take_off(airplane_two) }.to raise_error "Airplane not in airport"
   end
+
+  it "airplanes cannot land at airport where they're already" do
+    airplane = "airplane55"
+    airport = Airport.new(5)
+    airport.land(airplane)
+    expect { airport.land(airplane) }.to raise_error "Airplane already in airport"
+  end
 end
