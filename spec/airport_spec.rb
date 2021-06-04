@@ -14,7 +14,7 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it "can confirm that a plane has taken off and is not at airport" do
+  it "can confirm that a plane has taken off and is no at airport" do
     subject.take_off(plane)
     expect(subject.planes).not_to include(plane) # need to use attr_accessor for planes
     expect(subject.confirm_takeoff(plane)).to eq(true)
