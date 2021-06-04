@@ -13,6 +13,7 @@ describe Airport do
     subject.land(airplane)
     subject.take_off(airplane)
     expect(subject.get_airplanes).to eq([])
+    expect(airplane.landed?).to eq false
   end
 
   it "not possible to land airplane when full" do

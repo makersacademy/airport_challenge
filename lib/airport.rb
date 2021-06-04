@@ -16,7 +16,10 @@ class Airport
 
   def take_off(airplane)
     raise "Airplane not in airport" if !in_airport?(airplane)
-    @airplanes.delete(airplane) if @weather != "stormy"
+    if @weather != "stormy"
+      @airplanes.delete(airplane)
+      airplane.take_off
+    end  
   end
 
   def get_airplanes
