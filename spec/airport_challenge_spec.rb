@@ -3,7 +3,7 @@ require 'plane'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) {Plane.new}
+  let(:plane) { Plane.new }
 
   it 'allows a plane to land' do
     expect(airport).to respond_to :land
@@ -14,7 +14,8 @@ describe Airport do
   end
 
   it 'instructs plane to takeoff' do
-    expect(airport.takeoff(plane)).not_to include plane
+    airport.land(plane)
+    expect(airport.takeoff(plane)).to eq "#{plane} has left the airport"
   end
 
   it 'prevents landing when airport at capacity' do
@@ -28,7 +29,7 @@ describe Airport do
   # end
   #
   # it 'prevents landing when weather is stormy' do
-  #   airport.weather == 'stormy'
+  #   @weather = 'stormy'
   #   expect(airport.land(plane)).to eq "No landings while weather is stormy"
   # end
 
