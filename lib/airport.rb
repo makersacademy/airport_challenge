@@ -9,14 +9,20 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'Airport at maximum capacity, cannot land plane' if @hangar.count >= @capacity
+    fail 'Airport at maximum capacity, cannot land plane' if full?
     @hangar << plane
   end
 
   def take_off_plane(plane)
     "Plane has left the airport"
   end
-end
 
+
+private
+  def full?
+    @hangar.count >= @capacity
+  end
+
+end
 # plane = Plane.new
 # take_off(plane)
