@@ -69,4 +69,42 @@ describe Airport do
     airport.land(airplane)
     expect { airport_two.land(airplane) }.to raise_error "Airplane already landed in an airport"
   end
+
+  it "is possible to land and take-off multiple airplanes" do
+    heathrow = Airport.new(5)
+    gatwick = Airport.new(5)
+    lutton = Airport.new(5)
+    
+    tap = Airplane.new
+    ba = Airplane.new
+    emirates = Airplane.new
+    easyjet = Airplane.new
+    ryanair = Airplane.new
+
+    heathrow.land(tap)
+    heathrow.land(ba)
+    heathrow.land(emirates)
+    gatwick.land(easyjet)
+    lutton.land(ryanair)
+
+    heathrow.take_off(ba)
+    heathrow.take_off(emirates)
+    gatwick.take_off(easyjet)
+    lutton.take_off(ryanair)
+
+    heathrow.land(easyjet)
+    heathrow.land(ryanair)
+    gatwick.land(ba)
+
+    heathrow.take_off(easyjet)
+    gatwick.take_off(ba)
+
+    heathrow.land(ba)
+    gatwick.land(emirates)
+
+    expect(heathrow.get_airplanes).to eq [tap, ryanair, ba]
+    expect(gatwick.get_airplanes).to eq [emirates]
+    expect(lutton.get_airplanes).to eq []
+    expect(easyjet.landed?).to eq false
+  end
 end
