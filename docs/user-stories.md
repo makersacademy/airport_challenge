@@ -57,3 +57,15 @@ Requirements:
 - Classes: Plane, Airport
 - Variable: @weather
 - Methods: weather_report, land, take_off (raise errors if landing or departing during stormy weather)
+
+*** Use a stub to override random weather to ensure consistent test behavior. Use a test double to test random weather.
+
+### Edge cases
+
+- Defend inconsistent states of the system ensuring that planes can only take off from airports they are in
+
+- Ensure planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport.
+
+### Bonus
+
+- Run an RSpec feature test that lands and takes off a number of planes.
