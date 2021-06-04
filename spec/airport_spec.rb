@@ -45,4 +45,11 @@ describe Airport do
     subject.take_off(airplane)
     expect(subject.get_airplanes).to eq([airplane])
   end
+
+  it "airplanes can't take-off from airport they're not in" do
+    airplane = "airplane"
+    subject.land(airplane)
+    airplane_two = "airplane_two"
+    expect { subject.take_off(airplane_two) }.to raise_error "Airplane not in airport"
+  end
 end
