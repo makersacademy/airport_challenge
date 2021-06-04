@@ -1,6 +1,16 @@
 require_relative 'plane.rb'
 class Airport
-  def land_plane
+  attr_reader :capacity
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
+    @hangar = []
+  end
+
+  def land_plane(plane)
+    fail 'Airport at maximum capacity, cannot land plane' if @hangar.count >= @capacity
+    @hangar << plane
   end
 
   def take_off_plane(plane)
