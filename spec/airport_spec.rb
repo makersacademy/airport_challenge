@@ -9,5 +9,11 @@ describe Airport do
     plane = "plane one"
     expect { subject.land_plane(plane) }.to raise_error "Plane already in airport"
   end
+
+  describe '#take_off' do
+    it 'can instruct a plane to take_off' do
+      expect(subject).to respond_to(:take_off)
+    end
+  end
   
 end
