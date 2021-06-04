@@ -9,11 +9,17 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'Airport at maximum capacity, cannot land plane' if full?
-    # fail 'Cannot land due to storm' if stormy?
+    # if full?
+    #   fail 'Airport at maximum capacity, cannot land plane'
+    # elsif stormy?
+    #   fail 'Cannot land due to storm'
+    # else
+      # raise 'Cannot land due to storm' if stormy?
+      raise 'Airport at maximum capacity, cannot land plane' if full?
+      # raise 'Cannot land due to storm' if stormy?
     @hangar << plane
-    #
     "Plane landed"
+    # end
   end
 
   def take_off_plane(plane)
