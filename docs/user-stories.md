@@ -28,7 +28,7 @@ I want to prevent landing when the airport is full
 
 Requirements:
 - Classes: Plane, Airport
-- variable: @capacity
+- Variable: @capacity
 - Methods: full? (check if @planes.size >= @capacity)
 
 ``` 
@@ -36,6 +36,10 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate 
 ```
+
+Requirements:
+- Classes: Plane, Airport
+- Variable: @capacity (test capacity other than the default(50))
 
 ``` 
 As an air traffic controller

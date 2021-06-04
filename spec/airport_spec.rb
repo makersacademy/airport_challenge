@@ -26,4 +26,14 @@ describe Airport do
     50.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error("Airport is full!")
   end
+
+  it "can override default airport capacity" do
+    random_capacity = Random.rand(500)
+    subject = Airport.new(random_capacity)
+    expect(subject.capacity).to eq(random_capacity)
+
+    heathrow = Airport.new(60)
+    60.times { heathrow.land(Plane.new) }
+    expect { heathrow.land(Plane.new) }.to raise_error("Airport is full!")
+  end
 end
