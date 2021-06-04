@@ -7,8 +7,10 @@ class Airport
   
   def land(airplane)
     raise "Airplane already in airport" if in_airport?(airplane)
+    raise "Airplane already landed in an airport" if airplane.landed?
     if !full_airport? && @weather != "stormy"
       @airplanes.push(airplane)
+      airplane.land
     end
   end
 
