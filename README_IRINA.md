@@ -9,5 +9,7 @@ DIAGRAM: User Stories
 input/method/output
 US.1
 command a plane /to_land/plane in the airport
+US.2
+command/take_off/confirmation
 
 RESOURCES

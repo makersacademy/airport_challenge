@@ -1,11 +1,18 @@
-require "./lib/plane"
+require "./lib/plane.rb"
 
 describe Plane do
-
-it "has been identified" do
   plane = Plane.new
-  expect(plane).to respond_to(:land)
-end
 
+  it "has been identified and command sent" do
+    expect(plane).to respond_to(:land)
+  end
+
+  it "has been instructed to take off" do
+    expect(plane).to respond_to(:take_off)
+  end
+  
+  it "is not is the aiport anymore" do
+    
+  end
 
 end
