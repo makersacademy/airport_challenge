@@ -11,6 +11,7 @@ class Airport
   def land_plane(plane)
     fail 'Airport at maximum capacity, cannot land plane' if full?
     @hangar << plane
+    "Plane landed"
   end
 
   def take_off_plane(plane)

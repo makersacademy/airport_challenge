@@ -3,12 +3,21 @@ describe Airport do
 let(:plane) { Plane.new}
   # it 'has an airport that can instruct planes' do
 
-  it 'can land a plane' do
-    expect(subject).to respond_to(:land_plane)
+  it 'can land a plane if space is available' do
+    expect(subject.land_plane(plane)).to eq('Plane landed')
   end
 
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'allows the default capacity to be overriden' do
+      new_capacity = rand(1000)
+      airport = Airport.new(new_capacity + 1)
+      new_capacity.times { airport.land_plane Plane.new }
+      expect(airport.land_plane(Plane.new)).to eq('Plane landed')
+    end  
   end
 
   it 'raises an error when trying to land a plane while at maximum capacity' do
@@ -23,6 +32,7 @@ let(:plane) { Plane.new}
     end
 
     it 'confirms the plane is no longer at the airport' do
+      # plane = Plane.new
       expect(subject.take_off_plane(plane)).to eq "Plane has left the airport"
     end
   end
