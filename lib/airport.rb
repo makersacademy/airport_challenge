@@ -1,5 +1,5 @@
 class Airport
-  #   attr_accessor :planes
+  attr_accessor :planes
 
   def initialize
     @planes = []
@@ -19,5 +19,5 @@ class Airport
   #   end
 end
 
-airport = Airport.new
-airport.take_off("plane")
+# airport = Airport.new
+# airport.take_off("plane")
