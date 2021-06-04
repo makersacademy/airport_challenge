@@ -19,5 +19,6 @@ describe Airport do
     subject.take_off(plane1)
     expect(subject.take_off(plane1)).to eq([])
     expect(subject.planes).not_to include(plane1) # need to use attr_accessor for planes
+    expect(subject.confirm_takeoff(plane1)).to eq(false)
   end
 end

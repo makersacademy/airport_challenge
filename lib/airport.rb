@@ -1,8 +1,9 @@
 class Airport
-  attr_accessor :planes
+  attr_accessor :planes, :capacity
 
-  def initialize
+  def initialize(capacity = 50)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -14,9 +15,9 @@ class Airport
     @planes
   end
 
-  #   def confirm_takeoff
-  #     @planes.include?(plane)
-  #   end
+  def confirm_takeoff(plane)
+    p @planes.include?(plane)
+  end
 end
 
 # airport = Airport.new
