@@ -1,7 +1,7 @@
 require 'airport'
 describe Airport do
-let(:plane) { Plane.new }
-let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
   # it 'has an airport that can instruct planes' do
   describe '#initialize' do
     it 'has a default capacity' do
@@ -25,7 +25,7 @@ let(:airport) { Airport.new }
       expect(subject.land_plane(plane)).to eq('Plane landed')
     end
 
-    
+
     describe '#land_plane' do
       it 'raises an error when trying to land a plane while at maximum capacity' do
         Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
@@ -41,6 +41,10 @@ let(:airport) { Airport.new }
       it 'confirms the plane is no longer at the airport' do
         # plane = Plane.new
         expect(subject.take_off_plane(plane)).to eq "Plane has left the airport"
+      end
+
+      it 'raises an error if the plane taking off is not at the airport' do
+        expect{ airport.take_off_plane plane }.to raise_error 'No planes at the airport'
       end
     end
   end
