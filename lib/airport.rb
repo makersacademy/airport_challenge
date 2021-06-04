@@ -27,6 +27,8 @@ class Airport
     @weather = weather
   end
 
+  private
+
   def full_airport?
     @airplanes.length == @capacity
   end
