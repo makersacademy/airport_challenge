@@ -12,7 +12,7 @@ class Airport
   end
 
   def take_off(airplane)
-    raise "Airplane not in airport" if !@airplanes.include?(airplane)
+    raise "Airplane not in airport" if !in_airport?(airplane)
     @airplanes.delete(airplane) if @weather != "stormy"
   end
 
@@ -32,5 +32,9 @@ class Airport
 
   def full_airport?
     @airplanes.length == @capacity
+  end
+
+  def in_airport?(airplane)
+    @airplanes.include?(airplane)
   end
 end
