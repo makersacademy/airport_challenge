@@ -17,7 +17,6 @@ describe Airport do
   it "can confirm that a plane has taken off and is not at airport" do
     plane1 = Plane.new
     subject.take_off(plane1)
-    expect(subject.take_off(plane1)).to eq([])
     expect(subject.planes).not_to include(plane1) # need to use attr_accessor for planes
     expect(subject.confirm_takeoff(plane1)).to eq(false)
   end
@@ -35,5 +34,10 @@ describe Airport do
     heathrow = Airport.new(60)
     60.times { heathrow.land(Plane.new) }
     expect { heathrow.land(Plane.new) }.to raise_error("Airport is full!")
+  end
+
+  it "can prevent takeoff when weather is stormy" do
+    plane1 = Plane.new
+    expect { subject.take_off(plane1) }.to raise_error("Weather is stormy, cannot take off!") if subject.weather == "stormy"
   end
 end

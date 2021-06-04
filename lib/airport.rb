@@ -1,22 +1,28 @@
 class Airport
-  attr_accessor :planes, :capacity
+  attr_accessor :planes, :capacity, :weather
 
   def initialize(capacity = 50)
     @planes = []
     @capacity = capacity
+    @weather = weather
   end
 
   def land(plane)
-    full? ? (raise "Airport is full!") : @planes << plane
+    raise "Airport is full!" if full?
+    @planes << plane
   end
 
   def take_off(plane)
-    @planes.pop
+    @weather == "stormy" ? (raise "Weather is stormy, cannot take off!") : @planes.pop
     @planes
   end
 
   def confirm_takeoff(plane)
     @planes.include?(plane)
+  end
+
+  def weather_report
+    @weather = ["sunny", "stormy", "sunny", "sunny"].sample
   end
 
   private
@@ -26,5 +32,6 @@ class Airport
   end
 end
 
-# airport = Airport.new
+airport = Airport.new
 # airport.take_off("plane")
+airport.weather_report
