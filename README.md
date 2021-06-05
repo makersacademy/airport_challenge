@@ -13,6 +13,16 @@ Airport Challenge
 
 ```
 
+## How I approached this challenge - Juel
+
+- Created a file to plan & diagram all user requirements outlined [here](./docs/user-stories.md).
+- Followed these requirements to write a test that fails.
+- Run ```rspec``` & confirm that the test fails.
+- Write enough code to pass this test.
+- Run ```rspec``` & confirm the test passes.
+- Refactor code.
+- Repeat above steps for each requirement & edge case.
+
 Instructions
 ---------
 
