@@ -24,7 +24,8 @@ describe Airport do
 
   it "can prevent landing when airport is full" do
     DEFAULT_CAPACITY.times { subject.land(plane) }
-    expect { subject.land(plane) }.to raise_error("Airport is full, cannot land!") if subject.planes.size >= subject.capacity
+    plane2 = Plane.new
+    expect { subject.land(plane2) }.to raise_error("Airport is full, cannot land!")
   end
 
   it "can override default airport capacity" do
@@ -37,7 +38,7 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error("Weather is stormy, cannot take off!") if subject.weather == "stormy"
   end
 
-  it "can prevent landind when weather is stormy" do
+  it "can prevent landing when weather is stormy" do
     expect { subject.land(plane) }.to raise_error("Weather is stormy, cannot land!") if subject.weather == "stormy"
   end
 end
