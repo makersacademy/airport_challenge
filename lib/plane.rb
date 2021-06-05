@@ -1,7 +1,19 @@
 class Plane
-  #   attr_accessor :status
+  attr_reader :departed
+
+  def initialize
+    @departed = false
+  end
 
   def departed?
-    #     false
+    @departed
+  end
+
+  def arrive
+    @departed = false
+  end
+
+  def depart
+    @departed = true
   end
 end
