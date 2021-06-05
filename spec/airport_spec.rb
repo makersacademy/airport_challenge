@@ -16,7 +16,7 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it "can confirm that a plane has taken off and is no at airport" do
+  it "can confirm that a plane has taken off and is not at airport" do
     subject.take_off(plane)
     expect(subject.planes).not_to include(plane) # need to use attr_accessor for planes
     expect(subject.confirm_takeoff(plane)).to eq(true)
@@ -40,5 +40,11 @@ describe Airport do
 
   it "can prevent landing when weather is stormy" do
     expect { subject.land(plane) }.to raise_error("Weather is stormy, cannot land!") if subject.weather == "stormy"
+  end
+
+  it "can ensure planes that have taken off cannot take off again " do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect { subject.take_off(plane) }.to raise_error("Plane already departed!")
   end
 end

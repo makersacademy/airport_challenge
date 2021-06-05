@@ -13,12 +13,17 @@ class Airport
     raise "Airport is full, cannot land!" if full?
     raise "Weather is stormy, cannot land!" if @weather == "stormy"
 
+    plane.arrive
     @planes << plane
   end
 
   def take_off(plane)
+    raise "Plane already departed!" if plane.departed
     raise "Weather is stormy, cannot take off!" if @weather == "stormy"
 
+    return unless @planes.include?(plane)
+
+    plane.depart
     @planes - [plane]
     # @planes.pop will only remove the last added elem in array
     # @planes.delete(plane) is another solution
