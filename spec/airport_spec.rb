@@ -4,19 +4,28 @@ describe Airport do
 
   plane = Plane.new
 
-  describe '#land_plane' do
+  describe '#land_plane in sunny weather' do
+    sunny = "sunny"
     it 'hangar receives a plane' do
-      subject.land_plane(plane)
+      subject.land_plane(plane, sunny)
       expect(subject.hangar).to include(plane)
     end
 
     it 'throws error if hangar is full' do
       plane2 = Plane.new
-      subject.land_plane(plane2)
+      subject.land_plane(plane2, sunny)
       plane3 = Plane.new
-      subject.land_plane(plane3)
+      subject.land_plane(plane3, sunny)
 
-      expect { subject.land_plane(plane) }.to raise_error 'No space in hangar'
+      expect { subject.land_plane(plane, sunny) }.to raise_error 'No space in hangar'
+    end
+  end
+
+  describe '#land_plane in stormy weather' do
+    it 'prevents landing when weather is stormy' do
+      stormy = Weather.new
+      allow(stormy).to receive(:forecast).and_return("stormy")
+      expect { subject.land_plane(plane, stormy) }.to raise_error "You can't land plane"
     end
   end
 
@@ -24,7 +33,7 @@ describe Airport do
     sunny = "sunny"
 
     before do
-      subject.land_plane(plane)
+      subject.land_plane(plane, sunny)
       subject.take_off(plane, sunny)
     end
 
@@ -64,7 +73,7 @@ describe Weather do
     expect(weather).to respond_to(:working?)
   end
 
-  it 'weather returns a string' do
-    expect(weather.forecast).to be_a(String)
-  end
+  # it 'weather returns a string' do
+  #   expect(subject.weather_forecast).to eq "sunny" || "stormy"
+  # end
 end
