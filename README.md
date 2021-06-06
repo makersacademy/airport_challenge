@@ -25,10 +25,15 @@ Airport Challenge
 - Repeat above steps for each requirement.
 
 ### Screenshots
-<img src="screenshots/ss-rspec-airport-spec.png" width= "50%">
+<img src="screenshots/ss-rspec-airport-plane.png" width= "50%">
 
 <img src = "screenshots/ss-rubocop.png" width= "50%">
 
+### To-do
+
+- Create ``Weather`` class and move ``@weather`` & ``weather_report`` to this class.
+- Test edge case that ensures planes can only take off from airports they are in.
+- Attempt BONUS feature test that lands and takes off a number of planes.
 
 Instructions
 ---------
