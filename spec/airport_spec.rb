@@ -2,56 +2,53 @@ require 'airport'
 
 describe Airport do
 
-  describe 'Plane tests' do
-    before do
-      subject.make_plane
-    end
-
-    it 'creates a plane' do
-      expect(subject.plane).to be_a_kind_of Plane
-    end
-
-    it 'check plane is working' do
-      expect(subject.plane).to respond_to(:working?)
-    end
-  end
+  plane = Plane.new
 
   describe '#land_plane' do
-    before do
-      subject.make_plane
-      subject.land_plane
-      subject.make_plane
-      subject.land_plane
-    end
-
     it 'hangar receives a plane' do
-      expect(subject.hangar).not_to be_empty
+      subject.land_plane(plane)
+      expect(subject.hangar).to include(plane)
     end
 
     it 'throws error if hangar is full' do
-      subject.make_plane
-      expect { subject.land_plane }.to raise_error 'No space in hangar'
+      plane2 = Plane.new
+      subject.land_plane(plane2)
+      plane3 = Plane.new
+      subject.land_plane(plane3)
+
+      expect { subject.land_plane(plane) }.to raise_error 'No space in hangar'
     end
   end
 
   describe '#take_off' do
     before do
-      subject.land_plane
-      subject.take_off
+      subject.land_plane(plane)
+      subject.take_off(plane)
     end
 
     it 'removes plane from hangar' do
-      expect(subject.hangar).to be_empty
+      expect(subject.hangar).not_to include(plane)
     end
 
     it 'confirms no plane in hangar' do
-      expect(subject.take_off).to eq("No planes in hangar")
+      expect(subject.take_off(plane)).to eq("No planes in hangar")
     end
   end
 
 end
 
-# describe Plane do
 
-# end
 
+describe Plane do
+  plane = Plane.new
+  it 'checks plane is working' do
+    expect(plane).to respond_to(:working?)
+  end
+end
+
+describe Weather do
+  weather = Weather.new
+  it 'checks weather is working' do
+    expect(weather).to respond_to(:working?)
+  end
+end
