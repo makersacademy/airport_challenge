@@ -10,7 +10,7 @@ I want to instruct a plane to land at an airport
 
 Requirements:
 - Classes: Plane, Airport
-- Variable: @planes (an array to store invidual planes), @departed = false
+- Variables: @planes (an array to store individual planes), @departed = false
 - Method: airport.land(plane), plane.arrive
 
 #### 2 ✅
@@ -23,7 +23,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 Requirements:
 - Classes: Plane, Airport
-- Variable: @planes (an array to store invidual planes), @departed = true
+- Variables: @planes, @departed = true
 - Method: airport.take_off(plane), plane.depart
 
 #### 3 ✅
