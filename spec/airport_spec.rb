@@ -1,8 +1,6 @@
 require "airport"
 require "plane"
 
-DEFAULT_CAPACITY = 50
-
 describe Airport do
   let(:plane) { Plane.new }
   let(:plane2) { Plane.new }
@@ -28,8 +26,10 @@ describe Airport do
   end
 
   it "can prevent landing when airport is full" do
-    DEFAULT_CAPACITY.times { subject.land(plane) }
-    expect { subject.land(plane2) }.to raise_error("Airport is full, cannot land!")
+    subject.land(plane)
+    subject.land(plane2)
+    subject.land(plane3)
+    expect { subject.land(plane3) }.to raise_error("Airport is full, cannot land!")
   end
 
   it "can override default airport capacity" do

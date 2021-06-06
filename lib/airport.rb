@@ -3,7 +3,7 @@ require "./lib/plane.rb"
 class Airport
   attr_reader :planes, :capacity, :weather
 
-  DEFAULT_CAPACITY = 50
+  DEFAULT_CAPACITY = 3
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -14,6 +14,8 @@ class Airport
   def land(plane)
     raise "Airport is full, cannot land!" if full?
     raise "Weather is stormy, cannot land!" if @weather == "stormy"
+
+    return if @planes.include?(plane)
 
     plane.arrive
     @planes << plane
