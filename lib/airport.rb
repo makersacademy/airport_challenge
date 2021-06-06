@@ -19,6 +19,7 @@ class Airport
 
   def take_off
     fail "Grounded due to stormy weather" if stormy?
+    
   #   fail "Plane not in airport" unless in_airport?(plane)
 
   #   @planes << plane
