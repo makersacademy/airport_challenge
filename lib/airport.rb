@@ -1,3 +1,5 @@
+require "./lib/plane.rb"
+
 class Airport
   attr_reader :planes, :capacity, :weather
 
@@ -24,13 +26,8 @@ class Airport
     return unless @planes.include?(plane)
 
     plane.depart
-    @planes - [plane]
+    @planes.delete(plane)
     # @planes.pop will only remove the last added elem in array
-    # @planes.delete(plane) is another solution
-  end
-
-  def confirm_takeoff(plane)
-    !@planes.include?(plane)
   end
 
   def weather_report
@@ -47,3 +44,4 @@ end
 # airport = Airport.new
 # airport.take_off("plane")
 # airport.weather_report
+# p airport.confirm_takeoff(Plane.new)

@@ -5,6 +5,8 @@ DEFAULT_CAPACITY = 50
 
 describe Airport do
   let(:plane) { Plane.new }
+  let(:plane2) { Plane.new }
+  let(:plane3) { Plane.new }
 
   it "can instruct plane to land" do
     expect(subject).to respond_to(:land).with(1).argument
@@ -17,14 +19,16 @@ describe Airport do
   end
 
   it "can confirm that a plane has taken off and is not at airport" do
+    subject.land(plane)
+    subject.land(plane2)
+    subject.land(plane3)
     subject.take_off(plane)
-    expect(subject.planes).not_to include(plane) # need to use attr_accessor for planes
-    expect(subject.confirm_takeoff(plane)).to eq(true)
+    expect(subject.planes).to eq([plane2, plane3]) # need to use attr_reader to call planes
+    expect(subject.planes).not_to include([plane])
   end
 
   it "can prevent landing when airport is full" do
     DEFAULT_CAPACITY.times { subject.land(plane) }
-    plane2 = Plane.new
     expect { subject.land(plane2) }.to raise_error("Airport is full, cannot land!")
   end
 
