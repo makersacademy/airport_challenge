@@ -1,4 +1,6 @@
 require 'airport'
+require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -44,9 +46,7 @@ describe Airport do
     it 'confirms no plane in hangar' do
       expect(subject.take_off(plane, sunny)).to eq("No planes in hangar")
     end
-
   end
-
 
   describe '#take_off in stormy weather' do
 
@@ -57,23 +57,4 @@ describe Airport do
     end
   end
 
-end
-
-describe Plane do
-  plane = Plane.new
-  it 'checks plane is working' do
-    expect(plane).to respond_to(:working?)
-  end
-end
-
-describe Weather do
-  weather = Weather.new
-
-  it 'checks weather is working' do
-    expect(weather).to respond_to(:working?)
-  end
-
-  # it 'weather returns a string' do
-  #   expect(subject.weather_forecast).to eq "sunny" || "stormy"
-  # end
 end

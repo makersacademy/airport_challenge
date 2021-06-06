@@ -1,3 +1,6 @@
+require 'plane.rb'
+require 'weather.rb'
+
 class Airport
 
   attr_reader :hangar
@@ -10,6 +13,7 @@ class Airport
   def land_plane(plane, weather)
     raise "No space in hangar" unless @hangar.length < @hangar_cap
     raise "You can't land plane" unless weather == "sunny"
+    
     @hangar << plane unless @hangar.include?(plane)
   end
 
@@ -21,25 +25,4 @@ class Airport
     @hangar.empty? ? "No planes in hangar" : "Planes in hangar: #{hangar.length}"
   
   end
-
-end
-
-class Plane
-  def working?
-    true
-  end
-end
-
-class Weather
-  attr_reader :forecast
-
-  def working?
-    true
-  end
-
-  def forecast
-    @forecast = ["sunny", "sunny", "sunny", "sunny", "stormy"].sample
-    puts @forecast
-  end
-
 end
