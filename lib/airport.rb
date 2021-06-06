@@ -12,9 +12,13 @@ class Airport
     @hangar << plane unless @hangar.include?(plane)
   end
 
-  def take_off(plane)
+  def take_off(plane, weather)
+
+    raise "You can't take off" unless weather == "sunny"
+
     @hangar.delete(plane)
     @hangar.empty? ? "No planes in hangar" : "Planes in hangar: #{hangar.length}"
+  
   end
 
 end
@@ -26,9 +30,15 @@ class Plane
 end
 
 class Weather
+  attr_reader :weather
+
   def working?
     true
   end
 
+  def forecast
+    @weather = ["sunny", "sunny", "sunny", "sunny", "stormy"].sample
+    puts @weather
+  end
 
 end
