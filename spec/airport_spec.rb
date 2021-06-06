@@ -7,13 +7,17 @@ describe Airport do
   let(:plane3) { Plane.new }
 
   it "can instruct plane to land" do
+    subject.land(plane)
     expect(subject).to respond_to(:land).with(1).argument
+    expect(plane.departed?).to eq(false)
     # expect(subject.land(plane)).to eq([plane])
   end
 
   it "can instruct a plane to take off from airport" do
     subject.land(plane)
+    subject.take_off(plane)
     expect(subject).to respond_to(:take_off).with(1).argument
+    expect(plane.departed?).to eq(true)
   end
 
   it "can confirm that a plane has taken off and is not at airport" do
@@ -60,6 +64,6 @@ describe Airport do
 
   it "can ensure planes that have landed in an airport cannot land again " do
     subject.land(plane)
-    expect { subject.land(plane) }.to raise_error("Plane already in airport, cannot land!")
+    expect { subject.land(plane) }.to raise_error("Plane already in airport!")
   end
 end
