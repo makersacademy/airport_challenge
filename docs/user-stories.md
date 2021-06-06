@@ -26,6 +26,8 @@ Requirements:
 - Variables: @planes, @departed = true
 - Method: airport.take_off(plane), plane.depart
 
+<img src="/screenshots/ss-diagramming.png" width="50%">
+
 #### 3 ✅
 
 ```
