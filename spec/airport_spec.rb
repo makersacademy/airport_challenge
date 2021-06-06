@@ -27,8 +27,18 @@ describe Airport do
     expect(new_airport.capacity).to eq(20)
   end
 
+  it 'can set the current weather' do
+    expect(subject.current_weather("stormy")).to eq "stormy"
+  end
+
   it 'responds to stormy?' do
     expect(subject).to respond_to(:stormy?)
+  end
+
+  it 'raise error when stormy' do
+    new_airport = Airport.new
+    new_airport.current_weather("stormy")
+    expect { subject.take_off }.to raise_error "Grounded due to stormy weather"
   end
   # it 'cannot land if plane is already in an airport' do
   #   plane = "plane one"

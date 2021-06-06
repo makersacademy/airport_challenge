@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :weather
 
   DEFAULT_CAPACITY = 10 
 
@@ -18,6 +18,7 @@ class Airport
   end
 
   def take_off
+    fail "Grounded due to stormy weather" if stormy?
   #   fail "Plane not in airport" unless in_airport?(plane)
 
   #   @planes << plane
@@ -38,8 +39,12 @@ class Airport
     # @planes.count == @capacity
   end
 
+  def current_weather(weather = "clear")
+    @weather = weather
+  end
+
   def stormy?
-    true
+    rand > 0.75
   end
 
 end
