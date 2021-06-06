@@ -10,11 +10,12 @@ class Airport
   end
 
   def land(plane)
+    fail 'Cannot land plane due to stormy weather' if stormy?
     fail 'Cannot land since airport is full' if full?
-    planes << plane
+    @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
     fail 'Cannot take off due to stormy weather' if stormy?
   end
 
@@ -23,10 +24,10 @@ class Airport
   attr_reader :planes
 
   def stormy?
-    true
+    rand(1..10) > 8
   end
 
   def full?
-    planes.count >= capacity
+    @planes.count >= capacity
   end
 end
