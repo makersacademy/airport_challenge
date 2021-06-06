@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   
@@ -35,9 +36,8 @@ describe Airport do
     expect(subject).to respond_to(:stormy?)
   end
 
-  it 'raise error when stormy' do
-    new_airport = Airport.new
-    new_airport.current_weather("stormy")
+  it 'raises error when stormy' do
+    subject.current_weather("stormy")
     expect { subject.take_off }.to raise_error "Grounded due to stormy weather"
   end
   

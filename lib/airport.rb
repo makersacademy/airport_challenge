@@ -18,12 +18,16 @@ class Airport
   end
 
   def take_off
-    fail "Grounded due to stormy weather" if stormy?
+    if @weather == "stormy"
+      raise "Grounded due to stormy weather"
+    else
+      "Successfull take-off"
+    end
     
   #   fail "Plane not in airport" unless in_airport?(plane)
 
   #   @planes << plane
-    "Successfull take-off"
+  
   #   # in_airport?(plane)
   end
 
