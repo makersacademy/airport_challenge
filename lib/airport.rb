@@ -1,5 +1,3 @@
-require "./lib/plane.rb"
-
 class Airport
   attr_reader :planes, :capacity, :weather
 
@@ -22,7 +20,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Plane already departed!" if plane.departed
+    raise "Plane already departed!" if plane.departed? == true
     raise "Weather is stormy, cannot take off!" if @weather == "stormy"
 
     return unless @planes.include?(plane)
@@ -42,8 +40,3 @@ class Airport
     @planes.size >= @capacity
   end
 end
-
-# airport = Airport.new
-# airport.take_off("plane")
-# airport.weather_report
-# p airport.confirm_takeoff(Plane.new)

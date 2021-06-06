@@ -38,6 +38,12 @@ describe Airport do
     expect(subject.capacity).to eq(random_capacity)
   end
 
+  it "can have sunny or stormy weather" do
+    # allow(["sunny", "stormy"]).to receive(:sample).and_return(1) # stubbing
+    # expect(subject.weather_report).to eq("stormy") => does not equal "stormy" in all tests due to .sample
+    expect(["sunny", "stormy", "sunny"]).to include(subject.weather_report)
+  end
+
   it "can prevent takeoff when weather is stormy" do
     expect { subject.take_off(plane) }.to raise_error("Weather is stormy, cannot take off!") if subject.weather == "stormy"
   end
