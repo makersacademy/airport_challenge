@@ -12,8 +12,8 @@ class Airport
   def land(plane)
     raise "Airport is full, cannot land!" if full?
     raise "Weather is stormy, cannot land!" if @weather == "stormy"
-
-    return if @planes.include?(plane)
+    raise "Plane already in airport, cannot land!" if @planes.include?(plane)
+    # return if @planes.include?(plane)
 
     plane.arrive
     @planes << plane

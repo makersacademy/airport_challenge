@@ -57,4 +57,9 @@ describe Airport do
     subject.take_off(plane)
     expect { subject.take_off(plane) }.to raise_error("Plane already departed!")
   end
+
+  it "can ensure planes that have landed in an airport cannot land again " do
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error("Plane already in airport, cannot land!")
+  end
 end

@@ -15,13 +15,20 @@ Airport Challenge
 
 ## How I approached this challenge - Juel
 
-- Created a file to plan & diagram all user requirements outlined [here](./docs/user-stories.md).
-- Followed the requirement to write a test that fails.
+- Create a file to plan & diagram all user requirements, outlined [here](./docs/user-stories.md).
+- Follow the requirement to write a test that fails.
 - Run ```rspec``` & confirm that the test fails.
 - Write enough code to pass the test.
 - Run ```rspec``` & confirm the test passes.
-- Refactor code.
-- Repeat above steps for each requirement & edge case.
+- Run ```rubocop```, fix violations and refactor code. Run ```rubocop``` again to confirm that code conforms to the [Rubocop](https://github.com/rubocop/rubocop) style guide.
+- Commit changes & push to remote.
+- Repeat above steps for each requirement.
+
+### Screenshots
+<img src="screenshots/ss-rspec-airport-spec.png" width= "50%">
+
+<img src = "screenshots/ss-rubocop.png" width= "50%">
+
 
 Instructions
 ---------
