@@ -6,7 +6,7 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe '#take_off' do
-    it { is_expected.to respond_to :take_off}
+    it { is_expected.to respond_to :take_off }
 
     it 'can confirm the plane is no longer in the airport after take_off' do
       expect(subject.take_off(plane)).to eq "Successfull take-off"
@@ -15,11 +15,10 @@ describe Airport do
   end
 
   describe '#land_plane' do
-    it { is_expected.to respond_to :land_plane}
+    it { is_expected.to respond_to :land_plane }
 
     it 'can prevent plane landing when airport is full' do
-      subject.current_weather == "clear"
-      # allow(plane).to receive(:current_location).and_return(false)
+      subject.current_weather
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
       expect { subject.land_plane(plane) }.to raise_error "Airport is full"
     end

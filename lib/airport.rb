@@ -20,16 +20,11 @@ class Airport
     
   end
 
-  def take_off(plane)
+  def take_off(*)
     raise "Grounded due to stormy weather" if weather == "stormy"
       
     "Successfull take-off"
   
-  end
-
-  def in_airport?(plane)
-    @planes.include?(plane)
-
   end
 
   def at_capacity?
