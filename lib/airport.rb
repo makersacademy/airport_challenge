@@ -9,11 +9,11 @@ class Airport
   end
 
   def land_plane(plane)
-    if weather == "clear" && !airport_full?
+    if weather == "clear" && !at_capacity?
       planes << plane
     elsif weather == "stormy"
       fail "Too stormy to land"
-    elsif airport_full?
+    elsif at_capacity?
       fail "Airport is full"
    
     end
@@ -32,7 +32,7 @@ class Airport
 
   end
 
-  def airport_full?
+  def at_capacity?
     planes.count == capacity
 
   end
@@ -44,7 +44,7 @@ class Airport
 
   def stormy?
     rand > 0.75
-    
+
   end
 
 end
