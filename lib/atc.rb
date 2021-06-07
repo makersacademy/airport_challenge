@@ -26,4 +26,16 @@ class Airport
     @size = size
     return @size
   end
+
+  # instead of an array have a set value and then plus and minus
+  # when aircraft takes off or lands 
+
+  def airport_size
+    test = []
+    p test.length
+    test.length > 10
+  end
 end
+
+test = Airport.new
+p test.airport_size
