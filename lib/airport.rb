@@ -29,18 +29,22 @@ class Airport
 
   def in_airport?(plane)
     @planes.include?(plane)
+
   end
 
   def airport_full?
     planes.count == capacity
+
   end
 
   def current_weather(weather = "clear")
     @weather = weather
+
   end
 
   def stormy?
     rand > 0.75
+    
   end
 
 end

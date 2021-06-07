@@ -2,6 +2,10 @@ require 'plane'
 
 describe Plane do
 
+  it { is_expected.to respond_to :landed? }
+  
+  it { is_expected.to respond_to :landed }
+
   it 'can show that the plane can be landed' do
     subject.land
     expect(subject.landed?).to eq true
