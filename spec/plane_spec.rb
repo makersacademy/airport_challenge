@@ -5,7 +5,7 @@ describe Plane do
     let(:weather) {double :weather, :sunny= => true, sunny?: true}
     let(:weather2) {double :weather, :sunny= => false, sunny?: false}
 
-    it "Check to see if a new plane is on the group" do
+    it "Check to see if a new plane is in the group" do
         expect(subject.landed).to eq true
     end
 

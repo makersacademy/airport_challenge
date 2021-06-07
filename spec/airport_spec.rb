@@ -6,7 +6,9 @@ describe Airport do
     let(:weather) {double :weather, :sunny= => true, sunny?: true}
 
     it { is_expected.to respond_to :land_plane }
+    
     it { is_expected.to respond_to(:land_plane).with(1).argument }
+    
     it { is_expected.to respond_to :planes }
 
     it "Checks if there are no planes already at the airport" do
@@ -25,7 +27,7 @@ describe Airport do
         expect(subject.plane_takeoff(plane)).to eq plane
     end
 
-    it "Check an plane that is in the sky is not landed" do
+    it "Check a plane that is in the sky has not landed" do
         subject.sunny = true
         allow(plane).to receive(:landed).and_return(false)
         subject.land_plane(plane)
@@ -34,7 +36,7 @@ describe Airport do
         expect(plane).to_not be_landed
     end
 
-    it "Make sure an airplane that as taken off is not at the airport" do
+    it "Make sure a plane that as taken off is not at the airport" do
         subject.sunny = true
         allow(plane).to receive(:landed).and_return(false)
         subject.land_plane(plane)
@@ -43,19 +45,17 @@ describe Airport do
         expect(subject.planes).to_not include(plane)
     end
     
-    it "Prevent airplane to take off if not sunny" do
+    it "Prevent a plane to take off if it's not sunny" do
         subject.sunny = true
         allow(plane).to receive(:landed).and_return(false)
         subject.land_plane(plane)
         subject.sunny = false
-        error = "Weather Stormy cannot take off"
-        expect{subject.plane_takeoff(plane)}.to raise_error error
+        expect{subject.plane_takeoff(plane)}.to raise_error "Weather is stormy so cannot take off"
     end
 
-    it "Prevent airplane to land if not sunny" do
+    it "Prevent a plane to land if it's not sunny" do
         subject.sunny = false
-        error =  "Weather Stormy cannot land"
-        expect{subject.land_plane(plane)}.to raise_error error
+        expect{subject.land_plane(plane)}.to raise_error "Weather is stormy so cannot land"
     end
 
     it "Raise an error if the airport is full" do
@@ -65,12 +65,16 @@ describe Airport do
         expect{subject.land_plane(plane)}.to raise_error "Airport is full!"
     end
 
-    it "Check to see if you can fill, remove then fill airport" do
+    it "Check airport capacity" do
         subject.sunny = true
         allow(plane).to receive(:landed).and_return(false)
         Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
         allow(plane).to receive(:landed).and_return(true)
         subject.plane_takeoff(plane)
         expect(subject.planes).to include(plane)
+    end
+
+    it "Overwrite default airport capacity to 70" do
+        expect(subject.capacity=70).to eq 70
     end
 end
