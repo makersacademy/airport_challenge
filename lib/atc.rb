@@ -5,13 +5,19 @@ class ATC
 
   attr_accessor :airport
 
-  def new_aircraft(name)
-    @id = name
+  def initialize(size)
+    @airport_cap = size
+    @aircraft_grounded = 0
   end
 
   def land_plane
-    @ground = true
-    return :landed, @ground
+    if @aircraft_grounded >= @airport_cap
+      return false
+    else
+      @aircraft_grounded += 1
+      @ground = true
+      return :landed, @ground
+    end
   end
 
   def takeoff
@@ -26,16 +32,6 @@ class Airport
     @size = size
     return @size
   end
-
   # instead of an array have a set value and then plus and minus
-  # when aircraft takes off or lands 
-
-  def airport_size
-    test = []
-    p test.length
-    test.length > 10
-  end
+  # when aircraft takes off or lands
 end
-
-test = Airport.new
-p test.airport_size

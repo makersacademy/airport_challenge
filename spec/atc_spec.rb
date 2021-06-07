@@ -2,16 +2,19 @@ require 'atc'
 
 describe ATC do
 
-  it 'Allows user to create a aircraft name' do
-    expect(subject.new_aircraft("BA-643")).to eq("BA-643")
+  it 'Prevents an aircraft from landing if full' do
+    test = ATC.new(0)
+    expect(test.land_plane).to eq(false)
   end
 
   it 'Allows a plane to land' do
-    expect(subject.land_plane).to eq([:landed, true])
+    test = ATC.new(10)
+    expect(test.land_plane).to eq([:landed, true])
   end
 
   it 'Allows a plane to takeoff'do
-    expect(subject.takeoff).to eq([:takenoff, false])
+    test = ATC.new(0)
+    expect(test.takeoff).to eq([:takenoff, false])
   end
 
 end
