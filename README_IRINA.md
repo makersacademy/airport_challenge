@@ -5,11 +5,19 @@ Task:
 - sunny weather: planes can land and take off
 - stormy weather (occasionally): no planes can land or take off
 
-DIAGRAM: User Stories
-input/method/output
-US.1
-command a plane /to_land/plane in the airport
-US.2
-command/take_off/confirmation
+COLLABORATIONS
+Airport / Collarobators
+Can recieve planes / Plane, Airport
+Can release planes / Plane, Airport
+Can coiunt planes
+
+Plane / Collaborators
+Can take_off / Airport
+Can land / Airport
+Knows status
+
+Weather / Collaborators
+Can be sunny / Airport
+Can be stormy / Airport
 
 RESOURCES
