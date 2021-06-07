@@ -15,18 +15,15 @@ class Airport
       fail "Too stormy to land"
     elsif airport_full?
       fail "Airport is full"
-    elsif in_airport?(plane)
-      "Already in airport"
+   
     end
     
   end
 
   def take_off(plane)
-    if weather == "stormy"
-      raise "Grounded due to stormy weather"
-    else
-      "Successfull take-off"
-    end
+    raise "Grounded due to stormy weather" if weather == "stormy"
+      
+    "Successfull take-off"
   
   end
 

@@ -21,7 +21,7 @@ describe Airport do
     subject.current_weather == "clear"
     # allow(plane).to receive(:current_location).and_return(false)
     Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
-    expect { subject.land_plane(plane)}.to raise_error "Airport is full"
+    expect { subject.land_plane(plane) }.to raise_error "Airport is full"
   end
 
   # it 'cannot land if it is already in the airport' do
