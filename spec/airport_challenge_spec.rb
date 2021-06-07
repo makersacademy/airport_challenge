@@ -2,7 +2,7 @@ require 'airport_challenge'
 require 'plane'
 
 describe Airport do
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new(20) }
   let(:plane) { Plane.new }
 
   describe '#land' do

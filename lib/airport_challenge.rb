@@ -5,9 +5,9 @@ class Airport
   attr_accessor :airport_capacity
   attr_reader :planes
 
-  def initialize
+  def initialize(airport_capacity)
     @planes = []
-    @airport_capacity = 20
+    @airport_capacity = airport_capacity
   end
 
   def stormy?
