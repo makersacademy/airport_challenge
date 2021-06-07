@@ -8,6 +8,7 @@ describe Airport do
     it 'instructs a plane to land at an airport' do
         airport = Airport.new(20)
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
         expect{ airport.land(plane) }.not_to raise_error
     end
 
@@ -31,18 +32,30 @@ describe Airport do
     it 'prevents planes landing when airport is full' do
         airport = Airport.new(20)
         plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return false
         20.times do 
             airport.land(plane)
         end
         expect { airport.land(plane) }.to raise_error 'Cannot land plane, airport is full!'
     end
 
-    # As the system designer
-    # So that the software can be used for many different airports
-    # I would like a default airport capacity that can be overridden as appropriate
-
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent takeoff when weather is stormy 
+    
     it '' do
 
     end 
+
+    # As an air traffic controller 
+    # To ensure safety 
+    # I want to prevent landing when weather is stormy 
+
+    it 'does not allow planes to land when stormy' do
+        airport = Airport.new(20)
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return true
+        expect{ airport.land(plane) }.to raise_error 'Cannot land plane: weather is stormy!'
+    end
 
 end
