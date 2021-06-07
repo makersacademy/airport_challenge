@@ -1,12 +1,18 @@
 class Plane
-  attr_reader :flying, :location
 
-  def flying?(flying = false)
-    @flying = flying
+  def initialize
+    @landed = false
   end
 
-  def current_location(location)
-    @location = location
+  def land
+    @landed = true
+  end
+  def take_off
+    @landed = false
+  end
+
+  def landed?
+    @landed
   end
 
 end

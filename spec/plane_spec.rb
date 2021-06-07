@@ -2,16 +2,15 @@ require 'plane'
 
 describe Plane do
 
-  it 'can show the plane is on the ground' do
-    expect(subject.flying?).to eq false
+  it 'can show that the plane can be landed' do
+    subject.land
+    expect(subject.landed?).to eq true
   end
   
-  it 'can show that the plane is flying' do
-    expect(subject.flying?(true)).to eq true
-  end
-
-  it 'can update current location' do
-    expect(subject.current_location("flying")).to eq "flying"
+  it 'can show that the plane can take off' do
+    subject.land
+    subject.take_off
+    expect(subject.landed?).to eq false
   end
 
 end

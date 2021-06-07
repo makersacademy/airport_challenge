@@ -2,22 +2,31 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
   
   it 'can land a plane at the airport' do
-    expect(subject).to respond_to(:land_plane) # .with(1).argument
+    expect(subject).to respond_to(:land_plane)
   end
 
   it 'can instruct a plane to take_off' do
-    expect(subject).to respond_to(:take_off) # .with(1).argument
+    expect(subject).to respond_to(:take_off)
   end
 
   it 'can confirm the plane is no longer in the airport after take_off' do
-    expect(subject.take_off).to eq "Successfull take-off"
+    expect(subject.take_off(plane)).to eq "Successfull take-off"
   end
 
   it 'can prevent plane landing when airport is full' do
-    expect { subject.land_plane }.to raise_error "Airport is full"
+    subject.current_weather == "clear"
+    # allow(plane).to receive(:current_location).and_return(false)
+    Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
+    expect { subject.land_plane(plane)}.to raise_error "Airport is full"
   end
+
+  # it 'cannot land if it is already in the airport' do
+  #   expect { subject.land_plane(plane) }.to raise_error "Already in airport"
+  # end
 
   it 'gives default capacity of 10' do
     expect(subject.capacity).to eq(10)
@@ -38,7 +47,15 @@ describe Airport do
 
   it 'raises error when stormy' do
     subject.current_weather("stormy")
-    expect { subject.take_off }.to raise_error "Grounded due to stormy weather"
+    expect { subject.take_off(plane) }.to raise_error "Grounded due to stormy weather"
+    expect { subject.land_plane(plane) }.to raise_error "Too stormy to land"
+  end
+
+  it 'clears the plane for landing' do
+    plane = Plane.new
+    subject.land_plane(plane)
+    subject.take_off(plane)
+    expect(plane.landed?).to eq false
   end
   
 end

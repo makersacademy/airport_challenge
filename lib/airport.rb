@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity, :weather
+  attr_accessor :planes, :capacity, :weather
 
   DEFAULT_CAPACITY = 10 
 
@@ -8,40 +8,34 @@ class Airport
     @planes = []
   end
 
-  def land_plane
-  #   # fail "Plane already in airport" unless in_airport?(plane)
-    fail "Airport is full" if airport_full?
-  
-  #   # plane.land_plane
-  #   @planes << plane
+  def land_plane(plane)
+    if weather == "clear" && !airport_full?
+      planes << plane
+    elsif weather == "stormy"
+      fail "Too stormy to land"
+    elsif airport_full?
+      fail "Airport is full"
+    elsif in_airport?(plane)
+      "Already in airport"
+    end
     
   end
 
-  def take_off
-    if @weather == "stormy"
+  def take_off(plane)
+    if weather == "stormy"
       raise "Grounded due to stormy weather"
     else
       "Successfull take-off"
     end
-    
-  #   fail "Plane not in airport" unless in_airport?(plane)
-
-  #   @planes << plane
   
-  #   # in_airport?(plane)
   end
 
-  # def get_planes
-  #   @planes
-  # end
-
-  # def in_airport?(plane)
-  #   @planes.include?(plane)
-  # end
+  def in_airport?(plane)
+    @planes.include?(plane)
+  end
 
   def airport_full?
-    true
-    # @planes.count == @capacity
+    planes.count == capacity
   end
 
   def current_weather(weather = "clear")
