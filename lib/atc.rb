@@ -21,8 +21,11 @@ class ATC
   end
 
   def takeoff
-    @ground = false
-    return :takenoff, @ground
+    if @aircraft_grounded >= 0
+      @aircraft_grounded -= 1
+      @ground = false
+      return :takenoff, @ground
+    end
   end
 end
 
@@ -32,6 +35,4 @@ class Airport
     @size = size
     return @size
   end
-  # instead of an array have a set value and then plus and minus
-  # when aircraft takes off or lands
 end
