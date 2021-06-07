@@ -7,6 +7,6 @@ describe Airport do
     # I want to instruct a plane to land at an airport
     airport = Airport.new
     plane = Plane.new
-    expects { airport.land(plane)}.not_to raise_error
+    expect { airport.land(plane)}.not_to raise_error
   end
 end
