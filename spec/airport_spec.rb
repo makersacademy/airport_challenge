@@ -37,8 +37,6 @@ describe Airport do
       expect(subject.current_weather("stormy")).to eq "stormy"
     end
   
-    it { is_expected.to respond_to :stormy? }
-  
     it 'raises error when stormy' do
       subject.current_weather("stormy")
       expect { subject.take_off(plane) }.to raise_error "Grounded due to stormy weather"

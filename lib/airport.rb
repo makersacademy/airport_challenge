@@ -37,9 +37,4 @@ class Airport
 
   end
 
-  def stormy?
-    rand > 0.75
-
-  end
-
 end
