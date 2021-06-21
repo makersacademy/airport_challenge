@@ -26,7 +26,7 @@ My solution:
 - uses dependancy injection to stub randomness
 
 The following class diagram was created during the planning phase:
-![class_diagram](./class_diagram.png)
+![class_diagram](./docs/class_diagram.png)
 
 ## How to use
 
@@ -70,6 +70,11 @@ An airport can land a plane with land(plane) and instruct a plane to take off wi
 - A plane cannot take off if it's not at the airport 
 
 If any of the conditions above are met then the user is given an error message.
+
+## Testing
+
+All testing was completed in RSpec, a screenshot of the output is below:
+![tests](./docs/rspec_tests.png)
 
 ## User stories
 
