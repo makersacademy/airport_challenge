@@ -25,6 +25,8 @@ My solution:
 - all RSpec tests passing
 - uses dependancy injection to stub randomness
 
+The following class diagram was created during the planning phase:
+![class_diagram](./class_diagram.png)
 
 ## How to use
 
