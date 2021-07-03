@@ -2,11 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+
+  let(:plane1) { Plane.new }
+  let(:plane2) { Plane.new }
+  let(:airport) { Airport.new }
+
   it 'is full' do
-    airport = Airport.new
     allow(airport).to receive(:weather) { "sunny" }
-    plane1 = Plane.new
-    plane2 = Plane.new
     plane1.land(airport)
     plane2.land(airport)
     expect(airport.full?).to eq true
@@ -15,11 +17,9 @@ describe Airport do
   it { is_expected.to respond_to(:planes) }
 
   it 'knows which planes have landed' do
-    airport = Airport.new
-    plane = Plane.new
     allow(airport).to receive(:weather) { "sunny" }
-    plane.land(airport)
-    expect(airport.planes).to eq([plane])
+    plane1.land(airport)
+    expect(airport.planes).to eq([plane1])
   end
 
   it "can have its default capacity overridden" do
