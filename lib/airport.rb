@@ -9,4 +9,8 @@ class Airport
   def take_off(plane)
     @plane = nil
   end
+
+  def in_air?(plane)
+    @plane == plane
+  end    
 end 
