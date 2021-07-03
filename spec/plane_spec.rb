@@ -19,6 +19,7 @@ describe Plane do
     it 'is expected to be in the sky after take-off' do
       plane = Plane.new
       airport = Airport.new
+      airport.weather = "sunny"
       plane.land(airport)
       plane.take_off(airport)
       expect(plane.location).not_to eq(airport)
@@ -34,7 +35,18 @@ describe Plane do
       expect { plane3.land(airport) }.to raise_error "Plane can't land. Airport is full"
     end
 
-  end
-  
+    it "can't take off when the weather is stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      airport.weather = "stormy"
+      expect { plane.take_off(airport) }.to raise_error "Plane can't take off in stormy weather"
+    end
 
+    it "can't land when the weather is stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      airport.weather = "stormy"
+      expect { plane.land(airport) }.to raise_error "Plane can't land in stormy weather"
+    end
+  end
 end
