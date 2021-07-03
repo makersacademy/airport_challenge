@@ -82,6 +82,20 @@ I want to instruct a plane to land at an airport
 **Interactions:**
 
 **Plane <-- Instruction --> Land --> Airport**
+```
+brettkarlson@Bretts-Air airport_challenge % irb
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > require './lib/airport'
+ => true 
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x000000012780e0a8> 
+2.6.5 :004 > airport = Airport.new
+ => #<Airport:0x000000013000ec78> 
+2.6.5 :005 > plane.land(airport)
+ => nil 
+2.6.5 :006 > 
+```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
