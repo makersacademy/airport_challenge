@@ -62,6 +62,11 @@ I want to prevent landing when weather is stormy
 
 
 There are 6 user stories:
+**1:**
+
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
 
 **Functional representation of User Story 1**
 
