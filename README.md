@@ -60,7 +60,7 @@ Please create separate files for every class, module and test suite.
 My approach
 ------------
 
-### Step1: finding the nouns in the User Stories
+### Step 1: finding the nouns in the User Stories
 
 As an **air traffic controller** 
 So I can get **passengers** to a **destination** 
@@ -86,7 +86,7 @@ As an **air traffic controller**
 To ensure safety 
 I want to prevent landing when **weather** is stormy
 
-### Step2: finding the verbs in the User Stories
+### Step 2: finding the verbs in the User Stories
 
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -139,4 +139,4 @@ For each stage, I ran a feature test in irb.
 I then wrote a failing unit test in the relevant rspec file.
 Next I made the changes required to pass the test.
 And finially I refactored.
-After finishing all the user stories, I repeated this pattern for the edge cases.
+After covering everything from the domain model, I repeated this pattern for the edge cases.
