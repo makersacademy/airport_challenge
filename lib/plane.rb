@@ -13,6 +13,8 @@ class Plane
 
     fail "Plane can't land in stormy weather" if airport.weather == "stormy"
 
+    fail "Plane has already landed at this airport" if location == airport
+
     @location = airport
     airport.planes.push(self)
   end

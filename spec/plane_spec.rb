@@ -41,6 +41,12 @@ describe Plane do
       allow(airport1).to receive(:weather) { "stormy" }
       expect { plane1.land(airport1) }.to raise_error "Plane can't land in stormy weather"
     end
+
+    it "can't land again, if it's already at the airport" do
+      plane1.land(airport1)
+      allow(airport1).to receive(:weather) { "sunny" }
+      expect { plane1.land(airport1) }.to raise_error "Plane has already landed at this airport"
+    end
   end
 
   describe '#take_off' do
