@@ -86,7 +86,7 @@ Air traffic controller |
 Passengers  | 
 Destination |
 Plane | land, take-off, at_airport?
-Airport | is_full?
+Airport | full?
 System designer | 
 Weather | is_stormy?
 
@@ -96,6 +96,6 @@ Weather | is_stormy?
 Plane <-- land  --> true/false
 Plane <-- take-off  --> true/false
 Plane <-- at_airport? --> true/false
-Airport <-- is_full? --> true/false
+Airport <-- full? --> true/false
 Weather <-- is_stormy? --> true/false
 ```

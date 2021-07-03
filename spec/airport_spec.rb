@@ -19,4 +19,9 @@ describe Airport do
     plane.land(airport)
     expect(airport.planes).to eq([plane])
   end
+
+  it "can have its default capacity overridden" do
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq 20
+  end
 end
