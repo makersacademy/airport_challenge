@@ -34,4 +34,8 @@ describe Airport do
         a = Airport.new(4)
         expect(a.capacity).to eq(4)
     end
+
+    it 'Only allows planes in airport to takeoff' do
+        expect{ subject.take_off(plane) }.to raise_exception("Plane not present")
+    end
 end

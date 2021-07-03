@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.delete(plane); plane_out(plane)
+    @planes.include?(plane) ? (@planes.delete(plane); plane_out(plane)) : (raise "Plane not present")
   end
 
   def plane_in(plane)
