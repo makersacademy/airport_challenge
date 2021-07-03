@@ -10,14 +10,14 @@ class Airport
 
   # Checks weather than lands plane if capacity not reached.
   def land(plane)
-    weather_forecast
+    weather_check
     @planes.length >= @capacity ? 
     (raise "Airport full.") : plane_in(plane); @planes << plane
   end
 
   # Checks weather then lets plane take off if it is currently in airport. 
   def take_off(plane)
-    weather_forecast
+    weather_check
     @planes.include?(plane) ? 
     (@planes.delete(plane); plane_out(plane)) : (raise "Plane not present")
   end
@@ -33,6 +33,11 @@ class Airport
 
   # Random weather generator. 10% chance of storms.
   def weather_forecast
-    rand(1..10) == 1 ? (raise "Too stormy") : "Sunny"
+    ['Sunny', 'Sunny', 'Sunny', 'Overcast', 'Wet', 'Cloudy', 'Stormy'].sample
+  end
+
+  # Checks weather forecast
+  def weather_check
+    raise 'Too stormy' if weather_forecast == 'Stormy'
   end
 end

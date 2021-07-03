@@ -47,4 +47,8 @@ describe Airport do
       expect(subject.weather_forecast).to eq("Sunny")
     end
   end
+  # Test weather without allow forcing result
+  it 'Tests random weather' do
+    expect(['Sunny', 'Overcast', 'Wet', 'Cloudy']).to include(subject.weather_forecast)
+  end
 end
