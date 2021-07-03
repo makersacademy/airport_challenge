@@ -138,5 +138,5 @@ Weather <-- is_stormy? --> Plane
 For each stage, I ran a feature test in irb.
 I then wrote a failing unit test in the relevant rspec file.
 Next I made the changes required to pass the test.
-And finially I refactored.
+And finally I refactored.
 After covering everything from the domain model, I repeated this pattern for the edge cases.
