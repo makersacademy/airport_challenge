@@ -66,13 +66,15 @@ There are 6 user stories:
 **Functional representation of User Story 1**
 
 
-|        Objects | Messages          |
-| :-------------: |:-------------:|
-| ATC      |  |
-| Plane      | Instruct      |
-| Airport | Land     |
+|        Objects | Messages      |
+| :------------: |:-------------:|
+| ATC            |               |
+| Plane          | Instruction   |
+| Airport        | Land          |
 
 **Interactions:**
+
+**Plane <-- Instruction --> Land --> Airport**
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
