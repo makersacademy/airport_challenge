@@ -22,4 +22,9 @@ describe Airport do
         subject.take_off(plane)
         expect(subject.in_air?(plane)).to eq(false)
     end
+
+    it 'Does not let plane land if capacity reached' do
+        subject.land(Plane.new)
+        expect{ subject.land(Plane.new) }.to raise_error("Airport full.")
+    end
 end
