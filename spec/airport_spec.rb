@@ -32,7 +32,7 @@ describe Airport do
         expect{ subject.land(Plane.new) }.to raise_error("Airport full.")
     end
 
-    it 'Has a capacity argument that defaults to 1' do
+    it 'Has a capacity argument that can be changed' do
         expect(subject).to respond_to(:take_off).with(1).argument
         a = Airport.new(4)
         expect(a.capacity).to eq(4)
