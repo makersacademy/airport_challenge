@@ -1,2 +1,3 @@
-class Plane 
+class Plane
+  attr_accessor :status
 end

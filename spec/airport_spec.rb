@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-    let(:plane) { Plane.new } 
+    let(:plane) { Plane.new }
+
     it 'Allows landing' do
         expect(subject).to respond_to(:land)
     end
@@ -13,13 +14,14 @@ describe Airport do
     it 'Check that takeoff removes plane from airport' do
         subject.land(plane)
         subject.take_off(plane)
-        expect(subject.plane).to eq(nil)
+        expect(subject.planes).to eq([])
     end
 
     it 'Does method to check if plane in airport?' do
         subject.land(plane)
+        expect(plane.status).to eq('In airport')
         subject.take_off(plane)
-        expect(subject.in_air?(plane)).to eq(false)
+        expect(plane.status).to eq('Not in airport')
     end
 
     it 'Does not let plane land if capacity reached' do

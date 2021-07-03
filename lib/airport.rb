@@ -1,21 +1,26 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :plane, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = 1)
     @capacity = capacity
+    @planes = []
   end
 
   def land(plane)
-    @plane ? (raise "Airport full.") : @plane = plane
+    @planes.length >= @capacity ? (raise "Airport full.") : plane_in(plane); @planes << plane
   end
 
   def take_off(plane)
-    @plane = nil
+    @planes.delete(plane); plane_out(plane)
   end
 
-  def in_air?(plane)
-    @plane == plane
-  end    
+  def plane_in(plane)
+    plane.status = 'In airport'
+  end
+
+  def plane_out(plane)
+    plane.status = 'Not in airport'
+  end
 end 
