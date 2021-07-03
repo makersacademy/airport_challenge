@@ -16,12 +16,12 @@ Airport Challenge
 Intro
 ------
 
-This was my first weekend challenge while at Makers Academy. We're were given the following task:
+This was my first solo weekend challenge while at Makers, a 12-week intensive software engineering bootcamp. We were given the following task:
 
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller 
@@ -127,11 +127,11 @@ Weather | is_stormy?
 ### Step 4: diagramming how our Objects will use Messages to communicate with one another
 
 ```
-Plane <-- land  --> true/false
-Plane <-- take-off  --> true/false
-Plane <-- at_airport? --> true/false
-Airport <-- full? --> true/false
-Weather <-- is_stormy? --> true/false
+Plane <-- land  --> Airport
+Plane <-- take-off  --> Airport
+Plane <-- at_airport? --> Airport
+Airport <-- full? --> Plane
+Weather <-- is_stormy? --> Plane
 ```
 
 ### Step 5: testing
