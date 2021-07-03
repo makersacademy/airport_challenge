@@ -13,21 +13,10 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+Intro
+------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+This was my first weekend challenge while at Makers Academy. We're were given the following task:
 
 Task
 -----
@@ -68,22 +57,86 @@ For overriding random weather behaviour, please read the documentation to learn 
 
 Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
+My approach
+------------
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+### Step1: finding the nouns in the User Stories
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+As an **air traffic controller** 
+So I can get **passengers** to a **destination** 
+I want to instruct a **plane** to land at an **airport**
 
-**BONUS**
+As an **air traffic controller** 
+So I can get **passengers** on the way to their **destination** 
+I want to instruct a **plane** to take off from an **airport** and confirm that it is no longer in the airport
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+As an **air traffic controller**
+To ensure safety 
+I want to prevent landing when the **airport** is full 
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+As the **system designer**
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+As an **air traffic controller** 
+To ensure safety 
+I want to prevent takeoff when **weather** is stormy 
 
-* **Submit a pull request early.**
+As an **air traffic controller** 
+To ensure safety 
+I want to prevent landing when **weather** is stormy
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+### Step2: finding the verbs in the User Stories
+
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to **land** at an airport
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to **take off** from an airport and **confirm that it is no longer in the airport**
+
+As an air traffic controller 
+To ensure safety 
+I want to **prevent landing** when the airport **is full** 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a **default airport capacity** that can be **overridden** as appropriate
+
+As an air traffic controller 
+To ensure safety 
+I want to **prevent takeoff** when weather **is stormy** 
+
+As an air traffic controller 
+To ensure safety 
+I want to **prevent landing** when weather **is stormy**
+
+### Step 3: organising the nouns and verbs into Objects and Messages
+
+Objects  | Messages
+------------- | -------------
+Air traffic controller | 
+Passengers  | 
+Destination |
+Plane | land, take-off, at_airport?
+Airport | full?
+System designer | 
+Weather | is_stormy?
+
+### Step 4: diagramming how our Objects will use Messages to communicate with one another
+
+```
+Plane <-- land  --> true/false
+Plane <-- take-off  --> true/false
+Plane <-- at_airport? --> true/false
+Airport <-- full? --> true/false
+Weather <-- is_stormy? --> true/false
+```
+
+### Step 5: testing
+For each stage, I ran a feature test in irb.
+I then wrote a failing unit test in the relevant rspec file.
+Next I made the changes required to pass the test.
+And finially I refactored.
+After finishing all the user stories, I repeated this pattern for the edge cases.
