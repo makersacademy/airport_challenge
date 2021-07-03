@@ -46,6 +46,13 @@ describe Airport do
     it 'Working weather generator' do
       expect(subject.weather_forecast).to eq("Sunny")
     end
+
+    it 'BONUS - Can land multiple planes' do
+      a = Airport.new(10)
+      allow(a).to receive(:weather_forecast).and_return("Sunny")
+      10.times { a.land(Plane.new) }
+      expect(a.planes.length).to eq 10
+    end
   end
   # Test weather without allow forcing result
   it 'Tests random weather' do
