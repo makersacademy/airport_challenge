@@ -4,6 +4,7 @@ require 'plane'
 describe Airport do
   it 'is full' do
     airport = Airport.new
+    allow(airport).to receive(:weather) { "sunny" }
     plane1 = Plane.new
     plane2 = Plane.new
     plane1.land(airport)
@@ -16,6 +17,7 @@ describe Airport do
   it 'knows which planes have landed' do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:weather) { "sunny" }
     plane.land(airport)
     expect(airport.planes).to eq([plane])
   end
