@@ -1,7 +1,12 @@
 require 'plane'
 
 class Airport
-    def land(plane)
-        @plane = plane
+  attr_reader :plane  
+  def land(plane)
+    @plane = plane
   end
-end
+
+  def take_off(plane)
+    @plane = nil
+  end
+end 
