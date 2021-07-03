@@ -7,6 +7,11 @@ describe Plane do
 
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off) }
+
+    it "should leave airport" do
+      subject.take_off
+      expect(subject.airport).to eq('In flight')
+    end
   end
 
   describe '#airport' do
