@@ -20,6 +20,8 @@ class Plane
   def take_off(airport)
     fail "Plane can't take off in stormy weather" if airport.weather == "stormy"
 
+    fail "Plane not at this airport" if airport != location
+
     @location = "enroute"
   end
 end
