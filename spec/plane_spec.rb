@@ -1,5 +1,5 @@
-require 'plane'
-require 'airport'
+require "plane"
+require "airport"
 
 describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -14,14 +14,14 @@ describe Plane do
   let(:airport1) { Airport.new }
   let(:airport2) { Airport.new }
 
-  describe '#location' do
-    it 'is expected to be in the airport when landed' do
+  describe "#location" do
+    it "is expected to be in the airport when landed" do
       allow(airport1).to receive(:weather) { "sunny" }
       plane1.land(airport1)
       expect(plane1.location).to eq(airport1)
     end
 
-    it 'is expected to be in the sky after take-off' do
+    it "is expected to be in the sky after take-off" do
       allow(airport1).to receive(:weather) { "sunny" }
       plane1.land(airport1)
       plane1.take_off(airport1)
@@ -29,7 +29,7 @@ describe Plane do
     end
   end
 
-  describe '#land' do
+  describe "#land" do
     it "can't land if the airport is full" do
       allow(airport1).to receive(:weather) { "sunny" }
       plane1.land(airport1)
@@ -43,13 +43,13 @@ describe Plane do
     end
 
     it "can't land again, if it's already at the airport" do
-      plane1.land(airport1)
       allow(airport1).to receive(:weather) { "sunny" }
+      plane1.land(airport1)
       expect { plane1.land(airport1) }.to raise_error "Plane has already landed at this airport"
     end
   end
 
-  describe '#take_off' do
+  describe "#take_off" do
     it "can't take off when the weather is stormy" do
       allow(airport1).to receive(:weather) { "stormy" }
       expect { plane1.take_off(airport1) }.to raise_error "Plane can't take off in stormy weather"

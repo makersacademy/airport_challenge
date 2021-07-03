@@ -7,7 +7,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = ['sunny', 'sunny', 'sunny', 'sunny', 'sunny', 'stormy'][rand(6)]
+    @weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "stormy"][rand(6)]
   end
 
   def full?
