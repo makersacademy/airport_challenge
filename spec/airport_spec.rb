@@ -2,6 +2,9 @@ require 'airport'
 
 describe Airport do
     let(:plane) { Plane.new }
+    before(:each) do 
+        allow(Airport).to receive(:weather_forecast) { 'sunny' }
+    end 
 
     it 'Allows landing' do
         expect(subject).to respond_to(:land)
