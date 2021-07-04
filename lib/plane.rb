@@ -7,5 +7,6 @@ class Plane
 
   def take_off(airport)
     airport.hangar.delete(self)
+    puts "#{self} has left the #{airport}"
   end
 end

@@ -17,5 +17,12 @@ describe Plane do
         subject.take_off(airport)
         expect(airport.hangar).to eq([subject] - [subject])
         end
-
+    describe '#take_off' do
+        it 'should confirm that the plane has left the airport' do
+            airport = Airport.new
+            subject.land(airport)
+            subject.take_off(airport)
+            expect("#{subject} has left the #{airport}")
+        end
+    end
 end
