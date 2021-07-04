@@ -8,9 +8,9 @@ My approach was to start simple and build the program up using the TDD process. 
 
 ## Where did I get too?
 
-I finished the fourth user story, however did not complete the fith or sixth.
+I finished the fourth user story, however I did not complete the fifth or sixth.
 
-## Why was this?
+## Why was this?
 
 I did not lay out enough time on the weekend as I only spent Sunday on the challenge. In the future I will use make sure to put in more time on both days. Additionally, I did not understand some key concepts such as doubles, and how to apply them, due to only beginning to learn about them, late Sunday evening.
 
