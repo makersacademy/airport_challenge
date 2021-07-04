@@ -13,7 +13,10 @@ Airport Challenge
 
 ```
 
-The first weekend challenge for the June '21 cohort - Makers, London
+----
+The first weekend challenge for the **June '21 cohort** - Makers, London
+
+----
 
 Task
 -----
