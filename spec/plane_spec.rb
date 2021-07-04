@@ -5,9 +5,6 @@ describe Plane do
   let(:airport) { Airport.new }
   let(:plane_lands) { subject.land(airport) }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
-
   it 'should land a plane at an airport' do
     plane_lands
     expect(airport.hangar).to eq([subject])
