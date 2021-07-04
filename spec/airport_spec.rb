@@ -12,7 +12,7 @@ describe Airport do
 
   describe '#full?' do
     it 'returns true when hangar contains CAPACITY planes' do
-      subject.capacity.times{Plane.new.land(subject)}
+      subject.capacity.times { Plane.new.land(subject) }
       expect(subject.full?).to eq(true)
     end
   end
