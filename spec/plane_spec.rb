@@ -11,13 +11,13 @@ RSpec.describe Plane do
   it 'confirms it is no longer in the airport' do
     airport = Airport.new
     subject.take_off(airport)
-    expect(subject.take_off(airport)).to eq( "We have left #{airport}" )
+    expect(subject.take_off(airport)).to eq( "We have left the airport" )
   end
 
   it 'confirms it has landed' do
     airport = Airport.new
     subject.land(airport)
-    expect(subject.land(airport)).to eq( "We have landed at #{airport}" )
+    expect(subject.land(airport)).to eq( "We have landed" )
   end
 
 
