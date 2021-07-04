@@ -6,29 +6,47 @@ describe Airport do
   let(:weather) { double :weather }
 
   describe "#land" do
+
+    before { allow(subject).to receive(:weather) { 'sunny' } }
+
     it 'lands plane at airport' do
       expect(subject.land(plane)).to eq [plane]
     end
-    it 'throws error is airport is full' do
+    it 'throws error is airport is at full default capacity' do
       subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
+
+    it 'prevents landing when stormy' do
+
+      allow(subject).to receive(:weather) { 'stormy' } 
+      expect { subject.land(plane) }.to raise_error 'Weather too bad'
+    end
+
   end
 
   describe "#take_off" do
+
+  before { allow(subject).to receive(:weather) { 'sunny' } }
+
     it 'expects plane to take off' do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq []
     end
+
+    it 'confirms plane had left the airport' do
+      subject.land(plane)
+      expect(subject.take_off(plane)).not_to include [plane]
+    end
+
+    it 'raises error if weather is stormy' do
+      subject.land(plane)
+      allow(subject).to receive(:weather) { 'stormy' } 
+      expect { subject.take_off(plane) }.to raise_error 'Weather too bad'
+    end
+
   end
 
-  describe "#left_airport?" do
-    it 'confirms plane has left the airport' do
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.left_airport?).to eq true
-    end
-  end
 
   describe "#initialize" do
 

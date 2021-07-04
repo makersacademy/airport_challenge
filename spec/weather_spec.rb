@@ -9,7 +9,7 @@ describe Weather do
   end 
 
   describe '#weather_conditions' do
-    it 'gives a weather forecast' do
+    it 'gives a weather forecast at random' do
       allow(subject).to receive(:rand_num) { 4 }
       expect(subject.weather_conditions).to eq('stormy')
     end

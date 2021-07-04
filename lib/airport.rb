@@ -6,6 +6,7 @@ class Airport
 
   attr_accessor :planes
   attr_accessor :capacity
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -14,16 +15,23 @@ class Airport
 
   def land(plane)
     raise 'Airport is full' if full?
+
+    raise 'Weather too bad' if weather == 'stormy'
+
     @planes.push(plane)
   end
 
   def take_off(plane)
-    @left_airport = true
+    
+    raise 'Weather too bad' if weather == 'stormy'
+    
     @planes - [plane]
   end
   
-  def left_airport?
-    @left_airport
+
+  def weather
+    weather = Weather.new
+    weather.weather
   end
 
   private
