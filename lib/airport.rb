@@ -4,4 +4,9 @@ class Airport
   def initialize
     @hangar = []
   end
+
+  def full?
+    (@hangar.length >= 1) == true
+  end
+  
 end
