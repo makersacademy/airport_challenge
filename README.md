@@ -73,36 +73,53 @@ I want to instruct a plane to land at an airport
 **Interactions:**
 
 **Plane <-- Instruction --> Land --> Airport**
+
+Allow for inconsistent states:
+
+  1. Plane must be airborne
+
+  2. Airport must be able to accept plane
+
 ```
-brettkarlson@Bretts-Air airport_challenge % irb
 2.6.5 :001 > require './lib/plane'
  => true 
 2.6.5 :002 > require './lib/airport'
  => true 
 2.6.5 :003 > plane = Plane.new
- => #<Plane:0x000000012780e0a8> 
+ => #<Plane:0x000000010580da58> 
 2.6.5 :004 > airport = Airport.new
- => #<Airport:0x000000013000ec78> 
+ => #<Airport:0x0000000105816630> 
 2.6.5 :005 > plane.land(airport)
  => nil 
-2.6.5 :006 > 
-```
-Allow for inconsistent states:
-
-  1. Plane must be airborne
-
-```
-brettkarlson@Bretts-Air airport_challenge % irb    
-2.6.5 :001 > require './lib/plane'
+2.6.5 :006 > plane.airborne?
  => true 
-2.6.5 :002 > plane = Plane.new
- => #<Plane:0x000000014b00d718> 
-2.6.5 :003 > plane.airborne?
- => nil 
-2.6.5 :004 > 
+2.6.5 :007 > airport.ready?
+ => true 
+2.6.5 :008 > 
+```
+----
+
+**Second User Story**
+
 ```
 
-  2. Airport must be able to accept plane
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+
+
+**Functional representation of User Story 2**
+
+|        Objects | Messages      |
+| :------------: |:-------------:|
+| ATC            |               |
+| Plane          | airborne?     |
+| Airport        | take off      |
+
+**Interactions:**
+
+**Plane <-- Take Off --> Airborne --> true**
 
 ----
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
