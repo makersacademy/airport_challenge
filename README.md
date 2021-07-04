@@ -51,8 +51,9 @@ I want to prevent landing when weather is stormy
 
 
 **We established 6 user stories:**
-
+----
 **First user story:**
+----
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
