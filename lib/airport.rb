@@ -1,12 +1,13 @@
 class Airport
   
-  attr_accessor :plane
+  attr_accessor :planes
 
   def initialize
     @planes = []
   end
 
   def land(plane)
+    raise 'Airport is full' if full?
     @planes.push(plane)
   end
 
@@ -15,9 +16,13 @@ class Airport
     @planes - [plane]
   end
   
-
   def left_airport?
     @left_airport
   end
 
+  private
+
+  def full?
+    @planes.length == 1
+  end
 end
