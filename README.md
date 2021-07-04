@@ -91,6 +91,17 @@ Allow for inconsistent states:
 
   1. Plane must be airborne
 
+```
+brettkarlson@Bretts-Air airport_challenge % irb    
+2.6.5 :001 > require './lib/plane'
+ => true 
+2.6.5 :002 > plane = Plane.new
+ => #<Plane:0x000000014b00d718> 
+2.6.5 :003 > plane.airborne?
+ => nil 
+2.6.5 :004 > 
+```
+
   2. Airport must be able to accept plane
 
 ----
