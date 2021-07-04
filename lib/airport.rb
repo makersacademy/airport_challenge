@@ -1,12 +1,15 @@
+# require_relative 'plane'
+
 class Airport
+  
     def initialize(capacity)
      @capacity = capacity
-     @number_of_planes_landed = 0
+     @planes = []
     end
 
     def land(plane)
-        raise "Full to capacity: Landing Denied" if @number_of_planes_landed >= @capacity
-        @number_of_planes_landed += 1
+        raise "Full to capacity: Landing Denied" if @planes.length >= @capacity
+        @planes << plane
     end
         
     def take_off(airport)
