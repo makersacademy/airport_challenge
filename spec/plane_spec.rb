@@ -18,7 +18,7 @@ describe Plane do
     end
 
     it "should say it is in flight after take_off" do
-      airport = double(:airport, :full? => false, :plane= => subject)
+      airport = double(:airport, :full? => false, :planes => [])
       subject.land(airport)
       subject.take_off
       expect(subject.airport).to eq('In flight')
@@ -27,7 +27,7 @@ describe Plane do
 
   describe '#airport' do
     it "should declare which airport it is at" do
-      airport = double(:airport, :full? => false, :plane= => subject)
+      airport = double(:airport, :full? => false, :planes => [])
       subject.land(airport)
       expect(subject.airport).to eq(airport)
     end

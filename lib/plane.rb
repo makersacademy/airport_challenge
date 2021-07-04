@@ -10,13 +10,13 @@ class Plane
     fail 'Airport is full' if airport.full?
 
     @airport = airport
-    airport.plane = self
+    airport.planes << self
   end
 
   def take_off
     fail 'Plane is already in flight' if @airport == DEFAULT_POSITION
     
-    @airport.plane = nil
+    @airport.planes.delete(self)
     @airport = DEFAULT_POSITION
   end
 end
