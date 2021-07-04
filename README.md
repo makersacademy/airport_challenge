@@ -121,7 +121,41 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 **Plane <-- Take Off --> Airborne --> true**
 
+```
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x000000011280d3e8> 
+2.6.5 :004 > airport = Airport.new
+ => #<Airport:0x000000011300df70> 
+2.6.5 :005 > plane.take_off(airport)
+ => "We have left the airport" 
+2.6.5 :006 > plane.land(airport)
+ => "We have landed" 
+2.6.5 :007 > quit
+```
+
 ----
+**Third User Story**
+
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+```
+
+**Functional representation of User Story 3**
+
+|        Objects | Messages      |
+| :------------: |:-------------:|
+| ATC            |               |
+| Plane          | don't land    |
+| Airport        | full?         |
+
+**Interactions:**
+
+**Airport <-- full? --> Plane --> don't land**
+
+----
+
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
