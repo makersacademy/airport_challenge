@@ -50,7 +50,7 @@ I want to prevent landing when weather is stormy
 ```
 
 
-In collaboration with the client, we established 6 user stories:
+**We established 6 user stories:**
 
 **First user story:**
 ```
