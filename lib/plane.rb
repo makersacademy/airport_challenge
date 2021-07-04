@@ -1,7 +1,11 @@
 require_relative 'airport'
 
 class Plane
-    def land
+  def land(airport)
+    airport.hangar << self
+  end
 
-    end
+  def take_off(airport)
+    airport.hangar.delete(self)
+  end
 end
