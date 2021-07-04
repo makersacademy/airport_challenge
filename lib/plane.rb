@@ -15,6 +15,7 @@ class Plane
 
   def take_off
     fail 'Plane is already in flight' if @airport == DEFAULT_POSITION
+    fail 'The weather is stormy' if @airport.stormy?
     
     @airport.planes.delete(self)
     @airport = DEFAULT_POSITION

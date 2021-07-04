@@ -8,6 +8,12 @@ describe Airport do
     end
   end
 
+  describe "#stormy?" do
+    it "should return true or false" do
+      expect(subject.stormy?).to eq(true).or eq(false)
+    end
+  end
+
   describe "#capacity" do
     it "should have a default capacity" do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)

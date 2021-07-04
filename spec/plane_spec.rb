@@ -18,10 +18,16 @@ describe Plane do
     end
 
     it "should say it is in flight after take_off" do
-      airport = double(:airport, :full? => false, :planes => [])
+      airport = double(:airport, :full? => false, :planes => [], :stormy? => false)
       subject.land(airport)
       subject.take_off
       expect(subject.airport).to eq('In flight')
+    end
+
+    it "should raise error if weather is stormy" do
+      airport = double(:airport, :full? => false, :planes => [], :stormy? => true)
+      subject.land(airport)
+      expect { subject.take_off }.to raise_error 'The weather is stormy'
     end
   end
 

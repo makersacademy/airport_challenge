@@ -11,4 +11,8 @@ class Airport
   def full?
     @planes.length >= DEFAULT_CAPACITY
   end
+
+  def stormy?
+    rand(10) == 1
+  end
 end
