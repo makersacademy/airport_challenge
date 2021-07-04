@@ -17,9 +17,14 @@ RSpec.describe Airport do
     subject.land(plane)
     expect(subject.land(plane)).to eq plane
   end
+
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
  
   it "raises error if airport full" do
-    Airport::DEFAULT_CAPACITY.times { subject.land Plane.new }
+    subject.capacity.times { subject.land Plane.new }
+    p @hangar
     expect { subject.land Plane.new }.to raise_error "Airport is full"
    end
 end
