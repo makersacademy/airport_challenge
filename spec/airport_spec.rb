@@ -3,13 +3,14 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   describe "#land" do
     it 'lands plane at airport' do
       expect(subject.land(plane)).to eq [plane]
     end
     it 'throws error is airport is full' do
-      subject.land(plane)
+      subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
   end

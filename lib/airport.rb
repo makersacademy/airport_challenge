@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Airport
   
   DEFAULT_CAPACITY = 30
@@ -12,7 +14,6 @@ class Airport
 
   def land(plane)
     raise 'Airport is full' if full?
-    
     @planes.push(plane)
   end
 
@@ -28,6 +29,7 @@ class Airport
   private
 
   def full?
-    @planes.length == 1
+    @planes.length >= @capacity
   end
+
 end
