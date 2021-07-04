@@ -50,9 +50,9 @@ I want to prevent landing when weather is stormy
 ```
 
 
-**We established 6 user stories:
+**We established 6 user stories:**
 ----
-First user story:**
+**First user story:**
 ----
 ```
 As an air traffic controller 
