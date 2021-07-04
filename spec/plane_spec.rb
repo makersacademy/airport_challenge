@@ -2,6 +2,7 @@ require 'plane'
 require 'airport'
 
 describe Plane do
+    
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
@@ -11,7 +12,7 @@ describe Plane do
         expect(airport.hangar).to eq([subject])
         end
 
-    it 'should take off from an airport' do
+    it 'should let a plane take off from an airport' do
         airport = Airport.new
         subject.land(airport)
         subject.take_off(airport)
