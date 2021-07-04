@@ -61,9 +61,9 @@ I want to prevent landing when weather is stormy
 ```
 
 
-There are 6 user stories:
+In collaboration with the client, we established 6 user stories:
 
-**1:**
+**First user story:**
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
