@@ -1,9 +1,9 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
 
   describe "#land" do
 
@@ -12,13 +12,19 @@ describe Airport do
     it 'lands plane at airport' do
       expect(subject.land(plane)).to eq [plane]
     end
-    it 'throws error is airport is at full default capacity' do
-      subject.capacity.times { subject.land(plane) }
+    it 'throws error if airport is at full default capacity' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
 
-    it 'prevents landing when stormy' do
+    it 'throws error if airport is full at set capacity' do
+      airport = Airport.new(50)
+      allow(airport).to receive(:weather) { 'sunny' }
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Airport is full'
+    end
 
+    it 'prevents landing when stormy' do
       allow(subject).to receive(:weather) { 'stormy' } 
       expect { subject.land(plane) }.to raise_error 'Weather too bad'
     end
@@ -26,8 +32,8 @@ describe Airport do
   end
 
   describe "#take_off" do
-
-  before { allow(subject).to receive(:weather) { 'sunny' } }
+    
+    before { allow(subject).to receive(:weather) { 'sunny' } }
 
     it 'expects plane to take off' do
       subject.land(plane)
@@ -47,7 +53,6 @@ describe Airport do
 
   end
 
-
   describe "#initialize" do
 
     it 'sets a default capacity if none given' do
@@ -57,6 +62,12 @@ describe Airport do
     it 'default capacity can be overridden' do
       airport = Airport.new(40)
       expect(airport.capacity).to eq 40
+    end
+  end
+
+  describe "#weather" do
+    it 'returns weather conditions' do
+      expect(Weather::FORECAST.map { |_, value| value }).to include(subject.weather)
     end
   end
 

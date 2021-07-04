@@ -6,7 +6,6 @@ class Airport
 
   attr_accessor :planes
   attr_accessor :capacity
-  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -24,14 +23,13 @@ class Airport
   def take_off(plane)
     
     raise 'Weather too bad' if weather == 'stormy'
-    
+
     @planes - [plane]
   end
-  
 
   def weather
-    weather = Weather.new
-    weather.weather
+    condition = Weather.new
+    condition.weather
   end
 
   private
