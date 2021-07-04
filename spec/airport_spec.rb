@@ -29,4 +29,16 @@ describe Airport do
     end
   end
 
+  describe "#initialize" do
+
+    it 'sets a default capacity if none given' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'default capacity can be overridden' do
+      airport = Airport.new(40)
+      expect(airport.capacity).to eq 40
+    end
+  end
+
 end
