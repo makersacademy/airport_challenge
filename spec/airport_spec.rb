@@ -13,15 +13,21 @@ describe Airport do
       expect(subject.land(plane)).to eq [plane]
     end
     it 'throws error if airport is at full default capacity' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'Airport is full'
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
     end
 
     it 'throws error if airport is full at set capacity' do
       airport = Airport.new(50)
       allow(airport).to receive(:weather) { 'sunny' }
-      airport.capacity.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error 'Airport is full'
+      airport.capacity.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error 'Airport is full'
+    end
+
+    it 'throws error if plane is already in the airport' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'Plane is already in airport'
+
     end
 
     it 'prevents landing when stormy' do
@@ -40,7 +46,11 @@ describe Airport do
       expect(subject.take_off(plane)).to eq []
     end
 
-    it 'confirms plane had left the airport' do
+    it 'raises an error if plane had already taken off' do
+      expect { subject.take_off(plane) }.to raise_error('Plane has already taken off')
+    end
+
+    it 'confirms plane has left the airport' do
       subject.land(plane)
       expect(subject.take_off(plane)).not_to include [plane]
     end
@@ -68,6 +78,15 @@ describe Airport do
   describe "#weather" do
     it 'returns weather conditions' do
       expect(Weather::FORECAST.map { |_, value| value }).to include(subject.weather)
+    end
+  end
+
+  describe "#in_airport?" do
+      
+    it 'checks if a plane is already in the airport' do
+      allow(subject).to receive(:weather) { 'sunny' } 
+      subject.land(plane)
+      expect(subject.in_airport?(plane)).to eq true
     end
   end
 

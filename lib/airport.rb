@@ -17,10 +17,14 @@ class Airport
 
     raise 'Weather too bad' if weather == 'stormy'
 
+    raise 'Plane is already in airport' if in_airport?(plane)
+
     @planes.push(plane)
   end
 
   def take_off(plane)
+
+    raise 'Plane has already taken off' if in_airport?(plane) == false
     
     raise 'Weather too bad' if weather == 'stormy'
 
@@ -30,6 +34,10 @@ class Airport
   def weather
     condition = Weather.new
     condition.weather
+  end
+
+  def in_airport?(plane)
+    @planes.include?(plane)
   end
 
   private
