@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    fail 'The weather is stormy' if airport.stormy?
     fail 'Airport is full' if airport.full?
 
     @airport = airport

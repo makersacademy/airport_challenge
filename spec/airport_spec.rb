@@ -29,13 +29,6 @@ describe Airport do
     it "should return a falsey value when airport is not full" do
       expect(subject.full?).to be_falsey
     end
-
-    it "should return a falsey value after a plane has taken off" do
-      plane = Plane.new
-      plane.land(subject)
-      plane.take_off
-      expect(subject.full?).to be_falsey
-    end
   end
 
   describe "#planes" do

@@ -5,8 +5,13 @@ describe Plane do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it "should raise an error when airport is full" do
-      airport = double(:airport, :full? => true)
+      airport = double(:airport, :full? => true, :stormy? => false)
       expect { subject.land(airport) }.to raise_error 'Airport is full'
+    end
+
+    it "should raise error if weather is stormy" do
+      airport = double(:airport, :full? => false, :planes => [], :stormy? => true)
+      expect { subject.land(airport) }.to raise_error 'The weather is stormy'
     end
   end
 
@@ -25,15 +30,16 @@ describe Plane do
     end
 
     it "should raise error if weather is stormy" do
-      airport = double(:airport, :full? => false, :planes => [], :stormy? => true)
+      airport = double(:airport, :full? => false, :planes => [], :stormy? => false)
       subject.land(airport)
+      allow(airport).to receive(:stormy?).and_return(true)
       expect { subject.take_off }.to raise_error 'The weather is stormy'
     end
   end
 
   describe '#airport' do
     it "should declare which airport it is at" do
-      airport = double(:airport, :full? => false, :planes => [])
+      airport = double(:airport, :full? => false, :planes => [], :stormy? => false)
       subject.land(airport)
       expect(subject.airport).to eq(airport)
     end
