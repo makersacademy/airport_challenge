@@ -247,7 +247,7 @@ I want to prevent landing when weather is stormy
 
 |        Objects | Messages      |
 | :------------: |:-------------:|
-| ATC            |dont't land    |
+| ATC            |don't land    |
 | weather        |   stormy      |
 
 **Interactions:**
