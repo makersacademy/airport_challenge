@@ -13,6 +13,28 @@ Airport Challenge
 
 ```
 
+## How I approached this challenge - Juel
+
+- Create a file to plan & diagram all user requirements, outlined [here](./docs/user-stories.md).
+- Follow the requirement to write a test that fails.
+- Run ```rspec``` & confirm that the test fails.
+- Write enough code to pass the test.
+- Run ```rspec``` & confirm the test passes.
+- Run ```rubocop```, fix violations and refactor code. Run ```rubocop``` again to confirm that code conforms to the [Rubocop](https://github.com/rubocop/rubocop) style guide.
+- Commit changes & push to remote.
+- Repeat above steps for each requirement.
+
+### Screenshots
+<img src="screenshots/ss-rspec-airport-plane.png" width= "50%">
+
+<img src = "screenshots/ss-rubocop.png" width= "50%">
+
+### To-do
+
+- Create ``Weather`` class and move ``@weather`` & ``weather_report`` to this class.
+- Test edge case that ensures planes can only take off from airports they are in.
+- Attempt BONUS feature test that lands and takes off a number of planes.
+
 Instructions
 ---------
 
@@ -60,11 +82,11 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behavior.
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+For overriding random weather behavior, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
 Please create separate files for every class, module and test suite.
 
