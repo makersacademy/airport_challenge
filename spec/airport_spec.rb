@@ -29,5 +29,10 @@ subject(:plane) { described_class.new }
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+
+  it 'prevents take off when stormy' do
+    allow(subject).to receive(:weather) { 'stormy' } 
+    expect { subject.take_off(plane) }.to raise_error 'Don\'t take off - bad weather'
+  end
  
 end
