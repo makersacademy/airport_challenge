@@ -13,6 +13,8 @@ Airport Challenge
 
 ```
 
+Stories completed
+
 Instructions
 ---------
 
