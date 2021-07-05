@@ -224,6 +224,17 @@ I want to prevent takeoff when weather is stormy
 
 **stormy <-- weather <-- ATC --> don't take off**
 
+```
+brettkarlson@Bretts-Air airport_challenge % rspec
+
+Airport
+  is expected to respond to #take_off
+  is expected to respond to #land with 1 argument
+  raises error if airport full
+  has a default capacity
+  *prevents take off when stormy*
+  ```
+
 ---
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
