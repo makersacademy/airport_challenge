@@ -4,7 +4,7 @@ The airport challenge involved using TDD to apply basic OOP.
 
 ## What was my approach?
 
-My approach was to start simple and build the program up using the TDD process. Tbis meant doing: feature test, unit test, code, unit test, feature test and refactor. I pulled on similar resources that I had used throughout the Boris bikes challenge as well. I aimed for high test coverage and simple methods. 
+My approach was to start simple and build the program up using the TDD process. This meant doing: feature test, unit test, code, unit test, feature test and refactor. I pulled on similar resources that I had used throughout the Boris bikes challenge as well. I aimed for high test coverage and simple methods. 
 
 ## Where did I get too?
 
