@@ -3,6 +3,7 @@
 
  class Airport
   attr_accessor :capacity
+  attr_reader :airport
 
   DEFAULT_CAPACITY = 20
 
@@ -12,14 +13,14 @@
   end
 
   def land(plane)
+    weather_forcecast
     fail "Airport full; cannot land plane." if full?
-    Weather.new.conditions
     @airport << plane
   end
 
   def take_off
+    weather_forcecast
     fail "Airport empty; cannot take off." if empty?
-    Weather.new.conditions
     @airport.pop
   end
 
@@ -29,5 +30,9 @@
 
   def empty?
     @airport.empty?
+  end
+
+  def weather_forcecast
+    Weather.new.conditions
   end
 end
