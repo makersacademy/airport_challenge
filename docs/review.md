@@ -3,7 +3,7 @@
 **Don't read this until after you've completed the challenge!**
 
 You're a beginner — your code will have some rough spots. This is a field guide to spotting common issues that crop up in the Airport challenge, and some guidance on how to fix them.
-
+touch
 You'll be using this to review someone else's code. Help them improve by looking through their code for issues like this, or anything else that you might spot. Don't worry too much about being mistaken — if it looks like it could be a problem to you, try telling them about it! Even if they disagree, the discussion you'll have about it can be a great learning opportunity.
 
 Also, there's a tonne of stuff here. Pace yourself, take on the improvements that feel most powerful to you and keep the rest in mind for future.
