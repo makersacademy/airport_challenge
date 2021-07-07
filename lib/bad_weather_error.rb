@@ -1,0 +1,3 @@
+class BadWeatherError < StandardError
+
+end
