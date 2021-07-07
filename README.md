@@ -87,3 +87,53 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+**irb**
+----
+
+```irb
+2.6.0 :001 > require './lib/airport.rb'
+ => true 
+2.6.0 :002 > require './lib/weather.rb'
+ => true 
+2.6.0 :003 > require './lib/plane.rb'
+ => true 
+2.6.0 :004 > airport = Airport.new
+ => #<Airport:0x00007fad9f0d2830 @capacity=20, @weather=#<Weather:0x00007fad9f0d2808>, @planes=[]> 
+2.6.0 :005 > weather = Weather.new
+ => #<Weather:0x00007fad9e8d4fc0> 
+2.6.0 :006 > airport
+ => #<Airport:0x00007fad9f0d2830 @capacity=20, @weather=#<Weather:0x00007fad9f0d2808>, @planes=[]> 
+2.6.0 :007 > plane = Plane.new
+ => #<Plane:0x00007fada2883dd8> 
+2.6.0 :008 > weather.stormy?
+ => false 
+2.6.0 :009 > airport.land(plane)
+ => [#<Plane:0x00007fada2883dd8>] 
+2.6.0 :010 > weather.stormy?
+ => false 
+2.6.0 :011 > airport.land(plane)
+ => [#<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>] 
+2.6.0 :013 > weather.stormy?
+ => true 
+2.6.0 :014 > airport.land(plane)
+ => [#<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>]
+2.6.0 :015 > weather.stormy?
+ => false 
+2.6.0 :016 > airport.land(plane)
+ => [#<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>] 
+2.6.0 :017 > weather.stormy?
+ => true 
+2.6.0 :018 > airport.land(plane)
+ => [#<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>, #<Plane:0x00007fada2883dd8>] 
+2.6.0 :019 > weather.stormy?
+ => false 
+2.6.0 :020 > airport.land(plane)
+Traceback (most recent call last):
+        5: from /Users/---/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/----/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/---/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):20
+        1: from /Users/----/Documents/----/----/airport_challenge/lib/airport.rb:18:in `land'
+RuntimeError (Cannot land: Weather stormy)
+```
