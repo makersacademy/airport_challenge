@@ -1,55 +1,61 @@
+
 require 'airport'
-require 'plane'
+
 
 describe Airport do
-  subject(:airport) { described_class.new(40) }
+  let(:plane) { Plane.new }
 
   describe '#land' do
-    it 'instructs a plane to land' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport).to respond_to(:land).with(1).argument
-    end
-  end
+    context 'When not stormy' do
+        before do
+            allow(subject).to receive(:stormy?).and_return false
+        end
 
-  describe 'when full' do
-    it 'raises error' do
-      40.times do
-        airport.land(:plane)
+        it 'instructs a plane to land' do
+            expect(subject).to respond_to(:land).with(1).argument
+          end
+        end
+      
+          it 'raises error if the airport is full' do
+            allow(subject).to receive(:stormy?).and_return false
+            11.times do
+              subject.land(plane)
+            end
+            expect { subject.land(plane) }.to raise_error "Full to capacity: Landing Denied"   
+          end
+  end
+   
+    context 'when stormy' do
+      it 'raises an error if asked to land a plane in a storm' do
+        allow(subject).to receive(:stormy?).and_return true
+        expect { subject.land(plane) }.to raise_error "Denied permission to land due to storm"
+        end
       end
-      expect { airport.land(:plane) }.to raise_error "Full to capacity: Landing Denied. Proceed to default airport"   
+
+         
+    context 'when stormy' do
+      it 'raises an error if asked to take_off a plane in a storm' do
+       allow(subject).to receive(:stormy?).and_return true
+        expect { subject.take_off(plane) }.to raise_error "Denied permission to take off due to storm"
     end
   end
+  
 
   describe '#take_off' do
     it 'instructs a plane to take off' do
-      airport = Airport.new
-      plane = Plane.new
-      expect(airport).to respond_to(:take_off).with(1).argument
+      expect(subject).to respond_to(:take_off).with(1).argument
     end
   end
 
-  context 'defaults' do
+  it 'Does method to check if plane in airport?' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.in_air?(plane)).to eq(false)
+  end
 
     it 'has a default capacity' do
-       
-      airport = Airport.new
-      plane = Plane.new
-    #   default_airport { described_class.new }
-      described_class::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect { airport.land(plane) }.not_to raise_error 'Full to capacity: Landing Denied. Please land at default airport instead'
+       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
-  end
-
-  describe 'default_airport' do
-    it 'accepts overflowing plane' do
-      plane = Plane.new
-      airport = Airport.new
-      airport.land(plane)
-      expect(airport).to respond_to(:land).with(1).argument
-    end
-  end
 
 end
