@@ -10,6 +10,10 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end  
+    it "raises an error when the hangar is full(hangar_capacity in hangar)" do
+      subject.hangar_capacity.times{subject.land(Plane.new)}
+      expect{subject.land(Plane.new)}.to raise_error("Cannot land, Airport is full")
+    end
   end
 
   describe "#take_off" do
@@ -31,7 +35,7 @@ describe Airport do
       expect(subject.in_airport?(plane)).to be false
     end  
 
-    it "checks whether plane in in the airport/hangar" do
+    it "checks whether plane in the airport/hangar" do
       plane = Plane.new
       subject.land(plane)
       expect(subject.in_airport?(plane)).to be true
