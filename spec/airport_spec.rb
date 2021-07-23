@@ -34,4 +34,7 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error "Cannot land plane, this Airport is full."
   end
 
+  it "Random weather generator works as expected" do
+    expect(airport).to respond_to(:random_weather)
+  end
 end

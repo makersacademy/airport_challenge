@@ -19,5 +19,10 @@ class Airport
     @hangar.pop
   end
 
+  def random_weather
+    weather_options = ["sunny", "sunny", "sunny", "stormy"]
+    weather = weather_options.sample
+    return weather
+  end
 end
 
