@@ -29,21 +29,28 @@ RSpec.describe Airport do
       expect(temp.hangar("plane_1")).to eq "plane_1 is no longer in the hangar"
     end 
 
-    
-
     it 'changes the capacity of an airport' do 
       temp.airport_capacity(10)
       expect(temp.airport_capacity(10)).to eq "The airport's capacity is 10"
-
     end
 
-
+    it 'Prevents take off when weather is stormy' do 
+      allow(subject.weather("stormy")).to receive("stormy").and_return 'You cannot takeoff as the weather is stormy'
+      expect(temp.weather("stormy")).to eq "You cannot takeoff as the weather is stormy."
+      #allow(subject.class_name(parameter_1)).to receive("parameter_1").and_return EXPECTED OUTPUT
+      #expect(temp.method_name(parameter_1)).to eq EXPECTED OUTPUT
+    end
 
   end
 end
 
 
+#5.
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent takeoff when weather is stormy 
 
+#4.
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate

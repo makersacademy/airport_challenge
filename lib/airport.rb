@@ -34,6 +34,12 @@ class Airport
     "The airport's capacity is #{@capacity}"
   end
 
-  
+  def weather(w)
+    if w = "stormy" 
+      'You cannot takeoff as the weather is stormy.'
+    else
+      'The weather is sunny - you are cleared for takeoff'
+    end 
+  end
 end
 
