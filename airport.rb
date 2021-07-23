@@ -1,16 +1,18 @@
 class Airport
-  attr_accessor :airport
+  attr_accessor :landed_planes
 
   def initialize
-  @airport = []
+  @landed_planes = []
   end
 
   def land(plane)
-  @airport << plane
+  @landed_planes << plane
   end
 
   def take_off(plane)
-    "#{plane} has taken off and is no longer in the airport"
+    
+    @landed_planes.delete(plane)
+    p "#{plane} has taken off and is no longer in the airport" 
    
    
   end
