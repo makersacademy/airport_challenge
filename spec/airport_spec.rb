@@ -14,4 +14,13 @@ describe Airport do
   take one argument. Currently that one argument is plane.
 =end
   end 
+
+  it "instructs a plane to take off " do
+    expect(airport).to respond_to(:take_off).with(1).argument
+=begin
+  telling rspec to expect that aiport will expect the method take off will
+  take one argument. Currently that one argument is plane.
+=end
+  end
+  
 end
