@@ -1,6 +1,7 @@
 require 'airport'
 require 'plane'
 
+
 describe Airport do
   let(:plane) {Plane.new}
   let(:airport) {Airport.new(20)}
@@ -13,7 +14,7 @@ describe Airport do
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
-  it "Take off method should confirm that plane has left Hangar" do
+  it "Take off method should confirm that said plane has left teh hangar" do
     plane = Plane.new
     airport.land(plane)
     airport.take_off(plane)

@@ -1,6 +1,7 @@
 require_relative 'plane'
 
 class Airport
+
   DEFAULT_CAPACITY = 20
 
   attr_reader :hangar
@@ -24,5 +25,6 @@ class Airport
     weather = weather_options.sample
     return weather
   end
+  
 end
 
