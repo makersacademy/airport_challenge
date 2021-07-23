@@ -19,6 +19,12 @@ describe "Airport" do
       expect { airport.land(Plane.new) }.to(raise_error("The hanger is full!"))
     end
     
+    it "should not allow land when weather is stormy" do
+      airport = Airport.new
+      airport.weather_set("stormy")
+      expect { airport.land(Plane.new) }.to(raise_error("The weather is too rough to land"))
+    end
+    
   end
 
   describe "#takeoff" do
@@ -27,6 +33,13 @@ describe "Airport" do
       airport.land(Plane.new)
       airport.takeoff
       expect(airport.empty_hanger?).to(eq(true))
+    end
+
+    it "should not allow takeoff when weather is stormy" do
+      airport = Airport.new
+      airport.land(Plane.new)
+      airport.weather_set("stormy") 
+      expect { airport.takeoff }.to(raise_error("The weather is too rough to takeoff"))
     end
   end
 
