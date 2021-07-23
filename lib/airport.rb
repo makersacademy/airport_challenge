@@ -1,8 +1,5 @@
 class Airport 
-  attr_reader :plane
-  attr_accessor :capacity
-
-  DEFAULT_CAPACITY = 10 
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -13,7 +10,7 @@ class Airport
     fail 'Airport full: Cannot land' if full?
 
     fail 'Cannot land: Weather is stormy' if stormy? 
-    
+
     @planes << plane
   end
 
@@ -22,9 +19,9 @@ class Airport
 
   end
 
-  # private 
+private 
   def full?
-    @planes.length >= capacity
+    @planes.length >= @capacity
   end
   
   def stormy?
@@ -33,3 +30,28 @@ class Airport
   end
 
 end
+
+# class Airport
+#   def initialize(capacity)
+#     @capacity = capacity
+#     @planes =[]
+#   end
+#   def land(plane)
+#     raise 'Cannot land plane: airport full' if full?
+#     raise 'Cannot land plane: weather is stormy' if stormy?
+#     @planes << plane
+#   end
+
+#   def take_off(plane)
+#     raise 'Cannot take off plane: weather is stormy' if stormy?
+#   end
+# end
+
+# private
+# def full?
+#   @planes.length >= @capacity
+# end
+
+# def stormy?
+#   rand(1..6) > 4
+# end
