@@ -10,16 +10,22 @@ class Airport
   end
 
   def land(plane)
+    fail "Plane already landed" if !plane.flying?
+
     fail "Airport is full" if full?
 
     fail "Cannot land in stormy weather" if stormy?
-
+    
+    plane.landing
     @planes << plane
   end
 
   def takeoff(plane)
-    fail "Cannot takeoff in stormy weather" if stormy?
+    fail "Plane already flying" if plane.flying?
 
+    fail "Cannot takeoff in stormy weather" if stormy?
+    
+    plane.takeoff
     @planes.delete(plane)
     @planes
   end
