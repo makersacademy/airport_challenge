@@ -1,42 +1,53 @@
 require 'airport.rb'
 
 describe Airport do 
-  subject(:airport) { described_class.new }
-  # it { is_expected.to respond_to :plane_landing }
+  subject(:airport) { described_class.new(5) }
+  let(:plane) {double :plane}
 
-  # it { is_expected.to respond_to :plane_takeoff }
+  describe 'Airport' do
+    it 'default airport capacity that can be overridden' do
+    end
 
-  # it { is_expected.to respond_to :weather }
+  describe '#land' do 
+    before do 
+      allow(airport).to receive(:weather?).and_return false
+    end
 
-  # it { is_expected.to respond_to :full? }
-
-  it 'instruct a plane to land at an airport' do
-    expect(airport).to respond_to(:landing).with(1).argument
+    it 'instruct a plane to land at an airport' do
+      expect(airport).to respond_to(:landing).with(1).argument
     end 
 
-  it 'instruct a plane to take off from an airport' do 
-    expect(airport).to respond_to(:take_off)#.with(1).argument
-  end 
-
-  it 'confirm that it is no longer in the airport' do
+    it 'prevents landing when full' do
+      5.times do
+        airport.landing(plane)
+      end
+      expect { airport.landing(plane) }. to raise_error 'No space to land'
+    end  
   end
-  # it 'airport has space' do 
-  #   capacity = Airport.new
-  #   expect(capacity.full?).to 
-  # end 
+  
+  describe '#take_off' do
+    before do
+      allow(airport).to receive(:weather?).and_return false 
+    end
 
-  it 'prevents landing when full' do
-    5.times { airport.landing Airport.new }
-    expect { airport.landing Airport.new }. to raise_error 'No space to land'
+    it 'instruct a plane to take off from an airport' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end 
+
+    it 'confirm that it is no longer in the airport' do
+    end
   end
 
-  it 'default airport capacity that can be overridden' do
-  end
-
-  it 'prevents take off when stormy' do
-  end
-
-  it 'prevents landing when stormy' do
-  #  expect { subject.landing }. to raise_error 'Weather is stormy'
+  describe '#weather?' do
+    it 'prevents take off when stormy' do
+      allow(airport).to receive(:weather?).and_return true
+      expect {airport.take_off(plane) }.to raise_error 'Unsafe to land, bad weather'
+    end
+    
+    it 'prevents landing when stormy' do
+      allow(airport).to receive(:weather?).and_return true
+      expect {airport.landing(plane) }.to raise_error 'Unsafe to land, bad weather'
+    end
+    end
   end
 end

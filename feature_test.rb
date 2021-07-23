@@ -1,9 +1,9 @@
 require './lib/airport.rb'
 
-x = Airport.new
-p x.plane_landing(1)
-p x.plane_landing(3)
-p x.plane_landing(5)
-p x.plane_landing(7)
-p x.plane_landing(4)
-p x.plane_landing(13)
+x = Airport.new(5)
+p x.landing(1)
+p x.landing(3)
+p x.landing(5)
+p x.landing(7)
+p x.landing(4)
+p x.landing(13)

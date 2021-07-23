@@ -1,29 +1,34 @@
 class Airport
-  attr_accessor :capacity
+attr_accessor :capacity
 
-  def initialize
-    @capacity = []
+  def initialize(capacity)
+    @capacity = capacity
+    @planes= []
   end
 
   def landing(plane)
     fail 'No space to land' if full?
 
-    fail 'Weather is stormy' if weather == "stormy"
+    fail 'Unsafe to land, bad weather' if weather?
 
-    @capacity << plane
+    @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     # remove plane from array
-    true
+    fail 'Unsafe to land, bad weather' if weather?
+    @planes.pop 
   end
 
-  def weather
+  def weather?
     weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny"]
     return weather.sample
+    rand(1..10) > 8
   end
 
+  private 
+  
   def full?
-    true if @capacity.length >= 5
+    true if @planes.length >= @capacity
   end
 end
