@@ -2,22 +2,28 @@ require 'airplane'
 class TrafficController
   attr_reader :capacity, :weather, :current_weather
 
-  @@weather = ['Stormy','Sunny','Raining']
   DEFAULT_CAPACITY = 2
 
+  def weather
+    if rand(1..10) > 7
+      return true
+    else
+      return false
+    end
+  end
+
   def take_off(plane)
-    @current_weather = @@weather.sample
-    fail "Plane is currently flying.. 🛩" if plane.flying?
-    fail "Plane cannot fly due to stormy weather!.. 🛩" if current_weather == "Stormy"
+    weather
+    fail "Plane is currently flying.. 🛩" unless plane.flying?
+    fail "Plane cannot fly due to stormy weather!.. 🛩" if weather
     p "#{plane} is taking off.. 🛩"
     plane.flying = true
     Airplane.planes_at_airport.delete(plane)
   end
 
   def land_plane(plane)
-    current_weather = @@weather.sample
-    fail "Plane is already landed.. 🛩" if not(plane.flying?)
-    fail "Plane cannot land due to stormy weather!.. 🛩" if current_weather == "Stormy"
+    fail "Plane is already landed.. 🛩" if !plane.flying?
+    fail "Plane cannot land due to stormy weather!.. 🛩" if weather?
     if Airplane.planes_at_airport.count < DEFAULT_CAPACITY
       p "#{plane} will now land.. 🛩"
       plane.flying = false
@@ -30,4 +36,4 @@ end
 
 traffic_controller = TrafficController.new()
 A1 = Airplane.new
-traffic_controller.land_plane(A1)
+traffic_controller.take_off(A1)

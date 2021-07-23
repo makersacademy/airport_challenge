@@ -1,12 +1,13 @@
-#Assume planes that are made aren't at the airport and are in flight at first
+# Assume planes that are made aren't at the airport and are in flight at first
 
 class Airplane
   attr_accessor :planes_at_airport, :flying
   @@planes_at_airport = []
 
-  def initialize()
+  def initialize
     @flying = true
   end
+
 
   def flying?
     return @flying
