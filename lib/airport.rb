@@ -1,19 +1,17 @@
 require_relative 'plane'
 
 class Airport
+  DEFAULT_CAPACITY = 20
 
   attr_reader :hangar
 
-  def initialize(capacity)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @planes_landed = 0
     @hangar = []
-
   end
 
   def land(plane)
-    raise "Cannot land plane. Airport is full." if @planes_landed >= @capacity
-    @planes_landed += 1
+    raise "Cannot land plane, this Airport is full." if @hangar.length >= @capacity
     @hangar.push(plane)
   end
 

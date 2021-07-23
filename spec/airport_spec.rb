@@ -25,7 +25,13 @@ describe Airport do
     20.times do
       airport.land(plane)
     end
-    expect{ airport.land(plane) }.to raise_error "Cannot land plane. Airport is full."
+    expect{ airport.land(plane) }.to raise_error "Cannot land plane, this Airport is full."
+  end
+
+  it "All airports should have a default capacity" do
+    airport = Airport.new()
+    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error "Cannot land plane, this Airport is full."
   end
 
 end
