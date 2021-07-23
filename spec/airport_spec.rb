@@ -56,6 +56,7 @@ describe "Airport" do
 
     it "should return the hanger is not empty after a plane is landed" do
       airport = Airport.new
+      airport.weather_set("sunny")
       airport.land(Plane.new)
       expect(airport.empty_hanger?).to(eq(false))
     end
