@@ -55,6 +55,7 @@ EDGE CASES -
 no planes in aiport
 over capacity
 instructs to land at a different airport
+** assuming things like landing at right airport not controlled at this point.
 
 that planes can only take off from airports they are in
 planes that are already flying cannot take off and/or be in an airport;
@@ -62,9 +63,9 @@ planes that are landed cannot land again and must be in an airport, etc
 may need additional variables such as inflight and landed to monitor this.
 
 Classes Needed and pseudo code
-Airport 
+Class Airport 
 INPUTS
-will need to define variables such as capacity, inflight and landed and airport at.
+will need to define variables such as capacity and an array of planes with location
 will need to assess if needed outside of class or not
 METHODS
   instructlanding_at_airport
@@ -77,8 +78,11 @@ METHODS
     check if > capacity if plane lands and return message.
   prevent_landing_when_stormy - return true if stormy.
   prevent_takeoff_when_stormy - return true if stormy ** potential to merge with above method for landing
-instruct landing
-Weather *potentially if implemented, and not just done through testing at this stage.
+  instruct landing **not sure required. parking
+OUTPUTS updated capacity, inflight (True / False), airportat
+ 
+ ** will assume weather can just be a method of the airport.
+ Weather *potentially if implemented, and not just done through testing at this stage.
   INPUTS number from 1-10, or default uses the rand(10) generation
   ##not, if not using doubles in rspec, this could take an input argument
   weather_is_stormy
