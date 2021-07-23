@@ -35,20 +35,27 @@ RSpec.describe Airport do
     end
 
     it 'Prevents take off when weather is stormy' do 
-      allow(subject.weather("stormy")).to receive("stormy").and_return 'You cannot takeoff as the weather is stormy'
-      expect(temp.weather("stormy")).to eq "You cannot takeoff as the weather is stormy."
+      expect(temp.weather("stormy_takeoff")).to eq "You cannot takeoff as the weather is stormy."
       #allow(subject.class_name(parameter_1)).to receive("parameter_1").and_return EXPECTED OUTPUT
       #expect(temp.method_name(parameter_1)).to eq EXPECTED OUTPUT
     end
 
+    it 'Prevents landing when weather is stormy' do 
+      expect(temp.weather("stormy_landing")).to eq "You cannot land as the weather is stormy"
+    end 
+
   end
 end
+
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when weather is stormy_takeoff 
 
 
 #5.
 # As an air traffic controller 
 # To ensure safety 
-# I want to prevent takeoff when weather is stormy 
+# I want to prevent takeoff when weather is stormy_takeoff 
 
 #4.
 # As the system designer

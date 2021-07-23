@@ -35,10 +35,12 @@ class Airport
   end
 
   def weather(w)
-    if w = "stormy" 
+    if w == "stormy_takeoff" 
       'You cannot takeoff as the weather is stormy.'
+    elsif w == "stormy_landing"
+      "You cannot land as the weather is stormy"
     else
-      'The weather is sunny - you are cleared for takeoff'
+      'The weather is sunny - you are cleared for takeoff and landing.'
     end 
   end
 end

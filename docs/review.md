@@ -43,7 +43,7 @@ $ irb
 
 ### Use `context` and `describe` blocks to create test scopes
 
-If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
+If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy_takeoff').
 
 `let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
 
@@ -152,17 +152,17 @@ Also, avoid additional `expect`s when stubbing.  Prefer `allow`.  Avoid the foll
 
 ```ruby
 it 'does not allow plane to take off' do
-  expect(weather).to receive(:stormy?).and_return(true)
-  expect{airport.take_off}.to raise_error 'Cannot take off due to stormy weather'
+  expect(weather).to receive(:stormy_takeoff?).and_return(true)
+  expect{airport.take_off}.to raise_error 'Cannot take off due to stormy_takeoff weather'
 end
 ```
 
-We are not _testing_ that `weather` receives `stormy?` in this test, so it should be:
+We are not _testing_ that `weather` receives `stormy_takeoff?` in this test, so it should be:
 
 ```ruby
 it 'does not allow plane to take off' do
-  allow(weather).to receive(:stormy?).and_return(true)
-  expect{subject.take_off}.to raise_error 'Cannot take off due to stormy weather'
+  allow(weather).to receive(:stormy_takeoff?).and_return(true)
+  expect{subject.take_off}.to raise_error 'Cannot take off due to stormy_takeoff weather'
 end
 ```
 
@@ -172,13 +172,13 @@ It's important that tests don't fail randomly, so it's critical that any randomn
 
 ```ruby
 describe 'storm blocks landing' do
-  allow(weather).to receive(:stormy?).and_return true
-  message = 'Unable to land due to stormy weather'
+  allow(weather).to receive(:stormy_takeoff?).and_return true
+  message = 'Unable to land due to stormy_takeoff weather'
   expect { airport.land(plane) }.to raise_error message
 end
 
 describe 'a plane can land after storm has cleared' do
-  allow(weather).to receive(:stormy?).and_return false
+  allow(weather).to receive(:stormy_takeoff?).and_return false
   expect { airport.land(plane) }.not_to raise_error
 end
 ```
@@ -287,7 +287,7 @@ Just delete commented out lines in your final submission.  Descriptive comments 
 ```ruby
 def land(plane) # this lands the plane at the airport
   fail 'Cannot land since airport is full' if full?
-  fail 'Unable to land due to stormy weather' if weather.stormy?
+  fail 'Unable to land due to stormy_takeoff weather' if weather.stormy_takeoff?
   planes << plane # this adds the plane to the planes at the airport
   self
 end
@@ -300,7 +300,7 @@ Are the above comments really necessary? Comments like this aren't tested, and s
 Replace:
 
 ```ruby
-if stormy?
+if stormy_takeoff?
   fail 'Bad weather'
 elsif full?
   fail 'Airport full'
@@ -312,7 +312,7 @@ end
 With:
 
 ```ruby
-fail 'Bad weather' if stormy?
+fail 'Bad weather' if stormy_takeoff?
 fail 'Airport full' if full?
 planes << plane
 ```
@@ -325,16 +325,16 @@ planes << plane
 Avoid ternaries and if/else to return booleans that can be returned implicitly:
 
 ```ruby
-def stormy?
-  weather == :stormy ? true : false
+def stormy_takeoff?
+  weather == :stormy_takeoff ? true : false
 end
 ```
 
 or:
 
 ```ruby
-def stormy?
-  if weather == :stormy
+def stormy_takeoff?
+  if weather == :stormy_takeoff
     true
   else
     false
@@ -342,11 +342,11 @@ def stormy?
 end
 ```
 
-`weather == :stormy` is already a boolean expression, so the ternary or if/else statement is redundant:
+`weather == :stormy_takeoff` is already a boolean expression, so the ternary or if/else statement is redundant:
 
 ```ruby
-def stormy?
-  weather == :stormy
+def stormy_takeoff?
+  weather == :stormy_takeoff
 end
 ```
 
@@ -386,7 +386,7 @@ A class should have one responsibility.  An airport is responsible for the comin
 
 ```ruby
 class Weather
-  def stormy?
+  def stormy_takeoff?
     ...
   end
 end
@@ -397,7 +397,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Unable to take off due to stormy weather' if weather.stormy?
+    fail 'Unable to take off due to stormy_takeoff weather' if weather.stormy_takeoff?
     ...
   end
 
@@ -412,10 +412,10 @@ end
 A method also should have only one responsibility.  E.g _the following method is too long_:
 
 ```ruby
-def stormy?
-  outlooks = [:stormy, :fine, :fine, :fine]
+def stormy_takeoff?
+  outlooks = [:stormy_takeoff, :fine, :fine, :fine]
   index = Random.rand(4)
-  outlooks[index] == :stormy
+  outlooks[index] == :stormy_takeoff
 end
 ```
 
@@ -424,18 +424,18 @@ Although there are clearly several other issues with this method, the example is
 * It defines the outlooks,
 * it handles the random number selection,
 * it extracts an outlook from the outlooks array and
-* it translates the random selection to a boolean to indicate `stormy?`
+* it translates the random selection to a boolean to indicate `stormy_takeoff?`
 
 It can be refactored to have only one responsibility.  Although this introduces more code, the goal is _readability_ and reducing cognitive overload when scanning the code:
 
 ```ruby
-def stormy?
-  random_outlook == :stormy
+def stormy_takeoff?
+  random_outlook == :stormy_takeoff
 end
 
 private
 
-OUTLOOKS = [:stormy, :fine, :fine, :fine]
+OUTLOOKS = [:stormy_takeoff, :fine, :fine, :fine]
 
 def random_outlook
   OUTLOOKS.sample
