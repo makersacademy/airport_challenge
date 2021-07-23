@@ -60,7 +60,6 @@ describe Plane do
     it "doesn't take off when it has already taken off" do
       flightA = Plane.new
       gatwick = Airport.new
-      allow(flightA.randWeather).to receive(:sample) {"Sunny"}
       flightA.take_off(gatwick)
       expect(flightA.take_off(gatwick)).to eq("This plane is already flying!")
     end
