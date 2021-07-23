@@ -4,12 +4,24 @@ class Airport
   DEFAULT_CAPACITY = 20
   
   attr_reader :capacity
-  def initialize(capacity = DEFAULT_CAPACITY, weather = "sunny")
+  attr_reader :weather
+  def initialize(capacity = DEFAULT_CAPACITY, weather = nil)
     @capacity = capacity
     @hanger = Array.new
-    @weather = weather
+    
+    if weather == nil
+      @weather = random_weather()
+    else 
+      @weather = weather
+    end
   end
 
+  def random_weather
+    if rand(10) == 9
+      return "stormy"
+    end
+    return "sunny"
+  end
   def weather_set(weather)
     @weather = weather
   end
@@ -24,7 +36,7 @@ class Airport
   def takeoff
     fail "The're no planes to take off in the hanger" if empty_hanger?
     fail "The weather is too rough to takeoff" if stormy?
-    
+
     @hanger.pop()
   end
 
