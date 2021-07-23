@@ -1,5 +1,6 @@
 class Airport
 attr_accessor :capacity
+attr_reader :planes
 
   def initialize(capacity)
     @capacity = capacity
@@ -15,20 +16,18 @@ attr_accessor :capacity
   end
 
   def take_off(plane)
-    # remove plane from array
     fail 'Unsafe to land, bad weather' if weather?
-    @planes.pop 
-  end
-
-  def weather?
-    weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny"]
-    return weather.sample
-    rand(1..10) > 8
+    return plane
+    @planes.delete(plane) 
   end
 
   private 
   
   def full?
-    true if @planes.length >= @capacity
+    @planes.length >= @capacity
+  end
+
+  def weather?
+    rand(1..10) > 8
   end
 end

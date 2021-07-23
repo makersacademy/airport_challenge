@@ -21,7 +21,7 @@ describe Airport do
       5.times do
         airport.landing(plane)
       end
-      expect { airport.landing(plane) }. to raise_error 'No space to land'
+      expect { airport.landing(plane) }.to raise_error 'No space to land'
     end  
   end
   
@@ -34,7 +34,8 @@ describe Airport do
       expect(airport).to respond_to(:take_off).with(1).argument
     end 
 
-    it 'confirm that it is no longer in the airport' do
+    it 'confirm that plane is no longer in the airport after take off' do
+      expect { subject.take_off(planes) }.not_to include subject
     end
   end
 
