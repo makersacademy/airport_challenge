@@ -1,15 +1,14 @@
 class Airport
-attr_accessor :capacity
-attr_reader :planes
+  attr_accessor :capacity
+  attr_reader :planes
 
   def initialize(capacity)
     @capacity = capacity
-    @planes= []
+    @planes = []
   end
 
   def landing(plane)
     fail 'No space to land' if full?
-
     fail 'Unsafe to land, bad weather' if weather?
 
     @planes << plane

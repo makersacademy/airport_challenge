@@ -1,3 +1,30 @@
+### Progress:
+I have been able to run my code and make it work. However, when attempting to write a test to confirm the plane is no longer in the airport, it returned an error due to using a double in the matcher. 
+
+**Incomplete User Story Test**
+I would like a default airport capacity that can be overridden as appropriate
+
+**RSpec Error**
+1) Airport Airport #take_off confirm that plane is no longer in the airport after take off
+     Failure/Error: expect { airport.take_off(plane) }.not_to include plane
+       You must pass an argument rather than a block to `expect` to use the provided matcher (include #<Double :plane>), or the matcher must implement `supports_block_expectations?`.
+     # ./spec/airport_spec.rb:38:in `block (4 levels) in <top (required)>'
+
+**Rubocop - issues unresolved**
+  lib/airport.rb:18:5: C: Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
+    fail 'Unsafe to land, bad weather' if weather?
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/airport.rb:20:5: W: Lint/UnreachableCode: Unreachable code detected.
+    @planes.delete(plane) 
+    ^^^^^^^^^^^^^^^^^^^^^
+
+### Edge cases: 
+I was able to map these out however, did not get time to account for them.
+
+### Coverage
+93.75%
+
+### Below are the instructions provided by Makers Academy for this challenge
 Airport Challenge
 =================
 
