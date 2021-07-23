@@ -1,4 +1,4 @@
-require_relative "../../lib/airport.rb"
+require "airport"
 
 describe "Airport" do
   describe "#land" do
@@ -8,9 +8,15 @@ describe "Airport" do
       expect(airport.empty_hanger?).to(eq(false))
     end 
     it "should return an error when you try to land a plane in a full hanger" do
-      airport = Airport.new
-      airport.capacity.times(airport.land(Plane.new))
-      expect{airport.land(Plane.new)}.to(raise_error("The hanger is full!"))
+      airport = Airport.new()
+      20.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to(raise_error("The hanger is full!"))
+    end
+
+    it "should allow you to pass an adjusted capacity" do
+      airport = Airport.new(50)
+      airport.capacity.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to(raise_error("The hanger is full!"))
     end
     
   end
