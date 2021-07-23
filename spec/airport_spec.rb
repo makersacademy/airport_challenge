@@ -1,10 +1,10 @@
 require 'airport'
 describe Airport do
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
-  it { is_expected.to respond_to(:land).with(1).argument}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+  it { is_expected.to respond_to(:land).with(1).argument }
 
-  it { is_expected.to respond_to(:take_off).with(1).argument}
+  it { is_expected.to respond_to(:take_off).with(1).argument }
 
   it 'plane lands' do
     allow(airport).to receive(:weather) { 'sunny' }

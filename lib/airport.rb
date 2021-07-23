@@ -11,12 +11,14 @@ class Airport
 
   def land(plane)
     fail 'the weather is stormy, cannot land' if weather == 'stormy'
-    fail 'hanger already full' if  self.full?
-      hanger.push(plane)
+    fail 'hanger already full' if full?
+
+    hanger.push(plane)
   end
 
   def take_off(plane)
     fail 'the weather is stormy, cannot take off' if weather == 'stormy'
+    
     hanger.delete(plane)
   end 
 
