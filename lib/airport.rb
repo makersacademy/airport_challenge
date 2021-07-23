@@ -5,7 +5,7 @@ class Airport
     @capacity = []
   end
 
-  def plane_landing(plane)
+  def landing(plane)
     fail 'No space to land' if full?
 
     fail 'Weather is stormy' if weather == "stormy"
@@ -13,13 +13,13 @@ class Airport
     @capacity << plane
   end
 
-  def plane_takeoff
+  def take_off
     # remove plane from array
     true
   end
 
   def weather
-    weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy"]
+    weather = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny"]
     return weather.sample
   end
 
