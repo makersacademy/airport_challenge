@@ -3,7 +3,7 @@ class Airport
 
   def initialize
     @planes = []
-    @capacity = capacity
+    @capacity = 5
   end
 
   def land
@@ -25,13 +25,13 @@ class Airport
   end
 
   def full_hangar?(len)
-    fail 'The hangar is full' unless @planes.length > 6
+    fail 'The hangar is full' unless @planes.length > @capacity
     # else 'There is space available in the hangar'
   end
 
   def airport_capacity(size)
     @capacity = size
-    p @capacity
+    "The airport's capacity is #{@capacity}"
   end
 
   
