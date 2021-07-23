@@ -36,13 +36,14 @@ class Airport
       false
     end  
   end 
-  
+
   def is_stormy?
     weather_number = rand(1..10)
     weather_number > 8 ? true : false
   end  
 
   private
+
   def full?
     @hangar.length == @hangar_capacity
   end  

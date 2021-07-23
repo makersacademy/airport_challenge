@@ -15,7 +15,7 @@ describe Airport do
       expect(airport.hangar_capacity).to eq(20)
     end
   end
-  
+
   describe "#land" do
     
     it "responds to land plane method" do
@@ -83,5 +83,13 @@ describe Airport do
       airport.land(plane)
       expect(airport.in_airport?(plane)).to be true
     end 
-  end  
+  end
+  
+  describe "#is_stormy?" do
+
+    it "states whether it is stormy or not, providing a boolean- private method" do
+      airport = (Airport.new).is_stormy?   
+      expect([true, false]).to include airport
+    end  
+  end 
 end
