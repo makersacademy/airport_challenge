@@ -1,29 +1,86 @@
+require_relative 'plane'
 
 class Airport
-    attr_reader :planes
-  #need to set capacity of airport as global constant
-    def initialize
-    #no. of planes at the airport
-    @planes = 0
-    
+  attr_reader :array_of_planes, :airport
+  attr_writer :capacity
+  
+  def initialize
+    # class instance so that planes in the air and landed can be tracked.
+    @@array_of_planes = []
+    # @planecount = 0
+    # instance variable for capacity as it will be airport specific
+    p @capacity = 20
+  end
+  
+  def update_plane_array(plane, status, airport)
+
+    @@array_of_planes.push([[plane, status, airport]])
+
+  end
+  
+  def view_planes
+
+    @@array_of_planes
+
+  end
+  
+  def override_capacity(capacity)
+
+    @capacity = capacity
+
+  end
+  
+  def newplane
+
+    @airport = self.object_id 
+    newplane = Plane.new
+    @@array_of_planes.push([newplane.object_id, newplane.status, self.object_id])
+    @@array_of_planes.count
+
+  end
+  
+  def checkhascapacity
+
+    # checks filtered planes array for the airport, is landed and is less than capacity       
+    @@array_of_planes.select { |item| item.last == self.object_id }.select { |item| item.include?("landed")}.count
+      if  @@array_of_planes.select { |item| item.last == self.object_id }.select { |item| item.include?("landed")}.count < @capacity
+        # if @@array_of_planes.count(self.object_id).count @capacity <= 20 # needs to check for the airport
+        then true # returns capacity is available
+      else false # returns capacity is not available
+      end
+      
   end
 
-  def instructlanding_at_airport(weather, plane)
-   if weatherok(weather) == true
-    #land the plane - update the planes status and airport values
-    #planetoupdate = plane
-    #planetoupdate.status = "landed"
-    #planetoupdate.lastairport = self
-    plane.status = "landed"
-    plane.lastairport = self
-    #increment the airport landed at plane list by 1
-    @planes += 1
-    return true
-   else
-    return false
-   end    
+  def instructlanding_at_airport(weather, plane = "999", airport) # default plane condition can be followed up in an exception report.
+    index_plane_array = @@array_of_planes.find_index{|a| a[0] == plane} 
+    fail "the plane is already landed" if @@array_of_planes[index_plane_array].include?("landed") == true 
+    if weatherok(weather) == true && checkhascapacity == true
+      # atc selects plane to land assigns airport to land at.
+      # based on plane no. and airport from ATC and set status to landed
+      index_plane_array = @@array_of_planes.find_index{|a| a[0] == plane}
+      @@array_of_planes[index_plane_array] = ([plane, "landed", airport])
+      # returns no longer in airport = true 
+      return true
+    else
+      return false
+    end    
   end
-
+  
+  def instruct_takeoff_from_airport(weather, plane, airport)
+    index_plane_array = @@array_of_planes.find_index{|a| a[0] == plane} 
+    fail "the plane is flying, cannot take off" if @@array_of_planes[index_plane_array].include?("flying") == true 
+    if weatherok(weather) == true 
+      # atc selects plane to land assigns airport to land at.
+      # based on plane no. and airport from ATC and set status to flying and set airport to SKY
+      @@array_of_planes[index_plane_array] = ([plane, "flying", airport])
+      @@array_of_planes
+      # returns no longer in airport = true
+      return true
+    else
+      return false
+    end    
+  end
+ 
   def weatherok(weather = rand(10))
     if weather == 10
       false
@@ -33,15 +90,12 @@ class Airport
   end
 end
 
- p airport = Airport.new
- p airport.weatherok(10)
- p airport.weatherok(9)
- p @airport_array
-# require 'Airport'
-#   describe 'Air Traffic Control' do
-#     it 'tells the plane to land at the airport when not stormy' do
-#     airport1 = Airport.new
-#    #note not passing airport at this time
-#     expect(airport.instructlanding_at_airport).to eq(true)
-#   end
-#   end
+
+
+
+
+
+  
+
+
+

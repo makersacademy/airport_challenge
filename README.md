@@ -1,4 +1,50 @@
-Airport Challenge (updates below the task description)
+Project Title - Airport Challenge (Makers)
+
+Motivation
+End of week 3 test to allow calibration of current learning status and allow setting of goals in future weeks.
+
+Build status
+v0.1 Submitted intial non working copy 23rd July 13:45 (got stuck with my setup of the classes
+v0.2 Submitted updated working copy 25th July pm with updated readme.md and working tests and code.
+
+Code style
+Ruby
+
+Screenshots
+not provided
+
+Installation
+lib folder required for plane.rb and Airport.rb
+spec folder required for Airport_spec.rb and plane_spec.rb which are the RSpec tests.
+
+Provide step by step series of examples and explanations about how to get a development env running. (to be provided)
+
+API Reference
+none
+
+Tests
+
+from airport folder, rspec spec/**specfilenamesto be inserted here**
+
+How to use?
+
+Currently not operational in itself, but passes RSPEC testing, and a command line interface could be written to handle operating the major functions.
+
+Contribute
+
+I'd love any feedback please. I still need to refactor the code, and run rubocop at this stage
+
+Credits
+
+I'm proud to say that i completed this myself, with the knowledge that my coach was there to help me if i really needed it. Thanks to Katerina Georgiou for helping me out of the starting blocks when i could not work out why GitHub was telling me i did not have permissions to fork the repo. It turned out i did, but what just looked like my name and git hub id was a link to for the repo (but did not explicitly say this). One of lifes funnier moments now! o:))
+
+License
+
+no known license requirements.
+
+The challenge, my approach and thoughts are below:
+
+Airport Challenge (updates below the provided introduction on how task approached and status)
 =================
 
 ```
@@ -70,7 +116,7 @@ Please create separate files for every class, module and test suite.
 
 In code review we'll be hoping to see:
 
-* All tests passing
+* All tests passing 
 * High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
 
@@ -89,6 +135,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 ANALYSED user stories for nouns and verbs
+_________________________________________
+
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -127,6 +175,8 @@ verbs = ensure, prevent
 nouns = landing, weather
 
 Potential actions from analysis:
+________________________________
+
 air traffic controller  
     instructlanding_at_airport
     instruct_takeoff_from_airport
@@ -142,17 +192,21 @@ Note: requirement for weather to be emulated - potentially in tests first.
 INPUTS
 
 
-EDGE CASES - 
-no planes in aiport
+EDGE CASES 
+__________
+
+no planes in airport
 over capacity
-instructs to land at a different airport
-** assuming things like landing at right airport not controlled at this point.
+instructs to land at a different airport (assuming this can also be valid, e.g. technical difficulty so not programming in)
+** assuming things like landing at right airport not controlled at this point by the program but by ATC.
 that planes can only take off from airports they are in
 planes that are already flying cannot take off and/or be in an airport;
 planes that are landed cannot land again and must be in an airport, etc
-may need additional variables such as inflight and landed to monitor this.
+note: may need additional variables such as inflight status (flying, landed) and landed to monitor this.
 
 Classes Needed and PSEUDO code
+______________________________
+
 Class Airport 
 INPUTS
 will need to define variables such as capacity and an array of planes with location
@@ -171,16 +225,29 @@ METHODS
   instruct landing **not sure required. parking
 OUTPUTS updated capacity, inflight (True / False), airportat
 
-Class Weather *potentially if implemented, and not just done through testing at this stage.
+Class Weather *have done as a method of airport as required to be generated for each airport on demand. Just in case needs to be stored later.
   INPUTS number from 1-10, or default uses the rand(10) generation
-  ##not, if not using doubles in rspec, this could take an input argument
+  #, this could take an input argument to allow control during testing and eradicate random results impacting rspec testing.
   weather_is_stormy
-    Returns stormy rarely, and OK otherwise. Potential to use rand(10) to generate this where 10 is Stormy. Return True if stormy
+    Returns stormy rarely, and OK otherwise. Potential to use rand(10) to generate this where 10 is Stormy (so 10 % currently). Return True if stormy
   OUTPUT TRUE / FALSE
+
+  Key Learnings
+  _____________
 
   Realised about half way through that struggled to control the plane information in an array, so created a Plane Class
   Plane Class
   Initialises last airport, assigned plane no, and status (flying, landed)
   It also returns this information on request, or the values can be directly updated.
 
-  This brought some complexity in and i struggled to make the necessary changes to the rspec and code to make this operational. I believe that once i can get the airport class reading the people data consistently then i can make progress on finishing the task. It was the introduction of passing multiple variables that has hamstrung my progress in diagnosing the issue. Also should have regularly saved changes to show that all tests were working, so a lesson learnt going forwards.
+  This brought some complexity in and i struggled to make the necessary changes to the rspec and code to make this operational.
+  Initial thoughts:
+   I believe that once i can get the airport class reading the people data consistently then i can make progress on finishing the task. It was the introduction of passing multiple variables that has hamstrung my progress in diagnosing the issue. Also should have regularly saved changes to show that all tests were working, so a lesson learnt going forwards.
+  Thoughts at 25th Jul:
+   I made real progress once i created a class variable @@array_of_planes. I struggled at times with using self.object_id just because you need to be clear when calling it what you are calling it on and so i was getting nil results in my tests due to this. Implementing checks for overriding capacity (by a class instance variable) was fairly straightforward as well as the checks for for takeoff and landing to ensure the plane is in the correct status. 
+   
+   Going forwads i need to create more programming muscle memory as time was taken and lost during writing the code to ensure the correct functions were called. The code as this point needs refactoring and rubocopping. Certainly learning how to use doubles and stubs will help with this. 
+   
+   Overall i'm really happy with the progress i've made on reworking the code and getting the tests to pass.  Another goal is to ensure i'm systematically checking the error messages and focussing on the issue at hand, again i now feel like the intervention i made to get the code to this working state is supportive of that goal and demonstrates wel my current level of understanding of Ruby and RSpec on a completely independant project.
+
+   If you've got this far, thankyou so much!
