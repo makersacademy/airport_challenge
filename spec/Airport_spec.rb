@@ -1,4 +1,4 @@
-require 'Airport'
+require 'airport'
 require 'plane'
   describe 'ATC assessing landing and takeoff if stormy' do
    #call prevent landing when stormy then do not land if true, else land, set airport variable, , set landed/flying variable
@@ -6,8 +6,7 @@ require 'plane'
       airport1 = Airport.new
       #plane1 = Plane.new
       @@array_of_planes = [[0020, "flying", 0100]]
-      expect(airport1.instructlanding_at_airport(9, 0020, 0100)).to eq(true)
-      
+      expect(airport1.instructlanding_at_airport(9, 0020, 0100)).to eq(true) 
     end
 
     it 'ATC tells the plane not land at the airport when it is stormy' do
@@ -17,12 +16,12 @@ require 'plane'
       @@array_of_planes = [[0020, "flying", 0100]]
       expect(airport1.instructlanding_at_airport(10, 0020, 0100)).to eq(false)
     end
+
     it 'ATC tells the plane to take off from the airport when not stormy and confirm takeoff' do
       airport1 = Airport.new
       #plane1 = Plane.new
       @@array_of_planes = [[0020, "landed", 0100]]
       expect(airport1.instruct_takeoff_from_airport(9, 0020, 0100)).to eq(true)
-      
     end
 
     it 'ATC tells the plane to take off from the airport when it is stormy and is told it cannot' do
@@ -36,6 +35,7 @@ require 'plane'
   end
 
   describe 'ATC ensuring that if capacity full at airport landing does not take place' do
+
     it 'ATC prevents landing when the airport is full (default capacity)' do
       airport1 = Airport.new
       airport2 = Airport.new
@@ -79,9 +79,10 @@ require 'plane'
       plane1 = airport1.newplane
       @@array_of_planes = [[0020, "flying", 0100]]
       expect(airport2.instructlanding_at_airport(4, 0020, airport1.object_id)).to eq(true)
-   end
+    end
 
   end
+
 # EDGE CASES from challenge
   describe 'planes that are flying cannot takeoff, and planes that are landed must be in an airport' do
     it 'the plane that is flying cannot take off' do
@@ -99,17 +100,6 @@ require 'plane'
         expect {airport1.instructlanding_at_airport(9, 0020, 100)}.to raise_error("the plane is already landed")
     end
   end
-   
-    #it 'records the airport that it landed at' do
-       #airport1 = Airport.new
-      
-      # expect(airport.instructlanding_at_airport(9)).to eq(false, "landed")
-    #end
-
-    # it 'updates the plane count' do
-    #    airport = Airport.new
-    #    # work out how to match @planecount value        
-    #   expect(airport.instructlanding_at_airport(9)).to eq(false, 1)
-    # end
+  
    
  

@@ -6,9 +6,10 @@ End of week 3 test to allow calibration of current learning status and allow set
 Build status
 v0.1 Submitted intial non working copy 23rd July 13:45 (got stuck with my setup of the classes
 v0.2 Submitted updated working copy 25th July pm with updated readme.md and working tests and code.
+v0.3 Submitted 25th July with Robocop completed and All tests passing coverage at 87.50% for plane class, and 94.74% for airport class. not refactored at this point.
 
 Code style
-Ruby
+Ruby, RSpec, rubocop.
 
 Screenshots
 not provided
@@ -249,5 +250,9 @@ Class Weather *have done as a method of airport as required to be generated for 
    Going forwads i need to create more programming muscle memory as time was taken and lost during writing the code to ensure the correct functions were called. The code as this point needs refactoring and rubocopping. Certainly learning how to use doubles and stubs will help with this. 
    
    Overall i'm really happy with the progress i've made on reworking the code and getting the tests to pass.  Another goal is to ensure i'm systematically checking the error messages and focussing on the issue at hand, again i now feel like the intervention i made to get the code to this working state is supportive of that goal and demonstrates wel my current level of understanding of Ruby and RSpec on a completely independant project.
+
+   Running Rubocop was actually great, and it provided some great refactoring and tips on guard clauses. This has been run on both .rb files, but not aware at this point if it can be run on rspec files, i tried but it did not run. Although test coverage was lower on plane (87.50%, i had tested the second def statement). The test coverage was 99.03% on the airport.rb.
+
+   Finally, i did not commit my small changes enough. I have promised myself to make this a goal and work on this in following weeks. A great habit would be to make commit at each test pass with rubocop performed.
 
    If you've got this far, thankyou so much!
