@@ -2,6 +2,9 @@ require_relative "../lib/airport.rb"
 require_relative "../lib/plane.rb"
 
 describe Airport do
+  
+  let(:airport) {Airport.new(false)}
+  let(:plane) {Plane.new}
 
   describe "#initialize" do
 
@@ -11,7 +14,6 @@ describe Airport do
     end
 
     it "if user does not input capacity, it will be set to 20" do
-      airport = Airport.new(false)
       expect(airport.hangar_capacity).to eq(20)
     end
   end
@@ -19,49 +21,41 @@ describe Airport do
   describe "#land" do
     
     it "responds to land plane method" do
-      airport = Airport.new(false)
       expect(airport).to respond_to(:land).with(1).argument
     end
 
     it "lands a plane" do
-      airport = Airport.new(false)
-      plane = Plane.new
       expect(airport.land(plane)).to eq [plane]
     end
 
     it "raises an error when the hangar is full(hangar_capacity in hangar)" do
-      airport = Airport.new(false)
-      airport.hangar_capacity.times{airport.land(Plane.new)}
-      expect{airport.land(Plane.new)}.to raise_error("Cannot land, Airport is full")
+      airport.hangar_capacity.times{airport.land(plane)}
+      expect{airport.land(plane)}.to raise_error("Cannot land, Airport is full")
     end
 
     it "raises an error when the weather is stormy" do
       airport = Airport.new(true)
-      expect{airport.land(Plane.new)}.to raise_error("Cannot land, weather is stormy")
+      expect{airport.land(plane)}.to raise_error("Cannot land, weather is stormy")
     end  
   end
 
   describe "#take_off" do
 
     it "responds to take_off plane method" do
-      airport = Airport.new(false)
       expect(airport).to respond_to(:take_off)
     end
     
     it "allows a landed plane to take_off from hangar" do
-      airport = Airport.new(false)
-      airport.land(Plane.new)
+      airport.land(plane)
       expect(airport.take_off).to be_instance_of(Plane)
     end
 
     it "raises an error when the hangar is empty(0 planes in hangar)" do
-      airport = Airport.new(false)
       expect{airport.take_off}.to raise_error("Cannot take off, there are no planes in the hangar")
     end  
 
     it "raises an error when the weather is stormy" do
-      airport = Airport.new(false)
-      airport.land(Plane.new)
+      airport.land(plane)
       airport.weather_is_stormy = true
       expect{airport.take_off}.to raise_error("Cannot take off, weather is stormy")
     end  
@@ -70,16 +64,12 @@ describe Airport do
   describe "#in_airport?" do
 
     it "checks whether plane has indeed taken off" do
-      airport = Airport.new(false)
-      plane = Plane.new
       airport.land(plane)
       airport.take_off
       expect(airport.in_airport?(plane)).to be false
     end  
 
     it "checks whether plane in the airport/hangar" do
-      airport = Airport.new(false)
-      plane = Plane.new
       airport.land(plane)
       expect(airport.in_airport?(plane)).to be true
     end 
