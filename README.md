@@ -1,3 +1,14 @@
+List of sources used (non exhaustive)
+​​https://gist.github.com/kyuden/8889700 - information on using describe vs context to make test more readable
+https://www.youtube.com/watch?v=Vg0cFVLH_EM - watched some of this video but got confused as they were doing a feature test which I had no idea about so moved on from this vid - gave me a good starting point though 
+https://github.com/makersacademy/course/blob/main/boris_bikes/walkthroughs/22.md - went through the boris bikes walkthrough to give me more understanding on the process of writing tests
+https://www.tutorialspoint.com/rspec/rspec_stubs.htm / https://www.youtube.com/watch?v=6r-3IqeH8qo - went through these tutorials to understand rspec mocks and stubs 
+https://codereporter.de/?p=54 - used this website to try and understand ‘​​Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.’
+https://www.honeybadger.io/blog/a-beginner-s-guide-to-exceptions-in-ruby/ - how to raise error messages 
+
+**need to understanding this error message: Failure/Error: airport.land(plane)
+  `airport` is not available on an example group (e.g. a `describe` or `context` block). It is only available from within individual examples (e.g. `it` blocks) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc).
+
 Airport Challenge
 =================
 
@@ -13,21 +24,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
