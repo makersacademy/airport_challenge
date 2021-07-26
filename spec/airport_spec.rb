@@ -1,34 +1,36 @@
-require_relative  "../airport.rb"
-require_relative  "../plane.rb"
+require_relative  "../lib/airport.rb"
+require_relative  "../lib/plane.rb"
 
 
 describe Airport do
+  let(:plane) {Plane.new}
+  let(:airport) {Airport.new}
+  
   it "instructs a plane to land at an airport" do
-    airport1 = Airport.new
-    plane1 = Plane.new
-    airport1.land(plane1)
-    allow(airport1).to receive(:stormy?).and_return false
-    expect(airport1.landed_planes). to eq [plane1]
+    
+    airport.land(plane)
+    allow(airport).to receive(:stormy?).and_return false
+    expect(airport.landed_planes). to eq [plane]
   end
 
   it "instructs a plane to take off and confirms it is no longer in the airport" do
-    airport1 = Airport.new
-    plane1 = Plane.new
-    allow(airport1).to receive(:stormy?).and_return false
+  
     
-    airport1.land(plane1)
-    airport1.take_off(plane1)
-    expect(airport1.landed_planes).to eq []
+    allow(airport).to receive(:stormy?).and_return false
+    airport.land(plane)
+    allow(airport).to receive(:stormy?).and_return false
+    airport.take_off(plane)
+    allow(airport).to receive(:stormy?).and_return false
+    expect(airport.landed_planes).to eq []
    
     plane2 = Plane.new
-    airport1.land(plane2)
-    allow(airport1).to receive(:stormy?).and_return false
-    expect(airport1.take_off(plane2)).to eq "#{plane2} has taken off and is no longer in the airport" 
+    airport.land(plane2)
+    allow(airport).to receive(:stormy?).and_return false
+    expect(airport.take_off(plane2)).to eq "#{plane2} has taken off and is no longer in the airport" 
   end
 
   it "prevents landing when airport is full" do
-    airport = Airport.new()
-    plane = Plane.new
+  
     allow(airport).to receive(:stormy?).and_return false
     
     25.times do
