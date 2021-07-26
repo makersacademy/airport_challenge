@@ -3,7 +3,7 @@ require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new(10) }
-  let(:plane) { double :plane }
+  let(:plane) { Plane.new }
 
   it 'plane lands at airport' do
     expect(subject).to respond_to(:land).with(1).argument
@@ -25,16 +25,16 @@ describe Airport do
   #     return 
   context 'when stormy' do
     it 'plane cannnot take_off in stormy weather' do
-      allow(airport). to receive(:stormy?).and_return(true)
+      allow(airport). to receive(:stormy?).and_return true
       if :stormy == true
-        expect { airport.take_off(plane) }.to raise_error 'Cannot take off: Weather is stormy'
+        expect { airport.take_off :plane }.to raise_error 'Cannot take off: Weather is stormy'
       end
     end
  
     it 'plane cannot land in stormy weather' do
-      allow(subject). to receive(:stormy?).and_return(true)
+      allow(subject). to receive(:stormy?).and_return true
       if :stormy == true 
-        expect { subject.land }. to raise_error 'Cannot land: Weather is stormy'
+        expect { subject.land :plane }. to raise_error 'Cannot land: Weather is stormy'
     end
   end
 

@@ -7,11 +7,9 @@ class Airport
   end
 
   def land(plane)
-     fail 'Cannot land: Weather is stormy' if stormy?
+    fail 'Cannot land: Weather is stormy' if stormy?
      
-     fail 'Airport full: Cannot land' if full?
-
-   
+    fail 'Airport full: Cannot land' if full?
 
     @planes << plane
   end
@@ -21,7 +19,7 @@ class Airport
 
   end
 
-private 
+# private 
   def full?
     @planes.length >= @capacity
   end
