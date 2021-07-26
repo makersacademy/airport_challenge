@@ -1,6 +1,6 @@
-# this is the airport code
-
 class Airport
+  def initialize(airport_size)
+  end
   def land(plane)
   end
   def takeoff(plane)
