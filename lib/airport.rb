@@ -3,7 +3,7 @@ require_relative "plane"
 class Airport
   attr_accessor :hangar , :hangar_capacity, :weather_is_stormy
 
-  def initialize(weather_is_stormy = self.is_stormy?, hangar_capacity = 20)
+  def initialize(weather_is_stormy = is_stormy?, hangar_capacity = 20)
     @weather_is_stormy =  weather_is_stormy
     @hangar_capacity = hangar_capacity
     @hangar = []
