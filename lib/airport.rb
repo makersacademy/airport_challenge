@@ -1,5 +1,8 @@
 class Airport
-
+def initialize(capacity)
+    @planes =[]
+  end
+  
   def land(plane)
     raise 'Cannot land plane due to full capacity' if full?
     raise 'Cannot land plane due to stormy weather' if stormy?
