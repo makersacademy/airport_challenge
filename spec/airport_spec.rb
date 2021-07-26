@@ -15,7 +15,7 @@ describe Airport do
 
   it 'airport full - planes cannot land' do
     Airport::DEFAULT_CAPACITY.times do
-    airport.land(plane)
+    airport.land :plane
     expect {airport.land :plane } .to raise_error 'Airport full: Cannot land'
     end
   end
@@ -36,4 +36,5 @@ describe Airport do
     end
 
 end
+
 end
