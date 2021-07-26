@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :landing_strip, :capacity, :weather, :DEFAULT_CAPACITY
+  attr_reader :landing_strip, :capacity, :DEFAULT_CAPACITY
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
