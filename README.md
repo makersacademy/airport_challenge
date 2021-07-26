@@ -6,13 +6,13 @@ End of week 3 test to allow calibration of current learning status and allow set
 Build status
 v0.1 Submitted intial non working copy 23rd July 13:45 (got stuck with my setup of the classes
 v0.2 Submitted updated working copy 25th July pm with updated readme.md and working tests and code.
-v0.3 Submitted 25th July with Robocop completed and All tests passing coverage at 87.50% for plane class, and 94.74% for airport class. not refactored at this point.
+v0.3 Submitted 25th July with Rubocop completed and All tests passing coverage at 87.50% for plane class, and 94.74% for airport class. not refactored at this point.
 
 Code style
 Ruby, RSpec, rubocop.
 
 Screenshots
-not provided
+not provided.
 
 Installation
 lib folder required for plane.rb and Airport.rb
