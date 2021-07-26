@@ -5,15 +5,10 @@ class TrafficController
   DEFAULT_CAPACITY = 2
 
   def weather
-    if rand(1..10) > 7
-      return true
-    else
-      return false
-    end
+    rand(1..10) > 7
   end
 
   def take_off(plane)
-    weather
     fail "Plane is currently flying.. 🛩" unless plane.flying?
     fail "Plane cannot fly due to stormy weather!.. 🛩" if weather
     p "#{plane} is taking off.. 🛩"
@@ -32,6 +27,7 @@ class TrafficController
       return "Plane cannot land due to the max capacity being reached"
     end
   end
+
 end
 
 traffic_controller = TrafficController.new()
