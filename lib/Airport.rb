@@ -20,7 +20,8 @@ class Airport
   # potential code to add if require display of the plane list
   # def view_planes
   # @@array_of_planes
-  # end
+
+  #end
   
   def override_capacity(capacity)
 
@@ -40,10 +41,10 @@ class Airport
   def checkhascapacity
 
     # checks filtered planes array for the airport, is landed and is less than capacity       
-    @@array_of_planes.select { |item| item.last == object_id }.
-                      select { |item| item.include?("landed") }.count
-    @@array_of_planes.select { |item| item.last == object_id }.
-                      select { |item| item.include?("landed") }.count < @capacity
+    # @@array_of_planes.select { |item| item.last == object_id && item.include?("landed")}.count
+    # @@array_of_planes.select { |item| item.last == object_id }.
+    #                   select { |item| item.include?("landed") }.count
+    @@array_of_planes.select { |item| item.last == object_id && item.include?("landed") }.count < @capacity
     
     # returns capacity is available = true
           
