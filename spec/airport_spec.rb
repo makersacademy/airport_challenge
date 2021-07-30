@@ -11,4 +11,5 @@ describe Airport do
   end
 
   it { is_expected.to have_attributes(:planes => []) }
+  it { is_expected.to respond_to(:clear_landing, :clear_takeoff).with(1).argument }
 end
