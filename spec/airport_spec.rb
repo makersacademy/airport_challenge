@@ -36,7 +36,8 @@ describe Airport do
     expect { subject.clear_for_takeoff(plane) }.to raise_error 'Plane is already in flight'
   end
 
-  # it 'prevents planes from landing when at full capacity' do
-  #   expect
-  # end
+  it 'prevents planes from landing when at full capacity' do
+    full_airport = Airport.new 0
+    expect { full_airport.clear_for_landing @plane_in_flight }.to raise_error 'Airport at capacity'
+  end
 end

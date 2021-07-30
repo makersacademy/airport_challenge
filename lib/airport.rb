@@ -9,6 +9,7 @@ class Airport
 
   def clear_for_landing(plane)
     raise "Plane is not in flight" unless plane.in_flight?
+    raise "Airport at capacity" if full?
     plane.land
     @planes << plane
   end
@@ -19,7 +20,9 @@ class Airport
     @planes.delete plane
   end
 
-  # def full?
-  #   planes.size == @capacity
-  # end
+  private
+  
+  def full?
+    planes.size == @capacity
+  end
 end
