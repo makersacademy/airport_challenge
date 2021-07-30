@@ -11,6 +11,7 @@ class Airport
     raise "Plane is not in flight" unless plane.in_flight?
     raise "Unsafe landing conditions" unless safe?
     raise "Airport at capacity" if full?
+
     plane.land
     @planes << plane
   end
@@ -19,6 +20,7 @@ class Airport
     raise "Plane is already in flight" if plane.in_flight?
     raise "Plane not at airport" unless @planes.include? plane
     raise "Unsafe takeoff conditions" unless safe?
+
     plane.takeoff
     @planes.delete plane
   end
