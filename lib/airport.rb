@@ -1,7 +1,9 @@
+require 'weather'
+
 class Airport
   attr_accessor :capacity, :planes, :weather
 
-  def initialize(capacity = 1, weather = :clear, planes = [])
+  def initialize(capacity = 1, weather = Weather.random, planes = [])
     @capacity = capacity >= 0 ? capacity : 1
     @weather = weather
     @planes = planes

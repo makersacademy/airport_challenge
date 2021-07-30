@@ -1,7 +1,7 @@
 module Weather
-  @@types = [:clear, :clear, :clear, :stormy]
+  @@states = [:clear, :clear, :clear, :stormy]
 
-  def random
-    @@types.sample
+  def self.random
+    @@states.sample
   end
 end

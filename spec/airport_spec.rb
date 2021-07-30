@@ -3,7 +3,7 @@ require 'plane'
 
 describe Airport do
   before(:each) do
-    @airport = Airport.new
+    @airport = Airport.new(1, :clear)
     @stormy_airport = Airport.new(1, :stormy, [Plane.new])
     @plane_on_ground = Plane.new
     @plane_in_flight = Plane.new true
@@ -51,7 +51,7 @@ describe Airport do
     end
   
     it 'prevents planes from landing when at full capacity' do
-      full_airport = Airport.new 0
+      full_airport = Airport.new(0, :clear)
       expect { full_airport.clear_for_landing @plane_in_flight }
       .to raise_error 'Airport at capacity'
     end
