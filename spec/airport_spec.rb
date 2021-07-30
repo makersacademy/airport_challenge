@@ -25,6 +25,10 @@ describe Airport do
     expect(@airport.planes).not_to include plane
   end
 
+  it 'only allows planes to land if they are in flight' do
+    expect { subject.clear_for_landing(@plane_on_ground) }.to raise_error 'Plane is not in flight'
+  end
+
   # it 'prevents planes from landing when at full capacity' do
   #   expect
   # end

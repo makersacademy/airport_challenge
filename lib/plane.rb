@@ -4,6 +4,6 @@ class Plane
   end
 
   def in_flight?
-    in_flight
+    @in_flight
   end
 end
