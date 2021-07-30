@@ -4,9 +4,9 @@ class Airport
   def initialize capacity = 1
     @capacity = capacity >= 0 ? capacity : 1
     @planes = []
-    @weather = "sunny"
+    @weather = :sunny
   end
 
-  def clear_landing(plane) end
-  def clear_takeoff(plane) end
+  def clear_for_landing(plane) end
+  def clear_for_takeoff(plane) end
 end
