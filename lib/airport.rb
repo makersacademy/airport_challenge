@@ -11,7 +11,9 @@ class Airport
     @planes << plane
   end
 
-  def clear_for_takeoff(plane) end
+  def clear_for_takeoff(plane)
+    @planes.delete plane
+  end
 
   # def full?
   #   planes.size == @capacity

@@ -18,6 +18,13 @@ describe Airport do
     expect(@airport.planes.last).to eq @plane_in_flight
   end
 
+  it 'allows planes to take off' do
+    plane = @plane_in_flight
+    @airport.clear_for_landing(plane)
+    @airport.clear_for_takeoff(plane)
+    expect(@airport.planes).not_to include plane
+  end
+
   # it 'prevents planes from landing when at full capacity' do
   #   expect
   # end
