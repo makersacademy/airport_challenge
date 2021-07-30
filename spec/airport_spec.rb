@@ -6,7 +6,7 @@ describe Airport do
     @airport = Airport.new
   end
 
-  it 'should have an capacity' do
+  it 'should have a non-negative capacity' do
     expect(@airport.capacity).to be > 0
   end
 end
