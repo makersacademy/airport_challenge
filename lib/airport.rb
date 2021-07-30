@@ -7,6 +7,13 @@ class Airport
     @weather = :sunny
   end
 
-  def clear_for_landing(plane) end
+  def clear_for_landing(plane)
+    @planes << plane
+  end
+
   def clear_for_takeoff(plane) end
+
+  # def full?
+  #   planes.size == @capacity
+  # end
 end
