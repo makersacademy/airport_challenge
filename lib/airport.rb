@@ -8,13 +8,14 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    unless plane.in_flight?
-      raise "Plane is not in flight"
-    end
+    raise "Plane is not in flight" unless plane.in_flight?
+    plane.land
     @planes << plane
   end
 
   def clear_for_takeoff(plane)
+    raise "Plane is already in flight" if plane.in_flight?
+    plane.takeoff
     @planes.delete plane
   end
 
