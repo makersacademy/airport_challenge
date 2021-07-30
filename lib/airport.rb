@@ -1,10 +1,10 @@
 class Airport
   attr_accessor :capacity, :planes, :weather
 
-  def initialize(capacity = 1, weather = :clear)
+  def initialize(capacity = 1, weather = :clear, planes = [])
     @capacity = capacity >= 0 ? capacity : 1
-    @planes = []
     @weather = weather
+    @planes = planes
   end
 
   def clear_for_landing(plane)
@@ -18,6 +18,7 @@ class Airport
   def clear_for_takeoff(plane)
     raise "Plane is already in flight" if plane.in_flight?
     raise "Plane not at airport" unless @planes.include? plane
+    raise "Unsafe takeoff conditions" unless safe?
     plane.takeoff
     @planes.delete plane
   end

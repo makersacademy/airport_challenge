@@ -4,12 +4,12 @@ require 'plane'
 describe Airport do
   before(:each) do
     @airport = Airport.new
-    @stormy_airport = Airport.new(1, :stormy)
+    @stormy_airport = Airport.new(1, :stormy, [Plane.new])
     @plane_on_ground = Plane.new
     @plane_in_flight = Plane.new true
   end
 
-  context 'When it is created' do
+  context 'when it is created' do
     it { is_expected.to have_attributes(:capacity => a_value > 0) }
     it { is_expected.to have_attributes(:weather => Symbol) }
     it { is_expected.to have_attributes(:planes => []) }
@@ -17,7 +17,7 @@ describe Airport do
     it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   end
 
-  context 'After it is created' do
+  context 'during operation' do
     it 'allows planes to land' do
       @airport.clear_for_landing @plane_in_flight
       expect(@airport.planes.last).to eq @plane_in_flight
@@ -58,6 +58,12 @@ describe Airport do
     it 'prevents planes from landing in bad weather' do
       expect { @stormy_airport.clear_for_landing @plane_in_flight }
       .to raise_error 'Unsafe landing conditions'
+    end
+
+    it 'prevents planes from taking off in bad weather' do
+      grounded_plane = @stormy_airport.planes.first
+      expect { @stormy_airport.clear_for_takeoff grounded_plane }
+      .to raise_error 'Unsafe takeoff conditions'
     end
   end
 end
