@@ -21,7 +21,7 @@ describe Airport do
     expect(@airport.take_off(@plane)).to eq([])
   end 
 
-  it "Stores 5 plane instances and removes the third instance" do 
+  it "Stores 5 plane instances and removes the third instance in array" do 
     arr = []
     5.times {plane = Plane.new; arr << plane} 
     third_instance = arr[2]
@@ -30,9 +30,10 @@ describe Airport do
     expect(Airport.new(before).take_off(third_instance)).to eq(arr) 
   end
 
-  it "Raises error if land method is called while airport is at capacity" do 
-    arr = []; 5.times {arr << Plane.new}
-    heathrow = Airport.new(arr)
+  it "Allows user to set capacity for particular airport instance" do 
+    capacity = rand(1..50)
+    arr = []; capacity.times {arr << Plane.new}
+    heathrow = Airport.new(arr, capacity)
     expect {heathrow.land Plane.new}.to raise_error "Airport at capacity"
-  end 
+  end  
 end

@@ -2,12 +2,16 @@
 require './lib/plane.rb'
 require './lib/airport.rb'
 
+# test 8 create capacity setting for instances of airport 
+arr = []; arr << Plane.new
+heathrow = Airport.new(arr, 1)
+
 
 
 # test 7 raise error if airport is full (capcity is defaulted as 5 planes)
 #arr = []; 5.times {arr << Plane.new}
-#Heathrow = Airport.new(arr)
-#Heathrow.land(Plane.new)
+#heathrow = Airport.new(arr)
+#heathrow.land(Plane.new)
 
 
 # test 6 remove instance of plane from instance variable in airport
