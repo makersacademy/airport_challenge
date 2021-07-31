@@ -4,7 +4,7 @@ class Plane
   def initialize(plane)
     @plane = plane
   end
-  
+
   def new_plane
     @plane
   end
