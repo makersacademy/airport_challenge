@@ -16,15 +16,14 @@ class Airport
   end
 
   def land(plane)
-    raise "Landing not permitted when weather is stormy" if weather.stormy?
+    check_weather("Landing")
     raise "Landing not permitted: airport full!" if full?
 
     hangar << plane
   end
 
   def take_off(plane)
-    raise "Take off not permitted when weather is stormy" if weather.stormy?
-
+    check_weather("Take off")
     hangar.delete(plane)
   end
 
@@ -40,6 +39,10 @@ class Airport
 
   def full?
     hangar.size == @capacity
+  end
+
+  def check_weather(action)
+    raise "#{action} not permitted when weather is stormy" if weather.stormy?
   end
 
 end
