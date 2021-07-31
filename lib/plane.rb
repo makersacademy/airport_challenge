@@ -1,4 +1,11 @@
 class Plane
-  def land(airport)
+  attr_accessor :grounded
+
+  def initialize
+    @grounded = false
+  end
+  
+  def grounded?
+    @grounded
   end
 end

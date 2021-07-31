@@ -1,7 +1,7 @@
 require "plane"
 
 describe Plane do
-  it "it able to #land" do
+  it "can land" do
     test_airport = Airport.new
     expect { test_airport.land(subject) }.not_to raise_error
   end
@@ -11,6 +11,26 @@ describe Plane do
     test_airport.land(subject)
     expect(test_airport.hanger).not_to eq []
     expect(test_airport.hanger).to include(subject)
+  end
+
+  it "can take off from an airport" do
+    test_airport = Airport.new
+    test_airport.land(subject)
+    expect { test_airport.take_off(subject) }.not_to raise_error
+  end
+
+  it "responds to #grounded?" do 
+    expect(subject).to respond_to :grounded?
+  end
+
+  it "can confirm if it's grounded" do 
+    expect(subject.grounded?).to eq false
+  end
+
+  it "can confirm if it's in the air" do 
+    test_airport = Airport.new
+    test_airport.land(subject)
+    expect(subject.grounded?).to eq true
   end
 
 end
