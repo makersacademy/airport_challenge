@@ -1,6 +1,7 @@
 class Plane
 
   def land(airport)
+    airport.full?
     airport.hangar << self
   end
 

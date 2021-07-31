@@ -8,8 +8,12 @@ class Airport
     @hangar = Array.new
   end
 
-  def parked?(plane)
+  def contains?(plane)
     hangar.include?(plane)
+  end
+
+  def full?
+    raise "Landing not permitted: airport full!" if hangar.size == 10
   end
 
 end
