@@ -22,6 +22,8 @@ Airport Challenge
 1. **Fork** this [airport challenge repository](https://github.com/CorinneBosch/airport_challenge) 
 2. Then clone **your** fork to your computer.
 3. Ensure you have `Ruby` and `rspec` installed. 
+4. Run `gem install bundler` if you dont have bundler.
+5. Once installed, run `bundle`.
 
 ## How to run
 
