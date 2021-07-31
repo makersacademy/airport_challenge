@@ -20,12 +20,14 @@ describe Airport do
 
   it 'prevents landing if plane is not flying' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?) { false }
     subject.land_airplane(plane)
     expect { subject.land_airplane(plane) }.to raise_error "plane already landed"
   end
 
   it 'prevents a plane from taking off if not at airport' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?) { false }
     expect { subject.takeoff_airplane(plane) }.to raise_error "plane not at airport"
   end
   
