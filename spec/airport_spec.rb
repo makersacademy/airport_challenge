@@ -20,4 +20,14 @@ describe Airport do
     @plane << Plane.new
     expect(@airport.take_off(@plane)).to eq([])
   end 
+
+  it "Stores 5 plane instances and removes the third instance" do 
+    arr = []
+    5.times {plane = Plane.new; arr << plane} 
+    third_instance = arr[2]
+    before = arr 
+    arr.delete(third_instance)
+    expect(Airport.new(before).take_off(third_instance)).to eq(arr) 
+    
+  end
 end
