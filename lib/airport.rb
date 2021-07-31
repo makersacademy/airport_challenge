@@ -1,4 +1,3 @@
-# require_relative 'plane'
 class Airport
   DEFAULT_CAPAPCITY = 2
 
@@ -10,17 +9,20 @@ class Airport
 
   def land_airplane(plane)
     fail "airport full" if full?
+
     fail "plane already landed" unless plane.flying
+
     plane.flying?(false)
     planes << plane
   end
 
   def takeoff_airplane(plane)
+    fail "plane not at airport" unless planes.include?(plane)
+
+    plane.flying?(true)
     planes.delete(plane)
     puts "plane no longer at airport"
   end
-
-
 
   private 
 

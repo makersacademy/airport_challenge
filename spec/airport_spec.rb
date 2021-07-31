@@ -13,14 +13,18 @@ describe Airport do
   end
 
   it 'prevents landing if airport is full' do
-    plane = Plane.new
-    expect {(Airport::DEFAULT_CAPAPCITY + 1).times { subject.land_airplane Plane.new }}.to raise_error "airport full"
+    expect { (Airport::DEFAULT_CAPAPCITY + 1).times { subject.land_airplane Plane.new } }.to raise_error "airport full"
   end
 
   it 'prevents landing if plane is not flying' do
-    plane1 = Plane.new
-    subject.land_airplane(plane1)
-    expect { subject.land_airplane(plane1)}.to raise_error "plane already landed"
+    plane = Plane.new
+    subject.land_airplane(plane)
+    expect { subject.land_airplane(plane) }.to raise_error "plane already landed"
+  end
+
+  it 'prevents a plane from taking off if not at airport' do
+    plane = Plane.new
+    expect { subject.takeoff_airplane(plane) }.to raise_error "plane not at airport"
   end
 
 end
