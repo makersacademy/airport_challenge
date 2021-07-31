@@ -12,8 +12,7 @@ describe Airport do
   it "lands planes" do
     my_plane = Plane.new()
     my_airport = Airport.new
-    weather_today = Weather.new
-    allow(my_airport.weather).to receive(:isStormy?) { false }
+    allow(my_airport.weather).to receive(:stormy?) { false }
     my_airport.take_off(my_plane)
     my_airport.land(my_plane)
     expect(my_airport.planes.last).to eq my_plane
@@ -21,20 +20,10 @@ describe Airport do
 
   it "take off plane" do
     my_airport = Airport.new
-    allow(my_airport.weather).to receive(:isStormy?) { false }
-    5.times { my_airport.land(Plane.new)}
+    allow(my_airport.weather).to receive(:stormy?) { false }
+    5.times { my_airport.land(Plane.new) }
     planes_at_airport = my_airport.planes.length
     my_airport.take_off(my_airport.planes.first)
     expect(my_airport.planes.length).to eq planes_at_airport - 1
   end
-
-
 end
-
-
-
-
-
-# dan_bike = Bike.new
-# subject.dock(dan_bike)
-# expect(subject.bikes.last).to eq dan_bike

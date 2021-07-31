@@ -15,22 +15,17 @@ class Airport
 
   def land(plane)
     fail 'Airport is at full capacity' if @planes.length >= DEFAULT_CAPACITY
-    fail 'Weather is too bad' if weather.isStormy?
+
+    fail 'Weather is too bad' if weather.stormy?
+
     @planes << plane
     plane.plane_arrives
   end
 
   def take_off(plane)
-    fail 'Weather is too bad' if weather.isStormy?
+    fail 'Weather is too bad' if weather.stormy?
+
     planes.delete(plane)
     plane.plane_leaves
   end
 end
-
-# my_plane = Plane.new
-# weather_forecast = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny])
-# airport = Airport.new
-# airport.land(my_plane, weather_forecast)
-# puts airport.planes.length
-# airport.take_off(my_plane, weather_forecast)
-# puts airport.planes.length

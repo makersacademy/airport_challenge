@@ -1,15 +1,11 @@
 class Weather
-  
 
-  def weather
+  def weather_today
     weather_chart = [:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny]
     weather_chart.sample
   end
 
-  def isStormy?
-    weather == :stormy
+  def stormy?
+    weather_today == :stormy
   end
 end
-
-# weather_test = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny] )
-# puts weather_test.isStormy?
