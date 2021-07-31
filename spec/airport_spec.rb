@@ -7,6 +7,7 @@ describe Airport do
 
   it 'a plane can take-off' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?) { false }
     subject.land_airplane(plane)
     subject.takeoff_airplane(plane)
     expect(subject.planes).not_to include(plane)
@@ -34,4 +35,11 @@ describe Airport do
     expect { subject.land_airplane(plane) }.to raise_error "weather is stormy"
   end
 
+  it 'prevents a plane from taking off if stormy' do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?) { false }
+    subject.land_airplane(plane)
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.takeoff_airplane(plane) }.to raise_error "weather is stormy"
+  end
 end
