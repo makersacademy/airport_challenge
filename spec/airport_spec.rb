@@ -13,6 +13,7 @@ describe Airport do
   end
 
   it 'prevents landing if airport is full' do
+    allow(subject).to receive(:stormy?) { false }
     expect { (Airport::DEFAULT_CAPAPCITY + 1).times { subject.land_airplane Plane.new } }.to raise_error "airport full"
   end
 
@@ -25,6 +26,12 @@ describe Airport do
   it 'prevents a plane from taking off if not at airport' do
     plane = Plane.new
     expect { subject.takeoff_airplane(plane) }.to raise_error "plane not at airport"
+  end
+  
+  it 'prevents a plane from landing if stormy' do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?) { true }
+    expect { subject.land_airplane(plane) }.to raise_error "weather is stormy"
   end
 
 end
