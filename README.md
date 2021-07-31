@@ -1,7 +1,69 @@
 ## Airport Challenge
----
+### Makers, Week 1
 
-My submission for this challenge includes two classes, `Plane` and `Airport`, and a module, `Weather`
+#
+
+We were asked to respond to the six user stories in CHALLENGE.md (renamed from README to avoid a conflict with this file!)
+
+#
+
+### How I met the specification :-)
+
+- Allowed planes to take off and land at an airport
+
+- Prevented landing at full airports
+
+- Prevented takeoff and landing in bad weather
+
+- Allowed overriding default airport capacity
+
+- Dealt with edge cases:
+  
+  - Prevented takeoff of a plane that is not in airport
+
+  - Prevented landing of a plane that is not in the air
+  
+  - Only allowed planes to land
+
+- Completed the challenge using a TDD workflow
+
+  - Performed manual feature tests in IRB
+
+  - Wrote failing unit tests in rspec
+  
+  - Wrote code to pass these tests
+  
+  - Refactored where necessary
+  
+  - Retested after refactoring
+  
+  - Ran rubocop
+  
+  - Committed to git repo
+
+- Achieved 100% test coverage
+
+- Kept each class, module and test suite in a seperate file
+
+- Kept methods short and with a single-responsibility
+
+- Used rubocop to ensure an acceptable style
+
+### How I _didn't_ meet the specification :-/
+
+- Did not use a random number generator to set the weather
+
+- Did not override the weather in the tests using doubles and stubs
+
+- Did not write an rspec feature test (bonus challenge)
+
+#
+
+## Implementation
+
+#
+
+My submission includes two classes, `Plane` and `Airport`, and a module, `Weather`
 
 ### `Plane`
 
@@ -74,24 +136,4 @@ My submission for this challenge includes two classes, `Plane` and `Airport`, an
   - `@@states`, an array containing the symbols `:clear` and `:stormy` in amounts reflecting the frequency of their occurance
 
   - `self.random` which calls `@@states.sample` to produce a weighted sample of either `:clear` or `:stormy` and returns the result
-
----
-
-## How I met the specifications
-
-- Allowed planes to take off and land at an airport
-- Prevented landing at full airports
-- Prevented takeoff and landing in bad weather
-- Allowed overriding default airport capacity
-- Dealt with edge cases:
-  - preventing takeoff of a plane that is not in airport
-  - preventing landing of a plane that is not in the air
-  - only allowing planes to land
-- Completed the challenge using TDD
-- Achieved 100% test coverage
-- Kept each class, module and test suite in a seperate file
-- Kept methods short and with a single-responsibility
-- Used rubocop to ensure an acceptable style
-
-
 
