@@ -8,10 +8,12 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather)
     raise "There is no space at this airport" if @planes.count >= @capacity
+    raise "Unsafe weather conditions" if !weather.safe
 
     @planes << plane
   end
+
 
 end
