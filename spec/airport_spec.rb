@@ -18,6 +18,6 @@ describe Airport do
   it "Makes plane take off, removing instance from @plane, then it checks array is now n-1" do 
     @plane = []
     @plane << Plane.new
-    expect(@airport.take_off).to eq([])
+    expect(@airport.take_off(@plane)).to eq([])
   end 
 end
