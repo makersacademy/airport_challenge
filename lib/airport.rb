@@ -16,15 +16,23 @@ class Airport
   end
 
   def land(plane)
-    check_weather("Landing")
+    raise "That plane is already on the ground!" if plane.on_ground
+    
     raise "Landing not permitted: airport full!" if full?
 
+    check_weather("Landing")
     hangar << plane
+    plane.report_location(true)
   end
 
   def take_off(plane)
+    raise "That plane is already in the air!" unless plane.on_ground
+    
+    raise "That plane is at a different airport!" unless contains?(plane)
+
     check_weather("Take off")
     hangar.delete(plane)
+    plane.report_location(false)
   end
 
   def contains?(plane)

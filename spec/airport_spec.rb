@@ -2,8 +2,12 @@ require 'airport'
 
 describe Airport do
   
+  let(:plane) { double :plane }
+
   before(:each) do
     allow(subject.weather).to receive(:stormy?) { false }
+    allow(plane).to receive(:on_ground) { false }
+    allow(plane).to receive(:report_location) { true }
   end
   
   it { is_expected.to be_a Airport }
@@ -17,36 +21,29 @@ describe Airport do
   end
 
   it "stores a plane in hangar after landing" do 
-    subject.land(double :plane)
+    subject.land(plane)
     expect(subject.hangar.size).to eq 1
   end
 
   it "can confirm a plane is at the airport" do
-    plane = double :plane
     subject.land(plane)
     expect(subject.contains?(plane)).to be true
   end
 
   it "can confirm a plane, after taking off, is no longer at the airport" do
-    plane = double :plane
     subject.hangar << plane
+    allow(plane).to receive(:on_ground) { true } 
     subject.take_off(plane)
     expect(subject.contains?(plane)).to be false
   end
 
   it "can accept default capacity number of planes" do
-    expect { subject.capacity.times { subject.land(double :plane) } }.not_to raise_error
+    expect { subject.capacity.times { subject.land(plane) } }.not_to raise_error
   end
 
   it "prevents landing when the airport is full" do
-    subject.capacity.times { subject.land(double :plane) }
-    expect { subject.land(double :plane) }.to raise_error "Landing not permitted: airport full!"
-  end
-
-  it "allows landing if a space becomes available" do
-    subject.capacity.times { subject.land(double :plane) }
-    subject.take_off(subject.hangar.last)
-    expect { subject.land(double :plane) }.not_to raise_error
+    subject.capacity.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error "Landing not permitted: airport full!"
   end
 
   it "can tell user the airport capacity and confirm default capacity" do
@@ -64,13 +61,30 @@ describe Airport do
   end
 
   it "prevents take off if weather is stormy" do
+    subject.hangar << plane
+    allow(plane).to receive(:on_ground) { true }
     allow(subject.weather).to receive(:stormy?) { true }
-    expect { subject.take_off(double :plane) }.to raise_error "Take off not permitted when weather is stormy"
+    expect { subject.take_off(plane) }.to raise_error "Take off not permitted when weather is stormy"
   end
 
   it "prevents landing if weather is stormy" do
     allow(subject.weather).to receive(:stormy?) { true }
-    expect { subject.land(double :plane) }.to raise_error "Landing not permitted when weather is stormy"
+    expect { subject.land(plane) }.to raise_error "Landing not permitted when weather is stormy"
+  end
+
+  it "can't land a plane if it is already on the ground" do
+    allow(plane).to receive(:on_ground) { true }  
+    expect { subject.land(plane) }.to raise_error "That plane is already on the ground!"
+  end
+
+  it "can't allow plane to take off it is already in the air" do
+    expect { subject.take_off(plane) }.to raise_error "That plane is already in the air!" 
+  end
+
+  it "can't allow plane to take off from a different airport" do
+    subject.hangar << plane
+    allow(plane).to receive(:on_ground) { true } 
+    expect { Airport.new.take_off(plane) }.to raise_error "That plane is at a different airport!"
   end
 
 end
