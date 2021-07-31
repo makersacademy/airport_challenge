@@ -13,7 +13,6 @@ describe Plane do
       expect(subject).to be_airborne
     end
 
-
   end
 
 end

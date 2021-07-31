@@ -1,13 +1,17 @@
 class Airport
-attr_reader :plane
+  attr_reader :planes, :capacity
 
-  def land(plane)
-    raise "There is no space at this airport" if @plane
-    @plane = plane
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    @planes = []
   end
 
-  # def take_off
-  #   @plane
-  # end
+  def land(plane)
+    raise "There is no space at this airport" if @planes.count >= DEFAULT_CAPACITY
+    
+    @planes << plane
+  end
 
 end
