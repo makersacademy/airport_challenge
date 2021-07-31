@@ -9,8 +9,12 @@ describe Plane do
   context 'plane has taken off' do
     
     it 'is not at the airport' do
-      subject.take_off
+      airport = double('heathrow')
+      allow(airport).to receive_messages(planes: [subject])
+
+      subject.take_off(airport)
       expect(subject).to be_airborne
+      expect(airport.planes).to be_empty
     end
 
   end

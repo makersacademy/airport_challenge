@@ -1,7 +1,8 @@
 class Plane
 
-  def take_off
+  def take_off(airport)
     @airborne = true
+    airport.planes.delete(self)
   end
 
   def airborne?
