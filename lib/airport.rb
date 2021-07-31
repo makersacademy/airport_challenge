@@ -3,8 +3,8 @@ class Airport
 
   attr_reader :plane
 
-    def initialize
-      @plane = []
+    def initialize(planes = [])
+      @plane = planes
     end
 
     def land(boeing)

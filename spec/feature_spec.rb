@@ -3,22 +3,23 @@ require './lib/plane.rb'
 require './lib/airport.rb'
 
 
-# test 6: Make sure we can land and remove multiple plane instances 
-arr  = []
-x = 0
-5.times do 
-  if x == 2 
-    @remove = Plane.new
-    p @remove
-    arr << @remove
-  else
-    plane = Plane.new
-    arr << plane 
-  end
-  x += 1
-end 
-p arr
-p @remove
+# test 6 remove instance of plane from instance variable in airport
+# remove = Plane.new
+# arr = []
+# n = 0
+# 5.times do 
+#   if n == 2
+#     remove = Plane.new
+#     arr << remove
+#   else
+#     planes = Plane.new 
+#     arr << planes
+#   end
+# end
+# airport = Airport.new(arr)
+# p airport
+# p airport.take_off(remove)
+
 
 # test 5 instruct airport to make plane take off
 # @plane = [] 
