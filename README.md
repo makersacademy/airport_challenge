@@ -1,89 +1,139 @@
-Airport Challenge
-=================
+## Airport Challenge
+### Makers, Week 1
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+#
 
-```
+We were asked to respond to the six user stories in CHALLENGE.md (renamed from README to avoid a conflict with this file!)
 
-Instructions
----------
+#
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+### How I met the specification :-)
 
-Steps
--------
+- Allowed planes to take off and land at an airport
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+- Prevented landing at full airports
 
-Task
------
+- Prevented takeoff and landing in bad weather
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+- Allowed overriding default airport capacity
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+- Dealt with edge cases:
+  
+  - Prevented takeoff of a plane that is not in airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+  - Prevented landing of a plane that is not in the air
+  
+  - Only allowed planes to land
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+- Completed the challenge using a TDD workflow
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+  - Performed manual feature tests in IRB
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+  - Wrote failing unit tests in rspec
+  
+  - Wrote code to pass these tests
+  
+  - Refactored where necessary
+  
+  - Retested after refactoring
+  
+  - Ran rubocop
+  
+  - Committed to git repo
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
+- Achieved 100% test coverage
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+- Kept each class, module and test suite in a seperate file
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+- Kept methods short and with a single-responsibility
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+- Used rubocop to ensure an acceptable style
 
-Please create separate files for every class, module and test suite.
+### How I _didn't_ meet the specification :-/
 
-In code review we'll be hoping to see:
+- Did not use a random number generator to set the weather
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+- Did not override the weather in the tests using doubles and stubs
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+- Did not write an rspec feature test (bonus challenge)
 
-**BONUS**
+#
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+## Implementation
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+#
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+My submission includes two classes, `Plane` and `Airport`, and a module, `Weather`
 
-* **Submit a pull request early.**
+### `Plane`
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+- is initialized with a single argument with a default value of **false**, which is assigned to the variable `in_flight`
+
+- has three public methods:
+
+  - `takeoff` and `land`, which set `in_flight` to **true** or **false** respectively and ─
+
+  - `in_flight?` which returns its value
+
+### `Airport`
+
+- is initialized with three arguments:
+
+  - `capacity` indicating the maximum number of planes permitted to land at the airport, with a default of 1
+
+  - `weather` indicating the current weather at the airport, whose default is generated by `Weather.random` as being either `:clear` or `:stormy`
+
+  - `planes` indicating all the planes which are currently at the airport, with an empty array `[]` as its default value
+
+- has four private methods:
+
+  - `clear_for_landing` takes a `Plane` object as an argument and checks that:
+  
+    - the plane is a type of `Plane`
+    
+    - the plane is `in_flight`
+    
+    - landing is `safe?`
+    
+    - the airport is **not** `full?`
+    
+    otherwise raises an error
+
+  - `clear_for_takeoff` takes a `Plane` object as an argument and checks that:
+
+    - that the plane is **not** already `in_flight?`
+    
+    - the plane is present at the airport in the list of `planes`
+    
+    - takeoff is `safe?`
+    
+    otherwise raises an error
+
+  - `full?` which is **true** when the size of `planes` has reached the airport `capacity`
+
+  - `safe?` which is **true** if the `weather` at the airport is `:clear`, **false** in any other case
+
+- has two explicitly defined public methods:
+
+  - `recieve` takes a `Plane` object and:
+
+    - calls `clear_for_landing`
+
+    - if no errors are raised, allows the plane to `land` and adds it to the list of `planes` 
+  
+  - `release` takes a `Plane` object and:
+
+    - calls `clear_for_takeoff`
+
+    - if no errors are raised, allows the plane to `takeoff` and removes it from the list of `planes`
+
+- has two methods, `capacity` and `capacity=` which are defined via `attr_accessor` to allow viewing and changing the capacity after an airport is initialized
+
+### `Weather`
+
+- has two objects:
+
+  - `@@states`, an array containing the symbols `:clear` and `:stormy` in amounts reflecting the frequency of their occurance
+
+  - `self.random` which calls `@@states.sample` to produce a weighted sample of either `:clear` or `:stormy` and returns the result
+
