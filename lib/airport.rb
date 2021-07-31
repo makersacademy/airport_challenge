@@ -16,6 +16,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Landing not permitted when weather is stormy" if weather.stormy?
     raise "Landing not permitted: airport full!" if full?
 
     hangar << plane

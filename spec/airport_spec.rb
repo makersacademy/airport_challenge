@@ -1,7 +1,11 @@
 require 'airport'
 
 describe Airport do
-
+  
+  before(:each) do
+    allow(subject.weather).to receive(:stormy?) { false }
+  end
+  
   it { is_expected.to be_a Airport }
 
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -24,7 +28,6 @@ describe Airport do
   end
 
   it "can confirm a plane, after taking off, is no longer at the airport" do
-    allow(subject.weather).to receive(:stormy?) { false }
     plane = double :plane
     subject.hangar << plane
     subject.take_off(plane)
@@ -32,8 +35,7 @@ describe Airport do
   end
 
   it "can accept default capacity number of planes" do
-    subject.capacity.times { subject.land(double :plane) }
-    expect(subject.hangar.size).to eq subject.capacity
+    expect { subject.capacity.times { subject.land(double :plane) } }.not_to raise_error
   end
 
   it "prevents landing when the airport is full" do
@@ -42,7 +44,6 @@ describe Airport do
   end
 
   it "allows landing if a space becomes available" do
-    allow(subject.weather).to receive(:stormy?) { false }
     subject.capacity.times { subject.land(double :plane) }
     subject.take_off(subject.hangar.last)
     expect { subject.land(double :plane) }.not_to raise_error
@@ -65,6 +66,11 @@ describe Airport do
   it "prevents take off if weather is stormy" do
     allow(subject.weather).to receive(:stormy?) { true }
     expect { subject.take_off(double :plane) }.to raise_error "Take off not permitted when weather is stormy"
+  end
+
+  it "prevents landing if weather is stormy" do
+    allow(subject.weather).to receive(:stormy?) { true }
+    expect { subject.land(double :plane) }.to raise_error "Landing not permitted when weather is stormy"
   end
 
 end
