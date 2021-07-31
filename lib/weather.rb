@@ -2,7 +2,7 @@ class Weather
 
   def weather_today
     weather_chart = [:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny]
-    weather_chart.sample
+    return weather_chart.sample
   end
 
   def stormy?

@@ -6,6 +6,7 @@ describe Plane do
     my_airport = Airport.new
     allow(my_airport.weather).to receive(:stormy?) { false }
     my_plane = Plane.new
+    my_airport.planes << my_plane
     my_airport.take_off(my_plane)
     expect(my_plane.at_airport?).to eq(false)
   end
