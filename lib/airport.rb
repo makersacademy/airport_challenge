@@ -5,22 +5,22 @@ class Airport
 
   DEFAULT_CAPACITY = 5
 
-  attr :planes, :capacity, :weather_chart
+  attr :planes, :capacity, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
-    @weather_chart = [:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny]
+    @weather = weather
     @capacity = capacity
   end
 
-  def land(plane, weather)
+  def land(plane)
     fail 'Airport is at full capacity' if @planes.length >= DEFAULT_CAPACITY
     fail 'Weather is too bad' if weather.isStormy?
     @planes << plane
     plane.plane_arrives
   end
 
-  def take_off(plane, weather)
+  def take_off(plane)
     fail 'Weather is too bad' if weather.isStormy?
     planes.delete(plane)
     plane.plane_leaves

@@ -1,12 +1,8 @@
 class Weather
+  
 
-  attr :weather_chart
-
-  def initialize(weather_chart)
-    @weather_chart = weather_chart
-  end
- 
   def weather
+    weather_chart = [:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny]
     weather_chart.sample
   end
 

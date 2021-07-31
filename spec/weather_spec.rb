@@ -3,14 +3,15 @@ require 'weather'
 describe Weather do
 
   it 'provides the weather from a few different options' do
-    weather_today = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny])
-    expect(weather_today.weather).to eq(:stormy).or(eq(:sunny))
+    my_airport = Airport.new
+    expect(my_airport.weather.weather).to eq(:stormy).or(eq(:sunny))
   end
 
   it "returns true if the weather is stormy" do
-    weather_today = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny])
-    allow(weather_today).to receive(:weather) { :sunny }
-    expect(weather_today.isStormy?).to eq (false)
+
+    my_airport = Airport.new
+    allow(my_airport.weather).to receive(:weather) { :sunny }
+    expect(my_airport.weather.isStormy?).to eq (false)
   end
 end
 
