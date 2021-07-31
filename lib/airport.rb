@@ -1,5 +1,5 @@
 # require "./plane.rb"
-
+# 
 class Airport
   attr_reader :hangar
 
@@ -7,7 +7,11 @@ class Airport
     @hangar = []
   end
 
-  def landing(planes)
+  def land(planes)
     @hangar.push(planes)
+  end
+
+  def takeoff
+    @hangar.pop
   end
 end

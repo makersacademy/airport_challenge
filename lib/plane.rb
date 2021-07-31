@@ -7,7 +7,7 @@ class Plane
     @plane = plane
   end
 
-  # def new_plane
+  # def landing(plane = :LX810)
   #   @plane
   # end
 end
