@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "The airport is full and can't land anymore planes" if @airport.length >= 20
     @airport << plane
   end
 

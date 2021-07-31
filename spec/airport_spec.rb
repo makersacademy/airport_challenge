@@ -45,4 +45,10 @@ describe Airport do
     expect { subject.take_off(airplane) }.to output("Confirmation the plane has left the airport\n").to_stdout
   end
 
+  #Unit test - Error message if more than 20 planes try to land
+  it "don't land a plane if the airport is full" do
+    20.times { subject.land(airplane) }
+      expect { raise subject.land(airplane) }.to raise_error("The airport is full and can't land anymore planes")
+  end
+
 end
