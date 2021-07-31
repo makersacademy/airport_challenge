@@ -1,5 +1,5 @@
 class Weather
-  
+
   attr :weather_chart
 
   def initialize(weather_chart)
@@ -15,5 +15,5 @@ class Weather
   end
 end
 
-weather_test = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny] )
-puts weather_test.isStormy?
+# weather_test = Weather.new([:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny] )
+# puts weather_test.isStormy?
