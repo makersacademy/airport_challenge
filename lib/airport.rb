@@ -16,6 +16,8 @@ class Airport
   def land(plane)
     fail 'Airport is at full capacity' if @planes.length >= DEFAULT_CAPACITY
 
+    fail "Plane is already at airport" if @planes.include?(plane)
+
     fail 'Weather is too bad' if weather.stormy?
 
     @planes << plane

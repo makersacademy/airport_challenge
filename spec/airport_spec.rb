@@ -26,6 +26,11 @@ describe Airport do
       expect(@my_airport.planes.last).to eq @my_plane
     end
 
+    it "planes that have landed cannot land again" do
+      @my_airport.land(@my_plane)
+      expect { @my_airport.land(@my_plane) }.to raise_error "Plane is already at airport"
+    end
+
     it "prevents landing when airport is full" do
       allow(@my_airport.weather).to receive(:stormy?) { false }
       5.times { @my_airport.land(Plane.new) }
@@ -35,7 +40,6 @@ describe Airport do
     it "prevent landing when weather is stormy" do
       allow(@my_airport.weather).to receive(:stormy?) { true }
       expect { @my_airport.land(@my_plane) }.to raise_error "Weather is too bad"
-
     end
   end
 
@@ -51,14 +55,20 @@ describe Airport do
       another_airport = Airport.new
       allow(another_airport.weather).to receive(:stormy?) { false }
       @my_airport.planes << @my_plane
-      @another_airport = Airport.new
-      expect { @another_airport.take_off(@my_plane) }.to raise_error "this plane isn't at the airport"
+      expect { another_airport.take_off(@my_plane) }.to raise_error "this plane isn't at the airport"
     end
 
     it "don't let plane take off if weather is stormy" do
       allow(@my_airport.weather).to receive(:stormy?) { true }
       @my_airport.planes << @my_plane
       expect { @my_airport.take_off(@my_plane) }.to raise_error "Weather is too bad"
+    end
+
+    it "planes that are flying cannot take off" do
+      allow(@my_airport.weather).to receive(:stormy?) { false }
+      @my_airport.planes << @my_plane
+      @my_airport.take_off(@my_plane)
+      expect { @my_airport.take_off(@my_plane) }.to raise_error "this plane isn't at the airport"
     end
   end
 end
