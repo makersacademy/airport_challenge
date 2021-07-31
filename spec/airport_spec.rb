@@ -16,6 +16,11 @@ let(:plane) { Plane.new }
       expect(subject.plane).to eq plane
     end
 
+    it 'returns an error when airport is full' do
+      subject.land(plane)
+      expect {subject.land(Plane.new)}.to raise_error("There is no space at this airport")
+    end
+
   end
 
   describe '#take_off' do
