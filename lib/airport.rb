@@ -10,6 +10,7 @@ class Airport
 
   def land_plane
     raise "Airport hanger is full" if full?
+
     @hanger.push(Plane.new)
   end
 
@@ -18,7 +19,7 @@ class Airport
   end
 
   def full?
-    hanger.count >= DEFAULT_CAPACITY ? true : false
+    hanger.count >= DEFAULT_CAPACITY
   end
 
 end
