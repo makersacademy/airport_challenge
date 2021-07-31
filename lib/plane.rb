@@ -6,8 +6,4 @@ class Plane
   def initialize(plane = :LX810)
     @plane = plane
   end
-
-  # def landing(plane = :LX810)
-  #   @plane
-  # end
 end
