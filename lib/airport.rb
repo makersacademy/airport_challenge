@@ -9,8 +9,8 @@ class Airport
   end
 
   def land(plane)
-    raise "There is no space at this airport" if @planes.count >= DEFAULT_CAPACITY
-    
+    raise "There is no space at this airport" if @planes.count >= @capacity
+
     @planes << plane
   end
 
