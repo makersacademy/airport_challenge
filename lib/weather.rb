@@ -1,8 +1,8 @@
 class Weather
-attr_reader :safe
+  attr_reader :safe
 
   def safe?
-    rand(1..50) == 50 ? false : true
+    rand(1..50) != 50
   end
 
   def initialize
