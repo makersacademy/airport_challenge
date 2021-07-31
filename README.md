@@ -23,7 +23,29 @@ My submission for this challenge includes two classes, ``Plane`` and ``Airport``
 
   - ``planes`` indicating all the planes which are currently at the airport, with an empty array ``[]`` as its default value
 
-- has two private methods:
+- has four private methods:
+
+  - ``clear_for_landing`` takes a ``Plane`` object as an argument and checks that:
+  
+    - the plane is a type of ``Plane``
+    
+    - the plane is ``in_flight``
+    
+    - landing is ``safe?``
+    
+    - the airport is **not** ``full?``
+    
+    otherwise raises an error
+
+  - ``clear_for_takeoff`` takes a ``Plane`` object as an argument and checks that:
+
+    - that the plane is **not** already ``in_flight?``
+    
+    - the plane is present at the airport in the list of ``planes``
+    
+    - takeoff is ``safe?``
+    
+    otherwise raises an error
 
   - `full?` which is **true** when the size of ``planes`` has reached the airport `capacity`
 
@@ -31,19 +53,17 @@ My submission for this challenge includes two classes, ``Plane`` and ``Airport``
 
 - has two explicitly defined public methods:
 
-  - ``clear_for_landing`` takes a ``Plane`` object as an argument and:
+  - ``recieve`` takes a ``Plane`` object and:
 
-    - checks that the plane is ``in_flight?``,
-      landing is ``safe?`` and the airport is 
-      **not** ``full?``
-    
-    - if these conditions are met, allows the plane to ``land`` and adds it to the list of ``planes`` 
+    - calls ``clear_for_landing``
+
+    - if no errors are raised, allows the plane to ``land`` and adds it to the list of ``planes`` 
   
-  - ``clear_for_takeoff`` takes a ``Plane`` object as an argument and:
+  - ``release`` takes a ``Plane`` object and:
 
-    - checks that the plane is **not** already ``in_flight?``, is present at the airport in the list of ``planes`` and that takeoff is ``safe?``
+    - calls ``clear_for_takeoff``
 
-    - if these conditions are met, allows the plane to ``takeoff`` and removes it from the list of ``planes``
+    - if no errors are raised, allows the plane to ``takeoff`` and removes it from the list of ``planes``
 
 - has two methods, `capacity` and `capacity=` which are defined via `attr_accessor` to allow viewing and changing the capacity after an airport is initialized
 
