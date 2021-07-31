@@ -1,15 +1,8 @@
 class Plane
+  attr_accessor :landed
 
-  def plane_arrives
-    @at_airport = true
-  end
-
-  def plane_leaves
-    @at_airport = false
-  end
-
-  def at_airport?
-    @at_airport
+  def land
+    landed = true
   end
 
 end

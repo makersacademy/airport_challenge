@@ -14,22 +14,29 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport is at full capacity' if @planes.length >= DEFAULT_CAPACITY
+    fail 'Airport is at full capacity' if full?
 
     fail "Plane is already at airport" if @planes.include?(plane)
 
-    fail 'Weather is too bad' if weather.stormy?
+    fail 'Weather is too bad' if stormy?
 
     @planes << plane
-    plane.plane_arrives
+    plane.land
+  end
+
+  def full?
+    @planes.length >= capacity
+  end
+
+  def stormy?
+    weather.stormy?
   end
 
   def take_off(plane)
-    fail 'Weather is too bad' if weather.stormy?
+    fail 'Weather is too bad' if stormy?
 
     fail "this plane isn't at the airport" unless @planes.include?(plane)
 
     planes.delete(plane)
-    plane.plane_leaves
   end
 end

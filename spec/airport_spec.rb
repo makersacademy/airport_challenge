@@ -27,6 +27,7 @@ describe Airport do
     end
 
     it "planes that have landed cannot land again" do
+      allow(@my_airport.weather).to receive(:stormy?) { false }
       @my_airport.land(@my_plane)
       expect { @my_airport.land(@my_plane) }.to raise_error "Plane is already at airport"
     end
