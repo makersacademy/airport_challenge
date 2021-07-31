@@ -17,6 +17,20 @@ Airport Challenge
 
 ## What it does
 
+Functional representation of user requirements:
+
+Objects  | Messages
+------------- | -------------
+Air traffic controller | 
+Plane | new_plane
+Airport | store_planes
+Airport | landing
+Airport | takeoff
+Airport | capacity
+Airport | weather
+Plane | prevent_takeoff
+Plane | prevent_landig
+
 ## Setup
 
 1. **Fork** this [airport challenge repository](https://github.com/CorinneBosch/airport_challenge) 
