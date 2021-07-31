@@ -5,6 +5,15 @@ describe Airport do
     expect(subject.hanger).to eq []
   end
 
+  it "has a default capacity" do
+    expect(subject.capacity).to eq 1
+  end
+
+  it "can be given a custom capacity" do 
+    test_airport = Airport.new(42)
+    expect(test_airport.capacity).to eq 42
+  end
+
   it "accepts landings with #land" do
     expect(subject).to respond_to :land
   end
