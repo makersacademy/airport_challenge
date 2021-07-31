@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Can't land, airport is full." if @hanger.length > 0
     update_grounded_status(plane) 
     @hanger << plane
   end
@@ -17,4 +18,5 @@ class Airport
   def update_grounded_status(plane) 
     plane.grounded = !@grounded
   end
+
 end

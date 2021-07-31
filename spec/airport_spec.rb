@@ -13,6 +13,13 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
+  it "does not allow a plane to land if hanger is full" do # with capacity 1 
+    test_plane = Plane.new
+    subject.land(test_plane)
+    expect { subject.land(test_plane) }.to raise_exception("Can't land, airport is full.")
+    expect(subject.hanger.length).to eq 1
+  end
+
   it "raises an exception if no plane is specified for landing" do
     expect { subject.land() }.to raise_exception(ArgumentError)
   end
