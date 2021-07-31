@@ -1,5 +1,6 @@
+# require_relative 'plane'
 class Airport
-  DEFAULT_CAPAPCITY = 1
+  DEFAULT_CAPAPCITY = 2
 
   attr_reader :planes
   def initialize(capacity = DEFAULT_CAPAPCITY)
@@ -9,7 +10,8 @@ class Airport
 
   def land_airplane(plane)
     fail "airport full" if full?
-
+    fail "plane already landed" unless plane.flying
+    plane.flying?(false)
     planes << plane
   end
 
@@ -18,9 +20,11 @@ class Airport
     puts "plane no longer at airport"
   end
 
+
+
   private 
 
   def full?
-    planes.count >= @capacity
+    planes.count >= @capacity 
   end
 end
