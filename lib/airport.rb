@@ -13,8 +13,8 @@ class Airport
   end
 
   def take_off(plane)
-    @airport.pop #if !@airport.empty?
-    puts "Confirmation the airplane has left the airport"
+      @airport.delete(plane)
+      puts "Confirmation the plane has left the airport"
   end
 
 end
