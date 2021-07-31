@@ -20,13 +20,13 @@ let(:plane) { Plane.new }
 
   describe '#take_off' do
     
-    it 'planes can take_off from an airport' do
-      expect(subject).to respond_to(:take_off)
-    end
+    # it 'planes can take_off from an airport' do
+    #   expect(subject).to respond_to(:take_off)
+    # end
 
     # it 'once a plane takes off it is not at the airport' do
     #   subject.land(plane)
-
+    #   expect(subject.take_off.plane).to be_nil
     # end
 
   end

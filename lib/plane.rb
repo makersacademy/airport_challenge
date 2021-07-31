@@ -1,6 +1,5 @@
 class Plane
-
-  def land_at(airport)
+  
+  def take_off
   end
-
 end
