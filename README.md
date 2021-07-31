@@ -21,14 +21,6 @@ Instructions
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
