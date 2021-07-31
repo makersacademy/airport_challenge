@@ -1,6 +1,8 @@
 class Plane
 
-  def take_off(airport)
+  def take_off(airport, weather)
+    raise "Unsafe weather conditions" if !weather.safe
+
     @airborne = true
     airport.planes.delete(self)
   end
