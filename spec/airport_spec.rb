@@ -11,4 +11,14 @@ describe Airport do
 
   end
 
+  describe '#take_off' do
+    
+    it 'planes can take_off from an airport' do
+      expect(subject).to respond_to(:take_off)
+    end
+
+  end
+
+
+
 end
