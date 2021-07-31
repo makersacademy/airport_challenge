@@ -8,7 +8,8 @@ class Airport
     end
 
     def land(boeing)
-      @plane << boeing 
+      fail "Airport at capacity" if @plane.length > 4
+      @plane << boeing
     end
 
     def take_off(boeing)

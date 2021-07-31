@@ -3,6 +3,13 @@ require './lib/plane.rb'
 require './lib/airport.rb'
 
 
+
+# test 7 raise error if airport is full (capcity is defaulted as 5 planes)
+#arr = []; 5.times {arr << Plane.new}
+#Heathrow = Airport.new(arr)
+#Heathrow.land(Plane.new)
+
+
 # test 6 remove instance of plane from instance variable in airport
 # remove = Plane.new
 # arr = []

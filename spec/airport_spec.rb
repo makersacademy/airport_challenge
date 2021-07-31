@@ -28,6 +28,11 @@ describe Airport do
     before = arr 
     arr.delete(third_instance)
     expect(Airport.new(before).take_off(third_instance)).to eq(arr) 
-    
   end
+
+  it "Raises error if land method is called while airport is at capacity" do 
+    arr = []; 5.times {arr << Plane.new}
+    heathrow = Airport.new(arr)
+    expect {heathrow.land Plane.new}.to raise_error "Airport at capacity"
+  end 
 end
