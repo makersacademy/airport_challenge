@@ -21,14 +21,27 @@ describe Airport do
   context 'during operation' do
     it 'allows planes to land' do
       @airport.clear_for_landing @plane_in_flight
+
       expect(@airport.planes.last).to eq @plane_in_flight
     end
   
     it 'allows planes to take off' do
       plane = @plane_in_flight
+
       @airport.clear_for_landing plane
       @airport.clear_for_takeoff plane
+
       expect(@airport.planes).not_to include plane
+    end
+
+    it 'allows only planes to land' do
+      pterodactyl = double()
+
+      allow(pterodactyl).to receive(:in_flight?) { true }
+      allow(pterodactyl).to receive(:land)
+
+      expect { @airport.clear_for_landing pterodactyl }
+      .to raise_error 'Only planes are allowed to land'
     end
   
     it 'only allows planes to land if they are in flight' do
@@ -38,6 +51,7 @@ describe Airport do
   
     it 'only allows planes to take off if they are on the ground' do
       plane = @plane_in_flight
+
       @airport.clear_for_landing plane
       @airport.clear_for_takeoff plane
   
@@ -52,6 +66,7 @@ describe Airport do
   
     it 'prevents planes from landing when at full capacity' do
       full_airport = Airport.new(0, :clear)
+
       expect { full_airport.clear_for_landing @plane_in_flight }
       .to raise_error 'Airport at capacity'
     end
@@ -63,6 +78,7 @@ describe Airport do
 
     it 'prevents planes from taking off in bad weather' do
       grounded_plane = @stormy_airport.planes.first
+      
       expect { @stormy_airport.clear_for_takeoff grounded_plane }
       .to raise_error 'Unsafe takeoff conditions'
     end

@@ -10,6 +10,7 @@ class Airport
   end
 
   def clear_for_landing(plane)
+    raise "Only planes are allowed to land" unless plane.class == Plane
     raise "Plane is not in flight" unless plane.in_flight?
     raise "Unsafe landing conditions" unless safe?
     raise "Airport at capacity" if full?
