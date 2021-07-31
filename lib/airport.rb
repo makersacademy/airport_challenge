@@ -10,25 +10,31 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    raise "Only planes are allowed to land" unless plane.class == Plane
-    raise "Plane is not in flight" unless plane.in_flight?
-    raise "Unsafe landing conditions" unless safe?
-    raise "Airport at capacity" if full?
-
+    check_landing_conditions(plane)
     plane.land
     @planes << plane
   end
 
   def clear_for_takeoff(plane)
-    raise "Plane is already in flight" if plane.in_flight?
-    raise "Plane not at airport" unless @planes.include? plane
-    raise "Unsafe takeoff conditions" unless safe?
-
+    check_takeoff_conditions(plane)
     plane.takeoff
     @planes.delete plane
   end
 
   private
+
+  def check_landing_conditions(plane)
+    raise "Only planes are allowed to land" unless plane.class == Plane
+    raise "Plane is not in flight" unless plane.in_flight?
+    raise "Unsafe landing conditions" unless safe?
+    raise "Airport at capacity" if full?
+  end
+
+  def check_takeoff_conditions(plane)
+    raise "Plane is already in flight" if plane.in_flight?
+    raise "Plane not at airport" unless @planes.include? plane
+    raise "Unsafe takeoff conditions" unless safe?
+  end
 
   def full?
     planes.size == @capacity
