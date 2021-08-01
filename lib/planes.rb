@@ -33,6 +33,10 @@ class Planes
   end
 
   def clean_state
-    @plane_now.merge!(@plane_now){ |key, value| :none}
+    @plane_now.merge!(@plane_now) { |key, value| :none }
+  end
+
+  def get_state
+    @plane_now.find { |key, value| value == :now }
   end
 end

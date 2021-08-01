@@ -32,6 +32,11 @@ describe ControlTower do
     expect(subject.plane.plane_now[:airborne_takingoff]).to eq(:now)
   end
 
+  it "airport is full should retuen true" do
+    subject.airport.capacity.times{ subject.airport.grounded.push(Planes.new) }
+    expect(subject.airport.is_full?).to eq(true)
+  end
+
   it "plane fails to get airborne_green_land, gets :airborne_red_land if airport is full" do
     subject.airport.capacity.times{ subject.airport.grounded.push(Planes.new) }
     plane_in_use = Planes.new

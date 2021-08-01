@@ -9,7 +9,7 @@ class ControlTower
   def initiated_plane_comm(plane = Planes.new,  weather = :normal)
     @plane = plane
     @weather = weather
-    puts "Flight #{@plane.object_id} recorded status"
+    puts "Flight #{@plane.object_id} recorded state #{@plane.get_state.to_a[0]}"
     if @plane.plane_now[:airborne_request_land] == :now || @plane.plane_now[:airborne_red_land] == :now
       return (!@airport.is_full? && !@airport.check_runway.nil? && @weather != :stormy) ? green_landing : red_landing
     end
