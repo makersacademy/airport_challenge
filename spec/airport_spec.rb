@@ -39,15 +39,15 @@ describe Airport do
         expect { subject.land(plane) }.to raise_error "The airport is full"
       end
 
-      it "should not allow planes to land when the weather is stormy" do
-        allow(weather).to receive(:stormy?).and_return(true)
-        expect { subject.land(plane) }.to raise_error
+      it "should allow planes to land when the weather is not stormy" do
+        expect { subject.land(plane) }.not_to raise_error
       end
     end
 
     context "the weather is stormy" do    
-      it "should allow planes to land when the weather is not stormy" do
-        expect { subject.land(plane) }.not_to raise_error "No landings allowed while the weather is stormy"
+      it "should not allow planes to land when the weather is stormy" do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane) }.to raise_error "No landings allowed while the weather is stormy"
       end
     end
   end
@@ -70,7 +70,7 @@ describe Airport do
 
       it "should allow planes to take off when the weather is not stormy" do
         subject.landed_planes = [plane]
-        expect { subject.take_off(plane) }.not_to raise_error "No take offs allowed while the weather is stormy"
+        expect { subject.take_off(plane) }.not_to raise_error
       end
     end
 
