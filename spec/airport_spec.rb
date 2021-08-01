@@ -5,7 +5,7 @@ describe Airport do
     @airport = Airport.new
   end 
   
-  describe '#take_off' do
+  describe '#land' do
 
     it "responds to land method" do
       expect(@airport).to respond_to(:land)
