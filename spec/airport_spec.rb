@@ -20,6 +20,15 @@ describe Airport do
         5.times {subject.land_airplane}
         expect { subject.takeoff }.to change { subject.airport.count }.from(5).to(4)
      end
+
+    it 'Tests if an error message is generated when the airport is full' do
+        Airport::CAPACITY.times {subject.land_airplane}  
+        expect{ subject.land_airplane }.to raise_error("No available landing spots") if (subject.airport.count) >= Airport::CAPACITY
+    end
+
 end
 
 
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when the airport is full 
