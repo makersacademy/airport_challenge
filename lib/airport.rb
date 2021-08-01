@@ -48,4 +48,7 @@ class Airport
     @grounded.delete(plane)
   end
 
+  def is_full?
+    @grounded.count >= @capacity 
+  end
 end

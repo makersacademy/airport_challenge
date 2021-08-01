@@ -1,20 +1,20 @@
 require "./lib/airport.rb"
 require "./lib/weather.rb"
 class ControlTower
-  attr_reader :airport, :weather, :plane
+  attr_reader :airport, :plane
   def initialize
     @airport = Airport.new
-    @weather = Weather.new
   end
 
-  def initiated_plane_comm(plane = Planes.new)
+  def initiated_plane_comm(plane = Planes.new,  weather = :normal)
     @plane = plane
+    @weather = weather
     puts "Flight #{@plane.object_id} recorded status"
     if @plane.plane_now[:airborne_request_land] == :now || @plane.plane_now[:airborne_red_land] == :now
-      return (@airport.grounded.count < @airport.capacity && !@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_landing : red_landing
+      return (!@airport.is_full? && !@airport.check_runway.nil? && @weather != :stormy) ? green_landing : red_landing
     end
     if @plane.plane_now[:grounded_request_takeoff] == :now || @plane.plane_now[:grounded_red_takeoff] == :now
-      return (!@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_takeoff : red_takeoff
+      return (!@airport.check_runway.nil? && @weather != :stormy) ? green_takeoff : red_takeoff
     end
     if @plane.plane_now[:grounded_landing] == :now
       return @airport.plane_landed(@plane)

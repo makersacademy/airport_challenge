@@ -21,4 +21,23 @@ describe ControlTower do
     subject.initiated_plane_comm(subject.plane)
     expect(subject.plane.plane_now[:grounded_green_takeoff]).to eq(:now)
   end
+
+  it "sends instruction to take off, plane reaches status of airborne_takingoff" do 
+    plane_in_use = Planes.new
+    subject.initiated_plane_comm(plane_in_use)
+    subject.plane.commence_procedure(:grounded_request_takeoff, :grounded_green_takeoff)
+    subject.initiated_plane_comm(subject.plane)
+    subject.plane.commence_procedure(:airborne_takingoff, :airborne_pass)
+    subject.initiated_plane_comm(subject.plane)
+    expect(subject.plane.plane_now[:airborne_takingoff]).to eq(:now)
+  end
+
+  it "plane fails to get airborne_green_land, gets :airborne_red_land if airport is full" do
+    subject.airport.capacity.times{ subject.airport.grounded.push(Planes.new) }
+    plane_in_use = Planes.new
+    subject.initiated_plane_comm(plane_in_use)
+    subject.plane.commence_procedure(:airborne_request_land, :airborne_green_land)
+    subject.initiated_plane_comm(subject.plane)
+    expect(subject.plane.plane_now[:airborne_red_land]).to eq(:now)
+  end
 end
