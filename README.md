@@ -1,4 +1,4 @@
-# Aifrport Challenge
+# Airport Challenge
 
 The brief was to work through 6 user stories and implement TDD to build up the required classes, methods and code.
 
@@ -35,12 +35,12 @@ I got up to step 4 whereby you needed to implement tests for changing the defaul
 
 
 ## Further work identified
-Step 4 tests need to be implement as well as steps 5 and 6. I would likely approach steps 5 and 6 using a random number generator method and based on the results have stormy/sunny weather be returned based on a number. 
-E.g sunny weather = 1 and stormy weather = 2. 
+Step 4 tests need to be implemented, as well as steps 5 and 6. I would likely approach steps 5 and 6 using a random number generator method and based on the results have stormy/sunny weather be returned based on a number. 
+E.g. sunny weather = 1 and stormy weather = 2. 
 
 
 Alternatively you can do a range to increase/decrease the chance of a particular weather pattern being chosen by the random number generator method. 
-Eg: sunny weather = (1..15) and stormy weather (15..20)
+E.g. sunny weather = (1..15) and stormy weather (15..20)
 
 
 
