@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 5
 
-  attr :capacity, :weather
+  attr :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
@@ -49,12 +49,10 @@ class Airport
 
   private
 
+  attr :weather
+
   def planes
     @planes
   end
 
 end
-
-# my_airport = Airport.new
-# my_plane = Plane.new
-# my_airport.land(my_plane)
