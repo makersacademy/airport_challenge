@@ -16,8 +16,12 @@ class Airport
 
     def take_off(boeing, weather)
       fail "Weather is stormy" if weather > 7
+      # p @plane
+      # p boeing
+      # p (@plane.include? boeing)
+      fail "This plane is not at this airport" unless (@plane.include? boeing)
       @plane.delete(boeing)   
-      @plane
+      p @plane
     end 
 
 end 

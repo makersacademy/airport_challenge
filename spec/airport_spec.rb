@@ -26,23 +26,24 @@ describe Airport do
 
   describe '#take_off' do
 
-    it "Makes plane take off, removing instance from @plane, then it checks array is now empty" do 
-      @plane = []
-      @plane << Plane.new
-      expect(@airport.take_off(@plane, 7)).to eq([])
+    it "Makes plane take off, removing instance from plane, then it checks array is now empty" do 
+      plane = Plane.new
+      heathrow = Airport.new([plane], 7)
+      expect(heathrow.take_off(plane, 7)).to eq([])
     end 
   
+   # this test is now failing 
     it "Stores 5 plane instances and removes the third instance in array" do 
-      arr = []
-      5.times {plane = Plane.new; arr << plane} 
-      third_instance = arr[2]
-      before = arr 
-      arr.delete(third_instance)
-      expect(Airport.new(before).take_off(third_instance, 7)).to eq(arr) 
+      # below line creates 5 instances of plane class storing them inside planes array
+      # we can no lable 3rd instance and pass planes array to Aiport instance
+      planes = []; 5.times {plane = Plane.new; planes << plane} 
+      third_instance = planes[2]
+      heathrow = Airport.new(planes, 7)
+      expect(heathrow.take_off(third_instance, 7)).to eq((planes.delete(third_instance); planes))
     end
 
     it "Stops take_off executing is weather is stormy(random number falls between 7..10), otherwise its clear" do 
-      arr = []; 3.times {arr << Plane.new}
+      arr = []; 3.times{arr << Plane.new}
       boeing23 = arr[1]
       heathrow = Airport.new(arr, 4)
       weather = 8
@@ -50,7 +51,11 @@ describe Airport do
     end
 
     it "Stops plane from taking off if instance doesn't exist inside Airport instance" do 
-
+      plane1 = [Plane.new]
+      plane2 = [Plane.new]  
+      heathrow = Airport.new([plane1], 4)
+      glasgow = Airport.new([plane2], 4)
+      expect {heathrow.take_off(plane2, 5)}.to raise_error "This plane is not at this airport"
     end
     
   end
