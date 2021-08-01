@@ -35,7 +35,7 @@ class Airport
   end
   
   def airport_full?
-    @airport.length >= DEFAULT_CAPACITY ? true : false
+    @airport.length >= DEFAULT_CAPACITY
   end
 
 end
