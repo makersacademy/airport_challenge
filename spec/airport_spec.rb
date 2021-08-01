@@ -1,8 +1,10 @@
 require "./lib/airport.rb"
 require "./lib/plane.rb"
+require "./lib/weather.rb"
 
 describe Airport do
   let(:plane) { Plane.new }
+  let(:weather) { class_double(Weather).as_stubbed_const }
   
   context "#land method" do
     it "should instruct a plane to land at the airport" do
@@ -22,6 +24,16 @@ describe Airport do
     it "should not allow planes to land when the airport is full" do
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error "The airport is full"
+    end
+
+    it "should not allow planes to land when the weather is stormy" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane) }.to raise_error "No landings allowed while the weather is stormy"
+    end
+
+    it "should allow planes to land when the weather is not stormy" do
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { subject.land(plane) }.not_to raise_error "No landings allowed while the weather is stormy"
     end
   end
 
