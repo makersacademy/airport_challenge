@@ -7,6 +7,7 @@ describe Airport do
     @airport = Airport.new(12, :sunny)
     @rainy_port = Airport.new(12, :stormy)
     @plane = Plane.new
+    @plane_in_hangar = Plane.new(:LX610, false)
   end
 
   it { is_expected.to be_instance_of Airport } 
@@ -26,12 +27,8 @@ describe Airport do
     end
 
     # it 'refuses landing grounded plane' do
-    #   jet = Plane.new
-    #   allow(jet).to receive(:flying?) {false}
-    #   allow(jet).to receive(:land)
-
     #   message = 'Before landing you have to start your engine first'
-    #   expect { subject.land(jet)}.to raise_error message
+    #   expect { @airport.land(@plane_in_hangar)}.to raise_error message
     # end
 
     it 'lands plane objects only' do
@@ -43,11 +40,11 @@ describe Airport do
       expect {@airport.land(chopper)}.to raise_error message
     end
     
-    # it 'refuse landing in full hangar' do
-    #   12.times { subject.land Plane.new }
-    #   message = 'Our hangar is full, please land somewhere else'
-    #   expect { subject.land(@plane)}.to raise_error message
-    # end
+    it 'refuse landing in full hangar' do
+      12.times { subject.land Plane.new }
+      message = 'Our hangar is full, please land somewhere else'
+      expect { subject.land(@plane)}.to raise_error message
+    end
 
     # it 'refuses landing when stormy' do
     #   message = 'The landing is delayed due to stormy weather'
@@ -62,23 +59,19 @@ describe Airport do
       expect(@airport.hangar.empty?).to eq true
     end
 
-    # it 'refuses takeoff flying plane' do
-    #   flugi = Plane.new
-    #   allow(flugi).to receive(:flying?) {true}
-    #   allow(flugi).to receive(:takeoff)
-
-    #   message = 'You are already in the air'
-    #   expect {@airport.takeoff(flugi)}.to raise_error message
-    # end
-
-    it 'takeoff plane objects only' do
-      chopper = double()
-      allow(chopper).to receive(:flying?) {false}
-      allow(chopper).to receive(:takeoff)
-      
-      message = 'We allow only planes to takeoff at this airport!'
-      expect {@airport.takeoff(chopper)}.to raise_error message
+    it 'refuses takeoff flying plane' do
+      message = 'You are already in the air'
+      expect {@airport.takeoff(@plane)}.to raise_error message
     end
+
+    # it 'takeoff plane objects only' do
+    #   chopper = double()
+    #   allow(chopper).to receive(:flying?) {false}
+    #   allow(chopper).to receive(:takeoff)
+      
+    #   message = 'We allow only planes to takeoff at this airport!'
+    #   expect {@airport.takeoff(chopper)}.to raise_error message
+    # end
 
     it 'refuse takeoff in empty hangar ' do
       @airport.hangar = []
@@ -90,9 +83,8 @@ describe Airport do
     # it 'refuses takeoff when stormy' do
     #   forecast = double()
     #   allow(forecast).to receive(:stormy?) {true}
-
     #   message = 'Takeoff is delayed due to stormy weather'
-    #   expect { subject.takeoff(@plane)}.to raise_error message
+    #   expect { @rainy_port.takeoff(@plane)}.to raise_error message
     # end
   end
 end

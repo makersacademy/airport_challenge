@@ -38,13 +38,13 @@ class Airport
   def allow_landing_permission?(planes)
     # raise 'Before landing you have to start your engine first' if planes.flying?
     raise 'We accept only planes at this airport!' if planes.class != Plane
-    # raise 'Our hangar is full, please land somewhere else' if hangar_full?
+    raise 'Our hangar is full, please land somewhere else' if hangar_full?
     # raise 'The landing is delayed due to stormy weather' if weather.stormy?
   end
 
   def allow_takeoff_permission?(planes)
-    # raise 'You are already in the air' if planes.flying?
-    raise 'We allow only planes to takeoff at this airport!' if planes.class != Plane
+    raise 'You are already in the air' if planes.flying?
+    # raise 'We allow only planes to takeoff at this airport!' if planes.class != Plane
     raise 'There are no planes in our hangar' if hangar_empty?
     # raise 'Takeoff is delayed due to stormy weather' if weather.stormy?
   end
