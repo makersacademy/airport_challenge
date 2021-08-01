@@ -1,3 +1,5 @@
+
+
 class Airport
   attr_accessor :landed_planes, :capacity
 
@@ -15,6 +17,8 @@ class Airport
 
     raise "The airport is full" if @landed_planes.size == @capacity
 
+    raise "No landings allowed while the weather is stormy" if Weather.stormy?
+
     @landed_planes << plane
   end
 
@@ -22,6 +26,8 @@ class Airport
     raise "This is not a plane" unless plane.instance_of?(Plane)
 
     raise "This plane is not at the airport" unless @landed_planes.include?(plane)
+
+    raise "No take offs allowed while the weather is stormy" if Weather.stormy?
 
     @landed_planes.delete(plane)
   end
