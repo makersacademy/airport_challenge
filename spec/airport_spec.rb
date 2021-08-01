@@ -26,9 +26,15 @@ describe Airport do
         expect{ subject.land_airplane }.to raise_error("No available landing spots") if (subject.airport.count) >= Airport::CAPACITY
     end
 
+    it 'Tests to see if the default value is the constant capacity' do
+        capacity = Airport.new
+        #expect { subject.capacity.count }.to eq(20)
+        expect( subject.capacity).to eq(20)
+    end
+
+    it 'Tests to see if you can pass a new value as the airport capacity' do
+        capacity = Airport.new(30)
+        expect( capacity.capacity ).to eq(30)
+    end
+
 end
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
