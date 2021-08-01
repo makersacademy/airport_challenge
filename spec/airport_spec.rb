@@ -51,5 +51,15 @@ describe Airport do
     it "should only allow landed planes to take off" do
       expect { subject.take_off(plane) }.to raise_error "This plane is not at the airport"
     end
+
+    it "should not allow planes to take off when the weather is stormy" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane) }.to raise_error "No take offs allowed while the weather is stormy"
+    end
+
+    it "should allow planes to take off when the weather is not stormy" do
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { subject.land(plane) }.not_to raise_error "No take offs allowed while the weather is stormy"
+    end
   end
 end
