@@ -49,10 +49,6 @@ class Airport
 
   private
 
-  attr :weather
-
-  def planes
-    @planes
-  end
+  attr :weather, :planes
 
 end

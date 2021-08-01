@@ -53,7 +53,7 @@ describe Airport do
     it "prevent landing when weather is stormy" do
       allow(@my_airport.send(:weather)).to receive(:stormy?) { true }
       message = "Weather is too bad"
-      expect { @my_airport.land(@my_plane) }.to raise_error 
+      expect { @my_airport.land(@my_plane) }.to raise_error message
     end
   end
 
