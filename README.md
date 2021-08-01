@@ -20,27 +20,6 @@ rspec results as follows
 
 ahsanrasul@MA322 airport_challenge % rspec
 
-Airport
-  lands a plane
-plane no longer at airport
-  a plane can take-off
-  prevents landing if airport is full
-  prevents landing if plane is not flying
-  prevents a plane from taking off if not at airport
-  prevents a plane from landing if stormy
-  prevents a plane from taking off if stormy
-
-Plane
-  is flying
-
-Weather
-  can be sunny
-  returns that it isnt stormy
-  returns that it is stormy
-
-Have you considered running rubocop? It will help you improve your code!
-Try it now! Just run: rubocop
-
 Finished in 0.01955 seconds (files took 0.18533 seconds to load)
 11 examples, 0 failures
 
