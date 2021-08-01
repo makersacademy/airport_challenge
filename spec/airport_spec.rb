@@ -13,7 +13,8 @@ describe Airport do
     
     it "Land method can recieved a plane" do
       plane = Plane.new
-      expect(@airport.land(plane)).to eq([plane]) 
+      heathrow = Airport.new([], 2, 5)
+      expect(heathrow.land(plane)).to eq([plane]) 
     end
 
     it "Allows user to set capacity for particular airport instance" do 
@@ -53,7 +54,6 @@ describe Airport do
       # weather is story whenever it recieves an int greater than 7
       boeing23 = Plane.new 
       heathrow = Airport.new(boeing23, 2, 8)
-      p "we are here!!!!! VALUE SHOULD BE 8"
       expect { heathrow.take_off(boeing23) }.to raise_error "Weather is stormy"
     end
 

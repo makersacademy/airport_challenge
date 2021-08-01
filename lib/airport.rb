@@ -7,17 +7,17 @@ class Airport
     @plane = planes
     @capacity = capacity
     @weather = weather
-    p @weather
   end
  
   def land(boeing)
-    
+    fail "Weather is stormy" if (@weather > 7)
+
     fail "Airport at capacity" if @plane.length > (@capacity - 1)
+    
     @plane << boeing
   end
 
   def take_off(boeing)
-    
     fail "Weather is stormy" if (@weather > 7)
     
     fail "This plane is not at this airport" unless (@plane.include? boeing)
