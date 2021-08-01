@@ -3,7 +3,6 @@ require './lib/airport.rb'
 describe Airport do 
   before(:each) do 
     @airport = Airport.new
-    
   end 
 
   it "responds to land method" do

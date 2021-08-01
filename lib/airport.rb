@@ -13,7 +13,7 @@ class Airport
       @plane << boeing
     end
 
-    def take_off(boeing, weather = clear)
+    def take_off(boeing, weather)
       fail "Weather is stormy" if weather == "stormy"
       @plane.delete(boeing)   
       @plane
