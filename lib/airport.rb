@@ -16,7 +16,7 @@ class Airport
   def land(plane)
     fail 'Airport is at full capacity' if full?
 
-    fail "Plane is already at airport" if @planes.include?(plane)
+    fail "Plane is already at airport" if plane_in_hangar?(plane)
 
     fail "Plane has already landed somewhere else" if plane.landed
 
@@ -24,6 +24,10 @@ class Airport
 
     @planes << plane
     plane.land
+  end
+
+  def plane_in_hangar?(plane)
+    @planes.include?(plane)
   end
 
   def full?
