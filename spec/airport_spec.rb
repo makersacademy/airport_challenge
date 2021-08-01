@@ -18,7 +18,7 @@ describe Airport do
   it "Makes plane take off, removing instance from @plane, then it checks array is now n-1" do 
     @plane = []
     @plane << Plane.new
-    expect(@airport.take_off(@plane)).to eq([])
+    expect(@airport.take_off(@plane, "clear")).to eq([])
   end 
 
   it "Stores 5 plane instances and removes the third instance in array" do 
@@ -27,7 +27,7 @@ describe Airport do
     third_instance = arr[2]
     before = arr 
     arr.delete(third_instance)
-    expect(Airport.new(before).take_off(third_instance)).to eq(arr) 
+    expect(Airport.new(before).take_off(third_instance, "clear")).to eq(arr) 
   end
 
   it "Allows user to set capacity for particular airport instance" do 
@@ -36,4 +36,12 @@ describe Airport do
     heathrow = Airport.new(arr, capacity)
     expect {heathrow.land Plane.new}.to raise_error "Airport at capacity"
   end  
+
+  it "Stops take_off executing is weather is stormy, default is clear" do 
+    arr = []; 3.times {arr << Plane.new}
+    boeing23 = arr[1]
+    heathrow = Airport.new(arr, 4)
+    weather = "stormy"
+    expect {heathrow.take_off(boeing23, weather)}.to raise_error "Weather is stormy"
+  end
 end
