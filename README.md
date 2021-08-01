@@ -1,89 +1,33 @@
-Airport Challenge
-=================
+This is the first weekend challange, in which a simple air traffic control system was created using a TDD working method, based on a number of user stories. 
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+I started tacking the challenge by taking all the user stories and organising the nouns and verbs into Objects and Messages, to help we work out what classes and methods would be needed. Once this was done, I then imagined how the user in the first user story would want to use it, this lead to an appropriate feature test. This then led me to write a simple unit test for that method. This process was repeated for each user story, at times even though the unit tests would pass, I would feature test in irb to make sure that the code was doing, and if the unit test failed then I would look at irb to see if variables were what i expected. 
 
-```
+The hardest part was trying to understand stubs to deal with the random nature of the weather, using the guide linked https://www.relishapp.com/rspec/rspec-mocks/docs and the example of using a test double to test a die that’s relevant to testing random weather in the test, seemed to fulfil my needs. However initially I did not understand the exact usage and as such wasnt able to implement the necessary tests, as such I spent some time googling to try to get a better understanding, as well as watching a few youtube videos. As of writing this I feel I need to do more reading and researching to understand mocking and stubbing better. 
 
-Instructions
----------
+As of writing this rspec has passed all 11 unit tests, and I believe I have fulfilled all the user stories. I have a total coverage of 98% where lib/airport.rb only has 95.83% coverage, I believe it is the initialize method, and the full method which is private.
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Usage in IRB as follows
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+2.6.5 :001 > require './lib/airport.rb'                                                                                                                           
+2.6.5 :002 > require './lib/plane.rb'                                                                                                                             
+2.6.5 :003 > require './lib/weather.rb'                                                                                                                           
+2.6.5 :004 > airport = Airport.new                This creates a new airport                                                                                     
+2.6.5 :005 > plane = Plane.new                    This creates a new plane                                                                                       
+2.6.5 :006 > airport.land_airplane(plane)         This lands a plane at the airport                                                                               
+2.6.5 :007 > airport.takeoff_airplane(plane)      This allows a plane to take off                                                                                 
+                                                                                                                                                                 
+rspec results as follows                                                                                                                                         
+                                                                                                                                                                 
+ahsanrasul@MA322 airport_challenge % rspec                                                                                                                       
+                                                                                                                                                                 
+Finished in 0.01955 seconds (files took 0.18533 seconds to load)                                                                                                 
+11 examples, 0 failures                                                                                                                                           
+                                                                                                                                                                 
+COVERAGE:  98.78% -- 81/82 lines in 6 files                                                                                                                       
+                                                                                                                                                                 
++----------+----------------+-------+--------+---------+                                                                                                         
+| coverage | file           | lines | missed | missing |                                                                                                         
++----------+----------------+-------+--------+---------+                                                                                                         
+|  95.83%  | lib/airport.rb | 24    | 1      | 32      |                                                                                                         
++----------+----------------+-------+--------+---------+                                                                                                         
+5 file(s) with 100% coverage not shown
