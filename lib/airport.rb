@@ -10,17 +10,19 @@ class Airport
 
     def land_airplane
       raise "No available landing spots" if full?
+      todays_weather
       @airport.push('airplane')
     end
 
     def takeoff
-        raise "Cannot takeoff, too stormy" if todays_weather == "stormy"
+        todays_weather
         airport.pop
     end
 
     def todays_weather
         weather = rand(1..6)
-        weather == 3 ? "stormy" : "sunny"
+        puts weather
+        weather == 3 ? (raise "Cannot access runway due to storms") : false
     end
 
     private
