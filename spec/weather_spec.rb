@@ -1,4 +1,4 @@
-require "./lib/weather.rb"
+require "weather"
 
 describe Weather do
   context "#stormy? method" do

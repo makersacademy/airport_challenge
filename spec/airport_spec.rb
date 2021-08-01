@@ -1,17 +1,20 @@
-require "./lib/airport.rb"
-require "./lib/plane.rb"
-
+require "airport"
+require "plane"
 
 describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane) { instance_double(Plane) }
   let(:weather) { class_double(Weather).as_stubbed_const }
+  let(:full_airport) { [instance_double(Plane)] * subject.capacity }
+  
   before do
+    allow(plane).to receive(:instance_of?).with(Plane).and_return(true)
     allow(weather).to receive(:stormy?).and_return(false)
   end
 
   context "#land method" do
     it "should instruct a plane to land at the airport" do
       subject.land(plane)
+      p plane.instance_of?(Plane)
       expect(subject.landed_planes.last).to eq(plane)
     end
 
@@ -25,7 +28,7 @@ describe Airport do
     end
 
     it "should not allow planes to land when the airport is full" do
-      subject.capacity.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.landed_planes.push(double(Plane)) }
       expect { subject.land(plane) }.to raise_error "The airport is full"
     end
 

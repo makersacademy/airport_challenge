@@ -1,5 +1,3 @@
-
-
 class Airport
   attr_accessor :landed_planes, :capacity
 
