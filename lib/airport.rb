@@ -9,30 +9,22 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     raise "Airport capacity must be a positive integer" if not_positive_integer?(capacity)
-
+    
     @capacity = capacity
     @hangar = Array.new
     @weather = Weather.new
   end
 
   def land(plane)
-    raise "That plane is already on the ground!" if plane.on_ground
-    
-    raise "Landing not permitted: airport full!" if full?
-
-    check_weather("Landing")
-    hangar << plane
-    plane.report_location(true)
+    @plane = plane
+    landing_checks
+    plane_on_ground?(true)
   end
 
   def take_off(plane)
-    raise "That plane is already in the air!" unless plane.on_ground
-    
-    raise "That plane is at a different airport!" unless contains?(plane)
-
-    check_weather("Take off")
-    hangar.delete(plane)
-    plane.report_location(false)
+    @plane = plane
+    take_off_checks
+    plane_on_ground?(false)
   end
 
   def contains?(plane)
@@ -43,6 +35,28 @@ class Airport
 
   def not_positive_integer?(capacity)
     !capacity.is_a?(Integer) || capacity < 1
+  end
+
+  def landing_checks
+    raise "That plane is already on the ground!" if @plane.on_ground
+
+    raise "Landing not permitted: airport full!" if full?
+    
+    check_weather("Landing")
+  end
+
+  def take_off_checks
+    raise "That plane is already in the air!" unless @plane.on_ground
+    
+    raise "That plane is at a different airport!" unless contains?(@plane)
+
+    check_weather("Take off")
+  end
+
+  def plane_on_ground?(status)
+    @plane.report_location(status)
+    status == true ? hangar << @plane : hangar.delete(@plane)
+    @plane
   end
 
   def full?
