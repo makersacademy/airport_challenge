@@ -19,7 +19,7 @@ describe Airport do
     it "Allows user to set capacity for particular airport instance" do 
       capacity = rand(1..50)
       arr = []; capacity.times { arr << Plane.new }
-      heathrow = Airport.new(arr, capacity)
+      heathrow = Airport.new(arr, capacity, 5)
       expect { heathrow.land Plane.new }.to raise_error "Airport at capacity"
     end
   end  
@@ -28,8 +28,8 @@ describe Airport do
 
     it "Makes plane take off, removing instance from plane, then it checks array is now empty" do 
       plane = Plane.new
-      heathrow = Airport.new([plane], 7)
-      expect(heathrow.take_off(plane, 7)).to eq([])
+      heathrow = Airport.new([plane], 3, 5)
+      expect(heathrow.take_off(plane)).to eq([])
     end 
   
    # this test is now failing 
@@ -38,24 +38,24 @@ describe Airport do
     # we can no lable 3rd instance and pass planes array to Aiport instance
       planes = []; 5.times { plane = Plane.new; planes << plane } 
       third_instance = planes[2]
-      heathrow = Airport.new(planes, 7)
-      expect(heathrow.take_off(third_instance, 7)).to eq((planes.delete(third_instance); planes))
-    end
-
-    it "Stops take_off executing is weather is stormy(random number falls between 7..10), otherwise its clear" do 
-      # weather is story whenever it recieves an int greater than 7
-      arr = []; 3.times { arr << Plane.new }
-      boeing23 = arr[1]
-      heathrow = Airport.new(arr, 4)
-      expect { heathrow.take_off(boeing23, 8) }.to raise_error "Weather is stormy"
+      heathrow = Airport.new(planes, 3, 5)
+      expect(heathrow.take_off(third_instance)).to eq((planes.delete(third_instance); planes))
     end
 
     it "Stops plane from taking off if instance doesn't exist inside Airport instance" do 
       plane1 = [Plane.new]
       plane2 = [Plane.new]  
-      heathrow = Airport.new([plane1], 4)
-      expect { heathrow.take_off(plane2, 5) }.to raise_error "This plane is not at this airport"
+      heathrow = Airport.new([plane1], 4, 5)
+      expect { heathrow.take_off(plane2) }.to raise_error "This plane is not at this airport"
     end
-    
+
+    it "Stops take_off executing is weather is stormy(random number falls between 7..10), otherwise its clear" do 
+      # weather is story whenever it recieves an int greater than 7
+      boeing23 = Plane.new 
+      heathrow = Airport.new(boeing23, 2, 8)
+      p "we are here!!!!! VALUE SHOULD BE 8"
+      expect { heathrow.take_off(boeing23) }.to raise_error "Weather is stormy"
+    end
+
   end
 end

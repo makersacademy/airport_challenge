@@ -1,6 +1,13 @@
 # this file is used to run feature tests, most recent at the top, past tests follow 
 require './lib/plane.rb'
 require './lib/airport.rb'
+
+plane = Plane.new
+heathrow = Airport.new([plane], 3)
+p heathrow
+
+
+
 # test 10 planes can only take off from airports they have landed in
 # heathrow = Airport.new([], 4)
 # glasgow = Airport.new([], 4)
