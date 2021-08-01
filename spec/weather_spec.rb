@@ -1,7 +1,12 @@
 require 'weather'
 
 describe Weather do
-  
+
+  it 'provides the weather from a few different options' do
+    my_airport = Airport.new
+    expect(my_airport.weather.weather_today).to eq(:stormy).or(eq(:sunny))
+  end
+
   it "returns false if the weather is sunny" do
 
     my_airport = Airport.new
