@@ -4,7 +4,7 @@ describe Plane do
   before do 
     @spitfire = Plane.new
     @hurricane = Plane.new
-    @hurricane.landed
+    @hurricane.land
   end
 
   it 'is able to check if a plane is airborne' do
@@ -14,14 +14,14 @@ describe Plane do
   end
   
   it 'is able to see if a plane can be landed' do
-    expect(@spitfire).to respond_to :landed
-    @spitfire.landed
+    expect(@spitfire).to respond_to :land
+    @spitfire.land
     expect(@spitfire.airborne?).to eq false
   end
   
   it 'is able to see if a plane can be taken off and flying' do
-    expect(@spitfire).to respond_to :flying
-    @hurricane.flying
+    expect(@spitfire).to respond_to :take_off
+    @hurricane.take_off
     expect(@hurricane.airborne?).to eq true
   end
 end

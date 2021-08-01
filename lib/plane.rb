@@ -9,11 +9,11 @@ class Plane
     return false if @status == "landed"
   end
   
-  def landed
+  def land
     @status = "landed"
   end
   
-  def flying
+  def take_off
     @status = "flying"
   end
 end

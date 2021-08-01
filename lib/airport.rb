@@ -7,22 +7,22 @@ class Airport
     @capacity = limit
   end
   
-  def land(plane)
+  def authorize_landing(plane)
     raise 'Unable to land airport is full!' if full?
     raise 'That plane has already landed!' if  plane.airborne? == false
     raise 'Unable to land during a storm!' if stormy?
     
     @runway << plane
-    plane.landed
+    plane.land
   end
   
-  def take_off(plane)
+  def authorize_take_off(plane)
     raise 'That plane has already taken off!' if plane.airborne? == true
     raise 'That plane is not at this airport!' unless @runway.include?(plane)
     raise 'Unable to take off during a storm!' if stormy?
     
     @runway.delete(plane)
-    plane.flying
+    plane.take_off
   end
   
   def stormy?
@@ -31,7 +31,7 @@ class Airport
   end
   
   def full?
-    @capacity == @runway.count
+    @capacity <= @runway.count
   end
   
 end
