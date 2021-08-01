@@ -2,6 +2,18 @@
 require './lib/plane.rb'
 require './lib/airport.rb'
 
+# test 10 planes can only take off from airports they have landed in
+heathrow = Airport.new([], 4)
+glasgow = Airport.new([], 4)
+plane1 = Plane.new
+plane2 = Plane.new
+heathrow.land(plane1)
+glasgow.land(plane2)
+p heathrow
+p glasgow
+p heathrow.take_off(plane2, 5) 
+
+
 
 # test 9 prevent takeoff when weather argument is "stormy" passed to method take_off
 # error is expected to be raised as take_off currently recieves one argument
