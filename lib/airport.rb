@@ -1,14 +1,19 @@
 class Airport
-  attr_accessor :landed_planes
+  attr_accessor :landed_planes, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @landed_planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     raise "This is not a plane" unless plane.instance_of?(Plane)
 
     raise "This plane has already landed" if @landed_planes.include?(plane)
+
+    raise "The airport is full" if @landed_planes.size == @capacity
 
     @landed_planes << plane
   end
