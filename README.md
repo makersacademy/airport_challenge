@@ -1,4 +1,4 @@
-### Dan's notes on challenge
+**Dan's notes on challenge**
 
 - I modelled the task using the user stories in the brief. I listed the nouns and the verbs to create
 a list of objects and messages. For example, I identified the plane object with the following messages:
