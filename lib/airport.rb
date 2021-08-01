@@ -5,7 +5,11 @@ class Airport
     end 
     
     def land_plane(plane)
-        "plane_1"
+     @planes = ["plane_1"]
+    end 
+    
+    def take_off
+      @planes
     end 
 
 end 
