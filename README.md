@@ -23,7 +23,7 @@ The coding aspect of this task was not too tricky: it built upon the 'Boris Bike
 
 The main challenge was maintaining a TDD mindset and using RSpec (especially thinking about doubles and mocks in the tests, and ensuring my tests were actually testing what I wanted them to!)  
 
-I have not deleted unnecessary unit tests from any of the spec files, in order to show how my thinking developed, and the program emerged, over the course of the challenge.  
+I have not deleted any of my unit tests from the spec files, this is in order to show how my thinking developed, and the program emerged, over the course of the challenge.  
 
 ## Installation instructions
 
@@ -42,16 +42,16 @@ Open `irb` from the command line and `require` the `airport.rb` file. If you are
 * To generate an airport: `airport_variable = Airport.new`
 * To generate an aeroplane: `aeroplane_variable = Plane.new`
 * You can generate as many airports and planes as you like.
-* By default, the airports are generated empty and with a default capacity of 10 planes.
+* By default, the airports are generated empty and with a capacity of 10 planes.
 * To specify a different capacity, pass a positive integer when generating the airport:   
   `big_airport = Airport.new(200)`
-* By default, planes are generated in flight - to land them, use `land`:  
+* By default, planes are generated 'in flight' - to land them, use `land`:  
   `airport_variable.land(plane_variable)`
-* To check that your plane is now in the airport, use `contains?`:   
+* To check that a plane is in the airport, use `contains?`:   
   `airport_variable.contains?(plane_variable)`
 * You can also view the contents of the airport's hangar:  
   `airport.hangar`
-* You cannot take off if a plane is already in flight, and you cannot land if the plane is already on the ground.  
+* A plane cannot take off if it is already in flight, and a plane cannot land if it is already on the ground.  
 * A plane cannot take off from an airport unless it is at that airport.  
 * A plane cannot land at an airport that has reached its capacity.  
 * The weather is generally fine, but occasional storms will prevent landings and take offs.
@@ -59,7 +59,9 @@ Open `irb` from the command line and `require` the `airport.rb` file. If you are
 ## How to run the tests
 
 
-To run the RSpec tests, run `rspec` from the `airport_challenge` directory. This will run all of the unit tests and the feature test. To run individual test files, put the file path after `rspec`, such as `rspec ./spec/airport_spec.rb`
+To run the RSpec tests, run `rspec` from the `airport_challenge` directory. This will run all the unit tests and the feature test. To run individual test files, put the file path after `rspec`, such as `rspec ./spec/airport_spec.rb`
+
+The feature test is a simple set of commands that land, take off and check several planes at the same airport. Line 7 of `feature_spec.rb` deactivates the random weather generator, and makes sure it is always sunny. It can be commented out for a 100% authentic feature test environment, but the program will occasionally raise errors when it is stormy!
 
 ## User Stories
 
