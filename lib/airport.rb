@@ -1,11 +1,12 @@
 class Airport
+  attr_reader :plane
+    
+  def land(plane)
+    
+  end 
   
-  def initialize
-  @airport = []
-  end
+  def takeoff(plane)
   
-  def full
-    fail "airport is full, this plane cannot land" if @airport != []
-  end
-
+  end  
+  
 end
