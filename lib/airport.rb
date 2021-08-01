@@ -1,8 +1,9 @@
-require "./plane.rb"
-require "./weather.rb"
+# require "./plane.rb"
+# require "./weather.rb"
 
 class Airport
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :capacity, :weather
+  attr_accessor :hangar
 
   DEFAULT_CAPACITY = 12
 
@@ -20,7 +21,7 @@ class Airport
 
   def takeoff(planes)
     allow_takeoff_permission? planes
-    planes.takeoff
+    planes.offtake
     @hangar.delete(planes)
   end
 
@@ -30,18 +31,22 @@ class Airport
     @hangar.count >= DEFAULT_CAPACITY
   end
 
+  def hangar_empty?
+    @hangar.count == 0
+  end
+
   def allow_landing_permission?(planes)
-    # raise 'We accept only planes at this airport!' if planes.class != Plane
     # raise 'Before landing you have to start your engine first' if planes.flying?
+    raise 'We accept only planes at this airport!' if planes.class != Plane
+    # raise 'Our hangar is full, please land somewhere else' if hangar_full?
     # raise 'The landing is delayed due to stormy weather' if weather.stormy?
-    raise 'Our hangar is full, please land somewhere else.' if hangar_full?
   end
 
   def allow_takeoff_permission?(planes)
-    # raise 'We allow only planes to takeoff at this airport!' if planes.class != Plane
-    # raise 'You are already the air' if planes.flying?
+    # raise 'You are already in the air' if planes.flying?
+    raise 'We allow only planes to takeoff at this airport!' if planes.class != Plane
+    raise 'There are no planes in our hangar' if hangar_empty?
     # raise 'Takeoff is delayed due to stormy weather' if weather.stormy?
-    raise 'There are no planes in our hangar' if !hangar_full?
   end
 end
 

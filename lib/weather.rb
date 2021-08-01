@@ -6,8 +6,7 @@ class Weather
 
   private
 
-  # FORECAST = [:stormy, :sunny, :sunny, :raining, :cloudy, :sunny]
-  FORECAST = [:stormy, :stormy, :stormy, :stormy, :stormy]
+  FORECAST = [:stormy, :sunny, :sunny, :sunny, :sunny]
 
   def weather_forecast
     FORECAST.sample
