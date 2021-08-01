@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :landed_planes
+  attr_accessor :landed_planes
 
   def initialize
     @landed_planes = []
@@ -7,7 +7,15 @@ class Airport
 
   def land(plane)
     raise "This is not a plane" unless plane.instance_of?(Plane)
-    
+
     @landed_planes << plane
+  end
+
+  def take_off(plane)
+    raise "This is not a plane" unless plane.instance_of?(Plane)
+
+    raise "This plane is not at the airport" unless @landed_planes.include?(plane)
+
+    @landed_planes.delete(plane)
   end
 end
