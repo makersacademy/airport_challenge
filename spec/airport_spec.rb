@@ -13,6 +13,12 @@ describe Airport do
     it "should only let planes land" do
       expect { subject.land("helicopter") }.to raise_error "This is not a plane"
     end
+
+    it "should not let landed planes to lane again" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "This plane has already landed"
+    end
+
   end
 
   context "#take_off method" do

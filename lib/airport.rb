@@ -8,6 +8,8 @@ class Airport
   def land(plane)
     raise "This is not a plane" unless plane.instance_of?(Plane)
 
+    raise "This plane has already landed" if @landed_planes.include?(plane)
+
     @landed_planes << plane
   end
 
