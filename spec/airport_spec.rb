@@ -25,5 +25,10 @@ describe Airport do
     it "should only let planes take off" do
       expect { subject.take_off("helicopter") }.to raise_error "This is not a plane"
     end
+
+    it "should only let landed planes take off" do
+      expect { subject.take_off(plane) }.to raise_error "This plane is not at the airport"
+    end
+
   end
 end
