@@ -1,4 +1,5 @@
 require "./lib/airport.rb"
+require "./lib/plane.rb"
 
 describe Airport do
   let(:plane) { Plane.new }
@@ -10,7 +11,7 @@ describe Airport do
     end
 
     it "should only let planes land" do
-      expect { subject.land(helicopter) }.to raise_error "This is not a plane"
+      expect { subject.land("helicopter") }.to raise_error "This is not a plane"
     end
   end
 end
