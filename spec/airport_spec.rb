@@ -11,4 +11,12 @@ describe Airport do
     
   end
   
+  it 'instructs planes not to land when airport is full' do
+    airport = Airport.new  
+    plane = Plane.new
+    5.times do
+      airport.land(plane)
+    end
+    expect { airport.land(plane) }.to raise_error 'Airport is full, plane cannot land'
+  end
 end
