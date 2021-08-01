@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   # let is setup to test the same plane object in 'some'  tests
   let(:airplane) { Plane.new }
-  let(:empty_array) {[]}
 
   # test - check correct instantiation of Airport object
   it 'when instantiated it creates an instance of Airport class' do
@@ -31,7 +30,6 @@ describe Airport do
   # test - raises error if calling #take_off with no planes at the airport
   it 'raises error when no planes at airport try to take off' do
     # subject.take_off(airplane) ## Add this line in to make this test work when using 'rspec' command
-
     expect { raise subject.take_off(airplane) }.to raise_error("There are no planes at the airport to take off")
   end
 
@@ -55,11 +53,24 @@ describe Airport do
   end
 
   # test - Error message if more than 20 planes try to land at the airport
-  it "don't land a plane if the airport is full" do
+  it "raise error when airport full" do
     Airport::DEFAULT_CAPACITY.times do
       subject.land(airplane)
     end
     expect { raise subject.land(airplane) }.to raise_error("The airport is full and can't land anymore planes")
   end
+
+  # test for default airport capacity
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end 
+
+  # This is as far as I got - I wasn't able to implement testing for variable capacity
+  #
+  # it 'has a variable capacity' do
+  #   subject(50)
+  #   50.times { subject.land(airplane) }
+  #   expect { raise subject.land(airplane) }.to raise_error("The airport is full and can't land anymore planes")
+  # end
 
 end
