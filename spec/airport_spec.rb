@@ -29,12 +29,20 @@ describe Airport do
     it 'Tests to see if the default value is the constant capacity' do
         capacity = Airport.new
         #expect { subject.capacity.count }.to eq(20)
-        expect( subject.capacity).to eq(20)
+        expect( capacity.capacity).to eq(20)
     end
 
     it 'Tests to see if you can pass a new value as the airport capacity' do
         capacity = Airport.new(30)
         expect( capacity.capacity ).to eq(30)
+    end
+
+    it 'Checks to see if the weather is stormy' do
+        expect {subject.todays_weather}.to eq("stormy") if (subject.weather) == 3
+    end
+
+    it 'Raises an error if a plane tries to take off in stormy weather' do
+        expect {subject.takeoff}.to raise_error("Cannot takeoff, too stormy") if subject.todays_weather == "stormy"
     end
 
 end
