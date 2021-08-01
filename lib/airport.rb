@@ -38,11 +38,4 @@ class Airport
     @airport.length >= DEFAULT_CAPACITY ? true : false
   end
 
-
 end
-
-
-p ap = Airport.new(50)
-# plane1 = Plane.new
-# p ap.land(plane1)
-# p ap.take_off(plane1)
