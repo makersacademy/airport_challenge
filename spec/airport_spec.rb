@@ -89,3 +89,52 @@ describe Airport do
     end
   end
 end
+
+describe "#feature test with two airports, three planes and only sunny weather", type: :feature do
+
+  before(:each) do
+    @my_airport = Airport.new
+    @another_airport = Airport.new
+    @plane_1 = Plane.new
+    @plane_2 = Plane.new
+    @plane_3 = Plane.new
+    allow(@my_airport.send(:weather)).to receive(:stormy?) { false }
+    allow(@another_airport.send(:weather)).to receive(:stormy?) { false } 
+  end
+
+  it "planes travel between airports with one left at each" do
+    the_planes_land
+    one_travels_between_airports
+    this_plane_takes_off_again
+    should_be_only_first_plane_at_my_airport
+    should_be_only_second_plane_at_another_airport
+    third_plane_should_not_be_landed
+  end
+
+  def the_planes_land
+    @my_airport.land(@plane_1)
+    @my_airport.land(@plane_2)
+    @another_airport.land(@plane_3)
+  end
+
+  def one_travels_between_airports
+    @my_airport.take_off(@plane_2)
+    @another_airport.land(@plane_2)
+  end
+
+  def this_plane_takes_off_again
+    @another_airport.take_off(@plane_3)
+  end
+
+  def should_be_only_first_plane_at_my_airport
+    expect(@my_airport.send(:planes).last).to eq(@plane_1)
+  end
+
+  def should_be_only_second_plane_at_another_airport
+    expect(@another_airport.send(:planes).last).to eq(@plane_2)
+  end
+
+  def third_plane_should_not_be_landed
+    expect(@plane_3.landed).to eq(false)
+  end
+end
