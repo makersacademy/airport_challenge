@@ -10,11 +10,11 @@ class Plane
     @airborne
   end
 
-  def land
-    @airborne = true
+  def landing
+    @airborne = false
   end
 
   def offtake
-    @airborne = false
+    @airborne = true
   end
 end
