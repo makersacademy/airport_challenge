@@ -1,4 +1,4 @@
-#Airport Challenge
+# Airport Challenge
 =================
 
 ```
@@ -13,15 +13,15 @@
 
 ```
 
-##Introduction
+## Introduction
 ---------
-Airport Challenge is a simple Ruby program that simulates an airport and meets the requirements of six user stories (outlined below)
-The code and tests in this repo are my response to the first Makers Academy weekend challenge for the July 2021 cohort: in particular, it challenged me to think and learn more about TDD/BDD, RSpec, Ruby, and debugging.
-The coding aspect of this task was not too tricky: it built upon the 'Boris Bikes' pair programming activity that we worked through in week one. 
-The main challenge was maintaining a TDD mindset and using RSpec (especially thinking about doubles and mocks in the tests, and ensuring my tests were actually testing what I wanted them to!)
-I have not deleted unnecessary unit tests from any of the spec files, in order to show how my thinking developed, and the program emerged, over the course of the challenge.
+Airport Challenge is a simple Ruby program that simulates an airport and meets the requirements of six user stories (outlined below)  
+The code and tests in this repo are my response to the first Makers Academy weekend challenge for the July 2021 cohort: in particular, it challenged me to think and learn more about TDD/BDD, RSpec, Ruby, and debugging.  
+The coding aspect of this task was not too tricky: it built upon the 'Boris Bikes' pair programming activity that we worked through in week one.  
+The main challenge was maintaining a TDD mindset and using RSpec (especially thinking about doubles and mocks in the tests, and ensuring my tests were actually testing what I wanted them to!)  
+I have not deleted unnecessary unit tests from any of the spec files, in order to show how my thinking developed, and the program emerged, over the course of the challenge.  
 
-##Installation instructions
+## Installation instructions
 ---------
 
 ```
@@ -30,7 +30,7 @@ gem install bundler
 bundle
 ```
 
-##How to use this program
+## How to use this program
 -----------
 
 Open `irb` from the command line and `require` the `airport.rb` file. If you are in the `airport_challenge` directory, `require './lib/airport'` will open the program.
@@ -39,26 +39,26 @@ Open `irb` from the command line and `require` the `airport.rb` file. If you are
 * To generate an aeroplane: `aeroplane_variable = Plane.new`
 * You can generate as many airports and planes as you like.
 * By default, the airports are generated empty and with a default capacity of 10 planes.
-* To specify a different capacity, pass a positive integer when generating the airport: 
+* To specify a different capacity, pass a positive integer when generating the airport:   
   `big_airport = Airport.new(200)`
-* By default, planes are generated in flight - to land them, use `land`: 
+* By default, planes are generated in flight - to land them, use `land`:  
   `airport_variable.land(plane_variable)`
-* To check that your plane is now in the airport, use `contains?`: 
+* To check that your plane is now in the airport, use `contains?`:   
   `airport_variable.contains?(plane_variable)`
-* You can also view the contents of the airport's hangar:
+* You can also view the contents of the airport's hangar:  
   `airport.hangar`
 
-You cannot take off if a plane is already in flight, and you cannot land if the plane is already on the ground.
-A plane cannot take off from an airport unless it is at that airport.
-A plane cannot land at an airport that has reached its capacity.
+You cannot take off if a plane is already in flight, and you cannot land if the plane is already on the ground.  
+A plane cannot take off from an airport unless it is at that airport.  
+A plane cannot land at an airport that has reached its capacity.  
 The weather is generally fine, but occasional storms will prevent landings and take offs.
 
-##How to run the tests
+## How to run the tests
 --------------------
 
 To run the RSpec tests, run `rspec` from the `airport_challenge` directory. This will run all of the unit tests and the feature test. To run individual test files, put the file path after `rspec`, such as `rspec ./spec/airport_spec.rb`
 
-##User Stories
+## User Stories
 ------------
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
