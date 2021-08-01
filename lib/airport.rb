@@ -15,20 +15,24 @@ class Airport
     end
 
     def takeoff
+        raise "There are no available planes" if empty?
         todays_weather
         airport.pop
-    end
-
-    def todays_weather
-        weather = rand(1..6)
-        puts weather
-        weather == 3 ? (raise "Cannot access runway due to storms") : false
     end
 
     private
 
     def full?
         @airport.length >= CAPACITY ? true : false
+    end
+
+    def todays_weather
+        weather = rand(1..6)
+        weather == 3 ? (raise "Cannot access runway due to storms") : false
+    end
+
+    def empty?
+        @airport.length == 0 ? true :false
     end
 
 end

@@ -30,6 +30,12 @@ describe Airport do
         expect{ full_airport.land_airplane }.to raise_error("No available landing spots") if (full_airport.airport.count) >= Airport::CAPACITY
     end
 
+    it 'Tests if an error is raised when the airport is empty and a user tries to launch planbe' do
+        takeoff_test = Airport.new
+        allow(takeoff_test).to receive(:todays_weather).and_return(2)
+        expect { takeoff_test.takeoff }.to raise_error("There are no available planes") if (takeoff_test.airport.count) == 0
+    end
+
     it 'Tests to see if the default value is the constant capacity' do
         capacity = Airport.new
         expect( capacity.capacity).to eq(20)
