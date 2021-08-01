@@ -22,16 +22,16 @@ class Airport
 
     fail 'Weather is too bad' if stormy?
 
-    @planes << plane
+    planes << plane
     plane.land
   end
 
   def plane_in_hangar?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   def full?
-    @planes.length >= capacity
+    planes.length >= capacity
   end
 
   def stormy?
@@ -41,7 +41,7 @@ class Airport
   def take_off(plane)
     fail 'Weather is too bad' if stormy?
 
-    fail "this plane isn't at the airport" unless @planes.include?(plane)
+    fail "this plane isn't at the airport" unless planes.include?(plane)
 
     planes.delete(plane)
     plane.take_off
