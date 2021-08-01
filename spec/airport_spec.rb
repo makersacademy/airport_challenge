@@ -14,4 +14,16 @@ describe Airport do
       expect { subject.land("helicopter") }.to raise_error "This is not a plane"
     end
   end
+
+  context "#take_off method" do
+    it "should instruct a plane to take off from airport" do
+      subject.landed_planes = [plane]
+      subject.take_off(plane)
+      expect(subject.landed_planes).not_to include(plane)
+    end
+
+    it "should only let planes take off" do
+      expect { subject.take_off("helicopter") }.to raise_error "This is not a plane"
+    end
+  end
 end
