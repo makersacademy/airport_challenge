@@ -7,14 +7,20 @@ class ControlTower
     @weather = Weather.new
   end
 
-  def initiated_plane_comm(plane = Plane.new)
+  def initiated_plane_comm(plane = Planes.new)
     @plane = plane
     puts "Flight #{@plane.object_id} recorded status"
     if @plane.plane_now[:airborne_request_land] == :now || @plane.plane_now[:airborne_red_land] == :now
-      (@airport.grounded.count < @airport.capacity && !@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_landing : red_landing
+      return (@airport.grounded.count < @airport.capacity && !@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_landing : red_landing
     end
     if @plane.plane_now[:grounded_request_takeoff] ==:now || @plane.plane_now[:grounded_red_takeoff] == :now
-      (!@airport.check_runway.nil? == true && @weather.forecast != :stormy) ? green_takeoff : red_takeoff
+      return (!@airport.check_runway.nil? == true && @weather.forecast != :stormy) ? green_takeoff : red_takeoff
+    end
+    if @plane.plane_now[:grounded_landing] == :now
+      return @airport.plane_landed(@plane)
+    end
+    if @plane.plane_now[:airborne_takingoff] == :now
+      return @airport.plane_tookoff(@plane) 
     end
   end
 
