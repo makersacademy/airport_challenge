@@ -13,8 +13,8 @@ class ControlTower
     if @plane.plane_now[:airborne_request_land] == :now || @plane.plane_now[:airborne_red_land] == :now
       return (@airport.grounded.count < @airport.capacity && !@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_landing : red_landing
     end
-    if @plane.plane_now[:grounded_request_takeoff] ==:now || @plane.plane_now[:grounded_red_takeoff] == :now
-      return (!@airport.check_runway.nil? == true && @weather.forecast != :stormy) ? green_takeoff : red_takeoff
+    if @plane.plane_now[:grounded_request_takeoff] == :now || @plane.plane_now[:grounded_red_takeoff] == :now
+      return (!@airport.check_runway.nil? && @weather.forecast != :stormy) ? green_takeoff : red_takeoff
     end
     if @plane.plane_now[:grounded_landing] == :now
       return @airport.plane_landed(@plane)
@@ -35,10 +35,10 @@ class ControlTower
 
   def green_takeoff(procedure_time = 15) #in minutes
     @airport.commit_runway(@plane, :takeoff, procedure_time)
-    @plane.commence_procedure(:airborne_green_fly, :grounded_takingoff)
+    @plane.commence_procedure(:grounded_green_takeoff, :grounded_takingoff)
   end
 
   def red_takeoff
-    @plane.commence_procedure(:airborne_red_fly, :airborne_green_fly)
+    @plane.commence_procedure(:grounded_red_takeoff, :grounded_green_takeoff)
   end
 end

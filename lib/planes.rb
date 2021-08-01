@@ -26,15 +26,10 @@ class Planes
     emergency_level_tower: :none}
   end
 
-  def commence_procedure(now_exe = :none, next_exe = :exemption_future)
-    if @plane_now.key?(now_exe) && @plane_now.key?(next_exe)
-      clean_state
-      @plane_now[now_exe] = :now
-      @plane_now[next_exe] = :next
-    else
-      @plane_now[exemption_now] = now_exe
-      @plane_now[exemption_future] = next_exe
-    end
+  def commence_procedure(now_exe = :exemption_now, next_exe = :exemption_future)
+    @plane_now.key?(now_exe) ? clean_state : nil
+    @plane_now[now_exe] = :now
+    @plane_now[next_exe] = :next
   end
 
   def clean_state
