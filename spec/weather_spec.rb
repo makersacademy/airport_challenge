@@ -7,7 +7,7 @@ describe Weather do
     expect(my_airport.weather.weather_today).to eq(:stormy).or(eq(:sunny))
   end
 
-  it "returns true if the weather is stormy" do
+  it "returns false if the weather is sunny" do
 
     my_airport = Airport.new
     allow(my_airport.weather).to receive(:weather_today) { :sunny }

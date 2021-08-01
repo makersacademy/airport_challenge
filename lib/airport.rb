@@ -18,6 +18,8 @@ class Airport
 
     fail "Plane is already at airport" if @planes.include?(plane)
 
+    fail "Plane has already landed somewhere else" if plane.landed
+
     fail 'Weather is too bad' if stormy?
 
     @planes << plane
@@ -38,5 +40,6 @@ class Airport
     fail "this plane isn't at the airport" unless @planes.include?(plane)
 
     planes.delete(plane)
+    plane.take_off
   end
 end
