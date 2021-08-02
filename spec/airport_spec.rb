@@ -26,17 +26,20 @@ describe Airport do
       end
 
       it "should only allow planes to land" do
-        expect { subject.land("helicopter") }.to raise_error "This is not a plane"
+        message = "This is not a plane"
+        expect { subject.land("helicopter") }.to raise_error message
       end
 
       it "should not allow landed planes to land again" do
         subject.land(plane)
-        expect { subject.land(plane) }.to raise_error "This plane has already landed"
+        message = "This plane has already landed"
+        expect { subject.land(plane) }.to raise_error message
       end
 
       it "should not allow planes not in flight to land" do
         allow(plane).to receive(:flying?).and_return(false)
-        expect { subject.land(plane) }.to raise_error "This plane has landed somewhere else"
+        message = "This plane has landed somewhere else"
+        expect { subject.land(plane) }.to raise_error message
       end
 
       it "should not allow planes to land when the airport is full" do
@@ -52,7 +55,8 @@ describe Airport do
     context "the weather is stormy" do    
       it "should not allow planes to land when the weather is stormy" do
         allow(weather).to receive(:stormy?).and_return(true)
-        expect { subject.land(plane) }.to raise_error "No landings allowed while the weather is stormy"
+        message = "No landings allowed while the weather is stormy"
+        expect { subject.land(plane) }.to raise_error message
       end
     end
   end
@@ -74,7 +78,8 @@ describe Airport do
       end     
 
       it "should only allow landed planes to take off" do
-        expect { 2.times { subject.take_off(plane) } }.to raise_error "This plane is not at the airport"
+        message = "Plane is not at the airport"
+        expect { 2.times { subject.take_off(plane) } }.to raise_error message
       end
 
       it "should allow planes to take off when the weather is not stormy" do
@@ -85,7 +90,8 @@ describe Airport do
     context "the weather is stormy" do
       it "should not allow planes to take off when the weather is stormy" do
         allow(weather).to receive(:stormy?).and_return(true)
-        expect { subject.take_off(plane) }.to raise_error "No take offs allowed while the weather is stormy"
+        message = "No take offs allowed while the weather is stormy"
+        expect { subject.take_off(plane) }.to raise_error message
       end
     end
   end

@@ -1,11 +1,12 @@
 class Airport
-  attr_accessor :landed_planes, :capacity
+  attr_accessor :landed_planes
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 2
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @landed_planes = []
-    @capacity = capacity.abs
+    @capacity = capacity.positive? ? capacity : DEFAULT_CAPACITY
   end
 
   def land(plane)
@@ -25,16 +26,16 @@ class Airport
   private
 
   def landing_requirements_passed?(plane)
-    raise "No landings allowed while the weather is stormy" if Weather.stormy? 
+    raise "No landings allowed while the weather is stormy" if Weather.stormy?
     raise "This is not a plane" unless plane.instance_of?(Plane)
-    raise "This plane has already landed" if @landed_planes.include?(plane) 
-    raise "The airport is full" if full? 
+    raise "This plane has already landed" if @landed_planes.include?(plane)
+    raise "The airport is full" if full?
     raise "This plane has landed somewhere else" unless plane.flying?
   end
 
   def take_off_requirements_passed?(plane)
     raise "No take offs allowed while the weather is stormy" if Weather.stormy?
-    raise "This plane is not at the airport" unless @landed_planes.include?(plane)
+    raise "Plane is not at the airport" unless @landed_planes.include?(plane)
   end
 
   def full?
