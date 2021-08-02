@@ -39,6 +39,6 @@ class Airport
   end
 
   def full?
-    @landed_planes.size == @capacity
+    @landed_planes.size >= @capacity
   end
 end
