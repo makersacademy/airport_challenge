@@ -1,13 +1,16 @@
 require 'plane'
-require 'airport'
 
 describe Plane do
+  
+  let(:airport) { double('airport') }
+  let(:weather) { double('weather') }
+  
   it "checks if plane is at airport" do
-    my_airport = Airport.new
-    allow(my_airport.send(:weather)).to receive(:stormy?) { false }
-    my_plane = Plane.new
-    my_airport.send(:planes) << my_plane
-    my_airport.take_off(my_plane)
-    expect(my_airport.send(:planes).include?(my_plane)).to eq(false)
+    airport = Airport.new
+    allow(airport.send('weather')).to receive(:stormy?) { false }
+    airport.send(:planes) << subject
+    airport.take_off(subject)
+    expect(airport.send(:planes).include?(subject)).to eq(false)
   end
+  
 end
