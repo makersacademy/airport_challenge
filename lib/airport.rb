@@ -22,9 +22,9 @@ class Airport
   def plane_take_off(plane)
     raise "The weather is too stormy to take off" if weather == 1
     raise "Plane is not in hanger" if @hanger.none? { |x| x.id == plane.id }
-
+    
     plane.take_off
-    @hanger.delete_if { |x| x.id == plane.id }
+    @hanger.delete(plane)
   end
 
   private
@@ -39,7 +39,7 @@ class Airport
 
   def weather
     # rare is considered 1 in 1000 - 1 in 10000
-    rand(1..100_00)
+    rand(1..500_0)
   end
 
 end

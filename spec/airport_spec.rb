@@ -6,6 +6,10 @@ describe Airport do
   let (:half_full_hanger) { 10.times { subject.hanger << Plane.new } }
   let (:plane) { Plane.new(false) }
 
+  before do
+    allow(subject).to receive(:weather) { 2 }
+  end
+
   it { is_expected.to respond_to(:land_plane) }
   it { is_expected.to respond_to(:plane_take_off) }
 
@@ -35,7 +39,7 @@ describe Airport do
     expect { subject.land_plane(plane) }.to raise_error("Airport hanger is full")
   end
 
-  it "is expected to raise error taking off if plane is not in @hanger" do 
+  it "is expected to raise error taking off if plane is not in @hanger" do
     expect { subject.plane_take_off(plane) }.to raise_error("Plane is not in hanger")
   end
 
