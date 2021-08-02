@@ -10,12 +10,19 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full, cannot allow landing" if @planes.length >= DEFAULT_CAPACITY
+    fail "Landing is not permmited- the airport is full" if full?
+    
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(*)
     @planes.pop
   end
+
+  private
+
+  def full?
+    @planes.length >= DEFAULT_CAPACITY
+  end 
 
 end
