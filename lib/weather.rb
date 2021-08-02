@@ -6,7 +6,7 @@ class Weather
 
   private
 
-  WEATHER_CHART = [:sunny, :stormy, :sunny, :stormy, :sunny, :sunny, :sunny]
+  WEATHER_CHART = [:sunny, :sunny, :sunny, :stormy]
 
   def weather_today(weather_chart: WEATHER_CHART)
     weather_chart.sample

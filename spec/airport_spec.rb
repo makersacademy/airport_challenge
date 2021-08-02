@@ -34,12 +34,6 @@ describe Airport do
         expect(subject.send(:planes).last).to eq @my_plane
       end
       
-      it "planes already at airportcannot land" do
-        subject.land(@my_plane)
-        message = "Plane is already at airport"
-        expect { subject.land(@my_plane) }.to raise_error message
-      end
-
       it "planes landed at different airport cannot land" do
         another_airport = Airport.new
         allow(another_airport.send(:weather)).to receive(:stormy?) { false }
