@@ -1,13 +1,16 @@
-require 'airport.rb'
-require 'plane.rb'
-require 'weather.rb'
+require "airport"
+require "plane"
 
 describe Airport do
-  before(:each) do
-    @airport = Airport.new(12, :sunny)
-    @rainy_port = Airport.new(12, :stormy)
-    @plane = Plane.new
-    @plane_in_hangar = Plane.new(:LX610, false)
+  let(:plane) { instance_double(Plane) }
+  let(:weather) { class_double(Weather).as_stubbed_const }
+
+  before do
+    allow(plane).to receive(:instance_of?).with(Plane).and_return(true)
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:takeoff)
+    allow(plane).to receive(:flying?).and_return(true)
+    allow(weather).to receive(:stormy?).and_return(false)
   end
 
   it { is_expected.to be_instance_of Airport } 
@@ -75,7 +78,6 @@ describe Airport do
 
     it 'refuse takeoff in empty hangar ' do
       @airport.hangar = []
-      puts @airport.hangar
       message = 'There are no planes in our hangar'
       expect { @airport.takeoff(@plane)}.to raise_error message
     end
