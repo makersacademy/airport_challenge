@@ -31,8 +31,8 @@ How to use this program
 
 The program has an Airport class, a Plane class and a Weather module. 
 
-* By default, Airport instances start empty and accept a capacity argument ```airport = Airport.new(capacity)```
-* Default capacity is set at 2 planes
+* By default, Airport instances start empty and accept a capacity argument ```airport = Airport.new(capacity)```.
+* Default capacity is set at 2 planes.
 * Plane instances accept true or false when initializing ```plane = Plane.new(true)```. True means the plane is instantiated as flying. False means the plane is instantiated as not flying. The default argument is true.
 * The Weather module uses a random number generator and by default it generates stormy weather 20% of the time.
 
