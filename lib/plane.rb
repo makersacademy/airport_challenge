@@ -1,15 +1,19 @@
 class Plane
-  attr_accessor :flying
+  attr_reader :flying
 
-  def initialize(flying = false)
+  def initialize(flying = true)
     @flying = flying
   end
 
-  def landed
+  def flying?
+    @flying
+  end
+
+  def land
     @flying = false
   end
 
-  def in_flight
+  def take_off
     @flying = true
   end
 
