@@ -13,7 +13,7 @@ describe Plane do
     expect(test_airport.hanger).to include(subject)
   end
 
-  it "can take off from an airport" do
+  it "can take off from an airport" do # if weather is good
     test_airport = Airport.new
     test_airport.land(subject)
     expect { test_airport.take_off(subject) }.not_to raise_error
@@ -27,7 +27,11 @@ describe Plane do
     expect(subject.grounded?).to eq false
   end
 
-  it "can confirm if it's in the air" do 
+  it "can confirm if it's on the ground" do 
+    expect(subject.grounded?).to eq false
+  end
+
+  it "can confirm if it's in the air" do
     test_airport = Airport.new
     test_airport.land(subject)
     expect(subject.grounded?).to eq true

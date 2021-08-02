@@ -1,11 +1,15 @@
 class Plane
-  attr_accessor :grounded
+  attr_accessor :location
 
   def initialize
-    @grounded = false
+    @location = :air
   end
   
   def grounded?
-    @grounded
+    @location != :air
+  end
+
+  def update_location(location)
+    location == :air ? @location = :ground : @location = :air
   end
 end
