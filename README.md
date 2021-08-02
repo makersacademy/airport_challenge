@@ -10,12 +10,11 @@ Airport Challenge
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
-
+```
 This is the week 1 challenge as part of the Makers Academy bootcamp. It is a program built in Ruby that enables to
 planes to take-off and land at different airports subject to the weather not being stormy.
-
-```
 Prerequisites
+
 -------
 - You have installed Ruby
 
@@ -39,7 +38,7 @@ unit test and then wrote the method until they passed. I followed the red, green
 end.
 - I also made sure that I got 100% test coverages and that all my tests passed.
 
-How to use this program:
+How to use this program
 -------
 
 - You will need to create at least one instance of the Airport class. You have the option of passing in capacity as an argument -
