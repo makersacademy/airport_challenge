@@ -33,7 +33,7 @@ Airport | takeoff
 Plane | prevent_takeoff
 Plane | prevent_landig
 
-![Workflow](airport_challenge/workflow/screenshot.png)
+[Check out my workflow mindmap](https://github.com/CorinneBosch/airport_challenge/blob/main/workflow/screenshot.png)
 
 ## Setup
 
