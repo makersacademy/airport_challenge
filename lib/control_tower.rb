@@ -1,7 +1,7 @@
 require "./lib/airport.rb"
 require "./lib/weather.rb"
 class ControlTower
-  attr_reader :airport, :plane
+  attr_reader :airport, :plane, :weather
   def initialize
     @airport = Airport.new
   end

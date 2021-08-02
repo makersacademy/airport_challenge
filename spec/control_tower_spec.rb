@@ -1,7 +1,7 @@
 require "./lib/control_tower.rb"
 
 describe ControlTower do 
-  
+  let(:weather) { double :weather }
   it "checks the tower's channels are active in control of an airport" do
     expect(subject.airport).to be_instance_of(Airport)
   end
@@ -37,7 +37,7 @@ describe ControlTower do
     expect(subject.airport.is_full?).to eq(true)
   end
 
-  it "plane fails to get airborne_green_land, instead is :airborne_red_land if airport is full" do
+  it "if airport is full plane fails to get airborne_green_land, instead gets :airborne_red_land" do
     subject.airport.capacity.times{ subject.airport.grounded.push(Planes.new) }
     plane_in_use = Planes.new
     subject.initiated_plane_comm(plane_in_use)
@@ -46,19 +46,21 @@ describe ControlTower do
     expect(subject.plane.plane_now[:airborne_red_land]).to eq(:now)
   end
 
-  it "should prevent the green flag(:now) for landing if the weather is :stormy" do
+  it "if the weather is :stormy should prevent the green flag(:now) for landing" do
+    allow(weather).to receive(:forecast).and_return(:stormy)
     plane_in_use = Planes.new
     subject.initiated_plane_comm(plane_in_use)
     subject.plane.commence_procedure(:airborne_request_land, :airborne_green_land)
-    subject.initiated_plane_comm(subject.plane, :stormy)
+    subject.initiated_plane_comm(subject.plane, weather.forecast)
     expect(subject.plane.plane_now[:airborne_green_land]).not_to be(:now)
   end
 
-  it "should prevent the green flag(:now) for take off if the weather is :stormy" do 
+  it "if the weather is :stormy should prevent the green flag(:now) for take off" do 
+    allow(weather).to receive(:forecast).and_return(:stormy)
     plane_in_use = Planes.new
     subject.initiated_plane_comm(plane_in_use)
     subject.plane.commence_procedure(:grounded_request_takeoff, :grounded_green_takeoff)
-    subject.initiated_plane_comm(subject.plane, :stormy)
+    subject.initiated_plane_comm(subject.plane, weather.forecast)
     expect(subject.plane.plane_now[:grounded_green_takeoff]).not_to be(:now)
   end
 
@@ -72,11 +74,11 @@ describe ControlTower do
 
   it "removes plane from airport grounded list when plane took off" do
     plane_in_use = Planes.new
-    # plane landed
+    # plane landed - registered in grounded collection
     subject.initiated_plane_comm(plane_in_use)
     subject.plane.commence_procedure(:grounded_landing, :passengers_out)
     subject.initiated_plane_comm(subject.plane)
-    # plane took off 
+    # plane took off - deleted from grounded collection
     subject.initiated_plane_comm(plane_in_use)
     subject.plane.commence_procedure(:airborne_takingoff, :airborne_pass)
     subject.initiated_plane_comm(subject.plane)
