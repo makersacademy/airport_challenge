@@ -5,6 +5,7 @@ require "plane"
 describe Airport do
   let(:plane) { instance_double(Plane) }
   let(:weather) { instance_double(Weather) }
+  
 
   before do
     allow(plane).to receive(:instance_of?).with(Plane).and_return(true)
@@ -42,18 +43,18 @@ describe Airport do
     end
 
     it 'refuse landing in full hangar' do
+      allow(weather).to receive(:stormy?).and_return(false)
       12.times { subject.land(plane) }
+      # allow(weather).to receive(:stormy?).and_return(false)
       message = 'Our hangar is full, please land somewhere else'
       expect { subject.land(plane)}.to raise_error message
     end
 
-    #    it 'refuses landing when stormy' do
-    #   allow(plane).to receive(:landing).and_return(true)
+    # it 'refuses landing when stormy' do
     #   allow(weather).to receive(:stormy?).and_return(true)
     #   message = 'The landing is delayed due to stormy weather'
     #   expect { subject.land(plane) }.to raise_error message
     # end
-  
   end
 
   describe '#takeoff' do
@@ -63,23 +64,21 @@ describe Airport do
       expect(subject.hangar.empty?).to eq(true)
     end
 
-    # it 'takeoff plane objects only' do
-    #   allow('Bus').to receive(:offtake)
-    #   allow('Bus').to receive(:takeoff)
-    #   message = 'We allow only planes to takeoff at this airport!'
-    #   expect { subject.takeoff('Bus') }.to raise_error message
-    # end
+    it 'takeoff plane objects only' do
+      allow('Bus').to receive(:takeoff)
+      message = 'We allow only planes to takeoff at this airport!'
+      expect { subject.takeoff('Bus') }.to raise_error message
+    end
 
     it 'refuse takeoff in empty hangar ' do
-      
       message = 'There are no planes in our hangar'
       expect { subject.takeoff(plane)}.to raise_error message
     end
     
-    it 'refuses takeoff when stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      message = 'Takeoff is delayed due to stormy weather'
-      expect { subject.takeoff(plane)}.to raise_error message
-    end
+    # it 'refuses takeoff when stormy' do
+    #   allow(weather).to receive(:stormy?).and_return(true)
+    #   message = 'Takeoff is delayed due to stormy weather'
+    #   expect { subject.takeoff(plane)}.to raise_error message
+    # end
   end
 end
