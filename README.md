@@ -17,14 +17,14 @@ This is a Ruby program that controls the flow of planes at an airport. The plane
 Prerequisites
 ---------
 
-* You have installed Ruby
+* You have installed Ruby.
 
 How to install
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
+1. Fork this repo, and clone to your local machine.
+2. Run the command `gem install bundler` (if you don't have bundler already).
+3. When the installation completes, run `bundle`.
 
 How to use this program
 -------
