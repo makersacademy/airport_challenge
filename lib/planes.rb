@@ -23,6 +23,7 @@ class Planes
     latitude: :none,
     longitude: :none,
     altitude: :none,
+    distress: :none,
     emergency_level_tower: :none}
   end
 
