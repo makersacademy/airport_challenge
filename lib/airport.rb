@@ -2,20 +2,19 @@ require_relative "plane"
 require_relative "weather"
 
 class Airport
-  attr_reader :capacity, :weather
+  attr_reader :capacity
   attr_accessor :hangar
 
   DEFAULT_CAPACITY = 12
 
-  def initialize(capacity = 12, weather = Weather.new)
+  def initialize(capacity = 12)
     @hangar = []
     @capacity = capacity
-    @weather = weather
   end
 
   def land(planes)
     allow_landing_permission? planes
-    planes.landing # change flying? value to false
+    planes.landing
     @hangar.push(planes)
   end
 
@@ -36,17 +35,16 @@ class Airport
   end
 
   def allow_landing_permission?(planes)
-    # raise 'Before landing you have to start your engine first' if planes.flying?
-    raise 'We accept only planes at this airport!' if planes.class != Plane
+    raise 'We accept only planes at this airport!' unless planes.instance_of?(Plane)
+    raise 'Before landing, you have to start your engine first' if !planes.flying?
     raise 'Our hangar is full, please land somewhere else' if hangar_full?
-    # raise 'The landing is delayed due to stormy weather' if weather.stormy?
+    # raise 'The landing is delayed due to stormy weather' if Weather.stormy?
   end
 
   def allow_takeoff_permission?(planes)
-    raise 'You are already in the air' if planes.flying?
-    # raise 'We allow only planes to takeoff at this airport!' if planes.class != Plane
+    # raise 'We allow only planes to takeoff at this airport!' unless planes.instance_of?(Plane)
     raise 'There are no planes in our hangar' if hangar_empty?
-    # raise 'Takeoff is delayed due to stormy weather' if weather.stormy?
+    # raise 'Takeoff is delayed due to stormy weather' if Weather.stormy?
   end
 end
 
