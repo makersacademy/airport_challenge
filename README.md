@@ -15,21 +15,25 @@ Airport Challenge
 ## Ladies and gentlemen welcome on board! 
 #### Thank you for flying CB AIR. I hope you have a pleasant stay, please fasten your seatbelts.
 
-## What it does
+## Implementation
 
 Functional representation of user requirements:
 
 Objects  | Messages
 ------------- | -------------
 Air traffic controller | 
-Plane | new_plane
-Airport | store_planes
-Airport | landing
-Airport | takeoff
+Plane | plane object
+Plane | flying?
+Airport | airport object
+Airport | hangar
 Airport | capacity
 Airport | weather
+Airport | landing
+Airport | takeoff
 Plane | prevent_takeoff
 Plane | prevent_landig
+
+![Workflow](airport_challenge/workflow/screenshot.png)
 
 ## Setup
 
