@@ -1,11 +1,20 @@
+require_relative 'plane'
+
 class Airport
+  
+  attr_accessor :cap
   
   def initialize
     @planes = []
+    @cap = 1
+  end
+  
+  def capacity(cap)
+    "The airport capacity is #{cap}" 
   end
   
   def land(plane)
-    fail "Airport is full, plane cannot land" if @planes.count == 5
+    raise "Airport is full, plane cannot land" if @planes.count > cap
     
     @planes << plane
   end 
@@ -13,5 +22,6 @@ class Airport
   def takeoff(plane)
    
   end  
+  
   
 end
