@@ -42,21 +42,17 @@ Here is an example of how to use the program:
 ~ irb
 2.6.5 :001 > require "./lib/airport.rb"
  => true 
-2.6.5 :002 > require "./lib/plane.rb"
- => true 
-2.6.5 :003 > require "./lib/weather.rb"
- => true 
-2.6.5 :004 > airport = Airport.new
+2.6.5 :002 > airport = Airport.new
  => #<Airport:0x00007fcec0a1aef0 @landed_planes=[], @capacity=2> 
-2.6.5 :005 > plane = Plane.new
+2.6.5 :003 > plane = Plane.new
  => #<Plane:0x00007fcec0911248 @flying=true> 
-2.6.5 :006 > airport.land(plane)
+2.6.5 :004 > airport.land(plane)
  => "#<Plane:0x00007fcec0911248> has landed successfully" 
-2.6.5 :007 > plane.flying?
+2.6.5 :005 > plane.flying?
  => false 
-2.6.5 :008 > airport.take_off(plane)
+2.6.5 :006 > airport.take_off(plane)
  => "#<Plane:0x00007fcec0911248> has taken off successfully" 
-2.6.5 :009 > plane.flying?
+2.6.5 :007 > plane.flying?
  => true 
 ```
 
