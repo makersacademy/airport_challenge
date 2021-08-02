@@ -13,8 +13,8 @@ Airport Challenge
 ```
 This is the week 1 challenge as part of the Makers Academy bootcamp. It is a program built in Ruby that enables to
 planes to take-off and land at different airports subject to the weather not being stormy.
-Prerequisites
 
+Prerequisites
 -------
 - You have installed Ruby
 
