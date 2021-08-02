@@ -21,7 +21,7 @@ class Airport
 
   def plane_take_off(plane)
     raise "The weather is too stormy to take off" if weather == 1
-    raise "Plane is not in hanger" if @hanger.none? { |x| x.id == plane.id}
+    raise "Plane is not in hanger" if @hanger.none? { |x| x.id == plane.id }
 
     plane.take_off
     @hanger.delete_if { |x| x.id == plane.id }

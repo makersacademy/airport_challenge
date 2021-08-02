@@ -36,7 +36,7 @@ describe Airport do
   end
 
   it "is expected to raise error taking off if plane is not in @hanger" do 
-    expect{ subject.plane_take_off(plane) }.to raise_error("Plane is not in hanger")
+    expect { subject.plane_take_off(plane) }.to raise_error("Plane is not in hanger")
   end
 
   it "is expected to deny planes to land or take off in stormy weather" do
@@ -45,8 +45,7 @@ describe Airport do
     expect { subject.land_plane(plane) }.to raise_error("The weather is too stormy to land")
     expect { subject.plane_take_off(plane) }.to raise_error("The weather is too stormy to take off")
   end
-
-
+  
   it "is expected to remove the correct plane when plane_take_off is called from the @hanger" do
     plane2 = Plane.new(false)
     subject.land_plane(plane)

@@ -20,6 +20,7 @@ class Plane
 
   def change_state(state, message)
     raise message if is_landed == state
+    
     @is_landed = state
   end
 
