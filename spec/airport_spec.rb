@@ -16,18 +16,14 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  it "has a hangar array to store planes" do
-    expect(subject.hangar).to be_a Array
-  end
-
-  it "stores a plane in hangar after landing" do 
-    subject.land(plane)
-    expect(subject.hangar.size).to eq 1
-  end
-
   it "can confirm a landed plane is at the airport" do
     subject.land(plane)
     expect(subject.contains?(plane)).to be true
+  end
+
+  it "can provide list of landed planes via hangar method" do
+    2.times { subject.land(plane) }
+    expect(subject.hangar).to eq "#[Double :plane], #[Double :plane]"
   end
 
   it "can confirm a plane, after taking off, is no longer at the airport" do

@@ -5,14 +5,18 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     raise "Airport capacity must be a positive integer" if not_positive_integer?(capacity)
     
     @capacity = capacity
-    @hangar = Array.new
+    @planes = Array.new
     @weather = Weather.new
+  end
+
+  def hangar
+    @planes.each { |plane| plane.to_s }.join ", "
   end
 
   def land(plane)
@@ -28,7 +32,7 @@ class Airport
   end
 
   def contains?(plane)
-    hangar.include?(plane)
+    @planes.include?(plane)
   end
 
   private
@@ -55,12 +59,12 @@ class Airport
 
   def plane_on_ground?(status)
     @plane.report_location(status)
-    status == true ? hangar << @plane : hangar.delete(@plane)
+    status == true ? @planes << @plane : @planes.delete(@plane)
     @plane
   end
 
   def full?
-    hangar.size == @capacity
+    @planes.size == @capacity
   end
 
   def check_weather(action)
