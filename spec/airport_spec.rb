@@ -1,13 +1,10 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
 
   let(:plane) { double(:plane) }
-  # let(:weather) { double('weather') }
-  
+
   before(:each) do
-    @my_plane = Plane.new
     allow(plane).to receive(:landed).and_return(false)
     allow(plane).to receive(:land).and_return(@landed = true)
     allow(plane).to receive(:take_off).and_return(@landed = false)
@@ -38,11 +35,9 @@ describe Airport do
       end
       
       it "planes landed at different airport cannot land" do
-        another_airport = Airport.new
-        allow(another_airport.send(:weather)).to receive(:stormy?) { false }
-        subject.land(@my_plane)
+        allow(plane).to receive(:landed).and_return(true)
         message = "Plane has already landed somewhere else"
-        expect { another_airport.land(@my_plane) }.to raise_error message
+        expect { subject.land(plane) }.to raise_error message
       end
 
       it "prevents landing when airport is full" do
