@@ -9,6 +9,8 @@ describe Airport do
   before(:each) do
     @my_plane = Plane.new
     allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:land).and_return(@landed = true)
+    allow(plane).to receive(:take_off).and_return(@landed = false)
   end
   
   describe "#airport capacity" do
@@ -31,7 +33,6 @@ describe Airport do
       end
 
       it "plane that has landed can be found in the airport" do
-        allow(plane).to receive(:land).and_return(@landed = true)
         subject.land(plane)
         expect(subject.send(:planes).last).to eq plane
       end
@@ -45,9 +46,9 @@ describe Airport do
       end
 
       it "prevents landing when airport is full" do
-        5.times { subject.land(Plane.new) }
+        5.times { subject.land(plane) }
         message = "Airport is at full capacity"
-        expect { subject.land(@my_plane) }.to raise_error message
+        expect { subject.land(plane) }.to raise_error message
       end
 
     end
@@ -57,7 +58,7 @@ describe Airport do
       it "prevent landing when weather is stormy" do
         allow(subject.send(:weather)).to receive(:stormy?) { true }
         message = "Weather is too bad"
-        expect { subject.land(@my_plane) }.to raise_error message
+        expect { subject.land(plane) }.to raise_error message
       end
 
     end
@@ -73,25 +74,24 @@ describe Airport do
       end
 
       it "after plane takes off, it is no longer at the airport" do
-        subject.send(:planes) << @my_plane
-        subject.take_off(@my_plane)
+        subject.send(:planes) << plane
+        subject.take_off(plane)
         expect(subject.send(:planes).length).to eq 0
       end
 
       it "planes that are flying cannot take off" do
-        allow(subject.send(:weather)).to receive(:stormy?) { false }
-        subject.send(:planes) << @my_plane
-        subject.take_off(@my_plane)
+        subject.send(:planes) << plane
+        subject.take_off(plane)
         message = "this plane isn't at the airport"
-        expect { subject.take_off(@my_plane) }.to raise_error message
+        expect { subject.take_off(plane) }.to raise_error message
       end
 
       it "planes can only take off from airport they are in" do
         another_airport = Airport.new
         allow(another_airport.send(:weather)).to receive(:stormy?) { false }
-        subject.send(:planes) << @my_plane
+        subject.send(:planes) << plane
         message = "this plane isn't at the airport"
-        expect { another_airport.take_off(@my_plane) }.to raise_error message
+        expect { another_airport.take_off(plane) }.to raise_error message
       end
 
     end
@@ -100,9 +100,9 @@ describe Airport do
     
       it "don't let plane take off if weather is stormy" do
         allow(subject.send(:weather)).to receive(:stormy?) { true }
-        subject.send(:planes) << @my_plane
+        subject.send(:planes) << plane
         message = "Weather is too bad"
-        expect { subject.take_off(@my_plane) }.to raise_error message
+        expect { subject.take_off(plane) }.to raise_error message
       end
     end
 
