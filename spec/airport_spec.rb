@@ -3,11 +3,12 @@ require 'plane'
 
 describe Airport do
 
-  # let(:plane) { double(:plane, landed: true) }
+  let(:plane) { double(:plane) }
   # let(:weather) { double('weather') }
   
   before(:each) do
     @my_plane = Plane.new
+    allow(plane).to receive(:landed).and_return(false)
   end
   
   describe "#airport capacity" do
@@ -30,8 +31,9 @@ describe Airport do
       end
 
       it "plane that has landed can be found in the airport" do
-        subject.land(@my_plane)
-        expect(subject.send(:planes).last).to eq @my_plane
+        allow(plane).to receive(:land).and_return(@landed = true)
+        subject.land(plane)
+        expect(subject.send(:planes).last).to eq plane
       end
       
       it "planes landed at different airport cannot land" do
