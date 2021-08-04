@@ -41,7 +41,7 @@ describe Airport do
       end
 
       it "prevents landing when airport is full" do
-        5.times { subject.land(plane)  }
+        5.times { subject.land(plane) }
         message = "Airport is at full capacity"
         expect { subject.land(plane) }.to raise_error message
       end

@@ -31,10 +31,6 @@ class Airport
     planes.length >= capacity
   end
 
-  def stormy?
-    weather.stormy?
-  end
-
   def take_off(plane)
     clear_to_take_off?(plane)
     planes.delete(plane)
