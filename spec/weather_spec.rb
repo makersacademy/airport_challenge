@@ -1,6 +1,7 @@
 require "weather"
 
 describe Weather do
+
   let(:forecast) { instance_double(Weather) }
 
   describe '#stormy?' do
@@ -17,9 +18,3 @@ describe Weather do
     end
   end
 end
-
-  # let(:weather) { class_double(Weather).as_stubbed_const }
-
-  # it '#stormy? returns boolean' do
-  #   expect(Weather.stormy?).to eq(true).or eq(false)
-  # end

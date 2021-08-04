@@ -31,7 +31,7 @@ class Airport
   end
 
   def hangar_empty?
-    @hangar.count == 0
+    @hangar.count.zero?
   end
 
   def weather
@@ -40,15 +40,14 @@ class Airport
 
   def allow_landing_permission?(planes)
     raise 'We accept only planes at this airport!' unless planes.instance_of?(Plane)
-    raise 'Before landing, you have to start your engine first' if !planes.flying?
+    raise 'Before landing, you have to start your engine first' unless planes.flying?
     raise 'Our hangar is full, please land somewhere else' if hangar_full?
-    # raise 'The landing is delayed due to stormy weather' if weather.stormy?
+    # raise 'The landing is delayed due to stormy weather' unless weather.stormy?
   end
 
   def allow_takeoff_permission?(planes)
     raise 'We allow only planes to takeoff at this airport!' unless planes.instance_of?(Plane)
     raise 'There are no planes in our hangar' if hangar_empty?
-    # raise 'Takeoff is delayed due to stormy weather' if Weather.stormy?
+    # raise 'Takeoff is delayed due to stormy weather' unless weather.stormy?
   end
 end
-
