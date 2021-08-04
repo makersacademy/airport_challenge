@@ -1,16 +1,26 @@
 require 'plane'
 
 describe Plane do
-  
-  let(:airport) { double('airport') }
-  let(:weather) { double('weather') }
-  
-  it "checks if plane is at airport" do
-    airport = Airport.new
-    allow(airport.send('weather')).to receive(:stormy?) { false }
-    airport.send(:planes) << subject
-    airport.take_off(subject)
-    expect(airport.send(:planes).include?(subject)).to eq(false)
+
+  it "should initialize with an attribute" do
+    expect(subject).to have_attributes(landed: false)
   end
-  
+
+  describe "#land method" do
+    it "should change landed attrbute to true after landing" do
+      subject.land
+      expect(subject.landed).to eq true
+    end
+
+  end
+
+  describe '#take_off method' do
+    it "should change landed attribute to false after takeoff" do
+      subject.land
+      subject.take_off
+      expect(subject.landed).to eq false
+    end
+
+  end
+
 end

@@ -103,11 +103,14 @@ describe Airport do
 
   end
 
+  # make sure feature test isolates airport class
+  
   describe "#feature test with two airports, three planes and only sunny weather", type: :feature do
+
+    let(:plane) { double(:plane) }
 
     before(:each) do
       @another_airport = Airport.new
-      @plane_1 = Plane.new
       @plane_2 = Plane.new
       @plane_3 = Plane.new
       allow(subject.send(:weather)).to receive(:stormy?) { false }
@@ -124,7 +127,7 @@ describe Airport do
     end
 
     def the_planes_land
-      subject.land(@plane_1)
+      subject.land(plane)
       subject.land(@plane_2)
       @another_airport.land(@plane_3)
     end
@@ -139,7 +142,7 @@ describe Airport do
     end
 
     def should_be_only_first_plane_at_my_airport
-      expect(subject.send(:planes).last).to eq(@plane_1)
+      expect(subject.send(:planes).last).to eq(plane)
     end
 
     def should_be_only_second_plane_at_another_airport
@@ -153,5 +156,3 @@ describe Airport do
   end
   
 end
-
-
