@@ -5,7 +5,7 @@ describe Airport do
   subject { Airport.new }
   let(:plane) { Plane.new }
 
-  context 'when weather is normal' do
+  context 'When weather is normal' do
     before do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return false
     end
@@ -17,7 +17,7 @@ describe Airport do
         expect(subject.land(plane)).to eq [plane]
       end
 
-      it 'allows a plane to land when weather is not stormy' do
+      it 'allows a plane to land' do
         expect { subject.land(plane) }.not_to raise_error
       end
   
@@ -37,13 +37,16 @@ describe Airport do
         expect(subject.planes).not_to include plane
       end
 
-      it 'allows a plane to take off when weather is not stormy' do
-        expect { subject.take_off(plane) }.not_to raise_error
-      end
+      it 'raises an error if the plane is at another airport' do
+        airport_2 = Airport.new
+        airport_2.land(plane)
+        error = "Cannot take off- the plane is at another airport"
+        expect { subject.take_off(plane) }.to raise_error error
+      end 
     end
   end
 
-  context 'when weather is stormy' do
+  context 'When weather is stormy' do
     before do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return true
     end
@@ -58,5 +61,4 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error error
     end
   end
-
 end
