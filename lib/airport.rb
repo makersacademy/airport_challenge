@@ -22,6 +22,8 @@ class Airport
     fail "Take off is not permmited- stormy weather!" if weather.stormy?
 
     planes.delete(plane)
+
+    puts "The plane took off and is no longer in the airport"
   end
 
   private

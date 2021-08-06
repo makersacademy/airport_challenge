@@ -33,7 +33,8 @@ describe Airport do
   
       it 'instructs the plane to take off' do
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq plane
+        subject.take_off(plane)
+        expect(subject.planes).not_to include plane
       end
 
       it 'allows a plane to take off when weather is not stormy' do
