@@ -1,14 +1,9 @@
 class Weather 
 
-  def stormy?
-    weather_forecast == :stormy
-  end 
-
-  private
-
-  FORECAST = [:stormy, :sunny, :sunny, :sunny, :sunny]
-
-  def weather_forecast
-    FORECAST.sample
+  def self.stormy?
+    FORECAST.sample == :stormy
   end
+
+  FORECAST = [:sunny, :sunny, :sunny, :sunny]
+  # :stormy,
 end
