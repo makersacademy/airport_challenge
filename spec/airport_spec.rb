@@ -2,17 +2,15 @@ require 'airport'
 
 describe Airport do
 
-  subject { Airport.new }
+  subject(:airport) { described_class.new }
   let(:plane) { Plane.new }
 
-  context 'When weather is normal' do
+  context 'Normal weather' do
     before do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return false
     end
 
     describe '#land' do
-      it { is_expected.to respond_to(:land).with(1).argument }
-  
       it 'instructs a plane to land at an airport' do
         expect(subject.land(plane)).to eq [plane]
       end
@@ -29,12 +27,15 @@ describe Airport do
     end
   
     describe '#take_off' do
-      it { is_expected.to respond_to(:take_off).with(1).argument }
-  
       it 'instructs the plane to take off' do
         subject.land(plane)
         subject.take_off(plane)
         expect(subject.planes).not_to include plane
+      end
+
+      it 'returns the plane that took off' do
+        subject.land(plane)
+        expect(subject.take_off(plane)).to eq plane
       end
 
       it 'raises an error if the plane is at another airport' do
@@ -42,11 +43,26 @@ describe Airport do
         airport_2.land(plane)
         error = "Cannot take off- the plane is at another airport"
         expect { subject.take_off(plane) }.to raise_error error
-      end 
+      end
+
+      it 'planes which are already flying cannot take off' do
+        subject.land(plane)
+        flying_plane = subject.take_off(plane)
+        error = "The plane is already flying- cannot take off"
+        expect { flying_plane.took_off }.to raise_error error
+      end
+
+      it 'planes that are already flying cannot be in an airport' do
+        subject.land(plane)
+        flying_plane = subject.take_off(plane)
+        error = "The plane is already flying- cannot be in an airport"
+        expect { flying_plane.flying? }.to raise_error error
+      end
+
     end
   end
 
-  context 'When weather is stormy' do
+  context 'Stormy weather' do
     before do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return true
     end
