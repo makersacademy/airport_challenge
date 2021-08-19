@@ -44,11 +44,13 @@ As an air traffic controller
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
+![land-and-takeoff](./images/land-and-takeoff.png) 
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
 ```
+![airport-is-full](./images/airport-is-full.png)
 ```
 As the system designer
 So that the software can be used for many different airports
@@ -59,11 +61,13 @@ As an air traffic controller
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 ```
+![error-takeoff-stormy](./images/error-takeoff-stormy.png)
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+![error-land-stormy](./images/error-land-stormy.png)
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
