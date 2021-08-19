@@ -20,8 +20,11 @@ A few notes
 * `irb` is working as intended. Example outputs:
 
 ![land-and-takeoff](./images/land-and-takeoff.png) 
+
 ![airport-is-full](./images/airport-is-full.png)
+
 ![error-takeoff-stormy](./images/error-takeoff-stormy.png)
+
 ![error-land-stormy](./images/error-land-stormy.png)
 
 
