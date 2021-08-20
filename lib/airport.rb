@@ -24,8 +24,6 @@ class Airport
 
     planes.delete(plane)
     puts "The plane took off and is no longer in the airport"
-
-    plane
   end
 
   private

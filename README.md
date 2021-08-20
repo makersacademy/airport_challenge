@@ -16,7 +16,7 @@ A few notes
 -----------
 * All RSpec tests passing
 * All user stories are satisfied
-* Test coverage is 98.92%
+* Test coverage is 98.51%
 * `irb` is working as intended. Example outputs:
 
 ![land-and-takeoff](./images/land-and-takeoff.png) 
