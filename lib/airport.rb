@@ -1,14 +1,15 @@
 class Airport 
-  # attr_accessor :plane
+  DEFAULT_CAPACITY = 5
+  attr_accessor :capacity
 
-  def initialize 
+  def initialize(capacity=DEFAULT_CAPACITY)
     @airport = []
-    @CAPACITY = 5
+    @CAPACITY = capacity
   end
 
   def land(plane)
     @plane = plane
-    fail "Airport is full" if @airport.length > @CAPACITY
+    fail "Airport is full" if @airport.size >= DEFAULT_CAPACITY
     @airport << @plane
   end
 
@@ -16,6 +17,10 @@ class Airport
     @plane = plane
     @airport.delete(@plane)
     "Euston we have lift off"
+  end
+
+  def length
+    @airport.length
   end
 
 end
