@@ -3,10 +3,12 @@ class Airport
 
   def initialize 
     @airport = []
+    @CAPACITY = 5
   end
 
   def land(plane)
     @plane = plane
+    fail "Airport is full" if @airport.length > @CAPACITY
     @airport << @plane
   end
 
@@ -15,4 +17,5 @@ class Airport
     @airport.delete(@plane)
     "Euston we have lift off"
   end
+
 end
