@@ -7,6 +7,10 @@ describe Airport do
       expect(subject).to respond_to(:land_plane)
     end
 
+    it 'Checks that the airport has the ability to store multiple planes' do
+      expect(subject.planes).to be_instance_of(Array)
+    end
+
   end
 
 end
