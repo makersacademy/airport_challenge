@@ -31,6 +31,12 @@ describe Airport do
       expect(subject.take_off(plane)).to eq true
     end
 
+    it 'Checks that the plane is recorded as having left the airport' do
+      subject.planes << plane
+      subject.take_off(plane)
+      expect(subject.planes.length).to eq 0
+    end
+
   end
 
 end

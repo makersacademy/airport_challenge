@@ -11,7 +11,14 @@ class Airport
   end
 
   def take_off(plane)
+    record_departure
     true
+  end
+
+  private
+
+  def record_departure
+    @planes.delete_at(@planes.length - 1)
   end
 
 end
