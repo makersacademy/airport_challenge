@@ -19,6 +19,7 @@ class Airport
 
   def take_off
     raise "It's too stormy to take off" if stormy?
+    raise "There are no planes to take off" if airport_empty?
     handle_takeoff
   end
 
@@ -48,6 +49,10 @@ class Airport
   def handle_takeoff
     Plane.new true
     record_departure
+  end
+
+  def airport_empty?
+    @planes == []
   end
 
 end

@@ -42,6 +42,10 @@ describe Airport do
       expect(subject.planes.length).to eq 0
     end
 
+    it 'Checks that there are planes in the airport to take off' do
+      expect{ subject.take_off }.to raise_error "There are no planes to take off"
+    end
+
   end
 
   context "I want to prevent landing when the airport is full" do
