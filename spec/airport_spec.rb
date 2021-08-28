@@ -67,6 +67,10 @@ describe Airport do
       expect(subject.planes.length).to eq 2
     end
 
+    it "Checks that a modified capacity will still throw error if capacity is full" do
+      expect {3.times {subject.land_plane(plane)}}.to raise_error "Airport Full"
+    end
+
   end
 
 end
