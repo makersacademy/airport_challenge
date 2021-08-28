@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  it { is_expected.to be_kind_of(Airport)}
+  it { is_expected.to be_kind_of(described_class) }
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
