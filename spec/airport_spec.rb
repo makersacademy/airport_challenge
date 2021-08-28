@@ -52,4 +52,18 @@ describe Airport do
 
   end
 
+  context "I would like a default airport capacity that can be overridden as appropriate" do
+
+    before do
+      subject.hanger_capacity = 2
+    end
+
+    it "Checks that you are able to modify the airport capacity" do
+      expect(subject.hanger_capacity).to eq 2
+    end
+
+    # it "Checks that a modified capacity"
+
+  end
+
 end
