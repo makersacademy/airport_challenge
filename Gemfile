@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "3.0.2"
+ruby '3.0.2'
 
 group :test do
   gem 'rspec'
@@ -9,5 +9,5 @@ group :test do
 end
 
 group :development, :test do
-  gem "rubocop", "1.20"
+  gem 'rubocop', '1.20'
 end
