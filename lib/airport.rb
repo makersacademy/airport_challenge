@@ -12,7 +12,7 @@ class Airport
 
   def take_off(plane)
     record_departure
-    true
+    Plane.new true
   end
 
   private
