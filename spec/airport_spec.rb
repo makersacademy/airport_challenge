@@ -26,6 +26,11 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
+    it 'Checks that planes can takeoff off from the airport' do
+      subject.planes << plane
+      expect(subject.take_off(plane)).to eq true
+    end
+
   end
 
 end
