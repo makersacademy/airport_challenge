@@ -39,4 +39,12 @@ describe Airport do
 
   end
 
+  context "I want to prevent landing when the airport is full" do
+
+    it "Checks an airport holds a capacity of over 1 plane" do
+      expect(subject.hanger_capacity).to be > 0
+    end
+
+  end
+
 end
