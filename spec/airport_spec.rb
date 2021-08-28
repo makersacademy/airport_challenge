@@ -62,7 +62,10 @@ describe Airport do
       expect(subject.hanger_capacity).to eq 2
     end
 
-    # it "Checks that a modified capacity"
+    it "Checks that a modified capacity allows two planes to land" do
+      2.times {subject.land_plane(plane)}
+      expect(subject.planes.length).to eq 2
+    end
 
   end
 
