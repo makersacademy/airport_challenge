@@ -64,12 +64,4 @@ describe Airport do
       expect { port.release_for_takeoff }.to raise_error 'Weather is stormy'
     end
   end
-
-  describe '#check_weather' do
-    it { is_expected.to respond_to(:check_weather) }
-
-    # it 'returns the current weather when called' do
-    #   expect(subject.check_weather).to
-    # end
-  end
 end

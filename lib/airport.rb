@@ -31,11 +31,11 @@ class Airport
     end
   end
 
+  private
+
   def check_weather
     ['stormy','sunny'].sample
   end
-
-  private
 
   def full?
     @hangar.count >= capacity
