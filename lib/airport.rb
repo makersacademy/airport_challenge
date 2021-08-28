@@ -10,32 +10,26 @@ class Airport
   end
 
   def dock_landing_plane(plane)
-    weather = check_weather
-    if full?
-      fail 'Hangar is full'
-    elsif weather == 'stormy'
-      fail 'Weather is stormy'
-    else
-      @hangar << plane
-    end
+    raise 'Hangar is full' if full?
+
+    raise 'Weather is stormy' if stormy?
+
+    @hangar << plane
   end
 
   def release_for_takeoff
-    weather = check_weather
-    if empty?
-      fail 'No planes in hangar'
-    elsif weather == 'stormy'
-      fail 'Weather is stormy'
-    else 
-      @hangar.pop
-    end
+    raise 'No planes in hangar' if empty?
+
+    raise 'Weather is stormy' if stormy?
+
+    @hangar.pop
+  end
+
+  def stormy?
+    rand(10) > 7
   end
 
   private
-
-  def check_weather
-    ['stormy','sunny'].sample
-  end
 
   def full?
     @hangar.count >= capacity
