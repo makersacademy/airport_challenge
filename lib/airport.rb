@@ -10,8 +10,8 @@ class Airport
   attr_accessor :hanger_capacity
 
   def land_plane(plane)
+    airport_full? ? (raise "Airport Full") : @planes << plane
     record_landing(plane)
-    @planes << plane
   end
 
   def take_off
@@ -27,6 +27,10 @@ class Airport
 
   def record_landing(plane)
     plane.flying = false
+  end
+
+  def airport_full?
+    @planes.length >= @hanger_capacity
   end
 
 end

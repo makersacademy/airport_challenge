@@ -40,9 +40,14 @@ describe Airport do
   end
 
   context "I want to prevent landing when the airport is full" do
-
+    
     it "Checks an airport holds a capacity of over 1 plane" do
       expect(subject.hanger_capacity).to be > 0
+    end
+
+    it "Check application crashes if you try to land a plane while the airport is full" do
+      subject.planes << plane
+      expect{subject.land_plane(plane)}.to raise_error "Airport Full"
     end
 
   end
