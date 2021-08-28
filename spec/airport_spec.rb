@@ -74,12 +74,12 @@ describe Airport do
     it { is_expected.to respond_to(:stormy?) }
 
     it 'likely (7/10 chance) to return false' do
-      port.stub(:rand) { 1 }
+      allow(port).to receive(:rand).and_return(1)
       expect(port.stormy?).to eq false      
     end
 
     it 'unlikely (3/10 chance) to return true' do
-      port.stub(:rand) { 8 }
+      allow(port).to receive(:rand).and_return(8)
       expect(port.stormy?).to eq true
     end
   end
