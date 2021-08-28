@@ -7,7 +7,7 @@ class Airport
   attr_reader :planes
 
   def land_plane(plane)
-    plane.flying = false
+    record_landing(plane)
     @planes << plane
   end
 
@@ -20,6 +20,10 @@ class Airport
 
   def record_departure
     @planes.delete_at(@planes.length - 1)
+  end
+
+  def record_landing(plane)
+    plane.flying = false
   end
 
 end
