@@ -10,13 +10,29 @@ class Airport
   end
 
   def dock_landing_plane(plane)
-    fail 'Hangar is full' if full?
-    @hangar << plane
+    weather = check_weather
+    if full?
+      fail 'Hangar is full'
+    elsif weather == 'stormy'
+      fail 'Weather is stormy'
+    else
+      @hangar << plane
+    end
   end
 
   def release_for_takeoff
-    fail 'No planes in hangar' if empty?
-    @hangar.pop
+    weather = check_weather
+    if empty?
+      fail 'No planes in hangar'
+    elsif weather == 'stormy'
+      fail 'Weather is stormy'
+    else 
+      @hangar.pop
+    end
+  end
+
+  def check_weather
+    ['stormy','sunny'].sample
   end
 
   private
