@@ -1,7 +1,7 @@
 require 'airport'
 describe Airport do
 
-  let(:plane) { Plane.new true}
+  let(:plane) { Plane.new true }
 
   context 'I want to instruct a plane to land at an airport' do 
 
@@ -28,12 +28,12 @@ describe Airport do
 
     it 'Checks that planes can takeoff off from the airport' do
       subject.planes << plane
-      expect(subject.take_off(plane)).to be_instance_of(Plane)
+      expect(subject.take_off).to be_instance_of(Plane)
     end
 
     it 'Checks that the plane is recorded as having left the airport' do
       subject.planes << plane
-      subject.take_off(plane)
+      subject.take_off
       expect(subject.planes.length).to eq 0
     end
 

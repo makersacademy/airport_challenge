@@ -7,10 +7,11 @@ class Airport
   attr_reader :planes
 
   def land_plane(plane)
+    plane.flying = false
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off
     record_departure
     Plane.new true
   end
