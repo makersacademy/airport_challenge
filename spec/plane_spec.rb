@@ -6,5 +6,7 @@ describe Plane do
     it 'expects a plane objct to exist' do
       expect(subject).to be_instance_of(Plane)
     end
+
   end
+
 end

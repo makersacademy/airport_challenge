@@ -1,11 +1,9 @@
 require 'airport'
 describe Airport do
 
-  let (:plane) { Plane.new }
-  
-  context 'I want to instruct a plane to land at an airport' do 
+  let(:plane) { Plane.new }
 
-    
+  context 'I want to instruct a plane to land at an airport' do 
 
     it 'Checks if the airport has the ability to land planes' do
       expect(subject).to respond_to(:land_plane)
@@ -22,6 +20,12 @@ describe Airport do
 
   end
 
+  context 'I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport' do
 
+    it 'Checks the airport has the ability to take off planes' do
+      expect(subject).to respond_to(:take_off)
+    end
+
+  end
 
 end
