@@ -22,6 +22,10 @@ describe Airport do
 
   context 'I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport' do
 
+    before do
+      allow(subject).to receive(:stormy?).and_return(false)
+    end
+
     it 'Checks the airport has the ability to take off planes' do
       expect(subject).to respond_to(:take_off)
     end
@@ -33,6 +37,7 @@ describe Airport do
 
     it 'Checks that the plane is recorded as having left the airport' do
       subject.planes << plane
+      
       subject.take_off
       expect(subject.planes.length).to eq 0
     end
@@ -47,7 +52,7 @@ describe Airport do
 
     it "Check application crashes if you try to land a plane while the airport is full" do
       subject.planes << plane
-      expect{subject.land_plane(plane)}.to raise_error "Airport Full"
+      expect { subject.land_plane(plane) }.to raise_error "Airport Full"
     end
 
   end
@@ -63,14 +68,24 @@ describe Airport do
     end
 
     it "Checks that a modified capacity allows two planes to land" do
-      2.times {subject.land_plane(plane)}
+      2.times { subject.land_plane(plane) }
       expect(subject.planes.length).to eq 2
     end
 
     it "Checks that a modified capacity will still throw error if capacity is full" do
-      expect {3.times {subject.land_plane(plane)}}.to raise_error "Airport Full"
+      expect { 3.times { subject.land_plane(plane) } }.to raise_error "Airport Full"
     end
 
   end
+
+  context "I want to prevent takeoff when weather is stormy" do
+
+    it 'Check if an error is raised when a plane tries to take off during stormy weather' do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.take_off }.to raise_error "It's too stormy to take off"
+    end
+
+  end
+
 
 end

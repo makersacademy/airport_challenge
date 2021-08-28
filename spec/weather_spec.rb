@@ -8,7 +8,6 @@ describe Weather do
       expect(subject.stormy?).to eq false
     end
 
-
     it 'Checks the 1 in 10 change that the weather will be stormy' do
       expect(subject).to receive(:rand).and_return(10)
       expect(subject.stormy?).to eq true

@@ -15,14 +15,7 @@ describe Plane do
       airport.land_plane(plane)
       expect(airport.planes[0].flying).to eq false
     end
-  end
-
-  context 'Checks that the plane is recorded as having left the airport' do
     
-    it 'Checks if a plane is recorded as flying after takeoff' do
-      expect(plane.flying).to eq true
-    end
-
   end
 
 end
