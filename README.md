@@ -86,11 +86,39 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 **Ed's Approach**
 
+```
 - Read the README.MD
 - Fork and Clone, bundle install.
-- Run RSPEC to check everything is working
+- Run RSpec to check everything is working
 - Install ruby 6.2.5 (THIS DIDN'T WORK ON MY MAC, I TRIED MULTIPLE SOLUTIONS BUT NO LUCK)
 - Break all user stories down into a domain model \*see "Ed's Domain Model" below.
+- create a lib folder for code
+- create an RSspec file for the airport
+- run rubocop, turns out it is extremely fussy.
+- Create a simple test, checking that the airport exists with a bike
+- Try to build in RSpec land and take off multiple planes from the start (aka use an array)
+
+    "As an Airport Owner
+    So that I can be filthy rich and buy more nice things
+    I want to be able to land a number of planes"
+
+    "As an Airport Owner
+    So that I can be filthy rich and buy more nice things
+    I want to be able to take_off a number of planes"
+
+- Snoop aroudn the spec_helper, it looks a lot more detailed.
+- Back to our first user story
+    - Airport write a test, write some simple code to make it pass, refactor if needed.
+    - Plane write a test, same process
+
+
+-and so on.
+
+- The plan is to use:
+    Airport Class
+    Plane Class
+    Weather Module (as we don't need an instance of it, we just need to read the value, maybe accross multiple classes)
+```
 
 **Ed's Domain Model**
 
@@ -99,50 +127,50 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-obj | messages
-
 plane |
-airport | land_plane
+airport (@planes) | land_plane
 
-```
 
-```
+
+
+
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 plane | is_flying?
 airport | take_off
-```
 
-```
+
+
+
+
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
-airport | is_full?
-```
 
-```
+airport | is_full?
+
+
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 airport (airport_capacity) | override_airport_capacity
-```
 
 Question, ^ do we need to include a classes attributes (aka, airport_capacity) within the domain model? as this isn't a message
 
-```
+
+
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 
 weather | is_stormy?
 airport | allow_takeoff?
-```
 
-```
+
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
