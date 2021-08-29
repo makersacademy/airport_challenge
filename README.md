@@ -87,3 +87,34 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+First User Story to work on:
+
+"As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport"
+
+- The objects of this story are "plane" and "airport", while "land is the message for the airport object.
+- In IRB, tried to create a new object of the Airport class ans assign it to a variable "airport"
+- "uninitialized constant Airport (NameError)" in return, since we have not created an Airport class yet
+- created Rspec file in the spec directory, created an initial failing test for the Airport class
+- "uninitialized constant Airport" error now, we are getting an error outside of the examples because the file airport.rb with the Airport class doesn't exist yet and it has also not been required within the airport_spec.rb file
+- created "lib" directory, created airport.rb with the Airport class, required "airport" in the spec file, ran rspec again
+- test is passing now, in IRB I am now able to create an object of the Airport class
+- testing landing feature in IRB, it airport fails to land a plane since there is no method created
+- added failing unit test for land_plane method
+- added method in airport.rb, test is now passing
+- refactor to have it respond to land_plane with one argument
+- One plane can now land at an airport, first user story completed
+
+"As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport"
+
+- In IRB I can't use a take_off method
+- introducing failing test to see if Airport.new responds to take_off
+- adding take_off method to airport.rb, it returns "nil" at the moment
+- as a traffic controller, I want to confirm that the plane is no longer in the airport, I need to change the value of :plane after the take_off. Now I'm using only 1 plane as total capacity, so changing @plane to nil should do (take_off does not require any argument at the moment)
+
+
