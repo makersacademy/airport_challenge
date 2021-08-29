@@ -1,18 +1,11 @@
-require './docs/plane'
+require './lib/plane'
 
 describe Plane do 
 
-  it 'Should land at the airport' do
-    plane = Plane.new
-    plane.land
-    expect(plane.land).to eq("The plane has landed at the airort")
-  end 
-
-  it 'Should take off from the airport' do
-    plane = Plane.new 
-    plane.take_off 
-    # expect(plane.take_off
-  end 
-
+# it 'Should return the location of the plane' do
+#   plane = Plane.new 
+#   expect(plane).to respond_to(:check_location)
+#   # exect(plane.check_location).to eq ...
+# end 
 
 end 
