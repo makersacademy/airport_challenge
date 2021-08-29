@@ -1,3 +1,17 @@
+# Mabon ap Gwyn's submission of Week 1's Airport Challenge
+
+I decided to tackle each story one at a time in the order presented above. Each User Story was approached ‘test first’, i.e. outlining the expectations of all methods associated with both the Airport and Plane classes.
+
+A default capacity of 10 is given to an Airport object upon initialization. This can be overridden by passing an integer as an argument e.g.
+
+`2.6.5 :002 > port = Airport.new(20)`
+ `=> #<Airport:0x00007fc7840de5f0 @hangar=[], @capacity=20>`
+
+The #stormy? method returns either true or false (30% chance to return true) and is accessed by both the #land and the #take_off methods within the Plane class. The result of calling this method dictates whether an error is raised and the method is intercepted following the request from the client in User Stories 5 and 6.
+
+Added tests and methods for Plane class to simulate a plane flying. Docking a plane will require Plane attribute :landed to equal true before being able to dock into hangar. 
+
+
 Airport Challenge
 =================
 
