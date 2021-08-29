@@ -13,16 +13,20 @@ class Airport
   attr_accessor :hanger_capacity
 
   def land_plane(plane)
-    raise "Airport Full" if airport_full?
+    raise "Airport Full" if airport_full? 
+    raise "This plane has already landed" if !flying?(plane)
+
+    puts "takeoff, plane: #{plane} flying: #{plane.flying}"
+    puts "result of flying? function: #{!flying?(plane)}"
+
     handle_landing(plane)
   end
 
   def take_off(plane)
-    puts plane
-    puts flying?(plane)
     raise "This plane is already flying" if flying?(plane)
     raise "It's too stormy to take off" if stormy?
     raise "There are no planes to take off" if airport_empty?
+    
     handle_takeoff
   end
 
