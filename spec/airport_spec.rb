@@ -26,24 +26,25 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
     end
 
+    let(:plane) { Plane.new false }
+
     it 'Checks the airport has the ability to take off planes' do
-      expect(subject).to respond_to(:take_off)
+      expect(subject).to respond_to(:take_off).with(1).argument
     end
 
     it 'Checks that planes can takeoff off from the airport' do
       subject.planes << plane
-      expect(subject.take_off).to be_instance_of(Plane)
+      expect(subject.take_off(plane)).to be_instance_of(Plane)
     end
 
     it 'Checks that the plane is recorded as having left the airport' do
       subject.planes << plane
-      
-      subject.take_off
+      subject.take_off(plane)
       expect(subject.planes.length).to eq 0
     end
 
     it 'Checks that there are planes in the airport to take off' do
-      expect{ subject.take_off }.to raise_error "There are no planes to take off"
+      expect{ subject.take_off(plane) }.to raise_error "There are no planes to take off"
     end
 
   end
@@ -84,11 +85,26 @@ describe Airport do
 
   context "I want to prevent takeoff when weather is stormy" do
 
+    let(:plane) { Plane.new false }
+
     it 'Check if an error is raised when a plane tries to take off during stormy weather' do
       allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.take_off }.to raise_error "It's too stormy to take off"
+      expect { subject.take_off(plane) }.to raise_error "It's too stormy to take off"
     end
 
+  end
+
+  context "Edge Cases" do
+    before do
+      allow(subject).to receive(:stormy?).and_return(false)
+    end
+    let(:flying_plane) { Plane.new true }
+
+    it "doesn't allow a plane to take off if it is already flying" do
+      subject.land_plane(plane) 
+      expect { subject.take_off(flying_plane) }.to raise_error "This plane is already flying"
+    end
+  
   end
 
 

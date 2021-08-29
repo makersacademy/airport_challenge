@@ -17,7 +17,10 @@ class Airport
     handle_landing(plane)
   end
 
-  def take_off
+  def take_off(plane)
+    puts plane
+    puts flying?(plane)
+    raise "This plane is already flying" if flying?(plane)
     raise "It's too stormy to take off" if stormy?
     raise "There are no planes to take off" if airport_empty?
     handle_takeoff
@@ -53,6 +56,10 @@ class Airport
 
   def airport_empty?
     @planes == []
+  end
+
+  def flying?(plane)
+    plane.flying
   end
 
 end
