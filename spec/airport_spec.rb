@@ -27,11 +27,23 @@ describe Airport do
     end
   end
 
-  context 'So that the software can be used for many different airports' do
+  # context 'So that the software can be used for many different airports' do
     
-    it 'I would like a default airport capacity that can be overridden as appropriate' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  #   it 'I would like a default airport capacity that can be overridden as appropriate' do
+  #     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  #   end
+  # end
+
+  context 'So that the software can be used for many different airports' do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.landing(plane)
+      end
+        expect { subject.landing Plane.new }.to raise_error 'Airport is full'
     end
   end
+  
   
 end
