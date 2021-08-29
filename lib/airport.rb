@@ -9,10 +9,10 @@ class Airport
     @capacity = capacity
   end
 
-  def dock_landing_plane(plane)
+  def dock_landed_plane(plane)
+    raise 'Plane is flying and cannot be docked' unless plane.landed
+    
     raise 'Hangar is full' if full?
-
-    raise 'Weather is stormy' if stormy?
 
     hangar << plane
   end
@@ -20,13 +20,7 @@ class Airport
   def release_for_takeoff
     raise 'No planes in hangar' if empty?
 
-    raise 'Weather is stormy' if stormy?
-
     hangar.pop
-  end
-
-  def stormy?
-    rand(10) > 7
   end
 
   private
