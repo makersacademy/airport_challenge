@@ -25,8 +25,6 @@ describe Airport do
     let(:plane) { double :plane }
     let(:port) { Airport.new }
 
-    it { is_expected.to respond_to(:dock_landing_plane).with(1).argument }
-
     it 'is able to receive and store plane in hangar' do
       allow(port).to receive(:stormy?).and_return(false)
       expect(port.dock_landing_plane(plane)).to eq([plane])
@@ -48,8 +46,6 @@ describe Airport do
     let(:plane) { double :plane }
     let(:port) { Airport.new }
 
-    it { is_expected.to respond_to(:release_for_takeoff) }
-
     it 'is able to release stored planes for takeoff' do
       allow(port).to receive(:stormy?).and_return(false)
       port.dock_landing_plane(plane)
@@ -70,8 +66,6 @@ describe Airport do
 
   describe '#stormy?' do
     let(:port) { Airport.new }
-
-    it { is_expected.to respond_to(:stormy?) }
 
     it 'likely (7/10 chance) to return false' do
       allow(port).to receive(:rand).and_return(1)
