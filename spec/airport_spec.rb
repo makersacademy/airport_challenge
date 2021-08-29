@@ -14,7 +14,7 @@ describe Airport do
     it 'Instructs a plane to take off and confirm that it is no longer in the airport' do
       expect(subject).to respond_to(:take_off).with(1).argument
       plane = Plane.new
-      subject.landing(plane)
+      subject.take_off(plane)
       expect(subject.take_off(plane)).to eq "Plane has taken off"
     end
   end
@@ -27,23 +27,19 @@ describe Airport do
     end
   end
 
-  # context 'So that the software can be used for many different airports' do
-    
-  #   it 'I would like a default airport capacity that can be overridden as appropriate' do
-  #     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  #   end
-  # end
-
   context 'So that the software can be used for many different airports' do
-    subject { Airport.new }
-    let(:plane) { Plane.new }
-    it 'defaults capacity' do
-      described_class::DEFAULT_CAPACITY.times do
-        subject.landing(plane)
-      end
-        expect { subject.landing Plane.new }.to raise_error 'Airport is full'
+    
+    it 'Creates a Default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
-  
+
+  context 'So that the software can be used for many different airports' do
+    new_capacity = 20
+    subject { Airport.new(new_capacity) }
+    it 'Checks new capacity' do
+      expect(subject.capacity).to eq new_capacity
+    end
+  end
   
 end
