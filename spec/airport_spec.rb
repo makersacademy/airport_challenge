@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
