@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
   
@@ -11,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Permission to land denied" unless (Weather).sunny?
     fail "Hangar is full, can't land" if full?
     @planes << plane
   end

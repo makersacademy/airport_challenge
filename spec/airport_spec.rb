@@ -1,7 +1,7 @@
 require "airport"
 
 describe Airport do
-  subject { Airport.new}
+  subject { Airport.new }
   let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -20,4 +20,19 @@ describe Airport do
   it "should delete a plane after takeoff" do
     expect(subject.take_off(plane)).to be nil
   end
+
+  context "Checks for weather restrictions" do
+
+    it "stops a plane from landing if weather is not sunny" do
+      allow(subject).to receive(:sunny?).and_return(false)
+      expect { subject.land(plane) }.to raise_error "Permission to land denied"
+    end
+
+    it "stops a plane from departing if weather is not sunny" do
+      allow(subject).to receive(:sunny?).and_return(false)
+      expect { subject.take_off(plane) }.to raise_error "Permission to depart denied"
+    end
+  end
 end
+
+

@@ -134,3 +134,13 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate"
 
 - replaced Magic Number with a DEFAULT_CAPACITY constant that can be changed as appropriate (wonder if I should be using an attr_accessor for @capacity here to enable the same airport to change capacity as well if needed, the feature as it is right now seems more something established at the beginning for each airport that shouldn't be changed, attr_accessor seems more flexible)
+
+"As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy"
+
+- added new spec file for weather, created new Weather class
+- introduced new failing unit test to see if #sunny method returns true
+- adjusted the #sunny method to return true 4 times out of 5
+- introduced new failing unit tests that check for errors in case weather is not sunny (no landing or takeoff permitted)
+-
