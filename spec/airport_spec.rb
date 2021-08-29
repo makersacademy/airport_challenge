@@ -5,8 +5,6 @@ describe Airport do
     let(:plane) { double :plane }
     let(:port) { Airport.new }
     
-    it { is_expected.to respond_to(:hangar) }
-    
     it 'defaults capacity' do
       allow(port).to receive(:stormy?).and_return(false)
       described_class::DEFAULT_CAPACITY.times { port.dock_landing_plane(plane) }
