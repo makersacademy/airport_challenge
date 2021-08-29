@@ -4,8 +4,10 @@ I decided to tackle each story one at a time in the order presented above. Each 
 
 A default capacity of 10 is given to an Airport object upon initialization. This can be overridden by passing an integer as an argument e.g.
 
-> 2.6.5 :002 > port = Airport.new(20)
-> => #<Airport:0x00007fc7840de5f0 @hangar=[], @capacity=20>
+```
+2.6.5 :002 > port = Airport.new(20)
+=> #<Airport:0x00007fc7840de5f0 @hangar=[], @capacity=20>
+```
 
 ### :landed, #land and #take_off
 These methods exist for the Plane class to simulate a plane flying. Use #land or #take_off to switch the boolean assigned to :landed.
