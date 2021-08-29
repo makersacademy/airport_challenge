@@ -1,6 +1,7 @@
 require "airport"
 
 describe Airport do
+  subject { Airport.new}
   let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -10,7 +11,7 @@ describe Airport do
   end
 
   it "should return an error if there is no more space for new planes to land" do
-    20.times { subject.land(plane) }
+    described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
     expect { subject.land(plane) }.to raise_error "Hangar is full, can't land"
   end
 

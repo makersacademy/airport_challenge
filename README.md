@@ -129,3 +129,8 @@ I want to prevent landing when the airport is full"
 - added "fail" within #land method to raise an error if new plane tries to land when 20 planes are already on the ground
 - refactored the code to align with Single Responsibility Principle for the #land method, introduced private #full? method
 
+"As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate"
+
+- replaced Magic Number with a DEFAULT_CAPACITY constant that can be changed as appropriate (wonder if I should be using an attr_accessor for @capacity here to enable the same airport to change capacity as well if needed, the feature as it is right now seems more something established at the beginning for each airport that shouldn't be changed, attr_accessor seems more flexible)
