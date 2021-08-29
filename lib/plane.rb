@@ -1,5 +1,4 @@
 class Plane
-  
   def initialize 
     @plane 
   end
@@ -7,5 +6,4 @@ class Plane
   def plane 
     @plane = plane 
   end 
-
 end 
