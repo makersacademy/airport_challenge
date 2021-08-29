@@ -127,5 +127,5 @@ I want to prevent landing when the airport is full"
 - the feature fails in IRB because at the moment I don't have a limit on the capacity, so @planes will never be full
 - introducing new failing unit test to raise error if new plane tries to land when capacity is reached (magic number 20 for now)
 - added "fail" within #land method to raise an error if new plane tries to land when 20 planes are already on the ground
-
+- refactored the code to align with Single Responsibility Principle for the #land method, introduced private #full? method
 
