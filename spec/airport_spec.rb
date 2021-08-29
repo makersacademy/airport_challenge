@@ -22,10 +22,16 @@ describe Airport do
   context 'to ensure saftey' do
     
     it 'I want to prevent landing when the airport is full' do
-      Airport::DEFAULT_CAPACITY.times do
-        subject.landing Plane.new
-      end
+      subject.capacity.times { subject.landing Plane.new }
       expect { subject.landing Plane.new }.to raise_error 'Airport is full'
     end
   end
+
+  context 'So that the software can be used for many different airports' do
+    
+    it 'I would like a default airport capacity that can be overridden as appropriate' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+  
 end
