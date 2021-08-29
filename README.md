@@ -80,7 +80,7 @@ RuntimeError (Weather is stormy)
 
 The Airport's :hangar attribute was made private to prohibit access to stored planes from outside of the class. 
 
-Challenge details is outlined below.
+Challenge details are outlined below.
 
 Airport Challenge
 =================
