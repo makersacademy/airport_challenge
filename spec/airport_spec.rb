@@ -8,6 +8,11 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
+
+    it 'should not land if airport is full' do
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error("Airport is full")
+    end
   end
 
   describe '#take_off' do
@@ -17,4 +22,5 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
   end
+
 end
