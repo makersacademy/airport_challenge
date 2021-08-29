@@ -117,4 +117,15 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 - adding take_off method to airport.rb, it returns "nil" at the moment
 - as a traffic controller, I want to confirm that the plane is no longer in the airport, I need to change the value of :plane after the take_off. Now I'm using only 1 plane as total capacity, so changing @plane to nil should do (take_off does not require any argument at the moment)
 
+"As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full"
+
+- Before checking if the airport is full or not, I want to change my instance variable @plane to an array in order to store multiple plane. This requires a bit of refactoring in the code and in the spec files
+- tested in IRB, @planes stores multiple objects and is able to delete single items after each take_off
+- now I can store multiple objects within @planes, I can start working on the capacity
+- the feature fails in IRB because at the moment I don't have a limit on the capacity, so @planes will never be full
+- introducing new failing unit test to raise error if new plane tries to land when capacity is reached (magic number 20 for now)
+- added "fail" within #land method to raise an error if new plane tries to land when 20 planes are already on the ground
+
 
