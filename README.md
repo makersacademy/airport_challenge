@@ -12,61 +12,71 @@ A default capacity of 10 is given to an Airport object upon initialization. This
 ### :landed, #land and #take_off
 These methods exist for the Plane class to simulate a plane flying. Use #land or #take_off to switch the boolean assigned to :landed.
 
-> 2.6.5 :003 > plane = Plane.new
->  => #<Plane:0x00007fc7840e53f0 @landed=true> 
-> 2.6.5 :004 > plane.take_off
->  => "Plane has taken off" 
-> 2.6.5 :005 > plane.landed
->  => false 
-> 2.6.5 :006 > plane.land
->  => "Plane has landed" 
-> 2.6.5 :007 > plane.landed
->  => true 
+```
+2.6.5 :003 > plane = Plane.new
+ => #<Plane:0x00007fc7840e53f0 @landed=true> 
+2.6.5 :004 > plane.take_off
+ => "Plane has taken off" 
+2.6.5 :005 > plane.landed
+ => false 
+2.6.5 :006 > plane.land
+ => "Plane has landed" 
+2.6.5 :007 > plane.landed
+ => true 
+ ```
 
 ### #dock_landed_plane
 This is an Airport class method. By passing a Plane object to this method as an argument, the plane will attempt to dock. Docking a plane will require Plane attribute :landed to equal true before being able to be docked into the hangar.
 
-> 2.6.5 :007 > plane.landed
->  => true 
-> 2.6.5 :008 > port.dock_landed_plane(plane)
->  => [#<Plane:0x00007fc7840e53f0 @landed=true>] 
+```
+2.6.5 :007 > plane.landed
+ => true 
+2.6.5 :008 > port.dock_landed_plane(plane)
+ => [#<Plane:0x00007fc7840e53f0 @landed=true>] 
+```
 
 Error below is raised when attempting to dock a flying plane.
 
-> 2.6.5 :021 > plane.take_off
->  => "Plane has taken off" 
-> 2.6.5 :022 > plane.landed
->  => false 
-> 2.6.5 :023 > port.dock_landed_plane(plane)
-> Traceback (most recent call last):
->         5: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
->         4: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
->         3: from /Users/Student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
->         2: from (irb):23
->         1: from /Users/Student/Documents/MakersAcademy/Projects/Airport_Challenge_Versions/Airport_Challenge_v1/lib/airport.rb:13:in `dock_landed_plane'
-> RuntimeError (Plane is flying and cannot be docked)
+```
+2.6.5 :021 > plane.take_off
+ => "Plane has taken off" 
+2.6.5 :022 > plane.landed
+ => false 
+2.6.5 :023 > port.dock_landed_plane(plane)
+Traceback (most recent call last):
+        5: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/Student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):23
+        1: from /Users/Student/Documents/MakersAcademy/Projects/Airport_Challenge_Versions/Airport_Challenge_v1/lib/airport.rb:13:in `dock_landed_plane'
+RuntimeError (Plane is flying and cannot be docked)
+```
 
 An error is also raised when attempting to dock a plane when the :hangar is already at capacity.
 
 ### #release_for_takeoff
 This is an Airport class method. This releases stored planes. An error is raised when this method is called while the :hangar is empty.
 
-> 2.6.5 :028 > port.dock_landed_plane(plane)
->  => [#<Plane:0x00007fc7840e53f0 @landed=true>] 
-> 2.6.5 :029 > port.release_for_takeoff
->  => #<Plane:0x00007fc7840e53f0 @landed=true> 
+```
+2.6.5 :028 > port.dock_landed_plane(plane)
+ => [#<Plane:0x00007fc7840e53f0 @landed=true>] 
+2.6.5 :029 > port.release_for_takeoff
+ => #<Plane:0x00007fc7840e53f0 @landed=true>
+ ``` 
 
 ### #stormy?
 The #stormy? method returns either true or false (30% chance to return true) and is accessed by both the #land and the #take_off methods within the Plane class. The result of calling this method dictates whether an error is raised and the method is intercepted following the request from the client in User Stories 5 and 6.
 
-> 2.6.5 :016 > plane.take_off
-> Traceback (most recent call last):
->         5: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
->         4: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
->         3: from /Users/Student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
->         2: from (irb):16
->         1: from /Users/Student/Documents/MakersAcademy/Projects/Airport_Challenge_Versions/Airport_Challenge_v1/lib/plane.rb:20:in `take_off'
-> RuntimeError (Weather is stormy)
+```
+2.6.5 :016 > plane.take_off
+Traceback (most recent call last):
+        5: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `<main>'
+        4: from /Users/Student/.rvm/rubies/ruby-2.6.5/bin/irb:23:in `load'
+        3: from /Users/Student/.rvm/rubies/ruby-2.6.5/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):16
+        1: from /Users/Student/Documents/MakersAcademy/Projects/Airport_Challenge_Versions/Airport_Challenge_v1/lib/plane.rb:20:in `take_off'
+RuntimeError (Weather is stormy)
+```
 
 The Airport's :hangar attribute was made private to prohibit access to stored planes from outside of the class. 
 
