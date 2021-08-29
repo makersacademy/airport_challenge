@@ -2,7 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  
   context 'So I can get passengers to a destination' do 
 
     it 'Checks if the airport can land planes' do
@@ -20,4 +19,13 @@ describe Airport do
     end
   end
 
+  context 'to ensure saftey' do
+    
+    it 'I want to prevent landing when the airport is full' do
+      Airport::DEFAULT_CAPACITY.times do
+        subject.landing Plane.new
+      end
+      expect { subject.landing Plane.new }.to raise_error 'Airport is full'
+    end
+  end
 end
