@@ -13,6 +13,7 @@ class Airport
   end
 
   def land(plane)
+    fail "This plane has already landed" if landed?(plane)
     fail "Permission to land denied" unless @weather.sunny?
     fail "Hangar is full, can't land" if full?
     @planes << plane
@@ -32,5 +33,9 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def landed?(plane)
+    @planes.include? (plane)
   end
 end

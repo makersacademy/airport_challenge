@@ -157,3 +157,12 @@ All the user stories have been covered now, it's time to move to edge cases
 
 - added new test to expect an error if we try to take-off when there are no planes stored, test is failing as designed
 - introduced new method in the code to check if the planes Array is empty and raise an error if #take_off is called when no planes are available. Test is now passing, good in IRB as well
+
+- I want to prevent a plane that is already landed to land again. Tried in IRB, at the moment the code allows the user to add the same plane multiple times in the array.
+- Added a failing unit test that should raise an error if a plane that is already in the array tries to land again
+- Test is now passing, but I would like to improve this to include something to change the status of @flying on the Plane instance
+
+- Now trying to see if I can check/establish if a plane is flying or not, so that I can return an error in case a plane that is not flying (meaning already in the @planes array) tries to land or if a plane that is already flying tries to take-off
+- Tried in IRB, obviosuly there is no attribute for a Plane Object right now to estabilish if it's flying or now, so IRB doesn't return any error as expected.
+- Created failing unit test, in order to fix it I need to make changes in the Plane class to initialize an attribute @flying, so I'm also adding an argument to the Plane object (should be just a Boolean true/false) and an attr_reader for that attribute (not adding it as an attr_accessor as I think I will modify the value via some other method). Now the unit test in plane_spec.rb is green
+- This is were I stop for now, I would love to come back and complete the final tasks for this project in the future!
