@@ -2,7 +2,7 @@ require_relative "../lib/airplane"
 
 class AirPort
     
-    #attr_reader :plane, :stormy
+    #attr_reader :capacity, :stormy
     attr_accessor :capacity, :stormy
 
     DEFAULT_CAPACITY = 3
@@ -22,6 +22,10 @@ class AirPort
         confirmation
     end
 
+    def change_capacity(number)
+        @capacity = number
+    end
+
     def land_to_runway(arriving_plane)
         fail_if_stormy
         fail 'Airport full' if full?
@@ -30,6 +34,7 @@ class AirPort
     end
 
     def leave_runway(leaving_plane)
+        @runway.include? leaving_plane
         fail_if_stormy
         @runway.delete_if{ |plane| plane == leaving_plane }
         confirmation_message("#{leaving_plane} has left")
