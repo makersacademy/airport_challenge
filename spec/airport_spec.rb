@@ -55,13 +55,13 @@ describe Airport do
   end
 
   context "default" do
-   # subject(:default_airport) { described_class.new }
+    # subject(:default_airport) { described_class.new }
 
     it "has a default capacity" do
       default_airport = described_class.new
       allow(default_airport).to receive(:stormy?).and_return false
       described_class::DEFAULT_CAPACITY.times { default_airport.land(plane) }
       expect { default_airport.land(plane) }.to raise_error "Cannot land plane: airport full"
-    end 
-  end 
+    end
+  end
 end
