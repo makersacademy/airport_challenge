@@ -4,9 +4,8 @@ describe Airport do
     it { is_expected.to respond_to(:take_off) }
  
     it 'should have a default capacity' do
-        expect(subject.default_capacity).to eq 5
+        expect(subject.default_capacity).to eq Airport::DEFAULT_CAPACITY
     end 
-
 
     describe '#land_plane' do
       it { is_expected.to respond_to :land_plane }
@@ -16,8 +15,6 @@ describe Airport do
       end 
     end
 end 
-
-
 
 
 # As the system designer
