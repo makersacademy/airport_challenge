@@ -2,6 +2,9 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+
+  let(:plane) {Plane.new}
+
   it { is_expected.to be_kind_of(described_class) }
   it { is_expected.to respond_to(:weather?) }
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -35,13 +38,11 @@ describe Airport do
     end
 
     it 'land if weather is sunny' do
-      plane = Plane.new
       allow(subject).to receive(:weather?) { "Sunny" }
       expect(subject.land(plane)).to eq([plane])
     end
 
     it 'error if weather is stormy' do
-      plane = Plane.new
       allow(subject).to receive(:weather?) { "Stormy" }
       expect { subject.land(plane) }.to raise_error("Stormy weather: do not land")
     end
@@ -55,7 +56,6 @@ describe Airport do
     end
 
     it 'take off if weather is sunny' do
-      plane = Plane.new
       allow(subject).to receive(:weather?) { "Sunny" }
       subject.land(plane)
       expect(subject.airport).to include(plane)
@@ -64,7 +64,6 @@ describe Airport do
     end
 
     it 'error if weather is stormy' do
-      plane = Plane.new
       allow(subject).to receive(:weather?) { "Stormy" }
       expect { subject.take_off(plane) }.to raise_error("Stormy weather: do not fly")
     end
