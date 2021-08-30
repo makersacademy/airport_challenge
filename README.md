@@ -1,3 +1,26 @@
+William's Airport Challenge - Notes
+
+So I enjoyed this weekend challenge, and was able to write a code and tests that meet the standards provided by the user stories.
+
+However despite everything passing, I am aware of certain problems and their solutions, unfortunately I would have needed a lot more time to implement these as a lot of the rspec syntax particularly regarding the doubles is very foreign and new to me. And while I did have a valiant attempt at trying to stub the Plane class, I simply couldn't get it working and ran out of time, and had no choice but to revert back to including the Plane.new in the Airport spec.
+
+Known Issues:
+
+-The Airport spec includes various Plane.new creations. This means that if there were a problem with the Plane file, that could cause Airport tests to fail, and potentially be misleading when pinpointing a problem.
+
+-Currently there is a 1 in 20 chance that any airport test may fail due to the stormy weather. This is because the chance of the weather being stormy is 1 in 20.
+
+Recommended Solutions:
+
+-Consider using doubles and stubs in the Airport spec to substitute the Plane class out.
+
+-Consider using a stub method for the weather in order to dictate whether it is stormy or not in the Airport spec (however this also means that the actualy stormy? method would not be tested.)
+
+OR
+
+-Consider creating an entire new class for Weather that determines whether it is stormy or not, test the class and methods in a seperate spec, and stub the storm for the Airport spec, check the error for landing/taking off during a storm works, and thus elimate the chance of tests randomly failing.
+
+
 Airport Challenge
 =================
 
