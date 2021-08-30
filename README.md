@@ -79,10 +79,11 @@ This is an Airport class method. This releases stored planes.
  => #<Plane:0x00007fc7840e53f0 @landed=true>
  ``` 
 An error is raised when this method is called while the :hangar is empty.
-
 The Airport's :hangar attribute was made private to prohibit access to stored planes from outside of the class. 
 
-The TDD process warranted a total of 16 RSpec tests, all of which pass successfully with 100% coverage of the code base. A rubocop inspection was also ran on the code base, with zero offenses detected.
+### RSpec
+
+The TDD process warranted a total of 16 RSpec tests, all of which pass successfully with 100% coverage of the code base. A rubocop inspection was also ran on the code base with zero offenses detected.
 ```
 Student@MA123 Airport_Challenge_v1 % rspec
 
