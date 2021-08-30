@@ -2,10 +2,10 @@ require_relative 'plane'
 
 class Airport 
 
-attr_reader :max_limit
+attr_reader :default_capacity
 
-	def initialize(max_limit = 5)
-		@max_limit = max_limit
+	def initialize(default_capacity = 5)
+		@default_capacity = default_capacity
 		@planes = []
  end 
 
@@ -21,6 +21,6 @@ attr_reader :max_limit
 	 attr_reader :planes
 	 
 		def full?
-		 @planes.count >= max_limit
+		 @planes.count >= default_capacity
 		end
 end 

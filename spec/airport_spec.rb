@@ -2,6 +2,11 @@ require './lib/airport.rb'
 
 describe Airport do
     it { is_expected.to respond_to(:take_off) }
+ 
+    it 'should have a default capacity' do
+        expect(subject.default_capacity).to eq 5
+    end 
+
 
     describe '#land_plane' do
       it { is_expected.to respond_to :land_plane }
@@ -11,3 +16,10 @@ describe Airport do
       end 
     end
 end 
+
+
+
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
