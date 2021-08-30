@@ -5,6 +5,7 @@ describe Airport do
 
   it {is_expected.to respond_to(:land_plane).with(1).argument} #does this test that the land plane method works.
   let (:plane) {double :plane}
+  let (:capacity) {subject.capacity}
 
   describe "#land plane" do 
     it "should land a plane" do 
@@ -22,7 +23,7 @@ describe Airport do
 
   describe "#prevent landing" do 
     it "should prevent landing when airport is full" do 
-    2.times {subject.land_plane(plane)}
+    capacity.times {subject.land_plane(plane)}
     expect {subject.land_plane(plane)}.to raise_error ("Docking station is full")
     end
   end
