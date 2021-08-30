@@ -6,12 +6,15 @@
 
 
     User Story 2 - Takeoff Plane
-    - Define method for plan taking off.
+    - Define method for airplane taking off.
     - Write airport test that expect Airport to respond to take_off function.
-    - Write user story test that tells a plane to take off and confirm that it has taken off.  
+    - Write user story test that tells an airplane to take off and confirm that it has taken off.  
 
     User Story 3 - Prevent landing when the airport is full
-    User Story 4 - Overridden default airport capacity 
-    User Story 5 - Prevent takeoff when weather is stormy
-    User Story 6 - Prevent landing when weather is stormy
+    - define method for full?, making it so airplanes cannot land if the airport is full. 
+    - initialize capacity 
+
+
+    User Story 4 - Prevent takeoff when weather is stormy
+    User Story 5 - Prevent landing when weather is stormy
     
