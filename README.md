@@ -143,4 +143,14 @@ I want to prevent takeoff when weather is stormy"
 - introduced new failing unit test to see if #sunny method returns true
 - adjusted the #sunny method to return true 4 times out of 5
 - introduced new failing unit tests that check for errors in case weather is not sunny (no landing or takeoff permitted)
--
+- test were working as expected, but when writing the code I realised I wasn't able to call the method just created for the Weather class from the Airport class (it really does make sense once you think about it)
+- after a bit of research, I realised that I can instantiate weather as an attribute of airport (the ariport will only ever need 1 weather object, and the state of weather can change based on the method #sunny? created for that class)
+- after implementing the code, went back to run the units test and to my surprise they were still failing. I wasn't using doubles very well apparently, so I had to make some adjustments to create doubles for the attributes for Airport and tried several combination before having green tests and move to the next step
+
+"As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy"
+
+- this followed the same approach of the previous user story, with all the steps already defined this time it was much quicker to create a failing unit test and then write the code to make it pass
+
+All the user stories have been covered now, it's time to move to edge cases
