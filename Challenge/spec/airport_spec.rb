@@ -20,6 +20,13 @@ describe Airport do
     end
   end
 
+  describe "#prevent landing" do 
+    it "should prevent landing when airport is full" do 
+    2.times {subject.land_plane(plane)}
+    expect {subject.land_plane(plane)}.to raise_error ("Docking station is full")
+    end
+  end
+
 
 
 end 
