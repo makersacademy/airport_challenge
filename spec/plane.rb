@@ -1,7 +1,6 @@
 class Plane
-  def plane
-  end
   
-  def land
+  def landed?
+    true
   end
 end
