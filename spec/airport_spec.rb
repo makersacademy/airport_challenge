@@ -35,12 +35,13 @@ describe Airport do
     # expect(heathrow.full_capacity(current_capacity)).to output.to_stdout "WARNING: Airport at full capcacity, plane cannot land"
   end
 
-  # it "initialized with a default capacity of 50" do
-  #   # arrange
-  #   heathrow = Airport.new
-  #   # act/method:
-  #   heathrow.initialize.default_capacity = "50"
-  #   # Expect
-  #   # heathrow.initialize.default_capacity.to eq("50")
-  # end
+  it "prevents take off when weather is stormy" do
+    # arrange
+    heathrow = Airport.new
+    # act/method: airport tells plane it is at 100/ full capacity so no planes landing
+    heathrow.stormy_weather
+    # Expect 'plane cannot land' warning if at full capacity
+    expect(heathrow.weather).to eq("stormy")
+    # expect(heathrow.full_capacity(current_capacity)).to output.to_stdout "WARNING: Airport at full capcacity, plane cannot land"
+  end
 end

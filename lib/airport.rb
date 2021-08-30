@@ -1,11 +1,12 @@
 require_relative "../lib/plane"
 
 class Airport
-  attr_accessor :planes, :default_capacity
+  attr_accessor :planes, :default_capacity, :weather
 
   def initialize
     @planes = []
     @default_capacity = "50"
+    @weather = "mild"
   end
 
   # def capacity(current_capacity)
@@ -27,5 +28,16 @@ class Airport
 
   def take_off(plane)
     @planes.delete(plane)
+  end
+
+  def no_landing_or_take_off
+    print "WARNING: due to stormy weather no landing or take offs"
+  end
+
+  def stormy_weather
+    @weather = "stormy"
+    if @weather = "stormy"
+      no_landing_or_take_off
+    end
   end
 end

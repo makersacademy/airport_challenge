@@ -1,3 +1,18 @@
+Reflection:
+
+*As suggested, I time-boxed this exercise. I did not get time to complete the random weather generator.
+
+To improve:
+
+* Struggled with creating the domain model - what should classify as an object, and which messages are being sent where.
+* Next time, spend more time on unit tests in the IRB, before RSpec
+* Need to better understand how to create and access classes, use of instance variables and attribute reader/ writer/ acessor.
+
+
+
+
+
+
 Airport Challenge
 =================
 
