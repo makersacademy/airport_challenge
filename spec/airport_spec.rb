@@ -19,8 +19,21 @@ describe Airport do
   describe "prevent landing" do 
     it "plane can't land if hangar is full" do
       plane = Plane.new
-      1.times {subject.land(plane)}
+      Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       expect{subject.prevent_landing(plane)}.to raise_error "Sorry, the airport is full"
+    end
+  end
+  describe "default capacity"
+    it 'has a default capacity of 4' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  describe 'raise error' do
+    it 'if default capacity exceded' do 
+      Airport::DEFAULT_CAPACITY.times do
+        plane = Plane.new
+        subject.land(plane)
+      end
+      expect{subject.prevent_landing(Plane.new)}.to raise_error "Sorry, the airport is full"
     end
   end
 
