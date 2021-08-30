@@ -154,3 +154,6 @@ I want to prevent landing when weather is stormy"
 - this followed the same approach of the previous user story, with all the steps already defined this time it was much quicker to create a failing unit test and then write the code to make it pass
 
 All the user stories have been covered now, it's time to move to edge cases
+
+- added new test to expect an error if we try to take-off when there are no planes stored, test is failing as designed
+- introduced new method in the code to check if the planes Array is empty and raise an error if #take_off is called when no planes are available. Test is now passing, good in IRB as well

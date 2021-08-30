@@ -19,6 +19,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Hangar is empty, no planes to fly" if empty?
     fail "Permission to depart denied" unless @weather.sunny?
     @planes.delete(plane)
   end
@@ -27,5 +28,9 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 end
