@@ -133,3 +133,12 @@ Airport <-- takeoff --> Plane
 Weather(storm) <-- !land ---> Plane
 
 Weather(storm) <-- !takeoff ---> Plane
+
+### Program
+
+I used (some) TDD by repeating the following processes
+
+1. creating imaginary feature unit test
+2. create a failed test
+3. pass a code
+4. test the manual unit test
