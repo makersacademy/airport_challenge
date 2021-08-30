@@ -19,6 +19,12 @@ describe Airport do
       subject.capacity.times { subject.lands(Plane.new) } # Ruby .times loop
       expect{subject.lands(Plane.new)}.to raise_error 'Airport full - do not land!' 
     end
+    
+    it 'not land when stormy - raises an error' do
+      weather = Weather.new
+      weather.generates == :stormy
+      expect{subject.lands(Plane.new)}.to raise_error 'Stormy - do not land!' 
+    end
   end
 
   describe '#takesoff' do 
@@ -30,6 +36,12 @@ describe Airport do
       plane = Plane.new # new plane
       subject.lands(plane) # plane is on land
       expect(subject.takesoff).to eq plane # plane takes off and is not on land 
+    end
+
+    it 'not takeoff when stormy - raises an error' do
+      weather = Weather.new
+      weather.generates == :stormy
+      expect{subject.takesoff}.to raise_error 'Stormy - do not takeoff!' 
     end
   end  
 end
