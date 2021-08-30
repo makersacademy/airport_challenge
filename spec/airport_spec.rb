@@ -13,7 +13,7 @@ describe Airport do
     end
     
     it 'stores a plane in the airport when it lands' do
-      plane = Plane.new
+      plane = Plane.new true
       subject.land_plane(plane)
       expect(subject.planes.length).to eq 1
     end
@@ -23,11 +23,17 @@ describe Airport do
     end
 
     it 'checks that planes can takeoff off from the airport' do
-      plane = Plane.new
+      plane = Plane.new true
       subject.planes << plane
-      expect(subject.take_off(plane)).to eq true
+      expect(subject.take_off(plane)).to be_instance_of(Plane)
     end
 
+    it 'Record plane as airbone and delete from array' do
+      plane = Plane.new true
+      subject.land_plane(plane)
+      subject.take_off(plane)
+      expect(subject.planes.length).to eq 0
+    end
   end
 end
   

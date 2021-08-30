@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   attr_reader :planes
   
@@ -10,6 +12,12 @@ class Airport
   end
 
   def take_off(_plane)
-    true
+    plane_departure
+    Plane.new true
+  end
+
+  def plane_departure
+    @planes.delete_at(@planes.length - 1)
+  
   end
 end
