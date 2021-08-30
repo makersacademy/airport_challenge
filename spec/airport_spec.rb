@@ -3,7 +3,7 @@ require 'plane'
 
 describe Airport do
 
-  let(:plane) {Plane.new}
+  let(:plane) { Plane.new }
 
   it { is_expected.to be_kind_of(described_class) }
   it { is_expected.to respond_to(:weather?) }
@@ -69,5 +69,3 @@ describe Airport do
     end
   end
 end
-
-
