@@ -4,13 +4,19 @@ describe Weather do
 
   it { is_expected.to be_kind_of(described_class) }
   
-    it 'Create ramdom weather generator' do
-      expect(subject).to respond_to(:ramdom_weather_generator)
+    it 'Create weather forecast' do
+      expect(subject).to respond_to(:weather_forecast)
     end
 
-    it 'Generates ramdom weather, Sunny or Stormy' do
+    it 'Weather_forecast' do
       weather = Weather.new
-      allow(weather.ramdom_weather_generator).to receive(:rand).and_return(3)
-      expect(subject.ramdom_weather_generator).to eq "Sunny"
+      allow(weather.weather_forecast).to receive(:rand).and_return(0)
+      expect(subject.weather_forecast).to eq "Stormy"
     end
+
+    it 'Will raise an error if the weather_conditions is unsafe' do
+      weather_conditions = "Stormy"
+      allow(subject).to receive(:weather_conditions).and_raise "Weather is unsafe for take off and landings"
+    end
+
 end
