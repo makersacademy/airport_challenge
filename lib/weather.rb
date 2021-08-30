@@ -1,7 +1,7 @@
 class Weather
 
   def weather_forecast
-    weather = ['Stormy', 'Sunny', 'Overcast', 'Drizzle', 'English summer rain']
+    weather = ['Stormy', 'Sunny', 'Cloud', 'Rain', 'Overcast']
     weather[rand(4)]
   end
 
@@ -10,5 +10,3 @@ class Weather
   end
 
 end
-
-

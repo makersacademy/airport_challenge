@@ -13,19 +13,28 @@ class Airport
   end
 
   def landing(plane)
+    weather_forecast
     fail 'Airport is full' if full?
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off
+    weather_forecast
+    fail 'No flights avialible' if empty?
     @planes.pop
-    "Plane has taken off"
   end
 
   private
+
+  def weather_forecast
+    Weather.new.weather_conditions
+  end
 
   def full?
     @planes.count >= @capacity
   end
 
+  def empty?
+    @planes.empty?
+  end
 end

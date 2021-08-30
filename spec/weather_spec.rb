@@ -10,6 +10,7 @@ describe Weather do
 
     it 'Weather_forecast' do
       weather = Weather.new
+      allow(subject).to receive(:weather_forecast).and_return('Stormy')
       allow(weather.weather_forecast).to receive(:rand).and_return(0)
       expect(subject.weather_forecast).to eq "Stormy"
     end
