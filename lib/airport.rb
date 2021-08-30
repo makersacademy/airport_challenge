@@ -4,7 +4,7 @@ class Airport
   attr_accessor :plane
 
   def initialize 
-    @plane = plane
+    @planes = []
   end
 
   def can_land
@@ -12,7 +12,12 @@ class Airport
   end
 
   def land(plane)
-    plane
+    @planes = plane
+  end
+
+  def take_off
+    "Plane has left the airport" if @planes.count.zero?
+    @planes.pop
   end
 
 end
