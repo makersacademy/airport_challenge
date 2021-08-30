@@ -10,8 +10,7 @@ describe Weather do
 
     it 'Generates ramdom weather, Sunny or Stormy' do
       weather = Weather.new
-      allow (weather.ramdom_weather_generator).to receive(:rand).and_return(3)
-      expect(ramdom_weather_generator).to eq "Sunny"
-  end
-
+      allow(weather.ramdom_weather_generator).to receive(:rand).and_return(3)
+      expect(subject.ramdom_weather_generator).to eq "Sunny"
+    end
 end
