@@ -1,6 +1,10 @@
 require 'airport'
 
 describe Airport do
+  it 'default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY # namespace operator(::) access DEFAULT_CAPACITY constant defined by Airport class
+  end
+
   describe '#lands' do
     it 'method def' do
       expect(subject).to respond_to(:lands).with(1).argument
@@ -8,7 +12,12 @@ describe Airport do
 
     it 'plane lands' do
       plane = Plane.new
-      expect(subject.lands(plane)).to eq plane
+      expect(subject.lands(plane)).to eq [plane]
+    end
+
+    it 'not land when airport is full, take into consideration of capacity - raises an error' do
+      subject.capacity.times { subject.lands(Plane.new) } # Ruby .times loop
+      expect{subject.lands(Plane.new)}.to raise_error 'Airport full - do not land!' 
     end
   end
 
