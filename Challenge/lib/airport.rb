@@ -1,14 +1,17 @@
+require_relative 'plane'
+require_relative 'weather'
+
 
 class Airport
 
-DEFAULT_CAPACITY = 2
-
 attr_reader :planes
 attr_reader :capacity
+attr_reader :weather
 
-def initialize(capacity=2 )
+def initialize(capacity=2)
 @planes = []
 @capacity = capacity 
+@weather = Weather.new
 
 end
 
@@ -18,6 +21,7 @@ def land_plane(plane)
 end
 
 def take_off(plane)
+  fail "Too stormy to land" if @weather.stormy?
   @planes.delete(plane)
 end
 
@@ -31,10 +35,3 @@ end
 end
 
 
-class Plane
-
-def initialize 
-
-end
-
-end
