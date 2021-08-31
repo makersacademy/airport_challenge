@@ -2,16 +2,26 @@
 
 **Don't read this until after you've completed the challenge!**
 
-You're a beginner — your code will have some rough spots. This is a field guide to spotting common issues that crop up in the Airport challenge, and some guidance on how to fix them.
+You're a beginner — your code will have some rough spots. This is a field guide to 
+spotting common issues that crop up in the Airport challenge, and some guidance on
+how to fix them.
 
-You'll be using this to review someone else's code. Help them improve by looking through their code for issues like this, or anything else that you might spot. Don't worry too much about being mistaken — if it looks like it could be a problem to you, try telling them about it! Even if they disagree, the discussion you'll have about it can be a great learning opportunity.
+You'll be using this to review someone else's code. Help them improve by looking through 
+their code for issues like this, or anything else that you might spot. Don't worry too 
+much about being mistaken — if it looks like it could be a problem to you, try telling 
+them about it! Even if they disagree, the discussion you'll have about it can be a great 
+learning opportunity.
 
-Also, there's a tonne of stuff here. Pace yourself, take on the improvements that feel most powerful to you and keep the rest in mind for future.
+Also, there's a tonne of stuff here. Pace yourself, take on the improvements that feel 
+most powerful to you and keep the rest in mind for future.
 
 
 ## Does it pass the tests?
 
-Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
+Please checkout your reviewee's code and run their tests. Read the code and try 
+some manual feature tests in IRB. How easy is it to understand the structure of
+their code? How readable is their code? Did you need to make any cognitive leaps to 
+'get it'?
 
 ## Is the README useful?
 
@@ -19,9 +29,11 @@ Please checkout your reviewee's code and run their tests. Read the code and try 
 
 Please do update your README following the [contribution notes](https://github.com/makersacademy/airport_challenge/blob/main/CONTRIBUTING.md), i.e.
 * Make sure you have written your own README that briefly explains your approach to solving the challenge.
-* If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
+* If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got 
+* to and how you would plan to finish the challenge.
 
-The above is a relatively straightforward thing to do that doesn't involve much programming - I'll often get it done while thinking about other problems in the back of my mind :-)
+The above is a relatively straightforward thing to do that doesn't involve much programming - 
+I'll often get it done while thinking about other problems in the back of my mind :-)
 
 * http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
 
@@ -43,9 +55,12 @@ $ irb
 
 ### Use `context` and `describe` blocks to create test scopes
 
-If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
+If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` 
+when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 
+'when it is stormy').
 
-`let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
+`let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block 
+and will override similar statements in an outer block.
 
 ### Avoid Vacuous Tests
 
@@ -64,7 +79,9 @@ it 'is in the airport after landing' do
 end
 ```
 
-All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual application code.  This is often caused by a test being in the wrong place.  Since the expectation is on the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
+All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual
+application code.  This is often caused by a test being in the wrong place.  Since the expectation is on 
+the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
 
 ```ruby
 # airport_spec.rb
@@ -382,7 +399,9 @@ end
 
 #### Classes
 
-A class should have one responsibility.  An airport is responsible for the coming and going of airplanes.  It needs access to weather information to make decisions, but it _should not be responsible for determining the weather_.  Weather information should be provided by a separate class and injected into airport as a dependency.  E.g.:
+A class should have one responsibility.  An airport is responsible for the coming and going of airplanes.  It needs access to weather information 
+to make decisions, but it _should not be responsible for determining the weather_.  Weather information should be provided by a
+separate class and injected into airport as a dependency.  E.g.:
 
 ```ruby
 class Weather
