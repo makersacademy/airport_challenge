@@ -1,6 +1,11 @@
+require_relative 'plane'
 class Airport
-
-  def land_plane
+  
+  def land(plane)
+    
   end
 
-end 
+  def take_off(plane)
+  end
+
+end
