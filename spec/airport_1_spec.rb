@@ -1,5 +1,5 @@
-require './lib/airport.rb'
-require './lib/weather.rb' 
+require './lib/airport_1.rb'
+require './lib/weather_1.rb' 
 
 
 describe Airport do 

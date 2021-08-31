@@ -1,4 +1,4 @@
-require './lib/weather.rb'
+require './lib/weather_1.rb'
 class Airport
 
   include Weather

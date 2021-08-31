@@ -1,4 +1,4 @@
-require './lib/weather.rb' 
+require './lib/weather_1.rb' 
 
 describe Weather do 
   it 'is a module' do 
