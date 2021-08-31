@@ -35,7 +35,7 @@ context 'when not stormy' do
     end
 
     it 'does not allow planes to take off' do
-      expect { airport.take_off(plane) }.to raise_error 'Cannot take off: weather is stormy'
+      expect { airport.take_off(airplane) }.to raise_error 'Cannot take off: weather is stormy'
     end
   end
 end  
