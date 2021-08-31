@@ -1,5 +1,5 @@
 ## Weekend Challenge 1 : Airport Challenge
-Makers first challenge featuring Boris Bikes
+Makers first weekend challenge 
 
 ## Nouns
 * plane 
@@ -17,5 +17,5 @@ plane  | land / takeoff
 airport  | full?
 airport  | prevent_land
 airport  | prevent_takeoff
-
+weather  | stormy or not 
 
