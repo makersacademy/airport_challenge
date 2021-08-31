@@ -49,7 +49,7 @@ describe AirPort do
 
         describe '#stormy' do
 
-            #let(:airport) { AirPort.new (stormy = true) }
+            #let(:stormy) { true }
 
             it '#stormy?' do
                 expect(airport).to respond_to :stormy?         
