@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  
+
   subject (:airport) { described_class.new }
 
   describe '#land' do
@@ -29,14 +29,5 @@ describe Airport do
       expect(airport).to respond_to :take_off
     end
   end 
-  
-
-    # it 'confirms plane is no longer at the airport, after take off' do
-    
-    # describe '#take_off' do
-    #   plane = Plane.new
-    #   airport.land(plane)
-    #   expect(airport.take_off).to eq(plane)
-    # end
 
 end 
