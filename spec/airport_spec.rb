@@ -1,11 +1,11 @@
 require 'airport'
 
 describe Airport do
-
   subject (:airport) { described_class.new }
-
+  
   describe '#land' do
     it 'instructs planes to land at airport' do
+      allow(airport).to receive(:stormy?).and_return false
       plane = Plane.new
       airport.land(plane)
       expect(plane).to eq plane
