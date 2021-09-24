@@ -1,7 +1,7 @@
 require 'errors/bad_weather_error'
 
 describe BadWeatherError do
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }  
   let(:subject) { described_class.new(plane) }
 
   describe '#message' do

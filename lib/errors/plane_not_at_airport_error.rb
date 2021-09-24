@@ -1,7 +1,7 @@
-class AirportFullError < StandardError
+class PlaneNotAtAirportError < StandardError
 
-  DEFAULT_MESSAGE = 'Airport is full'.freeze
-
+  DEFAULT_MESSAGE = 'Plane is not at this airport'.freeze
+  
   def initialize(plane, message = DEFAULT_MESSAGE)
     @plane = plane
     super(message)

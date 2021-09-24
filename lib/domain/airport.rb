@@ -42,7 +42,7 @@ class Airport
 
   def pre_flight_checks(plane)
     raise NotAPlaneError.new(plane) if not_a_plane?(plane)
-    raise "Plane is not at this airport" if plane_is_not_present?(plane)
+    raise PlaneNotAtAirportError.new(plane) if plane_is_not_present?(plane)
   end
   
   def plane_is_not_present?(plane)

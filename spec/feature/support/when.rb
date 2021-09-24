@@ -1,4 +1,4 @@
-def when_the_plane_lands
+def when_a_plane_tries_to_land
   p 'when_the_plane_lands'
   @airport.land_plane(@plane)
 end

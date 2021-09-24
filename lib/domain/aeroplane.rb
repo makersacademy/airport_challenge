@@ -9,7 +9,6 @@ class Aeroplane
   attr_reader :name, :id, :passenger_capacity
 
   def description
-    puts "#{@name} with id:#{@id} has a passenger capacity of #{@passenger_capacity}"
     "#{@name} with id:#{@id} has a passenger capacity of #{@passenger_capacity}"
   end
 

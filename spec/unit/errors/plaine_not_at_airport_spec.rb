@@ -1,12 +1,12 @@
-require 'errors/airport_full_error'
+require 'errors/plane_not_at_airport_error'
 
-describe AirportFullError do
+describe PlaneNotAtAirportError do
   let(:plane) { double :plane, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }
   let(:subject) { described_class.new(plane) }
 
   describe '#message' do
     it 'returns the default message' do
-      expect(subject.message).to eq AirportFullError::DEFAULT_MESSAGE
+      expect(subject.message).to eq PlaneNotAtAirportError::DEFAULT_MESSAGE
     end
 
     it 'returns a custom message' do
