@@ -1,11 +1,14 @@
 require_relative 'weather'
 class Airport
   include Weather
+  
   DEFAULT_CAPACITY = 10
-  attr_reader :planes, :capacity
+  
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     raise ArgumentError.new("Please enter a positive integer") unless valid_capacity?(capacity)
+    
     @planes = []
     @capacity = capacity
   end
@@ -17,6 +20,7 @@ class Airport
     fail "Weather conditions aren't stable" if stormy?
     
     @planes << plane
+    self
   end
 
   def take_off(plane = nil)
@@ -25,7 +29,11 @@ class Airport
     fail "Weather conditions aren't stable" if stormy?
 
     @planes.delete(plane)
-    return "Plane has taken off"
+    self
+  end
+
+  def at_airport?(plane)
+    @planes.include?(plane)
   end
 
   private

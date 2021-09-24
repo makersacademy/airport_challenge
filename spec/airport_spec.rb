@@ -15,10 +15,12 @@ RSpec.describe Airport do
     end
 
     it "raises error unless positive integer given" do
-      expect { Airport.new(-1) }.to raise_error(ArgumentError, "Please enter a positive integer")
-      expect { Airport.new("1") }.to raise_error(ArgumentError, "Please enter a positive integer")
-      expect { Airport.new(0) }.to raise_error(ArgumentError, "Please enter a positive integer")
-      expect { Airport.new(3.5) }.to raise_error(ArgumentError, "Please enter a positive integer")
+      bad_inputs = [-1, "1", 0, 3.5]
+      message = "Please enter a positive integer"
+
+      bad_inputs.each do |bad_input|
+        expect { Airport.new(bad_input) }.to raise_error(ArgumentError, message)
+      end
     end
   end
 
@@ -28,8 +30,12 @@ RSpec.describe Airport do
         allow(subject).to receive(:rand).and_return(0)
       end
       it "raises error when anything other than plane given" do
-        expect { subject.land }.to raise_error(ArgumentError, "Plane not given")
-        expect { subject.land(Object.new) }.to raise_error(ArgumentError, "Plane not given")
+        bad_inputs = [nil, Object.new]
+        message = "Plane not given"
+
+        bad_inputs.each do |bad_input|
+          expect { subject.land(bad_input) }.to raise_error(ArgumentError, message)
+        end  
       end
       
       it "doesn't land a plane already in the airport" do
@@ -39,7 +45,7 @@ RSpec.describe Airport do
       
       it "doesn't land planes when airport full" do
         smol_airport = Airport.new(1)
-        expect(smol_airport).to receive(:rand).and_return(0)
+        allow(smol_airport).to receive(:rand).and_return(0)
         smol_airport.land(plane)
         
         expect { smol_airport.land(other_plane) }.to raise_error "Airport full"
@@ -48,18 +54,21 @@ RSpec.describe Airport do
 
     context "when sunny" do
       before(:each) do 
-        expect(subject).to receive(:rand).at_least(:once).and_return(0)
+        allow(subject).to receive(:rand).and_return(0)
       end
       
       it "lands a plane" do
-        subject.land(plane)
-        expect(subject.planes.include?(plane)).to be true
+        expect(subject.land(plane).at_airport?(plane)).to be true
+      end
+
+      it "confirms the plane has been landed" do
+        expect(subject.land(plane).at_airport?(plane)).to be true
       end
     end
 
     context "when stormy" do
       it "prevents landing" do 
-        expect(subject).to receive(:rand).at_least(:once).and_return(10)
+        allow(subject).to receive(:rand).and_return(10)
         expect { subject.land(plane) }.to raise_error "Weather conditions aren't stable"
       end
     end
@@ -72,8 +81,12 @@ RSpec.describe Airport do
       end
 
       it "raises error when anything other than plane given" do
-        expect { subject.take_off }.to raise_error(ArgumentError, "Plane not given")
-        expect { subject.take_off(Object.new) }.to raise_error(ArgumentError, "Plane not given")
+        bad_inputs = [nil, Object.new]
+        message = "Plane not given"
+
+        bad_inputs.each do |bad_input|
+          expect { subject.take_off(bad_input) }.to raise_error(ArgumentError, message)
+        end
       end
       
       it "doesn't take off a plane when not in airport" do
@@ -82,33 +95,35 @@ RSpec.describe Airport do
     end
     context "when sunny" do
       before(:each) do 
-        expect(subject).to receive(:rand).at_least(:once).and_return(0)
+        allow(subject).to receive(:rand).and_return(0)
       end
 
       it "takes off a plane" do
         subject.land(plane)
-        subject.take_off(plane)
-        expect(subject.planes).to_not include plane
+        
+        expect(subject.take_off(plane).at_airport?(plane)).to be false
       end
     
-      it "confirms a plane has taken off" do
+      it "confirms the plane has taken off" do
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq "Plane has taken off"
+        
+        expect(subject.take_off(plane).at_airport?(plane)).to be false
       end
       
       it "only takes off the plane given" do
         subject.land(plane)
         subject.land(other_plane)
-        subject.take_off(plane)
-        expect(subject.planes).to include other_plane
+
+        expect(subject.take_off(plane).at_airport?(other_plane)).to be true
       end
     end
 
     context "when stormy" do
       it "prevents takeoff" do
-        expect(subject).to receive(:rand).exactly(:once).and_return(0)
+        allow(subject).to receive(:rand).and_return(0)
         subject.land(plane)
-        expect(subject).to receive(:rand).at_least(:once).and_return(10)
+        allow(subject).to receive(:rand).and_return(10)
+       
         expect { subject.take_off(plane) }.to raise_error "Weather conditions aren't stable"
       end
     end
