@@ -1,3 +1,5 @@
+require 'errors/airport_full_error'
+
 describe AirportFullError do
   let(:plane) { double :plane }
   let(:subject) { described_class.new(plane) }

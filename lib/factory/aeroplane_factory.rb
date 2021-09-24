@@ -1,8 +1,10 @@
 require 'securerandom'
-require 'aeroplane'
+require_relative '../aeroplane'
+require_relative './plane_id_generator'
 
-class AeroplaneFactory
-
+class AeroplaneFactory 
+  extend PlaneIdGenerator
+  
   NAMES = [
     "Airbus A220", 
     "Airbus A320",
@@ -18,19 +20,19 @@ class AeroplaneFactory
   ].freeze
 
   def self.build
-    Aeroplane.new(SecureRandom.uuid, AeroplaneFactory::NAMES.sample, 100)
+    Aeroplane.new(generate_id, AeroplaneFactory::NAMES.sample, 100)
   end
 
   def self.build_with_capacity(capacity)
-    Aeroplane.new(SecureRandom.uuid, AeroplaneFactory::NAMES.sample, capacity)
+    Aeroplane.new(generate_id, AeroplaneFactory::NAMES.sample, capacity)
   end
 
   def self.build_with_name(name)
-    Aeroplane.new(SecureRandom.uuid, name, 100)
+    Aeroplane.new(generate_id, name, 100)
   end
 
   def self.build_with_name_and_capacity(name, capacity)
-    Aeroplane.new(SecureRandom.uuid, name, capacity)
+    Aeroplane.new(generate_id, name, capacity)
   end
 
 end

@@ -1,3 +1,5 @@
+require 'errors/bad_weather_error'
+
 describe BadWeatherError do
   let(:plane) { double :plane }
   let(:subject) { described_class.new(plane) }

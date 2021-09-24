@@ -2,6 +2,7 @@ require 'factory/aeroplane_factory'
 require 'aeroplane'
 
 describe AeroplaneFactory do
+
   describe "#build" do
     it 'builds a plane with a unique id, a default name and default capacity' do
       result = AeroplaneFactory.build
