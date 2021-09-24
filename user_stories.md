@@ -3,7 +3,8 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 1. Airport should respond to the land command
-<!-- 2. Land command should take a variable -->
+2. Land command should take a variable
+3. Land command should create a new plane
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
