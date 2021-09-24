@@ -6,9 +6,13 @@ class Airport
     @planes = []
     @capacity = capacity
   end
-  def land(plane)
+  def land(plane, weather = "sunny")
     if !self.full?
-      @planes << plane
+      if weather == "sunny"
+        @planes << plane
+      else
+        raise("CANNOT LAND. THE WEATHER IS STORMY.")
+      end
     else
       raise("CANNOT LAND. THIS AIRPORT IS FULL.")
     end

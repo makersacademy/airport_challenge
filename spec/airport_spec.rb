@@ -15,7 +15,8 @@ describe Airport do
     it "should raise an error if trying to land a plane when the weather is stormy" do
       plane = double("plane double")
       weather = double("weather double", :current => "stormy")
-      expect{subject.land(plane)}.to(raise_error("CANNOT LAND. THE WEATHER IS STORMY."))
+      current_weather = weather.current
+      expect{subject.land(plane, current_weather)}.to(raise_error("CANNOT LAND. THE WEATHER IS STORMY."))
     end
   end
 
