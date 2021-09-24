@@ -90,6 +90,13 @@ describe Airport do
       allow(plane).to receive(:flying) { true }
       expect(plane.flying).to eq true
     end
+    
+    context "weather is stormy" do
+      it "doesn't let a plane take off" do
+        expect(subject).to receive(:rand).and_return(8)
+        expect { subject.take_off(plane) }.to raise_error("Cannot take_off in stormy weather")
+      end
+    end
   end
 
   describe "#weather" do
@@ -99,5 +106,4 @@ describe Airport do
       end  
     end
   end
-
 end
