@@ -1,7 +1,7 @@
 class WeatherGenerator
 
-  # returns true if random number (0 to 7 inclusive) is > 5 e.g. 25% chance of being stormy (I don't like those odds!)
+  # returns true if random number (1 to 4 inclusive) == 4 e.g. 25% chance of being stormy
   def forecast_stormy?
-    rand(0..7) > 5
+    rand(1..4) == 4
   end
 end
