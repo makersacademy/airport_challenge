@@ -54,7 +54,7 @@ describe Airport do
       @plane = Plane.new
       expect(subject).to receive(:rand).and_return(2)
       subject.land(@plane)
-
+      expect(subject).to receive(:rand).and_return(2)
       subject.take_off(@plane)
     end
 

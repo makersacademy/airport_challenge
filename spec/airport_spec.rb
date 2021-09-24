@@ -29,8 +29,6 @@ describe Airport do
       end
 
       it "prevents plane from landing when airport full to default capacity" do  
-        # Fill to capacity
-        
         20.times do
           expect(subject).to receive(:rand).and_return(2)
           subject.land(plane)
@@ -75,20 +73,26 @@ describe Airport do
       subject.land(plane)
     end
 
-    it "instructs a plane to take off" do
-      expect(subject.take_off(plane)).to eq plane
-    end
+    context "weather is not stormy" do
+      before(:each) do
+        expect(subject).to receive(:rand).and_return(2)  
+      end
 
-    it "plane is no longer in airport" do
-      subject.take_off(plane)
-      expect(subject.planes).to_not include plane
-    end
-
-    it "tells the plane that it is no longer landed" do
-      subject.take_off(plane)
-      allow(plane).to receive(:flying=) { :true }
-      allow(plane).to receive(:flying) { true }
-      expect(plane.flying).to eq true
+      it "instructs a plane to take off" do
+        expect(subject.take_off(plane)).to eq plane
+      end
+  
+      it "plane is no longer in airport" do
+        subject.take_off(plane)
+        expect(subject.planes).to_not include plane
+      end
+  
+      it "tells the plane that it is no longer landed" do
+        subject.take_off(plane)
+        allow(plane).to receive(:flying=) { :true }
+        allow(plane).to receive(:flying) { true }
+        expect(plane.flying).to eq true
+      end  
     end
     
     context "weather is stormy" do
