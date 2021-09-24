@@ -222,3 +222,13 @@ Once I did this, I ran `rspec` to check my unit tests passed which they did. I a
         from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
 ```
 The error I saw was a `NoMethodError` because I am attempting to call a method (`land?`) on `nil` (`plane`).
+
+I added an `it` block to the `airport_spec.rb` file. When I ran `rspec` I got the following error:
+```
+Failures:
+
+  1) Airport instructs a plane to land
+     Failure/Error: expect(plane).to be_landing
+       expected nil to respond to `landing?`
+```
+This tells me that I need the `instruct` method to return something other than `nil`.
