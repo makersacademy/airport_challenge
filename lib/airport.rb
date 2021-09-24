@@ -5,9 +5,11 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = generate_weather
   end
 
   attr_reader :planes
+  attr_reader :weather
 
   def land(plane)
     raise "Airport is full" if @planes.count >= @capacity
@@ -18,5 +20,12 @@ class Airport
   def take_off(plane)
     plane.flying = true
     @planes.delete(plane)
+  end
+
+  private
+
+  def generate_weather
+    # If the random number > 7, then weather is stormy, otherwise it is sunny
+    rand(10) > 7 ? "stormy" : "sunny"
   end
 end
