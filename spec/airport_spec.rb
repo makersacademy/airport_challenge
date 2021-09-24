@@ -21,6 +21,7 @@ RSpec.describe Airport do
       expect { Airport.new(3.5) }.to raise_error(ArgumentError, "Please enter a positive integer")
     end
   end
+
   describe "#land" do
     it "raises error when anything other than plane given" do
       expect { subject.land }.to raise_error(ArgumentError, "Plane not given")
@@ -38,7 +39,12 @@ RSpec.describe Airport do
       expect {subject.land(plane)}.to raise_error "Plane already in airport"
     end
 
+    it "doesn't land planes when airport full" do
+      smol_airport = Airport.new(1)
+      smol_airport.land(plane)
 
+      expect { smol_airport.land(plane_1) }.to raise_error "Airport full"
+    end
   end
 
   describe "#take_off" do
