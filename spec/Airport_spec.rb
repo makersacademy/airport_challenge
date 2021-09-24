@@ -47,5 +47,35 @@ describe Airport do
     plane = Plane.new
     expect(den.land(plane)).to eq ([plane])
   end
+  it 'allows overide of airport capacity' do
+    lhr = Airport.new
+    lhr.capacity = 15
+    10.times{lhr.land(Plane.new)}
+    plane = Plane.new
+    expect(lhr.land(plane)).to eq (lhr.terminal)
+    #This means that, after 10 planes have landed,another has been permitted to land (ie capacity increased)
+  end
+  it 'checks if weather is safe (yes)' do
+    jfk = Airport.new
+    expect(jfk.weather1(5)).to eq (true)
+  end
+  it 'checks if weather is safe (no)' do
+    jfk = Airport.new 
+    expect(jfk.weather1(6)).to eq (false)
+  end
+  it 'permits landing if weather is safe (yes)' do
+    jfk = Airport.new
+    plane = Plane.new
+    weather = jfk.weather1(3)
+    expect(jfk.land(plane)).to eq ([plane])
+  end
+  it 'prohibits take off if weather is bad' do
+    jfk = Airport.new
+    plane = Plane.new
+    jfk.weather = 6 #weather overide for test
+    expect(jfk.land(plane)).to eq ("Weather is bad")
+    #normally when weather
+  end
+
 end
 

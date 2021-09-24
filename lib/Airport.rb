@@ -2,17 +2,24 @@
 
 class Airport
   attr_accessor :terminal
+  attr_accessor :capacity
+  attr_accessor :weather
   def initialize
-    
+    @weather = 1
+    @capacity = 10
     @terminal = []
   end
   
   def land(plane)
+    weather = self.weather1(@weather)
+    if weather == true
     if airport_full == false
     terminal.push(plane)
     else
       return "Airport is full, cannot land"
     end
+  else return "Weather is bad"
+  end
   end
 
   def take_off(plane,airport)
@@ -28,11 +35,23 @@ class Airport
   end
 
   def airport_full
-    if terminal.size >= 10
+    if terminal.size >= capacity
       return true
     else
       return false
     end
+  end
+
+  def overide_capacity(new_capacity)
+   @capacity = capacity
+  end
+
+  def weather1(num)
+  if num > 5
+    return false
+  else 
+    return true
+  end
   end
 
 end
