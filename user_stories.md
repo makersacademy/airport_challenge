@@ -32,6 +32,9 @@ As an air traffic controller
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
 
+10. Simulate random weather
+- weather should be detatched from the airport class
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
@@ -44,3 +47,6 @@ I want to prevent landing when weather is stormy
 | Airport | land, take off, status, capacity, safe? |
 | System designer | |
 | Plane |
+
+Notes
+- Redo spec to test for behaviour rather than state
