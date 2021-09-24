@@ -8,7 +8,7 @@ describe Airport do
     context "airport is not full" do
       before(:each) do
         allow(plane).to receive(:flying=) { :false }
-        expect(subject).to receive(:rand).and_return(2)
+        expect(Weather).to receive(:rand).and_return(2)
         subject.land(plane)
       end
   
@@ -30,7 +30,7 @@ describe Airport do
 
       it "prevents plane from landing when airport full to default capacity" do  
         20.times do
-          expect(subject).to receive(:rand).and_return(2)
+          expect(Weather).to receive(:rand).and_return(2)
           subject.land(plane)
         end
 
@@ -46,7 +46,7 @@ describe Airport do
         airport = Airport.new(capacity)
         
         capacity.times do
-          expect(airport).to receive(:rand).and_return(2)
+          expect(Weather).to receive(:rand).and_return(2)
           airport.land(plane)
         end
 
@@ -59,7 +59,7 @@ describe Airport do
 
     context "weather is stormy" do
       it "prevents a plane from landing when weather is stormy" do
-        expect(subject).to receive(:rand).and_return(8)
+        expect(Weather).to receive(:rand).and_return(8)
         expect { subject.land(plane) }.to raise_error("Cannot land a plane in stormy weather")
       end
     end
@@ -69,13 +69,13 @@ describe Airport do
 
     before(:each) do
       allow(plane).to receive(:flying=) { :false }
-      expect(subject).to receive(:rand).and_return(2)
+      expect(Weather).to receive(:rand).and_return(2)
       subject.land(plane)
     end
 
     context "weather is not stormy" do
       before(:each) do
-        expect(subject).to receive(:rand).and_return(2)  
+        expect(Weather).to receive(:rand).and_return(2)  
       end
 
       it "instructs a plane to take off" do
@@ -97,17 +97,9 @@ describe Airport do
     
     context "weather is stormy" do
       it "doesn't let a plane take off" do
-        expect(subject).to receive(:rand).and_return(8)
+        expect(Weather).to receive(:rand).and_return(8)
         expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
       end
-    end
-  end
-
-  describe "#weather" do
-    context "weather is random, mostly sunny and sometimes stormy" do
-      it "shows the weather at the airport" do
-        expect(subject.generate_weather).to eq('sunny').or(eq('stormy'))
-      end  
     end
   end
 end

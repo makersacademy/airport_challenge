@@ -1,31 +1,28 @@
 require 'weather'
 
 class Airport
-
   DEFAULT_CAPACITY = 20
+  
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
-
-  attr_reader :planes
-
+  
   def land(plane)
     raise "Airport is full" if @planes.count >= @capacity
-    raise "Cannot land a plane in stormy weather" if generate_weather == "stormy"
+    raise "Cannot land a plane in stormy weather" if Weather.generate_weather == "stormy"
     plane.flying = false
     @planes << plane
   end
 
   def take_off(plane)
-    raise "Cannot take off in stormy weather" if generate_weather == "stormy"
+    raise "Cannot take off in stormy weather" if Weather.generate_weather == "stormy"
     plane.flying = true
     @planes.delete(plane)
   end
 
-  def generate_weather
-    # If the random number > 7, then weather is stormy, otherwise it is sunny
-    rand(10) > 7 ? "stormy" : "sunny"
-  end
+  private
+  include Weather
 end
