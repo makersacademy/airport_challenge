@@ -17,9 +17,9 @@ class Airport
       raise("CANNOT LAND. THIS AIRPORT IS FULL.")
     end
   end
-  def takeoff(weather = "sunny")
+  def takeoff(plane, weather = "sunny")
     if weather == "sunny"
-      @planes.shift
+      @planes.delete(plane)
     else
       raise ("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
     end
