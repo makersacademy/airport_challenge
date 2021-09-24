@@ -41,4 +41,33 @@ describe "Airport" do
     expect{@test_airport.attempt_landing(@test_plane)}.to raise_error "Airport full!"
   end
 
+  it "should attempt to take off, and succeed if the plane is landed" do
+    expect(@test_airport.landed_planes).to eq([])
+
+    @test_airport.attempt_landing(@test_plane)
+    expect(@test_airport.landed_planes).to eq([@test_plane])
+
+    @test_airport.attempt_takeoff(@test_plane)
+    expect(@test_airport.landed_planes).to eq([])
+  end
+
+
+  it "should attempt to take off, and fail if the airport is empty" do
+    expect(@test_airport.landed_planes).to eq([])
+
+    expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Airport empty!")
+  end
+
+
+  it "should attempt to take off, and fail if the plane does not match a plane in the airport" do
+    expect(@test_airport.landed_planes).to eq([])
+
+    test_plane_2 = Plane.new
+    @test_airport.attempt_landing(test_plane_2)
+    expect(@test_airport.landed_planes[0].class).to eq(Plane)
+
+   expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Your plane isn't in the airport!")
+
+  end
+
 end
