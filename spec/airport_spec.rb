@@ -26,4 +26,12 @@ describe Airport do
       expect(subject.planes).to be_empty
     end
   end
+
+  describe '#full?' do
+    it 'returns true when airport full' do
+      airport = Airport.new(1)
+      airport.land(plane)
+      expect{ airport.full }.to eq(true)
+    end
+  end
 end
