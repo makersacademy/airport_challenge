@@ -91,7 +91,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 My contributions
 -----
-Below are my diagrams and notes throughout this challenge. I have referred to the steps in the [Boris Bikes](https://github.com/makersacademy/course/blob/main/boris_bikes/0_challenge_map.md) challenge to support my progress with this challenge.
+Below are my diagrams and notes throughout this challenge. I have referred to the steps in the [Boris Bikes](https://github.com/makersacademy/course/blob/main/boris_bikes/0_challenge_map.md) challenge to support my progress.
 
 Domain Models
 -----
@@ -102,7 +102,7 @@ User story 1
 | Airport | |
 | Plane | land |
 
-Feature tests
+Feature tests and observations for user story 1
 -----
 ```
 ➜  airport_challenge git:(main) irb
@@ -142,4 +142,18 @@ I will now create a new file for a `Plane` class, inside the `/lib` directory, d
 3.0.2 :002 > plane = Plane.new
  => #<Plane:0x0000000122072f60> 
 ```
-At this point, I realised I needed to refactor my code as I needed an `Airport` class so I could run `airport = Airport.new`, `plane = airport.land`.
+At this point, I realised I needed to refactor my code as I needed an `Airport` class so I could run `airport = Airport.new`, `plane = airport.land`. I renamed `lib/plane.rb` to be `lib/airport.rb` and changed the class to be a type of `Airport`. I also renamed `spec/plane_spec.rb` to be `spec/airport_spec.rb`, where I required the `airport` file from `lib` and referenced `Airport` in the `describe` block.
+
+```
+➜  airport_challenge git:(main) irb
+3.0.2 :001 > require './lib/airport.rb'
+ => true 
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x0000000142034c90> 
+3.0.2 :003 > plane = airport.land
+(irb):3:in `<main>': undefined method `land' for #<Airport:0x0000000142034c90> (NoMethodError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+```
+I ran my feature test again, this time creating an instance of the `Airport` class. This was successful. I know this because `#<Airport:0x0000000142034c90>` was returned in `irb`. I then ran `plane = airport.land` as I'm wanting to instruct the plane to land at an airport. The error message I received tells me there is no `land` method. I will now create this using similar steps that I followed to create the `Airport` class.
