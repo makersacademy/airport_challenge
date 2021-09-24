@@ -1,4 +1,4 @@
 class Airport
-  def land
+  def instruct
   end
 end

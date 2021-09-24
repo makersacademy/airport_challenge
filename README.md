@@ -102,6 +102,13 @@ User story 1
 | Airport | |
 | Plane | land |
 
+Updated model for user story 1
+| Objects | Messages |
+|---------|----------|
+| Traffic Controller | |
+| Airport | instruct |
+| Plane | land |
+
 Feature tests and observations for user story 1
 -----
 ```
@@ -180,3 +187,4 @@ The above code from `lib/airport.rb` passes the unit test.
  => nil 
 ```
 I am also able to create the variable `plane` in `irb` to equal `airport.land` which returns `nil`.
+Upon reflection of what to do next, I realised there is another verb in the user story: `instruct`. So I am going to refactor my domain model and code to reflect this. 
