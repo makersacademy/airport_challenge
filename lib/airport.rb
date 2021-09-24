@@ -1,6 +1,7 @@
 class Airport
   attr_reader :planes
   def initialize
+    @capacity = 5
     @planes =[]
   end
 
@@ -14,5 +15,13 @@ class Airport
 
   def receive(plane)
     @planes << plane
+  end
+
+  def allow?
+    if @planes.length < @capacity
+      return true
+    else
+      return false
+    end
   end
 end

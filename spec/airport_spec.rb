@@ -25,4 +25,14 @@ RSpec.describe Airport do
       expect(subject.send()).to eq(false)
     end
   end
+  
+  describe "#allow?" do
+    it "allows planes to land if there's space" do
+      expect(subject.allow?).to eq true
+    end
+    it "prevents landing if airport is full" do
+      5.times{subject.receive(plane)}
+      expect(subject.allow?).to eq false
+    end
+  end
 end
