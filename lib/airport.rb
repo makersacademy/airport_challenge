@@ -7,21 +7,20 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
-    if airport_full?
-      raise "Airport full!"
-    elsif !plane.flying
-      raise "Plane is already landed"
-    else
-      @landed_planes << plane 
-      plane.flying = false
-    end
+  def attempt_landing(plane)
+    raise "Airport full!" if airport_full?
+    plane.flying ? land(plane) : raise("Plane is already landed")
   end
 
   private
 
   def airport_full?
     @landed_planes.length >= @capacity
+  end
+
+  def land(plane)
+    @landed_planes << plane 
+    plane.flying = false
   end
 
 end
