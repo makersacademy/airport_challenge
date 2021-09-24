@@ -92,18 +92,19 @@ describe Airport do
       end
 
       it "instructs a plane to take off" do
+        allow(plane).to receive(:status) { "Landed" }
         expect(subject.take_off("Flight 1")).to eq plane
       end
   
       it "plane is no longer in airport" do
+        allow(plane).to receive(:status) { "Landed" }
         subject.take_off("Flight 1")
         expect(subject.planes).to_not include "Flight 1"
       end
 
       it "doesn't let a plane take off if it's already flying" do
-        expect(Weather).to receive(:rand).and_return(2)
         allow(plane).to receive(:status) { "Flying" }
-        expect { subject.take_off("Flight 1") }.to raise_error "This plane has already landed"
+        expect { subject.take_off("Flight 1") }.to raise_error "This plane is already flying"
       end
     end
     
