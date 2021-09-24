@@ -1,5 +1,8 @@
 class Airport
-  def land#(plane)
+  def land(plane)
     print "hello"
+  end
+
+  def takeoff(plane)
   end
 end

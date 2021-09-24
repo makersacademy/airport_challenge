@@ -3,11 +3,14 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
 1. Airport should respond to the land command
-2. Land command should take a variable
+<!-- 2. Land command should take a variable -->
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+1. Airport should respond to the instruction takeoff
+2. Takeoff should respond to confirm plane is no longer in the airport
 
 As an air traffic controller 
 To ensure safety 
