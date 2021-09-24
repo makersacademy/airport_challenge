@@ -13,11 +13,11 @@ describe Airport do
         end
     
         it "instructs a plane to land at the airport" do
-          expect(subject.planes).to include @plane
+          expect(subject.planes).to include "Flight 15"
         end
     
         it "tells the plane that it is no longer flying" do
-          expect(@plane.flying).to eq false
+          expect(@plane.status).to eq "Landed"
         end  
       end
 
@@ -37,10 +37,10 @@ describe Airport do
           subject.land(Plane.new(x))
         end
   
-        twenty_first_plane = Plane.new(15)
+        twenty_first_plane = Plane.new(21)
   
         expect { subject.land(twenty_first_plane) }.to raise_error("Airport is full")
-        expect(subject.planes).to_not include twenty_first_plane
+        expect(subject.planes).to_not include "Flight 21"
       end
   
       it "doesn't let another plane land if airport is full to custom capacity" do
@@ -52,10 +52,10 @@ describe Airport do
           airport.land(Plane.new(x))
         end
   
-        extra_plane = Plane.new(50)
+        extra_plane = Plane.new(51)
   
         expect { airport.land(extra_plane) }.to raise_error("Airport is full")
-        expect(airport.planes).to_not include extra_plane
+        expect(airport.planes).to_not include "Flight 51"
       end
     end
   end
@@ -72,7 +72,7 @@ describe Airport do
       
   
       it "instructs a plane to take off from the airport" do
-        expect(subject.planes).to_not include @plane
+        expect(subject.planes).to_not include "Flight 5"
       end
   
       it "tells the plane that it is now flying" do
