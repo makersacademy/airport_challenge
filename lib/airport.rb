@@ -1,9 +1,9 @@
 class Airport
   attr_reader :planes
   attr_reader :capacity
-  def initialize
+  def initialize(capacity)
     @planes = []
-    @capacity = 1
+    @capacity = capacity
   end
   def land(plane)
     if !self.full?

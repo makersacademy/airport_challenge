@@ -34,7 +34,7 @@ describe Airport do
   describe ".capacity" do
     it "should give airport a capacity provided by the user on initialization" do
       airport = Airport.new(20)
-      expect(aiport.capacity).to(eq(20))
+      expect(airport.capacity).to(eq(20))
     end
   end
 end
