@@ -1,0 +1,46 @@
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+1. Airport should respond to the land command
+2. Land command should take a variable
+4. Land command should create a new plane
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+3. Airport should respond to the instruction takeoff
+5. Takeoff should respond to confirm plane is no longer in the airport
+
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+6. Airport should instantiate with a hangar
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+7. Set a default capacity
+8. Set a variable capacity for the airport
+9. Adjust 'land' and 'takeoff' to account for capacity
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+| Objects | Messages |
+|-|-|
+| Air Traffic Controller | |
+| Passengers | |
+| Destination? | |
+| Airport | land, take off, status, capacity, safe? |
+| System designer | |
+| Plane |

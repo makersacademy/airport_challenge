@@ -33,9 +33,10 @@ describe Airport do
     end
 
     it 'should not land a plane if the Airport is full' do
-      airport.land(plane)
+      airport = Airport.new(30)
+      30.times { airport.land(plane) }
 
-      expect { subject.land(Plane.new) }.to raise_error "Airport is full, cannot land plane"
+      expect { airport.land(Plane.new) }.to raise_error "Airport is full, cannot land plane"
     end
   end
 
