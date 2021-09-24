@@ -1,10 +1,10 @@
-require 'domain/aeroplane'
+require_relative '../domain/aeroplane'
 
 class AirTrafficControl 
 
-  def initialize(seed_planes = [], seed_airports =[])
-    @planes = seed_planes
-    @airports = seed_airports
+  def initialize()
+    @planes = []
+    @airports = []
     @status_codes = [Aeroplane::FLYING]
   end
 
@@ -15,7 +15,7 @@ class AirTrafficControl
   end
 
   def add_airport(airport)
-    @status_codes << airport.status_code
+    @status_codes << airport.code
     @airports << airport
   end
 
@@ -25,6 +25,10 @@ class AirTrafficControl
 
   def find_airport_by_id(airportId)
     airports.find {|airport| airport.id == airportId}
+  end
+
+  def find_airport_by_code(code)
+    airports.find {|airport| airport.code == code}
   end
 
   def status_codes

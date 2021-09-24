@@ -7,16 +7,16 @@ class AirportFactory
   DEFAULT_CAPACITY = 20
   
   STATUS_CODES = [
-    "LHR", 
-    "ATL", 
-    "CDG", 
-    "ORD", 
-    "LAX", 
-    "DFW", 
-    "PEK", 
-    "PVG", 
-    "DEN", 
-    "DXB", 
+    :LHR, 
+    :ATL, 
+    :CDG, 
+    :ORD, 
+    :LAX, 
+    :DFW, 
+    :PEK, 
+    :PVG, 
+    :DEN, 
+    :DXB, 
   ].freeze
 
   NAMES = [

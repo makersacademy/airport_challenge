@@ -15,4 +15,8 @@ class Aeroplane
     "#{@name} with id:#{@id} has a passenger capacity of #{@passenger_capacity}"
   end
 
+  def update_status(code)
+    @status = code
+  end
+
 end

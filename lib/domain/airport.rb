@@ -23,6 +23,7 @@ class Airport
     begin
       check_landing_conditions(plane)
       @planes_at_terminal << plane
+      plane.update_status(code)
       :ok
     rescue => error
       "cannot land #{error.effected_plane.id}: #{error.message}"
@@ -34,6 +35,7 @@ class Airport
     begin
       pre_flight_checks(plane)
       @planes_at_terminal.delete(plane)
+      plane.update_status(Aeroplane::FLYING)
       :ok
     rescue => error
       "#{error.effected_plane.id} cannot take-off: #{error.message}"
