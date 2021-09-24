@@ -91,6 +91,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 My contributions
 -----
+Below are my diagrams and notes throughout this challenge.
+
 Domain Models
 -----
 User story 1
@@ -110,3 +112,4 @@ Feature tests
         from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
         from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
 ```
+The type of error above is a `NameError` occuring on line 1 in `irb`. A `NameError`is raised when you reference a constant or a variable which isn't defined in the current context. I will now initalise `rspec` within my project and create a new spec file for my `Plane` object.
