@@ -1,14 +1,15 @@
-class Weather
-    def initialise(forecast)
-        @weather = forecast
-    end
+# This randomly decides whether it is storm (20%) or clear (80%)
+# weather conditions.
 
-    def storm
-        chance = rand(6)
-        if chance == 5
-            return @weather = "storm"
-        else
-            return @weather = "clear"
-        end
+def storm_check
+    forecast = rand(6)
+    if forecast == 5
+        return 0
+    else
+        return 1
     end
 end
+
+storm_check
+
+

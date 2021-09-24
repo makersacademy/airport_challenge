@@ -1,21 +1,24 @@
+require_relative "weather"
+
 class Plane
   def initialise(flying_or_grounded)
-    @flight_status = flying_or_grounded
+    @@flight_status = "#{flying_or_grounded}"
   end
     
   def flying
-    return @flight_status.to_s
+    return @@flight_status
   end
 
   def land
-    today_weather.storm
-    if today_weather == "storm"
-      return "Too stormy to land."
-    elsif @flight_status == "flying" 
-      @flight_status = "grounded"
-      return "The plane has landed."
+    storm_check
+    puts @@flight_status.to_s
+    if @@flight_status == "grounded"
+        return "The plane has already landed."
+    elsif storm_check == 0
+        return "This plane cannot land during the storm."
     else 
-      return "This plane is already grounded."
+        @@flightstatus = "grounded"
+        return "The plane has landed."
     end
   end
 
