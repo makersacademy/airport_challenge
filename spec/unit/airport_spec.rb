@@ -6,7 +6,7 @@ describe Airport do
   let(:plane2) { double :plane2, name: "fake plane 2", id: 456, "id=": 456, class: Aeroplane }
   let(:weather_service) { double :weather_service, weather_report: :clear }
   let(:not_a_plane) { double :not_a_plane }
-  let(:subject) { described_class.new("My Airport", weather_service, 10) }
+  let(:subject) { described_class.new("My Airport", "MAP", weather_service, 10) }
 
 
   describe '#print_airport_name' do
@@ -22,7 +22,7 @@ describe Airport do
     end
 
     it 'stops a plane landing when airport is full' do
-      airport = Airport.new("My Airport", weather_service, 1)
+      airport = Airport.new("My Airport", "MAP", weather_service, 1)
       airport.land_plane(plane1)
       expect(airport.land_plane(plane2)).to eq("cannot land #{plane2.id}: Airport is full")
     end

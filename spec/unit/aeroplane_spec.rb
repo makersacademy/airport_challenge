@@ -4,7 +4,8 @@ describe Aeroplane do
   $plane_id = 123
   $plane_name = "plane_name"
   $passenger_capacity = 100
-  subject = described_class.new($plane_id, $plane_name, $passenger_capacity)
+  $status = :JFK
+  subject = described_class.new($plane_id, $plane_name, $passenger_capacity, $status)
   describe '#plane_description' do
     it 'returns a description of the plane' do
       expect(subject.description).to eq "#{$plane_name} with id:#{$plane_id} has a passenger capacity of #{$passenger_capacity}"
@@ -25,6 +26,12 @@ describe Aeroplane do
   describe '#capacity' do
     it 'returns the capacity of the plane' do
       expect(subject.passenger_capacity).to eq $passenger_capacity
+    end
+  end
+
+  describe '#status' do
+    it 'returns the airport the plane is currently at' do
+      expect(subject.status).to eq :JFK
     end
   end
 

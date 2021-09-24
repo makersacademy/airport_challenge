@@ -11,7 +11,7 @@ puts 'added 5 planes'
 
 weather_service = WeatherService.new
 $jfk = Airport.new("JFK", weather_service, 10)
-10.times {$jfk.land_plane(AeroplaneFactory.build)}
+10.times { $jfk.land_plane(AeroplaneFactory.build) }
 p "$jfk: capacity 10, current planes: 10"
 $heathrow = Airport.new("Heathrow", weather_service)
 p "$heathrow: capacity 20, current planes: 0"

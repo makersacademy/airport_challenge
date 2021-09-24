@@ -7,8 +7,9 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(name, weather_service, capacity = DEFAULT_CAPACITY)
+  def initialize(name, status_code, weather_service, capacity = DEFAULT_CAPACITY)
     @airport_name = name
+    @status_code = status_code
     @weather_service = weather_service
     @capacity = capacity
     @planes_at_terminal = []
@@ -47,7 +48,7 @@ class Airport
   private
 
   def check_landing_conditions(plane)
-    raise PlaneAlreadyLandedError.new(plane) if !plane_is_not_present?(plane)
+    raise PlaneAlreadyLandedError.new(plane) unless plane_is_not_present?(plane)
     raise AirportFullError.new(plane) if airport_is_full?
     raise BadWeatherError.new(plane) if bad_weather?
   end
