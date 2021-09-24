@@ -5,4 +5,6 @@ I then ran bundle to install RSpec.
 
 Using TDD, I created the Plane class and the first method, whih reports whether a plane is flying in the air or grounded. I chose to begin with this, because it will influence whether planes can land in the airport or not. 
 
-Having completed this, I moved next to the tests for the "land" method, which would convert a flying plane into a grounded plane.
+Having completed this, I moved next to the tests for the "land" method, which would convert a flying plane into a grounded plane. Then I did "take_off", as this was very similar to the "land" process.
+
+After this, I decided to do tackle the "storm" user stories, as this directly linked to the code I had already written. I started a new spec test file for the weather class, and worked out how to created a random generator that would decide if the weather was stormy or clear. Once this was done in isolation, I started to integrate it into the plane spec and class files.
