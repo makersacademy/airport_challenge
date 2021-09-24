@@ -7,23 +7,35 @@ class Airport
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
+    @at_airport = false
   end
 
   def land(plane)
     fail "Airport full" if airport_full?
     @planes << plane
+    @at_airport = true
   end
 
   def take_off
-    "take off"
+    fail "Takeoff prevented due to storm" if stormy?
+    @planes.pop
+    @at_airport = false
   end
 
-  def not_at_airport?
-    true
+  def at_airport?
+    @at_airport
   end
 
   def airport_full?
     @planes.count >= DEFAULT_CAPACITY
+  end
+
+  def check_weather(weather)
+    @stormy = weather == "stormy"
+  end
+
+  def stormy?
+    @stormy
   end
 
 end
