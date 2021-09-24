@@ -7,6 +7,11 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes.length).to(eq(1))
     end
+    it "should return an error if trying to land a plane at a full airport" do
+      plane = double("plane double")
+      subject.planes << plane
+      expect{subject.land(plane)}.to(raise_error("CANNOT LAND. THIS AIRPORT IS FULL."))
+    end
   end
 
   describe ".takeoff" do
