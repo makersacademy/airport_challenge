@@ -12,6 +12,11 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to_not be_empty
     end
+    it 'does not allow planes to land at full airport' do
+      airport = Airport.new(1)
+      airport.land(plane)
+      expect{ airport.land(plane) }.to raise_error "Airport full"
+    end
   end
 
   describe '#take_off' do
