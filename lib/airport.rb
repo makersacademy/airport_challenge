@@ -1,6 +1,6 @@
 require_relative 'weather'
 class Airport
-  extend Weather
+  include Weather
   DEFAULT_CAPACITY = 10
   attr_reader :planes, :capacity
 
@@ -14,22 +14,24 @@ class Airport
     plane_check(plane)
     fail "Plane already in airport" if in_airport?(plane)
     fail "Airport full" if full?
-
+    fail "Weather conditions aren't stable" if check_weather == "stormy"
+    puts "this happened"
     @planes << plane
   end
 
   def take_off(plane = nil)
     plane_check(plane)
     fail "Plane not in airport" unless in_airport?(plane)
-    
+    fail "Weather conditions aren't stable" if check_weather == "stormy"
+
     @planes.delete(plane)
     return "Plane has taken off"
   end
 
   private
 
-  def in_airport?(plane)
-    @planes.include?(plane)
+  def in_airport?(new_plane)
+    @planes.any? { |plane| plane.id == new_plane.id }
   end
 
   def plane_check(plane)
@@ -37,7 +39,7 @@ class Airport
   end
 
   def valid_capacity?(capacity)
-    capacity.is_a?(Integer) && capacity > 0
+    capacity.is_a?(Integer) && capacity.positive?
   end
 
   def full?

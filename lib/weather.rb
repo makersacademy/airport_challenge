@@ -1,5 +1,9 @@
 module Weather
   def check_weather
-    rand > 0.75 ? "stormy" : "sunny"
+    generate_random_number > 7 ? "stormy" : "sunny"
+  end
+
+  def generate_random_number
+    rand(1..10)
   end
 end

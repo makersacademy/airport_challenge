@@ -1,23 +1,23 @@
 require 'weather'
 
 RSpec.describe Weather do
-  let(:dummy_class) { Class.new { extend Weather} }
-
+  let(:dummy_class) { Class.new { include Weather } }
+  let(:subject) { dummy_class.new }
   describe ".check" do
     it "shows the weather" do
-      expect(dummy_class).to receive(:rand).and_return(0)
-      expect(dummy_class.check_weather).to eq "sunny"
+      expect(subject).to receive(:rand).and_return(0)
+      expect(subject.check_weather).to eq "sunny"
     end
 
     it "randomizes the weather to sometimes be stormy" do
-      expect(dummy_class).to receive(:rand).and_return (1)
-      expect(dummy_class.check_weather).to eq "stormy"
+      expect(subject).to receive(:rand).and_return (10)
+      expect(subject.check_weather).to eq "stormy"
       
-      expect(dummy_class).to receive(:rand).and_return (0.76)
-      expect(dummy_class.check_weather).to eq "stormy"
+      expect(subject).to receive(:rand).and_return (8)
+      expect(subject.check_weather).to eq "stormy"
 
-      expect(dummy_class).to receive(:rand).and_return (0.5)
-      expect(dummy_class.check_weather).to eq "sunny"    
+      expect(subject).to receive(:rand).and_return (7)
+      expect(subject.check_weather).to eq "sunny"    
     end
   end
 end
