@@ -6,6 +6,8 @@ enabled-upgraded.yml
 CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
+Gemfile
+Gemfile.lock
 
 # Local cache of Rubocop remote config
 .rubocop-*
