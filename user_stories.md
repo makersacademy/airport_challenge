@@ -29,3 +29,4 @@ I want to prevent landing when weather is stormy
 | Destination? | |
 | Airport | land, take off, status, capacity, safe? |
 | System designer | |
+| Plane |
