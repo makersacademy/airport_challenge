@@ -26,9 +26,9 @@ describe Airport do
       expect(subject.planes.length).to(eq(1))
     end
     it "should change plane's position from air to ground" do
-      plane = double("plane double", "air")
+      plane = double("plane double")
       subject.land(plane)
-      expect(plane.position).to(eq("ground"))
+      expect(plane).to(receive(:change_position))
     end
   end
 
