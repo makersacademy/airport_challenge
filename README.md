@@ -113,3 +113,18 @@ Feature tests
         from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
 ```
 The type of error above is a `NameError` occuring on line 1 in `irb`. A `NameError`is raised when you reference a constant or a variable which isn't defined in the current context. I will now initalise `rspec` within my project and create a new spec file for my `Plane` object.
+
+Once I created `./spec/plane_spec.rb` to `describe` my `Plane` object, I ran `rspec` which gave me the following error.
+```
+An error occurred while loading ./spec/plane_spec.rb.
+Failure/Error:
+  describe Plane do
+    
+  end
+
+NameError:
+  uninitialized constant Plane
+# ./spec/plane_spec.rb:1:in `<top (required)>'
+No examples found.
+```
+I will now create a new file for a `Plane` class, inside the `/lib` directory, define a `Plane` class, use `require` to include this file inside my `spec` file and run `rspec` from the Command Line.
