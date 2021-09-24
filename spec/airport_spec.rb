@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane}
+  let(:plane) { double :plane }
   
   describe "#land" do
     context "airport is not full" do

@@ -29,6 +29,20 @@ describe Airport do
         expect { subject.land(twenty_first_plane) }.to raise_error("Airport is full")
         expect(subject.planes).to_not include twenty_first_plane
       end
+
+      it "doesn't let another plane land if airport is full to custom capacity" do
+        capacity = 50
+        airport = Airport.new(capacity)
+        
+        capacity.times do
+          airport.land(Plane.new)
+        end
+  
+        extra_plane = Plane.new
+  
+        expect { airport.land(extra_plane) }.to raise_error("Airport is full")
+        expect(airport.planes).to_not include extra_plane
+      end
     end
   end
   
