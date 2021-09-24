@@ -67,7 +67,7 @@ describe Airport do
         expect(Weather).to receive(:rand).and_return(2)
         subject.land(@plane)
         expect(Weather).to receive(:rand).and_return(2)
-        subject.take_off(@plane)
+        subject.take_off("Flight 5")
       end
       
   
@@ -76,7 +76,7 @@ describe Airport do
       end
   
       it "tells the plane that it is now flying" do
-        expect(@plane.flying).to eq true
+        expect(@plane.status).to eq "Flying"
       end
     end
 

@@ -9,20 +9,22 @@ class Airport
   end
 
   def planes
-    @planes.values
+    @planes.keys
   end
   
   def land(plane)
     raise "Airport is full" if @planes.count >= @capacity
     raise "Cannot land a plane in stormy weather" if Weather.generate_weather == "stormy"
     plane.flying = false
-    @planes[plane] = plane.flight_number
+    @planes[plane.flight_number] = plane
   end
 
-  def take_off(plane)
+  def take_off(flight_number)
     raise "Cannot take off in stormy weather" if Weather.generate_weather == "stormy"
+    
+    plane = @planes.delete(flight_number)
     plane.flying = true
-    @planes.delete(plane)
+    plane
   end
 
   private
