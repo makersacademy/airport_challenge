@@ -63,7 +63,7 @@ RSpec.describe Airport do
       expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
     end
 
-    it "confirms a plane has taken_off" do
+    it "confirms a plane has taken off" do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq "Plane has taken off"
     end
@@ -74,5 +74,9 @@ RSpec.describe Airport do
       subject.take_off(plane)
       expect(subject.planes).to include plane_1
     end
+
+    # it "prevents takeoff when weather is stormy" do
+      
+    # end
   end
 end
