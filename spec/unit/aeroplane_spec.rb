@@ -4,7 +4,7 @@ describe Aeroplane do
   $plane_id = 123
   $plane_name = "plane_name"
   $passenger_capacity = 100
-  subject = Aeroplane.new($plane_id, $plane_name, $passenger_capacity)
+  subject = described_class.new($plane_id, $plane_name, $passenger_capacity)
   describe '#plane_description' do
     it 'returns a description of the plane' do
       expect(subject.description).to eq "#{$plane_name} with id:#{$plane_id} has a passenger capacity of #{$passenger_capacity}"

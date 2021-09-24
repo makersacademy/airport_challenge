@@ -10,8 +10,8 @@ describe 'Attempted take-off in bad weather feature test' do
     given_an_airport
     and_clear_weather
     and_a_plane_waiting_to_take_off
-    and_bad_weather
-    when_the_plane_tries_to_take_off
+    when_the_weather_turns_bad
+    and_the_plane_tries_to_take_off
     then_the_plane_will_not_be_able_to_take_off
   end
 end
