@@ -55,9 +55,11 @@ describe Airport do
     end
 
     context "weather is stormy" do
-      let(:stormy_airport) { Airport.new generate_weather: "stormy" }
+      # let(:stormy_airport) { double :airport, weather: "stormy" }
+
       it "prevents a plane from landing when weather is stormy" do
-        puts stormy_airport.weather
+        expect(subject).to receive(:rand).and_return(8)
+        puts subject.generate_weather
       end
     end
   end
@@ -89,7 +91,7 @@ describe Airport do
   describe "#weather" do
     context "weather is random, mostly sunny and sometimes stormy" do
       it "shows the weather at the airport" do
-        expect(subject.weather).to eq('sunny').or(eq('stormy'))
+        expect(subject.generate_weather).to eq('sunny').or(eq('stormy'))
       end  
     end
   end
