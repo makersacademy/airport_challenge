@@ -1,16 +1,16 @@
 describe BadWeatherError do
-  let(:plane) {double :plane}
-  let(:subject) {described_class.new(plane)}
+  let(:plane) { double :plane }
+  let(:subject) { described_class.new(plane) }
 
   describe '#message' do
     it 'returns the default message' do
-    expect(subject.message).to eq BadWeatherError::DEFAULT_MESSAGE
+      expect(subject.message).to eq BadWeatherError::DEFAULT_MESSAGE
     end
 
     it 'returns a custom message' do
       subject = described_class.new(plane, "custom")
       expect(subject.message).to eq 'custom'
-      end
+    end
   end
 
   describe '#effected_plane' do

@@ -33,10 +33,10 @@ class Airport
   end
 
   def view_planes_at_terminal
-    @planes_at_terminal
+    @planes_at_terminal.map { |plane| plane.name }
   end
 
-  private 
+  private
 
   def check_landing_conditions(plane)
     raise AirportFullError.new(plane) if airport_is_full?

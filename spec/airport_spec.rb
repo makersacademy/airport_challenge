@@ -2,14 +2,15 @@ require 'airport'
 require 'aeroplane'
 
 describe Airport do
-  let(:plane1) { double :plane1 }
-  let(:plane2) { double :plane2 }
+  let(:plane1) { double :plane1, name: 1 }
+  let(:plane2) { double :plane2, name: 2 }
   let(:weather_service) { double :weather_service, weather_report: :clear }
   let(:subject) { described_class.new(weather_service, 10) }
 
   describe '#land_plane' do
     it 'instructs a plane to land' do
       expect(subject.land_plane(plane1)).to eq(:ok)
+      expect(subject.view_planes_at_terminal).to include plane1.name
     end
 
     it 'stops a plane landing when airport is full' do
@@ -28,7 +29,7 @@ describe Airport do
     it 'instruct a plane to take off' do
       subject.land_plane(plane1)
       expect(subject.take_off(plane1)).to eq :ok
-      expect(subject.view_planes_at_terminal).not_to include plane1
+      expect(subject.view_planes_at_terminal).not_to include plane1.name
     end
 
     it 'stops a plane taking off when there is a storm' do
@@ -38,10 +39,10 @@ describe Airport do
   end
 
   describe '#view_planes_at_terminal' do
-    it 'returns the names of the planes currently at the airport' do
+    it 'returns the callsigns of all planes currently at the airport' do
       subject.land_plane(plane1)
       subject.land_plane(plane2)
-      expect(subject.view_planes_at_terminal).to include(plane1, plane2) 
+      expect(subject.view_planes_at_terminal).to include(plane1.name, plane2.name) 
     end
   end
 end
