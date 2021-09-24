@@ -47,6 +47,10 @@ describe Airport do
       subject.takeoff(plane, current_weather)
       expect(subject.planes.length).to(eq(0))
     end
+    it "should raise error when asking a flying plane to takeoff" do
+      allow(plane).to receive(:position).and_return("air")
+      expect{subject.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR."))
+    end
   end
 
   describe ".full?" do
