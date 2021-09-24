@@ -24,5 +24,15 @@ describe "Airport" do
 
     expect{@test_airport.land(@test_plane)}.to raise_error "Plane is already landed"
   end
-  
+
+  it "should raise an error when trying to land a plane at a full airport" do
+    CAPACITY.times do 
+      # TODO: stub this
+      @test_airport.land(Plane.new)
+    end
+    expect(@test_airport.landed_planes.length).to eq(20)
+
+    expect{@test_airport.land(@test_plane)}.to raise_error "Airport full!"
+  end
+
 end
