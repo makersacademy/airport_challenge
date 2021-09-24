@@ -7,7 +7,7 @@ describe Airport do
     context "airport is not full" do
       context "weather is good" do
         before(:each) do
-          @plane = Plane.new
+          @plane = Plane.new(15)
           expect(Weather).to receive(:rand).and_return(2)
           subject.land(@plane)
         end
@@ -23,7 +23,7 @@ describe Airport do
 
       context "weather is bad" do
         it "doesn't let the plane land" do
-          plane = Plane.new
+          plane = Plane.new(105)
           expect(Weather).to receive(:rand).and_return(8)
           expect { subject.land(plane) }.to raise_error("Cannot land a plane in stormy weather")
         end
@@ -32,12 +32,12 @@ describe Airport do
 
     context "airport is full" do
       it "doesn't let another plane land if airport is full" do
-        20.times do
+        20.times do |x|
           expect(Weather).to receive(:rand).and_return(2)
-          subject.land(Plane.new)
+          subject.land(Plane.new(x))
         end
   
-        twenty_first_plane = Plane.new
+        twenty_first_plane = Plane.new(15)
   
         expect { subject.land(twenty_first_plane) }.to raise_error("Airport is full")
         expect(subject.planes).to_not include twenty_first_plane
@@ -47,12 +47,12 @@ describe Airport do
         capacity = 50
         airport = Airport.new(capacity)
         
-        capacity.times do
+        capacity.times do |x|
           expect(Weather).to receive(:rand).and_return(2)
-          airport.land(Plane.new)
+          airport.land(Plane.new(x))
         end
   
-        extra_plane = Plane.new
+        extra_plane = Plane.new(50)
   
         expect { airport.land(extra_plane) }.to raise_error("Airport is full")
         expect(airport.planes).to_not include extra_plane
@@ -63,7 +63,7 @@ describe Airport do
   describe "#take_off" do
     context "weather is good" do
       before(:each) do
-        @plane = Plane.new
+        @plane = Plane.new(5)
         expect(Weather).to receive(:rand).and_return(2)
         subject.land(@plane)
         expect(Weather).to receive(:rand).and_return(2)
@@ -82,7 +82,7 @@ describe Airport do
 
     context "weather is bad" do
       it "doesn't let a plane land" do
-        plane = Plane.new
+        plane = Plane.new(10)
 
         expect(Weather).to receive(:rand).and_return(2)
         subject.land(plane)
