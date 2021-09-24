@@ -34,6 +34,20 @@ describe Airport do
       subject.takeoff()
       expect(subject.planes.length).to(eq(0))
     end
+    it "should raise an error if plane trying to takeoff when the weather is stormy" do
+      plane = double("plane double")
+      weather = double("weather double", :current => "stormy")
+      current_weather = weather.current
+      expect{subject.takeoff(plane, current_weather)}.to(raise_error("CANNOT TAKEOFF. THE WEATHER IS STORMY."))
+    end
+    it "should show plane removed from airport array after airport tells it to takeoff during sunny weather" do
+      plane = double("plane double")
+      subject.planes << plane
+      weather = double("weather double", :current => "sunny")
+      current_weather = weather.current
+      subject.takeoff(plane, current_weather)
+      expect(subject.planes.length).to(eq(0))
+    end
   end
 
   describe ".full?" do
