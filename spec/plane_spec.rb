@@ -18,7 +18,14 @@ RSpec.describe Plane do
 
   it "raises error when airport is full" do
     subject.capacity.times { subject.land(plane) }
-    expect {subject.land Plane.new}.to raise_error "Plane cannot land"
+    expect {subject.land Plane.new}.to raise_error "Airport full, plane cannot land"
   end
 
+  it "raises error on takeoff if weather is stormy" do
+    expect {subject.take_off(plane)}.to raise_error "Weather is stormy, plane cannot land" if subject.weather_conditions == "stormy"
+  end
+
+  it "raises error on landing if weather is stormy" do
+    expect {subject.land(plane)}.to raise_error "Weather is stormy, plane cannot land" if subject.weather_conditions == "stormy"
+  end
 end
