@@ -14,15 +14,15 @@ class Airport
     plane_check(plane)
     fail "Plane already in airport" if in_airport?(plane)
     fail "Airport full" if full?
-    fail "Weather conditions aren't stable" if check_weather == "stormy"
-    puts "this happened"
+    fail "Weather conditions aren't stable" if stormy?
+    
     @planes << plane
   end
 
   def take_off(plane = nil)
     plane_check(plane)
     fail "Plane not in airport" unless in_airport?(plane)
-    fail "Weather conditions aren't stable" if check_weather == "stormy"
+    fail "Weather conditions aren't stable" if stormy?
 
     @planes.delete(plane)
     return "Plane has taken off"
@@ -44,5 +44,9 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def stormy?
+    check_weather == :stormy
   end
 end
