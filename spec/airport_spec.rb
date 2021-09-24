@@ -25,6 +25,14 @@ describe Airport do
       
       expect(subject.take_off(plane)).to eq plane
     end
+
+    it "plane is no longer in airport" do
+      allow(plane).to receive(:flying=) { :false }
+      subject.land(plane)
+
+      subject.take_off(plane)
+      expect(subject.planes).to_not include plane
+    end
   end
 
 end
