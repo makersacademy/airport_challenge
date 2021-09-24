@@ -13,6 +13,12 @@ describe "Airport" do
     expect(@test_airport.capacity).to eq(CAPACITY)
   end
 
+  it "should set a default capacity if not provided" do
+    @test_airport = Airport.new()
+    
+    expect(@test_airport.capacity).to eq 10
+  end
+
   it "should land when given a plane" do
     @test_airport.land(@test_plane)
     expect(@test_airport.landed_planes).to eq([@test_plane])
