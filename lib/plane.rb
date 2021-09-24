@@ -7,10 +7,9 @@ class Plane
   end
 
   def land(airport)
-    if airport.landed_planes.count < airport.capacity
-      @in_flight = false
-      @current_airport = airport
-    end
+    raise "This airport is full" unless airport.landed_planes.count < airport.capacity
+    @in_flight = false
+    @current_airport = airport
   end
 
   def take_off
