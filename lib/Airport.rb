@@ -8,7 +8,11 @@ class Airport
   end
   
   def land(plane)
+    if airport_full == false
     terminal.push(plane)
+    else
+      return "Airport is full, cannot land"
+    end
   end
 
   def take_off(plane,airport)

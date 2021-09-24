@@ -37,5 +37,15 @@ describe Airport do
     10.times {den.land(Plane.new)}
     expect(den.airport_full).to eq true
   end
+  it 'checks if airport is full, (it is), prevents landing' do
+    den = Airport.new
+    10.times {den.land(Plane.new)}
+    expect(den.land(Plane.new)).to eq ("Airport is full, cannot land")
+  end
+  it 'checks if aiport is full, (it isnt), permits landing' do
+    den = Airport.new
+    plane = Plane.new
+    expect(den.land(plane)).to eq ([plane])
+  end
 end
 
