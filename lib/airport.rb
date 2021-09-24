@@ -7,11 +7,14 @@ class Airport
   def initialize
     @hangar = []
   end
+
   def land(plane)
-    @plane = plane
+    fail "Airport is full, cannot land plane" if hangar.count >= 1
+    @hangar << plane
   end
 
-  def takeoff(plane)
-    @plane
+  def takeoff
+    puts "Plane #{@hangar[-1]} has taken off"
+    @hangar.pop
   end
 end
