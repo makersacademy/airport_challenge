@@ -10,10 +10,10 @@ class Airport
   end
 
   attr_reader :planes
-  attr_reader :weather
 
   def land(plane)
     raise "Airport is full" if @planes.count >= @capacity
+    raise "Cannot land a plane in stormy weather" if generate_weather == "stormy"
     plane.flying = false
     @planes << plane
   end
