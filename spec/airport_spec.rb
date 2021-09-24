@@ -13,6 +13,16 @@ describe Airport do
     it 'should create a hanger for a new Airport' do
       expect(subject.hangar).to eq []
     end
+
+    describe 'capacity' do
+      it 'should have a default capacity of 20' do
+        expect(subject.capacity).to eq 20
+      end
+
+      it 'should have a variable capacity' do
+        expect(Airport.new(40).capacity).to eq 40
+      end
+    end
   end
   
   describe '#land' do
@@ -33,8 +43,12 @@ describe Airport do
     it 'should remove plane from hangar' do
       airport.land(plane)
       airport.takeoff
-      
+
       expect(airport.hangar).not_to include plane
+    end
+
+    it 'cannot takeoff if there are no planes' do
+      expect { airport.takeoff }.to raise_error "No planes to takeoff"
     end
   end  
 end

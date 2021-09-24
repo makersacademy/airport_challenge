@@ -1,11 +1,14 @@
 require './lib/plane.rb'
 
 class Airport
+  DEFAULT_CAPACITY = 20
 
+  attr_accessor :capacity
   attr_reader :hangar
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -14,6 +17,7 @@ class Airport
   end
 
   def takeoff
+    fail "No planes to takeoff" if hangar.empty?
     puts "Plane #{@hangar[-1]} has taken off"
     @hangar.pop
   end
