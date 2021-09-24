@@ -127,4 +127,19 @@ NameError:
 # ./spec/plane_spec.rb:1:in `<top (required)>'
 No examples found.
 ```
-I will now create a new file for a `Plane` class, inside the `/lib` directory, define a `Plane` class, use `require` to include this file inside my `spec` file and run `rspec` from the Command Line.
+I will now create a new file for a `Plane` class, inside the `/lib` directory, define a `Plane` class, use `require` to include this file inside my `spec` file and run `rspec` from the Command Line. The unit test passed. I also worked through my original feature test. 
+```
+➜  airport_challenge git:(main) ✗ irb
+3.0.2 :001 > plane = Plane.new
+(irb):1:in `<main>': uninitialized constant Plane (NameError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :002 > exit
+➜  airport_challenge git:(main) ✗ irb
+3.0.2 :001 > require './lib/plane.rb'
+ => true 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x0000000122072f60> 
+```
+At this point, I realised I needed to refactor my code as I needed an `Airport` class so I could run `airport = Airport.new`, `plane = airport.land`.
