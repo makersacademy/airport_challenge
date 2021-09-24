@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
+    raise "Weather is stormy. Landing not permitted." if weather == "stormy"
     @planes << plane
   end
 
@@ -29,6 +30,3 @@ class Airport
     false
   end
 end
-
-p ["stormy", "sunny"].sample
-
