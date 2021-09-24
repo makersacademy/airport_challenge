@@ -18,8 +18,11 @@ class Airport
 
   def remove_plane(plane)
     plane = @planes.delete(plane)
-    "Plane removed from hangar!"  
+    "Plane removed from hangar!"
+  end
 
+  def full?
+    @planes.length == @CAPACITY
   end
 
 end
