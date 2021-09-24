@@ -1,18 +1,5 @@
 # Airport Challenge
 
-## Domain planning
-
-| Object         | Methods              |
-| -------------- | -------------------- |
-| Plane          |                      |
-| Airport        | land_plane, take_off |
-| WeatherService | check_weather        |
-
-Airport
-
-- capacity (int)
-- planes (array)
-
 ```
 As an air traffic controller
 So I can get passengers to a destination
