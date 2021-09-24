@@ -79,4 +79,11 @@ describe Airport do
     end
   end
 
+  describe "#weather" do
+    context "weather is random, mostly sunny and sometimes stormy" do
+      it "shows the weather at the airport" do
+        expect(subject.weather).to eq "sunny" || "stormy"  
+      end  
+    end
+  end
 end
