@@ -21,10 +21,12 @@ describe Airport do
     end
 
     context "airport is full" do
-      it "prevents plane from landing when airport full to default capacity" do
+      before(:each) do
         allow(plane).to receive(:flying=) { :false }
         allow(plane).to receive(:flying) { false }
-        
+      end
+
+      it "prevents plane from landing when airport full to default capacity" do  
         # Fill to capacity
         20.times do
           subject.land(plane)
@@ -32,6 +34,21 @@ describe Airport do
 
         twenty_first_plane = double(:twenty_first_plane)
         
+        expect { subject.land(plane) }.to raise_error("Airport is full")
+        expect(subject.planes).to_not include twenty_first_plane
+      end
+
+      it "prevents plane from landing when airport is full to a custom capacity" do
+        capacity = 10
+        
+        airport = Airport.new(capacity)
+        
+        capacity.times do
+          subject.land(plane)
+        end
+
+        extra_plane = double(:extra_plane)
+
         expect { subject.land(plane) }.to raise_error("Airport is full")
         expect(subject.planes).to_not include twenty_first_plane
       end
