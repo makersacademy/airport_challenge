@@ -3,38 +3,34 @@ require 'plane'
 
 describe Airport do
   describe "#land" do
-    it "instructs a plane to land at the airport" do
-      plane = Plane.new
-      subject.land(plane)
+    before(:each) do
+      @plane = Plane.new
+      subject.land(@plane)
+    end
 
-      expect(subject.planes).to include plane
+    it "instructs a plane to land at the airport" do
+      expect(subject.planes).to include @plane
     end
 
     it "tells the plane that it is no longer flying" do
-      plane = Plane.new
-      subject.land(plane)
-
-      expect(plane.flying).to eq false
+      expect(@plane.flying).to eq false
     end
   end
 
   describe "#take_off" do
-    it "instructs a plane to take off from the airport" do
-      plane = Plane.new
-      subject.land(plane)
+    before(:each) do
+      @plane = Plane.new
+      subject.land(@plane)
 
-      subject.take_off(plane)
-      
-      expect(subject.planes).to_not include plane
+      subject.take_off(@plane)
+    end
+
+    it "instructs a plane to take off from the airport" do
+      expect(subject.planes).to_not include @plane
     end
 
     it "tells the plane that it is now flying" do
-      plane = Plane.new
-      subject.land(plane)
-  
-      subject.take_off(plane)
-
-      expect(plane.flying).to eq true
+      expect(@plane.flying).to eq true
     end
   end
 end
