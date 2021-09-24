@@ -1,5 +1,4 @@
 
-
 class Airport
   attr_accessor :terminal
   attr_accessor :capacity
@@ -60,7 +59,6 @@ class Plane
 
 end
 
-
 lhr = Airport.new
 plane = Plane.new
 plane2 = Plane.new
@@ -73,23 +71,3 @@ lhr.take_off(plane,lhr)
 #puts lhr.terminal.size
 # array = [1,2,3]
 # puts array.grep(4)
-
-
-
-
-
-
-# class Plane
-#   attr_reader :location
-#   def land(airport)
-#     @location = airport
-#   end
-
-#   def take_off(airport,plane)
-#     if airport.terminal.grep(plane) == plane
-#       puts "Take off"
-#     else 
-#       puts "plane not at airport"
-#     end
-#   end
-# end
