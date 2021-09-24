@@ -24,7 +24,7 @@ class Airport
 
   def take_off(flight_number)
     raise "Cannot take off in stormy weather" if stormy_weather?
-    raise "This plane is already flying" if plane_already_flying?(flight_number)
+    raise "This airport does not have this flight number" if plane_already_flying?(flight_number)
     plane = @planes.delete(flight_number)
     plane.flying = true
     plane

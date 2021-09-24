@@ -104,7 +104,7 @@ describe Airport do
 
       it "doesn't let a plane take off if it's already flying" do
         allow(plane).to receive(:status) { "Flying" }
-        expect { subject.take_off("Flight 1") }.to raise_error "This plane is already flying"
+        expect { subject.take_off("Flight 1") }.to raise_error "This airport does not have this flight number"
       end
     end
     

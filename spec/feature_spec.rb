@@ -99,3 +99,70 @@ describe Airport do
     end
   end
 end
+
+describe "scenario with multiple planes" do
+  before(:each) do
+    # Fill the airport with planes
+    @airport1 = Airport.new(10)
+    @plane1 = Plane.new(1)
+    @plane2 = Plane.new(2)
+    @plane3 = Plane.new(3)
+    @plane4 = Plane.new(4)
+    @plane5 = Plane.new(5)
+    @plane6 = Plane.new(6)
+    @plane7 = Plane.new(7)
+    @plane8 = Plane.new(8)
+    @plane9 = Plane.new(9)
+    @plane10 = Plane.new(10)
+
+    planes = [@plane1, @plane2, @plane3, @plane4, @plane5, @plane6, @plane7, @plane8, @plane9, @plane10]
+    planes.each do |plane|
+      expect(Weather).to receive(:rand).and_return(2)
+      @airport1.land(plane)
+    end
+  end
+
+  context "airport is full" do
+    it "doesn't let new planes land" do
+      # Try to land another plane
+      plane11 = Plane.new(11)
+
+      # It throws an error, because the airport is full
+      expect { @airport1.land(plane11) }.to raise_error "Airport is full"
+    end
+
+    it "lets planes take off when passed the flight number" do
+      expect(Weather).to receive(:rand).and_return(2)
+      @airport1.take_off("Flight 6")
+
+      expect(@airport1.planes).to_not include "Flight 6"
+      expect(@plane6.status).to eq "Flying"
+    end
+  end
+
+  context "flying planes" do
+    it "won't let a flying plane take off again" do
+      expect(Weather).to receive(:rand).and_return(2)
+      @airport1.take_off("Flight 6")
+
+      expect(Weather).to receive(:rand).and_return(2)
+      expect { @airport1.take_off("Flight 6") }.to raise_error "This airport does not have this flight number"
+    end
+
+    it "can land a flying plane" do
+      expect(Weather).to receive(:rand).and_return(2)
+      @airport1.take_off("Flight 6")
+
+      expect(Weather).to receive(:rand).and_return(2)
+      @airport1.land(@plane6)
+      
+      expect(@airport1.planes).to include "Flight 6"
+    end
+  end
+
+  it "doesn't let a plane take off from an airport that doesn't contain the plane" do
+    airport2 = Airport.new
+    expect(Weather).to receive(:rand).and_return(2)
+    expect {airport2.take_off(@plane1)}.to raise_error "This airport does not have this flight number"
+  end
+end
