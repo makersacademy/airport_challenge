@@ -4,6 +4,7 @@ require_relative './support/then'
 require 'domain/aeroplane'
 require 'domain/airport'
 require 'factory/aeroplane_factory'
+require 'factory/airport_factory'
 require 'services/weather_service'
 
 describe 'Attempted landing in bad weather feature test' do
