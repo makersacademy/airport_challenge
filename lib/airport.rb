@@ -12,7 +12,7 @@ class Airport
   def land(plane = nil)
     plane_check(plane)
     fail "Plane already in airport" if in_airport?(plane)
-    fail "Airport full" if @planes.count >= @capacity
+    fail "Airport full" if full?
 
     @planes << plane
   end
@@ -37,5 +37,9 @@ class Airport
 
   def valid_capacity?(capacity)
     capacity.is_a?(Integer) && capacity > 0
+  end
+
+  def full?
+    @planes.count >= @capacity
   end
 end
