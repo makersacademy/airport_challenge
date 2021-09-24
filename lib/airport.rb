@@ -1,23 +1,30 @@
 class Airport
   attr_reader :parked , :capacity , :weather
 
-  def initialize(capacity)
+  def initialize(capacity=1)
     @weather = "sunny"
     @parked = []
     @capacity = capacity
   end
 
-  def weather_read
+  def weather
     @weather
   end
 
-  def weather_set(weather)
-    @weather = weather
-    # @weather = (rand(101) % 20 == 0 ? "stormy" : "sunny")
+  def weather_set(weather="random")
+    if weather == "sunny" || "stormy"
+      @weather = weather
+    else
+      @weather = (rand(101) % 20 == 0 ? "stormy" : "sunny")
+    end
   end
 
   def land(plane)
-    self.full? ? raise : @parked.push(plane)
+    if @weather == "sunny"
+      self.full? ? raise : @parked.push(plane)
+    else
+      "Weather unsafe for landing"
+    end
   end
 
   def take_off(plane)

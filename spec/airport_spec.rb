@@ -3,10 +3,8 @@ require "airport"
 RSpec.describe Airport do
 
   it "removes a plane from @parked when self.take_off" do
-    heathrow = Airport.new(1)
-    heathrow.land("easyjet")
-    heathrow.take_off("easyjet")
-    expect(heathrow.parked.length).to eq 0
+    subject.take_off("easyjet")
+    expect(subject.parked.length).to eq 0
   end
 
   it "confirms that plane is no longer in the airport after take off" do
@@ -26,16 +24,18 @@ RSpec.describe Airport do
   end
 
   it "will override airport capacity" do
-    croydon = Airport.new(1)
-    croydon.override_capacity(5)
-    expect(croydon.capacity).to eq 5
+    subject.override_capacity(5)
+    expect(subject.capacity).to eq 5
   end
 
   it "prevents planes from taking off if weather == stormy" do
-    city = Airport.new(50)
-    city.weather_set("stormy")
-    ryanair = Plane.new("Ryanair")
-    expect(city.take_off(ryanair)).to eq "Weather unsafe for takeoff"
+    subject.weather_set("stormy")
+    expect(subject.take_off("ryanair")).to eq "Weather unsafe for takeoff"
+  end
+
+  it "prevents planes from landing if weather == stormy" do
+    subject.weather_set("stormy")
+    expect(subject.land("aeroflot")).to eq "Weather unsafe for landing"
   end
 
 end
