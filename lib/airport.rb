@@ -5,4 +5,9 @@ class Airport
     @landed_planes = []
     @capacity = capacity
   end
+
+  def generate_weather
+    [:clear, :clear, :clear, :stormy].shuffle.first
+  end
+  
 end
