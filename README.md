@@ -51,8 +51,8 @@ Starting with the first story, for each story I envision a functional representa
 
 Objects:	       | Messages:
 Air traffic controller | 
-Plane	               | land
-Airport	               | 
+Plane	               | 
+Airport	               | land
 
 First User Story Domain Model: https://lucid.app/lucidchart/3190ec96-78a4-4dd4-a292-37f6d7e6a0ad/edit?viewport_loc=237%2C416%2C1210%2C441%2C0_0&invitationId=inv_2c3efc55-5a75-47c1-b4dd-2dc411b18b3c
 
