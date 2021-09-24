@@ -59,14 +59,6 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
-Domain Models
------
-User story 1
-| Objects | Messages |
-|---------|----------|
-| Traffic Controller | |
-| Airport | |
-| Plane | land |
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
@@ -95,3 +87,26 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+My contributions
+-----
+Domain Models
+-----
+User story 1
+| Objects | Messages |
+|---------|----------|
+| Traffic Controller | |
+| Airport | |
+| Plane | land |
+
+Feature tests
+-----
+```
+➜  airport_challenge git:(main) irb
+3.0.2 :001 > plane = Plane.new
+(irb):1:in `<main>': uninitialized constant Plane (NameError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+```
