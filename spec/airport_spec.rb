@@ -90,4 +90,19 @@ describe Airport do
     expect { airport.takeoff(plane) }.to_not raise_error
   end
 
+# TESTING FOR EDGE CASES
+
+  it "Raises an exception when the same plane tries to dock twice" do
+    plane = Plane.new
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error "Error: Plane already landed"
+  end
+
+  it "Raises an exception when the same plane tries to take off whilst already in the air" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect { subject.takeoff(plane) }.to raise_error "Error: Plane is already in the air."
+  end
+
 end

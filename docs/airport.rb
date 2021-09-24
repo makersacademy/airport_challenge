@@ -14,6 +14,7 @@ class Airport
 
   def land(plane)
     raise "Cannot land: stormy weather" if stormy?
+    raise "Error: Plane already landed" if plane == @plane
     raise "Airport is full" if hangar.length == @size
     hangar << plane
     @plane = plane
@@ -21,6 +22,7 @@ class Airport
 
   def takeoff(plane)
     raise "Cannot takeoff: stormy weather" if stormy?
+    raise "Error: Plane is already in the air." if !hangar.include? plane 
     hangar.delete(plane)
   end
 
