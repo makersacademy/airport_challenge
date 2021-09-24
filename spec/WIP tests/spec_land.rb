@@ -9,7 +9,6 @@ RSpec.describe Plane do
     it "@flight_status = grounded" do
       testplane = subject.initialise("grounded")
       expect(subject.land).to eq("This plane is already grounded.")
-        
     end
   end
 end

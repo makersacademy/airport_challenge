@@ -1,14 +1,16 @@
+require 'weather'
+
 class Plane
-  def initialise(flying_or_not)
-    @flight_status = flying_or_not
+  def initialise(flying_or_grounded)
+    @flight_status = flying_or_grounded
   end
     
-  def flying?
-    return "#{@flightstatus}"
+  def flying
+    return @flight_status.to_s
   end
 
   def land
-    if @flight_status == "flying"
+    if @flight_status == "flying" 
       @flight_status = "grounded"
       return "The plane has landed."
     else 
