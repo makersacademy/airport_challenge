@@ -6,7 +6,11 @@ class Airport
     @capacity = 1
   end
   def land(plane)
-    @planes << plane
+    if !self.full?
+      @planes << plane
+    else
+      raise("CANNOT LAND. THIS AIRPORT IS FULL.")
+    end
   end
   def takeoff
     @planes.shift
