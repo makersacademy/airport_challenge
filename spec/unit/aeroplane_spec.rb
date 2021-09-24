@@ -30,8 +30,15 @@ describe Aeroplane do
   end
 
   describe '#status' do
-    it 'returns the airport the plane is currently at' do
+    it 'returns the status of the current plane' do
       expect(subject.status).to eq :JFK
+    end
+  end
+
+  describe '#update_status' do
+    it 'updates the status of the current plane' do
+      subject.update_status(:LHR)
+      expect(subject.status).to eq :LHR
     end
   end
 
