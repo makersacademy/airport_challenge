@@ -31,7 +31,7 @@ describe "Airport" do
     @test_airport.attempt_landing(@test_plane)
     expect(@test_airport.landed_planes).to eq([@test_plane])
 
-    expect{@test_airport.attempt_landing(@test_plane)}.to raise_error "Plane is already landed"
+    expect { @test_airport.attempt_landing(@test_plane) }.to raise_error "Plane is already landed"
   end
 
   it "should raise an error when trying to land a plane at a full airport" do
@@ -41,7 +41,7 @@ describe "Airport" do
     end
     expect(@test_airport.landed_planes.length).to eq(20)
 
-    expect{@test_airport.attempt_landing(@test_plane)}.to raise_error "Airport full!"
+    expect { @test_airport.attempt_landing(@test_plane) }.to raise_error "Airport full!"
   end
 
   it "should attempt to take off, and succeed if the plane is landed" do
@@ -54,13 +54,11 @@ describe "Airport" do
     expect(@test_airport.landed_planes).to eq([])
   end
 
-
   it "should attempt to take off, and fail if the airport is empty" do
     expect(@test_airport.landed_planes).to eq([])
 
-    expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Airport empty!")
+    expect { @test_airport.attempt_takeoff(@test_plane) }.to raise_error("Airport empty!")
   end
-
 
   it "should attempt to take off, and fail if the plane does not match a plane in the airport" do
     expect(@test_airport.landed_planes).to eq([])
@@ -69,7 +67,7 @@ describe "Airport" do
     @test_airport.attempt_landing(test_plane_2)
     expect(@test_airport.landed_planes[0].class).to eq(Plane)
 
-   expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Your plane isn't in the airport!")
+    expect { @test_airport.attempt_takeoff(@test_plane) }.to raise_error("Your plane isn't in the airport!")
 
   end
 
@@ -81,14 +79,14 @@ describe "Airport" do
 
     allow(@test_airport.weather).to receive(:stormy).and_return(true)
   
-   expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Too stormy to takeoff")
+    expect { @test_airport.attempt_takeoff(@test_plane) }.to raise_error("Too stormy to takeoff")
   end
 
   it "should fail to take off if it is stormy" do
     allow(@test_airport.weather).to receive(:stormy).and_return(true)
     expect(@test_airport.landed_planes).to eq([])
   
-   expect{@test_airport.attempt_landing(@test_plane)}.to raise_error("Too stormy to land")
+    expect { @test_airport.attempt_landing(@test_plane) }.to raise_error("Too stormy to land")
   end
 
 end

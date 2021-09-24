@@ -1,6 +1,5 @@
 require "plane"
 
-
 describe "Plane" do
   before(:each) do
     @test_plane = Plane.new()

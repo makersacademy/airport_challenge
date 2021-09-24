@@ -6,10 +6,6 @@ class Weather
   end
 
   def stormy?
-    if rand(2) == 1
-      true
-    else
-      false
-    end
+    rand(2) == 1
   end
 end
