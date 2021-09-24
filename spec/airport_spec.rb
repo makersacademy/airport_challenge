@@ -33,6 +33,7 @@ RSpec.describe Airport do
 
   it "prevents planes from taking off if weather == stormy" do
     city = Airport.new(50)
+    city.weather_set("stormy")
     ryanair = Plane.new("Ryanair")
     expect(city.take_off(ryanair)).to eq "Weather unsafe for takeoff"
   end
