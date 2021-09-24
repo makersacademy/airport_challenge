@@ -107,7 +107,7 @@ Updated model for user story 1
 |---------|----------|
 | Traffic Controller | |
 | Airport | instruct |
-| Plane | land |
+| Plane | land? |
 
 Feature tests and observations for user story 1
 -----
@@ -188,3 +188,37 @@ The above code from `lib/airport.rb` passes the unit test.
 ```
 I am also able to create the variable `plane` in `irb` to equal `airport.land` which returns `nil`.
 Upon reflection of what to do next, I realised there is another verb in the user story: `instruct`. So I am going to refactor my domain model and code to reflect this. 
+```
+3.0.2 :001 > require './lib/airport.rb'
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x00000001580b6090> 
+3.0.2 :003 > plane = airport.land
+(irb):3:in `<main>': undefined method `land' for #<Airport:0x00000001580b6090> (NoMethodError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :004 > plane = airport.instruct
+ => nil 
+3.0.2 :005 > plane.land?
+(irb):5:in `<main>': undefined method `land?' for nil:NilClass (NoMethodError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+```
+From my new domain model, I'm wanting an `Airport` class to use an `instruct` method on a `plane` where I can run the `land?` method to check if a plane has landed. Using this logic, I ran a new feature test. From the error message, I am being told there is no `land?` method. But I also know, that I haven't created a `Plane` class yet. So I will begin with creating the appropriate files within `lib` and `spec` with the corresponding code for a `Plane` class and `land?` method.  
+Once I did this, I ran `rspec` to check my unit tests passed which they did. I also ran my feature test again in `irb`.
+```
+➜  airport_challenge git:(main) ✗ irb
+3.0.2 :001 > require './lib/airport.rb'
+ => true 
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x000000012c054a10> 
+3.0.2 :003 > plane = airport.instruct
+ => nil 
+3.0.2 :004 > plane.land?
+(irb):4:in `<main>': undefined method `land?' for nil:NilClass (NoMethodError)
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+```
+The error I saw was a `NoMethodError` because I am attempting to call a method (`land?`) on `nil` (`plane`).
