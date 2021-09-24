@@ -240,3 +240,26 @@ Failures:
 ```
 This tells me that I need the `instruct` method to return something other than `nil`.
 I have decided to refactor my code to rename the `instruct` method as `instruct_plane` so it helps me with what I'd like the method to return.
+
+I decided to look at the remaining user stories and create a flow chart [airport-flow-chart.drawio.pdf](airport-flow-chart.drawio.pdf). From this, I renamed some of my methods. I did however write some code before writing tests. This caused to be problematic. Currently, the `airport_spec.rb` is variable in it's test coverage. I am assuming this is due to the random choice of `weather` and which part of the `if` statement is executed. At present, I'm unable to narrow down how to fix this to have over 95% consistent test coverage.
+```
+COVERAGE:  94.74% -- 18/19 lines in 4 files
+
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  88.89%  | lib/airport.rb | 9     | 1      | 8       |
++----------+----------------+-------+--------+---------+
+3 file(s) with 100% coverage not shown
+
+COVERAGE: 100.00% -- 19/19 lines in 4 files
+
+COVERAGE:  89.47% -- 17/19 lines in 4 files
+
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  77.78%  | lib/airport.rb | 9     | 2      | 10-11   |
++----------+----------------+-------+--------+---------+
+3 file(s) with 100% coverage not shown
+```
