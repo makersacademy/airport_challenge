@@ -27,5 +27,14 @@ describe Airport do
       
       expect(subject.planes).to_not include plane
     end
+
+    it "tells the plane that it is now flying" do
+      plane = Plane.new
+      subject.land(plane)
+  
+      subject.take_off(plane)
+
+      expect(plane.flying).to eq true
+    end
   end
 end
