@@ -6,4 +6,7 @@ class Airport
   def land(plane)
     @planes << plane
   end
+  def takeoff()
+    @planes.shift
+  end
 end
