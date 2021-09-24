@@ -37,3 +37,18 @@ To do
 - create if stement plan in the register
 - add error message if not
 - merge it together
+
+Third user story
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+
+Airport => capacity full => error message if you wanna use .land
+
+To do
+
+- create a capacity variable
+- create an error message
+- add if statements to land method.
