@@ -21,13 +21,19 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error 'Airport is full'
   end
 
+  # it "raises an error when plane tries to land during a storm" do
+  #   plane = Plane.new
+  #   weather = Weather.new
+  #   expect { subject.land(plane) }.to raise_error 'Too stormy to land.'
+  # end
+
   it "sets capacity to default value" do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it "raises an error when there are no planes in the airport" do
     plane = Plane.new
-    expect{subject.takeoff(plane)}.to raise_error "There are no planes in the airport."
+    expect { subject.takeoff(plane) }.to raise_error "There are no planes in the airport."
   end
 
   describe "#report_taking_off" do

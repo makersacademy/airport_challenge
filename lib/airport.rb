@@ -6,10 +6,12 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    #@weather = weather
   end
 
   def land(plane)
     raise 'Airport is full' if full?
+    #raise 'Too stormy to land.' if weather.stormy?
     plane.landed
     @planes.push(plane)
     plane
@@ -24,7 +26,7 @@ class Airport
   end
 
   def report_taking_off
-   return "Plane is no longer at the airport."
+    return "Plane is no longer at the airport."
   end
 
   def full?
