@@ -1,5 +1,6 @@
 class Plane
-  def position
-    :air
+  attr_reader :position
+  def initialize(position = "air")
+    @position = position
   end
 end
