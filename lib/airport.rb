@@ -10,6 +10,7 @@ class Airport
     if !self.full?
       if weather == "sunny"
         @planes << plane
+        plane.change_position
       else
         raise("CANNOT LAND. THE WEATHER IS STORMY.")
       end
@@ -20,6 +21,7 @@ class Airport
   def takeoff(plane, weather = "sunny")
     if weather == "sunny"
       @planes.delete(plane)
+      plane.change_position
     else
       raise ("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
     end

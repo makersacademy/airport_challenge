@@ -2,8 +2,8 @@ require "airport"
   
 describe Airport do
   describe ".land" do
+    let(:plane) {double(:plane, :change_position => "ground")}
     it "should show plane in airport array after airport tells it to land" do
-      plane = double("plane double")
       subject.land(plane)
       expect(subject.planes.length).to(eq(1))
     end
@@ -19,34 +19,26 @@ describe Airport do
       expect{subject.land(plane, current_weather)}.to(raise_error("CANNOT LAND. THE WEATHER IS STORMY."))
     end
     it "should show plane in airport array after airport tells it to land during sunny weather" do
-      plane = double("plane double")
       weather = double("weather double", :current => "sunny")
       current_weather = weather.current
       subject.land(plane, current_weather)
       expect(subject.planes.length).to(eq(1))
     end
-    it "should change plane's position from air to ground" do
-      plane = double("plane double")
-      subject.land(plane)
-      expect(plane).to(receive(:change_position))
-    end
   end
 
   describe ".takeoff" do
+    let(:plane) {double(:plane, :change_position => "air")}
     it "should show plane is no longer in airport array after airport tells it to takeoff" do
-      plane = double("plane double")
       subject.planes << plane
       subject.takeoff(plane, "sunny")
       expect(subject.planes.length).to(eq(0))
     end
     it "should raise an error if plane trying to takeoff when the weather is stormy" do
-      plane = double("plane double")
       weather = double("weather double", :current => "stormy")
       current_weather = weather.current
       expect{subject.takeoff(plane, current_weather)}.to(raise_error("CANNOT TAKEOFF. THE WEATHER IS STORMY."))
     end
     it "should show plane removed from airport array after airport tells it to takeoff during sunny weather" do
-      plane = double("plane double")
       subject.planes << plane
       weather = double("weather double", :current => "sunny")
       current_weather = weather.current
