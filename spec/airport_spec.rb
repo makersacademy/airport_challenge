@@ -27,4 +27,10 @@ describe Airport do
     subject.check_weather('stormy')
     expect { subject.take_off }.to raise_error "Takeoff prevented due to storm"
   end
+
+  it "updates capacity from default 100 to 80" do
+    expect(subject.capacity).to eq (100)
+    subject.capacity = 80
+    expect(subject.capacity).to eq (80)
+  end
 end
