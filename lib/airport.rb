@@ -1,3 +1,6 @@
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
   attr_reader :planes, :capacity
 
@@ -17,10 +20,6 @@ class Airport
   def take_off
     fail 'Unable to take off due to storm' if stormy?
     planes.pop
-  end
-
-  def stormy?
-    rand(2) > 0
   end
   
   private

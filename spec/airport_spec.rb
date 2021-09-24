@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:plane) { Plane.new }
+  let(:weather) { double :weather } 
 
   describe '#initialize' do
     it 'should initialize an empty array to store planes' do
@@ -26,7 +27,7 @@ describe Airport do
       expect(subject.land(plane)).to eq [plane]
     end
 
-    it 'should prevent landing when airport is full by raising an error' do
+    it 'should prevent landing when airport is full' do
       allow(subject).to receive(:stormy?) { false }
       subject.capacity.times { subject.land double :plane }
       expect { subject.land double :plane }.to raise_error 'Unable to land, the airport is full'
@@ -59,20 +60,6 @@ describe Airport do
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off }.to raise_error 'Unable to take off due to storm'
-    end
-  end
-
-  describe '#stormy?' do
-    it { is_expected.to respond_to(:stormy?) }
-
-    it 'should report true' do
-      allow(subject).to receive(:rand) { 1 }
-      expect(subject.stormy?).to eq true
-    end
-
-    it 'should report false' do
-      allow(subject).to receive(:rand) { 0 }
-      expect(subject.stormy?).to eq false
     end
   end
 end
