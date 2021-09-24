@@ -1,6 +1,5 @@
 class Plane
   attr_reader :plane, :current_airport, :in_flight
-
   def initialize
     @in_flight = nil
     @current_airport = ""

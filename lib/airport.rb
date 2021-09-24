@@ -5,5 +5,4 @@ class Airport
     @landed_planes = []
     @capacity = capacity
   end
-
 end
