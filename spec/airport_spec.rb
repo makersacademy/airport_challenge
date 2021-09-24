@@ -6,19 +6,13 @@ describe Airport do
   
   describe "#land" do
     context "airport is not full" do
-      before(:each) do
-        allow(plane).to receive(:flying=) { :false }
-        expect(Weather).to receive(:rand).and_return(2)
-        subject.land(plane)
-      end
-  
       it "lets a plane land at an airport" do
-        expect(subject.planes).to include plane
-      end
-  
-      it "confirms that the plane is no longer flying" do
-        allow(plane).to receive(:flying) { false }
-        expect(plane.flying).to eq false
+        allow(plane).to receive(:flying=) { :false }
+        allow(plane).to receive(:flight_number) { "Flight 1" }
+        expect(Weather).to receive(:rand).and_return(2)
+        
+        subject.land(plane)
+        expect(subject.planes).to include "Flight 1"
       end
     end
 
