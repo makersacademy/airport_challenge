@@ -23,11 +23,15 @@ class Airport
     end 
   end
   def takeoff(plane, weather = "sunny")
-    if weather == "sunny"
-      @planes.delete(plane)
-      plane.change_position
+    if plane.position == "ground"
+      if weather == "sunny"
+        @planes.delete(plane)
+        plane.change_position
+      else
+        raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
+      end
     else
-      raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
+      raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.")
     end
   end
   def full?

@@ -29,7 +29,7 @@ describe Airport do
   end
 
   describe ".takeoff" do
-    let(:plane) {double(:plane, :change_position => "air")}
+    let(:plane) {double(:plane, :position => "ground", :change_position => "air")}
     it "should show plane is no longer in airport array after airport tells it to takeoff" do
       subject.planes << plane
       subject.takeoff(plane, "sunny")
