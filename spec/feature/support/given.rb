@@ -13,7 +13,7 @@ end
 def given_an_airport_with_custom_capacity(capacity)
   p 'given_an_airport_with_custom_capacity'
   @weather_service = WeatherService.new
-  @airport = Airport.new("My Airport", "MAP", @weather_service, capacity)
+  @airport = AirportFactory.build_with_options(@weather_service, "My Airport", "MAP", capacity)
 end
 
 def a_plane
@@ -27,7 +27,7 @@ end
 
 def an_airport
   @weather_service = WeatherService.new
-  @airport = Airport.new("My Airport", "MAP", @weather_service)
+  @airport = AirportFactory.build_with_options(@weather_service, "My Airport", "MAP")
 end
 
 def and_clear_weather

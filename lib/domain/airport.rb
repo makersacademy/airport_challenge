@@ -7,17 +7,16 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(name, status_code, weather_service, capacity = DEFAULT_CAPACITY)
-    @airport_name = name
-    @status_code = status_code
+  def initialize(airport_name, id, code, weather_service, capacity = DEFAULT_CAPACITY)
+    @airport_name = airport_name
+    @id = id
+    @code = code
     @weather_service = weather_service
     @capacity = capacity
     @planes_at_terminal = []
   end
 
-  def print_name
-    @airport_name
-  end
+  attr_reader :id, :airport_name, :code, :capacity
 
   def land_plane(plane)
     raise NotAPlaneError.new(plane) if not_a_plane?(plane)
