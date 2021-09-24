@@ -9,5 +9,12 @@ describe Airport do
 
       expect(subject.planes).to include plane
     end
+
+    it "tells the plane that it is no longer flying" do
+      plane = Plane.new
+      subject.land(plane)
+
+      expect(plane.flying).to eq false
+    end
   end
 end
