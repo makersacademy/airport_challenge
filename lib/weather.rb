@@ -3,7 +3,7 @@ class Weather
     weather_number = random_number
     if weather_number == 1
       weather = "stormy"
-    else 
+    else
       weather = "sunny"
     end
     return weather
