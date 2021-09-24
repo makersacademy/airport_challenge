@@ -14,7 +14,12 @@ class Airport
   end
 
   def takeoff
+    raise "Weather is stormy. Takeoff not permitted." if weather == "stormy"
     planes.pop
+  end
+
+  def weather
+    ["stormy", "sunny"].sample
   end
 
   private
@@ -24,4 +29,6 @@ class Airport
     false
   end
 end
+
+p ["stormy", "sunny"].sample
 
