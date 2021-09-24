@@ -23,15 +23,19 @@ describe Airport do
       end
 
       it "prevents plane from landing when airport full to default capacity" do  
-        20.times do
+        20.times do |x|
+          plane = double(:plane)
+          allow(plane).to receive(:flight_number) { "Flight #{x}" }
+          allow(plane).to receive(:flying=) { :false }
           expect(Weather).to receive(:rand).and_return(2)
           subject.land(plane)
         end
 
         twenty_first_plane = double(:twenty_first_plane)
+        allow(twenty_first_plane).to receive(:flight_number) { "Flight 21" }
         
         expect { subject.land(plane) }.to raise_error("Airport is full")
-        expect(subject.planes).to_not include twenty_first_plane
+        expect(subject.planes).to_not include "Flight 21"
       end
 
       it "prevents plane from landing when airport is full to a custom capacity" do
@@ -39,15 +43,19 @@ describe Airport do
         
         airport = Airport.new(capacity)
         
-        capacity.times do
+        capacity.times do |x|
+          plane = double(:plane)
+          allow(plane).to receive(:flight_number) { "Flight #{x}" }
+          allow(plane).to receive(:flying=) { :false }
           expect(Weather).to receive(:rand).and_return(2)
           airport.land(plane)
         end
 
         extra_plane = double(:extra_plane)
+        allow(extra_plane).to receive(:flight_number) { "Flight 21" }
 
-        expect { airport.land(plane) }.to raise_error("Airport is full")
-        expect(airport.planes).to_not include extra_plane
+        expect { airport.land(extra_plane) }.to raise_error("Airport is full")
+        expect(airport.planes).to_not include "Flight 21"
       end
     end
 
