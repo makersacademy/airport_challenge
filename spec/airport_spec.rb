@@ -53,6 +53,13 @@ describe Airport do
         expect(airport.planes).to_not include extra_plane
       end
     end
+
+    context "weather is stormy" do
+      let(:stormy_airport) { Airport.new generate_weather: "stormy" }
+      it "prevents a plane from landing when weather is stormy" do
+        puts stormy_airport.weather
+      end
+    end
   end
 
   describe "#take_off" do
