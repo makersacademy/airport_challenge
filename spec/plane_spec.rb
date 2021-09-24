@@ -7,15 +7,15 @@ describe Plane do
   end
 
   it "Won't land if weather is stormy" do
-    airport = Airport.new
-    allow(airport).to receive(:weather) { "Stormy" }
-    expect { subject.land }.to raise_error
+    airport1 = Airport.new
+    allow(airport1).to receive(:weather) { "Stormy" }
+    expect { subject.land(airport1) }.to raise_error
   end
 
   it "Won't land if airport is full" do
-    airport1 = Airport.new
-    allow(airport1).to receive(:full?) { "full" }
-    expect { plane.land(airport1) }.to raise_error
+    airport2 = Airport.new
+    allow(airport2).to receive(:full?) { true }
+    expect { subject.land(airport2) }.to raise_error
   end
 
   it "Takes off from airport and sends a message" do
@@ -24,9 +24,9 @@ describe Plane do
   end
 
   it "Won't take off if weather is stormy" do
-    airport = Airport.new
-    allow(airport).to receive(:weather) { "Stormy" }
-    expect { subject.takeoff(airport) }.to raise_error
+    airport3 = Airport.new
+    allow(airport3).to receive(:weather) { "Stormy" }
+    expect { subject.takeoff(airport3) }.to raise_error
   end
 
 end
