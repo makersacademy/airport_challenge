@@ -6,7 +6,7 @@ describe Airport do
   let(:plane2) { double :plane2 }
   let(:weather_service) { double :weather_service, weather_report: :clear }
   let(:subject) { described_class.new(weather_service, 10) }
-  
+
   describe '#land_plane' do
     it 'instructs a plane to land' do
       expect(subject.land_plane(plane1)).to eq(:ok)
@@ -24,7 +24,7 @@ describe Airport do
     end
   end
 
-  describe 'take_off' do
+  describe '#take_off' do
     it 'instruct a plane to take off' do
       subject.land_plane(plane1)
       expect(subject.take_off(plane1)).to eq :ok
@@ -33,8 +33,15 @@ describe Airport do
 
     it 'stops a plane taking off when there is a storm' do
       expect(weather_service).to receive(:weather_report).and_return :storm
-      expect { subject.take_off(plane1) }.to raise_error("Plane cannot take-off due to bad weather")
+      expect(subject.take_off(plane1)).to eq("#{plane1} cannot take-off: Bad weather")
     end
   end
 
+  describe '#view_planes_at_terminal' do
+    it 'returns the names of the planes currently at the airport' do
+      subject.land_plane(plane1)
+      subject.land_plane(plane2)
+      expect(subject.view_planes_at_terminal).to include(plane1, plane2) 
+    end
+  end
 end

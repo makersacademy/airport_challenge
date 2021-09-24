@@ -1,5 +1,5 @@
-require 'errors/airport_full_error'
-require 'errors/bad_weather_error'
+require_relative 'errors/airport_full_error'
+require_relative 'errors/bad_weather_error'
 
 class Airport
 
@@ -23,9 +23,13 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Plane cannot take-off due to bad weather" if weather_is_bad?
-    @planes_at_terminal.delete(plane)
-    :ok
+    begin
+      raise BadWeatherError.new(plane) if weather_is_bad?
+      @planes_at_terminal.delete(plane)
+      :ok
+    rescue => error
+      "#{error.effected_plane} cannot take-off: #{error.message}"
+    end 
   end
 
   def view_planes_at_terminal
