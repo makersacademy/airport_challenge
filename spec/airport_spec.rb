@@ -44,13 +44,13 @@ describe Airport do
         airport = Airport.new(capacity)
         
         capacity.times do
-          subject.land(plane)
+          airport.land(plane)
         end
 
         extra_plane = double(:extra_plane)
 
-        expect { subject.land(plane) }.to raise_error("Airport is full")
-        expect(subject.planes).to_not include twenty_first_plane
+        expect { airport.land(plane) }.to raise_error("Airport is full")
+        expect(airport.planes).to_not include extra_plane
       end
     end
   end
