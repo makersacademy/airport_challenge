@@ -2,8 +2,8 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  context "airport is not full" do
-    describe "#land" do
+  describe "#land" do
+    context "airport is not full" do
       before(:each) do
         @plane = Plane.new
         subject.land(@plane)
@@ -29,7 +29,7 @@ describe Airport do
         expect { subject.land(twenty_first_plane) }.to raise_error("Airport is full")
         expect(subject.planes).to_not include twenty_first_plane
       end
-
+  
       it "doesn't let another plane land if airport is full to custom capacity" do
         capacity = 50
         airport = Airport.new(capacity)
@@ -45,7 +45,6 @@ describe Airport do
       end
     end
   end
-  
 
   describe "#take_off" do
     before(:each) do
