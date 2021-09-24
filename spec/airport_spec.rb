@@ -25,6 +25,11 @@ describe Airport do
       subject.land(plane, current_weather)
       expect(subject.planes.length).to(eq(1))
     end
+    it "should change plane's position from air to ground" do
+      plane = double("plane double", "air")
+      subject.land(plane)
+      expect(plane.position).to(eq("ground"))
+    end
   end
 
   describe ".takeoff" do

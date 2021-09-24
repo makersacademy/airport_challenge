@@ -1,11 +1,20 @@
 require 'plane'
 
 describe Plane do
-  it "position method should respond when called by plane instance" do
-    expect(subject).to(respond_to(:position))
+  describe ".position" do
+    it "position method should respond when called by plane instance" do
+      expect(subject).to(respond_to(:position))
+    end
   end
-  it "change_position method changes plane's position from air to ground" do
-    subject.change_position
-    expect(subject.position).to(eq("ground"))
+
+  describe ".change_position" do
+    it "change_position method changes plane's position from air to ground" do
+      subject.change_position
+      expect(subject.position).to(eq("ground"))
+    end
+    it "change_position method changes plane's position from air to ground" do
+      subject.change_position
+      expect(subject.position).to(eq("ground"))
+    end
   end
 end
