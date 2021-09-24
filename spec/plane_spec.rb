@@ -28,6 +28,6 @@ RSpec.describe Plane do
       allow(airport).to receive(:receive).with(subject).and_return(subject)
       expect(subject.land(airport)).to eq subject
     end
-
   end
+  
 end
