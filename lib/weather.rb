@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    rand(2).positive?
+    rand(10).zero?
   end
 
 end
