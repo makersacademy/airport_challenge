@@ -2,12 +2,28 @@ require "airport"
 
 RSpec.describe Airport do
   let(:plane) {double :plane}
+
+  describe "#initialize" do
+    it "sets default capacity to #{Airport::DEFAULT_CAPACITY}" do
+      (Airport::DEFAULT_CAPACITY).times {subject.receive(plane)}
+      expect(subject.allow?()).to eq false
+    end
+
+    it "allows the designer to override capacity" do
+      new_capacity = 50
+      airport = Airport.new(new_capacity)
+      new_capacity.times { airport.receive(plane)}
+      expect(airport.allow?()).to eq false
+    end
+  end
+
   describe "#receive" do
     it "allows airport to store valid plane"do
       subject.receive(plane)
       expect(subject.planes).not_to be_empty
     end
   end
+
   describe "#send" do
     it "allows a plane to take off" do
       subject.receive(plane)
@@ -31,7 +47,7 @@ RSpec.describe Airport do
       expect(subject.allow?).to eq true
     end
     it "prevents landing if airport is full" do
-      5.times{subject.receive(plane)}
+      (Airport::DEFAULT_CAPACITY).times{subject.receive(plane)}
       expect(subject.allow?).to eq false
     end
   end
