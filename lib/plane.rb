@@ -29,6 +29,6 @@ class Plane
 
   def weather_conditions
     @weather = Random.rand(20)
-    @weather > 15 ?  @weather = "stormy" : @weather = "sunny"
+    @weather > 15 ? @weather = "stormy" : @weather = "sunny"
   end
 end
