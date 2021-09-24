@@ -18,7 +18,11 @@ describe Airport do
     
         it "tells the plane that it is no longer flying" do
           expect(@plane.status).to eq "Landed"
-        end  
+        end
+
+        it "doesn't let a plane land if it's already grounded" do
+          expect { subject.land(@plane) }.to raise_error "Plane is already grounded"
+        end
       end
 
       context "weather is bad" do
