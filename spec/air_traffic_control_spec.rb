@@ -15,6 +15,13 @@ describe AirTrafficControl do
     end
   end
 
+  describe "#prevent_flights" do
+    it 'should stop flights from taking off if @weather = "stormy"' do
+      
+    end
+
+  end
+
   # describe "#initialize" do
   #   it 'should set up the airport object with an instance variable with weather random_weathers return' do
   #     expect(subject).to eq "stormy" or "sunny"
