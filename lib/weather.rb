@@ -1,5 +1,4 @@
 class Weather
-
   def initialize
     random_weather
   end
@@ -26,6 +25,6 @@ class Weather
     elsif @weather << "sunny"
       false
     end
-
   end
+
 end

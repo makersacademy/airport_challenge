@@ -17,9 +17,9 @@ describe AirTrafficControl do
 
   describe "#prevent_flights" do
     it 'should stop flights from taking off if @weather = "stormy"' do
-      
+      weather = Weather.new
+      expect(subject.prevent_flights).to eq "cannot takeoff due to storm" if weather.weather_stormy?.eql? "stormy"
     end
-
   end
 
   # describe "#initialize" do

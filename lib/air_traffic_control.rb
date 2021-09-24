@@ -3,13 +3,19 @@ require 'system_designer' # rspec doesn't like this being called ./system_design
 require 'outputs'
 
 class AirTrafficControl
-
   def initialize(capacity)
     designer = SystemDesigner.new
     weather = Weather.new
 
     @airport_capacity = designer.default_capacity(capacity)
     weather.random_weather
+
+  end
+
+  def prevent_flights
+    if @weather.eql? "stormy"
+      "cannot takeoff due to storm"
+    end
 
   end
 

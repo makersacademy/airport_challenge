@@ -18,4 +18,5 @@ class Outputs
 
     puts "==========="
   end
+
 end
