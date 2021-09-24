@@ -8,12 +8,10 @@ describe Airport do
       expect(subject.planes.length).to(eq(1))
     end
     it "should raise an error if trying to land a plane at a full airport" do
-      plane = double("plane double")
       subject.planes << plane
       expect{subject.land(plane)}.to(raise_error("CANNOT LAND. THIS AIRPORT IS FULL."))
     end
     it "should raise an error if trying to land a plane when the weather is stormy" do
-      plane = double("plane double")
       weather = double("weather double", :current => "stormy")
       current_weather = weather.current
       expect{subject.land(plane, current_weather)}.to(raise_error("CANNOT LAND. THE WEATHER IS STORMY."))
@@ -23,6 +21,10 @@ describe Airport do
       current_weather = weather.current
       subject.land(plane, current_weather)
       expect(subject.planes.length).to(eq(1))
+    end
+    it "should raise error when asking grounded plane to land" do
+      allow(plane).to receive(:position).and_return("ground")
+      expect(subject.land(plane)).to(raise_error("CANNOT LAND. THIS PLANE IS ON THE GROUND."))
     end
   end
 
