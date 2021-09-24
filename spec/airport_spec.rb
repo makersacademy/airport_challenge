@@ -55,11 +55,9 @@ describe Airport do
     end
 
     context "weather is stormy" do
-      # let(:stormy_airport) { double :airport, weather: "stormy" }
-
       it "prevents a plane from landing when weather is stormy" do
         expect(subject).to receive(:rand).and_return(8)
-        puts subject.generate_weather
+        expect { subject.land(plane) }.to raise_error("Cannot land a plane in stormy weather")
       end
     end
   end
