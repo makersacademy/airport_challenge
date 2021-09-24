@@ -3,5 +3,5 @@ class Plane
     @flying
   end
 
-  attr_writer :flying
+  attr_accessor :flying
 end
