@@ -21,7 +21,8 @@ describe Airport do
         end
 
         it "doesn't let a plane land if it's already grounded" do
-          expect { subject.land(@plane) }.to raise_error "Plane is already grounded"
+          expect(Weather).to receive(:rand).and_return(2)
+          expect { subject.land(@plane) }.to raise_error "This plane has already landed"
         end
       end
 
