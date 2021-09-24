@@ -45,6 +45,6 @@ class Airport
   end
 
   def plane_already_flying?(flight_number)
-    @planes[flight_number] == nil || @planes[flight_number].status == "Flying"
+    @planes[flight_number].nil? || @planes[flight_number].status == "Flying"
   end
 end

@@ -163,6 +163,6 @@ describe "scenario with multiple planes" do
   it "doesn't let a plane take off from an airport that doesn't contain the plane" do
     airport2 = Airport.new
     expect(Weather).to receive(:rand).and_return(2)
-    expect {airport2.take_off(@plane1)}.to raise_error "This airport does not have this flight number"
+    expect { airport2.take_off(@plane1) }.to raise_error "This airport does not have this flight number"
   end
 end
