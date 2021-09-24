@@ -1,4 +1,5 @@
 class Plane
-  def land?
+  def landing?
+    return true
   end
 end
