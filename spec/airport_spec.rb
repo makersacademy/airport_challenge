@@ -36,5 +36,9 @@ describe Airport do
       airport = Airport.new(20)
       expect(airport.capacity).to(eq(20))
     end
+    it "should check that airports are given a default capacity of 10 planes if not provided" do
+      airport = Airport.new
+      expect(airport.capacity).to(eq(10))
+    end
   end
 end
