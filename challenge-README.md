@@ -18,3 +18,6 @@ I got blocked trying to get my test for the weather class to pass. Comments on t
 After taking a break and coming back in the evening, I realised I don't need a 'weather' class. So I made a method instead. 
 
 When trying to create storm tests, I came across an issue where my plane objects were not updating to "grounded" after they landed (and vice versa). I decided to use numbers, rather than strings to tackle this issue. Meaning that  1 = plane is flying, and 0 = plane is landed. This way I could +/- 1 as appropraite for the @@flight_status class attribute. 
+
+I got this working, but my next issue was using doubles in testing. I understand the concept of what I am trying to do. But cannot get the syntax to achieve what I want, despite trying documentation/Youtube. 
+# My doubles which are meant to "guarantee" if there is a storm or not seem to still be randomly giving outputs. Meaning the tests sometimes pass or fail, depending on the random number generator.

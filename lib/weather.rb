@@ -1,15 +1,10 @@
-# This randomly decides whether it is storm (20%) or clear (80%)
-# weather conditions.
+require_relative 'plane'
 
-def storm_check
-    forecast = rand(6)
-    if forecast == 5
-        return 0
+  def storm_check
+    chance = rand(6)
+    if chance == 5
+      return current_weather = "storm"
     else
-        return 1
+      return current_weather = "clear"
     end
-end
-
-storm_check
-
-
+  end
