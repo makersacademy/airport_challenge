@@ -4,11 +4,11 @@ require "plane"
 describe "Plane" do
   before(:each) do
     @test_plane = Plane.new()
-    @test_airport = Airport.new(20)
   end
 
-  it "should initialise a plane" do
+  it "should initialise a flying plane" do
     expect(@test_plane.class).to eq(Plane)
+    expect(@test_plane.flying).to eq(true)
   end
 
   it "should set flying to false after landing" do
