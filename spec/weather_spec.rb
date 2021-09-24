@@ -7,7 +7,11 @@ describe Weather do
     weather = subject
     expect(Weather::CONDITIONS).to include weather.condition
   end
+  describe '#stormy' do
+    it 'should return true if conditions are stormy' do
+      allow(weather).to receive(:condition) { "Stormy" }
 
-  # it 'should return true if conditions are stormy' do
-
+      expect(weather.stormy?).to eq true
+    end
+  end
 end
