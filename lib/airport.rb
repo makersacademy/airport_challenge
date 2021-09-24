@@ -8,15 +8,12 @@ class Airport
   end
 
   def land(plane)
-    p plane
     if plane.flying
       @landed_planes << plane 
       plane.flying = false
     elsif @landed_planes.length == capacity
-      p "elsif"
       raise "Airport full!"
     else
-      p "else"
       raise "Plane is already landed"
     end
   end

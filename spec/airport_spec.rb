@@ -23,6 +23,6 @@ describe "Airport" do
     expect(@test_airport.landed_planes).to eq([@test_plane])
 
     expect{@test_airport.land(@test_plane)}.to raise_error "Plane is already landed"
-    
   end
+  
 end
