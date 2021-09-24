@@ -157,3 +157,26 @@ At this point, I realised I needed to refactor my code as I needed an `Airport` 
         from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
 ```
 I ran my feature test again, this time creating an instance of the `Airport` class. This was successful. I know this because `#<Airport:0x0000000142034c90>` was returned in `irb`. I then ran `plane = airport.land` as I'm wanting to instruct the plane to land at an airport. The error message I received tells me there is no `land` method. I will now create this using similar steps that I followed to create the `Airport` class.
+```
+describe Airport do
+  it { is_expected.to respond_to :land }
+end
+```
+The above code returned the following error: `Failure/Error: it { is_expected.to respond_to :land }`. This tells me there is still no `land` method. I will now create one within `lib/airport.rb`.
+```
+class Airport
+  def land
+  end
+end
+``` 
+The above code from `lib/airport.rb` passes the unit test. 
+```
+➜  airport_challenge git:(main) ✗ irb
+3.0.2 :001 > require './lib/airport.rb'
+ => true 
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x0000000126a9d798> 
+3.0.2 :003 > plane = airport.land
+ => nil 
+```
+I am also able to create the variable `plane` in `irb` to equal `airport.land` which returns `nil`.
