@@ -4,18 +4,37 @@ describe Airport do
   let(:plane) { double :plane}
   
   describe "#land" do
-    before(:each) do
-      allow(plane).to receive(:flying=) { :false }
-      subject.land(plane)
+    context "airport is not full" do
+      before(:each) do
+        allow(plane).to receive(:flying=) { :false }
+        subject.land(plane)
+      end
+  
+      it "lets a plane land at an airport" do
+        expect(subject.planes).to include plane
+      end
+  
+      it "confirms that the plane is no longer flying" do
+        allow(plane).to receive(:flying) { false }
+        expect(plane.flying).to eq false
+      end
     end
 
-    it "lets a plane land at an airport" do
-      expect(subject.planes).to include plane
-    end
+    context "airport is full" do
+      it "prevents plane from landing when airport full to default capacity" do
+        allow(plane).to receive(:flying=) { :false }
+        allow(plane).to receive(:flying) { false }
+        
+        # Fill to capacity
+        20.times do
+          subject.land(plane)
+        end
 
-    it "confirms that the plane is no longer flying" do
-      allow(plane).to receive(:flying) { false }
-      expect(plane.flying).to eq false
+        twenty_first_plane = double(:twenty_first_plane)
+        
+        expect { subject.land(plane) }.to raise_error("Airport is full")
+        expect(subject.planes).to_not include twenty_first_plane
+      end
     end
   end
 
