@@ -2,9 +2,12 @@ require "airport"
 require "plane"
 CAPACITY = 20
 
+# this needs to be refactored to use stubs rather than the actual classes
+# but i have ran out of time :()
 describe "Airport" do
   before(:each) do
     @test_airport = Airport.new(CAPACITY)
+    allow(@test_airport.weather).to receive(:stormy).and_return(false)
     # TODO: refactor to use stub
     @test_plane = Plane.new()
   end
@@ -68,6 +71,24 @@ describe "Airport" do
 
    expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Your plane isn't in the airport!")
 
+  end
+
+  it "should fail to take off if it is stormy" do
+    expect(@test_airport.landed_planes).to eq([])
+
+    test_plane_2 = Plane.new
+    @test_airport.attempt_landing(test_plane_2)
+
+    allow(@test_airport.weather).to receive(:stormy).and_return(true)
+  
+   expect{@test_airport.attempt_takeoff(@test_plane)}.to raise_error("Too stormy to takeoff")
+  end
+
+  it "should fail to take off if it is stormy" do
+    allow(@test_airport.weather).to receive(:stormy).and_return(true)
+    expect(@test_airport.landed_planes).to eq([])
+  
+   expect{@test_airport.attempt_landing(@test_plane)}.to raise_error("Too stormy to land")
   end
 
 end
