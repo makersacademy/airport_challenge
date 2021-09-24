@@ -25,10 +25,15 @@ As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-Airport => .take_off => remove the plane from the register => message the plane take off
+Airport => plane in the register => .take_off => remove the plane from the register => message the plane take off
+
+Airport => plane not in the register => error message
 
 To do
 
 - create .take_off method
 - remove the plane from the register
 - add a message when the plane take off
+- create if stement plan in the register
+- add error message if not
+- merge it together

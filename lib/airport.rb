@@ -9,8 +9,12 @@ class Airport
     end
 
     def take_off(plane)
-        @register.delete(plane)
-        p "The #{plane} left the airport"
+        if @register.include?(plane) == true
+          @register.delete(plane)
+          p "The #{plane} left the airport"
+        else
+          puts "Error! Airplane not at the aiport!!"
+        end
     end
 
     def show_register
@@ -19,6 +23,3 @@ class Airport
 
 end
 
-new = Airport.new
-new.land("A380")
-new.take_off("A380")
