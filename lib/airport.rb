@@ -7,23 +7,27 @@ class Airport
     @capacity = capacity
   end
   def land(plane, weather = "sunny")
-    if !self.full?
-      if weather == "sunny"
-        @planes << plane
-        plane.change_position
+    if plane.position == "air"
+      if !self.full?
+        if weather == "sunny"
+          @planes << plane
+          plane.change_position
+        else
+          raise("CANNOT LAND. THE WEATHER IS STORMY.")
+        end
       else
-        raise("CANNOT LAND. THE WEATHER IS STORMY.")
+        raise("CANNOT LAND. THIS AIRPORT IS FULL.")
       end
     else
-      raise("CANNOT LAND. THIS AIRPORT IS FULL.")
-    end
+      raise("CANNOT LAND. THIS PLANE IS ON THE GROUND.")
+    end 
   end
   def takeoff(plane, weather = "sunny")
     if weather == "sunny"
       @planes.delete(plane)
       plane.change_position
     else
-      raise ("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
+      raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
     end
   end
   def full?

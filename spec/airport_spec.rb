@@ -2,7 +2,7 @@ require "airport"
   
 describe Airport do
   describe ".land" do
-    let(:plane) {double(:plane, :change_position => "ground")}
+    let(:plane) {double(:plane, :position => "air", :change_position => "ground")}
     it "should show plane in airport array after airport tells it to land" do
       subject.land(plane)
       expect(subject.planes.length).to(eq(1))
@@ -24,7 +24,7 @@ describe Airport do
     end
     it "should raise error when asking grounded plane to land" do
       allow(plane).to receive(:position).and_return("ground")
-      expect(subject.land(plane)).to(raise_error("CANNOT LAND. THIS PLANE IS ON THE GROUND."))
+      expect{subject.land(plane)}.to(raise_error("CANNOT LAND. THIS PLANE IS ON THE GROUND."))
     end
   end
 
