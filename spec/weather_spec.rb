@@ -5,5 +5,4 @@ describe Weather do
     expect(subject).to receive(:rand).and_return(8)
     expect(Weather.generate_weather).to eq "stormy"  
   end
-
 end

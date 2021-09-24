@@ -3,6 +3,8 @@ require_relative 'weather'
 class Airport
   DEFAULT_CAPACITY = 20
 
+  include Weather
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = {}
     @capacity = capacity
@@ -27,7 +29,4 @@ class Airport
     plane.flying = true
     plane
   end
-
-  private
-  include Weather
 end
