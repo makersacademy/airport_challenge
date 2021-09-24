@@ -37,4 +37,5 @@ class Plane
   def at_aiport?
     !@at_aiport.nil?
   end
+
 end

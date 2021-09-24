@@ -38,4 +38,17 @@ describe Airport do
     end
   end
 
+  describe '#full?' do
+    it 'should return false when the airport is not at capacity' do
+      expect(airport.full?).to eq(false)
+    end
+
+    it 'should return true when the airport is at capacity' do
+      20.times do
+        airport.add_plane(plane)
+      end
+      expect(airport.full?).to eq(true)
+    end
+  end
+
 end
