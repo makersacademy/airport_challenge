@@ -71,6 +71,7 @@ describe Airport do
 
     before(:each) do
       allow(plane).to receive(:flying=) { :false }
+      allow(plane).to receive(:flight_number) { "Flight 1" }
       expect(Weather).to receive(:rand).and_return(2)
       subject.land(plane)
     end
@@ -81,20 +82,13 @@ describe Airport do
       end
 
       it "instructs a plane to take off" do
-        expect(subject.take_off(plane)).to eq plane
+        expect(subject.take_off("Flight 1")).to eq plane
       end
   
       it "plane is no longer in airport" do
-        subject.take_off(plane)
-        expect(subject.planes).to_not include plane
+        subject.take_off("Flight 1")
+        expect(subject.planes).to_not include "Flight 1"
       end
-  
-      it "tells the plane that it is no longer landed" do
-        subject.take_off(plane)
-        allow(plane).to receive(:flying=) { :true }
-        allow(plane).to receive(:flying) { true }
-        expect(plane.flying).to eq true
-      end  
     end
     
     context "weather is stormy" do
