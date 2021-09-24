@@ -1,22 +1,26 @@
 require './lib/plane'
 
 class Airport
-  DEFAULT_CAPACITY = 50
+  
   attr_reader :planes
+  attr_accessor :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     raise "Airport is full" if full?
     raise "Weather is stormy. Landing not permitted." if weather == "stormy"
-    @planes << plane
+    @planes << plane unless plane.grounded
   end
 
-  def takeoff
+  def takeoff(plane)
     raise "Weather is stormy. Takeoff not permitted." if weather == "stormy"
-    planes.pop
+    planes.delete(plane)
   end
 
   def weather
@@ -26,7 +30,7 @@ class Airport
   private
 
   def full?
-    return true if planes.length >= DEFAULT_CAPACITY
+    return true if planes.length >= capacity
     false
   end
 end
