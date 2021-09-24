@@ -3,22 +3,30 @@ class Airport
 
   DEFAULT_CAPACITY = 30
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
 
   def land(plane)
     fail 'Unable to land, the airport is full' if airport_full?
+    fail 'Unable to land due to storm' if stormy?
     planes << plane
   end
 
   def take_off
+    fail 'Unable to take off due to storm' if stormy?
     planes.pop
+  end
+
+  def stormy?
+    rand(2) > 0
   end
   
   private
+
   def airport_full?
     planes.count >= capacity
   end
+
 end
