@@ -14,6 +14,11 @@ describe Airport do
         subject.land(plane)
         expect(subject.planes).to include "Flight 1"
       end
+
+      it "doesn't let a plane land if it is already grounded" do
+        allow(plane).to receive(:flying) { false }
+        expect { subject.land(plane) }.to raise_error "This plane has already landed"
+      end
     end
 
     context "airport is full" do
