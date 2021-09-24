@@ -5,18 +5,28 @@ require 'weather'
 describe Airport do
   describe "#land" do
     context "airport is not full" do
-      before(:each) do
-        @plane = Plane.new
-        expect(Weather).to receive(:rand).and_return(2)
-        subject.land(@plane)
+      context "weather is good" do
+        before(:each) do
+          @plane = Plane.new
+          expect(Weather).to receive(:rand).and_return(2)
+          subject.land(@plane)
+        end
+    
+        it "instructs a plane to land at the airport" do
+          expect(subject.planes).to include @plane
+        end
+    
+        it "tells the plane that it is no longer flying" do
+          expect(@plane.flying).to eq false
+        end  
       end
-  
-      it "instructs a plane to land at the airport" do
-        expect(subject.planes).to include @plane
-      end
-  
-      it "tells the plane that it is no longer flying" do
-        expect(@plane.flying).to eq false
+
+      context "weather is bad" do
+        it "doesn't let the plane land" do
+          plane = Plane.new
+          expect(Weather).to receive(:rand).and_return(8)
+          expect { subject.land(plane) }.to raise_error("Cannot land a plane in stormy weather")
+        end
       end
     end
 
@@ -51,20 +61,36 @@ describe Airport do
   end
 
   describe "#take_off" do
-    before(:each) do
-      @plane = Plane.new
-      expect(Weather).to receive(:rand).and_return(2)
-      subject.land(@plane)
-      expect(Weather).to receive(:rand).and_return(2)
-      subject.take_off(@plane)
+    context "weather is good" do
+      before(:each) do
+        @plane = Plane.new
+        expect(Weather).to receive(:rand).and_return(2)
+        subject.land(@plane)
+        expect(Weather).to receive(:rand).and_return(2)
+        subject.take_off(@plane)
+      end
+      
+  
+      it "instructs a plane to take off from the airport" do
+        expect(subject.planes).to_not include @plane
+      end
+  
+      it "tells the plane that it is now flying" do
+        expect(@plane.flying).to eq true
+      end
     end
 
-    it "instructs a plane to take off from the airport" do
-      expect(subject.planes).to_not include @plane
-    end
+    context "weather is bad" do
+      it "doesn't let a plane land" do
+        plane = Plane.new
 
-    it "tells the plane that it is now flying" do
-      expect(@plane.flying).to eq true
+        expect(Weather).to receive(:rand).and_return(2)
+        subject.land(plane)
+
+        expect(Weather).to receive(:rand).and_return(8)
+
+        expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")  
+      end
     end
   end
 end
