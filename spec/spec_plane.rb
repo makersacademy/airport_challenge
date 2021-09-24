@@ -6,7 +6,6 @@ RSpec.describe Plane do
       testplane = subject.initialise("flying")
       expect(subject.flying).to eq("flying") 
     end
-
     it "@flight_status = grounded" do
       testplane = subject.initialise("grounded")
       expect(subject.flying).to eq("grounded") 
@@ -32,13 +31,13 @@ RSpec.describe Plane do
     it "@flight_status = grounded" do
       testplane = subject.initialise("grounded")
       expect(subject.take_off).to eq("The plane takes off.")
-        
+    end
+
     describe ".storm" do
       it "@flight_status = flying" do
-      testplane = subject.initialise("flying")
-      expect(subject.take_off).to eq("Plane ")
+        testplane = subject.initialise("flying")
+        expect(subject.land).to eq("Too stormy to land.")
       end
-    end
     end
   end
 end
