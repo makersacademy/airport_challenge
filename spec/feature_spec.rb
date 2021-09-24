@@ -6,6 +6,7 @@ describe Airport do
     context "airport is not full" do
       before(:each) do
         @plane = Plane.new
+        expect(subject).to receive(:rand).and_return(2)
         subject.land(@plane)
       end
   
@@ -21,6 +22,7 @@ describe Airport do
     context "airport is full" do
       it "doesn't let another plane land if airport is full" do
         20.times do
+          expect(subject).to receive(:rand).and_return(2)
           subject.land(Plane.new)
         end
   
@@ -35,6 +37,7 @@ describe Airport do
         airport = Airport.new(capacity)
         
         capacity.times do
+          expect(airport).to receive(:rand).and_return(2)
           airport.land(Plane.new)
         end
   
@@ -49,6 +52,7 @@ describe Airport do
   describe "#take_off" do
     before(:each) do
       @plane = Plane.new
+      expect(subject).to receive(:rand).and_return(2)
       subject.land(@plane)
 
       subject.take_off(@plane)

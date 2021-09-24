@@ -2,11 +2,13 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
+  let(:subject) { Airport.new }
   
   describe "#land" do
     context "airport is not full" do
       before(:each) do
         allow(plane).to receive(:flying=) { :false }
+        expect(subject).to receive(:rand).and_return(2)
         subject.land(plane)
       end
   
@@ -28,7 +30,9 @@ describe Airport do
 
       it "prevents plane from landing when airport full to default capacity" do  
         # Fill to capacity
+        
         20.times do
+          expect(subject).to receive(:rand).and_return(2)
           subject.land(plane)
         end
 
@@ -44,6 +48,7 @@ describe Airport do
         airport = Airport.new(capacity)
         
         capacity.times do
+          expect(airport).to receive(:rand).and_return(2)
           airport.land(plane)
         end
 
@@ -66,6 +71,7 @@ describe Airport do
 
     before(:each) do
       allow(plane).to receive(:flying=) { :false }
+      expect(subject).to receive(:rand).and_return(2)
       subject.land(plane)
     end
 
