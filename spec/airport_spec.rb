@@ -31,7 +31,7 @@ describe Airport do
     it "should show plane is no longer in airport array after airport tells it to takeoff" do
       plane = double("plane double")
       subject.planes << plane
-      subject.takeoff()
+      subject.takeoff(plane, "sunny")
       expect(subject.planes.length).to(eq(0))
     end
     it "should raise an error if plane trying to takeoff when the weather is stormy" do
