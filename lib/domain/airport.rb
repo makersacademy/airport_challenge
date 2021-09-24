@@ -1,6 +1,6 @@
-require_relative 'errors/airport_full_error'
-require_relative 'errors/bad_weather_error'
-require_relative 'errors/not_a_plane_error'
+require_relative '../errors/airport_full_error'
+require_relative '../errors/bad_weather_error'
+require_relative '../errors/not_a_plane_error'
 
 class Airport
 
@@ -20,7 +20,6 @@ class Airport
       :ok
     rescue => error
       "cannot land #{error.effected_plane.name}: #{error.message}"
-
     end 
   end
 
@@ -36,7 +35,7 @@ class Airport
   end
 
   def view_planes_at_terminal
-    @planes_at_terminal.map { |plane| plane.name }
+    @planes_at_terminal.map { |plane| plane.id }
   end
 
   private

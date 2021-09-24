@@ -1,4 +1,4 @@
-require 'aeroplane'
+require 'domain/aeroplane'
 
 describe Aeroplane do
   $plane_id = 123

@@ -1,5 +1,5 @@
 require 'securerandom'
-require_relative '../aeroplane'
+require_relative '../domain/aeroplane'
 require_relative './plane_id_generator'
 
 class AeroplaneFactory 

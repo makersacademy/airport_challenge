@@ -1,4 +1,4 @@
-require 'airport'
+require 'domain/airport'
 
 describe Airport do
   let(:plane1) { double :plane1, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }
@@ -9,7 +9,7 @@ describe Airport do
   describe '#land_plane' do
     it 'instructs a plane to land' do
       expect(subject.land_plane(plane1)).to eq(:ok)
-      expect(subject.view_planes_at_terminal).to include plane1.name
+      expect(subject.view_planes_at_terminal).to include plane1.id
     end
 
     it 'stops a plane landing when airport is full' do
@@ -22,7 +22,7 @@ describe Airport do
       expect(weather_service).to receive(:weather_report).and_return :storm
       expect(subject.land_plane(plane1)).to eq("cannot land #{plane1.name}: Bad weather")
     end
-    
+
     it 'throws error if object is not a plane' do
       not_a_plane = "nneeewwwwwww"
       expect { subject.land_plane(not_a_plane) }.to raise_error("Not a plane")
@@ -34,7 +34,7 @@ describe Airport do
       subject.land_plane(plane1)
       puts subject.view_planes_at_terminal
       expect(subject.take_off(plane1)).to eq :ok
-      expect(subject.view_planes_at_terminal).not_to include plane1.name
+      expect(subject.view_planes_at_terminal).not_to include plane1.id
     end
 
     it 'stops a plane taking off when there is a storm' do
@@ -48,7 +48,7 @@ describe Airport do
     it 'returns the callsigns of all planes currently at the airport' do
       subject.land_plane(plane1)
       subject.land_plane(plane2)
-      expect(subject.view_planes_at_terminal).to include(plane1.name, plane2.name) 
+      expect(subject.view_planes_at_terminal).to include(plane1.id, plane2.id) 
     end
   end
 end
