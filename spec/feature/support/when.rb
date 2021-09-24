@@ -28,4 +28,3 @@ def and_a_plane_tries_to_land
   @plane = AeroplaneFactory.build
   @airport.land_plane(@plane)
 end
-

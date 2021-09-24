@@ -1,4 +1,5 @@
 require 'errors/airport_full_error'
+require 'domain/aeroplane'
 
 describe AirportFullError do
   let(:plane) { double :plane, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }

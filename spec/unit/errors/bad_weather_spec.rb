@@ -1,4 +1,5 @@
 require 'errors/bad_weather_error'
+require 'domain/aeroplane'
 
 describe BadWeatherError do
   let(:plane) { double :plane, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }  

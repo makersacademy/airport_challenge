@@ -1,4 +1,5 @@
 require 'errors/not_a_plane_error'
+require 'domain/aeroplane'
 
 describe NotAPlaneError do
   thing = "not a plane"

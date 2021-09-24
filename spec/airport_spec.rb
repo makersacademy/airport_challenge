@@ -4,7 +4,7 @@ describe Airport do
   let(:plane1) { double :plane1, name: "fake plane 1", id: 123, "id=": 123, class: Aeroplane }
   let(:plane2) { double :plane2, name: "fake plane 2", id: 456, "id=": 456, class: Aeroplane }
   let(:weather_service) { double :weather_service, weather_report: :clear }
-  let(:not_a_plane) {double :not_a_plane}
+  let(:not_a_plane) { double :not_a_plane }
   let(:subject) { described_class.new(weather_service, 10) }
 
   describe '#land_plane' do
@@ -25,7 +25,7 @@ describe Airport do
     end
 
     it 'throws error on landing if object is not a plane' do
-      expect { subject.land_plane(not_a_plane) }.to raise_error("Not a plane")
+      expect { subject.land_plane(not_a_plane) }.to raise_error(NotAPlaneError)
     end
   end
 
@@ -41,6 +41,7 @@ describe Airport do
       expect(weather_service).to receive(:weather_report).and_return :storm
       expect(subject.take_off(plane1)).to eq("#{plane1} cannot take-off: Bad weather")
     end
+    
     it 'throws error on take-off if object is not a plane' do
       expect { subject.take_off(not_a_plane) }.to raise_error(NotAPlaneError)
     end
