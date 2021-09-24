@@ -9,6 +9,7 @@ describe Airport do
       it "lets a plane land at an airport" do
         allow(plane).to receive(:flying=) { :false }
         allow(plane).to receive(:flight_number) { "Flight 1" }
+        allow(plane).to receive(:status) { "Flying" }
         expect(Weather).to receive(:rand).and_return(2)
         
         subject.land(plane)
@@ -16,7 +17,8 @@ describe Airport do
       end
 
       it "doesn't let a plane land if it is already grounded" do
-        allow(plane).to receive(:flying) { false }
+        expect(Weather).to receive(:rand).and_return(2)
+        allow(plane).to receive(:status) { "Landed" }
         expect { subject.land(plane) }.to raise_error "This plane has already landed"
       end
     end
@@ -32,6 +34,7 @@ describe Airport do
           plane = double(:plane)
           allow(plane).to receive(:flight_number) { "Flight #{x}" }
           allow(plane).to receive(:flying=) { :false }
+          allow(plane).to receive(:status) { "Flying" }
           expect(Weather).to receive(:rand).and_return(2)
           subject.land(plane)
         end
@@ -52,6 +55,7 @@ describe Airport do
           plane = double(:plane)
           allow(plane).to receive(:flight_number) { "Flight #{x}" }
           allow(plane).to receive(:flying=) { :false }
+          allow(plane).to receive(:status) { "Flying" }
           expect(Weather).to receive(:rand).and_return(2)
           airport.land(plane)
         end
@@ -78,6 +82,7 @@ describe Airport do
       allow(plane).to receive(:flying=) { :false }
       allow(plane).to receive(:flight_number) { "Flight 1" }
       expect(Weather).to receive(:rand).and_return(2)
+      allow(plane).to receive(:status) { "Flying" }
       subject.land(plane)
     end
 

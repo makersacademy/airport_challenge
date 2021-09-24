@@ -15,6 +15,7 @@ class Airport
   def land(plane)
     raise "Airport is full" if @planes.count >= @capacity
     raise "Cannot land a plane in stormy weather" if Weather.generate_weather == "stormy"
+    raise "This plane has already landed" if plane.status == "Landed"
     plane.flying = false
     @planes[plane.flight_number] = plane
   end
