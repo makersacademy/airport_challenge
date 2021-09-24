@@ -33,6 +33,16 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes).to_not include plane
     end
+
+    it "tells the plane that it is no longer landed" do
+      allow(plane).to receive(:flying=) { :false }
+      subject.land(plane)
+
+      subject.take_off(plane)
+      allow(plane).to receive(:flying=) { :true }
+      allow(plane).to receive(:flying) { true }
+      expect(plane.flying).to eq true
+    end
   end
 
 end
