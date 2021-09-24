@@ -41,7 +41,10 @@ I want to prevent landing when weather is stormy
 | air_traffic_controller | land_at_airport | Instruct a plane to land at an airport | So I can get passengers to a destination
 | | take_off | Instruct a plane to take off from an airport and confirm that it is no longer in the airport | So I can get passengers on the way to their destination
 | | airport_full? | So I can get passengers on the way to their destination | To ensure safety
-| | weather_stormy? | Prevent takeoff AND landing when weather is stormy | To ensure safety
+| | get_airport_capacity | | 
+| weather | weather_stormy? | Prevent takeoff AND landing when weather is stormy | To ensure safety
+| | random_weather | | 
+| | get_weather_status | |
 | system_designer | default_capacity(capacity) | Add a default airport capacity that can be overridden as appropriate | So that the software can be used for many different airports
 | extras | random_weather | set the weather (it is normally sunny but on rare occasions it may be stormy) | 
 

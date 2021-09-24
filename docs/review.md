@@ -97,7 +97,7 @@ end
 The following test on its own is not sufficient for testing the landing of planes:
 
 ```ruby
-describe Airport do
+describe AirTrafficControl do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 

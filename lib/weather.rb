@@ -8,7 +8,7 @@ class Weather
     @weather = ""
     rand = rand(10)
 
-    if rand.eql? 1  or rand.eql? 2
+    if rand.eql? 1 or rand.eql? 2
       @weather << "stormy"
     else
       @weather << "sunny"
@@ -16,7 +16,7 @@ class Weather
 
   end
 
-  def get_weather_status
+  def weather_status
     @weather
   end
 
@@ -26,7 +26,6 @@ class Weather
     elsif @weather << "sunny"
       false
     end
-
 
   end
 end
