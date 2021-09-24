@@ -91,7 +91,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 My contributions
 -----
-Below are my diagrams and notes throughout this challenge.
+Below are my diagrams and notes throughout this challenge. I have referred to the steps in the [Boris Bikes](https://github.com/makersacademy/course/blob/main/boris_bikes/0_challenge_map.md) challenge to support my progress with this challenge.
 
 Domain Models
 -----
