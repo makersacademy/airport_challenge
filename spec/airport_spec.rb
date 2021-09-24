@@ -28,7 +28,7 @@ RSpec.describe Airport do
 
   describe "#send" do
     it "allows a plane to take off" do
-      subject.receive(plane)
+      subject.receive(plane,->{false})
       expect(subject.send(->{false})).to be_truthy 
     end
 
