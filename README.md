@@ -95,18 +95,25 @@ Below are my diagrams and notes throughout this challenge. I have referred to th
 
 Domain Models
 -----
-User story 1
+User story 1 - version 1
 | Objects | Messages |
 |---------|----------|
 | Traffic Controller | |
 | Airport | |
 | Plane | land |
 
-Updated model for user story 1
+Version 2 - Updated model for user story 1
 | Objects | Messages |
 |---------|----------|
 | Traffic Controller | |
 | Airport | instruct |
+| Plane | land? |
+
+Version 3 - Updated method name for user story 1
+| Objects | Messages |
+|---------|----------|
+| Traffic Controller | |
+| Airport | instruct_plane |
 | Plane | land? |
 
 Feature tests and observations for user story 1
@@ -232,3 +239,4 @@ Failures:
        expected nil to respond to `landing?`
 ```
 This tells me that I need the `instruct` method to return something other than `nil`.
+I have decided to refactor my code to rename the `instruct` method as `instruct_plane` so it helps me with what I'd like the method to return.

@@ -1,4 +1,4 @@
 class Airport
-  def instruct
+  def instruct_plane
   end
 end
