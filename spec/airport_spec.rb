@@ -7,4 +7,11 @@ describe Airport do
     expect(subject).to respond_to(:takeoff).with(1).arguments
     expect(Plane.new.departed).to eq true
   end
+  it "return an error if airport is full" do
+    airport1 = Airport.new
+    plane1 = Plane.new
+    airport1.land(plane1)
+    expect { airport1.land(Plane.new) }.to raise_error
+    "this airport is full"
+  end
 end
