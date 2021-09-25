@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   attr_reader :airport
 
@@ -13,6 +15,7 @@ class Airport
     plane
   end
 
-  def land
+  def land(plane)
+    plane
   end
 end
