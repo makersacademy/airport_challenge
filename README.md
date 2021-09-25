@@ -1,10 +1,10 @@
-Airport Challenge
+Anthony's Airport Challenge
 =================
 
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(___AO_MA__)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -13,44 +13,66 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
+Introduction
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+My solution to the Makers Academy Week 1 Airport Challenge.
 
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+`irb`
+`require './docs/airport.rb'`
 
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
+```
 
+* Creating the objects
+`airport = Airport.new`
+`plane = Plane.new`
+* Plane can be landed with 
+`airport.land(plane)`
+* You can further check the plane now exists at the airport with
+`airport.plane`
+
+```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
+* Plane can be instructed to take off with
+`airport.takeoff(plane)`
+* To confirm the plane is no longer at the airport
+`airport.hangar` 
+
+```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
+```
 
+`plane2 = Plane.new`
+`small_airport = Airport.new(1)`
+* Attempting to land both planes will result in an error "Hangar is full"
+`small_airport.land(plane1)`
+`small_airport.land(plane2)`
+----->> ` Airport is full (RuntimeError)`
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
 
+* Shown above with creation of `small_airport` demonstrating overriden defaul, adding 20 planes to `airport` will result in error (as default is set to 20 and `plane1` is currently in `airport`)
+`20.times { airport.land(Plane.new) }`
+----->> `Airport is full (RuntimeError)`
+
+```
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
@@ -60,19 +82,32 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+* Weather has arbitrarily been assigned a value between 1 and 10, with weather > 8 being "stormy", weather <= 8 being "clear and sunny"
+* Constant WEATHER_CUTOFF used to represent this value, 8
+* On creation of the airport, weather value is set to 1 (sunny)
+* In order to change the weather, call
+`airport.check_weather`
+* This will generate a random number between 1 and 10 and assign the weather accordingly.
+* If the weather `is stormy.`, doing the following
+`airport.land(plane1)`
+or `airport.takeoff(plane1)` 
+----->> `Cannot land: stormy weather (RuntimeError)` or 
+`Cannot takeoff: stormy weather (RuntimeError)`
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
+[edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) covered:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* Raises an exception when the same plane tries to land twice
+* Raises an exception when the same plane tries to take off whilst already in the air
+* Raises an exception if a plane is asked to takeoff from the wrong hangar
+
+Features
+
+-----
+* All tests pass (13 examples, 0 failures)
+* [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md): COVERAGE: 100.00% -- 111/111 lines in 4 files
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
