@@ -1,7 +1,9 @@
 class Airport
-  # def initialize(capacity)
-  #   @capacity = capacity
-  # end
+  attr_reader :capacity
+  
+  def initialize(capacity = 50)
+    @capacity = capacity
+  end
 
   def land(plane)
     raise 'airport is full' if @plane 
