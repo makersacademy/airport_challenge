@@ -7,7 +7,7 @@ describe Weather do
     expect(subject.weather).to eq(:stormy)
   end
 
-  it "returns :sunny if stormy weather was generated from a list" do
+  it "returns :sunny if sunny weather was generated from a list" do
     allow(subject).to receive(:weather) { :sunny }
     expect(subject.weather).to eq(:sunny)
   end
