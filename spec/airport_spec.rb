@@ -11,6 +11,18 @@ describe Airport do
 
   end
 
+  # it 'checks the capacity of the airport' do
+  #   airport = Airport.new(10)
+  #   expect(airport.capacity).to be < 10
+  # end
+
+  it 'returns error if the airport is full' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect {airport.land(Plane.new)}.to raise_error 'airport is full'
+  end
+
 end
 
 

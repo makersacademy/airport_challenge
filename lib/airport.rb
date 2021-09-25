@@ -1,5 +1,11 @@
-class Airport 
+class Airport
+  # def initialize(capacity)
+  #   @capacity = capacity
+  # end
+
   def land(plane)
+    raise 'airport is full' if @plane 
+    @plane = plane
   end
 
   def take_off(plane)
