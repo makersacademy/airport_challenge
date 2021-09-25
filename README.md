@@ -1,6 +1,6 @@
 Anthony's Airport Challenge
-[Readme adapted from here](https://github.com/makersacademy/airport_challenge)
 =================
+[Readme adapted from here](https://github.com/makersacademy/airport_challenge)
 
 ```
         ______
