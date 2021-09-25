@@ -2,8 +2,8 @@ require "weather"
 
 describe Weather do
   describe ".current" do
-    it "should return current weather (sunny or stormy) when called" do
-      expect(subject.current).to(eq("sunny" || "stormy"))
+    it "should respond to the .current method" do
+      expect(subject).to(respond_to(:current))
     end
   end
   describe ".random_number" do

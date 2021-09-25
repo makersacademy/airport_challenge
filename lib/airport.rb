@@ -20,18 +20,22 @@ class Airport
       end
     else
       raise("CANNOT LAND. THIS PLANE IS ON THE GROUND.")
-    end 
+    end
   end
   def takeoff(plane, weather = "sunny")
-    if plane.position == "ground"
-      if weather == "sunny"
-        @planes.delete(plane)
-        plane.change_position
+    if self.planes.find_index(plane) != nil
+      if plane.position == "ground"
+        if weather == "sunny"
+          @planes.delete(plane)
+          plane.change_position
+        else
+          raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
+        end
       else
-        raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
+        raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.")
       end
     else
-      raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.")
+      raise("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT")
     end
   end
   def full?

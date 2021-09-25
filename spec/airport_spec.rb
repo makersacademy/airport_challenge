@@ -41,6 +41,7 @@ describe Airport do
     it "should raise an error if plane trying to takeoff when the weather is stormy" do
       weather = double("weather double", :current => "stormy")
       current_weather = weather.current
+      subject.planes << plane
       expect{subject.takeoff(plane, current_weather)}.to(raise_error("CANNOT TAKEOFF. THE WEATHER IS STORMY."))
     end
     it "should show plane removed from airport array after airport tells it to takeoff during sunny weather" do
@@ -52,6 +53,7 @@ describe Airport do
     end
     it "should raise error when asking a flying plane to takeoff" do
       allow(plane).to receive(:position).and_return("air")
+      subject.planes << plane #to isolate test -- code should not allow planes in airport to have air status
       expect{subject.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR."))
     end
     it "when 2 planes takeoff, those 2 specific planes should not be in the airport array and the others remain" do
@@ -65,7 +67,7 @@ describe Airport do
       airport1 = Airport.new
       airport2 = Airport.new
       airport2.planes << plane
-      expect{airport1.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT")
+      expect{airport1.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT"))
     end
   end
 
