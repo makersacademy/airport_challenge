@@ -3,24 +3,25 @@ require_relative "airport_container"
 class Plane
   include AirportContainer
 
-  attr_reader :planes
-  attr_reader :capacity
+  attr_reader :planes, :capacity
   
   def initialize
-    @planes = []
     @capacity = DEFAULT_CAPACITY
+    @planes = []
   end
 
   def land(plane)
-    raise "Airport full, plane cannot land" if full?
-    @planes << plane
-    raise "Weather is stormy, plane cannot land" if @weather == :stormy
+    raise "Weather is stormy, plane cannot land" if @weather == "stormy"
+    raise "Airport full, plane cannot land" if full? == true
+    @planes.push(plane)
   end
   
   def take_off(plane)
-    @planes.pop
+    raise "Weather is stormy, plane cannot take off" if @weather == "stormy"
+    if @planes.delete(plane) == true
+      plane.flying
+    end
     raise "Plane did not take off" if @planes.include?(plane)
-    raise "Weather is stormy, plane cannot land" if @weather == "stormy"
   end
 
   def full?
@@ -28,7 +29,11 @@ class Plane
   end
 
   def weather_conditions
-    @weather = [:stormy, :sunny]
-    @weather[Random.rand(@weather.length)]
+    @weather = Random.rand(20)
+    @weather > 15 ? @weather = "stormy" : @weather = "sunny"
+  end
+
+  def flying
+    @flying = true
   end
 end
