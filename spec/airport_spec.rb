@@ -1,5 +1,19 @@
 require './lib/airport.rb'
-require './lib/weather.rb'
+# require './lib/weather.rb'
+
+describe Weather do
+  it 'Should generate random weather' do
+    expect(Weather::CONDITIONS).to include subject.condition
+  end
+
+  # describe '#stormy' do
+  #   it 'should return true if conditions are stormy' do
+  #      allow(weather).to receive(:condition) { "Stormy" }
+
+  #     expect(weather.stormy?).to eq true
+  #   end
+  # end
+end
 
 describe Airport do
   let (:airport) { subject }

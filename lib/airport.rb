@@ -1,5 +1,5 @@
 require './lib/plane.rb'
-require './lib/weather.rb'
+# require './lib/weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -12,7 +12,7 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane, weather=Weather.new)
+  def land(plane) #, weather=Weather.new)
     # fail "Too stormy to land" if weather.stormy?
     fail "Airport is full, cannot land plane" if full?
     @hangar << plane
@@ -33,4 +33,16 @@ class Airport
   def full?
     @hangar.count >= @capacity
   end
+end
+
+class Weather
+  CONDITIONS = ["Sunny", "Stormy", "Clear", "Raining"]
+
+  def condition
+    CONDITIONS.sample
+  end
+
+  # def stormy?
+  #     condition == "Stormy"
+  #   end
 end
