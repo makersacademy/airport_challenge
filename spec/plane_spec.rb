@@ -3,6 +3,7 @@ require "airport_container"
 
 RSpec.describe Plane do
   let (:plane) { Plane.new }
+  let (:weather) { double :weather }
 
   it "responds to land method" do
     expect(subject).to respond_to(:land)
@@ -22,10 +23,12 @@ RSpec.describe Plane do
   end
 
   it "raises error on takeoff if weather is stormy" do
+    allow(subject).to receive(:weather) { :sunny }
     expect { subject.take_off(plane) }.to raise_error "Weather is stormy, plane cannot land" if subject.weather_conditions == "stormy"
   end
 
   it "raises error on landing if weather is stormy" do
+    allow(subject).to receive (:weather) { :sunny }
     expect { subject.land(plane) }.to raise_error "Weather is stormy, plane cannot land" if subject.weather_conditions == "stormy"
   end
 end

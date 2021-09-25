@@ -14,7 +14,7 @@ class Plane
   def land(plane)
     raise "Airport full, plane cannot land" if full?
     @planes << plane
-    raise "Weather is stormy, plane cannot land" if @weather == "stormy"
+    raise "Weather is stormy, plane cannot land" if @weather == :stormy
   end
   
   def take_off(plane)
@@ -28,7 +28,7 @@ class Plane
   end
 
   def weather_conditions
-    @weather = Random.rand(20)
-    @weather > 15 ? @weather = "stormy" : @weather = "sunny"
+    @weather = [:stormy, :sunny]
+    @weather[Random.rand(@weather.length)]
   end
 end
