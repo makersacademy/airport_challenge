@@ -1,4 +1,5 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
   
@@ -13,18 +14,16 @@ class Airport
   end
 
   def land(plane)
+    weather = Weather.new.weather_conditions
     raise "Airport is full" if full?
     raise "Weather is stormy. Landing not permitted." if weather == "stormy"
     @planes << plane unless plane.grounded
   end
 
   def takeoff(plane)
+    weather = Weather.new.weather_conditions
     raise "Weather is stormy. Takeoff not permitted." if weather == "stormy"
     planes.delete(plane)
-  end
-
-  def weather
-    ["stormy", "sunny"].sample
   end
 
   private
