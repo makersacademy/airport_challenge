@@ -2,14 +2,14 @@ class Airport
   DEFAULT_CAPACITY = 50
   attr_reader :hangar, :capacity
 
-  def initialize(id = self.object_id, capacity = DEFAULT_CAPACITY)
-    @airport_id = id
+  def initialize(airport_id, capacity = DEFAULT_CAPACITY)
+    @airport_id = airport_id
     @hangar = []
     @capacity = capacity
   end
   
   def take_off(plane, weather = Weather.new)
-    raise "Plane is already in sky" if plane.current_airport == 0
+    raise "Plane is already in sky" if plane.current_airport.zero?
     raise "Plane is at a different airport" if plane.current_airport != @airport_id
     raise "Dangerous weather" if weather.stormy
     @hangar.delete(plane)

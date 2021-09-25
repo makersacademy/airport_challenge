@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  plane = Plane.new
+  plane = Plane.new(1234)
   it "creates plane objects" do
     expect(plane).to be_instance_of(Plane)
   end
