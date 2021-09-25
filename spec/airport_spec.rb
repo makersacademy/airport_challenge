@@ -20,5 +20,4 @@ describe Airport do
      3.times {subject.land("A380")}
      expect(subject.land("A380")).to eq("The airport is full!!")
     end
-
 end

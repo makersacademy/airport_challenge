@@ -23,11 +23,3 @@ class Airport
     end
 
 end
-
-new = Airport.new
-new.land("a")
-new.land("b")
-new.land("c")
-new.show_register
-new.land("d")
-new.show_register
