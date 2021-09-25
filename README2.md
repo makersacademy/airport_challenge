@@ -33,7 +33,7 @@ Airport => plane in the register => .take_off => remove the plane from the regis
 
 Airport => plane not in the register => error message
 
-### To do
+### To do
 
 - create .take_off method
 - remove the plane from the register
@@ -59,7 +59,7 @@ Airport => plane not in the register => error message
 
 Airport => capacity full => error message if you wanna use .land
 
-### To do
+### To do
 
 - create a capacity variable
 - create an error message
