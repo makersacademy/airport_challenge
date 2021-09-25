@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail "You can't land here. We're full!" if !hangar.empty?
     @hangar << plane
   end
 
