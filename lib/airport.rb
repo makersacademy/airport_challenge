@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :terminal
   
   def initialize(capacity = 50)
     @capacity = capacity
@@ -12,8 +12,9 @@ class Airport
   end
 
   def take_off(plane)
-    # @plane = Plane
-    # plane.departed = true
+    # @plane = plane
+    @terminal.pop()
+
   end
   # def permission_to_land
   # end 

@@ -8,7 +8,6 @@ describe Airport do
   it 'allows a plane to take off' do
     expect(subject).to respond_to(:take_off).with(1).arguments
     expect(Plane.new.departed).to eq true 
-
   end
 
   # it 'checks the capacity of the airport' do
@@ -23,8 +22,18 @@ describe Airport do
   end
 
   it 'has a default airport capacity' do
+    expect(subject.capacity).to eq 50
+  end
+
+  it 'updates the terminal capacity when a plane takes off' do
     airport = Airport.new
-    expect(airport.capacity).to eq 50
+    # plane1 = Plane.new
+    # plane2 = Plane.new
+    # airport.land(plane1)
+    # airport.land(plane2)
+    10.times { airport.land(Plane.new) } 
+    airport.take_off(Plane.new)
+    expect(airport.terminal.count).to eq 9
   end
 end
 
