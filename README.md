@@ -60,5 +60,9 @@ I want to prevent landing when weather is stormy
 | System Designer ||
 | Capacity | Override |
 
-| Bike <----> Working? <-----> True / False |
-| DockingStation <----> release_bike <-----> a Bike |
+
+
+* Plane ----> Land -----> 
+* Plane ----> Take-Off ----->
+* Airport ----> Full? <----> True / False
+* Weather ----> Stormy? <----> True / False
