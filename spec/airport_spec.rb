@@ -9,6 +9,6 @@ end
 describe "#full" do
   it 'tells us if the airport has any planes in it' do
     newAirport = Airport.new
-    expect(newAirport.airport.length).to eq 0 
+    expect(newAirport.full?).to eq 0 
   end
 end
