@@ -110,10 +110,10 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-| Objects                | Messages         |
-| ---------------------- | ---------------- |
-| Air traffic controller | use_if_working   |
-| Plane                  | check_if_working |
+| Objects                | Messages                |
+| ---------------------- | ----------------------- |
+| Air traffic controller | check_if_plane_can_land |
+| Plane                  | land_at_airport         |
 
 ```
 As an air traffic controller
@@ -122,7 +122,11 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#b6bb44076371424182e2a08111a4497a)
+| Objects                | Messages                    |
+| ---------------------- | --------------------------- |
+| Air traffic controller | check_if_plane_can_take_off |
+| Plane                  | take_off_from_airport       |
+| Airport                | check_if_plane_left         |
 
 ```
 As an air traffic controller
@@ -130,7 +134,11 @@ To ensure safety
 I want to prevent landing when the airport is full
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#62df0513276e44858f149a0d64bfe64f)
+| Objects                | Messages                 |
+| ---------------------- | ------------------------ |
+| Air traffic controller |                          |
+| Plane                  | land_if_airport_not_full |
+| Airport Capacity       | check_if_airport_full    |
 
 ```
 As the system designer
@@ -138,7 +146,10 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#34563cec36114c93839d06c528788775)
+| Objects          | Messages          |
+| ---------------- | ----------------- |
+| System Designer  |                   |
+| Airport Capacity | override_capacity |
 
 ```
 As an air traffic controller
@@ -146,7 +157,11 @@ To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#4bc21e78b3884d8b9e974ac924017ee6)
+| Objects                | Messages               |
+| ---------------------- | ---------------------- |
+| Air traffic controller | instruct_to_take_off   |
+| Plane                  | take_off_if_not_stormy |
+| Weather                | check_if_stormy        |
 
 ```
 As an air traffic controller
@@ -154,7 +169,11 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#6c9cb6c0278846438e89417bd4cb6415)
+| Objects                | Messages           |
+| ---------------------- | ------------------ |
+| Air traffic controller | instruct_to_land   |
+| Plane                  | land_if_not_stormy |
+| Weather                | check_if_stormy    |
 
 ## Diagram
 
