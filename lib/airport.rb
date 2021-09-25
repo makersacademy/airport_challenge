@@ -19,6 +19,7 @@ class Airport
   def takeoff(plane, weather)
     raise "There are no planes in the airport." if @planes.empty?
     raise 'Too stormy to take off.' if weather.stormy?
+    raise "Plane cannot take off if it's not in the airport." if !@planes.include?(plane)
     plane.flying
     @planes.delete(plane)
     puts report_taking_off
@@ -26,7 +27,7 @@ class Airport
   end
 
   def report_taking_off
-    return "Plane is no longer at the airport."
+    return "The plane successfully took off."
   end
 
   def full?
