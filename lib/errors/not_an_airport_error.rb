@@ -1,6 +1,7 @@
 class NotAnAirportError < StandardError
 
-  DEFAULT_MESSAGE = 'Not an airport'.freeze
+  DEFAULT_MESSAGE = 'Airport code error, this may be because the plane is still' +
+                    'in the air, or there'.freeze
   
   def initialize(object, message = DEFAULT_MESSAGE)
     @object = object

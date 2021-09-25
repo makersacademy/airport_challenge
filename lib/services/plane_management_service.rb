@@ -18,9 +18,9 @@ class PlaneManagementService
   end
 
   def update_plane_status(id, status)
-    puts "updating plane status"
     plane = find_plane_by_id(id)
     plane.update_status(status)
+    "new plane status: #{plane.status}"
   end
 
   private 

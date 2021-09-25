@@ -1,4 +1,7 @@
 require_relative '../domain/airport_status_codes'
+require_relative '../errors/plane_not_at_airport_error'
+require_relative '../errors/plane_not_flying_error'
+require_relative '../errors/airport_full_error'
 
 class AirTrafficControl 
   include AirportStatusCodes
@@ -16,8 +19,8 @@ class AirTrafficControl
     plane = find_plane_by_id(plane_id)
     raise PlaneNotAtAirportError.new(plane) if plane_not_at_an_airport?(plane)
     if clear_weather?
-      @plane_management_service.update_plane_status(plane_id, TAKE_OFF)
       @airport_management_service.prepare_for_take_off(plane.status, plane_id)
+      @plane_management_service.update_plane_status(plane_id, TAKE_OFF)
       "plane #{plane.id} (#{plane.name}) cleared for take-off"
     else
       "plane #{plane.id} (#{plane.name}) deplayed take-off " +
@@ -29,8 +32,9 @@ class AirTrafficControl
     plane = find_plane_by_id(plane_id)
     raise PlaneNotFlyingError.new(plane) if plane_not_flying?(plane)
     if clear_weather?
+      attempted_landing = @airport_management_service.prepare_for_landing(airport_code, plane_id)
+      raise AirportFullError.new(plane) if attempted_landing == FULL
       @plane_management_service.update_plane_status(plane_id, LANDING)
-      @airport_management_service.prepare_for_landing(airport_code, plane_id)
       "plane #{plane.id} (#{plane.name}) cleared for landing"
     else
       "plane #{plane.id} (#{plane.name}) delayed landing " +
@@ -51,6 +55,7 @@ class AirTrafficControl
     attempted_landing = @airport_management_service.land(airport_code)
     if attempted_landing == OK
       @plane_management_service.update_plane_status(plane_id, airport_code)
+      "Successful landing of #{plane_id} at #{airport_code}"
     else
       attempted_landing
     end 

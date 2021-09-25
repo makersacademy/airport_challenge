@@ -3,9 +3,7 @@ require 'domain/airport_status_codes'
 
 describe AirTrafficControl do
   let(:plane1) { double :plane1, name: "747", id: :AAAA, status: :JFK }
-  let(:plane2) { double :plane2, id: :BBBB, status: :landed }
   let(:airport1) { double :airport1, airport_name: "John F Kennedy", id: 111, code: :JFK }
-  let(:airport2) { double :airport1, airport_name: "Heathrow", id: 222, code: :LHR }
   let(:plane_management_service) { double :plane_management_service }
   let(:airport_management_service) { double :airport_management_service }
   let(:weather_service) { double :weather_service }
@@ -107,6 +105,15 @@ describe AirTrafficControl do
         expect(airport_management_service).to receive(:find_airport_by_code).with(airport1.code).and_return(airport1)
         expect(weather_service).to receive(:weather_report).and_return(:storm)
         expect(subject.clear_for_landing(:JFK, :AAAA)).to eq expected
+      end
+
+      it 'landing not cleared due to full airport' do
+        allow(plane1).to receive(:status).and_return(:flying)
+        expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
+        expect(weather_service).to receive(:weather_report).and_return(:clear)
+        expect(airport_management_service).to receive(:prepare_for_landing).with(:JFK, plane1.id).and_return(:full)
+        expect(plane_management_service).not_to receive(:update_plane_status)
+        expect{ subject.clear_for_landing(:JFK, :AAAA) }.to raise_error(AirportFullError)
       end
     end
 

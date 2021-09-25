@@ -1,8 +1,7 @@
 require 'services/plane_management_service'
 
 describe PlaneManagementService do
-  let(:plane1) { double :plane1, name: "fake plane 1", id: 123, class: Aeroplane }
-  let(:plane2) { double :plane2, name: "fake plane 2", id: 456, class: Aeroplane }
+  let(:plane1) { double :plane1, name: "fake plane 1", id: 123, status: :flying, class: Aeroplane }
   describe '#add_plane' do
 
     it 'adds a new plane' do

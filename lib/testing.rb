@@ -3,6 +3,8 @@ require './services/airport_management_service'
 require './services/plane_management_service'
 require './services/weather_service'
 require './domain/airport'
+require './factory/airport_factory'
+require './factory/aeroplane_factory'
 
 plane_management_service = PlaneManagementService.new
 airport_management_service = AirportManagementService.new
@@ -13,18 +15,16 @@ $atc = AirTrafficControl.new(
   airport_management_service,
   weather_service)
 
-$plane1 = Aeroplane.new(:AAAA, "747")
-$plane2 = Aeroplane.new(:BBBB, "747")
-$plane3 = Aeroplane.new(:CCCC, "747")
+25.times { $atc.add_plane(AeroplaneFactory.build) }
 
-$airport1 = Airport.new("Heathrow", :LHR)
-$airport2 = Airport.new("Stansted", :STD)
-$airport3 = Airport.new("JFK", :JFK)
+$airport = AirportFactory.build
 
-$atc.add_plane($plane1)
-$atc.add_plane($plane2)
-$atc.add_plane($plane3)
+$atc.add_airport($airport)
 
-$atc.add_airport($airport1)
-$atc.add_airport($airport2)
-$atc.add_airport($airport3)
+19.times do
+  plane = AeroplaneFactory.build
+  $atc.add_plane(plane)
+  $atc.clear_for_landing($airport.code, plane.id)
+  $atc.land($airport.code, plane.id)
+end
+

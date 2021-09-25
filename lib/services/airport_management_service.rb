@@ -1,6 +1,9 @@
 require_relative '../errors/not_an_airport_error'
+require_relative '../errors/plane_not_at_airport_error'
+require_relative '../domain/airport_status_codes'
 
 class AirportManagementService
+  include AirportStatusCodes
 
   UNMANAGED_AIRPORT_MESSAGE = "Unrecognised airport".freeze
 
@@ -39,10 +42,15 @@ class AirportManagementService
   end
 
   def find_airport_by_code(code)
+    raise PlaneNotAtAirportError.new(code) if not_at_airport(code)
     @airports.find { |plane| plane.code == code } 
   end
 
   private 
+
+  def not_at_airport(code)
+    code == LANDING || code == FLYING || code == TAKE_OFF
+  end
 
   def not_an_airport?(airport)
     airport.class != Airport
