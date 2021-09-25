@@ -61,6 +61,12 @@ describe Airport do
       airport.takeoff(plane3)
       expect(airport.planes).to(eq([plane, plane4]))
     end
+    it "should raise error when calling takeoff on plane that is not at that airport" do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport2.planes << plane
+      expect{airport1.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT")
+    end
   end
 
   describe ".full?" do
