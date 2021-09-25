@@ -1,4 +1,5 @@
 require "./lib/airport"
+
 describe Airport do
   it "allows a plane to land at airport" do
     expect(subject).to respond_to(:land).with(1).arguments
@@ -7,6 +8,16 @@ describe Airport do
     expect(subject).to respond_to(:takeoff).with(1).arguments
     expect(Plane.new.departed).to eq true
   end
+  it "confirms it is no longer in the airport" do
+    airport = Airport.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport.land(plane1)
+    airport.land(plane2)
+    airport.takeoff(plane2)
+    expect(airport.planes_hub.count).to eq 1
+  end
+
   it "return an error if airport is full" do
     airport = Airport.new
     50.times { airport.land(Plane.new) }
