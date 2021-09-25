@@ -14,6 +14,17 @@ RSpec.describe "Plane" do
     expect(my_plane.land).to eq true 
   end
 
+  it "checks if a plane must not land" do
+    # arrange
+    my_plane = Plane.new("","")
+  
+    # act
+    my_plane.do_not_land
+  
+    # assert
+    expect(my_plane.do_not_land).to eq true 
+  end
+
   it "checks if a plane can takeoff" do
     # arrange
     my_plane = Plane.new("","")
@@ -23,6 +34,17 @@ RSpec.describe "Plane" do
 
     # assert
     expect(my_plane.takeoff).to eq true
+  end
+
+  it "checks if a plane must not takeoff" do
+    # arrange
+    my_plane = Plane.new("","")
+  
+    # act
+    my_plane.do_not_takeoff
+  
+    # assert
+    expect(my_plane.do_not_takeoff).to eq true 
   end
 
   it "checks a plane's ID number" do
@@ -40,13 +62,13 @@ RSpec.describe "Plane" do
 
     # arrange
     my_plane_a = Plane.new("","sky")
-    # my_plane_b = Plane.new("","airport")
+    my_plane_b = Plane.new("","airport")
 
     # act
   
     # assert
     expect(my_plane_a.check_location).to eq "sky"
-    # expect(my_plane_b.check_location).to eq "sky"
+    expect(my_plane_b.check_location).to eq "airport"
   end
 
 end

@@ -8,7 +8,15 @@ class Plane
     return true
   end
 
+  def do_not_land
+    return true
+  end
+
   def takeoff
+    return true
+  end
+
+  def do_not_takeoff
     return true
   end
 
