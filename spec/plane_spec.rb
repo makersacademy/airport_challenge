@@ -5,7 +5,7 @@ RSpec.describe "Plane" do
 # tests looking at the Plane class
   it "checks if a plane can land" do
     # arrange
-    my_plane = Plane.new("")
+    my_plane = Plane.new("","")
   
     # act
     my_plane.land
@@ -16,7 +16,7 @@ RSpec.describe "Plane" do
 
   it "checks if a plane can takeoff" do
     # arrange
-    my_plane = Plane.new("")
+    my_plane = Plane.new("","")
 
     # act
     my_plane.takeoff
@@ -28,12 +28,25 @@ RSpec.describe "Plane" do
   it "checks a plane's ID number" do
 
     # arrange
-    my_plane = Plane.new("PL001")
+    my_plane = Plane.new("PL001","")
   
     # act
   
     # assert
     expect(my_plane.check_id).to eq "PL001" 
+  end
+
+  it "checks a plane's location" do
+
+    # arrange
+    my_plane_a = Plane.new("","sky")
+    # my_plane_b = Plane.new("","airport")
+
+    # act
+  
+    # assert
+    expect(my_plane_a.check_location).to eq "sky"
+    # expect(my_plane_b.check_location).to eq "sky"
   end
 
 end

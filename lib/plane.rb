@@ -1,6 +1,7 @@
 class Plane
-  def initialize(plane_id)
+  def initialize(plane_id, plane_location)
     @id = plane_id
+    @location = plane_location
   end
 
   def land
@@ -13,5 +14,9 @@ class Plane
 
   def check_id
     return @id
+  end
+
+  def check_location
+    return @location
   end
 end
