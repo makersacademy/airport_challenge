@@ -8,4 +8,11 @@ class Airport
   def full?
     @airport.length
   end
+
+  def takeoff(plane)
+    plane
+  end
+
+  def land
+  end
 end

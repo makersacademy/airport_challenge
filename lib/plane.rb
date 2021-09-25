@@ -1,7 +1,7 @@
 class Plane
-  def takeoff
-  end
+  attr_reader :plane
 
-  def land
+  def initialize(plane)
+    @plane = plane
   end
 end
