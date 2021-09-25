@@ -6,39 +6,24 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
   def land(plane, weather = "sunny")
-    if plane.position == "air"
-      if !self.full?
-        if weather == "sunny"
-          @planes << plane
-          plane.change_position
-        else
-          raise("CANNOT LAND. THE WEATHER IS STORMY.")
-        end
-      else
-        raise("CANNOT LAND. THIS AIRPORT IS FULL.")
-      end
-    else
-      raise("CANNOT LAND. THIS PLANE IS ON THE GROUND.")
-    end
+    raise("CANNOT LAND. THIS PLANE IS ON THE GROUND.") unless plane.position == "air"
+    raise("CANNOT LAND. THE WEATHER IS STORMY.") unless weather == "sunny"
+    raise("CANNOT LAND. THIS AIRPORT IS FULL.") if full?
+    @planes << plane
+    plane.change_position
   end
+
   def takeoff(plane, weather = "sunny")
-    if self.planes.find_index(plane) != nil
-      if plane.position == "ground"
-        if weather == "sunny"
-          @planes.delete(plane)
-          plane.change_position
-        else
-          raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.")
-        end
-      else
-        raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.")
-      end
-    else
-      raise("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT")
-    end
+    raise("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT") if planes.find_index(plane).nil?
+    raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.") unless weather == "sunny"
+    raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.") unless plane.position == "ground"
+    @planes.delete(plane)
+    plane.change_position
   end
+
   def full?
-    @planes.length == @capacity ? true : false
+    @planes.length == @capacity
   end
 end
