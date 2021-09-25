@@ -1,10 +1,15 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
     context 'when weather is clear' do
     
-        it 'should land a plane'
+        it 'should land a plane in hangar' do
+            airport = Airport.new
+            plane = Plane.new
+            expect(airport.land(plane)).to eq(["Plane"])
+        end
 
         it 'should tell plane to take off'
 
