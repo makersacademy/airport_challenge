@@ -1,5 +1,9 @@
 class Plane 
 
+  def departed
+    true
+  end
+
   # def land 
   # end 
 
