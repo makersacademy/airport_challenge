@@ -2,8 +2,7 @@ require 'domain/airport'
 require 'domain/aeroplane'
 
 describe Airport do
-let(:subject) { described_class.new("Heathrow", :MAP) }
-
+  let(:subject) { described_class.new("Heathrow", :MAP) }
 
   describe '#print_airport_name' do
     it 'displays the name of the airport' do
@@ -17,7 +16,7 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
         plane_id = :ABCDEFGH
         expect(subject.prepare_for_landing(plane_id)).to eq :ok
         expect(subject.runway_status).to eq Airport::LANDING
-        expect(subject.plane_on_runway).to eq plane_id
+        expect(subject.plane_using_runway).to eq plane_id
       end
     end
     
@@ -59,11 +58,11 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
       end
     end
 
-    context 'when a plane has been cleared for take-off' do
-      it 'will not be able to land' do
+    context 'when a plane has been cleared for landing' do
+      it 'will not be able to take off' do
         plane_id = :ABCDEFGH
-        subject.prepare_for_take_off(plane_id)
-        expect(subject.land).to eq "No planes cleared for landing"
+        subject.prepare_for_landing(plane_id)
+        expect(subject.take_off).to eq "No planes cleared for take off"
       end
     end
   end
@@ -75,7 +74,7 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
         plane = :PLANE_ON_RUNWAY
         subject.prepare_for_take_off(plane)
         expect(subject.runway_status).to eq Airport::TAKE_OFF
-        expect(subject.plane_on_runway).to eq plane
+        expect(subject.plane_using_runway).to eq plane
       end
     end
 
@@ -86,6 +85,17 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
 
         plane_id = :NEXT_PLANE
         expect(subject.prepare_for_take_off(plane_id)).to eq :busy
+      end
+    end
+
+    context 'a full airport' do
+      it 'planes can still take-off from a full airport' do
+        airport = Airport.new("Busy Airport", :LHR, 1)
+        plane1 = :AAA
+        airport.prepare_for_landing(plane1)
+        airport.land
+        expect(airport.prepare_for_take_off(plane1)).to eq :ok
+
       end
     end
   end
@@ -103,8 +113,8 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
       expect(subject.plane_count).to eq 0
     end
 
-    context 'No plane cleared to land' do
-      it 'returns a message to say no planes have been cleared to land' do
+    context 'No plane cleared to take off' do
+      it 'returns a message to say no planes have been cleared to take off' do
         expect(subject.land).to eq "No planes cleared for landing"
       end
     end
@@ -113,13 +123,13 @@ let(:subject) { described_class.new("Heathrow", :MAP) }
       it 'will not be able to take-off' do
         plane_id = :ABCDEFGH
         subject.prepare_for_landing(plane_id)
-        expect(subject.take_off).to eq "No planes cleared for landing"
+        expect(subject.take_off).to eq "No planes cleared for take off"
       end
     end
 
-    #plane cleared to land so runway == busy, currently this means if the 
-    #take-off method is called, the plane that is actually waiting to land
-    #will 'take off' technically
+    # plane cleared to land so runway == busy, currently this means if the 
+    # take-off method is called, the plane that is actually waiting to land
+    # will 'take off' technically
   end
 
 end

@@ -7,16 +7,13 @@ class AirportManagementService
   end
 
   def add_airport(airport)
-    if not_an_airport?(airport)
-      raise NotAnAirportError.new(airport)
-    else
-      @airports << airport
-      :ok
-    end
+    raise NotAnAirportError.new(airport) if not_an_airport?(airport)
+    @airports << airport
+    :ok
   end
 
   def find_airport_by_code(id)
-    @airports.find { |plane| plane.code == id} 
+    @airports.find { |plane| plane.code == id } 
   end
 
   private 

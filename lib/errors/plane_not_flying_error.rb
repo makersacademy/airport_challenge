@@ -1,7 +1,7 @@
-class PlaneAlreadyLandedError < StandardError
+class PlaneNotFlyingError < StandardError
 
-  DEFAULT_MESSAGE = 'This plane has already landed!'.freeze
-
+  DEFAULT_MESSAGE = 'Plane is not flying'.freeze
+  
   def initialize(plane, message = DEFAULT_MESSAGE)
     @plane = plane
     super(message)

@@ -1,7 +1,7 @@
 require 'domain/aeroplane'
 
 describe Aeroplane do
-  $plane_id = 12345678
+  $plane_id = 12_345_678
   $plane_name = "plane_name"
   $status = :JFK
   subject = described_class.new($plane_id, $plane_name, $status)

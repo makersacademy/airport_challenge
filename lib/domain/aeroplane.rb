@@ -1,7 +1,8 @@
+require 'domain/status_codes'
+
 class Aeroplane
 
-  FLYING = :flying
-  TAKE_OFF = :take_off
+  include StatusCodes
 
   def initialize(plane_id, plane_name, status = FLYING)
     @id = plane_id

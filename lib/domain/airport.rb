@@ -1,71 +1,73 @@
-require_relative '../errors/airport_full_error'
-require_relative '../errors/bad_weather_error'
-require_relative '../errors/not_a_plane_error'
-require_relative '../errors/plane_already_landed_error'
-require_relative '../errors/plane_not_at_airport_error'
+require 'domain/status_codes'
+
 class Airport
 
-  DEFAULT_CAPACITY = 20
-  RUNWAY_EMPTY = :empty
-  LANDING = :landing
-  TAKE_OFF = :take_off
-  SUCCESS = :ok
-  BUSY = :busy
-  FULL = :full
+  include StatusCodes
 
-  def initialize(airport_name, code, capacity = DEFAULT_CAPACITY, runway_status = RUNWAY_EMPTY)
+  DEFAULT_AIRPORT_CAPACITY = 20
+
+  def initialize(airport_name, code, capacity = DEFAULT_AIRPORT_CAPACITY, runway_status = RUNWAY_EMPTY)
     @airport_name = airport_name
     @code = code
     @capacity = capacity
     @plane_count = 0
     @runway_status = runway_status
-    @plane_on_runway = RUNWAY_EMPTY
+    @plane_using_runway = RUNWAY_EMPTY
   end
 
-  attr_reader :airport_name, :code, :capacity, :runway_status, :plane_on_runway, :plane_count
+  attr_reader :airport_name, :code, :capacity, :runway_status, :plane_using_runway, :plane_count
 
   def prepare_for_landing(plane_id)
-    prepare_runway(plane_id, LANDING)
+    if runway_is_empty? && space_for_landing?
+      update_runway(plane_id, LANDING)
+      OK
+    else
+      full_or_busy
+    end
   end
 
   def prepare_for_take_off(plane_id)
-    prepare_runway(plane_id, TAKE_OFF)
+    if runway_is_empty?
+      update_runway(plane_id, TAKE_OFF)
+      OK
+    else
+      :busy
+    end
   end
 
   def land
-    unless runway_is_empty? || take_off_mode
+    if runway_is_empty? || take_off_mode
+      "No planes cleared for landing"
+    else
       clear_runway
       increase_plane_count
-      SUCCESS
-    else
-      "No planes cleared for landing"
+      OK
     end
   end
 
   def take_off
-    unless runway_is_empty? || landing_mode
+    if runway_is_empty? || landing_mode
+      "No planes cleared for take off"
+    else 
       clear_runway
       decrease_plane_count
-      SUCCESS
-    else
-      "No planes cleared for landing"
+      OK
     end
   end
 
   private
 
-  def prepare_runway(plane_id, condition)
-    if runway_is_empty? && space_at_airport?
-      @plane_on_runway = plane_id
-      @runway_status = condition
-      SUCCESS
-    else
-      if airport_is_full?
-        FULL
-      elsif runway_is_busy?
-        BUSY
-      end
+  def full_or_busy
+    if airport_is_full?
+      FULL
+    elsif runway_is_busy?
+      BUSY
     end
+  end
+
+  def update_runway(plane_id, condition)
+    @plane_using_runway = plane_id
+    @runway_status = condition
   end
 
   def landing_mode
@@ -86,7 +88,7 @@ class Airport
 
   def clear_runway
     @runway_status = RUNWAY_EMPTY
-    @plane_on_runway = RUNWAY_EMPTY
+    @plane_using_runway = RUNWAY_EMPTY
   end
 
   def runway_is_empty?
@@ -97,13 +99,12 @@ class Airport
     @runway_status != RUNWAY_EMPTY
   end
 
-  def space_at_airport?
+  def space_for_landing?
     @plane_count < @capacity
   end
 
   def airport_is_full?
     @plane_count == @capacity
   end
-
 
 end

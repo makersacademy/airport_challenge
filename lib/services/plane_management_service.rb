@@ -8,16 +8,19 @@ class PlaneManagementService
   end
 
   def add_plane(plane)
-    if not_a_plane?(plane)
-      raise NotAPlaneError.new(plane)
-    else
-      @planes << plane
-      :ok
-    end
+    raise NotAPlaneError.new(plane) if not_a_plane?(plane)
+    @planes << plane
+    :ok
   end
 
   def find_plane_by_id(id)
-    @planes.find { |plane| plane.id == id} 
+    @planes.find { |plane| plane.id == id } 
+  end
+
+  def update_plane_status(id, status)
+    puts "updating plane status"
+    plane = find_plane_by_id(id)
+    plane.update_status(status)
   end
 
   private 
