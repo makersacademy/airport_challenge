@@ -8,6 +8,8 @@ end
 
 describe "#forecast" do
   it 'generates a weather forecast' do
-  expect(Weather.new.forecast).to eq("stormy")
-end
+    weather = Weather.new
+    allow(weather).to receive(:rand).and_return(2)
+    expect(weather.forecast).to eq("stormy")
+  end
 end
