@@ -2,12 +2,12 @@ require 'services/air_traffic_control'
 require 'domain/status_codes'
 
 describe AirTrafficControl do
-  let(:plane1) { double :plane1, id: :AAAA, status: :JFK }
+  let(:plane1) { double :plane1, name: "747", id: :AAAA, status: :JFK }
   let(:plane2) { double :plane2, id: :BBBB, status: :landed }
-  let(:airport1) { double :airport1, id: 111, code: :JFK }
+  let(:airport1) { double :airport1, name: "John F Kennedy", id: 111, code: :JFK }
   let(:airport2) { double :airport1, id: 222, code: :LHR }
-  let(:plane_management_service) { double :plane_management_service}
-  let(:airport_management_service) { double :airport_management_service}
+  let(:plane_management_service) { double :plane_management_service }
+  let(:airport_management_service) { double :airport_management_service }
   let(:weather_service) { double :weather_service }
   let(:subject) {
     described_class.new(
@@ -37,6 +37,14 @@ describe AirTrafficControl do
         expect(airport_management_service).to receive(:prepare_for_take_off).with(plane1.status, plane1.id).and_return(:ok)
         expect(weather_service).to receive(:weather_report).and_return(:clear)
         subject.clear_for_take_off(:AAAA)
+      end
+
+      it 'landing not cleared due to bad weather' do
+        expected = "plane #{plane1.id} (#{plane1.name}) deplayed take-off due to bad weather at John F Kennedy"
+        expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
+        expect(airport_management_service).to receive(:find_airport_by_code).with(plane1.status).and_return(airport1)
+        expect(weather_service).to receive(:weather_report).and_return(:storm)
+        expect(subject.clear_for_take_off(:AAAA)).to eq expected
       end
     end
 
@@ -69,6 +77,15 @@ describe AirTrafficControl do
         expect(airport_management_service).to receive(:prepare_for_landing).with(plane1.status, plane1.id).and_return(:ok)
         expect(weather_service).to receive(:weather_report).and_return(:clear)
         subject.clear_for_landing(:AAAA)
+      end
+
+      it 'take-off not cleared due to bad weather' do
+        allow(plane1).to receive(:status).and_return(:flying)
+        expected = "plane AAAA (747) delayed landing due to bad weather at John F Kennedy"
+        expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
+        expect(airport_management_service).to receive(:find_airport_by_code).with(plane1.status).and_return(airport1)
+        expect(weather_service).to receive(:weather_report).and_return(:storm)
+        expect(subject.clear_for_landing(:AAAA)).to eq expected
       end
     end
 

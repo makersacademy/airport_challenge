@@ -6,7 +6,11 @@ class Airport
 
   DEFAULT_AIRPORT_CAPACITY = 20
 
-  def initialize(airport_name, code, capacity = DEFAULT_AIRPORT_CAPACITY, runway_status = RUNWAY_EMPTY)
+  def initialize(
+    airport_name, 
+    code, 
+    capacity = DEFAULT_AIRPORT_CAPACITY, 
+    runway_status = RUNWAY_EMPTY)
     @airport_name = airport_name
     @code = code
     @capacity = capacity
