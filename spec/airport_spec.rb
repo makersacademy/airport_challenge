@@ -8,10 +8,14 @@ describe Airport do
     expect(Plane.new.departed).to eq true
   end
   it "return an error if airport is full" do
-    airport1 = Airport.new
+    airport = Airport.new
     plane1 = Plane.new
-    airport1.land(plane1)
-    expect { airport1.land(Plane.new) }.to raise_error
+    airport.land(plane1)
+    expect { airport.land(Plane.new) }.to raise_error
     "this airport is full"
+  end
+  it "has a default airport capacity that can be overridden" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 50
   end
 end
