@@ -16,13 +16,10 @@ describe Airport do
         expect(airport.planes).to be_empty
     end
 
-    it "does not allow planes to land when airport is full" do 
+    it "does not allow planes to land when airport is full (20 planes)" do
         airport = Airport.new
-        5.times { 
-        plane = Plane.new
-        airport.land(plane) 
-        }
-        plane6 = Plane.new 
-        expect { airport.land(plane6) }.to raise_error("Plane cannot land since airport is full")
+        Airport::DEFAULT_CAPACITY.times { airport.land Plane.new }
+        expect { airport.land Plane.new }.to raise_error("Plane cannot land since airport is full")
     end
+
 end
