@@ -26,4 +26,9 @@ class Airport
     return @number_of_planes
   end
 
+  def park_plane(plane)
+    @planes_parked.push(plane)
+    return true
+  end
+
 end

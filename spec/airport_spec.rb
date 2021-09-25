@@ -58,4 +58,27 @@ RSpec.describe "Airport" do
     expect(my_airport.how_many_planes_in_airport).to eq 1
   end
 
+  it "checks that a plane can land at the airport" do
+    # arrange
+    my_airport = Airport.new(20)
+  
+    # act
+    my_airport.park_plane("Plane 2")
+
+    # assert
+    expect(my_airport.park_plane("Plane 2")).to eq true
+  end
+
+  it "checks that a plane landing at the airport is added to @planes_parked" do
+    # arrange
+    my_airport = Airport.new(20)
+  
+    # act
+    my_airport.park_plane("Plane 2")
+
+    # assert
+    expect(my_airport.which_planes_in_airport).to eq ["Plane 1", "Plane 2"]
+
+  end
+
 end
