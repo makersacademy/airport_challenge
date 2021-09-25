@@ -15,4 +15,11 @@ describe Airport do
         airport.take_off(plane)
         expect(airport.planes).to be_empty
     end
+
+    it "does not allow planes to land when airport is full" do 
+        plane = Plane.new
+        airport = Airport.new([plane])
+        plane2 = Plane.new
+        expect { airport.land(plane2) }.to raise_error("Plane cannot land since airport is full")
+    end
 end

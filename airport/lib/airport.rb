@@ -9,6 +9,7 @@ class Airport
     end
 
     def land(plane)
+        fail "Plane cannot land since airport is full" if @planes.length == 1
         @planes << plane
     end
 
@@ -16,5 +17,6 @@ class Airport
         @planes.delete(plane)
     end
 end 
+
 
 
