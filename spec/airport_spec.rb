@@ -1,9 +1,10 @@
 require './lib/airport.rb'
+require './lib/weather.rb'
 
 describe Airport do
   let (:airport) { subject }
   let (:plane) {Plane.new}
-
+  
   describe 'Airport should respond to messages' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:takeoff) }
@@ -38,6 +39,16 @@ describe Airport do
 
       expect { airport.land(Plane.new) }.to raise_error "Airport is full, cannot land plane"
     end
+
+    # describe 'weather conditions' do
+    #   it 'should not land a plane if the weather is stormy' do
+
+    #     expect { airport.land(plane, good_weather) }.to raise_error "Too stormy to land"
+    #   end
+
+    #   it 'should land a plane if the weather is not stormy' do
+    #   end
+    # end
   end
 
   describe '#takeoff' do
