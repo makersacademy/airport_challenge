@@ -32,22 +32,17 @@ class AirportFactory
     "Indira Gandhi International Airport", 
   ].freeze
 
-  def self.build(weather_service)
+  def self.build()
     Airport.new(
       AirportFactory::NAMES.sample, 
-      generate_id, 
       AirportFactory::STATUS_CODES.sample, 
-      weather_service, 
-      DEFAULT_CAPACITY
     )
   end
 
-  def self.build_with_options(weather_service, name = AirportFactory::NAMES.sample, code = AirportFactory::STATUS_CODES.sample, capacity = DEFAULT_CAPACITY)
+  def self.build_with_options(name = AirportFactory::NAMES.sample, code = AirportFactory::STATUS_CODES.sample, capacity = DEFAULT_CAPACITY)
     Airport.new(
-      name, 
-      generate_id(5), 
-      code, 
-      weather_service, 
+      name,
+      code,
       capacity
     )
   end

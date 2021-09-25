@@ -6,81 +6,104 @@ require_relative '../errors/plane_not_at_airport_error'
 class Airport
 
   DEFAULT_CAPACITY = 20
+  RUNWAY_EMPTY = :empty
+  LANDING = :landing
+  TAKE_OFF = :take_off
+  SUCCESS = :ok
+  BUSY = :busy
+  FULL = :full
 
-  def initialize(airport_name, id, code, weather_service, capacity = DEFAULT_CAPACITY)
+  def initialize(airport_name, code, capacity = DEFAULT_CAPACITY, runway_status = RUNWAY_EMPTY)
     @airport_name = airport_name
-    @id = id
     @code = code
-    @weather_service = weather_service
     @capacity = capacity
-    @planes_at_terminal = []
+    @plane_count = 0
+    @runway_status = runway_status
+    @plane_on_runway = RUNWAY_EMPTY
   end
 
-  attr_reader :id, :airport_name, :code, :capacity
+  attr_reader :airport_name, :code, :capacity, :runway_status, :plane_on_runway, :plane_count
 
-  def land_plane(plane)
-    raise NotAPlaneError.new(plane) if not_a_plane?(plane)
-    begin
-      check_landing_conditions(plane)
-      @planes_at_terminal << plane
-      plane.update_status(code)
-      :ok
-    rescue => error
-      "cannot land #{error.effected_plane.id}: #{error.message}"
-    end 
+  def prepare_for_landing(plane_id)
+    prepare_runway(plane_id, LANDING)
   end
 
-  def take_off(plane)
-    raise NotAPlaneError.new(plane) if not_a_plane?(plane)
-    begin
-      pre_flight_checks(plane)
-      @planes_at_terminal.delete(plane)
-      plane.update_status(Aeroplane::FLYING)
-      :ok
-    rescue => error
-      "#{error.effected_plane.id} cannot take-off: #{error.message}"
-    end 
+  def prepare_for_take_off(plane_id)
+    prepare_runway(plane_id, TAKE_OFF)
   end
 
-  def view_planes_at_terminal
-    @planes_at_terminal.map { |plane| plane.id }
+  def land
+    unless runway_is_empty? || take_off_mode
+      clear_runway
+      increase_plane_count
+      SUCCESS
+    else
+      "No planes cleared for landing"
+    end
+  end
+
+  def take_off
+    unless runway_is_empty? || landing_mode
+      clear_runway
+      decrease_plane_count
+      SUCCESS
+    else
+      "No planes cleared for landing"
+    end
   end
 
   private
 
-  def check_landing_conditions(plane)
-    raise PlaneAlreadyLandedError.new(plane) unless plane_is_not_present?(plane)
-    raise AirportFullError.new(plane) if airport_is_full?
-    raise BadWeatherError.new(plane) if bad_weather?
+  def prepare_runway(plane_id, condition)
+    if runway_is_empty? && space_at_airport?
+      @plane_on_runway = plane_id
+      @runway_status = condition
+      SUCCESS
+    else
+      if airport_is_full?
+        FULL
+      elsif runway_is_busy?
+        BUSY
+      end
+    end
   end
 
-  def pre_flight_checks(plane)
-    raise BadWeatherError.new(plane) if bad_weather?
-    raise PlaneNotAtAirportError.new(plane) if plane_is_not_present?(plane)
+  def landing_mode
+    @runway_status == LANDING
   end
 
-  def find_plane(plane_to_check)
-    @planes_at_terminal.select { |stored_plane| stored_plane.id == plane_to_check.id }
-  end
-  
-  def plane_is_not_present?(plane)
-    find_plane(plane).empty?
+  def take_off_mode
+    @runway_status == TAKE_OFF
   end
 
-  def not_a_plane?(plane)
-    plane.class != Aeroplane
+  def increase_plane_count
+    @plane_count += 1
   end
 
-  def current_plane_count
-    @planes_at_terminal.size
+  def decrease_plane_count
+    @plane_count -= 1
+  end
+
+  def clear_runway
+    @runway_status = RUNWAY_EMPTY
+    @plane_on_runway = RUNWAY_EMPTY
+  end
+
+  def runway_is_empty?
+    @runway_status == RUNWAY_EMPTY
+  end
+
+  def runway_is_busy?
+    @runway_status != RUNWAY_EMPTY
+  end
+
+  def space_at_airport?
+    @plane_count < @capacity
   end
 
   def airport_is_full?
-    current_plane_count == @capacity
+    @plane_count == @capacity
   end
 
-  def bad_weather?
-    @weather_service.weather_report == :storm
-  end
 
 end

@@ -3,8 +3,6 @@ require_relative './id_generator'
 
 class AeroplaneFactory 
   extend IdGenerator
-  
-  DEFAULT_CAPACITY = 100
 
   NAMES = [
     "Airbus A220", 
@@ -21,19 +19,11 @@ class AeroplaneFactory
   ].freeze
 
   def self.build
-    Aeroplane.new(generate_id, AeroplaneFactory::NAMES.sample, DEFAULT_CAPACITY)
-  end
-
-  def self.build_with_capacity(capacity)
-    Aeroplane.new(generate_id, AeroplaneFactory::NAMES.sample, capacity)
+    Aeroplane.new(generate_id(8).to_sym, AeroplaneFactory::NAMES.sample)
   end
 
   def self.build_with_name(name)
-    Aeroplane.new(generate_id, name, DEFAULT_CAPACITY)
-  end
-
-  def self.build_with_name_and_capacity(name, capacity)
-    Aeroplane.new(generate_id, name, capacity)
+    Aeroplane.new(generate_id(8).to_sym, name)
   end
 
 end
