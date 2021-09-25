@@ -1,4 +1,10 @@
 class Airport
-  def empty?
+  attr_reader :airport
+  
+  def initialize
+    @airport = []
+  end
+
+  def full?
   end
 end

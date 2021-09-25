@@ -11,6 +11,11 @@ describe Plane do
 end
 
 describe "#takeoff" do
+  it 'allows a plane to take off from the airport' do
+  end
+
+describe "#land" do
   it 'lands a plane at the airport' do
   end
+end
 end

@@ -1,7 +1,14 @@
 require 'airport'
 
 describe Airport do
-  it 'responds to the method empty?' do
-    expect(subject).to respond_to(:empty?)
+  it 'responds to the method full?' do
+    expect(subject).to respond_to(:full?)
+  end
+end
+
+describe "#full" do
+  it 'tells us if the airport has any planes in it' do
+    newAirport = Airport.new
+    expect(newAirport.airport.length).to eq 0 
   end
 end
