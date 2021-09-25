@@ -97,14 +97,14 @@ or `airport.takeoff(plane1)`
 
 
 
-[edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) covered:
+[Edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) covered:
+-----
 
 * Raises an exception when the same plane tries to land twice
 * Raises an exception when the same plane tries to take off whilst already in the air
 * Raises an exception if a plane is asked to takeoff from the wrong hangar
 
 Features
-
 -----
 * All tests pass (13 examples, 0 failures)
 * [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md): COVERAGE: 100.00% -- 111/111 lines in 4 files
