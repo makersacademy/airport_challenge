@@ -44,12 +44,11 @@ describe Airport do
     expect(subject.airborne?(plane)).to be true
   end
 
-  describe '#land' do
-    it "should raise an error when full" do
-      plane_1 = Plane.new
-      plane_2 = Plane.new
-      subject.land(plane_1)
-      expect{subject.land(plane_2)}.to raise_error "You can't land here. We're full!"
+  describe "initializarion" do
+    it "should have a deafault capacity of planes it can take" do
+      Airport::DEFAULT_CAPACITY.times{subject.land(Plane.new)}
+      expect{subject.land(Plane.new)}.to raise_error "You can't land here. We're full!"
     end
   end
+
 end 
