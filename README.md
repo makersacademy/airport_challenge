@@ -47,3 +47,26 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+Nouns:
+- 
+- 
+
+Verb:
+- 
+- 
+
+| Objects | Messages |
+| ------- | -------- |
+| Air Traffic Controller ||
+| Plane | Take Off |
+| Plane | Land |
+| Airport | Full |
+| Weather | Stormy |
+
+| Objects | Messages |
+| ------- | -------- |
+| System Designer ||
+| Capacity | Override |
+
+| Bike <----> Working? <-----> True / False |
+| DockingStation <----> release_bike <-----> a Bike |
