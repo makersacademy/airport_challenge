@@ -14,14 +14,13 @@ class Plane
   end
 
   def land
-    current_weather = storm_check
     if @@flight_status == 0
-        return "This plane is already grounded."
-    elsif @@flight_status == 1 && current_weather == "storm"
-        return "Too stormy for this plane to land."
+      return "This plane is already grounded."
+    elsif storm_check == false # This is error line. Fix method
+      @@flight_status -= 1 
+      return "The plane has landed."
     else 
-        @@flight_status =- 1
-        return "The plane has landed."
+      return "Too stormy for this plane to land."
     end
   end
 

@@ -16,8 +16,8 @@ RSpec.describe Plane do
   describe ".land" do
     it "@flight_status = flying" do
       testplane = subject.initialise(1)
-      teststorm = double("noStorm", :storm_check => "clear")
-      teststorm
+      teststorm = double()
+      allow(teststorm).to receive(:storm).and_return false
       expect(subject.land).to eq("The plane has landed.")
     end
     it "@flight_status = grounded" do
@@ -26,11 +26,11 @@ RSpec.describe Plane do
     end
   end
 	
-	describe ".take_off" do
+	 describe ".take_off" do
     it "@flight_status = flying" do
       testplane = subject.initialise(1)
-      teststorm = double("noStorm", :storm_check => "clear")
-      teststorm
+      teststorm = double()
+      allow(teststorm).to receive(:storm).and_return false
       expect(subject.take_off).to eq("This plane is already flying.")
     end
     it "@flight_status = grounded" do
@@ -42,8 +42,8 @@ RSpec.describe Plane do
   describe ".storm" do
     it "@flight_status = flying" do
       testplane = subject.initialise(1)
-      teststorm = double("guaranteedStorm", :storm_check => "storm")
-      teststorm
+      teststorm = double()
+      allow(teststorm).to receive(:storm_check).and_return true
       expect(subject.land).to eq("Too stormy for this plane to land.")
     end
   end
