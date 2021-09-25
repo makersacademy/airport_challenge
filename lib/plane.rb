@@ -6,12 +6,11 @@ class Plane
     @grounded = grounded
   end
 
-  def can_land(airport)
+  def can_land(_airport)
     !grounded
   end
 
-  def can_takeoff(airport)
+  def can_takeoff(_airport)
     grounded
   end
-
 end

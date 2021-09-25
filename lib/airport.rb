@@ -23,6 +23,7 @@ class Airport
   def takeoff(plane)
     weather = Weather.new.weather_conditions
     raise "Weather is stormy. Takeoff not permitted." if weather == "stormy"
+    raise "Plane already in the sky" if plane.grounded == false
     planes.delete(plane)
   end
 
