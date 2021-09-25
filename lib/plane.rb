@@ -1,14 +1,8 @@
 class Plane 
   attr_accessor :grounded
 
-  def initialize(status = "undecided")
-    if status == "grounded"
-      @grounded = true
-    elsif status == "in flight"
-      @grounded = false
-    else
-      @grounded = status
-    end
+  def initialize(grounded = false)
+    @grounded = grounded 
   end  
 
   def land 
