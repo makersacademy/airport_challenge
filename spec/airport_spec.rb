@@ -9,10 +9,10 @@ RSpec.describe "Airport" do
     my_airport = Airport.new(20)
   
     # act
-    my_airport.plane_in_airport?
+    my_airport.specific_plane_in_airport?
   
     # assert
-    expect(my_airport.plane_in_airport?).to eq true 
+    expect(my_airport.specific_plane_in_airport?).to eq true 
   end
 
   it "checks if the airport is full" do
@@ -27,7 +27,6 @@ RSpec.describe "Airport" do
   end
 
   it "checks an airport's maximum capacity" do
-
     # arrange
     my_airport = Airport.new(20)
   
@@ -35,6 +34,28 @@ RSpec.describe "Airport" do
   
     # assert
     expect(my_airport.check_capacity).to eq 20
+  end
+
+  it "finds out which planes are in the airport" do
+    # arrange
+    my_airport = Airport.new(20)
+
+    # act
+    my_airport.which_planes_in_airport
+
+    # assert
+    expect(my_airport.which_planes_in_airport).to eq ["Plane 1"]
+  end  
+
+  it "counts how many planes are in the airport" do
+    # arrange
+    my_airport = Airport.new(20)
+  
+    # act
+    my_airport.how_many_planes_in_airport
+
+    # assert
+    expect(my_airport.how_many_planes_in_airport).to eq 1
   end
 
 end

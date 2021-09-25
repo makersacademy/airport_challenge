@@ -1,10 +1,10 @@
 class Airport
   def initialize(default_capacity)
     @capacity = default_capacity
+    @planes_parked = ["Plane 1"]
   end
 
-
-  def plane_in_airport?
+  def specific_plane_in_airport?
     return true
   end
 
@@ -15,4 +15,15 @@ class Airport
   def check_capacity
     return @capacity
   end
+
+  def which_planes_in_airport
+    # return the contents of an array?
+    return @planes_parked
+  end
+
+  def how_many_planes_in_airport
+    @number_of_planes = @planes_parked.length
+    return @number_of_planes
+  end
+
 end
