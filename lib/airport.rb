@@ -31,4 +31,9 @@ class Airport
     return true
   end
 
+  def change_capacity(new_capacity)
+    @capacity = new_capacity
+    return true
+  end
+  
 end

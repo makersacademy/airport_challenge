@@ -78,7 +78,28 @@ RSpec.describe "Airport" do
 
     # assert
     expect(my_airport.which_planes_in_airport).to eq ["Plane 1", "Plane 2"]
+  end
 
+  it "can change an airport's maximum capacity" do
+    # arrange
+    my_airport = Airport.new(20)
+  
+    # act
+    my_airport.change_capacity(40)
+  
+    # assert
+    expect(my_airport.change_capacity(40)).to eq true
+  end
+
+  it "changes an airport's maximum capacity to 40" do
+    # arrange
+    my_airport = Airport.new(20)
+  
+    # act
+    my_airport.change_capacity(40)
+  
+    # assert
+    expect(my_airport.check_capacity).to eq 40
   end
 
 end
