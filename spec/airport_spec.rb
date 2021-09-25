@@ -13,4 +13,22 @@ describe Airport do
       expect(airport.land(plane)).to be_truthy
     end
   end
+
+  describe "#take_off" do
+    it "allows the plane to take off" do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.take_off(plane)).to be_truthy
+    end
+
+    it "confirms the plane is not at the airport anymore" do
+      airport = Airport.new
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.is_in_hangar?(plane)).to be_truthy
+      airport.take_off(plane)
+      expect(airport.is_in_hangar?(plane)).to be_falsey
+    end
+  end
 end
