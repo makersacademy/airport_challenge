@@ -1,18 +1,23 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planes
+  attr_reader :hangar
 
   def initialize
-    @planes = []
+    @hangar = []
   end
 
   def land(plane)
-    @planes << plane
+    @hangar << plane
   end
 
   def take_off(plane)
-    @planes.pop
+    hangar.delete(plane)
+    plane
+  end 
+
+  def airborne?(plane)
+    !hangar.include?(plane)
   end
-    
 end
+ 

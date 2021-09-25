@@ -27,15 +27,21 @@ describe Airport do
     end
   end
 
-  it "should allow a plane to take off" do
+  it "should release a plane after take off" do
     subject.land(plane)
     expect(subject.take_off(plane)).to eq(plane)
+  end
+
+  describe "#airborne?" do
+    it "should accept one argument" do
+      expect(subject).to respond_to(:airborne?).with(1).argument
+    end
   end
 
   it "should confirm that a plane is no longer in the airport" do
     subject.land(plane)
     subject.take_off(plane)
-    expect(subject.planes.length).to eq(0)
+    expect(subject.airborne?(plane)).to be true
   end
 
   xit "raise an error if the airport is full" do
