@@ -30,6 +30,9 @@ describe Airport do
 
   describe ".takeoff" do
     let(:plane) {double(:plane, :position => "ground", :change_position => "air")}
+    let(:plane2) {double(:plane2, :position => "ground", :change_position => "air")}
+    let(:plane3) {double(:plane3, :position => "ground", :change_position => "air")}
+    let(:plane4) {double(:plane4, :position => "ground", :change_position => "air")}
     it "should show plane is no longer in airport array after airport tells it to takeoff" do
       subject.planes << plane
       subject.takeoff(plane, "sunny")
@@ -50,6 +53,13 @@ describe Airport do
     it "should raise error when asking a flying plane to takeoff" do
       allow(plane).to receive(:position).and_return("air")
       expect{subject.takeoff(plane)}.to(raise_error("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR."))
+    end
+    it "when 2 planes takeoff, those 2 specific planes should not be in the airport array and the others remain" do
+      airport = Airport.new
+      [plane, plane2, plane3, plane4].each {|plane| airport.planes << plane}
+      airport.takeoff(plane2)
+      airport.takeoff(plane3)
+      expect(airport.planes).to(eq([plane, plane4]))
     end
   end
 
