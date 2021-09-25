@@ -27,7 +27,8 @@ describe "#land" do
   it 'lands a plane at the airport' do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.land(plane)).to eq(plane)
+    airport.land(plane)
+    expect(airport.airport.length).to eq 1
   end
 end
 
