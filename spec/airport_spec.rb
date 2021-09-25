@@ -17,9 +17,8 @@ describe Airport do
   # end
 
   it 'returns error if the airport is full' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
+    airport = Airport.new(10)
+    10.times { airport.land(Plane.new) }
     expect {airport.land(Plane.new)}.to raise_error 'airport is full'
   end
 
