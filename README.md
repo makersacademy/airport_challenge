@@ -110,7 +110,10 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#16e7c1e70ac8446bbb1801e0c7771f00)
+| Objects                | Messages         |
+| ---------------------- | ---------------- |
+| Air traffic controller | use_if_working   |
+| Plane                  | check_if_working |
 
 ```
 As an air traffic controller
