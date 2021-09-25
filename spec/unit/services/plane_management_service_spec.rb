@@ -32,7 +32,7 @@ describe PlaneManagementService do
       subject.add_plane(plane1)
       expect(plane1).to receive(:update_status).with(:landing)
       subject.update_plane_status(123, :landing)
-      
     end
   end
+
 end

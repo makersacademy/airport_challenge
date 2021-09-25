@@ -8,6 +8,11 @@ describe NotAnAirportError do
     it 'returns the default message' do
       expect(subject.message).to eq NotAnAirportError::DEFAULT_MESSAGE
     end
+
+    it 'returns a custom message' do
+      subject = described_class.new(thing, "custom")
+      expect(subject.message).to eq 'custom'
+    end
   end
 
   describe '#effected_object' do

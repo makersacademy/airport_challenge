@@ -1,8 +1,7 @@
-require 'domain/status_codes'
+require_relative 'airport_status_codes'
 
 class Airport
-
-  include StatusCodes
+  include AirportStatusCodes
 
   DEFAULT_AIRPORT_CAPACITY = 20
 

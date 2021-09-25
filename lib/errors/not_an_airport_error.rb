@@ -2,9 +2,9 @@ class NotAnAirportError < StandardError
 
   DEFAULT_MESSAGE = 'Not an airport'.freeze
   
-  def initialize(object)
+  def initialize(object, message = DEFAULT_MESSAGE)
     @object = object
-    super(DEFAULT_MESSAGE)
+    super(message)
   end
 
   def object_passed

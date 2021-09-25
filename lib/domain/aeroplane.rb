@@ -1,8 +1,7 @@
-require 'domain/status_codes'
+require_relative 'airport_status_codes'
 
 class Aeroplane
-
-  include StatusCodes
+  include AirportStatusCodes
 
   def initialize(plane_id, plane_name, status = FLYING)
     @id = plane_id
