@@ -17,13 +17,12 @@ describe Airport do
 
   describe '#takeoff' do
     it { is_expected.to respond_to :takeoff }
-    it { is_expected.to respond_to(:takeoff).with(1).argument }
     it 'allows a plane to takeoff from an airport' do
       allow(plane).to receive(:takeoff)
     end
     it 'allows a plane to takeoff from an airport and confirms that it is no longer in the airport' do
       subject.land(plane)
-      subject.takeoff(plane)
+      subject.takeoff
       expect(subject.planes).not_to include(plane)
     end
   end
