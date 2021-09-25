@@ -6,7 +6,6 @@ group :test do
   gem 'rspec'
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
-  gem 'rake' , '>= 0.9.2'
 end
 
 group :development, :test do
