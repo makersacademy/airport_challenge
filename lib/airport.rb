@@ -3,8 +3,8 @@ class Airport
   end
 
   def take_off(plane)
-    @plane = Plane
-    plane.departed = true
+    # @plane = Plane
+    # plane.departed = true
   end
   # def permission_to_land
   # end 
