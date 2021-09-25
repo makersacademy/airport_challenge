@@ -1,25 +1,45 @@
 require 'airport'
 
 describe Airport do
+  plane = Plane.new
+
   it "should respond to #land" do
     expect(subject).to respond_to(:land)
   end
 
+  describe "#land" do
+    it "should accept one argument" do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+  end
+
   it "should allow a plane to land at the airport" do
-    expect(subject.land).to be_a Plane
+    expect(subject.land(plane)).to eq([plane])
   end
 
   it "should respond to #take_off" do
     expect(subject).to respond_to(:take_off)
   end
 
-  it "should respond to #full?" do
-    expect(subject).to respond_to(:full?)
+  describe "#take_off" do
+    it "should accept one argument" do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
+  end
+
+  it "should allow a plane to take off" do
+    subject.land(plane)
+    expect(subject.take_off(plane)).to eq(plane)
+  end
+
+  it "should confirm that a plane is no longer in the airport" do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes.length).to eq(0)
+  end
+
+  xit "raise an error if the airport is full" do
+    airport = Airport.new
+    expect{airport.land}.to raise_error("No space left to land") 
   end
 end 
-
-describe Plane do
-  it "should confirm that the plane is airborn" do
-    expect(subject.airborn?).to eq true
-  end
-end
