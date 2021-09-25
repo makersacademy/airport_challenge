@@ -110,7 +110,7 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6cbec486-8bc6-49f3-8536-787ceb85f86c/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#16e7c1e70ac8446bbb1801e0c7771f00)
 
 ```
 As an air traffic controller
@@ -119,7 +119,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c34982b-dfb3-4d1f-a9e3-582388a46ecd/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#b6bb44076371424182e2a08111a4497a)
 
 ```
 As an air traffic controller
@@ -127,7 +127,7 @@ To ensure safety
 I want to prevent landing when the airport is full
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45971faa-1b28-4d1d-b9fc-35dc977f54a8/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#62df0513276e44858f149a0d64bfe64f)
 
 ```
 As the system designer
@@ -135,7 +135,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b5a0527-fa0d-4d17-b9db-94b62291cb6d/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#34563cec36114c93839d06c528788775)
 
 ```
 As an air traffic controller
@@ -143,7 +143,7 @@ To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2c19b32-6525-41d7-9bc4-4d0413a0b073/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#4bc21e78b3884d8b9e974ac924017ee6)
 
 ```
 As an air traffic controller
@@ -151,7 +151,7 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-![User Story](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/76555aec-1f30-4804-bb6d-59caf4f5b6ad/Untitled.png)
+![User Story](https://www.notion.so/Airport-Challenge-7aa85484f4024050869a069380564095#6c9cb6c0278846438e89417bd4cb6415)
 
 ## Diagram
 
