@@ -100,7 +100,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 - Have I conformed my code to styleguide rules (Hound will help you out here)?
 - Is it clear to someone unfamiliar with my codebase what's going on?
 
-1. Submit a pull request
+6. Submit a pull request
 
 ## User Stories
 
