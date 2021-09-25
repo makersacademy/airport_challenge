@@ -22,7 +22,7 @@ class Airport
 
   def takeoff(plane)
     raise "Cannot takeoff: stormy weather" if stormy?
-    raise "Error: Plane is already in the air." if !plane_in_hangar?(plane)
+    raise "Error: Plane is already in the air." unless plane_in_hangar?(plane)
     hangar.delete(plane)
   end
 
