@@ -9,12 +9,16 @@ class Airport
     end
 
     def land(plane)
-        fail "Plane cannot land since airport is full" if @planes.length == 1
+        fail "Plane cannot land since airport is full" if full?
         @planes << plane
     end
 
     def take_off(plane)
         @planes.delete(plane)
+    end
+
+    def full?
+        @planes.length == 5
     end
 end 
 
