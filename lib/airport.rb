@@ -1,5 +1,19 @@
 class Airport
-    def initialise(plane_starting_no)
-        @plane_count = plane_starting_no
+    def initialise(count)
+        @plane_count = count
+    end
+
+    def set_limit(max_planes_new)
+        @plane_limit = max_planes_new
+    end
+
+    def plane_limit_check
+        if @plane_count == @plane_limit
+            "Plane limit reached."
+            true
+            return
+        else
+            false
+        end
     end
 end
