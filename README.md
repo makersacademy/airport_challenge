@@ -47,14 +47,6 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Nouns:
-- 
-- 
-
-Verb:
-- 
-- 
-
 | Objects | Messages |
 | ------- | -------- |
 | Air Traffic Controller ||
