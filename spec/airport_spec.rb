@@ -11,8 +11,14 @@ describe Airport do
             expect(airport.land(plane)).to eq(["Plane"])
         end
 
-        it 'should tell plane to take off'
-
+        it 'should tell plane to take off' do
+            airport = Airport.new
+            plane = Plane.new
+            airport.hangar << "plane ready to take off"
+            airport.take_off
+            expect(airport.hangar.length).to eq(0)
+        end
+        
         it 'should confirm a recently airborne plane is no longer at airport'
 
     end
