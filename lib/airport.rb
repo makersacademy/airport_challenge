@@ -21,12 +21,12 @@ class Airport
     raise 'Too stormy to take off.' if weather.stormy?
     plane.flying
     @planes.delete(plane)
-    report_taking_off
+    puts report_taking_off
     plane
   end
 
   def report_taking_off
-    puts "Plane is no longer at the airport."
+    return "Plane is no longer at the airport."
   end
 
   def full?
