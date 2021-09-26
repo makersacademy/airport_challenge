@@ -1,89 +1,86 @@
-Airport Challenge
-=================
+# Airport Challenge
+
+## Intro
+
+Welcome to my airport simulator. I have designed this Ruby application as an MVP for the back-end of an airport management application. The application can currently be run through the use of IRB. The code base has 100% code coverage and functionality that meets all the requested user stories. The current features include the creation of planes and airports, each with customisable settings. Planes and Airports are managed by an AirTrafficController (ATC) service which controls flying and landing of planes, as well as some other useful messages, such as listing all flying planes or a description of an airport.
+
+A plane can land at any airport (provided the weather is acceptable) and it has clearance, Once landed, it may take off again (weather permitting). There are checks to make sure that a plane that has landed cannot land again, as well as checks to make sure that a plane that has requested to take-off is currently at the provided airport. There are two steps to landing and taking off planes. First of all clearance must be given. using the `clear_for_landing` or `clear_for_take_off` method on the `AirTrafficControl` service. Then the Take-off or Land method can be called. Once a plane has been given clearance to land/take-off, no other planes can land or take off at that airport until first plane has cleared the runway.
+
+There is a 1 in 10 chance that either a take-off or landing will not be cleared due to bad weather
+
+## Running the application
+
+- To start the application use IRB to load `run.rb` file in the `/lib` folder (`irb -r ./run.rb`).
+- This will get you started with the ATC configured - accessed with `$atc`.
+- Useful methods:
+
+| Method                 | use                                                                                                          | arguments              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| clear_for_take_off     | clears a plane for take-off, provided it is not already flying and the weather is clear                      | plane_id               |
+| clear_for_landing      | clears a plane for landing, provided it is currently flying and the weather is clear                         | airport code, plane_id |
+| take_off               | tells the plane to come in for landing, provided it has clearance and no other planes are using the runway   | airport code, plane_id |
+| land                   | tells a plane to land at a given airport, provided it has clearance and no other planes are using the runway | airport_code, plane_id |
+| add_plane              | adds a plane to be controlled through the ATC                                                                | Aeroplane              |
+| add_airport            | adds an airport to be controlled through the ATC                                                             | Airport                |
+| view_airport           | givens a description of the given airport                                                                    | airport_code           |
+| view_planes_at_airport | returns a list of planes at the given airport                                                                | airport_code           |
+| view_flying_planes     | returns a list of planes that are currently in the air                                                       |
+
+## Design choices:
+
+I had two ideas for my approach for this application. The first attempt had airports managing an array of planes ([first-attempt](https://github.com/stevej763/airport_challenge/tree/friday)) that had landed while the ATC managed flying planes.
+
+While this approach passed all the tests and worked, I felt that having multiple arrays of planes and each array constantly adding and removing planes was both inefficant and risky. [So I started fresh](docs/plan_2.0.PNG) and decided to go with an attempt that would mean there is a single-source of truth for planes. I called this the PlaneManagementService. This is injected as a dependency on the ATC and holds all the plane objects under the management of the ATC and act as a repository to the ATC for everything to do with planes. I then created it's twin for airports, the AirportManagementService. Now the ATC service has easy access to both airports and airplanes and both can be simplified. The plane simply holds a few fields such as an id, name and a status symbol matching the airport it is currently at such as :LHR or :flying if it is in the air. The ATC can then check with the weather service rather than each airport managing that individually and when errors are thrown by the airport the ATC can catch them and display a message explaining what went wrong, such as the airport being full.
+
+## Code examples
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+$atc.clear_for_take_off(:CYFTCLDX)
+ => "Plane CYFTCLDX (Airbus A330) cleared for take-off"
 
+$atc.take_off(:GRU, :CYFTCLDX)
+ => "Successful take off of CYFTCLDX at GRU"
+
+ $atc.clear_for_landing(:MCO, :CYFTCLDX)
+ => "plane CYFTCLDX (Airbus A330) cleared for landing"
+
+$atc.land(:MCO, :CYFTCLDX)
+ => "Successful landing of CYFTCLDX at MCO"
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+$atc.view_flying_planes
+ =>
+["1: CYFTCLDX - Airbus A330",
+ "2: NMSHZWBK - Boeing 777",
+ "3: XBAZRWSV - Boeing 737",
+ "4: GQOAFNTO - Airbus A320",
+ "5: XJIWPNAY - Airbus A220",
+ "6: RPOPCTMK - Airbus A320",
+ "7: YZTKGMXN - Airbus A220",
+ "8: DAEGWMPP - Concord"]
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+```
+$atc.clear_for_landing(:MCO, :CYFTCLDX)
+=> Plane is not flying, it cannot land (PlaneNotFlyingError)
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+ $atc.clear_for_landing(:MCO, :QIJYKGTQ)
+ => "Plane QIJYKGTQ (Concord) delayed landing due to bad weather at Orlando International Airport"
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+$atc.land(:MCO, :QIJYKGTQ)
+ => "No planes cleared for landing"
 
-Please create separate files for every class, module and test suite.
+ $atc.clear_for_take_off( :WSVUZUAZ)
+ => "Plane WSVUZUAZ (Airbus A330) deplayed take-off due to bad weather at Orlando International Airport"
+```
 
-In code review we'll be hoping to see:
+## Thoughts and comments
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+While I think this is a reasonable MVP given the time available, if I were to have more time there are a few things I would change.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+First of all I am not catching every error and leaving them to throw at runtime, errors such as PlaneNotAtAirportError should probably just be caught and display a simple message. However, if I were to build a front-end for this application I would probably catch these errors higher up so used my time elsewhere.
 
-**BONUS**
+I think I could also make my code a lot cleaner and follow Object Oriented patterns closer. Ideally, the AirTrafficControl class would be broken up further by having a `FlightTakeOffService` and a `FlightLandingService`, this would reduce the size of the `AirTrafficControl` class and hopefully bring it closer to puring being a resource to call on other services, rather than holding logic of it's own.
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Finally, I feel like my logic for the airports is split up over three classes. The `AirTrafficControl` class checks the weather for landings, and organises printing out messages neatly. The `PlaneManagementService` holds the details for which planes are at which airport and the `Airport` class itself is resonsible for checking the runway and if the capacity is reached. This will be confusing for other developers as the logic over which planes can land at each airport is managed by 3 different classes. Instead I should have a seperate class which manages conditions for airports - which may itself be extracted out to further services, but it would be the sole request made from the `AirTrafficControl` class for if it is ok to land or take off at that airport.
