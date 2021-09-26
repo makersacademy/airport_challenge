@@ -39,7 +39,7 @@ describe Airport do
 end
 ```
 2. I had relative ease with landing and flying out airplanes.
-3. My biggest blocker was in the integration of weather.  My weather class was in a seperate file.  It was creating random weather.  But I struggled to use a double in my unit test:
+3. My biggest blocker was in the integration of weather.  My weather class was in a separate file.  It was creating random weather.  But I struggled to use a double in my unit test:
 
 
 ```
