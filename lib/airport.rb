@@ -1,7 +1,7 @@
 require_relative './plane'
 
 class Airport
-  @@weather_possibilities = ["sunny", "cloudy", "stormy", "light rain"]
+  @@weather_possibilities = ["sunny", "sunny", "stormy", "sunny"]
 
   attr_accessor :weather
   def initialize(plane_capacity = 50)
@@ -12,7 +12,7 @@ class Airport
 
   def land(plane)
     @weather = @@weather_possibilities.sample
-    if @planes_at_airport.count < @plane_capacity && weather != "stormy" and plane.flying
+    if @planes_at_airport.count < @plane_capacity && weather != "stormy"
       plane.flying = !plane.flying
       @planes_at_airport.push(plane)
     elsif weather == "stormy"
