@@ -1,8 +1,8 @@
 require 'plane'
 
 describe Plane do
-  subject {Plane.new}
-  let(:airport) {double(:airport)}
+  subject { Plane.new }
+  let(:airport) { double(:airport) }
   it { is_expected.to respond_to(:in_airport?) }
   
   it "should be in airport if airport has just accepted plane" do

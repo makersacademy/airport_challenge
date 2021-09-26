@@ -19,35 +19,56 @@ describe Airport do
     expect(subject.planes).to be_instance_of Array
   end
 
-  it { is_expected.to respond_to(:take_off) }
-  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:land).with(2).arguments }
   
   describe "#land" do
-    let(:plane) {double :plane}
+    let(:plane) { double :plane }
+    let(:weather) { double :weather }
+
+    it "should raise error if stormy" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane, weather) }.to raise_error "Stormy"
+    end
 
     it "should raise error if airport full" do
-      subject.capacity.times {subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error "Airport Full"
+      allow(weather).to receive(:stormy?).and_return(false)
+      subject.capacity.times { subject.land(plane, weather) }
+      expect { subject.land(plane, weather) }.to raise_error "Airport Full"
     end
   
 
     it "the airport should hold the plane it lands" do
-      subject.land(plane)
+      allow(weather).to receive(:stormy?).and_return(false)
+      subject.land(plane, weather)
       expect(subject.planes.first).to eq plane
     end
+
   end
 
   describe "#take_off" do
-    let(:plane) {double :plane}
+    let(:plane) { double :plane }
+    let(:weather) { double :weather }
+
+    it "should raise error if weather is stormy" do
+      allow(weather).to receive(:stormy?).and_return(false)
+      subject.land(plane, weather)
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.take_off(weather) }.to raise_error "Stormy"
+    end
+
     it "should raise error if no planes there" do
-      expect {subject.take_off}.to raise_error "No Planes"
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect { subject.take_off(weather) }.to raise_error "No Planes"
     end
     
     it "should remove plane from planes and confirm not in airport" do
-      subject.land(plane)
-      expect(subject.take_off).to eq plane
+      allow(weather).to receive(:stormy?).and_return(false)
+      subject.land(plane, weather)
+      expect(subject.take_off(weather)).to eq plane
       expect(subject.planes).to eq []
     end
+
   end
 
 end
