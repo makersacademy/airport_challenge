@@ -5,7 +5,7 @@ describe Airport do
   context 'landing:' do
     airport = Airport.new(1500)
     let(:plane) { double("Plane", :current_airport => 0) }
-    let(:weather) { weather = double("Weather", :stormy => false) }
+    let(:weather) { double("Weather", :stormy => false) }
     
     # The same mock Plane object is reused because only the method and capacity is being tested,
     # we are are not concerned about identifying individual planes at this point
@@ -13,10 +13,10 @@ describe Airport do
     it "lands a plane and stores it" do
       expect(plane).to receive(:current_airport=).with(1500)
       airport.land(plane, weather)
-      expect(airport.hangar.length).to eq(1)
+      expect(airport.planes.length).to eq(1)
     end
     it "doesn't land when airport is full" do
-      49.times do # 1 plane is already in hangar
+      49.times do # 1 plane is already at airport
         expect(plane).to receive(:current_airport=).with(1500)
         airport.land(plane, weather)
       end
@@ -46,7 +46,7 @@ describe Airport do
 
     # Weather double is reused because we want it to not be a factor in these tests
 
-    it "removes planes from the hangar when they take off" do
+    it "removes planes from the airport when they take off" do
       allow(plane1).to receive(:current_airport=).and_return(0)
       airport.land(plane1, weather)
       allow(plane1).to receive(:current_airport).and_return(2000)
@@ -54,13 +54,13 @@ describe Airport do
       airport.take_off(plane1, weather)
       allow(plane1).to receive(:current_airport).and_return(0)
 
-      expect(airport.hangar.include?(plane1)).to eq false
+      expect(airport.planes.include?(plane1)).to eq false
       expect(plane1.current_airport).to eq 0
     end
-
+    
     it "confirms a plane has departed" do
       plane3 = double("Plane3", :current_airport => 0)
-      plane4 = double("Plane3", :current_airport => 0)
+      plane4 = double("Plane4", :current_airport => 0)
       
       allow(plane3).to receive(:current_airport=).and_return(0)
       allow(plane4).to receive(:current_airport=).and_return(0)
@@ -74,6 +74,9 @@ describe Airport do
 
       expect(airport.confirm_departure(plane3)).to eq("Plane has departed")
       expect(airport.confirm_departure(plane4)).to eq("Plane has not departed")
+
+      airport.take_off(plane4, weather)
+      allow(plane4).to receive(:current_airport).and_return(0)
     end
 
     it "only lets planes take off from airports they are in" do
@@ -85,7 +88,7 @@ describe Airport do
     it "planes already flying can't take off" do
       plane_in_sky = double("Plane in sky", :current_airport => 0)
       expect { airport.take_off(plane_in_sky)
-      }.to raise_error("Plane is already in sky")
+      }.to raise_error("Plane is already in the sky")
     end
 
   end
@@ -93,16 +96,18 @@ describe Airport do
   context 'weather:' do
     let(:airport) { Airport.new(6000) }
     let(:plane) { double("Plane", :current_airport => 0) }
-    let(:weather) { weather = double("Weather", :stormy => true) }
+    let(:bad_weather) { double("Weather", :stormy => true) }
+    let(:good_weather) { double("Weather", :stormy => false) }
 
-    it "doesn't let planes take off or land if the weather is bad" do
+    it "doesn't let planes take off or land if the weather is stormy" do
       allow(plane).to receive(:current_airport=).and_return(0)
 
-      expect { airport.land(plane, weather) }.to raise_error("Dangerous weather")
+      expect { airport.land(plane, bad_weather) }.to raise_error("Dangerous weather")
 
+      airport.land(plane, good_weather) # plane is now in airport
       allow(plane).to receive(:current_airport).and_return(6000)
 
-      expect { airport.take_off(plane, weather) }.to raise_error("Dangerous weather")
+      expect { airport.take_off(plane, bad_weather) }.to raise_error("Dangerous weather")
     end
   end
 end

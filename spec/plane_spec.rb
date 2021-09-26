@@ -1,11 +1,7 @@
 require 'plane'
 
 describe Plane do
-  plane = Plane.new(1234)
-  it "creates plane objects" do
-    expect(plane).to be_instance_of(Plane)
-  end
   it "knows it's current airport" do
-    expect(plane).to respond_to(:current_airport)
+    expect(Plane.new(1234)).to respond_to(:current_airport)
   end
 end
