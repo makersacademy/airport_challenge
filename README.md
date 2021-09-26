@@ -2,6 +2,8 @@
 
 <img src="docs/illustration.png" width="500px">
 
+&nbsp;
+
 ![](https://img.shields.io/github/last-commit/arthurfincham/airport_challenge)
 ![](https://img.shields.io/github/languages/count/arthurfincham/airport_challenge)
 ![](https://img.shields.io/github/languages/code-size/arthurfincham/airport_challenge)
