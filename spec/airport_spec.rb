@@ -10,8 +10,8 @@ describe Airport do
     # The same mock Plane object is reused because only the method and capacity is being tested,
     # we are are not concerned about identifying individual planes at this point
 
-    it "lands a plane and stores it" do
-      expect(plane).to receive(:current_airport=).with(1500)
+    it "lands a plane, updates the airport, and stores it" do
+      expect(plane).to receive(:update_airport).with(1500)
       airport.land(plane, weather)
 
       expect(airport.planes).to include plane
@@ -19,7 +19,7 @@ describe Airport do
 
     it "doesn't land when airport is full" do
       49.times do # 1 plane is already at airport
-        expect(plane).to receive(:current_airport=).with(1500)
+        expect(plane).to receive(:update_airport).with(1500)
         airport.land(plane, weather)
       end
 
@@ -51,7 +51,7 @@ describe Airport do
     # Weather double is reused because we want it to not be a factor in these tests
 
     it "removes planes from the airport when they take off" do
-      allow(plane1).to receive(:current_airport=).and_return(0)
+      allow(plane1).to receive(:update_airport).and_return(0)
       airport.land(plane1, weather)
       allow(plane1).to receive(:current_airport).and_return(2000)
 
@@ -66,8 +66,8 @@ describe Airport do
       plane3 = double("Plane3", :current_airport => 0)
       plane4 = double("Plane4", :current_airport => 0)
       
-      allow(plane3).to receive(:current_airport=).and_return(0)
-      allow(plane4).to receive(:current_airport=).and_return(0)
+      allow(plane3).to receive(:update_airport).and_return(0)
+      allow(plane4).to receive(:update_airport).and_return(0)
       # planes are asked for their current airport before landing
       airport.land(plane3, weather)
       airport.land(plane4, weather)
@@ -107,7 +107,7 @@ describe Airport do
     let(:good_weather) { double("Weather", :stormy => false) }
 
     it "doesn't let planes take off or land if the weather is stormy" do
-      allow(plane).to receive(:current_airport=).and_return(0)
+      allow(plane).to receive(:update_airport).and_return(0)
 
       expect { airport.land(plane, bad_weather) }.to raise_error("Dangerous weather")
 

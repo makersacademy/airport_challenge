@@ -14,7 +14,7 @@ class Airport
     raise "Plane is not at this airport" if confirm_departure(plane) == "Plane has departed"
     raise "Dangerous weather" if weather.stormy
     @planes.delete(plane)
-    plane.current_airport = 0
+    plane.update_airport(0)
   end
 
   def confirm_departure(plane)
@@ -27,6 +27,6 @@ class Airport
     raise "Dangerous weather" if weather.stormy
     raise "Airport full" if @planes.length == @capacity
     @planes << plane
-    plane.current_airport = @airport_id
+    plane.update_airport(@airport_id)
   end
 end
