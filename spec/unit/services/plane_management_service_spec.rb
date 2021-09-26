@@ -1,7 +1,11 @@
 require 'services/plane_management_service'
 
 describe PlaneManagementService do
-  let(:plane1) { double :plane1, name: "fake plane 1", id: 123, status: :flying, class: Aeroplane }
+  let(:plane1) { double :plane1, name: "fake plane 1", id: 123, status: :JFK, class: Aeroplane }
+  let(:plane2) { double :plane1, name: "fake plane 2", id: 123, status: :JFK, class: Aeroplane }
+  let(:flying_plane1) { double :flying_plane1, name: "flying plane 1", id: 123, status: :flying, class: Aeroplane }
+  let(:flying_plane2) { double :flying_plane2, name: "flying plane 2", id: 123, status: :flying, class: Aeroplane }
+
   describe '#add_plane' do
 
     it 'adds a new plane' do
@@ -23,6 +27,22 @@ describe PlaneManagementService do
     it 'returns nil if no plane found' do
       subject.add_plane(plane1)
       expect(subject.find_plane_by_id("invalidID")).to eq nil
+    end
+  end
+
+  describe '#find_planes_at_airport' do
+    it 'returns list of airports' do
+      subject.add_plane(plane1)
+      subject.add_plane(plane2)
+      expect(subject.find_planes_by_airport(:JFK)).to eq [plane1, plane2]
+    end
+  end
+
+  describe '#find_flying_planes' do
+    it 'returns list of planes that are currently flying' do
+      subject.add_plane(flying_plane1)
+      subject.add_plane(flying_plane2)
+      expect(subject.find_flying_planes).to eq [flying_plane1, flying_plane2]
     end
   end
 

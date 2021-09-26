@@ -17,6 +17,14 @@ class PlaneManagementService
     @planes.find { |plane| plane.id == id } 
   end
 
+  def find_planes_by_airport(code)
+    @planes.select { |plane| plane.status == code } 
+  end
+
+  def find_flying_planes
+    @planes.select { |plane| plane.status == Aeroplane::FLYING } 
+  end
+
   def update_plane_status(id, status)
     plane = find_plane_by_id(id)
     plane.update_status(status)

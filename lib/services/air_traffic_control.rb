@@ -60,13 +60,26 @@ class AirTrafficControl
   end
 
   def add_plane(plane)
-    p "Plane #{plane.id} added to ATC control"    
     @plane_management_service.add_plane(plane)
   end
 
   def add_airport(airport)
-    p "#{airport.airport_name} added to ATC control"
     @airport_management_service.add_airport(airport)
+  end
+
+  def view_airport(airport_code)
+    airport = find_airport_by_code(airport_code)
+    runway_status = airport.plane_using_runway == :empty ? "empty" : "busy"
+    p "#{airport.airport_name} (#{airport_code}) has a capacity " +
+    "of #{airport.capacity}. The runway is currenty #{runway_status}"
+  end
+
+  def view_planes_at_airport(airport_code)
+    view_planes(@plane_management_service.find_planes_by_airport(airport_code))
+  end
+
+  def view_flying_planes
+    view_planes(@plane_management_service.find_flying_planes)
   end
 
   def find_plane_by_id(plane_id)
@@ -78,6 +91,10 @@ class AirTrafficControl
   end
 
   private
+
+  def view_planes(planes)
+    planes.each_with_index.map { |plane, index| "#{index + 1}: #{plane.id} - #{plane.name}" }
+  end
 
   def attempted_landing(airport_code, plane_id, plane_name)
     begin
@@ -103,5 +120,4 @@ class AirTrafficControl
   def clear_weather?
     @weather_service.weather_report == CLEAR
   end
-
 end
