@@ -37,7 +37,7 @@ It is a basic application that is functionally useless but is intended to help m
 1. How to test-drive the building of something from start to finish (all my previous coding practice had literally no tests), including learning Rspec and Ruby syntax
 2. How to best decide between how many/what properties of each class I should have and then the methods to appropriately model the behaviour of the airport and planes
 
-# Requirements
+## Requirements
 - Ruby 3.0.0
 - Rspec for running the tests
 
