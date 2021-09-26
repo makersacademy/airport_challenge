@@ -83,7 +83,7 @@ describe Airport do
       airport = Airport.new(20)
       plane = Plane.new
       allow(plane).to receive(:stormy).and_return false
-      20.times {plane.land(airport)}
+      allow(airport).to receive(:full).and_return true
       expect{plane.land(airport)}.to raise_error "You can't land here. The airport is full!"
     end
   end
