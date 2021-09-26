@@ -10,7 +10,7 @@ class Airport
   
   def take_off(plane, weather = Weather.new)
     raise "Plane is already in the sky" if plane.current_airport.zero?
-    raise "Plane is at a different airport" if plane.current_airport != @airport_id
+    raise "Plane is at another airport" if plane.current_airport != @airport_id
     raise "Plane is not at this airport" if confirm_departure(plane) == "Plane has departed"
     raise "Dangerous weather" if weather.stormy
     @planes.delete(plane)
