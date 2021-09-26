@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane, weather = Weather.new)
+    fail "Weather is dangerous to land in" if weather.get_condition == "Stormy"
     @hangar << plane
   end
 
