@@ -10,13 +10,13 @@ class Airport
   end
 
   def land(plane)
-    fail "The weather is bad! You can't land!" if self.weather == 5
-    fail "You can't land here. We're full!" if hangar.size >= capacity
+    fail "The weather is bad! You can't land!" if stormy
+    fail "You can't land here. We're full!" if full
     @hangar << plane
   end
 
   def take_off(plane)
-    fail "The weather is bad! Stay on the ground!" if self.weather == 5
+    fail "The weather is bad! Stay on the ground!" if stormy
     hangar.delete(plane)
     plane
   end 
@@ -27,7 +27,11 @@ class Airport
 
   private
 
-  def weather
-    rand(0..5)
+  def full
+    hangar.size >= capacity
+  end
+
+  def stormy
+    self.rand(0..5) == 5
   end
 end
