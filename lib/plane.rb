@@ -1,6 +1,6 @@
-require_relative 'gatwick'
+require_relative 'airport'
 
-class Jet
+class Plane
 
   def initialize
   end

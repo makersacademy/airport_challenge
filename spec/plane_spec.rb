@@ -1,7 +1,7 @@
-require 'jet'
+require 'plane'
 
-describe Jet do
-  airport = Gatwick.new
+describe Plane do
+  airport = Airport.new
 
   it "should respond to #land" do
     expect(subject).to respond_to(:land)
@@ -17,10 +17,10 @@ describe Jet do
       end
 
       it "should raise an error if the airport is full" do
-        plane = Jet.new
-        airport = Gatwick.new
+        plane = Plane.new
+        airport = Airport.new
         allow(plane).to receive(:stormy).and_return false
-        Gatwick::DEFAULT_CAPACITY.times{plane.land(airport)}
+        Airport::DEFAULT_CAPACITY.times{plane.land(airport)}
         expect{plane.land(airport)}.to raise_error "You can't land here. The airport is full!"
       end
 
@@ -55,8 +55,8 @@ describe Jet do
     end
 
     it "should confirm that is no longer in the airport" do
-      plane = Jet.new
-      airport = Gatwick.new
+      plane = Plane.new
+      airport = Airport.new
       allow(plane).to receive(:stormy).and_return false
       plane.land(airport)
       plane.take_off(airport)
@@ -65,15 +65,15 @@ describe Jet do
   end
 end
 
-describe Gatwick do
+describe Airport do
   describe "initialization" do
     it "should provide the airport a default capacity" do
-      expect(subject.capacity).to eq(Gatwick::DEFAULT_CAPACITY)
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 
     it "should be able to vary the capacity of planes it can take" do
-      airport = Gatwick.new(20)
-      plane = Jet.new
+      airport = Airport.new(20)
+      plane = Plane.new
       allow(plane).to receive(:stormy).and_return false
       20.times {plane.land(airport)}
       expect{plane.land(airport)}.to raise_error "You can't land here. The airport is full!"
