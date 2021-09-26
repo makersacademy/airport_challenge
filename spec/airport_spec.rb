@@ -1,7 +1,7 @@
 require "airport"
 
 RSpec.describe Airport do
-  let(:plane) {double :plane, :class => Plane}
+  let(:plane) {double :plane, :class => Plane, :takeoff => true}
 
   describe "#initialize" do
     it "sets default capacity to #{Airport::DEFAULT_CAPACITY}" do
@@ -50,7 +50,12 @@ RSpec.describe Airport do
 
     it "allows takeoff if weather is good" do
       subject.receive(plane, ->{false})
-      expect(subject.send(->{false}).class).to eq(Plane)
+      expect(subject.send(->{false})).to eq(true)
+    end
+
+    it "instructs plane to take off" do
+      subject.receive(plane, ->{false})
+      expect(subject.send()).to eq(true)
     end
   end
   

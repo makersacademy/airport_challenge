@@ -9,7 +9,7 @@ class Airport
 
   def send(weather_test=WEATHER_PROC)
     if @planes.length > 0 && !(bad_weather?(weather_test))
-      return @planes.pop()
+      return @planes.pop().takeoff
     else
       return false
     end
