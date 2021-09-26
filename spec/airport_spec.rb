@@ -8,7 +8,7 @@ describe Airport do
   end
 
   describe '#initialize' do
-    it 'should initialize an empty array to store planes' do
+    it 'should create an empty array to store planes' do
       expect(subject.planes).to eq []
     end
 
