@@ -1,0 +1,24 @@
+Airport Challenge
+=================
+
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
+
+I took the TDD and AAA approach when trying to solve this challenge. I initally drew some diagrams of where the user stories overlapped and how they relied on each other. I used this to then create the basis of what requirements/tests I needed. From the tests I then used RSpec to show me errors and then I tried to solved them - the machine never lies! I started with creating classes and then methods trying to cover all the user stories and just built it up from there.
+
+I found that once I had the foundation it was usually a case of repeating the test/code until it went green. I over-coded at the start but gradually removed anything not needed using RSpec whilst still allowing the code to pass. Rubocop was really useful in showing my spaceing errors of which there were a lot! I didn't do everything Rubucop suggested as some created issues which I couldn't understand enough to fix.
+
+My code doesn't cover User Story 4: 
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+I couldn't figure out how to override my default capacity which I had set at 20. I also couldn't figure out stubs and doubles (despite reading about them) which were suggested to use in the teaching . I will be sure to bring this up at the code review. My test coverage is 76% which I am very proud of. My code isn't the most complex or even fulfils the whole of the brief but my progress from knowing nothing to attempting this challenge in 3 weeks has given me the confidence boost I've needed.
