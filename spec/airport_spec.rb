@@ -9,11 +9,12 @@ describe Airport do
 
   describe "#land" do
     it { is_expected.to respond_to(:land) }
-    it { is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:land).with(2).arguments }
 
     it "lands a new plane and adds to hangar" do
       plane = Plane.new
-      subject.land(plane)
+      weather = Weather.new
+      subject.land(plane, weather)
       expect(subject.hangar.last).to eq plane
     end
   end
@@ -22,7 +23,8 @@ describe Airport do
 
     it "removes plane from hangar after taking off" do
       plane = Plane.new
-      subject.land(plane)
+      weather = Weather.new
+      subject.land(plane, weather)
       subject.takeoff
       expect(subject.hangar).not_to include plane
     end
