@@ -1,10 +1,5 @@
 class Weather
-  attr_reader :weather
-
-  def initialize
-    @weather = weather
-  end
-
-  def random
+  def stormy?
+    rand(10).zero?
   end
 end
