@@ -11,31 +11,32 @@ describe Airport do
       allow(plane).to receive(:land).and_return([plane])
     end
     it 'prevents landing when the airport is full' do
-      subject.capacity.times { subject.land(plane) }
+      allow(subject.weather).to receive(:status) { 'sunny' }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error 'Airport full'
     end
     it 'prevents landing when the weather is stormy' do
       allow(subject.weather).to receive(:status) { 'stormy' }
-      subject.land(plane)
-      expect(subject.planes).not_to include(plane)
+      expect { subject.land(plane) }.to raise_error 'Plane cannot land in stormy weather'
     end
   end
 
   describe '#takeoff' do
     it { is_expected.to respond_to :takeoff }
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
     it 'allows a plane to takeoff from an airport' do
       allow(plane).to receive(:takeoff)
     end
     it 'allows a plane to takeoff from an airport and confirms that it is no longer in the airport' do
       subject.land(plane)
-      subject.takeoff
+      subject.takeoff(plane)
       expect(subject.planes).not_to include(plane)
     end
     it 'prevents takeoff when the weather is stormy' do
+      allow(subject.weather).to receive(:status) { 'sunny' }
       subject.land(plane)
       allow(subject.weather).to receive(:status) { 'stormy' }
-      subject.takeoff
-      expect(subject.planes).to include(plane)
+      expect { subject.takeoff(plane) }.to raise_error 'Plane cannot takeoff in stormy weather'
     end
   end
 
