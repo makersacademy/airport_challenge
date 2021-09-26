@@ -39,7 +39,7 @@ describe AirTrafficControl do
       end
 
       it 'landing not cleared due to bad weather' do
-        expected = "plane #{plane1.id} (#{plane1.name}) deplayed take-off due to bad weather at John F Kennedy"
+        expected = "Plane #{plane1.id} (#{plane1.name}) deplayed take-off due to bad weather at John F Kennedy"
         expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
         expect(airport_management_service).to receive(:find_airport_by_code).with(plane1.status).and_return(airport1)
         expect(weather_service).to receive(:weather_report).and_return(:storm)
@@ -100,7 +100,7 @@ describe AirTrafficControl do
 
       it 'landing not cleared due to bad weather' do
         allow(plane1).to receive(:status).and_return(:flying)
-        expected = "plane AAAA (747) delayed landing due to bad weather at John F Kennedy"
+        expected = "Plane AAAA (747) delayed landing due to bad weather at John F Kennedy"
         expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
         expect(airport_management_service).to receive(:find_airport_by_code).with(airport1.code).and_return(airport1)
         expect(weather_service).to receive(:weather_report).and_return(:storm)

@@ -21,9 +21,9 @@ class AirTrafficControl
     if clear_weather?
       @airport_management_service.prepare_for_take_off(plane.status, plane_id)
       @plane_management_service.update_plane_status(plane_id, TAKE_OFF)
-      "plane #{plane.id} (#{plane.name}) cleared for take-off"
+      "Plane #{plane.id} (#{plane.name}) cleared for take-off"
     else
-      "plane #{plane.id} (#{plane.name}) deplayed take-off " +
+      "Plane #{plane.id} (#{plane.name}) deplayed take-off " +
       "due to bad weather at #{find_airport_by_code(plane.status).airport_name}"
     end
   end
@@ -34,7 +34,7 @@ class AirTrafficControl
     if clear_weather?
       attempted_landing(airport_code, plane_id, plane.name)
     else
-      "plane #{plane.id} (#{plane.name}) delayed landing " +
+      "Plane #{plane.id} (#{plane.name}) delayed landing " +
       "due to bad weather at #{find_airport_by_code(airport_code).airport_name}"
     end
   end
