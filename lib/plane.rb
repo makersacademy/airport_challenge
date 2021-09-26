@@ -1,7 +1,5 @@
 class Plane
 
-    def initialize
-         
-    end
+  true
 
 end

@@ -7,25 +7,24 @@ describe Airport do
     context 'when weather is clear' do
     
          it 'should land a plane in hangar' do
-            airport = Airport.new
             plane = Plane.new
-            expect(airport.land(plane)).to eq(["Plane"])
+            weather = Weather.new
+            allow(weather).to receive(:bad?).and_return(false) 
+            expect(subject.land(plane)).to eq(["Plane"])
         end
 
         it 'should tell plane to take off' do
-            airport = Airport.new
             plane = Plane.new
-            airport.hangar << "plane ready to take off"
-            airport.take_off
-            expect(airport.hangar.length).to eq(0)
+            subject.hangar << "plane ready to take off"
+            subject.take_off
+            expect(subject.hangar.length).to eq(0)
         end
         
         it 'should confirm a recently airborne plane is no longer at airport' do
-            airport = Airport.new
             plane = Plane.new
-            airport.hangar.push("plane1", "plane2")
-            airport.take_off
-            expect(airport.hangar).to_not include('plane2')
+            subject.hangar.push("plane1", "plane2")
+            subject.take_off
+            expect(subject.hangar).to_not include('plane2')
         end
 
     end
@@ -33,7 +32,20 @@ describe Airport do
 
     context 'when weather is stormy' do
 
-        it 'should not land a plane' 
+        it 'should be confirmed as bad weather' do
+            plane = Plane.new
+            weather = Weather.new
+            allow(weather).to receive(:bad?).and_return(true) #stub
+            expect(weather.bad?).to eq(true)
+            puts weather.bad?
+        end
+
+        it 'should tell plane not to land ' do
+            plane = Plane.new
+            weather = Weather.new
+            allow(weather).to receive(:bad?).and_return true 
+            expect{ subject.land(plane) }.to raise_error "Weather is bad, cannot land plane"
+        end
 
         it 'should not tell a plane to take off' 
 
@@ -42,28 +54,25 @@ describe Airport do
     context 'when system designing' do
 
         it 'should have a default capacity' do
-            expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
+            expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
         end
 
         it 'should override the default capacity' do
-            airport = Airport.new
-            airport.capacity = 250
-            expect(airport.capacity).to_not eq Airport::DEFAULT_CAPACITY
+            subject.capacity = 250
+            expect(subject.capacity).to_not eq Airport::DEFAULT_CAPACITY
         end
         
     end
 
-
     context 'when Airport is full' do
 
         it 'should not land a plane' do
-            airport = Airport.new
             plane = Plane.new
-            airport.capacity = Airport::DEFAULT_CAPACITY
 
-            Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+            subject.capacity = Airport::DEFAULT_CAPACITY
+            Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
 
-            expect { airport.land(plane) }.to raise_error 'Airport is full'
+            expect { subject.land(plane) }.to raise_error 'Airport is full'
         end
 
     end
