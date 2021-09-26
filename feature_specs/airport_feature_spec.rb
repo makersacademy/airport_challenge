@@ -1,4 +1,4 @@
-require './lib/airport.rb'
+require './lib/airport'
 
 airport = Airport.new
 airport.land

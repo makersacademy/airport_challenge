@@ -1,10 +1,8 @@
-require './lib/airport.rb'
-# require './lib/weather.rb'
-
+require './lib/airport'
 
 describe Airport do
   let (:airport) { subject }
-  let (:plane) {Plane.new}
+  let (:plane) { Plane.new }
   
   describe 'Airport should respond to messages' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -69,7 +67,19 @@ describe Airport do
   end
 
   it 'cannot takeoff if there are no planes' do
-    expect { airport.takeoff }.to raise_error "No planes to takeoff"
+    good_weather = Weather.new
+    allow(good_weather).to receive(:stormy?) { false }
+
+    expect { airport.takeoff(good_weather) }.to raise_error "No planes to takeoff"
+  end
+
+  describe 'weather conditions' do
+    it 'plane should not takeoff if the weather is stormy' do
+      bad_weather = Weather.new
+      allow(bad_weather).to receive(:condition) { "Stormy" }
+
+      expect { airport.takeoff(bad_weather) }.to raise_error "Too stormy to take off"
+    end
   end
 end
 

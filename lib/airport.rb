@@ -1,5 +1,4 @@
-require './lib/plane.rb'
-# require './lib/weather.rb'
+require './lib/plane'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -7,18 +6,19 @@ class Airport
   attr_accessor :capacity
   attr_reader :hangar
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
   end
 
-  def land(plane, weather=Weather.new)
+  def land(plane, weather = Weather.new)
     fail "Too stormy to land" if weather.stormy?
     fail "Airport is full, cannot land plane" if full?
     @hangar << plane
   end
 
-  def takeoff
+  def takeoff(weather = Weather.new)
+    fail "Too stormy to take off" if weather.stormy?
     fail "No planes to takeoff" if empty?
     puts "Plane #{@hangar[-1]} has taken off"
     @hangar.pop
@@ -36,14 +36,14 @@ class Airport
 end
 
 class Weather
-  CONDITIONS = ["Sunny", "Stormy", "Clear", "Raining"]
+  CONDITIONS = ["Sunny", "Stormy", "Clear", "Raining"].freeze
 
   def condition
     CONDITIONS.sample
   end
 
   def stormy?
-      condition == "Stormy"
-    end
+    condition == "Stormy"
+  end
   
 end
