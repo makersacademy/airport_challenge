@@ -12,7 +12,7 @@ describe Airport do
   it 'returns error if the airport is full' do
     airport = Airport.new(10)
     10.times { airport.land(Plane.new) }
-    expect {airport.land(Plane.new)}.to raise_error 'airport is full'
+    expect {airport.land(Plane.new)}.to raise_error 'Cannot land - airport is full'
   end
 
   it 'has a default airport capacity' do
@@ -24,6 +24,12 @@ describe Airport do
     10.times { airport.land(Plane.new) } 
     airport.take_off(Plane.new)
     expect(airport.terminal.count).to eq 9
+  end
+
+  it 'checks the weather before takeoff' do
+    airport = Airport.new
+    plane = Plane.new
+    expect {airport.take_off(plane)}.to raise_error "Cannot take off - stormy weather" if airport.stormy?
   end
 end
 
