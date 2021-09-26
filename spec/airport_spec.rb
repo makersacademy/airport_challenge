@@ -105,4 +105,27 @@ describe Airport do
     expect { subject.takeoff(plane) }.to raise_error "Error: Plane is not in the hangar."
   end
 
+  # RSpec feature test that lands and takes off a number of planes
+
+  it "Simulates a busier airport" do
+    airport = Airport.new
+    plane1 = Plane.new
+    airport.land(plane1)
+    plane2 = Plane.new
+    airport.land(plane2)
+    plane3 = Plane.new
+    airport.land(plane3)
+    plane4 = Plane.new
+    airport.land(plane4)
+    plane5 = Plane.new
+    airport.land(plane5)
+    plane6 = Plane.new
+    plane7 = Plane.new
+    airport.takeoff(plane3)
+    airport.takeoff(plane1)
+    airport.land(plane7)
+    airport.land(plane6)
+    expect(airport.hangar).to eq ([plane2, plane4, plane5, plane7, plane6])
+  end
+    
 end

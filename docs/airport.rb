@@ -3,14 +3,14 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 20
   WEATHER_CUTOFF = 8
+
+  attr_reader :plane, :hangar
   
   def initialize(size = DEFAULT_CAPACITY)
     @hangar = []
     @size = size
     @weather = 1
   end
-
-  attr_reader :plane, :hangar
 
   def land(plane)
     raise "Cannot land: stormy weather" if stormy?

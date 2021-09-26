@@ -95,8 +95,13 @@ or `airport.takeoff(plane1)`
 ----->> `Cannot land: stormy weather (RuntimeError)` or 
 `Cannot takeoff: stormy weather (RuntimeError)`
 
-
-
+What I have learned during this project
+-----
+* Using irb to design a feature test
+* Using the irb feature test as a template for the RSPEC unit test
+* Only writing code to pass the unit tests (TDD Discipline)
+* Using RSPEC to ba able to test scenarios with built in randomness by using a stub
+* Writing a comprehensive readme
 
 [Edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) covered:
 -----
@@ -107,8 +112,8 @@ or `airport.takeoff(plane1)`
 
 Features
 -----
-* All tests pass (13 examples, 0 failures)
-* [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md): COVERAGE: 100.00% -- 111/111 lines in 4 files
+* All tests pass (14 examples, 0 failures)
+* [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md): COVERAGE: 100.00% -- 130/130 lines in 4 files
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
