@@ -6,11 +6,8 @@ class Weather
   end
 
   def random
-    if rand(10).zero?
-      @status = 'stormy'
-    else
-      @status = 'sunny'
-    end
+    # 10% chance of stormy weather
+    rand(10).zero? ? @status = 'stormy' : @status = 'sunny'
   end
 
 end

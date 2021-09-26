@@ -1,4 +1,4 @@
-require 'weather'
+require './lib/weather'
 
 class Airport
   attr_reader :capacity, :planes, :weather
@@ -6,15 +6,24 @@ class Airport
   def initialize(capacity = 10)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
     raise 'Airport full' if full?
-    @planes << plane
+    if weather.status == 'stormy'
+      puts "Plane cannot land in stormy weather"
+    else
+      @planes << plane
+    end
   end
 
   def takeoff
-    @planes.pop
+    if weather.status == 'stormy'
+      puts "Plane cannot takeoff in stormy weather"
+    else
+      @planes.pop
+    end
   end
 
   private

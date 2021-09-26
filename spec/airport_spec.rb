@@ -14,6 +14,11 @@ describe Airport do
       subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport full'
     end
+    it 'prevents landing when the weather is stormy' do
+      allow(subject.weather).to receive(:status) { 'stormy' }
+      subject.land(plane)
+      expect(subject.planes).not_to include(plane)
+    end
   end
 
   describe '#takeoff' do
@@ -26,9 +31,9 @@ describe Airport do
       subject.takeoff
       expect(subject.planes).not_to include(plane)
     end
-    xit 'prevents takeoff when the weather is stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
+    it 'prevents takeoff when the weather is stormy' do
       subject.land(plane)
+      allow(subject.weather).to receive(:status) { 'stormy' }
       subject.takeoff
       expect(subject.planes).to include(plane)
     end
