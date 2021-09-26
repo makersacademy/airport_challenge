@@ -18,7 +18,13 @@ describe Airport do
   describe '#take_off' do
     it "instruct planes to take off" do
       plane = Plane.new
-      expect(subject.take_off(plane)).to eq(plane)
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq("Plane took off")
+    end
+
+    it "airport is empty" do
+      plane = Plane.new
+      expect { subject.take_off(plane) }.to raise_error 'Airport empty'
     end
   end
 

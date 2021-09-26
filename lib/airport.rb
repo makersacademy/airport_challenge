@@ -19,6 +19,16 @@ class Airport
 
   def full?
     @planes_in.length == DEFAULT_CAPACITY
-  end  
+  end
+  
+  def empty?
+    @planes_in.length == 0
+  end
+
+  def take_off(plane)
+    fail 'Airport empty' if empty?
+    @planes_in.delete(plane)
+    "Plane took off"
+  end
 
 end
