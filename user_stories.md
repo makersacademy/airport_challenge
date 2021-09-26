@@ -22,12 +22,12 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 
-| Objects         | Messages                                |
-| --------------- | --------------------------------------- |
-| ATC             |                                         |
-| Passenger       |                                         |
-| Destination     |                                         |
-| Plane           |                                         |
-| Airport         | Land, Take off, Status, Capacity, Safe? |
-| System designer |                                         |
-| Weather         | Sunny state, Stormy state               |
+| Objects         | Messages                                       |
+| --------------- | ---------------------------------------------- |
+| ATC             |                                                |
+| Passenger       |                                                |
+| Destination     |                                                |
+| Plane           |                                                |
+| Airport         | Land, Take off, Status, Hangar Capacity, Safe? |
+| System designer |                                                |
+| Weather         | Sunny state, Stormy state                      |
