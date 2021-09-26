@@ -14,7 +14,7 @@ describe Airport do
       expect(plane).to receive(:current_airport=).with(1500)
       airport.land(plane, weather)
 
-      expect(airport.planes.length).to eq(1)
+      expect(airport.planes).to include plane
     end
 
     it "doesn't land when airport is full" do
