@@ -21,6 +21,7 @@ describe Plane do
     end
   
     it "should allow a plane to land at an airport" do
+      allow(subject).to receive(:stormy).and_return false
       expect(subject.land(airport)).to eq(airport.hangar << subject)
     end
 
@@ -35,6 +36,14 @@ describe Plane do
     it "should raise an error if the weather is stormy" do    
       allow(subject).to receive(:stormy).and_return true
       expect{subject.land(airport)}.to raise_error "The weather is bad! You can't land!"
+    end
+
+    it "should raise and error if plane is landed elsewhere" do
+      plane = Plane.new
+      airport = Airport.new
+      allow(plane).to receive(:stormy).and_return false
+      allow(plane).to receive(:ground_location).and_return :ground
+      expect{plane.land(airport)}.to raise_error "This plane is already on the ground!"
     end
   end
 
