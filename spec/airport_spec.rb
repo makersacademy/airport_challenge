@@ -9,7 +9,7 @@ describe Airport do
          it 'should land a plane in hangar' do
             plane = Plane.new
             weather = Weather.new
-            allow(weather).to receive(:bad?).and_return(false) 
+            allow(subject.weather).to receive(:bad?).and_return false 
             expect(subject.land(plane)).to eq(["Plane"])
         end
 
@@ -35,15 +35,14 @@ describe Airport do
         it 'should be confirmed as bad weather' do
             plane = Plane.new
             weather = Weather.new
-            allow(weather).to receive(:bad?).and_return(true) #stub
+            allow(weather).to receive(:bad?).and_return true 
             expect(weather.bad?).to eq(true)
-            puts weather.bad?
         end
 
         it 'should tell plane not to land ' do
             plane = Plane.new
             weather = Weather.new
-            allow(weather).to receive(:bad?).and_return true 
+            allow(subject.weather).to receive(:bad?).and_return true 
             expect{ subject.land(plane) }.to raise_error "Weather is bad, cannot land plane"
         end
 
@@ -67,11 +66,14 @@ describe Airport do
     context 'when Airport is full' do
 
         it 'should not land a plane' do
+        
             plane = Plane.new
+            weather = Weather.new
+            allow(subject.weather).to receive(:bad?).and_return false 
 
             subject.capacity = Airport::DEFAULT_CAPACITY
             Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-
+            
             expect { subject.land(plane) }.to raise_error 'Airport is full'
         end
 
