@@ -22,7 +22,7 @@ RSpec.describe Airport do
       airport = Airport.new
       plane = Plane.new
       airport.land(plane)
-      airport.takeoff(plane)
+      airport.takeoff
       expect(airport.planes).to_not include(plane)
     end
   end

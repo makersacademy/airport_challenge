@@ -13,7 +13,7 @@ class Airport
   end
 
   # Instructs plane to takeoff from airport
-  def takeoff(plane)
+  def takeoff
     @planes.pop
   end
 
