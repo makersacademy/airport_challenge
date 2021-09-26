@@ -4,7 +4,7 @@ describe Airport do
   let(:plane) { Plane.new } 
 
   before do
-    allow(subject).to receive(:stormy?) { false }
+    allow(subject.weather).to receive(:stormy?) { false }
   end
 
   describe '#initialize' do
@@ -35,7 +35,7 @@ describe Airport do
     end
 
     it 'should prevent landing when stormy' do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.land double :plane }.to raise_error 'Unable to land due to storm'
     end
   end
@@ -56,7 +56,7 @@ describe Airport do
 
     it 'should prevent take off when stormy' do
       subject.land(plane)
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject.weather).to receive(:stormy?) { true }
       expect { subject.takeoff }.to raise_error 'Unable to take off due to storm'
     end
   end
