@@ -1,7 +1,7 @@
 require_relative 'airport'
 
 class Plane
-attr_accessor :ground_location
+  attr_accessor :ground_location
 
   def initialize(ground_location = nil)
     @ground_location = ground_location
@@ -10,7 +10,7 @@ attr_accessor :ground_location
   def land(airport)
     fail "The weather is bad! You can't land!" if stormy
     fail "You can't land here. The airport is full!" if airport.full
-    fail "This plane is already on the ground!" if self.ground_location == :ground
+    fail "This plane is already on the ground!" if ground_location == :ground
     self.ground_location = :ground
     airport.hangar << self
   end
@@ -29,6 +29,6 @@ attr_accessor :ground_location
   private
 
   def stormy
-    rand(0..5) == 5 #stormy when 5
+    rand(0..5) == 5 # stormy when 5
   end
 end

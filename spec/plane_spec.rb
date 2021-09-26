@@ -30,12 +30,12 @@ describe Plane do
       airport = Airport.new
       allow(plane).to receive(:stormy).and_return false
       allow(airport).to receive(:full).and_return true
-      expect{plane.land(airport)}.to raise_error "You can't land here. The airport is full!"
+      expect { plane.land(airport) }.to raise_error "You can't land here. The airport is full!"
     end
 
     it "should raise an error if the weather is stormy" do    
       allow(subject).to receive(:stormy).and_return true
-      expect{subject.land(airport)}.to raise_error "The weather is bad! You can't land!"
+      expect { subject.land(airport) }.to raise_error "The weather is bad! You can't land!"
     end
 
     it "should raise and error if plane is landed elsewhere" do
@@ -43,7 +43,7 @@ describe Plane do
       airport = Airport.new
       allow(plane).to receive(:stormy).and_return false
       allow(plane).to receive(:ground_location).and_return :ground
-      expect{plane.land(airport)}.to raise_error "This plane is already on the ground!"
+      expect { plane.land(airport) }.to raise_error "This plane is already on the ground!"
     end
   end
 
@@ -54,7 +54,7 @@ describe Plane do
     
     it "should raise an error if the weather is stormy" do    
       allow(subject).to receive(:stormy).and_return true
-      expect{subject.take_off(airport)}.to raise_error "The weather is bad! Stay on the ground!"
+      expect { subject.take_off(airport) }.to raise_error "The weather is bad! Stay on the ground!"
     end
 
     it "should raise an error if plane not in the airport" do
@@ -62,7 +62,7 @@ describe Plane do
       airport = Airport.new
       airport.hangar.delete(plane)
       allow(plane).to receive(:stormy).and_return false
-      expect{plane.take_off(airport)}.to raise_error "This plane is not in this airport!"
+      expect { plane.take_off(airport) }.to raise_error "This plane is not in this airport!"
     end
   end
 
@@ -93,7 +93,7 @@ describe Airport do
       plane = Plane.new
       allow(plane).to receive(:stormy).and_return false
       allow(airport).to receive(:full).and_return true
-      expect{plane.land(airport)}.to raise_error "You can't land here. The airport is full!"
+      expect { plane.land(airport) }.to raise_error "You can't land here. The airport is full!"
     end
   end
 end
