@@ -12,5 +12,6 @@ class Airport
   end
 
   def takeoff
+    @hangar.pop
   end
 end
