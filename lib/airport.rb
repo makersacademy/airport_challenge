@@ -1,9 +1,11 @@
 require 'plane'
 
 class Airport
-  def initialize(default_capacity)
+  def initialize
+    default_capacity = 20
     @capacity = default_capacity
-    @planes_parked = ["Plane 1"]
+    @my_plane_a = Plane.new("Plane A","airport")
+    @planes_parked = [@my_plane_a]
     @number_of_planes = @planes_parked.length
   end
 
@@ -40,13 +42,13 @@ class Airport
     return @planes_parked
   end
 
-  def specific_plane_in_airport?(plane)
-    if @planes_parked.include?(plane)
-      # if plane is a member of the array called @planes_parked
-      return true
-    else
-      return false
+  def specific_plane_in_airport?(specific_plane)
+    @planes_parked.each do |plane|
+      if plane.check_id == specific_plane.check_id
+        return true
+      else
+        return false
+      end
     end
   end
-  
 end
