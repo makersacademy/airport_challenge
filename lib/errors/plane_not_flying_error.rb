@@ -1,6 +1,6 @@
 class PlaneNotFlyingError < StandardError
 
-  DEFAULT_MESSAGE = 'Plane is not flying'.freeze
+  DEFAULT_MESSAGE = 'Plane is not flying, it cannot land'.freeze
   
   def initialize(plane, message = DEFAULT_MESSAGE)
     @plane = plane

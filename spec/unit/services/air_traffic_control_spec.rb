@@ -113,7 +113,7 @@ describe AirTrafficControl do
         expect(weather_service).to receive(:weather_report).and_return(:clear)
         expect(airport_management_service).to receive(:prepare_for_landing).with(:JFK, plane1.id).and_return(:full)
         expect(plane_management_service).not_to receive(:update_plane_status)
-        expect{ subject.clear_for_landing(:JFK, :AAAA) }.to raise_error(AirportFullError)
+        expect { subject.clear_for_landing(:JFK, :AAAA) }.to raise_error(AirportFullError)
       end
     end
 

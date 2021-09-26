@@ -32,10 +32,7 @@ class AirTrafficControl
     plane = find_plane_by_id(plane_id)
     raise PlaneNotFlyingError.new(plane) if plane_not_flying?(plane)
     if clear_weather?
-      attempted_landing = @airport_management_service.prepare_for_landing(airport_code, plane_id)
-      raise AirportFullError.new(plane) if attempted_landing == FULL
-      @plane_management_service.update_plane_status(plane_id, LANDING)
-      "plane #{plane.id} (#{plane.name}) cleared for landing"
+      attempted_landing(airport_code, plane_id, plane.name)
     else
       "plane #{plane.id} (#{plane.name}) delayed landing " +
       "due to bad weather at #{find_airport_by_code(airport_code).airport_name}"
@@ -80,6 +77,19 @@ class AirTrafficControl
   end
 
   private
+
+  def attempted_landing(airport_code, plane_id, plane_name)
+    begin
+      attempted_landing = @airport_management_service.prepare_for_landing(airport_code, plane_id)
+      raise AirportFullError.new(plane_id) if attempted_landing == FULL
+      @plane_management_service.update_plane_status(plane_id, LANDING)
+      "plane #{plane_id} (#{plane_name}) cleared for landing"
+    rescue => exception
+      p "plane: #{plane_id} (#{plane_name})"
+      p "airport: #{airport_code}"
+      p "message: " + exception.message 
+    end
+  end
 
   def plane_not_flying?(plane)
     plane.status != FLYING

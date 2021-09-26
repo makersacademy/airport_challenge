@@ -1,6 +1,6 @@
 class NotAPlaneError < StandardError
 
-  DEFAULT_MESSAGE = 'Not a plane'.freeze
+  DEFAULT_MESSAGE = 'The object entered was not a plane'.freeze
   
   def initialize(object)
     @object = object

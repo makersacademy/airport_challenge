@@ -21,10 +21,11 @@ $airport = AirportFactory.build
 
 $atc.add_airport($airport)
 
-19.times do
+20.times do
   plane = AeroplaneFactory.build
   $atc.add_plane(plane)
   $atc.clear_for_landing($airport.code, plane.id)
   $atc.land($airport.code, plane.id)
 end
 
+p $atc.find_airport_by_code($airport.code)
