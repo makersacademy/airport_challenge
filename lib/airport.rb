@@ -14,7 +14,7 @@ class AirPort
   end
   
   def land(airplane)
-    fail 'Airport is full' if full?
+    return "Abort landing!" if full? || weather?
     @port << airplane
   end
 
@@ -22,10 +22,15 @@ class AirPort
     true
   end
   
-  private 
+  private
   
   def full?
     @port.count >= @capacity
+  end
+  
+  def weather?
+    weather = Weather.new
+    weather.storm
   end
   
 end
