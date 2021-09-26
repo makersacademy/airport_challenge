@@ -18,6 +18,7 @@ class Airport
   def receive(plane,weather_test=WEATHER_PROC)
     if allow?(weather_test)
       @planes << plane
+      return true
     end
   end
 

@@ -15,6 +15,7 @@ RSpec.describe Plane do
     it "doesn't land at invalid airport" do
       allow(airport).to receive(:receive).with(subject).and_return(subject)
       expect(subject.land("not an airport")).to eq(false)
+      expect(subject.landed).to eq(false)
     end
 
     # it "only lands if airport allows it" do
