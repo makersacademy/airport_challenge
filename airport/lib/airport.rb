@@ -31,6 +31,18 @@ DEFAULT_CAPACITY = 20
         weather == :stormy
     end
 
+    def random_weather
+        weather = forecast
+    end
+
+    private
+
+    OUTLOOK = [:stormy, :sunny, :sunny, :mild]
+
+    def forecast
+        OUTLOOK.sample
+    end
+
 end 
 
 

@@ -30,4 +30,8 @@ describe Airport do
         airport = Airport.new([], 20, :stormy)
         expect { airport.land(plane) }.to raise_error("Plane cannot land in stormy weather")
     end
+
+    it "allows weather to be randomly generated" do
+        expect(airport.random_weather).to eq(:stormy).or eq(:sunny).or eq(:mild)
+    end
 end
