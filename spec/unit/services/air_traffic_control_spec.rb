@@ -108,12 +108,15 @@ describe AirTrafficControl do
       end
 
       it 'landing not cleared due to full airport' do
+
         allow(plane1).to receive(:status).and_return(:flying)
         expect(plane_management_service).to receive(:find_plane_by_id).with(:AAAA).and_return(plane1)
         expect(weather_service).to receive(:weather_report).and_return(:clear)
         expect(airport_management_service).to receive(:prepare_for_landing).with(:JFK, plane1.id).and_return(:full)
         expect(plane_management_service).not_to receive(:update_plane_status)
-        expect { subject.clear_for_landing(:JFK, :AAAA) }.to raise_error(AirportFullError)
+
+        expected = "message: #{AirportFullError::DEFAULT_MESSAGE}"
+        expect(subject.clear_for_landing(:JFK, :AAAA)).to eq expected
       end
     end
 

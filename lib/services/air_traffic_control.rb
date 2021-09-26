@@ -49,12 +49,12 @@ class AirTrafficControl
   end
 
   def land(airport_code, plane_id)
-    attempted_landing = @airport_management_service.land(airport_code)
-    if attempted_landing == OK
+    plane_landing = @airport_management_service.land(airport_code)
+    if plane_landing == OK
       @plane_management_service.update_plane_status(plane_id, airport_code)
       "Successful landing of #{plane_id} at #{airport_code}"
     else
-      attempted_landing
+      plane_landing
     end 
   end
 
@@ -81,7 +81,7 @@ class AirTrafficControl
   def attempted_landing(airport_code, plane_id, plane_name)
     begin
       attempted_landing = @airport_management_service.prepare_for_landing(airport_code, plane_id)
-      raise AirportFullError.new(plane_id) if attempted_landing == FULL
+      raise AirportFullError.new if attempted_landing == FULL
       @plane_management_service.update_plane_status(plane_id, LANDING)
       "plane #{plane_id} (#{plane_name}) cleared for landing"
     rescue => exception
