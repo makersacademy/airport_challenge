@@ -12,10 +12,11 @@ describe Airport do
     it { is_expected.to respond_to(:land) }
     it { is_expected.to respond_to(:land).with(2).arguments }
 
-    it "lands a new plane and adds to hangar" do
+    it "lands plane and adds to hangar if weather is sunny" do
       plane = Plane.new
-      weather = Weather.new
-      subject.land(plane, weather)
+      sunny_weather = Weather.new
+      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      subject.land(plane, sunny_weather)
       expect(subject.hangar.last).to eq plane
     end
   end
