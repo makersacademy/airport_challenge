@@ -2,26 +2,42 @@ require 'airport'
 describe Airport do
   let (:airport) { described_class.new(10)}
   let (:plane) { double :plane }
-
-  describe '#land' do 
-    it { is_expected.to respond_to(:land).with(1).argument }
+ 
+    it 'responds to land' do
+      expect(airport).to respond_to(:land).with(1).argument
+      allow(airport).to receive(:stormy?).and_return false
+    end
 
     it 'instructs a plane to land' do
       expect(airport.land(plane)).to(eq(plane))
     end
 
-    it 'throws an error if a plane tries to land and the airport is full' do
+    it 'throws an error if a plane tries to land when full' do
+      allow(airport).to receive(:stormy?).and_return false
       10. times {airport.land(plane)}
       expect{airport.land(plane)}.to raise_error "The airport is full!"
+      end
+
+    it 'throws an error if a planes tries to land when stormy.' do
+      allow(airport).to receive(:stormy?).and_return true
+      airport.land(plane).to raise_error 'You cannot take off the weather is stormy'
     end
-
-  end
-
-  describe '#take_off' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
+  
+    it 'responds to take off' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    allow(airport).to receive(:stormy?).and_return false
+    end
 
     it 'instructs a plane to take off' do
+    allow(airport).to receive(:stormy?).and_return false
     expect(airport.take_off(plane)).to(eq(plane))
     end
-  end
+  
+    it 'throws an error if a planes tries to take_off when stormy.' do
+        allow(airport).to receive(:stormy?).and_return true
+        airport.take_off(plane).to raise_error 'You cannot take off the weather is stormy'
+    end
+ 
 end
+ 
+  
