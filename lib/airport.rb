@@ -6,7 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 30
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity= DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -17,7 +17,7 @@ class Airport
     planes << plane
   end
 
-  def take_off
+  def takeoff
     fail 'Unable to take off due to storm' if stormy?
     planes.pop
   end

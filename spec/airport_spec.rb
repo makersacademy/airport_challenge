@@ -12,11 +12,11 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-    it 'should set the default capicty to 30' do
+    it 'should set the default capacity to 30' do
       expect(subject.capacity).to eq 30
     end 
 
-    it 'should allow the default capicty to be overridden' do
+    it 'should allow the default capacity to be overridden' do
       large_airport = Airport.new(100)
       expect(large_airport.capacity).to eq 100
     end 
@@ -40,31 +40,31 @@ describe Airport do
     end
   end
 
-  describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
+  describe '#takeoff' do
+    it { is_expected.to respond_to(:takeoff) }
 
     it 'should allow a plane to take off' do
       subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.takeoff).to eq plane
     end
 
-    it 'should allow a plane to take off and report plane as not in the airport' do
+    it 'should allow a plane to take off and report plane is not in the airport' do
       subject.land(plane)
-      subject.take_off
+      subject.takeoff
       expect(subject.planes).to_not include plane
     end
 
     it 'should prevent take off when stormy' do
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.take_off }.to raise_error 'Unable to take off due to storm'
+      expect { subject.takeoff }.to raise_error 'Unable to take off due to storm'
     end
   end
 
   describe 'feature' do
     it 'should land and take off multiple planes' do
       30.times { subject.land(plane) }
-      20.times { subject.take_off }
+      20.times { subject.takeoff }
       expect(subject.planes.count).to eq 10
     end
   end
