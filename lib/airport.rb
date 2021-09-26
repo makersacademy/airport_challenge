@@ -7,7 +7,7 @@ class Airport
     @hangar = []
   end
 
-  def land(plane)
+  def land(plane, weather = Weather.new)
     @hangar << plane
   end
 
