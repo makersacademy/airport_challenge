@@ -12,27 +12,31 @@ class Airport
     @airport.length
   end
 
-  def pull_weather
-    weather = Weather.new
-    forecast = weather.forecast
-    forecast
+  def check_hangers 
+    if @airport.empty?
+      puts "Error. There are no planes to take off."
+    else
+      puts "Plane ready for take-off"
+    end
+  end
+
+  def weather_station
+    Weather.new.forecast
   end
 
   def takeoff(plane)
-    if @airport.empty?
-      "Error. There are no planes to take off."
-    else
-      "Plane has taken off."
+    check_hangers
+    if weather_station
+      puts "Skies are clear. Plane taking off."
       plane
+    else
+      puts "It's too stormy to fly"
     end
-    # fail unless pull_weather "Weather too stormy to take off"
-    # plane
-    # take off should only happen if the weather is "clear skies"
   end
 
   def land(plane)
     @airport << plane
-    "Plane has landed"
+    puts "Plane has landed"
     plane
   end
 end
