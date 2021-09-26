@@ -1,20 +1,24 @@
 require 'plane'
 
 describe Plane do
+  let(:airport) { Airport.new }
+  subject(:plane) { described_class.new }
 
-  describe '#config' do
-
-    it 'has a ground status' do
-      expect(subject.ground).to eq false
+  before do
+    allow(airport).to receive(:stormy?).and_return(false)
+  end
+  context '#landing' do
+    it 'updates location' do
+      airport.land(subject)
+      expect(subject.location).to eq airport
     end
+  end
 
-    it 'has a location' do
+  context '#take_off' do
+    it 'updates location' do
+      airport.land(subject)
+      airport.take_off(subject)
       expect(subject.location).to eq 'Sky'
     end
-
-    it 'has a name' do
-      expect(subject.name).to eq 'EZY123'
-    end
-
   end
 end
