@@ -39,7 +39,8 @@ class Airport
   end
 
   def land
-    if runway_is_empty? || take_off_mode
+    if runway_is_empty? || plane_taking_off?
+
       "No planes cleared for landing"
     else
       clear_runway
@@ -49,7 +50,7 @@ class Airport
   end
 
   def take_off
-    if runway_is_empty? || landing_mode
+    if runway_is_empty? || plane_landing?
       "No planes cleared for take off"
     else 
       clear_runway
@@ -73,14 +74,6 @@ class Airport
     @runway_status = condition
   end
 
-  def landing_mode
-    @runway_status == LANDING
-  end
-
-  def take_off_mode
-    @runway_status == TAKE_OFF
-  end
-
   def increase_plane_count
     @plane_count += 1
   end
@@ -102,6 +95,14 @@ class Airport
     @runway_status != RUNWAY_EMPTY
   end
 
+  def plane_landing?
+    @runway_status == LANDING
+  end
+
+  def plane_taking_off?
+    @runway_status == TAKE_OFF
+  end
+
   def space_for_landing?
     @plane_count < @capacity
   end
@@ -109,5 +110,4 @@ class Airport
   def airport_is_full?
     @plane_count == @capacity
   end
-
 end

@@ -12,7 +12,6 @@ require 'factory/airport_factory'
 # To ensure safety
 # I want to prevent landing when the airport is full
 
-
 describe 'Airport full feature' do
   it 'stops a plane landing' do
     given_an_airport_full_of_planes

@@ -12,7 +12,6 @@ require 'factory/airport_factory'
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
 
-
 describe 'Planes can take-off feature:' do
   it 'plane flys' do
     given_a_landed_plane_at_an_airport_managed_by_atc

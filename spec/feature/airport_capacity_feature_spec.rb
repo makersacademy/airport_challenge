@@ -1,3 +1,13 @@
+require_relative './support/given'
+require_relative './support/when'
+require_relative './support/then'
+require 'services/air_traffic_control'
+require 'services/plane_management_service'
+require 'services/airport_management_service'
+require 'services/weather_service'
+require 'factory/aeroplane_factory'
+require 'factory/airport_factory'
+
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
