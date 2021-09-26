@@ -13,8 +13,8 @@ class Weather
     when 4
       @weather = false
     end
-    # 1..3 = good weather - true means plane can take off
-    # 4 = stormy weather - false means plane cannot take off
+    # 1..3 = good weather
+    # 4 = stormy weather
     @weather
   end
 end

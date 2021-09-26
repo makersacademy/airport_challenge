@@ -21,7 +21,8 @@ class Airport
   end
 
   def weather_station
-    Weather.new.clear?
+    @weather = Weather.new
+    @weather.clear?
   end
 
   def takeoff(plane)

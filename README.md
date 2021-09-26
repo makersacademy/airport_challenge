@@ -67,6 +67,11 @@ airport.takeoff(plane)
 * Planes that are landed cannot be landed again
 * Write an RSpec feature test that lands and takes off a number of planes
 
+## Known Issues
+
+* Test 'it 'allows a plane to take off from the airport when weather is clear' is not working correctly
+
+
 ## Initial Planning
 
 | Objects | Messages |

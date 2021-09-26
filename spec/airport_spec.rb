@@ -22,7 +22,6 @@ describe "#takeoff" do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    airport.weather_station = true
     expect(airport.takeoff(plane)).to eq plane
   end
 end
