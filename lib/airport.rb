@@ -1,5 +1,6 @@
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :planes
+  attr_accessor :capacity
 
   def initialize(capacity = 10)
     @planes = []

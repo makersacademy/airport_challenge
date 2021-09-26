@@ -1,6 +1,13 @@
 require "airport"
 
 RSpec.describe Airport do
+  it "has a default capacity which can be overriden" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 10
+    airport.capacity = 15
+    expect(airport.capacity).to eq 15
+  end
+
   describe "#land" do
     it "instructs a plane to land at the airport" do
       airport = Airport.new
