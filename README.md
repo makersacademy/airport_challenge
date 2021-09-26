@@ -88,3 +88,18 @@ weather  |  stormy?
 ```
 In this case, since the weather was generated with a random number, the only way to test it reliably was to use an instance double and a stub. I've added a `let` and `context`, to refactor and avoid defining the subject twice.
 ```
+User Story 6
+---------
+
+### Design:
+
+Objects  | Messages
+------------- | -------------
+plane    |  land(airport), takeoff, in_airport?(airport)
+airport  |  full?, plane_landed
+weather  |  stormy?
+
+**Notes:**
+```
+I followed the same procedure of US5, but added a little refactor in the spec file.
+```

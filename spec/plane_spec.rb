@@ -2,6 +2,14 @@ require "plane"
 require "pry"
 
 describe Plane do
+  let(:stormy) { false }
+
+  subject do
+    stormy_weather = instance_double("Weather", :stormy? => stormy)
+    Weather.stub(:new) { stormy_weather }
+    described_class.new
+  end
+
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -16,17 +24,18 @@ describe Plane do
       subject.land(airport)
       expect { subject.land(airport) }.to raise_error "Airport is full"
     end
+
+    context "when stormy" do
+      let(:stormy) { true }
+
+      it "raises an error" do
+        airport = Airport.new
+        expect { subject.land(airport) }.to raise_error "Weather is stormy"
+      end
+    end
   end
 
   describe "#takeoff" do
-    let(:stormy) { false }
-
-    subject do
-      stormy_weather = instance_double("Weather", :stormy? => stormy)
-      Weather.stub(:new) { stormy_weather }
-      described_class.new
-    end
-
     it { is_expected.to respond_to(:takeoff) }
 
     context "when stormy" do
@@ -34,7 +43,6 @@ describe Plane do
 
       it "raises an error" do
         airport = Airport.new
-        subject.land(airport)
         expect { subject.takeoff }.to raise_error "Weather is stormy"
       end
     end
