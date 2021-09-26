@@ -22,7 +22,7 @@ My solution to the Makers Academy Week 1 Airport Challenge.
 Task
 -----
 
-`irb`
+`irb`  
 `require './docs/airport.rb'`
 
 ```
@@ -32,12 +32,12 @@ I want to instruct a plane to land at an airport
 ```
 
 * Creating the objects
-`airport = Airport.new`
-`plane = Plane.new`
+`airport = Airport.new`  
+`plane = Plane.new`  
 * Plane can be landed with 
-`airport.land(plane)`
+`airport.land(plane)`  
 * You can further check the plane now exists at the airport with
-`airport.plane`
+`airport.plane`  
 
 ```
 As an air traffic controller 
@@ -45,9 +45,9 @@ So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
-* Plane can be instructed to take off with
-`airport.takeoff(plane)`
-* To confirm the plane is no longer at the airport
+* Plane can be instructed to take off with  
+`airport.takeoff(plane)`  
+* To confirm the plane is no longer at the airport  
 `airport.hangar` 
 
 ```
@@ -56,12 +56,12 @@ To ensure safety
 I want to prevent landing when the airport is full 
 ```
 
-`plane2 = Plane.new`
-`small_airport = Airport.new(1)`
-* Attempting to land both planes will result in an error "Hangar is full"
-`small_airport.land(plane1)`
-`small_airport.land(plane2)`
------>> ` Airport is full (RuntimeError)`
+`plane2 = Plane.new`  
+`small_airport = Airport.new(1)`  
+* Attempting to land both planes will result in an error "Hangar is full"  
+`small_airport.land(plane1)`  
+`small_airport.land(plane2)`  
+----->> ` Airport is full (RuntimeError)`  
 
 ```
 As the system designer
@@ -69,8 +69,8 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-* Shown above with creation of `small_airport` demonstrating overriden defaul, adding 20 planes to `airport` will result in error (as default is set to 20 and `plane1` is currently in `airport`)
-`20.times { airport.land(Plane.new) }`
+* Shown above with creation of `small_airport` demonstrating overriden defaul, adding 20 planes to `airport` will result in error (as default is set to 20 and `plane1` is currently in `airport`)  
+`20.times { airport.land(Plane.new) }`  
 ----->> `Airport is full (RuntimeError)`
 
 ```
@@ -86,14 +86,14 @@ I want to prevent landing when weather is stormy
 * Weather has arbitrarily been assigned a value between 1 and 10, with weather > 8 being "stormy", weather <= 8 being "clear and sunny"
 * Constant WEATHER_CUTOFF used to represent this value, 8
 * On creation of the airport, weather value is set to 1 (sunny)
-* In order to change the weather, call
+* In order to change the weather, call  
 `airport.check_weather`
 * This will generate a random number between 1 and 10 and assign the weather accordingly.
-* If the weather `is stormy.`, doing the following
-`airport.land(plane1)`
-or `airport.takeoff(plane1)` 
------>> `Cannot land: stormy weather (RuntimeError)` or 
-`Cannot takeoff: stormy weather (RuntimeError)`
+* If the weather `is stormy.`, doing the following  
+`airport.land(plane1)`  
+or `airport.takeoff(plane1)`  
+----->> `Cannot land: stormy weather (RuntimeError)`  
+or `Cannot takeoff: stormy weather (RuntimeError)`
 
 What I have learned during this project
 -----
