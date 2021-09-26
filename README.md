@@ -1,3 +1,25 @@
+## Approach
+
+* Tackled each user story one by one
+* For each user story I captured the objects (nouns) and messages (verbs)
+* A minimum test was written first and made to fail
+* Minimum code was then written to make it pass followed by refactoring
+* Rubocop was run after each successful test and refactor to keep the code clean
+* If test coverage was not 100% additional tests were written until this was met
+* This enabled the test coverage to remain high throughout the entire process
+
+## Thoughts
+
+* Initially I wanted to write the land and takeoff methods for the Plane class
+* This seems 'logical' as a plane lands or takeoffs rather than an airport
+* However I quickly switched to using the Airport class instead as this was a simpler approach that still met the user stories
+
+## Outstanding issues
+
+* Its possible to land a plane at one airport then land it at another without taking off
+* I started adding more functionaility to the plane class to track plane location but then ran out of time and reverted
+
+
 Airport Challenge
 =================
 
