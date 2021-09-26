@@ -47,6 +47,28 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+## How to use
+
+```
+irb -r ./lib/airport.rb
+
+airport = Airport.new 
+  * You can add an argument to Airport.new to override the default capacity of 5.
+  * airport = Airport.new(20)
+plane = Plane.new
+airport.land(plane)
+airport.takeoff(plane)
+```
+
+## Missing Functionality
+
+* Planes can only take off from airports they are in
+* Planes that are flying cannot take off / be in an airport
+* Planes that are landed cannot be landed again
+* Write an RSpec feature test that lands and takes off a number of planes
+
+## Initial Planning
+
 | Objects | Messages |
 | ------- | -------- |
 | Air Traffic Controller ||
@@ -59,8 +81,6 @@ I want to prevent landing when weather is stormy
 | ------- | -------- |
 | System Designer ||
 | Capacity | Override |
-
-
 
 * Plane ----> Land -----> 
 * Plane ----> Take-Off ----->

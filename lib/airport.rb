@@ -2,41 +2,41 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+  DEFAULT_CAPACITY = 5
+  attr_accessor :capacity
   attr_reader :airport
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @airport = []
   end
 
   def full?
-    @airport.length
+    @airport.size >= capacity
   end
 
   def check_hangers 
-    if @airport.empty?
-      puts "Error. There are no planes to take off."
-    else
-      puts "Plane ready for take-off"
-    end
+    fail "No Planes." if @airport.empty?
+    puts "Plane ready for take-off"
   end
 
   def weather_station
-    Weather.new.forecast
+    Weather.new.clear?
   end
 
   def takeoff(plane)
     check_hangers
     if weather_station
       puts "Skies are clear. Plane taking off."
-      plane
+      airport.delete(plane)
     else
       puts "It's too stormy to fly"
     end
   end
 
   def land(plane)
+    fail "No space" if full?
     @airport << plane
     puts "Plane has landed"
-    plane
   end
 end

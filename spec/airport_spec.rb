@@ -18,43 +18,27 @@ end
 
 describe "#takeoff" do
 
-  before(:each) do
-    @airport = Airport.new
-    @plane = Plane.new
-  end
-
-  it 'should allow a plane to take off from the airport if there is one present' do
-    @airport.land(@plane)
-    expect(@airport.takeoff(@plane)).to eq(@plane)
-  end
-
-  it 'should throw an error message if no planes are landed' do
-    @airport.takeoff(@plane).to raise_error "Error. There are no planes to take off."
-  end
-
-  it 'allows a plane to take off from the airport if the weather is clear' do
-    weather = Weather.new
-    allow(weather).to receive(:rand).and_return(1)
-    # expect(weather.forecast).to eq(true)
-    expect(@airport.takeoff(@plane)).to eq @plane
+  it 'allows a plane to take off from the airport when weather is clear' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    airport.weather_station = true
+    expect(airport.takeoff(plane)).to eq plane
   end
 end
-
-  # it 'should throw an error if the weather is too stormy' do
-  #   airport = Airport.new
-  #   plane = Plane.new
-  #   weather = Weather.new
-  #   allow(weather).to receive(:rand).and_return(2)
-  #   expect(weather.forecast).to eq(false)
-  #   expect(airport.takeoff(plane)).to eq("Weather too stormy to take off")
-  # end
 
 describe "#land" do
   it 'lands a plane at the airport' do
     airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
+    airport.land(Plane.new)
     expect(airport.airport.length).to eq 1
+  end
+end
+
+describe "#check_hangers" do
+  it 'should return an error message when no planes present' do
+    @airport = Airport.new
+    expect { @airport.check_hangers }.to raise_error("No Planes.")
   end
 end
 
@@ -63,13 +47,27 @@ describe "#full" do
     @airport = Airport.new
   end
 
-  it 'should return 0 if no planes have been landed' do
-    expect(@airport.full?).to eq 0 
+  it 'should return false if airport is not full' do
+    expect(@airport.full?).to eq false 
   end
 
-  it 'should return 1 if a plane exists at the airport' do
-    plane = Plane.new
-    @airport.land(plane)
-    expect(@airport.full?).to eq 1
+  describe 'initialization' do
+
+    it 'has a variable capacity' do
+      airport = Airport.new 10
+      10.times { airport.land(Plane.new) }
+      expect { airport.land(Plane.new) }.to raise_error "No space"
+    end
+  end
+  
+  describe 'initialization' do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'has a default capacity' do
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect { subject.land(Plane.new) }.to raise_error "No space"
+    end
   end
 end
