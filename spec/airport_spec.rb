@@ -10,6 +10,12 @@ RSpec.describe Airport do
 
   it { is_expected.to respond_to(:take_off) }
 
+  it 'has a capacity default of 3' do
+    capacity = airport.instance_variable_get(:@capacity)
+
+    expect(capacity).to eq 3
+  end
+
   describe '#land' do
     it 'lands a plan at airport' do
       airport.land(plane)
@@ -21,6 +27,22 @@ RSpec.describe Airport do
       (1..3).each { airport.land(Plane.new) }
 
       expect { airport.land(plane) }.to raise_error 'Airport is full'
+    end
+
+    context 'when capacity is set to 4' do
+      let(:airport) { described_class.new(4) }
+
+      it 'raises error if airport already has 4 planes' do
+        (1..4).each { airport.land(Plane.new) }
+
+        expect { airport.land(plane) }.to raise_error 'Airport is full'
+      end
+
+      it 'does not raises error if airport takes a 4th plane' do
+        (1..3).each { airport.land(Plane.new) }
+
+        expect { airport.land(plane) }.not_to raise_error
+      end
     end
   end
 

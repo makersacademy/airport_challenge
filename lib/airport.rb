@@ -5,12 +5,13 @@ require 'plane'
 class Airport
   attr_reader :hanger
 
-  def initialize
+  def initialize(capacity = 3)
     @hanger = []
+    @capacity = capacity
   end
 
   def land(plane)
-    raise 'Airport is full' if hanger.count >= 3
+    raise 'Airport is full' if hanger.count >= @capacity
 
     hanger.push(plane)
   end
