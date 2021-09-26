@@ -36,4 +36,14 @@ RSpec.describe Plane do
     end
   end
 
+  describe "#takeoff" do
+    it "sets the landed status to false" do
+      allow(airport).to receive(:receive).with(subject).and_return(true)
+      subject.land(airport)
+      subject.takeoff
+      expect(subject.landed).to eq(false)
+    end
+
+  end
+
 end

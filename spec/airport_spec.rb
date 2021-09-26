@@ -55,7 +55,7 @@ RSpec.describe Airport do
 
     it "instructs plane to take off" do
       subject.receive(plane, ->{false})
-      expect(subject.send()).to eq(true)
+      expect(subject.send(->{false})).to eq(true)
     end
   end
   
