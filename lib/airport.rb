@@ -4,11 +4,10 @@ require_relative 'weather'
 class AirPort
 
   DEFAULT_CAPACITY = 20
-
   attr_accessor :capacity
   attr_reader :port
   
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @port = []
     @capacity = capacity
   end
@@ -19,7 +18,10 @@ class AirPort
   end
   
   def take_off
+    return "Abort - no planes to take off" if @port.count.zero?
     return "Abort - bad weather!" if weather?
+    @port.pop
+    "Air plane successfully depart"
   end
   
   def exist?
