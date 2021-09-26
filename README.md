@@ -10,7 +10,7 @@ Planes can only take off from airports they are in, and they cannot take off whe
 
 Occasional extreme and stormy weather can occur when the weather instance variable in each airport is a 9 or 10. In this case, planes will not be able to take off or land. 
 
-Whilst I had an idea of creating a seperate class for weather, I believed that the weather at each airport is an attribute of the airport itself. Meaning that different airports will be have different weather. 
+Whilst I had an idea of creating a seperate class for weather, I believed that the weather at each airport is an attribute of the airport itself. Meaning that different airports will have different weather. 
 
 I have included a brief transcript below which shows the code in action. 
 
