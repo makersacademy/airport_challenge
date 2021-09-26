@@ -25,6 +25,12 @@ describe Plane do
       expect { subject.land(airport) }.to raise_error "Airport is full"
     end
 
+    it "doesn't let a landed plane, land again" do
+      airport = Airport.new(10)
+      subject.land(airport)
+      expect { subject.land(airport) }.to raise_error "Already landed"
+    end
+
     context "when stormy" do
       let(:stormy) { true }
 
@@ -37,6 +43,10 @@ describe Plane do
 
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff) }
+
+    it "doesn't let a plane that took off, take off again" do
+      expect { subject.takeoff }.to raise_error "Already took off"
+    end
 
     context "when stormy" do
       let(:stormy) { true }
