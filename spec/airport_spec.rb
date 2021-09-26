@@ -19,6 +19,12 @@ describe Airport do
       subject.land(plane, sunny_weather)
       expect(subject.hangar.last).to eq plane
     end
+    it "prevents landing plane if weather is stormy" do
+      plane = Plane.new
+      stormy_weather = Weather.new
+      allow(stormy_weather).to receive(:get_condition) { "Stormy" }
+      expect { subject.land(plane, stormy_weather) }.to raise_error "Weather is dangerous to land in"
+    end
   end
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff) }
