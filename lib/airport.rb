@@ -42,7 +42,8 @@ class Weather
     CONDITIONS.sample
   end
 
-  # def stormy?
-  #     condition == "Stormy"
-  #   end
+  def stormy?
+      condition == "Stormy"
+    end
+  
 end
