@@ -28,33 +28,41 @@ describe Airport do
   end
   
   describe '#land' do
-  it 'should add a new plane to the hangar' do
-    airport.land(plane)
     
-    expect(airport.hangar.last).to eq plane
-  end
+    it 'should add a new plane to the hangar' do
+      good_weather = Weather.new
+      allow(good_weather).to receive(:stormy?) { false }
+      
+      airport.land(plane, good_weather)
+      
+      expect(airport.hangar.last).to eq plane
+    end
   
-  it 'should not land a plane if the Airport is full' do
-    airport = Airport.new(30)
-    30.times { airport.land(plane) }
-    
-    expect { airport.land(Plane.new) }.to raise_error "Airport is full, cannot land plane"
-  end
+    it 'should not land a plane if the Airport is full' do
+      airport = Airport.new(30)
+      good_weather = Weather.new
+      allow(good_weather).to receive(:stormy?) { false }
+      30.times { airport.land(plane, good_weather) }
+      
+      expect { airport.land(Plane.new, good_weather) }.to raise_error "Airport is full, cannot land plane"
+    end
   
-  # describe 'weather conditions' do
-  #   it 'should not land a plane if the weather is stormy' do
-  
-  #     expect { airport.land(plane, good_weather) }.to raise_error "Too stormy to land"
-  #   end
-  
-  #   it 'should land a plane if the weather is not stormy' do
-  #   end
-  # end
+    describe 'weather conditions' do
+      it 'should not land a plane if the weather is stormy' do
+        bad_weather = Weather.new
+        allow(bad_weather).to receive(:condition) { "Stormy" }
+
+        expect { airport.land(plane, bad_weather) }.to raise_error "Too stormy to land"
+      end
+    end
   end
 
-  describe '#takeoff' do
+  describe '#takeoff' 
   it 'should remove plane from hangar' do
-    airport.land(plane)
+    good_weather = Weather.new
+    allow(good_weather).to receive(:stormy?) { false }
+
+    airport.land(plane,good_weather)
     airport.takeoff
     
     expect(airport.hangar).not_to include plane
@@ -63,7 +71,6 @@ describe Airport do
   it 'cannot takeoff if there are no planes' do
     expect { airport.takeoff }.to raise_error "No planes to takeoff"
   end
-  end  
 end
 
 describe Weather do
@@ -73,7 +80,7 @@ describe Weather do
 
   describe '#stormy' do
     it 'should return true if conditions are stormy' do
-       allow(subject).to receive(:condition) { "Stormy" }
+      allow(subject).to receive(:condition) { "Stormy" }
 
       expect(subject.stormy?).to eq true
     end
