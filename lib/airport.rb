@@ -8,25 +8,28 @@ class Airport
     @capacity = capacity
   end
   
+  def full?
+    @planes.length >= @capacity
+  end
+
+  def land(plane, weather = Weather.new)
+    raise "Plane already at this airport" if confirm_departure(plane) == "Plane has not departed"
+    raise "Plane already at another airport" unless plane.current_airport.zero?
+    raise "Dangerous weather" if weather.stormy
+    raise "Airport full" if full?
+    @planes << plane
+    plane.update_airport(@airport_id)
+  end
+
   def take_off(plane, weather = Weather.new)
     raise "Plane is already in the sky" if plane.current_airport.zero?
-    raise "Plane is at another airport" if plane.current_airport != @airport_id
-    raise "Plane is not at this airport" if confirm_departure(plane) == "Plane has departed"
+    raise "Plane is at another airport" if confirm_departure(plane) == "Plane has departed"
     raise "Dangerous weather" if weather.stormy
     @planes.delete(plane)
     plane.update_airport(0)
   end
 
   def confirm_departure(plane)
-    @planes.include?(plane) ? "Plane has not departed" : "Plane has departed"
-  end
-
-  def land(plane, weather = Weather.new)
-    raise "Plane already at this airport" if plane.current_airport == @airport_id
-    raise "Plane already at another airport" if plane.current_airport != 0
-    raise "Dangerous weather" if weather.stormy
-    raise "Airport full" if @planes.length == @capacity
-    @planes << plane
-    plane.update_airport(@airport_id)
+    plane.current_airport == @airport_id ? "Plane has not departed" : "Plane has departed"
   end
 end
