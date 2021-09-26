@@ -1,5 +1,5 @@
 # Airport challenge
-My approach to this challenge was to prevent as many edge cases as possible. Planes can be stored in each airport in the respective **planes** array, but I felt that checking if the plane object is in the current airports planes would not be enough. For example you could **.land** a plane at airport 3000 at airport 2000 because it's not in airport 2000s hangar.
+My approach to this challenge was to prevent as many edge cases as possible. Planes can be stored in each airport in the respective **planes** array, but I felt that checking if the plane object is in the current airports planes would not be enough. For example you could **.land** a plane which is at airport 3000 at airport 2000, because it's not in airport 2000s hangar.
 
 To prevent this I used a **current_airport** attribute for the **Plane** class. Prior to this, the plane objects didn't store any information because they didn't need to. This attribute allows you specifically see where a plane currently is, and allows for more detailed error messages.
 
