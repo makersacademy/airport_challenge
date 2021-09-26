@@ -32,6 +32,7 @@ class Airport
   end
 
   def stormy
-    self.rand(0..5) == 5
+    rand(0..5) == 5 #stormy when 5
   end
 end
+ 
