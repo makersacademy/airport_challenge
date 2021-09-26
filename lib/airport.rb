@@ -7,7 +7,7 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane, weather = "sunny")
+  def land(plane, weather)
     raise("CANNOT LAND. THIS PLANE IS ON THE GROUND.") unless plane.position == "air"
     raise("CANNOT LAND. THE WEATHER IS STORMY.") unless weather == "sunny"
     raise("CANNOT LAND. THIS AIRPORT IS FULL.") if full?
@@ -15,7 +15,7 @@ class Airport
     plane.change_position
   end
 
-  def takeoff(plane, weather = "sunny")
+  def takeoff(plane, weather)
     raise("CANNOT TAKEOFF. THIS PLANE IS NOT AT THIS AIRPORT") if planes.find_index(plane).nil?
     raise("CANNOT TAKEOFF. THE WEATHER IS STORMY.") unless weather == "sunny"
     raise("CANNOT TAKEOFF. THIS PLANE IS IN THE AIR.") unless plane.position == "ground"
