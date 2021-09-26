@@ -13,7 +13,7 @@ require 'factory/airport_factory'
 # I want to prevent landing when weather is stormy
 
 describe 'Planes can land feature:' do
-  it 'lands the plane' do
+  it 'stops the plane from landing' do
     given_a_plane_and_an_airport_managed_by_atc
     when_the_weather_is_bad
     then_the_plane_cannot_land

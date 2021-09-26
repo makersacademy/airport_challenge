@@ -86,9 +86,9 @@ class AirTrafficControl
       @plane_management_service.update_plane_status(plane_id, LANDING)
       "plane #{plane_id} (#{plane_name}) cleared for landing"
     rescue => exception
-      p "plane: #{plane_id} (#{plane_name})"
-      p "airport: #{airport_code}"
-      p "message: " + exception.message 
+      p "Plane: #{plane_id} (#{plane_name})"
+      p "Airport: #{airport_code}"
+      p "Error: " + exception.message 
     end
   end
 

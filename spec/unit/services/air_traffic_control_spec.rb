@@ -115,7 +115,7 @@ describe AirTrafficControl do
         expect(airport_management_service).to receive(:prepare_for_landing).with(:JFK, plane1.id).and_return(:full)
         expect(plane_management_service).not_to receive(:update_plane_status)
 
-        expected = "message: #{AirportFullError::DEFAULT_MESSAGE}"
+        expected = "Error: #{AirportFullError::DEFAULT_MESSAGE}"
         expect(subject.clear_for_landing(:JFK, :AAAA)).to eq expected
       end
     end

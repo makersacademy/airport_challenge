@@ -20,6 +20,18 @@ def then_the_plane_cannot_land
   expect(@plane.status).to eq Aeroplane::FLYING
 end
 
+def then_another_plane_cannot_land(capacity = Airport::DEFAULT_AIRPORT_CAPACITY)
+  airport_code = @airport.code
+  airport_name = @airport.airport_name
+  plane = AeroplaneFactory.build
+  @atc.add_plane(plane)
+  expected = "Error: This airport is full you cannot land any more planes"
+  
+  expect(@atc.clear_for_landing(airport_code, plane.id)).to eq expected
+  expect(@airport.plane_count).to eq capacity
+  expect(plane.status).to eq Aeroplane::FLYING
+end
+
 def then_the_plane_can_take_off
   airport_code = @airport.code
   plane_id = @plane.id
