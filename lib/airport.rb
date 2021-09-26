@@ -19,10 +19,11 @@ class Airport
   end
 
   def takeoff(plane)
-    if @airport.length < 1
-      return "Error. There are no planes to take off."
+    if @airport.empty?
+      "Error. There are no planes to take off."
     else
-      return plane
+      "Plane has taken off."
+      plane
     end
     # fail unless pull_weather "Weather too stormy to take off"
     # plane
@@ -32,5 +33,6 @@ class Airport
   def land(plane)
     @airport << plane
     "Plane has landed"
+    plane
   end
 end

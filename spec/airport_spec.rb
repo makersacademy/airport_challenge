@@ -17,16 +17,23 @@ describe Airport do
 end
 
 describe "#takeoff" do
-  it 'should allow a plane to take off from the airport if there is one present' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.land(plane)
-    expect(airport.takeoff(plane)).to eq(plane)
+
+  before(:each) do
+    @airport = Airport.new
+    @plane = Plane.new
   end
+
+  it 'should allow a plane to take off from the airport if there is one present' do
+    # airport = Airport.new
+    # plane = Plane.new
+    @airport.land(@plane)
+    expect(@airport.takeoff(@plane)).to eq(@plane)
+  end
+
   it 'should return a message if no planes are landed' do
-    airport = Airport.new
-    plane = Plane.new
-    expect(airport.takeoff(plane)).to eq("Error. There are no planes to take off.")
+    # airport = Airport.new
+    # plane = Plane.new
+    expect(@airport.takeoff(@plane)).to eq("Error. There are no planes to take off.")
   end
 
   # it 'allows a plane to take off from the airport if the weather is clear' do
@@ -59,6 +66,10 @@ describe "#land" do
 end
 
 describe "#full" do
+  # before do
+  #   airport = Airport.new
+  # end
+
   it 'should return 0 if no planes have been landed' do
     airport = Airport.new
     expect(airport.full?).to eq 0 
