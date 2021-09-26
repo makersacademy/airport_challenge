@@ -1,9 +1,7 @@
 class Weather
 
-attr_accessor :bad
-
     def bad?
-        bad = rand(1..3)  
+        bad = rand(1..5)  
         if bad == 1
             true
         else

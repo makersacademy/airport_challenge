@@ -14,16 +14,17 @@ class Airport
 
     def land(plane)
         raise "Airport is full" if full
-        raise "Weather is bad, cannot land plane" if @weather.bad?
-        @hangar << plane.class.to_s #adds Plane into hangar, instead of object id
+        raise "Weather is bad, cannot land plane" if weather.bad?
+        hangar << plane.class.to_s #adds Plane into hangar, instead of object id
     end
 
     def take_off
-        @hangar.pop
+        raise "Weather is bad, plane cannot take off" if weather.bad?
+        hangar.pop
     end
 
     def full
-        @hangar.length >= capacity
+        hangar.length >= capacity
     end
 
 
