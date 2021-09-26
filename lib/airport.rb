@@ -4,9 +4,7 @@ class Airport
   def initialize
     default_capacity = 20
     @capacity = default_capacity
-    @my_plane_a = Plane.new("Plane A","airport")
-    @planes_parked = [@my_plane_a]
-    @number_of_planes = @planes_parked.length
+    @planes_parked = []
   end
 
   def check_capacity
@@ -15,7 +13,7 @@ class Airport
 
   def change_capacity(new_capacity)
     @capacity = new_capacity
-    return true
+    return @capacity
   end
 
   def how_many_planes_in_airport
@@ -25,16 +23,13 @@ class Airport
 
   def airport_full?
     @number_of_planes = @planes_parked.length
-    if @number_of_planes >= @capacity
-      return true
-    else
-      return false
-    end
+    return true if @number_of_planes >= @capacity
+    return false if @number_of_planes < @capacity
   end
 
   def park_plane(plane)
     @planes_parked.push(plane)
-    return true
+    return @planes_parked
   end
 
   def which_planes_in_airport
@@ -43,12 +38,13 @@ class Airport
   end
 
   def specific_plane_in_airport?(specific_plane)
+    if @planes_parked == []
+      return false
+    end
     @planes_parked.each do |plane|
-      if plane.check_id == specific_plane.check_id
-        return true
-      else
-        return false
-      end
+      return true if plane.check_id == specific_plane.check_id
+      return false if plane.check_id != specific_plane.check_id
     end
   end
+
 end
