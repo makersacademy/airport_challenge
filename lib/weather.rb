@@ -1,5 +1,16 @@
 class Weather
-  def stormy?
-    rand(10).zero?
+  attr_reader :status
+
+  def initialize
+    @status = random
   end
+
+  def random
+    if rand(10).zero?
+      @status = 'stormy'
+    else
+      @status = 'sunny'
+    end
+  end
+
 end

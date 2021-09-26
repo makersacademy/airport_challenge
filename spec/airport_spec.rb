@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   describe '#landing' do
     it { is_expected.to respond_to :land }
@@ -25,6 +26,12 @@ describe Airport do
       subject.takeoff
       expect(subject.planes).not_to include(plane)
     end
+    xit 'prevents takeoff when the weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      subject.land(plane)
+      subject.takeoff
+      expect(subject.planes).to include(plane)
+    end
   end
 
   describe '#airport status' do
@@ -42,5 +49,6 @@ describe Airport do
     it 'returns an empty array when there are no planes at the airport' do
       expect(subject.planes).to eq Array.new
     end
+    it { is_expected.to respond_to :weather }
   end
 end

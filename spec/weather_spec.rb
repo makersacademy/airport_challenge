@@ -1,17 +1,19 @@
 require 'weather'
 
 describe Weather do
-  it { is_expected.to respond_to :stormy? }
-  it 'should either be true or false' do
-    expect(subject.stormy?).to be(true).or be(false)
+  let(:weather) { double :weather } 
+  it { is_expected.to respond_to :status }
+  it { is_expected.to respond_to :random }
+  it "should return either 'sunny' or 'stormy'" do
+    allow(weather).to receive(:random).and_return('sunny','stormy')
   end
-  it 'should respond true when stormy' do
-    allow(subject).to receive(:stormy?) { true }
-    expect(subject.stormy?).to eq true
+  it "should return 'sunny' when sunny" do
+    allow(weather).to receive(:status) { 'sunny' }
+    expect(weather.status).to eq 'sunny'
   end
-  it 'should respond false when sunny' do
-    allow(subject).to receive(:stormy?) { false }
-    expect(subject.stormy?).to eq false
+  it "should return 'stormy' when stormy" do
+    allow(weather).to receive(:status) { 'stormy' }
+    expect(weather.status).to eq 'stormy'
   end
-  
+
 end

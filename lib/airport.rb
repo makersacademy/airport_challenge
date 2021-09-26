@@ -1,5 +1,7 @@
+require 'weather'
+
 class Airport
-  attr_reader :capacity, :planes
+  attr_reader :capacity, :planes, :weather
 
   def initialize(capacity = 10)
     @planes = []
