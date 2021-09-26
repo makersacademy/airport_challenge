@@ -3,6 +3,8 @@ My approach to this challenge was to prevent as many edge cases as possible. Pla
 
 To prevent this I used a **current_airport** attribute for the **Plane** class. Prior to this, the plane objects didn't store any information because they didn't need to. This attribute allows you specifically see where a plane currently is, and allows for more detailed error messages.
 
+For the random weather, I made a **Weather** class and had a new object created by default for each landing and take off. This way the weather is randomly decided each time these two methods are run, because each call of **.stormy** has a 10% chance of returning true. The user can't manually control the weather.
+
 ## Doubles
 Due to the progress we made in the pairing challenge this week, I wanted to test my knowledge of mocks in Rspec by utilising doubles. I only tested each class in isolation, which meant that I had to mock every **Plane** object when I was testing the **Airport** class, which was where the majority of the methods were. 
 
