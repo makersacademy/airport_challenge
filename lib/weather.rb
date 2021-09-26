@@ -1,17 +1,13 @@
 class Weather 
-	
-	def initialize
-		# @airport_a = Airport.new
+	attr_accessor :condition
 
-	end
+	 WEATHER_CONDITIONS = ["Stormy", "Sunny", "Raining", "Mild", "Windy"]
 
-	def stormy?
-		random_outlooks == "stormy"
-	end
+	 def stormy?
+		 random_condition == "Stormy"
+	 end
 
-	WEATHER_CONDITIONS=["Stormy", "Sunny", "Sunny", "Raining", "Light winds", "Mild", "Windy"]
-
-	def random_outlooks(weather = WEATHER_CONDITIONS.sample)
-		@weather = weather
-	end
+	 def random_condition
+		WEATHER_CONDITIONS.sample
+	 end
 end
