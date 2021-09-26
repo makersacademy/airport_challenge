@@ -1,0 +1,4 @@
+require 'weather'
+
+
+end
