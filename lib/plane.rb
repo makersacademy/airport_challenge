@@ -2,7 +2,7 @@ class Plane
   attr_accessor :grounded
 
   def initialize(grounded = false)
-    @grounded = grounded 
+    @grounded = grounded
   end  
 
   def land 

@@ -1,96 +1,150 @@
 require 'airport'
 
-describe Airport do 
- # let (:grounded_plane) {double("grounded_plane", :grounded => true)}
- # let (:plane_in_flight) {double("plane_in_flight", :grounded => false)}
+# Use describe when the tests are related by a subset of behaviour (e.g 'landing') and 
+# use context when the tests are related by program state (e.g. 'when it is stormy').
 
+# Hangar state
+context Airport do
+  let (:plane) { double("plane") }
+  
+  before do 
+    allow(plane).to receive(:grounded=).with(true)
+  end
 
   it "Should keep track of the amount of plane instances in airport" do
-   # allow(grounded_plane).to receive(:grounded)
-    airport = Airport.new(Plane.new)
-    expect(airport.hangar).to be_a Array
+    subject = Airport.new(plane)
+    expect(subject.hangar).to be_a Array
   end 
 
-  it "Should raise an error and prevent landing when the airport is full" do
-   # allow(grounded_plane).to receive(:land)
+  it "Should allow you to create an instance of an airport with several planes inside" do 
+    subject = Airport.new(plane, plane, plane, plane)
+    expect(subject.hangar.length).to eq(4)
+  end
+end 
 
-    airport = Airport.new(Plane.new)
-    airport.capacity = 1
-    expect { airport.receive(Plane.new) }.to raise_error("The airport is full")
-  end 
+# Capacity state
+context Airport do
+  let (:plane) { double("plane") }
+
 
   it "Should be able to have it's capacity manually set" do 
-    airport = Airport.new
-    airport.capacity = 45 
-    expect(airport.capacity).to eq(45)
+    subject = Airport.new
+    subject.capacity = 45 
+    expect(subject.capacity).to eq(45)
   end
 
   it "Should have a default capacity of 15" do 
-    airport = Airport.new
-    expect(airport.capacity).to eq(15)
+    subject = Airport.new
+    expect(subject.capacity).to eq(15)
   end
 
-  it "Should release an instance of the plane object from it's collection upon takeoff" do
-    plane = Plane.new
-    airport = Airport.new(plane)
-    airport.weather = 2
-    airport.lose(plane)
-    expect(airport.hangar.length).to eq(0)
+end 
+
+# Weather state
+context Airport do
+  let (:plane) { double("plane") }
+  
+  before do 
+    allow(plane).to receive(:grounded=).with(true)
   end
 
   it "Should have a weather instance variable set to an integer value" do 
-    airport = Airport.new
-    expect(airport.weather).to be_a Integer
+    subject = Airport.new
+    expect(subject.weather).to be_a Integer
   end
 
   it "Should have a randomly generated value assigned to the weather instance variable" do 
-    airport1 = Airport.new
-    airport2 = Airport.new
-    airport3 = Airport.new
-    airport4 = Airport.new 
-    expect(airport1.weather == airport2.weather && airport2.weather == airport3.weather && airport4.weather == airport1.weather).to be_falsey
+    subject1 = Airport.new
+    subject2 = Airport.new
+    subject3 = Airport.new
+    subject4 = Airport.new 
+    expect(subject1.weather == subject2.weather && subject2.weather == subject3.weather && subject4.weather == subject1.weather).to be_falsey
   end
 
-  it "Should refuse to let planes land on the rare occasion the weather is stormy" do
-    airport = Airport.new 
-    plane = Plane.new
-    airport.weather = 9
-    expect { airport.receive(plane) }.to raise_error("The weather is too stormy to land")
+  it "Should refuse to let planes land on the rare occasion the weather is stormy (9 or 10)" do
+    subject = Airport.new 
+    subject.weather = 9
+    expect { subject.receive(plane) }.to raise_error("The weather is too stormy to land")
   end
 
-  it "Should refuse to let planes take off on the rare occasion the weather is stormy" do 
-    airport = Airport.new
-    plane1 = Plane.new
-    plane2 = Plane.new
-    airport.weather = 2
-    airport.receive(plane1)
-    airport.receive(plane2)
-    airport.weather = 10
-    expect { airport.lose(plane1) }.to raise_error("The weather is too stormy to take off")
+  it "Should refuse to let planes take off on the rare occasion the weather is stormy (9 or 10)" do 
+    subject = Airport.new(plane)
+    subject.weather = 10
+    expect { subject.lose(plane) }.to raise_error("The weather is too stormy to take off")
+  end 
+end
+
+# Takeoff
+describe Airport do
+  let (:plane) { double("plane") }
+  let (:plane2) { double("plane2") }
+
+  before do 
+    allow(plane).to receive(:grounded=).with(true)
+    allow(plane2).to receive(:grounded=).with(true)
+    allow(plane).to receive(:take_off)
+    allow(plane2).to receive(:take_off)
+    allow(plane).to receive(:land)
+    allow(plane2).to receive(:land)
+  end
+
+  it "Should release an instance of the plane object from it's collection upon takeoff" do
+    subject = Airport.new(plane)
+    subject.weather = 2
+    subject.lose(plane)
+    expect(subject.hangar.length).to eq(0)
+  end
+
+  it "Should only allow planes to take off from airports they are in" do 
+    subject1 = Airport.new
+    subject1.weather = 2
+    subject2 = Airport.new
+    subject2.weather = 2 
+    subject1.receive(plane)
+    subject2.receive(plane2)
+    expect { subject2.lose(plane) }.to raise_error("#{plane} is not at this airport")
+  end
+
+  it "Should ensure the correct plane has taken off" do
+  subject = Airport.new(plane, plane2)
+  subject.weather = 2
+  subject.lose(plane2)
+  expect(subject.hangar.include?(plane2)).to eq(false)
+  expect(subject.hangar.include?(plane)).to eq(true)
+  end
+end
+
+# Landing 
+describe Airport do
+  let (:plane) { double("plane") }
+  
+  before do 
+    allow(plane).to receive(:grounded=).with(true)
+    allow(plane).to receive(:grounded).and_return(true)
+    allow(plane).to receive(:land)
+  end
+
+  it "Should raise an error and prevent landing when the airport is full" do
+    allow(plane).to receive(:grounded=).with(true)
+
+    subject = Airport.new(plane)
+    subject.capacity = 1
+    expect { subject.receive(plane) }.to raise_error("The airport is full")
   end 
 
   it "Should automatically set a plane's grounded instance variable to true upon receiving the plane at the airport" do
-    airport = Airport.new
-    plane = Plane.new
-    airport.weather = 2
-    airport.receive(plane)
+    allow(plane).to receive(:grounded).and_return(true)
+    allow(plane).to receive(:land)
+    subject = Airport.new
+    subject.weather = 2
+    subject.receive(plane)
     expect(plane.grounded).to eq(true)
   end 
 
-  it "Should only allow planes to take off from airports they are in" do 
-    lisbon = Airport.new
-    lisbon.weather = 2
-    london = Airport.new
-    london.weather = 2 
-    plane1 = Plane.new
-    plane2 = Plane.new
-    london.receive(plane1)
-    lisbon.receive(plane2)
-    expect { lisbon.lose(plane1) }.to raise_error("#{plane1} is not at this airport")
-  end
-
-  it "Should allow you to create an instance of an airport with several planes inside" do 
-    airport = Airport.new(Plane.new, Plane.new, Plane.new, Plane.new)
-    expect(airport.hangar.length).to eq(4)
+  it "Can land planes" do 
+    subject = Airport.new
+    subject.weather = 2
+    subject.receive(plane)
+    expect(subject.hangar).to include plane
   end
 end 
