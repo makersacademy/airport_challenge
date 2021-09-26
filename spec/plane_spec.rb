@@ -8,4 +8,11 @@ RSpec.describe Plane do
       expect(plane.flying?).to eq true
     end
   end
+
+  describe ".flying?" do
+    it "return true if the plane is currently flying and false if it's not" do
+      plane = Plane.new
+      expect(plane.flying?).to eq false
+    end
+  end
 end
