@@ -10,6 +10,6 @@ describe "#forecast" do
   it 'generates a weather forecast' do
     weather = Weather.new
     allow(weather).to receive(:rand).and_return(2)
-    expect(weather.forecast).to eq("stormy")
+    expect(weather.forecast).to eq(false)
   end
 end
