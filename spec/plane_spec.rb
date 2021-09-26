@@ -11,6 +11,6 @@ describe Plane do
 
   it 'instructs the plane to land' do
     plane = subject.landing?
-    expect(plane).to eq "Proceed to landing."
+    expect(plane).to eq "Proceed to landing." if @weather == 'sunny'
   end
 end
