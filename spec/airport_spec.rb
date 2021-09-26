@@ -1,6 +1,9 @@
 require 'airport'
 # requires the airport.rb file from lib
 
+require 'plane'
+# do I need to require plane, to be able to make instances of Plane?
+
 RSpec.describe "Airport" do
   # tests looking at the Airport class
 
@@ -47,21 +50,24 @@ RSpec.describe "Airport" do
 
   it "checks that a plane can land and park at the airport" do
     my_airport = Airport.new(20)
-    expect(my_airport.park_plane("Plane 2")).to eq true
+    my_plane_a = Plane.new("Plane A","")
+    expect(my_airport.park_plane(my_plane_a)).to eq true
   end
 
   # NEED TO ADD TESTS HERE - CHECK FOR PLANE BEING ABLE TO LAND IN CORRECT WEATHER / CAPACITY
       
   it "checks that a plane landing at the airport is added to the list of planes parked" do
     my_airport = Airport.new(20)
-    my_airport.park_plane("Plane 2")
-    expect(my_airport.which_planes_in_airport).to eq ["Plane 1", "Plane 2"]
+    my_plane_a = Plane.new("Plane A","")
+    my_airport.park_plane(my_plane_a)
+    expect(my_airport.which_planes_in_airport).to eq ["Plane 1", my_plane_a]
   end
 
   it "finds out which planes are in the airport" do
     my_airport = Airport.new(20)
     expect(my_airport.which_planes_in_airport).to eq ["Plane 1"]
   end  
+  # REWRITE THIS ONE - TO CHECK FOR PLANE ID???
 
   it "looks for Plane 1 in the airport" do
     my_airport = Airport.new(20)

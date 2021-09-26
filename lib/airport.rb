@@ -1,3 +1,5 @@
+require 'plane'
+
 class Airport
   def initialize(default_capacity)
     @capacity = default_capacity
