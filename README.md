@@ -51,7 +51,7 @@ airport  |
 Objects  | Messages
 ------------- | -------------
 plane    |  land(airport), takeoff, in_airport?(airport)
-airport  |  full?, land
+airport  |  full?, plane_landed
 
 **Notes:**
 ```
@@ -66,9 +66,25 @@ User Story 4
 Objects  | Messages
 ------------- | -------------
 plane    |  land(airport), takeoff, in_airport?(airport)
-airport  |  full?, land
+airport  |  full?, plane_landed
 
 **Notes:**
 ```
 I've added a parameter to the airport constructor, which sets the capacity of the airport. I've also added the possibility to raise an error, in case the method "plane_landed" is called on a full airport.
+```
+
+User Story 5
+---------
+
+### Design:
+
+Objects  | Messages
+------------- | -------------
+plane    |  land(airport), takeoff, in_airport?(airport)
+airport  |  full?, plane_landed
+weather  |  stormy?
+
+**Notes:**
+```
+In this case, since the weather was generated with a random number, the only way to test it reliably was to use an instance double and a stub. I've added a `let` and `context`, to refactor and avoid defining the subject twice.
 ```

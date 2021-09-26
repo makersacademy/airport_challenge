@@ -1,8 +1,11 @@
 require_relative "airport"
+require_relative "weather"
+require "rspec"
 
 class Plane
   def initialize
     @airport = nil
+    @weather = Weather.new
   end
 
   def land(airport)
@@ -12,6 +15,7 @@ class Plane
   end
 
   def takeoff
+    fail "Weather is stormy" if @weather.stormy?
     @airport = nil
   end
 
