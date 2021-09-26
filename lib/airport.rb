@@ -17,7 +17,11 @@ class AirPort
     return "Abort landing!" if full? || weather?
     @port << airplane
   end
-
+  
+  def take_off
+    return "Abort - bad weather!" if weather?
+  end
+  
   def exist?
     true
   end
