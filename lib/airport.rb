@@ -1,12 +1,14 @@
 require "plane"
 
 class Airport
-  def hangar
+  attr_reader :hangar
+
+  def initialize
     @hangar = []
   end
 
   def land(plane)
-    return plane
+    @hangar << plane
   end
 
   def takeoff
