@@ -32,6 +32,10 @@ describe Airport do
       subject.takeoff(plane)
       expect(subject.planes).not_to include(plane)
     end
+    it 'prevents takeoff when plane is not in airport' do
+      allow(subject.weather).to receive(:status) { 'sunny' }
+      expect { subject.takeoff(plane) }.to raise_error 'Plane cannot takeoff as not in airport'
+    end
     it 'prevents takeoff when the weather is stormy' do
       allow(subject.weather).to receive(:status) { 'sunny' }
       subject.land(plane)

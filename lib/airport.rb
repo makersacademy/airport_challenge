@@ -8,7 +8,6 @@ class Airport
     @planes = []
     @capacity = capacity
     @weather = Weather.new
-    @plane = Plane.new
   end
 
   def land(plane)
@@ -20,7 +19,8 @@ class Airport
 
   def takeoff(plane)
     raise 'Plane cannot takeoff in stormy weather' if weather.status == 'stormy'
-    @planes.pop
+    raise 'Plane cannot takeoff as not in airport' unless @planes.include? plane
+    @planes.reject! { |n| n == plane }
   end
 
   private
