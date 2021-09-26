@@ -1,28 +1,27 @@
 require 'plane'
+require 'weather'
 
 class Airport
 
-  attr_reader :tarmac, :name, :capacity
+  attr_reader :tarmac, :capacity
 
-  def initialize(name = 'LHR', capacity = 1)
-    @name = name
+  def initialize(capacity = 1)
     @capacity = capacity
     @tarmac = []
+    @weather = Weather.new
   end
 
   def land(plane)
     raise('Tarmac is full.') if full?
     raise('Treacherous conditions. Stay put.') if stormy?
-    plane.ground = true
-    plane.location = @name
-    @tarmac << plane.name
+    plane.location = self
+    @tarmac << plane
   end
 
   def take_off(plane)
+    raise('Plane is already flying.') if plane.location == 'Sky'
     raise('Stormy. Cannot take off.') if stormy?
-    raise('Aircraft is not under your control.') unless plane.location == @name
-    @tarmac.delete(plane.name)
-    plane.ground = false
+    @tarmac.delete(plane)
     plane.location = 'Sky'
   end
 
@@ -36,12 +35,12 @@ class Airport
     @tarmac.length == @capacity
   end
 
-  def stormy?
-    rand(1..3) == 1
+  def update_location
+    plane.location == 'Sky'
   end
 
-  # def not_here?(plane)
-    
-  # end
-
+  def stormy?
+    weather.check
+  end
+  
 end
