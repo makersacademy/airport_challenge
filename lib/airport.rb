@@ -15,11 +15,16 @@ class Airport
   end
 
   def take_off
+    raise "No planes ready to take off" if empty?
     landed.each_with_index {|plane,index| landed.delete_at(index) ; return plane}
   end
 
   def full?
     @landed.length >= capacity
+  end
+
+  def empty?
+    @landed.empty?
   end
     
 end
