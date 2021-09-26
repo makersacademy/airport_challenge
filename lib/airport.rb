@@ -22,7 +22,7 @@ class Airport
   end
   
   def empty?
-    @planes_in.length == 0
+    @planes_in.empty?
   end
 
   def take_off(plane)
