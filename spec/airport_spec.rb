@@ -14,6 +14,7 @@ describe Airport do
   end
 
   it "should allow a plane to land at the airport" do
+    allow(subject).to receive(:weather).and_return(0)
     expect(subject.land(plane)).to eq([plane])
   end
 
@@ -33,8 +34,8 @@ describe Airport do
   end
  
   it "should release a plane after take off" do
-    subject.land(plane)
     allow(subject).to receive(:weather).and_return(0)
+    subject.land(plane)
     expect(subject.take_off(plane)).to eq(plane)
   end
 
@@ -53,8 +54,14 @@ describe Airport do
 
   describe "#land" do
     it "should raise an error if airport is full" do
+      allow(subject).to receive(:weather).and_return(0)
       Airport::DEFAULT_CAPACITY.times{subject.land(Plane.new)}
       expect{subject.land(Plane.new)}.to raise_error "You can't land here. We're full!"
+    end
+
+    it "should raise an error if the weather is stormy" do    
+      allow(subject).to receive(:weather).and_return(5)
+      expect{subject.land(plane)}.to raise_error "The weather is bad! You can't land!"
     end
   end
 
@@ -65,6 +72,7 @@ describe Airport do
 
       it "should be able to vary the capacity of planes it can take" do
         airport = Airport.new(35)
+        allow(airport).to receive(:weather).and_return(0)
         35.times {airport.land(Plane.new)}
         expect{airport.land(Plane.new)}.to raise_error "You can't land here. We're full!"
       end

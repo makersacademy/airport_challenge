@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    fail "The weather is bad! You can't land!" if self.weather == 5
     fail "You can't land here. We're full!" if hangar.size >= capacity
     @hangar << plane
   end
@@ -23,6 +24,8 @@ class Airport
   def airborne?(plane)
     !hangar.include?(plane)
   end
+
+  private
 
   def weather
     rand(0..5)
