@@ -34,11 +34,6 @@ describe Airport do
         let(:plane) {Plane.new}
         let(:weather) {Weather.new}
 
-        it 'should be confirmed as bad weather' do
-            allow(weather).to receive(:bad?).and_return true 
-            expect(weather.bad?).to eq(true)
-        end
-
         it 'should tell plane not to land ' do
             allow(subject.weather).to receive(:bad?).and_return true 
             expect{ subject.land(plane) }.to raise_error "Weather is bad, cannot land plane"
