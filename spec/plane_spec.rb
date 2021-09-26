@@ -8,12 +8,11 @@ RSpec.describe Plane do
 
   describe "#land" do
     it "lands plane at airport if valid airport" do
-      allow(airport).to receive(:receive).with(subject).and_return(subject)
-      expect(subject.land(airport)).to eq(subject)
+      allow(airport).to receive(:receive).with(subject).and_return(true)
+      expect(subject.land(airport)).to eq(true)
     end
 
     it "doesn't land at invalid airport" do
-      allow(airport).to receive(:receive).with(subject).and_return(subject)
       expect(subject.land("not an airport")).to eq(false)
       expect(subject.landed).to eq(false)
     end
@@ -25,10 +24,10 @@ RSpec.describe Plane do
     #   expect(subject.land(unaccepting_airport)).to eq(false)
     # end
 
-    it "sends itself to the airport" do
-      allow(airport).to receive(:receive).with(subject).and_return(subject)
-      expect(subject.land(airport)).to eq subject
-    end
+    #it "sends itself to the airport" do
+    #allow(airport).to receive(:receive).with(subject).and_return(subject)
+    #expect(subject.land(airport)).to eq subject
+    #end
 
     it "doesn't try to land if already landed" do
       allow(airport).to receive(:receive).with(subject).and_return(true)

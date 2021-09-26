@@ -6,12 +6,15 @@ class Plane
 
   def land(airport)
     if airport.respond_to?(:receive) && !(@landed)
-      @landed = true
-      return airport.receive(self)
-    else
-      return false
+      received = airport.receive(self)
+      if received
+        @landed = true
+        return true
+      end
     end
-     
+    
+    #only reaches here if plane can't land
+    return false
   end
 
   def takeoff()
