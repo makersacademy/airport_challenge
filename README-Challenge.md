@@ -1,7 +1,7 @@
 # Description of the challenge:
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-## User stories: [User stories analysis :](url)
+## User stories: 
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -36,7 +36,7 @@ I want to prevent landing when weather is stormy
 4. Had to do rvm install “ruby-3.0.2" as I did not have that version of Ruby installed
 5. Did bundle, which installed the gems, however the first line said “Warning: the running version of Bundler (2.2.22) is older than the version that created the lockfile (2.2.26). We suggest you to upgrade to the version that created the lockfile by running `gem install bundler:2.2.26`. “ , so I followed the instructions and did gem install bundler:2.2.26
 
-# [User stories analysis :](url)
+# User stories analysis :
 
 
 ![User story 1-1](https://user-images.githubusercontent.com/80968551/134821671-b6ecb100-ae6f-417a-ae76-3f53ae8679a1.png)
