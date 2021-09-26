@@ -16,6 +16,12 @@ RSpec.describe Airport do
 
       expect(airport.hanger.first).to eq plane
     end
+
+    it 'raises error if airport is already full' do
+      (1..3).each { airport.land(Plane.new) }
+
+      expect { airport.land(plane) }.to raise_error 'Airport is full'
+    end
   end
 
   describe '#take_off' do

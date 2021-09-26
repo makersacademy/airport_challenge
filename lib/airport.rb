@@ -10,6 +10,8 @@ class Airport
   end
 
   def land(plane)
+    raise 'Airport is full' if hanger.count >= 3
+
     hanger.push(plane)
   end
 
