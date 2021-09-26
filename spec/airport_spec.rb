@@ -11,7 +11,7 @@ RSpec.describe Airport do
 
   it { expect(airport).to respond_to(:land).with(1).argument }
 
-  it { expect(airport).to respond_to(:take_off) }
+  it { expect(airport).to respond_to(:take_off).with(1).argument }
 
   it 'has a capacity default of 3' do
     capacity = airport.instance_variable_get(:@capacity)
@@ -64,7 +64,7 @@ RSpec.describe Airport do
       empty_hanger = []
       airport.land(plane)
 
-      airport.take_off
+      airport.take_off(plane)
 
       expect(airport.hanger).to eq empty_hanger
     end
@@ -72,16 +72,24 @@ RSpec.describe Airport do
     it "returns the plan's status" do
       airport.land(plane)
 
-      expect(airport.take_off).to include('the plane is now airborn')
+      expect(airport.take_off(plane)).to include('the plane is now airborn')
+    end
+
+    it 'can not take off plane that is that is not in airport' do
+      diffrent_plane = Plane.new
+      airport.land(diffrent_plane)
+
+      expect { airport.take_off(plane) }.to raise_error 'Plane not in airport'
     end
 
     context 'when weather is stormy' do
       before(:each) do
+        airport.land(plane)
         stub_stormy_weather(true)
       end
 
       it 'raises error "take off prevented, weather is stormy"' do
-        expect { airport.take_off }.to raise_error 'take off prevented, weather is stormy'
+        expect { airport.take_off(plane) }.to raise_error 'take off prevented, weather is stormy'
       end
     end
   end

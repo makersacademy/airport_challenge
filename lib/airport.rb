@@ -14,14 +14,22 @@ class Airport
 
   def land(plane)
     raise 'Airport is full' if hanger.count >= @capacity
-    raise 'landing prevented, weather is stormy' if @weather.rare_stormy_weather?
+    check_weather('landing')
 
     hanger.push(plane)
   end
 
-  def take_off
-    raise 'take off prevented, weather is stormy' if @weather.rare_stormy_weather?
+  def take_off(plane)
+    raise 'Plane not in airport' unless hanger.include?(plane)
+    check_weather('take off')
+
     hanger.pop
     'the plane is now airborn'
+  end
+
+  private
+
+  def check_weather(action)
+    raise "#{action} prevented, weather is stormy" if @weather.rare_stormy_weather?
   end
 end
