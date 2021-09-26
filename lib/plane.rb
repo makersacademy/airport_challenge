@@ -2,13 +2,10 @@ require 'airport'
 
 class Plane
 
-  attr_reader :name
-  attr_accessor :location, :ground
+  attr_accessor :location
 
-  def initialize(name = 'EZY123')
-    @name = name
+  def initialize
     @location = 'Sky'
-    @ground = false
   end
 
 end
