@@ -18,7 +18,7 @@ describe Airport do
   end
 
   it "airport stormy weather should be true when stormy? is true" do
-    allow(subject).to receive(:stormy?) {true}
+    allow(subject).to receive(:stormy?) { true }
     expect(subject.stormy_weather).to eq true
   end
 

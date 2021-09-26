@@ -41,7 +41,7 @@ It is a basic application that is functionally useless but is intended to help m
 - Ruby 3.0.0
 - Rspec for running the tests
 
-Feel free to fork/clone this repo, though I wouldn't recommend it as it is incredibly basic, and I am just including this here as good practice for writing a good README,really.
+Feel free to fork/clone this repo, though I wouldn't recommend it as it is incredibly basic, and I am just including this here as good practice for writing a good README, really.
 
 
 

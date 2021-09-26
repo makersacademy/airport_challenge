@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   let(:airport) { double(:airport) }
-  let(:stormy_airport) {double(:stormy_airport)}
+  let(:stormy_airport) { double(:stormy_airport) }
 
   before do
     allow(airport).to receive(:landed_planes).and_return([])

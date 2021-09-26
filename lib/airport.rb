@@ -5,11 +5,11 @@ class Airport
   def initialize(capacity = 10)
     @landed_planes = []
     @capacity = capacity
-    @stormy_weather = self.stormy?
+    @stormy_weather = stormy?
   end
 
   def stormy?
-    rand(9) < 9 ? true : false
+    rand(9) < 9
   end
   
 end
