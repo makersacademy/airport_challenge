@@ -1,5 +1,8 @@
 class Airport
   attr_reader :capacity, :terminal
+  STORMY_TAKEOFF_ERROR = "Cannot take off - stormy weather"
+  STORMY_LAND_ERROR = "Cannot land - stormy weather"
+  FULL_ERROR = 'Cannot land - airport is full'
   
   def initialize(capacity = 50)
     @capacity = capacity
@@ -7,13 +10,13 @@ class Airport
   end
 
   def land(plane)
-    raise 'Cannot land - airport is full' if @terminal.count >= capacity
-    raise 'Cannot land - stormy weather' if stormy?
+    raise FULL_ERROR if @terminal.count >= capacity
+    raise STORMY_LAND_ERROR if stormy?
     @terminal << plane
   end
 
   def take_off(plane)
-    raise 'Cannot take off - stormy weather' if stormy?
+    raise STORMY_TAKEOFF_ERROR if stormy?
     @terminal.pop
   end
   
