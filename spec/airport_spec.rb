@@ -3,12 +3,15 @@
 require 'airport'
 
 RSpec.describe Airport do
-  let(:airport) { described_class.new }
   let(:plane) { Plane.new }
+  let(:weather) { double('weather') }
+  let(:airport) { described_class.new(weather) }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  before(:each) { stub_stormy_weather(false) }
 
-  it { is_expected.to respond_to(:take_off) }
+  it { expect(airport).to respond_to(:land).with(1).argument }
+
+  it { expect(airport).to respond_to(:take_off) }
 
   it 'has a capacity default of 3' do
     capacity = airport.instance_variable_get(:@capacity)
@@ -30,7 +33,7 @@ RSpec.describe Airport do
     end
 
     context 'when capacity is set to 4' do
-      let(:airport) { described_class.new(4) }
+      let(:airport) { described_class.new(weather, 4) }
 
       it 'raises error if airport already has 4 planes' do
         (1..4).each { airport.land(Plane.new) }
@@ -42,6 +45,16 @@ RSpec.describe Airport do
         (1..3).each { airport.land(Plane.new) }
 
         expect { airport.land(plane) }.not_to raise_error
+      end
+    end
+
+    context 'when weather is stormy' do
+      before(:each) do
+        stub_stormy_weather(true)
+      end
+
+      it 'raises error "landing prevented, weather is stormy"' do
+        expect { airport.land(plane) }.to raise_error 'landing prevented, weather is stormy'
       end
     end
   end
@@ -61,5 +74,19 @@ RSpec.describe Airport do
 
       expect(airport.take_off).to include('the plane is now airborn')
     end
+
+    context 'when weather is stormy' do
+      before(:each) do
+        stub_stormy_weather(true)
+      end
+
+      it 'raises error "take off prevented, weather is stormy"' do
+        expect { airport.take_off }.to raise_error 'take off prevented, weather is stormy'
+      end
+    end
+  end
+
+  def stub_stormy_weather(boolen)
+    allow(weather).to receive(:rare_stormy_weather?).and_return(boolen)
   end
 end
