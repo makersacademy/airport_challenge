@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "The weather is bad! Stay on the ground!" if self.weather == 5
     hangar.delete(plane)
     plane
   end 
@@ -22,5 +23,8 @@ class Airport
   def airborne?(plane)
     !hangar.include?(plane)
   end
+
+  def weather
+    rand(0..5)
+  end
 end
- 

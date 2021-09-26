@@ -25,10 +25,16 @@ describe Airport do
     it "should accept one argument" do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
+    
+    it "should raise an error if the weather is stormy" do    
+      allow(subject).to receive(:weather).and_return(5)
+      expect{subject.take_off(plane)}.to raise_error "The weather is bad! Stay on the ground!"
+    end
   end
-
+ 
   it "should release a plane after take off" do
     subject.land(plane)
+    allow(subject).to receive(:weather).and_return(0)
     expect(subject.take_off(plane)).to eq(plane)
   end
 
@@ -39,6 +45,7 @@ describe Airport do
   end
 
   it "should confirm that a plane is no longer in the airport" do
+    allow(subject).to receive(:weather).and_return(0)
     subject.land(plane)
     subject.take_off(plane)
     expect(subject.airborne?(plane)).to be true
