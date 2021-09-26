@@ -20,6 +20,4 @@ describe Plane do
     expect(plane.landed).to eq false
   end
 
-  #allow(airport).to receive(:landing_permitted).and_return(true)
-
 end

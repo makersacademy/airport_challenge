@@ -27,6 +27,8 @@ describe Airport do
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
     allow(plane2).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_has_landed)
+    allow(plane2).to receive(:plane_has_landed)
     checker.land(plane)
     checker.land(plane2)
     expect(checker.hangar.length).to eq 1
@@ -36,12 +38,14 @@ describe Airport do
     checker = Airport.new
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_has_landed)
     checker.land(plane)
     expect(checker.hangar.empty?).to eq false
   end
 
   it "prevents landing when stormy" do
     checker = Airport.new
+    allow(plane).to receive(:plane_has_landed)
     allow(checker).to receive(:landing_permitted).and_return(false)
     expect(checker.land(plane)).to eq nil
   end
@@ -50,6 +54,8 @@ describe Airport do
     checker = Airport.new
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_is_flying)
+    allow(plane).to receive(:plane_has_landed)
     checker.land(plane)
     checker.take_off(plane)
     expect(checker.hangar.include?(plane)).to eq false
@@ -59,6 +65,8 @@ describe Airport do
     checker = Airport.new
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_has_landed)
+    allow(plane).to receive(:plane_is_flying)
     checker.land(plane)
     allow(checker).to receive(:landing_permitted).and_return(false)
     checker.take_off(plane)
@@ -70,6 +78,8 @@ describe Airport do
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
     allow(plane2).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_has_landed)
+    allow(plane2).to receive(:plane_has_landed)
     checker.land(plane)
     checker.land(plane2)
     expect(checker.check_plane_in_hangar(plane2)).to eq true
@@ -79,9 +89,21 @@ describe Airport do
     checker = Airport.new
     allow(checker).to receive(:landing_permitted).and_return(true)
     allow(plane).to receive(:landed).and_return(false)
+    allow(plane).to receive(:plane_has_landed)
     checker.land(plane)
     allow(plane).to receive(:landed).and_return(true)
     expect(checker.land(plane)).to eq nil
+  end
+
+  it "picks a weather type at random" do
+    checker = Airport.new
+    expect(checker.weather).to be_kind_of(String)
+  end
+
+  it "permits landing if weather is fine" do
+    checker = Airport.new
+    allow(checker).to receive(:weather).and_return("fine")
+    expect(checker.landing_permitted).to eq true
   end
 
 end
