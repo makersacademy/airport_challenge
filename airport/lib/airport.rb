@@ -13,6 +13,7 @@ DEFAULT_CAPACITY = 20
     end
 
     def land(plane)
+        fail "Plane cannot land in stormy weather" if stormy?
         fail "Plane cannot land since airport is full" if full?
         @planes << plane
     end

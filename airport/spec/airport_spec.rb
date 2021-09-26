@@ -25,4 +25,9 @@ describe Airport do
         airport = Airport.new([plane], 20, :stormy)
         expect { airport.take_off(plane) }.to raise_error("Plane cannot take off in stormy weather")
     end
+    
+    it "prevents landing when weather is stormy" do 
+        airport = Airport.new([], 20, :stormy)
+        expect { airport.land(plane) }.to raise_error("Plane cannot land in stormy weather")
+    end
 end
