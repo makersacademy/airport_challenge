@@ -1,10 +1,6 @@
 require 'plane'
 
 describe Plane do
-  plane = Plane.new
-  it 'checks whether the plane tookoff' do
-    expect(subject.departed).to eq true 
-  end
 end
 
 # describe Plane do

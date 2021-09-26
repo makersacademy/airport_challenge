@@ -12,10 +12,8 @@ class Airport
   end
 
   def take_off(plane)
-    # @plane = plane
-    @terminal.pop()
+    @terminal.pop
 
   end
-  # def permission_to_land
-  # end 
+
 end 
