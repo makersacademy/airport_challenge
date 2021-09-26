@@ -1,10 +1,14 @@
 class Airport
 
-  def initialize
+  attr_reader :hangar
+
+  def initialize(capacity=25)
     @hangar = []
+    @capacity = capacity
   end 
 
   def land(plane)
+    fail "Airport full" if is_full? 
     @hangar << plane
   end
 
@@ -16,5 +20,9 @@ class Airport
     @hangar.include?(plane)
   end 
 
+  def is_full? 
+    @hangar.count >= @capacity
+  end  
 end 
+
   

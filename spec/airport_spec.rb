@@ -31,4 +31,16 @@ describe Airport do
       expect(airport.is_in_hangar?(plane)).to be_falsey
     end
   end
+
+  it 'has a variable capacity' do
+    airport = Airport.new(50)
+    50.times {airport.land(Plane.new)}
+    expect(airport.hangar.count).to eq(50)
+  end
+
+  it 'can prevent planes landing if the airport capacity is full' do
+    airport = Airport.new(25)
+    25.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error "Airport full"
+  end
 end
