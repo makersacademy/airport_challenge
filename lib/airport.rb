@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     raise 'Cannot land - airport is full' if @terminal.count >= capacity
+    raise 'Cannot land - stormy weather' if stormy?
     @terminal << plane
   end
 
@@ -15,8 +16,8 @@ class Airport
     raise 'Cannot take off - stormy weather' if stormy?
     @terminal.pop
   end
-
+  
   def stormy?
-    rand(0..5) > 4
+    rand(1..5) > 4
   end 
 end 
