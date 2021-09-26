@@ -10,7 +10,6 @@ class Airport
 
   def weather_number
     weather_number = rand(9)
-    puts weather_number
     return weather_number
   end
   
