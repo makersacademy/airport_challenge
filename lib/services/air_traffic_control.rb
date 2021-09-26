@@ -43,6 +43,7 @@ class AirTrafficControl
     attempted_take_off = @airport_management_service.take_off(airport_code)
     if attempted_take_off == OK
       @plane_management_service.update_plane_status(plane_id, FLYING)
+      "Successful take off of #{plane_id} at #{airport_code}"
     else
       attempted_take_off
     end 

@@ -4,8 +4,8 @@
 
 describe 'Planes can take-off feature:' do
   it 'plane flys' do
-    given_a_plane_and_an_airport_managed_by_atc
+    given_a_landed_plane_at_an_airport_managed_by_atc
     when_the_weather_is_clear
-    then_the_plane_can_land
+    then_the_plane_can_take_off
   end
 end
