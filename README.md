@@ -30,7 +30,7 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-* There is no way to 'use' this project, as it is just classes and methods and their respective tests, but if you want to interract with it, feel free!
+*** There is no way to 'use' this project, as it is just classes and methods and their respective tests, but if you want to interract with it, feel free! ***
 
 It is a basic application that is functionally useless but is intended to help me learn/practise some basic concepts:
 
