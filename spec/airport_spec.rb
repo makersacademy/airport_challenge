@@ -19,5 +19,12 @@ describe Airport do
   end
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff) }
+
+    it "removes plane from hangar after taking off" do
+      plane = Plane.new
+      subject.land(plane)
+      subject.takeoff
+      expect(subject.hangar).not_to include plane
+    end
   end
 end
