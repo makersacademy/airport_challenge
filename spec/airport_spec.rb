@@ -43,4 +43,9 @@ describe Airport do
     25.times { airport.land Plane.new }
     expect { airport.land Plane.new }.to raise_error "Airport full"
   end
+
+  it 'has a default capacity' do
+    airport = Airport.new 
+    expect(airport.capacity).to eq(25)
+  end
 end
