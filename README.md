@@ -51,12 +51,13 @@ While the code in this repo is solid, and has a 98.88% coverage, there are a few
 
 I didn't manage to make it to the BONUS challenge but I'm happy with the functionality I did create
 ```
+BONUS
 * Write an RSpec **feature** test that lands and takes off a number of planes
 ```
 
 Overall, while I'm sure there are improvements to be made, I'm very pleased with how this code works and how I put it together. I checked the rubric once to clarify how the weather should be generated (I was initially going to have a random weather generator inside the airport class, but checked the rubric to clarify and saw a separate class), but the rest of the code is self-written.
 
-User Stories used for this Challenge
+Original Challenge Brief
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
