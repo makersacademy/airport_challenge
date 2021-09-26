@@ -1,7 +1,7 @@
 require "weather"
 
 describe Weather do
-  it { is_expected.to respond_to(:CONDITIONS) }
+  it { is_expected.to respond_to(:conditions) }
 
   describe "#get_condition" do
     it { is_expected.to respond_to(:get_condition) }

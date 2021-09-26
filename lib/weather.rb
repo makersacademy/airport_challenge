@@ -1,5 +1,5 @@
 class Weather
-  attr_reader :CONDITIONS
+  attr_reader :conditions
 
   CONDITIONS = ["Sunny", "Stormy"].freeze
 
