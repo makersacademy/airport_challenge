@@ -8,12 +8,12 @@ class Weather
   def clear?
     case rand(1..4)
     when 1..3
-      @weather = true
+      weather = true
     when 4
-      @weather = false
+      weather = false
     end
     # 1..3 = good weather
     # 4 = stormy weather
-    @weather
+    weather
   end
 end
