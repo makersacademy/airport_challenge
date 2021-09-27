@@ -29,10 +29,12 @@ describe Airport do
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff) }
 
-    it "removes plane from hangar after taking off" do
+    it "removes plane from hangar after taking off if weather is sunny" do
       plane = Plane.new
-      weather = Weather.new
-      subject.land(plane, weather)
+      sunny_weather = Weather.new
+      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      subject.land(plane, sunny_weather)
+      # the takeoff method is failing because when its stormy nothing is being added to the array after trying to land, hence the error
       subject.takeoff
       expect(subject.hangar).not_to include plane
     end
