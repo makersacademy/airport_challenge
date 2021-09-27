@@ -27,22 +27,25 @@ RSpec.describe Airport do
     end
 
     it 'raises error if airport is already full' do
-      (1..3).each { airport.land(Plane.new) }
+      capacity = Airport::DEFAULT_CAPACITY
+
+      capacity.times { airport.land(Plane.new) }
 
       expect { airport.land(plane) }.to raise_error 'Airport is full'
     end
 
     context 'when capacity is set to 4' do
       let(:airport) { described_class.new(weather, 4) }
+      let(:capacity) { Airport::DEFAULT_CAPACITY + 1 }
 
       it 'raises error if airport already has 4 planes' do
-        (1..4).each { airport.land(Plane.new) }
+        capacity.times { airport.land(Plane.new) }
 
         expect { airport.land(plane) }.to raise_error 'Airport is full'
       end
 
       it 'does not raises error if airport takes a 4th plane' do
-        (1..3).each { airport.land(Plane.new) }
+        (capacity - 1).times { airport.land(Plane.new) }
 
         expect { airport.land(plane) }.not_to raise_error
       end
@@ -67,6 +70,16 @@ RSpec.describe Airport do
       airport.take_off(plane)
 
       expect(airport.hanger).to eq empty_hanger
+    end
+
+    it 'only departs plane already in airport' do
+      second_plane = Plane.new
+      airport.land(plane)
+      airport.land(second_plane)
+
+      airport.take_off(plane)
+
+      expect(airport.hanger).to include(second_plane)
     end
 
     it "returns the plan's status" do

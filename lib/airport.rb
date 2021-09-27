@@ -4,9 +4,11 @@ require 'plane'
 require 'weather'
 
 class Airport
+  DEFAULT_CAPACITY = 3
+
   attr_reader :hanger
 
-  def initialize(weather, capacity = 3)
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @capacity = capacity
     @hanger = []
@@ -23,7 +25,7 @@ class Airport
     raise 'Plane not in airport' unless hanger.include?(plane)
     check_weather('take off')
 
-    hanger.pop
+    hanger.delete(plane)
     'the plane is now airborn'
   end
 
