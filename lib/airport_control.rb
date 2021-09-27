@@ -1,8 +1,8 @@
 class AirportFlow
 
-  def land(capacity)
+  def land(plane)
   end
 
-  def takeoff(weather)
+  def takeoff(plane)
   end
 end
