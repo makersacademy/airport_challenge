@@ -1,7 +1,5 @@
 class Plane
 
-  attr_writer :flying
-
   def initialize(flight_number)
     @flight_number = flight_number
     @flying = true
@@ -13,5 +11,13 @@ class Plane
 
   def status
     @flying ? "Flying" : "Landed"
+  end
+
+  def land
+    @flying = false
+  end
+
+  def take_off
+    @flying = true
   end
 end

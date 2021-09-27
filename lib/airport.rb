@@ -18,7 +18,7 @@ class Airport
     raise "Airport is full" if airport_full?
     raise "Cannot land a plane in stormy weather" if stormy_weather?
     raise "This plane has already landed" if plane_already_landed?(plane)
-    plane.flying = false
+    plane.land
     @planes[plane.flight_number] = plane
   end
 
@@ -26,7 +26,7 @@ class Airport
     raise "Cannot take off in stormy weather" if stormy_weather?
     raise "This airport does not have this flight number" if plane_already_flying?(flight_number)
     plane = @planes.delete(flight_number)
-    plane.flying = true
+    plane.take_off
     plane
   end
 

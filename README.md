@@ -93,7 +93,6 @@ Comments
 ----
 
 - In retrospect, I would probably change how the planes are stored; storing as a hash with the key set to the flight number could cause issues if multiple planes with the same flight number are landed using the current implementation
-- I would have a method in the `airport` class that tells the plane object to land, rather than changing the status of the plane from the airport class
 - Using the actual flight number, rather than a string, as the argument for taking off would be more intuitive and straight forward
 - Considering BDD from earlier in the project would have saved time refactoring the project later on
 - I think the way that I have set the weather in the specs is probably not the best way of doing it, although I'm unsure how else to do it!

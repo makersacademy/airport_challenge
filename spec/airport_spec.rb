@@ -7,7 +7,7 @@ describe Airport do
   describe "#land" do
     context "airport is not full" do
       it "lets a plane land at an airport" do
-        allow(plane).to receive(:flying=) { :false }
+        allow(plane).to receive(:land)
         allow(plane).to receive(:flight_number) { "Flight 1" }
         allow(plane).to receive(:status) { "Flying" }
         expect(Weather).to receive(:rand).and_return(2)
@@ -25,16 +25,15 @@ describe Airport do
 
     context "airport is full" do
       before(:each) do
-        allow(plane).to receive(:flying=) { :false }
-        allow(plane).to receive(:flying) { false }
+        allow(plane).to receive(:land)
       end
 
       it "prevents plane from landing when airport full to default capacity" do  
         20.times do |x|
           plane = double(:plane)
           allow(plane).to receive(:flight_number) { "Flight #{x}" }
-          allow(plane).to receive(:flying=) { :false }
           allow(plane).to receive(:status) { "Flying" }
+          allow(plane).to receive(:land)
           expect(Weather).to receive(:rand).and_return(2)
           subject.land(plane)
         end
@@ -54,8 +53,8 @@ describe Airport do
         capacity.times do |x|
           plane = double(:plane)
           allow(plane).to receive(:flight_number) { "Flight #{x}" }
-          allow(plane).to receive(:flying=) { :false }
           allow(plane).to receive(:status) { "Flying" }
+          allow(plane).to receive(:land)
           expect(Weather).to receive(:rand).and_return(2)
           airport.land(plane)
         end
@@ -79,8 +78,9 @@ describe Airport do
   describe "#take_off" do
 
     before(:each) do
-      allow(plane).to receive(:flying=) { :false }
       allow(plane).to receive(:flight_number) { "Flight 1" }
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
       expect(Weather).to receive(:rand).and_return(2)
       allow(plane).to receive(:status) { "Flying" }
       subject.land(plane)
@@ -93,11 +93,13 @@ describe Airport do
 
       it "instructs a plane to take off" do
         allow(plane).to receive(:status) { "Landed" }
+        allow(plane).to receive(:take_off)
         expect(subject.take_off("Flight 1")).to eq plane
       end
   
       it "plane is no longer in airport" do
         allow(plane).to receive(:status) { "Landed" }
+        allow(plane).to receive(:take_off)
         subject.take_off("Flight 1")
         expect(subject.planes).to_not include "Flight 1"
       end
