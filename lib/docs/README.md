@@ -1,7 +1,8 @@
-##Airport Challenge
+## Airport Challenge
 ----------------------------------------------------
 
 require "airport.rb"
+
 require "plane.rb"
 
 - I have created a file named 'airport_challenge_in_action' to show how the code methods were designed to be used.
