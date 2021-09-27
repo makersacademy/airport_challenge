@@ -10,9 +10,9 @@ describe Weather do
     context 'after running 100 times' do
       it 'can return true & false' do
         stormy_test = []
-        100.times {stormy_test << subject.stormy?}
+        100.times { stormy_test << subject.stormy? }
         expect(stormy_test).to include(true) 
-        expect(stormy_test).to include(false ) 
+        expect(stormy_test).to include(false) 
       end
     end
   end

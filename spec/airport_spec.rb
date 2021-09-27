@@ -2,20 +2,21 @@ require 'airport'
 require 'weather'
 
 describe Airport do
+
+  let(:plane) { Plane.new }
+  let(:weather) { double(:Weather, :stormy? => false) }
+
   describe '.land' do
     context 'given a plane' do
       it 'lands the plane at an airport' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
         expect(subject.land(plane, weather)).to contain_exactly plane
       end
     end
 
     context 'when landing a plane' do
       it 'returns error if airport is full' do
-        weather = double(:Weather, :stormy? => false)
-        10.times {subject.land(Plane.new, weather)} 
-        expect {subject.land(Plane.new, weather)}.to raise_error 'Airport is full.'
+        10.times { subject.land(plane, weather) } 
+        expect { subject.land(plane, weather) }.to raise_error 'Airport is full.'
       end
     end
 
@@ -28,19 +29,16 @@ describe Airport do
 
     context 'during sunny weather' do
       it 'can land the plane' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
         subject.takeoff(plane, weather)
         subject.land(plane, weather)
-        expect(subject.at_airport? plane).to eq true
+        expect(subject.at_airport?(plane, subject)).to eq true
       end
     end
 
     context 'during stormy weather' do
       it 'raises error if plane lands' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => true)
-        expect {subject.land(plane, weather)}.to raise_error 'Safety: unable to land due to storm.'
+        weather = double(:stormy? => true)
+        expect { subject.land(plane, weather) }.to raise_error 'Safety: unable to land due to storm.'
       end
     end
   end
@@ -48,38 +46,34 @@ describe Airport do
   describe '.takeoff' do
     context 'plane takes off' do
       it 'removes a plane from the list of planes at airport' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
         subject.land(plane, weather)
         expect(subject.takeoff(plane, weather)).to eq plane
+      end
+
+      it 'adds plane to list of flying planes' do
+        
       end
     end
     context 'during stormy weather' do
       it 'raises error if plane takes off' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
         subject.land(plane, weather)
-        weather = double(:Weather, :stormy? => true)
-        expect {subject.takeoff(plane, weather)}.to raise_error 'Safety: unable to takeoff due to storm.'
+        weather = double(:stormy? => true)
+        expect { subject.takeoff(plane, weather) }.to raise_error 'Safety: unable to takeoff due to storm.'
       end
     end
   end
 
   describe '.at_airport?' do
     context 'given a plane' do
-      it 'returns false if not in @planes array' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
+      it 'returns false if no longer at airport' do
         subject.land(plane, weather)
         subject.takeoff(plane, weather)
-        expect(subject.at_airport? plane).to eq false
+        expect(subject.at_airport?(plane, subject)).to eq false
       end
 
-      it 'returns true if in @planes array' do
-        plane = Plane.new
-        weather = double(:Weather, :stormy? => false)
+      it 'returns true if at airport' do
         subject.land(plane, weather)
-        expect(subject.at_airport? plane).to eq true
+        expect(subject.at_airport?(plane, subject)).to eq true
       end
     end
   end

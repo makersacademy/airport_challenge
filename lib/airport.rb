@@ -1,11 +1,11 @@
-require_relative './weather.rb'
+require_relative './weather'
 
 class Airport
   attr_reader :planes, :capacity
 
-  @@DEFAULT_CAPACITY = 10
+  @@default_capacity = 10
 
-  def initialize (capacity = @@DEFAULT_CAPACITY)
+  def initialize(capacity = @@default_capacity)
     @planes = []
     @capacity = capacity
   end
@@ -21,8 +21,8 @@ class Airport
     @planes.delete(plane)
   end
 
-  def at_airport?(plane)
+  def at_airport?(plane, airport)
     # if plane is in the @planes array, return true, else return false
-    @planes.include?(plane)
+    @planes.include? plane
   end
 end
