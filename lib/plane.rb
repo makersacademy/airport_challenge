@@ -5,7 +5,6 @@ class Plane
   
   def initialize(weather)
     @weather = weather
-    @at_airport = nil
   end
 
   def instruct_plane_to_land(airport)
