@@ -1,19 +1,11 @@
+##Airport Challenge
+----------------------------------------------------
 
+require "airport.rb"
+require "plane.rb"
 
+- I have created a file named 'airport_challenge_in_action' to show how the code methods were designed to be used.
 
-
-
-
-
-```
-$ irb
-2.2.3 :001 > airport = Airport.new
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :002 > plane = Plane.new
- => #<Plane:0x007fafdb0041b8>
-2.2.3 :003 > airport.land(plane)
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :004 >
-```
-
-You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+- I used the boris_bikes challenge as a template for the code as the functionality was similar to what was needed from the airport and planes.
+- On top of this I attempted to try and make the airport and planes unique so that you would have to specify a plane_id and airport_id when commanding landings and takeoffs.
+- More work needs to be done on the tests and making the code pass.
