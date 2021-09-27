@@ -39,7 +39,7 @@ describe Airport do
 end
 ```
 2. I had relative ease with landing and flying out airplanes.
-3. My biggest blocker was in the integration of weather.  My weather class was in a separate file.  It was creating random weather.  But I struggled to use a double in my unit test:
+3. My biggest blocker was the integration of weather.  My weather class is in a separate file.  It was creating random weather.  But I struggled to use a controlled weather double in my unit test:
 
 
 ```
@@ -49,7 +49,7 @@ weather = Weather.new
 ...
 ```
 
-This was supposed to force-test bad weather, but the results were still random.  Eventually I realized that I was summoning a Weather object that was different from the one Airport had already summoned.  I checked their object ids and sure enough they were different.  So I modified my test to bring out Airport.weather, and the tests finally worked:
+This was supposed to force-test bad weather, but the weather tests were still random.  Eventually I realized that I was summoning a Weather object that was different from the one Airport had already summoned.  I checked their object IDs and sure enough they were different.  So I modified my test to bring out Airport.new.weather, and the tests finally worked:
 
 ```
 ...
@@ -63,5 +63,5 @@ weather = Weather.new
 
 **Possible Improvements**
 
-* Check to see if a plane (ex. Airbus 293) is in airport.  Make sure it's not in other airports.
+* Check to see if a plane (ex. Airbus 293) is in airport.  Make sure it's not in other airports.  Implement the ability to chart flights between airports.
 
