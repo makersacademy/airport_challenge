@@ -3,11 +3,11 @@ require "weather"
 describe Weather do
   it { is_expected.to respond_to(:conditions) }
 
-  describe "#get_condition" do
-    it { is_expected.to respond_to(:get_condition) }
+  describe "#condition" do
+    it { is_expected.to respond_to(:condition) }
 
     it "returns a random weather condition" do
-      expect(Weather::CONDITIONS).to include(subject.get_condition)
+      expect(Weather::CONDITIONS).to include(subject.condition)
     end
   end
 end

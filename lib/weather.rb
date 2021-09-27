@@ -3,7 +3,7 @@ class Weather
 
   CONDITIONS = ["Sunny", "Stormy"].freeze
 
-  def get_condition
+  def condition
     return CONDITIONS.sample
   end
 end

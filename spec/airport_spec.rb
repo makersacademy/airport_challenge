@@ -15,14 +15,14 @@ describe Airport do
     it "lands plane and adds to hangar if weather is sunny" do
       plane = Plane.new
       sunny_weather = Weather.new
-      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      allow(sunny_weather).to receive(:condition) { "Sunny" }
       subject.land(plane, sunny_weather)
       expect(subject.hangar.last).to eq plane
     end
     it "prevents landing plane if weather is stormy" do
       plane = Plane.new
       stormy_weather = Weather.new
-      allow(stormy_weather).to receive(:get_condition) { "Stormy" }
+      allow(stormy_weather).to receive(:condition) { "Stormy" }
       expect { subject.land(plane, stormy_weather) }.to raise_error "Weather is dangerous to land in"
     end
   end
@@ -32,7 +32,7 @@ describe Airport do
     it "removes plane from hangar after taking off if weather is sunny" do
       plane = Plane.new
       sunny_weather = Weather.new
-      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      allow(sunny_weather).to receive(:condition) { "Sunny" }
       subject.land(plane, sunny_weather)
       subject.takeoff(sunny_weather)
       expect(subject.hangar).not_to include plane
@@ -40,10 +40,10 @@ describe Airport do
     it "prevents plane taking off if weather is stormy" do
       plane = Plane.new
       sunny_weather = Weather.new
-      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      allow(sunny_weather).to receive(:condition) { "Sunny" }
       subject.land(plane, sunny_weather)
       stormy_weather = sunny_weather
-      allow(stormy_weather).to receive(:get_condition) { "Stormy" }
+      allow(stormy_weather).to receive(:condition) { "Stormy" }
       expect { subject.takeoff(stormy_weather) }.to raise_error "Weather is dangerous to take off in"
     end
   end
