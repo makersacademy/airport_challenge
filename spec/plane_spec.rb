@@ -12,9 +12,10 @@ describe Plane do
       subject.change_position
       expect(subject.position).to(eq("ground"))
     end
-    it "change_position method changes plane's position from air to ground" do
-      subject.change_position
-      expect(subject.position).to(eq("ground"))
+    it "change_position method changes plane's position from ground to air" do
+      plane = Plane.new("ground")
+      plane.change_position
+      expect(plane.position).to(eq("air"))
     end
   end
 end
