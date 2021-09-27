@@ -100,4 +100,4 @@ To run the feature tests:
 The following are initial modelling plans based on the *User Stories*: 
 ![Modelling 1](https://imgur.com/Q1Dig2W)
 ![Modelling 2](https://imgur.com/zET9djn)
-![alt text](https://github.com/feedXia/airport_challenge/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/feedXia/airport_challenge/blob/f8c7b4cdb3e7822d6ed32c9c3b547bee69016621/modelling1.png?raw=true)
