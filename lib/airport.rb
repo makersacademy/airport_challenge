@@ -12,7 +12,8 @@ class Airport
     @hangar << plane
   end
 
-  def takeoff
+  def takeoff(weather = Weather.new)
+    fail "Weather is dangerous to take off in" if weather.get_condition == "Stormy"
     @hangar.pop
   end
 end
