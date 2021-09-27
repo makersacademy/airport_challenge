@@ -1,7 +1,7 @@
 # Airport Challenge
 =================
 
-[![Coverage Status](https://coveralls.io/repos/github/georn/airport-challenge/badge.svg?branch=continuous-integration)](https://coveralls.io/github/georn/airport-challenge?branch=continuous-integration)
+[![Coverage Status](https://coveralls.io/repos/github/feedXia/airport-challenge/badge.svg?branch=continuous-integration)](https://coveralls.io/github/feedXia/airport-challenge?branch=continuous-integration)
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 
