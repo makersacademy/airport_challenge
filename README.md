@@ -1,7 +1,7 @@
 # Airport Challenge
 =================
 
-/gitlab/coverage/:user/:repo/:branch
+[![Coverage Status](https://coveralls.io/repos/github/feedXia/airport_challenge/badge.svg?branch=main)](https://coveralls.io/github/feedXia/airport_challenge?branch=main)
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 
@@ -79,5 +79,15 @@ I want to prevent landing when weather is stormy
 git clone
 cd airport-challenge
 bundle install #installing dependencies
+```
+## Running Tests
+
+To run the unit test:
+1. Make sure you are in the airport_challenge directory (if you are not, change into this directory)
+2. In your Terminal window enter 'rspec'
+
+```
+cd airport-challenge
+rspec
 ```
 
