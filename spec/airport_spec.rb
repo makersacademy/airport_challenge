@@ -26,6 +26,7 @@ describe Airport do
       expect { subject.land(plane, stormy_weather) }.to raise_error "Weather is dangerous to land in"
     end
   end
+
   describe "#takeoff" do
     it { is_expected.to respond_to(:takeoff) }
 
