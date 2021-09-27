@@ -13,11 +13,11 @@ class Airport
   end
 
   def full?
-    @airport.size >= capacity
+    airport.size >= capacity
   end
 
   def check_hangers 
-    fail "No Planes." if @airport.empty?
+    fail "No Planes." if airport.empty?
     puts "Plane ready for take-off"
   end
 
@@ -38,7 +38,7 @@ class Airport
 
   def land(plane)
     fail "No space" if full?
-    @airport << plane
+    airport << plane
     puts "Plane has landed"
   end
 end
