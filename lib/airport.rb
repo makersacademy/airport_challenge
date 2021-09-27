@@ -11,11 +11,14 @@ class Airport
 
   def land(plane)
     fail "Airport full" if full?
-    @planes.push(plane)
+    if good_weather?
+      @planes.push(plane)
+    else
+      fail "Bad weather" 
+    end
   end
 
   def take_off(plane)
-    p good_weather?
     if good_weather?
       @planes.pop
     else
