@@ -26,5 +26,4 @@ class Airport
   def empty?
     @landed.empty?
   end
-    
 end

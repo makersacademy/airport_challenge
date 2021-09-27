@@ -14,6 +14,10 @@ describe Airport do
     expect(Airport.new).to respond_to(:take_off)
   end 
 
+  it 'should not be able to take_off if no planes have already landed' do
+    expect { subject.take_off }.to raise_error 'No planes ready to take off'
+  end
+
   it 'raises an error if landing space is full ' do
     Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}
     plane = Plane.new
