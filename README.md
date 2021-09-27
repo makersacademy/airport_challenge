@@ -13,26 +13,13 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
+
+Below, I am outlining the Objects and Messages based on the six user stories that were worked out in collaboration with the client::
 
 ```
 As an air traffic controller 
@@ -58,32 +45,23 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-```
+``` 
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Starting with the first story, for each story I envision a functional representation, then convert into a domain model.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Objects:	       | Messages:
+Air traffic controller | 
+Plane	               | land_plane
+Airport	               | plane_landed
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+First User Story Domain Model: https://lucid.app/lucidchart/3190ec96-78a4-4dd4-a292-37f6d7e6a0ad/edit?viewport_loc=237%2C416%2C1210%2C441%2C0_0&invitationId=inv_2c3efc55-5a75-47c1-b4dd-2dc411b18b3c
 
-Please create separate files for every class, module and test suite.
+Once completed, I will then start to feature test and unit test as I go along.
 
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+First error message for first feature test:
+3.0.2 :001 > airport = Airport.new
+(irb):1:in `<main>': uninitialized constant Airport (NameError)
+        from /Users/nejlalowe/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+        from /Users/nejlalowe/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+        from /Users/nejlalowe/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :002 > 
