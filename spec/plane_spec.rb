@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 RSpec.describe Plane do 
   describe '#working?' do

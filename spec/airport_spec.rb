@@ -1,4 +1,6 @@
 require 'airport'
+require 'plane'
+require 'weather'
 
 RSpec.describe Airport do
 	 describe '#initialize' do

@@ -1,4 +1,5 @@
 require 'weather'
+require 'airport'
 
 RSpec.describe Weather do
 	 describe '#stormy' do
