@@ -10,4 +10,8 @@ class Airport
         @plane = plane
         @plane_array << plane
     end
+
+    def takeoff(plane)
+        plane
+      end
 end

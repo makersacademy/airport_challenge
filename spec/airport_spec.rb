@@ -11,4 +11,13 @@ describe Airport do
     expect(subject.plane_array).to eq([plane])
   end
 
+  it 'responds to the takeoff method' do
+    expect(subject).to respond_to(:takeoff)
+  end
+
+  it 'takeoff should lift off a plane' do
+    plane = Plane.new
+    expect(subject.takeoff(plane)).to eq(plane)
+  end
+
 end
