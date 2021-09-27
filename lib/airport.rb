@@ -22,7 +22,6 @@ class Airport
   end
 
   def at_airport?(plane, airport)
-    # if plane is in the @planes array, return true, else return false
     @planes.include? plane
   end
 end

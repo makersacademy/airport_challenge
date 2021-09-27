@@ -1,8 +1,4 @@
 # Airport Challenge
-=================
-
-[![Inline docs](http://inch-ci.org/github/feedXia/airport_challenge.svg?branch=main)](http://inch-ci.org/github/feedXia/airport_challenge)
-
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 
@@ -19,7 +15,9 @@ _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 ```
 
 ## What is the project?
+In this project we are tasked to model the workings of an airport system. The project is developed through the process of Test Driven Development (TDD), with the code written in Ruby and the test files written in Rspec.
 
+### Project Instructions
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
 Here are the *user stories* that we worked out in collaboration with the client:
@@ -69,7 +67,7 @@ I want to prevent landing when weather is stormy
 - [x] All tests passing
 - [x] Test covererage > 95%
 - [x] There is a useful README
-- [] There is a feature test that lands and takes off a number of planes
+- [x] There is a feature test that lands and takes off a number of planes
 
 ## Getting Started
 1. Fork this repo, and clone to your local machine
@@ -77,7 +75,7 @@ I want to prevent landing when weather is stormy
 3. When the installation completes, run `bundle`
 
 ```
-git clone
+git clone https://github.com/feedXia/airport_challenge.git
 cd airport-challenge
 bundle install #installing dependencies
 ```
