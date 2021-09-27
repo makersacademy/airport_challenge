@@ -8,30 +8,19 @@ class Airport
   end
 
   def send(weather_test=WEATHER_PROC)
-    if @planes.length > 0 && !(bad_weather?(weather_test))
-      return @planes.pop().takeoff
-    else
-      return false
-    end
+    (@planes.length > 0 && !(bad_weather?(weather_test))) && @planes.pop().takeoff
   end
 
   def receive(plane,weather_test=WEATHER_PROC)
-    if allow?(weather_test)
-      @planes << plane
-      return true
-    end
+    allow?(weather_test) && @planes << plane
   end
 
   def allow?(weather_test = WEATHER_PROC)
-    if @planes.length < @capacity && !(bad_weather?(weather_test))
-      return true
-    else
-      return false
-    end
+    @planes.length < @capacity && !(bad_weather?(weather_test))
   end
 
   def bad_weather?(proc = WEATHER_PROC)
     weather = proc.call
-    return (weather == true || weather == false) ? weather : false
+    return (weather == true || weather == false) && weather
   end
 end

@@ -19,6 +19,7 @@ class Plane
 
   def takeoff()
     @landed = false
+    return !@landed
   end
 
 end
