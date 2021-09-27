@@ -1,3 +1,4 @@
+Friday - 
 First, I planned out what exactly I want my code to do / achieve, based on the user stories.
 This can be seen in the "plan.md" file. 
 
@@ -21,3 +22,6 @@ When trying to create storm tests, I came across an issue where my plane objects
 
 I got this working, but my next issue was using doubles in testing. I understand the concept of what I am trying to do. But cannot get the syntax to achieve what I want, despite trying documentation/Youtube. 
 # My doubles which are meant to "guarantee" if there is a storm or not seem to still be randomly giving outputs. Meaning the tests sometimes pass or fail, depending on the random number generator.
+
+Saturday - 
+I moved on to creating an airport class. I completed the User Stories relating to having an adjustable limit of planes. However, I ran into issues when trying to assign multiple attributes at once to a Airport instance. I struggled with this for a long time, then decided to just have 2 methods, as a workaround. I created a method that checks the number of planes VS the limit. I went to try and incorporate this into the "land" method, along with a counter. However, I ran out of time. With hindsight, I should've commented out the failing storm code, as this complicated incorporating the counter/limit check methods.

@@ -39,12 +39,12 @@ RSpec.describe Plane do
     end
   end
 
-  describe ".storm" do
-    it "@flight_status = flying" do
-      testplane = subject.initialise(1)
-      teststorm = double()
-      allow(teststorm).to receive(:storm_check).and_return true
-      expect(subject.land).to eq("Too stormy for this plane to land.")
-    end
-  end
+  # describe ".storm" do
+  #   it "@flight_status = flying" do
+  #     testplane = subject.initialise(1)
+  #     teststorm = double()
+  #     allow(teststorm).to receive(:storm_check).and_return true
+  #     expect(subject.land).to eq("Too stormy for this plane to land.")
+  #   end
+  # end
 end

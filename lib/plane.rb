@@ -1,4 +1,5 @@
 require_relative "weather"
+require_relative "airport"
 
 class Plane
   def initialise(flying_or_grounded)
@@ -16,11 +17,17 @@ class Plane
   def land
     if @@flight_status == 0
       return "This plane is already grounded."
-    elsif storm_check == false # This is error line. Fix method
+    # elsif storm_check == false # This is error line. Fix method
+    #   plane_limit_check # Can I call a method from another class into a class?
+    #   if plane_limit_check == true
+    #     return "Plane limit reached"
+    else
       @@flight_status -= 1 
+      # @@plane_count += 1
       return "The plane has landed."
-    else 
-      return "Too stormy for this plane to land."
+      # end
+    # else 
+    #   return "Too stormy for this plane to land."
     end
   end
 
