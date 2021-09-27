@@ -1,6 +1,6 @@
 require 'plane'
 
-describe Plane do
+RSpec.describe Plane do
 
   it "takes an id" do
     ba101 = Plane.new(:BA101)

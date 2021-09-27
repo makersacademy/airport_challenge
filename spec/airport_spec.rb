@@ -118,7 +118,7 @@ RSpec.describe Airport do
         allow(subject).to receive(:rand).and_return(10)
         
         message = "Weather conditions aren't stable"
-        expect { subject.take_off(plane) }.to raise_error 
+        expect { subject.take_off(plane) }.to raise_error message
       end
     end
   end
