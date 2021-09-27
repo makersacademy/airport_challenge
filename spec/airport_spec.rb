@@ -49,6 +49,7 @@ describe Airport do
     end
 
     context 'weather is sunny' do
+
       it 'planes can take off' do
         subject.take_off(plane)
         expect(subject.tarmac).to_not include(plane)
@@ -58,6 +59,12 @@ describe Airport do
         subject.take_off(plane)
         expect(subject.confirm(plane)).to eq 'Flying high!'
       end
+
+      it 'cannot take off from the wrong airport' do
+        plane.location = 'JFK'
+        expect{ subject.take_off(plane) }.to raise_error('Wrong airport!')
+      end
+
     end
 
     context 'weather is stormy' do

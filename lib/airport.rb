@@ -19,8 +19,8 @@ class Airport
   end
 
   def take_off(plane)
-    raise('Plane is already flying.') if plane.location == 'Sky'
     raise('Stormy. Cannot take off.') if stormy?
+    raise('Wrong airport!') if wrong_airport?(plane)
     @tarmac.delete(plane)
     plane.location = 'Sky'
   end
@@ -41,6 +41,10 @@ class Airport
 
   def stormy?
     weather.check
+  end
+
+  def wrong_airport?(plane)
+    plane.location != self
   end
   
 end
