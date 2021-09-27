@@ -33,7 +33,7 @@ describe Airport do
 
     context 'when weather is stormy' do
         let(:plane) {Plane.new}
-        let(:weather) {Weather.new}
+        # let(:weather) {subject.weather}
 
         it 'should tell plane not to land ' do
             allow(subject.weather).to receive(:bad?).and_return true 
