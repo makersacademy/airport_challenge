@@ -1,7 +1,8 @@
 # Airport Challenge
 =================
 
-[![Coverage Status](https://coveralls.io/repos/github/feedXia/airport_challenge/badge.svg?branch=main)](https://coveralls.io/github/feedXia/airport_challenge?branch=main)
+[![Inline docs](http://inch-ci.org/github/feedXia/airport_challenge.svg?branch=master)](http://inch-ci.org/github/feedXia/airport_challenge)
+
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 
