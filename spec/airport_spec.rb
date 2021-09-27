@@ -9,12 +9,19 @@ RSpec.describe Airport do
 	 end
 
 	 describe '#full?' do
-			it 'returns true or false if airport is full' do
+			it 'returns true if airport is full' do
 				plane = Plane.new
 				airport = Airport.new(1)
 				airport.successfully_land(plane)
 				expect(airport.full?).to eq true
 			end 
+
+			it 'returns false if airport isnt full' do
+				plane = Plane.new
+				airport = Airport.new(2)
+				airport.successfully_land(plane)
+				expect(airport.full?).to eq false
+			end
 	 end
 
 	 describe '#successfully_land' do
