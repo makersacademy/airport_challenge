@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :planes
@@ -13,7 +15,22 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.pop
+    p good_weather?
+    if good_weather?
+      @planes.pop
+    else
+      fail "Bad weather"
+    end
+  end
+
+  def good_weather?
+    weather = Weather.new
+    case weather.forecast
+    when "clear"
+      true
+    when "stormy"
+      false
+    end
   end
 
   def full?
