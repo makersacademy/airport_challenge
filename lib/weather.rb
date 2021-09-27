@@ -6,8 +6,7 @@ class Weather
   end
 
   def clear?
-    wf = rand(1..4)
-    case wf
+    case rand(1..4)
     when 1..3
       @weather = true
     when 4

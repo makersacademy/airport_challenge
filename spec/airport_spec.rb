@@ -18,10 +18,16 @@ end
 
 describe "#takeoff" do
 
+  # before (:each) do
+  #   airport =  Airport.new
+  #   plane = Plane.new
+  # end
+
   it 'allows a plane to take off from the airport when weather is clear' do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
+    allow(airport).to receive(:weather_station).and_return(true)
     expect(airport.takeoff(plane)).to eq plane
   end
 end
