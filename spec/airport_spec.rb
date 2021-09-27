@@ -4,11 +4,12 @@ describe Airport do
   let (:plane) { double :plane }
  
     it 'responds to land' do
-      expect(airport).to respond_to(:land).with(1).argument
       allow(airport).to receive(:stormy?).and_return false
+      expect(airport).to respond_to(:land).with(1).argument
     end
 
     it 'instructs a plane to land' do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport.land(plane)).to(eq(plane))
     end
 
@@ -20,7 +21,7 @@ describe Airport do
 
     it 'throws an error if a planes tries to land when stormy.' do
       allow(airport).to receive(:stormy?).and_return true
-      airport.land(plane).to raise_error 'You cannot take off the weather is stormy'
+      expect{airport.land(plane)}.to raise_error 'You cannot land the weather is stormy'
     end
   
     it 'responds to take off' do
@@ -35,7 +36,7 @@ describe Airport do
   
     it 'throws an error if a planes tries to take_off when stormy.' do
         allow(airport).to receive(:stormy?).and_return true
-        airport.take_off(plane).to raise_error 'You cannot take off the weather is stormy'
+        expect{airport.take_off(plane)}.to raise_error 'You cannot take off the weather is stormy'
     end
  
 end

@@ -12,13 +12,14 @@ attr_reader :plane
     raise 'The airport is full!' if full?
     raise 'You cannot land the weather is stormy' if stormy?
     @planes << plane
+    plane
     
   end
 
   def take_off(plane)
-  fail "You cannot take off the weather is stormy" if stormy?
-  @plane = plane
-  plane
+    fail "You cannot take off the weather is stormy" if stormy?
+    @plane = plane
+    plane
   end
 
   private
