@@ -12,27 +12,37 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Table of Contents
+-----
+* [Task](#task)
+* [Task Acceptance Criteria](#task-acceptance-criteria)
+* [User Stories](#user-stories)
+* [Installation](#installation)
+* [How To Run Tests](#how-to-run-tests)
+* [How To Use The Application](#how-to-use-the-application)
+* [Built Using](#built-using)
 
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+The task for this challenge was to create an Airport application that utilised Object Oriented Programming (OOP) through a Test Driven Development (TDD) approach. The user stories below outline the requirements for this challenge - to allow planes to land and take off given the correct weather conditions are established, and in addition, to control air traffic by defining and managing airport capacity.
+
+My approach to this challenge was to work through each individual user story, breaking each component down into the simplest requirement to create each class and method as needed, while applying the **RED, GREEN, REFACTOR** method in parallel. This method requires a test to be created initially to define what each element of the application should be doing, running the test to ensure they are failing in the intended way, then developing the feature using the test requirements. Once the feature is working correctly and the tests are passing, I then revisited my code to improve implementation and readability for better maintainability. As a personal focus, on the day of the Airport challenge, I had set myself the goal of learning more about RSpec's "syntactic sugar" to reduce lines of unnecessary code and improve readability, and in doing so, I have applied some examples of this in my tests. 
+
+Task Acceptance Criteria
+-----
+
+* Create an airport application using OOP and TDD that follows the criteria set in the user stories
+* Have all tests passing
+* Have high [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
+* The code is elegant: every class has a clear responsibility, methods are short etc. 
+
+**BONUS**
+
+* Write an RSpec **feature** test that lands and takes off a number of planes
+
+User Stories
+-----
 
 ```
 As an air traffic controller 
@@ -59,31 +69,88 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+Installation
+-----
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundler` (if you don't have bundler already)
+3. When the installation completes, run `bundle`
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+How To Run Tests
+-----
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Once `bundle` has been ran, to test the application,
 
-Please create separate files for every class, module and test suite.
+1. Open the application directory `/airport_challenge` using your preferred terminal 
+2. Run `rspec` to see a list of tests and coverage reports.
 
-In code review we'll be hoping to see:
+In your terminal, you should see the below: 
+```
+Airport
+  #initialize
+    should initialize an empty array to store planes
+    should set the default capacity to 30
+    should allow the default capacity to be overridden
+  #land
+    is expected to respond to #land with 1 argument
+    should allow a plane to land
+    should prevent landing when airport is full
+    should prevent landing when stormy
+  #takeoff
+    is expected to respond to #takeoff
+    should allow a plane to take off
+    should allow a plane to take off and report plane is not in the airport
+    should prevent take off when stormy
+  feature
+    should land and take off multiple planes
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Plane
+  is expected to respond to #in_airport
+  is expected to respond to #landed?
+  can be reported as landed
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+Weather
+  #stormy?
+    is expected to respond to #stormy?
+    should report true
+    should report false
 
-**BONUS**
+Have you considered running rubocop? It will help you improve your code!
+Try it now! Just run: rubocop
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Finished in 0.01763 seconds (files took 0.1141 seconds to load)
+18 examples, 0 failures
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+COVERAGE: 100.00% -- 85/85 lines in 6 files
+```
+How To Use The Application
+-----
+Create an Airport
+```
+airport = Airport.new => #<Airport:0x000000014a2a4090 @planes=[], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
+```
+Create a Plane
+```
+plane = Plane.new => #<Plane:0x000000014a29f310>
+```
+Create Weather
+```
+weather = Weather.new => #<Weather:0x000000013f174cc0>
+```
+Land Plane
+```
+airport.land(plane) => #<Airport:0x000000014a2bc118 @planes=[#<Plane:0x000000014a2af698>], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
+```
+Takeoff Plane
+```
+#<Airport:0x000000012f379030 @planes=[#<Plane:0x000000012f372988>], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
+airport.take_off => #<Airport:0x000000012f379030 @planes=[], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
+```
+Built Using
+-----
 
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* Ruby
+* RSpec
+* Simplecov
+* Rubocop
