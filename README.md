@@ -1,7 +1,7 @@
 # Airport Challenge
 =================
 
-[![Inline docs](http://inch-ci.org/github/feedXia/airport_challenge.svg?branch=master)](http://inch-ci.org/github/feedXia/airport_challenge)
+[![Inline docs](http://inch-ci.org/github/feedXia/airport_challenge.svg?branch=main)](http://inch-ci.org/github/feedXia/airport_challenge)
 
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
