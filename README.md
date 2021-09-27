@@ -17,6 +17,8 @@ _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
 ## What is the project?
 In this project we are tasked to model the workings of an airport system. The project is developed through the process of Test Driven Development (TDD), with the code written in Ruby and the test files written in Rspec.
 
+Project completed independently.
+
 ### Project Instructions
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
@@ -89,4 +91,12 @@ To run the unit test:
 cd airport-challenge
 rspec
 ```
+To run the feature tests:
+1. Open the 'feature_spec.rb' file
+2. In terminal enter `irb`
+3. Enter/paste the code for the featiure te4st you want to run from the 'feature_spec.rb' file
 
+## Domain Modelling
+The following are initial modelling plans based on the *User Stories*: 
+![Modelling 1](/https://postimg.cc/pyWGLk96)
+![Modelling 2](https://postimg.cc/QVf6951x)
