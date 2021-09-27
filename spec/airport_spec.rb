@@ -10,7 +10,8 @@ describe Airport do
 
         it 'should land a plane in hangar' do
             allow(subject.weather).to receive(:bad?).and_return false 
-            expect(subject.land(plane)).to eq(["Plane"])
+            subject.land(plane)
+            expect(subject.hangar.length).to eq(1)
         end
 
         it 'should tell plane to take off' do

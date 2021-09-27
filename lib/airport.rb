@@ -4,18 +4,19 @@ require_relative 'weather'
 class Airport
     DEFAULT_CAPACITY = 100
 
-    attr_accessor :hangar, :capacity, :weather
+    attr_accessor :hangar, :capacity, :weather, :name
 
-    def initialize (capacity = DEFAULT_CAPACITY)
+    def initialize (capacity = DEFAULT_CAPACITY, name = 'London Heathrow')
         @hangar =[]
         @capacity = capacity
         @weather = Weather.new 
+        @name = name
     end
 
     def land(plane)
         raise "Airport is full" if full
         raise "Weather is bad, cannot land plane" if weather.bad?
-        hangar << plane.class.to_s #adds Plane into hangar, instead of object id
+        hangar << plane.name 
     end
 
     def take_off
@@ -27,11 +28,4 @@ class Airport
         hangar.length >= capacity
     end
 
-
 end
-
-# airport = Airport.new
-# plane = Plane.new
-# weather = Weather.new
-# @hangar =[]
-# print airport.land(plane)

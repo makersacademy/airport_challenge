@@ -57,10 +57,11 @@ weather = Weather.new
  allow(subject.weather).to receive(:bad?).and_return true 
 ...
 ```
+4. Added random plane names, and a default Airport name as Heathrow
 
 
 
 **Possible Improvements**
 
-* The Plane class is bare and I can improve this so that airplanes have unique names and are able to fly into different airports.  Overall I am pleased with my progess so far.
+* Check to see if a plane (ex. Airbus 293) is in airport.  Make sure it's not in other airports.
 
