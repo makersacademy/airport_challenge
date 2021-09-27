@@ -56,20 +56,18 @@ RSpec.describe Airport do
       before(:each) do 
         allow(subject).to receive(:rand).and_return(0)
       end
-      
-      it "lands a plane" do
-        expect(subject.land(plane).at_airport?(plane)).to be true
-      end
 
       it "confirms the plane has been landed" do
+        
         expect(subject.land(plane).at_airport?(plane)).to be true
       end
     end
-
     context "when stormy" do
       it "prevents landing" do 
         allow(subject).to receive(:rand).and_return(10)
-        expect { subject.land(plane) }.to raise_error "Weather conditions aren't stable"
+        
+        message = "Weather conditions aren't stable"
+        expect { subject.land(plane) }.to raise_error message
       end
     end
   end
@@ -93,20 +91,15 @@ RSpec.describe Airport do
         expect { subject.take_off(plane) }.to raise_error "Plane not in airport"
       end
     end
+
     context "when sunny" do
       before(:each) do 
         allow(subject).to receive(:rand).and_return(0)
       end
 
-      it "takes off a plane" do
-        subject.land(plane)
-        
-        expect(subject.take_off(plane).at_airport?(plane)).to be false
-      end
-    
       it "confirms the plane has taken off" do
         subject.land(plane)
-        
+
         expect(subject.take_off(plane).at_airport?(plane)).to be false
       end
       
@@ -123,8 +116,9 @@ RSpec.describe Airport do
         allow(subject).to receive(:rand).and_return(0)
         subject.land(plane)
         allow(subject).to receive(:rand).and_return(10)
-       
-        expect { subject.take_off(plane) }.to raise_error "Weather conditions aren't stable"
+        
+        message = "Weather conditions aren't stable"
+        expect { subject.take_off(plane) }.to raise_error 
       end
     end
   end

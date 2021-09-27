@@ -30,3 +30,12 @@ Perhaps Plane shouldn't handle in_airport?
 Object            Methods
 --------------------------
 Airport           full?
+
+
+
+
+land/take_off
+
+plane
+plane_1, plane_2,...
+[plane_1, plane_2,...]
