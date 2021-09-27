@@ -1,7 +1,8 @@
 class Airport
   attr_reader :capacity, :planes_hub
+  CAPACITY = 50
 
-  def initialize(capacity = 50)
+  def initialize(capacity = CAPACITY)
     @capacity = capacity
     @planes_hub = []
   end
@@ -12,7 +13,7 @@ class Airport
   end
 
   def takeoff(plane)
-    @planes_hub.pop
+    @planes_hub.delete(plane)
   end
 
   private
