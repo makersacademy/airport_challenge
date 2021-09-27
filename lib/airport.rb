@@ -37,6 +37,4 @@ class Airport
 		  fail 'Unable to take off due to stormy weather' if @weather.stormy?
 		  @plane = plane
 	 end
-
-
 end

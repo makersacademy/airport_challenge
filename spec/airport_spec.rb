@@ -1,6 +1,4 @@
 require 'airport'
-require 'plane'
-require 'weather'
 
 RSpec.describe Airport do
 	 describe '#initialize' do
@@ -27,7 +25,7 @@ RSpec.describe Airport do
 				expect(airport.planes_at_airport).to contain_exactly(airport)
 			end
 		
-			it 'rasies an error when plane tries landing in a full airport' do
+			it 'raises an error when plane tries landing in a full airport' do
 				plane = Plane.new
 				subject.capacity.times { subject.successfully_land Plane.new }
 				expect { subject.successfully_land(plane) }.to raise_error 'airport is full'
