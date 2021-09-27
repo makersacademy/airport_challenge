@@ -15,7 +15,7 @@ describe Plane do
       allow(airport).to receive(:add_plane).and_return(true)
 
       expect(plane.instruct_plane_to_land(airport)).to eq("Plane landed at airport")
-      expect(plane.at_airport?).to eq(true)
+      expect(plane.in_air?).to eq(false)
     end
 
     it 'should not land a plane at a given airport if the airport is full' do
@@ -29,7 +29,7 @@ describe Plane do
 
       allow(airport).to receive(:full?).and_return(true)
       expect { plane.instruct_plane_to_land(airport) }.to raise_error("This airport is full, this plane cannot land")
-      expect(plane.at_airport?).to eq(false)
+      expect(plane.in_air?).to eq(true)
     end
 
     it 'should not land a plane if the plane is already at an airport' do
@@ -39,7 +39,7 @@ describe Plane do
       plane.instruct_plane_to_land(airport)
 
       expect { plane.instruct_plane_to_land(airport) }.to raise_error("This plane is already in an airport, instruct the plane to takeoff before instructing it to land")
-      expect(plane.at_airport?).to eq(true)
+      expect(plane.in_air?).to eq(false)
     end
 
     it 'should not land a plane at a given airport if weather is stormy' do
@@ -47,7 +47,7 @@ describe Plane do
       allow(airport).to receive(:full?).and_return(false)
 
       expect { plane.instruct_plane_to_land(airport) }.to raise_error("The weather is stormy, this plane cannot land")
-      expect(plane.at_airport?).to eq(false)
+      expect(plane.in_air?).to eq(true)
     end
   end
 
@@ -60,7 +60,7 @@ describe Plane do
       plane.instruct_plane_to_land(airport)
 
       expect(plane.instruct_plane_to_takeoff).to eq("Plane has taken off")
-      expect(plane.at_airport?).to eq(false)
+      expect(plane.in_air?).to eq(true)
     end
 
     it 'should not make plane takeoff if weather is stormy' do
@@ -71,13 +71,13 @@ describe Plane do
       allow(weather).to receive(:forecast_stormy?).and_return(true)
 
       expect { plane.instruct_plane_to_takeoff }.to raise_error("The weather is stormy, this plane cannot takeoff")
-      expect(plane.at_airport?).to eq(true)
+      expect(plane.in_air?).to eq(false)
     end
 
     it 'should not allow plane to takeoff if plane is not at an airport' do
 
       expect { plane.instruct_plane_to_takeoff }.to raise_error("This plane is not at an airport, land it at an airport before instructing it to takeoff")
-      expect(plane.at_airport?).to eq(false)
+      expect(plane.in_air?).to eq(true)
     end
   end
 
