@@ -17,12 +17,12 @@ describe Airport do
   end
 
   it "return an error if airport is full" do
-    airport = Airport.new
-    50.times { airport.land(Plane.new) }
+    airport = Airport.new(2)
+    2.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error "this airport is full"
   end
   it "has a default airport capacity that can be overridden" do
-    airport = Airport.new
-    expect(airport.capacity).to eq 50
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq 5
   end
 end
