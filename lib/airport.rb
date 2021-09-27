@@ -32,12 +32,10 @@ class Airport
   private 
 
   def stormy?
-    @weather >= 9 ? true : false #Extreme stormy weather is a 9 or 10
+    @weather >= 9 # Extreme stormy weather is a 9 or 10
   end
   
   def full?
-    @hangar.length >= @capacity ? true : false
+    @hangar.length >= @capacity
   end 
 end
-
-

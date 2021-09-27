@@ -26,7 +26,6 @@ end
 context Airport do
   let (:plane) { double("plane") }
 
-
   it "Should be able to have it's capacity manually set" do 
     subject = Airport.new
     subject.capacity = 45 
@@ -106,11 +105,11 @@ describe Airport do
   end
 
   it "Should ensure the correct plane has taken off" do
-  subject = Airport.new(plane, plane2)
-  subject.weather = 2
-  subject.lose(plane2)
-  expect(subject.hangar.include?(plane2)).to eq(false)
-  expect(subject.hangar.include?(plane)).to eq(true)
+    subject = Airport.new(plane, plane2)
+    subject.weather = 2
+    subject.lose(plane2)
+    expect(subject.hangar.include?(plane2)).to eq(false)
+    expect(subject.hangar.include?(plane)).to eq(true)
   end
 end
 
