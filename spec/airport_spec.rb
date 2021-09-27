@@ -33,7 +33,6 @@ RSpec.describe Airport do
     end
 
     it "removes the plane from the airport" do
-      # airport = subject
       subject.receive(plane,->{false})
       subject.send(->{false})
       expect(subject.planes).to be_empty

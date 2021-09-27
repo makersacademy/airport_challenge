@@ -8,15 +8,15 @@ class Airport
   end
 
   def send(weather_test=WEATHER_PROC)
-    (@planes.length > 0 && !(bad_weather?(weather_test))) && @planes.pop().takeoff
+    (planes.length > 0 && !(bad_weather?(weather_test))) && planes.pop().takeoff
   end
 
   def receive(plane,weather_test=WEATHER_PROC)
-    allow?(weather_test) && @planes << plane
+    allow?(weather_test) && planes << plane
   end
 
   def allow?(weather_test = WEATHER_PROC)
-    @planes.length < @capacity && !(bad_weather?(weather_test))
+    planes.length < @capacity && !(bad_weather?(weather_test))
   end
 
   def bad_weather?(proc = WEATHER_PROC)

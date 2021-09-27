@@ -1,8 +1,8 @@
 require "plane"
 
 RSpec.describe Plane do
-  let(:airport){double(:airport, :accept? => true)}
-  let(:unaccepting_airport){double :airport, :accept? => false, :receive => true}
+  let(:airport){double(:airport, :accept? => true, :receive => true)}
+  let(:unaccepting_airport){double :airport, :accept? => false}
   
 
 
@@ -17,17 +17,6 @@ RSpec.describe Plane do
       expect(subject.landed).to eq(false)
     end
 
-    # it "only lands if airport allows it" do
-    #   allow(airport).to receive(:receive).with(subject).and_return(subject)
-    #   expect(subject.land(airport)).to eq(subject)
-
-    #   expect(subject.land(unaccepting_airport)).to eq(false)
-    # end
-
-    #it "sends itself to the airport" do
-    #allow(airport).to receive(:receive).with(subject).and_return(subject)
-    #expect(subject.land(airport)).to eq subject
-    #end
 
     it "doesn't try to land if already landed" do
       allow(airport).to receive(:receive).with(subject).and_return(true)
