@@ -65,7 +65,6 @@ describe Airport do
         it 'should not land a plane' do
         
             plane = Plane.new
-            weather = Weather.new
             allow(subject.weather).to receive(:bad?).and_return false 
 
             subject.capacity = Airport::DEFAULT_CAPACITY
