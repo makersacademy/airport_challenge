@@ -69,10 +69,12 @@ airport.takeoff(plane)
 
 ## Known Issues
 
-* Test 'it 'allows a plane to take off from the airport when weather is clear' is not working correctly
-
 
 ## Initial Planning
+
+* In my initial planning phase, I followed the user stories and defined land & takeoff as methods that would be called on the plane objects.
+* However, I later decided to swap this around and have these methods called on the planes instead.
+* Looking forward, this may cause issues when trying to ascertain the plane statuses.
 
 | Objects | Messages |
 | ------- | -------- |
