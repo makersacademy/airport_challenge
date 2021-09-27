@@ -128,24 +128,24 @@ How To Use The Application
 -----
 Create an Airport
 ```
-Airport.new => #<Airport:0x000000014a2a4090 @planes=[], @capacity=30>>
+airport = Airport.new => #<Airport:0x000000014a2a4090 @planes=[], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
 ```
 Create a Plane
 ```
-Plane.new => #<Plane:0x000000014a29f310>
+plane = Plane.new => #<Plane:0x000000014a29f310>
 ```
 Create Weather
 ```
-Weather.new => #<Weather:0x000000013f174cc0>
+weather = Weather.new => #<Weather:0x000000013f174cc0>
 ```
 Land Plane
 ```
-airport.land(plane) => #<Airport:0x000000014a2bc118 @planes=[#<Plane:0x000000014a2af698>], @capacity=30>>
+airport.land(plane) => #<Airport:0x000000014a2bc118 @planes=[#<Plane:0x000000014a2af698>], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
 ```
 Takeoff Plane
 ```
-#<Airport:0x000000012f379030 @planes=[#<Plane:0x000000012f372988>], @capacity=30>>
-airport.take_off => #<Airport:0x000000012f379030 @planes=[], @capacity=30>>
+#<Airport:0x000000012f379030 @planes=[#<Plane:0x000000012f372988>], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
+airport.take_off => #<Airport:0x000000012f379030 @planes=[], @capacity=30, @weather=#<Weather:0x000000012ab1c0d0>>
 ```
 Built Using
 -----
