@@ -28,7 +28,7 @@ class Airport
   private
 
   def airport_full?
-    @landed_planes.length >= @capacity
+    @landed_planes.length == @capacity
   end
 
   def airport_empty?
@@ -36,7 +36,7 @@ class Airport
   end
 
   def is_landed?(plane)
-    if @landed_planes.include?(plane) or !plane.flying
+    if @landed_planes.include?(plane) || !plane.flying
       true
     else
       false
