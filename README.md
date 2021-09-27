@@ -98,5 +98,5 @@ To run the feature tests:
 
 ## Domain Modelling
 The following are initial modelling plans based on the *User Stories*: 
-![Modelling 1](/https://postimg.cc/pyWGLk96)
-![Modelling 2](https://postimg.cc/QVf6951x)
+![Modelling 1](/postimg.cc/pyWGLk96)
+![Modelling 2](/postimg.cc/QVf6951x)
