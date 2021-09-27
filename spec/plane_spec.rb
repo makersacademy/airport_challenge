@@ -11,8 +11,8 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
-  it "should respond to #left?" do
-    expect(subject).to respond_to(:left?)
+  it "should respond to #departed?" do
+    expect(subject).to respond_to(:departed?)
   end
 
   describe "#land" do
@@ -66,9 +66,9 @@ describe Plane do
     end
   end
 
-  describe "#left?" do
+  describe "#departed?" do
     it "should accept one argument" do
-      expect(subject).to respond_to(:left?).with(1).argument
+      expect(subject).to respond_to(:departed?).with(1).argument
     end 
 
     it "should confirm that is no longer in the airport" do
@@ -77,7 +77,7 @@ describe Plane do
       allow(plane).to receive(:stormy).and_return false
       plane.land(airport)
       plane.take_off(airport)
-      expect(plane.left?(airport)).to be true 
+      expect(plane.departed?(airport)).to be true 
     end
   end
 end

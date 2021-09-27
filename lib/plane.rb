@@ -16,19 +16,13 @@ class Plane
   end
 
   def take_off(airport)
-    fail "The weather is bad! Stay on the ground!" if stormy
-    fail "This plane is not in this airport!" if left?(airport)
+    fail "The weather is bad! Stay on the ground!" if airport.stormy?
+    fail "This plane is not in this airport!" if departed?(airport)
     airport.hangar.delete(self)
     self.ground_location = :sky
   end
 
-  def left?(airport)
+  def departed?(airport)
     !airport.hangar.include?(self)
-  end
-
-  private
-
-  def stormy
-    rand(0..5) == 5 # stormy when 5
   end
 end

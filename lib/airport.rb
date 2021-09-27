@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :hangar, :capacity
@@ -9,5 +11,9 @@ class Airport
 
   def full
     hangar.size >= capacity
+  end
+
+  def stormy?
+    weather.forecast
   end
 end
