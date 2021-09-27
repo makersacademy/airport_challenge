@@ -1,3 +1,5 @@
+Update readme with reflection
+
 Airport Challenge
 =================
 
