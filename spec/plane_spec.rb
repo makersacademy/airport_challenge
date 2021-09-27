@@ -41,4 +41,24 @@ describe Plane do
       end
     end
   end
+
+  describe '.edge_landed' do
+    context 'given a plane has already landed' do
+      it 'cannot land again' do
+        airport.land(subject, weather)
+        expect { subject.edge_landed(subject, airport) }.to raise_error 'Plane has landed, cannot land again!'
+      end
+    end
+  end
+
+  describe '.wrong_airport' do
+    context 'if plane tries to takeoff from another airport' do
+      it 'returns error' do
+        airport.land(subject, weather)
+        another_airport = Airport.new
+        another_airport.takeoff(subject, weather)
+        expect { subject.wrong_airport(airport, another_airport) }.to raise_error 'Plane is not in this airport!'
+      end
+    end
+  end
 end
