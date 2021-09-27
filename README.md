@@ -30,12 +30,10 @@ describe Airport do
         it 'should not land a plane'
     end
 
-
     context 'when system designing' do
         it 'should have a default capacity'
         it 'should change the default capacity' 
     end
-
 end
 ```
 2. I had relative ease with landing and flying out airplanes.
