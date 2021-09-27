@@ -34,9 +34,17 @@ describe Airport do
       sunny_weather = Weather.new
       allow(sunny_weather).to receive(:get_condition) { "Sunny" }
       subject.land(plane, sunny_weather)
-      # the takeoff method is failing because when its stormy nothing is being added to the array after trying to land, hence the error
-      subject.takeoff
+      subject.takeoff(sunny_weather)
       expect(subject.hangar).not_to include plane
+    end
+    it "prevents plane taking off if weather is stormy" do
+      plane = Plane.new
+      sunny_weather = Weather.new
+      allow(sunny_weather).to receive(:get_condition) { "Sunny" }
+      subject.land(plane, sunny_weather)
+      stormy_weather = sunny_weather
+      allow(stormy_weather).to receive(:get_condition) { "Stormy" }
+      expect { subject.takeoff(stormy_weather) }.to raise_error "Weather is dangerous to take off in"
     end
   end
 end
