@@ -26,6 +26,6 @@ class Plane
 
   def wrong_airport(airport, another_airport)
 
-    fail 'Plane is not in this airport!' unless(airport == another_airport)
+    fail 'Plane is not in this airport!' unless (airport == another_airport)
   end
 end

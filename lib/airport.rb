@@ -21,7 +21,7 @@ class Airport
     @planes.delete(plane)
   end
 
-  def at_airport?(plane, airport)
+  def at_airport?(plane, _airport)
     @planes.include? plane
   end
 end
