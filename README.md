@@ -1,4 +1,5 @@
-[![Coverage Status](https://img.shields.io/badge/coverage-100.0%-brightgreen)]
+[![Coverage Status](https://img.shields.io/badge/coverage-100.0%25-brightgreen)]
+[![Coverage Status](https://coveralls.io/repos/github/georn/airport-challenge/badge.svg?branch=continuous-integration)](https://coveralls.io/github/georn/airport-challenge?branch=continuous-integration)
 Airport Challenge
 =================
 
