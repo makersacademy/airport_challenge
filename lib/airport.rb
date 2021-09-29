@@ -33,6 +33,7 @@ class Airport
     else
       puts "Skies are clear. Plane taking off."
       airport.delete(plane)
+      @capacity += 1
     end
   end
 
@@ -43,6 +44,7 @@ class Airport
     else
       puts "Skies are clear. Plane can land."
       airport << plane
+      @capacity -= 1
     end
   end
 end
