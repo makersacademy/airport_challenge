@@ -1,3 +1,4 @@
+[![Coverage Status](https://img.shields.io/badge/coverage-100.0%25-brightgreen)](https://github.com/Anmolbhati30/airport-challenge)
 Airport Challenge
 =================
 
@@ -87,3 +88,11 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+* My plan:
+
+I took this task one user story at a time. Doing so, I noticed how I could take the things we learnt with Boris Bikes and apply them to this situation, so I constructed the airport with the functionality to influence planes within itself. Although this has lead to the plane not having much influence in the program other than being a class that holds its id, I like this design, because the airport has control of all its functions and the inputs (planes) it receives.
+
+Weather was created as a seperate module to keep everything decoupled and apply the tests independently.
+
+I wanted to try land multiple planes but I couldn't quite figure out how to go about it so I'm submitting as is to atleast meet the requirements, but I've began drafting in domainmodelling.md how I'd go about it.
