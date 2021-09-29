@@ -23,22 +23,26 @@ class Airport
 
   def weather_station
     weather = Weather.new
-    weather.clear?
+    weather.stormy?
   end
 
   def takeoff(plane)
     check_hangers
     if weather_station
+      puts "It's too stormy to fly"
+    else
       puts "Skies are clear. Plane taking off."
       airport.delete(plane)
-    else
-      puts "It's too stormy to fly"
     end
   end
 
   def land(plane)
     fail "No space" if full?
-    airport << plane
-    puts "Plane has landed"
+    if weather_station
+      puts "Too stormy to land. Go around."
+    else
+      puts "Skies are clear. Plane can land."
+      airport << plane
+    end
   end
 end
