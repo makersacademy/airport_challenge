@@ -1,4 +1,4 @@
-[![Coverage Status](https://img.shields.io/badge/coverage-100.0%-brightgreen)](https://github.com/Anmolbhati30/)
+[![Coverage Status](https://img.shields.io/badge/coverage-100.0%-brightgreen)]
 Airport Challenge
 =================
 
