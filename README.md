@@ -1,5 +1,4 @@
-[![Coverage Status](https://img.shields.io/badge/coverage-100.0%25-brightgreen)](https:/github.com/feedXia/)
-
+[![Coverage Status](https://img.shields.io/badge/coverage-100.0%25-brightgreen)](https:/github.com/feedXia/) 
 # Airport Challenge
 
 _Makers Academy Software Developer Bootcamp Week 3: Individual Challenge_
