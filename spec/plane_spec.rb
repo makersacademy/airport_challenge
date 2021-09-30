@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  plane = Plane.new(123)
+  plane = Plane.new
   it "knows its current airport" do
     expect(plane).to respond_to(:current_airport) # defaults to nil
   end

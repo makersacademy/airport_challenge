@@ -1,7 +1,6 @@
 class Plane
   attr_accessor :current_airport
-  def initialize(plane_id)
-    @plane_id = plane_id
+  def initialize
     @current_airport = nil
   end
 
