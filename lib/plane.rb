@@ -1,11 +1,11 @@
 class Plane
-  attr_reader :current_airport
+  attr_accessor :current_airport
   def initialize(plane_id)
     @plane_id = plane_id
-    @current_airport = 0
+    @current_airport = nil
   end
-  
-  def update_airport(airport_id)
-    @current_airport = airport_id
+
+  def in_flight?
+    !@current_airport.nil?
   end
 end

@@ -3,7 +3,7 @@ $weather = Weather.new
 
 class Airport
   DEFAULT_CAPACITY = 50
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :airport_id
 
   def initialize(airport_id, capacity = DEFAULT_CAPACITY)
     @airport_id = airport_id
@@ -16,23 +16,27 @@ class Airport
   end
 
   def land(plane)
-    raise "Plane already at this airport" if confirm_departure(plane) == "Plane has not departed"
-    raise "Plane already at another airport" unless plane.current_airport.zero?
+    raise "Plane already at this airport" unless departed?(plane)
+    raise "Plane already at another airport" unless plane.in_flight?
     raise "Dangerous weather" if $weather.stormy
     raise "Airport full" if full?
     @planes << plane
-    plane.update_airport(@airport_id)
+    plane.current_airport = @airport_id
   end
 
   def take_off(plane)
-    raise "Plane is already in the sky" if plane.current_airport.zero?
-    raise "Plane is at another airport" if confirm_departure(plane) == "Plane has departed"
+    raise "Plane is already in the sky" if plane.in_flight?
+    raise "Plane is at another airport" if departed?(plane)
     raise "Dangerous weather" if $weather.stormy
     @planes.delete(plane)
-    plane.update_airport(0)
+    plane.current_airport = nil
+  end
+
+  def departed?(plane)
+    plane.current_airport != @airport_id
   end
 
   def confirm_departure(plane)
-    plane.current_airport == @airport_id ? "Plane has not departed" : "Plane has departed"
+    departed?(plane) ? "Plane has departed" : "Plane has not departed"
   end
 end
