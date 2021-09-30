@@ -89,177 +89,59 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-My contributions
+# My contributions
 -----
-Below are my diagrams and notes throughout this challenge. I have referred to the steps in the [Boris Bikes](https://github.com/makersacademy/course/blob/main/boris_bikes/0_challenge_map.md) challenge to support my progress.
+# Airport
 
-Domain Models
------
-User story 1 - version 1
+## User Stories
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
+## Domain Model
+
 | Objects | Messages |
 |---------|----------|
-| Traffic Controller | |
-| Airport | |
-| Plane | land |
+| Airport | initialize |
+|  | airport_management |
+|  | land |
+|  | flying? |
+|  | take_off |
+|  | weather_check |
 
-Version 2 - Updated model for user story 1
-| Objects | Messages |
-|---------|----------|
-| Traffic Controller | |
-| Airport | instruct |
-| Plane | land? |
+## Done
+* instruct a plane to land at an airport
+* instruct a plane to take off from an airport and confirm that it is no longer in the airport
+* prevent landing when the airport is full 
+* add logic so if there are 0 planes at the airport - planes cannot take off.
+* default airport capacity that can be overridden as appropriate
 
-Version 3 - Updated method name for user story 1
-| Objects | Messages |
-|---------|----------|
-| Traffic Controller | |
-| Airport | instruct_plane |
-| Plane | land? |
+**Thoughts**
+>My `AIRPORT_CAPACITY` is a constant. Instead, maybe this could be an instance variable which is created within `initialize`. The `initialize` method could take an integer to overwrite the default capacity stored in `AIRPORT_CAPACITY`.    
 
-Feature tests and observations for user story 1
------
-```
-➜  airport_challenge git:(main) irb
-3.0.2 :001 > plane = Plane.new
-(irb):1:in `<main>': uninitialized constant Plane (NameError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-```
-The type of error above is a `NameError` occuring on line 1 in `irb`. A `NameError`is raised when you reference a constant or a variable which isn't defined in the current context. I will now initalise `rspec` within my project and create a new spec file for my `Plane` object.
 
-Once I created `./spec/plane_spec.rb` to `describe` my `Plane` object, I ran `rspec` which gave me the following error.
-```
-An error occurred while loading ./spec/plane_spec.rb.
-Failure/Error:
-  describe Plane do
-    
-  end
+## To-do
 
-NameError:
-  uninitialized constant Plane
-# ./spec/plane_spec.rb:1:in `<top (required)>'
-No examples found.
-```
-I will now create a new file for a `Plane` class, inside the `/lib` directory, define a `Plane` class, use `require` to include this file inside my `spec` file and run `rspec` from the Command Line. The unit test passed. I also worked through my original feature test. 
-```
-➜  airport_challenge git:(main) ✗ irb
-3.0.2 :001 > plane = Plane.new
-(irb):1:in `<main>': uninitialized constant Plane (NameError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-3.0.2 :002 > exit
-➜  airport_challenge git:(main) ✗ irb
-3.0.2 :001 > require './lib/plane.rb'
- => true 
-3.0.2 :002 > plane = Plane.new
- => #<Plane:0x0000000122072f60> 
-```
-At this point, I realised I needed to refactor my code as I needed an `Airport` class so I could run `airport = Airport.new`, `plane = airport.land`. I renamed `lib/plane.rb` to be `lib/airport.rb` and changed the class to be a type of `Airport`. I also renamed `spec/plane_spec.rb` to be `spec/airport_spec.rb`, where I required the `airport` file from `lib` and referenced `Airport` in the `describe` block.
-
-```
-➜  airport_challenge git:(main) irb
-3.0.2 :001 > require './lib/airport.rb'
- => true 
-3.0.2 :002 > airport = Airport.new
- => #<Airport:0x0000000142034c90> 
-3.0.2 :003 > plane = airport.land
-(irb):3:in `<main>': undefined method `land' for #<Airport:0x0000000142034c90> (NoMethodError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-```
-I ran my feature test again, this time creating an instance of the `Airport` class. This was successful. I know this because `#<Airport:0x0000000142034c90>` was returned in `irb`. I then ran `plane = airport.land` as I'm wanting to instruct the plane to land at an airport. The error message I received tells me there is no `land` method. I will now create this using similar steps that I followed to create the `Airport` class.
-```
-describe Airport do
-  it { is_expected.to respond_to :land }
-end
-```
-The above code returned the following error: `Failure/Error: it { is_expected.to respond_to :land }`. This tells me there is still no `land` method. I will now create one within `lib/airport.rb`.
-```
-class Airport
-  def land
-  end
-end
-``` 
-The above code from `lib/airport.rb` passes the unit test. 
-```
-➜  airport_challenge git:(main) ✗ irb
-3.0.2 :001 > require './lib/airport.rb'
- => true 
-3.0.2 :002 > airport = Airport.new
- => #<Airport:0x0000000126a9d798> 
-3.0.2 :003 > plane = airport.land
- => nil 
-```
-I am also able to create the variable `plane` in `irb` to equal `airport.land` which returns `nil`.
-Upon reflection of what to do next, I realised there is another verb in the user story: `instruct`. So I am going to refactor my domain model and code to reflect this. 
-```
-3.0.2 :001 > require './lib/airport.rb'
-3.0.2 :002 > airport = Airport.new
- => #<Airport:0x00000001580b6090> 
-3.0.2 :003 > plane = airport.land
-(irb):3:in `<main>': undefined method `land' for #<Airport:0x00000001580b6090> (NoMethodError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-3.0.2 :004 > plane = airport.instruct
- => nil 
-3.0.2 :005 > plane.land?
-(irb):5:in `<main>': undefined method `land?' for nil:NilClass (NoMethodError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-```
-From my new domain model, I'm wanting an `Airport` class to use an `instruct` method on a `plane` where I can run the `land?` method to check if a plane has landed. Using this logic, I ran a new feature test. From the error message, I am being told there is no `land?` method. But I also know, that I haven't created a `Plane` class yet. So I will begin with creating the appropriate files within `lib` and `spec` with the corresponding code for a `Plane` class and `land?` method.  
-Once I did this, I ran `rspec` to check my unit tests passed which they did. I also ran my feature test again in `irb`.
-```
-➜  airport_challenge git:(main) ✗ irb
-3.0.2 :001 > require './lib/airport.rb'
- => true 
-3.0.2 :002 > airport = Airport.new
- => #<Airport:0x000000012c054a10> 
-3.0.2 :003 > plane = airport.instruct
- => nil 
-3.0.2 :004 > plane.land?
-(irb):4:in `<main>': undefined method `land?' for nil:NilClass (NoMethodError)
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-        from /Users/michelle/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-```
-The error I saw was a `NoMethodError` because I am attempting to call a method (`land?`) on `nil` (`plane`).
-
-I added an `it` block to the `airport_spec.rb` file. When I ran `rspec` I got the following error:
-```
-Failures:
-
-  1) Airport instructs a plane to land
-     Failure/Error: expect(plane).to be_landing
-       expected nil to respond to `landing?`
-```
-This tells me that I need the `instruct` method to return something other than `nil`.
-I have decided to refactor my code to rename the `instruct` method as `instruct_plane` so it helps me with what I'd like the method to return.
-
-I decided to look at the remaining user stories and create a flow chart [airport-flow-chart.drawio.pdf](airport-flow-chart.drawio.pdf). From this, I renamed some of my methods. I did however write some code before writing tests. This caused to be problematic. Currently, the `airport_spec.rb` is variable in it's test coverage. I am assuming this is due to the random choice of `weather` and which part of the `if` statement is executed. At present, I'm unable to narrow down how to fix this to have over 95% consistent test coverage.
-```
-COVERAGE:  94.74% -- 18/19 lines in 4 files
-
-+----------+----------------+-------+--------+---------+
-| coverage | file           | lines | missed | missing |
-+----------+----------------+-------+--------+---------+
-|  88.89%  | lib/airport.rb | 9     | 1      | 8       |
-+----------+----------------+-------+--------+---------+
-3 file(s) with 100% coverage not shown
-
-COVERAGE: 100.00% -- 19/19 lines in 4 files
-
-COVERAGE:  89.47% -- 17/19 lines in 4 files
-
-+----------+----------------+-------+--------+---------+
-| coverage | file           | lines | missed | missing |
-+----------+----------------+-------+--------+---------+
-|  77.78%  | lib/airport.rb | 9     | 2      | 10-11   |
-+----------+----------------+-------+--------+---------+
-3 file(s) with 100% coverage not shown
-```
+* prevent takeoff when weather is stormy 
+* prevent landing when weather is stormy
