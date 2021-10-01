@@ -9,7 +9,7 @@ class Plane
 
   def land(airport)
     fail "The weather is bad! You can't land!" if airport.stormy?
-    fail "You can't land here. The airport is full!" if airport.full
+    fail "You can't land here. The airport is full!" if airport.full?
     fail "This plane is already on the ground!" if ground_location == :ground
     self.ground_location = :ground
     airport.hangar << self

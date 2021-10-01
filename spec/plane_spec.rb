@@ -22,15 +22,17 @@ describe Plane do
   
     it "should allow a plane to land at an airport" do
       allow(airport).to receive(:stormy?).and_return false
-      expect(subject.land(airport)).to eq(airport.hangar << subject)
+      expected_hangar = airport.hangar + [subject]
+      expect(subject.land(airport)).to eq(expected_hangar)
     end
 
     it "should raise an error if the airport is full" do
-      plane = Plane.new
-      airport = Airport.new
+      plane1 = Plane.new
+      plane2 = Plane.new
+      airport = Airport.new(1)
       allow(airport).to receive(:stormy?).and_return false
-      allow(airport).to receive(:full).and_return true
-      expect { plane.land(airport) }.to raise_error "You can't land here. The airport is full!"
+      plane1.land(airport)
+      expect { plane2.land(airport) }.to raise_error "You can't land here. The airport is full!"
     end
 
     it "should raise an error if the weather is stormy" do  
@@ -40,10 +42,9 @@ describe Plane do
     end
 
     it "should raise and error if plane is landed elsewhere" do
-      plane = Plane.new
+      plane = Plane.new(:ground)
       airport = Airport.new
       allow(airport).to receive(:stormy?).and_return false
-      allow(plane).to receive(:ground_location).and_return :ground
       expect { plane.land(airport) }.to raise_error "This plane is already on the ground!"
     end
   end
@@ -91,10 +92,10 @@ describe Airport do
 
     it "should be able to vary the capacity of planes it can take" do
       airport = Airport.new(20)
-      plane = Plane.new
+      plane1 = Plane.new(:sky)
+      allow(airport).to receive(:full?).and_return true 
       allow(airport).to receive(:stormy?).and_return false
-      allow(airport).to receive(:full).and_return true
-      expect { plane.land(airport) }.to raise_error "You can't land here. The airport is full!"
+      expect { plane1.land(airport) }.to raise_error "You can't land here. The airport is full!"
     end
   end
 end
