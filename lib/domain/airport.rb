@@ -40,7 +40,6 @@ class Airport
 
   def land
     if runway_is_empty? || plane_taking_off?
-
       "No planes cleared for landing"
     else
       clear_runway

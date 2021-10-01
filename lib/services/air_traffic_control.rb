@@ -82,15 +82,16 @@ class AirTrafficControl
     view_planes(@plane_management_service.find_flying_planes)
   end
 
-  def find_plane_by_id(plane_id)
-    @plane_management_service.find_plane_by_id(plane_id)
-  end
-
+  
   def find_airport_by_code(code)
     @airport_management_service.find_airport_by_code(code)
   end
-
+  
   private
+  
+  def find_plane_by_id(plane_id)
+    @plane_management_service.find_plane_by_id(plane_id)
+  end
 
   def view_planes(planes)
     planes.each_with_index.map { |plane, index| "#{index + 1}: #{plane.id} - #{plane.name}" }
