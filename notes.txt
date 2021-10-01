@@ -1,0 +1,28 @@
+Your code should defend against edge cases such as inconsistent states of the system ensuring that
+
+- planes can only take off from airports they are in
+- planes that are already flying cannot take off and/or be in an airport
+- planes that are landed cannot land again and must be in an airport, etc.
+
+- Functionality to build:
+
+
+
+
+
+ # it 'should throw an error if the weather is too stormy' do
+  #   airport = Airport.new
+  #   plane = Plane.new
+  #   weather = Weather.new
+  #   allow(weather).to receive(:rand).and_return(2)
+  #   expect(weather.forecast).to eq(false)
+  #   expect(airport.takeoff(plane)).to eq("Weather too stormy to take off")
+  # end
+
+   def plane_present
+    if @airport.include?(plane)
+      @airport.delete(plane)
+      return plane
+    else
+      return "Error: plane not in hangar"
+    end
