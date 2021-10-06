@@ -11,14 +11,18 @@ class Airport
 
   def take_off(plane)
     raise StandardError.new "That plane is not in the hangar" unless @hangar.include?(plane)
-    (hangar.delete(plane) && plane.plane_is_flying) if landing_permitted
+    (hangar.delete(plane) && plane.plane_is_flying) if landing_permitted?
   end
 
   def land(plane)
-    (hangar.push(plane) && plane.plane_has_landed) if (landing_permitted && !full? && plane.landed == false)
+    return unless landing_permitted?
+    return if full?
+    return if plane.landed
+
+    (hangar.push(plane) && plane.plane_has_landed)
   end
 
-  def check_plane_in_hangar(plane)
+  def plane_in_hangar?(plane)
     @hangar.include?(plane)
   end
 
@@ -26,7 +30,7 @@ class Airport
     ["stormy", "fine"].sample
   end
 
-  def landing_permitted
+  def landing_permitted?
     weather == "fine"
   end
 

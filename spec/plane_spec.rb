@@ -4,8 +4,6 @@ plane = Plane.new
 
 describe Plane do
 
-  let(:airport) { double :airport }
-
   it "is initialized with @landed being false" do
     expect(plane.landed).to eq false
   end
