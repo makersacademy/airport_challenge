@@ -8,4 +8,8 @@ class TrafficController
     "plane has taken off"
   end
 
+  def full_airport
+    "do not land airport is full"
+  end
+
 end
