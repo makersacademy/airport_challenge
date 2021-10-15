@@ -9,7 +9,7 @@ class Airport
 
   def instruct_to_land(plane)
     raise "AirportFull" if full?
-    @landed_planes << plane 
+    @landed_planes << plane if weather == "sunny"
   end
 
   def instruct_to_take_off(plane)
