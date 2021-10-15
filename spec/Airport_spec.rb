@@ -15,11 +15,10 @@ describe Airport do
     expect{airport.depart_plane(plane)}.to raise_error("Plane has left") # cheating with error message - not correct
   end
 
-  it 'Airport doesnt allow for landing if full' do
+  it 'create a default capacity for the land_plane function that caps max planes planed' do
     airport = Airport.new
-    plane = Plane.new
-    expect{airport.land_plane(plane)}.to raise_error("No bays available")
+    Airport::DEFAULT_CAPACITY.times {airport.land_plane(Plane.new)}
+    expect{airport.land_plane(Plane.new)}.to raise_error("No bays available")
   end
-
 
 end
