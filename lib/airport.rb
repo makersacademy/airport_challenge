@@ -1,6 +1,6 @@
 class Airport
 
-  DEFAULT_CAPACITY = 1
+  DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -9,6 +9,7 @@ class Airport
 
   def instruct_to_land(plane)
     raise "AirportFull" if full?
+    raise "PlaneAlreadyThere" if plane_at_airport?(plane)
     @landed_planes << plane if weather == "sunny"
   end
 

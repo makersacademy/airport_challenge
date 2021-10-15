@@ -11,24 +11,31 @@ describe Airport do
     end
 
     it 'can instruct planes to land up to the airports variable capacity' do 
-      capacity = 100_000
+      capacity = 100
       airport = Airport.new (capacity)
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
-      expect { capacity.times { airport.instruct_to_land(plane) } }.not_to raise_error
+      expect { capacity.times { airport.instruct_to_land(double("plane")) } }.not_to raise_error
     end
 
     it 'does not allow a plane to land if the airport is full' do 
-      capacity = 100
+      capacity = 1000
       airport = Airport.new(capacity)
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
-      capacity.times { airport.instruct_to_land(plane) }
-      expect { airport.instruct_to_land(plane) }.to raise_error("AirportFull")
+      capacity.times { airport.instruct_to_land(double("plane")) }
+      expect { airport.instruct_to_land(double("plane")) }.to raise_error("AirportFull")
     end
 
     it 'does not allow a plane to land if the weather is stormy' do
       allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
       subject.instruct_to_land(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
+    end
+
+    it 'does not allow you, to land the same airplane twice' do
+      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } 
+      one_plane = plane
+      subject.instruct_to_land(one_plane)
+      expect{subject.instruct_to_land(one_plane)}.to raise_error("PlaneAlreadyThere")
     end
 
   end
