@@ -1,6 +1,8 @@
 class Airport
 
-  def instruct_to_land(plane) 
+  def instruct_to_land(plane)
+    raise "AirportFull" if full?
+    @plane = plane 
   end
 
   def instruct_to_take_off(plane)
@@ -8,6 +10,12 @@ class Airport
 
   def plane_at_airport?(_plane)
     false
+  end
+
+  private
+
+  def full?
+    return !@plane.nil?
   end
 
 end
