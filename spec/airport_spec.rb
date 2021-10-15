@@ -28,7 +28,7 @@ describe Airport do
   describe '#instruct_to_take_off' do 
   
     it 'can instruct an airplane to take off' do 
-      expect(subject).to respond_to(:instruct_to_take_off).with(1).argument
+      expect(subject).to respond_to(:instruct_to_take_off).with(2).arguments
     end
 
   end
@@ -37,8 +37,25 @@ describe Airport do
 
     it 'can confirm, that a plane left the airport' do 
       subject.instruct_to_land(plane)
-      subject.instruct_to_take_off(plane)
+      allow(subject).to receive(:weather) { 'sunny' }
+      subject.instruct_to_take_off(plane, subject.weather)
       expect(subject.plane_at_airport?(plane)).to eq false
+    end
+
+  end
+
+  describe '#weather' do 
+  
+    it 'returns mostly sunny' do 
+      # rand is implemented in Kernel. But calling it, the receiver is our Object.
+      # https://stackoverflow.com/questions/45761380/how-to-stub-rand-in-rspec
+      allow(subject).to receive(:rand) { rand(91) }
+      expect(subject.weather).to eq 'sunny'
+    end
+
+    it 'returns sometimes stormy' do
+      allow(subject).to receive(:rand) { rand(91..100) } 
+      expect(subject.weather).to eq 'stormy'
     end
 
   end

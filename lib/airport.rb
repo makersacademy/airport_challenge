@@ -13,11 +13,20 @@ class Airport
     @landed_planes << plane 
   end
 
-  def instruct_to_take_off(plane)
+  def instruct_to_take_off(plane, weather)
+
   end
 
   def plane_at_airport?(_plane)
     false
+  end
+
+  def weather
+    if rand(101) < 91 
+      'sunny'
+    else
+      'stormy'
+    end
   end
 
   private
