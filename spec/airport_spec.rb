@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) { double(flying?: true) }
+  let (:plane) { double(flying?: true, land: nil) }
 
   describe '#instruct_to_land' do 
   
@@ -14,15 +14,15 @@ describe Airport do
       capacity = 100
       airport = Airport.new (capacity)
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
-      expect { capacity.times { airport.instruct_to_land(double(flying?: true)) } }.not_to raise_error
+      expect { capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) } }.not_to raise_error
     end
 
     it 'does not allow a plane to land if the airport is full' do 
       capacity = 1000
       airport = Airport.new(capacity)
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
-      capacity.times { airport.instruct_to_land(double(flying?: true)) }
-      expect { airport.instruct_to_land(double(flying?: true)) }.to raise_error("AirportFull")
+      capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) }
+      expect { airport.instruct_to_land(double(flying?: true, land: nil)) }.to raise_error("AirportFull")
     end
 
     it 'does not allow a plane to land if the weather is stormy' do
@@ -36,12 +36,6 @@ describe Airport do
       one_plane = plane
       subject.instruct_to_land(one_plane)
       expect { subject.instruct_to_land(one_plane) }.to raise_error("PlaneAlreadyThere")
-    end
-
-    it 'does not allow you to land a plane, which is not flying' do
-      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } 
-      not_flying_plane = double(flying?: false)
-      expect { subject.instruct_to_land(not_flying_plane) }.to raise_error("PlaneNotFlying")
     end
 
   end

@@ -10,7 +10,7 @@ class Airport
   def instruct_to_land(plane)
     raise "AirportFull" if full?
     raise "PlaneAlreadyThere" if plane_at_airport?(plane)
-    raise "PlaneNotFlying" unless plane.flying?
+    plane.land
     @landed_planes << plane if weather == "sunny"
   end
 
