@@ -12,8 +12,14 @@ describe Airport do
   it "Airport to remove plane and confirm it's left" do
     plane = Plane.new
     airport = Airport.new
-    airport.land_plane(plane)
-    expect{airport.depart_plane(plane)}.to raise_error("Plane has left") # cheating with error message - not entirely correct
+    expect{airport.depart_plane(plane)}.to raise_error("Plane has left") # cheating with error message - not correct
   end
+
+  it 'Airport doesnt allow for landing if full' do
+    airport = Airport.new
+    airport.land_plane(Plane.new)
+    expect{airport.land_plane(Plane.new)}.to raise_error("No bays available")
+  end
+
 
 end
