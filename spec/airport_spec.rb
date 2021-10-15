@@ -28,13 +28,13 @@ describe Airport do
   describe '#instruct_to_take_off' do 
   
     it 'can instruct an airplane to take off' do 
-      expect(subject).to respond_to(:instruct_to_take_off).with(2).arguments
+      expect(subject).to respond_to(:instruct_to_take_off).with(1).arguments
     end
 
     it 'prevents take-off, when the weather is stormy' do
       subject.instruct_to_land(plane)
       allow(subject).to receive(:weather) { 'stormy' }
-      subject.instruct_to_take_off(plane, subject.weather)
+      subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq true 
     end
 
@@ -45,7 +45,7 @@ describe Airport do
     it 'can confirm, that a plane left the airport' do 
       subject.instruct_to_land(plane)
       allow(subject).to receive(:weather) { 'sunny' }
-      subject.instruct_to_take_off(plane, subject.weather)
+      subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
     end
 

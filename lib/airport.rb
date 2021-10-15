@@ -12,7 +12,7 @@ class Airport
     @landed_planes << plane 
   end
 
-  def instruct_to_take_off(plane, weather)
+  def instruct_to_take_off(plane)
     @landed_planes.delete(plane) if weather == "sunny"
   end
 
