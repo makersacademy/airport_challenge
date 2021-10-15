@@ -36,4 +36,11 @@ describe Airport do
     expect{airport.land_plane(Plane.new)}.to raise_error("Landing not safe: Stormy weather")
   end
 
+  it 'Create an Aiport name variable to class so that multiple files can be created within a folder for each airport' do
+    plane = Plane.new
+    airport = Airport.new
+    Airport::DEFAULT_NAME = "Heathrow_t2"
+    expect(Heathrow_t2).to respond_to :land_plane
+  end
+
 end

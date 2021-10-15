@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 class Airport
 
-attr_accessor :DEFAULT_CAPACITY, :DEFAULT_WEATHER
+attr_accessor :DEFAULT_CAPACITY, :DEFAULT_WEATHER,
 attr_reader :plane
 DEFAULT_CAPACITY = 20
 DEFAULT_WEATHER = rand(8)
