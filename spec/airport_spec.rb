@@ -20,4 +20,15 @@ describe Airport do
 
   end
 
+  describe '#plane_at_airport?' do 
+
+    it 'can confirm, that a plane left the airport' do 
+      plane = double("plane")
+      subject.instruct_to_land(plane)
+      subject.instruct_to_take_off(plane)
+      expect(subject.plane_at_airport?(plane)).to eq false
+    end
+
+  end
+
 end
