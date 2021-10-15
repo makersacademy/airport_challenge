@@ -10,8 +10,16 @@ describe Airport do
       expect(subject).to respond_to(:instruct_to_land).with(1).argument
     end
 
+    it 'can instruct planes to land up to the airports variable capacity' do 
+      capacity = 10
+      airport = Airport.new (capacity)
+      expect do 
+        airport.capacity.times { airport.instruct_to_land(plane) } 
+      end.not_to raise_error
+    end
+
     it 'does not allow to land a plane if the airport is full' do 
-      Airport::DEFAULT_CAPACITY.times { subject.instruct_to_land(plane) }
+      subject.capacity.times { subject.instruct_to_land(plane) }
       expect { subject.instruct_to_land(plane) }.to raise_error("AirportFull")
     end
 
