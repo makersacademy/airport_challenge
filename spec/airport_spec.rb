@@ -69,8 +69,8 @@ describe Airport do
   describe '#plane_at_airport?' do 
 
     it 'can confirm, that a plane left the airport' do 
-      subject.instruct_to_land(plane)
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
+      subject.instruct_to_land(plane)
       subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
     end
