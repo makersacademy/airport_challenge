@@ -12,6 +12,7 @@ describe Airport do
   it "Airport to remove plane and confirm it's left" do
     plane = Plane.new
     airport = Airport.new
+    storms = stormy_weather(2)
     expect{airport.depart_plane(plane)}.to raise_error("Plane has left") # cheating with error message - not correct
   end
 
@@ -24,7 +25,8 @@ describe Airport do
 it 'to ensure safety stop takeoff when weather is stormy is true' do
   plane = Plane.new
   airport = Airport.new
-  expect{airport.depart_plane(Plane.new)}.to raise_error("Takeoff not safe Stormy weather")
+  storms = stormy_weather(6)
+  expect{airport.depart_plane(Plane.new)}.to raise_error("Takeoff not safe: Stormy weather")
   end
 
 

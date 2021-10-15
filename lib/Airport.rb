@@ -2,9 +2,10 @@ require './lib/plane.rb'
 
 class Airport
 
-attr_accessor :DEFAULT_CAPACITY
+attr_accessor :DEFAULT_CAPACITY, :DEFAULT_WEATHER
 attr_reader :plane
 DEFAULT_CAPACITY = 20
+DEFAULT_WEATHER = rand(8)
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @parked_planes = []
@@ -13,7 +14,7 @@ DEFAULT_CAPACITY = 20
 
   def depart_plane(plane)
     if stormy_weather == true
-    raise "Takeoff not safe Stormy weather"
+    raise "Takeoff not safe: Stormy weather"
     else
     raise "Plane has left"
     end
@@ -32,8 +33,11 @@ DEFAULT_CAPACITY = 20
     end
   end
 
-  def stormy_weather
+  def stormy_weather(weather = DEFAULT_WEATHER)
+    @weather = DEFAULT_WEATHER
+    if weather > 4
     true
+    end
   end  
 
 end 
