@@ -16,4 +16,7 @@ describe Airport do
     subject = Airport.new
     expect(subject.capacity).to eq(DEFAULT_CAPACITY)
   end
+  it 'airport plane parking should be empty initially' do
+    expect(subject.available_parking).to eq(0)
+  end
 end

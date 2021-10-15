@@ -6,13 +6,16 @@ class Airport
     @id = 1
     @controller = Controller.new
     @capacity = capacity
+    @available_parking = []
   end
 
   attr_reader :id
 
   attr_reader :controller
 
-  def capacity
-    @capacity
+  attr_reader :capacity
+
+  def available_parking
+    @available_parking.size
   end
 end
