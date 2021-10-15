@@ -17,8 +17,8 @@ describe Airport do
 
   it 'Airport doesnt allow for landing if full' do
     airport = Airport.new
-    airport.land_plane(Plane.new)
-    expect{airport.land_plane(Plane.new)}.to raise_error("No bays available")
+    plane = Plane.new
+    expect{airport.land_plane(plane)}.to raise_error("No bays available")
   end
 
 
