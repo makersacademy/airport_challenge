@@ -1,5 +1,7 @@
 class Airport
 
+  DEFAULT_CAPACITY = 1
+
   def instruct_to_land(plane)
     raise "AirportFull" if full?
     @plane = plane 
