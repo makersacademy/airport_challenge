@@ -8,4 +8,14 @@ describe Airport do
         subject.get_plane(plane)
         expect(subject.land).to eq (plane)
     end 
+
+    it 'instruct plane to take off from airport' do 
+        plane = Plane.new 
+        subject.take_off(plane)
+        expect(subject.plane_gone).to eq (true)
+        
+    end 
+
+    # it 'confirm take off plane is not in airport ' do 
+    # end 
 end 
