@@ -31,6 +31,13 @@ describe Airport do
       expect(subject).to respond_to(:instruct_to_take_off).with(2).arguments
     end
 
+    it 'prevents take-off, when the weather is stormy' do
+      subject.instruct_to_land(plane)
+      allow(subject).to receive(:weather) { 'stormy' }
+      subject.instruct_to_take_off(plane, subject.weather)
+      expect(subject.plane_at_airport?(plane)).to eq true 
+    end
+
   end
 
   describe '#plane_at_airport?' do 
