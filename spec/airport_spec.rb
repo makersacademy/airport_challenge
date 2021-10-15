@@ -35,7 +35,7 @@ describe Airport do
       allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } 
       one_plane = plane
       subject.instruct_to_land(one_plane)
-      expect{subject.instruct_to_land(one_plane)}.to raise_error("PlaneAlreadyThere")
+      expect { subject.instruct_to_land(one_plane) }.to raise_error("PlaneAlreadyThere")
     end
 
   end
@@ -55,7 +55,7 @@ describe Airport do
 
     it 'does not allow an airplane to take off, that is not in the airport' do
       allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
-      expect{subject.instruct_to_take_off(plane)}.to raise_error("PlaneNotAtAirport")
+      expect { subject.instruct_to_take_off(plane) }.to raise_error("PlaneNotAtAirport")
     end
 
   end
