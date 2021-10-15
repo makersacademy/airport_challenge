@@ -36,9 +36,4 @@ describe Airport do
     expect{airport.land_plane(Plane.new)}.to raise_error("Landing not safe: Stormy weather")
   end
 
-
-  As an air traffic controller 
-  To ensure safety 
-  I want to prevent landing when weather is stormy 
-
 end

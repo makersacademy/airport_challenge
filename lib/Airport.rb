@@ -21,8 +21,12 @@ DEFAULT_WEATHER = rand(8)
   end
 
   def land_plane(plane)
+    if stormy_weather == true
+      raise "Landing not safe: Stormy weather"
+    else
     raise "No bays available" if full?
     @parked_planes << plane
+    end
   end
 
   def full?
