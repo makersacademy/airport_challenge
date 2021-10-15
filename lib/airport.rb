@@ -4,6 +4,7 @@ class Airport
 
     def initialize
         @plane = []
+
     end 
 
     def get_plane(plane)
@@ -11,6 +12,7 @@ class Airport
     end 
 
     def land
+        fail if 'Airport is full' if @plane 
         @plane.pop
     end 
 
@@ -20,6 +22,10 @@ class Airport
 
     def plane_gone
         @plane.empty? 
+    end 
+
+    def full_airport
+        
     end 
 
 

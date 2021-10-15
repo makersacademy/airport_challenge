@@ -3,7 +3,7 @@ require "airport"
 
 
 describe Airport do 
-    it 'instructs plane to land at aiport' do 
+    it 'instructs plane to land at airport' do 
         plane = Plane.new 
         subject.get_plane(plane)
         expect(subject.land).to eq (plane)
@@ -16,6 +16,11 @@ describe Airport do
         
     end 
 
-    # it 'confirm take off plane is not in airport ' do 
-    # end 
+    it 'prevents landing when airport is full ' do 
+        plane = Plane.new
+        expect{ subject.land}.to raise_error 'Airport is full'
+
+    end 
+
+    
 end 
