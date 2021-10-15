@@ -22,11 +22,7 @@ class Airport
   end
 
   def weather
-    if rand(101) < 91 
-      'sunny'
-    else
-      'stormy'
-    end
+    rand(101) < 91 ? 'sunny' : 'stormy'
   end
 
   private
