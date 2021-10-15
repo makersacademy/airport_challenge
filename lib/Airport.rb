@@ -28,8 +28,6 @@ DEFAULT_WEATHER = rand(8)
   def full?
     if @parked_planes.count >= DEFAULT_CAPACITY
       return true
-    else
-     return false
     end
   end
 
