@@ -21,4 +21,15 @@ describe Airport do
     expect{airport.land_plane(Plane.new)}.to raise_error("No bays available")
   end
 
+it 'to ensure safety stop takeoff when weather is stormy is true' do
+  plane = Plane.new
+  airport = Airport.new
+  expect{airport.depart_plane(Plane.new)}.to raise_error("Takeoff not safe Stormy weather")
+  end
+
+
+  # As an air traffic controller 
+  # To ensure safety 
+  # I want to prevent takeoff when weather is stormy 
+
 end

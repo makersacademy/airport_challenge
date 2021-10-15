@@ -12,7 +12,11 @@ DEFAULT_CAPACITY = 20
   end
 
   def depart_plane(plane)
+    if stormy_weather == true
+    raise "Takeoff not safe Stormy weather"
+    else
     raise "Plane has left"
+    end
   end
 
   def land_plane(plane)
@@ -27,5 +31,9 @@ DEFAULT_CAPACITY = 20
      return false
     end
   end
+
+  def stormy_weather
+    true
+  end  
 
 end 
