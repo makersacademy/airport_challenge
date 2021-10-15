@@ -11,22 +11,22 @@ describe Airport do
     end
 
     it 'can instruct planes to land up to the airports variable capacity' do 
-      capacity = 10
+      capacity = 100_000
       airport = Airport.new (capacity)
-      allow(subject).to receive(:weather) { 'sunny' }
+      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
       expect { capacity.times { airport.instruct_to_land(plane) } }.not_to raise_error
     end
 
     it 'does not allow a plane to land if the airport is full' do 
-      capacity = 10
+      capacity = 100
       airport = Airport.new(capacity)
-      allow(subject).to receive(:weather) { 'sunny' }
+      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
       capacity.times { airport.instruct_to_land(plane) }
       expect { airport.instruct_to_land(plane) }.to raise_error("AirportFull")
     end
 
     it 'does not allow a plane to land if the weather is stormy' do
-      allow(subject).to receive(:weather) { 'stormy' }
+      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
       subject.instruct_to_land(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
     end
@@ -41,7 +41,7 @@ describe Airport do
 
     it 'prevents take-off, when the weather is stormy' do
       subject.instruct_to_land(plane)
-      allow(subject).to receive(:weather) { 'stormy' }
+      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
       subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq true 
     end
@@ -52,7 +52,7 @@ describe Airport do
 
     it 'can confirm, that a plane left the airport' do 
       subject.instruct_to_land(plane)
-      allow(subject).to receive(:weather) { 'sunny' }
+      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
       subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
     end
@@ -64,13 +64,23 @@ describe Airport do
     it 'returns mostly sunny' do 
       # rand is implemented in Kernel. But calling it, the receiver is our Object.
       # https://stackoverflow.com/questions/45761380/how-to-stub-rand-in-rspec
-      allow(subject).to receive(:rand) { rand(91) }
-      expect(subject.weather).to eq 'sunny'
+      expected = Array.new(91, 'sunny')
+      actual = []
+      91.times do |i| 
+        allow(subject).to receive(:rand) { i }
+        actual << subject.weather
+      end
+      expect(actual).to eq expected
     end
 
     it 'returns sometimes stormy' do
-      allow(subject).to receive(:rand) { rand(91..100) } 
-      expect(subject.weather).to eq 'stormy'
+      expected = Array.new(10, 'stormy')
+      actual = []
+      10.times do |i| 
+        allow(subject).to receive(:rand) { i + 91 }
+        actual << subject.weather
+      end
+      expect(actual).to eq expected
     end
 
   end
