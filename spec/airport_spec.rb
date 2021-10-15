@@ -46,6 +46,11 @@ describe Airport do
       expect(subject.plane_at_airport?(plane)).to eq true 
     end
 
+    it 'does not allow an airplane to take off, that is not in the airport' do
+      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
+      expect{subject.instruct_to_take_off(plane)}.to raise_error("PlaneNotAtAirport")
+    end
+
   end
 
   describe '#plane_at_airport?' do 
