@@ -11,14 +11,14 @@ describe Airport do
     end
 
     it 'can instruct planes to land up to the airports variable capacity' do 
-      capacity = 10
+      capacity = 1000
       airport = Airport.new (capacity)
-      allow(subject).to receive(:weather) { 'sunny' }
+      allow(subject).to receive(:rand) { 'sunny' }
       expect { capacity.times { airport.instruct_to_land(plane) } }.not_to raise_error
     end
 
     it 'does not allow a plane to land if the airport is full' do 
-      capacity = 10
+      capacity = 1000
       airport = Airport.new(capacity)
       allow(subject).to receive(:weather) { 'sunny' }
       capacity.times { airport.instruct_to_land(plane) }
