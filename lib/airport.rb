@@ -31,4 +31,8 @@ class Airport
     @spaces[-1]
   end
 
+  def update_weather(state)
+    @weather.update_state(state)
+  end
+
 end

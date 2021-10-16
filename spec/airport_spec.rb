@@ -25,4 +25,16 @@ describe Airport do
     subject.land(plane)
     expect(subject.last_space).to eq(plane)
   end
+  it 'landing should prevent landing in stormy weather' do
+    plane = Plane.new
+    subject.update_weather(WEATHER_STATES[:stormy])
+    expect { subject.land(plane) }.to raise_error('stormy weather')
+  end
+  it 'landing should prevent landing when max capacity is reached ' do
+    subject.update_weather(WEATHER_STATES[:not_stormy])
+    1..CAPACITY.times{subject.land(Plane.new)}
+    plane = Plane.new
+    expect { subject.land(plane) }.to raise_error('airport at it\'s max capacity')
+  end
+
 end
