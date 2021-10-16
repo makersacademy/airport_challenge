@@ -1,21 +1,16 @@
-require_relative '../lib/controller'
 require_relative '../lib/weather'
 DEFAULT_CAPACITY = 20
 
 class Airport
+  attr_reader :id
+  attr_reader :capacity
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @id = 1
-    @controller = Controller.new
     @capacity = capacity
     @spaces = []
     @weather = Weather.new
   end
-
-  attr_reader :id
-
-  attr_reader :controller
-
-  attr_reader :capacity
 
   def spaces
     @spaces.size
@@ -37,10 +32,9 @@ class Airport
   end
 
   def take_off
-    fail 'no plane available' unless spaces > 0
+    fail 'no plane available' unless spaces.positive?
     fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
     plane = @spaces.pop
     plane.take_off
   end
-
 end
