@@ -37,6 +37,7 @@ class Airport
   end
 
   def take_off
+    fail 'no plane available' unless spaces > 0
     fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
     plane = @spaces.pop
     plane.take_off
