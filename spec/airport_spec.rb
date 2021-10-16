@@ -1,6 +1,7 @@
 require_relative '../lib/airport'
+require_relative '../lib/plane'
 CAPACITY = 30
-DEFAULT_CAPACITY = 20
+# DEFAULT_CAPACITY = 20
 subject = Airport.new(CAPACITY)
 describe Airport do
   it 'airport should have id' do
@@ -18,5 +19,10 @@ describe Airport do
   end
   it 'airport plane parking should be empty initially' do
     expect(subject.spaces).to eq(0)
+  end
+  it 'landing should add plane to spaces' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.last_space).to eq(plane)
   end
 end
