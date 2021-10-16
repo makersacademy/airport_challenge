@@ -24,6 +24,7 @@ class Airport
   def land(plane)
     fail 'airport at it\'s max capacity' unless @spaces.size < capacity
     fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
+    plane.land
     @spaces << plane
   end
 
@@ -33,6 +34,12 @@ class Airport
 
   def update_weather(state)
     @weather.update_state(state)
+  end
+
+  def take_off
+    fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
+    plane = @spaces.pop
+    plane.take_off
   end
 
 end

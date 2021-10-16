@@ -37,5 +37,11 @@ describe Airport do
     plane = Plane.new
     expect { subject.land(plane) }.to raise_error('airport at it\'s max capacity')
   end
+  it 'take_off should instruct plane to take off in not stormy weather' do
+    subject = Airport.new
+    subject.update_weather(WEATHER_STATES[:not_stormy])
+    subject.land(Plane.new)
+    expect(subject.take_off).to eq('confirmed take off')
+  end
 
 end

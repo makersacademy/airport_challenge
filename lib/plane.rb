@@ -12,8 +12,8 @@ class Plane
 
   def take_off
     fail 'already in state: in air' unless @state == STATES[:landed]
-    confirm_take_off
     update_state(STATES[:in_air])
+    confirm_take_off
   end
 
   private def confirm_take_off
