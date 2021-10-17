@@ -10,7 +10,8 @@ class Plane
   end
 
   def take_off 
-    
+    raise "AlreadyFlying" if flying?
+    @flying = true
   end
 
   private

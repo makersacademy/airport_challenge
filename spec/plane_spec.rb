@@ -21,6 +21,12 @@ describe Plane do
       expect(subject).to respond_to(:take_off)
     end
 
+    it 'cannot take_off more than once' do
+      subject.land
+      subject.take_off 
+      expect { subject.take_off }.to raise_error("AlreadyFlying")
+    end
+
   end
 
 end
