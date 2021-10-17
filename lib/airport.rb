@@ -13,19 +13,27 @@ class Airport
     @spaces = []
   end
 
+  private def random_weather
+    STORMY_ODDS.sample
+  end
+
   def spaces
     @spaces.size
   end
 
+  def last_space
+    @spaces[-1]
+  end
+
+  def stormy?
+    random_weather == WEATHER_STATES[:stormy]
+  end
+
   def land(plane)
-    fail 'airport at it\'s max capacity' unless @spaces.size < capacity
+    fail 'airport at it\'s max capacity' unless spaces < capacity
     fail 'stormy weather' unless stormy? != WEATHER_STATES[:stormy]
     plane.land(@id)
     @spaces << plane
-  end
-
-  def last_space
-    @spaces[-1]
   end
 
   def take_off
@@ -33,13 +41,5 @@ class Airport
     fail 'stormy weather' unless stormy? != WEATHER_STATES[:stormy]
     plane = @spaces.pop
     plane.take_off(id)
-  end
-
-  private def random_weather
-    STORMY_ODDS.sample
-  end
-
-  def stormy?
-    random_weather == WEATHER_STATES[:stormy]
   end
 end
