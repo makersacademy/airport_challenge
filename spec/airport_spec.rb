@@ -6,6 +6,7 @@ CAPACITY = 30
 describe Airport do
   before do
     Airport.new
+    allow(subject).to receive(:stormy?).and_return WEATHER_STATES[:not_stormy]
   end
   it 'airport should have id' do
     expect(subject.id).to eq(1)
@@ -28,11 +29,11 @@ describe Airport do
   end
   it 'landing should prevent landing in stormy weather' do
     plane = Plane.new
-    subject.update_weather(WEATHER_STATES[:stormy])
+    # subject.update_weather(WEATHER_STATES[:stormy])
+    allow(subject).to receive(:stormy?).and_return WEATHER_STATES[:stormy]
     expect { subject.land(plane) }.to raise_error('stormy weather')
   end
   it 'landing should prevent landing when max capacity is reached ' do
-    subject.update_weather(WEATHER_STATES[:not_stormy])
     1..DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     plane = Plane.new
     expect { subject.land(plane) }.to raise_error('airport at it\'s max capacity')
@@ -43,7 +44,7 @@ describe Airport do
   end
   it 'take off should prevent to take off in stormy weather' do
     subject.land(Plane.new)
-    subject.update_weather(WEATHER_STATES[:stormy])
+    allow(subject).to receive(:stormy?).and_return WEATHER_STATES[:stormy]
     expect { subject.take_off }.to raise_error('stormy weather')
   end
   it 'take off should prevent to take off if empty spaces' do
