@@ -104,6 +104,7 @@ describe Airport do
           subject.takeoff_plane 
         }.not_to raise_error
       end 
+      
     end 
     
   end 
