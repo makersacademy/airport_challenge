@@ -11,28 +11,27 @@ class Airport
         @capacity = capacity
     end 
 
-    # def get_plane(plane)
-    #     @plane << plane 
-    # end 
-
     def land(plane)
         fail 'Airport is full' if full_airport
+        raise 'weather is stormy, plane cannot land' if stormy?
         @plane << plane 
     end 
 
     def take_off(plane)
-        fail 'Weather is stormy, plane cannot take off' if weather == 'stormy'
+        raise 'Weather is stormy, plane cannot take off' if stormy?
         @plane.pop # removes the last element of the array 
     end 
 
     def plane_gone
-        @plane.empty? 
-    end 
+        @plane.empty?
+    end
+    
 
-    def weather
-        todays_weather = ['sunny','rain','cloudy','stormy'].sample 
+    # def weather
+    #     todays_weather = ['sunny','raining','cloudy','stormy'].sample 
 
-    end 
+    # end 
+
 
 
     private 
@@ -44,5 +43,8 @@ class Airport
         @plane.count >= capacity
     end 
 
+    def stormy?
+        rand(1..6) > 4 # creating storm 
+    end 
 
 end 
