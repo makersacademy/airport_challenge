@@ -10,13 +10,16 @@ class Airport
   def instruct_to_land(plane, weather)
     raise "AirportFull" if full?
     raise "PlaneAlreadyThere" if plane_at_airport?(plane)
-    plane.land
-    @landed_planes << plane if weather == :sunny
+    return unless weather == :sunny
+    @landed_planes << plane
+    plane.land 
   end
 
   def instruct_to_take_off(plane, weather)
     raise "PlaneNotAtAirport" unless plane_at_airport?(plane)
-    @landed_planes.delete(plane) if weather == :sunny
+    return unless weather == :sunny
+    @landed_planes.delete(plane)
+    plane.take_off
   end
 
   def plane_at_airport?(plane)

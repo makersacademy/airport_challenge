@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) { double(flying?: true, land: nil) }
+  let (:plane) { double(flying?: true, land: nil, take_off: nil) }
 
   describe '#instruct_to_land' do 
 
