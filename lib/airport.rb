@@ -23,14 +23,14 @@ class Airport
     @landed_planes.include?(plane)
   end
 
-  def weather
-    rand(101) < 91 ? 'sunny' : 'stormy'
-  end
-
   private
 
   def full?
     @landed_planes.count >= @capacity
+  end
+
+  def weather
+    rand(101) < 91 ? 'sunny' : 'stormy'
   end
 
 end

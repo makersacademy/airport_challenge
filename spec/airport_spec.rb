@@ -70,30 +70,4 @@ describe Airport do
 
   end
 
-  describe '#weather' do 
-  
-    it 'returns mostly sunny' do 
-      # rand is implemented in Kernel. But calling it, the receiver is our Object.
-      # https://stackoverflow.com/questions/45761380/how-to-stub-rand-in-rspec
-      expected = Array.new(91, 'sunny')
-      actual = []
-      91.times do |i| 
-        allow(subject).to receive(:rand) { i }
-        actual << subject.weather
-      end
-      expect(actual).to eq expected
-    end
-
-    it 'returns sometimes stormy' do
-      expected = Array.new(10, 'stormy')
-      actual = []
-      10.times do |i| 
-        allow(subject).to receive(:rand) { i + 91 }
-        actual << subject.weather
-      end
-      expect(actual).to eq expected
-    end
-
-  end
-
 end
