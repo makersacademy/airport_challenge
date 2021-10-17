@@ -18,7 +18,7 @@ class Airport
     end 
 
     def take_off(plane)
-        raise 'Weather is stormy, plane cannot take off' if stormy?
+        raise 'weather is stormy, plane cannot take off' if stormy?
         @plane.pop # removes the last element of the array 
     end 
 
