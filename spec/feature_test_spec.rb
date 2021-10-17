@@ -4,8 +4,7 @@ require 'weather'
 
 def manage_transition(from, to, airport, type)
   plane = from.last
-  current_weather = weather
-  transitioned_plane = airport.__send__(type, plane, current_weather)
+  transitioned_plane = airport.__send__(type, plane, weather)
   return if transitioned_plane.nil?
   to << transitioned_plane
   from.delete(plane)
