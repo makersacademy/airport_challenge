@@ -12,7 +12,7 @@ end
 
 describe "let's create some air traffic, so I can visit Makers in person" do
 
-  it 'allows us to let planes land/take off' do  
+  it 'allows us to let several planes land/take off' do  
     cologne_bonn = Airport.new(30)
     london_heathrow = Airport.new(30)
     flying_planes = Array.new(100) { Plane.new }

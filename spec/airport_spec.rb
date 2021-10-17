@@ -6,6 +6,11 @@ describe Airport do
 
   describe '#instruct_to_land' do 
 
+    it 'actually instructs the plane to land' do 
+      expect(plane).to receive(:land)
+      subject.instruct_to_land(plane, :sunny)
+    end
+
     it 'does not allow a plane to land if the airports variable capacity is full' do 
       capacity = 1_000
       airport = Airport.new(capacity)
@@ -31,6 +36,12 @@ describe Airport do
   end
   
   describe '#instruct_to_take_off' do 
+
+    it 'actually instructs the plane to take off' do 
+      subject.instruct_to_land(plane, :sunny)
+      expect(plane).to receive(:take_off)
+      subject.instruct_to_take_off(plane, :sunny)
+    end
 
     it 'prevents take-off, when the weather is stormy' do
       subject.instruct_to_land(plane, :sunny)
