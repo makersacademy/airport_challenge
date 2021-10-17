@@ -35,6 +35,11 @@ class Airport
     plane.take_off(id)
   end
 
+  private def random_weather
+    STORMY_ODDS.sample
+  end
+
   def stormy?
+    random_weather == WEATHER_STATES[:stormy]
   end
 end
