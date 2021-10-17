@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
 
   let (:plane) { double(flying?: true, land: nil) }
-  let (:in_sunny_weather) { allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } } 
-  let (:in_stormy_weather) { allow_any_instance_of(Airport).to receive(:weather) { 'stormy' } } 
+  let (:in_sunny_weather) { allow_any_instance_of(Airport).to receive(:weather) { :sunny } } 
+  let (:in_stormy_weather) { allow_any_instance_of(Airport).to receive(:weather) { :stormy } } 
 
   describe '#instruct_to_land' do 
   
