@@ -1,3 +1,19 @@
+Airport Challange. Dean Smythe
+
+Using TDD to inmplemente use cases adn features tests 1 by 1
+built unit tests to describe noun/verb pairs.
+
+Objects:
+Airport. With verbs : lands(plane), takeoff(*plane), is_landed(plane)
+Plane. (no actions)
+Weather.
+
+Weather is more of a function which reposnds with the weather state. 
+Edge cases cover: full airport, empty airport, does adn airport contain a specific plance, which plane takes off and the weather preventing takeoff or landing.
+Spec file had to be able to set the reply for the weather ti ensure testability of landing and take off. This is done using mock statements within spec file to replce method returns.
+
+******************
+
 Airport Challenge
 =================
 
