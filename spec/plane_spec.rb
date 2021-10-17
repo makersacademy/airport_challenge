@@ -15,4 +15,12 @@ describe Plane do
 
   end
 
+  describe '#take_off' do 
+  
+    it 'can take off' do
+      expect(subject).to respond_to(:take_off)
+    end
+
+  end
+
 end

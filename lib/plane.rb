@@ -9,6 +9,10 @@ class Plane
     @flying = false 
   end
 
+  def take_off 
+    
+  end
+
   private
 
   def flying?
