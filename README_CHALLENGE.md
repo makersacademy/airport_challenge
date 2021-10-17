@@ -7,3 +7,5 @@ Once all of the rspecs had been complete, I looked to refactoring the code and r
 I tested the rspec and code using IRB in order to be sure that everything was functional during my coding. I also set out and produced a feature test of multiple planes taking off and landing. 
 
 After the completion of the code I used rubocop, rspec and simplecov to ensure that I cover as much of the code with tests as I can and that the code has been produced in an acceptable way. The code will not be submitted until both of these have been satisfied.
+
+Tried setting up travis but could not get it to work for some reason. I will look into why this is the case.
