@@ -13,13 +13,13 @@ class Airport
 
     def land(plane)
         fail 'Airport is full' if full_airport
-        raise 'weather is stormy, plane cannot land' if stormy?
+        raise 'weather is stormy, plane cannot land' if stormy_weather?
         @plane << plane 
     end 
 
     def take_off(plane)
-        raise 'weather is stormy, plane cannot take off' if stormy?
-        @plane.pop # removes the last element of the array 
+        raise 'weather is stormy, plane cannot take off' if stormy_weather?
+        @plane.pop 
     end 
 
     def plane_gone
@@ -32,18 +32,15 @@ class Airport
 
     # end 
 
-
-
     private 
 
     attr_reader :plane 
-    
 
     def full_airport
         @plane.count >= capacity
     end 
 
-    def stormy?
+    def stormy_weather?
         rand(1..6) > 4 # creating storm 
     end 
 
