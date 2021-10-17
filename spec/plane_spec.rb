@@ -3,10 +3,6 @@ require 'plane'
 describe Plane do
   
   describe '#land' do
-    
-    it 'can land' do
-      expect(subject).to respond_to(:land)
-    end
 
     it 'cannot land, if it already landed' do 
       subject.land
@@ -17,10 +13,6 @@ describe Plane do
 
   describe '#take_off' do 
   
-    it 'can take off' do
-      expect(subject).to respond_to(:take_off)
-    end
-
     it 'cannot take_off more than once' do
       subject.land
       subject.take_off 
