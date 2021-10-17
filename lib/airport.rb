@@ -1,20 +1,19 @@
 DEFAULT_CAPACITY = 20
-WEATHER_STATES = { stormy: true, not_stormy: false }.freeze
-STORMY_ODDS = [WEATHER_STATES[:not_stormy], WEATHER_STATES[:not_stormy],
-               WEATHER_STATES[:not_stormy], WEATHER_STATES[:stormy]].freeze
 
 class Airport
   attr_reader :id
   attr_reader :capacity
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @id = 1
     @capacity = capacity
     @spaces = []
+    @weather = Weather.new
   end
 
-  private def random_weather
-    STORMY_ODDS.sample
+  def stormy?
+    weather.stormy?
   end
 
   def spaces
@@ -23,10 +22,6 @@ class Airport
 
   def last_space
     @spaces[-1]
-  end
-
-  def stormy?
-    random_weather == WEATHER_STATES[:stormy]
   end
 
   def land(plane)
