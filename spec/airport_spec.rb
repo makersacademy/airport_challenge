@@ -1,8 +1,8 @@
 require_relative '../lib/airport'
 require_relative '../lib/plane'
 CAPACITY = 30
-# DEFAULT_CAPACITY = 20
 subject = Airport.new(CAPACITY)
+
 describe Airport do
   it 'airport should have id' do
     expect(subject.id).to eq(1)

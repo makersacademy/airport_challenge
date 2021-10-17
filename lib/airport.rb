@@ -19,7 +19,7 @@ class Airport
   def land(plane)
     fail 'airport at it\'s max capacity' unless @spaces.size < capacity
     fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
-    plane.land
+    plane.land(@id)
     @spaces << plane
   end
 
@@ -35,6 +35,6 @@ class Airport
     fail 'no plane available' unless spaces.positive?
     fail 'stormy weather' unless @weather.state != WEATHER_STATES[:stormy]
     plane = @spaces.pop
-    plane.take_off
+    plane.take_off(id)
   end
 end
