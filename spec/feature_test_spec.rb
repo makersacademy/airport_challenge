@@ -40,4 +40,5 @@ describe "let's create some air traffic, so I can visit Makers in person" do
     plane_distribution = all_planes.map! { |location| location.count }
     expect(plane_distribution).to eq([63, 15, 22])
   end
+  
 end
