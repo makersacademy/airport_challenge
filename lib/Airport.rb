@@ -1,28 +1,28 @@
-class Airport
-  attr_accessor :capacity
+require './lib/weather'
 
-  def initialize # (weather: Weather.new)
+class Airport
+  attr_accessor :gates
+  DEFAULT_GATES = 3
+  
+  def initialize(gates = DEFAULT_GATES)
     @planes=[]
-    @capacity = 1
-  # puts   @forecast = weather.forecast
+    @gates = gates
   end
 
   def lands(plane)
-      if airport_full? 
-        raise "No space available."
-      else
-      @planes << plane  
-      end
+    raise "Cannot land due to weather." if forecast? == "Stormy" 
+    raise "No space available." if airport_full? 
+    @planes << plane  
+    
   end
 
-  def takeoff(plane = nil, weather: Weather.new)
-    puts @forecast = weather.forecast
-    raise "Cannot takeoff due to weather." if @forecast = "Stormy"
-    if airport_empty? 
-        raise "No planes in airport." 
-    elsif plane == nil 
-        return @planes.pop # returns the last plane in
+  def takeoff(plane = nil)
+    raise "Cannot takeoff due to weather." if forecast? == "Stormy"
+    raise "No planes in airport." if airport_empty? 
+    if plane == nil 
+        return @planes.pop
     elsif is_landed?(plane)
+      @planes.delete(plane)
         return plane
     else
         raise "This plane #{plane} is not in the airport."
@@ -30,15 +30,24 @@ class Airport
   end
 
   def is_landed?(plane)
-    true if @planes.include?(plane)
+    return true if @planes.include?(plane)
+    return false
   end
   
-  private 
-  def airport_full?
-    true if @planes.length == @capacity
+  def forecast?
+    return (Weather.new.forecast)
   end
-  def airport_empty?
-    true if @planes.length == 0
-  end 
 
+  private 
+  
+  def airport_full?
+    return true if @planes.length == @gates
+    return false
+  end
+  
+  def airport_empty?
+    return true if @planes.length == 0
+    return false
+  end
+ 
 end # class
