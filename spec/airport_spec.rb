@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
 
   let (:plane) { double(flying?: true, land: nil) }
+  let (:in_sunny_weather) { allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } } 
+  let (:in_stormy_weather) { allow_any_instance_of(Airport).to receive(:weather) { 'stormy' } } 
 
   describe '#instruct_to_land' do 
   
@@ -13,26 +15,26 @@ describe Airport do
     it 'can instruct planes to land up to the airports variable capacity' do 
       capacity = 100
       airport = Airport.new (capacity)
-      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
+      in_sunny_weather
       expect { capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) } }.not_to raise_error
     end
 
     it 'does not allow a plane to land if the airport is full' do 
       capacity = 1000
       airport = Airport.new(capacity)
-      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
+      in_sunny_weather
       capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) }
       expect { airport.instruct_to_land(double(flying?: true, land: nil)) }.to raise_error("AirportFull")
     end
 
     it 'does not allow a plane to land if the weather is stormy' do
-      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
+      in_stormy_weather
       subject.instruct_to_land(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
     end
 
     it 'does not allow you, to land the same airplane twice' do
-      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' } 
+      in_sunny_weather
       one_plane = plane
       subject.instruct_to_land(one_plane)
       expect { subject.instruct_to_land(one_plane) }.to raise_error("PlaneAlreadyThere")
@@ -48,13 +50,13 @@ describe Airport do
 
     it 'prevents take-off, when the weather is stormy' do
       subject.instruct_to_land(plane)
-      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
+      in_stormy_weather
       subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq true 
     end
 
     it 'does not allow an airplane to take off, that is not in the airport' do
-      allow_any_instance_of(Airport).to receive(:weather) { 'stormy' }
+      in_sunny_weather
       expect { subject.instruct_to_take_off(plane) }.to raise_error("PlaneNotAtAirport")
     end
 
@@ -63,7 +65,7 @@ describe Airport do
   describe '#plane_at_airport?' do 
 
     it 'can confirm, that a plane left the airport' do 
-      allow_any_instance_of(Airport).to receive(:weather) { 'sunny' }
+      in_sunny_weather
       subject.instruct_to_land(plane)
       subject.instruct_to_take_off(plane)
       expect(subject.plane_at_airport?(plane)).to eq false
