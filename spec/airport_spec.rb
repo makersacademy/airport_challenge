@@ -12,19 +12,16 @@ describe Airport do
       expect(subject).to respond_to(:instruct_to_land).with(1).argument
     end
 
-    it 'can instruct planes to land up to the airports variable capacity' do 
-      capacity = 100
-      airport = Airport.new (capacity)
-      in_sunny_weather
-      expect { capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) } }.not_to raise_error
-    end
-
-    it 'does not allow a plane to land if the airport is full' do 
-      capacity = 1000
+    it 'does not allow a plane to land if the airports variable capacity is full' do 
+      capacity = 1_000
       airport = Airport.new(capacity)
       in_sunny_weather
-      capacity.times { airport.instruct_to_land(double(flying?: true, land: nil)) }
-      expect { airport.instruct_to_land(double(flying?: true, land: nil)) }.to raise_error("AirportFull")
+      capacity.times do
+        new_plane = double(flying?: true, land: nil)
+        airport.instruct_to_land(new_plane) 
+      end 
+      one_more_plane = double(flying?: true, land: nil)
+      expect { airport.instruct_to_land(one_more_plane) }.to raise_error("AirportFull")
     end
 
     it 'does not allow a plane to land if the weather is stormy' do
