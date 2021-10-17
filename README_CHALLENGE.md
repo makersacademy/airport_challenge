@@ -8,4 +8,6 @@ I tested the rspec and code using IRB in order to be sure that everything was fu
 
 After the completion of the code I used rubocop, rspec and simplecov to ensure that I cover as much of the code with tests as I can and that the code has been produced in an acceptable way. The code will not be submitted until both of these have been satisfied.
 
-Tried setting up travis but could not get it to work for some reason. I will look into why this is the case.
+Tried setting up travis but could not get it to work for some reason. I will look into why this is the case. 
+
+If I was to carry out this task again I would make sure to commit more as I noticed I did not commit when producing the code. Next time I would set checkpoints and commit at every milestone.
