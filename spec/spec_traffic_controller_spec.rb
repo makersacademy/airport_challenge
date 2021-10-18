@@ -18,4 +18,5 @@ describe TrafficController do
 
     expect(controller.full_airport).to eq("do not land airport is full")
   end
+
 end
