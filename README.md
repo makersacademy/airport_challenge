@@ -177,4 +177,4 @@ I want to prevent landing when weather is stormy
 
 ## Diagram
 
-![User Story](https://lucid.app/publicSegments/view/dae9742c-ad5f-4eb4-a285-7e5590b83e04/image.jpeg)
+![User Story](https://github.com/delexii/airport_challenge/blob/79f64446cc259d8affd9aab3cb70ec4fcebb9fb5/images/Diagram.png)
