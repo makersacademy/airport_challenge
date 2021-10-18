@@ -62,17 +62,17 @@ describe Airport do
     end
   end
 
-  context 'weather' do
-  # As an air traffic controller 
-  # To ensure safety 
-  # I want to prevent takeoff when weather is stormy
-    describe 'prevent take off' do
-      it 'If weather is stormy prevent take off' do
-        airport = Airport.new
-        plane = Plane.new
-        airport.prevent_take_off(plane)
-        expect(airport.prevent_take_off(plane)).to raise_error 'weather is stormy'
-      end
-    end
-  end
+  # context 'weather' do
+  # # As an air traffic controller 
+  # # To ensure safety 
+  # # I want to prevent takeoff when weather is stormy
+  #   describe 'prevent take off' do
+  #     it 'If weather is stormy prevent take off' do
+  #       airport = Airport.new
+  #       plane = Plane.new
+  #       airport.prevent_take_off(plane)
+  #       expect(airport.prevent_take_off(plane)).to raise_error 'weather is stormy'
+  #     end
+  #   end
+  # end
 end
