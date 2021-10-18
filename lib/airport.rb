@@ -11,11 +11,13 @@ class Airport
   end 
 
   def land(plane)
+    fail "Severe weather condition" if stormy?
     fail "Airport is full!" if full?
     @planes_on_ground << plane
   end
 
   def take_off
+    fail "Severe weather condition" if stormy?
     fail "no plane on the ground!" if empty?
     return @planes_on_ground.pop
   end
@@ -28,6 +30,15 @@ class Airport
 
   def empty?
     @planes_on_ground == []
+  end
+
+  def stormy?
+    @condition = rand(100)
+    if @condition >= 95
+      return true
+    else 
+      return false
+    end
   end
 
 end
