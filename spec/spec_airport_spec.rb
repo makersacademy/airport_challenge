@@ -1,6 +1,6 @@
-require 'traffic_controller'
+require 'airport'
 
-describe TrafficController do
+describe Airport do
   it 'can instruct a plane to land' do
     controller = TrafficController.new
 

@@ -1,4 +1,4 @@
-class TrafficController
+class Airport
   
   def land
     "plane landed"
