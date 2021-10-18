@@ -87,3 +87,21 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+'''''''''''''''''''''''' My edit to README '''''''''''''''''''''''''''
+
+Completed using guidance from : Sam Morgan's youtube video
+https://www.youtube.com/watch?v=Vg0cFVLH_EM
+
+I didnt quite finish everything as I ran out of time.
+
+I would finish by creating a 'weather lib' and putting the 'random stormy method' in there. I would also make a 'weather spec' that has the 'land and take off, if not stormy' inside.
+
+I would link the weather in airport lib and put a counter system for the planes in there too.
+
+I would create methods in plane that show if plane is flying or landed to keep track of where the planes are. This would avoid landing planes that are already landed and etc.
+
+Also something to check if airport is empty as I can check if its full.
+
+And I would clean up the indentation lol sorry about that!
