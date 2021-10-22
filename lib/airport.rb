@@ -9,4 +9,8 @@ class Airport
     @planes << plane
   end
 
+  def take_off
+    
+  end
+
 end
