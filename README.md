@@ -41,7 +41,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 - Object: `Airport`
 
-- Message: **Plane** takes off (`takeoff`)
+- Message: Plane takes off (`.take_off`)
 
 ### User Story 3 ###
 `As an air traffic controller 
@@ -54,7 +54,7 @@ I want to prevent landing when the airport is full`
 
 - Object: `Airport`
 
-- Message: Prevent a **plane** landing when `Airport` is full (`is_airport_full?`)
+- Message: Prevent a **plane** landing when `Airport` is full (`.is_airport_full?`)
 
 ### User Story 4 ###
 `As the system designer
