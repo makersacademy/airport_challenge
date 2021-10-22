@@ -10,4 +10,10 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'confirms plane has taken off' do
+    plane = Plane.new
+    subject.planes << plane
+    subject.take_off(plane)
+    expect(subject.planes.length).to eq 0
+  end
 end
