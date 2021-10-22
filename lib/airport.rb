@@ -1,5 +1,5 @@
 class Airport 
-  attr_reader :planes, :capacity, :airborne_planes
+  attr_reader :planes
 
   def initialize
     @planes = []
@@ -7,11 +7,8 @@ class Airport
 
   def land(plane)
     @planes << plane
-    @airborne_planes.delete(plane)
   end
 
   def take_off
-    @planes.pop
-    @airborne_planes << plane
   end
 end
