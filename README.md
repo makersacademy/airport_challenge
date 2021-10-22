@@ -54,7 +54,7 @@ I want to prevent landing when the airport is full`
 
 - Object: `Airport`
 
-- Message: Prevent a **plane** landing when `Airport` is full (`.is_airport_full?`)
+- Message: Prevent a **plane** landing when `Airport` is full (`.full?`)
 
 ### User Story 4 ###
 `As the system designer

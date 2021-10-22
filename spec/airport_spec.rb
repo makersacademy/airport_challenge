@@ -16,4 +16,11 @@ describe Airport do
     subject.take_off(plane)
     expect(subject.planes.length).to eq 0
   end
+
+  describe '#land' do
+    it 'raises an error when at capacity' do
+      subject.capacity.times { subject.land(Plane.new) }
+      expect { subject.land Plane.new }.to raise_error 'landing prohibited: airport is full'
+    end
+  end
 end
