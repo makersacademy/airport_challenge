@@ -21,49 +21,73 @@ Airport Challenge
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport`
 
-Type of user: Air Traffic Controller
-Object: `Airport`
-Message: Land plane (`.land`)
+#### Interpretation ####
+
+- Type of user: Air Traffic Controller
+
+- Object: `Airport`
+
+- Message: Land plane (`.land`)
 
 2) `As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport`
 
-Type of user: Air Traffic Controller
-Object: `Airport`
-Message: **Plane** takes off (`takeoff`)
+#### Interpretation ####
+
+- Type of user: Air Traffic Controller
+
+- Object: `Airport`
+
+- Message: **Plane** takes off (`takeoff`)
 
 3) `As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full`
 
-Type of user: Air Traffic Controller
-Object: `Airport`
-Message: Prevent a **plane** landing when `Airport` is full (`is_airport_full?`)
+#### Interpretation ####
+
+- Type of user: Air Traffic Controller
+
+- Object: `Airport`
+
+- Message: Prevent a **plane** landing when `Airport` is full (`is_airport_full?`)
 
 4) `As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate`
 
-Type of user: System Designer
-Object: `Airport`
-Message: Assign a `DEFAULT_CAPACITY` to `Airport` that can be overridden 
+#### Interpretation ####
+
+- Type of user: System Designer
+
+- Object: `Airport`
+
+- Message: Assign a `DEFAULT_CAPACITY` to `Airport` that can be overridden 
 
 5) `As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy`
 
-Type of user: Air Traffic Controller
-Object: `Weather`
-Message: Prevent `.takeoff` if `Weather` is stormy
+#### Interpretation ####
+
+- Type of user: Air Traffic Controller
+
+- Object: `Weather`
+
+- Message: Prevent `.takeoff` if `Weather` is stormy
 
 6) `As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy`
 
-Type of user: Air Traffic Controller
-Object: `Weather`
-Message: Prevent `.land` if `Weather` is stormy
+#### Interpretation ####
+
+- Type of user: Air Traffic Controller
+
+- Object: `Weather`
+
+- Message: Prevent `.land` if `Weather` is stormy
 
 
 Instructions
