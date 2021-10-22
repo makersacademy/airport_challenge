@@ -14,10 +14,11 @@ Airport Challenge
 ```
 
 # My approach #
-======
+
 - Firstly I read through the instructions and user stories to determine what was required from each user story:
 
-1) ` As an air traffic controller 
+### User Story 1 ###
+` As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport`
 
@@ -29,7 +30,8 @@ I want to instruct a plane to land at an airport`
 
 - Message: Land plane (`.land`)
 
-2) `As an air traffic controller 
+### User Story 2 ###
+`As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport`
 
@@ -41,7 +43,8 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 - Message: **Plane** takes off (`takeoff`)
 
-3) `As an air traffic controller 
+### User Story 3 ###
+`As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full`
 
@@ -53,7 +56,8 @@ I want to prevent landing when the airport is full`
 
 - Message: Prevent a **plane** landing when `Airport` is full (`is_airport_full?`)
 
-4) `As the system designer
+### User Story 4 ###
+`As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate`
 
@@ -65,7 +69,8 @@ I would like a default airport capacity that can be overridden as appropriate`
 
 - Message: Assign a `DEFAULT_CAPACITY` to `Airport` that can be overridden 
 
-5) `As an air traffic controller 
+### User Story 5 ###
+`As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy`
 
@@ -77,7 +82,8 @@ I want to prevent takeoff when weather is stormy`
 
 - Message: Prevent `.takeoff` if `Weather` is stormy
 
-6) `As an air traffic controller 
+### User Story 6 ###
+`As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy`
 
