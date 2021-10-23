@@ -1,3 +1,4 @@
+
 class Airport
 
   attr_reader :planes, :capacity
@@ -8,13 +9,15 @@ class Airport
   end
 
   def landing(plane)
-    raise 'The airport is full.' unless @planes.length == 0
-    planes << plane
+    raise 'The airport is full.' unless @planes.length < @capacity
+    @planes << plane
+    plane.location = self
   end
 
   def take_off(plane)
-    raise 'You are not at this airport' unless planes.include? plane
-    planes.delete[plane]
+    raise 'You are not at this airport' unless @planes.include? plane
+    plane.location = 'airborne'
+    @planes.delete(plane)
   end
 
 end
