@@ -21,4 +21,12 @@ describe Plane do
     expect{airport.take_off(plane)}.to change{plane.location}.from(airport).to('airborne')
   end
 
+  it 'plane can only land if it is airborne' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.landing(plane)
+    airport_2 = Airport.new
+    expect{airport_2.landing(plane)}.to raise_error 'Plane already landed'
+  end
+
 end

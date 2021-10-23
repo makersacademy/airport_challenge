@@ -9,6 +9,7 @@ class Airport
   end
 
   def landing(plane)
+    raise 'Plane already landed' unless plane.location == 'airborne'
     raise 'The airport is full.' unless @planes.length < @capacity
     @planes << plane
     plane.location = self
