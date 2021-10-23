@@ -15,4 +15,14 @@ describe Airport do
     expect{subject.landing Plane.new}.to raise_error 'The airport is full.'
   end
 
+  it 'allows capacity to be set' do
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq(5)
+  end
+
+  it 'set default capacity to 3' do
+    airport = Airport.new
+    expect(airport.capacity).to eq(3)
+  end
+
 end
