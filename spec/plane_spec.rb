@@ -35,15 +35,37 @@ describe Plane do
       expect(subject.land_at_airport(Airport.new)).to eq false
       expect(subject.current_airport).to eq nil
     end
+
+    it 'can only land if not already in an airport' do
+      testport = Airport.new
+      srand(3)
+      subject.land_at_airport(testport)
+      expect { subject.land_at_airport(testport) }.to raise_error 'Cannot land: plane is already in an airport'
+    end
   end
 
   describe '#launch_from_airport' do
     it 'can request a launch and take off in good conditions' do
       testport = Airport.new
-      testport.add_to_hangar(subject)
+      subject.land_at_airport(testport)
       srand(3)
       expect(subject.launch_from_airport(testport)).to eq subject
       expect(subject.current_airport).to eq nil
+    end
+
+    it 'can only launch a plane if it\'s in the right airport' do
+      expect { subject.launch_from_airport(Airport.new) }.to raise_error 'Cannot launch: plane is not in this airport'
+    end
+  end
+
+  describe '#confirm_flying' do
+    it 'confirms flight while plane is flying (i.e. not in an airport)' do
+      expect(subject.confirm_flying).to eq true
+    end
+
+    it 'warns if plane is not flying (i.e. in an airport)' do
+      subject.land_at_airport(Airport.new)
+      expect(subject.confirm_flying).to eq false
     end
   end
 end
