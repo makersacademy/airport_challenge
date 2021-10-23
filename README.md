@@ -71,10 +71,10 @@ Verbs: overridden,
 
 As an air traffic controller 
 To ensure safety 
-I want to prevent takeoff when weather is stormy 
+I want to prevent take off when weather is stormy 
 
 Nouns: weather
-Verbs: prevent, takeoff, is_stormy
+Verbs: prevent, take off, is_stormy
 
 As an air traffic controller 
 To ensure safety 
@@ -85,8 +85,14 @@ Verbs: prevent, landing, is_stormy
 
 ```
 
-|Objects |Messages |
+## Functional representation
+
+| Objects | Messages |
 |--- |--- |
-| | |
+| Plane | land, take_off, in_airport? |
+| Airport | full? override(capacity) |
+| Weather| stormy? |
 
+## Domain model
 
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/2b20faeb-dc8b-45e1-8200-193a02c8037b" id="mCdl_GxJ78UP"></iframe></div>
