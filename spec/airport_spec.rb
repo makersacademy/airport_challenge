@@ -25,10 +25,6 @@ describe Airport do
     expect { Airport.new(0) }.to raise_error 'Capacity must be a numerical value (e.g. 10, 10.0, "10") > 0'
   end
 
-  it 'itiates with weather :unknown' do
-    expect(subject.weather).to eq :unknown
-  end
-
   describe '#check_weather' do
     it 'sets @weather to a weather symbol (:sunny or :stormy) when called' do
       subject.check_weather(weather_su)
@@ -42,6 +38,32 @@ describe Airport do
       srand(4)
       subject.check_weather(weather_st)
       expect(subject.weather).to eq :stormy
+    end
+  end
+
+  describe '#request_launch' do
+    it 'Raises an error when anything other than a Plane is passed as an arg' do
+      expect { subject.request_launch("Plane") }.to raise_error 'Call error: must include a Plane as an argument'
+      expect { subject.request_launch(Plane.new) }.to_not raise_error
+    end
+  end
+
+  describe '#weather_is_clear' do
+    it 'Returns false during stormy weather' do
+      srand(4)
+      expect(subject.weather_is_clear).to eq false
+    end
+  end
+
+  describe '#plane_is_in_hangar' do
+    it 'Returns false if plane isn\'t in hangar' do
+      expect(subject.plane_is_in_hangar(Plane.new)).to eq false
+    end
+
+    it 'Returns true if plane is in hangar' do
+      new_plane = Plane.new
+      subject.add_to_hangar(new_plane)
+      expect(subject.plane_is_in_hangar(new_plane)).to eq true
     end
   end
 
