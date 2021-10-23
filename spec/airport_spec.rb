@@ -58,7 +58,7 @@ describe Airport do
   describe '#weather_is_clear' do
     it 'returns false during stormy weather' do
       srand(4)
-      expect(subject.weather_is_clear).to eq false
+      expect(subject.weather_is_clear(true)).to eq false
     end
   end
 
@@ -80,6 +80,12 @@ describe Airport do
       srand(3)
       expect(subject.request_land(test_plane)).to eq test_plane
     end
+
+    it 'cannot land a plane if the hangar is full' do
+      20.times { subject.add_to_hangar(:plane) }
+      srand(3)
+      expect(subject.request_land(Plane.new)).to eq false
+    end
   end
 
   it 'can land a plane, launch it, and land it again' do
@@ -88,6 +94,50 @@ describe Airport do
     subject.request_land(test_plane)
     subject.request_launch(test_plane)
     expect(subject.request_land(test_plane)).to eq test_plane
+  end
+
+end
+
+describe AirTrafficControl do
+
+  it 'initiates with an empty @planes array and an Airport in @airport' do
+    expect(subject.planes).to eq []
+    expect(subject.airport.class).to eq Airport
+  end
+
+  describe '#override_airport_capacity' do
+    it 'updates associated airport\'s capacity to passed argument' do
+      subject.override_airport_capacity(10)
+      expect(subject.airport.capacity).to eq 10
+    end
+
+    it 'resets airport\'s capacity to default value if no argument passed' do
+      subject.override_airport_capacity(10)
+      subject.override_airport_capacity
+      expect(subject.airport.capacity).to eq 20
+    end
+  end
+
+  describe '#new_plane' do
+    it 'adds a plane to the @planes array and returns the new plane' do
+      planes_count = subject.planes.count
+      expect(subject.new_plane.class).to eq Plane
+      expect(planes_count < subject.planes.count).to eq true
+    end
+  end
+
+  describe '#order_land' do
+    it 'returns an error if a Plane is not provided in arguments' do
+      expect { subject.order_land("Plane") }.to raise_error 'Call error: must include a Plane as an argument'
+      expect { subject.order_land(Plane.new) }.to_not raise_error
+    end
+
+    it 'lands a plane in the associated airport if conditions are right' do
+      srand(3)
+      planes_count = subject.airport.hangar_count
+      subject.order_land(Plane.new)
+      expect(planes_count < subject.airport.hangar_count).to eq true
+    end
   end
 
 end

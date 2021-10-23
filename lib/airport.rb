@@ -35,7 +35,7 @@ class Airport
 
   def request_launch(plane)
     fail fail_message_rnp if plane.class != Plane
-    return false unless weather_is_clear && plane_is_in_hangar(plane)
+    return false unless weather_is_clear(true) && plane_is_in_hangar(plane)
     launch(plane)
   end
 
@@ -45,9 +45,9 @@ class Airport
     plane
   end
 
-  def weather_is_clear
+  def weather_is_clear(launching)
     return true if check_weather != :stormy
-    puts "Cannot take off: stormy weather"
+    puts "Cannot #{launching ? "take off" : "land"}: stormy weather"
     false
   end
 
@@ -63,12 +63,18 @@ class Airport
 
   def request_land(plane)
     fail fail_message_rnp if plane.class != Plane
-    return false unless weather_is_clear && space_in_hangar
+    return false unless weather_is_clear(false) && space_in_hangar
     land(plane)
   end
 
   def space_in_hangar
-    @hangar.count < @capacity
+    return true if hangar_count < @capacity
+    puts "Cannot land: hangar is full"
+    false
+  end
+
+  def hangar_count
+    @hangar.count
   end
 
   def land(plane)
@@ -95,3 +101,40 @@ class Airport
     'Call error: must include a Plane as an argument'
   end
 end
+
+class AirTrafficControl
+
+  attr_reader :airport, :planes
+
+  def initialize
+    @planes = []
+    @airport = Airport.new
+  end
+
+  def override_airport_capacity(int = nil)
+    @airport.update_capacity(int)
+  end
+
+  def new_plane
+    plane = Plane.new
+    @planes << plane
+    plane
+  end
+
+  def order_land(plane)
+    fail fail_message_rnp if plane.class != Plane
+    plane.land_at_airport(@airport)
+  end
+
+  private
+
+  def fail_message_rnp
+    'Call error: must include a Plane as an argument'
+  end
+
+end
+
+atc = AirTrafficControl.new
+plane1 = atc.new_plane
+plane2 = atc.new_plane
+plane3 = atc.new_plane
