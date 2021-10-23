@@ -7,6 +7,7 @@ class Airport
   end
 
   def landing(plane)
+    raise 'The airport is full.' unless @planes.length == 0
     planes << plane
   end
 
