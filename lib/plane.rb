@@ -11,10 +11,24 @@ class Plane
     @current_airport = airport
   end
 
+  def land_at_airport(airport)
+    fail fail_message_rnp if not_airport?(airport)
+    airport.request_land(self)
+  end
+
+  def launch_from_airport(airport)
+    fail fail_message_rnp if not_airport?(airport)
+    airport.request_launch(self)
+  end
+
   private
 
   def invalid_airport(airport)
-    (airport.class != Airport) && (airport != nil)
+    not_airport?(airport) && (airport != nil)
+  end
+
+  def not_airport?(airport)
+    airport.class != Airport
   end
 
   def fail_message_sna

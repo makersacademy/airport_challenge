@@ -42,29 +42,52 @@ describe Airport do
   end
 
   describe '#request_launch' do
-    it 'Raises an error when anything other than a Plane is passed as an arg' do
+    it 'raises an error when anything other than a Plane is passed as an arg' do
       expect { subject.request_launch("Plane") }.to raise_error 'Call error: must include a Plane as an argument'
       expect { subject.request_launch(Plane.new) }.to_not raise_error
+    end
+
+    it 'can launch a plane in right conditions' do
+      test_plane = Plane.new
+      srand(3)
+      subject.add_to_hangar(test_plane)
+      expect(subject.request_launch(test_plane)).to eq test_plane
     end
   end
 
   describe '#weather_is_clear' do
-    it 'Returns false during stormy weather' do
+    it 'returns false during stormy weather' do
       srand(4)
       expect(subject.weather_is_clear).to eq false
     end
   end
 
   describe '#plane_is_in_hangar' do
-    it 'Returns false if plane isn\'t in hangar' do
+    it 'returns false when plane isn\'t in hangar' do
       expect(subject.plane_is_in_hangar(Plane.new)).to eq false
     end
 
-    it 'Returns true if plane is in hangar' do
+    it 'returns true when plane is in hangar' do
       new_plane = Plane.new
       subject.add_to_hangar(new_plane)
       expect(subject.plane_is_in_hangar(new_plane)).to eq true
     end
+  end
+
+  describe '#request_land' do
+    it 'can land a plane in right conditions' do
+      test_plane = Plane.new
+      srand(3)
+      expect(subject.request_land(test_plane)).to eq test_plane
+    end
+  end
+
+  it 'can land a plane, launch it, and land it again' do
+    test_plane = Plane.new
+    srand(3)
+    subject.request_land(test_plane)
+    subject.request_launch(test_plane)
+    expect(subject.request_land(test_plane)).to eq test_plane
   end
 
 end
