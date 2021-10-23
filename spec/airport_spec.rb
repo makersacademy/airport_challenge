@@ -41,4 +41,12 @@ describe Airport do
     expect{subject.take_off(plane)}.to raise_error 'You are not at this airport'
   end
 
+  it 'prevents take-off when weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.landing(plane)
+    allow(airport).to receive(:weather) {'stormy'}
+    expect{airport.take_off(plane)}.to raise_error 'It is too stormy'
+  end
+
 end

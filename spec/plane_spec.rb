@@ -18,6 +18,7 @@ describe Plane do
     plane = Plane.new
     airport = Airport.new
     airport.landing(plane)
+    allow(airport).to receive(:weather) {'sunny'}
     expect{airport.take_off(plane)}.to change{plane.location}.from(airport).to('airborne')
   end
 
