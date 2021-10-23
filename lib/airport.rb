@@ -25,7 +25,7 @@ class Airport
   end
 
   def stormy?
-    true
+    rand(1..6) > 4
   end
 
 end
