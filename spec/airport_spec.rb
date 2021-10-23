@@ -7,8 +7,14 @@ describe Airport do
   it 'lands a plane' do
     airport = Airport.new
     plane = Plane.new
-    expect(airport).to respond_to(:land).with(1).argument
+    expect { airport.land(plane) }.not_to raise_error
+  end
+   
+  it 'allows plane to take off' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.take_off(plane) }.not_to raise_error
   end
 
-  
+
 end
