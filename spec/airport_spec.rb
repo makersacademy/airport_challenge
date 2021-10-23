@@ -36,6 +36,11 @@ describe Airport do
       airport.take_off("plane1")
       expect(airport.planes).not_to include("plane1")
     end
+
+    it 'prevents taking off when it is stormy' do
+      allow(airport).to receive(:weather) {"stormy"}
+      expect { airport.take_off(plane) }.to raise_error('Bad weather, can not to take off')
+    end
   end
 
   it 'has a default capacity' do
