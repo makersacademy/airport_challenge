@@ -14,8 +14,9 @@ class Airport
     @planes << plane
   end
 
-  def take_off
-    "This plane is no longer in the airport!" if true
+  def take_off(plane)
+    @planes.pop
+    "This plane is no longer in the airport!" unless @planes.include?(plane) 
   end
 
   private
