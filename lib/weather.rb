@@ -1,9 +1,9 @@
-module WeatherReport
-  def check_weather
-    rand > 0.8 ? :stormy : :sunny
-  end
-end
+class WeatherReport
 
-class Weather
-  include WeatherReport
+  attr_reader :weather
+
+  def initialize
+    @weather = rand > 0.8 ? :stormy : :sunny
+  end
+
 end
