@@ -2,8 +2,8 @@ require './lib/airport'
 require './lib/plane'
 
 describe Airport do
-  subject(:airport) {described_class.new}
-  plane = Plane.new
+  let(:plane) { Plane.new}
+  let(:airport) {Airport.new}
 
   it "instructs a plane to land" do
     expect(airport).to  respond_to(:land).with(1).argument
@@ -14,8 +14,8 @@ describe Airport do
   end
 
   it "raises an error when airport is full" do
-    subject.land(plane)
-    expect{ subject.land plane }.to raise_error "This airport is full"
+    20.times{ airport.land(plane) }
+    expect{ airport.land plane }.to raise_error "This airport is full"
   end
 
 
