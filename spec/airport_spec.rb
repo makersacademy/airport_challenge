@@ -6,19 +6,29 @@ describe Airport do
     expect(subject).to respond_to(:land)
   end
 
-  it 'plane takes off' do
-    expect(subject).to respond_to(:take_off)
-  end
-
   it 'confirms plane has taken off' do
     plane = Plane.new
     subject.planes << plane
-    subject.take_off(plane)
+    subject.take_off
     expect(subject.planes.length).to eq 0
+  end
+
+  describe '#take_off' do
+    it 'plane takes off' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
+    end
+
+    it 'raises and error when there are no planes at the airport to take off' do
+      expect { subject.take_off }.to raise_error 'take off failed: there are no planes at the airport'
+    end
   end
   
   it 'airport has a default capacity' do
-    expect (subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    subject.capacity
+    Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe '#land' do
