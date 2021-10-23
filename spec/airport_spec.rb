@@ -11,8 +11,14 @@ describe Airport do
   end
 
   it "prevents landing when airport is full" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.capacity.times{ airport.land(plane) }
     expect{ airport.land plane }.to raise_error "This airport is full"
+  end
+
+  it "prevents landing when weather is stormy" do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error "Can't land weather is stormy"
   end
 end
 
