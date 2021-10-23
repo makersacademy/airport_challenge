@@ -13,12 +13,15 @@ describe Airport do
 
   it 'stores a landed plane' do
     plane = Plane.new
+    airport = Airport.new
+    allow(Weather).to receive(:stormy?) {'sunny'}
     subject.landing(plane)
     expect(subject.planes).to eq ([plane])
   end
 
   it 'prevents landing when airport is full' do
     airport = Airport.new
+    allow(Weather).to receive(:stormy?) {'sunny'}
     3.times do
       plane = Plane.new
       airport.landing(plane)
@@ -44,9 +47,17 @@ describe Airport do
   it 'prevents take-off when weather is stormy' do
     airport = Airport.new
     plane = Plane.new
+    allow(Weather).to receive(:stormy?) {'sunny'}
     airport.landing(plane)
-    allow(airport).to receive(:weather) {'stormy'}
+    allow(Weather).to receive(:stormy?) {'stormy'}
     expect{airport.take_off(plane)}.to raise_error 'It is too stormy'
+  end
+
+  it 'prevents landing when stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(Weather).to receive(:stormy?) {'stormy'}
+    expect{airport.landing(plane)}.to raise_error 'It is too stormy'
   end
 
 end

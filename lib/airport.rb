@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
 
   attr_reader :planes, :capacity, :weather
@@ -5,10 +7,11 @@ class Airport
   def initialize(capacity=3)
     @planes = []
     @capacity = capacity
-    @weather = 'sunny'
   end
 
   def landing(plane)
+    @weather = Weather.stormy?
+    raise 'It is too stormy' if @weather == 'stormy'
     raise 'Plane already landed' unless plane.location == 'airborne'
     raise 'The airport is full.' unless @planes.length < @capacity
     @planes << plane
@@ -16,7 +19,7 @@ class Airport
   end
 
   def take_off(plane)
-    @weather = weather
+    @weather = Weather.stormy?
     raise 'You are not at this airport' unless @planes.include? plane
     raise 'It is too stormy' if @weather == 'stormy'
     plane.location = 'airborne'
