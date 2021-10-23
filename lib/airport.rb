@@ -20,6 +20,10 @@ class Airport
     "This plane is not in the airport!" unless @planes.include?(plane) 
   end
 
+  def weather
+    ["sunny", "stormy", "sunny", "sunny", "sunny"].sample
+  end
+
   private
 
   def full?

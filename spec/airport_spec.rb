@@ -41,4 +41,10 @@ describe Airport do
   it 'has a default capacity' do
     expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
+
+  describe '#weather' do
+    it 'returns "sunny" or "stormy"' do
+      expect(airport.weather).to eq("sunny").or eq("stormy")
+    end
+  end
 end
