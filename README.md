@@ -96,3 +96,17 @@ Verbs: prevent, landing, is_stormy
 ## Domain model
 
 <div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/2b20faeb-dc8b-45e1-8200-193a02c8037b" id="mCdl_GxJ78UP"></iframe></div>
+
+## File structure
+
+airport-challenge
+  lib
+    plane.rb
+    airport.rb
+    weather.rb 
+  spec
+    plane_spec.rb
+    airport_spec.rb
+    weather_spec.rb
+    feature_spec.rb
+    
