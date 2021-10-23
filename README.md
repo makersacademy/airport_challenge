@@ -13,6 +13,12 @@ Airport Challenge
 
 ```
 
+This program emulates airports system. Plains are able to land and to take off. It prevents from landing when the airport is full and the weather is bad. Also, it prevents from taking off when the weather conditions are not good. 
+
+* Planes can only take off from airports they are in. 
+* Planes that are already flying cannot take off and/or be in an airport. 
+* Planes that are landed cannot land again and must be in an airport.
+
 Instructions
 ---------
 
