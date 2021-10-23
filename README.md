@@ -119,3 +119,8 @@ $ tree
     ├── docking_station_spec.rb
     └── spec_helper.rb
 ```
+
+
+## Reflections
+
+* After passing the first unit test, I'm not sure which unit test to write next. respond to with(1).argument or Airplane undefined constant. 
