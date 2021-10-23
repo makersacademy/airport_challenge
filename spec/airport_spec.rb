@@ -3,6 +3,14 @@ require_relative '../lib/plane'
 
 describe Airport do
 
+  it 'allows plane to take off' do
+    expect(subject).to respond_to(:take_off)
+  end
+
+  it 'instructs plane to land at airport' do
+    expect(subject).to respond_to(:landing)
+  end
+
   it 'stores a landed plane' do
     plane = Plane.new
     subject.landing(plane)
@@ -23,6 +31,11 @@ describe Airport do
   it 'set default capacity to 3' do
     airport = Airport.new
     expect(airport.capacity).to eq(3)
+  end
+
+  it 'planes can only take-off from airport they are in' do
+    plane = Plane.new
+    expect{subject.take_off(plane)}.to raise_error 'You are not at this airport'
   end
 
 end

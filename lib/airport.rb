@@ -12,4 +12,9 @@ class Airport
     planes << plane
   end
 
+  def take_off(plane)
+    raise 'You are not at this airport' unless planes.include? plane
+    planes.delete[plane]
+  end
+
 end
