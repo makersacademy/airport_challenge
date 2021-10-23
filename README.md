@@ -121,6 +121,11 @@ $ tree
 ```
 
 
-## Reflections
+## Reflections 
 
 * After passing the first unit test, I'm not sure which unit test to write next. respond to with(1).argument or Airplane undefined constant. 
+
+
+## Process reflections
+
+* Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
