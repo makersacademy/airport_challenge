@@ -110,4 +110,12 @@ airport-challenge
     weather_spec.rb
     feature_spec.rb
     
-
+Update this:
+```sh
+$ tree
+.
+├── README.md
+└── spec
+    ├── docking_station_spec.rb
+    └── spec_helper.rb
+```
