@@ -11,12 +11,13 @@ class Airport
 
   def land(plane)
     fail "The airport is full!" if full?
+    fail "This plane is already in the airport!" if @planes.include?(plane)
     @planes << plane
   end
 
   def take_off(plane)
     @planes.pop
-    "This plane is no longer in the airport!" unless @planes.include?(plane) 
+    "This plane is not in the airport!" unless @planes.include?(plane) 
   end
 
   private

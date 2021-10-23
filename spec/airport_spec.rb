@@ -14,8 +14,13 @@ describe Airport do
     end
 
     it 'raises an error when the airport is full' do
-      airport.capacity.times { airport.land(plane)}
+      airport.capacity.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error("The airport is full!")
+    end
+
+    it 'can not land a plane if it is already in the airport' do
+      airport.land("plane1")
+      expect { airport.land("plane1") }.to raise_error("This plane is already in the airport!")
     end
   end
 
@@ -23,7 +28,7 @@ describe Airport do
     it { is_expected. to respond_to :take_off }
 
     it 'takes off a plane and confirms that it is no longer in the airport' do
-      expect(airport.take_off(plane)).to eq("This plane is no longer in the airport!")
+      expect(airport.take_off(plane)).to eq("This plane is not in the airport!")
     end
 
     it 'prevents from taking off a plane which is already flying' do
