@@ -1,15 +1,9 @@
-class WeatherReport
-
-  attr_reader :weather
-
-  def initialize
-    @weather = set_weather
-  end
-
-  private
-
-  def set_weather
+module WeatherReport
+  def check_weather
     rand > 0.8 ? :stormy : :sunny
   end
+end
 
+class Weather
+  include WeatherReport
 end

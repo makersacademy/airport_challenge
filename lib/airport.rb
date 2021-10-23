@@ -4,21 +4,18 @@ require_relative "weather"
 class Airport
   DEFAULT_CAPACITY = 20
 
-  attr_reader :capacity, :weather
+  attr_reader :capacity
+
+  include WeatherReport
 
   def initialize(arg_cap = nil)
     @hanger = []
-    @weather = :unknown
     update_capacity(arg_cap)
   end
 
   def update_capacity(arg_cap = nil)
     fail fail_message_cap if invalid_cap?(arg_cap)
     @capacity = arg_cap ? arg_cap.to_i : DEFAULT_CAPACITY
-  end
-
-  def check_weather(weather_report = WeatherReport.new)
-    @weather = weather_report.weather
   end
 
   private
