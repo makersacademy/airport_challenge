@@ -129,3 +129,9 @@ $ tree
 ## Process reflections
 
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
+
+
+## Questions
+
+- What should a unit test be to develop the (airport) argument on the #land method? 
+  Which is the best matcher for this: look at past examples.
