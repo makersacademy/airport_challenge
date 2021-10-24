@@ -9,7 +9,12 @@ describe Airport do
     expect(subject).to respond_to :take_off
   end
 
-  it "creates an example of plane when a plane lands" do
+  it "creates an object that lands" do
     expect(subject).to respond_to(:land).with(1).argument
+  end
+
+  it "stores a plane at the airport when one is landed" do
+    plane = Plane.new
+    expect(subject.land(plane)).to eq plane
   end
 end
