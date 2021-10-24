@@ -1,18 +1,21 @@
 require './../lib/plane.rb'
+require './../lib/airport.rb'
 
 describe Plane do
 
   it "lands at an airport" do
-    expect(subject.land("JFK")).to eq "Landed at JFK"
+    jfk = Airport.new
+    expect(subject.land(jfk)).to eq "Landed"
   end
 
   it "takes off from an airport" do
-    expect(subject.take_off("JFK")).to eq "Took off from JFK"
+    jfk = Airport.new
+    expect(subject.take_off(jfk)).to eq "Took off"
   end
 
   it "does not land if the airport is full" do
     jfk = Airport.new
-    
-    expect(subject.land(jfk.full?)).to eq "This airport is full - cannot land"
+    subject.land(jfk)
+    expect(subject.land(jfk)).to eq "This airport is full - cannot land"
   end
 end
