@@ -16,9 +16,18 @@ describe Airport do
     it 'instructs a plane to take off from an airport' do
       plane = Plane.new
       expect(subject.take_off(plane)).to eq plane
+      #.to_receive "The plane is no longer at the airport"
+
+      # plane.take_off
+      #  expect(plane.message).to eq "The plane is no longer at the airport"
+      #it 'confirms the plane is no longer at the airport' do
+
     end
   end
+
+
 end
+
 
 
 =begin
@@ -31,7 +40,8 @@ end
     it 'confirms it is no longer in the airport' do
       expect (subject.take_off(plane)).should_receive(:plane), "The plane is no longer at the airport"
     end
-  end
+  endclear
+
   it { is_expected.to respond_to :take_off }
 
 

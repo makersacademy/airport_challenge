@@ -13,6 +13,16 @@ Airport Challenge
 
 ```
 
+Update on status:
+* Unable to get status portion of user story 2 completed.
+* I tried to do this as a puts within the take_off method, however, it then wouldn't recognize the plane.  
+* I tried to create a method within the plane class that used cases (under the assumption that more statuses may be needed at a later time) but it was around this time that I asked someone for help and this complicated issues and I was unable to get this functionality working).
+
+If I had worked for more than 4.5 hours on this project....
+* For user story 3, prevent landing if airport full:  I would have 1) Created a test within airport_spec.rb file that equaled a set capacity and then created a full method to pass this test
+* for US 4 - default capacity I would have 1) created an initialize test case in the spec file, 2) in the airport.rb file I would have created a default capacity under the class Aiport call and an initialize method where I initialize capacity.
+* the final aspect would have used a weather class.  It would contain 2 methods, 1 for sunny and 1 for stormy.  Then within the airport.rb file, the status of the weather would be called, i.e. if Weather.sunny == true...plane can take off (under take_off method) else error ("due to weather...) and same for the land method. 
+
 Instructions
 ---------
 
