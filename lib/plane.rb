@@ -5,6 +5,7 @@ class Plane
   end
 
   def takeoff(airport)
+    airport
   end
 
 end

@@ -129,11 +129,10 @@ $ tree
 ## Process reflections
 
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
-
+* I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
+* I went back and removed an instance variable as I did not absolutely need it. 
 
 ## Questions
 
 - What should a unit test be to develop the (airport) argument on the #land method? 
-  Which is the best matcher for this: look at past examples.
-- I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
-- I went back and removed an instance variable as I did not absolutely need it. 
+- Which is the best matcher for this: look at past examples.

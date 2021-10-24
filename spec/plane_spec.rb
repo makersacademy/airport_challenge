@@ -17,6 +17,12 @@ describe Plane do
     it { is_expected.to respond_to(:takeoff) }
 
     it { is_expected.to respond_to(:takeoff).with(1).argument }
+
+    it 'takes of from an airport' do
+      plane = Plane.new
+      expect(plane.takeoff('airport')).to eq 'airport'
+    end
+
   end 
 
 end
