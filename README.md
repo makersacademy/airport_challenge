@@ -2,6 +2,9 @@
 
 Airport Challenge is a programme to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
+**Assumptions:**
+As no default capacity was given, I've assumed a default capacity of 1 for each airport.
+
 ## My approach to solving this challenge
 
 *Update here*
@@ -156,7 +159,9 @@ $ tree
 * I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
 * I went back and removed an instance variable as I did not absolutely need it. 
 * I changed one of the unit tests as it was no longer accurate. The one for takeoff returns airplane. Should I perhaps have written it differently?
-* * What I'm finding hardest is framing the feature test. Maybe I could
+*  What I'm finding hardest is framing the feature test. Maybe I could
+* I'm updating my tests as I go along, e.g. changing 'JFK' to jfk. Is this correct?
+
 
 
 ## Process reflections
@@ -166,6 +171,23 @@ $ tree
 * I could listen to music as am working alone on this project.
 * I haven't been looking at the domain model for features 2 and 3, I will look at it now. It is out of sync with the code. 
 * I've realised that I can write the feature test line by line in the feature_spec.rb, the same way I would a manual feature test in irb. This means the feature test gets written iteratively. Is this correct process?
+* I'm tweaking the feature tests to work out exactly what it is I need the code to do. 
+```
+# For user story 3:
+# First I tried
+jfk.capacity = full
+
+# then
+jfk(capacity) = 3
+
+# then 
+jfk(3) # where 3 is the capacity 
+
+#finally
+jfk.capacity(2) # this finally got the desired ArgumentError :smile:
+
+```
+
 
 
 ## Questions

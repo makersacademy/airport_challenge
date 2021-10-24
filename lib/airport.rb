@@ -1,4 +1,4 @@
 class Airport
-  def capacity
+  def capacity(max)
   end 
 end

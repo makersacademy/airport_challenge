@@ -34,7 +34,6 @@ describe 'prevent landing when the airport is full' do
   it 'plane if not able to land when airport is at capacity' do
     boeing = Plane.new
     jfk = Airport.new
-    jfk.capacity = 'full'
-    
+    jfk.capacity(2)
   end
 end 
