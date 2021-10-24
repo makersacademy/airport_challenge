@@ -11,14 +11,14 @@ describe Plane do
   it 'planes location is changed to that of the airport' do
     airport = Airport.new
     plane = Plane.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     expect{airport.landing(plane)}.to change{plane.location}.from('airborne').to(airport)
   end
 
   it 'planes location is changed to airborne' do
     plane = Plane.new
     airport = Airport.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     airport.landing(plane)
     expect{airport.take_off(plane)}.to change{plane.location}.from(airport).to('airborne')
   end
@@ -26,7 +26,7 @@ describe Plane do
   it 'plane can only land if it is airborne' do
     plane = Plane.new
     airport = Airport.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     airport.landing(plane)
     airport_2 = Airport.new
     expect{airport_2.landing(plane)}.to raise_error 'Plane already landed'

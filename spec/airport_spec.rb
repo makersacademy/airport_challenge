@@ -3,25 +3,17 @@ require_relative '../lib/plane'
 
 describe Airport do
 
-  it 'allows plane to take off' do
-    expect(subject).to respond_to(:take_off)
-  end
-
-  it 'instructs plane to land at airport' do
-    expect(subject).to respond_to(:landing)
-  end
-
   it 'stores a landed plane' do
     plane = Plane.new
     airport = Airport.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     subject.landing(plane)
     expect(subject.planes).to eq ([plane])
   end
 
   it 'prevents landing when airport is full' do
     airport = Airport.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     3.times do
       plane = Plane.new
       airport.landing(plane)
@@ -47,16 +39,16 @@ describe Airport do
   it 'prevents take-off when weather is stormy' do
     airport = Airport.new
     plane = Plane.new
-    allow(Weather).to receive(:stormy?) {'sunny'}
+    allow(Airport).to receive(:stormy?) {false}
     airport.landing(plane)
-    allow(Weather).to receive(:stormy?) {'stormy'}
+    allow(Airport).to receive(:stormy?) {true}
     expect{airport.take_off(plane)}.to raise_error 'It is too stormy'
   end
 
   it 'prevents landing when stormy' do
     airport = Airport.new
     plane = Plane.new
-    allow(Weather).to receive(:stormy?) {'stormy'}
+    allow(Airport).to receive(:stormy?) {true}
     expect{airport.landing(plane)}.to raise_error 'It is too stormy'
   end
 
