@@ -5,27 +5,22 @@ describe Airport do
   describe "#land" do
     
     it 'responds to the method land and lands a plane in the airport' do
-      airport = Airport.new
       plane = Plane.new
-      expect(airport).to respond_to :land
-      expect(airport.land(plane)).to eq plane
+      expect(subject).to respond_to :land
+      expect(subject.land(plane)).to_not be_empty
     end
 
     it "raises an error when airport is full" do
-      airport = Airport.new
-      plane = Plane.new
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error "Airport is full"
+      20.times { subject.land Plane.new }
+      expect { subject.land Plane.new }.to raise_error "Airport is full"
     end
 
   end
 
   describe "#plane" do
     it 'returns planes in the airport' do
-      airport = Airport.new
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.plane).to eq plane
+      subject.land Plane.new
+      expect(subject.planes).to_not be_empty
     end
   end
 

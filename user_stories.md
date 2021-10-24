@@ -1,5 +1,7 @@
 # User stories
 
+----------------------------------------------------
+
 ## User story 1:
 
 As an air traffic controller 
@@ -45,6 +47,7 @@ Verbs:
 Plane <-- take_off
 
 ----------------------------------------------------
+
 ## User story 3:
 
 As an air traffic controller 
@@ -66,3 +69,11 @@ Raise an error for take_off when there are no planes in the airport.
 Raise an error for land when there is already a plane in the airport.
 
 ----------------------------------------------------
+
+## User story 4:
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Note on approach - Start with a capacity of 20 planes intitially, then come back to this. E.g. I want the airport to have a default capacity of 20 planes.
