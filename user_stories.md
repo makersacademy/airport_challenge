@@ -14,10 +14,10 @@ Verbs:
 | Objects  | Messages        |
 | -------- | --------------- |
 | User | |
-| Plane | land |
-| Airport | ??? |
+| Plane | |
+| Airport | land |
 
-Plane <-- land --> Confirm plane has landed
+Airport <-- land --> return plane
 
 ----------------------------------------------------
 
@@ -37,7 +37,7 @@ Verbs:
 | Objects  | Messages        |
 | -------- | --------------- |
 | User | |
-| Plane | take_off |
-| Airport | ??? |
+| Plane | |
+| Airport | take_off |
 
-Plane <-- take_off --> Confirm plane has taken off
+Plane <-- take_off --> Return plane has taken off message
