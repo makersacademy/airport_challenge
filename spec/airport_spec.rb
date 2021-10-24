@@ -25,6 +25,13 @@ describe Airport do
     expect { Airport.new(0) }.to raise_error 'Capacity must be a numerical value (e.g. 10, 10.0, "10") > 0'
   end
 
+  describe '#update_capacity' do
+    it 'fails if hangar already contains more planes than the override value' do
+      20.times { subject.add_to_hangar(:plane) }
+      expect { subject.update_capacity(10) }.to raise_error 'Cannot set capacity to a lower number than the number of planes already inside'
+    end
+  end
+
   describe '#check_weather' do
     it 'sets @weather to a weather symbol (:sunny or :stormy) when called' do
       subject.check_weather(weather_su)

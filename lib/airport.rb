@@ -1,6 +1,3 @@
-require_relative "plane"
-require_relative "weather"
-
 class Airport
   DEFAULT_CAPACITY = 20
 
@@ -26,6 +23,7 @@ class Airport
 
   def update_capacity(arg_cap = nil)
     fail fail_message_cap if invalid_cap?(arg_cap) # arg_cap must be nil or a number
+    fail fail_message_capsm if cap_too_small?(arg_cap)
     @capacity = arg_cap ? arg_cap.to_i : DEFAULT_CAPACITY
   end
 
@@ -91,10 +89,19 @@ class Airport
     v.to_i.zero?
   end
 
+  def cap_too_small?(v)
+    v = DEFAULT_CAPACITY if v.nil?
+    v.to_i < @hangar.count
+  end
+
   def cant_convert_to_int(v) !(v.respond_to? :to_i) end
 
   def fail_message_cap 
     'Capacity must be a numerical value (e.g. 10, 10.0, "10") > 0'
+  end
+
+  def fail_message_capsm
+    'Cannot set capacity to a lower number than the number of planes already inside'
   end
 
   def fail_message_rnp

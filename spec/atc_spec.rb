@@ -7,6 +7,11 @@ describe AirTrafficControl do
     expect(subject.airport.class).to eq Airport
   end
 
+  it 'can set the capacity of its airport when initialised' do
+    newatc = AirTrafficControl.new(50)
+    expect(newatc.airport.capacity).to eq 50
+  end
+
   describe '#override_airport_capacity' do
     it 'updates associated airport\'s capacity to passed argument' do
       subject.override_airport_capacity(10)
@@ -57,4 +62,14 @@ describe AirTrafficControl do
     end
   end
 
+end
+
+describe '#atc_test' do
+  it 'atc_test creates a new AirTrafficControl instance with 3 planes' do
+    atc_test
+    expect(atc.planes.count).to eq 3
+    expect(atc.planes.include?(plane1)).to eq true
+    expect(atc.planes.include?(plane2)).to eq true
+    expect(atc.planes.include?(plane3)).to eq true
+  end
 end
