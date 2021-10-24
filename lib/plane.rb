@@ -1,7 +1,11 @@
 class Plane
   
   def land
-    "Plane has landed at airport."
+    "Plane has landed."
+  end
+
+  def take_off
+    "Plane has taken off."
   end
 
 end

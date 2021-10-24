@@ -17,7 +17,7 @@ Verbs:
 | Plane | land |
 | Airport | ??? |
 
-Plane <-- land --> true
+Plane <-- land --> Confirm plane has landed
 
 ----------------------------------------------------
 
@@ -33,12 +33,11 @@ Nouns:
 
 Verbs:
 - take_off
-- not_in_airport
 
 | Objects  | Messages        |
 | -------- | --------------- |
 | User | |
-| Plane | take_off, not_in_aiport??? |
+| Plane | take_off |
 | Airport | ??? |
 
-Plane <-- take_off --> true/false
+Plane <-- take_off --> Confirm plane has taken off

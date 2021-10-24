@@ -10,7 +10,17 @@ describe Plane do
 
   it 'confirms a plane has landed' do
     plane = Plane.new
-    expect(plane.land).to eq "Plane has landed at airport."
+    expect(plane.land).to eq "Plane has landed."
+  end
+
+  it 'responds to the method take_off' do
+    plane = Plane.new
+    expect(plane).to respond_to :take_off
+  end
+
+  it 'confirms a plane has taken off' do
+    plane = Plane.new
+    expect(plane.take_off).to eq "Plane has taken off."
   end
 
 end
