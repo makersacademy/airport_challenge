@@ -26,16 +26,16 @@ describe Airport do
 
   describe "#take_off" do
     
-    it 'responds to the method take_off and returns a new plane' do
-      airport = Airport.new
+    it 'responds to the method take_off and removes plane from the airport' do
       plane = Plane.new
-      expect(airport).to respond_to :take_off
+      subject.land(plane)
+      expect(subject).to respond_to :take_off
+      expect(subject.take_off).to eq plane
     end
 
     it "raises an error if there are no planes in the airport" do
-      airport = Airport.new
       plane = Plane.new
-      expect { airport.take_off }.to raise_error "No planes available"
+      expect { subject.take_off }.to raise_error "No planes available"
     end
   end
 
