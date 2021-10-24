@@ -4,4 +4,8 @@ class Plane
     "Landed at #{airport}"
   end
 
+  def take_off(airport)
+    "Took off from #{airport}"
+  end
+
 end
