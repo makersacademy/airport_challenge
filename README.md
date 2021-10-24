@@ -24,6 +24,7 @@ The logic I thought to apply:
 
 To run in IRB:
 --------------
+```ruby
 3.0.2 :001 > require './lib/airport.rb'
  => true 
 3.0.2 :002 > require './lib/plane.rb'
@@ -38,3 +39,4 @@ To run in IRB:
  => #<Plane:0x000000010501dd98 @flying=false> 
 3.0.2 :007 > airport.take_off(plane)
  => #<Plane:0x000000010501dd98 @flying=true> 
+```
