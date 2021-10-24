@@ -62,6 +62,28 @@ describe AirTrafficControl do
     end
   end
 
+  it 'can land and launch multiple planes' do
+    planes_arr = Array.new(5) { subject.new_plane }
+    simulate_land_or_launch(planes_arr[0], true)
+    simulate_land_or_launch(planes_arr[1], true)
+    simulate_land_or_launch(planes_arr[0], false)
+    simulate_land_or_launch(planes_arr[2], true)
+    simulate_land_or_launch(planes_arr[2], false)
+    simulate_land_or_launch(planes_arr[0], true)
+    simulate_land_or_launch(planes_arr[1], false)
+    simulate_land_or_launch(planes_arr[3], true)
+    expect(planes_arr[0].current_airport).to eq subject.airport
+    expect(planes_arr[1].current_airport).to eq nil
+    expect(planes_arr[2].current_airport).to eq nil
+    expect(planes_arr[3].current_airport).to eq subject.airport
+    expect(planes_arr[4].current_airport).to eq nil
+  end
+
+end
+
+def simulate_land_or_launch(plane, is_land)
+  srand(3)
+  is_land ? subject.order_land(plane) : subject.order_launch(plane)
 end
 
 describe '#atc_test' do
