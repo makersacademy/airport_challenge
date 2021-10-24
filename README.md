@@ -87,3 +87,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+I wasnt able to complete the challenge this weekend. But here's the code I managed to write in the time I had available. 
+
+The next steps I would have taken is to make the airport + - planes when the weather allowed.
