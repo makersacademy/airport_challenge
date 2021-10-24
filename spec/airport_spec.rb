@@ -2,11 +2,12 @@ require_relative '../lib/airport'
 
 describe Airport do
   describe '#land' do
-    # plane = plane.new
-    # subject.land(plane)
-      it 'instructs a plane to land at an airport' do
-      is_expected.to respond_to :land
+    it 'instructs a plane to land at an airport' do
+      plane = Plane.new
+     expect(subject.land(plane)).to eq plane
       end
+
+    it {is_expected.to respond_to :land}
   end
 
   # describe '#take_off' do
