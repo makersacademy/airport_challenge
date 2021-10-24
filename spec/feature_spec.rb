@@ -18,8 +18,8 @@ end
 #   and confirm that it is no longer in the airport
 
 describe 'plane take off from an airport' do
-  it 'plane ca take off from an airport' do
+  it 'plane can take off from an airport' do
     boeing = Plane.new
-    expect(boeing.takeoff('JFK')).to eq 'JFK'
+    expect(boeing.takeoff('JFK')).to eq 'flying'
   end
 end

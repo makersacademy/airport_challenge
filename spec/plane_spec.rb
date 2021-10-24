@@ -15,6 +15,8 @@ describe Plane do
 
   context '#takeoff' do
     it { is_expected.to respond_to(:takeoff) }
+
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
   end 
 
 end
