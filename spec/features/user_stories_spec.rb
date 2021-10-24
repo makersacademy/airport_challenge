@@ -1,7 +1,7 @@
 require 'airport'
-require 'plane'
+#require 'plane'
 
-describe "airport" do 
+describe "User stories" do 
     it "allow planes to land at airport" do
     airport = Airport.new(20)
     plane = Plane.new

@@ -1,5 +1,5 @@
 require 'airport'
-require 'plane'
+#require 'plane'
 
 describe Airport do 
     airport = Airport.new(20)
