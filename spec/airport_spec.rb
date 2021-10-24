@@ -19,5 +19,3 @@ end
 
 # 1. A plane needs to be able to land at an airport
 # 2. A plane needs to be able to take off from an airport
-
-
