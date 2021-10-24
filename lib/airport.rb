@@ -7,7 +7,8 @@ class Airport
   end
 
   def take_off
-    Plane.new
+    fail "No planes available" unless @plane
+    @plane
   end
 
 end
