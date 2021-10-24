@@ -3,30 +3,17 @@ require 'airport'
 
 describe Plane do
 
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+  before do
+    allow(Airport).to receive(:stormy?) {false}
+  end
+
   it 'lets us know that the plane is not at the airport' do
-    plane = Plane.new
     expect(plane.location).to eq('airborne')
   end
 
-  it 'planes location is changed to that of the airport' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(Airport).to receive(:stormy?) {false}
-    expect{airport.landing(plane)}.to change{plane.location}.from('airborne').to(airport)
-  end
-
-  it 'planes location is changed to airborne' do
-    plane = Plane.new
-    airport = Airport.new
-    allow(Airport).to receive(:stormy?) {false}
-    airport.landing(plane)
-    expect{airport.take_off(plane)}.to change{plane.location}.from(airport).to('airborne')
-  end
-
   it 'plane can only land if it is airborne' do
-    plane = Plane.new
-    airport = Airport.new
-    allow(Airport).to receive(:stormy?) {false}
     airport.landing(plane)
     airport_2 = Airport.new
     expect{airport_2.landing(plane)}.to raise_error 'Plane already landed'

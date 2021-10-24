@@ -3,22 +3,34 @@ require_relative '../lib/plane'
 
 describe Airport do
 
-  it 'stores a landed plane' do
-    plane = Plane.new
-    airport = Airport.new
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+  let(:land) { airport.landing(plane) }
+  let(:take_off) { airport.take_off(plane) }
+  before do
     allow(Airport).to receive(:stormy?) {false}
-    subject.landing(plane)
-    expect(subject.planes).to eq ([plane])
+  end
+
+  it 'stores a landed plane' do
+    land
+    expect(airport.planes).to eq ([plane])
   end
 
   it 'prevents landing when airport is full' do
-    airport = Airport.new
-    allow(Airport).to receive(:stormy?) {false}
     3.times do
       plane = Plane.new
       airport.landing(plane)
     end
-    expect{airport.landing Plane.new}.to raise_error 'The airport is full.'
+    expect{ land }.to raise_error 'The airport is full.'
+  end
+
+  it 'planes location is changed to that of the airport' do
+    expect {land}.to change {plane.location}.from('airborne').to(airport)
+  end
+
+  it 'planes location is changed to airborne' do
+    land
+    expect {take_off}.to change {plane.location}.from(airport).to('airborne')
   end
 
   it 'allows capacity to be set' do
@@ -27,29 +39,22 @@ describe Airport do
   end
 
   it 'set default capacity to 3' do
-    airport = Airport.new
     expect(airport.capacity).to eq(3)
   end
 
   it 'planes can only take-off from airport they are in' do
-    plane = Plane.new
     expect{subject.take_off(plane)}.to raise_error 'You are not at this airport'
   end
 
   it 'prevents take-off when weather is stormy' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(Airport).to receive(:stormy?) {false}
-    airport.landing(plane)
+    land
     allow(Airport).to receive(:stormy?) {true}
-    expect{airport.take_off(plane)}.to raise_error 'It is too stormy'
+    expect{take_off}.to raise_error 'It is too stormy'
   end
 
   it 'prevents landing when stormy' do
-    airport = Airport.new
-    plane = Plane.new
     allow(Airport).to receive(:stormy?) {true}
-    expect{airport.landing(plane)}.to raise_error 'It is too stormy'
+    expect{land}.to raise_error 'It is too stormy'
   end
 
 end
