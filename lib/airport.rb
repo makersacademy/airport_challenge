@@ -124,6 +124,14 @@ class AirTrafficControl
   def order_land(plane)
     fail fail_message_rnp if plane.class != Plane
     plane.land_at_airport(@airport)
+    plane
+  end
+
+  def order_launch(plane)
+    fail fail_message_rnp if plane.class != Plane
+    plane.launch_from_airport(@airport)
+    plane.confirm_flying
+    plane
   end
 
   private
@@ -133,8 +141,3 @@ class AirTrafficControl
   end
 
 end
-
-atc = AirTrafficControl.new
-plane1 = atc.new_plane
-plane2 = atc.new_plane
-plane3 = atc.new_plane
