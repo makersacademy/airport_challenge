@@ -9,4 +9,10 @@ describe Plane do
   it "takes off from an airport" do
     expect(subject.take_off("JFK")).to eq "Took off from JFK"
   end
+
+  it "does not land if the airport is full" do
+    jfk = Airport.new
+    
+    expect(subject.land(jfk.full?)).to eq "This airport is full - cannot land"
+  end
 end
