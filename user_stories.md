@@ -43,6 +43,7 @@ Verbs:
 Plane <-- take_off --> creates a plane object
 
 ----------------------------------------------------
+User story 3:
 
 As an air traffic controller 
 To ensure safety 
