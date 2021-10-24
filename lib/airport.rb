@@ -1,6 +1,6 @@
 class Airport
-  def initialize(maximum)
-    @maximum = maximum
+  def initialize(maxi)
+    @maxi = maxi
     @planes = []
   end
 
@@ -14,7 +14,7 @@ end
 
 private
 def full
-  @planes.length >= @maximum
+  @planes.length >= @maxi
 end
   
   
