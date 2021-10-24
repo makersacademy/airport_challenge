@@ -2,13 +2,19 @@ require 'plane.rb'
 
 describe Plane do
 
-  it { is_expected.to respond_to(:land) }
+  context '#land' do
+    it { is_expected.to respond_to(:land) }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-#   it 'lands a plane at an airport' do
-#     plane = Plane.new
-#     expect(plane.land('airport')).to eq(plane)
-#   end
+    it 'lands a plane at an airport' do
+      plane = Plane.new
+      expect(plane.land('airport')).to eq 'airport'
+    end
+  end
+
+  context '#takeoff' do
+    it { is_expected.to respond_to(:takeoff) }
+  end 
 
 end

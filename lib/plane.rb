@@ -1,7 +1,10 @@
 class Plane
 
   def land(airport)
-    @airport = airport
+    airport
+  end
+
+  def takeoff
   end
 
 end
