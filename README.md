@@ -5,12 +5,24 @@ Airport Challenge is a programme to control the flow of planes at an airport. Th
 **Assumptions:**
 As no default capacity was given, I've assumed a default capacity of 1 for each airport.
 
+## Test Coverage
+
+`Test coverage :100%`
+
+### How I would complete this challenge:
+
+I implemented features for the first three user stories, then decided to stop due to time constraints.
+
+**Use TDD to:**
+* create an @capacity variable, a full? method for and an @planes array variable for Airport class instances. 
+* create a new Weather class, with a weather method with an @weather variable which used rand to set the weather to either sunny or stormy
+*  use attr_reader to enable Airport instances to access @weather.
+* change the code in the take off and land methods for Plane objects
+* consider edge cases and write unit tests for them.
+
 ## My approach to solving this challenge
 
-*Update here*
-*If unfinished outline how you'd plan to finish it*
-
-### Understand the challenge
+### 1.Understand the challenge
 - I read through all of the instructions, twice 
 - I set up Trello cards to help me manage and track my progress and extracted the instructions into a Trello card
 - I created process checklists in Trello
@@ -20,7 +32,7 @@ As no default capacity was given, I've assumed a default capacity of 1 for each 
 - I used a voice memo and lego to help me understand the domain
 - I created a domain model using Lucidchart 
 
-### Test driving the development of the features 
+### 2.Test driving the development of the features 
 
 **For each user story I:**
 - Wrote a feature test in feature_spec.rb
@@ -39,35 +51,6 @@ As no default capacity was given, I've assumed a default capacity of 1 for each 
 - tracked my time using Toggl
 - used a pomodoro timer to remind me take regular breaks (25:5 work:break)
 
-
-**My checklist for TDD process:**
-
-
-- [] 
-- [] discuss and make domain model 
-- [] discuss to imagine feature test
-
-- [] for each feature:
-- [] write and run a failing feature test
-
-- [] x.times do 
-- [] write failing unit test - red
-- [] simplest code to pass unit test - green
-- [] refactor code - (iterative cycle itself - retest each time)
-
-- [] run a passing feature test
-
-**Reflection on my process**
-
-*Self reflection here*
-
-**Code review feedback**
-
-*Add code review feedback here*
-
-## Test Coverage
-
-*Update here*
 
 ## User Stories 
 Here are the user stories that we worked out in collaboration with the client:
@@ -127,11 +110,13 @@ Verbs: prevent, landing, is_stormy
 
 ## Domain model
 
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/2b20faeb-dc8b-45e1-8200-193a02c8037b" id="mCdl_GxJ78UP"></iframe></div>
+[Domain model here]("https://lucid.app/documents/embeddedchart/2b20faeb-dc8b-45e1-8200-193a02c8037b")
 
-## File structure
+## Planned file structure
 
+```
 airport-challenge
+  README.md
   lib
     plane.rb
     airport.rb
@@ -140,34 +125,21 @@ airport-challenge
     plane_spec.rb
     airport_spec.rb
     weather_spec.rb
-    feature_spec.rb
-    
-Update this:
-```sh
-$ tree
-.
-├── README.md
-└── spec
-    ├── docking_station_spec.rb
-    └── spec_helper.rb
+    feature_spec.rb 
 ```
-
 
 ## Reflections 
 
-* After passing the first unit test, I'm not sure which unit test to write next. respond to with(1).argument or Airplane undefined constant. 
+* After passing the first unit test, I'm not sure which unit test to write next. respond to `with(1).argument` or Airplane undefined constant. 
 * I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
 * I went back and removed an instance variable as I did not absolutely need it. 
 * I changed one of the unit tests as it was no longer accurate. The one for takeoff returns airplane. Should I perhaps have written it differently?
 *  What I'm finding hardest is framing the feature test. Maybe I could
 * I'm updating my tests as I go along, e.g. changing 'JFK' to jfk. Is this correct?
 * I'm not sure I'm using the correct data type for the argument to land() - should it be a string or a variable?
-* In order for plane to have access to capacity I considered making @capacity into a global variable but this seemed like a bad idea. Then I remembered about attr_reader.
-
-
+* In order for plane to have access to capacity I considered making @capacity into a global variable but this seemed like a bad idea. Then I remembered about `attr_reader`.
 
 ## TDD process reflections
-
 
 * Feel like I am speeding up with each feature test and trusting the process of baby steps and KISS. My time tracking confirms this.
 * I haven't been looking at the domain model for features 2 and 3, I will look at it now. It is out of sync with the code. 
@@ -192,7 +164,7 @@ if airport == 'jfk'
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
 * I could listen to music as am working alone on this project.
 * Reminding myself this is my first weekend project and I'll look back at the code in future and be amazed at how much progress I've made. 
-
+* Chose to stop halfway even though I had not finished, to prioritise wellbeing.
 
 ```
 # For user story 3:
@@ -210,7 +182,7 @@ jfk.capacity(2) # this finally got the desired ArgumentError :smile:
 
 ```
 
-## Questions
+## Questions I have:
 
 - What should a unit test be to develop the (airport) argument on the #land method? 
 - Which is the best matcher for the unit tests. Are the ones I've used the best?
