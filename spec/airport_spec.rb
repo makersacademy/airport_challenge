@@ -9,6 +9,7 @@ describe Airport do
     end 
   
     it "instructs a plane to take off" do
+        allow(airport).to receive(:stormy?).and_return false
         expect(airport).to respond_to(:take_off).with(1).argument
     end 
     it "does not allow planes to take off when stormy" do 

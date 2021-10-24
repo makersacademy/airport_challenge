@@ -11,6 +11,7 @@ end
    it "so planes can take off from airports, instruct a plane to take off" do
     airport = Airport.new(20)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.take_off(plane) }.not_to raise_error
 end 
 
