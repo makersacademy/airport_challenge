@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
 
     def initialize(capacity)
@@ -18,7 +20,7 @@ class Airport
     private
 
     def stormy?
-        rand(1..10) > 7
+        WeatherStatus.stormy?
     end
 
 end

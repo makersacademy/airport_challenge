@@ -1,5 +1,6 @@
 # require_relative '../lib/airport.rb'
 require 'airport'
+require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new(20) }
