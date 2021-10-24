@@ -59,4 +59,6 @@ Verbs:
 | Air traffic controller | |
 | Airport | prevent landing |
 
+Raise an error for take_off when there are no planes in the airport.
+Raise an error for land when there is already a plane in the airport.
 ----------------------------------------------------
