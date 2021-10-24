@@ -8,9 +8,9 @@ class Airport
 
   end
 
-  #def take_off
-
-  #end
+  def take_off(plane)
+    plane
+  end
 end
 =begin
   def take_off(plane)
