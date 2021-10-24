@@ -10,9 +10,9 @@ describe Airport do
     it {is_expected.to respond_to :land}
   end
 
-  # describe '#take_off' do
-  #it 'instructs a plane to take off and send a confirmation message' do
-  #git    is_expected.to respond_to :take_off
-  # end
-  #end
+  describe '#take_off' do
+    it 'instructs a plane to take off' do
+    is_expected.to respond_to :take_off
+    end
+  end
 end
