@@ -161,17 +161,37 @@ $ tree
 * I changed one of the unit tests as it was no longer accurate. The one for takeoff returns airplane. Should I perhaps have written it differently?
 *  What I'm finding hardest is framing the feature test. Maybe I could
 * I'm updating my tests as I go along, e.g. changing 'JFK' to jfk. Is this correct?
+* I'm not sure I'm using the correct data type for the argument to land() - should it be a string or a variable?
+* In order for plane to have access to capacity I considered making @capacity into a global variable but this seemed like a bad idea. Then I remembered about attr_reader.
 
 
 
-## Process reflections
+## TDD process reflections
 
-* Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
+
 * Feel like I am speeding up with each feature test and trusting the process of baby steps and KISS. My time tracking confirms this.
-* I could listen to music as am working alone on this project.
 * I haven't been looking at the domain model for features 2 and 3, I will look at it now. It is out of sync with the code. 
 * I've realised that I can write the feature test line by line in the feature_spec.rb, the same way I would a manual feature test in irb. This means the feature test gets written iteratively. Is this correct process?
 * I'm tweaking the feature tests to work out exactly what it is I need the code to do. 
+* I'm using `git log` to check my previous commit messages in order to try and keep them consistent.
+* In terms of commit messages, I could try noting down how I am structuring them at the moment. Maybe next project I can plan to do this.
+* This is harder doing it by yourself as you don't have someone to talk to help you articulate your thinking. I guess that is what the duck is for. My duck hasn't arrived yet. This reflection was in the context of @capacity / $capacity / attr_reader issue (see above.)
+* I've used command+z to undo a lot of code. 100% test coverage is more important to me than the code at this stage. Baby steps. 
+* It feels so weird writing the wrong code! e.g this
+
+```
+if airport == 'jfk' 
+      raise 'Landing prevented as airport is full'
+    end
+```
+
+* I'm being guided by my errors, and smiling if I'm getting different error messages each time.
+
+## Learning and wellbeing reflections
+* Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
+* I could listen to music as am working alone on this project.
+
+
 ```
 # For user story 3:
 # First I tried
@@ -197,3 +217,4 @@ jfk.capacity(2) # this finally got the desired ArgumentError :smile:
 - Do I need to update the domain model if the code diverges from it? 
 - Can you do version control on a domain model.
 - Is it correct to write the feature test iteratively in small steps (e.g. user story 3).
+- How could I improve my commit messages? 

@@ -9,7 +9,7 @@ require 'airport'
 describe 'landing a plane at an airport' do
   it 'can land a plane at an airport' do 
     boeing = Plane.new
-    expect(boeing.land('JFK')).to eq 'JFK'
+    expect(boeing.land('JFK')).to eq "landed"
   end
 end
 
@@ -21,6 +21,7 @@ end
 describe 'plane take off from an airport' do
   it 'plane can take off from an airport' do
     boeing = Plane.new
+    
     expect(boeing.takeoff('JFK')).to eq 'flying'
   end
 end
@@ -31,9 +32,10 @@ end
 #  I want to prevent landing when the airport is full 
 
 describe 'prevent landing when the airport is full' do
-  it 'plane if not able to land when airport is at capacity' do
+  it 'plane is unable to land when airport is at capacity' do
     boeing = Plane.new
-    jfk = Airport.new
-    jfk.capacity(2)
+    heathrow = Airport.new
+    heathrow.capacity(2)
+    boeing.land('heathrow')
   end
 end 
