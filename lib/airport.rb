@@ -1,8 +1,10 @@
 require 'weather'
 
 class Airport
-
-    def initialize(capacity)
+    
+    DEFAULT_CAPACITY = 20
+    
+    def initialize(capacity = DEFAULT_CAPACITY)
       @capacity = capacity
       @planes = []
     end
@@ -15,12 +17,13 @@ class Airport
 
     def take_off(plane)
       raise 'Can not take-off in a storm' if stormy? true
+      raise 'Plane not at the airport!' unless @planes.include?(plane)
     end
 
-    private
 
+private
     def stormy?
-        WeatherStatus.stormy?
+        WeatherStatus.new.stormy?
     end
 
 end
