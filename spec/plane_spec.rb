@@ -30,6 +30,10 @@ describe Plane do
       expect(subject.current_airport.class).to eq Airport
     end
 
+    it 'returns an error if non-Airport argument is passed' do
+      expect { subject.land_at_airport("Airport") }.to raise_error 'Call error: must include a Plane as an argument'
+    end
+
     it 'can request a landing but be rejected in bad conditions' do
       srand(4)
       expect(subject.land_at_airport(Airport.new)).to eq false

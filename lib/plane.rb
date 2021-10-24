@@ -57,4 +57,8 @@ class Plane
     'Call error: must include an Airport as an argument'
   end
 
+  def fail_message_rnp
+    'Call error: must include a Plane as an argument'
+  end
+
 end
