@@ -177,7 +177,7 @@ $ tree
 * In terms of commit messages, I could try noting down how I am structuring them at the moment. Maybe next project I can plan to do this.
 * This is harder doing it by yourself as you don't have someone to talk to help you articulate your thinking. I guess that is what the duck is for. My duck hasn't arrived yet. This reflection was in the context of @capacity / $capacity / attr_reader issue (see above.)
 * I've used command+z to undo a lot of code. 100% test coverage is more important to me than the code at this stage. Baby steps. 
-* It feels so weird writing the wrong code! e.g this
+* It feels so weird writing the wrong code! e.g:
 
 ```
 if airport == 'jfk' 
@@ -186,10 +186,12 @@ if airport == 'jfk'
 ```
 
 * I'm being guided by my errors, and smiling if I'm getting different error messages each time.
+* I anticipate that adding features for user story four will break the previous feature.
 
 ## Learning and wellbeing reflections
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
 * I could listen to music as am working alone on this project.
+* Reminding myself this is my first weekend project and I'll look back at the code in future and be amazed at how much progress I've made. 
 
 
 ```
@@ -207,8 +209,6 @@ jfk(3) # where 3 is the capacity
 jfk.capacity(2) # this finally got the desired ArgumentError :smile:
 
 ```
-
-
 
 ## Questions
 

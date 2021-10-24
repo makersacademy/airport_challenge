@@ -39,3 +39,16 @@ describe 'prevent landing when the airport is full' do
     boeing.land('heathrow')
   end
 end 
+
+# This is the feature test for the third user story:
+#   As the system designer
+#   So that the software can be used for many different airports
+#   I would like a default airport capacity that can be overridden as appropriate
+
+
+describe 'override a default airport capacity' do
+  it 'overrides the default airport capacity' do
+    heathrow = Airport.new
+    heathrow.capacity(4) 
+  end
+end
