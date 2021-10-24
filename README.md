@@ -1,3 +1,12 @@
+My README:
+
+This task is similar to the 'Boris_Bikes' task we were writing earlier in the week. Therefore, I am going to aproach this in a test driven development style, wrinting what I will expect and then code that passes these tests. I have found many resoreces online and am going to use them to guide me.
+
+This task is about managing an airport and the landing and taking off of planes and weather it's possible considering weather and if the airport is full.
+
+Below is the code chaleenge.
+
+
 Airport Challenge
 =================
 
