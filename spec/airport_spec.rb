@@ -15,6 +15,11 @@ describe Airport do
 
   it "stores a plane at the airport when one is landed" do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to include plane
+  end
+
+  it "removes plane from airport" do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to eq "Plane has departed from the airport"
   end
 end
