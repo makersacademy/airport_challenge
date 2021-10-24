@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it 'plane lands' do
@@ -36,4 +37,11 @@ describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it 'prevents take off in stormy weather' do
+      subject.stormy?
+      plane = Plane.new
+      expect{ subject.take_off(plane) }.to raise_error 'Take off aborted: the weather is stormy'
+    end
+  end
 end
