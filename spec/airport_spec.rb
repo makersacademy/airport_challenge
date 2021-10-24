@@ -2,19 +2,23 @@
 require 'airport'
 
 describe Airport do
-   
-  # first test for first user story
+  subject(:airport) { described_class.new(20) }
+  
   it 'lands a plane' do
-    airport = Airport.new
-    plane = Plane.new
-    expect { airport.land(plane) }.not_to raise_error
+    expect(airport).to respond_to(:land).with(1).argument
   end
    
   it 'allows plane to take off' do
-    airport = Airport.new
-    plane = Plane.new
-    expect { airport.take_off(plane) }.not_to raise_error
+    expect(airport).to respond_to(:take_off).with(1).argument
   end
 
+  it 'does not allow a plane to land if airport is at full capacity' do
+    plane = double :plane
+    20.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error 'Can not land - full capacity!'
+  end
+
+
+  
 
 end
