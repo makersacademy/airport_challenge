@@ -20,23 +20,22 @@ class Airport
     @@errors
   end
 
-  def self.stormy?
+  def stormy?
     rand < 0.10
   end
 
   def landing(plane)
+    plane.land(self)
     raise Airport.errors[0] if Airport.stormy?
-    raise Airport.errors[1] unless plane.location == 'airborne'
     raise Airport.errors[2] unless @planes.length < @capacity
     @planes << plane
-    plane.location = self
   end
 
   def take_off(plane)
     raise Airport.errors[3] unless @planes.include? plane
     raise Airport.errors[0] if Airport.stormy?
-    plane.location = 'airborne'
     @planes.delete(plane)
+    plane.take_off
   end
 
 end
