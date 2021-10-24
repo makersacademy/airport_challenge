@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 # this is the feature test for the first user story:
 #   As an air traffic controller 
@@ -23,3 +24,16 @@ describe 'plane take off from an airport' do
     expect(boeing.takeoff('JFK')).to eq 'flying'
   end
 end
+
+# This is the feature test for the third user story:
+#  As an air traffic controller 
+#  To ensure safety 
+#  I want to prevent landing when the airport is full 
+
+describe 'prevent landing when the airport is full' do
+  it 'plane if not able to land when airport is at capacity' do
+    boeing = Plane.new
+    jfk = Airport.new
+    
+  end
+end 

@@ -7,11 +7,40 @@ Airport Challenge is a programme to control the flow of planes at an airport. Th
 *Update here*
 *If unfinished outline how you'd plan to finish it*
 
+### Understand the challenge
+- I read through all of the instructions, twice 
+- I set up Trello cards to help me manage and track my progress and extracted the instructions into a Trello card
+- I created process checklists in Trello
+- I extracted the user stories into this README
+- I parsed the user stories for nouns and verbs
+- I extract verbs and nouns into functional representation table
+- I used a voice memo and lego to help me understand the domain
+- I created a domain model using Lucidchart 
+
+### Test driving the development of the features 
+
+**For each user story I:**
+- Wrote a feature test in feature_spec.rb
+- Unit tested:
+- - Ran RSpec requiring 'feature_spec.rb'
+- - Read the error message 
+- - Wrote a failing unit test to match
+- - Wrote the simplest code to pass the unit test
+-  -Refactored the code if possible
+- Repeated the unit testing until the code passed the feature test
+
+**Throughout this process I:**
+- reflected on my understanding of the code and the TDD process (link)
+- noted any questions I had below (link?)
+- reflected on my learning process (link)
+- tracked my time using Toggl
+- used a pomodoro timer to remind me take regular breaks (25:5 work:break)
+
+
 **My checklist for TDD process:**
 
-For each user story:
-- [] Discuss user stories
-- [] Extract verbs and nouns into functional representation
+
+- [] 
 - [] discuss and make domain model 
 - [] discuss to imagine feature test
 
@@ -127,14 +156,22 @@ $ tree
 * I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
 * I went back and removed an instance variable as I did not absolutely need it. 
 * I changed one of the unit tests as it was no longer accurate. The one for takeoff returns airplane. Should I perhaps have written it differently?
+* * What I'm finding hardest is framing the feature test. Maybe I could
 
 
 ## Process reflections
 
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
+* Feel like I am speeding up with each feature test and trusting the process of baby steps and KISS. My time tracking confirms this.
+* I could listen to music as am working alone on this project.
+* I haven't been looking at the domain model for features 2 and 3, I will look at it now. It is out of sync with the code. 
+* I've realised that I can write the feature test line by line in the feature_spec.rb, the same way I would a manual feature test in irb. This means the feature test gets written iteratively. Is this correct process?
 
 
 ## Questions
 
 - What should a unit test be to develop the (airport) argument on the #land method? 
-- Which is the best matcher for this: look at past examples.
+- Which is the best matcher for the unit tests. Are the ones I've used the best?
+- Do I need to update the domain model if the code diverges from it? 
+- Can you do version control on a domain model.
+- Is it correct to write the feature test iteratively in small steps (e.g. user story 3).
