@@ -1,10 +1,12 @@
 class Airport
-
-  attr_reader :planes
   DEFAULT_CAPACITY = 50
-
+  
+  attr_reader :capacity
+  attr_reader :planes
+  
   def initialize
     @planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
@@ -20,7 +22,7 @@ class Airport
   private
 
   def full?
-    @planes.count >= DEFAULT_CAPACITY
+    @planes.count >= capacity
   end
 
   def empty?

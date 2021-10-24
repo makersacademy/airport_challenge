@@ -76,4 +76,6 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-Note on approach - Start with a capacity of 20 planes intitially, then come back to this. E.g. I want the airport to have a default capacity of 20 planes.
+Remaining feature - allow system designer to overide default value for capacity
+
+----------------------------------------------------
