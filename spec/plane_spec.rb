@@ -20,7 +20,7 @@ describe Plane do
 
     it 'takes of from an airport' do
       plane = Plane.new
-      expect(plane.takeoff('airport')).to eq 'airport'
+      expect(plane.takeoff('airport')).to eq 'flying'
     end
 
   end 

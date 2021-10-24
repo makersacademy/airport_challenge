@@ -124,13 +124,15 @@ $ tree
 ## Reflections 
 
 * After passing the first unit test, I'm not sure which unit test to write next. respond to with(1).argument or Airplane undefined constant. 
+* I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
+* I went back and removed an instance variable as I did not absolutely need it. 
+* I changed one of the unit tests as it was no longer accurate. The one for takeoff returns airplane. Should I perhaps have written it differently?
 
 
 ## Process reflections
 
 * Realise I am not taking breaks. Can use pomodoro timer when working on weekend challenges like I do in afternoon pair programming.
-* I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
-* I went back and removed an instance variable as I did not absolutely need it. 
+
 
 ## Questions
 
