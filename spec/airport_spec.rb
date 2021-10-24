@@ -11,5 +11,15 @@ describe Airport do
     airport = Airport.new
     expect(airport).to respond_to :takeoff_plane
   end
-  
+
+  it 'airport is full' do
+    airport = Airport.new
+    expect(airport).to respond_to :full?
+  end
+
+  it 'Weather report' do
+    airport = Airport.new
+    expect(airport).to respond_to :weather
+  end
+
 end
