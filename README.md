@@ -27,6 +27,24 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+My approach
+---------
+I began by diagramming the different classes and interacting methods that would be required. I resolved to create the following 4 classes: AirTrafficControl, Airport, Plane and WeatherReport. Please note:
+1) I decided to generate random weather by creating new iterations of a WeatherReport object, which randomly generated weather on initiation. I decided this would be useful as it would allow room for future development (for example, WeatherReports could be stored as records, or a time stamp could be attached to them)
+2) I decided to create a separate AirTrafficControl class so that all user methods could be centralised in one class, and so that planes could be tracked outside of the Airport class. In hindsight, this may have been more complicated than this task required, but it makes sense to me to have this separate from the Airport class
+
+Once the diagram was created, I developed each of the classes with a test-driven development approach, writing tests and creating methods that would pass these tests.
+
+All six user stories have been addressed (see Instructions for use below).
+
+I looked into using stubs throughout the testing suites to replace the new classes I created, but given the amount of checks I implemented in methods to ensure the correct class object was being passed as an argument, this become impractical. Given more time, I would have tried to implement this properly. As it is, only airport_spec.rb uses stubs, and not a lot.
+
+With more time, I would also like to tidy up the return values of each method so that they display neatly in irb.
+
+Total rspec testing coverage: 100%; 40 rspec tests; rubocop passed with no offences.
+
+
+
 Instructions for use
 ---------
 ### To setup in irb:
