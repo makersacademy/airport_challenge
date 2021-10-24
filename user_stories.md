@@ -17,7 +17,7 @@ Verbs:
 | Plane | |
 | Airport | land |
 
-Airport <-- land --> return plane
+Airport <-- land --> returns a plane object
 
 ----------------------------------------------------
 
@@ -40,4 +40,6 @@ Verbs:
 | Plane | |
 | Airport | take_off |
 
-Plane <-- take_off --> Return plane has taken off message
+Plane <-- take_off --> creates a plane object
+
+----------------------------------------------------

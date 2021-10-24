@@ -9,10 +9,17 @@ describe Airport do
     expect(airport.land(plane)).to eq plane
   end
 
-  it 'responds to the method take_off and returns a message that a plane has taken off' do
+  it 'returns planes in the airport' do
     airport = Airport.new
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.plane).to eq plane
+  end
+
+  it 'responds to the method take_off and returns a new plane' do
+    airport = Airport.new
+    plane = Plane.new
     expect(airport).to respond_to :take_off
-    expect(airport.take_off).to eq "Plane has taken off."
   end
 
 end
