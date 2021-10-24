@@ -13,7 +13,7 @@ Verbs:
 
 | Objects  | Messages        |
 | -------- | --------------- |
-| User | |
+| Air traffic controller | |
 | Plane | |
 | Airport | land |
 
@@ -36,10 +36,27 @@ Verbs:
 
 | Objects  | Messages        |
 | -------- | --------------- |
-| User | |
+| Air traffic controller | |
 | Plane | |
 | Airport | take_off |
 
 Plane <-- take_off --> creates a plane object
+
+----------------------------------------------------
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+
+Nouns:
+- airport
+
+Verbs:
+- prevent landing
+
+| Objects  | Messages        |
+| -------- | --------------- |
+| Air traffic controller | |
+| Airport | prevent landing |
 
 ----------------------------------------------------
