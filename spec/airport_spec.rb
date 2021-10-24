@@ -22,4 +22,9 @@ describe Airport do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "Plane has departed from the airport"
   end
+
+  it "raises an error if there are too many planes landed" do
+    Airport::DEFAULT_CAPACITY.times { subject.land Plane.new }
+    expect{subject.land Plane.new}.to raise_error("Too many Planes! No more space!")
+  end
 end
