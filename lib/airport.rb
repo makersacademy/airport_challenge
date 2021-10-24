@@ -7,13 +7,23 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is full" if @planes.count >= 20
+    fail "Airport is full" if full?
     @planes << plane
   end
 
   def take_off
-    fail "No planes available" if @planes.empty?
+    fail "No planes available" if empty?
     @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.count >= 20
+  end
+
+  def empty?
+    @planes.empty?
   end
 
 end
