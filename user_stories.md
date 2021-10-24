@@ -1,4 +1,4 @@
-User story 1:
+## User story 1:
 
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -17,11 +17,11 @@ Verbs:
 | Plane | |
 | Airport | land |
 
-Airport <-- land --> returns a plane object
+Airport <-- land
 
 ----------------------------------------------------
 
-User story 2:
+## User story 2:
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
@@ -40,10 +40,10 @@ Verbs:
 | Plane | |
 | Airport | take_off |
 
-Plane <-- take_off --> creates a plane object
+Plane <-- take_off
 
 ----------------------------------------------------
-User story 3:
+## User story 3:
 
 As an air traffic controller 
 To ensure safety 
@@ -62,4 +62,5 @@ Verbs:
 
 Raise an error for take_off when there are no planes in the airport.
 Raise an error for land when there is already a plane in the airport.
+
 ----------------------------------------------------
