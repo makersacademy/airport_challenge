@@ -135,7 +135,7 @@ Verbs: prevent, landing, is_stormy
 
 ## Domain model
 
-[Domain model here]("https://lucid.app/documents/embeddedchart/2b20faeb-dc8b-45e1-8200-193a02c8037b")
+![alt text](media/domain_model.png "Domain model for Airport Challenge")
 
 ## Planned file structure
 
