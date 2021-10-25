@@ -12,6 +12,19 @@ class Airport
 
   end
 
+  def land(plane)
+    if full?
+      "This airport is full - cannot land"
+    else
+      planes.push(plane)
+      "Landed"
+    end
+  end
+
+  def take_off(_plane)
+    "Took off"
+  end
+
   def full?
     planes.length >= capacity
   end
