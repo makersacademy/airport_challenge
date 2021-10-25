@@ -21,8 +21,12 @@ class Airport
     end
   end
 
-  def take_off(_plane)
-    "Took off"
+  def take_off(plane)
+    if planes.include?(plane)
+      "Took off"
+    else
+      "This plane is not at the airport"
+    end
   end
 
   def full?

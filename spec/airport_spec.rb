@@ -9,8 +9,11 @@ describe Airport do
   end
 
   it "plane can take off from an airport" do
+    airport = Airport.new(5)
     plane = Plane.new
-    expect(subject.take_off(plane)).to eq "Took off"
+
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq "Took off"
   end
 
   it "does not land plane if the airport is full" do
@@ -28,6 +31,13 @@ describe Airport do
     plane = Plane.new
     50.times { airport.land(plane) }
     expect(airport.land(plane)).to eq "This airport is full - cannot land"
+  end
+
+  it 'does not let plane take_off from airport if it is not there' do
+    airport = Airport.new(5)
+    plane = Plane.new
+
+    expect(airport.take_off(plane)).to eq "This plane is not at the airport"
   end
 
 end
