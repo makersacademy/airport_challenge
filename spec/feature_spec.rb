@@ -1,10 +1,7 @@
 require 'plane'
 require 'airport'
 
-# this is the feature test for the first user story:
-#   As an air traffic controller 
-#   So I can get passengers to a destination 
-#   I want to instruct a plane to land at an airport
+# This is the feature test for the first user story:
 
 describe 'landing a plane at an airport' do
   it 'can land a plane at an airport' do 
@@ -13,10 +10,7 @@ describe 'landing a plane at an airport' do
   end
 end
 
-
 # This is the feature test for the second user story:
-#   I want to instruct a plane to take off from an airport 
-#   and confirm that it is no longer in the airport
 
 describe 'plane take off from an airport' do
   it 'plane can take off from an airport' do
@@ -26,10 +20,7 @@ describe 'plane take off from an airport' do
   end
 end
 
-# This is the feature test for the third user story:
-#  As an air traffic controller 
-#  To ensure safety 
-#  I want to prevent landing when the airport is full 
+# This is the feature test for the third user story: 
 
 describe 'prevent landing when the airport is full' do
   it 'plane is unable to land when airport is at capacity' do
@@ -41,10 +32,6 @@ describe 'prevent landing when the airport is full' do
 end 
 
 # This is the feature test for the third user story:
-#   As the system designer
-#   So that the software can be used for many different airports
-#   I would like a default airport capacity that can be overridden as appropriate
-
 
 describe 'override a default airport capacity' do
   it 'overrides the default airport capacity' do
