@@ -1,10 +1,11 @@
 require_relative '../lib/airport'
 
 describe Airport do
-
+  
   describe '#land_plane' do
     before do
       weather = Weather.new
+      allow(weather).to receive(:is_stormy?).and_return true
     end
     it 'should respond to method land_plane' do
       expect(subject).to respond_to (:land_plane)
@@ -24,9 +25,9 @@ describe Airport do
       expect{subject.land_plane(plane)}.to raise_error 'Plane already at an airport'
     end
     it 'should block a plane landing if it is stormy' do
-      allow(weather).to receive(:is_stormy?).and_return true
+      plane = Plane.new(true)
       message = 'Not able to do this action due to the weather'
-      expect { airport.land_plane(plane) }.to raise_error message
+      expect { subject.land_plane(plane) }.to raise_error message
     end
   end
 
