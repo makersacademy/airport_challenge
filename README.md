@@ -13,6 +13,41 @@ Airport Challenge
 
 ```
 
+This program emulates airports system. Plains are able to land and to take off. It prevents from landing when the airport is full and the weather is bad. Also, it prevents from taking off when the weather conditions are not good. 
+
+* Planes can only take off from airports they are in. 
+* Planes that are already flying cannot take off and/or be in an airport. 
+* Planes that are landed cannot land again and must be in an airport.
+
+## USER STORIES
+
+```
+
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
+
 Instructions
 ---------
 
