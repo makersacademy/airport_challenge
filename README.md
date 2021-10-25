@@ -3,6 +3,9 @@ Airport Challenge
 
 This is a program to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
+My Process
+---------
+
 Instructions
 ---------
 
@@ -45,3 +48,6 @@ I want to prevent landing when weather is stormy
 ```
 IRB Snippets
 -----
+
+![image](https://user-images.githubusercontent.com/75613073/138683210-2361f7a6-0573-4c1a-8373-771d3286b622.png)
+
