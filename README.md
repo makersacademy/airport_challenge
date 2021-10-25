@@ -2,49 +2,41 @@
 
 Airport Challenge is a programme to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
-## How to use this programme
+# How to use this programme
 
 Use git clone to create a local repo. 
 `git clone https://github.com/katemyoung/airport_challenge.git` 
 
-Navigate to the local repo then run irb
-`irb -r './lib/plane.rb'`
+Navigate to the local repo then run irb.
+`irb -r './lib/airport.rb'`
 
-
+```
+irb -r './lib/airport.rb'
+3.0.2 :001 > airport = Airport.new
+ => #<Airport:0x00007fc0fa078c90> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x00007fc0fb047108> 
+3.0.2 :003 > plane.land(airport)
+ => "landed" 
+3.0.2 :004 > plane.takeoff(airport)
+ => "flying" 
+3.0.2 :005 > plane.land(airport)
+ => "landed" 
+```
 
 ## Running tests
 
 `rspec`
 
-
-
-```
-$ irb
-2.2.3 :001 > airport = Airport.new
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :002 > plane = Plane.new
- => #<Plane:0x007fafdb0041b8>
-2.2.3 :003 > airport.land(plane)
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :004 >
-```
-
-
-
-**Assumptions:**
-As no default capacity was given, I've assumed a default capacity of 1 for each airport.
-
 ## Test Coverage
 
 `Test coverage: 100%`
 
-### How I would complete this challenge:
+# How I completed this challenge:
 
 I implemented features for the first three user stories, then decided to stop due to time constraints.
 
-
-
-**Use TDD to:**
+**In order to complete this project I would follow a TDD procedd to:**
 * create an @capacity variable, a full? method for and an @planes array variable for Airport class instances. 
 * create a new Weather class, with a weather method with an @weather variable which used rand to set the weather to either sunny or stormy
 *  use attr_reader to enable Airport instances to access @weather.
@@ -62,6 +54,7 @@ I implemented features for the first three user stories, then decided to stop du
 - I extract verbs and nouns into functional representation table
 - I used a voice memo and lego to help me understand the domain
 - I created a domain model using Lucidchart 
+- As no default capacity was given, I've assumed a default capacity of 1 for each airport.
 
 ### 2.Test driving the development of the features 
 
@@ -82,6 +75,7 @@ I implemented features for the first three user stories, then decided to stop du
 - tracked my time using Toggl
 - used a pomodoro timer to remind me take regular breaks (25:5 work:break)
 
+# Supporting information:
 
 ## User Stories 
 Here are the user stories that we worked out in collaboration with the client:
@@ -159,7 +153,7 @@ airport-challenge
     feature_spec.rb 
 ```
 
-## Reflections 
+# Reflections 
 
 * After passing the first unit test, I'm not sure which unit test to write next. respond to `with(1).argument` or Airplane undefined constant. 
 * I'm not sure I'm writing the feature tests correctly in the feature_spec.rb
@@ -213,7 +207,7 @@ jfk.capacity(2) # this finally got the desired ArgumentError :smile:
 
 ```
 
-## Questions I have:
+# Questions I have:
 
 - What should a unit test be to develop the (airport) argument on the #land method? 
 - Which is the best matcher for the unit tests. Are the ones I've used the best?
