@@ -1,5 +1,8 @@
 # Code review rubric
 
+**How I used this rubric for learning**
+I used this on 25/10/2021 to review a fellow Maker's code and then my own code in my first code review. A :white_check_mark: indicates a code review step I completed. *Italics* are my comments.
+
 **Don't read this until after you've completed the challenge!**
 
 You're a beginner — your code will have some rough spots. This is a field guide to spotting common issues that crop up in the Airport challenge, and some guidance on how to fix them.
@@ -11,7 +14,11 @@ Also, there's a tonne of stuff here. Pace yourself, take on the improvements tha
 
 ## Does it pass the tests?
 
-Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
+* Please checkout your reviewee's code and run their tests. :white_check_mark:
+* Read the code and try some manual feature tests in IRB. :white_check_mark:
+* How easy is it to understand the structure of their code? 
+* How readable is their code? 
+* Did you need to make any cognitive leaps to 'get it'?
 
 ## Is the README useful?
 
@@ -25,8 +32,8 @@ The above is a relatively straightforward thing to do that doesn't involve much 
 
 * http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
 
-### Instructions in README
-It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript
+### Instructions in README 
+It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript :white_check_mark:
 
 ```
 $ irb
@@ -293,7 +300,7 @@ def land(plane) # this lands the plane at the airport
 end
 ```
 
-Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date.  Prefer to name your methods so they describe exactly what they do.
+Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date.  Prefer to name your methods so they describe exactly what they do. 
 
 ### Use guard clause to improve readability and unrelated conditionals:
 
