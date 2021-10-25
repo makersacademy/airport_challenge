@@ -9,8 +9,7 @@ I managed to get each user story implemented and for the related tests to pass.
 
 I didn't manage to account for the edge cases of preventing an airborne plane from taking off or a landed one from landing.
 
-The logic I thought to apply:
------------------------------
+## The logic I thought to apply:
   For landing:
   * if the plane flying status is false, fail
   * else land
