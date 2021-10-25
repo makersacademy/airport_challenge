@@ -14,6 +14,8 @@ class Airport
     @number_of_planes += 1
   end
 
+  private
+
   def take_off(plane)
     raise "Cannot take off, weather is stormy" if stormy?
     raise "Cannot take off, plane not at the right airport" unless at_airport?(plane)
