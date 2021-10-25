@@ -1,4 +1,3 @@
-
 class Plane
 
   def land(airport)
@@ -10,7 +9,7 @@ class Plane
     end
   end
 
-  def take_off(airport)
+  def take_off(_airport)
     "Took off"
   end
 

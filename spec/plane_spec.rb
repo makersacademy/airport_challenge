@@ -1,5 +1,5 @@
-require './../lib/plane.rb'
-require './../lib/airport.rb'
+require_relative './../lib/plane'
+require_relative './../lib/airport'
 
 describe Plane do
 
