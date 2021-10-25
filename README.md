@@ -6,6 +6,8 @@ This is a program to control the flow of planes at an airport. The planes can la
 My Process
 ---------
 
+I started off by going through the user stories and highlighting the nouns, verbs and adjectives. From this I got an idea of what classes I would need. Then I went through each user story and first wrote a test for it, then code that passed that test. Although I began by putting the land and take_off mathods on the Plane class, I later changed this after my code review. I kept repeating the process of reading the user story, writing the test, writing the code and passing the test. I was unable to complete the last two user stories due to time constraints.
+
 Instructions
 ---------
 
