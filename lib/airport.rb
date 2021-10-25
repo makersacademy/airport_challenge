@@ -23,7 +23,7 @@ class Airport
     fail 'Bad weather, can not to take off' if weather == "stormy"
     fail "This plane is not in the airport!" unless @planes.include?(plane) 
 
-    @planes.pop
+    @planes.delete(plane)
   end
 
   def weather
