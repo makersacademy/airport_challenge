@@ -21,6 +21,8 @@ This program emulates airports system. Plains are able to land and to take off. 
 
 ## USER STORIES
 
+```
+
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -44,7 +46,7 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-
+```
 
 Instructions
 ---------
