@@ -2,16 +2,47 @@
 
 Airport Challenge is a programme to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
+## How to use this programme
+
+Use git clone to create a local repo. 
+`git clone https://github.com/katemyoung/airport_challenge.git` 
+
+Navigate to the local repo then run irb
+`irb -r './lib/plane.rb'`
+
+
+
+## Running tests
+
+`rspec`
+
+
+
+```
+$ irb
+2.2.3 :001 > airport = Airport.new
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :002 > plane = Plane.new
+ => #<Plane:0x007fafdb0041b8>
+2.2.3 :003 > airport.land(plane)
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :004 >
+```
+
+
+
 **Assumptions:**
 As no default capacity was given, I've assumed a default capacity of 1 for each airport.
 
 ## Test Coverage
 
-`Test coverage :100%`
+`Test coverage: 100%`
 
 ### How I would complete this challenge:
 
 I implemented features for the first three user stories, then decided to stop due to time constraints.
+
+
 
 **Use TDD to:**
 * create an @capacity variable, a full? method for and an @planes array variable for Airport class instances. 
