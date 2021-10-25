@@ -10,7 +10,10 @@ Instructions
 2. `cd` into the folder
 3. Run the command `gem install bundler` (if you don't have bundler already)
 4. When the installation completes, run `bundle`
-5. Run tests with rspec
+5. Run tests with rspec, result:
+
+![image](https://user-images.githubusercontent.com/75613073/138682651-22587962-8e9a-40eb-a970-245348b2f1c6.png)
+
 
 User Stories
 -----
