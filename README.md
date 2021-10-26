@@ -1,5 +1,5 @@
-Airport Challenge
-=================
+# Airport Challenge
+
 
 ```
         ______
@@ -13,24 +13,58 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+## Introduction
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Airport Challenge is a simple Ruby program that simulates an airport and meets the requirements of six user stories ([outlined below](#user-stories))  
 
-Steps
--------
+The code and tests in this repo are my response to the first Makers Academy weekend challenge for the July 2021 cohort: in particular, it challenged me to think and learn more about TDD/BDD, RSpec, Ruby, and debugging.  
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+The coding aspect of this task was not too tricky: it built upon the 'Boris Bikes' pair programming activity that we worked through in week one.  
 
-Task
------
+The main challenge was maintaining a TDD mindset and using RSpec (especially thinking about doubles and mocks in the tests, and ensuring my tests were actually testing what I wanted them to!)  
+
+I have not deleted any of my unit tests from the spec files, this is in order to show how my thinking developed, and the program emerged, over the course of the challenge.  
+
+## Installation instructions
+
+
+```
+git clone https://github.com/edpackard/airport_challenge.git
+gem install bundler
+bundle
+```
+
+## How to use this program
+
+
+Open `irb` from the command line and `require` the `airport.rb` file. If you are in the `airport_challenge` directory, `require './lib/airport'` will open the program.
+
+* To generate an airport: `airport_variable = Airport.new`
+* To generate an aeroplane: `aeroplane_variable = Plane.new`
+* You can generate as many airports and planes as you like.
+* By default, the airports are generated empty and with a capacity of 10 planes.
+* To specify a different capacity, pass a positive integer when generating the airport:   
+  `big_airport = Airport.new(200)`
+* By default, planes are generated 'in flight' - to land them, use `land`:  
+  `airport_variable.land(plane_variable)`
+* To check that a plane is in the airport, use `contains?`:   
+  `airport_variable.contains?(plane_variable)`
+* You can also view the contents of the airport's hangar:  
+  `airport.hangar`
+* A plane cannot take off if it is already in flight, and a plane cannot land if it is already on the ground.  
+* A plane cannot take off from an airport unless it is at that airport.  
+* A plane cannot land at an airport that has reached its capacity.  
+* The weather is generally fine, but occasional storms will prevent landings and take offs.
+
+## How to run the tests
+
+
+To run the RSpec tests, run `rspec` from the `airport_challenge` directory. This will run all the unit tests and the feature test. To run individual test files, put the file path after `rspec`, such as `rspec ./spec/airport_spec.rb`
+
+The feature test is a simple set of commands that land, take off and check several planes at the same airport. Line 7 of `feature_spec.rb` deactivates the random weather generator, and makes sure it is always sunny. It can be commented out for a 100% authentic feature test environment, but the program will occasionally raise errors when it is stormy!
+
+## User Stories
+
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
@@ -59,31 +93,3 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
