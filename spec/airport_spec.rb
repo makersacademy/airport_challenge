@@ -58,9 +58,9 @@ describe Airport do
     it 'take off if weather is sunny' do
       allow(subject).to receive(:weather?) { "Sunny" }
       subject.land(plane)
-      expect(subject.airport).to include(plane)
+      expect(subject.hangar).to include(plane)
       subject.take_off(plane)
-      expect(subject.airport).not_to include(plane)
+      expect(subject.hangar).not_to include(plane)
     end
 
     it 'error if weather is stormy' do
