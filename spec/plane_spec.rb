@@ -6,6 +6,7 @@ describe Plane do
 
   it 'lands at airport' do
     airport = Airport.new
+    allow(airport).to receive(:is_stormy?) { false }
     subject.land(airport)
     expect(airport.planes.length).to be(1)
   end
@@ -25,6 +26,7 @@ describe Plane do
 
   it 'cannot land if weather is stormy' do
     airport = Airport.new
+    allow(airport).to receive(:is_stormy?) { true }
     expect { subject.depart(airport) }.to raise_error("weather is stormy")
   end
 end
