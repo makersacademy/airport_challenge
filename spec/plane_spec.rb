@@ -22,4 +22,10 @@ describe Plane do
     Airport::DEFAULT_CAPACITY.times { subject.land(airport) }
     expect{ subject.land(airport) }.to raise_error("airport is full")
   end
+
+  it 'default capacity can be overridden' do
+    airport = Airport.new(3)
+    3.times { subject.land(airport) }
+    expect{ subject.land(airport) }.to raise_error("airport is full")
+  end
 end
