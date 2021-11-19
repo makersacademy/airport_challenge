@@ -9,4 +9,11 @@ describe Plane do
     subject.land(airport)
     expect(airport.planes.length).to be(1)
   end
+
+  it 'plane departs from airport' do
+    airport = Airport.new
+    subject.land(airport)
+    subject.depart(airport)
+    expect(airport.planes.length).to be (0)
+  end
 end
