@@ -5,6 +5,9 @@ class Plane
   end
 
   def depart(airport)
+    if airport.is_stormy?
+      fail "weather is stormy"
+    end
     airport.planes.delete(self)
   end
 end
