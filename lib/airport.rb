@@ -1,11 +1,12 @@
 class Airport
-  attr_reader :planes, :capacity, :stormy
+  attr_reader :planes, :capacity, :weather
   DEFAULT_CAPACITY = 10
+  WEATHER_SCALE = 10
 
   def initialize(capacity = 10)
     @planes = []
     @capacity = capacity
-    @stormy = true
+    @weather = rand(WEATHER_SCALE)
   end
 
   def full?
@@ -13,6 +14,6 @@ class Airport
   end
 
   def is_stormy?
-    @stormy
+    @weather < WEATHER_SCALE ? false : true
   end
 end
