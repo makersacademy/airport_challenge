@@ -1,5 +1,5 @@
 class Plane
   def land(airport)
-    airport.push(self)
+    airport.planes.push(self)
   end
 end
