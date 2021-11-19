@@ -10,6 +10,6 @@ describe Airport do
   end
 
   it 'can check for stormy weather' do
-    expect (subject.is_stormy?).to be_boolean
+    expect(subject.is_stormy?).to be_truthy.or be_falsy
   end
 end

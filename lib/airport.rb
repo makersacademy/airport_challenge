@@ -10,4 +10,8 @@ class Airport
   def full?
     return @planes.length >= DEFAULT_CAPACITY
   end
+
+  def is_stormy?
+    true
+  end
 end
