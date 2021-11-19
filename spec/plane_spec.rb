@@ -16,4 +16,10 @@ describe Plane do
     subject.depart(airport)
     expect(airport.planes.length).to be (0)
   end
+
+  it 'plane cannot land if airport is full' do
+    airport = Airport.new
+    Airport::DEFAULT_CAPACITY.times { subject.land(airport) }
+    expect(subject.land(airport)).to raise_error("airport is full")
+  end
 end
