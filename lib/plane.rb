@@ -1,6 +1,10 @@
 class Plane
   def land(airport)
-    if airport.full? then fail "airport is full" end
+    if airport.full?
+      fail "airport is full" 
+    elsif airport.is_stormy?
+      fail "weather is stormy"
+    end
     airport.planes.push(self)
   end
 

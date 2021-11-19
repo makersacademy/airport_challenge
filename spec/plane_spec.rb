@@ -21,7 +21,7 @@ describe Plane do
   it 'cannot land if airport is full' do
     airport = Airport.new
     Airport::DEFAULT_CAPACITY.times { subject.land(airport) }
-    expect{ subject.land(airport) }.to raise_error("airport is full")
+    expect { subject.land(airport) }.to raise_error("airport is full")
   end
 
   it 'cannot depart when weather is stormy' do
@@ -32,7 +32,14 @@ describe Plane do
 
   it 'cannot land when weather is stormy' do
     airport = Airport.new
-    allow(airport).to receive(:is_stormy?) { false }
+    allow(airport).to receive(:is_stormy?) { true }
     expect { subject.land(airport) }.to raise_error("weather is stormy")
+  end
+
+  it 'can only depart from airports they are in' do
+    airport_1 = Airport.new
+    airport_2 = Airport.new
+    subject.land(airport_1)
+    expect { subject.depart(airport_2) }.to raise_error("plane is not at that airport")
   end
 end
