@@ -19,6 +19,12 @@ describe Airport do
 			jfk = Airport.new
 			expect(jfk.capacity).to eq Airport::DEFAULT_CAPACITY
 		end
+
+		it "has a capacity parameter which overrides the default capacity" do
+			jfk = Airport.new(100)
+			100.times {jfk.land(Plane.new)}
+			expect(jfk.capacity).to eq 100
+		end
 	end
 
 	context "Landing the plane"
