@@ -139,7 +139,6 @@ what is missing ? :(
   adding an explicit message : plane has takeoff / plane has landed
 
 ***COVERAGE:  94.12% -- 32/34 lines in 4 files***
-Finished in 0.00596 seconds (files took 0.27278 seconds to load)
 6 examples, 0 failures
 +----------+----------------+-------+--------+---------+
 | coverage | file           | lines | missed | missing |
@@ -153,6 +152,23 @@ I also run rubocop and had to change the name of my predictated methods : has_la
 not the best names but slightly better.
 
 ## USER STORY THREE
+
+Airport has an initialize method set to a default CAPACITY
+Airport has an instance variable @capacity ->> attr_reader :capacity
+!!! What I missed before !!!
+the Plane's intance variable :status couldn't be read outside of the Plane Classe because I FORGOT to add the attr_reader at the beginning of the Class...
+
+***COVERAGE:  95.56% -- 43/45 lines in 4 files***
+7 examples, 0 failures
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  90.00%  | lib/plane.rb   | 10    | 1      | 18      |
+|  90.91%  | lib/airport.rb | 11    | 1      | 17      |
++----------+----------------+-------+--------+---------+
+2 file(s) with 100% coverage not shown
+
+Let's add a full? method to avoid the airport to land plane when it is full
 
 # Goals
 
