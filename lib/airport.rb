@@ -1,5 +1,4 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
 
@@ -17,8 +16,16 @@ class Airport
   end
 
   def take_off
-    fail "Stormy weather, can't take off" if :stormy?
+    fail "Stormy weather, can't take off" if stormy?
     @planes.pop
+  end
+
+  def stormy?
+    if rand(0..10) == 0
+      true
+    else
+      false
+    end
   end
 
 end
