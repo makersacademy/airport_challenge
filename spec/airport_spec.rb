@@ -23,7 +23,13 @@ describe Airport do
 
   it "Prevents landing a plane when the airport is full" do 
     airport = Airport.new
-    25.times { airport.land Plane.new }
+    airport.capacity.times { airport.land Plane.new }
     expect { airport.land Plane.new }.to raise_error "Airport is full"
+  end
+
+  it "You can set the capacity of the airport" do 
+    airport = Airport.new
+    airport.capacity = 10
+    expect(airport.capacity).to eq 10
   end
 end
