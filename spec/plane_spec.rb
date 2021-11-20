@@ -46,10 +46,10 @@ describe Plane do
     end
 
     it 'can only depart from airports they are in' do
-      airport_1 = Airport.new
-      airport_2 = Airport.new
-      subject.land(airport_1)
-      expect { subject.depart(airport_2) }.to raise_error("plane is not at that airport")
+      airport1 = Airport.new
+      airport2 = Airport.new
+      subject.land(airport1)
+      expect { subject.depart(airport2) }.to raise_error("plane is not at that airport")
     end
   
     it 'cannot take off when flying' do
