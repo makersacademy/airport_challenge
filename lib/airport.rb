@@ -10,10 +10,17 @@ class Airport
   end
 
   def land(plane)
+    @hangar << plane
     plane.landed
+    fail 'Airport is full' if full?
+  end
+
+  def full?
+    @hangar.length >= @capacity
   end
 
   def take_off(plane)
+    #@hangar.pop
     plane.taken_off
   end
 end

@@ -6,15 +6,9 @@ class Plane
   def initialize
     @status = true
   end
-
-# # method to update the airport about the plane status
-#   def in_airport?
-#     @status
-#   end
-
+  
   def landed
     @status = true
-
   end
 
   def taken_off

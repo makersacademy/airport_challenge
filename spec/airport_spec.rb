@@ -4,14 +4,10 @@ describe Airport do
 
   # it { is_expected.to respond_to :initialize}
 
-  it "has an initialize method with a default capacity" do 
+  it "has an initialize method with a default capacity (42)" do 
     airport = Airport.new
     expect(airport).to be_an_instance_of(Airport)
     allow(airport).to receive_messages([])
-  end
-
-  it "should know when it is at full capacity" do
-    
   end
 
   it "can instruct planes to land" do
@@ -20,6 +16,14 @@ describe Airport do
 
   it "can instruct planes to take off" do
     expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
+  it "should know when it is at full capacity" do
+    # full_airport = Airport.new
+    # populate that array @hangar
+    Airport::CAPACITY.times { subject.land(Plane.new) }
+    # plane43 = Plane.new
+    expect{ subject.land(plane43) }.to raise_error 'Airport is full'
   end
 
 end
