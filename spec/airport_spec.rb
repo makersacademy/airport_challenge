@@ -18,12 +18,11 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it "should know when it is at full capacity" do
+  it "raise an error when at full capacity" do
     # full_airport = Airport.new
     # populate that array @hangar
     Airport::CAPACITY.times { subject.land(Plane.new) }
     # plane43 = Plane.new
-    expect{ subject.land(plane43) }.to raise_error 'Airport is full'
+    expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
   end
-
 end
