@@ -1,7 +1,8 @@
 require_relative 'plane'
 
 class Airport
-  
+  attr_reader :airplanes
+
   def initialize
     @airplanes = []
   end
@@ -10,4 +11,7 @@ class Airport
     @airplanes << plane
   end
 
+  def take_off
+    @airplanes.pop
+  end
 end

@@ -5,4 +5,3 @@ describe Plane do
     expect(Plane).to respond_to(:new)
   end
 end
-
