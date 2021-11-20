@@ -19,7 +19,12 @@ class Airport
   end
 
   def take_off(plane)
+    raise "plane cannot take off, weather is stormy" if weather == "stormy"
     @planes.delete(plane)
     "sucessful take off of #{plane} from #{@name}"
+  end
+
+  def weather
+    rand(10) == 1 ? "stormy" : "sunny"
   end
 end

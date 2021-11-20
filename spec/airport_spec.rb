@@ -8,6 +8,7 @@ describe Airport do
     it 'lands a plane at an airport' do
       plane = Plane.new
       airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "sunny" }
 
       expect(airport.land(plane)).to eq plane
     end
@@ -16,7 +17,8 @@ describe Airport do
       plane1 = Plane.new
       plane2 = Plane.new
       airport = Airport.new("Heathrow")
-  
+      allow(airport).to receive(:weather) { "sunny" }
+
       airport.land(plane1)
   
       expect { airport.land(plane2) }.to raise_error("airport full: cannot land plane here") 
@@ -28,10 +30,21 @@ describe Airport do
     it 'confirms plane is no longer in the airport when plane takes off' do
       plane = Plane.new
       airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "sunny" }
 
       airport.land(plane)
 
       expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"
+    end
+
+    it 'prevents take off when weather is stormy' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "stormy" }
+
+      airport.land(plane)
+
+      expect { airport.take_off(plane) }.to raise_error("plane cannot take off, weather is stormy")
     end
   end
 
@@ -50,10 +63,6 @@ describe Airport do
     end
   end
 end
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy 
 
 # As an air traffic controller 
 # To ensure safety 
