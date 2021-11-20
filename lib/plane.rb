@@ -6,9 +6,9 @@ class Plane
   def initialize
     @status = true
   end
-  
+
   def landed
-    @status = true
+    @status
   end
 
   def taken_off

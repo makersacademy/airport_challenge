@@ -13,6 +13,7 @@ class Airport
     fail 'Airport is full' if full?
     @hangar << plane
     plane.landed
+
   end
 
   def full?
