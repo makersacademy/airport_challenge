@@ -140,12 +140,14 @@ what is missing ? :(
 
 ***COVERAGE:  94.12% -- 32/34 lines in 4 files***
 6 examples, 0 failures
+```
 +----------+----------------+-------+--------+---------+
 | coverage | file           | lines | missed | missing |
 +----------+----------------+-------+--------+---------+
 |  80.00%  | lib/airport.rb | 5     | 1      | 7       |
 |  88.89%  | lib/plane.rb   | 9     | 1      | 17      |
 +----------+----------------+-------+--------+---------+
+```
 Not sure what is missing...
 I've added two test cases to make sure Plane respond_to :landed and :taken_off
 I also run rubocop and had to change the name of my predictated methods : has_landed to landed and has_taken_off to taken_off
@@ -160,32 +162,30 @@ the Plane's intance variable :status couldn't be read outside of the Plane Class
 
 ***COVERAGE:  95.56% -- 43/45 lines in 4 files***
 7 examples, 0 failures
+```
 +----------+----------------+-------+--------+---------+
 | coverage | file           | lines | missed | missing |
 +----------+----------------+-------+--------+---------+
 |  90.00%  | lib/plane.rb   | 10    | 1      | 18      |
 |  90.91%  | lib/airport.rb | 11    | 1      | 17      |
 +----------+----------------+-------+--------+---------+
+```
 2 file(s) with 100% coverage not shown
 
 Let's add a full? method to avoid the airport to land plane when it is full:
 
-***COVERAGE:  96.08% -- 49/51 lines in 4 files***
-Finished in 0.00962 seconds (files took 0.26843 seconds to load)
-8 examples, 1 failure
-
-Failed examples:
-
-rspec ./spec/airport_spec.rb:21 # Airport raise an error when at full capacity
-
-+----------+----------------------+-------+--------+---------+
-| coverage | file                 | lines | missed | missing |
-+----------+----------------------+-------+--------+---------+
-|  92.31%  | spec/airport_spec.rb | 13    | 1      | 26      |
-|  93.33%  | lib/airport.rb       | 15    | 1      | 24      |
-+----------+----------------------+-------+--------+---------+
-RunTime Error 
-
+***COVERAGE:  98.04% -- 50/51 lines in 4 files***
+Finished in 0.00968 seconds (files took 0.26931 seconds to load)
+8 examples, 0 failures
+```
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  93.33%  | lib/airport.rb | 15    | 1      | 24      |
++----------+----------------+-------+--------+---------+
+```
+Yay we now have an full? method that test if the hangas is full
+and we have a guard condition in our land method -> raise an error "Airport is full" if a plane try to land in a full Airport
 
 # Goals
 
