@@ -26,8 +26,7 @@ I want to instruct a plane to land at an airport
 ```
 |    #Object    |   #Message    |
 |:-------------:|:-------------:|
-|    Airport    | land(plane)    |
-|:-------------:|:-------------:|
+|    Airport    |  land(plane)  |
 |     Plane     |               |
 
 2
@@ -39,10 +38,9 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 |    #Object    |      #Message     |
 |:-------------:|:-----------------:|
 |    Airport    | take_off(plane)   |
-|:-------------:|:-----------------:|
 |     Plane     |   has_taken_off   |
-|     Plane     |   has_landed      |
-|     Plane     |   in_airport?     |
+|               |   has_landed      |
+|               |   in_airport?     |
 
 3
 ```
@@ -54,8 +52,7 @@ I want to prevent landing when the airport is full
 |:-------------:|:--------------------------------:|
 |    Airport    |    initialize(default_capacity)  |
 |               |                full?             |
-|:-------------:|:--------------------------------:|
-|      plane    |               raise_error        |
+|     Plane     |               raise_error        |
 
 4
 ```
@@ -66,8 +63,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |   #Object    |               #Message                 |
 |-------------:|:--------------------------------------:|
 |    Airport   |      initialize(custom_capacity)       |
-|-------------:|:--------------------------------------:|
-|    plane     |               raise_error              |
+|    Plane     |               raise_error              |
 
 
 5
@@ -113,19 +109,33 @@ In code review we'll be hoping to see:
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
-# Notes
--------
-I was really unsure on how to approach the user stories: does the plane instance has a method to land(airport) etc.
-So I decided to test and implement each story in similar way to the user's stories on the week's challenge (Boris_Bikes)
+# Notes and Thoughts
+--------------------
+I was really unsure on how to approach the user stories: does the plane have a method to land(airport) (like land at the airport) or is it the airport has a method to land planes...
+In Doubt,  I decided to test and implement each story in similar way to the user's stories on the week's challenge (Boris_Bikes) and use method to update the plane status by creating several methods.
 
 USER STORY ONE
 we have an Airport class.
 we have a Plane class.
-Airport's instances:
-- have a method to land(plane)
+Airport can instruct planes to land and take_off
+- land(plane)
 
 USER STORY TWO
-Airport's instances
-- have a method to take_off(plane)
-Plane's instances
-- can give updates about their status : in_airport? -> true or false
+Airport can instruct planes to take_off
+- take_off(plane) -> update plane's status : plane.has_taken_off
+Airport can instruct planes to land and take_off
+- land(plane) -> update plane's status : plane.has_taken_off
+
+Plane can give updates about its status
+- in_airport?
+Plane can update about its status:
+- has_landed
+- has_taken_off
+
+** COVERAGE:  93.75% -- 30/32 lines in 4 files **
+what is missing ?
+- maybe edge cases:
+there is no plane to take_off ? -> raise_error
+there are too many plane in the airport ? user story 3
+- maybe the airport received not explicit confirmation when a plane takes off or lands:
+adding an explicit message : plane has takeoff / plane has landed
