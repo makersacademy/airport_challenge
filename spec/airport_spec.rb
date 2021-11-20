@@ -12,6 +12,10 @@ describe Airport do
     it "land a plane in the airport" do
       expect(gatwick.land(wings)).to eq [wings]
     end
+    it "prevent landing when airport is full" do
+      gatwick.full=(true)
+      expect { gatwick.land(wings) }.to raise_error("The airport is full, redirecting somewhere else")
+    end
   end
 
   context "take off" do
@@ -23,6 +27,16 @@ describe Airport do
       departing_plane = gatwick.landed[0]
       gatwick.departure
       expect(gatwick.landed).not_to include(departing_plane)
+    end
+  end
+
+  context "airport capacity" do
+    it "has a default capacity of 50" do
+      expect(Airport::DEFAULT_CAPACITY).to eq 50
+    end
+    it "can be overriden to other number" do
+      stanstead = Airport.new(35)
+      expect(stanstead.capacity).to eq 35
     end
   end
 
