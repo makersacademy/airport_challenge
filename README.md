@@ -26,8 +26,9 @@ I want to instruct a plane to land at an airport
 ```
 |    #Object    |   #Message    |
 |:-------------:|:-------------:|
-|    Airport    |               |
-|     Plane     | land(airport) |
+|    Airport    | land_plane    |
+|:-------------:|:-------------:|
+|     Plane     |               |
 
 2
 ```
@@ -37,10 +38,9 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 ```
 |    #Object    |      #Message     |
 |:-------------:|:-----------------:|
-|    Airport    |                   |
-|     Plane     | take_off(airport) |
-|               |   in_airport?     |
-
+|    Airport    | take_off(plane)   |
+|:-------------:|:-----------------:|
+|     Plane     |   in_airport?     |
 
 3
 ```
@@ -52,6 +52,7 @@ I want to prevent landing when the airport is full
 |:-------------:|:--------------------------------:|
 |    Airport    |    initialize(default_capacity)  |
 |               |                full?             |
+|:-------------:|:--------------------------------:|
 |      plane    |               raise_error        |
 
 4
@@ -63,6 +64,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |   #Object    |               #Message                 |
 |-------------:|:--------------------------------------:|
 |    Airport   |      initialize(custom_capacity)       |
+|-------------:|:--------------------------------------:|
 |    plane     |               raise_error              |
 
 
@@ -111,13 +113,17 @@ In code review we'll be hoping to see:
 
 # Notes
 -------
+I was really unsure on how to approach the user stories: does the plane instance has a method to land(airport) etc.
+So I decided to test and implement each story in similar way to the user's stories on the week's challenge (Boris_Bikes)
+
 USER STORY ONE
 we have an Airport class.
-we have an Plane class.
-Plane's instances:
-- have a method to land(airport)
+we have a Plane class.
+Airport's instances:
+- have a method to land(plane)
 
 USER STORY TWO
+Airport's instances
+- have a method to take_off(plane)
 Plane's instances
-- have a method to take_off(airport)
 - can give updates about their status : in_airport? -> true or false
