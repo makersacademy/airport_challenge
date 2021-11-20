@@ -7,7 +7,7 @@ describe Plane do
   context 'landing' do
     it 'lands at airport' do
       airport = Airport.new
-      allow(airport).to receive(:is_stormy?) { false }
+      allow(airport).to receive(:stormy?) { false }
       subject.land(airport)
       expect(airport.planes.length).to be(1)
     end
@@ -20,7 +20,7 @@ describe Plane do
 
     it 'cannot land when weather is stormy' do
       airport = Airport.new
-      allow(airport).to receive(:is_stormy?) { true }
+      allow(airport).to receive(:stormy?) { true }
       expect { subject.land(airport) }.to raise_error("weather is stormy")
     end
 
@@ -41,7 +41,7 @@ describe Plane do
 
     it 'cannot depart when weather is stormy' do
       airport = Airport.new
-      allow(airport).to receive(:is_stormy?) { true }
+      allow(airport).to receive(:stormy?) { true }
       expect { subject.depart(airport) }.to raise_error("weather is stormy")
     end
 

@@ -13,7 +13,7 @@ class Airport
     return @planes.length >= DEFAULT_CAPACITY
   end
 
-  def is_stormy?
+  def stormy?
     @weather < WEATHER_SCALE ? false : true
   end
 end

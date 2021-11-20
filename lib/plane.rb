@@ -7,7 +7,7 @@ class Plane
   def land(airport)
     if airport.full?
       fail "airport is full" 
-    elsif airport.is_stormy?
+    elsif airport.stormy?
       fail "weather is stormy"
     elsif self.flying? == false
       fail "plane has already landed"
@@ -17,7 +17,7 @@ class Plane
   end
 
   def depart(airport)
-    if airport.is_stormy?
+    if airport.stormy?
       fail "weather is stormy"
     elsif airport.planes.include?(self) == false
       fail "plane is not at that airport"
