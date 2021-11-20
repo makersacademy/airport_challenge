@@ -5,4 +5,8 @@ class Plane
     def take_off_from_airport
     end
 
+    def in_airport?
+        false
+    end 
+
 end 
