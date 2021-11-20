@@ -40,4 +40,11 @@ describe Airport do
     end
   end
 
+  context "weather" do
+    it "prevent take off when weather is stormy" do
+      allow(gatwick).to receive(:forecast) { "stormy" }
+      expect { gatwick.departure }.to raise_error("Stormy weather, red light for departure")
+    end
+  end
+
 end

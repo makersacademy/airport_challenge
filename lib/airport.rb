@@ -1,6 +1,8 @@
 require_relative './plane'
+require_relative './weather'
 
 class Airport
+include Weather
   attr_reader :landed
   attr_reader :capacity
   attr_accessor :full
@@ -18,6 +20,7 @@ class Airport
   end
 
   def departure
+    raise "Stormy weather, red light for departure" if forecast == "stormy"
     @landed.shift
   end
 
