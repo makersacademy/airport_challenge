@@ -10,6 +10,10 @@ describe Airport do
     allow(airport).to receive_messages([])
   end
 
+  it "should know when it is at full capacity" do
+    
+  end
+
   it "can instruct planes to land" do
     expect(subject).to respond_to(:land).with(1).argument
   end

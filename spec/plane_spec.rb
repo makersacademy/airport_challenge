@@ -8,7 +8,7 @@ describe Plane do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    expect(plane.in_airport?).to eq true
+    expect(plane.landed).to eq true
   end
 
   it { is_expected.to respond_to :taken_off }
@@ -17,7 +17,7 @@ describe Plane do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    expect(plane.in_airport?).to eq true
+    expect(plane.taken_off).to eq false
   end
 
 end
