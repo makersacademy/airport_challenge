@@ -14,6 +14,11 @@ describe Airport do
 			jfk = Airport.new
 			expect(jfk).to be_an_instance_of(Airport)
 		end
+
+		it "has a default capacity of 1" do
+			jfk = Airport.new
+			expect(jfk.capacity).to eq Airport::DEFAULT_CAPACITY
+		end
 	end
 
 	context "Landing the plane"
@@ -26,7 +31,7 @@ describe Airport do
 		expect(subject).to respond_to(:take_off)
 	end
 
-	context "When full" 
+	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
 		boeing = Plane.new
 		jfk = Airport.new
