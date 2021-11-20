@@ -11,6 +11,8 @@ class Plane
   def depart(airport)
     if airport.is_stormy?
       fail "weather is stormy"
+    elsif airport.planes.include?(self) == false
+      fail "plane is not at that airport"
     end
     airport.planes.delete(self)
   end
