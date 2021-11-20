@@ -10,10 +10,10 @@ describe Airport do
       expect(gatwick).to respond_to(:land).with(1).argument
     end
     it "land a plane in the airport" do
-      expect(gatwick.land(wings)).to eq [wings]
+      expect(gatwick.land(wings)).to eq wings
     end
     it "prevent landing when airport is full" do
-      gatwick.full=(true)
+      allow(gatwick).to receive(:full) { true }
       expect { gatwick.land(wings) }.to raise_error("The airport is full, redirecting somewhere else")
     end
   end
@@ -38,6 +38,11 @@ describe Airport do
     it "can be overriden to other number" do
       stanstead = Airport.new(35)
       expect(stanstead.capacity).to eq 35
+    end
+    it "report full when reach capacity" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      50.times { gatwick.land(wings) }
+      expect(gatwick.full).to eq true
     end
   end
 
