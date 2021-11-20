@@ -11,6 +11,7 @@ class Plane
   
     airport.planes.push(self)
     @flying = false
+    return "plane has landed"
   end
 
   def depart(airport)
@@ -20,6 +21,7 @@ class Plane
 
     airport.planes.delete(self)
     @flying = true
+    "plane has departed"
   end
 
   def flying?
