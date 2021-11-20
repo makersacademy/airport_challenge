@@ -1,4 +1,13 @@
+require_relative 'plane'
+ 
 class Airport
+  CAPACITY = 42
+  attr_reader :capacity
+
+  def initialize(capacity = CAPACITY)
+    @capacity = capacity
+  end
+
   def land(plane)
     plane.landed
   end
