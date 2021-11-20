@@ -42,4 +42,8 @@ describe Plane do
     subject.land(airport_1)
     expect { subject.depart(airport_2) }.to raise_error("plane is not at that airport")
   end
+
+  it 'cannot take off when flying' do
+    
+  end
 end
