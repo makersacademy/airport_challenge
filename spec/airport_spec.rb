@@ -4,12 +4,16 @@ require 'plane'
 describe Airport do
   it 'lands a plane at an airport' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq "successful landing"
+    airport = Airport.new("Heathrow")
+    expect(airport.land(plane)).to eq "successful landing"
+  end
+  it 'confirms plane is no longer in the airport when plane takes off' do
+    plane = Plane.new
+    airport = Airport.new("Heathrow")
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"
   end
 end
-# As an air traffic controller 
-# So I can get passengers on the way to their destination 
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
 # As an air traffic controller 
 # To ensure safety 
