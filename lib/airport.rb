@@ -10,9 +10,9 @@ class Airport
   end
 
   def land(plane)
+    fail 'Airport is full' if full?
     @hangar << plane
     plane.landed
-    fail 'Airport is full' if full?
   end
 
   def full?
