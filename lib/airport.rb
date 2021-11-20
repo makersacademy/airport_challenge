@@ -1,9 +1,9 @@
 class Airport
   def land(plane)
-    plane.has_landed
+    plane.landed
   end
 
   def take_off(plane)
-    plane.has_taken_off
+    plane.taken_off
   end
 end

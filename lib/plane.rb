@@ -9,11 +9,11 @@ class Plane
     @status
   end
 
-  def has_landed
+  def landed
     @status = true
   end
 
-  def has_taken_off
+  def taken_off
     @status = false
   end
 end
