@@ -1,7 +1,10 @@
 
 class Plane
-
-	def land
+	attr_accessor :plane
+	def initialize
+		@plane
 	end
 
+
 end
+
