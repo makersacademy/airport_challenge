@@ -47,11 +47,12 @@ I want to prevent takeoff when weather is stormy
 |passengers|
 |plane|
 |airport|land, take_off, planes, capacity, stormy?|
-|weather|
 
-I think we need to create a class Weather, which will randomly generate if it is stormy or not.
+Create stormy? method that returns true 1 in x times.
 If it is stormy, the take_off method should raise an error.
 
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+
+Same as above but land should raise an error if stormy
