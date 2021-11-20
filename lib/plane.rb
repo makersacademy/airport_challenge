@@ -9,7 +9,7 @@ class Plane
       fail "airport is full" 
     elsif airport.stormy?
       fail "weather is stormy"
-    elsif self.flying? == false
+    elsif flying? == false
       fail "plane has already landed"
     end
     airport.planes.push(self)
@@ -21,7 +21,7 @@ class Plane
       fail "weather is stormy"
     elsif airport.planes.include?(self) == false
       fail "plane is not at that airport"
-    elsif self.flying? 
+    elsif flying? 
       fail "plane is already flying"
     end
     airport.planes.delete(self)

@@ -14,6 +14,6 @@ class Airport
   end
 
   def stormy?
-    @weather < WEATHER_SCALE ? false : true
+    @weather >= WEATHER_SCALE
   end
 end
