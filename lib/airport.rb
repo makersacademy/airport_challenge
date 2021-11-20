@@ -2,13 +2,15 @@ require_relative "plane"
 
 class Airport
 
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :stormy
 
   DEFAULT_CAPACITY = 10
+  LIKELIHOOD_OF_STORMINESS = 0.2
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    rand(100) < (1 - LIKELIHOOD_OF_STORMINESS) * 100 ? @stormy = false : @stormy = true
   end
 
   def land(plane)
@@ -17,7 +19,7 @@ class Airport
   end
 
   def takeoff(plane)
-    @planes.select! {|other_planes| other_planes != plane}
+    @planes.reject! { |planes| planes == plane }
   end
 
   def full?

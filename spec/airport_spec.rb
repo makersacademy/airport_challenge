@@ -39,4 +39,18 @@ describe Airport do
     expect(subject.planes.length).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "airports should be able to display weather conditions - stormy or not stormy" do
+    expect(subject.stormy).to be(true).or be(false)
+  end
+
+  it "airports should randomly generate a storminess condition" do
+    srand(4)
+    #rand(100) when seeded with srand(4) will return 46, 55, 69, 1, 87
+    expect((airport = Airport.new).stormy).to be(false)
+    expect((airport = Airport.new).stormy).to be(false)
+    expect((airport = Airport.new).stormy).to be(false)
+    expect((airport = Airport.new).stormy).to be(false)
+    expect((airport = Airport.new).stormy).to be(true)
+  end
+
 end
