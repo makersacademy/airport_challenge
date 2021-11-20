@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off
+    fail "Stormy weather, can't take off" if :stormy?
     @planes.pop
   end
 

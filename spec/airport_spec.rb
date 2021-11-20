@@ -14,12 +14,14 @@ describe Airport do
     expect(airport.planes).to include boeing
   end
 
-  it "After instructing a plane to take off, I expect that plane to not be in the airport" do 
-    airport = Airport.new
-    boeing = Plane.new
-    airport.land(boeing)
-    airport.take_off
-    expect(airport.planes).to be_empty
+  it "After instructing a plane to take off, I expect that plane to not be in the airport if the weather is not stormy" do 
+    if !:stormy?
+      airport = Airport.new
+      boeing = Plane.new
+      airport.land(boeing)
+      airport.take_off
+      expect(airport.planes).to be_empty
+    end
   end
 
   it "Prevents landing a plane when the airport is full" do 
@@ -34,7 +36,15 @@ describe Airport do
     expect(airport.capacity).to eq 10
   end
 
-  
+  it "If the weather is stormy, you should not be able to take off" do 
+    airport = Airport.new
+    airport.capacity.times { airport.land Plane.new }
+    weather = Weather.new
+    if :stormy?
+      expect { airport.take_off }.to raise_error "Stormy weather, can't take off"
+    end
+  end
+
 end
 
 describe Weather do 
