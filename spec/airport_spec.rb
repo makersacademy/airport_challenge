@@ -26,4 +26,8 @@ describe Airport do
     Airport::MAXIMUM_CAPACITY.times { subject.land_plane(Plane.new) }
     expect { subject.land_plane(Plane.new) }.to raise_error("Airport full")
   end
+  
+  it "should have a default capacity of 20 when no armgument is given" do
+    expect(subject.capacity).to eq Airport::MAXIMUM_CAPACITY
+  end
 end

@@ -5,9 +5,9 @@ class Airport
 
   MAXIMUM_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = MAXIMUM_CAPACITY)
     @airplanes = []
-    @capacity = MAXIMUM_CAPACITY
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -20,6 +20,6 @@ class Airport
   end
 
   def airport_full?
-    @airplanes.length == MAXIMUM_CAPACITY
+    @airplanes.length == @capacity
   end
 end
