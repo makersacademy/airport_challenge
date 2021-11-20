@@ -15,7 +15,8 @@ include Weather
   end
   
   def land(plane)
-    raise "The airport is full, redirecting somewhere else" if full 
+    raise "The airport is full, redirecting somewhere else" if full
+    raise "Stormy weather, red light for landing" if forecast == "stormy" 
     @landed << plane
   end
 

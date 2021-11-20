@@ -25,6 +25,7 @@ describe Airport do
     it "confirms that the plane is no longer in the airport" do
       gatwick.land(wings)
       departing_plane = gatwick.landed[0]
+      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.departure
       expect(gatwick.landed).not_to include(departing_plane)
     end
@@ -44,6 +45,10 @@ describe Airport do
     it "prevent take off when weather is stormy" do
       allow(gatwick).to receive(:forecast) { "stormy" }
       expect { gatwick.departure }.to raise_error("Stormy weather, red light for departure")
+    end
+    it "prevent landing when weather is stormy" do
+      allow(gatwick).to receive(:forecast) { "stormy" }
+      expect { gatwick.land(wings) }.to raise_error("Stormy weather, red light for landing")
     end
   end
 
