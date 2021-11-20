@@ -17,7 +17,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 |--------|--------|
 |passengers|
 |plane|
-|airport|land, take_off|
+|airport|land, take_off, planes|
 
 
 As an air traffic controller 
@@ -32,9 +32,25 @@ I would like a default airport capacity that can be overridden as appropriate
 
 We want to introduce a capacity variable rather than magic numbers, that can be overwritten.
 
+|Objects |Messages|
+|--------|--------|
+|passengers|
+|plane|
+|airport|land, take_off, planes, capacity|
+
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+
+|Objects |Messages|
+|--------|--------|
+|passengers|
+|plane|
+|airport|land, take_off, planes, capacity, stormy?|
+|weather|
+
+I think we need to create a class Weather, which will randomly generate if it is stormy or not.
+If it is stormy, the take_off method should raise an error.
 
 As an air traffic controller 
 To ensure safety 

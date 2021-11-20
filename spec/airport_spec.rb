@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do 
   it { is_expected.to respond_to :land }
@@ -32,4 +33,10 @@ describe Airport do
     airport.capacity = 10
     expect(airport.capacity).to eq 10
   end
+
+  
+end
+
+describe Weather do 
+  it { is_expected.to respond_to :stormy? }
 end
