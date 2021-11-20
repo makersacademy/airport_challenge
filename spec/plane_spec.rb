@@ -1,4 +1,6 @@
 require 'plane'
+require 'airport'
+
 
 describe Plane do
     
@@ -11,5 +13,10 @@ describe Plane do
         subject.in_airport?
         expect(subject).not_to be_in_airport
       end 
+
+    it 'raises error if it tries to land when airport is full' do
+       airport1 = Airport.new
+       expect { subject.land_at_airport(airport1) }.to raise_error "The airport is full"
+    end 
 
 end 
