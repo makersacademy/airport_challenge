@@ -57,6 +57,9 @@ describe Airport do
       allow(gatwick).to receive(:forecast) { "stormy" }
       expect { gatwick.land(wings) }.to raise_error("Stormy weather, red light for landing")
     end
+    it "randomly return 'sunny' or 'stormy'" do
+      expect(gatwick.forecast).to eq('sunny').or eq('stormy')
+    end
   end
 
 end
