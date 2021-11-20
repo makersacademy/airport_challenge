@@ -8,8 +8,16 @@ describe Airport do
   describe "#plane_take_off" do
     it "should confirm the plane is no longer in the airport" do
       subject = Airport.new
+      allow(subject).to receive(:rand).and_return(2)
       expect(subject.plane_take_off).to eq("The plane is no longer in the airport")
     end
+
+    it "should not take off when weather is stormy" do
+      subject = Airport.new
+      allow(subject).to receive(:rand).and_return(3)
+      expect { subject.plane_take_off }.to raise_error "Stormy weather: not possible to take off"
+    end
+
   end
 
   describe "#land_plane" do
