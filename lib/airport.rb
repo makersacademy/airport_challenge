@@ -1,12 +1,13 @@
 require_relative 'plane.rb'
 
 class Airport
-	def initialize
+	def initialize(capacity = 1)
+		@capacity = capacity
 		@hangar = []
 	end
 
 	def land(plane)
-		raise "Airport full" if @hangar.length == 1
+		raise "Airport full" if @hangar.size == @capacity
 		@hangar.push(plane)
 	end
 
