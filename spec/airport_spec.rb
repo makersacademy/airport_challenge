@@ -17,8 +17,15 @@ describe Airport do
         it "shouldn't land if airport is full (max capacity 1) " do
             subject = Airport.new
             subject.land_plane
+            expect{subject.land_plane(1)}.to raise_error "Landing not possible, airport is full"
+        end
+
+        it "should have a default capacity of 5 and raise error when capacity is full" do
+            subject = Airport.new
+            5.times { subject.land_plane }
             expect{subject.land_plane}.to raise_error "Landing not possible, airport is full"
         end
+
     end
 
 end

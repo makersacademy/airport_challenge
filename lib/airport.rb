@@ -4,8 +4,8 @@ class Airport
         @planes = []
     end
 
-    def land_plane
-        fail "Landing not possible, airport is full" if @planes.count >= 1
+    def land_plane(capacity = 5)
+        fail "Landing not possible, airport is full" if @planes.count >= capacity
         @planes << Plane.new
     end
 
