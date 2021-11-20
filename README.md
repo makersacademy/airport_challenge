@@ -129,7 +129,7 @@ Plane can give updates about its status
 - has_landed
 - taken_off
 
-** COVERAGE: 93.75% -- 30/32 lines in 4 files **
+**COVERAGE: 93.75% -- 30/32 lines in 4 files**
 what is missing ? :(
 
 - maybe edge cases:
@@ -137,6 +137,20 @@ what is missing ? :(
   there are too many plane in the airport ? user story 3
 - maybe the airport received not explicit confirmation when a plane takes off or lands:
   adding an explicit message : plane has takeoff / plane has landed
+
+***COVERAGE:  94.12% -- 32/34 lines in 4 files***
+Finished in 0.00596 seconds (files took 0.27278 seconds to load)
+6 examples, 0 failures
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  80.00%  | lib/airport.rb | 5     | 1      | 7       |
+|  88.89%  | lib/plane.rb   | 9     | 1      | 17      |
++----------+----------------+-------+--------+---------+
+Not sure what is missing...
+I've added two test cases to make sure Plane respond_to :landed and :taken_off
+I also run rubocop and had to change the name of my predictated methods : has_landed to landed and has_taken_off to taken_off
+not the best names but slightly better.
 
 ## USER STORY THREE
 
