@@ -6,7 +6,7 @@ describe Airport do
 
   it { is_expected.to respond_to :take_off }
 
-  it "When I land a plane, I expect that plane to be at the airport" do 
+  it "When I land a plane, I expect that plane to be at the airport if it is not stormy" do 
     airport = Airport.new
     boeing = Plane.new
     allow(airport).to receive(:stormy?).and_return(false)
@@ -48,6 +48,20 @@ describe Airport do
     airport = Airport.new
     allow(airport).to receive(:stormy?).and_return(true)
     expect { airport.land(Plane.new) }.to raise_error "Stormy weather, can't land"
+  end
+
+  it "Cannot land a plane that has already landed" do 
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return(false)
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error "This plane has already landed"
+  end
+
+  it "Cannot take off from an empty airport" do 
+    airport = Airport.new
+    allow(airport).to receive(:stormy?).and_return(false)
+    expect { airport.take_off }.to raise_error "Airport is empty, no planes can take off"
   end
 
 end
