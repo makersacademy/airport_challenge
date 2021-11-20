@@ -24,42 +24,84 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
-|   Object    |   Message   |
------------------------------
-|   Airport   |             |
------------------------------
-|   Plane     | land(plane) |
------------------------------
+|   Object    |   Message     |
+-------------------------------
+|   Airport   |               |
+-------------------------------
+|   Plane     | land(airport) |
+-------------------------------
 
+2
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
+|   Object    |        Message    |
+-----------------------------------
+|   Airport   |                   |
+-----------------------------------
+|   Plane     | take_off(airport) |
+-----------------------------------
+|             |   in_airport?     |
+-----------------------------------
+
+3
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
+|   Object    |                 Message                |
+--------------------------------------------------------
+|   Airport   |      initialize(default_capacity)      |
+|             |                   full?                |
+--------------------------------------------------------
+|   plane     |               raise_error              |
+--------------------------------------------------------
+
+4
 ```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+|   Object    |                 Message                |
+--------------------------------------------------------
+|   Airport   |      initialize(custom_capacity)       |
+--------------------------------------------------------
+|   plane     |               raise_error              |
+--------------------------------------------------------
+
+5
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
+|   Object    |     Message    |
+-----------------------------
+
+-----------------------------
+|             |               |
+-----------------------------
+
+6
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
+||   Object    |   Message   |
+-----------------------------
+|             |             |
+-----------------------------
+|             |             |
+-----------------------------
 
 # Goals
 -------
-1) Test Drive the creation of a set of classes/modules to satify all the users stories
+1) Test Drive the creation of a set of classes/modules to satisfy all the users stories
 2) Code shoe defend against Edge Cases: planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 3)
 
@@ -80,4 +122,12 @@ In code review we'll be hoping to see:
 # Notes
 -------
 USER STORY ONE
-the instance of Airport should be able to land
+we have an Airport class.
+we have an Plane class.
+Plane's instances:
+- have a method to land(airport)
+
+USER STORY TWO
+Plane's instances
+- have a method to take_off(airport)
+- can give updates about their status : in_airport? -> true or false
