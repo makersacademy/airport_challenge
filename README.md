@@ -26,7 +26,7 @@ I want to instruct a plane to land at an airport
 ```
 |    #Object    |   #Message    |
 |:-------------:|:-------------:|
-|    Airport    | land_plane    |
+|    Airport    | land(plane)    |
 |:-------------:|:-------------:|
 |     Plane     |               |
 
@@ -40,6 +40,8 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 |:-------------:|:-----------------:|
 |    Airport    | take_off(plane)   |
 |:-------------:|:-----------------:|
+|     Plane     |   has_taken_off   |
+|     Plane     |   has_landed      |
 |     Plane     |   in_airport?     |
 
 3
