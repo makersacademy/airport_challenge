@@ -168,7 +168,24 @@ the Plane's intance variable :status couldn't be read outside of the Plane Class
 +----------+----------------+-------+--------+---------+
 2 file(s) with 100% coverage not shown
 
-Let's add a full? method to avoid the airport to land plane when it is full
+Let's add a full? method to avoid the airport to land plane when it is full:
+
+***COVERAGE:  96.08% -- 49/51 lines in 4 files***
+Finished in 0.00962 seconds (files took 0.26843 seconds to load)
+8 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/airport_spec.rb:21 # Airport raise an error when at full capacity
+
++----------+----------------------+-------+--------+---------+
+| coverage | file                 | lines | missed | missing |
++----------+----------------------+-------+--------+---------+
+|  92.31%  | spec/airport_spec.rb | 13    | 1      | 26      |
+|  93.33%  | lib/airport.rb       | 15    | 1      | 24      |
++----------+----------------------+-------+--------+---------+
+RunTime Error 
+
 
 # Goals
 
