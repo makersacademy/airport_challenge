@@ -21,4 +21,9 @@ describe Airport do
     airport.take_off
     expect(airport.airplanes.length).to eq(before_planes - 1)
   end
+
+  it "should raise an error when capacity is full" do
+    Airport::MAXIMUM_CAPACITY.times { subject.land_plane(Plane.new) }
+    expect { subject.land_plane(Plane.new) }.to raise_error("Airport full")
+  end
 end
