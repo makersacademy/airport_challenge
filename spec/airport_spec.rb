@@ -3,41 +3,53 @@ require 'plane'
 
 describe Airport do
 
-  it 'lands a plane at an airport' do
-    plane = Plane.new
-    airport = Airport.new("Heathrow")
+  describe 'landing' do
 
-    expect(airport.land(plane)).to eq plane
+    it 'lands a plane at an airport' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
+
+      expect(airport.land(plane)).to eq plane
+    end
+
+    it 'prevents landing a plane when the airport is full' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      airport = Airport.new("Heathrow")
+  
+      airport.land(plane1)
+  
+      expect { airport.land(plane2) }.to raise_error("airport full: cannot land plane here") 
+    end  
   end
 
-  it 'confirms plane is no longer in the airport when plane takes off' do
-    plane = Plane.new
-    airport = Airport.new("Heathrow")
+  describe 'take off' do
 
-    airport.land(plane)
+    it 'confirms plane is no longer in the airport when plane takes off' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
 
-    expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"
+      airport.land(plane)
+
+      expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"
+    end
   end
 
-  it 'prevents landing a plane when the airport is full' do
-    plane1 = Plane.new
-    plane2 = Plane.new
-    airport = Airport.new("Heathrow")
+  describe 'airport capacity' do
 
-    airport.land(plane1)
+    it 'has a default airport capacity' do
+      airport = Airport.new("Heathrow")
+      
+      expect(airport.capacity).to eq 1
+    end
 
-    expect { airport.land(plane2) }.to raise_error("airport full: cannot land plane here") 
+    it 'has a default airport capacity that can be overridden' do
+      airport = Airport.new("Heathrow", 50)
+      
+      expect(airport.capacity).to eq 50
+    end
   end
-
 end
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
-
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
 
 # As an air traffic controller 
 # To ensure safety 
