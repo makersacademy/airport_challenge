@@ -20,7 +20,7 @@ describe Plane do
 
   it 'cannot land if airport is full' do
     airport = Airport.new
-    Airport::DEFAULT_CAPACITY.times { subject.land(airport) }
+    Airport::DEFAULT_CAPACITY.times { airport.planes.push("plane") }
     expect { subject.land(airport) }.to raise_error("airport is full")
   end
 
@@ -45,12 +45,13 @@ describe Plane do
 
   it 'cannot take off when flying' do
     airport = Airport.new
+    airport.planes.push(subject)
     expect { subject.depart(airport) }.to raise_error("plane is already flying")
   end
 
   it 'cannot land when landed' do
     airport = Airport.new
-    airport.land(subject)
+    subject.land(airport)
     expect { subject.land(airport) }.to raise_error("plane has already landed")
   end
 end
