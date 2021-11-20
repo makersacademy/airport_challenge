@@ -20,4 +20,10 @@ describe Airport do
     airport.take_off
     expect(airport.planes).to be_empty
   end
+
+  it "Prevents landing a plane when the airport is full" do 
+    airport = Airport.new
+    25.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error "Airport is full"
+  end
 end
