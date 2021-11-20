@@ -44,6 +44,13 @@ describe Plane do
   end
 
   it 'cannot take off when flying' do
-    
+    airport = Airport.new
+    expect { subject.depart(airport) }.to raise_error("plane is already flying")
+  end
+
+  it 'cannot land when landed' do
+    airport = Airport.new
+    airport.land(subject)
+    expect { subject.land(airport) }.to raise_error("plane has already landed")
   end
 end
