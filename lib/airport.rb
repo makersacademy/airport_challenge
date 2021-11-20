@@ -1,6 +1,12 @@
 class Airport
-    def land_plane
 
+    def initialize
+        @planes = []
+    end
+
+    def land_plane
+        fail "Landing not possible, airport is full" if @planes.count >= 1
+        @planes << Plane.new
     end
 
     def plane_take_off
