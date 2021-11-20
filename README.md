@@ -187,6 +187,22 @@ Finished in 0.00968 seconds (files took 0.26931 seconds to load)
 Yay we now have an full? method that test if the hangas is full
 and we have a guard condition in our land method -> raise an error "Airport is full" if a plane try to land in a full Airport
 
+***COVERAGE:  98.18% -- 54/55 lines in 4 files***
+Finished in 0.0116 seconds (files took 0.27374 seconds to load)
+9 examples, 0 failures
+```
++----------+----------------+-------+--------+---------+
+| coverage | file           | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+|  93.33%  | lib/airport.rb | 15    | 1      | 25      |
++----------+----------------+-------+--------+---------+
+```
+3 file(s) with 100% coverage not shown
+
+Good we have just tested and passed the test to make sure we can set up a customized capacity when we create a new instance of Airport
+
+!!! can't figure out what is happending on line 15 of my lib/airport.rb !!!
+
 # Goals
 
 ---
