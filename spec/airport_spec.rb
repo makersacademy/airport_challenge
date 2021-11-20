@@ -10,9 +10,11 @@ describe Airport do
       expect(gatwick).to respond_to(:land).with(1).argument
     end
     it "land a plane in the airport" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
       expect(gatwick.land(wings)).to eq wings
     end
     it "prevent landing when airport is full" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
       allow(gatwick).to receive(:full) { true }
       expect { gatwick.land(wings) }.to raise_error("The airport is full, redirecting somewhere else")
     end
@@ -23,9 +25,9 @@ describe Airport do
       expect(gatwick).to respond_to(:departure)
     end
     it "confirms that the plane is no longer in the airport" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(wings)
       departing_plane = gatwick.landed[0]
-      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.departure
       expect(gatwick.landed).not_to include(departing_plane)
     end
