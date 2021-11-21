@@ -1,5 +1,5 @@
-class Weather
-  def generate_number
+module Weather
+  def get_weather
     rand(1..3)
   end
 

@@ -27,4 +27,10 @@ describe Plane do
     expect(airport.parked_planes).to eq [subject]
   end 
 
+  it 'raises error if it tries to take off when the weather is stormy' do
+    airport = Airport.new
+    airport.get_weather
+    expect { Plane.new.land_at_airport(airport) }.to raise_error "It's too stormy to take off"
+  end 
+
 end 
