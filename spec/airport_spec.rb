@@ -50,7 +50,7 @@ describe Airport do
     end
     it "checks departed planes are no longer store in airport" do
       gatwick.land(wings)
-      10.times { gatwick.land(Plane.new)}
+      10.times { gatwick.land(Plane.new) }
       gatwick.departure(wings)
       expect(gatwick.landed).not_to include(wings)
     end
@@ -88,7 +88,7 @@ describe Airport do
   context "feature test" do
     it "lands and takes off a number of planes" do
       planes = []
-      20.times { planes.push(Plane.new)}
+      20.times { planes.push(Plane.new) }
       london_city = Airport.new
       allow(london_city).to receive(:forecast) { "sunny" }
       planes.each { |plane| 
