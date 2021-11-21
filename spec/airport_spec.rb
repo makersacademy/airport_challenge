@@ -3,7 +3,9 @@ require 'airport'
 describe Airport do
 	subject(:jfk) {Airport.new}
 	let(:plane) {Plane.new}
-
+	let(:sunny_day) {	allow(jfk).to receive(:stormy_weather?).and_return false}
+	let(:stormy_day) {allow(jfk).to receive(:stormy_weather?).and_return true}
+	
 	describe "#initialize" do
 		it 'has an initialize method' do
 			expect(jfk).to be_an_instance_of(Airport)
@@ -33,7 +35,7 @@ describe Airport do
 
 	context "checking the is no longer in the airport"
 		it "has a #verify method confirming plane's #take_off" do
-			allow(jfk).to receive(:stormy_weather?).and_return false
+			sunny_day
 			landed_plane = jfk.land(plane)
 			jfk.take_off
 			expect(jfk.verify).to_not be [landed_plane]
@@ -41,7 +43,7 @@ describe Airport do
 
 	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
-		allow(jfk).to receive(:stormy_weather?).and_return false
+		sunny_day
 		5.times {	jfk.land(Plane.new)}
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
@@ -52,12 +54,12 @@ describe Airport do
 		end
 
 		it "prevents planes to take-off during a thunderstorm" do
-			allow(jfk).to receive(:stormy_weather?).and_return true
+			stormy_day
 			expect{ jfk.take_off}.to raise_error "Can't take off during the storm."
 		end
 		
 		it "prevents planes to land during a thunderstorm" do
-			allow(jfk).to receive(:stormy_weather?).and_return true
+			stormy_day
 			expect {jfk.land(plane)}.to raise_error "Unable to land during the storm"
 		end
 
