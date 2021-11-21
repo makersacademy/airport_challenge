@@ -9,7 +9,7 @@ describe Plane do
 	subject { Plane.new(@airport) }
 
 	it "Plane has to be given a starting airport when created" do
-		expect { Plane.new }.to raise_error
+		expect { Plane.new }.to raise_error(ArgumentError)
 	end	
 
 	context "Landing:" do
@@ -18,7 +18,7 @@ describe Plane do
 		end
 
 		it "#land requires a parameter" do
-				expect { subject.land }.to raise_error
+				expect { subject.land }.to raise_error(ArgumentError)
 		end
 
 		it "Plane cannot land if not flying" do
@@ -48,7 +48,7 @@ describe Plane do
 		end
 
 		it "#takeoff accepts a parameter" do
-			expect { subject.takeoff(@airport) }.to_not raise_error
+			expect { subject.takeoff(@airport) }.to_not raise_error(ArgumentError)
 		end
 
 		it "Plane cannot takeoff if already flying" do
@@ -67,6 +67,14 @@ describe Plane do
 				:planes => [],
 				:plane_at_airport? => false)
 			expect { subject.takeoff(airport) }.to raise_error "Plane at different airport"
+		end
+	end
+
+	context "Weather:" do
+		it "Cannot takeoff from airport if weather is stormy" do
+		end
+
+		it "Can takeoff from airport if weather not stormy" do
 		end
 	end
 

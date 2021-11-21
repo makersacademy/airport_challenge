@@ -15,12 +15,12 @@ describe Airport do
       expect { subject.add_plane(plane) }.to raise_error "Airport full"
     end
 
-    it "plane can land if airport not full" do
+    it "Plane can land if airport not full" do
       subject.capacity - 1.times { subject.add_plane(plane)  } 
       expect { subject.add_plane(plane)  }.to_not raise_error 
     end
 
-    it "airport capacity can be modified" do
+    it "Airport capacity can be modified" do
       val = rand(1..100)
       subject.capacity = val
       expect(subject.capacity).to eq val
@@ -42,6 +42,17 @@ describe Airport do
 
     it "Confirms plane is no longer at airport" do
       expect(subject.remove_plane(plane)).to eq "#{plane} has left"
+    end
+  end
+
+  context "Check if plane in airport:" do
+    it "Returns true if plane in airport" do
+      subject.add_plane(plane)
+      expect(subject.plane_at_airport?(plane)).to eq true
+    end
+
+    it "Returns false if plane not in airport" do
+      expect(subject.plane_at_airport?(plane)).to eq false
     end
   end
 
