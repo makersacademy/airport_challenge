@@ -4,7 +4,7 @@ describe Plane do
 
 	before do
 		@airport = double("Airport", :planes => [])
-		allow(@airport).to receive_messages(:remove_plane => nil, :add_plane => nil)
+		allow(@airport).to receive_messages(:remove_plane => nil, :add_plane => nil, :plane_at_airport? => nil)
 	end
 	subject { Plane.new(@airport) }
 
@@ -26,7 +26,9 @@ describe Plane do
 		end
 
 		it "Sets state of plane to landed after landing" do
-			allow(@airport).to receive(:planes).and_return([subject])
+			allow(@airport).to receive_messages(
+				:planes => [subject],
+				:plane_at_airport? => true)
 			subject.takeoff(@airport)
 			subject.land(@airport)
 			expect(subject.flying).to eq false
@@ -36,7 +38,9 @@ describe Plane do
 	context "Takeoff:" do
 
 		before do
-			allow(@airport).to receive(:planes).and_return([subject])
+			allow(@airport).to receive_messages(
+				:planes => [subject],
+				:plane_at_airport? => true)
 		end
 
 		it "Responds to #takeoff" do
@@ -58,7 +62,10 @@ describe Plane do
 		end
 
 		it "Cannot takeoff from airport if stored at different airport" do
-			airport = double("Airport", :planes => [])
+			airport = double("Airport")
+			allow(airport).to receive_messages(
+				:planes => [],
+				:plane_at_airport? => false)
 			expect { subject.takeoff(airport) }.to raise_error "Plane at different airport"
 		end
 	end

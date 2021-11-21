@@ -17,6 +17,10 @@ class Airport
     "#{plane} has left"
   end
 
+  def plane_at_airport?(plane)
+    self.planes.include?(plane) ? true : false
+  end
+
   private 
   
   def full?
