@@ -7,6 +7,10 @@ class Plane
     @flying = false
   end
 
+  def in_airport?(airport)
+    airport.hangar.include?(self)
+  end
+
   def take_off_from(airport)
     raise "Plane not in airport hangar. Cannot take off!" unless airport.is_holding?(self)
     raise "Stormy Weather. Cannot take off!" unless airport.weather_ok?
@@ -20,10 +24,6 @@ class Plane
     raise "Stormy Weather. Cannot land plane!" unless airport.weather_ok?
     airport.add_to_hangar(self)
     @flying = false
-  end
-
-  def in_airport?(airport)
-    airport.hangar.include?(self)
   end
 
 end
