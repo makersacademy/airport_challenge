@@ -23,5 +23,4 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def 
 end
