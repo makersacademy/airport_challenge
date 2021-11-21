@@ -1,10 +1,10 @@
 class Plane 
   attr_reader :flying
 
-  def initialize(starting_airport, flying = false)
+  def initialize(starting_airport)
     @starting_airport = starting_airport
     @starting_airport.add_plane(self)
-    @flying = flying
+    @flying = false
   end 
   
   def land(airport, weather = airport.weather)
