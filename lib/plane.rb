@@ -4,14 +4,14 @@ class Plane
   attr_reader :status
 # assume plane is create at the airport
   def initialize
-    @status = true
+    @status = false
   end
 
   def landed
-    @status
+    !@status
   end
 
   def taken_off
-    @status = false
+    @status
   end
 end
