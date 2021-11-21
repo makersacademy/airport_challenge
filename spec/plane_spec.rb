@@ -21,10 +21,19 @@ describe Plane do
 		it "#land requires a parameter" do
 				expect { subject.land }.to raise_error
 		end
+
+		it "Plane cannot land if not flying" do
+			expect { subject.land(@airport) }.to raise_error "Plane already landed"
+		end
+
+		it "Sets state of plane to landed after landing" do
+			subject.takeoff(@airport)
+			subject.land(@airport)
+			expect(subject.flying).to eq false
+		end
 	end
 
 	context "Takeoff:" do
-
 
 		it "Responds to #takeoff" do
 				expect(subject).to respond_to :takeoff
@@ -33,17 +42,18 @@ describe Plane do
 		it "#takeoff accepts a parameter" do
 				expect { subject.takeoff(@airport) }.to_not raise_error
 		end
-	end
-
-	context "State of plane:" do
-
-		it "Plane cannot land if not flying" do
-		
-		end
 
 		it "Plane cannot takeoff if already flying" do
-		
+			subject.takeoff(@airport)
+			expect { subject.takeoff(@airport) }.to raise_error "Plane already flying"
 		end
+
+		it "Sets state of plane to flying after takeoff" do
+			subject.takeoff(@airport)
+			expect(subject.flying).to eq true
+		end
+
+
 	end
 
 
