@@ -1,17 +1,17 @@
 require_relative 'airport'
 
 class Plane
-  attr_reader :status
+  attr_reader :in_airport
 # assume plane is create at the airport
   def initialize
-    @status = false
+    @in_airport = false
   end
 
   def landed
-    !@status
+    @in_airport = true
   end
 
   def taken_off
-    @status
+    @in_airport = false
   end
 end

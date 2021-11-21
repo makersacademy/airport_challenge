@@ -4,7 +4,7 @@ describe Plane do
 
   it { is_expected.to respond_to :landed }
 
-  it "updates the airport when it has landed" do
+  it "updates its location when it has landed" do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
@@ -13,7 +13,7 @@ describe Plane do
 
   it { is_expected.to respond_to :taken_off }
 
-  it "updates the airport when it has taken off" do
+  it "updates its location when it has taken off" do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
