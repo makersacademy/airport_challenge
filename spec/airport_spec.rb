@@ -32,9 +32,11 @@ describe Airport do
 ##       expect(subject.land(plane)).to eq plane
 ##     end
 ##   end
-  it 'has left airport' do
-    plane = subject.take_off
-    expect(plane).to be_left_airport
+  it 'instructs plane to take off and confirm it is no longer at the airport' do
+    expect(subject).to respond_to(:take_off).with(1).argument
+    plane = Plane.new
+    # plane = subject.take_off
+    expect(subject.take_off(plane)).to eq 'Plane has taken off' # be_left_airport
   end
 
   # it { is_expected.to respond_to :plane }
@@ -50,17 +52,3 @@ describe Airport do
 ##     subject.land_plane(plane)
 ##   end
 end
-
-
-# it 'can respond to plane' do
-#     airport = Airport.new
-#     plane = Plane.new
-#     expect(airport).to respond_to(:plane)
-#   end
-
-#   it 'should land a plane' do
-#     # airport = Airport.new
-#     plane = Plane.new
-#     subject.land(plane)
-#     expect(subject.land(plane)).to eq(plane) # .with(1).argument
-#   end

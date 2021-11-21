@@ -10,13 +10,14 @@ class Airport
   attr_reader :plane
 
   def land(plane)
-    fail 'Airport is full' if @plane
+   fail 'Airport is full' if @plane
    @plane  = plane
     
   end 
 
-  def take_off
-    Plane.new
+  def take_off(plane)
+    # Plane.new
+    'Plane has taken off'
   end 
   
 #   def plane
