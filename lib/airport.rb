@@ -12,15 +12,15 @@ class Airport
     return @hanger.include?(plane)
   end
 
-  def land(plane)
-    if plane.location == :airbourne && !hanger_full?()
+  def land(plane, weather)
+    if plane.location == :airbourne && !hanger_full?() && weather < 8
       plane.location = self
       @hanger << plane
     end
   end
 
-  def take_off(plane)
-    if plane.location == self
+  def take_off(plane, weather)
+    if plane.location == self && weather < 8
       plane.location = :airbourne
       @hanger.delete(plane)
     end
