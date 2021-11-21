@@ -35,5 +35,14 @@ describe Airport do
             expect { airport.takeoff(plane) }.to raise_error 'cannot land plane: its stormy'
         end
     end
+
+    context 'defaults' do
+        subject(:default_airport) { described_class.new }
+        it 'has default capacity' do
+            allow(default_airport).to receive(:stormy?).and_return false
+            described_class::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+            expect { default_airport.land(plane) }.to raise_error 'cannot land plane as airport full'
+        end
+    end
 end
 
