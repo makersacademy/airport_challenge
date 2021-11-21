@@ -71,12 +71,14 @@ describe Airport do
   end
 
   it "should prevent takeoff when weather is stormy" do
-    srand(9) # creates stormy airport
-    expect { subject.land(plane = Plane.new) }.to raise_error "Cannot land at stormy airport"
+    srand(6) # creates stormy airport
+    plane = Plane.new
+    plane.flying = true
+    expect { subject.land(plane) }.to raise_error "Cannot land at stormy airport"
   end
 
   it "should prevent landing when weather is stormy" do
-    srand(9) # creates stormy airport
+    srand(6) # creates stormy airport
     subject.planes << plane = Plane.new
     expect { subject.takeoff(plane) }.to raise_error "Cannot takeoff from stormy airport"
   end
