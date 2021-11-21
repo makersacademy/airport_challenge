@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   describe '#hanger_full?' do
@@ -18,25 +19,29 @@ describe Airport do
   end
 
   describe '#land' do
-    context 'plane is airbourne and hanger is not full' do
+    context 'plane is airbourne, hanger is not full, weather is okay' do
       it 'lands the plane in the airport' do
         airport = Airport.new
         plane = Plane.new
+        weather = Weather.new
+        allow(weather).to receive(:generate_weather) { 5 }
 
-        airport.land(plane)
+        airport.land(plane, weather.generate_weather)
         expect(airport.in_hanger?(plane)).to be true
       end
     end
   end
 
   describe '#take_off' do
-    context 'plane is in airport' do
+    context 'plane is in airport, weather is okay' do
       it 'triggers a plane to take off from the airport' do
         airport = Airport.new
         plane = Plane.new
+        weather = Weather.new
+        allow(weather).to receive(:generate_weather) { 5 }
   
-        airport.land(plane)
-        airport.take_off(plane)
+        airport.land(plane, weather.generate_weather)
+        airport.take_off(plane, weather.generate_weather)
         expect(airport.in_hanger?(plane)).to be false
       end
     end
