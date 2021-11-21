@@ -17,9 +17,31 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
-    it 'should not land when stormy' do
-      plane = Plane.new
-      expect(subject.land(plane)).and_return("stormy").to raise_error 'Dangerous Weather'
+    it 'should remove the plane once we take off' do
+    srand(3)
+    plane = Plane.new
+    h = Airport.new
+    h.land(plane)
+    h.take_off(plane)
+    expect(h.plane_list).to eq []
+    end
+
+    describe  "checking stormy requirements" do
+      
+
+      it 'should give runtime error when landing and its stormy' do
+        srand(23)
+        plane = Plane.new
+        h = Airport.new
+        expect{h.land(plane)}.to raise_error 'Dangerous Weather'
+
+      end
+
+
+
+
+
+
     end
 
 
