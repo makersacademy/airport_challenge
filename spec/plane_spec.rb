@@ -1,12 +1,11 @@
 require "plane"
 
 describe Plane do
-	
+
 	before do
 		@airport = double("Airport", :planes => [])
 		allow(@airport).to receive_messages(:remove_plane => nil, :add_plane => nil)
 	end
-
 	subject { Plane.new(@airport) }
 
 	it "Plane has to be given a starting airport when created" do
@@ -27,6 +26,7 @@ describe Plane do
 		end
 
 		it "Sets state of plane to landed after landing" do
+			allow(@airport).to receive(:planes).and_return([subject])
 			subject.takeoff(@airport)
 			subject.land(@airport)
 			expect(subject.flying).to eq false
@@ -35,12 +35,16 @@ describe Plane do
 
 	context "Takeoff:" do
 
+		before do
+			allow(@airport).to receive(:planes).and_return([subject])
+		end
+
 		it "Responds to #takeoff" do
 				expect(subject).to respond_to :takeoff
 		end
 
 		it "#takeoff accepts a parameter" do
-				expect { subject.takeoff(@airport) }.to_not raise_error
+			expect { subject.takeoff(@airport) }.to_not raise_error
 		end
 
 		it "Plane cannot takeoff if already flying" do
@@ -53,8 +57,10 @@ describe Plane do
 			expect(subject.flying).to eq true
 		end
 
-
+		it "Cannot takeoff from airport if stored at different airport" do
+			airport = double("Airport", :planes => [])
+			expect { subject.takeoff(airport) }.to raise_error "Plane at different airport"
+		end
 	end
-
 
 end

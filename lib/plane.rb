@@ -15,6 +15,7 @@ class Plane
 
   def takeoff(airport)
     raise "Plane already flying" if flying?
+    raise "Plane at different airport" if airport.planes.include?(self) == false
     airport.remove_plane(self)
     @flying = true
   end
@@ -25,5 +26,4 @@ class Plane
     @flying ? true : false
   end
 
-  
 end  
