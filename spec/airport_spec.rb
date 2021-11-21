@@ -26,10 +26,18 @@ describe Airport do
 		expect(subject).to respond_to(:land).with(1).argument
 	end
 
-	context "Departing the airport"
+	context "taking off from the airport"
 	it "has a #take_off method on its interface" do
 		expect(subject).to respond_to(:take_off)
 	end
+
+	context "checking the is no longer in the airport"
+		it "has a #verify method confirming plane's #take_off" do
+			allow(jfk).to receive(:stormy_weather?).and_return false
+			landed_plane = jfk.land(plane)
+			jfk.take_off
+			expect(jfk.verify).to_not be [landed_plane]
+		end
 
 	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
