@@ -39,7 +39,8 @@ describe Airport do
 
 	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
-		5.times {	jfk.land(plane)}
+		allow(jfk).to receive(:stormy_weather?).and_return false
+		5.times {	jfk.land(Plane.new)}
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
 
@@ -53,9 +54,10 @@ describe Airport do
 			expect{ jfk.take_off}.to raise_error "Can't take off during the storm."
 		end
 		
-		# it "prevents planes to land during a thunderstorm" do
-		
-		# end
+		it "prevents planes to land during a thunderstorm" do
+			allow(jfk).to receive(:stormy_weather?).and_return true
+			expect {jfk.land(plane)}.to raise_error "bad weather"
+		end
 
 	end
 end

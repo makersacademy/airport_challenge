@@ -11,7 +11,7 @@ class Airport
 	end
 
 	def land(plane)
-		# raise "bad weather" if stormy_weather?
+		fail "bad weather" if stormy_weather?
 		raise "Airport full" if @hangar.size == @capacity
 		@hangar.push(plane)
 	end
