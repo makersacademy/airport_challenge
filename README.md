@@ -271,6 +271,66 @@ how to fix this :
 2) or only allow Airport to create instances of plane ? -> maybe the best to test a user journey?
 3) set @status to false in the initialize method of Plane.
 
+***Feature test***
+3.0.2 :001 > airport = Airport.new(3)
+ => #<Airport:0x00007fa3659540b0 @capacity=3, @hangar=[]> 
+3.0.2 :002 > plane1 = Plane.new
+ => #<Plane:0x00007fa36593f3e0 @status=false> 
+3.0.2 :003 > plane2 = Plane.new
+ => #<Plane:0x00007fa368191078 @status=false> 
+3.0.2 :004 > plane3 = Plane.new
+ => #<Plane:0x00007fa3681717c8 @status=false> 
+3.0.2 :005 > plane4 = Plane.new
+ => #<Plane:0x00007fa3680cdfd8 @status=false> 
+3.0.2 :006 > airport.capacity
+ => 3 
+3.0.2 :007 > airport.hangar
+ => [] 
+3.0.2 :008 > airport.land(plane1)
+ => true 
+3.0.2 :009 > airport.capacity
+ => 3 
+3.0.2 :010 > airport.hangar
+ => [#<Plane:0x00007fa36593f3e0 @status=false>] 
+3.0.2 :011 > airport.land(plane2)
+ => true 
+3.0.2 :012 > airport.hangar
+ => 
+[#<Plane:0x00007fa36593f3e0 @status=false>,
+ #<Plane:0x00007fa368191078 @status=false>] 
+3.0.2 :013 > airport.full?
+ => false 
+3.0.2 :014 > airport.land(plane3)
+ => true 
+3.0.2 :015 > airport.hangar
+ => 
+[#<Plane:0x00007fa36593f3e0 @status=false>,
+ #<Plane:0x00007fa368191078 @status=false>,
+ #<Plane:0x00007fa3681717c8 @status=false>] 
+3.0.2 :016 > airport.full?
+ => true 
+3.0.2 :017 > airport.land(plane4)
+/Users/Swa/Desktop/Projects/airport_challenge/lib/airport.rb:13:in `land': Airport is full (RuntimeError)
+	from (irb):17:in `<main>'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :018 > airport.take_off(plane3)
+ => false 
+3.0.2 :019 > airport.hangar
+ => 
+[#<Plane:0x00007fa36593f3e0 @status=false>,
+ #<Plane:0x00007fa368191078 @status=false>] 
+3.0.2 :020 > airport.full?
+ => false 
+3.0.2 :021 > plane3.status
+ => false
+
+this is better the plane @status showing if it is in the airport (true) or not (false) it good
+also I still have the error message when a plane tries to land in a full airport
+the airport knows when it is at full capacity
+the @hangar updates properly when planes land or take off.
+
 # Goals
 
 ---
