@@ -6,7 +6,7 @@ class Airport
   end
 
   def land(plane)
-    raise 'Unable to land plane: no empty spaces.' if @planes_landed.length >= @capacity
+    raise 'Unable to land plane: no empty spaces.' if full?
     @planes_landed << plane
   end
 
@@ -14,4 +14,10 @@ class Airport
     puts 'Plane is no longer at the airport'
   end
   
+  private
+
+  def full?
+    @planes_landed.length >= @capacity
+  end
+
 end
