@@ -344,6 +344,19 @@ we have to create a new Class for weather.
 we use a random number generator to set the weather (example we generate a number with rand(), with a range of 1 to 100,if we get 75 or plus it rains )
 HINT: use a DOUBLE in tests to override random weather to ensure consistent test behaviour
 
+Lots of error and trial here. I had to back track at some point because I got lost.
+my first idea was to have the weather as an attribute but I couldn't write the right rspec test to write some code.
+looking back at the user story I realised it would be much easier to have it as a seperate class.
+
+**_COVERAGE: 96.30% -- 78/81 lines in 6 files_**
++----------+----------------+-------+--------+---------+
+| coverage | file | lines | missed | missing |
++----------+----------------+-------+--------+---------+
+| 83.33% | lib/weather.rb | 6 | 1 | 9 |
+| 89.47% | lib/airport.rb | 19 | 2 | 24-25 |
++----------+----------------+-------+--------+---------+
+I can see there must be something missing but I passed the test and rubocop found no offenses so far.
+
 # Goals
 
 ---
