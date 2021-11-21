@@ -1,15 +1,16 @@
 class Airport
-    attr_reader :capacity
+    attr_reader :capacity, :parked_planes
 
-    DEFAULT_CAPACITY = 1
+    DEFAULT_CAPACITY = 10
+ 
 
     def initialize(capacity = DEFAULT_CAPACITY)
         @capacity = capacity
-        
+        @parked_planes = []
     end 
 
     def is_full?
-      true
+      true if @parked_planes.count >= DEFAULT_CAPACITY
     end
  
 end

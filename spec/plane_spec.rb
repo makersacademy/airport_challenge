@@ -18,6 +18,11 @@ describe Plane do
        airport1 = Airport.new
        expect { subject.land_at_airport(airport1) }.to raise_error "The airport is full"
     end 
-
+    
+    it 'allows planes to land at the airport' do
+     airport = Airport.new
+     subject.land_at_airport(airport)
+     expect(airport.parked_planes).to eq [subject]
+    end 
 
 end 

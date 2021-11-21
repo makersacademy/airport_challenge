@@ -2,7 +2,8 @@
 class Plane
     def land_at_airport(airport)
         fail "The airport is full" if airport.is_full?
-        @in_aiport = true
+        @in_airport = true
+        airport.parked_planes << self
     end
 
     def take_off_from_airport
@@ -10,7 +11,8 @@ class Plane
     end
 
     def in_airport?
-       @in_aiport
+       @in_airport
     end 
 
 end 
+
