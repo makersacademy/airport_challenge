@@ -8,15 +8,15 @@ I want to instruct a plane to land at an airport
 
 # Let's test that we have class Airport
 describe Airport do
+	subject(:jfk) {Airport.new}
+	let(:plane) {Plane.new}
 
 	describe "#initialize" do
 		it 'has an initialize method' do
-			jfk = Airport.new
 			expect(jfk).to be_an_instance_of(Airport)
 		end
 
 		it "has a default capacity of 1" do
-			jfk = Airport.new
 			expect(jfk.capacity).to eq Airport::DEFAULT_CAPACITY
 		end
 
@@ -39,17 +39,17 @@ describe Airport do
 
 	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
-		boeing = Plane.new
-		jfk = Airport.new
-		jfk.land(boeing)
+		jfk.land(plane)
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
 
-	context "If weather is stormy"
-	it "prevents takeoff when weather is stormy" do
-		
-	end
+	describe "#stormy?" do
 
+		it "has a #stormy? method" do
+			expect(jfk).to respond_to(:stormy?)
+		end
+
+	end
 
 	
 end

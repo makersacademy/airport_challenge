@@ -8,8 +8,4 @@ describe Plane do
 			end
 	end
 
-	# it 'has a #land method' do
-	# 	expect(subject).to respond_to(:land)
-	# end
-
 end

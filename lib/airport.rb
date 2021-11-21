@@ -15,10 +15,11 @@ class Airport
 
 	def take_off
 		@hangar.pop
-		"Plane successfully departed."
+	end
+
+	def stormy?
 	end
 
 
 end
 
-# use a random number generator to set the weather
