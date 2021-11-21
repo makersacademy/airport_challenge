@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:plane) {double :plane}
+  let(:plane) { double :plane }
 
   context "Airport Capacity:" do
 
@@ -16,8 +16,9 @@ describe Airport do
     end
 
     it "Plane can land if airport not full" do
-      subject.capacity - 1.times { subject.add_plane(plane)  } 
-      expect { subject.add_plane(plane)  }.to_not raise_error 
+      capacity = subject.capacity - 1
+      capacity.times { subject.add_plane(plane) } 
+      expect { subject.add_plane(plane) }.to_not raise_error 
     end
 
     it "Airport capacity can be modified" do

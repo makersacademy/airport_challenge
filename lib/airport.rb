@@ -1,10 +1,13 @@
+require_relative 'weather'
+
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :weather
   attr_accessor :capacity
 
   def initialize(capacity = 75)
     @planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def add_plane(plane)
@@ -18,7 +21,7 @@ class Airport
   end
 
   def plane_at_airport?(plane)
-    self.planes.include?(plane) ? true : false
+    planes.include?(plane)
   end
 
   private 
@@ -26,5 +29,4 @@ class Airport
   def full?
     @planes.count >= @capacity
   end
-
 end
