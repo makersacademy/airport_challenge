@@ -12,6 +12,9 @@ describe Airport do
 
     context 'hanger is full' do
       it 'detects when hanger is full' do
+        # Would like to test when an airport has a randomized capacity
+        # and is full, but no idea how to do this while not having a 
+        # hanger accessor method?
         airport = Airport.new(0)
         expect(airport.hanger_full?).to be true
       end

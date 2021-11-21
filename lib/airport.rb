@@ -7,4 +7,5 @@ class Airport
   def hanger_full?
     @hanger.length == @capacity
   end
+
 end
