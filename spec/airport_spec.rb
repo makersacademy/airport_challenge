@@ -29,20 +29,41 @@ describe Airport do
   end
   
   context "Adding planes:" do
-    it "Plane in airport once it lands" do
+    before do
       subject.add_plane(plane)
+    end
+
+    it "Plane in airport once it lands" do
       expect(subject.planes.include?(plane)).to eq true
+    end
+
+    it "Confirms plane has landed" do
+      expect(subject.confirm_landing(plane)).to eq "#{plane} has landed"
+    end
+
+    it "Returns error if plane has still not landed" do
+      subject.remove_plane(plane)
+      expect { subject.confirm_landing(plane) }.to raise_error "Plane has not landed"
     end
   end
 
   context "Removing planes:" do
-    it "Plane removed from airport after takeoff" do
+    before do
+      subject.add_plane(plane)
       subject.remove_plane(plane)
+    end
+    
+    it "Plane removed from airport" do
       expect(subject.planes.include?(plane)).to eq false
     end
 
     it "Confirms plane is no longer at airport" do
-      expect(subject.remove_plane(plane)).to eq "#{plane} has left"
+      expect(subject.confirm_takeoff(plane)).to eq "#{plane} has taken off"
+    end
+
+    it "Returns error if plane has still not taken off" do
+      subject.add_plane(plane)
+      expect { subject.confirm_takeoff(plane) }.to raise_error "Plane has not taken off"
     end
   end
 

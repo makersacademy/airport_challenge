@@ -1,5 +1,3 @@
-require_relative 'weather'
-
 class Airport
   attr_reader :planes, :weather
   attr_accessor :capacity
@@ -17,15 +15,24 @@ class Airport
 
   def remove_plane(plane)
     @planes.delete(plane)
-    "#{plane} has left"
   end
 
   def plane_at_airport?(plane)
     planes.include?(plane)
   end
 
-  private 
+  def confirm_landing(plane) 
+    raise "Plane has not landed" if !plane_at_airport?(plane)
+    "#{plane} has landed"
+  end
+
+  def confirm_takeoff(plane)
+    raise "Plane has not taken off" if plane_at_airport?(plane)
+    "#{plane} has taken off"
+  end
   
+  private 
+
   def full?
     @planes.count >= @capacity
   end
