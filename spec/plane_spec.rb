@@ -55,13 +55,13 @@ describe Plane do
       it "does not allow planes to take from airports in bad weather" do
         @heathrow.hangar.push(@plane_a, @plane_b, @plane_c)
         @heathrow.stub(:weather_ok? => false)
-        expect{ @plane_a.take_off_from(@heathrow) }.to raise_error "Stormy Weather. Cannot take off!"
+        expect { @plane_a.take_off_from(@heathrow) }.to raise_error "Stormy Weather. Cannot take off!"
       end
 
       it "does not allow planes to take off from airports that they are not in" do
         @heathrow.hangar.push(@plane_b, @plane_c)
         @heathrow.stub(:weather_ok? => true)
-        expect{ @plane_a.take_off_from(@heathrow) }.to raise_error "Plane not in airport hangar. Cannot take off!"
+        expect { @plane_a.take_off_from(@heathrow) }.to raise_error "Plane not in airport hangar. Cannot take off!"
       end
 
     end
@@ -117,18 +117,18 @@ describe Plane do
       it "does not allow users to land planes at full airports" do
         @gatwick.stub(:weather_ok? => true) 
         Airport::DEFAULT_CAPACITY.times { Plane.new.land_at(@gatwick) } 
-        expect{ @plane_a.land_at(@gatwick)}.to raise_error "Airport full. Cannot land plane!"
+        expect { @plane_a.land_at(@gatwick) }.to raise_error "Airport full. Cannot land plane!"
       end
 
       it "does not allow users to land planes at airports in bad weather" do   
         @gatwick.stub(:weather_ok? => false)
-        expect{ @plane_a.land_at(@gatwick) }.to raise_error "Stormy Weather. Cannot land plane!"
+        expect { @plane_a.land_at(@gatwick) }.to raise_error "Stormy Weather. Cannot land plane!"
       end
 
       it "does not allow planes to land at airports that they are already in" do 
         @gatwick.stub(:weather_ok? => true)
         @plane_a.land_at(@gatwick)
-        expect{ @plane_a.land_at(@gatwick) }.to raise_error "Plane already in airport hangar. Cannot land plane!"
+        expect { @plane_a.land_at(@gatwick) }.to raise_error "Plane already in airport hangar. Cannot land plane!"
       end
     
     end

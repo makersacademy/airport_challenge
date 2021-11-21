@@ -13,5 +13,6 @@ describe Airport do
       expect(heathrow.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-  end 
+  end
+
 end

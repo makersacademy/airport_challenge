@@ -16,7 +16,7 @@ class Airport
     rand < 0.8
   end
 
-  def is_holding?(plane)
+  def holding?(plane)
     @hangar.include?(plane)
   end
 
