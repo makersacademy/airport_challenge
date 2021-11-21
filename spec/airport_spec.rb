@@ -18,10 +18,10 @@ describe Airport do
   end  
   
   it 'raises an error when the airport is full' do
-        plane = Plane.new
-        airport = Airport.new
-        subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'Airport is full'
-    end
+    plane = Plane.new
+    airport = Airport.new
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error 'Airport is full'
+  end
 
 end
