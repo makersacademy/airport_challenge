@@ -10,7 +10,7 @@ describe Airport do
       airport = Airport.new("Heathrow")
       allow(airport).to receive(:weather) { "sunny" }
 
-      expect(airport.land(plane)).to eq plane
+      expect(airport.land(plane)).to eq "sucessful landing of #{plane} at #{airport.name}"
     end
 
     it 'prevents landing a plane when the airport is full' do
@@ -23,9 +23,37 @@ describe Airport do
   
       expect { airport.land(plane2) }.to raise_error("airport full: cannot land plane here") 
     end  
+
+    it 'prevents landing when weather is stormy' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "stormy" }
+
+      expect { airport.land(plane) }.to raise_error("plane cannot land, weather is stormy")
+    end
+    
+    it 'ensures planes that are landed cannot land again without taking off first' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow", 2)
+      allow(airport).to receive(:weather) { "sunny" }
+
+      airport.land(plane)
+
+      expect { airport.land(plane) }.to raise_error("#{plane} has already landed in #{airport.name}")
+    end
   end
 
   describe 'take off' do
+
+    it 'plane can take off from an airport' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "sunny" }
+
+      airport.land(plane)
+
+      expect(airport).to respond_to(:take_off)
+    end
 
     it 'confirms plane is no longer in the airport when plane takes off' do
       plane = Plane.new
@@ -34,17 +62,27 @@ describe Airport do
 
       airport.land(plane)
 
-      expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"
+      expect(airport.take_off(plane)).to eq "sucessful take off of #{plane} from #{airport.name}"     
     end
 
     it 'prevents take off when weather is stormy' do
       plane = Plane.new
       airport = Airport.new("Heathrow")
-      allow(airport).to receive(:weather) { "stormy" }
+      allow(airport).to receive(:weather) { "sunny" }
 
       airport.land(plane)
 
+      allow(airport).to receive(:weather) { "stormy" }
+
       expect { airport.take_off(plane) }.to raise_error("plane cannot take off, weather is stormy")
+    end
+
+    it 'planes can only take off from airports they are in' do
+      plane = Plane.new
+      airport = Airport.new("Heathrow")
+      allow(airport).to receive(:weather) { "sunny" }
+
+      expect { airport.take_off(plane) }.to raise_error("#{plane} not currently in #{airport.name}")
     end
   end
 
@@ -63,7 +101,3 @@ describe Airport do
     end
   end
 end
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy 
