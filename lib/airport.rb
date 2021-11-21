@@ -1,7 +1,7 @@
 require_relative 'plane.rb'
 
 class Airport
-	attr_reader :capacity
+	attr_reader :capacity, :hangar
 	DEFAULT_CAPACITY = 1
 	def initialize(capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
@@ -21,8 +21,4 @@ class Airport
 
 end
 
-# jfk = Airport.new
-# p jfk
-# plane = Plane.new
-# p plane
-# plane.land
+# use a random number generator to set the weather

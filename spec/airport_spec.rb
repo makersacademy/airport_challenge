@@ -45,6 +45,11 @@ describe Airport do
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
 
+	context "If weather is stormy"
+	it "prevents takeoff when weather is stormy" do
+		
+	end
+
 
 	
 end
