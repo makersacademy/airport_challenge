@@ -9,3 +9,6 @@ analysis/**/*
 
 # Local cache of Rubocop remote config
 .rubocop-*
+
+mental_notes.md
+
