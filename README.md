@@ -1,6 +1,27 @@
 Airport Challenge
 =================
 
+**Makers Academy Week 1 Weekend Challenge**
+
+*Summary: A project which follows 6 user stories to build up a system which emulates the control flow of planes at an airport*
+
+# Undertaking
+Created classes to represent planes and airports. Created methods to simulate take off and landing of planes to/from airports. Controlled the behaviour of planes depending on edge case conditions such as bad weather and exceeding airport capacity. Each step was guided by converting user stories into irb feature test, then unit tests and then using TDD to drive the development of production code.
+
+## Technologies 
+- Ruby
+- rspec
+- git
+
+# Skills 
+- Test Driven Development
+- Feature Testing
+- Unit Testing
+- Stubs
+- SRP
+- DRY
+
+**Challenge Details**
 ```
         ______
         _\____\___
