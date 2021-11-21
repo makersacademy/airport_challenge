@@ -38,4 +38,12 @@ describe 'These are user stories' do
     end
     expect {airport.land(plane) }.to raise_error 'Unable to land plane: no empty spaces.'
   end
+
+  # User story 4
+
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+
+
 end
