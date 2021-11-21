@@ -10,6 +10,8 @@ describe Plane do
 
   it 'confirms the plane is no longer in the airport once the plane takes off' do
     airport = Airport.new
+    allow(airport).to receive(:local_weather) { "Sunny" }
+    subject.land_at_airport(airport)
     subject.take_off_from_airport(airport)
     subject.in_airport?
     expect(subject).not_to be_in_airport
@@ -36,6 +38,14 @@ describe Plane do
     allow(airport).to receive(:local_weather) { "Sunny" }
     subject.land_at_airport(airport)
     expect(airport.parked_planes).to eq [subject]
+  end 
+
+#  edge cases
+
+  it 'raises an error if trying to take off from an airport it is not parked at' do
+    airport = Airport.new
+    allow(airport).to receive(:local_weather) { "Sunny" }
+    expect { subject.take_off_from_airport(airport) }.to raise_error "The plane is not parked in that airport"
   end 
 
 

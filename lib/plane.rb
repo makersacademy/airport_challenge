@@ -8,6 +8,7 @@ class Plane
   end
 
   def take_off_from_airport(airport)
+    fail "The plane is not parked in that airport" if !airport.parked_planes.include?(self)
     fail "It's too stormy to take off" if airport.local_weather == "Stormy"
     airport.parked_planes.delete(self)
     @in_airport = false
