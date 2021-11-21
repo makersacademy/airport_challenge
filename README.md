@@ -203,6 +203,74 @@ Good we have just tested and passed the test to make sure we can set up a custom
 
 !!! can't figure out what is happending on line 15 of my lib/airport.rb !!!
 
+**Feature Test**
+3.0.2 :001 > airport = Airport.new(4)
+ => #<Airport:0x00007fa12a164c48 @capacity=4, @hangar=[]> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x00007fa12a1673d0 @status=true> 
+3.0.2 :003 > airport.land(plane)
+ => true 
+3.0.2 :004 > plane = Plane.new
+ => #<Plane:0x00007fa12a195500 @status=true> 
+3.0.2 :005 > airport.land(plane)
+ => true 
+3.0.2 :006 > plane = Plane.new
+ => #<Plane:0x00007fa129191ed8 @status=true> 
+3.0.2 :007 > airport.land(plane)
+ => true 
+3.0.2 :008 > airport.land(plane)
+ => true 
+3.0.2 :009 > airport.full?
+ => true 
+3.0.2 :010 > exit
+Swa@Swas-MacBook-Pro airport_challenge % irb -r ./lib/airport.rb              
+3.0.2 :001 > airport = Airport.new(4)
+ => #<Airport:0x00007fb47098a7e8 @capacity=4, @hangar=[]> 
+3.0.2 :002 > plane1 = Plane.new
+ => #<Plane:0x00007fb470991c50 @status=true> 
+3.0.2 :003 > plane2 = Plane.new
+ => #<Plane:0x00007fb47415fee8 @status=true> 
+3.0.2 :004 > plane3 = Plane.new
+ => #<Plane:0x00007fb474856468 @status=true> 
+3.0.2 :005 > plane4 = Plane.new
+ => #<Plane:0x00007fb4741ec870 @status=true> 
+3.0.2 :006 > airport.land(plane1)
+ => true 
+3.0.2 :007 > airport.land(plane2)
+ => true 
+3.0.2 :008 > airport.land(plane3)
+ => true 
+3.0.2 :009 > airport.land(plane4)
+ => true 
+3.0.2 :010 > plane5 = Plane.new
+ => #<Plane:0x00007fb47096ad58 @status=true> 
+3.0.2 :011 > airport.land(plane5)
+/Users/Swa/Desktop/Projects/airport_challenge/lib/airport.rb:13:in `land': Airport is full (RuntimeError)
+	from (irb):11:in `<main>'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /Users/Swa/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :012 > airport.full?
+ => true 
+3.0.2 :013 > plane1.status
+ => true 
+3.0.2 :014 > plane5.status
+ => true 
+
+so we create empty airport with a customized capacity. I just wanted to check if it would raise an error once I try to land the fifth plane.
+what works:
+- raises an error when a plane want to land and the airport is full
+- airport knows when it is full
+- plane1 is in the airport so its @status is true
+
+to fix :
+- plane5 is NOT in the airport though its @status is true...
+
+how to fix this :
+1) I can populate the array @hangar in the initialize method from the airport (these planes have a @status of true) and all other planes created outside the airport would have a default @status set to false.
+2) or only allow Airport to create instances of plane ? -> maybe the best to test a user journey?
+3) set @status to false in the initialize method of Plane.
+
 # Goals
 
 ---
