@@ -31,13 +31,14 @@ describe Airport do
 
   describe '#take_off' do
     context 'plane is in airport' do
-      airport = Airport.new
-      plane = Plane.new
-
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.in_hanger?(plane)).to be false
-
+      it 'triggers a plane to take off from the airport' do
+        airport = Airport.new
+        plane = Plane.new
+  
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.in_hanger?(plane)).to be false
+      end
     end
   end
 end

@@ -19,4 +19,10 @@ class Airport
     end
   end
 
+  def take_off(plane)
+    if plane.location == self
+      plane.location = :airbourne
+      @hanger.delete(plane)
+    end
+  end
 end
