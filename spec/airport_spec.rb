@@ -43,15 +43,17 @@ describe Airport do
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
 
-	describe "#stormy?" do
+	describe "#stormy_weather?" do
+		it "has a #stormy_weather? method" do
+			expect(jfk).to respond_to(:stormy_weather?)
+		end
 
-		it "has a #stormy? method" do
-			expect(jfk).to respond_to(:stormy?)
+		it "prevents planes to take-off during a thunderstorm" do
+			allow(jfk).to receive(:stormy_weather?).and_return true
+			expect{ jfk.take_off} .to raise_error "Can't take off during the storm."
 		end
 
 	end
-
-	
 end
 
 

@@ -14,10 +14,12 @@ class Airport
 	end
 
 	def take_off
+		raise "Can't take off during the storm." if stormy_weather? == true
 		@hangar.pop
 	end
 
-	def stormy?
+	def stormy_weather?
+		rand(8) > 1
 	end
 
 
