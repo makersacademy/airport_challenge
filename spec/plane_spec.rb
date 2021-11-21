@@ -15,8 +15,43 @@ describe Plane do
     it "Once a plane has landed, it should no longer be in the air, and once taken off in the air" do
         plane = Plane.new
         plane.land
+        plane.land_in_airport("Heathrow")
         expect(plane.in_air).to eq false
         plane.take_off
         expect(plane.in_air).to eq true
+    end
+
+    it "A plane knows if it's in an airport or not" do
+        plane = Plane.new
+        expect(plane).to respond_to :in_airport
+    end
+
+    it "If a plane is already landed, it will not land again" do
+        plane = Plane.new
+        plane.land
+        puts plane.in_air
+        expect {plane.land}.to raise_error
+    end
+
+    it "If a plane has already taken off, it will not take off again" do
+        plane = Plane.new
+        plane.land
+        plane.land_in_airport("Heathrow")
+        plane.take_off
+        puts plane.in_air
+        expect {plane.take_off}.to raise_error
+    end
+
+    it "A plane knows the airport it is in" do
+        plane = Plane.new
+        plane.land
+        plane.airport_in("Heathrow")
+        expect(plane.airport_at).to eq("Heathrow")
+    end
+
+    it "A plane that has landed, but not at an airport has crashed and cannot take off" do
+        plane = Plane.new
+        plane.land
+        expect{plane.take_off}.to raise_error
     end
 end
