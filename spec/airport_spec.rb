@@ -85,4 +85,20 @@ describe Airport do
     end
   end
 
+  context "feature test" do
+    it "lands and takes off a number of planes" do
+      planes = []
+      20.times { planes.push(Plane.new)}
+      london_city = Airport.new
+      allow(london_city).to receive(:forecast) { "sunny" }
+      planes.each { |plane| 
+        london_city.land(plane)
+      }
+      planes.each { |plane| 
+        london_city.departure(plane)
+      }
+      expect(planes[rand(planes.length)].flying).to eq true
+    end
+  end
+
 end
