@@ -2,14 +2,28 @@ require 'airport'
 
 describe Airport do
   
-#   it 'can respond to plan landing' do
+#   it 'responds to plane landing' do
 #     expect(subject).to respond_to(:land_plane)
 #   end
-  it { is_expected.to respond_to :land} # one-liner syntax
+  # it { is_expected.to respond_to(:land).with(1).argument } # one-liner syntax
+  it 'lands a plane' do
+    plane = Plane.new
+    expect(subject.land(plane)).to eq plane
+  end
+
+  it { is_expected.to respond_to :take_off } 
   
-  it { is_expected.to respond_to :take_off} 
-  
-  
+  it 'has left airport' do
+    plane = subject.take_off
+    expect(plane).to be_left_airport
+  end
+
+  # it { is_expected.to respond_to :plane }
+  it 'it returns landed planes' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.plane).to eq plane
+  end 
 #   it 'instruct plane to land at airport' do
 #     # airport = Airport.new
 #     # plane = airport.land_plane
@@ -31,12 +45,3 @@ end
 #     subject.land(plane)
 #     expect(subject.land(plane)).to eq(plane) # .with(1).argument
 #   end
-# bject.land_plane(plane)
-#     expect(subject.planes).to include plane
-#     end
-
-#     it 'has planes that have landed' do
-#         plane = Plane.new
-#         subject.land(plane, 3)
-#         expect(subject.grounded_planes).to include(plane)
-# should land a plane in the airport

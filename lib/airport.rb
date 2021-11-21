@@ -6,12 +6,18 @@ class Airport
 #     @plane = plane
 #   end
 
-  def land
-    
+  attr_reader :plane
+
+  def land(plane)
+    @plane = plane
   end 
 
   def take_off
-    
+    Plane.new
   end 
   
+#   def plane
+#     @plane
+#   end
+
 end

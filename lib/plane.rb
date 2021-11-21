@@ -1,4 +1,6 @@
+
 class Plane
-    def initialize
-    end
+  def left_airport?
+    true
+  end
 end
