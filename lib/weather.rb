@@ -1,6 +1,11 @@
 module Weather
   def get_weather
-    rand(1..3)
+    if rand(1..3) == 1 || 2
+        "Stormy"
+    else
+        "Sunny"
+    end
+
   end
 
 end

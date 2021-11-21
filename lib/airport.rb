@@ -1,5 +1,8 @@
+require_relative('./weather')
+
 class Airport
   attr_reader :capacity, :parked_planes
+  include Weather
 
 DEFAULT_CAPACITY = 10
 
