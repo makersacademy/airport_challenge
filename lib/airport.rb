@@ -16,11 +16,16 @@ class Airport
   end
 
   def full?
-    @hangar.length >= @capacity
+    @hangar.size >= @capacity
   end
 
   def take_off(plane)
-    @hangar.pop
+    fail 'this plane is not in this Airport' unless in_hangar?(plane)
+    @hangar.pop(plane)
     plane.taken_off
+  end
+
+  def in_hangar?(plane)
+    @hangar.include?(plane)
   end
 end

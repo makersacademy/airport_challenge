@@ -23,11 +23,14 @@ describe Airport do
   end
 
   it "raise an error when at full capacity" do
-    # full_airport = Airport.new
     # populate that array @hangar
     Airport::CAPACITY.times { subject.land(Plane.new) }
-    # plane43 = Plane.new
     expect { subject.land(Plane.new) }.to raise_error 'Airport is full'
+  end
+
+  it "raises an error when a plane which isn't in the hangar tries to take off" do
+    plane = Plane.new
+    expect { subject.take_off(plane) }.to raise_error 'this plane is not in this Airport'
   end
 
   it "can be initialized with a custom capacity" do
