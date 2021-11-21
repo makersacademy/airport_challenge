@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+
   it "can be initialized with a default capacity" do 
     airport = Airport.new
     expect(airport).to be_an_instance_of(Airport)
@@ -39,6 +40,16 @@ describe Airport do
   # end
 
   it "raises an error when the weather is not safe for take off" do
-    stormy = instance_double("Weather", :safe? => false)
+    plane = double(:plane, landed: true, taken_off: false)
+    airport = instance_double(Airport, :safe? => false)
+    # Weather.stub(:new) { stormy }
+    expect { airport.take_off(plane) }.to raise_error 'Weather is stormy! please do not take off'
+  end
+
+  it "raises an error when the weather is not safe for take off" do
+    plane = double(:plane, landed: true, taken_off: false)
+    airport = instance_double(Airport, :safe? => false)
+    # Weather.stub(:new) { stormy }
+    expect { airport.land(plane) }.to raise_error 'Weather is stormy! please do try to land'
   end
 end
