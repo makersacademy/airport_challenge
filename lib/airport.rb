@@ -14,19 +14,27 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport full" if full?
-    fail "Cannot land at stormy airport" if @stormy
-    fail "Only planes can land at an airport" if plane.class != Plane
-    fail "Only flying plane can land" if plane.flying == false
+    landing_check(plane)
     plane.flying = false
     @planes << plane
   end
 
   def takeoff(plane)
+    takeoff_check(plane)
+    @planes.reject! { |planes| planes == plane }
+  end
+
+  def landing_check(plane)
+    fail "Airport full" if full?
+    fail "Cannot land at stormy airport" if @stormy
+    fail "Only planes can land at an airport" if plane.class != Plane
+    fail "Only flying plane can land" if plane.flying == false
+  end
+
+  def takeoff_check(plane)
     fail "Cannot takeoff from stormy airport" if @stormy
     fail "Specified plane not at this airport" if at_airport?(plane) == false
     fail "Plane cannot take off if it is already flying" if plane.flying == true
-    @planes.reject! { |planes| planes == plane }
   end
 
   def full?

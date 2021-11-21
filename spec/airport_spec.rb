@@ -2,8 +2,6 @@ require "airport"
 
 describe Airport do
 
-  # let(:flying_plane) { double("plane", :flying => true) }
-
   it "planes should be able to land at the airport" do
     srand(1) # not stormy airport
     expect(subject).to respond_to(:land).with(1).argument
