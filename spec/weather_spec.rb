@@ -1,3 +1,5 @@
+require 'airport'
+require 'plane'
 require 'weather'
 
 describe Weather do
@@ -8,15 +10,8 @@ describe Weather do
         expect(airport).to respond_to(:get_weather)
     end 
 
-    it 'returns Stormy' do
-        expect(airport.get_weather).to eq "Stormy"
-    end
-
-
-
-    # it 'generates a random number between 1 and 3' do 
-    #     expect(subject.generate_number).to be_between(1, 3).inclusive
-    # end 
-
+    it 'returns Stormy or Sunny' do 
+        expect(airport.local_weather).to eq("Stormy").or eq("Sunny")
+    end 
 
 end 
