@@ -1,7 +1,7 @@
 class Airport
 
-  attr_accessor :capacity
-  
+  attr_accessor :capacity, :palnes_landed
+
   def initialize(capacity)
     @capacity = capacity
     @planes_landed = []
@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     raise 'Unable to land plane: no empty spaces.' if full?
+    raise 'Unable to land plane: stormy weather.' if stormy?
     @planes_landed << plane
   end
 
@@ -20,6 +21,10 @@ class Airport
 
   def full?
     @planes_landed.length >= @capacity
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 
 end

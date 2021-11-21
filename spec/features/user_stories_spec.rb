@@ -9,6 +9,7 @@ describe 'These are user stories' do
     it 'instruct a plan to land at the airport.' do
       airport = Airport.new(30)
       plane = Plane.new
+      allow(airport).to receive(:stormy?).and_return false
       expect { airport.land(plane) }.not_to raise_error
     end
 
@@ -33,10 +34,11 @@ describe 'These are user stories' do
   it 'instructs a plane NOT to land when no capacity in the airport' do
     airport = Airport.new(30)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     30.times do
       airport.land(plane)
     end
-    expect {airport.land(plane) }.to raise_error 'Unable to land plane: no empty spaces.'
+    expect { airport.land(plane) }.to raise_error 'Unable to land plane: no empty spaces.'
   end
 
   # User story 4
@@ -45,5 +47,16 @@ describe 'These are user stories' do
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
 
+  # User story 5
 
+  # As an air traffic controller 
+  # To ensure safety 
+  # I want to prevent takeoff when weather is stormy
+
+  it 'will not allow lanidng when stormy' do
+    airport = Airport.new(30)
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error 'Unable to land plane: stormy weather.'
+  end
 end
