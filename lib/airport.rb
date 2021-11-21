@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Airport is Full" if @planes.count >= @capacity
+    fail "Airport is Full" if full?
     @planes.push(plane) 
   end
 
@@ -17,5 +17,10 @@ class Airport
     "Plane has taken off"
   end
 
+  private
+  
+  def full?
+    @planes.count >= @capacity
+  end
 end
 
