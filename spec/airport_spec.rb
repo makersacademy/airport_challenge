@@ -57,7 +57,7 @@ describe Airport do
 		
 		it "prevents planes to land during a thunderstorm" do
 			allow(jfk).to receive(:stormy_weather?).and_return true
-			expect {jfk.land(plane)}.to raise_error "bad weather"
+			expect {jfk.land(plane)}.to raise_error "Unable to land during the storm"
 		end
 
 	end
