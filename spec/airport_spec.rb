@@ -16,7 +16,7 @@ describe Airport do
 			expect(jfk).to be_an_instance_of(Airport)
 		end
 
-		it "has a default capacity of 1" do
+		it "has a default capacity of 5" do
 			expect(jfk.capacity).to eq Airport::DEFAULT_CAPACITY
 		end
 
@@ -39,7 +39,7 @@ describe Airport do
 
 	context "When Airport is full" 
 	it "prevents a plane to land if the airport is full" do
-		jfk.land(plane)
+		5.times {	jfk.land(plane)}
 		expect { jfk.land(Plane.new) }.to raise_error "Airport full"
 	end
 
@@ -50,8 +50,12 @@ describe Airport do
 
 		it "prevents planes to take-off during a thunderstorm" do
 			allow(jfk).to receive(:stormy_weather?).and_return true
-			expect{ jfk.take_off} .to raise_error "Can't take off during the storm."
+			expect{ jfk.take_off}.to raise_error "Can't take off during the storm."
 		end
+		
+		# it "prevents planes to land during a thunderstorm" do
+		
+		# end
 
 	end
 end
