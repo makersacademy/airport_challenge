@@ -18,18 +18,41 @@ describe Airport do
       allow(gatwick).to receive(:full) { true }
       expect { gatwick.land(wings) }.to raise_error("The airport is full, redirecting somewhere else")
     end
+    it "prevent landing if plane already landed" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      gatwick.land(wings)
+      expect { gatwick.land(wings) }.to raise_error("The aeroplane has already landed")
+    end
+    it "prevent landing if plane already landed somewhere else" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      luton = Airport.new
+      allow(luton).to receive(:forecast) { "sunny" }
+      luton.land(wings)
+      expect { gatwick.land(wings) }.to raise_error("The aeroplane has already landed in another airport")
+    end
   end
 
   context "take off" do
     it "instruct a plane to take off" do
-      expect(gatwick).to respond_to(:departure)
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      expect(gatwick).to respond_to(:departure).with(1).argument
     end
-    it "confirms that the plane is no longer in the airport" do
+    it "let landed planes to take off from an airport" do
       allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(wings)
-      departing_plane = gatwick.landed[0]
-      gatwick.departure
-      expect(gatwick.landed).not_to include(departing_plane)
+      expect(gatwick.departure(wings)).to eq wings
+    end
+    it "prevent plane to take off if not landed in the airport" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      gatwick.land(Plane.new)
+      expect { gatwick.departure(wings) }.to raise_error("The aeroplane is not in the airport")
+    end
+    it "checks departed planes are no longer store in airport" do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+      gatwick.land(wings)
+      10.times { gatwick.land(Plane.new)}
+      gatwick.departure(wings)
+      expect(gatwick.landed).not_to include(wings)
     end
   end
 
@@ -43,7 +66,7 @@ describe Airport do
     end
     it "report full when reach capacity" do
       allow(gatwick).to receive(:forecast) { "sunny" }
-      50.times { gatwick.land(wings) }
+      50.times { gatwick.land(Plane.new) }
       expect(gatwick.full).to eq true
     end
   end
@@ -51,7 +74,7 @@ describe Airport do
   context "weather" do
     it "prevent take off when weather is stormy" do
       allow(gatwick).to receive(:forecast) { "stormy" }
-      expect { gatwick.departure }.to raise_error("Stormy weather, red light for departure")
+      expect { gatwick.departure(wings) }.to raise_error("Stormy weather, red light for departure")
     end
     it "prevent landing when weather is stormy" do
       allow(gatwick).to receive(:forecast) { "stormy" }
