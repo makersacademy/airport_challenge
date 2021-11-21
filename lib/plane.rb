@@ -8,4 +8,8 @@ class Plane
   def land(airport)
     @location = airport
   end
+
+  def take_off
+    @location = :airbourne
+  end
 end
