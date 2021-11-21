@@ -22,6 +22,7 @@ describe Airport do
 
 		it "has a capacity parameter which overrides the default capacity" do
 			jfk = Airport.new(100)
+			allow(jfk).to receive(:stormy_weather?).and_return false
 			100.times {jfk.land(Plane.new)}
 			expect(jfk.capacity).to eq 100
 		end
