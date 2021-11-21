@@ -26,7 +26,6 @@ class Airport
 
   def plane_taking_off(plane)
     raise "That plane isn't in this airport!" unless @storage.include?(plane)
-      # changed due to rubocop
     index = @storage.index plane
     @storage.delete_at(index)
     plane.left_airport(true)

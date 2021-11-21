@@ -29,14 +29,13 @@ class Plane
 
   def take_off
     unless @in_air == false
-        # line change for rubocop
       raise "The plane is already in the air!"
     end
     unless @in_airport == true
-        # line change for rubocop
       raise "You can't take off from nowhere! You must have crashed!"
     end
     @in_air = true
+    @airport_at = "None"
   end
 
   def left_airport(in_airports)

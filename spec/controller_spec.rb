@@ -117,4 +117,36 @@ describe Controller do
     controller = Controller.new
     expect(controller.planes_in_sky).to be_instance_of(Array)
   end
+
+  it "You can pick a plane in the sky " do
+    controller = Controller.new
+    controller.new_plane_in_sky
+    expect(controller.pick_sky).not_to be_nil
+  end
+
+  it "You can pick a plane in the airport" do
+    controller = Controller.new
+    controller.new_plane_in_airport
+    expect(controller.pick_airport).not_to be_nil
+  end
+
+  it "Feature test - will test a number of planes landing and taking off from the default airport" do
+    controller = Controller.new
+    controller.stub(:weather?).and_return("Clear")
+    controller.new_plane_in_airport
+    controller.new_plane_in_sky
+    plane = Plane.new
+    controller.request_landing(plane)
+    plane2 = controller.pick_airport
+    controller.request_take_off(plane2)
+    controller.request_take_off(plane)
+    controller.create_new_airport("JFK")
+    controller.change_airport_using("JFK")
+    plane3 = controller.pick_sky
+    controller.request_landing(plane3)
+    controller.stub(:weather?).and_return("Stormy")
+    expect(lambda { controller.request_landing(plane) }).to raise_error("It's too stormy to land!")
+    expect(lambda { controller.request_take_off(plane3) }).to raise_error("It's too stormy to take off!")
+  end
+
 end

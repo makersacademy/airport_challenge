@@ -22,7 +22,6 @@ class Controller
     new_airport = Airport.new(capacity,airport_name)
     @other_airports << new_airport
     @other_airport_names << airport_name
-      # Changed for rubocop
   end
 
   def change_airport_using(new_name)
@@ -30,7 +29,6 @@ class Controller
       raise "That's not an airport I know!"
     end
     change_airport(new_name)
-    # changed for rubocop
   end
 
   def change_airport(new_name)
@@ -70,4 +68,13 @@ class Controller
     plane = Plane.new
     request_landing(plane)
   end
+
+  def pick_sky
+    return @planes_in_sky[0]
+  end
+
+  def pick_airport
+    return @airport.storage[0]
+  end
+
 end
