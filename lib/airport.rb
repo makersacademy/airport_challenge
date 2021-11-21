@@ -21,7 +21,6 @@ class Airport
 
   def take_off(plane)
     fail 'this plane is not in this Airport' unless in_hangar?(plane)
-    fail 'Weather is too stormy to take off' if safe?
     @hangar.pop
     plane.taken_off
   end
@@ -30,7 +29,4 @@ class Airport
     @hangar.include?(plane)
   end
 
-  def safe?
-    rand(10) > 7
-  end
 end

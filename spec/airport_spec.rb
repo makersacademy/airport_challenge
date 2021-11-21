@@ -31,12 +31,14 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error 'this plane is not in this Airport'
   end
 
-  it { is_expected.to respond_to(:safe?) }
+  # it "raises an error when the weather is not good to let planes take off" do
+  #   plane = double(:plane, landed: true, taken_off: false)
+  #   airport = double(:airport, land: true, take_off: false, full?: false, in_hangar?: true, safe?: false)
+  #   allow(airport).to receive(:safe?).and_return false
+  #   expect { airport.take_off(plane) }.to raise_error 'Weather is too stormy to take off'
+  # end
 
-  it "raises an error when the weather is not good to let planes take off" do
-    plane = double(:plane, landed: true, taken_off: false)
-    airport = double(:airport, land: true, take_off: false, full?: false, in_hangar?: true, safe?: false)
-    allow(airport).to receive(:safe?).and_return false
-    expect { airport.take_off(plane) }.to raise_error 'Weather is too stormy to take off'
+  it "raises an error when the weather is not safe for take off" do
+    stormy = instance_double("Weather", :safe? => false)
   end
 end
