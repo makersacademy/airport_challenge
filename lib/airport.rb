@@ -1,5 +1,5 @@
-require "weather"
-require "plane"
+require_relative "./weather.rb"
+require_relative "./plane.rb"
 
 class Airport
   DEFAULT_CAPACITY = 10
@@ -20,6 +20,7 @@ class Airport
 
   def take_off(plane)
     raise "#{self.class.name} empty" if empty?
+    raise "Plane is not in this airport" if planes.include?(plane) == false
     raise "Cannot take off during storm" if weather.stormy?
     set_airbourne(plane)
     planes.delete(plane)

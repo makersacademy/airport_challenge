@@ -15,7 +15,7 @@ describe Airport do
             allow(plane_grounded).to receive(:take_off) 
             allow(plane_grounded).to receive(:land)
             allow(plane_grounded).to receive(:report_flying)
-
+            allow(airport.weather).to receive(:stormy?).and_return false
         end
         
         it "can land an airbourne plane" do
@@ -24,7 +24,7 @@ describe Airport do
             expect(airport.view_planes).to include(plane)
         end
 
-        it "cannot land planes that have already landed" do
+        it "cannot land planes that has already landed" do
             expect{airport.land(plane_grounded)}.to raise_error("Plane has already landed")
         end
         
@@ -64,9 +64,6 @@ describe Airport do
             end
         end
 
-        
-
-
         context "when full" do
             it "cannot accept any more planes" do
                 10.times {airport.add_plane(Plane.new)}
@@ -75,20 +72,10 @@ describe Airport do
         end
         
         
-
-
-        # describe "when grounded" do
-        #     it "cannot land" do
-        #         plane_grounded.land(airport)
-        #         expect{plane_grounded.land(airport)}.to raise_error("Plane is already grounded")
-        #     end
-        #     it "can take off from an airport" do
-        #         expect(plane_grounded).to respond_to(:take_off)
-        #     end
-        #     it "can only take off from an airport the plane is in" do
-        #         airport2 = Airport.new
-        #         expect{plane_grounded.take_off(airport2)}.to raise_error()
-        #     end
+        it "can only take off from an airport the plane is in" do
+            airport.add_plane(double :plane, :flying? => false)
+            expect{airport.take_off(plane_grounded)}.to raise_error("Plane is not in this airport")
+        end
         #     it "can deregister planes that have taken off" do
         #         plane_grounded.take_off(airport)
         #         expect(airport.empty?).to eq(true)
