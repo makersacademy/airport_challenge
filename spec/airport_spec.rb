@@ -8,6 +8,14 @@ describe Airport do
             expect(airport).to respond_to :land
         end
 
+        it 'confirms landed plane is in airport' do
+            airport = Airport.new
+            plane = Plane.new
+            allow(airport).to receive(:get_weather) { "sunny" }
+            airport.land(plane)
+            expect(airport.planes).to include plane
+        end
+
         it 'prevents landing when airport full' do
             airport = Airport.new
             plane = Plane.new
