@@ -6,25 +6,25 @@ describe Airport do
   let(:wings) { Plane.new }
   
   context "land" do
+    before do
+      allow(gatwick).to receive(:forecast) { "sunny" }
+    end
+
     it "instruct a plane to land" do
       expect(gatwick).to respond_to(:land).with(1).argument
     end
     it "land a plane in the airport" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       expect(gatwick.land(wings)).to eq wings
     end
     it "prevent landing when airport is full" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       allow(gatwick).to receive(:full) { true }
       expect { gatwick.land(wings) }.to raise_error("The airport is full, redirecting somewhere else")
     end
     it "prevent landing if plane already landed" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(wings)
       expect { gatwick.land(wings) }.to raise_error("The aeroplane has already landed")
     end
     it "prevent landing if plane already landed somewhere else" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       luton = Airport.new
       allow(luton).to receive(:forecast) { "sunny" }
       luton.land(wings)
@@ -33,22 +33,22 @@ describe Airport do
   end
 
   context "take off" do
-    it "instruct a plane to take off" do
+    before do
       allow(gatwick).to receive(:forecast) { "sunny" }
+    end
+
+    it "instruct a plane to take off" do
       expect(gatwick).to respond_to(:departure).with(1).argument
     end
     it "let landed planes to take off from an airport" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(wings)
       expect(gatwick.departure(wings)).to eq wings
     end
     it "prevent plane to take off if not landed in the airport" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(Plane.new)
       expect { gatwick.departure(wings) }.to raise_error("The aeroplane is not in the airport")
     end
     it "checks departed planes are no longer store in airport" do
-      allow(gatwick).to receive(:forecast) { "sunny" }
       gatwick.land(wings)
       10.times { gatwick.land(Plane.new)}
       gatwick.departure(wings)
