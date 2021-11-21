@@ -1,12 +1,9 @@
 module Weather
 
-    def weather?
-        random = rand(20)
-        if random == 1
-            return "Stormy"
-        else
-            return "Clear"
-        end
-    end
+  def weather?
+    random = rand(20)
+    return "Clear" unless random == 1
+    return "Stormy"
+  end
 
 end
