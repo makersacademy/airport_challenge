@@ -1,4 +1,5 @@
 require_relative('./airport')
+
 class Plane
   def land_at_airport(airport)
     fail "The airport is full" if airport.is_full?
@@ -12,7 +13,6 @@ class Plane
     fail "It's too stormy to take off" if airport.local_weather == "Stormy"
     airport.parked_planes.delete(self)
     @in_airport = false
-
   end
 
   def in_airport?

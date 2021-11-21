@@ -40,13 +40,22 @@ describe Plane do
     expect(airport.parked_planes).to eq [subject]
   end 
 
-#  edge cases
-
   it 'raises an error if trying to take off from an airport it is not parked at' do
     airport = Airport.new
     allow(airport).to receive(:local_weather) { "Sunny" }
-    expect { subject.take_off_from_airport(airport) }.to raise_error "The plane is not parked in that airport"
+    expect{ subject.take_off_from_airport(airport) }.to raise_error "The plane is not parked in that airport" 
   end 
 
+  it 'can land and take off multiple planes' do
+    airport = Airport.new
+    allow(airport).to receive(:local_weather) { "Sunny" }
+    plane1, plane2, plane3 = Plane.new, Plane.new, Plane.new
+    plane1.land_at_airport(airport)
+    plane2.land_at_airport(airport)
+    plane3.land_at_airport(airport)
+    plane1.take_off_from_airport(airport)
+    plane3.take_off_from_airport(airport)
+    expect(airport.parked_planes).to eq [plane2]
+  end 
 
 end 
