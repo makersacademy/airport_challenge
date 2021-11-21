@@ -4,7 +4,7 @@ module Weather
     rand(1..3)
   end 
 
-  def get_weather
+  def check_weather
     random_number <= 2 ? "Sunny" : "Stormy"
   end
 

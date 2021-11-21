@@ -15,15 +15,15 @@ describe Plane do
     subject.take_off_from_airport(airport)
     subject.in_airport?
     expect(subject).not_to be_in_airport
-    end 
+  end 
 
   it 'raises error if it tries to land when airport is full' do
     airport = Airport.new
     allow(airport).to receive(:local_weather) { "Sunny" }
     # method stubb to force sunny weather
-      airport.capacity.times do
+    airport.capacity.times do
       Plane.new.land_at_airport(airport)
-      end
+    end
     expect { Plane.new.land_at_airport(airport) }.to raise_error "The airport is full"
   end 
 
@@ -43,7 +43,7 @@ describe Plane do
   it 'raises an error if trying to take off from an airport it is not parked at' do
     airport = Airport.new
     allow(airport).to receive(:local_weather) { "Sunny" }
-    expect{ subject.take_off_from_airport(airport) }.to raise_error "The plane is not parked in that airport" 
+    expect { subject.take_off_from_airport(airport) }.to raise_error "The plane is not parked in that airport" 
   end 
 
   it 'can land and take off multiple planes' do

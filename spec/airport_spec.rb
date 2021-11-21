@@ -8,11 +8,11 @@ describe Airport do
   end
 
   it 'keeps track of planes that have landed in the airport' do
-   parked_planes = 0
-   plane = Plane.new
-   allow(subject).to receive(:local_weather) { "Sunny" }
-   plane.land_at_airport(subject)
-   expect(subject.parked_planes.count).to eq 1
+    parked_planes = 0
+    plane = Plane.new
+    allow(subject).to receive(:local_weather) { "Sunny" }
+    plane.land_at_airport(subject)
+    expect(subject.parked_planes.count).to eq 1
   end
 
   it 'removes planes once they take off from the airport' do
@@ -23,4 +23,5 @@ describe Airport do
     expect(subject.parked_planes).not_to include(plane)
   end 
 
-end 
+end
+ 

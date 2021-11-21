@@ -5,21 +5,20 @@ class Airport
 
   include Weather
 
-DEFAULT_CAPACITY = 10
-
+  DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @parked_planes = []
-    @local_weather = self.get_weather
+    @local_weather = check_weather
   end 
 
-  def is_full?
+  def full?
     true if @parked_planes.count >= DEFAULT_CAPACITY
   end
 
-  def check_weather
-    @local_weather = self.get_weather
+  def update_weather
+    @local_weather = check_weather
   end
 
 end
