@@ -1,12 +1,12 @@
-require_relative "./weather.rb"
-require_relative "./plane.rb"
+require_relative "./weather"
+require_relative "./plane"
 
 class Airport
   DEFAULT_CAPACITY = 10
 
   attr_reader :capacity, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY,weather=Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @planes = []
     @weather = weather
@@ -22,22 +22,22 @@ class Airport
     raise "#{self.class.name} empty" if empty?
     raise "Plane is not in this airport" if planes.include?(plane) == false
     raise "Cannot take off during storm" if weather.stormy?
-    set_airbourne(plane)
+    fly_plane(plane)
     planes.delete(plane)
   end
 
   def land(plane)
     raise "Cannot land during storm" if weather.stormy?
     raise "Plane has already landed" if plane.flying? == false
-    set_grounded(plane)
+    ground_plane(plane)
     add_plane(plane)
   end
 
-  def set_grounded(plane)
+  def ground_plane(plane)
     plane.report_landed
   end
 
-  def set_airbourne(plane)
+  def fly_plane(plane)
     plane.report_flying
   end
 
@@ -50,12 +50,13 @@ class Airport
   end
   
   def view_planes
-    dummy_list= []
-    planes.each {|plane| dummy_list << plane} 
+    dummy_list = []
+    planes.each { |plane| dummy_list << plane } 
     return dummy_list 
   end
 
   private
+
   attr_reader :planes
 
 end
