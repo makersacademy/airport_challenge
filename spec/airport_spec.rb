@@ -15,4 +15,12 @@ describe Airport do
    expect(subject.parked_planes.count).to eq 1
   end
 
+  it 'removes planes once they take off from the airport' do
+    plane = Plane.new
+    allow(subject).to receive(:local_weather) { "Sunny" }
+    plane.land_at_airport(subject)
+    plane.take_off_from_airport(subject)
+    expect(subject.parked_planes).not_to include(plane)
+  end 
+
 end 

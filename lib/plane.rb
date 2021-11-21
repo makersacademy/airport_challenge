@@ -7,8 +7,11 @@ class Plane
     airport.parked_planes << self
   end
 
-  def take_off_from_airport
+  def take_off_from_airport(airport)
+    fail "It's too stormy to take off" if airport.local_weather == "Stormy"
+    airport.parked_planes.delete(self)
     @in_airport = false
+
   end
 
   def in_airport?

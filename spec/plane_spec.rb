@@ -9,7 +9,8 @@ describe Plane do
   it { is_expected.to respond_to :take_off_from_airport }
 
   it 'confirms the plane is no longer in the airport once the plane takes off' do
-    subject.take_off_from_airport
+    airport = Airport.new
+    subject.take_off_from_airport(airport)
     subject.in_airport?
     expect(subject).not_to be_in_airport
     end 
