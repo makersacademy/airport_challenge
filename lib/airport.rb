@@ -3,12 +3,12 @@ require_relative 'plane'
 class Airport
 
 attr_reader :planes
-CAPACITY = 1
+DEFAULT_CAPACITY = 1
 
-  def initialize (capacity = CAPACITY)
+  def initialize (desired_capacity = DEFAULT_CAPACITY)
     @planes = []
     @planes_taken_off = []
-    @capacity = capacity
+    @capacity = desired_capacity
   end
 
   def land(plane)

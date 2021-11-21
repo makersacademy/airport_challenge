@@ -32,7 +32,7 @@ describe Airport do
 
   it "raise an error when you try to land a plane in a full airport" do
     airport = Airport.new
-    Airport::CAPACITY.times { airport.land Plane.new } 
+    Airport::DEFAULT_CAPACITY.times { airport.land Plane.new } 
     expect { airport.land Plane.new }.to raise_error 'Airport full'
   end
 
