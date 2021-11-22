@@ -42,7 +42,8 @@ describe Airport do
     end
     it "let landed planes to take off from an airport" do
       gatwick.land(wings)
-      expect(gatwick.departure(wings)).to eq wings
+      gatwick.departure(wings)
+      expect(wings.flying).to eq true
     end
     it "prevent plane to take off if not landed in the airport" do
       gatwick.land(Plane.new)
