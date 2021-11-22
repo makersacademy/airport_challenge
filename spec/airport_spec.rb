@@ -37,9 +37,7 @@ describe Airport do
 
   it 'can check that the weather checker is random' do
     airport = Airport.new
-    expect(Kernel).to receive(:rand)
+    expect(Nums).to receive(:rand)
     airport.weather
-    # This tests that the result of the
-    # check_weather method is always random
   end
 end

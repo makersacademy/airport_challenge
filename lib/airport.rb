@@ -23,7 +23,7 @@ class Airport
     end
 
     def weather
-        the_weather = Kernel.rand(1..40)
+        the_weather = Nums.rand(1..40)
         if the_weather == 1
             return "Stormy"
         else
