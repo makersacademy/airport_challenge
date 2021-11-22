@@ -30,4 +30,17 @@ describe Airport do
   it "should have a default capacity of 20 when no armgument is given" do
     expect(subject.capacity).to eq Airport::MAXIMUM_CAPACITY
   end
+
+  # it "should raise an error when take off and is stormy" do
+  #   allow(subject).to receive(:stormy).and_return false
+  #   subject.land_plane(Plane.new)
+  #   expect { subject.stormy(true).take_off }.to raise_error "Can not take off: weather stormy"
+  # end
+  it "should raise an error when take off and is stormy" do
+    subject.stormy = false
+    plane = Plane.new
+    subject.land_plane(plane)
+    subject.stormy = true
+    expect{subject.take_off}.to raise_error("should raise an error when take off and is stormy")
+  end
 end
