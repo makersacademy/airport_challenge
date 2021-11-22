@@ -37,9 +37,8 @@ describe Airport do
     expect { airport.land Plane.new }.to raise_error 'Airport full'
   end
 
-  it "prevents takeoff if weather is stormy" do
-      weather ==
-
-  end
+  #it "prevents takeoff if weather is stormy" do
+      #weather ==
+  #end
 
 end
