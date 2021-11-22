@@ -6,10 +6,8 @@ class Weather
     @status
   end
 
-
-
   def generate_weather
-    if (1..4).to_a.include?(random_number_generator) #40% chance of stormy weather
+    if (1..4).to_a.include?(random_number_generator) # 40% chance of stormy weather
       @status = "stormy"
     else
       @status = "sunny"
@@ -19,8 +17,9 @@ class Weather
   
   
   private
+
   def random_number_generator
     rand(1..10)
   end
 
-end 
+end

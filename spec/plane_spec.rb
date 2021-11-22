@@ -6,8 +6,4 @@ describe Plane do
     expect(subject.colour).to eq "white"
   end
 
-
-
-
-
 end
