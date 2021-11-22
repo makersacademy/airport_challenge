@@ -11,7 +11,7 @@ describe Airport do
 
   describe '#check_requests' do
     it 'Checks if planes meet requirements for landing at destination airport' do   
-      allow_any_instance_of(AirportControl).to receive(:check_weather).and_return("Clear")
+      allow_any_instance_of(AirportControl).to receive(:stormy?).and_return(false)
       london = Airport.new("London")
       plane1 = Plane.new("Boeing", "Paris", "London", "Flying")
       plane1.request_landing(plane1)
@@ -21,7 +21,7 @@ describe Airport do
 
   describe '#accept_requests' do
       it 'Raises an error if landing requests exceed airport capacity' do
-        allow_any_instance_of(AirportControl).to receive(:check_weather).and_return("Clear")
+        allow_any_instance_of(AirportControl).to receive(:stormy?).and_return(false)
         london = london = Airport.new("London")
         plane1 = Plane.new("Boeing", "Paris", "London", "Flying")
         plane2 = Plane.new("Boeing", "Paris", "London", "Flying")
