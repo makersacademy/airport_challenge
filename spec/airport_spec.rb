@@ -10,7 +10,7 @@ describe Airport do
 
   describe '#land' do
 
-    context "When not stormy" do
+    context "when not stormy" do
 
       before(:each) do
         allow(@airport).to receive(:stormy?).and_return(false)
@@ -59,7 +59,7 @@ describe Airport do
 
       it { is_expected.to respond_to :take_off }
 
-      it "After instructing a plane to take off, I expect that plane to not be in the airport if the weather is not stormy" do 
+      it "After instructing a plane to take off, I expect that plane to no longer be in the airport" do 
         @airport.land(@plane)
         @airport.take_off
         expect(@airport.planes).to be_empty
@@ -77,7 +77,7 @@ describe Airport do
         allow(@airport).to receive(:stormy?).and_return(true)
       end
 
-      it "If the weather is stormy, you should not be able to take off" do 
+      it "You should not be able to take off" do 
         allow(@airport).to receive(:stormy?).and_return(false)
         @airport.capacity.times { @airport.land Plane.new }
         allow(@airport).to receive(:stormy?).and_return(true)

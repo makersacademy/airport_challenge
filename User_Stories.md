@@ -55,4 +55,8 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 
-Same as above but land should raise an error if stormy
+Same as above but land should raise an error if stormy.
+
+Edge Cases
+
+Planes that are already flying cannot take off, Planes that are landed cannot land again and should be in an airport.
