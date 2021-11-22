@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -34,6 +35,11 @@ describe Airport do
     airport = Airport.new
     Airport::DEFAULT_CAPACITY.times { airport.land Plane.new } 
     expect { airport.land Plane.new }.to raise_error 'Airport full'
+  end
+
+  it "prevents takeoff if weather is stormy" do
+      weather ==
+
   end
 
 end
