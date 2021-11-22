@@ -1,5 +1,6 @@
 class Weather
   def stormy?
-    rand(1..10).even?
+    p result = rand(1..10)
+    result == 1
   end
 end

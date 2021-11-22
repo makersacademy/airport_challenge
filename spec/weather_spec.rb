@@ -8,7 +8,7 @@ describe Weather do
 
   it "will return both true and false when running #stormy?" do
     results = []
-    100.times { results << subject.stormy? }
+    500.times { results << subject.stormy? }
     expect(results.include?(true & false)).to eq true
   end
 end

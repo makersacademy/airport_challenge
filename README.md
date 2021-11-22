@@ -18,7 +18,7 @@ Approach
 
 My approach was to break down the problem into two main classes: airport and plane. The general idea is that the user can give the plane specific commands in order to allow the plane to takeoff or land in different airports. Thus, the plane class will have most of the functionality, on the other hand, the airport class acts as more of a container with some extra commands that can allow for some interactivity. Finally, the weather class takes care of randomizing the weather. 
 
-It is important to to require both the `airport.rb` and `plane.rb` file for the program to run
+It is important to to require both the `airport.rb` and `plane.rb` file for the program to run.
 
 Here is a short example of how a user can make a plane takeoff from an airport and land in another
 ```
