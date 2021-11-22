@@ -3,10 +3,7 @@ require_relative 'weather'
 
 class Controller
   include Weather
-  attr_reader :airport
-  attr_reader :other_airports
-  attr_reader :other_airport_names
-  attr_reader :planes_in_sky
+  attr_reader :airport, :other_airports, :other_airport_names, :planes_in_sky
 
   def initialize(capacity = 20)
     @airport = Airport.new(capacity)
@@ -32,13 +29,10 @@ class Controller
   end
 
   def change_airport(new_name)
-    puts @other_airports
     index = @other_airport_names.index(new_name)
-    puts index
     @other_airports << @airport
     @other_airport_names << @airport.name
     @airport = @other_airports[index]
-    puts @airport
     @other_airports.delete_at(index)
     @other_airport_names.delete_at(index)
   end

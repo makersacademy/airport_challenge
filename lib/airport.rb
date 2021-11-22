@@ -4,10 +4,9 @@ require 'weather'
 class Airport
   include Weather
 
-  attr_reader :storage
+  attr_reader :storage, :capacity, :name
   DEFAULT_CAPACITY = 20
-  attr_reader :capacity
-  attr_reader :name
+  
 
   def initialize(capacity = DEFAULT_CAPACITY,name = "Heathrow")
     @storage = []

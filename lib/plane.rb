@@ -1,8 +1,6 @@
 class Plane
 
-  attr_reader :in_air
-  attr_reader :in_airport
-  attr_reader :airport_at
+  attr_reader :in_air, :in_airport, :airport_at
 
   def initialize(airports = false)
     @in_air = true
