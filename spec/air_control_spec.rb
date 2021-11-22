@@ -1,9 +1,29 @@
-# require 'air_control'
+require 'airport'
+require 'plane'
+require 'air_control.rb'
 
-# describe AirControl do
+describe AirportControl do
+  
+  describe '#check_weather' do
+    it 'Allows pilots and air control staff to check the weather' do
+      plane = Plane.new("Boeing", "Paris", "London", "Flying")
+      expect(plane.check_weather).to be_an_instance_of String
+    end
+  end
 
-#   it 'Allows pilots and air control staff to check the weather' do
-#     expect(subject.check_weather).to be_an_instance_of String
-#   end
+  describe '#request_landing' do
+    it 'Lands the plane' do
+      plane = Plane.new("Boeing", "Paris", "London", "Flying")
+      expect(plane.request_landing(plane)).to be_an_instance_of Array
+    end
+  end
 
-# end
+  describe '#take_off' do
+    it 'Lands the plane' do
+      plane = Plane.new("Boeing", "Paris", "London", "Flying")
+      expect(plane.request_landing(plane)).to be_an_instance_of Array
+    end
+  end
+
+
+end
