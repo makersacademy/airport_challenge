@@ -96,6 +96,7 @@ describe Airport do
 
   it "only flying plane can land" do
     plane = Plane.new
+    subject.land(plane)
     expect { subject.land(plane) }.to raise_error "Only flying plane can land"
   end
 

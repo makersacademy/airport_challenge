@@ -21,6 +21,7 @@ class Airport
 
   def takeoff(plane)
     takeoff_check(plane)
+    plane.flying = true
     @planes.reject! { |planes| planes == plane }
   end
 
