@@ -4,9 +4,9 @@ class Plane
     @flying = true
   end
 
-  def land(airport)
+  def land(airport, weather)
     fail "airport is full" if airport.full?
-    fail "weather is stormy" if airport.stormy?    
+    fail "weather is stormy" if weather.stormy?    
     fail "plane has already landed" if flying? == false
   
     airport.planes.push(self)
@@ -14,8 +14,8 @@ class Plane
     return "plane has landed"
   end
 
-  def depart(airport)
-    fail "weather is stormy" if airport.stormy?
+  def depart(airport, weather)
+    fail "weather is stormy" if weather.stormy?
     fail "plane is not at that airport" if airport.planes.include?(self) == false
     fail "plane is already flying" if flying? 
 
