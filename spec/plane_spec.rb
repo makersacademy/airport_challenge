@@ -9,7 +9,7 @@ describe Plane do
     it 'lands at airport' do
       allow(airport).to receive(:stormy?) { false }
       subject.land(airport)
-      expect(airport.planes.length).to be(1)
+      expect(airport.planes).to include(subject)
     end
 
     it 'cannot land if airport is full' do
