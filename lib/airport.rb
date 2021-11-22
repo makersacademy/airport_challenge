@@ -1,7 +1,7 @@
 require_relative('./weather')
 
 class Airport
-  attr_accessor :capacity, :parked_planes, :local_weather
+  attr_reader :local_weather, :parked_planes, :capacity
 
   include Weather
 
