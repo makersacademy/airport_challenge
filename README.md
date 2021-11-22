@@ -61,7 +61,7 @@ The final part of my approach was the landing and takeoff checks. We can't land 
 Solution
 -----
 
-** Plane Class **
+**Plane Class**
 
 ```
 class Plane
@@ -74,7 +74,7 @@ end
 ```
 Plane objects are intialized with a @flying attribute, which includes an attr_accessor as this attribute needs to be accessed and edited by methods defined on the Airport class.
 
-** Airport Class **
+**Airport Class**
 
 ```
 attr_reader :planes, :capacity, :stormy
@@ -90,9 +90,9 @@ attr_reader :planes, :capacity, :stormy
 
 ```
 Airport objects are initialized with three attributes.
-** @capacity ** this is the airport's capacity and defaults to DEFAULT_CAPACITY (10) in the abscence of user input.
-** @planes ** this is an array containing the planes that have landed at the airport.
-** @stormy ** whether a particular airport is stormy or not is determined randomly at the point of initialization. There is a 20% chance (LIKELIHOOD_OF_STORMINESS) that it will be stormy.
+**@capacity** this is the airport's capacity and defaults to DEFAULT_CAPACITY (10) in the abscence of user input.
+**@planes** this is an array containing the planes that have landed at the airport.
+**@stormy * whether a particular airport is stormy or not is determined randomly at the point of initialization. There is a 20% chance (LIKELIHOOD_OF_STORMINESS) that it will be stormy.
 
 ```
   def land(plane)
@@ -109,9 +109,9 @@ Airport objects are initialized with three attributes.
   end
 
 ```
-** Landing the plane **
+**Landing the plane**
 
-The method ** land(plane) ** firstly calls the ** landing_check(plane) ** method to verify whether the plane can land. It will not be allowed to land if the airport is full, if it is stormy, if the plane is not a Plane object, or if the plane is not flying.
+The method **land(plane)** firstly calls the **landing_check(plane)** method to verify whether the plane can land. It will not be allowed to land if the airport is full, if it is stormy, if the plane is not a Plane object, or if the plane is not flying.
 
 When the plane lands, it will no longer be flying.
 
@@ -133,9 +133,9 @@ The plane is added to the @planes array.
 
 ```
 
-** Plane takeoff **
+**Plane takeoff**
 
-The method ** takeoff(plane) ** firstly calls the ** takeoff_check(plane) ** method to verify whether the plane can take off. It will not be allowed to take off if it is stormy, if the plane is not at the airport, or if the plane is already flying.
+The method **takeoff(plane)** firstly calls the **takeoff_check(plane)** method to verify whether the plane can take off. It will not be allowed to take off if it is stormy, if the plane is not at the airport, or if the plane is already flying.
 
 When the plane takes off, it will be flying.
 
