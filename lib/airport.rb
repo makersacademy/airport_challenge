@@ -10,7 +10,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    rand < LIKELIHOOD_OF_STORMINESS ? @stormy = true : @stormy = false
+    @stormy = rand < LIKELIHOOD_OF_STORMINESS
   end
 
   def land(plane)
@@ -29,13 +29,13 @@ class Airport
     fail "Airport full" if full?
     fail "Cannot land at stormy airport" if @stormy
     fail "Only planes can land at an airport" if plane.class != Plane
-    fail "Only flying plane can land" if plane.flying == false
+    fail "Only flying plane can land" unless plane.flying
   end
 
   def takeoff_check(plane)
     fail "Cannot takeoff from stormy airport" if @stormy
-    fail "Specified plane not at this airport" if at_airport?(plane) == false
-    fail "Plane cannot take off if it is already flying" if plane.flying == true
+    fail "Specified plane not at this airport" unless at_airport?(plane)
+    fail "Plane cannot take off if it is already flying" if plane.flying
   end
 
   def full?
