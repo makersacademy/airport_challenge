@@ -12,6 +12,8 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Given the user stories, I first started with the weather aspect of the challenge. Creating a weather class to 'randomize' the weather to appease several user stories. 
+
 
 Instructions
 ---------
