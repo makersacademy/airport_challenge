@@ -3,7 +3,7 @@ class Airport
   DEFAULT_CAPACITY = 10
   WEATHER_SCALE = 10
 
-  def initialize(capacity = 10)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @weather = rand(WEATHER_SCALE)
