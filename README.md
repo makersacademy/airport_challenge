@@ -13,26 +13,8 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
+User Stories
 -----
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller 
@@ -60,30 +42,20 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+For this challenge I have used 2 classes and 1 module:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+* *Airport class*
+  * it defines an airport instance
+  * it initialize with a `@landed` instance variable set to an empty list to manage the state of the system: landing and departing planes
+  * it has a `@capacity` instance variable set to `DEFAULT_CAPACITY` constant unless otherwise specified with  `Airport.new(capacity)`
+  * it has a `land` method and a `departure` method to manage landing and take off of planes
+  * it has a `full` method to check if `@landed` has reach maximum `@capacity`, they add or remove planes from `@landed` list
+* *Plane class*
+  * it defines a plane instance
+  * it simply create an object with a instance variable `@flying` set to true
+  * to manage edge cases the instance variable `@flying` of Plane class is set to `false` every time the plane has landed and set to `true` when take off. 
+* *Weather module*
+  * it has a `forecast` method
+  * it randomly return `"sunny"` (80% chance) or `"stormy"` (20% chance)
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+I have used TDD approach by writing Rspec test for each functionality by following the RED-GREEN-REFACTOR process together with feature testing on irb
