@@ -10,10 +10,10 @@ class Airport
   end
 
   def full?
-    return @planes.length >= DEFAULT_CAPACITY
+    return planes.length >= DEFAULT_CAPACITY
   end
 
   def stormy?
-    @weather >= WEATHER_SCALE
+    weather >= WEATHER_SCALE
   end
 end
