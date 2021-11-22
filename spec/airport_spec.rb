@@ -62,23 +62,23 @@ describe Airport do
   end
 
   it "airports should randomly generate a storminess condition" do
-    srand(4)
+    srand(1)
     # rand(100) when seeded with srand(4) will return 46, 55, 69, 1, 87
     # this means only the fifth airport generated should return "true" for stormy
     airport_weather = []
     5.times { airport_weather.push(Airport.new.stormy) }
-    expect(airport_weather).to match_array [false, false, false, false, true]
+    expect(airport_weather).to match_array [false, false, true, false, true]
   end
 
   it "should prevent takeoff when weather is stormy" do
-    srand(6) # creates stormy airport
+    srand(7) # creates stormy airport
     plane = Plane.new
     plane.flying = true
     expect { subject.land(plane) }.to raise_error "Cannot land at stormy airport"
   end
 
   it "should prevent landing when weather is stormy" do
-    srand(6) # creates stormy airport
+    srand(7) # creates stormy airport
     subject.planes << plane = Plane.new
     expect { subject.takeoff(plane) }.to raise_error "Cannot takeoff from stormy airport"
   end

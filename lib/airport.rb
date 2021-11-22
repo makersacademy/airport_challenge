@@ -10,7 +10,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    rand(100) >= LIKELIHOOD_OF_STORMINESS * 100 ? @stormy = false : @stormy = true
+    rand < LIKELIHOOD_OF_STORMINESS ? @stormy = true : @stormy = false
   end
 
   def land(plane)
