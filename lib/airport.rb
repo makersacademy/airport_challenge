@@ -7,12 +7,12 @@ class Airport
   def initialize(capacity = CAPACITY)
     @capacity = capacity
     @hangar = []
-    @weather = rand(10)
+    #@weather = rand(10)
   end
 
   def land(plane)
     fail 'Airport is full' if full?
-    fail 'Weather is stormy! do not land' unless safe?
+    # fail 'Weather is stormy! do not land' unless safe?
     @hangar << plane
     plane.landed
   end
@@ -23,7 +23,7 @@ class Airport
 
   def take_off(plane)
     fail 'this plane is not in this Airport' unless in_hangar?(plane)
-    fail 'Weather is stormy! please do try to land' unless safe?
+    # fail 'Weather is stormy! please do try to land' unless safe?
     @hangar.pop
     plane.taken_off
   end
@@ -32,7 +32,7 @@ class Airport
     @hangar.include?(plane)
   end
 
-  def safe?
-    @weather < 7
-  end
+  # def safe?
+  #   raise 'Weather is stormy, please stand by' unless @weather < 7
+  # end
 end
