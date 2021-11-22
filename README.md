@@ -90,9 +90,11 @@ attr_reader :planes, :capacity, :stormy
 
 ```
 Airport objects are initialized with three attributes.
-**@capacity** this is the airport's capacity and defaults to DEFAULT_CAPACITY (10) in the abscence of user input.
-**@planes** this is an array containing the planes that have landed at the airport.
-**@stormy * whether a particular airport is stormy or not is determined randomly at the point of initialization. There is a 20% chance (LIKELIHOOD_OF_STORMINESS) that it will be stormy.
+* **@capacity** this is the airport's capacity and defaults to DEFAULT_CAPACITY (10) in the abscence of user input.
+* **@planes** this is an array containing the planes that have landed at the airport.
+* **@stormy** whether a particular airport is stormy or not is determined randomly at the point of initialization. There is a 20% chance (LIKELIHOOD_OF_STORMINESS) that it will be stormy.
+
+**Landing the plane**
 
 ```
   def land(plane)
@@ -109,13 +111,14 @@ Airport objects are initialized with three attributes.
   end
 
 ```
-**Landing the plane**
 
 The method **land(plane)** firstly calls the **landing_check(plane)** method to verify whether the plane can land. It will not be allowed to land if the airport is full, if it is stormy, if the plane is not a Plane object, or if the plane is not flying.
 
 When the plane lands, it will no longer be flying.
 
 The plane is added to the @planes array.
+
+**Plane takeoff**
 
 ```
 
@@ -132,8 +135,6 @@ The plane is added to the @planes array.
   end
 
 ```
-
-**Plane takeoff**
 
 The method **takeoff(plane)** firstly calls the **takeoff_check(plane)** method to verify whether the plane can take off. It will not be allowed to take off if it is stormy, if the plane is not at the airport, or if the plane is already flying.
 
@@ -159,6 +160,6 @@ Checks if a specified plane is at the airport. Used by the takeoff(plane) functi
 Notes
 ---------
 
-This solution was implemented using a TDD approach. I first defined unit tests and then implemented the code to address them in the most simple way.
-All Rspec tests pass, and stylistic errors have also been removed with the aid of Rubocop.
-In order to ensure consistent behavior in tests, srand was used to produce deterministic behavior in random variables (@stormy).
+* This solution was implemented using a TDD approach. I first defined unit tests and then implemented the code to address them in the most simple way.
+* All Rspec tests pass, and stylistic errors have also been removed with the aid of Rubocop.
+* In order to ensure consistent behavior in tests, srand was used to produce deterministic behavior in random variables (@stormy).
