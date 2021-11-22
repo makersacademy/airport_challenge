@@ -13,6 +13,7 @@ class Airport
 
     def takeoff(plane)
         raise 'cannot land plane: its stormy' if stormy?
+        p 'Plane has taken off'
     end
     
     private
