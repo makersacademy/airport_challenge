@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  context "(taking off)" do
+  describe "(taking off)" do
     
     before(:each) do
       @heathrow, @gatwick = Airport.new, Airport.new
@@ -68,7 +68,7 @@ describe Plane do
 
   end
 
-  context "(landing)" do
+  describe "(landing)" do
 
     before(:each) do
       @heathrow, @gatwick = Airport.new, Airport.new

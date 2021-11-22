@@ -1,5 +1,8 @@
+require_relative 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 100
+  include Weather
   attr_reader :hangar
   attr_reader :capacity
   
@@ -12,9 +15,9 @@ class Airport
     @hangar.count >= @capacity
   end
 
-  def weather_ok?
-    rand < 0.8
-  end
+  # def weather_ok?
+  #   rand < 0.8
+  # end
 
   def holding?(plane)
     @hangar.include?(plane)
