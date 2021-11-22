@@ -87,3 +87,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+## What I've done for this weekend challenge:
+
+All the user stories have been implimented - a plane can both land and take off at an airport, with the airport's capacity able to be changed upon creation. The planes can also be confirmed as not at the airport both internally in themselves (with airport_at) and in the airport itself. The weather is also implimented - a plane will not land or take off in stormy weather. The Controller class is responsible for letting planes land, take off and choosing the plane to do this, and can create new planes in the airport and the sky (as if they've just flown in range!)
+
+The controller can also create a new airport and switch to this one, and do similar for this - of course, planes in the sky can therefore travel between these with the correct method calls (There is no direct transfer method currently enabled - to  do so, the plane would have to take off, the controller switch airports then the controller lands the plane). A feature test, involving landing and taking off many planes in clear weather (then attempting in stormy weather) has also been implimented too.
+
+All Rspec tests pass, and Rubocop has no offenses detected.
