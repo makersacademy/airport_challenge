@@ -1,8 +1,7 @@
 require_relative 'plane'
-require_relative 'weather'
  
 class Airport
-  CAPACITY = 42
+  CAPACITY = 14
   attr_reader :capacity, :hangar, :weather
 
   def initialize(capacity = CAPACITY)
@@ -12,8 +11,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'Weather is stormy please do not land' unless safe?
     fail 'Airport is full' if full?
+    fail 'Weather is stormy! do not land' unless safe?
     @hangar << plane
     plane.landed
   end
@@ -23,8 +22,8 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Weather is stormy! please do try to land' unless safe?
     fail 'this plane is not in this Airport' unless in_hangar?(plane)
+    fail 'Weather is stormy! please do try to land' unless safe?
     @hangar.pop
     plane.taken_off
   end
@@ -34,6 +33,6 @@ class Airport
   end
 
   def safe?
-    @weather > 7
+    @weather < 7
   end
 end
