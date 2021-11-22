@@ -10,10 +10,6 @@ describe Airport do
   context "tests" do
 
     before do
-      allow(plane_flying).to receive(:take_off)
-      allow(plane_flying).to receive(:land)
-      allow(plane_grounded).to receive(:take_off) 
-      allow(plane_grounded).to receive(:land)
       allow(plane_grounded).to receive(:report_flying)
       allow(airport.weather).to receive(:stormy?).and_return false
     end
@@ -51,33 +47,35 @@ describe Airport do
       n = rand(1..100)
       expect(Airport.new(n).capacity).to eq(n)
     end
-        
-    context "when stormy" do
-      it "cannot take off any planes" do
-        allow(airport.weather).to receive(:stormy?).and_return true
-        airport.add_plane(plane_grounded)
-        expect { airport.take_off(plane_grounded) }.to raise_error("Cannot take off during storm")
-      end
-
-      it "cannot land any planes" do
-        allow(airport.weather).to receive(:stormy?).and_return true
-        expect { airport.land(plane_flying) }.to raise_error("Cannot land during storm")
-      end
-    end
-
-    context "when full" do
-      it "cannot accept any more planes" do
-        10.times { airport.add_plane(Plane.new) }
-        expect { airport.land(Plane.new("D",true)) }.to raise_error("Airport full")
-      end
-    end
-    
-    
+   
     it "can only take off from an airport the plane is in" do
       airport.add_plane(double :plane, :flying? => false)
       expect { airport.take_off(plane_grounded) }.to raise_error("Plane is not in this airport")
     end
    
+  end 
+
+  context "when stormy" do
+    it "cannot take off any planes" do
+      allow(airport.weather).to receive(:stormy?).and_return true
+      airport.add_plane(plane_grounded)
+      expect { airport.take_off(plane_grounded) }.to raise_error("Cannot take off during storm")
+    end
+
+    it "cannot land any planes" do
+      allow(airport.weather).to receive(:stormy?).and_return true
+      expect { airport.land(plane_flying) }.to raise_error("Cannot land during storm")
+    end
   end
+
+  context "when full" do
+    it "cannot accept any more planes" do
+      10.times { airport.add_plane(Plane.new) }
+      expect { airport.land(Plane.new("D",true)) }.to raise_error("Airport full")
+    end
+  end
+    
+    
+  
 
 end

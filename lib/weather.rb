@@ -1,8 +1,9 @@
 class Weather 
 
   STORM_ODDS = 5
+  ODDS_DENOMINATOR = 100
 
-  def initialize(n = rand(100))
+  def initialize(n = rand(ODDS_DENOMINATOR))
     @weather = n
   end
 
