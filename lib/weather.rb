@@ -1,8 +1,6 @@
 class Weather
 
-  attr_reader :stormy
-
   def stormy?
-    stormy
+    @stormy = rand(6) > 4
   end
 end

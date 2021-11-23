@@ -11,7 +11,7 @@ class Airport
   def initialize(capacity = MAXIMUM_CAPACITY)
     @airplanes = []
     @capacity = capacity
-    @condition = false
+    @weather = Weather.new
   end
 
   def land_plane(plane)
@@ -20,10 +20,10 @@ class Airport
   end
 
   def take_off
-    fail "Can not take off: weather stormy" if stormy
+    fail "Can not take off: weather stormy" if @weather.stormy?
     @airplanes.pop
   end
-
+  
   private
 
   def airport_full?
