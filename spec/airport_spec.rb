@@ -30,7 +30,6 @@ describe Airport do
 
   context "Edge cases" do
     it "can't instruct a plane to take off if the plane isn't in its hangar" do
-      # same test if a plane that has already left tries to take off again
       airport.land(:plane1)
       expect{ airport.take_off(:plane2) }.to raise_error "This plane is not in our hangar"
     end
@@ -42,7 +41,7 @@ describe Airport do
       expect { full_airport.land(Plane.new) }.to raise_error "This airport is full!"
     end
 
-    it "raise an error if a plane that has already landed try to land again" do
+    it "raises an error if a plane that has already landed try to land again" do
       airport.land(:plane2)
       expect { airport.land(:plane2) }.to raise_error "This plane has already landed"
     end
