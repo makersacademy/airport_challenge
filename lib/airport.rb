@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #require_relative 'plane'
  
 class Airport
@@ -30,4 +28,3 @@ class Airport
     @hangar.include?(plane)
   end
 end
->>>>>>> new_edge_cases

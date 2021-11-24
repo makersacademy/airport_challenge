@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 require 'airport'
 
 describe Airport do
@@ -49,4 +47,3 @@ describe Airport do
     end
   end
 end
->>>>>>> new_edge_cases
