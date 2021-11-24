@@ -1,58 +1,50 @@
 require 'airport'
 
 describe Airport do
-  # let variable do not set the anonymous subject or allow expectations to be called on it implicitly
+  airport = Airport.new
+  let(:plane) { double(Plane) }
+  let(:plane2) { double(Plane) }
 
-  describe "#initialize" do
-    it "can be initialized with a default capacity" do
-      airport = Airport.new
-      expect(airport).to be_an_instance_of(Airport)
-      allow(airport).to receive_messages([])
-      expect(airport.capacity).to eq 14
+  context "basic instructions" do
+    it { is_expected.to respond_to(:land).with(1).argument }
+
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+
+    it "knows if a plane has taken off" do
+      expect(airport.in_hangar?(:plane)).to eq false
     end
 
-    it "can be initialized with a custom capacity" do
-      expect(Airport.new(11).capacity).to eq 11
+    it "knows when a plan has landed" do
+      airport.land(:plane)
+      expect(airport.in_hangar?(:plane)).to eq true
+    end
+
+    it "has a default capacity when created" do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "can have a customized capacity when needed" do
+      expect(Airport.new(14).capacity).to be 14
     end
   end
 
-  context "landing a plane"
-    it { is_expected.to respond_to(:land).with(1).argument }
-
-    it "raises an error when a plane tries to land but it is already at full capacity" do
-      plane = double(:plane, landed: true, taken_off: false)
-      #airport = instance_double(Airport, :full? => true, :in_hangar? => false, land: plane)
-      #allow(airport).to receive_messages(plane)
-      # populate that array @hangar
-      airport = Airport.new
-      Airport::CAPACITY.times { airport.land(Plane.new) }
-      expect { airport.land(plane) }.to raise_error 'Airport is full'
-    end
-    
-    # it "raises an error when the weather is not safe for landing" do
-    #   plane = double(:plane, landed: true, taken_off: false)
-    #   airport = instance_double(Airport, :initialize, :safe? => false, :full? => false, :in_hangar? => false, land: plane)
-    #   #allow(airport).to receive_messages(plane)
-    #   # Weather.stub(:new) { stormy }
-    #   expect { airport.land(plane) }.to raise_error 'Weather is stormy! do not land'
-    # end
-
-  context "plane taking off"
-    it { is_expected.to respond_to(:take_off).with(1).argument }
-
-    it "raises an error when a plane which isn't in the hangar tries to take off" do
-      # plane = double(:plane, landed: true, taken_off: false)
-      # airport = instance_double(Airport, :initialize, :full? => false, :in_hangar? => false, take_off: plane)
-      # allow(airport).to receive_messages(plane)
-      expect { subject.take_off(Plane.new) }.to raise_error 'this plane is not in this Airport'
+  context "Edge cases" do
+    it "can't instruct a plane to take off if the plane isn't in its hangar" do
+      # same test if a plane that has already left tries to take off again
+      airport.land(:plane1)
+      expect{ airport.take_off(:plane2) }.to raise_error "This plane is not in our hangar"
     end
 
-    # it "raises an error when the weather is not safe for take off" do
-    #   plane = Plane.new
-    #   #plane = double(:plane, landed: true, taken_off: false)
-    #   airport = instance_double(Airport, :initialize, :safe? => false, :full? => false, :in_hangar? => true, take_off: plane)
-    #   #allow(airport).to receive_messages(plane)
-    #   # Weather.stub(:new) { stormy }
-    #   expect { airport.take_off(plane) }.to raise_error 'Weather is stormy! do not take off'
-    # end
+    it "doesn't let a plan land if it is at full capacity" do
+      full_airport = Airport.new(2)
+      full_airport.land(:plane1)
+      full_airport.land(:plane2)
+      expect { full_airport.land(Plane.new) }.to raise_error "This airport is full!"
+    end
+
+    it "raise an error if a plane that has already landed try to land again" do
+      airport.land(:plane2)
+      expect { airport.land(:plane2) }.to raise_error "This plane has already landed"
+    end
+  end
 end

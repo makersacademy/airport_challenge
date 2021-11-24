@@ -1,38 +1,30 @@
-require_relative 'plane'
+#require_relative 'plane'
  
 class Airport
-  CAPACITY = 14
-  attr_reader :capacity, :hangar, :weather
+  DEFAULT_CAPACITY = 10
+  attr_reader :capacity, :plane
 
-  def initialize(capacity = CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
-    #@weather = rand(10)
   end
 
   def land(plane)
-    fail 'Airport is full' if full?
-    # fail 'Weather is stormy! do not land' unless safe?
-    @hangar << plane
-    plane.landed
-  end
-
-  def full?
-    @hangar.size >= @capacity
+    fail "This airport is full!" if full?
+    fail "This plane has already landed" if in_hangar?(plane)
+    @hangar.push(plane)
   end
 
   def take_off(plane)
-    fail 'this plane is not in this Airport' unless in_hangar?(plane)
-    # fail 'Weather is stormy! please do try to land' unless safe?
-    @hangar.pop
-    plane.taken_off
+    fail "This plane is not in our hangar" unless in_hangar?(plane)
+    @hangar.pop(plane)
+  end
+
+  def full?
+    capacity <= @hangar.size
   end
 
   def in_hangar?(plane)
     @hangar.include?(plane)
   end
-
-  # def safe?
-  #   raise 'Weather is stormy, please stand by' unless @weather < 7
-  # end
 end
