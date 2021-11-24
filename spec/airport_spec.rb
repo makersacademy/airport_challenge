@@ -24,6 +24,7 @@ describe Airport do
   end
 
   it "should raise an error when capacity is full" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     Airport::MAXIMUM_CAPACITY.times { subject.land_plane(Plane.new) }
     expect { subject.land_plane(Plane.new) }.to raise_error("Airport full")
   end
@@ -33,11 +34,16 @@ describe Airport do
   end
 
   it "should raise an error when take off and is stormy" do
-    #allow(weather).to receive(:stormy?).and_return(txrue)
-    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     airport = Airport.new
     plane = Plane.new
-    airport.land_plane(plane)
+    airport.land_plane(Plane.new)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
     expect { airport.take_off }.to raise_error("Can not take off: weather stormy")
+  end
+
+  it "should raise an error when land and is stormy" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    expect { subject.land_plane(Plane.new) }.to raise_error("Can not land: weather stormy")
   end
 end
