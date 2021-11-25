@@ -12,7 +12,12 @@ Airport Challenge
           =      =  ===(_________)
 
 ```
-## Ladies and gentlemen welcome on board! 
+
+______
+ 
+[Set up](#Setup) | [Interact](#Interact) | [Run Tests](#Tests) | [User Stories](#User-Stories)
+
+### Ladies and gentlemen welcome on board! 
 #### Thank you for flying CB AIR. I hope you have a pleasant stay, please fasten your seatbelts.
 
 ## Implementation
@@ -35,7 +40,7 @@ Plane | prevent_landig
 
 [Check out my workflow mindmap](https://github.com/CorinneBosch/airport_challenge/blob/main/workflow/screenshot.png)
 
-## Setup
+## <a name="Setup">Set up</a>
 
 1. **Fork** this [airport challenge repository](https://github.com/CorinneBosch/airport_challenge) 
 2. Then clone **your** fork to your computer.
@@ -43,11 +48,11 @@ Plane | prevent_landig
 4. Run `gem install bundler` if you dont have bundler.
 5. Once installed, run `bundle`.
 
-## How to run
+## <a name="Interact">Interact with the programme</a>
 
 You can frature test and run this airport program in any `code editor` or `IRB`.
 
-## Run test 
+## <a name="Tests">Run test</a>
 
 To test specific features in your terminal.
 ```
@@ -60,7 +65,8 @@ $ cd airport_challenge
 $ rspec
 ```
 
-## The airport challenge is built upon the following user stories:
+## <a name="User-Stories">The airport challenge is built upon the following user stories:</a>
+
 
 ```
 As an air traffic controller 
