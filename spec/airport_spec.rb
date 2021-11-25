@@ -46,4 +46,27 @@ describe Airport do
     allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
     expect { subject.land_plane(Plane.new) }.to raise_error("Can not land: weather stormy")
   end
+  
+  it 'planes can only take off from airports they are in' do
+    airport = Airport.new
+    airport2 = Airport.new
+    plane = Plane.new
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+    airport.land_plane(plane)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+    expect(airport2.take_off).to eq nil
+  end
+
+  it "planes that are already flying cannot take off and/or be in an airport" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land_plane(plane)
+    first_state = airport.airplanes.count
+    airport.take_off
+    second_state = airport.airplanes.count
+    expect(first_state == second_state).to eq false
+  end
+
+  it 'planes that are landed cannot land again and must be in an airport' do
+  end
 end
