@@ -1,5 +1,4 @@
-#require_relative 'plane'
- 
+
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :capacity, :plane
@@ -26,5 +25,9 @@ class Airport
 
   def in_hangar?(plane)
     @hangar.include?(plane)
+  end
+
+  def safe?
+    rand(10) < 7
   end
 end
