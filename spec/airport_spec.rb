@@ -11,12 +11,12 @@ describe Airport do
 
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
-    xit "knows if a plane has taken off" do
+    it "knows if a plane has taken off" do
       allow_any_instance_of(Airport).to receive(:safe?).and_return(true)
       expect(airport.in_hangar?(:plane)).to eq false
     end
 
-    xit "knows when a plan has landed" do
+    it "knows when a plan has landed" do
       allow_any_instance_of(Airport).to receive(:safe?).and_return(true)
       airport.land(:plane)
       expect(airport.in_hangar?(:plane)).to eq true
