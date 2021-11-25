@@ -31,6 +31,6 @@ class Airport
   end
 
   def safe?
-    rand(10) > 7
+    @stormy > 7
   end
 end
