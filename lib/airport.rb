@@ -35,8 +35,4 @@ class Airport
   def departed?(plane)
     plane.current_airport != @airport_id
   end
-
-  def confirm_departure(plane)
-    departed?(plane) ? "Plane has departed" : "Plane has not departed"
-  end
 end

@@ -14,7 +14,7 @@ def bad_weather
 end
 # still required to stub weather in some cases but this was done because
 # rspec doesn't allow you to use doubles outside if it blocks, and weather
-# is a dependency injection.
+# is a dependency injection
 
 describe Airport do
   context 'landing:' do
@@ -80,7 +80,7 @@ describe Airport do
     end
     
     it "confirms a plane has departed" do
-      expect(airport.confirm_departure(plane1)).to eq("Plane has departed")      
+      expect(airport.departed?(plane1)).to be(true)    
     end
 
     context 'planes can only take off from their current airport:' do
