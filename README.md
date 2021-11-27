@@ -1,6 +1,6 @@
 # Airport challenge
 
-This is a weekend challenge from Makers Academy week 1. It simulates an airport with random weather which can store, take off, and land planes. Stormy weather prevents planes from taking off and landing
+This is a weekend challenge from Makers Academy week 1. It simulates an airport with random weather which can store, take off, and land planes. Airports are initialised with a weather value (which is random), and stormy weather prevents planes from taking off and landing.
 
 # Tests
 

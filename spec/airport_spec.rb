@@ -21,17 +21,17 @@ describe Airport do
     let(:plane) { double("Plane", :current_airport => nil, :in_flight? => true) }
     # The same mock Plane object is reused because only the method and capacity is being tested,
     # we are are not concerned about identifying individual planes at this point
-    airport = Airport.new(1500, weather: good_weather)
+    let(:airport) { Airport.new(1500, weather: good_weather) }
 
-    it "lands a plane, updates its airport, and stores it" do
-      expect(plane).to receive(:current_airport=).with(1500)
+    it "lands a plane and stores it" do
+      allow(plane).to receive(:current_airport=).with(1500)
       airport.land(plane)
 
       expect(airport.planes).to include plane
     end
 
     it "doesn't land when airport is full" do
-      49.times do # 1 plane is already at airport
+      50.times do
         allow(plane).to receive(:current_airport=).with(1500)
         airport.land(plane)
       end
@@ -49,8 +49,9 @@ describe Airport do
       let(:plane_in_other_airport) { double("Plane in airport 3001", 
       :current_airport => 3001, :in_flight? => false) }
 
+      airport = Airport.new(3000, weather: good_weather)
+
       it "can't land planes in other airports" do
-        airport= Airport.new(3000, weather: good_weather)
         expect { airport.land(plane_in_other_airport)
         }.to raise_error("Plane already at another airport")
       end
@@ -64,7 +65,7 @@ describe Airport do
 
   context 'taking off:' do
     let(:plane1) { double("Plane1", :current_airport => nil, :in_flight? => true) }
-    airport = Airport.new(2000, weather: good_weather)
+    let(:airport) { Airport.new(2000, weather: good_weather) }
 
     it "removes planes from the airport when they take off" do
       allow(plane1).to receive(:current_airport=).with(2000)
@@ -103,7 +104,7 @@ describe Airport do
   
   context 'weather:' do
     let(:plane) { double("Plane", :current_airport => nil, :in_flight? => true) }
-    airport = Airport.new(6000, weather: bad_weather)
+    let(:airport) { Airport.new(6000, weather: bad_weather) }
 
     it "doesn't let planes land if the weather is stormy" do
       allow(airport).to receive(:weather).and_return(bad_weather)
@@ -128,10 +129,10 @@ describe Airport do
     let(:plane3) { double("Plane3", :current_airport => nil, :in_flight? => true) }
     let(:plane4) { double("Plane4", :current_airport => nil, :in_flight? => true) }
     let(:plane5) { double("Plane5", :current_airport => nil, :in_flight? => true) }
-    airport = Airport.new(999, weather: good_weather)
-    before(:each) { allow(airport).to receive(:weather).and_return(good_weather) }
+    let(:airport) { airport = Airport.new(999, weather: good_weather) }
 
     it "has the correct planes" do
+      allow(airport).to receive(:weather).and_return(good_weather)
       planes = [plane1, plane2, plane3, plane4, plane5]
       planes.each do |plane|
         allow(plane).to receive(:current_airport=).with(999)
