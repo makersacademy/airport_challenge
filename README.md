@@ -2,6 +2,34 @@
 
 This is a weekend challenge from Makers Academy week 1. It simulates an airport with random weather which can store, take off, and land planes. Airports are initialised with a weather value (which is random), and stormy weather prevents planes from taking off and landing.
 
+# Using the app
+
+```
+git clone https://github.com/ConorButler/airport_challenge.git
+cd airport_challenge
+bundle
+rspec
+```
+
+## Set up in irb (REPL)
+
+```
+irb
+require './lib/weather'
+require './lib/plane'
+require './lib/airport'
+airport200 = Airport.new(200)
+plane = Plane.new
+```
+
+Planes start not in any particular airport, so you must land them to store them in one:
+
+```
+airport200.land(plane)
+airport200.planes
+airport200.take_off(plane)
+```
+
 # Tests
 
 ![Tests](https://i.gyazo.com/44a4de0bc5112c24054f80a60a104769.png)

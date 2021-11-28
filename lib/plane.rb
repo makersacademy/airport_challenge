@@ -5,6 +5,6 @@ class Plane
   end
 
   def in_flight?
-    !@current_airport.nil?
+    @current_airport.nil?
   end
 end
