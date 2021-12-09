@@ -1,12 +1,17 @@
-# class Weather
+class Weather
 
-#   attr_reader :sunny
+  attr_reader :sunny
 
-#   def initialize
-#     rand(10) == 0 ? @sunny = false : @sunny = true
-#   end
+  def initialize
+    @sunny = true
+  end
 
-#   def sunny?
-#     sunny
-#   end
-# end
+  def sunny?
+    get_weather
+    sunny
+  end
+
+  def get_weather
+    rand(10) <= 4 ? @sunny = false : @sunny = true
+  end
+end

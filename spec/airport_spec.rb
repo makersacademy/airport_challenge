@@ -57,22 +57,10 @@ describe Airport do
         plane = Plane.new
         airport.land_plane(plane)
         plane_two = Plane.new
-        expect { airport.land_plane(plane_two) }.to raise_error 'Landing is not possible as the airport capacity is full'
+        error_message = 'Landing is not possible as the airport capacity is full'
+        expect { airport.land_plane(plane_two) }.to raise_error error_message
       end
     end
   end
-
-  # context 'weather' do
-  # # As an air traffic controller 
-  # # To ensure safety 
-  # # I want to prevent takeoff when weather is stormy
-  #   describe 'prevent take off' do
-  #     it 'If weather is stormy prevent take off' do
-  #       airport = Airport.new
-  #       plane = Plane.new
-  #       airport.prevent_take_off(plane)
-  #       expect(airport.prevent_take_off(plane)).to raise_error 'weather is stormy'
-  #     end
-  #   end
-  # end
 end
+  

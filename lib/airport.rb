@@ -19,7 +19,8 @@ class Airport
   # end
 
   def land_plane(plane)
-    raise 'Landing is not possible as the airport capacity is full' if capacity == @planes.length
+    error_message = 'Landing is not possible as the airport capacity is full'
+    raise error_message if capacity == @planes.length
     @planes << plane
   end
 
@@ -30,6 +31,6 @@ class Airport
 
   def take_off(plane)
     plane
-    # fail "Weather Stormy cannot take off" unless sunny
+    # fail 'can not take off as weather is stormy'
   end
 end
