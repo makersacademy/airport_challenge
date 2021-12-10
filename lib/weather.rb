@@ -12,6 +12,11 @@ class Weather
   end
 
   def get_weather
-    rand(10) <= 4 ? @sunny = false : @sunny = true
+    if rand(10) <= 4
+      @sunny = false
+    else
+      @sunny = true
+    end
+    # rand(10) <= 4 ? @sunny = false : @sunny = true
   end
 end
