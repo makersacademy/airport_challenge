@@ -13,6 +13,13 @@ describe Airport do
     end
   end
 
+  describe 'airport at full capacity' do
+    it 'raises error if airport has 1 plane landed already and second plane tries to land' do 
+      subject.land(Plane.new)
+      expect { subject.land(Plane.new) }.to raise_error "Airport at full capacity"
+    end
+  end
+
   describe '#depart plane' do 
     it 'removes the plane from airport' do 
       plane = Plane.new
