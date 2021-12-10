@@ -1,6 +1,5 @@
 class Airport
 
-  def land_plane
-
+  def land
   end
 end
