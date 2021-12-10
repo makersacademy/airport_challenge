@@ -14,6 +14,7 @@ describe Airport do
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
   it "instructs airplane to take off" do
+    subject.land_plane
     expect(subject.take_off).to eq "Plane successfully took off!"
   end
 
@@ -21,9 +22,13 @@ describe Airport do
 # To ensure safety 
 # I want to prevent landing when the airport is full 
 
-  it "instructs airplane to take off" do
+  it "prevents airplane from landing if airport is full" do
     6.times { subject.land_plane }
     expect(subject.land_plane).to eq "Sorry, airport is full!"
+  end
+
+  it "lets user know airport is empty if there are no planes to takeoff" do
+    expect(subject.take_off).to eq "There are no airplanes to take off!"
   end
 
 # As the system designer

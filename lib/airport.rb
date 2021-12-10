@@ -16,6 +16,11 @@ class Airport
   end
 
   def take_off
-    "Plane successfully took off!"
+    if @planes_number.positive?
+      @planes_number -= 1
+      "Plane successfully took off!"
+    else
+      "There are no airplanes to take off!"
+    end
   end
 end
