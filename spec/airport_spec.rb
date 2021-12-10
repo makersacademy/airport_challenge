@@ -30,6 +30,10 @@ describe Airport do
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
+  it "Changes airport capacity from standard (5)" do
+    expect(subject.capacity = 8).to eq 8
+  end
+
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy 

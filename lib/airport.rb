@@ -3,6 +3,8 @@ class Airport
     @capacity = 5
   end
 
+  attr_writer :capacity
+
   def land_plane
     if @capacity.positive?
       @capacity -= 1
