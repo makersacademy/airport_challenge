@@ -1,6 +1,15 @@
 class Airport
+  def initialize
+    @capacity = 5
+  end
+
   def land_plane
-    "Plane successfully landed!"
+    if @capacity.positive?
+      @capacity -= 1
+      "Plane successfully landed!"
+    else
+      "Sorry, airport is full!"
+    end
   end
 
   def take_off

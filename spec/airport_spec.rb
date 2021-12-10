@@ -22,7 +22,7 @@ describe Airport do
 # I want to prevent landing when the airport is full 
 
   it "instructs airplane to take off" do
-    6.times {subject.land_plane}
+    6.times { subject.land_plane }
     expect(subject.land_plane).to eq "Sorry, airport is full!"
   end
 
