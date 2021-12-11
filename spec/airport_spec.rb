@@ -7,9 +7,9 @@ describe Airport do
   end
 
   describe '#land plane' do 
-    it 'lands the plane' do 
-      plane = Plane.new
-      expect(subject.land(plane)).to equal plane
+    it 'lands the plane' do
+      subject.land(Plane.new)
+      expect { subject.land(Plane.new) }.to change { subject.planes.length }.by(1)
     end
   end
 
