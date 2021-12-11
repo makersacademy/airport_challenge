@@ -15,7 +15,7 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 
-# Prevent planes landing when the airport is full
+# The objective of this test is to prevent planes landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
