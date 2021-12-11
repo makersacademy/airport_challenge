@@ -14,4 +14,18 @@ describe Airport do
     subject.land(plane)
     expect(subject.depart).to eq [] #tests that depart method will work on aiport and will confirm that airport is empty after the plane has departed
   end
+
+  describe '#lands a plane' do
+    it 'raises an error if airport is full' do
+      30.times {subject.land(Plane.new)} #lands 30 planes
+      expect { subject.land(Plane.new) }.to raise_error "Airport is full! No planes can land here." #tries to land 31st plane, and should get error
+    end
+  end
+
+  describe '#departs a plane' do
+    it 'raises an error if no planes at airport' do
+      expect { subject.depart }.to raise_error "There are no planes at the airport to depart!" #tries to depart a plane from airport with empty @Planes array
+    end
+  end
+
 end
