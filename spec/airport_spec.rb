@@ -9,6 +9,7 @@ describe Airport do
   end
   # Test - Instruct a plane to takeoff
   it 'instructs plane to takeoff' do
+    allow(airport).to receive(:stormy?).and_return true
     expect(airport).to respond_to(:take_off)
   end
   # Test - Stop planes from landing when airport is full
@@ -23,5 +24,10 @@ describe Airport do
   it 'does not allow plane to land if stormy' do
     allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(:plane) }.to raise_error 'Weather is storming can not land'
+  end
+  # Test - do not allow planes to takeoff if weather is stormy
+  it 'does not allow plane to takeoff if stormy' do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.take_off(:plane) }.to raise_error 'Weather is storming can not takeoff'
   end
 end
