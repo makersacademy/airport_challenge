@@ -23,7 +23,7 @@ describe Airport do
       num = 9
       air = Airport.new(num)
       num.times { air.land(Plane.new) }
-      expect {air.land(Plane.new) }.to raise_error "Airport at full capacity"
+      expect { air.land(Plane.new) }.to raise_error "Airport at full capacity"
     end
 
   end

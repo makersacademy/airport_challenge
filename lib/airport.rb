@@ -1,9 +1,9 @@
 class Airport 
- attr_accessor :planes, :default_capacity
+  attr_accessor :planes, :default_capacity
 
- DEFAULT_CAPACITY = 5
+  DEFAULT_CAPACITY = 5
 
-  def initialize( capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -17,7 +17,7 @@ class Airport
     @planes.pop
   end
 
-  private
+private 
 
   def full? 
     @planes.count >= @capacity
