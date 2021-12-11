@@ -14,10 +14,8 @@ describe Airport do
   end
 
   describe 'airport at full capacity' do
-    it 'raises error if airport is at full capacity' do 
-      #WILL NEED AN ADJUSTMENT TO THE TEST TO REMOVE 5 AND REPLACE WITH NUMBER VARIABLE
-      DEFAULT_CAPACITY = 5
-      DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+    it 'raises error if airport is at full capacity' do   
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport at full capacity"
     end
 
