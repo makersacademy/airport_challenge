@@ -4,11 +4,20 @@ require 'plane'
 describe Airport do
   it { is_expected.to respond_to :instruct_landing }
   it { is_expected.to respond_to :instruct_take_off }
+  
+  it "has a defualt capacity" do
+    expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+
+  it "default capacity can be overwritten for new airports" do
+    london_heathrow = Airport.new(50)
+    expect(london_heathrow.capacity).to eq 50
+  end
 
   describe "#instruct_landing" do
     it "raises an error if the airport is full" do
-      10.times { subject.instruct_landing(Plane.new) } 
-      expect { subject.instruct_landing(Plane.new) }.to raise_error "CANNOT LAND: AIRPORT AT FULL CAPACITY!"
+      subject.capacity.times { subject.instruct_landing(Plane.new) }
+      expect { subject.instruct_landing(Plane.new) }.to raise_error "AIRPORT AT FULL CAPACITY!"
     end
   end
 
