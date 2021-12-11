@@ -4,6 +4,9 @@ Airport Challenge
 # Motivation: 
 Attempt to complete the weekend challenge with an aim to reinforce learning outcomes from the last week. 
 
+# Notable sources & references
+https://ruby-doc.org/
+
 # Build status:
 Start
 README / USERSTORIES.md
