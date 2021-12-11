@@ -25,10 +25,14 @@ I want to prevent landing when the airport is full
       4.3 Set Airport method land? to return true
       [making sure to solve the problem as simply as I can - very hard to keep yourself on track with that!]
     6. I updated the Airport class method full? to reflect the newly created capacity method
-      6.1 Initialized an empty planes array in Airport class to hold planes
+      6.1 Initialized an empty planes array in Airport class to hold planes and added planes attribute using attr_reader to DRY out @s
       6.2 Changed full? from false to return true only when the size of the planes array is equal or greater than the capacity
       6.3 I amended the raise error if plane tries to land in a full airport test to land enough planes at the airport to reach capacity
       6.3 I amended the Airport method land(plane) to push plane into the planes array, after the guard clause
+
+    7. Wrote test to check that the default capacity could be overridden
+      7.1 Set capacity to default to DEFAULT_CAPACITY if no argument was passed
+      7.2 Set the instance variable @capacity to equal the input if an argument was passed into Airport.new
 
 As the system designer
 So that the software can be used for many different airports

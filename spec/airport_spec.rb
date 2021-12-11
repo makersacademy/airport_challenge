@@ -18,4 +18,11 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error message
   end
 
+  it 'allows default capacity to be overridden' do
+    airport = Airport.new(20)
+    20.times { airport.land Plane.new }
+    message = 'No clearance to land: Airport is full'
+    expect { airport.land(plane) }.to raise_error message
+  end
+
 end
