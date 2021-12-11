@@ -15,7 +15,6 @@ describe Plane do
     it "plane takes off from airport and is no longer in airport" do
         plane = Plane.new
         airport = Airport.new
-        # expect(plane.take_off(airport)). to be_instance_of(Airport)
         expect(plane.take_off(plane, airport)).not_to include(plane)
     end
 
@@ -26,18 +25,28 @@ describe Plane do
         expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
     end
 
+    it "plane does not land at airport if airport is full" do
+        plane = Plane.new
+        airport = Airport.new
+        airport.change_capacity(4)
+        4.times { plane.land_plane(plane, airport) }
+        expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
+    end
+
     it "plane can't land if there is stormy weather" do
         plane = Plane.new
         airport = Airport.new
-        plane.check_weather("Stormy")
+        plane.check_weather("Stormy") # adjust  to token
         expect { plane.land_plane(plane, airport) }.to raise_error("Stormy! Plane GO AWAY!")
     end
 
     it "plane can't take off if there is stormy weather" do
         plane = Plane.new
         airport = Airport.new
-        plane.check_weather("Stormy")
+        plane.check_weather("Stormy") # adjust  to token
         expect { plane.take_off(plane, airport) }.to raise_error("Stormy! Plane STAY!")
     end
+
+    # two tests for clear weather??
 
 end
