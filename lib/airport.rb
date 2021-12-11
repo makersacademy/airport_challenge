@@ -1,13 +1,15 @@
 require_relative 'plane'
 
 class Airport
+  attr_reader :plane
 
   def instruct_landing(plane)
-    "#{plane} landed safely"
+    raise "CANNOT LAND: AIRPORT AT FULL CAPACITY!" if @plane
+    @plane = plane
   end
 
-  def instruct_take_off(plane)
-    @plane = plane
+  def instruct_take_off
+    @plane
   end
 
 end

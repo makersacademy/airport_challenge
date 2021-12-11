@@ -7,15 +7,19 @@ describe Airport do
 
   describe "#instruct_landing" do
     it "can instruct a plane to land" do
-      plane = Plane.new
-      expect(subject.instruct_landing(plane)).to eq("#{plane} landed safely")
+      expect(subject.instruct_landing(Plane.new)).to eq(subject.plane)
+    end
+
+    it "raises an error if the airport is full" do
+      subject.instruct_landing(Plane.new)
+      expect { subject.instruct_landing(Plane.new) }.to raise_error "CANNOT LAND: AIRPORT AT FULL CAPACITY!"
     end
   end
 
   describe "#instruct_take_off" do
     it "can instruct a plane to take_off" do
-      plane = Plane.new
-      expect(subject.instruct_take_off(plane)).to eq(plane)
+      subject.instruct_landing(Plane.new)
+      expect(subject.instruct_take_off).to eq(subject.plane)
     end
   end
 end
