@@ -12,6 +12,7 @@ class Airport
 
   def instruct_landing(plane)
     raise "AIRPORT AT FULL CAPACITY!" if at_capacity?
+    raise "STORMY WEATHER: CANNOT LAND" if check_weather == "Stormy"
     @planes << plane
   end
 
