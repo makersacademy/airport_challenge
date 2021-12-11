@@ -4,9 +4,19 @@ require './lib/airport.rb'
 plane = Plane.new
 airport = Airport.new
 
-airport.land(plane)
-airport.take_off(plane)
+airport.set_weather(2)
 
-airport.new_capacity(1)
+5.times { airport.land(plane) }
+
+5.times { airport.take_off(plane) }
+
+airport.new_capacity(10)
+
+10.times { airport.land(plane) }
+
+10.times { airport.take_off(plane) }
+
+airport.set_weather(1)
 
 airport.land(plane)
+
