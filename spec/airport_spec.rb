@@ -15,9 +15,19 @@ describe Airport do
 
   describe 'airport at full capacity' do
     it 'raises error if airport is at full capacity' do 
-      5.times { subject.land(Plane.new) }
+      #WILL NEED AN ADJUSTMENT TO THE TEST TO REMOVE 5 AND REPLACE WITH NUMBER VARIABLE
+      DEFAULT_CAPACITY = 5
+      DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport at full capacity"
     end
+
+    it 'raises an error if airport is at full capacity & capacity is overridden' do
+      num = 9
+      air = Airport.new(num)
+      num.times { air.land(Plane.new) }
+      expect {air.land(Plane.new) }.to raise_error "Airport at full capacity"
+    end
+
   end
 
   describe '#depart' do 
