@@ -16,7 +16,15 @@ class Airport
   end
 
   def instruct_take_off
+    raise "STORMY WEATHER: CANNOT TAKE OFF" if check_weather == "Stormy"
     @planes.pop
+  end
+
+  def check_weather
+    weather_report = ["Sunny", "Stormy", 
+    "Sunny", "Sunny", "Sunny"]
+
+    weather_report[rand(weather_report.size)]
   end
 
   private
