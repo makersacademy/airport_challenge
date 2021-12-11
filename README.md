@@ -4,7 +4,7 @@ This script controls the flow of planes at an airport:
 
 User stories:
 
-'''
+```
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -28,7 +28,7 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-'''
+```
 
 | Object | Message |
 | --- | --- |
@@ -44,3 +44,4 @@ I want to prevent landing when weather is stormy
 | weather | randomise |
 | traffic_controler | prevent_take_off |
 | traffic_controler  | prevent_landing |
+
