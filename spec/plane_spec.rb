@@ -5,7 +5,6 @@ describe Plane do
     it { is_expected.to respond_to(:land_plane) }
     it { is_expected.to respond_to(:take_off) }
     it { is_expected.to respond_to(:check_weather) }
-    it { is_expected.to respond_to(:left_airport) }
 
     it "plane lands at an airport, when called to" do
         plane = Plane.new
@@ -24,8 +23,21 @@ describe Plane do
         plane = Plane.new
         airport = Airport.new
         plane.land_plane(plane, airport)
-        error = "PLANE NO"
-        expect { plane.land_plane(plane, airport) }.to raise_error(error)
+        expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
     end
-   
+
+    it "plane can't land if there is stormy weather" do
+        plane = Plane.new
+        airport = Airport.new
+        plane.check_weather("Stormy")
+        expect { plane.land_plane(plane, airport) }.to raise_error("Stormy! Plane GO AWAY!")
+    end
+
+    it "plane can't take off if there is stormy weather" do
+        plane = Plane.new
+        airport = Airport.new
+        plane.check_weather("Stormy")
+        expect { plane.take_off(plane, airport) }.to raise_error("Stormy! Plane STAY!")
+    end
+
 end

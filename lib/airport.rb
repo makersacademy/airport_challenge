@@ -4,10 +4,6 @@ class Airport
        @capacity = 1
     end
 
-    def airport_full
-
-    end
-
     def capacity
         @capacity
     end
