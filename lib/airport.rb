@@ -1,11 +1,13 @@
+require_relative 'plane'
+
 class Airport
 
   def instruct_landing(plane)
     "#{plane} landed safely"
   end
 
-  def instuct_take_off(plane)
-    "#{plane} has taken-off safely"
+  def instruct_take_off(plane)
+    @plane = plane
   end
 
 end
