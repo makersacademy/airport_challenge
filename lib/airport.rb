@@ -1,11 +1,16 @@
 class Airport 
+ attr_accessor :planes
 
-  def land(plane)
-    fail "Airport at full capacity" if @plane
-    @plane = plane
+  def initialize
+    @planes = []
   end
 
-  def depart(plane)
-    @plane = nil
+  def land(plane)
+    fail "Airport at full capacity" if @planes.count >= 6
+    @planes << plane
+  end
+
+  def depart
+    @planes.pop
   end
 end

@@ -9,22 +9,21 @@ describe Airport do
   describe '#land plane' do 
     it 'lands the plane' do 
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to equal plane
     end
   end
 
   describe 'airport at full capacity' do
-    it 'raises error if airport has 1 plane landed already and second plane tries to land' do 
-      subject.land(Plane.new)
+    it 'raises error if airport is at full capacity' do 
+      5.times {subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport at full capacity"
     end
   end
 
-  describe '#depart plane' do 
-    it 'removes the plane from airport' do 
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.depart(plane)).not_to eq plane
+  describe '#depart' do 
+    it 'checks if plane has left airport' do 
+      subject.land(Plane.new)
+      expect { subject.planes.pop }.to change { subject.planes.length }.by(-1)
     end
   end
 end
