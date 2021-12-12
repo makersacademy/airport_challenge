@@ -1,12 +1,17 @@
 # GOAL 
-Create a script to control airport traffic. The user can:
-- command landing & taking off planes 
-- check the planes stored in hangar
+Create a script to control airport traffic.
+
+# Features:
+- user can command landing & taking off planes 
+- user can check the planes stored in hangar
+- plane cannot land at an airport if it is already in hangar
+- plane cannot take off if it is not in the hangar
+- an airport can be created with different capacity (3 at default)
 
 # How to use:
 
 ```
-ruby airport.rb
+irb -r './lib/airport' #from the main folder
 ```
 
 # Feature demo:
@@ -36,14 +41,9 @@ from /Users/mateuszdiak/Documents/Projects/airport_challenge/lib/airport.rb:20:i
 => #<Plane:0x00007faed7a47b48>
 [12] pry(main)> manchester_airport.hangar
 => []
-[13] pry(main)> 
 ```
 
-# Features:
-- plane cannot land at an airport if it is already in hangar
-- plane cannot take off if it is not in the hangar
-- an airport can be created with different capacity (3 at default)
-- 
+
 
 # Known issues:
 - one plane can be at different airports 
