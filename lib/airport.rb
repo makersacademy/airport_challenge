@@ -10,6 +10,7 @@ class Airport
   end
 
   def land_plane(plane)
+    if @hangar.include? plane then raise "Plane already in hangar." end
     raise "Permission denied. Stormy weather" unless check_weather == "sunny"
     raise "Permission not granted. The airport is full." unless @hangar.length < @capacity
     @hangar << plane
@@ -25,3 +26,7 @@ class Airport
     "stormy"
   end
 end
+
+#if plane already in hangar, raise error
+#if plane in another airport, raise error
+#if plane not in hangar raise error
