@@ -17,13 +17,18 @@ describe Airport do
   end
 
   describe "#instruct_landing" do
-    it { is_expected.to respond_to(:instruct_landing).with(1).argument }
-
-    context 'when airport is full' do
-      it "raises an error" do
+    context 'when weather is sunny' do
+      before do
         allow(airport).to receive(:check_weather).and_return('Sunny')
-        airport.capacity.times { airport.instruct_landing(plane) }
-        expect { airport.instruct_landing(plane) }.to raise_error "AIRPORT AT FULL CAPACITY!"
+      end
+
+      it { is_expected.to respond_to(:instruct_landing).with(1).argument }
+
+      context 'when airport is full' do
+        it "raises an error" do
+          airport.capacity.times { airport.instruct_landing(plane) }
+          expect { airport.instruct_landing(plane) }.to raise_error "AIRPORT AT FULL CAPACITY!"
+        end
       end
     end
 
@@ -37,25 +42,23 @@ describe Airport do
   end
 
   describe "#instruct_take_off" do
-    it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
-    
-    it "can instruct a plane to take_off" do
-      allow(airport).to receive(:check_weather).and_return('Sunny')
-      airport.instruct_landing(plane)
-      expect(airport.instruct_take_off(plane)).to eq(plane)
+    context "when weather is sunny" do
+      before do 
+        allow(airport).to receive(:check_weather).and_return('Sunny')
+      end
+
+      it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
+      
+      it "can instruct a plane to take_off" do
+        airport.instruct_landing(plane)
+        expect(airport.instruct_take_off(plane)).to eq(plane)
+      end
     end
     
     context "when weather is stormy" do
       it "raises error" do
         allow(airport).to receive(:check_weather).and_return('Stormy')
         expect { airport.instruct_take_off(plane) }.to raise_error "STORMY WEATHER: CANNOT TAKE OFF"
-      end
-    end
-
-    context "when weather is sunny" do
-      it "does not raise error" do
-        allow(airport).to receive(:check_weather).and_return('Sunny')
-        expect { airport.instruct_take_off(plane) }.to_not raise_error 
       end
     end
   end
