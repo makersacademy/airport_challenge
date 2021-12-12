@@ -23,6 +23,9 @@ In my first commit, I tested that I satisfied the requirements of the first two 
 
 Question: I was uncertain of what this requirement meant "I would like a default airport capacity that can be overridden as appropriate". I assumed this meant set a default capacity, which can be overridden by allowing the system designer to set a different capacity when each instance of Airport.new is initialised. However, was the requirement actually needing the airports capacities to be able to change over time i.e. be overwritten at a later point, not just at point of initialisation?
 
+Question: I wasn't sure of the best place in my code to be setting the weather. Surely the weather needs to be set every time we run the depart and land methods?
+
+
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
