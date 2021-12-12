@@ -16,7 +16,7 @@ class Airport
     @plane = plane
   end
 
-  def launch_plane(plane)
+  def take_off(plane)
     plane
   end
 end

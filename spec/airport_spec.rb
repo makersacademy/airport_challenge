@@ -32,11 +32,11 @@ describe Airport do
     end
   end
     
-  describe '#launch_plane(plane)' do
-    it { is_expected.to respond_to(:launch_plane).with(1).argument }
+  describe '#take_off(plane)' do
+    it { is_expected.to respond_to(:take_off).with(1).argument }
     
     it 'returns a plane, after take off' do
-      expect(airport.launch_plane(plane)).to eq plane
+      expect(airport.take_off(plane)).to eq plane
     end
   end
 end
