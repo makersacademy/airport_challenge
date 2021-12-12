@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Plane not in hangar." unless @hangar.include? plane
     raise "Permission denied. Stormy weather" unless check_weather == "sunny"
     @hangar.delete(plane)
   end
@@ -27,6 +28,5 @@ class Airport
   end
 end
 
-#if plane already in hangar, raise error
 #if plane in another airport, raise error
 #if plane not in hangar raise error
