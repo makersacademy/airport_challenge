@@ -37,7 +37,3 @@ class Airport
   end
 
 end
-
-
-airport = Airport.new
-plane = Plane.new
