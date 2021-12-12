@@ -2,6 +2,7 @@ class Plane
 
   # creates the plane status
   attr_reader :status
+  attr_reader :location
 
   def land_plane(plane, airport)
     # checks that the plane has not already landed
@@ -15,7 +16,7 @@ class Plane
     # changes the plane status to landed
     @status = "landed"
     # changes the plane location to be in the airport
-    #DO THIS BIT
+    @location = airport
   end
 
   def take_off(plane, airport)
@@ -24,13 +25,13 @@ class Plane
     # checks the weather is safe to fly
     fail "Stormy! Plane STAY!" if check_weather == "Stormy"
     # checks the plane is not at another airport
-    # DO THIS BIT
+    fail "you are not at this airport" unless @location == airport || @location == nil
     # takes the plane out of the airport hanger
     airport.hanger_out(plane)
     # changes the plane status to flying
     @status = "flying"
     # changes the plane location to not in the airport
-    # DO THIS BIT????
+    @location = nil
   end
 
   def check_weather

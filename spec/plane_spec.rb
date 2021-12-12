@@ -8,12 +8,13 @@ describe Plane do
   it { is_expected.to respond_to(:take_off) }
   it { is_expected.to respond_to(:check_weather) }
 
-  it "plane lands at an airport, when called to" do
+  it "plane lands at an airport and is now located in the airport" do
     plane = Plane.new
     airport = Airport.new
-    allow(plane).to receive(:weather) { "Clear" }
+    allow(plane).to receive(:check_weather) { "Clear" }
     plane.land_plane(plane, airport)
     expect(plane.status).to eq "landed"
+    expect(plane.location).to eq airport
   end
 
   it "plane takes off from airport and is no longer in airport" do
@@ -21,7 +22,7 @@ describe Plane do
     airport = Airport.new
     allow(plane).to receive(:check_weather) { "Clear" }
     plane.take_off(plane, airport)
-    expect(airport.airport).not_to include(plane)
+    expect(plane.location).to eq nil
   end
 
   it "plane does not land at airport if airport is full" do
@@ -74,4 +75,11 @@ describe Plane do
     expect { plane.take_off(plane, airport) }.to raise_error("this plane is flying already!")
   end
 
+  it "a plane can not take off from airports they're not in" do
+    plane = Plane.new
+    airport = Airport.new
+    second_airport = Airport.new
+    plane.land_plane(plane, airport)
+    expect { plane.take_off(plane, second_airport).to raise_error("you are not at this airport") }
+  end
 end

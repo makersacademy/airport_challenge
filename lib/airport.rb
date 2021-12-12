@@ -27,7 +27,6 @@ class Airport
   def hanger_out(plane)
     # remover the plane that has taken off from the hanger
     @airport.delete(plane)
-    p @airport
   end
 
   def airport
