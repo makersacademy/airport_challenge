@@ -1,21 +1,21 @@
-#Airport-Challenge
+# Airport-Challenge
 
 
-###Description:
+### Description:
 
 
 This software controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. Please see user stories below. 
 
-###Conditions:
+### Conditions:
 
 Planes can only take off from airports they are already in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport.
 
 
-###How to use:
+### How to use:
 
 
 
-###User Stories
+### User Stories
 
 As an air traffic controller 
 So I can get passengers to a destination 
