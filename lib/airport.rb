@@ -15,7 +15,7 @@ class Airport
   end
 
   def depart
-    fail "Stormy weather alert" if stormy?(weather)
+    fail "Stormy weather alert" if stormy?
     @planes.pop
   end
 
@@ -23,8 +23,7 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def stormy?(weather)
+  def stormy?
     @weather == :stormy
   end
-
 end 
