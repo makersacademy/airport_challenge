@@ -30,6 +30,18 @@ end
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when the airport is full
+describe 'Controller can prevent landing when airport full' do
+  describe 'airport' do
+    it 'raises an error if a plane tries to land when full' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      airport = Airport.new
+      plane1.land(airport)
+      expect(airport).to be_full
+      expect { plane2.land(airport) }.to raise_error("Sorry, Hangar Full")
+    end
+  end
+end
 
 # As the system designer
 # So that the software can be used for many different airports
