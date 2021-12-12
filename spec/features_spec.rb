@@ -1,18 +1,29 @@
 describe 'Airport Features' do
 
-    # 1. User Story
-      it 'so passengers get to destination, instruct a plane to land' do
-        airport = Airport.new
-        plane = Plane.new
-        #below should work without raising an error
-        expect { airport.land(plane) }.not_to raise_error
-      end
+  # 1. User Story
+  it 'so passengers get to destination, instruct planes to land' do
+    airport = Airport.new(10)
+    plane = Plane.new
+    #below should work without raising an error
+    expect { airport.land(plane) }.not_to raise_error
+  end
     
 
-    # 2. User Story
-      it 'so planes can take off from airport, instructe plane to take off'do
-        airport = Airport.new
-        plane = Plane.new
-        expect { airport.take_off(plane) }.not_to raise_error
-      end
+  # 2. User Story
+  it 'so planes can take off from airport, instructe planes to take off' do
+    airport = Airport.new(10)
+    plane = Plane.new
+    expect { airport.take_off(plane) }.not_to raise_error
+  end
+
+  # 3. User Story
+  it 'to ensure safety, instrcut planes not to land when airport is full' do
+    #airport capacity = 10
+    airport = Airport.new(10)
+    plane = Plane.new
+    10.times do
+      airport.land(plane)
+    end
+    expect { airport.land(plane) }.to raise_error 'Caution: Airport full, plane cannot land. MAX capacity: 10'
+  end
 end
