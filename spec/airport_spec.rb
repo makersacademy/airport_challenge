@@ -13,10 +13,11 @@ describe Airport do
   end
 
   it 'prevents landing when airport is at full capacity' do
+    plane = double :plane
     10.times do 
-        #using doubles with symbol
-        airport.land(:plane)
+        #using doubles 
+        airport.land(plane)
     end 
-    expect { airport.land(:plane) }.to raise_error 'Caution: Airport full, plane cannot land. MAX capacity: 10'
+    expect { airport.land(plane) }.to raise_error 'Caution: Airport full, plane cannot land. MAX capacity: 10'
   end
 end
