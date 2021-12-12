@@ -19,8 +19,13 @@ describe Airport do
   
   describe "Max Cap error" do
     it "prevents landing when max capacity" do
-      10.times { subject.land Plane.new }
-      expect{ subject.land Plane.new }.to raise_error 'At maximum capacity'
+      25.times { subject.land Plane.new }
+      expect { subject.land Plane.new }.to raise_error 'At maximum capacity'
     end
   end
+
+  it "allows you to override default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 end
