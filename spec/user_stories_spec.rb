@@ -78,3 +78,13 @@ end
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent landing when weather is stormy
+describe 'Controller can prevent landing if stormy' do
+  describe 'airport' do
+    it 'will not allow landing if stormy' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(Weather).to receive(:report) { "Storms on the Horizon" }
+      expect { airport.receive(plane) }.to raise_error "Sorry, No Flying, Storms Approaching"
+    end
+  end
+end
