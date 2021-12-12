@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
     
@@ -9,26 +10,30 @@ describe Plane do
     it "plane lands at an airport, when called to" do
         plane = Plane.new
         airport = Airport.new
+        allow(plane).to receive(:check_weather) { "Clear" }
         expect(plane.land_plane(plane, airport)).to include(plane)
     end
 
     it "plane takes off from airport and is no longer in airport" do
         plane = Plane.new
         airport = Airport.new
+        allow(plane).to receive(:check_weather) { "Clear" }
         expect(plane.take_off(plane, airport)).not_to include(plane)
     end
 
     it "plane does not land at airport if airport is full" do
         plane = Plane.new
         airport = Airport.new
+        allow(plane).to receive(:check_weather) { "Clear" }
         plane.land_plane(plane, airport)
         expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
     end
 
-    it "plane does not land at airport if airport is full" do
+    it "plane does not land at airport if airport is full and capcity has been changed" do
         plane = Plane.new
         airport = Airport.new
         airport.change_capacity(4)
+        allow(plane).to receive(:check_weather) { "Clear" }
         4.times { plane.land_plane(plane, airport) }
         expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
     end
@@ -36,14 +41,17 @@ describe Plane do
     it "plane can't land if there is stormy weather" do
         plane = Plane.new
         airport = Airport.new
-        plane.check_weather("Stormy") # adjust  to token
+        allow(plane).to receive(:check_weather) { "Stormy" }
+
+        # plane.check_weather("Stormy") # adjust  to token
         expect { plane.land_plane(plane, airport) }.to raise_error("Stormy! Plane GO AWAY!")
     end
 
     it "plane can't take off if there is stormy weather" do
         plane = Plane.new
         airport = Airport.new
-        plane.check_weather("Stormy") # adjust  to token
+        allow(plane).to receive(:check_weather) { "Stormy" }
+        # plane.check_weather("Stormy") # adjust  to token
         expect { plane.take_off(plane, airport) }.to raise_error("Stormy! Plane STAY!")
     end
 
