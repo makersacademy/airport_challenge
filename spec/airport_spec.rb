@@ -75,7 +75,7 @@ describe Airport do
         allow(airport).to receive(:check_weather) { 'sunny' }
         airport.hangar << plane
         airport.take_off(plane)
-        expect(airport.hangar.include? plane). to be false
+        expect(airport.hangar.include? plane).to be false
       end
     end
     
