@@ -27,6 +27,3 @@ class Airport
     "stormy"
   end
 end
-
-#if plane in another airport, raise error
-#if plane not in hangar raise error
