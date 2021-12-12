@@ -34,9 +34,9 @@ describe Airport do
     it "can instruct a plane to take_off" do
       allow(subject).to receive(:check_weather).and_return('Sunny')
 
-      my_plane = Plane.new
-      subject.instruct_landing(my_plane)
-      expect(subject.instruct_take_off).to eq(my_plane)
+      boeing_737  = Plane.new
+      subject.instruct_landing(boeing_737)
+      expect(subject.instruct_take_off).to eq(boeing_737)
     end
 
     it "raises error when the weather is stormy" do

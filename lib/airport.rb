@@ -22,7 +22,7 @@ class Airport
   end
 
   def check_weather
-    weather_report = ["Sunny", "Stormy", 
+    weather_report = ["Sunny",  
     "Sunny", "Sunny", "Sunny"]
 
     weather_report[rand(weather_report.size)]
@@ -31,7 +31,8 @@ class Airport
   private
 
   def at_capacity?
-    @planes.size >= DEFAULT_CAPACITY
+    @planes.size >= capacity
   end
 
 end
+
