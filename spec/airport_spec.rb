@@ -30,8 +30,18 @@ describe Airport do
   end
     
   describe '#take_off(plane)' do
+    #when it is sunny we want to get the plane
     it 'returns a plane, after take off' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { 'sunny' }
       expect(airport.take_off(plane)).to eq plane
+    end
+
+    # When it is stormy, we want to get an error
+    it 'raises an error when stormy and taking_off' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { 'stormy' }
+      expect { airport.take_off(plane) }.to raise_error("Permission denied. Stormy weather")
     end
   end
 
@@ -45,8 +55,13 @@ describe Airport do
       expect(airport.check_weather).to eq("stormy")
     end
 
-    it 'returns sunny when rand(5) is 0..3' do
+    it 'returns sunny when rand(5) is 0' do
       allow(airport).to receive(:rand) { 0 }
+      expect(airport.check_weather).to eq("sunny")
+    end
+
+    it 'returns sunny when rand(5) is 3' do
+      allow(airport).to receive(:rand) { 3 }
       expect(airport.check_weather).to eq("sunny")
     end
   end

@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Permission denied. Stormy weather" unless check_weather == "sunny"
     plane
   end
   
@@ -22,3 +23,5 @@ class Airport
     "stormy"
   end
 end
+
+#We do not wanna the plane to take off when stormy
