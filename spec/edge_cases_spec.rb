@@ -15,5 +15,13 @@ describe 'planes can only take off from airports they are in' do
   end
 end
 
-# planes that are already flying cannot take off or be in an airport
+describe 'planes that are already flying cannot take off or be in an airport' do
+  describe '#takeoff' do
+    it 'raises an error if the plane is already in flight' do
+      plane = Plane.new
+      plane.takeoff
+      expect { plane.takeoff }.to raise_error("Cannot Takeoff From The Sky")
+    end
+  end
+end
 # planes that are landed cannot land again and must be in an airport

@@ -14,12 +14,15 @@ describe Plane do
   end
 
   describe '#takeoff' do
-    before do
-      subject.land(airport)
-    end
     it 'messages airport to release it' do
+      subject.land(airport)
       expect(airport).to receive(:release).with(subject)
       subject.takeoff
+    end
+
+    it 'raises an error if the plane is already in flight' do 
+      subject.takeoff
+      expect { subject.takeoff }.to raise_error("Cannot Takeoff From The Sky")
     end
   end
 end
