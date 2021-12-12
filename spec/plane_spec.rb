@@ -11,6 +11,12 @@ describe Plane do
       expect(airport).to receive(:receive).with(subject)
       subject.land(airport)
     end
+
+    it 'raises an error if plane has already landed' do 
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
+      subject.land(airport)
+      expect { subject.land(airport) }.to raise_error("Already Landed")
+    end
   end
 
   describe '#takeoff' do
@@ -21,7 +27,6 @@ describe Plane do
     end
 
     it 'raises an error if the plane is already in flight' do 
-      subject.takeoff
       expect { subject.takeoff }.to raise_error("Cannot Takeoff From The Sky")
     end
   end
