@@ -40,7 +40,7 @@ describe Airport do
     context 'if stormy' do
       it 'raises an error if a plane tries to takeoff' do
         allow(Weather).to receive(:report) { "Storms on the Horizon" }
-        expect { subject.release }.to raise_error "Sorry, No Flying, Storms Approaching"
+        expect { subject.release(plane) }.to raise_error "Sorry, No Flying, Storms Approaching"
       end
     end
   end

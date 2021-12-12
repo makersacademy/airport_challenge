@@ -1,4 +1,8 @@
+require 'weather'
+
 class Airport
+  include Weather
+
   attr_reader :capacity
   attr_reader :hangar
 
@@ -14,14 +18,10 @@ class Airport
     @hangar << plane
   end
 
-  def release
+  def release(plane)
     weather_warning if weather_alert?
   end
   
-  def empty?
-    true
-  end
-
   private
 
   def weather_alert?

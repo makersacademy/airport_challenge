@@ -5,11 +5,12 @@ require 'plane'
 # So I can get passengers to a destination 
 # I want to instruct a plane to land at an airport
 describe 'Controller can instruct a plane to land at an airport' do
-  plane = Plane.new
-  airport = Airport.new
-  plane.land(airport)
   describe 'plane' do
     it 'can be instructed to land at an airport' do
+      plane = Plane.new
+      airport = Airport.new
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
+      plane.land(airport)
       expect(plane).to respond_to(:land).with(1).argument
     end
   end
@@ -19,13 +20,14 @@ end
 # So I can get passengers on the way to their destination 
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 describe 'Controller can instruct plane to take off' do
-  describe 'airport' do
-    it 'can be confirmed as empty' do
+  describe 'plane' do
+    it 'can be confirmed as in flight' do
       plane = Plane.new
       airport = Airport.new
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
       plane.land(airport)
       plane.takeoff
-      expect(airport).to be_empty
+      expect(plane.location).to eq("In Flight")
     end
   end
 end
