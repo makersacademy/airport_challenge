@@ -1,5 +1,6 @@
 class Weather
   def forecast
-    random = [:sunny, :stormy, :stormy].sample
+    :stormy if rand(10) > 2
+    :sunny
   end
 end
