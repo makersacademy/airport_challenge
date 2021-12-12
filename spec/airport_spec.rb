@@ -21,5 +21,6 @@ describe Airport do
   it 'lets plane take off' do
     expect(airport).to respond_to(:take_off).with(1).argument
   end 
+
   
 end

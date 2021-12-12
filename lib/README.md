@@ -40,3 +40,10 @@ I want to prevent takeoff when weather is stormy
 6. As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+
+### References
+
+##### Private method
+https://www.rubyguides.com/2018/10/method-visibility/
+
+##### Double method 

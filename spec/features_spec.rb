@@ -9,12 +9,19 @@ describe 'Airport Features' do
   end
     
 
-  # 2. User Story
-  it 'so planes can take off from airport, instructe planes to take off' do
+  # 2. User Story Part 1
+  it 'so planes can take off from airport, instruct planes to take off' do
     airport = Airport.new(10)
     plane = Plane.new
     expect { airport.take_off(plane) }.not_to raise_error
   end
+
+  # # 2. User Story Part 2
+  # it 'confirm that planes are no longer at airport once taken off' do
+  #   puts 'Plane has now taken off' 
+  # end
+
+    
 
   # 3. User Story
   it 'to ensure safety, instrcut planes not to land when airport is full' do
