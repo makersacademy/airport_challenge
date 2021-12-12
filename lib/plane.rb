@@ -25,7 +25,7 @@ class Plane
     # checks the weather is safe to fly
     fail "Stormy! Plane STAY!" if check_weather == "Stormy"
     # checks the plane is not at another airport
-    fail "you are not at this airport" unless @location == airport || @location == nil
+    fail "you are not at this airport" unless @location == airport || @location.nil?
     # takes the plane out of the airport hanger
     airport.hanger_out(plane)
     # changes the plane status to flying

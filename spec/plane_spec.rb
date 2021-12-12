@@ -82,4 +82,5 @@ describe Plane do
     plane.land_plane(plane, airport)
     expect { plane.take_off(plane, second_airport).to raise_error("you are not at this airport") }
   end
+
 end

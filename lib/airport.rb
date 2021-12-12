@@ -1,9 +1,9 @@
 class Airport
-    # create attribute for airport capacity
-    attr_reader :capacity
+  # create attribute for airport capacity
+  attr_reader :capacity
 
   def initialize
-    #set default capacity
+    # set default capacity
     @capacity = 1
     # creates an empty array to store planes landing at this airport
     @airport = []
@@ -27,10 +27,6 @@ class Airport
   def hanger_out(plane)
     # remover the plane that has taken off from the hanger
     @airport.delete(plane)
-  end
-
-  def airport
-    @airport
   end
 
 end
