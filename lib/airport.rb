@@ -1,7 +1,6 @@
 require './lib/plane'
 
 class Airport
-  attr_reader :plane
   attr_reader :capacity
   attr_reader :hangar
 
@@ -18,7 +17,7 @@ class Airport
 
   def take_off(plane)
     raise "Permission denied. Stormy weather" unless check_weather == "sunny"
-    plane
+    @hangar.delete(plane)
   end
   
   def check_weather

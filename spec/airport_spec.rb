@@ -24,20 +24,17 @@ describe Airport do
 
   describe '#land_plane(plane)' do
     it 'is full; raises an error when landing' do
-      airport = Airport.new
       allow(airport).to receive(:check_weather) { 'sunny' }
       3.times { airport.land_plane(plane) }
       expect { airport.land_plane(plane) }.to raise_error("Permission not granted. The airport is full.")
     end
 
     it 'does not allow landing because stormy' do
-      airport = Airport.new
       allow(airport).to receive(:check_weather) { 'stormy' }
       expect { airport.land_plane(plane) }.to raise_error("Permission denied. Stormy weather")
     end
 
     it 'returns a plane when sunny' do
-      airport = Airport.new
       allow(airport).to receive(:check_weather) { 'sunny' }
       airport.land_plane(plane)
       expect(airport.hangar.include? plane).to be true
@@ -51,18 +48,22 @@ describe Airport do
   end
     
   describe '#take_off(plane)' do
-    #when it is sunny we want to get the plane
-    it 'returns a plane, after take off' do
-      airport = Airport.new
+    it 'returns a plane, after take off' do 
       allow(airport).to receive(:check_weather) { 'sunny' }
+      airport.hangar << plane
       expect(airport.take_off(plane)).to eq plane
     end
 
-    # When it is stormy, we want to get an error
     it 'raises an error when stormy and taking_off' do
-      airport = Airport.new
       allow(airport).to receive(:check_weather) { 'stormy' }
       expect { airport.take_off(plane) }.to raise_error("Permission denied. Stormy weather")
+    end
+
+    it 'removes plane from hangar after set-off if sunny' do
+      allow(airport).to receive(:check_weather) { 'sunny' }
+      airport.hangar << plane
+      airport.take_off(plane)
+      expect(airport.hangar.include? plane). to be false
     end
   end
 
