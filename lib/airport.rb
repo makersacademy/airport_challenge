@@ -6,7 +6,7 @@ class Airport
 
   attr_reader :capacity, :hangar, :weather
 
-  def initialize(capacity=DEFAULT_CAPACITY, weather = Weather.weather_forecast)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.weather_forecast)
     @capacity = capacity
     @hangar = []
     @weather = weather
@@ -33,6 +33,8 @@ class Airport
   def land(plane)
     raise 'No clearance to land: Airport is full' if full?
     raise 'No clearance to land: Stormy weather' if stormy?
+    raise 'No clearance to land: Plane isn\'t in flight' unless plane.flying? == true
+    raise 'No clearance to land: Object is not a plane' unless plane.class == Plane
     hangar << plane
   end
 end

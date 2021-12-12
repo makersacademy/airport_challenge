@@ -15,7 +15,8 @@ module Weather
 
   def self.weather_forecast
     weather_states = WeatherRatioSetter.array_generator
-    weather_states.sample
+    number = rand(weather_states.size)
+    weather_states[number]
   end
 end
   
