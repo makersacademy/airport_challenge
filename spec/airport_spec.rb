@@ -1,8 +1,9 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
-  subject(:airport) {described_class.new}
+  subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   
   it { is_expected.to respond_to :check_weather }
@@ -23,6 +24,10 @@ describe Airport do
       end
 
       it { is_expected.to respond_to(:instruct_landing).with(1).argument }
+
+      it "returns plane after landing" do
+        expect(airport.instruct_landing(plane)).to eq(plane)
+      end
 
       context 'when airport is full' do
         it "raises an error" do
@@ -47,7 +52,7 @@ describe Airport do
         allow(airport).to receive(:check_weather).and_return('Sunny')
       end
 
-      it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
+      it { is_expected.to respond_to(:instruct_take_off) }
       
       it "can instruct a plane to take_off" do
         airport.instruct_landing(plane)

@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 10
@@ -14,15 +15,16 @@ class Airport
     raise "AIRPORT AT FULL CAPACITY!" if at_capacity?
     raise "STORMY WEATHER: CANNOT LAND" if check_weather == "Stormy"
     @planes << plane
+    plane
   end
 
   def instruct_take_off(plane)
     raise "STORMY WEATHER: CANNOT TAKE OFF" if check_weather == "Stormy"
     plane = @planes.pop
-  end
+  end 
 
   def check_weather
-    rand(1..10) < 8 ? "Sunny" : "Stormy" 
+    Weather.new.forecast
   end
   
   private
