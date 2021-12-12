@@ -27,6 +27,11 @@ class Airport
     # take off a plane
     @planes.delete(plane)
   end
+  
+  def stormy?
+    # According to the user story weather condition can be sunny or occasionally stormy. 
+    ['Sunny','Stormy'].sample
+  end
 
   private
 
@@ -35,8 +40,5 @@ class Airport
     @planes.count >= capacity
   end
 
-  def stormy?
-    # According to the user story weather condition can be sunny or occasionally stormy. 
-    ['Sunny','Stormy'].sample
-  end
+ 
 end
