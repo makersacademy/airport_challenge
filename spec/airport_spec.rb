@@ -27,11 +27,10 @@ describe Airport do
     end
 
     context 'if full' do
-      before do
-        subject.receive(plane)
-      end
-      it 'raises an error if a plane tries to land' do    
-        expect{ subject.receive(plane) }.to raise_error("Sorry, Hangar Full")
+      it 'raises an error if a plane tries to land' do  
+        allow(Weather).to receive(:report) { "Blue Skies Ahead" } 
+        subject.receive(plane) 
+        expect { subject.receive(plane) }.to raise_error("Sorry, Hangar Full")
       end
     end
 
@@ -44,6 +43,13 @@ describe Airport do
   end
 
   describe '#release' do
+    it 'releases a plane from the hangar' do
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" } 
+      subject.receive(plane)
+      subject.release(plane)
+      expect(subject.hangar.include?(plane)).to eq(false)
+    end
+
     context 'if stormy' do
       it 'raises an error if a plane tries to takeoff' do
         allow(Weather).to receive(:report) { "Storms on the Horizon" }

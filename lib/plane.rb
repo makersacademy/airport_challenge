@@ -7,7 +7,7 @@ class Plane
   end
 
   def takeoff
-    @location.release(self)
+    location.release(self)
     @location = "In Flight"
   end
 end
