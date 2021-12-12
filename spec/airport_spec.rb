@@ -9,8 +9,8 @@ describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:check_weather) }
   
-  it 'has a capacity attribute, set to 1 by default' do
-    expect(airport.capacity).to eq(1)
+  it 'has a capacity attribute, set to 3 by default' do
+    expect(airport.capacity).to eq(3)
   end
 
   it 'has capacity 2 when specified as parameter' do
@@ -18,14 +18,35 @@ describe Airport do
     expect(airport.capacity).to eq(2)
   end
 
+  it "has an empty hangar at startup" do
+    expect(airport.hangar).to eq []
+  end
+
   describe '#land_plane(plane)' do
-    it 'returns a plane, after landing' do
-      expect(airport.land_plane(plane)).to eq plane
+    it 'is full; raises an error when landing' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { 'sunny' }
+      3.times { airport.land_plane(plane) }
+      expect { airport.land_plane(plane) }.to raise_error("Permission not granted. The airport is full.")
     end
 
-    it 'is full; raises an error when landing' do
+    it 'does not allow landing because stormy' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { 'stormy' }
+      expect { airport.land_plane(plane) }.to raise_error("Permission denied. Stormy weather")
+    end
+
+    it 'returns a plane when sunny' do
+      airport = Airport.new
+      allow(airport).to receive(:check_weather) { 'sunny' }
       airport.land_plane(plane)
-      expect { airport.land_plane(plane) }.to raise_error("Permission not granted. The airport is full.")
+      expect(airport.hangar.include? plane).to be true
+    end
+
+    it 'puts the plane in hangar if sunny and space' do
+      allow(airport).to receive(:check_weather) { 'sunny' }
+      airport.land_plane(plane)
+      expect(airport.hangar.include? plane).to be true
     end
   end
     
