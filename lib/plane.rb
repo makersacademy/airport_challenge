@@ -1,27 +1,38 @@
 class Plane
 
-    def initialize
-        @airport = []
-    end
+    attr_reader :flying
+    attr_reader :landed
 
-    def land_plane(plane, airport)
-        @weather = plane.check_weather
-        fail "PLANE NO" unless @airport.count < airport.capacity
-        fail "Stormy! Plane GO AWAY!" if @weather == "Stormy"
-        @airport << plane
-        @airport
-    end
+  def initialize
+    @airport = []
+    @flying = false
+    @landed = false
+  end
 
-    def take_off(plane, airport)
-        @weather = plane.check_weather
-        fail "Stormy! Plane STAY!" if @weather == "Stormy"
-        @airport.delete(plane)
-        @airport
-    end
+  def land_plane(plane, airport)
+    # fail "this plane has landed already!" unless @landed == false
+    fail "PLANE NO" unless @airport.count < airport.capacity
+    @weather = plane.check_weather
+    fail "Stormy! Plane GO AWAY!" if @weather == "Stormy"
+    @airport << plane
+    # @flying = false
+    # @landed = true
+    @airport
+  end
 
-    def check_weather
-        "Stormy" if rand(100) > 94
-        "Clear"
-    end
+  def take_off(plane, airport)
+    # fail "this plane is flying already!" unless @flying == false
+    @weather = plane.check_weather
+    fail "Stormy! Plane STAY!" if @weather == "Stormy"
+    @airport.delete(plane)
+    # @flying = true
+    # @landed = false
+    @airport
+  end
 
+  def check_weather
+    "Stormy" if rand(100) > 94
+    "Clear"
+  end
+  
 end

@@ -1,14 +1,13 @@
 class Airport
 
-    def initialize
-       @capacity = 1
-    end
+    attr_reader :capacity
 
-    def capacity
-        @capacity
-    end
+  def initialize
+    @capacity = 1
+  end
 
-    def change_capacity(capacity)
-        @capacity = capacity
-    end
+  def change_capacity(capacity)
+    @capacity = capacity
+  end
+
 end
