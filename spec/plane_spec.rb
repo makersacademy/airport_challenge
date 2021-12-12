@@ -11,14 +11,16 @@ describe Plane do
     plane = Plane.new
     airport = Airport.new
     allow(plane).to receive(:check_weather) { "Clear" }
-    expect(plane.land_plane(plane, airport)).to include(plane)
+    plane.land_plane(plane, airport)
+    expect(plane.status).to eq "landed"
   end
 
   it "plane takes off from airport and is no longer in airport" do
     plane = Plane.new
     airport = Airport.new
     allow(plane).to receive(:check_weather) { "Clear" }
-    expect(plane.take_off(plane, airport)).not_to include(plane)
+    plane.take_off(plane, airport)
+    expect(airport.airport).not_to include(plane)
   end
 
   it "plane does not land at airport if airport is full" do
@@ -26,7 +28,8 @@ describe Plane do
     airport = Airport.new
     allow(plane).to receive(:check_weather) { "Clear" }
     plane.land_plane(plane, airport)
-    expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
+    new_plane = Plane.new
+    expect { new_plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
   end
 
   it "plane does not land at airport if airport is full and capcity has been changed" do
@@ -34,7 +37,11 @@ describe Plane do
     airport = Airport.new
     airport.change_capacity(4)
     allow(plane).to receive(:check_weather) { "Clear" }
-    4.times { plane.land_plane(plane, airport) }
+    plane1, plane2, plane3, plane4 = Plane.new, Plane.new, Plane.new, Plane.new
+    plane1.land_plane(plane1, airport)
+    plane2.land_plane(plane2, airport)
+    plane3.land_plane(plane3, airport)
+    plane4.land_plane(plane4, airport)
     expect { plane.land_plane(plane, airport) }.to raise_error("PLANE NO")
   end
 
