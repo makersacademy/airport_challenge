@@ -62,7 +62,7 @@ describe Airport do
   
   describe 'hangar' do
     it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'removes plane that takes off from planes array' do
