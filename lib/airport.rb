@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_reader :capacity
+  attr_reader :capacity, :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -16,9 +16,9 @@ class Airport
     @planes << plane
   end
 
-  def instruct_take_off
+  def instruct_take_off(plane)
     raise "STORMY WEATHER: CANNOT TAKE OFF" if check_weather == "Stormy"
-    @planes.pop
+    plane = @planes.pop
   end
 
   def check_weather

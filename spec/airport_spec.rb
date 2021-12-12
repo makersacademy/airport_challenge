@@ -5,8 +5,6 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { double :plane }
   
-  it { is_expected.to respond_to(:instruct_landing).with(1).argument }
-  it { is_expected.to respond_to :instruct_take_off }
   it { is_expected.to respond_to :check_weather }
   
   it "has a defualt capacity" do
@@ -19,6 +17,8 @@ describe Airport do
   end
 
   describe "#instruct_landing" do
+    it { is_expected.to respond_to(:instruct_landing).with(1).argument }
+
     context 'when airport is full' do
       it "raises an error" do
         allow(airport).to receive(:check_weather).and_return('Sunny')
@@ -37,24 +37,25 @@ describe Airport do
   end
 
   describe "#instruct_take_off" do
+    it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
+    
     it "can instruct a plane to take_off" do
       allow(airport).to receive(:check_weather).and_return('Sunny')
-
       airport.instruct_landing(plane)
-      expect(airport.instruct_take_off).to eq(plane)
+      expect(airport.instruct_take_off(plane)).to eq(plane)
     end
     
     context "when weather is stormy" do
       it "raises error" do
         allow(airport).to receive(:check_weather).and_return('Stormy')
-        expect { airport.instruct_take_off }.to raise_error "STORMY WEATHER: CANNOT TAKE OFF"
+        expect { airport.instruct_take_off(plane) }.to raise_error "STORMY WEATHER: CANNOT TAKE OFF"
       end
     end
 
     context "when weather is sunny" do
       it "does not raise error" do
         allow(airport).to receive(:check_weather).and_return('Sunny')
-        expect { airport.instruct_take_off }.to_not raise_error 
+        expect { airport.instruct_take_off(plane) }.to_not raise_error 
       end
     end
   end
