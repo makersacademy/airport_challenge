@@ -10,8 +10,6 @@ class Airport
   end
 
   def land(plane)
-    
-    stormy?
     # error when airport is full
     fail 'Airport is currently full. There is not any space for landing...' if full?
     # error when weather is stormy
@@ -21,7 +19,7 @@ class Airport
   end
 
   def take_off(plane)
-    stormy?
+    
     # error when weather is stormy
     fail 'The weather conditions do not allow for safe take-off...' if stormy? == 'Stormy'
     # take off a plane

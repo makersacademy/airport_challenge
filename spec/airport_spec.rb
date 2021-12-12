@@ -40,7 +40,7 @@ context Airport do
       expect { subject.take_off(plane) }.to raise_error('The weather conditions do not allow for safe take-off...')
     end
   end
-  #test stormy?
+  # test stormy?
   context '#stormy?' do
     it 'should return "Sunny" or "Stormy"' do
       expect(subject.stormy?).to eq('Stormy').or eq('Sunny')
