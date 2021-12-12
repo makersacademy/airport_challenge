@@ -1,5 +1,5 @@
-require './lib/plane.rb'
-require './lib/airport.rb'
+require './lib/plane'
+require './lib/airport'
 
 plane = Plane.new
 airport = Airport.new
@@ -19,4 +19,3 @@ airport.new_capacity(10)
 airport.set_weather(1)
 
 airport.land(plane)
-

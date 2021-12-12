@@ -1,9 +1,7 @@
-require_relative './plane'
+require_relative 'plane'
 
 class Airport
-
   attr_reader :plane, :weather
-
 
   def initialize(capacity = 5, weather = rand(1..5))
     @capacity = capacity
@@ -32,7 +30,7 @@ class Airport
     plane
   end
 
-   def set_weather(n)
+  def weather_setter(n)
     @weather = n
     @weather
   end
