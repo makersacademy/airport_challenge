@@ -11,7 +11,7 @@ Airport Challenge
                 `---~~\___________/------------`````
                 =  ===(_________)
 
-For this challenge I tried to keep things as simple as possible and trying to follow instructions step by step.
+For this challenge I tried to keep things as simple as possible, trying to follow instructions step by step.
 
 I started with feature tests to start building classes/methods that satisfied the user stories. I then moved to unit tests.
 
