@@ -42,7 +42,6 @@ describe 'Controller can prevent landing when airport full' do
       plane1.land(airport)
       expect(airport).to be_full
       expect { plane2.land(airport) }.to raise_error("Sorry, Hangar Full")
-      
     end
   end
 end

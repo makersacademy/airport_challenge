@@ -8,18 +8,20 @@ describe Airport do
   it { is_expected.to respond_to(:full?) }
   it { is_expected.to respond_to(:receive).with(1).argument }
 
-  it 'can accept a custom capacity' do
-    expect(Airport.new(13).capacity).to eq(13)
+  describe '#initialize' do 
+    it 'can accept a custom capacity' do
+      expect(Airport.new(13).capacity).to eq(13)
+    end
   end
 
   describe '#receive' do
     context 'if not full' do
-      it 'accepts a plane' do
+      it 'adds a plane to the hangar' do
         subject.receive(plane)
         expect(subject.hangar[0]).to eq(plane)
       end
 
-      it 'gets full when capacity is reached' do
+      it 'receives planes until full' do
         subject.capacity.times { subject.receive(plane) }
         expect(subject).to be_full
       end
