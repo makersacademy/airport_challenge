@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 describe Plane do
     
@@ -10,7 +11,7 @@ describe Plane do
   it "plane lands at an airport, when called to" do
     plane = Plane.new
     airport = Airport.new
-    allow(plane).to receive(:check_weather) { "Clear" }
+    allow(plane).to receive(:weather) { "Clear" }
     plane.land_plane(plane, airport)
     expect(plane.status).to eq "landed"
   end

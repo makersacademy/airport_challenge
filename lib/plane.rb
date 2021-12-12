@@ -1,27 +1,42 @@
 class Plane
 
-    attr_reader :status
+  # creates the plane status
+  attr_reader :status
 
   def land_plane(plane, airport)
+    # checks that the plane has not already landed
     fail "this plane has landed already!" if @status == "landed"
+    # checks that the airport hanger isn't full
     fail "PLANE NO" unless airport.hanger_count < airport.capacity
-    @weather = plane.check_weather
-    fail "Stormy! Plane GO AWAY!" if @weather == "Stormy"
+    # checks the weather is safe to land
+    fail "Stormy! Plane GO AWAY!" if check_weather == "Stormy"
+    # places the plane in the airport hanger
     airport.hanger_in(plane)
+    # changes the plane status to landed
     @status = "landed"
+    # changes the plane location to be in the airport
+    #DO THIS BIT
   end
 
   def take_off(plane, airport)
+    # checks the plane is not already flying
     fail "this plane is flying already!" if @status == "flying"
-    @weather = plane.check_weather
-    fail "Stormy! Plane STAY!" if @weather == "Stormy"
+    # checks the weather is safe to fly
+    fail "Stormy! Plane STAY!" if check_weather == "Stormy"
+    # checks the plane is not at another airport
+    # DO THIS BIT
+    # takes the plane out of the airport hanger
     airport.hanger_out(plane)
+    # changes the plane status to flying
     @status = "flying"
+    # changes the plane location to not in the airport
+    # DO THIS BIT????
   end
 
   def check_weather
-    "Stormy" if rand(100) > 94
-    "Clear"
+    # checks the weather class and returns stormy or clear
+    weather = Weather.new
+    weather.check
   end
   
 end
