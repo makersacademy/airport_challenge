@@ -1,20 +1,24 @@
-# GOAL 
-Create a script to control airport traffic.
+## GOAL 
+Create a script for user to control airport traffic.
 
-# Features:
+## Features:
 - user can command landing & taking off planes 
 - user can check the planes stored in hangar
 - plane cannot land at an airport if it is already in hangar
 - plane cannot take off if it is not in the hangar
 - an airport can be created with different capacity (3 at default)
 
-# How to use:
+## Known issues:
+- one plane can be at different airports 
+
+## How to use:
 
 ```
-irb -r './lib/airport' #from the main folder
+# from the top directory
+irb -r './lib/airport'
 ```
 
-# Feature demo:
+## Feature demo:
 ```
 [2] pry(main)> require './lib/airport'
 => true
@@ -43,12 +47,7 @@ from /Users/mateuszdiak/Documents/Projects/airport_challenge/lib/airport.rb:20:i
 => []
 ```
 
-
-
-# Known issues:
-- one plane can be at different airports 
-
-# User stories:
+## User stories:
 
 ```
 As an air traffic controller 
@@ -76,5 +75,9 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-# Domain model:
+## Domain model:
 ![Domain Model Image](/assets/domain_model.jpg)
+
+## Still to do:
+- use of doubles to isolate tests in rspec (not sure how to do that)
+- refactoring the rspec file (to use before?)
