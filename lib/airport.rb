@@ -14,6 +14,8 @@ class Airport
     fail 'Airport is currently full. There is not any space for landing...' if full?
     # error when weather is stormy
     fail 'The weather conditions do not allow for safe landing...' if stormy? == 'Stormy'
+    # Same plane should not land
+    fail 'Plane is already in the airport' if @planes.include?(plane)
     # and plane will be pushed to planes array
     @planes << plane
   end

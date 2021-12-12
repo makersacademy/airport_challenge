@@ -13,20 +13,26 @@ context Airport do
     end
     it 'should not land any plane when airport is full' do
       allow(subject).to receive(:stormy?) { "Sunny" }
-      subject.capacity.times { subject.land(plane) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error('Airport is currently full. There is not any space for landing...')
     end
     it 'airport should have a default capacity which can be updated' do
       airport = Airport.new(10)
       allow(airport).to receive(:stormy?) { "Sunny" }
-      airport.capacity.times { airport.land(plane) }
+      airport.capacity.times { airport.land(Plane.new) }
       expect { airport.land(plane) }.to raise_error('Airport is currently full. There is not any space for landing...')
+    end
+    it 'should not land any plane which is already landed' do
+      allow(subject).to receive(:stormy?) {'Sunny'}
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error('Plane is already in the airport')
     end
     it 'should not let landing when weather is stormy' do
       # allow method needs to be used
       allow(subject).to receive(:stormy?) { 'Stormy' }
       expect { subject.land(plane) }.to raise_error("The weather conditions do not allow for safe landing...")
     end
+  
   end
   # take_off method
   describe '#take_off' do
