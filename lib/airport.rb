@@ -27,3 +27,6 @@ class Airport
     "stormy"
   end
 end
+
+london = Airport.new(5)
+manchester = Airport.new
