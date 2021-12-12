@@ -1,15 +1,12 @@
 class Airport 
-  attr_accessor :planes, :capacity
+  attr_accessor :planes, :capacity, :weather
 
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-  end
-
-  def weather(weather)
-    @weather = weather
+    @weather = Weather.new.forecast
   end
 
   def land(plane)
@@ -18,7 +15,7 @@ class Airport
   end
 
   def depart
-    fail "Stormy weather alert" if stormy?
+    fail "Stormy weather alert" if stormy?(weather)
     @planes.pop
   end
 
@@ -27,7 +24,7 @@ class Airport
   end
 
   def stormy?(weather)
-    weather.forecast == :stormy
+    @weather == :stormy
   end
 
 end 
