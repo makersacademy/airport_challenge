@@ -1,12 +1,15 @@
 require_relative 'plane'
 
 class Airport
-  def initialize
+  DEFAULT_CAPACITY = 30
+  
+  def initialize( capacity=DEFAULT_CAPACITY ) 
+    @capacity = capacity  # every new instance of airport will have a default capacity of 30, unless the system designer overrides this by setting a different capacity. 
     @planes = [] # every new instance of airport will have a planes array that stores how many planes are currently landed
   end
 
   def depart
-    raise "There are no planes at the airport to depart!" if empty?
+    raise "There are no planes at the airport to depart!" if empty? #is this what instructions mean by "defending against edge cases"?
     @planes.pop
     @planes
   end
@@ -16,10 +19,10 @@ class Airport
     @planes << plane
   end
 
-  private #apparently I'm missing coverage on lines within full and empty methods, but I thought I didn't need to write unit tests for private methods?
+  private 
 
   def full?
-    @planes.length > 29
+    @planes.length >= capacity
   end
 
   def empty?

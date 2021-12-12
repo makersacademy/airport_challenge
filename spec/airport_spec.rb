@@ -10,14 +10,13 @@ describe Airport do
   end
 
   it 'departs a plane' do
-    plane = Plane.new
-    subject.land(plane)
+    subject.land(Plane.new)
     expect(subject.depart).to eq [] #tests that depart method will work on aiport and will confirm that airport is empty after the plane has departed
   end
 
   describe '#lands a plane' do
     it 'raises an error if airport is full' do
-      30.times {subject.land(Plane.new)} #lands 30 planes
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport is full! No planes can land here." #tries to land 31st plane, and should get error
     end
   end
@@ -28,4 +27,14 @@ describe Airport do
     end
   end
 
+  describe 'initialisation' do
+    subject { Airport.new }
+    let(:plane) {Plane.new } # let allows variable to be shared between all it examples i.e. all tests can now use 'plane' instead of writing plane = Plane.new each time
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect { subject.land(plane) }.to raise_error "Airport is full! No planes can land here."
+    end
+  end
 end

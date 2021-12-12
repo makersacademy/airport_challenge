@@ -12,24 +12,17 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+My approach
+-----
 
-Instructions
----------
+From the user stories, there are two key objects: plane and airport. All messages/methods will act on these two objects. Therefore, create a file for each in lib, spec and define airport class and plane class. 
+Define methods depart and land. Land will take one argument, so test for this.
+When plane departs, the depart method will need to show that the plane is no longer in the airport. This can be done by initializing Airport instances with a "Planes" state recording/storing how many planes are within the airport at any given time. As planes land and depart, the Planes variable will change accordingly. This Planes variable will need to be a collection so it can store multiple instances of Plane e.g. an array or a hash?
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+In my first commit, I tested that I satisfied the requirements of the first two paragraphs.
 
-Steps
--------
+Question: I was uncertain of what this requirement meant "I would like a default airport capacity that can be overridden as appropriate". I assumed this meant set a default capacity, which can be overridden by allowing the system designer to set a different capacity when each instance of Airport.new is initialised. However, was the requirement actually needing the airports capacities to be able to change over time i.e. be overwritten at a later point, not just at point of initialisation?
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
@@ -68,11 +61,7 @@ For overriding random weather behaviour, please read the documentation to learn 
 
 Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
 
