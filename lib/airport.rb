@@ -1,14 +1,11 @@
 require './lib/plane'
-require './lib/weather'
 
 class Airport
   attr_reader :plane
   attr_reader :capacity
-  attr_reader :weather
 
   def initialize(capacity = 1)
     @capacity = capacity
-    @weather = Weather.new.generate
   end
 
   def land_plane(plane)
@@ -18,5 +15,10 @@ class Airport
 
   def take_off(plane)
     plane
+  end
+  
+  def check_weather
+    return "sunny" unless rand(5) == 4
+    "stormy"
   end
 end

@@ -5,6 +5,10 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
+  it { is_expected.to respond_to(:land_plane).with(1).argument }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:check_weather) }
+  
   it 'has a capacity attribute, set to 1 by default' do
     expect(airport.capacity).to eq(1)
   end
@@ -14,14 +18,7 @@ describe Airport do
     expect(airport.capacity).to eq(2)
   end
 
-  it 'has weather attribute, eq to "sunny" or "stormy" at startup' do
-    weather = Weather.new
-    expect(airport.weather).to eq("sunny").or eq("stormy")
-  end
-
   describe '#land_plane(plane)' do
-    it { is_expected.to respond_to(:land_plane).with(1).argument }
-    
     it 'returns a plane, after landing' do
       expect(airport.land_plane(plane)).to eq plane
     end
@@ -33,10 +30,56 @@ describe Airport do
   end
     
   describe '#take_off(plane)' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
-    
     it 'returns a plane, after take off' do
       expect(airport.take_off(plane)).to eq plane
     end
   end
+
+  describe '#check_weather' do
+    it 'returns "sunny" or "stormy"' do
+      expect(airport.check_weather).to eq("sunny").or eq("stormy")
+    end
+
+    it 'returns stormy when rand(5) is 4' do
+      allow(airport).to receive(:rand) { 4 }
+      expect(airport.check_weather).to eq("stormy")
+    end
+
+    it 'returns sunny when rand(5) is 0..3' do
+      allow(airport).to receive(:rand) { 0 }
+      expect(airport.check_weather).to eq("sunny")
+    end
+  end
 end
+
+# describe Weather do
+#   let(:weather) { Weather.new }
+
+#   it { is_expected.to respond_to(:generate) }
+
+#   describe '#generate' do
+  
+#     it 'returns "sunny" or "stormy"' do
+#       expect(weather.generate).to eq('stormy').or eq('sunny')
+#     end
+
+#     it 'returns "stormy" when randomiser is 4' do
+#       weather = Weather.new
+#       allow(weather).to receive(:rand) { 4 }
+#       expect(weather.generate).to eq('stormy')
+#     end
+    
+#     it 'returns "sunny when randomiser is 3' do
+#       weather = Weather.new
+#       allow(weather).to receive(:rand) { 3 }
+#       expect(weather.generate).to eq('sunny')
+#     end
+
+#     it 'returns "sunny when randomiser is 0' do
+#       weather = Weather.new
+#       allow(weather).to receive(:rand) { 0 }
+#       expect(weather.generate).to eq('sunny')
+#     end
+
+#   end
+# end
