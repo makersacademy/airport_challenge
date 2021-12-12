@@ -41,6 +41,7 @@ describe 'Controller can prevent landing when airport full' do
       plane1 = Plane.new
       plane2 = Plane.new
       airport = Airport.new
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
       plane1.land(airport)
       expect { plane2.land(airport) }.to raise_error("Sorry, Hangar Full")
     end
@@ -54,6 +55,7 @@ describe 'Designer can override a default capacity' do
   describe 'airport' do
     it 'planes are allowed to reach specified capacity limit' do
       airport = Airport.new(13)
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
       13.times { Plane.new.land(airport) }
       expect(airport.hangar.count).to eq 13
     end
@@ -68,9 +70,10 @@ describe 'Controller can prevent takeoff if stormy' do
     it 'will not allow takeoff if stormy' do
       airport = Airport.new
       plane = Plane.new
+      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
       plane.land(airport)
       allow(Weather).to receive(:report) { "Storms on the Horizon" }
-      expect { plane.takeoff }.to raise_error "Sorry, No Flying, Storms Approaching"
+      expect { plane.takeoff }.to raise_error "Sorry, Runways Closed, Storms Approaching"
     end
   end
 end
@@ -84,7 +87,7 @@ describe 'Controller can prevent landing if stormy' do
       plane = Plane.new
       airport = Airport.new
       allow(Weather).to receive(:report) { "Storms on the Horizon" }
-      expect { airport.receive(plane) }.to raise_error "Sorry, No Flying, Storms Approaching"
+      expect { airport.receive(plane) }.to raise_error "Sorry, Runways Closed, Storms Approaching"
     end
   end
 end

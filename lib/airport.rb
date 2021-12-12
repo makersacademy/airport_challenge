@@ -15,6 +15,7 @@ class Airport
 
   def receive(plane)
     fail "Sorry, Hangar Full" if full?
+    weather_warning if weather_alert?
     @hangar << plane
   end
 
@@ -29,7 +30,7 @@ class Airport
   end
 
   def weather_warning
-    fail "Sorry, No Flying, Storms Approaching"
+    fail "Sorry, Runways Closed, Storms Approaching"
   end
 
   def full?

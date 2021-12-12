@@ -15,11 +15,13 @@ describe Airport do
   describe '#receive' do
     context 'if not full' do
       it 'adds a plane to the hangar' do
+        allow(Weather).to receive(:report) { "Blue Skies Ahead" }
         subject.receive(plane)
         expect(subject.hangar[0]).to eq(plane)
       end
 
       it 'receives planes up to capacity' do
+        allow(Weather).to receive(:report) { "Blue Skies Ahead" }
         subject.capacity.times { subject.receive(plane) }
       end
     end
@@ -32,13 +34,20 @@ describe Airport do
         expect{ subject.receive(plane) }.to raise_error("Sorry, Hangar Full")
       end
     end
+
+    context 'if stormy' do
+      it 'will not allow planes to land' do
+        allow(Weather).to receive(:report) { "Storms on the Horizon" }
+        expect { subject.receive(plane) }.to raise_error "Sorry, Runways Closed, Storms Approaching"
+      end
+    end
   end
 
   describe '#release' do
     context 'if stormy' do
       it 'raises an error if a plane tries to takeoff' do
         allow(Weather).to receive(:report) { "Storms on the Horizon" }
-        expect { subject.release(plane) }.to raise_error "Sorry, No Flying, Storms Approaching"
+        expect { subject.release(plane) }.to raise_error "Sorry, Runways Closed, Storms Approaching"
       end
     end
   end
