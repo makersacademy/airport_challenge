@@ -12,18 +12,22 @@ class Airport
   end
 
   def instruct_landing(plane)
-    raise "AIRPORT AT FULL CAPACITY!" if at_capacity?
     raise "STORMY WEATHER: CANNOT LAND" if check_weather == "Stormy"
+    raise "ERROR: PLANE HAS ALREADY SAFELY LANDED" if planes.include?(plane)
+    raise "ERROR: AIRPORT AT FULL CAPACITY!" if at_capacity?
+
     @planes << plane
     plane
   end
 
   def instruct_take_off(plane)
     raise "STORMY WEATHER: CANNOT TAKE OFF" if check_weather == "Stormy"
+    raise "TAKE-OFF ERROR: PLANE NOT HERE" unless @planes.include?(plane)
     plane = @planes.pop
   end 
 
   def check_weather
+    # Created Weather Class for SRP
     Weather.new.forecast
   end
   

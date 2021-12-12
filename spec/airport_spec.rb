@@ -29,10 +29,17 @@ describe Airport do
         expect(airport.instruct_landing(plane)).to eq(plane)
       end
 
+      context "when Plane has already landed at the Airport" do
+        it "raises error" do
+          airport.instruct_landing(plane)
+          expect { airport.instruct_landing(plane) }.to raise_error "ERROR: PLANE HAS ALREADY SAFELY LANDED"
+        end
+      end
+
       context 'when airport is full' do
         it "raises an error" do
-          airport.capacity.times { airport.instruct_landing(plane) }
-          expect { airport.instruct_landing(plane) }.to raise_error "AIRPORT AT FULL CAPACITY!"
+          airport.capacity.times { airport.instruct_landing(Plane.new) }
+          expect { airport.instruct_landing(plane) }.to raise_error "ERROR: AIRPORT AT FULL CAPACITY!"
         end
       end
     end
@@ -57,6 +64,12 @@ describe Airport do
       it "can instruct a plane to take_off" do
         airport.instruct_landing(plane)
         expect(airport.instruct_take_off(plane)).to eq(plane)
+      end
+
+      it "raises error if user tries to instruct_take_off a plane which is not in airport" do
+        gatwick = Airport.new(100)
+        gatwick.instruct_landing(plane)
+        expect { airport.instruct_take_off(plane) }.to raise_error "TAKE-OFF ERROR: PLANE NOT HERE"
       end
     end
     
