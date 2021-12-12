@@ -14,6 +14,11 @@ describe Airport do
     expect(airport.capacity).to eq(2)
   end
 
+  it 'has weather attribute, eq to "sunny" or "stormy" at startup' do
+    weather = Weather.new
+    expect(airport.weather).to eq("sunny").or eq("stormy")
+  end
+
   describe '#land_plane(plane)' do
     it { is_expected.to respond_to(:land_plane).with(1).argument }
     
