@@ -59,9 +59,9 @@ describe Airport do
         allow(airport).to receive(:check_weather).and_return('Sunny')
       end
 
-      it { is_expected.to respond_to(:instruct_take_off) }
+      it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
       
-      it "can instruct a plane to take_off" do
+      it "returns plane that took off" do
         airport.instruct_landing(plane)
         expect(airport.instruct_take_off(plane)).to eq(plane)
       end

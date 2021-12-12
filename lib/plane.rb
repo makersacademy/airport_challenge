@@ -1,8 +1,5 @@
-class Plane
-  # attr_accessor :@has_landed
+require_relative 'airport'
 
-  def landed?
-    @has_landed = false
-  end
+class Plane
 
 end
