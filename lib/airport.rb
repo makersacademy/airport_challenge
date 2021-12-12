@@ -1,7 +1,8 @@
 class Airport
 
-  def land
-
+  def land(plane)
+    fail 'Airport is full - plane cannot land' if @plane
+    @plane = plane
   end
 
   def takeoff
