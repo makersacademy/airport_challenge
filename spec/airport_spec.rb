@@ -15,6 +15,12 @@ context Airport do
       subject.capacity.times {subject.land(plane)}
       expect {subject.land(plane)}.to raise_error('Airport is currently full. There is not any space for landing...')
     end
+    it 'airport should have a default capacity which can be updated' do
+      airport = Airport.new(4)
+      plane = Plane.new
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error('Airport is currently full. There is not any space for landing...')
+    end
   end
   #take_off method
   describe '#take_off' do
