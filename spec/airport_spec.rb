@@ -7,14 +7,12 @@ describe Airport do
 # I want to instruct a plane to land at an airport
   describe "land_plane" do
     it "instructs airplane to land" do
-      airplane = double(:flying? => true)
+      airplane = double(:flying? => true, :land => false)
       expect(subject.land_plane(airplane)).to eq "Plane successfully landed!"
     end
 
-    it "stops you from landing planes already on land" do 
-      airplane = double(:flying? => true)
-      subject.land_plane(airplane)
-      airplane = double(:flying? => false)
+    it "return error if landing planes already on land" do 
+      airplane = double(:flying? => false, :land => false)
       expect { subject.land_plane(airplane) }.to raise_error "This plane is on the ground!"
     end
   end
@@ -22,11 +20,18 @@ describe Airport do
 # As an air traffic controller 
 # So I can get passengers on the way to their destination 
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+  describe "take_off" do
+    it "instructs airplane to take off" do
+      airplane = double(:flying? => true, :land => false)
+      subject.land_plane(airplane) 
+      airplane = double(:flying? => false)
+      expect(subject.take_off(airplane)).to eq "Plane successfully took off!"
+    end
 
-  it "instructs airplane to take off" do
-    airplane = double(:flying? => true)
-    subject.land_plane(airplane)
-    expect(subject.take_off(airplane)).to eq "Plane successfully took off!"
+    it "returns error if as flying planes to take_off" do
+      airplane = double(:flying? => true)
+      expect { subject.take_off(airplane) }.to raise_error "This plane is already flying!"
+    end
   end
 end
 
