@@ -15,6 +15,17 @@ end
 # As an air traffic controller 
 # So I can get passengers on the way to their destination 
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+describe 'Controller can instruct plane to take off' do
+  describe 'airport' do
+    it 'can be confirmed as empty' do
+      plane = Plane.new
+      airport = Airport.new
+      plane.land(airport)
+      plane.takeoff
+      expect(airport).to be_empty
+    end
+  end
+end
 
 # As an air traffic controller 
 # To ensure safety 
