@@ -50,6 +50,15 @@ end
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
+describe 'Designer can override a default capacity' do
+  describe 'airport' do
+    it 'planes are allowed to reach specified capacity limit' do
+      airport = Airport.new(13)
+      13.times { Plane.new.land(airport) }
+      expect(airport.hangar.count).to eq 13
+    end
+  end
+end
 
 # As an air traffic controller 
 # To ensure safety 
