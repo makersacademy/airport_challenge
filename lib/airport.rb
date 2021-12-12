@@ -24,6 +24,8 @@ class Airport
     
     # error when weather is stormy
     fail 'The weather conditions do not allow for safe take-off...' if stormy? == 'Stormy'
+    # Plane is not in the airport cannot take off
+    fail 'This plane is not in the airport' if !@planes.include?(plane)
     # take off a plane
     @planes.delete(plane)
   end

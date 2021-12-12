@@ -36,14 +36,21 @@ context Airport do
   end
   # take_off method
   describe '#take_off' do
-    it 'should take of a plane' do
+    it 'should take off a plane' do
       allow(subject).to receive(:stormy?) { "Sunny" }
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
     end
     it 'should not let take off when weather is stormy' do
       allow(subject).to receive(:stormy?) { 'Stormy' }
       expect { subject.take_off(plane) }.to raise_error('The weather conditions do not allow for safe take-off...')
+    end
+    it 'should not take off a plane which is not in the airport' do
+      allow(subject).to receive(:stormy?) { 'Sunny' }
+      subject.land(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane)}.to raise_error('This plane is not in the airport')
     end
   end
   # test stormy?
