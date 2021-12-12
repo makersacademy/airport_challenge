@@ -22,12 +22,9 @@ class Airport
   end
 
   def check_weather
-    weather_report = ["Sunny",  
-    "Sunny", "Sunny", "Sunny", "Stormy"]
-
-    weather_report[rand(weather_report.size)]
+    rand(1..10) < 8 ? "Sunny" : "Stormy" 
   end
-
+  
   private
 
   def at_capacity?
@@ -35,4 +32,3 @@ class Airport
   end
 
 end
-
