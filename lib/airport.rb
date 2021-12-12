@@ -23,7 +23,7 @@ class Airport
 
   def check_weather
     weather_report = ["Sunny",  
-    "Sunny", "Sunny", "Sunny"]
+    "Sunny", "Sunny", "Sunny", "Stormy"]
 
     weather_report[rand(weather_report.size)]
   end
