@@ -1,3 +1,5 @@
+require 'weather'
+
 class Plane
   def land(airport)
     airport.receive(self)

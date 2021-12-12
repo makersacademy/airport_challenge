@@ -40,7 +40,6 @@ describe 'Controller can prevent landing when airport full' do
       plane2 = Plane.new
       airport = Airport.new
       plane1.land(airport)
-      expect(airport).to be_full
       expect { plane2.land(airport) }.to raise_error("Sorry, Hangar Full")
     end
   end
@@ -61,7 +60,18 @@ end
 
 # As an air traffic controller 
 # To ensure safety 
-# I want to prevent takeoff when weather is stormy 
+# I want to prevent takeoff when weather is stormy
+describe 'Controller can prevent takeoff if stormy' do
+  describe 'airport' do
+    it 'will not allow takeoff if stormy' do
+      airport = Airport.new
+      plane = Plane.new
+      plane.land(airport)
+      allow(Weather).to receive(:report) { "Storms on the Horizon" }
+      expect { plane.takeoff }.to raise_error "Sorry, No Flying, Storms Approaching"
+    end
+  end
+end
 
 # As an air traffic controller 
 # To ensure safety 

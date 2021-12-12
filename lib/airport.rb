@@ -8,17 +8,31 @@ class Airport
     @hangar = []
     @capacity = capacity
   end
+
+  def receive(plane)
+    fail "Sorry, Hangar Full" if full?
+    @hangar << plane
+  end
+
+  def release
+    weather_warning if weather_alert?
+  end
   
   def empty?
     true
   end
 
-  def full?
-    @hangar.count >= capacity
+  private
+
+  def weather_alert?
+    Weather.report == "Storms on the Horizon" ? true : false
   end
 
-  def receive(plane)
-    fail "Sorry, Hangar Full" if full?
-    @hangar << plane
+  def weather_warning
+    fail "Sorry, No Flying, Storms Approaching"
+  end
+
+  def full?
+    @hangar.count >= capacity
   end
 end

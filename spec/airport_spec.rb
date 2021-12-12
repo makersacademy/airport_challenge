@@ -5,8 +5,8 @@ describe Airport do
 
   it { is_expected.to respond_to(:empty?) }
   it { is_expected.to be_empty }
-  it { is_expected.to respond_to(:full?) }
   it { is_expected.to respond_to(:receive).with(1).argument }
+  it { is_expected.to respond_to(:release) }
 
   describe '#initialize' do 
     it 'can accept a custom capacity' do
@@ -21,9 +21,8 @@ describe Airport do
         expect(subject.hangar[0]).to eq(plane)
       end
 
-      it 'receives planes until full' do
+      it 'receives planes up to capacity' do
         subject.capacity.times { subject.receive(plane) }
-        expect(subject).to be_full
       end
     end
 
@@ -33,6 +32,15 @@ describe Airport do
       end
       it 'raises an error if a plane tries to land' do    
         expect{ subject.receive(plane) }.to raise_error("Sorry, Hangar Full")
+      end
+    end
+  end
+
+  describe '#release' do
+    context 'if stormy' do
+      it 'raises an error if a plane tries to takeoff' do
+        allow(Weather).to receive(:report) { "Storms on the Horizon" }
+        expect { subject.release }.to raise_error "Sorry, No Flying, Storms Approaching"
       end
     end
   end
