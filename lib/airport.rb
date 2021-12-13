@@ -15,7 +15,7 @@ class Airport
     # error when weather is stormy
     fail 'The weather conditions do not allow for safe landing...' if stormy? == 'Stormy'
     # Same plane should not land
-    fail 'Plane is already in the airport' if @planes.include?(plane)
+    fail 'Plane is already at the airport...' if @planes.include?(plane)
     # and plane will be pushed to planes array
     @planes << plane
   end
@@ -25,14 +25,14 @@ class Airport
     # error when weather is stormy
     fail 'The weather conditions do not allow for safe take-off...' if stormy? == 'Stormy'
     # Plane is not in the airport cannot take off
-    fail 'This plane is not in the airport' if !@planes.include?(plane)
+    fail 'This plane is not at the airport...' if !@planes.include?(plane)
     # take off a plane
     @planes.delete(plane)
   end
   
   def stormy?
     # According to the user story weather condition can be sunny or occasionally stormy. 
-    ['Sunny','Stormy'].sample
+    ['Sunny','Sunny', 'Sunny', 'Stormy'].sample
   end
 
   private

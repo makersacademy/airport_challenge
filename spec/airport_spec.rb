@@ -25,7 +25,7 @@ context Airport do
     it 'should not land any plane which is already landed' do
       allow(subject).to receive(:stormy?) {'Sunny'}
       subject.land(plane)
-      expect { subject.land(plane) }.to raise_error('Plane is already in the airport')
+      expect { subject.land(plane) }.to raise_error('Plane is already at the airport...')
     end
     it 'should not let landing when weather is stormy' do
       # allow method needs to be used
@@ -46,11 +46,11 @@ context Airport do
       allow(subject).to receive(:stormy?) { 'Stormy' }
       expect { subject.take_off(plane) }.to raise_error('The weather conditions do not allow for safe take-off...')
     end
-    it 'should not take off a plane which is not in the airport' do
+    it 'should not take off a plane which is not at the airport' do
       allow(subject).to receive(:stormy?) { 'Sunny' }
       subject.land(plane)
       subject.take_off(plane)
-      expect { subject.take_off(plane)}.to raise_error('This plane is not in the airport')
+      expect { subject.take_off(plane)}.to raise_error('This plane is not at the airport...')
     end
   end
   # test stormy?
