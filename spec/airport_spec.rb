@@ -8,6 +8,11 @@ describe Airport do
   let (:plane) { Plane.new }
 
   describe '#land' do
+    it 'raises an error when full' do
+      30.times { subject.land(plane) }
+      expect{ subject.land(Plane.new) }.to raise_error 'Airport full'
+    end
+
     it 'instructs a plane to land' do
       expect(subject.land(plane)).to eq [plane]
     end

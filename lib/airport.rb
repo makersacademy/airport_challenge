@@ -8,6 +8,7 @@ class Airport
   end
   
   def land(plane)
+    raise 'Airport full' if planes.count >= 30
     planes << plane
   end
 
