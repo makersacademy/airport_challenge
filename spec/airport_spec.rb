@@ -24,7 +24,7 @@ describe Airport do
   end
 
   it 'checks if plane has left airport' do 
-    expect { subject.plane_setting_off }.not_to raise_error 'Weather too bad for flying'
+    expect { subject.plane_setting_off }.to raise_error 'Weather too bad for flying'
   end
 
   it 'plane departed' do 
