@@ -14,14 +14,7 @@ describe 'Airport Features' do
     airport = Airport.new(10)
     plane = Plane.new
     expect { airport.take_off(plane) }.not_to raise_error
-  end
-
-  # # 2. User Story Part 2
-  # it 'confirm that planes are no longer at airport once taken off' do
-  #   puts 'Plane has now taken off' 
-  # end
-
-    
+  end    
 
   # 3. User Story
   it 'to ensure safety, instrcut planes not to land when airport is full' do
@@ -33,4 +26,24 @@ describe 'Airport Features' do
     end
     expect { airport.land(plane) }.to raise_error 'Caution: Airport full, plane cannot land. MAX capacity: 10'
   end
+
+  
+  # 5. User Story
+
+  it 'prevents take off when weather is stormy' do
+    airport = Airport.new(10)
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.take_off(plane) }.to raise_error 'Caution: Airport cannot take off plane, weather is stormy'
+  end
+
+   # 6. User Story
+
+   it 'prevents landing when weather is stormy' do
+    airport = Airport.new(10)
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error 'Caution: Airport cannot land plane, weather is stormy'
+  end
+
 end

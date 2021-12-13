@@ -22,5 +22,14 @@ describe Airport do
     expect(airport).to respond_to(:take_off).with(1).argument
   end 
 
-  
+  it 'raises an error when plane tries to land when stormy' do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error 'Caution: Airport cannot land plane, weather is stormy'
+  end
+
+  it 'raises an error when plane tries to take off when stormy' do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.take_off(plane) }.to raise_error 'Caution: Airport cannot take off plane, weather is stormy'
+  end
+
 end

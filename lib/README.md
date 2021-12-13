@@ -13,6 +13,21 @@ Planes can only take off from airports they are already in; planes that are alre
 
 ### How to use:
 
+Airport can instruct planes to land with the land(plane) method.
+
+It raises two errors: 1) when the airport is full and has reached a maximum capacity of 10 planes 2) when the weather is stormy.
+
+Airport can instruct planes to take off with the take_off(plane) method. 
+
+This method can raise an error when airport instructs plane to take off during stormy weather. 
+
+
+### Project Status : Incomplete
+
+* To complete the weather feature, I would incorporate 'weather_forecast' as an argument such as def initialize(capacity, weather_forecast) <lib/airport.rb>. I would ccreated a double to the 'weather_forecast' within <spec/airport_spec.rb>.
+
+* For User story 2 I would add a confirmation statement that confirms a plane is no longer in the airport. This could have been achieved
+  by raising an error message such as 'Plane is no longer at airport: plane already flying'.
 
 
 ### User Stories
@@ -47,3 +62,10 @@ I want to prevent landing when weather is stormy
 https://www.rubyguides.com/2018/10/method-visibility/
 
 ##### Double method 
+https://www.relishapp.com/rspec/rspec-mocks/docs
+
+##### Random
+https://blog.appsignal.com/2018/07/31/generating-random-numbers-in-ruby.html 
+
+#### Stubs
+https://relishapp.com/rspec/rspec-mocks/v/2-4/docs/method-stubs
