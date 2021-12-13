@@ -1,4 +1,4 @@
-require 'weather'
+require_relative 'weather'
 
 class Airport
   include Weather
@@ -15,20 +15,16 @@ class Airport
 
   def receive(plane)
     fail "Sorry, Hangar Full" if full?
-    weather_warning if weather_alert?
+    weather_warning if Weather.alert?
     hangar << plane
   end
 
   def release(plane)
-    weather_warning if weather_alert?
+    weather_warning if Weather.alert?
     hangar.delete_at(hangar.index(plane))
   end
   
   private
-
-  def weather_alert?
-    Weather.report == "Storms on the Horizon" 
-  end
 
   def weather_warning
     fail "Sorry, Runways Closed, Storms Approaching"

@@ -9,6 +9,7 @@ class Plane
     fail("Already Landed") unless location == "In Flight"
     airport.receive(self)
     @location = airport
+    
   end
 
   def takeoff

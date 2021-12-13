@@ -1,9 +1,6 @@
 require 'airport'
 require 'plane'
 
-# As an air traffic controller 
-# So I can get passengers to a destination 
-# I want to instruct a plane to land at an airport
 describe 'Controller can instruct a plane to land at an airport' do
   describe 'plane' do
     it 'can be instructed to land at an airport' do
@@ -16,9 +13,6 @@ describe 'Controller can instruct a plane to land at an airport' do
   end
 end
 
-# As an air traffic controller 
-# So I can get passengers on the way to their destination 
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 describe 'Controller can instruct plane to take off' do
   describe 'plane' do
     it 'can be confirmed as in flight' do
@@ -32,9 +26,6 @@ describe 'Controller can instruct plane to take off' do
   end
 end
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full
 describe 'Controller can prevent landing when airport full' do
   describe 'airport' do
     it 'raises an error if a plane tries to land when full' do
@@ -48,9 +39,6 @@ describe 'Controller can prevent landing when airport full' do
   end
 end
 
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
 describe 'Designer can override a default capacity' do
   describe 'airport' do
     it 'planes are allowed to reach specified capacity limit' do
@@ -62,9 +50,6 @@ describe 'Designer can override a default capacity' do
   end
 end
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy
 describe 'Controller can prevent takeoff if stormy' do
   describe 'airport' do
     it 'will not allow takeoff if stormy' do
@@ -78,9 +63,6 @@ describe 'Controller can prevent takeoff if stormy' do
   end
 end
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy
 describe 'Controller can prevent landing if stormy' do
   describe 'airport' do
     it 'will not allow landing if stormy' do
