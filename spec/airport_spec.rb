@@ -6,6 +6,29 @@ describe Airport do
   clear_airport = Airport.new(Airport::DEFAULT_CAPACITY, :clear)
   stormy_airport = Airport.new(Airport::DEFAULT_CAPACITY, :stormy)
   plane = Plane.new
+
+  describe 'multiple flights' do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+
+    it 'allows a number of planes to land' do
+      clear_airport.land(plane1)
+      clear_airport.land(plane2)
+      clear_airport.land(plane3)
+      expect(clear_airport.hangar).to include(plane1).and include(plane2).and include(plane3)
+    end
+
+    it 'allows a number of planes to take off' do
+      clear_airport.land(plane1)
+      clear_airport.land(plane2)
+      clear_airport.land(plane3)
+      clear_airport.takeoff(plane1)
+      clear_airport.takeoff(plane2)
+      clear_airport.takeoff(plane3)
+      expect(clear_airport.hangar).to be_empty
+    end
+  end  
   
   describe 'landing' do
     it 'keeps a record of planes that have landed' do
