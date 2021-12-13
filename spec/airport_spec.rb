@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument } # is this test redundant now because i have tested this via the 'lands a plane test'
-  it { is_expected.to respond_to :depart } # also redundant?
+  it { is_expected.to respond_to(:depart).with(1).argument } # also redundant?
 
   it 'lands a plane' do
     plane = Plane.new
@@ -12,8 +12,9 @@ describe Airport do
 
   it 'departs a plane' do
     allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
-    subject.land(Plane.new)
-    expect(subject.depart).to eq [] # tests that depart method will work on aiport and will confirm that airport is empty after the plane has departed
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.depart(plane)).to eq [] # tests that depart method will work on aiport and will confirm that this particular plane has left the airport after departed
   end
 
   describe '#lands a plane' do
