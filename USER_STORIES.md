@@ -30,9 +30,8 @@ plane    | take_off
 airport  | confirm
 
 plane ---> airport? ---> true / false
-if true ---> take_off ---> airport?
-if false  ---> land ---> airport.docked
-
+if true ---> take_off ---> airborne?
+if false  ---> airport.land(plane) ---> airport.plane
 
 # User story 2:
 As an air traffic controller 
@@ -43,6 +42,22 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
+____________________
+noun     |   verb
+---------|----------
+ATC      | prevent
+System ds| landing 
+plane    | overridden
+airport  | 
+
+plane ---> airport.full? ---> true / false
+if true ---> raising_exception ---> prevent_landing
+if false  ---> airport.land(plane) ---> airport.plane
+
+
+
+
+# User story 3:
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
@@ -51,6 +66,9 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+
+# Summary:
+
 
 
 

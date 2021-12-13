@@ -1,15 +1,11 @@
 require_relative 'plane'
 
 class Airport
-    #attr_reader :bike
+    attr_reader :plane
 
     def land(plane)
         @plane = plane
     end 
-
-    def plane
-        @plane
-    end
 
     def take_off
         Plane.new
