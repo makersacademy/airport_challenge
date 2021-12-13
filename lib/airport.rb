@@ -1,8 +1,8 @@
 
 
 class Airport
-# attributes an airport should have.
-# all airports should have
+  attr_accessor :planes, :capacity
+
 
   def land_plane
     Plane.new
