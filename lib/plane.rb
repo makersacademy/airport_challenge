@@ -1,6 +1,6 @@
 class Plane
   attr_reader :plane_status 
-    
+
   def take_off
     true
   end
