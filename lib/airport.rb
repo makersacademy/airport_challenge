@@ -5,19 +5,19 @@ class Airport
   DEFAULT_CAPACITY = 30
   
   attr_accessor :capacity # accessor allows the system designer to override capacity as appropriate
-  attr_reader :weather 
+  attr_reader :weather, :planes 
     
-  def initialize( capacity=DEFAULT_CAPACITY, weather=Weather.new ) 
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new) 
     @planes = [] # every new instance of airport will have a planes array that stores how many planes are currently landed
     @capacity = capacity  # every new instance of airport will have a default capacity of 30, unless the system designer overrides this by setting a different capacity. 
-    @weather = weather
+    @weather = weather 
     
   end
 
-  def depart
+  def depart(plane)
     raise "It's stormy. Planes cannot depart at this time." if weather.stormy?
-    raise "There are no planes at the airport to depart!" if empty? #is this what instructions mean by "defending against edge cases"?
-    @planes.pop
+    raise "This plane is not in the airport!" unless @planes.include?(plane) # is this what instructions mean by "defending against edge cases"?
+    @planes.delete(plane)
     @planes
   end
 
@@ -33,7 +33,4 @@ class Airport
     @planes.length >= capacity
   end
 
-  def empty?
-    @planes.empty?
-  end
 end
