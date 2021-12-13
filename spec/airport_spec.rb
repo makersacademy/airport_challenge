@@ -17,14 +17,14 @@ describe Airport do
     it 'has variable capacity' do
       subject.capacity = 50
       50.times { subject.land(plane) }
-      expect{ subject.land(plane) }.to raise_error 'Airport full'
+      expect { subject.land(plane) }.to raise_error 'Airport full'
     end
   end
 
   describe '#land' do
     it 'raises an error when full' do
       subject.capacity.times { subject.land(plane) }
-      expect{ subject.land(Plane.new) }.to raise_error 'Airport full'
+      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
     end
 
     it 'instructs a plane to land' do
