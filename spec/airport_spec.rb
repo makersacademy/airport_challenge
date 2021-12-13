@@ -3,28 +3,28 @@ require 'plane'
 require 'weather'
 
 describe Airport do
-  clear_airport = Airport.new(Airport::DEFAULT_CAPACITY, :clear)
-  stormy_airport = Airport.new(Airport::DEFAULT_CAPACITY, :stormy)
-  plane = Plane.new
-  landed_plane = Plane.new(false)
+  let(:clear_airport) { Airport.new(Airport::DEFAULT_CAPACITY, :clear) }
+  let(:stormy_airport) { Airport.new(Airport::DEFAULT_CAPACITY, :stormy) }
+  let(:plane) { Plane.new }
 
   describe 'multiple flights' do
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new
+    clear_airport_new = Airport.new(Airport::DEFAULT_CAPACITY, :clear)
     
     it 'allows a number of planes to land' do
-      clear_airport.land(plane1)
-      clear_airport.land(plane2)
-      clear_airport.land(plane3)
-      expect(clear_airport.hangar).to include(plane1).and include(plane2).and include(plane3)
+      clear_airport_new.land(plane1)
+      clear_airport_new.land(plane2)
+      clear_airport_new.land(plane3)
+      expect(clear_airport_new.hangar).to include(plane1).and include(plane2).and include(plane3)
     end
 
     it 'allows a number of planes to take off' do
-      clear_airport.takeoff(plane1)
-      clear_airport.takeoff(plane2)
-      clear_airport.takeoff(plane3)
-      expect(clear_airport.hangar).to be_empty
+      clear_airport_new.takeoff(plane1)
+      clear_airport_new.takeoff(plane2)
+      clear_airport_new.takeoff(plane3)
+      expect(clear_airport_new.hangar).to be_empty
     end
   end  
   
@@ -46,6 +46,7 @@ describe Airport do
     end
   
     it 'raises error when grounded plane tries to land' do
+      clear_airport.land(plane)
       message = 'No clearance to land: Plane isn\'t in flight'
       expect { clear_airport.land(plane) }.to raise_error message
     end
@@ -86,7 +87,6 @@ describe Airport do
     end
 
     it 'removes plane that takes off from planes array' do
-      plane = Plane.new
       clear_airport.land(plane)
       clear_airport.takeoff(plane)
       expect(clear_airport.hangar).to_not include(plane)
@@ -98,14 +98,12 @@ describe Airport do
     end
 
     it 'raises error if a plane has failed to leave the hangar' do
-      plane = Plane.new
       clear_airport.land(plane)
       message = 'Alert: Plane has not taken off'
       expect { clear_airport.confirm_takeoff(plane) }.to raise_error message
     end
 
     it 'prints message to confirm plane has left hangar' do
-      plane = Plane.new
       clear_airport.land(plane)
       clear_airport.takeoff(plane)
       message = 'Plane has successfully taken off'

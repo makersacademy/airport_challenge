@@ -100,6 +100,7 @@ the frequency of weather types.
 3.0.2 :009 > airport.takeoff(plane)
  => #<Plane:0x0000000123980700 @flying=false>
 ```
+        - Fixed this error, I'd called plane.land instead of plane.takeoff, d'oh!
 - I feel like I haven't gotten to grips with doubles 
 and stubbing, and have had to add in ad hoc objects 
 to prevent unwanted error messages in tests, 
@@ -112,5 +113,6 @@ it 'removes plane that takes off from planes array' do
   expect(clear_airport.hangar).to_not include(plane)
 end
 ```
+        - Fixed ad hoc additions of objects by using let(:object) { Object.new }
 - I feel like it could be a lot DRYer, particularly 
 the spec tests

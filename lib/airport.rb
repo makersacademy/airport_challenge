@@ -16,7 +16,7 @@ class Airport
     raise 'No clearance for takeoff: Stormy weather' if stormy?
     raise 'No clearance for takeoff: Object is not a plane' unless plane.class == Plane
     raise 'No clearance for takeoff: Plane is not in hangar' unless hangar.include?(plane)
-    plane.land
+    plane.takeoff
     hangar.delete(plane)
   end
 
