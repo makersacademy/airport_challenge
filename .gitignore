@@ -9,3 +9,4 @@ analysis/**/*
 
 # Local cache of Rubocop remote config
 .rubocop-*
+airport-challenge.txt
