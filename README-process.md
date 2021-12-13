@@ -96,3 +96,31 @@ Setting Up
 -----------
 
 Create lib and spec directories with associated files
+
+
+Work Plan
+----------
+The airport allows the planes to land
+The airport allows the planes to takeoff
+        The planes will confirm they are no longer at the airport after takeoff
+
+        These user stories will need to define land and takeoff methods.
+
+The airport prevents landing when the weather is stormy
+The airport prevents takeoff when the weather is stormy
+
+        These user stories will need to use a random number generator to determine if the weather is sunny or stormy
+
+The airport prevents landing when the airport is full
+The software will be used for different airports
+        Default airport capacity set
+        This can be overridden as appropriate
+
+        These user stories will need to set a DEFAULT_CAPACITY
+
+EDGE cases
+Planes can only take off from airports they are in
+Planes already flying cannot take off/be in an airport
+Planes landed cannot land again and must be in an airport
+
+        Edge cases will need to keep track of instances of different planes to see which state (landed or taking off) they are in.

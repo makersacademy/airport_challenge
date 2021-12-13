@@ -17,4 +17,7 @@ class Airport
   def full?
     plane.count >= DEFAULT_CAPACITY
   end
+
+  def weather
+    rand(1..6)
 end

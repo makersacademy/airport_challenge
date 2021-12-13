@@ -16,4 +16,8 @@ describe Airport do
     # expect { subject.land Plane.new }.to raise_error 'Airport is full - plane cannot land'
     end
   end
+
+  it "prevents a plane from landing when it is stormy" do
+    expect { subject.land Plane.new }.to raise_error 'Weather is stormy - plane cannot land'
+    end
 end
