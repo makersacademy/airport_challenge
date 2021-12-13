@@ -131,8 +131,9 @@ or like this:
 def initialize
     @flying = true
 end
+```
 or some other way.
 - I think it would be more realistic to have planes
-start on the land instead of in the air!! 
+start on the ground instead of in the air!! 
 I will fix this when I have time to go through
 the spec file and correct for it
