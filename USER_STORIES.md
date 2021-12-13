@@ -54,9 +54,6 @@ plane ---> airport.full? ---> true / false
 if true ---> raising_exception ---> prevent_landing
 if false  ---> airport.land(plane) ---> airport.plane
 
-
-
-
 # User story 3:
 As an air traffic controller 
 To ensure safety 
@@ -69,6 +66,11 @@ I want to prevent landing when weather is stormy
 
 # Summary:
 
+Unfortunately, I ended up having less time than hoped to complete this weekend assignment. I had so far split the 3x user stories and managed to complete most of the first user story with landing and taking_off. 
+
+My next goal was to work on the second user story and to prevent a planes from being landed if the airport is full. I believe this would be done by creating a limited capacity on the airport. And to create a fail procedure once the airport is full otherwise to hold that plane instance. 
+
+As part of the third user story, I believe stubs will play a major role; this is an area that i would like to explore later in week2. 
 
 
 
