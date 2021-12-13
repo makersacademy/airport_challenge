@@ -63,7 +63,8 @@ couldn't do more.
 
 I wrote a little method to generate a weighted array 
 of weather types so that I wouldn't have to
-which I've included in the Weather module; 
+write out lots of different weather states
+which I've included in the Weather module;
 I was toying with leaving it out, but I thought 
 it might be nice for the user to be able to change 
 the frequency of weather types.
