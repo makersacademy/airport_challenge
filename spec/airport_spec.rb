@@ -16,7 +16,7 @@ describe Airport do
   describe '#capacity' do
     it 'has variable capacity' do
       subject.capacity = 50
-      50.times { subject.land(plane) }
+      subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport full'
     end
   end
