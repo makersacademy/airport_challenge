@@ -1,3 +1,5 @@
+I created tests from the user stories for the minimum amount of utlity, and then wrote code until I could pass those tests. Refactoring and then repeating.
+
 Airport Challenge
 =================
 
