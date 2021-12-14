@@ -88,7 +88,7 @@ describe Airport do
     allow(plane).to receive(:airborne) { true }
     allow(weather).to receive(:forecast) { 'stormy' }
     heathrow = Airport.new
-    heathrow.land(plane)
+    heathrow.instance_variable_set(:@hangar, [plane])
 
     expect { heathrow.takeoff(weather) }.to raise_error('The weather is too stormy')
   end
@@ -108,6 +108,7 @@ describe Airport do
   end
 
   it 'if no planes in hangar raise error' do
+    allow(weather).to receive(:forecast) { 'clear' }
     expect { Airport.new.takeoff }.to raise_error('No planes available')
   end
 end

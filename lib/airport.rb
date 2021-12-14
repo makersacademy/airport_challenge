@@ -14,9 +14,9 @@ class Airport
   attr_reader :hangar
   attr_accessor :capacity
 
-  def land(plane, _weather = @weather)
+  def land(plane, weather = @weather)
     raise('Plane already grounded') unless plane.airborne == true
-
+    return unless weather_clear?(weather)
     plane.landed
     @hangar << plane
   end
