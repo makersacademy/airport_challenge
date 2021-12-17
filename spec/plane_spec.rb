@@ -29,9 +29,9 @@ describe Plane do
     it "changes @location to :air" do
       subject.ground
       subject.air
-      expect { (subject.location).to eq (:air)}
+      expect { (subject.location).to eq (:air) }
     end
 
   end
-  
+
 end
