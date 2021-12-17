@@ -1,14 +1,21 @@
 require_relative = 'plane'
 
 class Airport
+  attr_reader :plane, :capacity
+
+  def initialize
+    @plane 
+    @capacity = 10
+  end
 
   def land (plane)
-    plane
+    fail "Airport is full" unless @plane == nil
+    @plane = plane
   end
 
   def take_off(plane)
     puts "#{plane} has taken off"
-    return plane
+    @plane = nil
   end
 
 end
