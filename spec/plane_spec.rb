@@ -9,7 +9,7 @@ describe Plane do
       expect(subject.land(airport)).to eq airport  
     end
     it 'gives an error when airport is full' do
-      subject.land(airport)
+      5.times { Plane.new.land(airport) }
       expect { subject.land(airport) }.to raise_error 'Landing prevented: Airport full'
     end
   end
