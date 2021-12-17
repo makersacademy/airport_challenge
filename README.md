@@ -25,6 +25,7 @@ My Approach
 * This was the process I continued to take: writing unit tests and allowing this to guide me and let my code develop organically.
 * Each time I passed a test I ran rubocop.
 * Each time I felt my code delivered what the user story asked for (by running a feature test to make sure I could do everything the user story asked for) - I commited my code.
+* I would then return to Miro to begin on the next user story and repeat the above.
 
 User Stories
 -----

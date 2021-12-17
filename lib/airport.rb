@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   CAPACITY = 20
@@ -14,7 +15,8 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(weather)
+    fail "It's too stormy for a plane to take off right now" if weather.stormy? == true
     @recent_departure = @planes.pop
   end
 
