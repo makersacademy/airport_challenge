@@ -1,14 +1,14 @@
 # Plane Class 
 # -- Instance Variable: @flying stores boolean
-# -- Initialized as flying = true, unless init. with Plane.new(false)
-# -- Getters: flying?
-# -- Setters: land => throws exception when Plane already landed
-#             take_off => throws exception when Plane already flying
+# -- Initialize: Plane.new() creates an plane, that is flying
+# -- Getters: #flying?
+# -- Setters: #land => throws exception when Plane already landed
+#             #take_off => throws exception when Plane already flying
 
 class Plane
 
-  def initialize(flying = true)
-    @flying = flying
+  def initialize()
+    @flying = true
   end
   
   def flying?()
