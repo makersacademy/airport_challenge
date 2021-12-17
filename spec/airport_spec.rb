@@ -40,4 +40,9 @@ describe Airport do
     airport.capacity = 50
     expect(airport.capacity).to eq 50
   end
+
+  it "prevents take off when the weather is stormy" do
+    weather = double(:weather, stormy?: true)
+    expect { subject.take_off(weather) }.to raise_error "Can not take off, weather is stormy"
+  end
 end
