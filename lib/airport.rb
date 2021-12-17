@@ -8,6 +8,6 @@ class Airport
   end
 
   def take_off
-
+    @planes.pop
   end
 end
