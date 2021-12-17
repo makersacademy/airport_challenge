@@ -2,6 +2,16 @@ require 'airport'
 
 describe Airport do
   it 'lets an air traffic controller instruct a plane to land at an aiport' do
-    expect(subject).to respond_to(:land_plane).with(1).argument
+    expect(subject).to respond_to(:land).with(1).argument
+  end
+
+  it 'lets an air traffic controller instruct a plane to take off from an airport' do
+    expect(subject).to respond_to(:take_off)
+  end
+
+  it 'confirms that a plane which has just taken off is no longer at the airport' do
+    2.times { subject.land(Plane.new) }
+    subject.take_off
+    expect(subject.gone?).to eq true
   end
 end
