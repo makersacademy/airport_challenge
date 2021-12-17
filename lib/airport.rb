@@ -19,11 +19,14 @@ class Airport
   def take_off(plane)
     fail "This plane is already in the air!" if plane.location == :air
     fail "It's too stormy to take off!" if stormy?
+    fail "Your plane is in another airport!" unless @hangar.include?(plane)
     @hangar.delete(plane)
   end
 
+  private
+
   def stormy?
     weather = rand(1..60)
-    return true if weather == 13
+    true if weather == 13
   end
 end

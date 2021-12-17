@@ -64,5 +64,13 @@ describe Airport do
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error "This plane is already in the air!"
     end
+
+    it "raises error when plane in another airport" do
+      allow(subject).to receive(:stormy?) { false }
+      airport_one = Airport.new
+      plane = Plane.new
+      airport_one.land(plane)
+      expect { Airport.new.take_off(plane) }.to raise_error "Your plane is in another airport!"
+    end
   end
 end
