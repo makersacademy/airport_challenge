@@ -17,4 +17,11 @@ describe 'airport challenge' do
 
     expect(airport.landed?(plane)).to eq false
   end
+  it 'prevents landing when airport is full' do
+    airport = Airport.new
+
+    airport.capacity.times { airport.land(Plane.new) }
+
+    expect { airport.land(Plane.new) }.to raise_error('Airport full')
+  end
 end

@@ -8,6 +8,14 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error('Plane is already landed in airport')
     end
+    it 'raises an error if the airport is full' do
+      subject.capacity.times do
+        new_plane = double(:plane)
+        subject.land(new_plane)
+      end
+
+      expect { subject.land(plane) }.to raise_error('Airport full')
+    end
   end
   describe '#takeoff' do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
