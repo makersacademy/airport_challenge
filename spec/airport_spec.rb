@@ -29,4 +29,15 @@ describe Airport do
     airport = Airport.new
     expect(airport.capacity).to eq 100
   end
+
+  it "can be initialised with a different capacity" do
+    airport = Airport.new(75)
+    expect(airport.capacity).to eq 75
+  end
+
+  it "can change capacity after initialisation" do
+    airport = Airport.new()
+    airport.capacity = 50
+    expect(airport.capacity).to eq 50
+  end
 end
