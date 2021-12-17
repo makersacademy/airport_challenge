@@ -9,21 +9,21 @@ class Airport
   end
 
   def land(plane)
+    fail "This plane has already landed!" if plane.location == :ground
+    fail "It's too stormy to land!" if stormy?
     fail "Airport is full" if @hangar.count >= @capacity
+    plane.ground
     @hangar << plane
   end
 
   def take_off(plane)
+    fail "This plane is already in the air!" if plane.location == :air
     fail "It's too stormy to take off!" if stormy?
     @hangar.delete(plane)
   end
 
   def stormy?
     weather = rand(1..60)
-    if weather == 13
-      return true
-    else
-      return false
-    end
+    return true if weather == 13
   end
 end
