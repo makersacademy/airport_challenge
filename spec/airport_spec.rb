@@ -9,4 +9,11 @@ describe Airport do
       expect(subject.send_to_hangar(plane)).to eq plane
     end
   end
+
+  it { is_expected.to respond_to(:taxi_to_runway).with(1).argument }
+  describe '#taxi_to_runway' do
+    it 'taxis a plane to the runway' do
+      expect(subject.taxi_to_runway(plane)).to eq ""
+    end
+  end
 end
