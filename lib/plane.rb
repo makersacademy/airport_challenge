@@ -10,6 +10,7 @@ class Plane
   end
 
   def take_off(airport)
+    return "Unable to take-off. Weather is stormy" if check_weather == "stormy"
     airport.taxi_to_runway(self)
     return "#{self} is no longer in #{airport}" 
   end

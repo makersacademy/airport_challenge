@@ -25,5 +25,9 @@ describe Plane do
       subject.land(airport)
       expect(subject.take_off(airport)).to eq "#{subject} is no longer in #{airport}"
     end
+    it 'prevents taking off when weather is stormy' do
+      allow(subject).to receive(:check_weather).and_return("stormy")
+      expect(subject.take_off(airport)).to eq "Unable to take-off. Weather is stormy"
+    end
   end
 end
