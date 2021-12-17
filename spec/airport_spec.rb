@@ -2,6 +2,9 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double :plane }
+  before :each do
+    srand(2)
+  end
 
   describe '#initialize' do
     it 'allows default capacity to be overriden' do
@@ -22,12 +25,19 @@ describe Airport do
     end
 
     it 'raises an error if the airport is full' do
+      allow(subject).to receive(:weather).and_return('sunny')
+
       subject.capacity.times do
         new_plane = double(:plane)
         subject.land(new_plane)
       end
 
       expect { subject.land(plane) }.to raise_error('Airport full')
+    end
+
+    it 'raises an error if the weather is stormy' do
+      allow(subject).to receive(:weather).and_return('stormy')
+      expect { subject.land(plane) }.to raise_error('Cannot land when weather is stormy')
     end
   end
 
@@ -42,6 +52,12 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect { subject.takeoff(plane) }.to raise_error('Plane not in airport')
+    end
+
+    it 'raises an error if the weather is stormy' do
+      subject.land(plane)
+      allow(subject).to receive(:weather).and_return('stormy')
+      expect { subject.takeoff(plane) }.to raise_error('Cannot takeoff when weather is stormy')
     end
   end
 
@@ -61,6 +77,18 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.landed?(plane)).to eq false
+    end
+  end
+
+  describe '#weather' do
+    it 'sometimes returns sunny' do
+      srand(2)
+      expect(subject.weather).to eq('sunny')
+    end
+
+    it 'sometimes returns stormy' do
+      srand(6)
+      expect(subject.weather).to eq('stormy')
     end
   end
 end
