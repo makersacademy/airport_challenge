@@ -9,4 +9,8 @@ describe Airport do
     plane = double(:plane)
     expect(subject.land(plane)).to match_array [plane]
   end
+
+  it "responds to take_off" do
+    expect(subject).to respond_to(:take_off)
+  end
 end
