@@ -13,4 +13,10 @@ describe Airport do
   it "responds to take_off" do
     expect(subject).to respond_to(:take_off)
   end
+
+  it "lands a plane and then removes it when it takes off" do
+    plane = double(:plane)
+    subject.land(plane)
+    expect(subject.take_off).to eq plane
+  end
 end
