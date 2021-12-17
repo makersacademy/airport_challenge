@@ -3,7 +3,7 @@
 # -- Initialized as flying = true, unless init. with Plane.new(false)
 # -- Getters: flying?
 # -- Setters: land => throws exception when Plane already landed
-#              take_off => throws exception when Plane already flying
+#             take_off => throws exception when Plane already flying
 
 class Plane
 
