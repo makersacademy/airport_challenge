@@ -8,4 +8,15 @@ describe Weather do
     expect(subject.stormy?).to satisfy { |result| result == true || result == false } 
   end
 
+  it "should initialize with an instance variable which describes the weather" do
+    expect(subject.weather_indicator).to_not be nil
+  end
+
+  it "should generate a storm randomly" do
+    weathers = []
+    100.times { weathers << Weather.new.weather_indicator }
+    
+    expect(weathers).to include("Storm", "Clear")
+  end
+
 end
