@@ -70,7 +70,7 @@ Instructions
 -----
 
 ### Landing a Plane
-If the weather is not stormy...
+To land a plane at an airport the following code can be used:
 ```
 $ irb
 3.0.2 :001 > gatwick = Airport.new
@@ -81,13 +81,37 @@ $ irb
  => [#<Plane:0x000000013180e490>] 
 ```
 
-However, if the weather is stormy, after inputting `gatwick.land(plane)`, the following error message will appear:
+However, there are **three** potential error messages a user might encounter... 
+
+1. If the weather is too stormy:
 ```
 The plane cannot land as it is too stormy (RuntimeError)	
 ```
-
-Or, if a plane that has already landed and is in the airport tries to land, the following error message will appear:
+2. If a plane that has already landed and is still in the airport tries to land:
 ```
 This plane has already landed and is in the airport (RuntimeError)
 ```
-### Letting a Plane Take Off
+3. If there the airport is full:
+```
+The plane cannot land as airport is at capacity (RuntimeError)
+```
+
+### Take Off 
+If the weather is not stormy the following code can be used to let a plane take off and check that it's no longer in the airport.
+```
+$ irb
+3.0.2 :001 > gatwick = Airport.new
+ => #<Airport:0x000000010f86c0a8 @planes=[]> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x000000011f8815d8> 
+3.0.2 :003 > plane2 = Plane.new
+ => #<Plane:0x000000011eac1c18> 
+3.0.2 :004 > gatwick.land(plane)
+ => [#<Plane:0x000000011f8815d8>] 
+3.0.2 :005 > gatwick.land(plane2)
+ => [#<Plane:0x000000011f8815d8>, #<Plane:0x000000011eac1c18>] 
+3.0.2 :006 > gatwick.take_off
+ => #<Plane:0x000000011eac1c18> 
+3.0.2 :007 > gatwick.gone?
+ => true 
+```
