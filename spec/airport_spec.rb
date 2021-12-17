@@ -16,8 +16,9 @@ describe Airport do
 
   it "lands a plane and then removes it when it takes off" do
     plane = double(:plane)
+    weather = double(:weather, stormy?: false)
     subject.land(plane)
-    expect(subject.take_off).to eq plane
+    expect(subject.take_off(weather)).to eq plane
   end
 
   it "does not let a plane land if the airport is full" do
