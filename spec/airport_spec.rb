@@ -4,7 +4,7 @@ RSpec.describe Airport do
   describe 'call_to_land' do
     it 'requests a flying plane to land on the airport' do
       plane = Plane.new
-      expect(subject.call_to_land(plane)).to eq 'Done!'
+      expect(subject.call_to_land(plane)).to eq "#{plane} landed!"
     end
     it 'throws an error when airport is full' do
       subject.capacity.times { subject.call_to_land(Plane.new) }

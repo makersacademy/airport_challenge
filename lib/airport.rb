@@ -8,7 +8,10 @@ class Airport
   end
   
   def call_to_land(plane)
-    'Done!'
+    raise 'No free docks!' if self.full?
+    plane.land()
+    @planes.push(plane)
+    return "#{plane} landed!"
   end
 
   def call_to_take_off(plane)
@@ -16,7 +19,7 @@ class Airport
   end
 
   private
-  
+
   def full?
     return @planes.size >= @capacity
   end
