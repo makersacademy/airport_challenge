@@ -1,10 +1,13 @@
 class Airport
-  def initialize
-    @planes = []
-  end
+  DEFAULT_CAPACITY = 10
 
-  def capacity
-    10
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    raise ArgumentError.new('Capacity must be positive') if capacity.negative?
+
+    @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -27,6 +30,6 @@ class Airport
   attr_reader :planes
 
   def full?
-    planes.count == capacity
+    planes.count >= capacity
   end
 end
