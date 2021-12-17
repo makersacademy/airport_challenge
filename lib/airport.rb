@@ -21,6 +21,7 @@ class Airport
     fail "This plane is already in the air!" if plane.location == :air
     fail "Your plane is in another airport!" unless @hangar.include?(plane)
     fail "It's too stormy to take off!" if stormy?
+    plane.air
     @hangar.delete(plane)
   end
 

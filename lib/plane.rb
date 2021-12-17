@@ -10,4 +10,8 @@ class Plane
     @location = :ground
   end
 
+  def air
+    @location = :air
+  end
+  
 end
