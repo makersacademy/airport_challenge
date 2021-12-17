@@ -12,22 +12,22 @@ describe Airport do
   end
 
   it "responds to take_off" do
-    expect(subject).to respond_to(:take_off).with(1).argument
+    expect(subject).to respond_to(:take_off).with(2).arguments
   end
 
   it "lands a plane and then removes it when it takes off" do
     plane = double(:plane)
     weather = double(:weather, stormy?: false)
     subject.land(plane, weather)
-    expect(subject.take_off(weather)).to eq plane
+    expect(subject.take_off(plane, weather)).to eq plane
   end
 
   it "raises an error when attempting to instruct a plane that is not in the airport to take off" do
     plane = double(:plane)
     plane2 = double(:plane)
     weather = double(:weather, stormy?: false)
-    subject.land(:plane, weather)
-    expect(subject.take_off(plane2, weather)).to raise_error "Plane not in airport"
+    subject.land(plane, weather)
+    expect { subject.take_off(plane2, weather) }.to raise_error "Plane not in airport"
   end
 
   it "does not let a plane land if the airport is full" do
@@ -53,8 +53,9 @@ describe Airport do
   end
 
   it "prevents take off when the weather is stormy" do
+    plane = double(:plane)
     weather = double(:weather, stormy?: true)
-    expect { subject.take_off(weather) }.to raise_error "Can not take off, weather is stormy"
+    expect { subject.take_off(plane, weather) }.to raise_error "Can not take off, weather is stormy"
   end
 
   it "prevents landing when the weather is stormy" do
