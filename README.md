@@ -12,7 +12,7 @@ Clone the repository to your local maschine and install GEMs with bundle from to
 
 ## Usage
 
-Run in terminal or IRB (see some examples below). Software will throw several error messages, e.g. when plane obj. is flying already and is asked to take-off.
+Run in terminal or IRB (see some examples below). Software will throw several error messages, e.g. when plane obj. is flying already and is asked to take-off or if weather is too stormy at airport.
 
 `airport = Airport.new(20)` 
 - Creates a new Airport with a capacity of 20 docks. Default value is 50 if no parameter given. 
