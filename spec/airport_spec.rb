@@ -22,6 +22,6 @@ describe Airport do
 
   it "does not let a plane land if the airport is full" do
     Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane)) }
-    expect { subject.dock(double(:plane)) }.to raise_error "Airport full"
+    expect { subject.land(double(:plane)) }.to raise_error "Airport full"
   end
 end
