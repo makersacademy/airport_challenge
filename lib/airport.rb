@@ -14,10 +14,7 @@ class Airport
   end
 
   def full?
-    if @hangar == ""
-      return false
-    else
-      return true
-    end
+    return false if @hangar == ""
+    return true
   end
 end

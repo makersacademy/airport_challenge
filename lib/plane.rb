@@ -3,12 +3,9 @@ require_relative 'airport'
 class Plane
 
   def land(airport)
-    if airport.full?
-      raise 'Landing prevented: Airport full'
-    else
-      airport.send_to_hangar(self)
-      airport
-    end
+    raise 'Landing prevented: Airport full' if airport.full?
+    airport.send_to_hangar(self)
+    airport
   end
 
   def take_off(airport)
