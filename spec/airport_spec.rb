@@ -5,8 +5,8 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it "returns plane when it lands" do
+  it "stores a plane when it lands" do
     plane = double(:plane)
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to match_array [plane]
   end
 end
