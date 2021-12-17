@@ -91,13 +91,13 @@ The plane cannot land as it is too stormy (RuntimeError)
 ```
 This plane has already landed and is in the airport (RuntimeError)
 ```
-3. If there the airport is full:
+3. If the the airport is full:
 ```
 The plane cannot land as airport is at capacity (RuntimeError)
 ```
 
 ### Take Off 
-If the weather is not stormy the following code can be used to let a plane take off and check that it's no longer in the airport.
+The following code can be used to let a plane take off and check that it's no longer in the airport.
 ```
 $ irb
 3.0.2 :001 > gatwick = Airport.new
@@ -114,4 +114,29 @@ $ irb
  => #<Plane:0x000000011eac1c18> 
 3.0.2 :007 > gatwick.gone?
  => true 
+```
+
+However, there are **two** potential error messages a user might encounter...
+1. If the weather is too stormy:
+```
+It's too stormy for a plane to take off right now (RuntimeError)
+```
+2. There are no planes left at the airport in which the user will receive `nil`
+```
+$ irb
+# Previous dialogue exlcuded for brevity
+3.0.2 :027 > gatwick.take_off
+ => nil 
+ ```
+
+### Overriding an Airport's Standard Capacity
+The last bit of functionality is the ability to override the default capacity of an airport so that this programme can be used for airports of all sizes. The default is set to 20.
+
+To override this a user can use the following code:
+```
+$ irb
+3.0.2 :002 > gatwick.override_capacity(10)
+/Users/orladunlop/Projects/Week-3/airport_challenge/lib/airport.rb:31: warning: already initialized constant Airport::CAPACITY
+/Users/orladunlop/Projects/Week-3/airport_challenge/lib/airport.rb:5: warning: previous definition of CAPACITY was here
+ => 10 
 ```
