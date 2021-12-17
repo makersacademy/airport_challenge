@@ -18,4 +18,15 @@ describe Airport do
       expect(subject.taxi_to_runway(plane)).to eq ""
     end
   end
+
+  it { is_expected.to respond_to(:full?) }
+  describe '#full?' do
+    it 'returns false when hanger is empty' do
+      expect(subject.full?).to eq false
+    end
+    it 'returns true when hangar is full' do
+      subject.send_to_hangar(plane)
+      expect(subject.full?).to eq true
+    end
+  end
 end
