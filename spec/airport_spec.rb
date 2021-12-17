@@ -13,9 +13,16 @@ RSpec.describe Airport do
   end
   describe 'call_to_take_off' do
     it 'requests a landed plane to take off' do
-      plane = Plane.new(false)
-      expect(subject.call_to_take_off(plane)).to eq 'Done!'
+      plane = Plane.new
+      subject.call_to_land(plane)
+      expect(subject.call_to_take_off(plane)).to eq "#{plane} has taken off!"
     end
+    it 'throws an error when asking a plane to take off that is not in airport' do
+      plane = Plane.new
+      plane.land()  # land the plane whereever, but not at this airport
+      expect { subject.call_to_take_off(plane) }.to raise_error("#{plane} is not at this airport!")
+    end
+
   end
     
 end
