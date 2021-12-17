@@ -19,15 +19,18 @@ This was an oppurtunity to put into practice the vaulable skills we had learnt t
 
 ```ruby
 until UserStories == fulfilled
-        UserStory --> FeatureRed -->
-                until Feature == Green
-                        UnitRed-->UnitGreen-->Refactor-->UnitGreen
+        user_story
+        feature_test = :red
+                until feature_test == :green
+                        unit_test  = :red
+                        unit_test = :green
+                        refactor
+                        unit_test == :green
                 end
-        FeatureGreen --> Refactor --> FeatureGreen
+        refactor
+        feature_test == :green 
 end
 ```
-
-You can try out the results for yourself. Forget flight simulators, now you can experience an air traffic control simulator!
 
 I was working from the following user stories:
 
@@ -61,6 +64,20 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when weather is stormy  
 ```
+You can try out the results for yourself. Forget flight simulators, now you can experience an air traffic control simulator!
+
+
+## Installation
+
+1. Fork this repo, and clone to your local machine
+2. Run the command ```gem install bundler``` (if you don't have bundler already)
+3. When the installation completes, run ```bundle```
+
+
+## Running Tests
+
+Run ```rspec```
+
 
 ## Usage
 
@@ -73,36 +90,41 @@ You@YourComputer lib % irb
 3.0.2 :002 > require './plane'
  => true 
 ```
-Create airports, capacity will default to one, so do add your own:
+Add airports to the system, capacity will default to one, so do add your own:
 ```ruby
 3.0.2 :003 > aua = Airport.new
- => #<Airport:0x00007f8e14a00880 @capacity=1, @hangar=[]> 
+ => #<Airport:0x00007fa8aca287d8 @capacity=1, @hangar=[], @weather_service=WeatherService> 
 3.0.2 :004 > mbj = Airport.new(42)
- => #<Airport:0x00007f8e149e96a8 @capacity=42, @hangar=[]> 
+ => #<Airport:0x00007fa8ab824640 @capacity=42, @hangar=[], @weather_service=WeatherService> 
 3.0.2 :005 > bda = Airport.new(13)
- => #<Airport:0x00007f8e1215e170 @capacity=13, @hangar=[]> 
+ => #<Airport:0x00007fa8aca186a8 @capacity=13, @hangar=[], @weather_service=WeatherService> 
 3.0.2 :006 > nas = Airport.new(7)
- => #<Airport:0x00007f8e1201a0c0 @capacity=7, @hangar=[]> 
+ => #<Airport:0x00007fa8af1c83b0 @capacity=7, @hangar=[], @weather_service=WeatherService> 
 ```
-Create you planes on the system and send them to flight:
+Add planes to the system:
 ```ruby
 3.0.2 :007 > boeing747 = Plane.new
- => #<Plane:0x00007f8e149a8c48 @location="In Flight"> 
+ => #<Plane:0x00007fa8af163348> 
 3.0.2 :008 > bombardierCRJ200 = Plane.new
- => #<Plane:0x00007f8e149c1630 @location="In Flight"> 
+ => #<Plane:0x00007fa8aca6bc90> 
 ```
-Land planes at the airports:
+Check if a plane is in flight:
 ```ruby
-3.0.2 :009 > boeing747.land(aua)
- => #<Airport:0x00007f8e14a00880 @capacity=1, @hangar=[#<Plane:0x00007f8e149a8c48 @location=#<Airport:0x00007f8e14a00880 ...>>]> 
+3.0.2 :009 > boeing747.in_flight?
+ => true
+```
+Planes that are in flight can land at the airports:
+```ruby
+3.0.2 :010 > boeing747.land(aua)
+ => #<Airport:0x00007fa8aca287d8 @capacity=1, @hangar=[#<Plane:0x00007fa8af163348 @airport=#<Airport:0x00007fa8aca287d8 ...>>], @weather_service=WeatherService> 
 ```
 Airports will alert you if full:
 ```ruby
-3.0.2 :010 > bombardierCRJ200.land(aua)
-/Users/You/airport_challenge/lib/airport.rb:17:in `receive': Sorry, Hangar Full (RuntimeError)
+3.0.2 :011 > bombardierCRJ200.land(aua)
+/Users/You/airport_challenge/lib/airport.rb:13:in `receive': Sorry, Hangar Full (RuntimeError)
 ```
-You may also have to try later or elsewhere if the weather is stormy:
+Planes in airports can takeoff, but you may have to try later if the weather is stormy:
 ```ruby
-3.0.2 :011 > bombardierCRJ200.takeoff
+3.0.2 :012 > boeing747.takeoff
 /Users/You/airport_challenge/lib/airport.rb:30:in `weather_warning': Sorry, Runways Closed, Storms Approaching (RuntimeError)
 ```

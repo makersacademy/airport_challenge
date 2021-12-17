@@ -1,36 +1,32 @@
-require_relative 'weather'
+require_relative 'weather_service'
 
 class Airport
-  include Weather
-
-  attr_reader :capacity
-  attr_reader :hangar
-
   DEFAULT_CAPACITY = 1
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather_service = WeatherService)
     @hangar = []
     @capacity = capacity
+    @weather_service = weather_service
   end
 
   def receive(plane)
     fail "Sorry, Hangar Full" if full?
-    weather_warning if Weather.alert?
-    hangar << plane
+    check_weather
+    @hangar << plane
   end
 
   def release(plane)
-    weather_warning if Weather.alert?
-    hangar.delete_at(hangar.index(plane))
+    check_weather
+    @hangar.delete(plane)
   end
   
   private
 
-  def weather_warning
-    fail "Sorry, Runways Closed, Storms Approaching"
+  def check_weather
+    fail "Sorry, Runways Closed, Storms Approaching" if @weather_service.alert?
   end
 
   def full?
-    hangar.count >= capacity
+    @hangar.count >= @capacity
   end
 end

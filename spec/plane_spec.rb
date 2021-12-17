@@ -1,10 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:airport) { double("airport", :receive => nil, :release => nil) }
-
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:takeoff) }
+  let(:airport) { double("airport", receive: nil, release: nil) }
 
   describe '#land' do
     it 'messages airport to receive it' do
@@ -13,7 +10,7 @@ describe Plane do
     end
 
     it 'raises an error if plane has already landed' do 
-      allow(Weather).to receive(:report) { "Blue Skies Ahead" }
+      allow(WeatherService).to receive(:alert?) { false }
       subject.land(airport)
       expect { subject.land(airport) }.to raise_error("Already Landed")
     end

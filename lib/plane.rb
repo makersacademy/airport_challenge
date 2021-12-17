@@ -1,20 +1,17 @@
 class Plane
-  attr_reader :location
-
-  def initialize
-    @location = "In Flight"
-  end
-
   def land(airport)
-    fail("Already Landed") unless location == "In Flight"
+    fail("Already Landed") unless in_flight?
     airport.receive(self)
-    @location = airport
-    
+    @airport = airport
   end
 
   def takeoff
-    fail("Cannot Takeoff From The Sky") if location == "In Flight"
-    location.release(self)
-    @location = "In Flight"
+    fail("Cannot Takeoff From The Sky") if in_flight?
+    @airport.release(self)
+    @airport = nil
+  end
+
+  def in_flight?
+    !@airport 
   end
 end
