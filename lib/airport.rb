@@ -3,6 +3,7 @@ require_relative 'weather'
 
 class Airport
   CAPACITY = 20
+  FORECAST = Weather.new
 
   attr_reader :recent_departure
 
@@ -10,14 +11,15 @@ class Airport
     @planes = []
   end
   
-  def land(plane, forecast)
+  def land(plane)
     raise "The plane cannot land as airport is at capacity" if full? == true
-    raise "The plane cannot land as it is too stormy" if forecast.stormy? == true
+    raise "The plane cannot land as it is too stormy" if FORECAST.stormy? == true
+    raise "This plane has already landed and is in the airport" if @planes.include?(plane)
     @planes << plane
   end
 
-  def take_off(forecast)
-    fail "It's too stormy for a plane to take off right now" if forecast.stormy? == true
+  def take_off
+    fail "It's too stormy for a plane to take off right now" if FORECAST.stormy? == true
     @recent_departure = @planes.pop
   end
 

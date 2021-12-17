@@ -68,3 +68,26 @@ In summary, whilst the methods #land and #take_off describe what we would typica
 
 Instructions
 -----
+
+### Landing a Plane
+If the weather is not stormy...
+```
+$ irb
+3.0.2 :001 > gatwick = Airport.new
+ => #<Airport:0x0000000148157b80 @planes=[]> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x000000013180e490> 
+3.0.2 :003 > gatwick.land(plane)
+ => [#<Plane:0x000000013180e490>] 
+```
+
+However, if the weather is stormy, after inputting `gatwick.land(plane)`, the following error message will appear:
+```
+The plane cannot land as it is too stormy (RuntimeError)	
+```
+
+Or, if a plane that has already landed and is in the airport tries to land, the following error message will appear:
+```
+This plane has already landed and is in the airport (RuntimeError)
+```
+### Letting a Plane Take Off
