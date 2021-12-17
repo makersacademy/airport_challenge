@@ -46,4 +46,10 @@ describe Airport do
     weather = double(:weather, stormy?: true)
     expect { subject.take_off(weather) }.to raise_error "Can not take off, weather is stormy"
   end
+
+  it "prevents landing when the weather is stormy" do
+    plane = double(:plane)
+    weather = double(:weather, stormy?: true)
+    expect { subject.land(plane, weather) }.to raise_error "Can not land, weather is stormy"
+  end
 end
