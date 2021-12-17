@@ -7,6 +7,7 @@ class Plane
   end
 
   def take_off(airport)
-    return "#{self} is no longer in #{airport}"
+    airport.taxi_to_runway(self)
+    return "#{self} is no longer in #{airport}" if airport.hangar == ""
   end
 end

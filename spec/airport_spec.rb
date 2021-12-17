@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
 
+  it { is_expected.to respond_to(:hangar) }
+
   it { is_expected.to respond_to(:send_to_hangar).with(1).argument }
   describe '#send_to_hangar' do
     it 'stores a plane in the hangar' do
