@@ -24,4 +24,9 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane)) }
     expect { subject.land(double(:plane)) }.to raise_error "Airport full"
   end
+
+  it "has a default capacity if one is not provided" do
+    airport = Airport.new
+    expect(airport.capacity).to eq 100
+  end
 end
