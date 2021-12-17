@@ -22,6 +22,13 @@ describe Airport do
     expect(subject.take_off(weather)).to eq plane
   end
 
+  it "raises an error when attempting to instruct a plane that is not in the airport to take off" do
+    plane = double(:plane)
+    plane2 = double(:plane)
+    subject.land(:plane)
+    expect(subject.take_off(plane2)).to raise_error "Plane not in airport"
+  end
+
   it "does not let a plane land if the airport is full" do
     weather = double(:weather, stormy?: false)
     Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane), weather) }
