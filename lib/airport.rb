@@ -1,5 +1,7 @@
 class Airport
   MAX_DOCKS_DEFAULT = 50
+  BFT_SCALE = 0..12
+  MAX_BFT = 8
   attr_reader :capacity
 
   def initialize(capacity = MAX_DOCKS_DEFAULT)
@@ -26,7 +28,7 @@ class Airport
   private
 
   def stormy?()
-    return rand(0..12) > 8
+    return rand(BFT_SCALE) > MAX_BFT
   end
 
   def find?(plane)
