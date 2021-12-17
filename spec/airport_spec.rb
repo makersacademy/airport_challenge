@@ -3,6 +3,9 @@ require 'airport'
 describe Airport do
   let(:plane) { double :plane }
   before :each do
+    allow(plane).to receive(:airborne).and_return(true)
+    allow(plane).to receive(:airborne=)
+
     srand(2)
   end
 
@@ -29,6 +32,8 @@ describe Airport do
 
       subject.capacity.times do
         new_plane = double(:plane)
+        allow(new_plane).to receive(:airborne).and_return(true)
+        allow(new_plane).to receive(:airborne=)
         subject.land(new_plane)
       end
 
@@ -37,7 +42,12 @@ describe Airport do
 
     it 'raises an error if the weather is stormy' do
       allow(subject).to receive(:weather).and_return('stormy')
-      expect { subject.land(plane) }.to raise_error('Cannot land when weather is stormy')
+      expect { subject.land(plane) }.to raise_error('Weather is stormy')
+    end
+
+    it 'raises an error if the plane is not airborne' do
+      allow(plane).to receive(:airborne).and_return(false)
+      expect { subject.land(plane) }.to raise_error('Plane is not airborne')
     end
   end
 
@@ -45,19 +55,28 @@ describe Airport do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
     it 'raises an error if the plane has never landed at the airport' do
-      expect { subject.takeoff(plane) }.to raise_error('Plane not in airport')
+      expect { subject.takeoff(plane) }.to raise_error('Plane is not in airport')
     end
 
     it 'raises an error if the plane has already taken off' do
       subject.land(plane)
+      allow(plane).to receive(:airborne).and_return(false)
       subject.takeoff(plane)
-      expect { subject.takeoff(plane) }.to raise_error('Plane not in airport')
+      allow(plane).to receive(:airborne).and_return(false)
+      expect { subject.takeoff(plane) }.to raise_error('Plane is not in airport')
     end
 
     it 'raises an error if the weather is stormy' do
       subject.land(plane)
+      allow(plane).to receive(:airborne).and_return(false)
       allow(subject).to receive(:weather).and_return('stormy')
-      expect { subject.takeoff(plane) }.to raise_error('Cannot takeoff when weather is stormy')
+      expect { subject.takeoff(plane) }.to raise_error('Weather is stormy')
+    end
+
+    it 'raises an error if the plane is already airborne' do
+      subject.land(plane)
+      allow(plane).to receive(:airborne).and_return(true)
+      expect { subject.takeoff(plane) }.to raise_error('Plane is already airborne')
     end
   end
 
@@ -75,6 +94,7 @@ describe Airport do
 
     it 'returns false if a plane has taken off from the airport' do
       subject.land(plane)
+      allow(plane).to receive(:airborne).and_return(false)
       subject.takeoff(plane)
       expect(subject.landed?(plane)).to eq false
     end
