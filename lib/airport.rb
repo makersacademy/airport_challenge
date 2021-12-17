@@ -1,17 +1,17 @@
 require_relative "airplane"
 
 class Airport
-
+attr_accessor :planes
   def initialize
     @planes = []
-    @capacity
+    # @capacity
   end
 
-  def land_airplane(plane)
-    @planes.push(plane)
+  def land(airplane)
+    @planes.push(airplane)
   end
 
-  def airplane_take_off
+  def take_off
   end
 
   # def full?

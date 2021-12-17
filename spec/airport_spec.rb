@@ -3,12 +3,17 @@ require "airport"
 describe Airport do
 
   it { expect(subject).to respond_to :weather }
-  it { expect(subject).to respond_to :land_airplane }
-  it { expect(subject).to respond_to :airplane_take_off }
+  it { expect(subject).to respond_to :land }
+  it { expect(subject).to respond_to :take_off }
 
-  it "aiplane is in the airport" do
+  it "airplane has landed" do
+    airplane = Airplane.new
+    expect(subject.land(airplane)).to include(airplane)
+  end
+
+  it "check if airplane is in airport" do
     plane = Airplane.new
-    expect(subject.land_airplane(plane)).to include(plane)
+    expect(@plane).to include(plane)
   end
 
   # it "check airport is full" do
