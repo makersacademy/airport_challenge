@@ -24,13 +24,14 @@ Airport methods:
 NAME = Airport.new(capacity) - creates a new instance of Airport. Default capacity is set to 5.
 .land(plane) - lands a plane at the airport (if there's space!).
 .take_off(plane) - launches a plane from the airport (if it's at that airport!).
-.stormy? - rolls the dice to see whether it's too stormy to launch or land planes. In hindsight, this should be its own class rather than an airport method.
 
 NAME = Plane.new - creates a new instance of Plane. New planes have their location in the air, which is not very realistic.
 
 .ground - updates a plane's location to ground.
 
 .air - updates a plane's location to air.
+
+Weather.new - rolls the virtual die to determine whether it's sunny or stormy.
 
 ## Sample IRB Interaction
 % irb 
