@@ -14,9 +14,10 @@ RSpec.describe Airport do
     end
     it 'throws an error when stormy weather' do
       allow(subject).to receive(:stormy?) {true}
-      expect { subject.call_to_land(Plane.new) }.to raise_error('Too stormy to land!')
+      expect { subject.call_to_land(Plane.new) }.to raise_error('Too stormy at airport!')
     end
   end
+  
   describe '#call_to_take_off' do
     it 'requests a landed plane to take off' do
       allow(subject).to receive(:stormy?) {false}
@@ -29,6 +30,10 @@ RSpec.describe Airport do
       plane = Plane.new
       plane.land()  # land the plane whereever, but not at this airport
       expect { subject.call_to_take_off(plane) }.to raise_error("#{plane} is not at this airport!")
+    end
+    it 'throws an error when stormy weather' do
+      allow(subject).to receive(:stormy?) {true}
+      expect { subject.call_to_take_off(Plane.new) }.to raise_error('Too stormy at airport!')
     end
   end 
 end
