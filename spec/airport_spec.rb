@@ -9,8 +9,8 @@ describe Airport do
   
     it "adds a plane to the hangar" do
       allow(subject).to receive(:stormy?) { false }
-      plane = Plane.new
-      expect(subject.land(plane)[0]).to eq plane
+      subject.land(Plane.new)
+      expect(subject.hangar.count).to eq 1
     end
 
     it "raises an error when capacity is reached" do
@@ -20,8 +20,8 @@ describe Airport do
     end
 
     it "permits a manual maximum capacity" do
-      allow(subject).to receive(:stormy?) { false }
       airport = Airport.new(1)
+      allow(airport).to receive(:stormy?) { false }
       airport.land(Plane.new)
       expect { airport.land(Plane.new) }.to raise_error "Airport is full"
     end
@@ -37,6 +37,7 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error "This plane has already landed!"
     end
+
   end
 
   describe "#take_off" do
@@ -49,6 +50,14 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
+    end
+
+    it "reduces the number of planes in the hangar" do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane = Plane.new)
+      3.times { subject.land(Plane.new) }
+      subject.take_off(plane)
+      expect(subject.hangar.count).to eq 3
     end
 
     it "prevents take_off when stormy" do
@@ -66,11 +75,27 @@ describe Airport do
     end
 
     it "raises error when plane in another airport" do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?) { false }
       allow(subject).to receive(:stormy?) { false }
-      airport_one = Airport.new
       plane = Plane.new
-      airport_one.land(plane)
+      airport.land(plane)
       expect { Airport.new.take_off(plane) }.to raise_error "Your plane is in another airport!"
     end
+
   end
+
+  describe "#stormy?" do
+    it "returns true when weather = 13" do
+      allow_any_instance_of(Object).to receive(:rand).and_return(13)
+      expect(subject.stormy?).to eq true
+    end
+
+    it "returns false when weather is not 13" do
+      allow_any_instance_of(Object).to receive(:rand).and_return(4)
+      expect(subject.stormy?).to eq nil
+    end
+
+  end
+
 end

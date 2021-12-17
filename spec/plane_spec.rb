@@ -6,6 +6,7 @@ describe Plane do
     it "sets @location to :air" do
       expect { (Plane.new.location).to eq (:air) }
     end
+    
   end
 
   describe "#grounded" do
@@ -17,6 +18,7 @@ describe Plane do
       subject.ground
       expect { (subject.location).to eq (:grounded) }
     end
+
   end
 
 end
