@@ -14,15 +14,22 @@ describe Airport do
   end
 
   # Basic assumption that the airport can only hold 1 plane at a time
-  it 'raises an error when planes from landing if aiport is full' do
-    plane1 = Plane.new
-    plane2 = Plane.new
-    subject.land(plane1)
-    expect{subject.land(plane2)}.to raise_error "Airport is full"
+  it 'raises an error when planes from landing if aiport is full (ie. at capacity)' do
+    # plane1 = Plane.new
+    # plane2 = Plane.new
+    # subject.land(plane1)
+    # expect{subject.land(plane2)}.to raise_error "Airport is full"
+    11.times {subject.land(Plane.new)}
+    expect{subject.land(Plane.new)}.to raise_error "Airport is full"
   end
 
   it 'when initialized a deafult capacity exists' do
     expect(subject.capacity).to eq 10
   end
+
+  # it 'can over-ride the default capacity if wanted' do
+  #   tweaked_capacity = 
+  #   expect(airport.capacity).to eq 20
+  # end
 
 end
