@@ -10,13 +10,14 @@ class Airport
     @planes = []
   end
   
-  def land(plane)
-    fail "The plane cannot land as airport is at capacity" if full? == true
+  def land(plane, forecast)
+    raise "The plane cannot land as airport is at capacity" if full? == true
+    raise "The plane cannot land as it is too stormy" if forecast.stormy? == true
     @planes << plane
   end
 
-  def take_off(weather)
-    fail "It's too stormy for a plane to take off right now" if weather.stormy? == true
+  def take_off(forecast)
+    fail "It's too stormy for a plane to take off right now" if forecast.stormy? == true
     @recent_departure = @planes.pop
   end
 
