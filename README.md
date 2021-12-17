@@ -1,4 +1,4 @@
-Airport Challenge
+Airport Challenge (Orla Dunlop)
 =================
 
 ```
@@ -13,26 +13,13 @@ Airport Challenge
 
 ```
 
-Instructions
+Introduction
 ---------
+This challenge was completed at the end of **Week 3** of the Makers Apprenticeship course over the course of a day. The purpose of the challenge was to test my what I had learnt over the week about **Test Driven Development** and effective debugging.
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
+User Stories
 -----
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Below are the six User Stories provided for thie challenge which will inform a lot of what is said below
 
 ```
 As an air traffic controller 
@@ -60,30 +47,96 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+My Approach
+-------
+### Design Decisions
+Initially, it seemed the natural decision to give a Plane class the methods of #land and #take_off as they're things *planes* do not airports - I ended up giving these behaviours to the Airport class for two reasons:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+1. From writing the unit tests for these methods it became clear that the output I needed to test to fulfill the requirements of the User Story needed to come from an instance of the Airport class 
+2. The User Stories specify traffic controllers and a system desginer, **not** pilots - meaning I was designing functionality for their roles inside the airport (e.g. managing if planes land and/or take off).
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+In summary, whilst the methods #land and #take_off describe what we would typically view as actions belonging to planes, they actually describe the actions of the traffic controllers granting/denying a plane permission to land.
 
-Please create separate files for every class, module and test suite.
+### TDD Process
+* I began with the first user story - using the online tool Miro to identify what actions needed to be taken (i.e. what objects, what actions).
+* I identified that the first thing my code needed was an aiport - I ran a feature test to see if this felt like the natural first step for this user story and once I confimed that I created my first unit in "airport_spec.rb" which described a class called Airport.
+* This first run of my unit test failed as no class called Airport existed - so I created a new file airport.rb and set up a new class Airport with no methods. Then my unit test passed.
+* This was the process I continued to take: writing unit tests and allowing this to guide me and let my code develop organically.
+* Each time I passed a test I ran rubocop.
+* Each time I felt my code delivered what the user story asked for (by running a feature test to make sure I could do everything the user story asked for) - I commited my code.
+* I would then return to Miro to begin on the next user story and repeat the above.
 
-In code review we'll be hoping to see:
+Instructions
+-----
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+### Landing a Plane
+To land a plane at an airport the following code can be used:
+```
+$ irb
+3.0.2 :001 > gatwick = Airport.new
+ => #<Airport:0x0000000148157b80 @planes=[]> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x000000013180e490> 
+3.0.2 :003 > gatwick.land(plane)
+ => [#<Plane:0x000000013180e490>] 
+```
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+However, there are **three** potential error messages a user might encounter... 
 
-**BONUS**
+1. If the weather is too stormy:
+```
+The plane cannot land as it is too stormy (RuntimeError)	
+```
+2. If a plane that has already landed and is still in the airport tries to land:
+```
+This plane has already landed and is in the airport (RuntimeError)
+```
+3. If the the airport is full:
+```
+The plane cannot land as airport is at capacity (RuntimeError)
+```
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+### Take Off 
+The following code can be used to let a plane take off and check that it's no longer in the airport.
+```
+$ irb
+3.0.2 :001 > gatwick = Airport.new
+ => #<Airport:0x000000010f86c0a8 @planes=[]> 
+3.0.2 :002 > plane = Plane.new
+ => #<Plane:0x000000011f8815d8> 
+3.0.2 :003 > plane2 = Plane.new
+ => #<Plane:0x000000011eac1c18> 
+3.0.2 :004 > gatwick.land(plane)
+ => [#<Plane:0x000000011f8815d8>] 
+3.0.2 :005 > gatwick.land(plane2)
+ => [#<Plane:0x000000011f8815d8>, #<Plane:0x000000011eac1c18>] 
+3.0.2 :006 > gatwick.take_off
+ => #<Plane:0x000000011eac1c18> 
+3.0.2 :007 > gatwick.gone?
+ => true 
+```
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+However, there are **two** potential error messages a user might encounter...
+1. If the weather is too stormy:
+```
+It's too stormy for a plane to take off right now (RuntimeError)
+```
+2. There are no planes left at the airport in which the user will receive `nil`
+```
+$ irb
+# Previous dialogue exlcuded for brevity
+3.0.2 :027 > gatwick.take_off
+ => nil 
+ ```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+### Overriding an Airport's Standard Capacity
+The last bit of functionality is the ability to override the default capacity of an airport so that this programme can be used for airports of all sizes. The default is set to 20.
 
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+To override this a user can use the following code:
+```
+$ irb
+3.0.2 :002 > gatwick.override_capacity(10)
+/Users/orladunlop/Projects/Week-3/airport_challenge/lib/airport.rb:31: warning: already initialized constant Airport::CAPACITY
+/Users/orladunlop/Projects/Week-3/airport_challenge/lib/airport.rb:5: warning: previous definition of CAPACITY was here
+ => 10 
+```
