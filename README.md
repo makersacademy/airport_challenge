@@ -12,11 +12,13 @@ Clone the repository to your local maschine and install GEMs with bundle from to
 
 ## Usage
 
-Run in terminal or IRB. See some examples below.
+Run in terminal or IRB. See some examples below:
 
-`airport = Airport.new(20)` - Creates a new Airport with a capacity of 20 docks. Default value is 50 if no parameter given.
+`airport = Airport.new(20)` 
+- Creates a new Airport with a capacity of 20 docks. Default value is 50 if no parameter given.
 
-`plane = Plane.new()` - Creates a new plane. The plane will be flying at creation.
+`plane = Plane.new()` 
+- Creates a new plane. The plane will be flying at creation.
 
 ## Running tests
 
