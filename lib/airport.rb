@@ -1,10 +1,11 @@
 require_relative "plane"
 
 class Airport
+  DEFAULT_CAPACITY = 5
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @capacity = 5
+    @capacity = capacity
   end
 
   def land(plane)
@@ -13,6 +14,16 @@ class Airport
   end
 
   def take_off(plane)
+    fail "It's too stormy to take off!" if stormy?
     @hangar.delete(plane)
+  end
+
+  def stormy?
+    weather = rand(1..60)
+    if weather == 13
+      return true
+    else
+      return false
+    end
   end
 end
