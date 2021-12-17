@@ -15,7 +15,7 @@ Airport Challenge - Orla Dunlop
 
 Introduction
 ---------
-This challenge was completed at the end of Week 3 of the Makers Apprenticeship course over the course of a day. The purpose of the challenge was to test my what I had learnt over the week about Test Driven Development and effective debugging.
+This challenge was completed at the end of **Week 3** of the Makers Apprenticeship course over the course of a day. The purpose of the challenge was to test my what I had learnt over the week about **Test Driven Development** and effective debugging.
 
 My Approach
 -------

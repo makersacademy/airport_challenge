@@ -1,6 +1,7 @@
 require_relative 'plane'
 
 class Airport
+  CAPACITY = 20
 
   attr_reader :recent_departure
 
@@ -9,6 +10,7 @@ class Airport
   end
   
   def land(plane)
+    fail "The plane cannot land as airport is at capacity" if @planes.count >= CAPACITY
     @planes << plane
   end
 
