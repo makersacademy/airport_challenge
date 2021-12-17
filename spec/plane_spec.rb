@@ -27,4 +27,4 @@ describe Plane do
     expect(subject).to be_airbourne
   end
 end
-
+ 
