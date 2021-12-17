@@ -8,13 +8,15 @@ describe Airport do
 
   it "airplane has landed" do
     airplane = Airplane.new
-    expect(subject.land(airplane)).to include(airplane)
+    subject.land(airplane)
+    expect(subject.instance_variable_get('@planes')).to include(airplane)
   end
 
-  it "check if airplane is in airport" do
-    plane = Airplane.new
-    expect(@plane).to include(plane)
-  end
+  # it "check if airplane is in airport" do
+  #   plane = Airplane.new
+  #   subject.instance_variable_get('@planes')
+  #   expect(subject@plane).to include(plane)
+  # end
 
   # it "check airport is full" do
   #   expect(subject).to be_full
