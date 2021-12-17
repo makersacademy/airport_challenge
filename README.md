@@ -59,7 +59,7 @@ In summary, whilst the methods #land and #take_off describe what we would typica
 
 ### TDD Process
 * I began with the first user story - using the online tool Miro to identify what actions needed to be taken (i.e. what objects, what actions).
-* I identified that the first thing my code needed was an aiport - I ran a feature test to see if this felt like the natural first step for this user story and once I confimed that I created my first unit in "airport_spec.rb" which described a class called Aiport.
+* I identified that the first thing my code needed was an aiport - I ran a feature test to see if this felt like the natural first step for this user story and once I confimed that I created my first unit in "airport_spec.rb" which described a class called Airport.
 * This first run of my unit test failed as no class called Airport existed - so I created a new file airport.rb and set up a new class Airport with no methods. Then my unit test passed.
 * This was the process I continued to take: writing unit tests and allowing this to guide me and let my code develop organically.
 * Each time I passed a test I ran rubocop.
