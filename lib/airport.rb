@@ -8,7 +8,8 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def land(plane, weather)
+    fail "Can not land, weather is stormy" if weather.stormy? == true
     fail "Airport full" if @planes.count == DEFAULT_CAPACITY
     @planes << plane
   end
