@@ -8,7 +8,8 @@ class Airport
   end
   
   def call_to_land(plane)
-    raise 'No free docks!' if self.full?
+    raise 'No free docks!' if self.full?()
+    raise 'Too stormy to land!' if self.stormy?()
     
     plane.land()
     @planes.push(plane)
@@ -23,6 +24,10 @@ class Airport
   end
 
   private
+
+  def stormy?()
+    return rand(0..12) > 8
+  end
 
   def find?(plane)
     return @planes.include?(plane)

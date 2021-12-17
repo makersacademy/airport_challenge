@@ -21,5 +21,4 @@ RSpec.describe Plane do
       expect { subject.take_off() }.to raise_error('I am flying already!')
     end
   end 
-
 end
