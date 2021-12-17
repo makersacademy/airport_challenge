@@ -16,7 +16,7 @@ class Airport
 
   def take_off(plane, weather)
     fail "Can not take off, weather is stormy" if stormy?(weather)
-    fail "Plane not in airport" if @planes.include(plane) == false
+    fail "Plane not in airport" if @planes.include?(plane) == false
     @planes.delete(plane)
   end
 
