@@ -14,7 +14,7 @@ describe Weather do
 
   it "should generate a storm randomly" do
     weathers = []
-    100.times { weathers << Weather.new.weather_indicator }
+    1000.times { weathers << Weather.new.weather_indicator }
     
     expect(weathers).to include("Storm", "Clear")
   end

@@ -8,11 +8,22 @@ describe Plane do
 
   it { should respond_to(:in_airport?) }
 
+  it "should be assigned an location upon creation" do
+    expect(subject.location).to_not be nil
+  end
+
+  it "should be initialized in an airport location" do
+    airport = Airport.new
+
+    expect(subject.location.class).to be Airport
+  end
+
   it "should store a plane at a specified airport when landed" do
     airport = Airport.new
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
 
+    subject.takeoff(weather)
     subject.land(airport, weather)
 
     expect(airport.docked_planes).to include(subject)
@@ -22,7 +33,8 @@ describe Plane do
     weather = Weather.new
     airport = Airport.new
     allow(weather).to receive(:stormy?) { false }
-
+    
+    subject.takeoff(weather)
     subject.land(airport,weather)
   
     expect{subject.takeoff(weather)}.to output("#{subject} has departed from #{airport}.\n").to_stdout
@@ -33,7 +45,6 @@ describe Plane do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
 
-    subject.land(airport, weather)
     subject.takeoff(weather)
 
     expect(subject.location).to eq "In-flight"
@@ -44,7 +55,10 @@ describe Plane do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
    
-    Airport::DEFAULT_CAPACITY.times { Plane.new.land(airport, weather) }
+    Airport::DEFAULT_CAPACITY.times { 
+      plane = Plane.new
+      plane.takeoff(weather)
+      plane.land(airport, weather) }
 
     expect{ subject.land(airport, weather) }.to raise_error "Cannot land at a full airport."
   end
@@ -54,6 +68,7 @@ describe Plane do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
 
+    subject.takeoff(weather)
     subject.land(airport, weather)
 
     expect(subject.location).to eq airport
@@ -64,7 +79,6 @@ describe Plane do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
 
-    subject.land(airport, weather)
     subject.takeoff(weather)
 
     expect(airport.docked_planes).to be_empty
@@ -72,9 +86,8 @@ describe Plane do
 
   it "cannot take off if already in-flight" do
     weather = Weather.new
-
     allow(weather).to receive(:stormy?) { false }
-    subject.land(Airport.new, weather)
+
     subject.takeoff(weather)
 
     expect{ subject.takeoff(weather) }.to raise_error "The plane is already in the air."
@@ -84,6 +97,7 @@ describe Plane do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
 
+    subject.takeoff(weather)
     subject.land(Airport.new, weather)
 
     expect { subject.land(Airport.new, weather) }.to raise_error "The plane is already docked at an airport."
@@ -94,8 +108,6 @@ describe Plane do
     airport = Airport.new
     weather = Weather.new
 
-    allow(weather).to receive(:stormy?) { false }
-    plane.land(airport, weather)
     allow(weather).to receive(:stormy?) { true }
     
     expect{plane.takeoff(weather)}.to raise_error "The weather is too stormy to take off at the moment."
@@ -105,7 +117,10 @@ describe Plane do
     plane = Plane.new
     airport = Airport.new
     weather = Weather.new
+    allow(weather).to receive(:stormy?) { false }
+    plane.takeoff(weather)
     allow(weather).to receive(:stormy?) { true }
+
     
     expect{plane.land(airport, weather)}.to raise_error "The weather is too stormy to land at the moment."
   end

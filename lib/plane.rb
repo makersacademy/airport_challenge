@@ -1,7 +1,10 @@
 class Plane 
   
   attr_reader :location
-  
+  def initialize
+    @location = Airport.new
+  end
+
   def takeoff(conditions)
     if @location == "In-flight"
       fail "The plane is already in the air."
