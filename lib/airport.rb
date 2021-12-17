@@ -27,9 +27,9 @@ class Airport
   end
   
   def call_to_land(plane)
-    self.check_weather()
+    check_weather()
     
-    raise 'No free docks!' if self.full?()
+    raise 'No free docks!' if full?()
         
     plane.land()
     @planes.push(plane)
@@ -37,9 +37,9 @@ class Airport
   end
 
   def call_to_take_off(plane)
-    self.check_weather()
+    check_weather()
     
-    raise "#{plane} is not at this airport!" unless self.find?(plane)
+    raise "#{plane} is not at this airport!" unless find?(plane)
 
     plane.take_off()
     return "#{@planes.delete(plane)} has taken off!"
@@ -47,11 +47,11 @@ class Airport
 
   private
 
-  def check_weather()
-    raise 'Too stormy at airport!' if self.stormy?()
+  def check_weather
+    raise 'Too stormy at airport!' if stormy?()
   end
 
-  def stormy?()
+  def stormy?
     return rand(BFT_SCALE) > MAX_BFT
   end
 

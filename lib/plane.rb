@@ -7,22 +7,22 @@
 
 class Plane
 
-  def initialize()
+  def initialize
     @flying = true
   end
   
-  def flying?()
+  def flying?
     return @flying
   end
   
-  def land()
-    raise 'I am already landed!' unless self.flying?
+  def land
+    raise 'I am already landed!' unless flying?
 
     @flying = false
   end
 
-  def take_off()
-    raise 'I am flying already!' if self.flying?
+  def take_off
+    raise 'I am flying already!' if flying?
 
     @flying = true
   end
