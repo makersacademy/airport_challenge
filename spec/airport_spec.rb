@@ -40,7 +40,7 @@ describe Airport do
 
   it "does not let a plane land if the airport is full" do
     weather = double(:weather, stormy?: false)
-    Airport::DEFAULT_CAPACITY.times { subject.land(double(:plane), weather) }
+    subject.capacity.times { subject.land(double(:plane), weather) }
     expect { subject.land(double(:plane), weather) }.to raise_error "Airport full"
   end
 
