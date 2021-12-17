@@ -1,6 +1,6 @@
 class Weather
   def stormy?
-    (rand_num % 3).zero?
+    (rand_num % 10).zero?
   end
 
   def rand_num
