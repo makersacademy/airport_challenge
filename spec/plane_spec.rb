@@ -12,8 +12,8 @@ describe Plane do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
   describe '#take_off' do
-    it 'lands at an airport' do
-      expect(subject.take_off(airport)).to eq airport  
+    it 'takes off from an airport' do
+      expect(subject.take_off(airport)).to eq "#{subject} is no longer in #{airport}"
     end
   end
 end
