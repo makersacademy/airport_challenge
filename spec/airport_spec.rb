@@ -17,18 +17,14 @@ describe Airport do
     airport1 = Airport.new
     airport2 = Airport.new
     plane1 = Plane.new
-    plane2 = Plane.new
-    allow(subject.weatherInst).to receive(:stormy?).and_return(false)
+    allow(airport1.weatherInst).to receive(:stormy?).and_return(false)
     airport1.land(plane1)
-    allow(subject.weatherInst).to receive(:stormy?).and_return(true)
-    airport2.land(plane2)
     expect{airport2.take_off(plane1)}.to raise_error "Plane not in airport, so can't take off" 
   end
 
   it 'raises an error when planes from landing if aiport is full (ie. at capacity)' do
     11.times {allow(subject.weatherInst).to receive(:stormy?).and_return(false)}
     11.times {subject.land(Plane.new)}
-    allow(subject.weatherInst).to receive(:stormy?).and_return(false)
     expect{subject.land(Plane.new)}.to raise_error "Airport is full"
   end
 
@@ -43,12 +39,15 @@ describe Airport do
 
   it 'cannot have the same plane land twice' do
     plane1 = Plane.new
+    allow(subject.weatherInst).to receive(:stormy?).and_return(false)
     subject.land(plane1)
+    allow(subject.weatherInst).to receive(:stormy?).and_return(false)
     expect{subject.land(plane1)}.to raise_error "Plane already laneded"
   end
 
   it 'prevents takeoff when weather is stormy' do
     plane = Plane.new
+    allow(subject.weatherInst).to receive(:stormy?).and_return(false)
     subject.land(plane)
     allow(subject.weatherInst).to receive(:stormy?).and_return(true)
     expect{subject.take_off(plane)}.to raise_error "Stormy weather conditions, can't take off"
