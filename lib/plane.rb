@@ -6,28 +6,21 @@ class Plane
   end
 
   def takeoff(conditions)
-    if @location == "In-flight"
-      fail "The plane is already in the air."
-    elsif conditions.stormy? == true
-      fail "The weather is too stormy to take off at the moment."
-    else
-      @location.docked_planes.delete_if { |plane| plane == self }
-      puts "#{self} has departed from #{@location}."
-      @location = "In-flight"
-    end
+    fail "The plane is already in the air." if @location == "In-flight"
+    fail "The weather is too stormy to take off at the moment." if conditions.stormy? == true
+  
+    @location.docked_planes.delete_if { |plane| plane == self }
+    puts "#{self} has departed from #{@location}."
+    @location = "In-flight"
   end
   
   def land(airport, conditions)
-    if airport.full? == true 
-      fail "Cannot land at a full airport."
-    elsif @location.class == Airport
-      fail "The plane is already docked at an airport."
-    elsif conditions.stormy? == true
-      fail "The weather is too stormy to land at the moment."
-    else 
-      airport.docked_planes << self
-      @location = airport
-    end
+    fail "Cannot land at a full airport." if airport.full? == true
+    fail "The plane is already docked at an airport." if @location.class == Airport
+    fail "The weather is too stormy to land at the moment." if conditions.stormy? == true
+    
+    airport.docked_planes << self
+    @location = airport
   end
 
 end
