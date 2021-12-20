@@ -11,7 +11,8 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times { 
       plane = Plane.new
       plane.takeoff(weather)
-      plane.land(subject, weather) }
+      plane.land(subject, weather) 
+    }
 
     expect(subject.full?).to eq true
   end

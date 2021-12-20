@@ -11,11 +11,7 @@ class Weather
   end
 
   def stormy?
-    if @weather_indicator == "Storm"
-      true
-    else
-      false
-    end
+    @weather_indicator == "Storm"
   end
 
 end
